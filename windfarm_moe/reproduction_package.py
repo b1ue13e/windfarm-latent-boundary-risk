@@ -219,6 +219,7 @@ def write_reproduction_package(output_dir: Path | str) -> Path:
             "python main.py reviewer-stat-pack --dataset wtb --root-dir . --output-dir artifacts/strictmask_combined_reviewer_stats --suite-dir artifacts/strictmask_validation_wtb_full --suite-dir artifacts/strictmask_baseline_rerun_wtb_full --suite-dir artifacts/strictmask_ablation_rerun_wtb_full --cache-dir artifacts/cache_strictmask/wtb_245d --split test --models \"Graph WaveNet,PatchTST,Physics-Aligned MoE,MoE + L_bal + L_align + L_force\" --reference-model \"MoE + L_bal + L_align + L_force\" --baseline-models \"Graph WaveNet,PatchTST,Physics-Aligned MoE\" --bootstrap-samples 1000 --permutation-samples 1000 --max-per-example-rows 200000 --max-paired-examples 100000 --top-k-failures 24",
             "python main.py reviewer-stat-pack-guard --pack-dir artifacts/strictmask_combined_reviewer_stats --output-dir artifacts/strictmask_combined_reviewer_stats_guard --min-runs 20 --required-models \"Graph WaveNet,PatchTST,Physics-Aligned MoE,MoE + L_bal + L_align + L_force\" --required-seeds 201,202,203,204,205",
             "python main.py external-wind-source-guard --dataset external_wind --root-dir . --output-dir artifacts/external_wind_source_guard --manifest-path artifacts/external_wind_full_manifest/external_wind_source_manifest.csv --min-files 31 --min-total-bytes 10000000000 --farms kelmarsh,penmanshiel",
+            "python main.py external-wind-guard --dataset external_wind --root-dir . --output-dir artifacts/external_wind_guard --cache-dirs artifacts/cache_external_wind/external_wind_kelmarsh_chronological,artifacts/cache_external_wind/external_wind_penmanshiel_chronological,artifacts/cache_external_wind/external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out,artifacts/cache_external_wind/external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out --suite-dir artifacts/external_wind_runs --seeds 201,202,203,204,205",
             "$manifestPath = Join-Path $manifestDir 'evidence_manifest_final.json'",
             "python main.py final-evidence-manifest --dataset wtb --root-dir . --output-dir $manifestDir --run-table artifacts/strictmask_combined_reviewer_stats/reviewer_stat_pack_run_table.csv --cache-dir artifacts/cache_strictmask/wtb_245d --source-artifacts $sources --table-outputs $tables --figure-outputs $figures --guard-paths $guards --external-guard artifacts/external_wind_guard/external_wind_guard.json --external-source-guard artifacts/external_wind_source_guard/external_wind_source_guard.json --split-id strict-cache --seeds 201,202,203,204,205 --models \"Graph WaveNet,PatchTST,Physics-Aligned MoE,MoE + L_bal + L_align + L_force\"",
             "python main.py final-table-export --dataset wtb --root-dir . --manifest-path $manifestPath --output-dir $exportDir",
@@ -247,7 +248,11 @@ def write_reproduction_package(output_dir: Path | str) -> Path:
         [
             "param(",
             "    [switch]$DownloadScada,",
-            "    [switch]$RunTraining",
+            "    [switch]$RunTraining,",
+            "    [switch]$RunAllTrainingCommands,",
+            "    [switch]$ParallelTraining,",
+            "    [int]$MaxParallel = 2,",
+            "    [string]$DeviceIds = '0'",
             ")",
             "",
             '$ErrorActionPreference = "Stop"',
@@ -259,6 +264,9 @@ def write_reproduction_package(output_dir: Path | str) -> Path:
             "$args = @('-ExecutionPolicy', 'Bypass', '-File', 'scripts\\run_external_wind_full_evidence.ps1')",
             "if ($DownloadScada) { $args += '-DownloadScada' }",
             "if ($RunTraining) { $args += '-RunTraining' }",
+            "if ($RunAllTrainingCommands) { $args += '-RunAllTrainingCommands' }",
+            "if ($ParallelTraining) { $args += '-ParallelTraining' }",
+            "$args += @('-MaxParallel', [string]$MaxParallel, '-DeviceIds', $DeviceIds)",
             "powershell @args",
         ],
     )
@@ -284,7 +292,7 @@ def write_reproduction_package(output_dir: Path | str) -> Path:
             "rebuild_submission_artifacts.ps1 rebuilds source evidence tables and refreshes reviewer/reproducibility guards.",
             "rebuild_final_evidence_package.ps1 builds evidence_manifest_final.json and exports tables/source-data/figures/guards from the single manifest.",
             "The final reviewer-stat pack intentionally keeps a capped per-example preview (`--max-per-example-rows 200000`) for package size; generate_uncapped_per_example_reviewer_stats.ps1 uses `--max-per-example-rows 0` for the full per-example table.",
-            "external_wind_protocol.ps1 delegates to scripts\\run_external_wind_full_evidence.ps1, which reuses validated source manifests, source guards, inspections, and caches when present; use -DownloadScada to fetch or revalidate the full 10.3 GiB SCADA set and -RunTraining to execute the 5-seed runs.",
+            "external_wind_protocol.ps1 delegates to scripts\\run_external_wind_full_evidence.ps1, which reuses validated source manifests, source guards, inspections, and caches when present; use -DownloadScada to fetch or revalidate the full 10.3 GiB SCADA set, -RunTraining to execute missing 5-seed runs only, -ParallelTraining to pass paper-batch parallelism through, and -RunAllTrainingCommands only when deliberately replaying the full command matrix.",
         ],
     }
     save_json(output_dir / "reproduction_index.json", index)
@@ -302,7 +310,7 @@ def write_reproduction_package(output_dir: Path | str) -> Path:
         "- `rebuild_submission_artifacts.ps1`: rebuilds strict WTB source tables and refreshes threshold-control, final reviewer, and reproducibility guards.",
         "- `rebuild_final_evidence_package.ps1`: builds the single final evidence manifest and exports reviewer-facing tables, source data, figures, guards, and manifest files.",
         "- `generate_uncapped_per_example_reviewer_stats.ps1`: rebuilds the reviewer-stat pack with `--max-per-example-rows 0` into `artifacts/strictmask_combined_reviewer_stats_uncapped_per_example` for full per-example export.",
-        "- `external_wind_protocol.ps1`: delegates to `scripts/run_external_wind_full_evidence.ps1`, reuses validated source manifests, source guards, inspections, and caches when present, and accepts `-DownloadScada` for the full 10.3 GiB SCADA set plus `-RunTraining` for the 5-seed external protocol.",
+        "- `external_wind_protocol.ps1`: delegates to `scripts/run_external_wind_full_evidence.ps1`, reuses validated source manifests, source guards, inspections, and caches when present, writes `external_wind_missing_run_status.csv` plus `external_wind_missing_training_commands.ps1`, and accepts `-RunTraining` for missing 5-seed runs only. Use `-RunAllTrainingCommands` only to deliberately replay the full command matrix.",
         "",
         "The default final package includes a capped per-example preview (`--max-per-example-rows 200000`) to keep the reviewer bundle manageable. It is not the complete per-example table; use the uncapped script for the full export.",
         "",
