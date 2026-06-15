@@ -5,7 +5,10 @@ param(
     [string]$SuiteDir = "artifacts/external_wind_runs",
     [string]$Seeds = "201,202,203,204,205",
     [switch]$DownloadScada,
-    [switch]$RunTraining
+    [switch]$RunTraining,
+    [switch]$ParallelTraining,
+    [int]$MaxParallel = 2,
+    [string]$DeviceIds = "0,0"
 )
 
 $ErrorActionPreference = "Stop"
@@ -169,9 +172,16 @@ python main.py external-wind-protocol `
 
 if ($RunTraining) {
   $TrainingCommands = "artifacts/external_wind_protocol/external_wind_training_commands.ps1"
-  Get-Content artifacts/external_wind_protocol/external_wind_commands.ps1 |
+  $TrainingLines = Get-Content artifacts/external_wind_protocol/external_wind_commands.ps1 |
     Where-Object { $_ -notmatch "external-wind-preprocess" -and $_.Trim() } |
-    Set-Content -Encoding UTF8 $TrainingCommands
+    ForEach-Object {
+      if ($ParallelTraining -and $_ -match "paper-batch" -and $_ -notmatch "--parallel") {
+        "$_ --parallel --max-parallel $MaxParallel --device-ids $DeviceIds"
+      } else {
+        $_
+      }
+    }
+  $TrainingLines | Set-Content -Encoding UTF8 $TrainingCommands
   powershell -ExecutionPolicy Bypass -File $TrainingCommands
   powershell -ExecutionPolicy Bypass -File artifacts/external_wind_protocol/external_wind_reviewer_pack_commands.ps1
 }
