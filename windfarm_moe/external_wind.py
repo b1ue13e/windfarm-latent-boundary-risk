@@ -47,6 +47,7 @@ EXTERNAL_ROUTING_REQUIRED_MODELS = (
     "Physics-Aligned MoE",
     "MoE + L_bal + L_align + L_force",
 )
+EXTERNAL_RESCUE_DIAGNOSTIC_CLAIM_GATE = "within_wtb_external_diagnostics_only"
 EXTERNAL_FULL_SOURCE_MIN_FILES = 31
 EXTERNAL_FULL_SOURCE_MIN_BYTES = 10_000_000_000
 EXTERNAL_STATIC_NOTES = {
@@ -2101,6 +2102,593 @@ def run_external_wind_guard(
     return output_dir
 
 
+def run_external_wind_portability_rescue(
+    output_dir: Path | str,
+    cache_dirs: Iterable[Path | str] | str | None = None,
+    suite_dir: Path | str = "artifacts/external_wind_runs",
+    seeds: Iterable[int] | str = (201, 202, 203, 204, 205),
+    required_models: Iterable[str] | str = EXTERNAL_REQUIRED_MODELS,
+    rated_wind_grid: Iterable[float] | str = "9.5,10.0,10.5,11.0,11.5",
+    pitch_threshold_grid: Iterable[float] | str = "1.0,2.0,3.0,4.0",
+    cut_in_wind: float = 3.0,
+    boundary_band: float = 1.0,
+    min_nmi: float = 0.50,
+    min_ari: float = 0.30,
+) -> Path:
+    """Build the external portability rescue evidence pack.
+
+    The pack is diagnostic-first: it separates source/schema coverage, threshold
+    sensitivity, farm-domain metadata, and the routing guard that controls
+    whether portable wording is allowed.
+    """
+    output_dir = ensure_dir(output_dir)
+    seed_list = _parse_csv_ints(seeds)
+    model_list = _parse_csv_strings(required_models)
+    cache_list = [Path(path) for path in _parse_csv_strings(cache_dirs or "")]
+    rated_values = _parse_csv_floats(rated_wind_grid)
+    pitch_values = _parse_csv_floats(pitch_threshold_grid)
+    suite = Path(suite_dir)
+
+    cache_rows = [_cache_status(path) for path in cache_list]
+    run_rows = _external_run_status(suite, seed_list, model_list)
+    run_df = pd.DataFrame(run_rows)
+    cache_df = pd.DataFrame(cache_rows)
+    cache_df.to_csv(output_dir / "external_wind_cache_status.csv", index=False)
+    run_df.to_csv(output_dir / "external_wind_run_status.csv", index=False)
+
+    sensor_df = pd.DataFrame(
+        [
+            _sensor_field_coverage_row(path, suite, run_df, boundary_band=boundary_band)
+            for path in cache_list
+        ]
+    )
+    sensor_df = _attach_pitch_proxy_metric_deltas(sensor_df)
+    sensor_df.to_csv(output_dir / "sensor_field_coverage.csv", index=False)
+
+    calibration_df = pd.DataFrame(
+        [
+            row
+            for cache_dir in cache_list
+            for row in _threshold_calibration_rows(
+                cache_dir,
+                run_df=run_df,
+                rated_wind_grid=rated_values,
+                pitch_threshold_grid=pitch_values,
+                cut_in_wind=float(cut_in_wind),
+                boundary_band=float(boundary_band),
+            )
+        ]
+    )
+    calibration_df.to_csv(output_dir / "threshold_calibration.csv", index=False)
+
+    strata_df = pd.DataFrame(
+        [
+            row
+            for cache_dir in cache_list
+            for row in _control_strategy_strata_rows(cache_dir, boundary_band=float(boundary_band))
+        ]
+    )
+    strata_df.to_csv(output_dir / "control_strategy_strata.csv", index=False)
+
+    domain_df = pd.DataFrame([_turbine_domain_alignment_row(path) for path in cache_list])
+    domain_df.to_csv(output_dir / "turbine_domain_alignment.csv", index=False)
+
+    complete_runs = int(run_df["complete"].sum()) if not run_df.empty and "complete" in run_df else 0
+    expected_runs = int(len(run_df))
+    routing_model_set = set(EXTERNAL_ROUTING_REQUIRED_MODELS).intersection(set(model_list))
+    routing_df = (
+        run_df[run_df.get("model", pd.Series(dtype=str)).astype(str).isin(routing_model_set)].copy()
+        if not run_df.empty and routing_model_set
+        else pd.DataFrame()
+    )
+    routing_nmi_values = (
+        pd.to_numeric(routing_df.get("nmi"), errors="coerce").dropna()
+        if not routing_df.empty and "nmi" in routing_df
+        else pd.Series(dtype=float)
+    )
+    routing_ari_values = (
+        pd.to_numeric(routing_df.get("ari"), errors="coerce").dropna()
+        if not routing_df.empty and "ari" in routing_df
+        else pd.Series(dtype=float)
+    )
+    expected_routing_runs = int(len(routing_df))
+    routing_metric_values_present = bool(
+        expected_routing_runs > 0
+        and len(routing_nmi_values) == expected_routing_runs
+        and len(routing_ari_values) == expected_routing_runs
+    )
+    lofo = run_df[run_df.get("split_id", pd.Series(dtype=str)).astype(str).eq("leave-one-farm-out")].copy()
+    chrono = run_df[run_df.get("split_id", pd.Series(dtype=str)).astype(str).eq("chronological")].copy()
+    lofo_pairs = set(
+        zip(
+            lofo.get("farm", pd.Series(dtype=str)).astype(str),
+            lofo.get("target_farm", pd.Series(dtype=str)).astype(str),
+        )
+    )
+    required_lofo_pairs = {("kelmarsh", "penmanshiel"), ("penmanshiel", "kelmarsh")}
+    chrono_farms = set(chrono.get("farm", pd.Series(dtype=str)).astype(str))
+    checks = {
+        "all_cache_dirs_exist": bool(cache_rows) and all(row["complete"] for row in cache_rows),
+        "cache_dataset_is_external_wind": bool(cache_rows)
+        and all(str(row.get("dataset", "")) == "external_wind" for row in cache_rows),
+        "cache_license_is_cc_by_4": bool(cache_rows)
+        and all(str(row.get("license", "")).upper() == EXTERNAL_LICENSE for row in cache_rows),
+        "required_farms_cached": {"kelmarsh", "penmanshiel"}.issubset({str(row.get("farm", "")) for row in cache_rows}),
+        "all_expected_runs_complete": expected_runs > 0 and complete_runs == expected_runs,
+        "cross_farm_both_directions_complete": required_lofo_pairs.issubset(lofo_pairs)
+        and bool(lofo.empty or lofo["complete"].all()),
+        "chronological_sanity_complete": {"kelmarsh", "penmanshiel"}.issubset(chrono_farms)
+        and bool(chrono.empty or chrono["complete"].all()),
+        "routing_metric_values_present": routing_metric_values_present,
+        "routing_nmi_meets_minimum": bool(not routing_nmi_values.empty and routing_nmi_values.mean() >= min_nmi),
+        "routing_ari_meets_minimum": bool(not routing_ari_values.empty and routing_ari_values.mean() >= min_ari),
+        "sensor_field_coverage_written": not sensor_df.empty,
+        "threshold_calibration_written": not calibration_df.empty,
+        "control_strategy_strata_written": not strata_df.empty,
+        "turbine_domain_alignment_written": not domain_df.empty,
+        "reserve_portable_wording_requires_nmi_ari_thresholds": True,
+    }
+    data_and_protocol_complete = bool(
+        checks["all_cache_dirs_exist"]
+        and checks["cache_dataset_is_external_wind"]
+        and checks["cache_license_is_cc_by_4"]
+        and checks["required_farms_cached"]
+        and checks["all_expected_runs_complete"]
+        and checks["cross_farm_both_directions_complete"]
+        and checks["chronological_sanity_complete"]
+        and checks["routing_metric_values_present"]
+    )
+    portable_ready = bool(
+        data_and_protocol_complete
+        and checks["routing_nmi_meets_minimum"]
+        and checks["routing_ari_meets_minimum"]
+    )
+    if portable_ready:
+        status = "portable_mechanism_ready"
+        claim_gate = "portable_mechanism_passed"
+    elif data_and_protocol_complete:
+        status = "complete_with_external_boundary_condition_diagnostics"
+        claim_gate = EXTERNAL_RESCUE_DIAGNOSTIC_CLAIM_GATE
+    else:
+        status = "blocked_external_wind_incomplete"
+        claim_gate = "blocked_not_citable"
+
+    proxy_rows = sensor_df if not sensor_df.empty else pd.DataFrame()
+    proxy_summary = {
+        "pitch_proxy_used_farms": sorted(
+            proxy_rows.loc[proxy_rows.get("pitch_proxy_used_for_regime", pd.Series(dtype=bool)).astype(bool), "farm"]
+            .dropna()
+            .astype(str)
+            .unique()
+            .tolist()
+        )
+        if not proxy_rows.empty and "farm" in proxy_rows
+        else [],
+        "mean_real_pitch_coverage": _safe_series_mean(proxy_rows.get("real_pitch_coverage")) if not proxy_rows.empty else None,
+        "mean_proxy_use_rate": _safe_series_mean(proxy_rows.get("synthetic_pitch_proxy_use_rate")) if not proxy_rows.empty else None,
+        "total_effective_boundary_cells": int(
+            pd.to_numeric(proxy_rows.get("effective_boundary_cells"), errors="coerce").fillna(0).sum()
+        )
+        if not proxy_rows.empty and "effective_boundary_cells" in proxy_rows
+        else 0,
+        "mean_proxy_nmi_delta": _safe_series_mean(proxy_rows.get("proxy_nmi_delta")) if not proxy_rows.empty else None,
+        "mean_proxy_ari_delta": _safe_series_mean(proxy_rows.get("proxy_ari_delta")) if not proxy_rows.empty else None,
+    }
+    report = {
+        "artifact": "external_wind_portability_rescue",
+        "status": status,
+        "claim_gate": claim_gate,
+        "portable_wording_allowed": bool(portable_ready),
+        "fallback_wording": "within-WTB boundary routing evidence with external boundary-condition diagnostics",
+        "checks": checks,
+        "expected_runs": expected_runs,
+        "complete_runs": complete_runs,
+        "expected_routing_runs": expected_routing_runs,
+        "complete_routing_runs": int(routing_df["complete"].sum()) if not routing_df.empty and "complete" in routing_df else 0,
+        "mean_nmi": float(routing_nmi_values.mean()) if not routing_nmi_values.empty else None,
+        "mean_ari": float(routing_ari_values.mean()) if not routing_ari_values.empty else None,
+        "min_nmi": float(min_nmi),
+        "min_ari": float(min_ari),
+        "rated_wind_grid": rated_values,
+        "pitch_threshold_grid": pitch_values,
+        "pitch_proxy_diagnostics": proxy_summary,
+        "outputs": [
+            "threshold_calibration.csv",
+            "control_strategy_strata.csv",
+            "sensor_field_coverage.csv",
+            "turbine_domain_alignment.csv",
+            "rescue_summary.json",
+        ],
+    }
+    save_json(output_dir / "rescue_summary.json", report)
+    return output_dir
+
+
+def _safe_series_mean(values: Any) -> float | None:
+    if values is None:
+        return None
+    series = pd.to_numeric(pd.Series(values), errors="coerce").dropna()
+    return float(series.mean()) if not series.empty else None
+
+
+def _load_cache_metadata(cache_dir: Path) -> dict[str, Any]:
+    metadata_path = Path(cache_dir) / "metadata.json"
+    if not metadata_path.exists():
+        return {}
+    try:
+        return load_json(metadata_path)
+    except (OSError, ValueError, json.JSONDecodeError):
+        return {}
+
+
+def _load_cache_array(cache_dir: Path, name: str) -> np.ndarray | None:
+    path = Path(cache_dir) / f"{name}.npy"
+    if not path.exists():
+        return None
+    try:
+        return np.asarray(np.load(path, mmap_mode="r"))
+    except (OSError, ValueError):
+        return None
+
+
+def _matching_external_runs(run_df: pd.DataFrame, metadata: dict[str, Any]) -> pd.DataFrame:
+    if run_df.empty:
+        return pd.DataFrame()
+    subset = run_df.copy()
+    farm = str(metadata.get("farm", ""))
+    split = str(metadata.get("external_split", ""))
+    target = str(metadata.get("target_farm", ""))
+    if farm and "farm" in subset:
+        subset = subset[subset["farm"].astype(str).eq(farm)]
+    if split and "split_id" in subset:
+        subset = subset[subset["split_id"].astype(str).eq(split)]
+    if split == "leave-one-farm-out" and "target_farm" in subset:
+        subset = subset[subset["target_farm"].astype(str).eq(target)]
+    return subset
+
+
+def _matching_routing_runs(run_df: pd.DataFrame, metadata: dict[str, Any]) -> pd.DataFrame:
+    subset = _matching_external_runs(run_df, metadata)
+    if subset.empty or "model" not in subset:
+        return pd.DataFrame()
+    return subset[subset["model"].astype(str).isin(set(EXTERNAL_ROUTING_REQUIRED_MODELS))].copy()
+
+
+def _sensor_field_coverage_row(
+    cache_dir: Path,
+    suite_dir: Path,
+    run_df: pd.DataFrame,
+    *,
+    boundary_band: float,
+) -> dict[str, Any]:
+    del suite_dir  # Kept for a stable helper signature if run-level coverage is added later.
+    cache_dir = Path(cache_dir)
+    metadata = _load_cache_metadata(cache_dir)
+    feature_names = [str(name) for name in metadata.get("feature_names", EXTERNAL_FEATURE_NAMES)]
+    feature_mask = _load_cache_array(cache_dir, "feature_mask")
+    physics = _load_cache_array(cache_dir, "physics")
+    regime = _load_cache_array(cache_dir, "regime_primary")
+    valid = _load_cache_array(cache_dir, "regime_primary_valid")
+
+    def feature_coverage(name: str) -> float:
+        if feature_mask is None or feature_mask.ndim < 3 or name not in feature_names:
+            return float("nan")
+        values = np.asarray(feature_mask[..., feature_names.index(name)], dtype=np.float32)
+        return float(np.mean(values > 0.0)) if values.size else float("nan")
+
+    rated_wind = float(metadata.get("wtb_thresholds", {}).get("rated_wind", metadata.get("rated_wind", 10.5)))
+    pitch_threshold = float(metadata.get("wtb_thresholds", {}).get("pitch_threshold", metadata.get("pitch_threshold", 2.0)))
+    pitch_observed = _finite_metadata_float(metadata.get("pitch_observed_fraction"), float("nan"))
+    proxy_used = bool(metadata.get("pitch_proxy_used_for_regime", False))
+    if np.isfinite(pitch_observed):
+        proxy_rate = float(max(0.0, 1.0 - pitch_observed)) if proxy_used else 0.0
+    else:
+        proxy_rate = 1.0 if proxy_used else 0.0
+
+    effective_boundary_cells = 0
+    boundary_fraction = float("nan")
+    if physics is not None and physics.ndim >= 3 and regime is not None:
+        wspd = np.asarray(physics[..., 0], dtype=np.float32)
+        valid_arr = np.asarray(valid, dtype=bool) if valid is not None else np.ones_like(regime, dtype=bool)
+        boundary = (
+            np.isin(np.asarray(regime), [1, 2])
+            & valid_arr
+            & np.isfinite(wspd)
+            & (np.abs(wspd - rated_wind) <= float(boundary_band))
+        )
+        effective_boundary_cells = int(boundary.sum())
+        denom = int(valid_arr.sum())
+        boundary_fraction = float(effective_boundary_cells / denom) if denom else float("nan")
+
+    routing = _matching_routing_runs(run_df, metadata)
+    nmi_mean = _safe_series_mean(routing.get("nmi")) if not routing.empty else None
+    ari_mean = _safe_series_mean(routing.get("ari")) if not routing.empty else None
+    return {
+        "cache_dir": str(cache_dir),
+        "farm": metadata.get("farm", ""),
+        "target_farm": metadata.get("target_farm", ""),
+        "split_id": metadata.get("external_split", ""),
+        "num_nodes": metadata.get("num_nodes"),
+        "num_steps": metadata.get("num_steps"),
+        "wspd_coverage": feature_coverage("Wspd"),
+        "power_coverage": feature_coverage("Patv_hist"),
+        "pitch_feature_coverage": feature_coverage("Pab_mean"),
+        "real_pitch_coverage": pitch_observed,
+        "pitch_proxy_used_for_regime": proxy_used,
+        "synthetic_pitch_proxy_use_rate": proxy_rate,
+        "rated_wind": rated_wind,
+        "pitch_threshold": pitch_threshold,
+        "effective_boundary_cells": effective_boundary_cells,
+        "boundary_cell_fraction": boundary_fraction,
+        "routing_nmi_mean": nmi_mean,
+        "routing_ari_mean": ari_mean,
+        "proxy_nmi_delta": float("nan"),
+        "proxy_ari_delta": float("nan"),
+    }
+
+
+def _attach_pitch_proxy_metric_deltas(sensor_df: pd.DataFrame) -> pd.DataFrame:
+    if sensor_df.empty or "pitch_proxy_used_for_regime" not in sensor_df:
+        return sensor_df
+    out = sensor_df.copy()
+    non_proxy = out[~out["pitch_proxy_used_for_regime"].astype(bool)]
+    baseline_nmi = _safe_series_mean(non_proxy.get("routing_nmi_mean")) if not non_proxy.empty else None
+    baseline_ari = _safe_series_mean(non_proxy.get("routing_ari_mean")) if not non_proxy.empty else None
+    if baseline_nmi is not None and "routing_nmi_mean" in out:
+        out["proxy_nmi_delta"] = pd.to_numeric(out["routing_nmi_mean"], errors="coerce") - float(baseline_nmi)
+    if baseline_ari is not None and "routing_ari_mean" in out:
+        out["proxy_ari_delta"] = pd.to_numeric(out["routing_ari_mean"], errors="coerce") - float(baseline_ari)
+    return out
+
+
+def _finite_metadata_float(value: Any, fallback: float) -> float:
+    try:
+        out = float(value)
+    except (TypeError, ValueError):
+        return float(fallback)
+    return out if np.isfinite(out) else float(fallback)
+
+
+def _threshold_calibration_rows(
+    cache_dir: Path,
+    *,
+    run_df: pd.DataFrame,
+    rated_wind_grid: list[float],
+    pitch_threshold_grid: list[float],
+    cut_in_wind: float,
+    boundary_band: float,
+) -> list[dict[str, Any]]:
+    cache_dir = Path(cache_dir)
+    metadata = _load_cache_metadata(cache_dir)
+    physics = _load_cache_array(cache_dir, "physics")
+    if physics is None or physics.ndim < 3:
+        return [
+            {
+                "cache_dir": str(cache_dir),
+                "farm": metadata.get("farm", ""),
+                "target_farm": metadata.get("target_farm", ""),
+                "split_id": metadata.get("external_split", ""),
+                "rated_wind": rated,
+                "pitch_threshold": pitch,
+                "valid_cells": 0,
+                "boundary_cells": 0,
+            }
+            for rated in rated_wind_grid
+            for pitch in pitch_threshold_grid
+        ]
+    wspd = np.asarray(physics[..., 0], dtype=np.float32)
+    observed_pab = np.asarray(physics[..., 1], dtype=np.float32) if physics.shape[-1] > 1 else np.zeros_like(wspd)
+    proxy_used = bool(metadata.get("pitch_proxy_used_for_regime", False))
+    matching_runs = _matching_routing_runs(run_df, metadata)
+    rows: list[dict[str, Any]] = []
+    for rated in rated_wind_grid:
+        for pitch in pitch_threshold_grid:
+            pab = np.where(wspd > float(rated), float(pitch) + 1.0, 0.0).astype(np.float32) if proxy_used else observed_pab
+            regime, valid = compute_wtb_operation_regime(
+                wspd,
+                pab,
+                cut_in_wind=float(cut_in_wind),
+                rated_wind=float(rated),
+                pitch_threshold=float(pitch),
+            )
+            finite_anchor = np.isfinite(wspd) & np.isfinite(pab)
+            valid_bool = valid.astype(bool) & finite_anchor
+            boundary = valid_bool & np.isin(regime, [1, 2]) & (np.abs(wspd - float(rated)) <= float(boundary_band))
+            threshold_alignment = _routing_alignment_for_threshold(matching_runs, rated, pitch, cut_in_wind)
+            rows.append(
+                {
+                    "cache_dir": str(cache_dir),
+                    "farm": metadata.get("farm", ""),
+                    "target_farm": metadata.get("target_farm", ""),
+                    "split_id": metadata.get("external_split", ""),
+                    "rated_wind": float(rated),
+                    "pitch_threshold": float(pitch),
+                    "pitch_proxy_used_for_regime": proxy_used,
+                    "valid_cells": int(valid_bool.sum()),
+                    "boundary_cells": int(boundary.sum()),
+                    "idle_fraction": _regime_fraction(regime, valid_bool, 0),
+                    "mppt_fraction": _regime_fraction(regime, valid_bool, 1),
+                    "pitch_control_fraction": _regime_fraction(regime, valid_bool, 2),
+                    "transition_fraction": _regime_fraction(regime, valid_bool, 3),
+                    "routing_nmi_mean": threshold_alignment.get("nmi_mean"),
+                    "routing_ari_mean": threshold_alignment.get("ari_mean"),
+                    "n_routing_runs_with_gate_prob": threshold_alignment.get("n_runs_with_gate_prob", 0),
+                }
+            )
+    return rows
+
+
+def _regime_fraction(regime: np.ndarray, valid: np.ndarray, regime_id: int) -> float:
+    denom = int(np.asarray(valid, dtype=bool).sum())
+    if denom == 0:
+        return float("nan")
+    return float(((np.asarray(regime) == int(regime_id)) & np.asarray(valid, dtype=bool)).sum() / denom)
+
+
+def _routing_alignment_for_threshold(
+    routing_df: pd.DataFrame,
+    rated_wind: float,
+    pitch_threshold: float,
+    cut_in_wind: float,
+) -> dict[str, Any]:
+    if routing_df.empty or "run_dir" not in routing_df:
+        return {"nmi_mean": None, "ari_mean": None, "n_runs_with_gate_prob": 0}
+    nmi_values: list[float] = []
+    ari_values: list[float] = []
+    for run_dir in routing_df["run_dir"].dropna().astype(str):
+        values = _threshold_alignment_from_metrics(Path(run_dir) / "test_metrics", rated_wind, pitch_threshold, cut_in_wind)
+        if values is None:
+            continue
+        if values.get("nmi") is not None and np.isfinite(values["nmi"]):
+            nmi_values.append(float(values["nmi"]))
+        if values.get("ari") is not None and np.isfinite(values["ari"]):
+            ari_values.append(float(values["ari"]))
+    fallback_nmi = _safe_series_mean(routing_df.get("nmi"))
+    fallback_ari = _safe_series_mean(routing_df.get("ari"))
+    return {
+        "nmi_mean": float(np.mean(nmi_values)) if nmi_values else fallback_nmi,
+        "ari_mean": float(np.mean(ari_values)) if ari_values else fallback_ari,
+        "n_runs_with_gate_prob": int(max(len(nmi_values), len(ari_values))),
+    }
+
+
+def _threshold_alignment_from_metrics(
+    metrics_dir: Path,
+    rated_wind: float,
+    pitch_threshold: float,
+    cut_in_wind: float,
+) -> dict[str, float] | None:
+    required = ["gate_prob.npy", "anchor_physics.npy"]
+    if not all((metrics_dir / name).exists() for name in required):
+        return None
+    try:
+        gate_prob = np.asarray(np.load(metrics_dir / "gate_prob.npy", mmap_mode="r"))
+        physics = np.asarray(np.load(metrics_dir / "anchor_physics.npy", mmap_mode="r"))
+    except (OSError, ValueError):
+        return None
+    if gate_prob.ndim < 3 or physics.ndim < 3 or gate_prob.shape[:2] != physics.shape[:2]:
+        return None
+    try:
+        from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
+    except ImportError:
+        return None
+    wspd = np.asarray(physics[..., 0], dtype=np.float32)
+    pab = np.asarray(physics[..., 1], dtype=np.float32) if physics.shape[-1] > 1 else np.zeros_like(wspd)
+    regime, valid = compute_wtb_operation_regime(
+        wspd,
+        pab,
+        cut_in_wind=float(cut_in_wind),
+        rated_wind=float(rated_wind),
+        pitch_threshold=float(pitch_threshold),
+    )
+    usable = valid.astype(bool) & np.isfinite(wspd) & np.isfinite(pab)
+    labels = np.asarray(gate_prob[..., :3]).argmax(axis=-1)
+    if labels.shape != regime.shape:
+        return None
+    y_true = regime[usable].reshape(-1)
+    y_pred = labels[usable].reshape(-1)
+    if y_true.size == 0 or np.unique(y_true).size < 2:
+        return None
+    return {
+        "nmi": float(normalized_mutual_info_score(y_true, y_pred)),
+        "ari": float(adjusted_rand_score(y_true, y_pred)),
+    }
+
+
+def _control_strategy_strata_rows(cache_dir: Path, *, boundary_band: float) -> list[dict[str, Any]]:
+    cache_dir = Path(cache_dir)
+    metadata = _load_cache_metadata(cache_dir)
+    physics = _load_cache_array(cache_dir, "physics")
+    regime = _load_cache_array(cache_dir, "regime_primary")
+    valid = _load_cache_array(cache_dir, "regime_primary_valid")
+    if physics is None or physics.ndim < 3 or regime is None:
+        return []
+    valid_bool = np.asarray(valid, dtype=bool) if valid is not None else np.ones_like(regime, dtype=bool)
+    wspd = np.asarray(physics[..., 0], dtype=np.float32)
+    pab = np.asarray(physics[..., 1], dtype=np.float32) if physics.shape[-1] > 1 else np.full_like(wspd, np.nan)
+    patv = np.asarray(physics[..., 3], dtype=np.float32) if physics.shape[-1] > 3 else np.full_like(wspd, np.nan)
+    rated_wind = float(metadata.get("wtb_thresholds", {}).get("rated_wind", 10.5))
+    boundary = valid_bool & np.isin(regime, [1, 2]) & (np.abs(wspd - rated_wind) <= float(boundary_band))
+    total_valid = int(valid_bool.sum())
+    rows: list[dict[str, Any]] = []
+    for idx, name in enumerate(WTB_PRIMARY_NAMES):
+        selector = valid_bool & (np.asarray(regime) == int(idx))
+        rows.append(
+            {
+                "cache_dir": str(cache_dir),
+                "farm": metadata.get("farm", ""),
+                "target_farm": metadata.get("target_farm", ""),
+                "split_id": metadata.get("external_split", ""),
+                "control_strategy": name,
+                "n_cells": int(selector.sum()),
+                "fraction_of_valid_cells": float(selector.sum() / total_valid) if total_valid else float("nan"),
+                "boundary_cells": int((selector & boundary).sum()),
+                "mean_wspd": _safe_array_mean(wspd[selector]),
+                "mean_pitch": _safe_array_mean(pab[selector]),
+                "mean_power": _safe_array_mean(patv[selector]),
+            }
+        )
+    return rows
+
+
+def _safe_array_mean(values: np.ndarray) -> float:
+    arr = np.asarray(values, dtype=np.float64)
+    arr = arr[np.isfinite(arr)]
+    return float(arr.mean()) if arr.size else float("nan")
+
+
+def _turbine_domain_alignment_row(cache_dir: Path) -> dict[str, Any]:
+    cache_dir = Path(cache_dir)
+    metadata = _load_cache_metadata(cache_dir)
+    farm = str(metadata.get("farm", ""))
+    target_farm = str(metadata.get("target_farm", ""))
+    source_note = str(metadata.get("source_static_note", EXTERNAL_STATIC_NOTES.get(farm, "")))
+    target_note = str(metadata.get("target_static_note", EXTERNAL_STATIC_NOTES.get(target_farm, "")))
+    source_domain = _parse_static_domain_note(source_note)
+    target_domain = _parse_static_domain_note(target_note)
+    source_rotor = source_domain.get("rotor_diameter_m")
+    target_rotor = target_domain.get("rotor_diameter_m")
+    rotor_ratio = (
+        float(target_rotor) / float(source_rotor)
+        if source_rotor is not None and target_rotor is not None and float(source_rotor) > 0
+        else float("nan")
+    )
+    return {
+        "cache_dir": str(cache_dir),
+        "farm": farm,
+        "target_farm": target_farm,
+        "split_id": metadata.get("external_split", ""),
+        "source_static_note": source_note,
+        "target_static_note": target_note,
+        "source_turbine_model": source_domain.get("turbine_model", ""),
+        "target_turbine_model": target_domain.get("turbine_model", ""),
+        "source_rotor_diameter_m": source_rotor,
+        "target_rotor_diameter_m": target_rotor,
+        "target_to_source_rotor_ratio": rotor_ratio,
+        "source_turbines_from_note": source_domain.get("num_turbines"),
+        "target_turbines_from_note": target_domain.get("num_turbines"),
+        "cache_num_nodes": metadata.get("num_nodes"),
+        "cache_num_steps": metadata.get("num_steps"),
+        "split_farm_roles": json.dumps(metadata.get("split_farm_roles", {}), sort_keys=True),
+        "domain_pair": f"{farm}->{target_farm}" if target_farm else farm,
+    }
+
+
+def _parse_static_domain_note(note: str) -> dict[str, Any]:
+    out: dict[str, Any] = {"num_turbines": None, "turbine_model": "", "rotor_diameter_m": None}
+    text = str(note)
+    turbine_match = re.search(r"(\d+)\s+[^.;]*turbines", text, flags=re.IGNORECASE)
+    if turbine_match:
+        out["num_turbines"] = int(turbine_match.group(1))
+    model_match = re.search(r"\b([A-Za-z0-9]+)\s+(MM\d+)\b", text)
+    if model_match:
+        out["turbine_model"] = f"{model_match.group(1)} {model_match.group(2)}"
+        rotor_match = re.search(r"(\d+)", model_match.group(2))
+        if rotor_match:
+            out["rotor_diameter_m"] = float(rotor_match.group(1))
+    return out
+
+
 def _expert_usage_present(value: Any) -> bool:
     if value is None:
         return False
@@ -2352,6 +2940,12 @@ def _parse_csv_ints(values: Iterable[int] | str) -> list[int]:
     if isinstance(values, str):
         return [int(token.strip()) for token in values.split(",") if token.strip()]
     return [int(value) for value in values]
+
+
+def _parse_csv_floats(values: Iterable[float] | str) -> list[float]:
+    if isinstance(values, str):
+        return [float(token.strip()) for token in values.split(",") if token.strip()]
+    return [float(value) for value in values]
 
 
 def sha256_file(path: Path, max_mb: float | None = None) -> str:

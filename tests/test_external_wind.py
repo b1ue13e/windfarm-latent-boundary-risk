@@ -25,6 +25,7 @@ from windfarm_moe.external_wind import (
     inspect_external_wind_sources,
     preprocess_external_wind,
     run_external_wind_guard,
+    run_external_wind_portability_rescue,
     run_external_wind_source_guard,
     write_external_wind_protocol,
 )
@@ -247,6 +248,23 @@ class ExternalWindTests(unittest.TestCase):
         self.assertEqual(args.command, "external-wind-source-guard")
         self.assertEqual(args.manifest_path, "manifest.csv")
         self.assertEqual(args.min_files, 2)
+
+    def test_parser_accepts_external_wind_portability_rescue(self) -> None:
+        args = build_parser().parse_args(
+            [
+                "external-wind-portability-rescue",
+                "--output-dir",
+                "out",
+                "--rated-wind-grid",
+                "9.5,10.5",
+                "--pitch-threshold-grid",
+                "1.0,2.0",
+            ]
+        )
+
+        self.assertEqual(args.command, "external-wind-portability-rescue")
+        self.assertEqual(args.rated_wind_grid, "9.5,10.5")
+        self.assertEqual(args.pitch_threshold_grid, "1.0,2.0")
 
     def test_external_source_guard_blocks_manifest_only_full_manifest(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -838,6 +856,92 @@ class ExternalWindTests(unittest.TestCase):
             self.assertTrue(metadata["pitch_proxy_used_for_regime"])
             self.assertEqual(metadata["pitch_observed_fraction"], 0.0)
             self.assertGreater(float(valid.mean()), 0.0)
+
+    def test_external_portability_rescue_writes_diagnostics_and_downgrades_low_nmi(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            split_specs = [
+                ("kelmarsh", "chronological", ""),
+                ("penmanshiel", "chronological", ""),
+                ("kelmarsh", "leave-one-farm-out", "penmanshiel"),
+                ("penmanshiel", "leave-one-farm-out", "kelmarsh"),
+            ]
+            caches = []
+            for farm, split, target in split_specs:
+                cache = self._write_external_guard_cache(root, farm, split, target)
+                feature_names = ["Wspd", "Patv_hist", "Pab_mean"]
+                np.save(cache / "feature_mask.npy", np.ones((4, 2, len(feature_names)), dtype=np.float32))
+                physics = np.zeros((4, 2, 4), dtype=np.float32)
+                physics[..., 0] = np.array([[4.0, 10.2], [10.8, 12.0], [8.0, 11.2], [2.0, 10.5]], dtype=np.float32)
+                physics[..., 1] = np.array([[0.5, 1.0], [4.0, 5.0], [0.5, 4.5], [0.0, 2.5]], dtype=np.float32)
+                physics[..., 3] = physics[..., 0] * 100.0
+                np.save(cache / "physics.npy", physics)
+                regime = np.array([[1, 1], [2, 2], [1, 2], [0, 1]], dtype=np.int16)
+                np.save(cache / "regime_primary.npy", regime)
+                np.save(cache / "regime_primary_valid.npy", np.ones_like(regime, dtype=np.float32))
+                metadata = load_json(cache / "metadata.json")
+                metadata.update(
+                    {
+                        "num_nodes": 2,
+                        "num_steps": 4,
+                        "feature_names": feature_names,
+                        "source_static_note": "6 Senvion MM92 turbines; 10-minute SCADA/static data from 2016 to end-2024.",
+                        "target_static_note": "14 Senvion MM82 turbines; 10-minute SCADA/static data from 2016 to end-2024."
+                        if target
+                        else "",
+                        "pitch_proxy_used_for_regime": farm == "penmanshiel",
+                        "pitch_observed_fraction": 0.0 if farm == "penmanshiel" else 1.0,
+                        "wtb_thresholds": {"cut_in_wind": 3.0, "rated_wind": 10.5, "pitch_threshold": 2.0},
+                    }
+                )
+                save_json(cache / "metadata.json", metadata)
+                caches.append(cache)
+
+            suite = root / "runs"
+            for farm, split, target in split_specs:
+                run = self._write_external_guard_run(
+                    suite,
+                    model="Physics-Aligned MoE",
+                    seed=201,
+                    farm=farm,
+                    split=split,
+                    target=target,
+                    nmi=0.2,
+                    ari=0.1,
+                )
+                gate = np.zeros((2, 1, 3), dtype=np.float32)
+                gate[..., 1] = 1.0
+                np.save(run / "test_metrics" / "gate_prob.npy", gate)
+                physics = np.zeros((2, 1, 4), dtype=np.float32)
+                physics[..., 0] = [[10.2], [11.2]]
+                physics[..., 1] = [[0.5], [4.0]]
+                np.save(run / "test_metrics" / "anchor_physics.npy", physics)
+
+            out = run_external_wind_portability_rescue(
+                output_dir=root / "rescue",
+                cache_dirs=",".join(str(path) for path in caches),
+                suite_dir=suite,
+                seeds="201",
+                required_models="Physics-Aligned MoE",
+                rated_wind_grid="10.0,10.5",
+                pitch_threshold_grid="1.0,2.0",
+            )
+            summary = load_json(out / "rescue_summary.json")
+            calibration = pd.read_csv(out / "threshold_calibration.csv")
+            coverage = pd.read_csv(out / "sensor_field_coverage.csv")
+            strata = pd.read_csv(out / "control_strategy_strata.csv")
+            domain = pd.read_csv(out / "turbine_domain_alignment.csv")
+
+            self.assertEqual(summary["claim_gate"], "within_wtb_external_diagnostics_only")
+            self.assertFalse(summary["portable_wording_allowed"])
+            self.assertIn("threshold_calibration.csv", summary["outputs"])
+            self.assertEqual(len(calibration), 16)
+            self.assertIn("boundary_cells", calibration.columns)
+            self.assertIn("synthetic_pitch_proxy_use_rate", coverage.columns)
+            self.assertGreater(float(coverage["effective_boundary_cells"].sum()), 0.0)
+            self.assertTrue(coverage["pitch_proxy_used_for_regime"].astype(bool).any())
+            self.assertIn("control_strategy", strata.columns)
+            self.assertIn("target_to_source_rotor_ratio", domain.columns)
 
     def test_external_wind_inspect_reads_zip_member_headers(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

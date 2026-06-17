@@ -17,6 +17,7 @@ from windfarm_moe.external_wind import (
     inspect_external_wind_sources,
     preprocess_external_wind,
     run_external_wind_guard,
+    run_external_wind_portability_rescue,
     run_external_wind_source_guard,
     write_external_wind_protocol,
 )
@@ -267,6 +268,26 @@ def build_parser() -> argparse.ArgumentParser:
     external_guard_parser.add_argument("--min-nmi", type=float, default=0.50)
     external_guard_parser.add_argument("--min-ari", type=float, default=0.30)
 
+    external_rescue_parser = subparsers.add_parser(
+        "external-wind-portability-rescue",
+        help="Build farm-specific external wind boundary-condition diagnostics and portability claim gate",
+    )
+    _add_common_data_args(external_rescue_parser)
+    external_rescue_parser.add_argument("--output-dir", type=str, required=True)
+    external_rescue_parser.add_argument("--cache-dirs", type=str, default="")
+    external_rescue_parser.add_argument("--suite-dir", type=str, default="artifacts/external_wind_runs")
+    external_rescue_parser.add_argument("--seeds", type=str, default="201,202,203,204,205")
+    external_rescue_parser.add_argument(
+        "--required-models",
+        type=str,
+        default="Graph WaveNet,PatchTST,Physics-Aligned MoE,MoE + L_bal + L_align + L_force",
+    )
+    external_rescue_parser.add_argument("--rated-wind-grid", type=str, default="9.5,10.0,10.5,11.0,11.5")
+    external_rescue_parser.add_argument("--pitch-threshold-grid", type=str, default="1.0,2.0,3.0,4.0")
+    external_rescue_parser.add_argument("--boundary-band", type=float, default=1.0)
+    external_rescue_parser.add_argument("--min-nmi", type=float, default=0.50)
+    external_rescue_parser.add_argument("--min-ari", type=float, default=0.30)
+
     external_source_guard_parser = subparsers.add_parser(
         "external-wind-source-guard",
         help="Verify that the full Kelmarsh/Penmanshiel source manifest is locally downloaded and checksum-validated",
@@ -397,6 +418,8 @@ def build_parser() -> argparse.ArgumentParser:
     reserve_parser.add_argument("--cost-ratios", type=str, default="2,5,10,20,50")
     reserve_parser.add_argument("--main-ratio", type=float, default=10.0)
     reserve_parser.add_argument("--quantiles", type=str, default="0.50,0.60,0.70,0.80,0.85,0.90,0.95,0.975,0.99")
+    reserve_parser.add_argument("--strata", type=str, default="")
+    reserve_parser.add_argument("--boundary-band", type=float, default=1.0)
     reserve_parser.add_argument("--bootstrap-samples", type=int, default=1000)
     reserve_parser.add_argument("--seed", type=int, default=42)
     reserve_parser.add_argument("--skip-plots", action="store_true")
@@ -1119,6 +1142,23 @@ def main() -> None:
         print(f"External wind guard saved to: {output_dir}")
         return
 
+    if args.command == "external-wind-portability-rescue":
+        output_dir = run_external_wind_portability_rescue(
+            output_dir=Path(args.output_dir),
+            cache_dirs=args.cache_dirs,
+            suite_dir=Path(args.suite_dir),
+            seeds=args.seeds,
+            required_models=args.required_models,
+            rated_wind_grid=args.rated_wind_grid,
+            pitch_threshold_grid=args.pitch_threshold_grid,
+            cut_in_wind=args.external_cut_in_wind,
+            boundary_band=args.boundary_band,
+            min_nmi=args.min_nmi,
+            min_ari=args.min_ari,
+        )
+        print(f"External wind portability rescue saved to: {output_dir}")
+        return
+
     if args.command == "external-wind-source-guard":
         output_dir = run_external_wind_source_guard(
             output_dir=Path(args.output_dir),
@@ -1430,6 +1470,8 @@ def main() -> None:
             cost_ratios=[float(token.strip()) for token in args.cost_ratios.split(",") if token.strip()],
             main_ratio=args.main_ratio,
             quantiles=[float(token.strip()) for token in args.quantiles.split(",") if token.strip()],
+            strata=[token.strip() for token in args.strata.split(",") if token.strip()],
+            boundary_band=args.boundary_band,
             bootstrap_samples=args.bootstrap_samples,
             seed=args.seed,
             make_plots=not args.skip_plots,
