@@ -398,10 +398,11 @@ def build_final_evidence_manifest(
     external_source_ok = bool(external_source_state.get("source_complete", False))
     external_gate = external_claim_state.get("claim_gate") or "within_wtb_only"
     base_internal_citable = bool(run_summary.get("has_required_seeds")) and bool(run_artifacts.get("all_required_run_artifacts_exist"))
-    external_portability_ready = bool(external_guard_ok and external_protocol_ok and external_source_ok)
+    external_protocol_and_source_ready = bool(external_guard_ok and external_protocol_ok and external_source_ok)
+    external_portability_ready = bool(external_protocol_and_source_ready and external_gate == "portable_mechanism_passed")
     if not guard_paths_ok:
         claim_gate = "blocked_not_citable"
-    elif external_gate == "portable_mechanism_passed" and external_portability_ready:
+    elif external_portability_ready:
         claim_gate = "portable_mechanism_passed"
     elif allow_within_wtb_only and base_internal_citable:
         claim_gate = "within_wtb_only"
@@ -450,6 +451,7 @@ def build_final_evidence_manifest(
         "external_guard_passing_if_requested": external_guard_ok,
         "external_guard_protocol_complete_if_requested": (not external_guard_requested) or external_protocol_ok,
         "external_source_guard_passing_if_external_requested": (not source_guard_required) or external_source_ok,
+        "external_protocol_and_source_ready": (not external_guard_requested) or external_protocol_and_source_ready,
         "external_portability_ready": (not external_guard_requested) or external_portability_ready,
         "no_legacy_three_seed_tables": len(legacy_offenders) == 0,
         "manifest_schema_complete": bool(schema["valid"]),

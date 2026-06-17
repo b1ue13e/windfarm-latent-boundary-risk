@@ -464,6 +464,8 @@ class FinalEvidenceTests(unittest.TestCase):
             self.assertTrue(manifest["checks"]["external_guard_passing_if_requested"])
             self.assertTrue(manifest["checks"]["external_guard_protocol_complete_if_requested"])
             self.assertTrue(manifest["checks"]["external_source_guard_passing_if_external_requested"])
+            self.assertTrue(manifest["checks"]["external_protocol_and_source_ready"])
+            self.assertTrue(manifest["checks"]["external_portability_ready"])
             self.assertTrue(manifest["checks"]["external_source_total_bytes_meets_minimum"])
             self.assertTrue(manifest["checks"]["external_complete_80_runs"])
             self.assertTrue(manifest["checks"]["external_complete_40_routing_runs"])
@@ -541,6 +543,8 @@ class FinalEvidenceTests(unittest.TestCase):
             self.assertTrue(manifest["checks"]["external_guard_passing_if_requested"])
             self.assertTrue(manifest["checks"]["external_guard_protocol_complete_if_requested"])
             self.assertTrue(manifest["checks"]["external_source_guard_passing_if_external_requested"])
+            self.assertTrue(manifest["checks"]["external_protocol_and_source_ready"])
+            self.assertFalse(manifest["checks"]["external_portability_ready"])
 
     def test_final_manifest_blocks_guard_with_blocked_status(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
