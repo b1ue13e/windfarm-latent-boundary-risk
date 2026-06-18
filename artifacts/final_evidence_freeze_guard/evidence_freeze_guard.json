@@ -1,0 +1,489 @@
+{
+  "status": "complete_ready_for_evidence_freeze",
+  "checks": {
+    "all_targets_exist": true,
+    "guard_scanned_text_files": true,
+    "no_stale_boundary_router_tokens": true,
+    "required_final_boundary_router_tokens_present": true
+  },
+  "stale_tokens": [
+    "269.96",
+    "273.55",
+    "429.05",
+    "0.8929"
+  ],
+  "required_tokens": [
+    "236.13",
+    "239.86",
+    "286.95",
+    "0.8716",
+    "0.9166"
+  ],
+  "required_token_status": {
+    "236.13": true,
+    "239.86": true,
+    "286.95": true,
+    "0.8716": true,
+    "0.9166": true
+  },
+  "missing_paths": [],
+  "stale_offenders": [],
+  "n_scanned_files": 91,
+  "scanned_files": [
+    {
+      "label": "paper_path",
+      "path": "paper_draft.md",
+      "bytes": 77062
+    },
+    {
+      "label": "compiled_tex",
+      "path": "paper_draft_compiled.tex",
+      "bytes": 99257
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\generated\\table_3_main_performance.tex",
+      "bytes": 2153
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\generated\\table_4_regime_slices.tex",
+      "bytes": 2441
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\generated\\table_5_routing.tex",
+      "bytes": 872
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\generated\\table_6_wtb_ablation.tex",
+      "bytes": 1687
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\generated\\table_7_robustness.csv",
+      "bytes": 2143
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\generated\\table_7_robustness.tex",
+      "bytes": 2551
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\generated\\table_8_wtb_sensitivity.tex",
+      "bytes": 2020
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\era5_external_baselines.csv",
+      "bytes": 538
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\era5_parameter_table.csv",
+      "bytes": 138
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\era5_test_aggregated_runs.csv",
+      "bytes": 13041
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\era5_test_aggregated_runs.json",
+      "bytes": 34784
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\table_main_benchmark.csv",
+      "bytes": 1499
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\table_main_results.csv",
+      "bytes": 1499
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\table_regime_wise.csv",
+      "bytes": 1701
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\table_robustness.csv",
+      "bytes": 2143
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\table_routing_quality.csv",
+      "bytes": 371
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\table_variants.csv",
+      "bytes": 1524
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\table_wtb_ablation.csv",
+      "bytes": 1340
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\table_wtb_sensitivity.csv",
+      "bytes": 4057
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\wtb_parameter_table.csv",
+      "bytes": 136
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\wtb_test_aggregated_runs.csv",
+      "bytes": 39424
+    },
+    {
+      "label": "paper_assets_dir",
+      "path": "artifacts\\paper_assets\\tables\\wtb_test_aggregated_runs.json",
+      "bytes": 100054
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\figure_index.csv",
+      "bytes": 785
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\final_table_export_manifest.csv",
+      "bytes": 17067
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\final_table_export_status.json",
+      "bytes": 25624
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\guard_index.csv",
+      "bytes": 2496
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\guards\\boundary_negative_controls_guard.json",
+      "bytes": 1053
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\guards\\external_wind_guard.json",
+      "bytes": 1878
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\guards\\external_wind_recalibration_guard.json",
+      "bytes": 703
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\guards\\external_wind_source_guard.json",
+      "bytes": 1280
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\guards\\mechanism_behavior_pack_guard.json",
+      "bytes": 568
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\guards\\reserve_decision_guard.json",
+      "bytes": 2992
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\guards\\reviewer_stat_pack_guard.json",
+      "bytes": 1875
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\guards\\strict_ablation_evidence_guard.json",
+      "bytes": 2479
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\guards\\threshold_controls_evidence_guard.json",
+      "bytes": 6332
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\manifest\\evidence_manifest_final.json",
+      "bytes": 32982
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\manifest\\final_evidence_checks.csv",
+      "bytes": 1503
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_protocol.json",
+      "bytes": 3777
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_recalibration_guard.json",
+      "bytes": 703
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_recalibration_raw.csv",
+      "bytes": 180890
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_scada_inspection.csv",
+      "bytes": 963243
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_scada_inspection.json",
+      "bytes": 1045313
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_source_manifest.csv",
+      "bytes": 12691
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_source_manifest.json",
+      "bytes": 661
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_source_status.csv",
+      "bytes": 13247
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\operational_baseline_config.json",
+      "bytes": 315
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\paired_effects_raw.csv",
+      "bytes": 29853
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\paired_multiplicity_table.csv",
+      "bytes": 2389
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\per_example_manifest.csv",
+      "bytes": 221
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\reserve_decision_cost_ratio_sensitivity.csv",
+      "bytes": 7416
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\reserve_decision_daily_costs.csv",
+      "bytes": 104466
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\reserve_decision_gate_loss.csv",
+      "bytes": 633752
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\reserve_decision_raw_runs.csv",
+      "bytes": 517263
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\strict_wtb_boundary_slice_summary.csv",
+      "bytes": 1826
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\strict_wtb_evidence_manifest.json",
+      "bytes": 8406
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\strict_wtb_mechanism_raw.csv",
+      "bytes": 9908
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\strict_wtb_placebo_raw.csv",
+      "bytes": 7252
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\strict_wtb_time_forward_summary.csv",
+      "bytes": 1937
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data_index.csv",
+      "bytes": 6556
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_trace_manifest.csv",
+      "bytes": 32631
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_trace_manifest.json",
+      "bytes": 50940
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\table_index.csv",
+      "bytes": 6839
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\efficiency_fairness_table.csv",
+      "bytes": 1061
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\external_wind_cache_status.csv",
+      "bytes": 77473
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\external_wind_recalibration_summary.csv",
+      "bytes": 4478
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\external_wind_run_status.csv",
+      "bytes": 20719
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\paired_effects_summary.csv",
+      "bytes": 4304
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\paired_multiplicity_table.csv",
+      "bytes": 2389
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_cost_ratio_sensitivity.csv",
+      "bytes": 7416
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_cost_ratio_sensitivity.tex",
+      "bytes": 3655
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_operational_windows.csv",
+      "bytes": 29245
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_summary.csv",
+      "bytes": 24941
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_system_baselines.csv",
+      "bytes": 1629
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_system_baselines.tex",
+      "bytes": 850
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\strict_wtb_boundary_slice_effects.csv",
+      "bytes": 1035
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\strict_wtb_mechanism_effects.csv",
+      "bytes": 1491
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\strict_wtb_placebo_effects.csv",
+      "bytes": 1201
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\strict_wtb_seed_metrics.csv",
+      "bytes": 1792
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\strict_wtb_summary.csv",
+      "bytes": 609
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_external_recalibration.tex",
+      "bytes": 976
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_strict_wtb_boundary_slice.tex",
+      "bytes": 514
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_strict_wtb_mechanism_effects.tex",
+      "bytes": 680
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_strict_wtb_placebo_effects.tex",
+      "bytes": 623
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_strict_wtb_seed_metrics.tex",
+      "bytes": 691
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_wtb_operational_baselines.tex",
+      "bytes": 602
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\wtb_operational_baselines.csv",
+      "bytes": 2328
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\manifest\\evidence_manifest_final.json",
+      "bytes": 32982
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\manifest\\final_evidence_checks.csv",
+      "bytes": 1503
+    },
+    {
+      "label": "paired_effects_1",
+      "path": "artifacts\\strictmask_combined_reviewer_stats\\paired_effects_summary.csv",
+      "bytes": 4304
+    }
+  ]
+}

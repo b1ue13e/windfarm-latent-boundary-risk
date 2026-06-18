@@ -1,0 +1,17 @@
+cache_dir,farm,target_farm,split_id,control_strategy,n_cells,fraction_of_valid_cells,boundary_cells,mean_wspd,mean_pitch,mean_power
+artifacts\cache_external_wind\external_wind_kelmarsh_chronological,kelmarsh,,chronological,idle,331253,0.13031621410140456,0,2.201123100078677,33.924354143358805,2.6029179018634263
+artifacts\cache_external_wind\external_wind_kelmarsh_chronological,kelmarsh,,chronological,mppt,2041826,0.8032622623004606,79085,6.145780746669049,0.20931731854886185,577.6047122116519
+artifacts\cache_external_wind\external_wind_kelmarsh_chronological,kelmarsh,,chronological,pitch_control,168838,0.06642152359813479,72710,12.235036864526013,9.853741132362527,1921.7608000176429
+artifacts\cache_external_wind\external_wind_kelmarsh_chronological,kelmarsh,,chronological,transition,0,0.0,0,,,
+artifacts\cache_external_wind\external_wind_penmanshiel_chronological,penmanshiel,,chronological,idle,529004,0.13939793197221548,0,2.156404549403581,46.94952825694063,-1.5078492577417513
+artifacts\cache_external_wind\external_wind_penmanshiel_chronological,penmanshiel,,chronological,mppt,2721257,0.7170788844033603,214062,6.542837438984321,0.4084987306141267,498.1024424115979
+artifacts\cache_external_wind\external_wind_penmanshiel_chronological,penmanshiel,,chronological,pitch_control,544659,0.14352318362442423,20161,14.904471325983632,11.657420601784056,1858.9061390112922
+artifacts\cache_external_wind\external_wind_penmanshiel_chronological,penmanshiel,,chronological,transition,0,0.0,0,,,
+artifacts\cache_external_wind\external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out,kelmarsh,penmanshiel,leave-one-farm-out,idle,11050,0.15351486524034455,0,2.108602673602185,35.254857710439424,1.121595903321578
+artifacts\cache_external_wind\external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out,kelmarsh,penmanshiel,leave-one-farm-out,mppt,59716,0.8296193387051959,1682,5.834218012207806,0.2356139587332856,455.3154043533262
+artifacts\cache_external_wind\external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out,kelmarsh,penmanshiel,leave-one-farm-out,pitch_control,1214,0.01686579605445957,932,11.174334166273843,5.637887904239447,1729.9310677947087
+artifacts\cache_external_wind\external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out,kelmarsh,penmanshiel,leave-one-farm-out,transition,0,0.0,0,,,
+artifacts\cache_external_wind\external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out,penmanshiel,kelmarsh,leave-one-farm-out,idle,0,,0,,,
+artifacts\cache_external_wind\external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out,penmanshiel,kelmarsh,leave-one-farm-out,mppt,0,,0,,,
+artifacts\cache_external_wind\external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out,penmanshiel,kelmarsh,leave-one-farm-out,pitch_control,0,,0,,,
+artifacts\cache_external_wind\external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out,penmanshiel,kelmarsh,leave-one-farm-out,transition,0,,0,,,

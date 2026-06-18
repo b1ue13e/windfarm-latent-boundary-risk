@@ -909,13 +909,16 @@ class ExternalWindTests(unittest.TestCase):
                     nmi=0.2,
                     ari=0.1,
                 )
-                gate = np.zeros((2, 1, 3), dtype=np.float32)
-                gate[..., 1] = 1.0
-                np.save(run / "test_metrics" / "gate_prob.npy", gate)
-                physics = np.zeros((2, 1, 4), dtype=np.float32)
-                physics[..., 0] = [[10.2], [11.2]]
-                physics[..., 1] = [[0.5], [4.0]]
-                np.save(run / "test_metrics" / "anchor_physics.npy", physics)
+                for split_dir in ["val_metrics", "test_metrics"]:
+                    metrics = run / split_dir
+                    metrics.mkdir(parents=True, exist_ok=True)
+                    gate = np.zeros((2, 1, 3), dtype=np.float32)
+                    gate[:, :, 1] = 1.0
+                    np.save(metrics / "gate_prob.npy", gate)
+                    physics = np.zeros((2, 1, 4), dtype=np.float32)
+                    physics[..., 0] = [[10.2], [11.2]]
+                    physics[..., 1] = [[0.5], [4.0]]
+                    np.save(metrics / "anchor_physics.npy", physics)
 
             out = run_external_wind_portability_rescue(
                 output_dir=root / "rescue",
@@ -931,10 +934,14 @@ class ExternalWindTests(unittest.TestCase):
             coverage = pd.read_csv(out / "sensor_field_coverage.csv")
             strata = pd.read_csv(out / "control_strategy_strata.csv")
             domain = pd.read_csv(out / "turbine_domain_alignment.csv")
+            recal_raw = pd.read_csv(out / "external_wind_recalibration_raw.csv")
+            recal_summary = pd.read_csv(out / "external_wind_recalibration_summary.csv")
+            recal_guard = load_json(out / "external_wind_recalibration_guard.json")
 
             self.assertEqual(summary["claim_gate"], "within_wtb_external_diagnostics_only")
             self.assertFalse(summary["portable_wording_allowed"])
             self.assertIn("threshold_calibration.csv", summary["outputs"])
+            self.assertIn("external_wind_recalibration_summary.csv", summary["outputs"])
             self.assertEqual(len(calibration), 16)
             self.assertIn("boundary_cells", calibration.columns)
             self.assertIn("synthetic_pitch_proxy_use_rate", coverage.columns)
@@ -942,6 +949,11 @@ class ExternalWindTests(unittest.TestCase):
             self.assertTrue(coverage["pitch_proxy_used_for_regime"].astype(bool).any())
             self.assertIn("control_strategy", strata.columns)
             self.assertIn("target_to_source_rotor_ratio", domain.columns)
+            self.assertIn("selected_local_boundary", recal_raw.columns)
+            self.assertTrue(recal_raw["selected_local_boundary"].astype(bool).any())
+            self.assertIn("test_nmi_recovery_mean", recal_summary.columns)
+            self.assertEqual(recal_guard["status"], "complete_external_recalibration_diagnostics")
+            self.assertTrue((out / "table_external_recalibration.tex").exists())
 
     def test_external_wind_inspect_reads_zip_member_headers(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

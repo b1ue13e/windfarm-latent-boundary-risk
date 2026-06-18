@@ -1,0 +1,32 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table 3.} Main WTB forecasting performance with strong baselines, and ERA5 forecasting checks including persistence and learned baselines (mean $\pm$ std across seeds where repeated runs are available).}
+\begin{tabular}{lrrrr}
+\toprule
+Model & Overall RMSE & Overall MAE & Switch RMSE & Switch MAE \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel A. WTB}} \\
+Graph WaveNet & 225.74 $\pm$ 2.60 & 160.09 $\pm$ 2.00 & 228.12 $\pm$ 3.23 & 159.83 $\pm$ 1.41 \\
+Graph Transformer & 235.38 $\pm$ 5.15 & 165.97 $\pm$ 1.63 & 237.06 $\pm$ 5.78 & 164.82 $\pm$ 2.08 \\
+GAT-GRU & 236.59 $\pm$ 7.80 & 167.31 $\pm$ 4.37 & 240.17 $\pm$ 8.50 & 167.71 $\pm$ 4.79 \\
+Physics-aligned MoE & 241.42 $\pm$ 4.28 & 169.49 $\pm$ 2.44 & 242.60 $\pm$ 6.07 & 167.77 $\pm$ 4.19 \\
+PatchTST & 228.07 $\pm$ 4.05 & 164.00 $\pm$ 4.09 & 231.22 $\pm$ 4.15 & 164.47 $\pm$ 4.40 \\
+Dense (matched) & 231.42 $\pm$ 5.87 & 169.51 $\pm$ 5.10 & 233.82 $\pm$ 5.96 & 169.70 $\pm$ 6.33 \\
+MoE only & 235.40 $\pm$ 7.96 & 168.03 $\pm$ 4.75 & 237.22 $\pm$ 8.11 & 167.23 $\pm$ 4.82 \\
+Boundary-forced router & 236.13 $\pm$ 8.41 & 166.42 $\pm$ 5.54 & 239.86 $\pm$ 8.85 & 166.98 $\pm$ 6.75 \\
+\addlinespace[2pt]
+\multicolumn{5}{l}{\textit{Panel B. ERA5}} \\
+Persistence & 0.7127 & 0.5501 & 0.6814 & 0.5277 \\
+Graph WaveNet & 0.8417 $\pm$ 0.0661 & 0.6625 $\pm$ 0.0583 & 0.7934 $\pm$ 0.0652 & 0.6257 $\pm$ 0.0610 \\
+STGCN & 0.9893 $\pm$ 0.1646 & 0.7797 $\pm$ 0.1420 & 0.8908 $\pm$ 0.1239 & 0.7055 $\pm$ 0.1177 \\
+PatchTST & 0.8817 $\pm$ 0.0827 & 0.6868 $\pm$ 0.0702 & 0.8248 $\pm$ 0.0842 & 0.6471 $\pm$ 0.0648 \\
+TCN & 0.8784 $\pm$ 0.0351 & 0.6856 $\pm$ 0.0341 & 0.8338 $\pm$ 0.0292 & 0.6501 $\pm$ 0.0284 \\
+Dense (matched) & 0.8641 $\pm$ 0.0772 & 0.6758 $\pm$ 0.0602 & 0.8330 $\pm$ 0.0824 & 0.6503 $\pm$ 0.0657 \\
+Physics-aligned MoE & 0.8735 $\pm$ 0.0536 & 0.6868 $\pm$ 0.0472 & 0.8507 $\pm$ 0.0363 & 0.6688 $\pm$ 0.0321 \\
+MoE only & 0.9294 $\pm$ 0.0504 & 0.7349 $\pm$ 0.0496 & 0.9224 $\pm$ 0.0555 & 0.7285 $\pm$ 0.0519 \\
+\bottomrule
+\end{tabular}
+\end{table}

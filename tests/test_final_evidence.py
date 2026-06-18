@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 from main import build_parser
-from windfarm_moe.final_evidence import build_final_evidence_manifest, export_final_tables
+from windfarm_moe.final_evidence import build_final_evidence_manifest, export_final_tables, run_evidence_freeze_guard
 from windfarm_moe.utils import load_json, save_json
 
 
@@ -101,6 +101,86 @@ class FinalEvidenceTests(unittest.TestCase):
 
         self.assertEqual(args.command, "final-evidence-manifest")
         self.assertEqual(args.external_source_guard, "source_guard.json")
+
+    def test_parser_accepts_evidence_freeze_guard_command(self) -> None:
+        args = build_parser().parse_args(
+            [
+                "evidence-freeze-guard",
+                "--paper-path",
+                "paper.md",
+                "--compiled-tex",
+                "paper.tex",
+                "--paper-assets-dir",
+                "assets",
+                "--final-package-dir",
+                "final",
+                "--paired-effects",
+                "paired.csv",
+                "--output-dir",
+                "guard",
+            ]
+        )
+
+        self.assertEqual(args.command, "evidence-freeze-guard")
+        self.assertEqual(args.paired_effects, ["paired.csv"])
+
+    def test_evidence_freeze_guard_blocks_stale_boundary_numbers(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            paper = root / "paper.md"
+            paper.write_text("Boundary RMSE 236.13 and NMI 0.8716 with old 269.96.", encoding="utf-8")
+            tex = root / "paper.tex"
+            tex.write_text("239.86 286.95 0.9166", encoding="utf-8")
+            assets = root / "assets"
+            assets.mkdir()
+            (assets / "table.csv").write_text("236.13,239.86,286.95,0.8716,0.9166", encoding="utf-8")
+            final = root / "final"
+            final.mkdir()
+            (final / "strict_wtb_summary.csv").write_text("236.13,239.86,286.95,0.8716,0.9166", encoding="utf-8")
+            paired = root / "paired.csv"
+            paired.write_text("model,value\nBoundary-forced router,236.13\n", encoding="utf-8")
+
+            out = run_evidence_freeze_guard(
+                paper_path=paper,
+                compiled_tex=tex,
+                paper_assets_dir=assets,
+                final_package_dir=final,
+                paired_effects=paired,
+                output_dir=root / "guard",
+            )
+            guard = load_json(out / "evidence_freeze_guard.json")
+
+            self.assertEqual(guard["status"], "blocked_evidence_freeze")
+            self.assertFalse(guard["checks"]["no_stale_boundary_router_tokens"])
+
+    def test_evidence_freeze_guard_passes_clean_final_tokens(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            text = "236.13 239.86 286.95 0.8716 0.9166"
+            paper = root / "paper.md"
+            paper.write_text(text, encoding="utf-8")
+            tex = root / "paper.tex"
+            tex.write_text(text, encoding="utf-8")
+            assets = root / "assets"
+            assets.mkdir()
+            (assets / "table.csv").write_text(text, encoding="utf-8")
+            final = root / "final"
+            final.mkdir()
+            (final / "strict_wtb_summary.csv").write_text(text, encoding="utf-8")
+            paired = root / "paired.csv"
+            paired.write_text(text, encoding="utf-8")
+
+            out = run_evidence_freeze_guard(
+                paper_path=paper,
+                compiled_tex=tex,
+                paper_assets_dir=assets,
+                final_package_dir=final,
+                paired_effects=paired,
+                output_dir=root / "guard",
+            )
+            guard = load_json(out / "evidence_freeze_guard.json")
+
+            self.assertEqual(guard["status"], "complete_ready_for_evidence_freeze")
 
     def test_final_manifest_blocks_legacy_three_seed_table(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

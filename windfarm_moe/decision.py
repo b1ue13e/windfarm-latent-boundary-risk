@@ -25,6 +25,10 @@ RESERVE_DECISION_REQUIRED_FILES = (
     "reserve_decision_daily_costs.csv",
     "reserve_decision_gate_loss.csv",
     "reserve_decision_operational_windows.csv",
+    "reserve_decision_system_baselines.csv",
+    "reserve_decision_system_baselines.tex",
+    "reserve_decision_cost_ratio_sensitivity.csv",
+    "reserve_decision_cost_ratio_sensitivity.tex",
     "reserve_decision_config.json",
 )
 RESERVE_REQUIRED_MODELS = ("Graph WaveNet", "PatchTST", "Physics-Aligned MoE", "Boundary-forced router")
@@ -40,6 +44,16 @@ RESERVE_REQUIRED_BOOTSTRAP_CANDIDATES = (
     "Boundary-forced router/global",
     "Boundary-forced router/physical-bin",
     "Boundary-forced router/gate-bin",
+)
+RESERVE_SYSTEM_BASELINE_LABELS = (
+    "Graph WaveNet/global-quantile reserve",
+    "Graph WaveNet/physical-bin reserve",
+    "Boundary-forced router/global",
+    "Boundary-forced router/gate-bin",
+)
+GRAPH_WAVENET_RESERVE_BASELINES = (
+    "Graph WaveNet/global-quantile reserve",
+    "Graph WaveNet/physical-bin reserve",
 )
 
 
@@ -236,6 +250,8 @@ def run_reserve_decision(
     by_bin = _aggregate_bin_rows(bin_df)
     bootstrap_df = _bootstrap_pairs(daily_df, samples=bootstrap_samples, seed=seed, main_ratio=main_ratio)
     operational_windows = _operational_window_rows(by_ratio, main_ratio=main_ratio)
+    system_baselines = _system_baseline_rows(by_ratio, main_ratio=main_ratio)
+    cost_ratio_sensitivity = _cost_ratio_sensitivity_rows(by_ratio)
 
     _write_outputs(
         output_dir=out_dir,
@@ -244,6 +260,8 @@ def run_reserve_decision(
         by_bin=by_bin,
         bootstrap_df=bootstrap_df,
         operational_windows=operational_windows,
+        system_baselines=system_baselines,
+        cost_ratio_sensitivity=cost_ratio_sensitivity,
         raw_df=raw_df,
         bin_df=bin_df,
         daily_df=daily_df,
@@ -1046,6 +1064,71 @@ def _operational_window_rows(by_ratio: pd.DataFrame, *, main_ratio: float) -> pd
     return result.sort_values(sort_cols, na_position="last").reset_index(drop=True)
 
 
+def _system_baseline_rows(by_ratio: pd.DataFrame, *, main_ratio: float) -> pd.DataFrame:
+    if by_ratio.empty:
+        return pd.DataFrame()
+    frame = by_ratio[
+        by_ratio["status"].astype(str).eq("applicable")
+        & np.isclose(pd.to_numeric(by_ratio["cost_ratio"], errors="coerce").astype(float), float(main_ratio))
+    ].copy()
+    return _reserve_system_rows(frame)
+
+
+def _cost_ratio_sensitivity_rows(by_ratio: pd.DataFrame) -> pd.DataFrame:
+    if by_ratio.empty:
+        return pd.DataFrame()
+    frame = by_ratio[by_ratio["status"].astype(str).eq("applicable")].copy()
+    return _reserve_system_rows(frame)
+
+
+def _reserve_system_rows(frame: pd.DataFrame) -> pd.DataFrame:
+    if frame.empty:
+        return pd.DataFrame()
+    required = [
+        ("Graph WaveNet", "global", "Graph WaveNet/global-quantile reserve"),
+        ("Graph WaveNet", "physical-bin", "Graph WaveNet/physical-bin reserve"),
+        ("Boundary-forced router", "global", "Boundary-forced router/global"),
+        ("Boundary-forced router", "gate-bin", "Boundary-forced router/gate-bin"),
+    ]
+    rows: list[dict[str, Any]] = []
+    for model, policy, label in required:
+        subset = frame[
+            frame["model"].astype(str).eq(model)
+            & frame["policy"].astype(str).eq(policy)
+            & frame["subset"].astype(str).isin({"full", "boundary"})
+        ].copy()
+        for _, row in subset.iterrows():
+            rows.append(
+                {
+                    "subset": row.get("subset"),
+                    "cost_ratio": float(row.get("cost_ratio")),
+                    "baseline": label,
+                    "model": model,
+                    "policy": policy,
+                    "n_runs": int(row.get("n_runs", 0)),
+                    "total_cost_mean": row.get("total_cost_mean"),
+                    "violation_rate_mean": row.get("violation_rate_mean"),
+                    "reserve_energy_mean": row.get("reserve_energy_mean"),
+                    "shortage_energy_mean": row.get("shortage_energy_mean"),
+                    "regret": row.get("regret"),
+                    "overall_rmse_mean": row.get("overall_rmse_mean"),
+                }
+            )
+    if not rows:
+        return pd.DataFrame()
+    out = pd.DataFrame(rows)
+    out["baseline"] = pd.Categorical(
+        out["baseline"],
+        categories=[label for _, _, label in required],
+        ordered=True,
+    )
+    out["subset"] = pd.Categorical(out["subset"], categories=["full", "boundary"], ordered=True)
+    out = out.sort_values(["subset", "cost_ratio", "baseline"]).reset_index(drop=True)
+    out["baseline"] = out["baseline"].astype(str)
+    out["subset"] = out["subset"].astype(str)
+    return out
+
+
 def _numeric_row_value(row: pd.Series, column: str) -> float:
     return float(pd.to_numeric(pd.Series([row.get(column)]), errors="coerce").iloc[0])
 
@@ -1145,6 +1228,8 @@ def _write_outputs(
     by_bin: pd.DataFrame,
     bootstrap_df: pd.DataFrame,
     operational_windows: pd.DataFrame,
+    system_baselines: pd.DataFrame,
+    cost_ratio_sensitivity: pd.DataFrame,
     raw_df: pd.DataFrame,
     bin_df: pd.DataFrame,
     daily_df: pd.DataFrame,
@@ -1160,7 +1245,84 @@ def _write_outputs(
     bin_df.to_csv(output_dir / "reserve_decision_raw_bins.csv", index=False)
     daily_df.to_csv(output_dir / "reserve_decision_daily_costs.csv", index=False)
     gate_loss_df.to_csv(output_dir / "reserve_decision_gate_loss.csv", index=False)
+    system_baselines.to_csv(output_dir / "reserve_decision_system_baselines.csv", index=False)
+    cost_ratio_sensitivity.to_csv(output_dir / "reserve_decision_cost_ratio_sensitivity.csv", index=False)
+    _write_reserve_tex_table(system_baselines, output_dir / "reserve_decision_system_baselines.tex")
+    _write_reserve_tex_table(cost_ratio_sensitivity, output_dir / "reserve_decision_cost_ratio_sensitivity.tex")
     save_json(output_dir / "reserve_decision_config.json", config)
+
+
+def _write_reserve_tex_table(frame: pd.DataFrame, path: Path) -> None:
+    lines = [
+        "\\begin{tabular}{llrrrrr}",
+        "\\toprule",
+        "Subset & Baseline & Ratio & Cost & Violation & Reserve & Shortage \\\\",
+        "\\midrule",
+    ]
+    if not frame.empty:
+        display = frame.copy()
+        if "cost_ratio" in display:
+            display = display.sort_values(["subset", "cost_ratio", "baseline"], na_position="last")
+        for _, row in display.iterrows():
+            lines.append(
+                f"{_latex_escape(str(row.get('subset', '')))} & "
+                f"{_latex_escape(str(row.get('baseline', '')))} & "
+                f"{_format_ratio(row.get('cost_ratio'))} & "
+                f"{_format_millions(row.get('total_cost_mean'))} & "
+                f"{_format_float(row.get('violation_rate_mean'), precision=4)} & "
+                f"{_format_millions(row.get('reserve_energy_mean'))} & "
+                f"{_format_millions(row.get('shortage_energy_mean'))} \\\\"
+            )
+    lines.extend(["\\bottomrule", "\\end{tabular}"])
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def _format_ratio(value: Any) -> str:
+    try:
+        value_float = float(value)
+    except (TypeError, ValueError):
+        return ""
+    if not np.isfinite(value_float):
+        return ""
+    if value_float.is_integer():
+        return str(int(value_float))
+    return f"{value_float:.2f}"
+
+
+def _format_millions(value: Any) -> str:
+    try:
+        value_float = float(value) / 1_000_000.0
+    except (TypeError, ValueError):
+        return ""
+    if not np.isfinite(value_float):
+        return ""
+    return f"{value_float:.2f}M"
+
+
+def _format_float(value: Any, *, precision: int) -> str:
+    try:
+        value_float = float(value)
+    except (TypeError, ValueError):
+        return ""
+    if not np.isfinite(value_float):
+        return ""
+    return f"{value_float:.{precision}f}"
+
+
+def _latex_escape(value: str) -> str:
+    return (
+        str(value)
+        .replace("\\", "\\textbackslash{}")
+        .replace("&", "\\&")
+        .replace("%", "\\%")
+        .replace("$", "\\$")
+        .replace("#", "\\#")
+        .replace("_", "\\_")
+        .replace("{", "\\{")
+        .replace("}", "\\}")
+        .replace("~", "\\textasciitilde{}")
+        .replace("^", "\\textasciicircum{}")
+    )
 
 
 def run_reserve_decision_guard(
@@ -1188,9 +1350,12 @@ def run_reserve_decision_guard(
     gate_loss = _read_csv_if_exists(decision_path / "reserve_decision_gate_loss.csv")
     bootstrap = _read_csv_if_exists(decision_path / "reserve_decision_bootstrap.csv")
     operational_windows = _read_csv_if_exists(decision_path / "reserve_decision_operational_windows.csv")
+    system_baselines = _read_csv_if_exists(decision_path / "reserve_decision_system_baselines.csv")
+    sensitivity = _read_csv_if_exists(decision_path / "reserve_decision_cost_ratio_sensitivity.csv")
     config_path = decision_path / "reserve_decision_config.json"
     config = load_json(config_path) if config_path.exists() else {}
     main_ratio = float(config.get("main_ratio", DEFAULT_MAIN_RATIO)) if config else DEFAULT_MAIN_RATIO
+    configured_ratios = [float(value) for value in config.get("cost_ratios", DEFAULT_COST_RATIOS)] if config else list(DEFAULT_COST_RATIOS)
 
     selected_pairs = {
         (str(row.get("model", "")), int(row.get("seed", -1)))
@@ -1348,6 +1513,21 @@ def run_reserve_decision_guard(
             if not boundary_gate_operational_gain:
                 operational_window_missing.append("gate-bin:boundary_cost_violation_shortage_gain")
 
+    missing_system_baselines = _missing_system_baselines(
+        system_baselines,
+        baseline_labels=RESERVE_SYSTEM_BASELINE_LABELS,
+        subsets=("full", "boundary"),
+        ratios=(main_ratio,),
+    )
+    missing_sensitivity = _missing_system_baselines(
+        sensitivity,
+        baseline_labels=GRAPH_WAVENET_RESERVE_BASELINES,
+        subsets=("full", "boundary"),
+        ratios=tuple(configured_ratios),
+    )
+    system_baseline_metrics_present = _reserve_system_metrics_present(system_baselines)
+    sensitivity_metrics_present = _reserve_system_metrics_present(sensitivity)
+
     checks = {
         "all_required_files_exist": all(file_status.values()),
         "selected_runs_cover_required_5_seeds": not missing_pairs and bool(required_pairs),
@@ -1358,6 +1538,8 @@ def run_reserve_decision_guard(
         "gate_correctness_operational_loss_present": not gate_loss_missing_metrics,
         "operational_window_cost_violation_reserve_and_boundary_shortage_present": not operational_window_missing,
         "gate_boundary_operational_gain_present": boundary_gate_operational_gain,
+        "system_reserve_baselines_present": not missing_system_baselines and system_baseline_metrics_present,
+        "graph_wavenet_reserve_cost_ratio_sensitivity_present": not missing_sensitivity and sensitivity_metrics_present,
         "daily_costs_cover_required_seed_policy_pairs": not missing_daily_pairs,
         "paired_bootstrap_rows_at_least_min": int(len(bootstrap_ok)) >= int(min_bootstrap_rows),
         "paired_bootstrap_required_candidates_present": not missing_bootstrap_candidates,
@@ -1388,6 +1570,8 @@ def run_reserve_decision_guard(
         "missing_strata": missing_strata,
         "gate_loss_missing_metrics": gate_loss_missing_metrics,
         "operational_window_missing": operational_window_missing,
+        "missing_system_reserve_baselines": missing_system_baselines,
+        "missing_graph_wavenet_reserve_sensitivity": missing_sensitivity,
         "missing_daily_seed_policy_pairs": missing_daily_pairs,
         "missing_bootstrap_candidates": missing_bootstrap_candidates,
         "n_bootstrap_ok_rows": int(len(bootstrap_ok)),
@@ -1442,6 +1626,37 @@ def _missing_model_policy_pairs(
         if subset.empty:
             missing.append(f"{model}/{policy}")
     return missing
+
+
+def _missing_system_baselines(
+    frame: pd.DataFrame,
+    *,
+    baseline_labels: tuple[str, ...],
+    subsets: tuple[str, ...],
+    ratios: tuple[float, ...],
+) -> list[str]:
+    if frame.empty or not {"baseline", "subset", "cost_ratio"}.issubset(frame.columns):
+        return [f"{subset}/{ratio:g}/{label}" for subset in subsets for ratio in ratios for label in baseline_labels]
+    out: list[str] = []
+    ratio_values = pd.to_numeric(frame["cost_ratio"], errors="coerce")
+    for subset in subsets:
+        for ratio in ratios:
+            for label in baseline_labels:
+                mask = (
+                    frame["subset"].astype(str).eq(str(subset))
+                    & frame["baseline"].astype(str).eq(str(label))
+                    & np.isclose(ratio_values.astype(float), float(ratio))
+                )
+                if not bool(mask.any()):
+                    out.append(f"{subset}/{ratio:g}/{label}")
+    return out
+
+
+def _reserve_system_metrics_present(frame: pd.DataFrame) -> bool:
+    required = {"total_cost_mean", "violation_rate_mean", "reserve_energy_mean", "shortage_energy_mean"}
+    if frame.empty or not required.issubset(frame.columns):
+        return False
+    return bool(frame[list(required)].apply(pd.to_numeric, errors="coerce").notna().all().all())
 
 
 def _make_plots(output_dir: Path, by_ratio: pd.DataFrame, by_bin: pd.DataFrame, main_ratio: float) -> None:

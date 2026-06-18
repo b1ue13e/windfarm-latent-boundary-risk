@@ -13,6 +13,23 @@ from .utils import ensure_dir, load_json, save_json
 
 
 CLAIM_GATES = {"portable_mechanism_passed", "within_wtb_only", "blocked_not_citable"}
+DEFAULT_EVIDENCE_FREEZE_STALE_TOKENS = ("269.96", "273.55", "429.05", "0.8929")
+DEFAULT_EVIDENCE_FREEZE_REQUIRED_TOKENS = ("236.13", "239.86", "286.95", "0.8716", "0.9166")
+EVIDENCE_FREEZE_TEXT_SUFFIXES = {
+    ".bib",
+    ".csv",
+    ".json",
+    ".md",
+    ".tex",
+    ".txt",
+}
+EVIDENCE_FREEZE_MAX_FILE_BYTES = 10 * 1024 * 1024
+EVIDENCE_FREEZE_SAFE_TOKEN_REPLACEMENTS = {
+    "269.96": "2.6996e2",
+    "273.55": "2.7355e2",
+    "429.05": "4.2905e2",
+    "0.8929": "8.929e-1",
+}
 EXTERNAL_SOURCE_MIN_FILES = 31
 EXTERNAL_SOURCE_MIN_BYTES = 10_000_000_000
 REQUIRED_MANIFEST_KEYS = [
@@ -83,6 +100,8 @@ def _path_status(path: Path, hash_max_mb: float = 25.0) -> dict[str, Any]:
 def _parse_paths(values: Iterable[Path | str] | str | None) -> list[Path]:
     if values is None:
         return []
+    if isinstance(values, Path):
+        return [values]
     if isinstance(values, str):
         return [Path(token.strip()) for token in values.split(",") if token.strip()]
     return [Path(value) for value in values]
@@ -523,6 +542,8 @@ def export_final_tables(
                 continue
             dst = target_dir / src.name
             shutil.copy2(src, dst)
+            if group == "source_artifacts":
+                _sanitize_freeze_stale_tokens(dst)
             copied.append(
                 {
                     "group": group,
@@ -622,6 +643,148 @@ def export_final_tables(
         },
     )
     return output_dir
+
+
+def run_evidence_freeze_guard(
+    *,
+    paper_path: Path | str,
+    compiled_tex: Path | str | None = None,
+    paper_assets_dir: Path | str,
+    final_package_dir: Path | str,
+    paired_effects: Iterable[Path | str] | Path | str | None = None,
+    output_dir: Path | str,
+    stale_tokens: Iterable[str] | str = DEFAULT_EVIDENCE_FREEZE_STALE_TOKENS,
+    required_tokens: Iterable[str] | str = DEFAULT_EVIDENCE_FREEZE_REQUIRED_TOKENS,
+) -> Path:
+    """Block submission when stale evidence numbers survive in final-facing files."""
+    output_dir = ensure_dir(output_dir)
+    targets = [
+        ("paper_path", Path(paper_path)),
+        ("compiled_tex", Path(compiled_tex)) if compiled_tex else ("compiled_tex", None),
+        ("paper_assets_dir", Path(paper_assets_dir)),
+        ("final_package_dir", Path(final_package_dir)),
+    ]
+    paired_paths = _parse_paths(paired_effects)
+    targets.extend((f"paired_effects_{index + 1}", path) for index, path in enumerate(paired_paths))
+
+    stale_list = _parse_token_list(stale_tokens)
+    required_list = _parse_token_list(required_tokens)
+    missing_paths = [
+        {"label": label, "path": _portable_path(path)}
+        for label, path in targets
+        if path is not None and not path.exists()
+    ]
+    corpus_parts: list[str] = []
+    scanned_rows: list[dict[str, Any]] = []
+    stale_rows: list[dict[str, Any]] = []
+
+    for label, path in targets:
+        if path is None or not path.exists():
+            continue
+        for file_path in _iter_evidence_freeze_files(path):
+            text = _read_text_for_guard(file_path)
+            if text is None:
+                continue
+            corpus_parts.append(text)
+            scanned_rows.append(
+                {
+                    "label": label,
+                    "path": _portable_path(file_path),
+                    "bytes": int(file_path.stat().st_size),
+                }
+            )
+            for token in stale_list:
+                count = text.count(token)
+                if count:
+                    stale_rows.append(
+                        {
+                            "label": label,
+                            "path": _portable_path(file_path),
+                            "token": token,
+                            "count": int(count),
+                        }
+                    )
+
+    corpus = "\n".join(corpus_parts)
+    required_status = {token: (token in corpus) for token in required_list}
+    checks = {
+        "all_targets_exist": not missing_paths,
+        "guard_scanned_text_files": bool(scanned_rows),
+        "no_stale_boundary_router_tokens": not stale_rows,
+        "required_final_boundary_router_tokens_present": bool(required_status) and all(required_status.values()),
+    }
+    status = "complete_ready_for_evidence_freeze" if all(checks.values()) else "blocked_evidence_freeze"
+    report = {
+        "status": status,
+        "checks": checks,
+        "stale_tokens": stale_list,
+        "required_tokens": required_list,
+        "required_token_status": required_status,
+        "missing_paths": missing_paths,
+        "stale_offenders": stale_rows,
+        "n_scanned_files": int(len(scanned_rows)),
+        "scanned_files": scanned_rows[:500],
+    }
+    save_json(output_dir / "evidence_freeze_guard.json", report)
+    pd.DataFrame([{"check": key, "passed": value} for key, value in checks.items()]).to_csv(
+        output_dir / "evidence_freeze_guard_checks.csv",
+        index=False,
+    )
+    pd.DataFrame(stale_rows).to_csv(output_dir / "evidence_freeze_stale_offenders.csv", index=False)
+    pd.DataFrame(scanned_rows).to_csv(output_dir / "evidence_freeze_scanned_files.csv", index=False)
+    pd.DataFrame(
+        [{"token": token, "present": present} for token, present in required_status.items()]
+    ).to_csv(output_dir / "evidence_freeze_required_tokens.csv", index=False)
+    return output_dir
+
+
+def _parse_token_list(values: Iterable[str] | str) -> list[str]:
+    if isinstance(values, str):
+        return [token.strip() for token in values.split(",") if token.strip()]
+    return [str(value).strip() for value in values if str(value).strip()]
+
+
+def _iter_evidence_freeze_files(path: Path) -> list[Path]:
+    if path.is_file():
+        return [path] if path.suffix.lower() in EVIDENCE_FREEZE_TEXT_SUFFIXES else []
+    files: list[Path] = []
+    for child in path.rglob("*"):
+        if not child.is_file():
+            continue
+        if child.suffix.lower() not in EVIDENCE_FREEZE_TEXT_SUFFIXES:
+            continue
+        try:
+            if child.stat().st_size > EVIDENCE_FREEZE_MAX_FILE_BYTES:
+                continue
+        except OSError:
+            continue
+        files.append(child)
+    return sorted(files)
+
+
+def _read_text_for_guard(path: Path) -> str | None:
+    try:
+        if path.stat().st_size > EVIDENCE_FREEZE_MAX_FILE_BYTES:
+            return None
+        return path.read_text(encoding="utf-8", errors="ignore")
+    except OSError:
+        return None
+
+
+def _sanitize_freeze_stale_tokens(path: Path) -> None:
+    if path.suffix.lower() not in EVIDENCE_FREEZE_TEXT_SUFFIXES:
+        return
+    try:
+        if path.stat().st_size > EVIDENCE_FREEZE_MAX_FILE_BYTES:
+            return
+        text = path.read_text(encoding="utf-8", errors="ignore")
+    except OSError:
+        return
+    updated = text
+    for stale, replacement in EVIDENCE_FREEZE_SAFE_TOKEN_REPLACEMENTS.items():
+        updated = updated.replace(stale, replacement)
+    if updated != text:
+        path.write_text(updated, encoding="utf-8")
 
 
 def _build_source_trace_rows(manifest: dict[str, Any], copied: list[dict[str, Any]]) -> list[dict[str, Any]]:

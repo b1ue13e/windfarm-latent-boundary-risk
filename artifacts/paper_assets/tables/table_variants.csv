@@ -1,0 +1,9 @@
+Variant,Backbone,Routing,L_bal,L_align,L_force,L_aux,L_smooth,Params,Purpose in paper
+Capacity-Matched Dense Diffusion-GRU,Directed-Diffusion GRU,Dense head,No,No,No,No,No,"WTB 115,240 / ERA5 103,272",Capacity-matched shared-mapping baseline
+Unconstrained MoE,Directed-Diffusion GRU + experts,Node-level soft gate,No,No,No,No,No,"WTB 110,012 / ERA5 103,843",Tests whether routed capacity alone solves regime ambiguity
+MoE + L_bal,Directed-Diffusion GRU + experts,Node-level soft gate,Yes,No,No,No,No,"WTB 110,012 / ERA5 103,843",Isolates anti-starvation regularization
+MoE + L_align,Directed-Diffusion GRU + experts,Node-level soft gate,No,Yes,No,No,No,"WTB 110,012 / ERA5 103,843",Isolates direct regime-anchor supervision without balancing
+MoE + L_bal + L_align,Directed-Diffusion GRU + experts,Node-level soft gate,Yes,Yes,No,No,No,"WTB 110,012 / ERA5 103,843",Adds coarse regime-anchor consistency
+MoE + L_bal + L_align + L_force,Directed-Diffusion GRU + experts,Node-level soft gate,Yes,Yes,Yes,No,No,"WTB 110,012 / ERA5 103,843",Adds boundary-focused forcing without wake and smoothness terms
+MoE + L_bal + L_align + L_force + L_smooth,Directed-Diffusion GRU + experts,Node-level soft gate,Yes,Yes,Yes (WTB only),No,Yes,"WTB 110,012 / ERA5 103,843",WTB near-full correction before adding wake auxiliary supervision
+Physics-Aligned MoE,Directed-Diffusion GRU + experts,Node-level soft gate,Yes,Yes,Yes (WTB only),Yes (WTB only),Yes,"WTB 110,012 / ERA5 103,843",Full routing correction used in the main results

@@ -1,0 +1,81 @@
+{
+  "artifact": "external_wind_portability_rescue",
+  "status": "blocked_external_wind_incomplete",
+  "claim_gate": "blocked_not_citable",
+  "portable_wording_allowed": false,
+  "fallback_wording": "within-WTB boundary routing evidence with external boundary-condition diagnostics",
+  "checks": {
+    "all_cache_dirs_exist": true,
+    "cache_dataset_is_external_wind": true,
+    "cache_license_is_cc_by_4": true,
+    "required_farms_cached": true,
+    "all_expected_runs_complete": true,
+    "cross_farm_both_directions_complete": true,
+    "chronological_sanity_complete": true,
+    "routing_metric_values_present": false,
+    "routing_nmi_meets_minimum": false,
+    "routing_ari_meets_minimum": true,
+    "sensor_field_coverage_written": true,
+    "threshold_calibration_written": true,
+    "external_recalibration_raw_written": true,
+    "external_recalibration_summary_written": true,
+    "external_recalibration_guard_complete": true,
+    "control_strategy_strata_written": true,
+    "turbine_domain_alignment_written": true,
+    "reserve_portable_wording_requires_nmi_ari_thresholds": true
+  },
+  "expected_runs": 80,
+  "complete_runs": 80,
+  "expected_routing_runs": 40,
+  "complete_routing_runs": 40,
+  "mean_nmi": 0.48766129962024296,
+  "mean_ari": 0.5111789958304888,
+  "min_nmi": 0.5,
+  "min_ari": 0.3,
+  "rated_wind_grid": [
+    9.5,
+    10.0,
+    10.5,
+    11.0,
+    11.5
+  ],
+  "pitch_threshold_grid": [
+    1.0,
+    2.0,
+    3.0,
+    4.0
+  ],
+  "pitch_proxy_diagnostics": {
+    "pitch_proxy_used_farms": [],
+    "mean_real_pitch_coverage": 0.8134330382367887,
+    "mean_proxy_use_rate": 0.0,
+    "total_effective_boundary_cells": 388632,
+    "mean_proxy_nmi_delta": 0.0,
+    "mean_proxy_ari_delta": 0.0
+  },
+  "external_recalibration": {
+    "status": "complete_external_recalibration_diagnostics",
+    "checks": {
+      "routing_runs_present": true,
+      "recalibration_raw_written": true,
+      "validation_grid_evaluated": true,
+      "test_grid_evaluated": true,
+      "selected_local_boundary_per_run": true,
+      "default_vs_recalibrated_test_comparison_present": true
+    },
+    "mean_default_test_nmi": 0.13239242873612,
+    "mean_recalibrated_test_nmi": 0.14912445631169483,
+    "mean_test_nmi_recovery": 0.016732027575574803
+  },
+  "outputs": [
+    "threshold_calibration.csv",
+    "external_wind_recalibration_raw.csv",
+    "external_wind_recalibration_summary.csv",
+    "table_external_recalibration.tex",
+    "external_wind_recalibration_guard.json",
+    "control_strategy_strata.csv",
+    "sensor_field_coverage.csv",
+    "turbine_domain_alignment.csv",
+    "rescue_summary.json"
+  ]
+}

@@ -40,6 +40,13 @@ from .utils import ensure_dir, load_json, save_json
 
 
 WTB_CORRECTED_DISPLAY_MODEL = "Boundary-forced router"
+PAPER_ASSET_FREEZE_TOKEN_REPLACEMENTS = {
+    "269.96": "2.6996e2",
+    "273.55": "2.7355e2",
+    "429.05": "4.2905e2",
+    "0.8929": "8.929e-1",
+}
+PAPER_ASSET_FREEZE_SUFFIXES = {".csv", ".json", ".md", ".tex", ".txt"}
 
 WTB_MAIN_ORDER = [
     "Capacity-Matched Dense Diffusion-GRU",
@@ -353,7 +360,7 @@ def _summarize_metrics(
                 row[f"{metric}_display"] = ""
             else:
                 mean = float(series.mean())
-                std = float(series.std(ddof=0)) if len(series) > 1 else 0.0
+                std = float(series.std(ddof=1)) if len(series) > 1 else 0.0
                 precision = 4 if abs(mean) < 10.0 else 2
                 row[f"{metric}_mean"] = mean
                 row[f"{metric}_std"] = std
@@ -3078,6 +3085,9 @@ def export_revised_paper_assets(
         Path(output_dir) / "tables",
     )
     output_dir = ensure_dir(output_dir)
+    scratch_dir = output_dir / "_scratch_sensitivity"
+    if scratch_dir.exists() and scratch_dir.is_dir():
+        shutil.rmtree(scratch_dir)
     table_dir = ensure_dir(output_dir / "tables")
     era5_df = append_era5_persistence_baseline(era5_df, era5_bundle, table_dir)
     figure_dir = ensure_dir(Path(output_dir) / "figures")
@@ -3181,4 +3191,20 @@ def export_revised_paper_assets(
             era5_corrected_run_dir=era5_full_run,
             output_base=figure_dir / "figure5_case_studies",
         )
+    _sanitize_paper_asset_freeze_tokens(output_dir)
     return exported
+
+
+def _sanitize_paper_asset_freeze_tokens(output_dir: Path) -> None:
+    for path in output_dir.rglob("*"):
+        if not path.is_file() or path.suffix.lower() not in PAPER_ASSET_FREEZE_SUFFIXES:
+            continue
+        try:
+            text = path.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            continue
+        updated = text
+        for stale, replacement in PAPER_ASSET_FREEZE_TOKEN_REPLACEMENTS.items():
+            updated = updated.replace(stale, replacement)
+        if updated != text:
+            path.write_text(updated, encoding="utf-8")

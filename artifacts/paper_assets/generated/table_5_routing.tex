@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table 5.} Routing agreement and usage statistics (mean $\pm$ std across seeds where repeated runs are available; single validated corrected runs are reported without uncertainty).}
+\begin{tabular}{lrrrr}
+\toprule
+Model & NMI & ARI & Entropy & Variance \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel A. WTB}} \\
+Boundary-forced router & 0.8716 $\pm$ 0.0418 & 0.9166 $\pm$ 0.0371 & 0.4669 $\pm$ 0.4259 & 0.1114 $\pm$ 0.0695 \\
+\addlinespace[2pt]
+\multicolumn{5}{l}{\textit{Panel B. ERA5}} \\
+MoE only & 0.0317 $\pm$ 0.0245 & 0.0253 $\pm$ 0.0700 & 1.0896 $\pm$ 0.0100 & 0.0020 $\pm$ 0.0022 \\
+Physics-aligned MoE & 0.2100 $\pm$ 0.1086 & 0.2279 $\pm$ 0.1449 & 0.8808 $\pm$ 0.0652 & 0.0373 $\pm$ 0.0089 \\
+\bottomrule
+\end{tabular}
+\end{table}

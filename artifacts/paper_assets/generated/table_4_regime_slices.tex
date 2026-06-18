@@ -1,0 +1,39 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.04}
+\caption*{\textbf{Table 4.} Regime-slice and transition-window performance, including strong WTB and ERA5 forecasting baselines (mean $\pm$ std across seeds where repeated runs are available).}
+\begin{tabular}{lrrrrr}
+\toprule
+Model & idle & MPPT & pitch-control & transition & switch-window \\
+\midrule
+\multicolumn{6}{l}{\textit{Panel A. WTB}} \\
+Graph WaveNet & 151.75 $\pm$ 4.11 & 242.32 $\pm$ 2.40 & 282.67 $\pm$ 31.41 & 286.52 $\pm$ 11.31 & 228.12 $\pm$ 3.23 \\
+Graph Transformer & 154.20 $\pm$ 4.38 & 254.41 $\pm$ 5.68 & 280.50 $\pm$ 35.98 & 299.34 $\pm$ 10.78 & 237.06 $\pm$ 5.78 \\
+GAT-GRU & 156.80 $\pm$ 5.92 & 252.43 $\pm$ 7.29 & 318.28 $\pm$ 49.88 & 308.06 $\pm$ 17.95 & 240.17 $\pm$ 8.50 \\
+Physics-aligned MoE & 157.08 $\pm$ 5.57 & 261.09 $\pm$ 4.82 & 297.02 $\pm$ 18.14 & 303.80 $\pm$ 20.59 & 242.60 $\pm$ 6.07 \\
+PatchTST & 157.26 $\pm$ 7.04 & 244.70 $\pm$ 4.87 & 277.21 $\pm$ 19.30 & 285.07 $\pm$ 5.88 & 231.22 $\pm$ 4.15 \\
+Dense (matched) & 165.26 $\pm$ 12.13 & 247.84 $\pm$ 7.66 & 271.47 $\pm$ 22.64 & 282.38 $\pm$ 6.15 & 233.82 $\pm$ 5.96 \\
+MoE only & 161.03 $\pm$ 4.13 & 251.50 $\pm$ 9.14 & 307.10 $\pm$ 24.07 & 297.17 $\pm$ 10.89 & 237.22 $\pm$ 8.11 \\
+Boundary-forced router & 154.91 $\pm$ 3.73 & 254.76 $\pm$ 9.79 & 286.95 $\pm$ 22.07 & 301.76 $\pm$ 17.69 & 239.86 $\pm$ 8.85 \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.45em}
+\begin{tabular}{lrrrr}
+\toprule
+Model & convective & stable & transition & switch-window \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel B. ERA5}} \\
+Persistence & 0.5065 & 0.7264 & 0.6456 & 0.6814 \\
+Graph WaveNet & 0.5075 $\pm$ 0.0530 & 0.8599 $\pm$ 0.0676 & 0.7628 $\pm$ 0.0572 & 0.7934 $\pm$ 0.0652 \\
+STGCN & 0.6565 $\pm$ 0.1860 & 1.0131 $\pm$ 0.1681 & 0.8544 $\pm$ 0.1723 & 0.8908 $\pm$ 0.1239 \\
+PatchTST & 0.6005 $\pm$ 0.0846 & 0.9028 $\pm$ 0.0890 & 0.7616 $\pm$ 0.0634 & 0.8248 $\pm$ 0.0842 \\
+TCN & 0.5707 $\pm$ 0.0183 & 0.8988 $\pm$ 0.0374 & 0.7733 $\pm$ 0.0195 & 0.8338 $\pm$ 0.0292 \\
+Dense (matched) & 0.5479 $\pm$ 0.0430 & 0.8819 $\pm$ 0.0799 & 0.7853 $\pm$ 0.0780 & 0.8330 $\pm$ 0.0824 \\
+Physics-aligned MoE & 0.5700 $\pm$ 0.0784 & 0.8907 $\pm$ 0.0596 & 0.7970 $\pm$ 0.0342 & 0.8507 $\pm$ 0.0363 \\
+MoE only & 0.5892 $\pm$ 0.0466 & 0.9460 $\pm$ 0.0500 & 0.8690 $\pm$ 0.0656 & 0.9224 $\pm$ 0.0555 \\
+\bottomrule
+\end{tabular}
+\end{table}

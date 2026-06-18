@@ -1,0 +1,18 @@
+{
+  "status": "complete_external_recalibration_diagnostics",
+  "checks": {
+    "routing_runs_present": true,
+    "recalibration_raw_written": true,
+    "validation_grid_evaluated": true,
+    "test_grid_evaluated": true,
+    "selected_local_boundary_per_run": true,
+    "default_vs_recalibrated_test_comparison_present": true
+  },
+  "n_routing_runs": 40,
+  "n_recalibrated_runs": 40,
+  "mean_default_test_nmi": 0.13239242873612,
+  "mean_recalibrated_test_nmi": 0.14912445631169483,
+  "mean_test_nmi_recovery": 0.016732027575574803,
+  "mean_recalibrated_nmi_not_lower_than_default": true,
+  "claim_use": "boundary-condition diagnostic; do not claim unconditional external portability"
+}

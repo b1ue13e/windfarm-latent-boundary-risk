@@ -1,0 +1,2 @@
+dataset,model,variant_key,experiment_group,setting_group,setting_value,setting_label,model_mode,parameter_count,seed,n_runs,overall_mae,overall_rmse,switch_mae,switch_rmse,convective_mae,convective_rmse,stable_mae,stable_rmse,transition_mae,transition_rmse
+era5,Persistence,persistence,external_baseline,,,last-value persistence,persistence,0,,1,0.5500877851018445,0.712680948834973,0.5276865536759607,0.6814000498698322,0.3962976618221149,0.5064957045508909,0.5616933706668611,0.7263732530098458,0.49813483021484367,0.6455687877920933

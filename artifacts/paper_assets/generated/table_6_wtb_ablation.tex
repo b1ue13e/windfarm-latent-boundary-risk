@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.04}
+\caption*{\textbf{Table 6.} WTB ablation on routing correction components (mean $\pm$ std across seeds).}
+\begin{tabular}{lrrrrr}
+\toprule
+Model & Overall RMSE & Switch RMSE & Pitch-control RMSE & NMI & ARI \\
+\midrule
+Dense (matched) & 231.42 $\pm$ 5.87 & 233.82 $\pm$ 5.96 & 271.47 $\pm$ 22.64 & -- & -- \\
+MoE only & 235.40 $\pm$ 7.96 & 237.22 $\pm$ 8.11 & 307.10 $\pm$ 24.07 & 0.0136 $\pm$ 0.0304 & 0.0076 $\pm$ 0.0170 \\
+MoE + $L_{bal}$ & 235.16 $\pm$ 4.07 & 236.44 $\pm$ 5.77 & 287.90 $\pm$ 23.23 & 0.2401 $\pm$ 0.1503 & 0.1978 $\pm$ 0.1392 \\
+MoE + $L_{align}$ & 234.51 $\pm$ 4.72 & 235.79 $\pm$ 4.89 & 274.07 $\pm$ 19.90 & 0.7973 $\pm$ 0.1291 & 0.8651 $\pm$ 0.0983 \\
+MoE + $L_{bal}$ + $L_{align}$ & 236.67 $\pm$ 1.62 & 238.97 $\pm$ 1.12 & 276.02 $\pm$ 2.47 & 0.8189 $\pm$ 0.0884 & 0.8893 $\pm$ 0.0567 \\
+MoE + $L_{bal}$ + $L_{align}$ + $L_{force}$ & 236.13 $\pm$ 8.41 & 239.86 $\pm$ 8.85 & 286.95 $\pm$ 22.07 & 0.8716 $\pm$ 0.0418 & 0.9166 $\pm$ 0.0371 \\
+MoE + $L_{bal}$ + $L_{align}$ + $L_{force}$ + $L_{smooth}$ & 239.61 $\pm$ 6.09 & 241.07 $\pm$ 7.01 & 293.74 $\pm$ 30.07 & 0.8320 $\pm$ 0.0944 & 0.8673 $\pm$ 0.1070 \\
+Context-supervised router & 242.75 $\pm$ 14.87 & 245.13 $\pm$ 15.17 & 287.75 $\pm$ 35.91 & 0.7521 $\pm$ 0.0656 & 0.8020 $\pm$ 0.0738 \\
+Anchor-only router & 233.46 $\pm$ 6.11 & 236.90 $\pm$ 5.59 & 317.81 $\pm$ 12.82 & 0.8895 $\pm$ 0.0627 & 0.9219 $\pm$ 0.0580 \\
+Physics-aligned MoE & 241.42 $\pm$ 4.28 & 242.60 $\pm$ 6.07 & 297.02 $\pm$ 18.14 & 0.8312 $\pm$ 0.0560 & 0.8820 $\pm$ 0.0655 \\
+\bottomrule
+\end{tabular}
+\end{table}

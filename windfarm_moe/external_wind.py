@@ -2161,6 +2161,21 @@ def run_external_wind_portability_rescue(
     )
     calibration_df.to_csv(output_dir / "threshold_calibration.csv", index=False)
 
+    recalibration_raw, recalibration_summary, recalibration_guard = _external_recalibration_tables(
+        run_df=run_df,
+        model_list=model_list,
+        rated_wind_grid=rated_values,
+        pitch_threshold_grid=pitch_values,
+        cut_in_wind=float(cut_in_wind),
+    )
+    recalibration_raw.to_csv(output_dir / "external_wind_recalibration_raw.csv", index=False)
+    recalibration_summary.to_csv(output_dir / "external_wind_recalibration_summary.csv", index=False)
+    _write_external_recalibration_tex(
+        recalibration_summary,
+        output_dir / "table_external_recalibration.tex",
+    )
+    save_json(output_dir / "external_wind_recalibration_guard.json", recalibration_guard)
+
     strata_df = pd.DataFrame(
         [
             row
@@ -2224,6 +2239,9 @@ def run_external_wind_portability_rescue(
         "routing_ari_meets_minimum": bool(not routing_ari_values.empty and routing_ari_values.mean() >= min_ari),
         "sensor_field_coverage_written": not sensor_df.empty,
         "threshold_calibration_written": not calibration_df.empty,
+        "external_recalibration_raw_written": not recalibration_raw.empty,
+        "external_recalibration_summary_written": not recalibration_summary.empty,
+        "external_recalibration_guard_complete": str(recalibration_guard.get("status", "")).startswith("complete"),
         "control_strategy_strata_written": not strata_df.empty,
         "turbine_domain_alignment_written": not domain_df.empty,
         "reserve_portable_wording_requires_nmi_ari_thresholds": True,
@@ -2292,8 +2310,19 @@ def run_external_wind_portability_rescue(
         "rated_wind_grid": rated_values,
         "pitch_threshold_grid": pitch_values,
         "pitch_proxy_diagnostics": proxy_summary,
+        "external_recalibration": {
+            "status": recalibration_guard.get("status"),
+            "checks": recalibration_guard.get("checks", {}),
+            "mean_default_test_nmi": recalibration_guard.get("mean_default_test_nmi"),
+            "mean_recalibrated_test_nmi": recalibration_guard.get("mean_recalibrated_test_nmi"),
+            "mean_test_nmi_recovery": recalibration_guard.get("mean_test_nmi_recovery"),
+        },
         "outputs": [
             "threshold_calibration.csv",
+            "external_wind_recalibration_raw.csv",
+            "external_wind_recalibration_summary.csv",
+            "table_external_recalibration.tex",
+            "external_wind_recalibration_guard.json",
             "control_strategy_strata.csv",
             "sensor_field_coverage.csv",
             "turbine_domain_alignment.csv",
@@ -2302,6 +2331,290 @@ def run_external_wind_portability_rescue(
     }
     save_json(output_dir / "rescue_summary.json", report)
     return output_dir
+
+
+def _external_recalibration_tables(
+    *,
+    run_df: pd.DataFrame,
+    model_list: list[str],
+    rated_wind_grid: list[float],
+    pitch_threshold_grid: list[float],
+    cut_in_wind: float,
+) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, Any]]:
+    routing_model_set = set(EXTERNAL_ROUTING_REQUIRED_MODELS).intersection(set(model_list))
+    if run_df.empty or not routing_model_set:
+        guard = _external_recalibration_guard(pd.DataFrame(), pd.DataFrame(), n_routing_runs=0)
+        return pd.DataFrame(), pd.DataFrame(), guard
+
+    routing_df = run_df[
+        run_df.get("model", pd.Series(dtype=str)).astype(str).isin(routing_model_set)
+        & run_df.get("complete", pd.Series(dtype=bool)).astype(bool)
+    ].copy()
+    raw_rows: list[dict[str, Any]] = []
+    per_run_rows: list[dict[str, Any]] = []
+    default_rated = 10.5
+    default_pitch = 2.0
+    for _, run_row in routing_df.iterrows():
+        run_dir_text = str(run_row.get("run_dir", ""))
+        if not run_dir_text:
+            continue
+        run_dir = Path(run_dir_text)
+        val_dir = run_dir / "val_metrics"
+        test_dir = run_dir / "test_metrics"
+        default_val = _threshold_alignment_from_metrics(val_dir, default_rated, default_pitch, cut_in_wind) or {}
+        default_test = _threshold_alignment_from_metrics(test_dir, default_rated, default_pitch, cut_in_wind) or {}
+        candidates: list[dict[str, Any]] = []
+        for rated in rated_wind_grid:
+            for pitch in pitch_threshold_grid:
+                val_alignment = _threshold_alignment_from_metrics(val_dir, rated, pitch, cut_in_wind) or {}
+                test_alignment = _threshold_alignment_from_metrics(test_dir, rated, pitch, cut_in_wind) or {}
+                row = {
+                    "farm": run_row.get("farm", ""),
+                    "target_farm": run_row.get("target_farm", ""),
+                    "split_id": run_row.get("split_id", ""),
+                    "model": run_row.get("model", ""),
+                    "seed": run_row.get("seed", ""),
+                    "run_dir": run_dir_text,
+                    "rated_wind": float(rated),
+                    "pitch_threshold": float(pitch),
+                    "is_wtb_default_boundary": bool(
+                        np.isclose(float(rated), default_rated) and np.isclose(float(pitch), default_pitch)
+                    ),
+                    "val_nmi": _finite_or_nan(val_alignment.get("nmi")),
+                    "val_ari": _finite_or_nan(val_alignment.get("ari")),
+                    "test_nmi": _finite_or_nan(test_alignment.get("nmi")),
+                    "test_ari": _finite_or_nan(test_alignment.get("ari")),
+                    "selected_local_boundary": False,
+                }
+                candidates.append(row)
+        selected = _select_local_recalibration_candidate(candidates, default_rated, default_pitch)
+        if selected is not None:
+            for row in candidates:
+                row["selected_local_boundary"] = bool(
+                    np.isclose(float(row["rated_wind"]), float(selected["rated_wind"]))
+                    and np.isclose(float(row["pitch_threshold"]), float(selected["pitch_threshold"]))
+                )
+            per_run_rows.append(
+                {
+                    "summary_level": "run",
+                    "farm": run_row.get("farm", ""),
+                    "target_farm": run_row.get("target_farm", ""),
+                    "split_id": run_row.get("split_id", ""),
+                    "model": run_row.get("model", ""),
+                    "seed": run_row.get("seed", ""),
+                    "run_dir": run_dir_text,
+                    "default_rated_wind": default_rated,
+                    "default_pitch_threshold": default_pitch,
+                    "local_rated_wind": float(selected["rated_wind"]),
+                    "local_pitch_threshold": float(selected["pitch_threshold"]),
+                    "default_val_nmi": _finite_or_nan(default_val.get("nmi")),
+                    "default_val_ari": _finite_or_nan(default_val.get("ari")),
+                    "recalibrated_val_nmi": _finite_or_nan(selected.get("val_nmi")),
+                    "recalibrated_val_ari": _finite_or_nan(selected.get("val_ari")),
+                    "default_test_nmi": _finite_or_nan(default_test.get("nmi")),
+                    "default_test_ari": _finite_or_nan(default_test.get("ari")),
+                    "recalibrated_test_nmi": _finite_or_nan(selected.get("test_nmi")),
+                    "recalibrated_test_ari": _finite_or_nan(selected.get("test_ari")),
+                    "test_nmi_recovery": _finite_or_nan(selected.get("test_nmi")) - _finite_or_nan(default_test.get("nmi")),
+                    "test_ari_recovery": _finite_or_nan(selected.get("test_ari")) - _finite_or_nan(default_test.get("ari")),
+                }
+            )
+        raw_rows.extend(candidates)
+
+    raw_df = pd.DataFrame(raw_rows)
+    per_run_df = pd.DataFrame(per_run_rows)
+    summary_df = _summarize_external_recalibration(per_run_df)
+    guard = _external_recalibration_guard(raw_df, per_run_df, n_routing_runs=int(len(routing_df)))
+    return raw_df, summary_df, guard
+
+
+def _select_local_recalibration_candidate(
+    rows: list[dict[str, Any]],
+    default_rated: float,
+    default_pitch: float,
+) -> dict[str, Any] | None:
+    valid_rows = [
+        row
+        for row in rows
+        if np.isfinite(float(row.get("val_nmi", float("nan"))))
+    ]
+    if not valid_rows:
+        return None
+    return max(
+        valid_rows,
+        key=lambda row: (
+            float(row.get("val_nmi", float("-inf"))),
+            float(row.get("val_ari", float("-inf"))) if np.isfinite(float(row.get("val_ari", float("nan")))) else -1.0,
+            -abs(float(row["rated_wind"]) - float(default_rated)),
+            -abs(float(row["pitch_threshold"]) - float(default_pitch)),
+        ),
+    )
+
+
+def _summarize_external_recalibration(per_run_df: pd.DataFrame) -> pd.DataFrame:
+    if per_run_df.empty:
+        return pd.DataFrame()
+    numeric_cols = [
+        "default_val_nmi",
+        "default_val_ari",
+        "recalibrated_val_nmi",
+        "recalibrated_val_ari",
+        "default_test_nmi",
+        "default_test_ari",
+        "recalibrated_test_nmi",
+        "recalibrated_test_ari",
+        "test_nmi_recovery",
+        "test_ari_recovery",
+    ]
+    rows: list[dict[str, Any]] = []
+    for group_cols in [
+        ["farm", "target_farm", "split_id", "model"],
+        ["split_id", "model"],
+        ["model"],
+    ]:
+        for keys, group in per_run_df.groupby(group_cols, dropna=False, sort=False):
+            if not isinstance(keys, tuple):
+                keys = (keys,)
+            row: dict[str, Any] = {column: value for column, value in zip(group_cols, keys)}
+            row["summary_level"] = "+".join(group_cols)
+            row["n_runs"] = int(len(group))
+            row["selected_local_boundaries"] = ";".join(
+                sorted(
+                    {
+                        f"{float(rated):.2f}/{float(pitch):.2f}"
+                        for rated, pitch in zip(group["local_rated_wind"], group["local_pitch_threshold"])
+                    }
+                )
+            )
+            for column in numeric_cols:
+                values = pd.to_numeric(group.get(column), errors="coerce").dropna()
+                row[f"{column}_mean"] = float(values.mean()) if not values.empty else float("nan")
+            rows.append(row)
+    overall: dict[str, Any] = {"summary_level": "overall", "n_runs": int(len(per_run_df))}
+    overall["selected_local_boundaries"] = ";".join(
+        sorted(
+            {
+                f"{float(rated):.2f}/{float(pitch):.2f}"
+                for rated, pitch in zip(per_run_df["local_rated_wind"], per_run_df["local_pitch_threshold"])
+            }
+        )
+    )
+    for column in numeric_cols:
+        values = pd.to_numeric(per_run_df.get(column), errors="coerce").dropna()
+        overall[f"{column}_mean"] = float(values.mean()) if not values.empty else float("nan")
+    rows.append(overall)
+    return pd.DataFrame(rows)
+
+
+def _external_recalibration_guard(
+    raw_df: pd.DataFrame,
+    per_run_df: pd.DataFrame,
+    *,
+    n_routing_runs: int,
+) -> dict[str, Any]:
+    default_nmi = pd.to_numeric(per_run_df.get("default_test_nmi"), errors="coerce").dropna() if not per_run_df.empty else pd.Series(dtype=float)
+    recal_nmi = pd.to_numeric(per_run_df.get("recalibrated_test_nmi"), errors="coerce").dropna() if not per_run_df.empty else pd.Series(dtype=float)
+    recovery = pd.to_numeric(per_run_df.get("test_nmi_recovery"), errors="coerce").dropna() if not per_run_df.empty else pd.Series(dtype=float)
+    checks = {
+        "routing_runs_present": int(n_routing_runs) > 0,
+        "recalibration_raw_written": not raw_df.empty,
+        "validation_grid_evaluated": bool(
+            not raw_df.empty and pd.to_numeric(raw_df.get("val_nmi"), errors="coerce").notna().any()
+        ),
+        "test_grid_evaluated": bool(
+            not raw_df.empty and pd.to_numeric(raw_df.get("test_nmi"), errors="coerce").notna().any()
+        ),
+        "selected_local_boundary_per_run": int(len(per_run_df)) == int(n_routing_runs) and int(n_routing_runs) > 0,
+        "default_vs_recalibrated_test_comparison_present": bool(
+            not default_nmi.empty and not recal_nmi.empty and len(default_nmi) == len(per_run_df) and len(recal_nmi) == len(per_run_df)
+        ),
+    }
+    status = "complete_external_recalibration_diagnostics" if all(checks.values()) else "blocked_external_recalibration_diagnostics"
+    return {
+        "status": status,
+        "checks": checks,
+        "n_routing_runs": int(n_routing_runs),
+        "n_recalibrated_runs": int(len(per_run_df)),
+        "mean_default_test_nmi": float(default_nmi.mean()) if not default_nmi.empty else None,
+        "mean_recalibrated_test_nmi": float(recal_nmi.mean()) if not recal_nmi.empty else None,
+        "mean_test_nmi_recovery": float(recovery.mean()) if not recovery.empty else None,
+        "mean_recalibrated_nmi_not_lower_than_default": bool(not recovery.empty and recovery.mean() >= -1e-12),
+        "claim_use": "boundary-condition diagnostic; do not claim unconditional external portability",
+    }
+
+
+def _write_external_recalibration_tex(summary_df: pd.DataFrame, path: Path) -> None:
+    if summary_df.empty:
+        path.write_text(
+            "\\begin{tabular}{lrrrr}\n"
+            "\\toprule\n"
+            "Group & Runs & Default NMI & Recalibrated NMI & Recovery \\\\\n"
+            "\\midrule\n"
+            "\\bottomrule\n"
+            "\\end{tabular}\n",
+            encoding="utf-8",
+        )
+        return
+    display = summary_df[summary_df["summary_level"].astype(str).isin(["farm+target_farm+split_id+model", "overall"])].copy()
+    lines = [
+        "\\begin{tabular}{lrrrr}",
+        "\\toprule",
+        "Group & Runs & Default NMI & Recalibrated NMI & Recovery \\\\",
+        "\\midrule",
+    ]
+    for _, row in display.iterrows():
+        if str(row.get("summary_level", "")) == "overall":
+            label = "Overall"
+        else:
+            parts = [
+                str(row.get("farm", "")),
+                str(row.get("target_farm", "")),
+                str(row.get("split_id", "")),
+                str(row.get("model", "")),
+            ]
+            label = " / ".join(part for part in parts if part and part.lower() != "nan")
+        lines.append(
+            f"{_latex_escape(label)} & {int(row.get('n_runs', 0))} & "
+            f"{_format_tex_float(row.get('default_test_nmi_mean'))} & "
+            f"{_format_tex_float(row.get('recalibrated_test_nmi_mean'))} & "
+            f"{_format_tex_float(row.get('test_nmi_recovery_mean'))} \\\\"
+        )
+    lines.extend(["\\bottomrule", "\\end{tabular}"])
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def _format_tex_float(value: Any) -> str:
+    try:
+        value_float = float(value)
+    except (TypeError, ValueError):
+        return ""
+    if not np.isfinite(value_float):
+        return ""
+    return f"{value_float:.4f}"
+
+
+def _latex_escape(value: str) -> str:
+    return (
+        str(value)
+        .replace("\\", "\\textbackslash{}")
+        .replace("&", "\\&")
+        .replace("%", "\\%")
+        .replace("$", "\\$")
+        .replace("#", "\\#")
+        .replace("_", "\\_")
+        .replace("{", "\\{")
+        .replace("}", "\\}")
+        .replace("~", "\\textasciitilde{}")
+        .replace("^", "\\textasciicircum{}")
+    )
+
+
+def _finite_or_nan(value: Any) -> float:
+    try:
+        out = float(value)
+    except (TypeError, ValueError):
+        return float("nan")
+    return out if np.isfinite(out) else float("nan")
 
 
 def _safe_series_mean(values: Any) -> float | None:

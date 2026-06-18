@@ -22,7 +22,7 @@ from windfarm_moe.external_wind import (
     run_external_wind_source_guard,
     write_external_wind_protocol,
 )
-from windfarm_moe.final_evidence import build_final_evidence_manifest, export_final_tables
+from windfarm_moe.final_evidence import build_final_evidence_manifest, export_final_tables, run_evidence_freeze_guard
 from windfarm_moe.future_holdout import (
     run_future_holdout_evidence_guard,
     run_future_holdout_guard,
@@ -609,6 +609,20 @@ def build_parser() -> argparse.ArgumentParser:
     final_table_parser.add_argument("--manifest-path", type=str, required=True)
     final_table_parser.add_argument("--output-dir", type=str, required=True)
     final_table_parser.add_argument("--allow-blocked", action="store_true")
+
+    evidence_freeze_parser = subparsers.add_parser(
+        "evidence-freeze-guard",
+        help="Verify final-facing manuscript, tables, and evidence package use frozen evidence numbers",
+    )
+    _add_common_data_args(evidence_freeze_parser)
+    evidence_freeze_parser.add_argument("--paper-path", type=str, default="paper_draft.md")
+    evidence_freeze_parser.add_argument("--compiled-tex", type=str, default="paper_draft_compiled.tex")
+    evidence_freeze_parser.add_argument("--paper-assets-dir", type=str, default="artifacts/paper_assets")
+    evidence_freeze_parser.add_argument("--final-package-dir", type=str, default="artifacts/final_evidence_package")
+    evidence_freeze_parser.add_argument("--paired-effects", action="append", default=[])
+    evidence_freeze_parser.add_argument("--output-dir", type=str, required=True)
+    evidence_freeze_parser.add_argument("--stale-tokens", type=str, default="269.96,273.55,429.05,0.8929")
+    evidence_freeze_parser.add_argument("--required-tokens", type=str, default="236.13,239.86,286.95,0.8716,0.9166")
 
     reviewer_parser = subparsers.add_parser(
         "reviewer-stat-pack",
@@ -1644,6 +1658,20 @@ def main() -> None:
             fail_on_blocked=not args.allow_blocked,
         )
         print(f"Final table export saved to: {output_dir}")
+        return
+
+    if args.command == "evidence-freeze-guard":
+        output_dir = run_evidence_freeze_guard(
+            paper_path=Path(args.paper_path),
+            compiled_tex=Path(args.compiled_tex) if args.compiled_tex else None,
+            paper_assets_dir=Path(args.paper_assets_dir),
+            final_package_dir=Path(args.final_package_dir),
+            paired_effects=args.paired_effects,
+            output_dir=Path(args.output_dir),
+            stale_tokens=args.stale_tokens,
+            required_tokens=args.required_tokens,
+        )
+        print(f"Evidence freeze guard saved to: {output_dir}")
         return
 
     if args.command == "reviewer-stat-pack":

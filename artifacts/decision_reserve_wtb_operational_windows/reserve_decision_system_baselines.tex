@@ -1,0 +1,14 @@
+\begin{tabular}{llrrrrr}
+\toprule
+Subset & Baseline & Ratio & Cost & Violation & Reserve & Shortage \\
+\midrule
+boundary & Boundary-forced router/gate-bin & 10 & 84.58M & 0.0900 & 52.67M & 3.19M \\
+boundary & Boundary-forced router/global & 10 & 88.13M & 0.1038 & 50.82M & 3.73M \\
+boundary & Graph WaveNet/global-quantile reserve & 10 & 88.80M & 0.1022 & 50.32M & 3.85M \\
+boundary & Graph WaveNet/physical-bin reserve & 10 & 84.31M & 0.0931 & 50.35M & 3.40M \\
+full & Boundary-forced router/gate-bin & 10 & 481.36M & 0.1214 & 291.16M & 19.02M \\
+full & Boundary-forced router/global & 10 & 501.32M & 0.0857 & 324.97M & 17.64M \\
+full & Graph WaveNet/global-quantile reserve & 10 & 464.07M & 0.0901 & 288.01M & 17.61M \\
+full & Graph WaveNet/physical-bin reserve & 10 & 464.43M & 0.1057 & 278.15M & 18.63M \\
+\bottomrule
+\end{tabular}

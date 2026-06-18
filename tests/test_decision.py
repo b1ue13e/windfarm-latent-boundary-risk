@@ -142,13 +142,32 @@ class DecisionUtilityTests(unittest.TestCase):
             raw = pd.read_csv(output_dir / "reserve_decision_raw_runs.csv")
             gate_loss = pd.read_csv(output_dir / "reserve_decision_gate_loss.csv")
             bootstrap = pd.read_csv(output_dir / "reserve_decision_bootstrap.csv")
+            system_baselines = pd.read_csv(output_dir / "reserve_decision_system_baselines.csv")
+            sensitivity = pd.read_csv(output_dir / "reserve_decision_cost_ratio_sensitivity.csv")
             config = load_json(output_dir / "reserve_decision_config.json")
 
             self.assertTrue((output_dir / "reserve_decision_by_risk_bin.csv").exists())
             self.assertTrue((output_dir / "reserve_decision_bootstrap.csv").exists())
             self.assertTrue((output_dir / "reserve_decision_gate_loss.csv").exists())
             self.assertTrue((output_dir / "reserve_decision_operational_windows.csv").exists())
+            self.assertTrue((output_dir / "reserve_decision_system_baselines.tex").exists())
+            self.assertTrue((output_dir / "reserve_decision_cost_ratio_sensitivity.tex").exists())
             self.assertIn("Graph WaveNet", summary["model"].tolist())
+            self.assertTrue(
+                {
+                    "Graph WaveNet/global-quantile reserve",
+                    "Graph WaveNet/physical-bin reserve",
+                    "Boundary-forced router/global",
+                    "Boundary-forced router/gate-bin",
+                }.issubset(set(system_baselines["baseline"]))
+            )
+            self.assertTrue({"full", "boundary"}.issubset(set(system_baselines["subset"])))
+            self.assertTrue(
+                {"Graph WaveNet/global-quantile reserve", "Graph WaveNet/physical-bin reserve"}.issubset(
+                    set(sensitivity["baseline"])
+                )
+            )
+            self.assertTrue({2.0, 10.0}.issubset(set(sensitivity["cost_ratio"].astype(float))))
             self.assertTrue({"boundary", "non_boundary", "late_period", "spatial_holdout"}.issubset(set(raw["subset"])))
             self.assertIn("not_applicable", by_ratio.loc[by_ratio["policy"] == "gate-bin", "status"].tolist())
             physics_gate = summary[(summary["model"] == "Physics-Aligned MoE") & (summary["policy"] == "gate-bin")]
@@ -181,6 +200,8 @@ class DecisionUtilityTests(unittest.TestCase):
             self.assertTrue(guard["checks"]["paired_bootstrap_uses_seed_day_pairs"])
             self.assertTrue(guard["checks"]["summary_has_total_cost_violation_reserve_and_shortage_energy"])
             self.assertTrue(guard["checks"]["gate_correctness_operational_loss_present"])
+            self.assertTrue(guard["checks"]["system_reserve_baselines_present"])
+            self.assertTrue(guard["checks"]["graph_wavenet_reserve_cost_ratio_sensitivity_present"])
             self.assertFalse(guard["checks"]["operational_window_cost_violation_reserve_and_boundary_shortage_present"])
             self.assertFalse(guard["checks"]["gate_boundary_operational_gain_present"])
             self.assertIn("gate_boundary_operational_gain_present", guard["checks"])

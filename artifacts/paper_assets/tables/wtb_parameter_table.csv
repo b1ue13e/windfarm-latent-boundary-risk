@@ -1,0 +1,3 @@
+dataset,model,hidden_dim,num_experts,params
+WTB,Physics-Aligned MoE,64,4,110012
+WTB,Capacity-Matched Dense Diffusion-GRU,64,1,110012

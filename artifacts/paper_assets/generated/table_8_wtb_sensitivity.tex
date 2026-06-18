@@ -1,0 +1,30 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table 8.} WTB sensitivity to routing-loss weights and operating-boundary thresholds (mean $\pm$ std across three seeds).}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrr}
+\toprule
+Setting & Value & Overall RMSE & Switch RMSE & NMI & ARI \\
+\midrule
+\multicolumn{6}{l}{\textit{Panel A. Routing-weight sensitivity}} \\
+$\lambda_{\mathrm{align}}$ & 2500 & 258.00 $\pm$ 12.40 & 261.37 $\pm$ 13.96 & 0.8402 $\pm$ 0.0505 & 0.9026 $\pm$ 0.0378 \\
+$\lambda_{\mathrm{align}}$ & 5000 & 254.62 $\pm$ 4.56 & 258.47 $\pm$ 5.61 & 0.8255 $\pm$ 0.0058 & 0.8779 $\pm$ 0.0019 \\
+$\lambda_{\mathrm{align}}$ & 7500 & 257.34 $\pm$ 2.90 & 262.83 $\pm$ 3.59 & 0.8546 $\pm$ 0.0427 & 0.9093 $\pm$ 0.0282 \\
+$\lambda_{\mathrm{force}}$ & 5000 & 257.61 $\pm$ 2.43 & 261.66 $\pm$ 2.66 & 0.8406 $\pm$ 0.0237 & 0.8952 $\pm$ 0.0182 \\
+$\lambda_{\mathrm{force}}$ & 10000 & 259.51 $\pm$ 5.60 & 262.66 $\pm$ 8.28 & 0.8152 $\pm$ 0.0456 & 0.8650 $\pm$ 0.0479 \\
+$\lambda_{\mathrm{force}}$ & 15000 & 261.84 $\pm$ 2.63 & 266.45 $\pm$ 1.62 & 0.8091 $\pm$ 0.0102 & 0.8522 $\pm$ 0.0081 \\
+\addlinespace[2pt]
+\multicolumn{6}{l}{\textit{Panel B. Operating-boundary threshold sensitivity}} \\
+$u_{\mathrm{rated}}$ & 10.0 & 256.45 $\pm$ 3.36 & 260.64 $\pm$ 4.99 & 0.8655 $\pm$ 0.0230 & 0.9151 $\pm$ 0.0223 \\
+$u_{\mathrm{rated}}$ & 10.5 & 258.76 $\pm$ 5.51 & 261.93 $\pm$ 7.04 & 0.8375 $\pm$ 0.0466 & 0.8795 $\pm$ 0.0485 \\
+$u_{\mathrm{rated}}$ & 11.0 & 251.71 $\pm$ 4.15 & 255.65 $\pm$ 4.96 & 0.8662 $\pm$ 0.0133 & 0.9179 $\pm$ 0.0081 \\
+$p_{\mathrm{th}}$ & 1.5 & 255.31 $\pm$ 5.88 & 261.11 $\pm$ 5.56 & 0.8557 $\pm$ 0.0331 & 0.9031 $\pm$ 0.0313 \\
+$p_{\mathrm{th}}$ & 2.0 & 253.41 $\pm$ 4.22 & 256.41 $\pm$ 7.23 & 0.8350 $\pm$ 0.0384 & 0.8786 $\pm$ 0.0386 \\
+$p_{\mathrm{th}}$ & 2.5 & 258.28 $\pm$ 7.66 & 264.11 $\pm$ 7.77 & 0.8637 $\pm$ 0.0031 & 0.9144 $\pm$ 0.0040 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

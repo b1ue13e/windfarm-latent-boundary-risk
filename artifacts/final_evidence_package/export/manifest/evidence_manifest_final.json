@@ -71,6 +71,12 @@
       "bytes": 633750,
       "sha256": "69ecf7b19f99810397a9f635b88a92bf3d7a91a155e5321bd105ccd6a4573a16"
     },
+    "reserve_decision_cost_ratio_sensitivity.csv": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_cost_ratio_sensitivity.csv",
+      "exists": true,
+      "bytes": 7416,
+      "sha256": "5f536c1a1eae5f4ac9951e500950b3ad9c1e12c8d9ca60b803c9fe55165880e5"
+    },
     "operational_baseline_config.json": {
       "path": "artifacts\\operational_baselines_wtb_strictmask\\operational_baseline_config.json",
       "exists": true,
@@ -94,6 +100,18 @@
       "exists": true,
       "bytes": 2389,
       "sha256": "0386c7de6c65ab4fee184724ad6586b67e4cedabbdcd38247307782d4a9d9681"
+    },
+    "external_wind_recalibration_raw.csv": {
+      "path": "artifacts\\external_wind_portability_rescue\\external_wind_recalibration_raw.csv",
+      "exists": true,
+      "bytes": 180890,
+      "sha256": "8573c4e9143939e106044303280d560e05ad1489640a3fea164b5cae6eb39093"
+    },
+    "external_wind_recalibration_guard.json": {
+      "path": "artifacts\\external_wind_portability_rescue\\external_wind_recalibration_guard.json",
+      "exists": true,
+      "bytes": 703,
+      "sha256": "88440a77b8d83702c0bfa01dcf073f63008f05abe5efd57ffa408c32dd95b5a7"
     },
     "external_wind_source_manifest.csv": {
       "path": "artifacts\\external_wind_full_manifest\\external_wind_source_manifest.csv",
@@ -208,8 +226,32 @@
     "reserve_decision_operational_windows.csv": {
       "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_operational_windows.csv",
       "exists": true,
-      "bytes": 27646,
-      "sha256": "aa42757515dfe8c713ebeade849231b6fff5707b47ec1bc9f29b5c6782287f5f"
+      "bytes": 29245,
+      "sha256": "d55f53467193c4fc2189a151ae8558d0dcda76aa8e384011b3161addee368bc3"
+    },
+    "reserve_decision_system_baselines.csv": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_system_baselines.csv",
+      "exists": true,
+      "bytes": 1629,
+      "sha256": "d7c36c32022c2ea12a494d45ae49387ca1d1b4eea1726facf817b823ac4b89a3"
+    },
+    "reserve_decision_system_baselines.tex": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_system_baselines.tex",
+      "exists": true,
+      "bytes": 850,
+      "sha256": "64cbc97212ff00c3bd43cd038209c04ae6154df1ffbbb6335678aa86c2b3d255"
+    },
+    "reserve_decision_cost_ratio_sensitivity.csv": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_cost_ratio_sensitivity.csv",
+      "exists": true,
+      "bytes": 7416,
+      "sha256": "5f536c1a1eae5f4ac9951e500950b3ad9c1e12c8d9ca60b803c9fe55165880e5"
+    },
+    "reserve_decision_cost_ratio_sensitivity.tex": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_cost_ratio_sensitivity.tex",
+      "exists": true,
+      "bytes": 3655,
+      "sha256": "e03532e78160a14daa349bf70243005ee8990483bfc772bcdc88f60ac9f20412"
     },
     "wtb_operational_baselines.csv": {
       "path": "artifacts\\operational_baselines_wtb_strictmask\\wtb_operational_baselines.csv",
@@ -252,6 +294,18 @@
       "exists": true,
       "bytes": 77473,
       "sha256": "0ce6fd8db426819986b61f6e321e3b56e557a2c17b0d8757bf1a0021ad7796db"
+    },
+    "external_wind_recalibration_summary.csv": {
+      "path": "artifacts\\external_wind_portability_rescue\\external_wind_recalibration_summary.csv",
+      "exists": true,
+      "bytes": 4478,
+      "sha256": "242ce8d9dc07e960f6bd06096f2e9aae71be27ee94748df1602d2e3134bdfbea"
+    },
+    "table_external_recalibration.tex": {
+      "path": "artifacts\\external_wind_portability_rescue\\table_external_recalibration.tex",
+      "exists": true,
+      "bytes": 976,
+      "sha256": "1756e5eacbb8d5828052fb12cc75796ce129277b655a4d979c5e0745aa2c95c2"
     }
   },
   "figure_outputs": {
@@ -264,14 +318,14 @@
     "figure3_summary_results.pdf": {
       "path": "artifacts\\paper_assets\\figures\\figure3_summary_results.pdf",
       "exists": true,
-      "bytes": 20841,
-      "sha256": "9cfd7abfe150e90e160d73bef358b960d27a1344df4487d60b8c5395f0a309af"
+      "bytes": 20893,
+      "sha256": "0e9854c8e598196e5593e173e2924bedd29361eb7db791593708692e77104598"
     },
     "figure4_routing_evidence.pdf": {
       "path": "artifacts\\paper_assets\\figures\\figure4_routing_evidence.pdf",
       "exists": true,
-      "bytes": 85251,
-      "sha256": "bb829174543ffa52e57755ccd6aec3cbba6cf4cd65a5dcfa287210a0e8ad85f5"
+      "bytes": 85060,
+      "sha256": "fb99d94aabed804beba54a154cc201a6c24b11ecba992f3e4b421424f4b7483d"
     }
   },
   "guard_status": {
@@ -338,6 +392,9 @@
         "requested_strata_present": true,
         "gate_correctness_operational_loss_present": true,
         "operational_window_cost_violation_reserve_and_boundary_shortage_present": true,
+        "gate_boundary_operational_gain_present": true,
+        "system_reserve_baselines_present": true,
+        "graph_wavenet_reserve_cost_ratio_sensitivity_present": true,
         "daily_costs_cover_required_seed_policy_pairs": true,
         "paired_bootstrap_rows_at_least_min": true,
         "paired_bootstrap_required_candidates_present": true,
@@ -422,6 +479,19 @@
         "routing_nmi_meets_minimum": false,
         "routing_ari_meets_minimum": true,
         "no_wtb_or_sdwpf_source": true
+      }
+    },
+    "external_wind_recalibration_guard": {
+      "status": "complete_external_recalibration_diagnostics",
+      "claim_gate": "",
+      "path": "artifacts\\external_wind_portability_rescue\\external_wind_recalibration_guard.json",
+      "checks": {
+        "routing_runs_present": true,
+        "recalibration_raw_written": true,
+        "validation_grid_evaluated": true,
+        "test_grid_evaluated": true,
+        "selected_local_boundary_per_run": true,
+        "default_vs_recalibrated_test_comparison_present": true
       }
     },
     "external_wind_source_guard": {
