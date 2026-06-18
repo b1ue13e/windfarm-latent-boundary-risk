@@ -1,0 +1,161 @@
+{
+  "kind": "strict_wtb_evidence_source_package",
+  "output_dir": "artifacts\\strict_wtb_evidence_sources_20260609",
+  "inputs": {
+    "boundary_slice_effects": {
+      "path": "artifacts\\boundary_slice_wtb_strictmask_full\\boundary_slice_effects.csv",
+      "sha256": "775c27987067488fe99fdbf1e3866d3a6514bbaa9e3b1be089ac9cca21094ee4"
+    },
+    "boundary_slice_summary": {
+      "path": "artifacts\\boundary_slice_wtb_strictmask_full\\boundary_slice_summary.csv",
+      "sha256": "8e4b348ca62d6aa7d086b2bc51adcffb21332549dafe541fc78f8c102a1a924a"
+    },
+    "mechanism_effects": {
+      "path": "artifacts\\mechanism_gate_wtb_strictmask_full\\mechanism_intervention\\mechanism_intervention_effects.csv",
+      "sha256": "63e869db0fe864fb44a0bd527466b40be6643cad901f67fd6b8c221573b0276d"
+    },
+    "mechanism_raw": {
+      "path": "artifacts\\mechanism_gate_wtb_strictmask_full\\mechanism_intervention\\mechanism_intervention_raw.csv",
+      "sha256": "643da63172051f22b5baf12acb428e37b1fdb674a4765cb47ac17d4674507f08"
+    },
+    "mechanism_replay_summary": {
+      "path": "artifacts\\mechanism_gate_wtb_strictmask_full\\checkpoint_replay\\checkpoint_replay_summary.csv",
+      "sha256": "1fccbb303b6800d8feba1140ad9cfd6d094b57432a0e640c5adb55b3a9228c51"
+    },
+    "placebo_effects": {
+      "path": "artifacts\\routing_placebo_wtb_strictmask_full\\routing_placebo_effects.csv",
+      "sha256": "578669b4175148de6326a792c4e76127f4fd8d922c5ca8a63d9a8486bdf1b547"
+    },
+    "placebo_raw": {
+      "path": "artifacts\\routing_placebo_wtb_strictmask_full\\routing_placebo_raw.csv",
+      "sha256": "a34ab1f9065fa486f7ecb45fb8482cf98816dcf2f8ddfe8020b3211eb91b6430"
+    },
+    "placebo_summary": {
+      "path": "artifacts\\routing_placebo_wtb_strictmask_full\\routing_placebo_summary.csv",
+      "sha256": "05b28579e180f500df3c273f5829525f3da8376680a16eeac7d0e63f9a02a0e7"
+    },
+    "strict_suite_summary": {
+      "path": "artifacts\\strictmask_validation_wtb_full\\suite_summary.json",
+      "sha256": "97e7ffd9ecb7b80d3795d843339867dfe0c693890421c93abf6dfa7c65feb8b9"
+    },
+    "time_forward_effects": {
+      "path": "artifacts\\time_forward_wtb_strictmask_full\\time_forward_effects.csv",
+      "sha256": "fdaf663b5527b6fa1d67ea1ce02564d94adfaf04333e500e8d87a989b4d8bd13"
+    },
+    "time_forward_summary": {
+      "path": "artifacts\\time_forward_wtb_strictmask_full\\time_forward_summary.csv",
+      "sha256": "02beaec15226ad84ec8e2d06271fb5ea9b4ff1afba643c931dab778bdaae56d7"
+    }
+  },
+  "outputs": {
+    "boundary_effects_tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_boundary_effects.tex",
+      "sha256": "2109c26fcf1cc0a3a0f99095e899c97c958804865b7696f819bc80f7b45a0509"
+    },
+    "boundary_slice_effects_csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_boundary_slice_effects.csv",
+      "sha256": "ed9425a3c18e4b092ebef3ae89a820063b8581cfae16c0205bd01bed61318e32"
+    },
+    "boundary_slice_summary_csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_boundary_slice_summary.csv",
+      "sha256": "c91510410dd32d84bad8cc2a177203f12019cbb7e71e1d501e8ca34c395f09cc"
+    },
+    "boundary_slice_tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_boundary_slice.tex",
+      "sha256": "1c61b5724eeaeea3906118b921c588d88fab9bda06764682f81ad3203fb272fe"
+    },
+    "mechanism_effects_csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_mechanism_effects.csv",
+      "sha256": "76c168826b2be66762900ad876a341cb1158120a9bf203125bc3c664438a15e5"
+    },
+    "mechanism_effects_tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_mechanism_effects.tex",
+      "sha256": "6e9dc38c185b8773e4ffefaf55612754618e016754d5ac9aeb8574ac8dc44376"
+    },
+    "mechanism_per_seed_tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_mechanism_per_seed.tex",
+      "sha256": "66a90f06b8c90525d5505a18c8f5270b184dfa347de6b3b9a8f263a4e52fcfba"
+    },
+    "mechanism_raw_csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_mechanism_raw.csv",
+      "sha256": "137bb348924727a9b0406f4e6bfba394ce4c1e638275b75f9a5e9f69bb169cb6"
+    },
+    "placebo_effects_csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_placebo_effects.csv",
+      "sha256": "363ca11b6ad52f610e3fea0710f5cdd175415ea5e06e9d7468e0d8a5d304d12a"
+    },
+    "placebo_effects_tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_placebo_effects.tex",
+      "sha256": "401069b7d9543231d41440cd3f3f5f5a269ae0554ac93bd7343fee30e1a8eacb"
+    },
+    "placebo_per_seed_tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_placebo_per_seed.tex",
+      "sha256": "de6df9dac0361d8bd95c05ba8dedfb39fabfc8f0805dbf402dd3c52ab32a39fa"
+    },
+    "placebo_raw_csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_placebo_raw.csv",
+      "sha256": "e2a3b14f70eb2e0731c4448856e85dd322bb5c4403bf13159eb9bd4ffad49ba2"
+    },
+    "placebo_summary_csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_placebo_summary.csv",
+      "sha256": "024adab20fd80e5f0c4c3bbf062c1926327d9dd729ca3e496cf8351985464ea9"
+    },
+    "replay_summary_csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_replay_summary.csv",
+      "sha256": "1fccbb303b6800d8feba1140ad9cfd6d094b57432a0e640c5adb55b3a9228c51"
+    },
+    "seed_metrics_csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_seed_metrics.csv",
+      "sha256": "8b5f8f464eca5e740cb09bd1d0e6c8918f06eae6acd68664dad15e154631f7e1"
+    },
+    "seed_metrics_tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_seed_metrics.tex",
+      "sha256": "ba46bc825f02611537634afd70f184a8fb2adbf8d4e55159cd7f09b64292f205"
+    },
+    "summary_csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_summary.csv",
+      "sha256": "7124049452ccc36ed5e54c4de994874b2074bda4ed3fbe0422d2bfa62d2000ac"
+    },
+    "time_forward_effects_csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_time_forward_effects.csv",
+      "sha256": "6124d21e96154f66706b0d1cbf48ab5a1975916e5551791e0c268f2b0e85dfd7"
+    },
+    "time_forward_summary_csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_time_forward_summary.csv",
+      "sha256": "b139d30bc27f155d9ca6f69b602ee5eaba8bfec9522f3ee27349878d741649d8"
+    },
+    "time_forward_tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_time_forward.tex",
+      "sha256": "0af9b5a77610c116923fcf7a1646a98ec379137a77cf244169d9af94ca273a34"
+    }
+  },
+  "summary": {
+    "dataset": "wtb",
+    "model": "MoE + L_bal + L_align + L_force",
+    "n_runs": 5,
+    "seeds": "201,202,203,204,205",
+    "overall_rmse_mean": 236.1304909278,
+    "overall_rmse_std": 8.4095688031,
+    "switch_rmse_mean": 239.8552144312,
+    "switch_rmse_std": 8.8507899484,
+    "pitch_control_rmse_mean": 286.948030252,
+    "pitch_control_rmse_std": 22.065241152,
+    "nmi_mean": 0.8716182145,
+    "nmi_std": 0.0417981297,
+    "ari_mean": 0.9165681957,
+    "ari_std": 0.0371215101,
+    "expert_usage_entropy_mean": 0.4668615034,
+    "expert_usage_entropy_std": 0.4258841369,
+    "expert_usage_variance_mean": 0.1113843657,
+    "expert_usage_variance_std": 0.0695006057,
+    "replay_status": "matches_reference",
+    "n_replay_runs": 5,
+    "late_vs_early_delta_overall_rmse_mean": 50.34535083872122,
+    "late_vs_early_delta_switch_rmse_mean": 63.35487707992844,
+    "late_vs_early_delta_nmi_mean": 0.0068389989094116,
+    "boundary_band_rmse_mean": 321.17111476409906,
+    "boundary_band_nmi_mean": 0.6562280556972228,
+    "boundary_band_ari_mean": 0.7766071371498494,
+    "boundary_vs_nonboundary_delta_rmse_mean": 67.07305061362574
+  }
+}

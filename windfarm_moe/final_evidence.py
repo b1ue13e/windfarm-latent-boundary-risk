@@ -59,10 +59,17 @@ def _sha256_file(path: Path, max_bytes: int | None = None) -> str:
     return digest.hexdigest()
 
 
+def _portable_path(path: Path) -> str:
+    try:
+        return str(path.resolve().relative_to(Path.cwd().resolve()))
+    except (OSError, ValueError):
+        return str(path)
+
+
 def _path_status(path: Path, hash_max_mb: float = 25.0) -> dict[str, Any]:
     exists = path.exists()
     row: dict[str, Any] = {
-        "path": str(path),
+        "path": _portable_path(path),
         "exists": bool(exists),
         "bytes": int(path.stat().st_size) if exists and path.is_file() else 0,
     }
@@ -83,11 +90,11 @@ def _parse_paths(values: Iterable[Path | str] | str | None) -> list[Path]:
 
 def _read_guard(path: Path) -> dict[str, Any]:
     if not path.exists():
-        return {"status": "missing", "path": str(path)}
+        return {"status": "missing", "path": _portable_path(path)}
     payload = load_json(path)
     status = str(payload.get("status", ""))
     claim_gate = str(payload.get("claim_gate", ""))
-    row = {"status": status, "claim_gate": claim_gate, "path": str(path)}
+    row = {"status": status, "claim_gate": claim_gate, "path": _portable_path(path)}
     for key in [
         "expected_runs",
         "complete_runs",
@@ -279,13 +286,13 @@ def _run_artifact_summary(run_table: Path, required_seeds: list[int], required_m
         row_status = {
             "model": str(row.get("model", "")),
             "seed": seed_value,
-            "run_dir": str(run_dir),
+            "run_dir": _portable_path(run_dir),
             "complete": len(missing_files) == 0,
             "missing_files": missing_files,
         }
         rows.append(row_status)
         for name in missing_files:
-            missing.append(f"{row_status['model']} seed {row_status['seed']}: {run_dir / name}")
+            missing.append(f"{row_status['model']} seed {row_status['seed']}: {_portable_path(run_dir / name)}")
 
     expected_pairs: list[str] = []
     if required_models and required_seeds:

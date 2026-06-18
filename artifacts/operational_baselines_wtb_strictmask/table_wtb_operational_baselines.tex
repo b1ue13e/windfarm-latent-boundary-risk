@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table.} WTB engineering forecasting baselines evaluated on the strict cache.}
+\begin{tabular}{lrrr}
+\toprule
+Baseline & Overall RMSE & Switch RMSE & Pitch-control RMSE \\
+\midrule
+Persistence & 243.23 & 246.61 & 262.35 \\
+Physical power curve & 241.02 & 245.37 & 299.30 \\
+XGBoost lag-feature & 227.88 & 233.07 & 277.33 \\
+LightGBM lag-feature & 227.12 & 232.24 & 270.23 \\
+DLinear-style LTSF & 246.81 & 251.15 & 284.06 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,741 @@
+{
+  "dataset": "wtb",
+  "farm": "",
+  "split_id": "strict-cache",
+  "cache_sha256": "e27b59cec09a5e9a07ce54d8a4825521f9c89db24c3a63253fb7046756eb065d",
+  "run_table": {
+    "path": "artifacts\\strictmask_combined_reviewer_stats\\reviewer_stat_pack_run_table.csv",
+    "exists": true,
+    "bytes": 14347,
+    "sha256": "bfd7201df1e269bb0f5af098a983824fa75c2859161db56c44989ff477572bca"
+  },
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "models": [
+    "Graph WaveNet",
+    "PatchTST",
+    "Physics-Aligned MoE",
+    "MoE + L_bal + L_align + L_force"
+  ],
+  "source_artifacts": {
+    "strict_wtb_evidence_manifest.json": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\strict_wtb_evidence_manifest.json",
+      "exists": true,
+      "bytes": 8406,
+      "sha256": "25b1f413085077e5e8489bf63d1e5e55fa54631bbb30df339e509bbd02d84838"
+    },
+    "strict_wtb_mechanism_raw.csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_mechanism_raw.csv",
+      "exists": true,
+      "bytes": 9908,
+      "sha256": "137bb348924727a9b0406f4e6bfba394ce4c1e638275b75f9a5e9f69bb169cb6"
+    },
+    "strict_wtb_placebo_raw.csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_placebo_raw.csv",
+      "exists": true,
+      "bytes": 7252,
+      "sha256": "e2a3b14f70eb2e0731c4448856e85dd322bb5c4403bf13159eb9bd4ffad49ba2"
+    },
+    "strict_wtb_boundary_slice_summary.csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_boundary_slice_summary.csv",
+      "exists": true,
+      "bytes": 1826,
+      "sha256": "c91510410dd32d84bad8cc2a177203f12019cbb7e71e1d501e8ca34c395f09cc"
+    },
+    "strict_wtb_time_forward_summary.csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_time_forward_summary.csv",
+      "exists": true,
+      "bytes": 1937,
+      "sha256": "b139d30bc27f155d9ca6f69b602ee5eaba8bfec9522f3ee27349878d741649d8"
+    },
+    "reserve_decision_raw_runs.csv": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_raw_runs.csv",
+      "exists": true,
+      "bytes": 517263,
+      "sha256": "15804de9cca9ec768631dd2e6cd54f5527855fc92e11b485b6366787c5cd054c"
+    },
+    "reserve_decision_daily_costs.csv": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_daily_costs.csv",
+      "exists": true,
+      "bytes": 104466,
+      "sha256": "ec72bf8507e6fd96d33c8edf38f9ecc3fa3b7f14a6b4010bf9420af53827f133"
+    },
+    "reserve_decision_gate_loss.csv": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_gate_loss.csv",
+      "exists": true,
+      "bytes": 633750,
+      "sha256": "69ecf7b19f99810397a9f635b88a92bf3d7a91a155e5321bd105ccd6a4573a16"
+    },
+    "operational_baseline_config.json": {
+      "path": "artifacts\\operational_baselines_wtb_strictmask\\operational_baseline_config.json",
+      "exists": true,
+      "bytes": 315,
+      "sha256": "7c8ee62c17152b2e7cdb0e632a753b27c2d7e1d4ec9a6c7dc075ae21d2d75b71"
+    },
+    "per_example_manifest.csv": {
+      "path": "artifacts\\strictmask_combined_reviewer_stats\\per_example_manifest.csv",
+      "exists": true,
+      "bytes": 221,
+      "sha256": "b839e3688588803b5c8f4b5811c2ae87103e678bb0bbc0383fb83a075be1e866"
+    },
+    "paired_effects_raw.csv": {
+      "path": "artifacts\\strictmask_combined_reviewer_stats\\paired_effects_raw.csv",
+      "exists": true,
+      "bytes": 29853,
+      "sha256": "787390d56463b15fc72b1f59e754f740fb454bf8176d2286378382aac0433824"
+    },
+    "paired_multiplicity_table.csv": {
+      "path": "artifacts\\strictmask_combined_reviewer_stats\\paired_multiplicity_table.csv",
+      "exists": true,
+      "bytes": 2389,
+      "sha256": "0386c7de6c65ab4fee184724ad6586b67e4cedabbdcd38247307782d4a9d9681"
+    },
+    "external_wind_source_manifest.csv": {
+      "path": "artifacts\\external_wind_full_manifest\\external_wind_source_manifest.csv",
+      "exists": true,
+      "bytes": 12691,
+      "sha256": "bee66e6ad76e565a8e74cbc62e2629828d627e3a1bd3d409a09e844d80e9469e"
+    },
+    "external_wind_source_manifest.json": {
+      "path": "artifacts\\external_wind_full_manifest\\external_wind_source_manifest.json",
+      "exists": true,
+      "bytes": 661,
+      "sha256": "abc4b9ca68e3ecd471f4cf4d13c70be6320c6d31cb0d0c973d8bafeabc1303fc"
+    },
+    "external_wind_source_status.csv": {
+      "path": "artifacts\\external_wind_source_guard\\external_wind_source_status.csv",
+      "exists": true,
+      "bytes": 13247,
+      "sha256": "c69fb3d2ab50de286d993b391611f938f1803440e494e44d8d81680ee41c2ff8"
+    },
+    "external_wind_scada_inspection.csv": {
+      "path": "artifacts\\external_wind_inspection\\external_wind_scada_inspection.csv",
+      "exists": true,
+      "bytes": 963243,
+      "sha256": "dfdf07e089c25d19caca0defe4f091e7de031d901ce64bde2666172826621568"
+    },
+    "external_wind_scada_inspection.json": {
+      "path": "artifacts\\external_wind_inspection\\external_wind_scada_inspection.json",
+      "exists": true,
+      "bytes": 1045313,
+      "sha256": "8df57909a4de420a57123ac4e8c2a03c57e847ebb6cef85ce3828a2ea265231e"
+    },
+    "external_wind_protocol.json": {
+      "path": "artifacts\\external_wind_protocol\\external_wind_protocol.json",
+      "exists": true,
+      "bytes": 3777,
+      "sha256": "5436ab8b5fe4c07c5390661dabb70a0ec4337bd63ab42a6953650b966837667b"
+    },
+    "external_wind_commands.ps1": {
+      "path": "artifacts\\external_wind_protocol\\external_wind_commands.ps1",
+      "exists": true,
+      "bytes": 6060,
+      "sha256": "71fde0be73fad3da0def7b1a76ae18e830d67d581786e0bb42c441b14e644828"
+    },
+    "external_wind_reviewer_pack_commands.ps1": {
+      "path": "artifacts\\external_wind_protocol\\external_wind_reviewer_pack_commands.ps1",
+      "exists": true,
+      "bytes": 4072,
+      "sha256": "4ff8222b65392bfe6d0ec684b22eb9959124a3b7c6fd6be4c34ee8694699c72d"
+    }
+  },
+  "table_outputs": {
+    "strict_wtb_seed_metrics.csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_seed_metrics.csv",
+      "exists": true,
+      "bytes": 1792,
+      "sha256": "8b5f8f464eca5e740cb09bd1d0e6c8918f06eae6acd68664dad15e154631f7e1"
+    },
+    "strict_wtb_summary.csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_summary.csv",
+      "exists": true,
+      "bytes": 609,
+      "sha256": "7124049452ccc36ed5e54c4de994874b2074bda4ed3fbe0422d2bfa62d2000ac"
+    },
+    "strict_wtb_mechanism_effects.csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_mechanism_effects.csv",
+      "exists": true,
+      "bytes": 1491,
+      "sha256": "76c168826b2be66762900ad876a341cb1158120a9bf203125bc3c664438a15e5"
+    },
+    "strict_wtb_placebo_effects.csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_placebo_effects.csv",
+      "exists": true,
+      "bytes": 1201,
+      "sha256": "363ca11b6ad52f610e3fea0710f5cdd175415ea5e06e9d7468e0d8a5d304d12a"
+    },
+    "strict_wtb_boundary_slice_effects.csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_boundary_slice_effects.csv",
+      "exists": true,
+      "bytes": 1035,
+      "sha256": "ed9425a3c18e4b092ebef3ae89a820063b8581cfae16c0205bd01bed61318e32"
+    },
+    "table_strict_wtb_seed_metrics.tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_seed_metrics.tex",
+      "exists": true,
+      "bytes": 691,
+      "sha256": "ba46bc825f02611537634afd70f184a8fb2adbf8d4e55159cd7f09b64292f205"
+    },
+    "table_strict_wtb_mechanism_effects.tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_mechanism_effects.tex",
+      "exists": true,
+      "bytes": 680,
+      "sha256": "6e9dc38c185b8773e4ffefaf55612754618e016754d5ac9aeb8574ac8dc44376"
+    },
+    "table_strict_wtb_placebo_effects.tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_placebo_effects.tex",
+      "exists": true,
+      "bytes": 623,
+      "sha256": "401069b7d9543231d41440cd3f3f5f5a269ae0554ac93bd7343fee30e1a8eacb"
+    },
+    "table_strict_wtb_boundary_slice.tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_boundary_slice.tex",
+      "exists": true,
+      "bytes": 514,
+      "sha256": "1c61b5724eeaeea3906118b921c588d88fab9bda06764682f81ad3203fb272fe"
+    },
+    "reserve_decision_summary.csv": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_summary.csv",
+      "exists": true,
+      "bytes": 24941,
+      "sha256": "1600d316b8f1f52cb4f03b4c1be8b5b567979ffb462fd72c41d845d746851a20"
+    },
+    "reserve_decision_operational_windows.csv": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_operational_windows.csv",
+      "exists": true,
+      "bytes": 27646,
+      "sha256": "aa42757515dfe8c713ebeade849231b6fff5707b47ec1bc9f29b5c6782287f5f"
+    },
+    "wtb_operational_baselines.csv": {
+      "path": "artifacts\\operational_baselines_wtb_strictmask\\wtb_operational_baselines.csv",
+      "exists": true,
+      "bytes": 2328,
+      "sha256": "b8e4304fe289fdf5a137025003c2a01ec33cb2ccf61872996446b284a01e37e7"
+    },
+    "table_wtb_operational_baselines.tex": {
+      "path": "artifacts\\operational_baselines_wtb_strictmask\\table_wtb_operational_baselines.tex",
+      "exists": true,
+      "bytes": 602,
+      "sha256": "6cb9e5f828b2e12576fc43df1bd65f3043f4945135292f7169eb4381313608b3"
+    },
+    "paired_effects_summary.csv": {
+      "path": "artifacts\\strictmask_combined_reviewer_stats\\paired_effects_summary.csv",
+      "exists": true,
+      "bytes": 4304,
+      "sha256": "01fd79023d91324d7f14cfc36ae8f2c799e8803343e35262c844f4278f12316b"
+    },
+    "paired_multiplicity_table.csv": {
+      "path": "artifacts\\strictmask_combined_reviewer_stats\\paired_multiplicity_table.csv",
+      "exists": true,
+      "bytes": 2389,
+      "sha256": "0386c7de6c65ab4fee184724ad6586b67e4cedabbdcd38247307782d4a9d9681"
+    },
+    "efficiency_fairness_table.csv": {
+      "path": "artifacts\\strictmask_combined_reviewer_stats\\efficiency_fairness_table.csv",
+      "exists": true,
+      "bytes": 1061,
+      "sha256": "28052b6afc86131ef523802651e565306072131bd8a69b6b0c9c9d151b0c1666"
+    },
+    "external_wind_run_status.csv": {
+      "path": "artifacts\\external_wind_guard\\external_wind_run_status.csv",
+      "exists": true,
+      "bytes": 20719,
+      "sha256": "c1e8a6e301cf307a3e28f539f7714d1b73841b74d88f6a00b4f6dda9e49d195d"
+    },
+    "external_wind_cache_status.csv": {
+      "path": "artifacts\\external_wind_guard\\external_wind_cache_status.csv",
+      "exists": true,
+      "bytes": 77473,
+      "sha256": "0ce6fd8db426819986b61f6e321e3b56e557a2c17b0d8757bf1a0021ad7796db"
+    }
+  },
+  "figure_outputs": {
+    "figure1_architecture.pdf": {
+      "path": "artifacts\\paper_assets\\figures\\figure1_architecture.pdf",
+      "exists": true,
+      "bytes": 1009477,
+      "sha256": "a7eee1126008d85e92381d0cc24548d74af10aaf43e2e17409c88087543bd410"
+    },
+    "figure3_summary_results.pdf": {
+      "path": "artifacts\\paper_assets\\figures\\figure3_summary_results.pdf",
+      "exists": true,
+      "bytes": 20841,
+      "sha256": "9cfd7abfe150e90e160d73bef358b960d27a1344df4487d60b8c5395f0a309af"
+    },
+    "figure4_routing_evidence.pdf": {
+      "path": "artifacts\\paper_assets\\figures\\figure4_routing_evidence.pdf",
+      "exists": true,
+      "bytes": 85251,
+      "sha256": "bb829174543ffa52e57755ccd6aec3cbba6cf4cd65a5dcfa287210a0e8ad85f5"
+    }
+  },
+  "guard_status": {
+    "strict_ablation_evidence_guard": {
+      "status": "complete_ready_for_strict_ablation_evidence",
+      "claim_gate": "",
+      "path": "artifacts\\strict_ablation_evidence_guard_wtb_strictmask\\strict_ablation_evidence_guard.json",
+      "expected_runs": 50,
+      "complete_runs": 50,
+      "checks": {
+        "cache_metadata_exists": true,
+        "cache_bounds_match_requested": true,
+        "cache_has_strict_anchor_patch_marker": true,
+        "cache_strict_anchor_check_ran": true,
+        "cache_strict_anchor_violations_zero": true,
+        "routing_control_variants_included": true,
+        "routing_gate_variants_cover_controls": true,
+        "all_expected_runs_complete": true,
+        "all_required_gate_files_present": true,
+        "routing_gate_status_passed": true,
+        "routing_gate_audited_runs_cover_expected": true
+      }
+    },
+    "threshold_controls_evidence_guard": {
+      "status": "complete_ready_for_threshold_control_evidence",
+      "claim_gate": "",
+      "path": "artifacts\\strict_threshold_controls_evidence_guard_wtb_strictmask\\threshold_controls_evidence_guard.json",
+      "expected_runs": 20,
+      "complete_runs": 20,
+      "checks": {
+        "cache_metadata_exists": true,
+        "cache_bounds_match_requested": true,
+        "cache_has_strict_anchor_patch_marker": true,
+        "cache_strict_anchor_check_ran": true,
+        "cache_strict_anchor_violations_zero": true,
+        "wrong_threshold_control_variants_included": true,
+        "wrong_threshold_perturbation_check_ran": true,
+        "wrong_thresholds_create_semantic_perturbation": true,
+        "wrong_thresholds_change_shared_labels": false,
+        "wrong_thresholds_are_mask_only_controls": true,
+        "all_expected_runs_complete": true,
+        "all_required_reviewer_files_present": true,
+        "all_required_semantic_guard_files_present": true,
+        "boundary_negative_guard_present": true,
+        "boundary_negative_guard_passed": true,
+        "boundary_negative_controls_relabel_shared_labels": true,
+        "boundary_negative_controls_no_dangerous_copy": true,
+        "reviewer_pack_covers_expected_runs": true,
+        "semantic_guard_passed": false,
+        "semantic_negative_control_passed": true,
+        "semantic_guard_covers_expected_runs": true
+      }
+    },
+    "reserve_decision_guard": {
+      "status": "complete_ready_for_reserve_decision_evidence",
+      "claim_gate": "",
+      "path": "artifacts\\decision_reserve_wtb_operational_windows_guard\\reserve_decision_guard.json",
+      "checks": {
+        "all_required_files_exist": true,
+        "selected_runs_cover_required_5_seeds": true,
+        "raw_runs_cover_required_policies": true,
+        "gated_policies_are_applicable": true,
+        "summary_has_total_cost_violation_reserve_and_shortage_energy": true,
+        "requested_strata_present": true,
+        "gate_correctness_operational_loss_present": true,
+        "operational_window_cost_violation_reserve_and_boundary_shortage_present": true,
+        "daily_costs_cover_required_seed_policy_pairs": true,
+        "paired_bootstrap_rows_at_least_min": true,
+        "paired_bootstrap_required_candidates_present": true,
+        "paired_bootstrap_ci_present": true,
+        "paired_bootstrap_uses_seed_day_pairs": true
+      }
+    },
+    "reviewer_stat_pack_guard": {
+      "status": "complete_ready_for_reviewer_statistics",
+      "claim_gate": "",
+      "path": "artifacts\\strictmask_combined_reviewer_stats_guard\\reviewer_stat_pack_guard.json",
+      "checks": {
+        "pack_dir_exists": true,
+        "config_exists": true,
+        "required_files_exist": true,
+        "required_files_nonempty": true,
+        "n_runs_at_least_min_runs": true,
+        "paired_rows_at_least_min": true,
+        "multiplicity_rows_at_least_min": true,
+        "per_example_runs_at_least_min": true,
+        "failure_cases_at_least_min": true,
+        "boundary_failure_cases_at_least_min": true,
+        "paired_summary_nonempty": true,
+        "paired_multiplicity_table_nonempty": true,
+        "efficiency_table_nonempty": true,
+        "per_example_manifest_nonempty": true,
+        "failure_cases_nonempty": true,
+        "boundary_failure_cases_nonempty": true,
+        "required_models_present": true,
+        "required_seeds_present": true,
+        "required_model_seed_matrix_complete": true
+      }
+    },
+    "boundary_negative_controls_guard": {
+      "status": "passed_boundary_negative_controls",
+      "claim_gate": "",
+      "path": "artifacts\\boundary_negative_controls_wtb\\boundary_negative_controls_guard.json",
+      "checks": {
+        "raw_rows_present": true,
+        "positive_boundary_intervention_drop_present": true,
+        "positive_boundary_intervention_drop_meets_minimum": true,
+        "negative_controls_present": true,
+        "negative_controls_change_shared_labels": true,
+        "each_negative_control_changes_shared_labels": true,
+        "no_negative_control_reproduces_high_nmi_or_ari_and_intervention_drop": true
+      }
+    },
+    "mechanism_behavior_pack_guard": {
+      "status": "complete_ready_for_mechanism_behavior_evidence",
+      "claim_gate": "",
+      "path": "artifacts\\mechanism_behavior_pack_wtb\\mechanism_behavior_pack_guard.json",
+      "checks": {
+        "expert_power_curve_nonempty": true,
+        "boundary_error_decomposition_nonempty": true,
+        "gate_transition_lead_lag_nonempty": true,
+        "regime_residual_distribution_nonempty": true,
+        "gate_correct_high_error_cases_nonempty": true
+      }
+    },
+    "external_wind_guard": {
+      "status": "complete_but_within_wtb_only",
+      "claim_gate": "within_wtb_only",
+      "path": "artifacts\\external_wind_guard\\external_wind_guard.json",
+      "expected_runs": 80,
+      "complete_runs": 80,
+      "expected_routing_runs": 40,
+      "complete_routing_runs": 40,
+      "mean_nmi": 0.48766129962024296,
+      "mean_ari": 0.5111789958304888,
+      "checks": {
+        "all_cache_dirs_exist": true,
+        "cache_dataset_is_external_wind": true,
+        "cache_license_is_cc_by_4": true,
+        "required_farms_cached": true,
+        "all_expected_runs_complete": true,
+        "cross_farm_both_directions_complete": true,
+        "chronological_sanity_complete": true,
+        "all_required_metric_files_exist": true,
+        "forecast_metric_values_present": true,
+        "routing_metric_values_present": true,
+        "all_required_metric_values_present": true,
+        "routing_nmi_meets_minimum": false,
+        "routing_ari_meets_minimum": true,
+        "no_wtb_or_sdwpf_source": true
+      }
+    },
+    "external_wind_source_guard": {
+      "status": "complete_external_source_evidence",
+      "claim_gate": "within_wtb_only",
+      "path": "artifacts\\external_wind_source_guard\\external_wind_source_guard.json",
+      "n_files": 31,
+      "total_selected_bytes": 11050081691,
+      "min_files": 31,
+      "min_total_bytes": 10000000000,
+      "n_local_exists": 31,
+      "n_checksum_match": 31,
+      "n_manifest_only": 0,
+      "checks": {
+        "manifest_exists": true,
+        "manifest_has_rows": true,
+        "status_column_present": true,
+        "required_farms_present": true,
+        "file_count_meets_minimum": true,
+        "total_selected_bytes_meets_minimum": true,
+        "all_selected_files_local_exists": true,
+        "all_selected_files_checksum_match": true,
+        "no_manifest_only_rows": true,
+        "license_is_cc_by_4": true,
+        "no_wtb_or_sdwpf_source": true
+      }
+    }
+  },
+  "external_source_guard": {
+    "source_complete": true,
+    "checks": {
+      "external_source_guard_status_passing": true,
+      "external_source_manifest_exists": true,
+      "external_source_manifest_has_rows": true,
+      "external_source_required_farms_present": true,
+      "external_source_file_count_meets_minimum": true,
+      "external_source_total_bytes_meets_minimum": true,
+      "external_source_local_files_complete": true,
+      "external_source_checksums_complete": true,
+      "external_source_no_manifest_only_rows": true,
+      "external_source_license_cc_by_4": true,
+      "external_source_no_wtb_or_sdwpf_source": true
+    }
+  },
+  "external_guard_protocol": {
+    "claim_gate": "within_wtb_only",
+    "protocol_complete": true,
+    "checks": {
+      "external_guard_status_passing": true,
+      "external_expected_80_runs": true,
+      "external_complete_80_runs": true,
+      "external_expected_40_routing_runs": true,
+      "external_complete_40_routing_runs": true,
+      "external_cross_farm_complete": true,
+      "external_chronological_complete": true,
+      "external_forecast_metrics_complete": true,
+      "external_routing_metrics_complete": true,
+      "external_no_wtb_or_sdwpf_source": true
+    }
+  },
+  "license_note": "WTB/ERA5 licenses plus external wind CC-BY-4.0 where used.",
+  "claim_gate": "within_wtb_only",
+  "status": "complete_ready_for_submission_tables",
+  "checks": {
+    "run_table_exists": true,
+    "run_table_has_required_5_seeds": true,
+    "run_artifacts_complete": true,
+    "cache_dir_exists": true,
+    "cache_sha256_present": true,
+    "all_source_artifacts_exist": true,
+    "all_table_outputs_exist": true,
+    "all_figure_outputs_exist": true,
+    "all_guard_paths_exist": true,
+    "guard_statuses_passing": true,
+    "external_guard_statuses_passing": true,
+    "external_guard_passing_if_requested": true,
+    "external_guard_protocol_complete_if_requested": true,
+    "external_source_guard_passing_if_external_requested": true,
+    "external_protocol_and_source_ready": true,
+    "external_portability_ready": false,
+    "no_legacy_three_seed_tables": true,
+    "manifest_schema_complete": true,
+    "claim_gate_citable": true,
+    "external_source_guard_status_passing": true,
+    "external_source_manifest_exists": true,
+    "external_source_manifest_has_rows": true,
+    "external_source_required_farms_present": true,
+    "external_source_file_count_meets_minimum": true,
+    "external_source_total_bytes_meets_minimum": true,
+    "external_source_local_files_complete": true,
+    "external_source_checksums_complete": true,
+    "external_source_no_manifest_only_rows": true,
+    "external_source_license_cc_by_4": true,
+    "external_source_no_wtb_or_sdwpf_source": true,
+    "external_guard_status_passing": true,
+    "external_expected_80_runs": true,
+    "external_complete_80_runs": true,
+    "external_expected_40_routing_runs": true,
+    "external_complete_40_routing_runs": true,
+    "external_cross_farm_complete": true,
+    "external_chronological_complete": true,
+    "external_forecast_metrics_complete": true,
+    "external_routing_metrics_complete": true,
+    "external_no_wtb_or_sdwpf_source": true
+  },
+  "schema": {
+    "missing_required_manifest_keys": [],
+    "empty_required_manifest_values": [],
+    "invalid_claim_gate": false,
+    "valid": true
+  },
+  "run_table_summary": {
+    "exists": true,
+    "n_rows": 25,
+    "n_seeds": 5,
+    "seeds": [
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "models": [
+      "Graph WaveNet",
+      "MoE + L_bal + L_align + L_force",
+      "PatchTST",
+      "Physics-Aligned MoE"
+    ],
+    "has_required_seeds": true
+  },
+  "run_artifacts": {
+    "checked": true,
+    "n_rows_checked": 25,
+    "all_required_run_artifacts_exist": true,
+    "missing": [],
+    "missing_expected_model_seed_pairs": [],
+    "rows": [
+      {
+        "model": "MoE + L_bal + L_align + L_force",
+        "seed": 201,
+        "run_dir": "artifacts\\strictmask_validation_wtb_full\\wtb_bal_align_force_seed201",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "MoE + L_bal + L_align + L_force",
+        "seed": 202,
+        "run_dir": "artifacts\\strictmask_validation_wtb_full\\wtb_bal_align_force_seed202",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "MoE + L_bal + L_align + L_force",
+        "seed": 203,
+        "run_dir": "artifacts\\strictmask_validation_wtb_full\\wtb_bal_align_force_seed203",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "MoE + L_bal + L_align + L_force",
+        "seed": 204,
+        "run_dir": "artifacts\\strictmask_validation_wtb_full\\wtb_bal_align_force_seed204",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "MoE + L_bal + L_align + L_force",
+        "seed": 205,
+        "run_dir": "artifacts\\strictmask_validation_wtb_full\\wtb_bal_align_force_seed205",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "Graph WaveNet",
+        "seed": 201,
+        "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed201",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "Graph WaveNet",
+        "seed": 202,
+        "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed202",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "Graph WaveNet",
+        "seed": 203,
+        "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed203",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "Graph WaveNet",
+        "seed": 204,
+        "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed204",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "Graph WaveNet",
+        "seed": 205,
+        "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed205",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "PatchTST",
+        "seed": 201,
+        "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed201",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "PatchTST",
+        "seed": 202,
+        "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed202",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "PatchTST",
+        "seed": 203,
+        "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed203",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "PatchTST",
+        "seed": 204,
+        "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed204",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "PatchTST",
+        "seed": 205,
+        "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed205",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "MoE + L_bal + L_align + L_force",
+        "seed": 201,
+        "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed201",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "MoE + L_bal + L_align + L_force",
+        "seed": 202,
+        "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed202",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "MoE + L_bal + L_align + L_force",
+        "seed": 203,
+        "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed203",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "MoE + L_bal + L_align + L_force",
+        "seed": 204,
+        "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed204",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "MoE + L_bal + L_align + L_force",
+        "seed": 205,
+        "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed205",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "Physics-Aligned MoE",
+        "seed": 201,
+        "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed201",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "Physics-Aligned MoE",
+        "seed": 202,
+        "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed202",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "Physics-Aligned MoE",
+        "seed": 203,
+        "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed203",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "Physics-Aligned MoE",
+        "seed": 204,
+        "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed204",
+        "complete": true,
+        "missing_files": []
+      },
+      {
+        "model": "Physics-Aligned MoE",
+        "seed": 205,
+        "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed205",
+        "complete": true,
+        "missing_files": []
+      }
+    ]
+  },
+  "missing_paths": [],
+  "legacy_three_seed_offenders": []
+}

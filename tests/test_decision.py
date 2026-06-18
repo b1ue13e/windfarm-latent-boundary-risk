@@ -53,6 +53,12 @@ class DecisionUtilityTests(unittest.TestCase):
         self.assertEqual(args.command, "reserve-decision-guard")
         self.assertEqual(args.required_seeds, "201,202,203,204,205")
 
+    def test_parser_accepts_operational_baselines_command(self) -> None:
+        args = build_parser().parse_args(["operational-baselines", "--output-dir", "out", "--baselines", "persistence,dlinear"])
+
+        self.assertEqual(args.command, "operational-baselines")
+        self.assertEqual(args.baselines, "persistence,dlinear")
+
     def test_select_default_runs_rejects_missing_required_runs(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             table = Path(temp_dir) / "runs.csv"
@@ -140,6 +146,7 @@ class DecisionUtilityTests(unittest.TestCase):
             self.assertTrue((output_dir / "reserve_decision_by_risk_bin.csv").exists())
             self.assertTrue((output_dir / "reserve_decision_bootstrap.csv").exists())
             self.assertTrue((output_dir / "reserve_decision_gate_loss.csv").exists())
+            self.assertTrue((output_dir / "reserve_decision_operational_windows.csv").exists())
             self.assertIn("Graph WaveNet", summary["model"].tolist())
             self.assertTrue({"boundary", "non_boundary", "late_period", "spatial_holdout"}.issubset(set(raw["subset"])))
             self.assertIn("not_applicable", by_ratio.loc[by_ratio["policy"] == "gate-bin", "status"].tolist())
@@ -151,6 +158,10 @@ class DecisionUtilityTests(unittest.TestCase):
             self.assertTrue({"gate_correct", "gate_wrong"}.issubset(set(gate_loss["gate_correctness"])))
             self.assertTrue((bootstrap["n_seeds"] == 5).all())
             self.assertTrue((bootstrap["n_seed_day_pairs"] >= 5).all())
+            operational = pd.read_csv(output_dir / "reserve_decision_operational_windows.csv")
+            self.assertIn("boundary_shortage_energy_mean", operational.columns)
+            self.assertIn("gate_value_window", operational.columns)
+            self.assertTrue({"full", "boundary", "non_boundary"}.issubset(set(operational["subset"])))
             self.assertEqual(config["dataset"], "wtb")
             self.assertEqual(config["strata"], ["boundary", "non_boundary", "late_period", "spatial_holdout"])
 
@@ -166,6 +177,7 @@ class DecisionUtilityTests(unittest.TestCase):
             self.assertTrue(guard["checks"]["paired_bootstrap_uses_seed_day_pairs"])
             self.assertTrue(guard["checks"]["summary_has_total_cost_violation_reserve_and_shortage_energy"])
             self.assertTrue(guard["checks"]["gate_correctness_operational_loss_present"])
+            self.assertTrue(guard["checks"]["operational_window_cost_violation_reserve_and_boundary_shortage_present"])
 
     def test_reserve_decision_guard_blocks_missing_seed_day_bootstrap(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -245,6 +257,24 @@ class DecisionUtilityTests(unittest.TestCase):
                     }
                 ]
             ).to_csv(decision / "reserve_decision_bootstrap.csv", index=False)
+            pd.DataFrame(
+                [
+                    {
+                        "subset": subset,
+                        "model": "Physics-Aligned MoE",
+                        "policy": "gate-bin",
+                        "status": "applicable",
+                        "total_cost_mean": 1.0,
+                        "violation_rate_mean": 0.1,
+                        "reserve_energy_mean": 2.0,
+                        "shortage_energy_mean": 3.0,
+                        "boundary_shortage_energy_mean": 3.0 if subset == "boundary" else np.nan,
+                        "total_cost_mean_delta_vs_model_global": -0.1,
+                        "gate_value_window": "boundary_only_cost_reduction",
+                    }
+                    for subset in ["full", "boundary", "non_boundary"]
+                ]
+            ).to_csv(decision / "reserve_decision_operational_windows.csv", index=False)
 
             guard_dir = run_reserve_decision_guard(decision_dir=decision, output_dir=root / "guard")
             guard = load_json(guard_dir / "reserve_decision_guard.json")

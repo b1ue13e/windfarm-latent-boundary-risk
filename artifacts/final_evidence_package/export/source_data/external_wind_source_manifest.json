@@ -1,0 +1,28 @@
+{
+  "kind": "external_wind_source_manifest",
+  "source_dir": "data\\external_wind",
+  "farms": [
+    "kelmarsh",
+    "penmanshiel"
+  ],
+  "years": [],
+  "include_static": true,
+  "include_scada": true,
+  "include_mapping": false,
+  "file_pattern": "",
+  "download": false,
+  "license": "CC-BY-4.0",
+  "source_urls": {
+    "kelmarsh": "https://zenodo.org/records/16807551",
+    "penmanshiel": "https://zenodo.org/records/16807304"
+  },
+  "records": {
+    "kelmarsh": "16807551",
+    "penmanshiel": "16807304"
+  },
+  "n_files": 31,
+  "n_downloaded": 0,
+  "n_existing": 31,
+  "n_manifest_only": 0,
+  "total_selected_bytes": 11050081691
+}

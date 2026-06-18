@@ -1,0 +1,41 @@
+{
+  "status": "complete_external_source_evidence",
+  "claim_gate": "within_wtb_only",
+  "checks": {
+    "manifest_exists": true,
+    "manifest_has_rows": true,
+    "status_column_present": true,
+    "required_farms_present": true,
+    "file_count_meets_minimum": true,
+    "total_selected_bytes_meets_minimum": true,
+    "all_selected_files_local_exists": true,
+    "all_selected_files_checksum_match": true,
+    "no_manifest_only_rows": true,
+    "license_is_cc_by_4": true,
+    "no_wtb_or_sdwpf_source": true
+  },
+  "manifest_path": "artifacts\\external_wind_full_manifest\\external_wind_source_manifest.csv",
+  "json_manifest_path": "artifacts\\external_wind_full_manifest\\external_wind_source_manifest.json",
+  "required_farms": [
+    "kelmarsh",
+    "penmanshiel"
+  ],
+  "farms_present": [
+    "kelmarsh",
+    "penmanshiel"
+  ],
+  "min_files": 31,
+  "n_files": 31,
+  "min_total_bytes": 10000000000,
+  "total_selected_bytes": 11050081691,
+  "n_local_exists": 31,
+  "n_checksum_match": 31,
+  "n_manifest_only": 0,
+  "missing_local_paths": [],
+  "checksum_failed_paths": [],
+  "license": "CC-BY-4.0",
+  "source_urls": {
+    "kelmarsh": "https://zenodo.org/records/16807551",
+    "penmanshiel": "https://zenodo.org/records/16807304"
+  }
+}

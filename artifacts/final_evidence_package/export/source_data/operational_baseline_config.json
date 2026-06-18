@@ -1,0 +1,15 @@
+{
+  "cache_dir": "artifacts\\cache_strictmask\\wtb_245d",
+  "split": "test",
+  "baselines": [
+    "persistence",
+    "power_curve",
+    "xgboost_lag",
+    "lightgbm_lag",
+    "dlinear"
+  ],
+  "max_train_samples": 120000,
+  "max_dlinear_samples": 80000,
+  "random_seed": 42,
+  "tree_estimators": 80
+}

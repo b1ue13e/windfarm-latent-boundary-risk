@@ -1,0 +1,216 @@
+{
+  "dataset": "wtb",
+  "run_table": "artifacts\\strictmask_combined_reviewer_stats\\reviewer_stat_pack_run_table.csv",
+  "cache_dir": "artifacts\\cache_strictmask\\wtb_245d",
+  "cost_ratios": [
+    2.0,
+    5.0,
+    10.0,
+    20.0,
+    50.0
+  ],
+  "main_ratio": 10.0,
+  "quantiles": [
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    0.975,
+    0.99
+  ],
+  "strata": [
+    "boundary",
+    "non_boundary",
+    "late_period"
+  ],
+  "boundary_band": 1.0,
+  "reserve_cost": 1.0,
+  "dt": 0.16666666666666666,
+  "bootstrap_samples": 1000,
+  "seed": 42,
+  "selected_runs": [
+    {
+      "model": "Graph WaveNet",
+      "source_model": "Graph WaveNet",
+      "seed": 201,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed201",
+      "variant_key": "graph_wavenet",
+      "experiment_group": "strong_baselines",
+      "overall_rmse": 224.93014417203187
+    },
+    {
+      "model": "Graph WaveNet",
+      "source_model": "Graph WaveNet",
+      "seed": 202,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed202",
+      "variant_key": "graph_wavenet",
+      "experiment_group": "strong_baselines",
+      "overall_rmse": 229.6574560259042
+    },
+    {
+      "model": "Graph WaveNet",
+      "source_model": "Graph WaveNet",
+      "seed": 203,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed203",
+      "variant_key": "graph_wavenet",
+      "experiment_group": "strong_baselines",
+      "overall_rmse": 223.67755946218065
+    },
+    {
+      "model": "Graph WaveNet",
+      "source_model": "Graph WaveNet",
+      "seed": 204,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed204",
+      "variant_key": "graph_wavenet",
+      "experiment_group": "strong_baselines",
+      "overall_rmse": 223.44455460351745
+    },
+    {
+      "model": "Graph WaveNet",
+      "source_model": "Graph WaveNet",
+      "seed": 205,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed205",
+      "variant_key": "graph_wavenet",
+      "experiment_group": "strong_baselines",
+      "overall_rmse": 226.97871872193755
+    },
+    {
+      "model": "PatchTST",
+      "source_model": "PatchTST",
+      "seed": 201,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed201",
+      "variant_key": "patchtst",
+      "experiment_group": "strong_baselines",
+      "overall_rmse": 232.20304007362623
+    },
+    {
+      "model": "PatchTST",
+      "source_model": "PatchTST",
+      "seed": 202,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed202",
+      "variant_key": "patchtst",
+      "experiment_group": "strong_baselines",
+      "overall_rmse": 227.36815880100448
+    },
+    {
+      "model": "PatchTST",
+      "source_model": "PatchTST",
+      "seed": 203,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed203",
+      "variant_key": "patchtst",
+      "experiment_group": "strong_baselines",
+      "overall_rmse": 228.6736566557386
+    },
+    {
+      "model": "PatchTST",
+      "source_model": "PatchTST",
+      "seed": 204,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed204",
+      "variant_key": "patchtst",
+      "experiment_group": "strong_baselines",
+      "overall_rmse": 221.6144191677373
+    },
+    {
+      "model": "PatchTST",
+      "source_model": "PatchTST",
+      "seed": 205,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed205",
+      "variant_key": "patchtst",
+      "experiment_group": "strong_baselines",
+      "overall_rmse": 230.4889730007501
+    },
+    {
+      "model": "Physics-Aligned MoE",
+      "source_model": "Physics-Aligned MoE",
+      "seed": 201,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed201",
+      "variant_key": "full",
+      "experiment_group": "ablation",
+      "overall_rmse": 247.79129232293613
+    },
+    {
+      "model": "Physics-Aligned MoE",
+      "source_model": "Physics-Aligned MoE",
+      "seed": 202,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed202",
+      "variant_key": "full",
+      "experiment_group": "ablation",
+      "overall_rmse": 243.11949690811625
+    },
+    {
+      "model": "Physics-Aligned MoE",
+      "source_model": "Physics-Aligned MoE",
+      "seed": 203,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed203",
+      "variant_key": "full",
+      "experiment_group": "ablation",
+      "overall_rmse": 236.84837784879835
+    },
+    {
+      "model": "Physics-Aligned MoE",
+      "source_model": "Physics-Aligned MoE",
+      "seed": 204,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed204",
+      "variant_key": "full",
+      "experiment_group": "ablation",
+      "overall_rmse": 240.8016132610445
+    },
+    {
+      "model": "Physics-Aligned MoE",
+      "source_model": "Physics-Aligned MoE",
+      "seed": 205,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed205",
+      "variant_key": "full",
+      "experiment_group": "ablation",
+      "overall_rmse": 238.52463618029503
+    },
+    {
+      "model": "Boundary-forced router",
+      "source_model": "MoE + L_bal + L_align + L_force",
+      "seed": 201,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed201",
+      "variant_key": "bal_align_force",
+      "experiment_group": "ablation",
+      "overall_rmse": 245.05650076454495
+    },
+    {
+      "model": "Boundary-forced router",
+      "source_model": "MoE + L_bal + L_align + L_force",
+      "seed": 202,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed202",
+      "variant_key": "bal_align_force",
+      "experiment_group": "ablation",
+      "overall_rmse": 244.3904892509043
+    },
+    {
+      "model": "Boundary-forced router",
+      "source_model": "MoE + L_bal + L_align + L_force",
+      "seed": 203,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed203",
+      "variant_key": "bal_align_force",
+      "experiment_group": "ablation",
+      "overall_rmse": 228.08975312048003
+    },
+    {
+      "model": "Boundary-forced router",
+      "source_model": "MoE + L_bal + L_align + L_force",
+      "seed": 204,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed204",
+      "variant_key": "bal_align_force",
+      "experiment_group": "ablation",
+      "overall_rmse": 227.7822288819282
+    },
+    {
+      "model": "Boundary-forced router",
+      "source_model": "MoE + L_bal + L_align + L_force",
+      "seed": 205,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed205",
+      "variant_key": "bal_align_force",
+      "experiment_group": "ablation",
+      "overall_rmse": 235.3334826213029
+    }
+  ]
+}

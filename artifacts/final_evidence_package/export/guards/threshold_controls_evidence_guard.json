@@ -1,0 +1,181 @@
+{
+  "status": "complete_ready_for_threshold_control_evidence",
+  "checks": {
+    "cache_metadata_exists": true,
+    "cache_bounds_match_requested": true,
+    "cache_has_strict_anchor_patch_marker": true,
+    "cache_strict_anchor_check_ran": true,
+    "cache_strict_anchor_violations_zero": true,
+    "wrong_threshold_control_variants_included": true,
+    "wrong_threshold_perturbation_check_ran": true,
+    "wrong_thresholds_create_semantic_perturbation": true,
+    "wrong_thresholds_change_shared_labels": false,
+    "wrong_thresholds_are_mask_only_controls": true,
+    "all_expected_runs_complete": true,
+    "all_required_reviewer_files_present": true,
+    "all_required_semantic_guard_files_present": true,
+    "boundary_negative_guard_present": true,
+    "boundary_negative_guard_passed": true,
+    "boundary_negative_controls_relabel_shared_labels": true,
+    "boundary_negative_controls_no_dangerous_copy": true,
+    "reviewer_pack_covers_expected_runs": true,
+    "semantic_guard_passed": false,
+    "semantic_negative_control_passed": true,
+    "semantic_guard_covers_expected_runs": true
+  },
+  "expected_runs": 20,
+  "complete_runs": 20,
+  "missing_runs": 0,
+  "reviewer_pack_runs": 20,
+  "semantic_guard_status": "failed_wrong_threshold_preserves_canonical_routing",
+  "semantic_guard_pairs": 20,
+  "boundary_negative_guard_status": "passed_boundary_negative_controls",
+  "boundary_negative_guard_path": "artifacts\\boundary_negative_controls_wtb\\boundary_negative_controls_guard.json",
+  "variants": [
+    "sens_rated_7p0",
+    "sens_rated_13p0",
+    "sens_pitch_0p5",
+    "sens_pitch_20p0"
+  ],
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "expected_bounds": {
+    "train": [
+      0,
+      25920
+    ],
+    "val": [
+      25920,
+      30240
+    ],
+    "test": [
+      30240,
+      35280
+    ]
+  },
+  "cache_bounds": {
+    "train": [
+      0,
+      25920
+    ],
+    "val": [
+      25920,
+      30240
+    ],
+    "test": [
+      30240,
+      35280
+    ]
+  },
+  "anchor_mask_report": {
+    "can_check": true,
+    "anchor_feature_names": [
+      "Wspd",
+      "Pab_mean"
+    ],
+    "anchor_feature_indices": [
+      0,
+      7
+    ],
+    "total_missing_anchor_cells": 49518,
+    "strict_anchor_violations": 0,
+    "strict_anchor_pass": true,
+    "metadata_patch_present": true,
+    "metadata_removed_regime_valid": 49518,
+    "metadata_removed_aux_valid": null,
+    "metadata_patch_violations_after_patch": null
+  },
+  "threshold_perturbation_summary": [
+    {
+      "variant_key": "sens_rated_7p0",
+      "setting_group": "rated_wind",
+      "setting_value": 7.0,
+      "setting_label": "rated_wind=7.0",
+      "can_check": true,
+      "canonical_valid_cells": 4092890,
+      "shared_valid_cells": 3560280,
+      "dropped_canonical_valid_cells": 532610,
+      "drop_canonical_valid_rate": 0.13013054345462496,
+      "shared_label_mismatch_cells": 0,
+      "shared_label_mismatch_rate": 0.0,
+      "idle_canonical_valid_cells": 1615377,
+      "idle_drop_rate": 0.0,
+      "mppt_canonical_valid_cells": 2128359,
+      "mppt_drop_rate": 0.25024443714617695,
+      "pitch_control_canonical_valid_cells": 349154,
+      "pitch_control_drop_rate": 0.0
+    },
+    {
+      "variant_key": "sens_rated_13p0",
+      "setting_group": "rated_wind",
+      "setting_value": 13.0,
+      "setting_label": "rated_wind=13.0",
+      "can_check": true,
+      "canonical_valid_cells": 4092890,
+      "shared_valid_cells": 3863592,
+      "dropped_canonical_valid_cells": 229298,
+      "drop_canonical_valid_rate": 0.05602349440126659,
+      "shared_label_mismatch_cells": 0,
+      "shared_label_mismatch_rate": 0.0,
+      "idle_canonical_valid_cells": 1615377,
+      "idle_drop_rate": 0.0,
+      "mppt_canonical_valid_cells": 2128359,
+      "mppt_drop_rate": 0.0,
+      "pitch_control_canonical_valid_cells": 349154,
+      "pitch_control_drop_rate": 0.6567245398878432
+    },
+    {
+      "variant_key": "sens_pitch_0p5",
+      "setting_group": "pitch_threshold",
+      "setting_value": 0.5,
+      "setting_label": "pitch_threshold=0.5",
+      "can_check": true,
+      "canonical_valid_cells": 4092890,
+      "shared_valid_cells": 3866840,
+      "dropped_canonical_valid_cells": 226050,
+      "drop_canonical_valid_rate": 0.055229923110564905,
+      "shared_label_mismatch_cells": 0,
+      "shared_label_mismatch_rate": 0.0,
+      "idle_canonical_valid_cells": 1615377,
+      "idle_drop_rate": 0.0,
+      "mppt_canonical_valid_cells": 2128359,
+      "mppt_drop_rate": 0.10620858605150729,
+      "pitch_control_canonical_valid_cells": 349154,
+      "pitch_control_drop_rate": 0.0
+    },
+    {
+      "variant_key": "sens_pitch_20p0",
+      "setting_group": "pitch_threshold",
+      "setting_value": 20.0,
+      "setting_label": "pitch_threshold=20.0",
+      "can_check": true,
+      "canonical_valid_cells": 4092890,
+      "shared_valid_cells": 3814605,
+      "dropped_canonical_valid_cells": 278285,
+      "drop_canonical_valid_rate": 0.06799229884018383,
+      "shared_label_mismatch_cells": 0,
+      "shared_label_mismatch_rate": 0.0,
+      "idle_canonical_valid_cells": 1615377,
+      "idle_drop_rate": 0.0,
+      "mppt_canonical_valid_cells": 2128359,
+      "mppt_drop_rate": 0.0,
+      "pitch_control_canonical_valid_cells": 349154,
+      "pitch_control_drop_rate": 0.7970265269766349
+    }
+  ],
+  "paths": {
+    "cache_metadata": "artifacts\\cache_strictmask\\wtb_245d\\metadata.json",
+    "suite_dir": "artifacts\\strictmask_threshold_controls_wtb",
+    "reviewer_pack_dir": "artifacts\\strictmask_threshold_controls_reviewer_stats",
+    "semantic_guard_dir": "artifacts\\strict_threshold_controls_semantic_guard_wtb_strictmask",
+    "boundary_negative_guard_dir": "artifacts\\boundary_negative_controls_wtb",
+    "run_status_csv": "artifacts\\strict_threshold_controls_evidence_guard_wtb_strictmask\\threshold_controls_evidence_run_status.csv",
+    "file_status_csv": "artifacts\\strict_threshold_controls_evidence_guard_wtb_strictmask\\threshold_controls_evidence_file_status.csv",
+    "perturbation_audit_csv": "artifacts\\strict_threshold_controls_evidence_guard_wtb_strictmask\\threshold_controls_evidence_perturbation_audit.csv"
+  }
+}

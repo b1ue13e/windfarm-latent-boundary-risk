@@ -9,6 +9,7 @@ import pandas as pd
 from windfarm_moe.boundary_slice import run_boundary_slice_audit
 from windfarm_moe.config import DataConfig, EvalConfig, ModelConfig, TrainConfig
 from windfarm_moe.decision import run_reserve_decision, run_reserve_decision_guard
+from windfarm_moe.operational_baselines import run_operational_baselines
 from windfarm_moe.evidence_export import export_strict_wtb_evidence
 from windfarm_moe.boundary_negative_controls import run_boundary_negative_controls
 from windfarm_moe.external_wind import (
@@ -424,12 +425,33 @@ def build_parser() -> argparse.ArgumentParser:
     reserve_parser.add_argument("--seed", type=int, default=42)
     reserve_parser.add_argument("--skip-plots", action="store_true")
 
+    operational_baseline_parser = subparsers.add_parser(
+        "operational-baselines",
+        help="Evaluate WTB engineering baselines on a strict cache without neural training",
+    )
+    _add_common_data_args(operational_baseline_parser)
+    operational_baseline_parser.add_argument("--cache-dir", type=str, default="")
+    operational_baseline_parser.add_argument("--output-dir", type=str, required=True)
+    operational_baseline_parser.add_argument(
+        "--baselines",
+        type=str,
+        default="persistence,power_curve,xgboost_lag,lightgbm_lag,dlinear",
+    )
+    operational_baseline_parser.add_argument("--max-train-samples", type=int, default=120000)
+    operational_baseline_parser.add_argument("--max-dlinear-samples", type=int, default=80000)
+    operational_baseline_parser.add_argument("--tree-estimators", type=int, default=80)
+    operational_baseline_parser.add_argument("--seed", type=int, default=42)
+
     reserve_guard_parser = subparsers.add_parser(
         "reserve-decision-guard",
         help="Verify reserve-decision artifacts before citing operational decision evidence",
     )
     _add_common_data_args(reserve_guard_parser)
-    reserve_guard_parser.add_argument("--decision-dir", type=str, default="artifacts/decision_reserve_wtb_noplots")
+    reserve_guard_parser.add_argument(
+        "--decision-dir",
+        type=str,
+        default="artifacts/decision_reserve_wtb_operational_windows",
+    )
     reserve_guard_parser.add_argument("--output-dir", type=str, required=True)
     reserve_guard_parser.add_argument(
         "--required-models",
@@ -1477,6 +1499,22 @@ def main() -> None:
             make_plots=not args.skip_plots,
         )
         print(f"Reserve-decision artifacts saved to: {output_dir}")
+        return
+
+    if args.command == "operational-baselines":
+        if args.dataset != "wtb":
+            raise ValueError("operational-baselines currently supports only --dataset wtb")
+        cache_dir = Path(args.cache_dir) if args.cache_dir else ensure_cache_ready(data_config)
+        output_dir = run_operational_baselines(
+            cache_dir=cache_dir,
+            output_dir=Path(args.output_dir),
+            baselines=args.baselines,
+            max_train_samples=args.max_train_samples,
+            max_dlinear_samples=args.max_dlinear_samples,
+            random_seed=args.seed,
+            tree_estimators=args.tree_estimators,
+        )
+        print(f"Operational baseline artifacts saved to: {output_dir}")
         return
 
     if args.command == "reserve-decision-guard":

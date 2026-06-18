@@ -1,0 +1,65 @@
+{
+  "status": "complete_ready_for_reviewer_statistics",
+  "checks": {
+    "pack_dir_exists": true,
+    "config_exists": true,
+    "required_files_exist": true,
+    "required_files_nonempty": true,
+    "n_runs_at_least_min_runs": true,
+    "paired_rows_at_least_min": true,
+    "multiplicity_rows_at_least_min": true,
+    "per_example_runs_at_least_min": true,
+    "failure_cases_at_least_min": true,
+    "boundary_failure_cases_at_least_min": true,
+    "paired_summary_nonempty": true,
+    "paired_multiplicity_table_nonempty": true,
+    "efficiency_table_nonempty": true,
+    "per_example_manifest_nonempty": true,
+    "failure_cases_nonempty": true,
+    "boundary_failure_cases_nonempty": true,
+    "required_models_present": true,
+    "required_seeds_present": true,
+    "required_model_seed_matrix_complete": true
+  },
+  "pack_dir": "artifacts\\strictmask_combined_reviewer_stats",
+  "min_runs": 20,
+  "n_runs": 25,
+  "n_paired_rows": 150,
+  "n_paired_multiplicity_rows": 15,
+  "n_per_example_run_summaries": 1,
+  "n_failure_cases": 24,
+  "n_boundary_failure_cases": 24,
+  "required_models": [
+    "Graph WaveNet",
+    "MoE + L_bal + L_align + L_force",
+    "PatchTST",
+    "Physics-Aligned MoE"
+  ],
+  "required_seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "observed_models": [
+    "Graph WaveNet",
+    "MoE + L_bal + L_align + L_force",
+    "PatchTST",
+    "Physics-Aligned MoE"
+  ],
+  "observed_seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "missing_required_models": [],
+  "missing_required_seeds": [],
+  "missing_required_model_seed_pairs": [],
+  "paths": {
+    "config": "artifacts\\strictmask_combined_reviewer_stats\\reviewer_stat_pack_config.json",
+    "file_status_csv": "artifacts\\strictmask_combined_reviewer_stats_guard\\reviewer_stat_pack_file_status.csv"
+  }
+}

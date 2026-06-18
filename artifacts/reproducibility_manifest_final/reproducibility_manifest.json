@@ -1,0 +1,39 @@
+{
+  "status": "complete_ready_for_reproducibility_package",
+  "checks": {
+    "required_files_exist": true,
+    "strict_model_weights_complete": true,
+    "environment_recorded": true,
+    "strict_wtb_evidence_manifest_present": true,
+    "science_readiness_dashboard_present": true,
+    "active_experiment_gaps": false
+  },
+  "root_dir": ".",
+  "hash_max_mb": 25.0,
+  "n_files": 45,
+  "n_required_files": 45,
+  "n_missing_required_files": 0,
+  "strict_model_weight_count": 5,
+  "environment": {
+    "generated_at": "2026-06-18T08:24:47",
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "numpy_available": true,
+    "numpy_version": "2.4.6",
+    "pandas_available": true,
+    "pandas_version": "3.0.3",
+    "torch_available": true,
+    "torch_version": "2.11.0+cu128",
+    "torch_cuda_available": true,
+    "torch_cuda_version": "12.8",
+    "sklearn_available": true,
+    "sklearn_version": "1.8.0",
+    "matplotlib_available": true,
+    "matplotlib_version": "3.10.9"
+  },
+  "paths": {
+    "file_manifest_csv": "artifacts\\reproducibility_manifest_final\\reproducibility_file_manifest.csv",
+    "readiness_dashboard": "artifacts\\science_readiness_dashboard_20260611\\science_readiness_status.json"
+  }
+}

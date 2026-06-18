@@ -1,0 +1,29 @@
+{
+  "status": "passed_boundary_negative_controls",
+  "checks": {
+    "raw_rows_present": true,
+    "positive_boundary_intervention_drop_present": true,
+    "positive_boundary_intervention_drop_meets_minimum": true,
+    "negative_controls_present": true,
+    "negative_controls_change_shared_labels": true,
+    "each_negative_control_changes_shared_labels": true,
+    "no_negative_control_reproduces_high_nmi_or_ari_and_intervention_drop": true
+  },
+  "max_control_nmi": 0.75,
+  "max_control_ari": 0.75,
+  "min_shared_label_change": 0.05,
+  "min_positive_intervention_drop": 0.25,
+  "max_control_intervention_drop": 0.2,
+  "positive_boundary_intervention_drop_mean": 0.9538839929402162,
+  "negative_control_min_shared_label_change_by_condition": {
+    "random_boundary": 0.4991531699557043,
+    "time_shift_boundary": 0.4760271960997386,
+    "wrong_pitch_high": 1.0,
+    "wrong_pitch_low": 1.0,
+    "wrong_rated_high": 1.0,
+    "wrong_rated_low": 1.0
+  },
+  "dangerous_rows": [],
+  "n_raw_rows": 105,
+  "n_dangerous_rows": 0
+}

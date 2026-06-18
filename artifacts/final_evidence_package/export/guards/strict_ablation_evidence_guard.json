@@ -1,0 +1,99 @@
+{
+  "status": "complete_ready_for_strict_ablation_evidence",
+  "checks": {
+    "cache_metadata_exists": true,
+    "cache_bounds_match_requested": true,
+    "cache_has_strict_anchor_patch_marker": true,
+    "cache_strict_anchor_check_ran": true,
+    "cache_strict_anchor_violations_zero": true,
+    "routing_control_variants_included": true,
+    "routing_gate_variants_cover_controls": true,
+    "all_expected_runs_complete": true,
+    "all_required_gate_files_present": true,
+    "routing_gate_status_passed": true,
+    "routing_gate_audited_runs_cover_expected": true
+  },
+  "expected_runs": 50,
+  "complete_runs": 50,
+  "missing_runs": 0,
+  "expected_routing_gate_runs": 15,
+  "routing_gate_audited_runs": 15,
+  "routing_gate_status": "passed",
+  "variants": [
+    "dense",
+    "unconstrained",
+    "bal",
+    "align",
+    "bal_align",
+    "bal_align_force",
+    "bal_align_force_smooth",
+    "context_align_force",
+    "anchor_only",
+    "full"
+  ],
+  "routing_gate_variants": [
+    "bal_align_force",
+    "context_align_force",
+    "anchor_only"
+  ],
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "expected_bounds": {
+    "train": [
+      0,
+      25920
+    ],
+    "val": [
+      25920,
+      30240
+    ],
+    "test": [
+      30240,
+      35280
+    ]
+  },
+  "cache_bounds": {
+    "train": [
+      0,
+      25920
+    ],
+    "val": [
+      25920,
+      30240
+    ],
+    "test": [
+      30240,
+      35280
+    ]
+  },
+  "anchor_mask_report": {
+    "can_check": true,
+    "anchor_feature_names": [
+      "Wspd",
+      "Pab_mean"
+    ],
+    "anchor_feature_indices": [
+      0,
+      7
+    ],
+    "total_missing_anchor_cells": 49518,
+    "strict_anchor_violations": 0,
+    "strict_anchor_pass": true,
+    "metadata_patch_present": true,
+    "metadata_removed_regime_valid": 49518,
+    "metadata_removed_aux_valid": null,
+    "metadata_patch_violations_after_patch": null
+  },
+  "paths": {
+    "cache_metadata": "artifacts\\cache_strictmask\\wtb_245d\\metadata.json",
+    "suite_dir": "artifacts\\strictmask_ablation_rerun_wtb_full",
+    "routing_gate_dir": "artifacts\\strictmask_ablation_routing_controls_gate",
+    "run_status_csv": "artifacts\\strict_ablation_evidence_guard_wtb_strictmask\\strict_ablation_evidence_run_status.csv",
+    "file_status_csv": "artifacts\\strict_ablation_evidence_guard_wtb_strictmask\\strict_ablation_evidence_file_status.csv"
+  }
+}

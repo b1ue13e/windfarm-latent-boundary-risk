@@ -1,0 +1,24 @@
+{
+  "kind": "science_reproduction_package",
+  "scripts": {
+    "refresh_guards_only": "artifacts\\reproduction_package_20260611\\refresh_guards_only.ps1",
+    "run_active_experiment_queues": "artifacts\\reproduction_package_20260611\\run_active_experiment_queues.ps1",
+    "rebuild_submission_artifacts": "artifacts\\reproduction_package_20260611\\rebuild_submission_artifacts.ps1",
+    "rebuild_final_evidence_package": "artifacts\\reproduction_package_20260611\\rebuild_final_evidence_package.ps1",
+    "generate_uncapped_per_example_reviewer_stats": "artifacts\\reproduction_package_20260611\\generate_uncapped_per_example_reviewer_stats.ps1",
+    "external_wind_protocol": "artifacts\\reproduction_package_20260611\\external_wind_protocol.ps1",
+    "external_wind_full_evidence": "scripts\\run_external_wind_full_evidence.ps1",
+    "goal_strict_completion": "artifacts\\goal_strict_completion_queue_20260612.ps1",
+    "postqueue_finalization": "artifacts\\strict_postqueue_finalize_20260611.ps1"
+  },
+  "notes": [
+    "refresh_guards_only.ps1 does not launch training.",
+    "run_active_experiment_queues.ps1 starts or resumes long-running queued experiments only when matching processes are not already running.",
+    "goal_strict_completion_queue_20260612.ps1 is the current one-command queue for strict-cache ablation, wrong-threshold controls, final reviewer packs, reproducibility manifest, and Science-readiness refresh.",
+    "strict_postqueue_finalize_20260611.ps1 waits for queued experiments and refreshes final guards, dashboard, and manifests.",
+    "rebuild_submission_artifacts.ps1 rebuilds source evidence tables and refreshes reviewer/reproducibility guards.",
+    "rebuild_final_evidence_package.ps1 builds evidence_manifest_final.json and exports tables/source-data/figures/guards from the single manifest.",
+    "The final reviewer-stat pack intentionally keeps a capped per-example preview (`--max-per-example-rows 200000`) for package size; generate_uncapped_per_example_reviewer_stats.ps1 uses `--max-per-example-rows 0` for the full per-example table.",
+    "external_wind_protocol.ps1 delegates to scripts\\run_external_wind_full_evidence.ps1, which reuses validated source manifests, source guards, inspections, and caches when present; use -DownloadScada to fetch or revalidate the full 10.3 GiB SCADA set, -RunTraining to execute missing 5-seed runs only, -ParallelTraining to pass paper-batch parallelism through, and -RunAllTrainingCommands only when deliberately replaying the full command matrix."
+  ]
+}

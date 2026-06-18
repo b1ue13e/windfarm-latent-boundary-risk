@@ -1,0 +1,142 @@
+{
+  "kind": "external_wind_protocol",
+  "root_dir": ".",
+  "source_dir": "data\\external_wind",
+  "cache_root": "artifacts\\cache_external_wind",
+  "suite_dir": "artifacts\\external_wind_runs",
+  "reviewer_pack_commands": "artifacts\\external_wind_protocol\\external_wind_reviewer_pack_commands.ps1",
+  "protocols": [
+    {
+      "dataset": "external_wind",
+      "farm": "kelmarsh",
+      "target_farm": "",
+      "split_id": "chronological",
+      "seeds": [
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "source_url": "https://zenodo.org/records/16807551",
+      "target_source_url": "",
+      "license": "CC-BY-4.0",
+      "models": [
+        "Graph WaveNet",
+        "PatchTST",
+        "Physics-Aligned MoE",
+        "MoE + L_bal + L_align + L_force"
+      ],
+      "main_variants": [
+        "full"
+      ],
+      "strong_baseline_variants": [
+        "graph_wavenet",
+        "patchtst"
+      ],
+      "boundary_router_variants": [
+        "bal_align_force"
+      ],
+      "reviewer_pack_dir": "artifacts\\external_wind_reviewer_stats\\kelmarsh\\chronological"
+    },
+    {
+      "dataset": "external_wind",
+      "farm": "kelmarsh",
+      "target_farm": "penmanshiel",
+      "split_id": "leave-one-farm-out",
+      "seeds": [
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "source_url": "https://zenodo.org/records/16807551",
+      "target_source_url": "https://zenodo.org/records/16807304",
+      "license": "CC-BY-4.0",
+      "models": [
+        "Graph WaveNet",
+        "PatchTST",
+        "Physics-Aligned MoE",
+        "MoE + L_bal + L_align + L_force"
+      ],
+      "main_variants": [
+        "full"
+      ],
+      "strong_baseline_variants": [
+        "graph_wavenet",
+        "patchtst"
+      ],
+      "boundary_router_variants": [
+        "bal_align_force"
+      ],
+      "reviewer_pack_dir": "artifacts\\external_wind_reviewer_stats\\kelmarsh_to_penmanshiel\\leave_one_farm_out"
+    },
+    {
+      "dataset": "external_wind",
+      "farm": "penmanshiel",
+      "target_farm": "",
+      "split_id": "chronological",
+      "seeds": [
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "source_url": "https://zenodo.org/records/16807304",
+      "target_source_url": "",
+      "license": "CC-BY-4.0",
+      "models": [
+        "Graph WaveNet",
+        "PatchTST",
+        "Physics-Aligned MoE",
+        "MoE + L_bal + L_align + L_force"
+      ],
+      "main_variants": [
+        "full"
+      ],
+      "strong_baseline_variants": [
+        "graph_wavenet",
+        "patchtst"
+      ],
+      "boundary_router_variants": [
+        "bal_align_force"
+      ],
+      "reviewer_pack_dir": "artifacts\\external_wind_reviewer_stats\\penmanshiel\\chronological"
+    },
+    {
+      "dataset": "external_wind",
+      "farm": "penmanshiel",
+      "target_farm": "kelmarsh",
+      "split_id": "leave-one-farm-out",
+      "seeds": [
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "source_url": "https://zenodo.org/records/16807304",
+      "target_source_url": "https://zenodo.org/records/16807551",
+      "license": "CC-BY-4.0",
+      "models": [
+        "Graph WaveNet",
+        "PatchTST",
+        "Physics-Aligned MoE",
+        "MoE + L_bal + L_align + L_force"
+      ],
+      "main_variants": [
+        "full"
+      ],
+      "strong_baseline_variants": [
+        "graph_wavenet",
+        "patchtst"
+      ],
+      "boundary_router_variants": [
+        "bal_align_force"
+      ],
+      "reviewer_pack_dir": "artifacts\\external_wind_reviewer_stats\\penmanshiel_to_kelmarsh\\leave_one_farm_out"
+    }
+  ]
+}

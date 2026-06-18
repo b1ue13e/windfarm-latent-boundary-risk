@@ -24,6 +24,7 @@ RESERVE_DECISION_REQUIRED_FILES = (
     "reserve_decision_raw_bins.csv",
     "reserve_decision_daily_costs.csv",
     "reserve_decision_gate_loss.csv",
+    "reserve_decision_operational_windows.csv",
     "reserve_decision_config.json",
 )
 RESERVE_REQUIRED_MODELS = ("Graph WaveNet", "PatchTST", "Physics-Aligned MoE", "Boundary-forced router")
@@ -234,6 +235,7 @@ def run_reserve_decision(
     summary = by_ratio[np.isclose(by_ratio["cost_ratio"].astype(float), float(main_ratio))].copy()
     by_bin = _aggregate_bin_rows(bin_df)
     bootstrap_df = _bootstrap_pairs(daily_df, samples=bootstrap_samples, seed=seed, main_ratio=main_ratio)
+    operational_windows = _operational_window_rows(by_ratio, main_ratio=main_ratio)
 
     _write_outputs(
         output_dir=out_dir,
@@ -241,6 +243,7 @@ def run_reserve_decision(
         by_ratio=by_ratio,
         by_bin=by_bin,
         bootstrap_df=bootstrap_df,
+        operational_windows=operational_windows,
         raw_df=raw_df,
         bin_df=bin_df,
         daily_df=daily_df,
@@ -921,6 +924,82 @@ def _aggregate_bin_rows(bin_df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows).sort_values(["subset", "cost_ratio", "risk_bin", "total_cost_mean"], na_position="last")
 
 
+def _operational_window_rows(by_ratio: pd.DataFrame, *, main_ratio: float) -> pd.DataFrame:
+    if by_ratio.empty:
+        return pd.DataFrame()
+    required = {
+        "subset",
+        "cost_ratio",
+        "model",
+        "policy",
+        "status",
+        "total_cost_mean",
+        "violation_rate_mean",
+        "reserve_energy_mean",
+        "shortage_energy_mean",
+    }
+    if not required.issubset(by_ratio.columns):
+        return pd.DataFrame()
+    frame = by_ratio[
+        np.isclose(pd.to_numeric(by_ratio["cost_ratio"], errors="coerce").astype(float), float(main_ratio))
+        & by_ratio["status"].astype(str).eq("applicable")
+    ].copy()
+    windows = ["full", "boundary", "non_boundary", "non_overlap", "late_period", "spatial_holdout"]
+    frame = frame[frame["subset"].astype(str).isin(windows)].copy()
+    if frame.empty:
+        return pd.DataFrame()
+    rows: list[dict[str, Any]] = []
+    metric_cols = ["total_cost_mean", "violation_rate_mean", "reserve_energy_mean", "shortage_energy_mean"]
+    for _, row in frame.iterrows():
+        base_subset = frame[
+            frame["model"].astype(str).eq(str(row["model"]))
+            & frame["subset"].astype(str).eq(str(row["subset"]))
+            & frame["policy"].astype(str).eq("global")
+        ]
+        out = row.to_dict()
+        out["is_gate_policy"] = str(row["policy"]) == "gate-bin"
+        out["boundary_shortage_energy_mean"] = (
+            float(row["shortage_energy_mean"]) if str(row["subset"]) == "boundary" else np.nan
+        )
+        if not base_subset.empty:
+            base = base_subset.iloc[0]
+            for metric in metric_cols:
+                out[f"{metric}_delta_vs_model_global"] = float(row[metric]) - float(base[metric])
+        else:
+            for metric in metric_cols:
+                out[f"{metric}_delta_vs_model_global"] = np.nan
+        rows.append(out)
+    result = pd.DataFrame(rows)
+    if result.empty:
+        return result
+    result["gate_value_window"] = ""
+    for model_name in result["model"].dropna().astype(str).unique():
+        gate_rows = result[result["model"].astype(str).eq(model_name) & result["policy"].astype(str).eq("gate-bin")]
+        boundary = gate_rows[gate_rows["subset"].astype(str).eq("boundary")]
+        non_boundary = gate_rows[gate_rows["subset"].astype(str).eq("non_boundary")]
+        if boundary.empty:
+            label = "not_tested"
+        else:
+            boundary_delta = pd.to_numeric(boundary["total_cost_mean_delta_vs_model_global"], errors="coerce").iloc[0]
+            non_boundary_delta = (
+                pd.to_numeric(non_boundary["total_cost_mean_delta_vs_model_global"], errors="coerce").iloc[0]
+                if not non_boundary.empty
+                else np.nan
+            )
+            if pd.notna(boundary_delta) and boundary_delta < 0 and (pd.isna(non_boundary_delta) or non_boundary_delta >= 0):
+                label = "boundary_only_cost_reduction"
+            elif pd.notna(boundary_delta) and boundary_delta < 0 and pd.notna(non_boundary_delta) and non_boundary_delta < 0:
+                label = "cost_reduction_not_boundary_only"
+            else:
+                label = "no_boundary_cost_reduction"
+        result.loc[
+            result["model"].astype(str).eq(model_name) & result["policy"].astype(str).eq("gate-bin"),
+            "gate_value_window",
+        ] = label
+    sort_cols = ["subset", "total_cost_mean", "model", "policy"]
+    return result.sort_values(sort_cols, na_position="last").reset_index(drop=True)
+
+
 def _unique_join(values: pd.Series) -> str:
     clean = sorted({str(value) for value in values.dropna().tolist() if str(value)})
     return "|".join(clean)
@@ -992,6 +1071,7 @@ def _write_outputs(
     by_ratio: pd.DataFrame,
     by_bin: pd.DataFrame,
     bootstrap_df: pd.DataFrame,
+    operational_windows: pd.DataFrame,
     raw_df: pd.DataFrame,
     bin_df: pd.DataFrame,
     daily_df: pd.DataFrame,
@@ -1002,6 +1082,7 @@ def _write_outputs(
     by_ratio.to_csv(output_dir / "reserve_decision_by_ratio.csv", index=False)
     by_bin.to_csv(output_dir / "reserve_decision_by_risk_bin.csv", index=False)
     bootstrap_df.to_csv(output_dir / "reserve_decision_bootstrap.csv", index=False)
+    operational_windows.to_csv(output_dir / "reserve_decision_operational_windows.csv", index=False)
     raw_df.to_csv(output_dir / "reserve_decision_raw_runs.csv", index=False)
     bin_df.to_csv(output_dir / "reserve_decision_raw_bins.csv", index=False)
     daily_df.to_csv(output_dir / "reserve_decision_daily_costs.csv", index=False)
@@ -1033,6 +1114,7 @@ def run_reserve_decision_guard(
     daily = _read_csv_if_exists(decision_path / "reserve_decision_daily_costs.csv")
     gate_loss = _read_csv_if_exists(decision_path / "reserve_decision_gate_loss.csv")
     bootstrap = _read_csv_if_exists(decision_path / "reserve_decision_bootstrap.csv")
+    operational_windows = _read_csv_if_exists(decision_path / "reserve_decision_operational_windows.csv")
     config_path = decision_path / "reserve_decision_config.json"
     config = load_json(config_path) if config_path.exists() else {}
     main_ratio = float(config.get("main_ratio", DEFAULT_MAIN_RATIO)) if config else DEFAULT_MAIN_RATIO
@@ -1138,6 +1220,37 @@ def run_reserve_decision_guard(
                 if pd.to_numeric(subset[metric], errors="coerce").notna().sum() == 0:
                     gate_loss_missing_metrics.append(f"{label}:{metric}")
 
+    operational_window_missing: list[str] = []
+    required_window_cols = {
+        "subset",
+        "model",
+        "policy",
+        "total_cost_mean",
+        "violation_rate_mean",
+        "reserve_energy_mean",
+        "shortage_energy_mean",
+        "boundary_shortage_energy_mean",
+        "total_cost_mean_delta_vs_model_global",
+        "gate_value_window",
+    }
+    if operational_windows.empty or not required_window_cols.issubset(operational_windows.columns):
+        operational_window_missing.append("reserve_decision_operational_windows.csv:required_columns")
+    else:
+        required_subsets = {"full", "boundary", "non_boundary"}
+        present_subsets = set(operational_windows["subset"].dropna().astype(str))
+        operational_window_missing.extend(sorted(required_subsets.difference(present_subsets)))
+        gate_rows = operational_windows[
+            operational_windows["policy"].astype(str).eq("gate-bin")
+            & operational_windows["model"].astype(str).isin(gated_set)
+        ].copy()
+        if gate_rows.empty:
+            operational_window_missing.append("gate-bin:gated_models")
+        boundary_gate = gate_rows[gate_rows["subset"].astype(str).eq("boundary")]
+        if boundary_gate.empty:
+            operational_window_missing.append("gate-bin:boundary")
+        elif pd.to_numeric(boundary_gate["boundary_shortage_energy_mean"], errors="coerce").notna().sum() == 0:
+            operational_window_missing.append("gate-bin:boundary_shortage_energy_mean")
+
     checks = {
         "all_required_files_exist": all(file_status.values()),
         "selected_runs_cover_required_5_seeds": not missing_pairs and bool(required_pairs),
@@ -1146,6 +1259,7 @@ def run_reserve_decision_guard(
         "summary_has_total_cost_violation_reserve_and_shortage_energy": not summary_missing_metrics,
         "requested_strata_present": not missing_strata,
         "gate_correctness_operational_loss_present": not gate_loss_missing_metrics,
+        "operational_window_cost_violation_reserve_and_boundary_shortage_present": not operational_window_missing,
         "daily_costs_cover_required_seed_policy_pairs": not missing_daily_pairs,
         "paired_bootstrap_rows_at_least_min": int(len(bootstrap_ok)) >= int(min_bootstrap_rows),
         "paired_bootstrap_required_candidates_present": not missing_bootstrap_candidates,
@@ -1175,6 +1289,7 @@ def run_reserve_decision_guard(
         "summary_missing_metrics": summary_missing_metrics,
         "missing_strata": missing_strata,
         "gate_loss_missing_metrics": gate_loss_missing_metrics,
+        "operational_window_missing": operational_window_missing,
         "missing_daily_seed_policy_pairs": missing_daily_pairs,
         "missing_bootstrap_candidates": missing_bootstrap_candidates,
         "n_bootstrap_ok_rows": int(len(bootstrap_ok)),

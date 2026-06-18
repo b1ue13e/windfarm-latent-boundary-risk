@@ -1,0 +1,6 @@
+dataset,model,control_condition,control_type,shift_steps,n_runs,delta_nmi_mean,delta_nmi_ci_low,delta_nmi_ci_high,prob_actual_nmi_higher,delta_ari_mean,delta_ari_ci_low,delta_ari_ci_high,prob_actual_ari_higher
+wtb,MoE + L_bal + L_align + L_force,temporal_shift_18,temporal_placebo,18.0,5,0.5875116390693733,0.5551449998303081,0.6209840150208985,1.0,0.5759104105214903,0.5466045660602602,0.6043237948225199,1.0
+wtb,MoE + L_bal + L_align + L_force,temporal_shift_144,temporal_placebo,144.0,5,0.832411968195274,0.802012581429504,0.8691844813198616,1.0,0.8656239548366068,0.8345011499953859,0.8954476833940621,1.0
+wtb,MoE + L_bal + L_align + L_force,node_permutation,spatial_placebo,,5,0.3289317633567928,0.3016286679752228,0.3658727140237868,1.0,0.2825456521827038,0.2581161402201426,0.3099696445573669,1.0
+wtb,MoE + L_bal + L_align + L_force,within_time_shuffle,spatial_placebo,,5,0.3336703978503402,0.3040385052511906,0.3701827060170033,1.0,0.2871521407785394,0.260533645350548,0.3153230551241313,1.0
+wtb,MoE + L_bal + L_align + L_force,global_shuffle,permutation_placebo,,5,0.8716161114179272,0.8410928414828908,0.9085732026403462,1.0,0.9165770658260192,0.8879276113629624,0.942207173638044,1.0

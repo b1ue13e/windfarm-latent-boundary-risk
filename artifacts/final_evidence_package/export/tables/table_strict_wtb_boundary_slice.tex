@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Strict-mask WTB MPPT-to-pitch boundary-slice audit.}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lllll}
+\toprule
+Slice & RMSE & NMI & ARI & Anchor cells \\
+\midrule
+boundary\_band & 321.1711 +/- 21.3067 & 0.6562 & 0.7766 & 7879 \\
+nonboundary\_valid & 254.0981 +/- 8.6588 & 0.6326 & 0.6056 & 283797 \\
+mppt\_core & 253.7099 +/- 8.7181 & NA & NA & 277719 \\
+pitch\_core & 271.1653 +/- 16.9980 & NA & NA & 6175 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

@@ -1,0 +1,2 @@
+model,seed,variant_key,run_dir,rows,mean_rmse,mean_gate_correct
+MoE + L_bal + L_align + L_force,201,bal_align_force,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed201,200000,187.87546033371322,0.95141

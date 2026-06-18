@@ -1,0 +1,77 @@
+{
+  "status": "complete_ready_for_reserve_decision_evidence",
+  "checks": {
+    "all_required_files_exist": true,
+    "selected_runs_cover_required_5_seeds": true,
+    "raw_runs_cover_required_policies": true,
+    "gated_policies_are_applicable": true,
+    "summary_has_total_cost_violation_reserve_and_shortage_energy": true,
+    "requested_strata_present": true,
+    "gate_correctness_operational_loss_present": true,
+    "operational_window_cost_violation_reserve_and_boundary_shortage_present": true,
+    "daily_costs_cover_required_seed_policy_pairs": true,
+    "paired_bootstrap_rows_at_least_min": true,
+    "paired_bootstrap_required_candidates_present": true,
+    "paired_bootstrap_ci_present": true,
+    "paired_bootstrap_uses_seed_day_pairs": true
+  },
+  "decision_dir": "artifacts\\decision_reserve_wtb_operational_windows",
+  "required_models": [
+    "Graph WaveNet",
+    "PatchTST",
+    "Physics-Aligned MoE",
+    "Boundary-forced router"
+  ],
+  "required_seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "required_policies": [
+    "global",
+    "physical-bin",
+    "gate-bin"
+  ],
+  "gated_models": [
+    "Boundary-forced router",
+    "Physics-Aligned MoE"
+  ],
+  "required_bootstrap_candidates": [
+    "Graph WaveNet/physical-bin",
+    "PatchTST/global",
+    "PatchTST/physical-bin",
+    "Physics-Aligned MoE/global",
+    "Physics-Aligned MoE/physical-bin",
+    "Physics-Aligned MoE/gate-bin",
+    "Boundary-forced router/global",
+    "Boundary-forced router/physical-bin",
+    "Boundary-forced router/gate-bin"
+  ],
+  "main_ratio": 10.0,
+  "file_status": {
+    "reserve_decision_summary.csv": true,
+    "reserve_decision_by_ratio.csv": true,
+    "reserve_decision_by_risk_bin.csv": true,
+    "reserve_decision_bootstrap.csv": true,
+    "reserve_decision_raw_runs.csv": true,
+    "reserve_decision_raw_bins.csv": true,
+    "reserve_decision_daily_costs.csv": true,
+    "reserve_decision_gate_loss.csv": true,
+    "reserve_decision_operational_windows.csv": true,
+    "reserve_decision_config.json": true
+  },
+  "missing_model_seed_pairs": [],
+  "missing_policy_rows": [],
+  "missing_applicable_policy_rows": [],
+  "summary_missing_metrics": [],
+  "missing_strata": [],
+  "gate_loss_missing_metrics": [],
+  "operational_window_missing": [],
+  "missing_daily_seed_policy_pairs": [],
+  "missing_bootstrap_candidates": [],
+  "n_bootstrap_ok_rows": 9,
+  "min_seed_day_pairs": 175,
+  "min_bootstrap_seeds": 5
+}

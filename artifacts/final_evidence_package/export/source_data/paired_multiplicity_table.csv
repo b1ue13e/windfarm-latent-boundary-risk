@@ -1,0 +1,16 @@
+family,reference_model,comparator_model,split,slice,metric,raw_p_value,correction,p_value_bh,reject_fdr_0p05,n_hypotheses
+test:boundary_band:rmse,MoE + L_bal + L_align + L_force,Graph WaveNet,test,boundary_band,rmse,0.0009990009990009992,Benjamini-Hochberg FDR,0.001498501498501499,1,3
+test:boundary_band:rmse,MoE + L_bal + L_align + L_force,Physics-Aligned MoE,test,boundary_band,rmse,0.0009990009990009992,Benjamini-Hochberg FDR,0.001498501498501499,1,3
+test:boundary_band:rmse,MoE + L_bal + L_align + L_force,PatchTST,test,boundary_band,rmse,0.368031968031968,Benjamini-Hochberg FDR,0.36803196803196797,0,3
+test:gate_alignment:ari,MoE + L_bal + L_align + L_force,Physics-Aligned MoE,test,gate_alignment,ari,0.1258741258741259,Benjamini-Hochberg FDR,0.1258741258741259,0,1
+test:gate_alignment:ari,MoE + L_bal + L_align + L_force,Graph WaveNet,test,gate_alignment,ari,,Benjamini-Hochberg FDR,,0,1
+test:gate_alignment:ari,MoE + L_bal + L_align + L_force,PatchTST,test,gate_alignment,ari,,Benjamini-Hochberg FDR,,0,1
+test:gate_alignment:nmi,MoE + L_bal + L_align + L_force,Physics-Aligned MoE,test,gate_alignment,nmi,0.06593406593406594,Benjamini-Hochberg FDR,0.06593406593406594,0,1
+test:gate_alignment:nmi,MoE + L_bal + L_align + L_force,Graph WaveNet,test,gate_alignment,nmi,,Benjamini-Hochberg FDR,,0,1
+test:gate_alignment:nmi,MoE + L_bal + L_align + L_force,PatchTST,test,gate_alignment,nmi,,Benjamini-Hochberg FDR,,0,1
+test:overall:rmse,MoE + L_bal + L_align + L_force,Graph WaveNet,test,overall,rmse,0.0009990009990009992,Benjamini-Hochberg FDR,0.0009990009990009992,1,3
+test:overall:rmse,MoE + L_bal + L_align + L_force,PatchTST,test,overall,rmse,0.0009990009990009992,Benjamini-Hochberg FDR,0.0009990009990009992,1,3
+test:overall:rmse,MoE + L_bal + L_align + L_force,Physics-Aligned MoE,test,overall,rmse,0.0009990009990009992,Benjamini-Hochberg FDR,0.0009990009990009992,1,3
+test:switch_window:rmse,MoE + L_bal + L_align + L_force,Graph WaveNet,test,switch_window,rmse,0.0009990009990009992,Benjamini-Hochberg FDR,0.001498501498501499,1,3
+test:switch_window:rmse,MoE + L_bal + L_align + L_force,PatchTST,test,switch_window,rmse,0.0009990009990009992,Benjamini-Hochberg FDR,0.001498501498501499,1,3
+test:switch_window:rmse,MoE + L_bal + L_align + L_force,Physics-Aligned MoE,test,switch_window,rmse,0.10849150849150849,Benjamini-Hochberg FDR,0.1084915084915085,0,3
