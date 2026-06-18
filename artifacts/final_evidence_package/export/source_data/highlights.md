@@ -1,0 +1,5 @@
+- Audits physical accountability of routing near wind-turbine MPPT-to-pitch operating transitions.
+- Reports the RMSE cost of boundary-forced routing against graph and engineering accuracy baselines.
+- Shows boundary-window reserve effects on shortage energy, violation rate, and reserve energy.
+- Treats Kelmarsh/Penmanshiel external runs as failed transfer diagnostics requiring local boundary re-estimation.
+- Separates useful gate responsibility from gate-correct but forecast-bad operating cases.

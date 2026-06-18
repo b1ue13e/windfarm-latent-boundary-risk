@@ -1,0 +1,9 @@
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.18\linewidth} >{\raggedright\arraybackslash}p{0.23\linewidth} >{\raggedright\arraybackslash}p{0.25\linewidth} >{\raggedright\arraybackslash}X}
+\toprule
+Operational case & Evidence & System reading & Claim boundary \\
+\midrule
+MPPT-to-pitch boundary reserve & Boundary window: total cost 88.13M -> 84.58M, violation 0.1038 -> 0.0900, shortage 3.73M -> 3.19M, reserve 50.82M -> 52.67M. MPPT-to-pitch slice: violation 0.1124 -> 0.1027 and shortage 0.77M -> 0.69M, with total cost 16.33M -> 17.93M. & Gate-bin reserve is useful as a boundary shortage alert, especially when the turbine enters pitch control, but the transition slice pays extra reserve cost. & Supported only as a boundary-window diagnostic, not as a full-sample reserve policy. \\
+High-ramp shortage risk & Gate-bin total cost 67.08M versus 67.67M global, but violation rises 0.0766 -> 0.1253, shortage rises 1.06M -> 2.51M, and reserve energy falls 57.03M -> 42.02M. & A gate-conditioned rule can look cheaper by carrying less reserve while exposing the system to more shortage energy in high-ramp windows. & Diagnostic failure case: use ramp-specific checks before deploying gate-bin reserve. \\
+Gate-correct but forecast-bad & Gate label = pitch, true regime = pitch, confidence = 0.99999, Wspd = 11.30, Pab\_mean = 85.72, target mean = 79.18 kW, prediction mean = 1336.76 kW, RMSE = 1258.50. & The router can assign the right operating responsibility while the expert value map is wrong; gate correctness is not a forecast-accuracy guarantee. & Supported as failure transparency and accountability, not as dispatch-ready point forecasting. \\
+\bottomrule
+\end{tabularx}

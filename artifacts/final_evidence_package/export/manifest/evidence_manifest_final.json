@@ -184,6 +184,42 @@
       "exists": true,
       "bytes": 4072,
       "sha256": "4ff8222b65392bfe6d0ec684b22eb9959124a3b7c6fd6be4c34ee8694699c72d"
+    },
+    "operational_case_explanation.csv": {
+      "path": "artifacts\\applied_energy_diagnostics\\operational_case_explanation.csv",
+      "exists": true,
+      "bytes": 1651,
+      "sha256": "36d28798a8340e5612a5d6e632b7fde838b1a92c39d2da0fec2d0dcfaa319158"
+    },
+    "claim_boundary_applied_energy.csv": {
+      "path": "artifacts\\applied_energy_diagnostics\\claim_boundary_applied_energy.csv",
+      "exists": true,
+      "bytes": 1107,
+      "sha256": "e7b6acee67904f3ea5cae1a02b347137ce4c8d9e3604147330e4be234e13fe01"
+    },
+    "cost_ratio_sensitivity_readable.csv": {
+      "path": "artifacts\\applied_energy_diagnostics\\cost_ratio_sensitivity_readable.csv",
+      "exists": true,
+      "bytes": 1376,
+      "sha256": "d08e853f64c37e06d64d9ced2da6bf5e63f02aa7fbe93e28c6f428e87da6aa21"
+    },
+    "highlights.md": {
+      "path": "artifacts\\applied_energy_submission\\highlights.md",
+      "exists": true,
+      "bytes": 502,
+      "sha256": "013319057ba76e4c17e97ea94ea5845538e3e82b7f6b147a5faefcc67aa2cf7c"
+    },
+    "cover_letter.md": {
+      "path": "artifacts\\applied_energy_submission\\cover_letter.md",
+      "exists": true,
+      "bytes": 2569,
+      "sha256": "e448bb107b07898c2f0bccd689a9b8f1b84cfa836f2bbd92b89e1154844b3f6c"
+    },
+    "external_site_transfer_failure_table.csv": {
+      "path": "artifacts\\applied_energy_diagnostics\\external_site_transfer_failure_table.csv",
+      "exists": true,
+      "bytes": 2320,
+      "sha256": "1cb1a662f430f00339d561c7dd0a499cb2a08a0e5fe2415e978fc132d5b730a2"
     }
   },
   "table_outputs": {
@@ -366,6 +402,30 @@
       "exists": true,
       "bytes": 976,
       "sha256": "1756e5eacbb8d5828052fb12cc75796ce129277b655a4d979c5e0745aa2c95c2"
+    },
+    "table_operational_case_explanation.tex": {
+      "path": "artifacts\\applied_energy_diagnostics\\table_operational_case_explanation.tex",
+      "exists": true,
+      "bytes": 1709,
+      "sha256": "549530859648748f4b58410c0ac4bac5c0f0688c71b664f5dfaf1d885cfec677"
+    },
+    "table_claim_boundary_applied_energy.tex": {
+      "path": "artifacts\\applied_energy_diagnostics\\table_claim_boundary_applied_energy.tex",
+      "exists": true,
+      "bytes": 1364,
+      "sha256": "b56d18670ae71d34dbd9dffdd02ab7d6b727d90269d66937868712fdac5b261e"
+    },
+    "table_cost_ratio_sensitivity_readable.tex": {
+      "path": "artifacts\\applied_energy_diagnostics\\table_cost_ratio_sensitivity_readable.tex",
+      "exists": true,
+      "bytes": 1697,
+      "sha256": "b726cb88f8e268a6ad2f5203287e8c27fd23171d488d5ec2a23f131b56f6a526"
+    },
+    "table_external_site_transfer_failure.tex": {
+      "path": "artifacts\\applied_energy_diagnostics\\table_external_site_transfer_failure.tex",
+      "exists": true,
+      "bytes": 2644,
+      "sha256": "da44665ddeafab295177fa066021c04354cc44758206a063380ff4ae2f0dde40"
     }
   },
   "figure_outputs": {

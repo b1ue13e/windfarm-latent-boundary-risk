@@ -1,0 +1,11 @@
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.07\linewidth} >{\raggedright\arraybackslash}p{0.30\linewidth} >{\raggedright\arraybackslash}p{0.34\linewidth} >{\raggedright\arraybackslash}X}
+\toprule
+Cost ratio & Graph WaveNet reference & Boundary router: gate-bin vs global & Reading \\
+\midrule
+2 & Graph WaveNet/global: cost 27.82M, violation 0.3237, shortage 13.91M & Boundary router global = gate-bin: 29.02M, violation 0.3420, shortage 14.51M & Penalty is too low to buy reserve; gate-bin does not change the boundary policy. \\
+5 & Graph WaveNet/physical-bin: cost 60.62M, violation 0.2043, shortage 8.24M & Boundary router gate-bin 60.50M vs global 62.44M; violation 0.2199 -> 0.2029; shortage 8.60M -> 7.77M & Gate-bin begins to reduce boundary shortage and violations. \\
+10 & Graph WaveNet/physical-bin: cost 84.31M, violation 0.0931, shortage 3.40M & Boundary router gate-bin 84.58M vs global 88.13M; violation 0.1038 -> 0.0900; shortage 3.73M -> 3.19M & Main operating point: boundary gate-bin is competitive and lowers shortage relative to same-model global reserve. \\
+20 & Graph WaveNet/physical-bin: cost 109.41M, violation 0.0411, shortage 1.23M & Boundary router gate-bin 110.90M vs global 112.30M; violation roughly unchanged 0.0374 -> 0.0375; shortage 1.06M -> 1.02M & Benefit narrows; the policy mainly shifts reserve allocation inside the boundary band. \\
+50 & Graph WaveNet/physical-bin: cost 135.78M, violation 0.0234, shortage 0.51M & Boundary router gate-bin 142.73M vs global 136.80M; violation 0.0125 -> 0.0160; shortage 0.23M -> 0.37M & At very high penalty, the same-model global policy is safer and cheaper. \\
+\bottomrule
+\end{tabularx}
