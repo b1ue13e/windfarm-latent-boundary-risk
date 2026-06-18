@@ -15,8 +15,8 @@ This manifest records the local evidence files, guards, queue scripts, model che
 
 ## Counts
 
-- Files tracked: `49`
-- Required files: `49`
+- Files tracked: `53`
+- Required files: `53`
 - Missing required files: `0`
 - Strict corrected-router checkpoints: `5` / `5`
 

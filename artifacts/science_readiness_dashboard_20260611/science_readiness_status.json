@@ -1,0 +1,159 @@
+{
+  "generated_at": "2026-06-18T19:16:03",
+  "overall_status": "within_wtb_submission_ready_external_nonportable",
+  "claim_gate": "within_wtb_only",
+  "final_evidence_status": "complete_ready_for_submission_tables",
+  "external_wind_claim_gate": "within_wtb_only",
+  "status_counts": {
+    "complete": 6,
+    "available": 2,
+    "complete_but_within_wtb_only": 1,
+    "diagnostic_only": 1,
+    "within_wtb_ready": 1,
+    "pass": 1
+  },
+  "items": [
+    {
+      "priority": "fatal",
+      "requirement": "Strict-cache strong baselines: Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST",
+      "status": "complete",
+      "expected": 20,
+      "complete": 20,
+      "missing": 0,
+      "evidence": "artifacts\\strict_baseline_protocol_wtb_strictmask_20260609\\guard_after_queue_wait\\strict_baseline_guard.json",
+      "next_action": "Wait for remaining GAT-GRU/PatchTST runs and rerun strict-baseline-guard."
+    },
+    {
+      "priority": "fatal",
+      "requirement": "WTB east-cluster spatial turbine-group holdout",
+      "status": "complete",
+      "expected": 15,
+      "complete": 15,
+      "missing": 0,
+      "evidence": "artifacts\\spatial_holdout_evidence_guard_wtb_east\\spatial_holdout_evidence_guard.json",
+      "next_action": "Execute spatial holdout training, mechanism gate, and reviewer-stat pack."
+    },
+    {
+      "priority": "high-priority",
+      "requirement": "Pre-specified future-period holdout",
+      "status": "complete",
+      "expected": 5,
+      "complete": 5,
+      "missing": 0,
+      "evidence": "artifacts\\future_holdout_evidence_guard_wtb_strictmask\\future_holdout_evidence_guard.json",
+      "next_action": "Execute queued future holdout runs and holdout audits."
+    },
+    {
+      "priority": "high-priority",
+      "requirement": "Strict-cache full ablation including simple routing controls",
+      "status": "complete",
+      "expected": 50,
+      "complete": 50,
+      "missing": 0,
+      "evidence": "artifacts\\strict_ablation_evidence_guard_wtb_strictmask\\strict_ablation_evidence_guard.json",
+      "next_action": "Run strict ablation suite and mechanism-gate routing controls."
+    },
+    {
+      "priority": "high-priority",
+      "requirement": "Strict-cache wrong-threshold mechanism negative controls",
+      "status": "complete",
+      "expected": 20,
+      "complete": 20,
+      "missing": 0,
+      "evidence": "artifacts\\strict_threshold_controls_evidence_guard_wtb_strictmask\\threshold_controls_evidence_guard.json",
+      "next_action": "Run strict threshold-control sensitivity suite and reviewer-stat pack."
+    },
+    {
+      "priority": "strengthening",
+      "requirement": "Reviewer statistics pack: per-example rows, paired tests, efficiency, failure cases",
+      "status": "available",
+      "expected": null,
+      "complete": 25,
+      "missing": null,
+      "evidence": "artifacts\\strictmask_combined_reviewer_stats_guard\\reviewer_stat_pack_guard.json",
+      "next_action": "Regenerate final combined reviewer-stat pack after all strict baselines and ablations finish."
+    },
+    {
+      "priority": "fatal",
+      "requirement": "External Kelmarsh/Penmanshiel portability guard",
+      "status": "complete_but_within_wtb_only",
+      "expected": 80,
+      "complete": 80,
+      "missing": 0,
+      "evidence": "artifacts\\external_wind_guard\\external_wind_guard.json",
+      "next_action": "Keep the manuscript at WTB-only mechanism evidence; do not cite cross-farm portability."
+    },
+    {
+      "priority": "high-priority",
+      "requirement": "External wind source-data guard",
+      "status": "complete",
+      "expected": 31,
+      "complete": 31,
+      "missing": 0,
+      "evidence": "artifacts\\external_wind_source_guard\\external_wind_source_guard.json",
+      "next_action": "Keep Kelmarsh/Penmanshiel source files, checksums, and CC-BY-4.0 manifest in the release bundle."
+    },
+    {
+      "priority": "high-priority",
+      "requirement": "Kelmarsh/Penmanshiel site-specific small-calibration adaptation",
+      "status": "diagnostic_only",
+      "expected": 40,
+      "complete": 40,
+      "missing": 0,
+      "evidence": "artifacts\\external_wind_small_calibration_adaptation\\adaptation_guard.json",
+      "next_action": "Report as a site-specific adaptation diagnostic; do not claim usable external routing unless the guard allows it."
+    },
+    {
+      "priority": "fatal",
+      "requirement": "Final evidence manifest claim gate",
+      "status": "within_wtb_ready",
+      "expected": null,
+      "complete": null,
+      "missing": null,
+      "evidence": "artifacts\\final_evidence_package\\manifest\\evidence_manifest_final.json",
+      "next_action": "Submission tables are ready for the downgraded WTB-only claim; external portability remains uncited."
+    },
+    {
+      "priority": "strengthening",
+      "requirement": "Reproducibility and compliance manifest",
+      "status": "available",
+      "expected": 53,
+      "complete": 53,
+      "missing": 0,
+      "evidence": "artifacts\\reproducibility_manifest_final\\reproducibility_manifest.json",
+      "next_action": "Keep the manifest refreshed after each guard or evidence-package update."
+    },
+    {
+      "priority": "strengthening",
+      "requirement": "ERA5 claim narrowed away from forecasting advantage",
+      "status": "pass",
+      "expected": null,
+      "complete": null,
+      "missing": null,
+      "evidence": "artifacts\\science_top_experiment_audit_20260609.md; paper_draft.md",
+      "next_action": "Keep ERA5 framed as visible-regime routing calibration, not prediction superiority."
+    }
+  ],
+  "source_paths": {
+    "strict_baseline_guard": "artifacts\\strict_baseline_protocol_wtb_strictmask_20260609\\guard_after_queue_wait\\strict_baseline_guard.json",
+    "future_holdout_guard": "artifacts\\future_holdout_protocol_wtb_strictmask_20260609\\guard_before_training_queue\\future_holdout_guard.json",
+    "future_holdout_evidence_guard": "artifacts\\future_holdout_evidence_guard_wtb_strictmask\\future_holdout_evidence_guard.json",
+    "spatial_holdout_guard": "artifacts\\spatial_holdout_protocol_wtb_east_20260611\\guard_before_training_queue\\spatial_holdout_guard.json",
+    "spatial_holdout_evidence_guard": "artifacts\\spatial_holdout_evidence_guard_wtb_east\\spatial_holdout_evidence_guard.json",
+    "strict_ablation_guard": "artifacts\\strict_ablation_guard_wtb_strictmask\\strict_ablation_guard.json",
+    "strict_ablation_evidence_guard": "artifacts\\strict_ablation_evidence_guard_wtb_strictmask\\strict_ablation_evidence_guard.json",
+    "threshold_controls_guard": "artifacts\\strict_threshold_controls_guard_wtb_strictmask\\threshold_controls_guard.json",
+    "threshold_controls_evidence_guard": "artifacts\\strict_threshold_controls_evidence_guard_wtb_strictmask\\threshold_controls_evidence_guard.json",
+    "reviewer_pack_guard": "artifacts\\strictmask_combined_reviewer_stats_guard\\reviewer_stat_pack_guard.json",
+    "reproducibility_manifest": "artifacts\\reproducibility_manifest_final\\reproducibility_manifest.json",
+    "reviewer_pack_config": "artifacts\\strictmask_combined_reviewer_stats\\reviewer_stat_pack_config.json",
+    "external_wind_guard": "artifacts\\external_wind_guard\\external_wind_guard.json",
+    "external_wind_source_guard": "artifacts\\external_wind_source_guard\\external_wind_source_guard.json",
+    "external_wind_adaptation_guard": "artifacts\\external_wind_small_calibration_adaptation\\adaptation_guard.json",
+    "final_evidence_manifest": "artifacts\\final_evidence_package\\manifest\\evidence_manifest_final.json",
+    "audit_doc": "artifacts\\science_top_experiment_audit_20260609.md",
+    "manuscript_doc": "paper_draft.md",
+    "ablation_suite_dir": "artifacts\\strictmask_ablation_rerun_wtb_full",
+    "refresh_script": "artifacts\\science_readiness_dashboard_20260611\\refresh_readiness.ps1"
+  }
+}

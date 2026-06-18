@@ -48,6 +48,7 @@ EXTERNAL_ROUTING_REQUIRED_MODELS = (
     "MoE + L_bal + L_align + L_force",
 )
 EXTERNAL_RESCUE_DIAGNOSTIC_CLAIM_GATE = "within_wtb_external_diagnostics_only"
+EXTERNAL_SMALL_CALIBRATION_CLAIM_GATE = "within_wtb_external_diagnostics_only"
 EXTERNAL_FULL_SOURCE_MIN_FILES = 31
 EXTERNAL_FULL_SOURCE_MIN_BYTES = 10_000_000_000
 EXTERNAL_STATIC_NOTES = {
@@ -2333,6 +2334,574 @@ def run_external_wind_portability_rescue(
     return output_dir
 
 
+def run_external_wind_small_calibration_adaptation(
+    output_dir: Path | str,
+    suite_dir: Path | str = "artifacts/external_wind_runs",
+    seeds: Iterable[int] | str = (201, 202, 203, 204, 205),
+    required_models: Iterable[str] | str = EXTERNAL_ROUTING_REQUIRED_MODELS,
+    rated_wind_grid: Iterable[float] | str = "9.5,10.0,10.5,11.0,11.5",
+    pitch_threshold_grid: Iterable[float] | str = "1.0,2.0,3.0,4.0",
+    cut_in_wind: float = 3.0,
+    calibration_anchor_steps: int = 288,
+    max_calibration_cells: int = 50000,
+    max_test_cells: int = 0,
+    min_chronological_balanced_accuracy: float = 0.50,
+    min_chronological_macro_f1: float = 0.35,
+) -> Path:
+    """Evaluate site-specific boundary and gate mapping from a small validation window.
+
+    This is intentionally a diagnostic adaptation, not a new external portability
+    claim. It uses each external run's validation gate outputs to choose a local
+    rated-wind/pitch boundary and a small majority-vote gate-to-regime map, then
+    freezes those choices before evaluating the held-out test gate outputs.
+    """
+    output_dir = ensure_dir(output_dir)
+    seed_list = _parse_csv_ints(seeds)
+    model_list = _parse_csv_strings(required_models)
+    rated_values = _parse_csv_floats(rated_wind_grid)
+    pitch_values = _parse_csv_floats(pitch_threshold_grid)
+    suite = Path(suite_dir)
+
+    run_df = pd.DataFrame(_external_run_status(suite, seed_list, model_list))
+    routing_model_set = set(EXTERNAL_ROUTING_REQUIRED_MODELS).intersection(set(model_list))
+    routing_df = (
+        run_df[
+            run_df.get("model", pd.Series(dtype=str)).astype(str).isin(routing_model_set)
+            & run_df.get("complete", pd.Series(dtype=bool)).astype(bool)
+        ].copy()
+        if not run_df.empty and routing_model_set
+        else pd.DataFrame()
+    )
+    raw_df, summary_df, guard = _external_small_calibration_tables(
+        routing_df=routing_df,
+        rated_wind_grid=rated_values,
+        pitch_threshold_grid=pitch_values,
+        cut_in_wind=float(cut_in_wind),
+        calibration_anchor_steps=int(calibration_anchor_steps),
+        max_calibration_cells=int(max_calibration_cells),
+        max_test_cells=int(max_test_cells),
+        min_chronological_balanced_accuracy=float(min_chronological_balanced_accuracy),
+        min_chronological_macro_f1=float(min_chronological_macro_f1),
+    )
+    raw_df.to_csv(output_dir / "adaptation_raw.csv", index=False)
+    summary_df.to_csv(output_dir / "adaptation_summary.csv", index=False)
+    _write_external_small_calibration_tex(
+        summary_df,
+        output_dir / "table_external_small_calibration_adaptation.tex",
+    )
+    save_json(output_dir / "adaptation_guard.json", guard)
+    return output_dir
+
+
+def _external_small_calibration_tables(
+    *,
+    routing_df: pd.DataFrame,
+    rated_wind_grid: list[float],
+    pitch_threshold_grid: list[float],
+    cut_in_wind: float,
+    calibration_anchor_steps: int,
+    max_calibration_cells: int,
+    max_test_cells: int,
+    min_chronological_balanced_accuracy: float,
+    min_chronological_macro_f1: float,
+) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, Any]]:
+    if routing_df.empty:
+        guard = _external_small_calibration_guard(
+            pd.DataFrame(),
+            pd.DataFrame(),
+            n_routing_runs=0,
+            min_chronological_balanced_accuracy=min_chronological_balanced_accuracy,
+            min_chronological_macro_f1=min_chronological_macro_f1,
+        )
+        return pd.DataFrame(), pd.DataFrame(), guard
+
+    raw_rows: list[dict[str, Any]] = []
+    per_run_rows: list[dict[str, Any]] = []
+    default_rated = 10.5
+    default_pitch = 2.0
+    for _, run_row in routing_df.iterrows():
+        run_dir_text = str(run_row.get("run_dir", ""))
+        if not run_dir_text:
+            continue
+        run_dir = Path(run_dir_text)
+        val_dir = run_dir / "val_metrics"
+        test_dir = run_dir / "test_metrics"
+        candidates: list[dict[str, Any]] = []
+        for rated in rated_wind_grid:
+            for pitch in pitch_threshold_grid:
+                val_labels = _threshold_gate_label_arrays(
+                    val_dir,
+                    rated,
+                    pitch,
+                    cut_in_wind,
+                    max_anchor_steps=calibration_anchor_steps,
+                    max_cells=max_calibration_cells,
+                )
+                mapping = _fit_gate_calibration_mapping(
+                    val_labels.get("y_true"),
+                    val_labels.get("y_pred"),
+                )
+                calibrated_val_pred = _apply_gate_calibration_mapping(val_labels.get("y_pred"), mapping)
+                val_metrics = _classification_metrics(val_labels.get("y_true"), calibrated_val_pred)
+                row = {
+                    "farm": run_row.get("farm", ""),
+                    "target_farm": run_row.get("target_farm", ""),
+                    "split_id": run_row.get("split_id", ""),
+                    "model": run_row.get("model", ""),
+                    "seed": run_row.get("seed", ""),
+                    "run_dir": run_dir_text,
+                    "rated_wind": float(rated),
+                    "pitch_threshold": float(pitch),
+                    "calibration_anchor_steps": int(calibration_anchor_steps),
+                    "max_calibration_cells": int(max_calibration_cells),
+                    "calibration_n_cells": int(val_metrics.get("n_cells", 0) or 0),
+                    "calibration_accuracy": _finite_or_nan(val_metrics.get("accuracy")),
+                    "calibration_balanced_accuracy": _finite_or_nan(val_metrics.get("balanced_accuracy")),
+                    "calibration_macro_f1": _finite_or_nan(val_metrics.get("macro_f1")),
+                    "calibration_nmi": _finite_or_nan(val_metrics.get("nmi")),
+                    "calibration_ari": _finite_or_nan(val_metrics.get("ari")),
+                    "gate_calibration_map": json.dumps(mapping, sort_keys=True),
+                    "selected_small_calibration": False,
+                }
+                candidates.append(row)
+        selected = _select_small_calibration_candidate(candidates, default_rated, default_pitch)
+        if selected is None:
+            raw_rows.extend(candidates)
+            continue
+        for row in candidates:
+            row["selected_small_calibration"] = bool(
+                np.isclose(float(row["rated_wind"]), float(selected["rated_wind"]))
+                and np.isclose(float(row["pitch_threshold"]), float(selected["pitch_threshold"]))
+                and str(row["gate_calibration_map"]) == str(selected["gate_calibration_map"])
+            )
+        mapping = json.loads(str(selected["gate_calibration_map"]))
+        mapping = {int(key): int(value) for key, value in mapping.items()}
+        default_test_labels = _threshold_gate_label_arrays(
+            test_dir,
+            default_rated,
+            default_pitch,
+            cut_in_wind,
+            max_cells=max_test_cells,
+        )
+        local_test_labels = _threshold_gate_label_arrays(
+            test_dir,
+            float(selected["rated_wind"]),
+            float(selected["pitch_threshold"]),
+            cut_in_wind,
+            max_cells=max_test_cells,
+        )
+        default_test_metrics = _classification_metrics(
+            default_test_labels.get("y_true"),
+            default_test_labels.get("y_pred"),
+        )
+        local_test_metrics = _classification_metrics(
+            local_test_labels.get("y_true"),
+            local_test_labels.get("y_pred"),
+        )
+        adapted_test_pred = _apply_gate_calibration_mapping(local_test_labels.get("y_pred"), mapping)
+        adapted_test_metrics = _classification_metrics(local_test_labels.get("y_true"), adapted_test_pred)
+        per_run_rows.append(
+            {
+                "summary_level": "run",
+                "farm": run_row.get("farm", ""),
+                "target_farm": run_row.get("target_farm", ""),
+                "split_id": run_row.get("split_id", ""),
+                "model": run_row.get("model", ""),
+                "seed": run_row.get("seed", ""),
+                "run_dir": run_dir_text,
+                "default_rated_wind": default_rated,
+                "default_pitch_threshold": default_pitch,
+                "local_rated_wind": float(selected["rated_wind"]),
+                "local_pitch_threshold": float(selected["pitch_threshold"]),
+                "gate_calibration_map": json.dumps(mapping, sort_keys=True),
+                "calibration_anchor_steps": int(calibration_anchor_steps),
+                "max_calibration_cells": int(max_calibration_cells),
+                "max_test_cells": int(max_test_cells),
+                "calibration_n_cells": int(selected.get("calibration_n_cells", 0) or 0),
+                "calibration_accuracy": _finite_or_nan(selected.get("calibration_accuracy")),
+                "calibration_balanced_accuracy": _finite_or_nan(selected.get("calibration_balanced_accuracy")),
+                "calibration_macro_f1": _finite_or_nan(selected.get("calibration_macro_f1")),
+                "calibration_nmi": _finite_or_nan(selected.get("calibration_nmi")),
+                "calibration_ari": _finite_or_nan(selected.get("calibration_ari")),
+                **_prefixed_metric_row("default_test", default_test_metrics),
+                **_prefixed_metric_row("local_boundary_test", local_test_metrics),
+                **_prefixed_metric_row("adapted_test", adapted_test_metrics),
+                "test_accuracy_recovery_vs_default": _finite_or_nan(adapted_test_metrics.get("accuracy"))
+                - _finite_or_nan(default_test_metrics.get("accuracy")),
+                "test_balanced_accuracy_recovery_vs_default": _finite_or_nan(adapted_test_metrics.get("balanced_accuracy"))
+                - _finite_or_nan(default_test_metrics.get("balanced_accuracy")),
+                "test_macro_f1_recovery_vs_default": _finite_or_nan(adapted_test_metrics.get("macro_f1"))
+                - _finite_or_nan(default_test_metrics.get("macro_f1")),
+                "test_nmi_delta_vs_default": _finite_or_nan(adapted_test_metrics.get("nmi"))
+                - _finite_or_nan(default_test_metrics.get("nmi")),
+                "test_ari_delta_vs_default": _finite_or_nan(adapted_test_metrics.get("ari"))
+                - _finite_or_nan(default_test_metrics.get("ari")),
+            }
+        )
+        raw_rows.extend(candidates)
+
+    raw_df = pd.DataFrame(raw_rows)
+    per_run_df = pd.DataFrame(per_run_rows)
+    summary_df = _summarize_external_small_calibration(per_run_df)
+    guard = _external_small_calibration_guard(
+        raw_df,
+        per_run_df,
+        n_routing_runs=int(len(routing_df)),
+        min_chronological_balanced_accuracy=min_chronological_balanced_accuracy,
+        min_chronological_macro_f1=min_chronological_macro_f1,
+    )
+    return raw_df, summary_df, guard
+
+
+def _select_small_calibration_candidate(
+    rows: list[dict[str, Any]],
+    default_rated: float,
+    default_pitch: float,
+) -> dict[str, Any] | None:
+    valid_rows = [
+        row
+        for row in rows
+        if int(row.get("calibration_n_cells", 0) or 0) > 0
+        and (
+            np.isfinite(float(row.get("calibration_balanced_accuracy", float("nan"))))
+            or np.isfinite(float(row.get("calibration_macro_f1", float("nan"))))
+            or np.isfinite(float(row.get("calibration_accuracy", float("nan"))))
+        )
+    ]
+    if not valid_rows:
+        return None
+    return max(
+        valid_rows,
+        key=lambda row: (
+            float(row.get("calibration_balanced_accuracy", float("-inf"))),
+            float(row.get("calibration_macro_f1", float("-inf")))
+            if np.isfinite(float(row.get("calibration_macro_f1", float("nan"))))
+            else -1.0,
+            float(row.get("calibration_accuracy", float("-inf")))
+            if np.isfinite(float(row.get("calibration_accuracy", float("nan"))))
+            else -1.0,
+            float(row.get("calibration_nmi", float("-inf")))
+            if np.isfinite(float(row.get("calibration_nmi", float("nan"))))
+            else -1.0,
+            -abs(float(row["rated_wind"]) - float(default_rated)),
+            -abs(float(row["pitch_threshold"]) - float(default_pitch)),
+        ),
+    )
+
+
+def _threshold_gate_label_arrays(
+    metrics_dir: Path,
+    rated_wind: float,
+    pitch_threshold: float,
+    cut_in_wind: float,
+    *,
+    max_anchor_steps: int = 0,
+    max_cells: int = 0,
+) -> dict[str, Any]:
+    required = ["gate_prob.npy", "anchor_physics.npy"]
+    if not all((metrics_dir / name).exists() for name in required):
+        return {"y_true": np.array([], dtype=np.int16), "y_pred": np.array([], dtype=np.int16)}
+    try:
+        gate_prob = np.asarray(np.load(metrics_dir / "gate_prob.npy", mmap_mode="r"))
+        physics = np.asarray(np.load(metrics_dir / "anchor_physics.npy", mmap_mode="r"))
+    except (OSError, ValueError):
+        return {"y_true": np.array([], dtype=np.int16), "y_pred": np.array([], dtype=np.int16)}
+    if gate_prob.ndim < 3 or physics.ndim < 3 or gate_prob.shape[:2] != physics.shape[:2]:
+        return {"y_true": np.array([], dtype=np.int16), "y_pred": np.array([], dtype=np.int16)}
+    if int(max_anchor_steps) > 0:
+        gate_prob = gate_prob[: int(max_anchor_steps)]
+        physics = physics[: int(max_anchor_steps)]
+    wspd = np.asarray(physics[..., 0], dtype=np.float32)
+    pab = np.asarray(physics[..., 1], dtype=np.float32) if physics.shape[-1] > 1 else np.zeros_like(wspd)
+    regime, valid = compute_wtb_operation_regime(
+        wspd,
+        pab,
+        cut_in_wind=float(cut_in_wind),
+        rated_wind=float(rated_wind),
+        pitch_threshold=float(pitch_threshold),
+    )
+    usable = valid.astype(bool) & np.isfinite(wspd) & np.isfinite(pab)
+    labels = np.asarray(gate_prob[..., :3]).argmax(axis=-1)
+    if labels.shape != regime.shape:
+        return {"y_true": np.array([], dtype=np.int16), "y_pred": np.array([], dtype=np.int16)}
+    y_true = np.asarray(regime[usable].reshape(-1), dtype=np.int16)
+    y_pred = np.asarray(labels[usable].reshape(-1), dtype=np.int16)
+    if int(max_cells) > 0 and y_true.size > int(max_cells):
+        indices = np.linspace(0, y_true.size - 1, int(max_cells), dtype=np.int64)
+        y_true = y_true[indices]
+        y_pred = y_pred[indices]
+    return {"y_true": y_true, "y_pred": y_pred}
+
+
+def _fit_gate_calibration_mapping(y_true: Any, y_pred: Any) -> dict[int, int]:
+    true_arr = np.asarray(y_true if y_true is not None else [], dtype=np.int16).reshape(-1)
+    pred_arr = np.asarray(y_pred if y_pred is not None else [], dtype=np.int16).reshape(-1)
+    mapping: dict[int, int] = {}
+    for gate_label in range(3):
+        selected = true_arr[pred_arr == gate_label] if true_arr.size and pred_arr.size == true_arr.size else np.array([])
+        if selected.size == 0:
+            mapping[gate_label] = gate_label
+            continue
+        counts = np.bincount(selected.astype(int), minlength=4)
+        best_count = int(counts.max())
+        candidates = [idx for idx, count in enumerate(counts) if int(count) == best_count]
+        mapping[gate_label] = gate_label if gate_label in candidates else int(candidates[0])
+    return mapping
+
+
+def _apply_gate_calibration_mapping(y_pred: Any, mapping: dict[int, int]) -> np.ndarray:
+    pred_arr = np.asarray(y_pred if y_pred is not None else [], dtype=np.int16).reshape(-1)
+    if pred_arr.size == 0:
+        return pred_arr
+    out = pred_arr.copy()
+    for src, dst in mapping.items():
+        out[pred_arr == int(src)] = int(dst)
+    return out
+
+
+def _classification_metrics(y_true: Any, y_pred: Any) -> dict[str, Any]:
+    true_arr = np.asarray(y_true if y_true is not None else [], dtype=np.int16).reshape(-1)
+    pred_arr = np.asarray(y_pred if y_pred is not None else [], dtype=np.int16).reshape(-1)
+    if true_arr.size == 0 or pred_arr.size != true_arr.size:
+        return {
+            "n_cells": int(0),
+            "accuracy": float("nan"),
+            "balanced_accuracy": float("nan"),
+            "macro_f1": float("nan"),
+            "nmi": float("nan"),
+            "ari": float("nan"),
+        }
+    try:
+        from sklearn.metrics import (
+            accuracy_score,
+            adjusted_rand_score,
+            f1_score,
+            normalized_mutual_info_score,
+        )
+    except ImportError:
+        return {
+            "n_cells": int(true_arr.size),
+            "accuracy": float(np.mean(true_arr == pred_arr)),
+            "balanced_accuracy": float("nan"),
+            "macro_f1": float("nan"),
+            "nmi": float("nan"),
+            "ari": float("nan"),
+        }
+    present = np.unique(true_arr)
+    recalls = [
+        float(np.mean(pred_arr[true_arr == class_id] == class_id))
+        for class_id in present
+        if int((true_arr == class_id).sum()) > 0
+    ]
+    balanced = float(np.mean(recalls)) if recalls else float("nan")
+    nmi = float(normalized_mutual_info_score(true_arr, pred_arr))
+    ari = float(adjusted_rand_score(true_arr, pred_arr))
+    return {
+        "n_cells": int(true_arr.size),
+        "accuracy": float(accuracy_score(true_arr, pred_arr)),
+        "balanced_accuracy": balanced,
+        "macro_f1": float(f1_score(true_arr, pred_arr, average="macro", zero_division=0)),
+        "nmi": nmi,
+        "ari": ari,
+    }
+
+
+def _prefixed_metric_row(prefix: str, metrics: dict[str, Any]) -> dict[str, Any]:
+    return {
+        f"{prefix}_n_cells": int(metrics.get("n_cells", 0) or 0),
+        f"{prefix}_accuracy": _finite_or_nan(metrics.get("accuracy")),
+        f"{prefix}_balanced_accuracy": _finite_or_nan(metrics.get("balanced_accuracy")),
+        f"{prefix}_macro_f1": _finite_or_nan(metrics.get("macro_f1")),
+        f"{prefix}_nmi": _finite_or_nan(metrics.get("nmi")),
+        f"{prefix}_ari": _finite_or_nan(metrics.get("ari")),
+    }
+
+
+def _summarize_external_small_calibration(per_run_df: pd.DataFrame) -> pd.DataFrame:
+    if per_run_df.empty:
+        return pd.DataFrame()
+    numeric_cols = [
+        "calibration_n_cells",
+        "calibration_accuracy",
+        "calibration_balanced_accuracy",
+        "calibration_macro_f1",
+        "calibration_nmi",
+        "calibration_ari",
+        "default_test_accuracy",
+        "default_test_balanced_accuracy",
+        "default_test_macro_f1",
+        "default_test_nmi",
+        "default_test_ari",
+        "local_boundary_test_accuracy",
+        "local_boundary_test_balanced_accuracy",
+        "local_boundary_test_macro_f1",
+        "local_boundary_test_nmi",
+        "local_boundary_test_ari",
+        "adapted_test_accuracy",
+        "adapted_test_balanced_accuracy",
+        "adapted_test_macro_f1",
+        "adapted_test_nmi",
+        "adapted_test_ari",
+        "test_accuracy_recovery_vs_default",
+        "test_balanced_accuracy_recovery_vs_default",
+        "test_macro_f1_recovery_vs_default",
+        "test_nmi_delta_vs_default",
+        "test_ari_delta_vs_default",
+    ]
+    rows: list[dict[str, Any]] = []
+    for group_cols in [
+        ["farm", "target_farm", "split_id", "model"],
+        ["split_id", "model"],
+        ["model"],
+    ]:
+        for keys, group in per_run_df.groupby(group_cols, dropna=False, sort=False):
+            if not isinstance(keys, tuple):
+                keys = (keys,)
+            row: dict[str, Any] = {column: value for column, value in zip(group_cols, keys)}
+            row["summary_level"] = "+".join(group_cols)
+            row["n_runs"] = int(len(group))
+            row["selected_local_boundaries"] = _joined_unique_boundaries(group)
+            row["gate_calibration_maps"] = ";".join(sorted(set(group.get("gate_calibration_map", pd.Series(dtype=str)).astype(str))))
+            for column in numeric_cols:
+                values = pd.to_numeric(group.get(column), errors="coerce").dropna()
+                row[f"{column}_mean"] = float(values.mean()) if not values.empty else float("nan")
+            rows.append(row)
+    overall: dict[str, Any] = {"summary_level": "overall", "n_runs": int(len(per_run_df))}
+    overall["selected_local_boundaries"] = _joined_unique_boundaries(per_run_df)
+    overall["gate_calibration_maps"] = ";".join(sorted(set(per_run_df.get("gate_calibration_map", pd.Series(dtype=str)).astype(str))))
+    for column in numeric_cols:
+        values = pd.to_numeric(per_run_df.get(column), errors="coerce").dropna()
+        overall[f"{column}_mean"] = float(values.mean()) if not values.empty else float("nan")
+    rows.append(overall)
+    return pd.DataFrame(rows)
+
+
+def _joined_unique_boundaries(frame: pd.DataFrame) -> str:
+    if frame.empty or "local_rated_wind" not in frame or "local_pitch_threshold" not in frame:
+        return ""
+    return ";".join(
+        sorted(
+            {
+                f"{float(rated):.2f}/{float(pitch):.2f}"
+                for rated, pitch in zip(frame["local_rated_wind"], frame["local_pitch_threshold"])
+                if np.isfinite(float(rated)) and np.isfinite(float(pitch))
+            }
+        )
+    )
+
+
+def _external_small_calibration_guard(
+    raw_df: pd.DataFrame,
+    per_run_df: pd.DataFrame,
+    *,
+    n_routing_runs: int,
+    min_chronological_balanced_accuracy: float,
+    min_chronological_macro_f1: float,
+) -> dict[str, Any]:
+    chronological = (
+        per_run_df[per_run_df.get("split_id", pd.Series(dtype=str)).astype(str).eq("chronological")]
+        if not per_run_df.empty and "split_id" in per_run_df
+        else pd.DataFrame()
+    )
+    chrono_farms = set(chronological.get("farm", pd.Series(dtype=str)).astype(str)) if not chronological.empty else set()
+    chrono_balanced = pd.to_numeric(chronological.get("adapted_test_balanced_accuracy"), errors="coerce").dropna() if not chronological.empty else pd.Series(dtype=float)
+    chrono_macro = pd.to_numeric(chronological.get("adapted_test_macro_f1"), errors="coerce").dropna() if not chronological.empty else pd.Series(dtype=float)
+    recovery = pd.to_numeric(per_run_df.get("test_balanced_accuracy_recovery_vs_default"), errors="coerce").dropna() if not per_run_df.empty else pd.Series(dtype=float)
+    checks = {
+        "routing_runs_present": int(n_routing_runs) > 0,
+        "adaptation_raw_written": not raw_df.empty,
+        "adaptation_summary_written": not per_run_df.empty,
+        "selected_small_calibration_per_run": int(len(per_run_df)) == int(n_routing_runs) and int(n_routing_runs) > 0,
+        "calibration_window_nonempty": bool(
+            not per_run_df.empty and pd.to_numeric(per_run_df.get("calibration_n_cells"), errors="coerce").fillna(0).gt(0).all()
+        ),
+        "heldout_test_metrics_present": bool(
+            not per_run_df.empty
+            and pd.to_numeric(per_run_df.get("adapted_test_balanced_accuracy"), errors="coerce").notna().all()
+        ),
+        "chronological_kelmarsh_penmanshiel_present": {"kelmarsh", "penmanshiel"}.issubset(chrono_farms),
+        "chronological_balanced_accuracy_meets_minimum": bool(
+            not chrono_balanced.empty and float(chrono_balanced.mean()) >= float(min_chronological_balanced_accuracy)
+        ),
+        "chronological_macro_f1_meets_minimum": bool(
+            not chrono_macro.empty and float(chrono_macro.mean()) >= float(min_chronological_macro_f1)
+        ),
+    }
+    core_complete = bool(
+        checks["routing_runs_present"]
+        and checks["adaptation_raw_written"]
+        and checks["adaptation_summary_written"]
+        and checks["selected_small_calibration_per_run"]
+        and checks["calibration_window_nonempty"]
+        and checks["heldout_test_metrics_present"]
+    )
+    usable = bool(
+        core_complete
+        and checks["chronological_kelmarsh_penmanshiel_present"]
+        and checks["chronological_balanced_accuracy_meets_minimum"]
+        and checks["chronological_macro_f1_meets_minimum"]
+    )
+    status = "complete_site_specific_adaptation_diagnostic" if core_complete else "blocked_site_specific_adaptation_diagnostic"
+    return {
+        "status": status,
+        "claim_gate": EXTERNAL_SMALL_CALIBRATION_CLAIM_GATE,
+        "portable_wording_allowed": False,
+        "site_specific_adaptation_wording_allowed": bool(usable),
+        "checks": checks,
+        "n_routing_runs": int(n_routing_runs),
+        "n_adapted_runs": int(len(per_run_df)),
+        "mean_test_balanced_accuracy_recovery_vs_default": float(recovery.mean()) if not recovery.empty else None,
+        "chronological_adapted_test_balanced_accuracy_mean": float(chrono_balanced.mean()) if not chrono_balanced.empty else None,
+        "chronological_adapted_test_macro_f1_mean": float(chrono_macro.mean()) if not chrono_macro.empty else None,
+        "min_chronological_balanced_accuracy": float(min_chronological_balanced_accuracy),
+        "min_chronological_macro_f1": float(min_chronological_macro_f1),
+        "claim_use": "site-specific small-calibration-window diagnostic; do not claim external-site portability without local testing",
+    }
+
+
+def _write_external_small_calibration_tex(summary_df: pd.DataFrame, path: Path) -> None:
+    if summary_df.empty:
+        path.write_text(
+            "\\begin{tabular}{lrrrrr}\n"
+            "\\toprule\n"
+            "Group & Runs & Default bal. acc. & Adapted bal. acc. & Adapted macro-F1 & Recovery \\\\\n"
+            "\\midrule\n"
+            "\\bottomrule\n"
+            "\\end{tabular}\n",
+            encoding="utf-8",
+        )
+        return
+    display = summary_df[
+        summary_df["summary_level"].astype(str).isin(["farm+target_farm+split_id+model", "overall"])
+    ].copy()
+    lines = [
+        "\\begin{tabular}{lrrrrr}",
+        "\\toprule",
+        "Group & Runs & Default bal. acc. & Adapted bal. acc. & Adapted macro-F1 & Recovery \\\\",
+        "\\midrule",
+    ]
+    for _, row in display.iterrows():
+        if str(row.get("summary_level", "")) == "overall":
+            label = "Overall"
+        else:
+            parts = [
+                str(row.get("farm", "")),
+                str(row.get("target_farm", "")),
+                str(row.get("split_id", "")),
+                str(row.get("model", "")),
+            ]
+            label = " / ".join(part for part in parts if part and part.lower() != "nan")
+        lines.append(
+            f"{_latex_escape(label)} & {int(row.get('n_runs', 0))} & "
+            f"{_format_tex_float(row.get('default_test_balanced_accuracy_mean'))} & "
+            f"{_format_tex_float(row.get('adapted_test_balanced_accuracy_mean'))} & "
+            f"{_format_tex_float(row.get('adapted_test_macro_f1_mean'))} & "
+            f"{_format_tex_float(row.get('test_balanced_accuracy_recovery_vs_default_mean'))} \\\\"
+        )
+    lines.extend(["\\bottomrule", "\\end{tabular}"])
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def _external_recalibration_tables(
     *,
     run_df: pd.DataFrame,
@@ -2539,7 +3108,7 @@ def _external_recalibration_guard(
         "mean_recalibrated_test_nmi": float(recal_nmi.mean()) if not recal_nmi.empty else None,
         "mean_test_nmi_recovery": float(recovery.mean()) if not recovery.empty else None,
         "mean_recalibrated_nmi_not_lower_than_default": bool(not recovery.empty and recovery.mean() >= -1e-12),
-        "claim_use": "boundary-condition diagnostic; do not claim unconditional external portability",
+        "claim_use": "boundary-condition diagnostic; do not cite as external-site portability",
     }
 
 

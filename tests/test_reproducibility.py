@@ -19,6 +19,8 @@ class ReproducibilityManifestTests(unittest.TestCase):
         self.assertIn("artifacts/decision_reserve_wtb_operational_windows/reserve_decision_operational_windows.csv", paths)
         self.assertIn("artifacts/decision_reserve_wtb_operational_windows_guard/reserve_decision_guard.json", paths)
         self.assertIn("artifacts/external_wind_guard/external_wind_guard.json", paths)
+        self.assertIn("artifacts/external_wind_small_calibration_adaptation/adaptation_guard.json", paths)
+        self.assertIn("artifacts/external_wind_small_calibration_adaptation/adaptation_summary.csv", paths)
         self.assertIn("artifacts/reproduction_package_20260611/rebuild_final_evidence_package.ps1", paths)
 
     def test_parser_accepts_reproducibility_manifest_command(self) -> None:

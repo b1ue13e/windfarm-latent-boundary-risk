@@ -26,6 +26,7 @@ DEFAULT_MANUSCRIPT_DOC = Path("paper_draft.md")
 DEFAULT_ABLATION_SUITE = Path("artifacts/strictmask_ablation_rerun_wtb_full")
 DEFAULT_EXTERNAL_WIND_GUARD_DIR = Path("artifacts/external_wind_guard")
 DEFAULT_EXTERNAL_WIND_SOURCE_GUARD_DIR = Path("artifacts/external_wind_source_guard")
+DEFAULT_EXTERNAL_WIND_ADAPTATION_GUARD = Path("artifacts/external_wind_small_calibration_adaptation/adaptation_guard.json")
 DEFAULT_FINAL_EVIDENCE_MANIFEST = Path("artifacts/final_evidence_package/manifest/evidence_manifest_final.json")
 
 ABLATION_VARIANTS = (
@@ -114,7 +115,15 @@ def _overall_status(items: list[dict[str, Any]], final_manifest: dict[str, Any],
         return "within_wtb_submission_ready"
     if final_status == "blocked":
         return "blocked_final_evidence_incomplete"
-    ready_statuses = {"complete", "pass", "available", "portable_ready", "within_wtb_ready", "complete_but_within_wtb_only"}
+    ready_statuses = {
+        "complete",
+        "diagnostic_only",
+        "pass",
+        "available",
+        "portable_ready",
+        "within_wtb_ready",
+        "complete_but_within_wtb_only",
+    }
     return "active_incomplete" if any(row["status"] not in ready_statuses for row in items) else "complete_candidate"
 
 
@@ -229,6 +238,7 @@ def run_science_readiness_dashboard(
     reviewer_pack_config: Path | str | None = None,
     external_wind_guard: Path | str | None = None,
     external_wind_source_guard: Path | str | None = None,
+    external_wind_adaptation_guard: Path | str | None = None,
     final_evidence_manifest: Path | str | None = None,
     audit_doc: Path | str | None = None,
     manuscript_doc: Path | str | None = None,
@@ -271,6 +281,11 @@ def run_science_readiness_dashboard(
         if external_wind_source_guard
         else _latest_file(root_dir / DEFAULT_EXTERNAL_WIND_SOURCE_GUARD_DIR, "external_wind_source_guard.json")
     )
+    external_adaptation_guard_path = (
+        Path(external_wind_adaptation_guard)
+        if external_wind_adaptation_guard
+        else root_dir / DEFAULT_EXTERNAL_WIND_ADAPTATION_GUARD
+    )
     final_manifest_path = Path(final_evidence_manifest) if final_evidence_manifest else root_dir / DEFAULT_FINAL_EVIDENCE_MANIFEST
     audit_path = Path(audit_doc) if audit_doc else root_dir / DEFAULT_AUDIT_DOC
     manuscript_path = Path(manuscript_doc) if manuscript_doc else root_dir / DEFAULT_MANUSCRIPT_DOC
@@ -290,6 +305,7 @@ def run_science_readiness_dashboard(
     reviewer = _safe_json(reviewer_path)
     external_guard = _safe_json(external_guard_path)
     external_source_guard = _safe_json(external_source_guard_path)
+    external_adaptation_guard = _safe_json(external_adaptation_guard_path)
     final_manifest = _safe_json(final_manifest_path)
     ablation_counts = _count_suite_runs(ablation_suite, ABLATION_VARIANTS, ABLATION_SEEDS)
 
@@ -487,6 +503,28 @@ def run_science_readiness_dashboard(
         )
     )
 
+    adaptation_status = _status_from_guard(external_adaptation_guard)
+    if external_adaptation_guard and str(external_adaptation_guard.get("status", "")).startswith("complete"):
+        adaptation_status = (
+            "diagnostic_only"
+            if not bool(external_adaptation_guard.get("site_specific_adaptation_wording_allowed", False))
+            else "complete"
+        )
+    items.append(
+        _item(
+            "high-priority",
+            "Kelmarsh/Penmanshiel site-specific small-calibration adaptation",
+            adaptation_status,
+            str(external_adaptation_guard_path),
+            "Report as a site-specific adaptation diagnostic; do not claim usable external routing unless the guard allows it.",
+            int(external_adaptation_guard.get("n_routing_runs", 0)) if external_adaptation_guard else None,
+            int(external_adaptation_guard.get("n_adapted_runs", 0)) if external_adaptation_guard else None,
+            int(external_adaptation_guard.get("n_routing_runs", 0)) - int(external_adaptation_guard.get("n_adapted_runs", 0))
+            if external_adaptation_guard and "n_routing_runs" in external_adaptation_guard
+            else None,
+        )
+    )
+
     final_status = _final_evidence_status(final_manifest)
     final_next_action = "Refresh final evidence after any guard, reviewer pack, or manuscript claim-gate change."
     if final_status == "within_wtb_ready":
@@ -593,6 +631,7 @@ def run_science_readiness_dashboard(
             "reviewer_pack_config": str(reviewer_path),
             "external_wind_guard": str(external_guard_path) if external_guard_path else "",
             "external_wind_source_guard": str(external_source_guard_path) if external_source_guard_path else "",
+            "external_wind_adaptation_guard": str(external_adaptation_guard_path),
             "final_evidence_manifest": str(final_manifest_path),
             "audit_doc": str(audit_path),
             "manuscript_doc": str(manuscript_path),

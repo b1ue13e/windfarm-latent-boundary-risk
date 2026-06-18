@@ -253,35 +253,35 @@
     },
     {
       "group": "table_outputs",
-      "name": "table_operational_case_explanation.tex",
-      "source": "artifacts\\applied_energy_diagnostics\\table_operational_case_explanation.tex",
-      "target": "artifacts\\final_evidence_package\\export\\tables\\table_operational_case_explanation.tex",
-      "bytes": 1709,
-      "sha256": "549530859648748f4b58410c0ac4bac5c0f0688c71b664f5dfaf1d885cfec677"
+      "name": "adaptation_summary.csv",
+      "source": "artifacts\\external_wind_small_calibration_adaptation\\adaptation_summary.csv",
+      "target": "artifacts\\final_evidence_package\\export\\tables\\adaptation_summary.csv",
+      "bytes": 11121,
+      "sha256": "227441615d652221cd11fba44231db06267187282ad14676cdd226131adf0885"
+    },
+    {
+      "group": "table_outputs",
+      "name": "table_external_small_calibration_adaptation.tex",
+      "source": "artifacts\\external_wind_small_calibration_adaptation\\table_external_small_calibration_adaptation.tex",
+      "target": "artifacts\\final_evidence_package\\export\\tables\\table_external_small_calibration_adaptation.tex",
+      "bytes": 1088,
+      "sha256": "4e6125e0158e4e963eb414928f2b9302689fa4e51a664010476b77177f5c5d06"
     },
     {
       "group": "table_outputs",
       "name": "table_claim_boundary_applied_energy.tex",
       "source": "artifacts\\applied_energy_diagnostics\\table_claim_boundary_applied_energy.tex",
       "target": "artifacts\\final_evidence_package\\export\\tables\\table_claim_boundary_applied_energy.tex",
-      "bytes": 1364,
-      "sha256": "b56d18670ae71d34dbd9dffdd02ab7d6b727d90269d66937868712fdac5b261e"
-    },
-    {
-      "group": "table_outputs",
-      "name": "table_cost_ratio_sensitivity_readable.tex",
-      "source": "artifacts\\applied_energy_diagnostics\\table_cost_ratio_sensitivity_readable.tex",
-      "target": "artifacts\\final_evidence_package\\export\\tables\\table_cost_ratio_sensitivity_readable.tex",
-      "bytes": 1697,
-      "sha256": "b726cb88f8e268a6ad2f5203287e8c27fd23171d488d5ec2a23f131b56f6a526"
+      "bytes": 1800,
+      "sha256": "5dd7001d9696622e6e89b9661513f22a6309887b13a5f32ce2a1a4d35a04bd93"
     },
     {
       "group": "table_outputs",
       "name": "table_external_site_transfer_failure.tex",
       "source": "artifacts\\applied_energy_diagnostics\\table_external_site_transfer_failure.tex",
       "target": "artifacts\\final_evidence_package\\export\\tables\\table_external_site_transfer_failure.tex",
-      "bytes": 2644,
-      "sha256": "da44665ddeafab295177fa066021c04354cc44758206a063380ff4ae2f0dde40"
+      "bytes": 3326,
+      "sha256": "2f5db6ce1a08f7e5b12c617d385a6239bffd2c5ba1131730d1baa95176712dd7"
     },
     {
       "group": "source_artifacts",
@@ -432,8 +432,24 @@
       "name": "external_wind_recalibration_guard.json",
       "source": "artifacts\\external_wind_portability_rescue\\external_wind_recalibration_guard.json",
       "target": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_recalibration_guard.json",
-      "bytes": 703,
-      "sha256": "88440a77b8d83702c0bfa01dcf073f63008f05abe5efd57ffa408c32dd95b5a7"
+      "bytes": 696,
+      "sha256": "81d85840060eb3f7262a329cec8dbc65c465bfbaee55eca552e019f225414e28"
+    },
+    {
+      "group": "source_artifacts",
+      "name": "adaptation_raw.csv",
+      "source": "artifacts\\external_wind_small_calibration_adaptation\\adaptation_raw.csv",
+      "target": "artifacts\\final_evidence_package\\export\\source_data\\adaptation_raw.csv",
+      "bytes": 219552,
+      "sha256": "411450a003f8c59f9997c68fcce739b35c98983677704ad3ed0d6447bf1c1546"
+    },
+    {
+      "group": "source_artifacts",
+      "name": "adaptation_guard.json",
+      "source": "artifacts\\external_wind_small_calibration_adaptation\\adaptation_guard.json",
+      "target": "artifacts\\final_evidence_package\\export\\source_data\\adaptation_guard.json",
+      "bytes": 1137,
+      "sha256": "a756159881ba4fb83cc163d03a7b4520ce9c9507258078b17bcd0d79581be15a"
     },
     {
       "group": "source_artifacts",
@@ -501,51 +517,35 @@
     },
     {
       "group": "source_artifacts",
-      "name": "operational_case_explanation.csv",
-      "source": "artifacts\\applied_energy_diagnostics\\operational_case_explanation.csv",
-      "target": "artifacts\\final_evidence_package\\export\\source_data\\operational_case_explanation.csv",
-      "bytes": 1651,
-      "sha256": "36d28798a8340e5612a5d6e632b7fde838b1a92c39d2da0fec2d0dcfaa319158"
-    },
-    {
-      "group": "source_artifacts",
       "name": "claim_boundary_applied_energy.csv",
       "source": "artifacts\\applied_energy_diagnostics\\claim_boundary_applied_energy.csv",
       "target": "artifacts\\final_evidence_package\\export\\source_data\\claim_boundary_applied_energy.csv",
-      "bytes": 1107,
-      "sha256": "e7b6acee67904f3ea5cae1a02b347137ce4c8d9e3604147330e4be234e13fe01"
-    },
-    {
-      "group": "source_artifacts",
-      "name": "cost_ratio_sensitivity_readable.csv",
-      "source": "artifacts\\applied_energy_diagnostics\\cost_ratio_sensitivity_readable.csv",
-      "target": "artifacts\\final_evidence_package\\export\\source_data\\cost_ratio_sensitivity_readable.csv",
-      "bytes": 1376,
-      "sha256": "d08e853f64c37e06d64d9ced2da6bf5e63f02aa7fbe93e28c6f428e87da6aa21"
-    },
-    {
-      "group": "source_artifacts",
-      "name": "highlights.md",
-      "source": "artifacts\\applied_energy_submission\\highlights.md",
-      "target": "artifacts\\final_evidence_package\\export\\source_data\\highlights.md",
-      "bytes": 502,
-      "sha256": "013319057ba76e4c17e97ea94ea5845538e3e82b7f6b147a5faefcc67aa2cf7c"
-    },
-    {
-      "group": "source_artifacts",
-      "name": "cover_letter.md",
-      "source": "artifacts\\applied_energy_submission\\cover_letter.md",
-      "target": "artifacts\\final_evidence_package\\export\\source_data\\cover_letter.md",
-      "bytes": 2569,
-      "sha256": "e448bb107b07898c2f0bccd689a9b8f1b84cfa836f2bbd92b89e1154844b3f6c"
+      "bytes": 1549,
+      "sha256": "fe647045e36cacc8a4e711aa3264431b9e03f7faf34028061076a03b91902215"
     },
     {
       "group": "source_artifacts",
       "name": "external_site_transfer_failure_table.csv",
       "source": "artifacts\\applied_energy_diagnostics\\external_site_transfer_failure_table.csv",
       "target": "artifacts\\final_evidence_package\\export\\source_data\\external_site_transfer_failure_table.csv",
-      "bytes": 2320,
-      "sha256": "1cb1a662f430f00339d561c7dd0a499cb2a08a0e5fe2415e978fc132d5b730a2"
+      "bytes": 3049,
+      "sha256": "9d5e68fef9932992bda9d1397f4e43c0cd76eb57157f23f39e3d219ed12bdf00"
+    },
+    {
+      "group": "source_artifacts",
+      "name": "highlights.md",
+      "source": "artifacts\\applied_energy_submission\\highlights.md",
+      "target": "artifacts\\final_evidence_package\\export\\source_data\\highlights.md",
+      "bytes": 526,
+      "sha256": "3ccb11b3b1eb0d3a697815ed3b25f722c3a03218ce7647a4fbb6fe348205060a"
+    },
+    {
+      "group": "source_artifacts",
+      "name": "cover_letter.md",
+      "source": "artifacts\\applied_energy_submission\\cover_letter.md",
+      "target": "artifacts\\final_evidence_package\\export\\source_data\\cover_letter.md",
+      "bytes": 2715,
+      "sha256": "86982c16757c85bd2c2bfcb0988941877e703feb2ef0d4a16840f7a07695a916"
     },
     {
       "group": "figure_outputs",
@@ -570,6 +570,14 @@
       "target": "artifacts\\final_evidence_package\\export\\figures\\figure4_routing_evidence.pdf",
       "bytes": 85060,
       "sha256": "4960c7347583054bb92b3f9827e97dbad6e4aabd4f0285788129f26a9233bed1"
+    },
+    {
+      "group": "figure_outputs",
+      "name": "figure6_ablation_tradeoff.pdf",
+      "source": "artifacts\\paper_assets\\figures\\figure6_ablation_tradeoff.pdf",
+      "target": "artifacts\\final_evidence_package\\export\\figures\\figure6_ablation_tradeoff.pdf",
+      "bytes": 26453,
+      "sha256": "3430de4ed9f812cfcbbd5cb6c016d16defe313fb8b024a8e011101ca604b3e03"
     },
     {
       "group": "guard_status",
@@ -640,16 +648,8 @@
       "name": "external_wind_recalibration_guard",
       "source": "artifacts\\external_wind_portability_rescue\\external_wind_recalibration_guard.json",
       "target": "artifacts\\final_evidence_package\\export\\guards\\external_wind_recalibration_guard.json",
-      "bytes": 703,
-      "sha256": "88440a77b8d83702c0bfa01dcf073f63008f05abe5efd57ffa408c32dd95b5a7"
-    },
-    {
-      "group": "guard_status",
-      "name": "evidence_freeze_guard",
-      "source": "artifacts\\final_evidence_freeze_guard\\evidence_freeze_guard.json",
-      "target": "artifacts\\final_evidence_package\\export\\guards\\evidence_freeze_guard.json",
-      "bytes": 19750,
-      "sha256": "c051795af650d1a5a8d4869bc1e82234d35bc984eed3fdfd94cba15e5a4d9f75"
+      "bytes": 696,
+      "sha256": "81d85840060eb3f7262a329cec8dbc65c465bfbaee55eca552e019f225414e28"
     },
     {
       "group": "guard_status",
@@ -660,21 +660,37 @@
       "sha256": "06447903bfa98bd83822eff2e90e72d3bd128483506b58f4e0f69fbb3a83dc2b"
     },
     {
+      "group": "guard_status",
+      "name": "adaptation_guard",
+      "source": "artifacts\\external_wind_small_calibration_adaptation\\adaptation_guard.json",
+      "target": "artifacts\\final_evidence_package\\export\\guards\\adaptation_guard.json",
+      "bytes": 1137,
+      "sha256": "a756159881ba4fb83cc163d03a7b4520ce9c9507258078b17bcd0d79581be15a"
+    },
+    {
+      "group": "guard_status",
+      "name": "evidence_freeze_guard",
+      "source": "artifacts\\final_evidence_freeze_guard\\evidence_freeze_guard.json",
+      "target": "artifacts\\final_evidence_package\\export\\guards\\evidence_freeze_guard.json",
+      "bytes": 21311,
+      "sha256": "25427612afa4de94f93d5c2bce60fa6ac1f75ba71925389237fe2f457e8fdd57"
+    },
+    {
       "group": "manifest",
       "name": "evidence_manifest_final.json",
-      "source": "artifacts\\final_evidence_package\\export\\manifest\\evidence_manifest_final.json",
+      "source": "artifacts\\final_evidence_package\\manifest\\evidence_manifest_final.json",
       "target": "artifacts\\final_evidence_package\\export\\manifest\\evidence_manifest_final.json",
-      "bytes": 39771,
-      "sha256": "797b6bcd99ca13fa243fd8639085efaa6264377561ddcd1bd85ed8ba05df764e"
+      "bytes": 40757,
+      "sha256": "5e6942ab46c4309ba496cb5504eb47aa440f2c16eb41b557243f05f5e0b6f645"
     },
     {
       "group": "manifest",
       "name": "final_evidence_checks.csv",
-      "source": "artifacts\\final_evidence_package\\export\\manifest\\final_evidence_checks.csv",
+      "source": "artifacts\\final_evidence_package\\manifest\\final_evidence_checks.csv",
       "target": "artifacts\\final_evidence_package\\export\\manifest\\final_evidence_checks.csv",
       "bytes": 1503,
       "sha256": "5e317281df08bca19743dfe3f3d98793e7aeea39f5d115f6223dae282feb182b"
     }
   ],
-  "source_manifest": "artifacts\\final_evidence_package\\export\\manifest\\evidence_manifest_final.json"
+  "source_manifest": "artifacts\\final_evidence_package\\manifest\\evidence_manifest_final.json"
 }

@@ -1,7 +1,8 @@
 claim,status,safe_wording
 WTB operating-boundary routing accountability,Supported,"Boundary-forced routing recovers the MPPT/pitch partition under strict-cache WTB replay, intervention, placebo, threshold-validity, and within-WTB spatial/future stress tests."
-Boundary-window reserve relevance,"Supported, conditional",Gate-aware reserve can reduce boundary-window shortage and violation in selected operating slices; it is not a universal reserve policy.
+Headline forecast-error dominance,Not supported,"Graph WaveNet and lag-feature engineering baselines remain stronger WTB forecasters on RMSE; the routed model pays an explicit forecasting cost."
+Boundary-window reserve relevance,"Supported, conditional","Gate-aware reserve is a transition-window diagnostic that can reduce boundary-window shortage and violation in selected operating slices; it is not market-level, dispatch-level, or stochastic reserve optimization."
 Failure-case transparency,Supported,Gate-correct but forecast-bad cases are explicitly reported to separate mechanism responsibility from value accuracy.
 Late-period time robustness,Diagnostic only,Late WTB slices preserve routing semantics but show large RMSE degradation under distribution shift.
-Kelmarsh/Penmanshiel external wind site transfer,Not supported,The completed external runs fail the site-transfer criterion and are reported as boundary-condition diagnostics requiring local re-estimation.
-Headline forecasting superiority,Not supported,Graph WaveNet and lag-feature engineering baselines remain stronger WTB forecasters on RMSE.
+Kelmarsh/Penmanshiel external-site routing portability test,Not supported,The completed external runs fail the external-site routing criterion and are reported as boundary-condition diagnostics requiring local re-estimation.
+Kelmarsh/Penmanshiel small-calibration adaptation,"Diagnostic only, not restored","A validation-window boundary and gate-map adaptation is complete but does not restore robust usable routing overall; Penmanshiel chronological improves locally while Kelmarsh and leave-one-farm-out remain weak."

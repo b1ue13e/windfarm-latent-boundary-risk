@@ -1,0 +1,25 @@
+{
+  "status": "complete_site_specific_adaptation_diagnostic",
+  "claim_gate": "within_wtb_external_diagnostics_only",
+  "portable_wording_allowed": false,
+  "site_specific_adaptation_wording_allowed": false,
+  "checks": {
+    "routing_runs_present": true,
+    "adaptation_raw_written": true,
+    "adaptation_summary_written": true,
+    "selected_small_calibration_per_run": true,
+    "calibration_window_nonempty": true,
+    "heldout_test_metrics_present": true,
+    "chronological_kelmarsh_penmanshiel_present": true,
+    "chronological_balanced_accuracy_meets_minimum": false,
+    "chronological_macro_f1_meets_minimum": true
+  },
+  "n_routing_runs": 40,
+  "n_adapted_runs": 40,
+  "mean_test_balanced_accuracy_recovery_vs_default": -0.09820178981784437,
+  "chronological_adapted_test_balanced_accuracy_mean": 0.4786587728710462,
+  "chronological_adapted_test_macro_f1_mean": 0.4491646916074961,
+  "min_chronological_balanced_accuracy": 0.5,
+  "min_chronological_macro_f1": 0.35,
+  "claim_use": "site-specific small-calibration-window diagnostic; do not claim external-site portability without local testing"
+}

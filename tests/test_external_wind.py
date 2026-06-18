@@ -26,6 +26,7 @@ from windfarm_moe.external_wind import (
     preprocess_external_wind,
     run_external_wind_guard,
     run_external_wind_portability_rescue,
+    run_external_wind_small_calibration_adaptation,
     run_external_wind_source_guard,
     write_external_wind_protocol,
 )
@@ -265,6 +266,26 @@ class ExternalWindTests(unittest.TestCase):
         self.assertEqual(args.command, "external-wind-portability-rescue")
         self.assertEqual(args.rated_wind_grid, "9.5,10.5")
         self.assertEqual(args.pitch_threshold_grid, "1.0,2.0")
+
+    def test_parser_accepts_external_wind_small_calibration_adaptation(self) -> None:
+        args = build_parser().parse_args(
+            [
+                "external-wind-small-calibration-adaptation",
+                "--output-dir",
+                "out",
+                "--rated-wind-grid",
+                "10.0,10.5",
+                "--pitch-threshold-grid",
+                "1.0,2.0",
+                "--calibration-anchor-steps",
+                "12",
+            ]
+        )
+
+        self.assertEqual(args.command, "external-wind-small-calibration-adaptation")
+        self.assertEqual(args.rated_wind_grid, "10.0,10.5")
+        self.assertEqual(args.pitch_threshold_grid, "1.0,2.0")
+        self.assertEqual(args.calibration_anchor_steps, 12)
 
     def test_external_source_guard_blocks_manifest_only_full_manifest(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -954,6 +975,66 @@ class ExternalWindTests(unittest.TestCase):
             self.assertIn("test_nmi_recovery_mean", recal_summary.columns)
             self.assertEqual(recal_guard["status"], "complete_external_recalibration_diagnostics")
             self.assertTrue((out / "table_external_recalibration.tex").exists())
+
+    def test_external_small_calibration_adaptation_writes_site_diagnostic(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            suite = root / "runs"
+            split_specs = [
+                ("kelmarsh", "chronological", ""),
+                ("penmanshiel", "chronological", ""),
+                ("kelmarsh", "leave-one-farm-out", "penmanshiel"),
+                ("penmanshiel", "leave-one-farm-out", "kelmarsh"),
+            ]
+            for farm, split, target in split_specs:
+                run = self._write_external_guard_run(
+                    suite,
+                    model="Physics-Aligned MoE",
+                    seed=201,
+                    farm=farm,
+                    split=split,
+                    target=target,
+                    nmi=0.2,
+                    ari=0.1,
+                )
+                for split_dir in ["val_metrics", "test_metrics"]:
+                    metrics = run / split_dir
+                    metrics.mkdir(parents=True, exist_ok=True)
+                    physics = np.zeros((6, 1, 4), dtype=np.float32)
+                    physics[..., 0] = np.array([[2.0], [8.0], [8.5], [11.0], [11.4], [11.8]], dtype=np.float32)
+                    physics[..., 1] = np.array([[0.0], [0.5], [1.0], [4.0], [4.5], [5.0]], dtype=np.float32)
+                    gate = np.zeros((6, 1, 3), dtype=np.float32)
+                    gate[0, :, 0] = 1.0
+                    gate[1:3, :, 1] = 1.0
+                    gate[3:, :, 2] = 1.0
+                    np.save(metrics / "gate_prob.npy", gate)
+                    np.save(metrics / "anchor_physics.npy", physics)
+
+            out = run_external_wind_small_calibration_adaptation(
+                output_dir=root / "adapt",
+                suite_dir=suite,
+                seeds="201",
+                required_models="Physics-Aligned MoE",
+                rated_wind_grid="10.0,10.5",
+                pitch_threshold_grid="1.0,2.0",
+                calibration_anchor_steps=6,
+                max_calibration_cells=100,
+                min_chronological_balanced_accuracy=0.8,
+                min_chronological_macro_f1=0.8,
+            )
+            raw = pd.read_csv(out / "adaptation_raw.csv")
+            summary = pd.read_csv(out / "adaptation_summary.csv")
+            guard = load_json(out / "adaptation_guard.json")
+
+            self.assertEqual(guard["status"], "complete_site_specific_adaptation_diagnostic")
+            self.assertFalse(guard["portable_wording_allowed"])
+            self.assertTrue(guard["site_specific_adaptation_wording_allowed"])
+            self.assertIn("selected_small_calibration", raw.columns)
+            self.assertTrue(raw["selected_small_calibration"].astype(bool).any())
+            self.assertIn("adapted_test_balanced_accuracy_mean", summary.columns)
+            overall = summary[summary["summary_level"].astype(str).eq("overall")].iloc[0]
+            self.assertGreaterEqual(float(overall["adapted_test_balanced_accuracy_mean"]), 0.8)
+            self.assertTrue((out / "table_external_small_calibration_adaptation.tex").exists())
 
     def test_external_wind_inspect_reads_zip_member_headers(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

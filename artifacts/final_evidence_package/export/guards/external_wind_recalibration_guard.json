@@ -14,5 +14,5 @@
   "mean_recalibrated_test_nmi": 0.14912445631169483,
   "mean_test_nmi_recovery": 0.016732027575574803,
   "mean_recalibrated_nmi_not_lower_than_default": true,
-  "claim_use": "boundary-condition diagnostic; do not claim unconditional external portability"
+  "claim_use": "boundary-condition diagnostic; do not cite as external-site portability"
 }

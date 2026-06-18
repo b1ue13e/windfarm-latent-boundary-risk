@@ -178,6 +178,30 @@ DEFAULT_REPRODUCIBILITY_FILES: tuple[dict[str, Any], ...] = (
     },
     {
         "category": "guard",
+        "label": "External wind small-calibration adaptation guard",
+        "path": "artifacts/external_wind_small_calibration_adaptation/adaptation_guard.json",
+        "required": True,
+    },
+    {
+        "category": "evidence",
+        "label": "External wind small-calibration adaptation summary",
+        "path": "artifacts/external_wind_small_calibration_adaptation/adaptation_summary.csv",
+        "required": True,
+    },
+    {
+        "category": "evidence",
+        "label": "External wind small-calibration adaptation raw rows",
+        "path": "artifacts/external_wind_small_calibration_adaptation/adaptation_raw.csv",
+        "required": True,
+    },
+    {
+        "category": "evidence",
+        "label": "External wind small-calibration adaptation LaTeX table",
+        "path": "artifacts/external_wind_small_calibration_adaptation/table_external_small_calibration_adaptation.tex",
+        "required": True,
+    },
+    {
+        "category": "guard",
         "label": "Preliminary reviewer statistics guard",
         "path": "artifacts/reviewer_stat_pack_guard_wtb_strictmask_available/reviewer_stat_pack_guard.json",
         "required": True,

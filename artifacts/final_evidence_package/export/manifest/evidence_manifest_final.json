@@ -134,8 +134,20 @@
     "external_wind_recalibration_guard.json": {
       "path": "artifacts\\external_wind_portability_rescue\\external_wind_recalibration_guard.json",
       "exists": true,
-      "bytes": 703,
-      "sha256": "88440a77b8d83702c0bfa01dcf073f63008f05abe5efd57ffa408c32dd95b5a7"
+      "bytes": 696,
+      "sha256": "81d85840060eb3f7262a329cec8dbc65c465bfbaee55eca552e019f225414e28"
+    },
+    "adaptation_raw.csv": {
+      "path": "artifacts\\external_wind_small_calibration_adaptation\\adaptation_raw.csv",
+      "exists": true,
+      "bytes": 219552,
+      "sha256": "411450a003f8c59f9997c68fcce739b35c98983677704ad3ed0d6447bf1c1546"
+    },
+    "adaptation_guard.json": {
+      "path": "artifacts\\external_wind_small_calibration_adaptation\\adaptation_guard.json",
+      "exists": true,
+      "bytes": 1137,
+      "sha256": "a756159881ba4fb83cc163d03a7b4520ce9c9507258078b17bcd0d79581be15a"
     },
     "external_wind_source_manifest.csv": {
       "path": "artifacts\\external_wind_full_manifest\\external_wind_source_manifest.csv",
@@ -185,41 +197,29 @@
       "bytes": 4072,
       "sha256": "4ff8222b65392bfe6d0ec684b22eb9959124a3b7c6fd6be4c34ee8694699c72d"
     },
-    "operational_case_explanation.csv": {
-      "path": "artifacts\\applied_energy_diagnostics\\operational_case_explanation.csv",
-      "exists": true,
-      "bytes": 1651,
-      "sha256": "36d28798a8340e5612a5d6e632b7fde838b1a92c39d2da0fec2d0dcfaa319158"
-    },
     "claim_boundary_applied_energy.csv": {
       "path": "artifacts\\applied_energy_diagnostics\\claim_boundary_applied_energy.csv",
       "exists": true,
-      "bytes": 1107,
-      "sha256": "e7b6acee67904f3ea5cae1a02b347137ce4c8d9e3604147330e4be234e13fe01"
-    },
-    "cost_ratio_sensitivity_readable.csv": {
-      "path": "artifacts\\applied_energy_diagnostics\\cost_ratio_sensitivity_readable.csv",
-      "exists": true,
-      "bytes": 1376,
-      "sha256": "d08e853f64c37e06d64d9ced2da6bf5e63f02aa7fbe93e28c6f428e87da6aa21"
-    },
-    "highlights.md": {
-      "path": "artifacts\\applied_energy_submission\\highlights.md",
-      "exists": true,
-      "bytes": 502,
-      "sha256": "013319057ba76e4c17e97ea94ea5845538e3e82b7f6b147a5faefcc67aa2cf7c"
-    },
-    "cover_letter.md": {
-      "path": "artifacts\\applied_energy_submission\\cover_letter.md",
-      "exists": true,
-      "bytes": 2569,
-      "sha256": "e448bb107b07898c2f0bccd689a9b8f1b84cfa836f2bbd92b89e1154844b3f6c"
+      "bytes": 1549,
+      "sha256": "fe647045e36cacc8a4e711aa3264431b9e03f7faf34028061076a03b91902215"
     },
     "external_site_transfer_failure_table.csv": {
       "path": "artifacts\\applied_energy_diagnostics\\external_site_transfer_failure_table.csv",
       "exists": true,
-      "bytes": 2320,
-      "sha256": "1cb1a662f430f00339d561c7dd0a499cb2a08a0e5fe2415e978fc132d5b730a2"
+      "bytes": 3049,
+      "sha256": "9d5e68fef9932992bda9d1397f4e43c0cd76eb57157f23f39e3d219ed12bdf00"
+    },
+    "highlights.md": {
+      "path": "artifacts\\applied_energy_submission\\highlights.md",
+      "exists": true,
+      "bytes": 526,
+      "sha256": "3ccb11b3b1eb0d3a697815ed3b25f722c3a03218ce7647a4fbb6fe348205060a"
+    },
+    "cover_letter.md": {
+      "path": "artifacts\\applied_energy_submission\\cover_letter.md",
+      "exists": true,
+      "bytes": 2715,
+      "sha256": "86982c16757c85bd2c2bfcb0988941877e703feb2ef0d4a16840f7a07695a916"
     }
   },
   "table_outputs": {
@@ -403,29 +403,29 @@
       "bytes": 976,
       "sha256": "1756e5eacbb8d5828052fb12cc75796ce129277b655a4d979c5e0745aa2c95c2"
     },
-    "table_operational_case_explanation.tex": {
-      "path": "artifacts\\applied_energy_diagnostics\\table_operational_case_explanation.tex",
+    "adaptation_summary.csv": {
+      "path": "artifacts\\external_wind_small_calibration_adaptation\\adaptation_summary.csv",
       "exists": true,
-      "bytes": 1709,
-      "sha256": "549530859648748f4b58410c0ac4bac5c0f0688c71b664f5dfaf1d885cfec677"
+      "bytes": 11121,
+      "sha256": "227441615d652221cd11fba44231db06267187282ad14676cdd226131adf0885"
+    },
+    "table_external_small_calibration_adaptation.tex": {
+      "path": "artifacts\\external_wind_small_calibration_adaptation\\table_external_small_calibration_adaptation.tex",
+      "exists": true,
+      "bytes": 1088,
+      "sha256": "4e6125e0158e4e963eb414928f2b9302689fa4e51a664010476b77177f5c5d06"
     },
     "table_claim_boundary_applied_energy.tex": {
       "path": "artifacts\\applied_energy_diagnostics\\table_claim_boundary_applied_energy.tex",
       "exists": true,
-      "bytes": 1364,
-      "sha256": "b56d18670ae71d34dbd9dffdd02ab7d6b727d90269d66937868712fdac5b261e"
-    },
-    "table_cost_ratio_sensitivity_readable.tex": {
-      "path": "artifacts\\applied_energy_diagnostics\\table_cost_ratio_sensitivity_readable.tex",
-      "exists": true,
-      "bytes": 1697,
-      "sha256": "b726cb88f8e268a6ad2f5203287e8c27fd23171d488d5ec2a23f131b56f6a526"
+      "bytes": 1800,
+      "sha256": "5dd7001d9696622e6e89b9661513f22a6309887b13a5f32ce2a1a4d35a04bd93"
     },
     "table_external_site_transfer_failure.tex": {
       "path": "artifacts\\applied_energy_diagnostics\\table_external_site_transfer_failure.tex",
       "exists": true,
-      "bytes": 2644,
-      "sha256": "da44665ddeafab295177fa066021c04354cc44758206a063380ff4ae2f0dde40"
+      "bytes": 3326,
+      "sha256": "2f5db6ce1a08f7e5b12c617d385a6239bffd2c5ba1131730d1baa95176712dd7"
     }
   },
   "figure_outputs": {
@@ -446,6 +446,12 @@
       "exists": true,
       "bytes": 85060,
       "sha256": "4960c7347583054bb92b3f9827e97dbad6e4aabd4f0285788129f26a9233bed1"
+    },
+    "figure6_ablation_tradeoff.pdf": {
+      "path": "artifacts\\paper_assets\\figures\\figure6_ablation_tradeoff.pdf",
+      "exists": true,
+      "bytes": 26453,
+      "sha256": "3430de4ed9f812cfcbbd5cb6c016d16defe313fb8b024a8e011101ca604b3e03"
     }
   },
   "guard_status": {
@@ -630,17 +636,6 @@
         "default_vs_recalibrated_test_comparison_present": true
       }
     },
-    "evidence_freeze_guard": {
-      "status": "complete_ready_for_evidence_freeze",
-      "claim_gate": "",
-      "path": "artifacts\\final_evidence_freeze_guard\\evidence_freeze_guard.json",
-      "checks": {
-        "all_targets_exist": true,
-        "guard_scanned_text_files": true,
-        "no_stale_boundary_router_tokens": true,
-        "required_final_boundary_router_tokens_present": true
-      }
-    },
     "external_wind_source_guard": {
       "status": "complete_external_source_evidence",
       "claim_gate": "within_wtb_only",
@@ -664,6 +659,33 @@
         "no_manifest_only_rows": true,
         "license_is_cc_by_4": true,
         "no_wtb_or_sdwpf_source": true
+      }
+    },
+    "adaptation_guard": {
+      "status": "complete_site_specific_adaptation_diagnostic",
+      "claim_gate": "within_wtb_external_diagnostics_only",
+      "path": "artifacts\\external_wind_small_calibration_adaptation\\adaptation_guard.json",
+      "checks": {
+        "routing_runs_present": true,
+        "adaptation_raw_written": true,
+        "adaptation_summary_written": true,
+        "selected_small_calibration_per_run": true,
+        "calibration_window_nonempty": true,
+        "heldout_test_metrics_present": true,
+        "chronological_kelmarsh_penmanshiel_present": true,
+        "chronological_balanced_accuracy_meets_minimum": false,
+        "chronological_macro_f1_meets_minimum": true
+      }
+    },
+    "evidence_freeze_guard": {
+      "status": "complete_ready_for_evidence_freeze",
+      "claim_gate": "",
+      "path": "artifacts\\final_evidence_freeze_guard\\evidence_freeze_guard.json",
+      "checks": {
+        "all_targets_exist": true,
+        "guard_scanned_text_files": true,
+        "no_stale_boundary_router_tokens": true,
+        "required_final_boundary_router_tokens_present": true
       }
     }
   },

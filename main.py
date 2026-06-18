@@ -19,6 +19,7 @@ from windfarm_moe.external_wind import (
     preprocess_external_wind,
     run_external_wind_guard,
     run_external_wind_portability_rescue,
+    run_external_wind_small_calibration_adaptation,
     run_external_wind_source_guard,
     write_external_wind_protocol,
 )
@@ -289,6 +290,27 @@ def build_parser() -> argparse.ArgumentParser:
     external_rescue_parser.add_argument("--boundary-band", type=float, default=1.0)
     external_rescue_parser.add_argument("--min-nmi", type=float, default=0.50)
     external_rescue_parser.add_argument("--min-ari", type=float, default=0.30)
+
+    external_adaptation_parser = subparsers.add_parser(
+        "external-wind-small-calibration-adaptation",
+        help="Evaluate site-specific external wind small-calibration-window routing diagnostics",
+    )
+    _add_common_data_args(external_adaptation_parser)
+    external_adaptation_parser.add_argument("--output-dir", type=str, required=True)
+    external_adaptation_parser.add_argument("--suite-dir", type=str, default="artifacts/external_wind_runs")
+    external_adaptation_parser.add_argument("--seeds", type=str, default="201,202,203,204,205")
+    external_adaptation_parser.add_argument(
+        "--required-models",
+        type=str,
+        default="Physics-Aligned MoE,MoE + L_bal + L_align + L_force",
+    )
+    external_adaptation_parser.add_argument("--rated-wind-grid", type=str, default="9.5,10.0,10.5,11.0,11.5")
+    external_adaptation_parser.add_argument("--pitch-threshold-grid", type=str, default="1.0,2.0,3.0,4.0")
+    external_adaptation_parser.add_argument("--calibration-anchor-steps", type=int, default=288)
+    external_adaptation_parser.add_argument("--max-calibration-cells", type=int, default=50000)
+    external_adaptation_parser.add_argument("--max-test-cells", type=int, default=0)
+    external_adaptation_parser.add_argument("--min-chronological-balanced-accuracy", type=float, default=0.50)
+    external_adaptation_parser.add_argument("--min-chronological-macro-f1", type=float, default=0.35)
 
     external_source_guard_parser = subparsers.add_parser(
         "external-wind-source-guard",
@@ -1024,6 +1046,7 @@ def build_parser() -> argparse.ArgumentParser:
     readiness_parser.add_argument("--reviewer-pack-config", type=str, default="")
     readiness_parser.add_argument("--external-wind-guard", type=str, default="")
     readiness_parser.add_argument("--external-wind-source-guard", type=str, default="")
+    readiness_parser.add_argument("--external-wind-adaptation-guard", type=str, default="")
     readiness_parser.add_argument("--final-evidence-manifest", type=str, default="")
     readiness_parser.add_argument("--audit-doc", type=str, default="")
     readiness_parser.add_argument("--manuscript-doc", type=str, default="")
@@ -1237,6 +1260,24 @@ def main() -> None:
             min_ari=args.min_ari,
         )
         print(f"External wind portability rescue saved to: {output_dir}")
+        return
+
+    if args.command == "external-wind-small-calibration-adaptation":
+        output_dir = run_external_wind_small_calibration_adaptation(
+            output_dir=Path(args.output_dir),
+            suite_dir=Path(args.suite_dir),
+            seeds=args.seeds,
+            required_models=args.required_models,
+            rated_wind_grid=args.rated_wind_grid,
+            pitch_threshold_grid=args.pitch_threshold_grid,
+            cut_in_wind=args.external_cut_in_wind,
+            calibration_anchor_steps=args.calibration_anchor_steps,
+            max_calibration_cells=args.max_calibration_cells,
+            max_test_cells=args.max_test_cells,
+            min_chronological_balanced_accuracy=args.min_chronological_balanced_accuracy,
+            min_chronological_macro_f1=args.min_chronological_macro_f1,
+        )
+        print(f"External wind small-calibration adaptation saved to: {output_dir}")
         return
 
     if args.command == "external-wind-source-guard":
@@ -2070,6 +2111,9 @@ def main() -> None:
             reviewer_pack_config=Path(args.reviewer_pack_config) if args.reviewer_pack_config else None,
             external_wind_guard=Path(args.external_wind_guard) if args.external_wind_guard else None,
             external_wind_source_guard=Path(args.external_wind_source_guard) if args.external_wind_source_guard else None,
+            external_wind_adaptation_guard=Path(args.external_wind_adaptation_guard)
+            if args.external_wind_adaptation_guard
+            else None,
             final_evidence_manifest=Path(args.final_evidence_manifest) if args.final_evidence_manifest else None,
             audit_doc=Path(args.audit_doc) if args.audit_doc else None,
             manuscript_doc=Path(args.manuscript_doc) if args.manuscript_doc else None,
