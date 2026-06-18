@@ -11,6 +11,7 @@ from main import build_parser
 from windfarm_moe.decision import (
     _calibrate_scalar,
     _cost_metrics,
+    _operational_window_rows,
     run_reserve_decision,
     run_reserve_decision_guard,
     select_default_wtb_runs,
@@ -160,7 +161,10 @@ class DecisionUtilityTests(unittest.TestCase):
             self.assertTrue((bootstrap["n_seed_day_pairs"] >= 5).all())
             operational = pd.read_csv(output_dir / "reserve_decision_operational_windows.csv")
             self.assertIn("boundary_shortage_energy_mean", operational.columns)
+            self.assertIn("boundary_shortage_energy_mean_delta_vs_model_global", operational.columns)
+            self.assertIn("subset_operational_value", operational.columns)
             self.assertIn("gate_value_window", operational.columns)
+            self.assertIn("gate_operational_value", operational.columns)
             self.assertTrue({"full", "boundary", "non_boundary"}.issubset(set(operational["subset"])))
             self.assertEqual(config["dataset"], "wtb")
             self.assertEqual(config["strata"], ["boundary", "non_boundary", "late_period", "spatial_holdout"])
@@ -172,12 +176,83 @@ class DecisionUtilityTests(unittest.TestCase):
                 min_seed_day_pairs=5,
             )
             guard = load_json(guard_dir / "reserve_decision_guard.json")
-            self.assertEqual(guard["status"], "complete_ready_for_reserve_decision_evidence")
+            self.assertEqual(guard["status"], "blocked_reserve_decision_evidence")
             self.assertTrue(guard["checks"]["selected_runs_cover_required_5_seeds"])
             self.assertTrue(guard["checks"]["paired_bootstrap_uses_seed_day_pairs"])
             self.assertTrue(guard["checks"]["summary_has_total_cost_violation_reserve_and_shortage_energy"])
             self.assertTrue(guard["checks"]["gate_correctness_operational_loss_present"])
-            self.assertTrue(guard["checks"]["operational_window_cost_violation_reserve_and_boundary_shortage_present"])
+            self.assertFalse(guard["checks"]["operational_window_cost_violation_reserve_and_boundary_shortage_present"])
+            self.assertFalse(guard["checks"]["gate_boundary_operational_gain_present"])
+            self.assertIn("gate_boundary_operational_gain_present", guard["checks"])
+
+    def test_operational_window_labels_boundary_gain_separately_from_risk_tradeoff(self) -> None:
+        by_ratio = pd.DataFrame(
+            [
+                {
+                    "subset": "boundary",
+                    "cost_ratio": 10.0,
+                    "model": "Boundary-forced router",
+                    "policy": "global",
+                    "status": "applicable",
+                    "total_cost_mean": 100.0,
+                    "violation_rate_mean": 0.10,
+                    "reserve_energy_mean": 50.0,
+                    "shortage_energy_mean": 5.0,
+                },
+                {
+                    "subset": "boundary",
+                    "cost_ratio": 10.0,
+                    "model": "Boundary-forced router",
+                    "policy": "gate-bin",
+                    "status": "applicable",
+                    "total_cost_mean": 90.0,
+                    "violation_rate_mean": 0.08,
+                    "reserve_energy_mean": 55.0,
+                    "shortage_energy_mean": 4.0,
+                },
+                {
+                    "subset": "non_boundary",
+                    "cost_ratio": 10.0,
+                    "model": "Boundary-forced router",
+                    "policy": "global",
+                    "status": "applicable",
+                    "total_cost_mean": 200.0,
+                    "violation_rate_mean": 0.05,
+                    "reserve_energy_mean": 150.0,
+                    "shortage_energy_mean": 3.0,
+                },
+                {
+                    "subset": "non_boundary",
+                    "cost_ratio": 10.0,
+                    "model": "Boundary-forced router",
+                    "policy": "gate-bin",
+                    "status": "applicable",
+                    "total_cost_mean": 190.0,
+                    "violation_rate_mean": 0.07,
+                    "reserve_energy_mean": 140.0,
+                    "shortage_energy_mean": 4.0,
+                },
+            ]
+        )
+
+        operational = _operational_window_rows(by_ratio, main_ratio=10.0)
+        boundary_gate = operational[
+            operational["subset"].eq("boundary") & operational["policy"].eq("gate-bin")
+        ].iloc[0]
+        non_boundary_gate = operational[
+            operational["subset"].eq("non_boundary") & operational["policy"].eq("gate-bin")
+        ].iloc[0]
+
+        self.assertEqual(boundary_gate["gate_operational_value"], "boundary_only_operational_gain")
+        self.assertEqual(non_boundary_gate["gate_operational_value"], "boundary_only_operational_gain")
+        self.assertEqual(boundary_gate["subset_operational_value"], "operational_gain")
+        self.assertEqual(non_boundary_gate["subset_operational_value"], "cost_reduction_with_risk_tradeoff")
+        self.assertLess(boundary_gate["total_cost_mean_delta_vs_model_global"], 0.0)
+        self.assertLess(boundary_gate["violation_rate_mean_delta_vs_model_global"], 0.0)
+        self.assertLess(boundary_gate["boundary_shortage_energy_mean_delta_vs_model_global"], 0.0)
+        self.assertLess(non_boundary_gate["total_cost_mean_delta_vs_model_global"], 0.0)
+        self.assertGreater(non_boundary_gate["violation_rate_mean_delta_vs_model_global"], 0.0)
+        self.assertGreater(non_boundary_gate["shortage_energy_mean_delta_vs_model_global"], 0.0)
 
     def test_reserve_decision_guard_blocks_missing_seed_day_bootstrap(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

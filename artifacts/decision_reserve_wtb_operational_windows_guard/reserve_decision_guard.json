@@ -9,6 +9,7 @@
     "requested_strata_present": true,
     "gate_correctness_operational_loss_present": true,
     "operational_window_cost_violation_reserve_and_boundary_shortage_present": true,
+    "gate_boundary_operational_gain_present": true,
     "daily_costs_cover_required_seed_policy_pairs": true,
     "paired_bootstrap_rows_at_least_min": true,
     "paired_bootstrap_required_candidates_present": true,

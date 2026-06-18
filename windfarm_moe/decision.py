@@ -958,46 +958,119 @@ def _operational_window_rows(by_ratio: pd.DataFrame, *, main_ratio: float) -> pd
         ]
         out = row.to_dict()
         out["is_gate_policy"] = str(row["policy"]) == "gate-bin"
-        out["boundary_shortage_energy_mean"] = (
-            float(row["shortage_energy_mean"]) if str(row["subset"]) == "boundary" else np.nan
-        )
+        is_boundary = str(row["subset"]) == "boundary"
+        out["boundary_shortage_energy_mean"] = float(row["shortage_energy_mean"]) if is_boundary else np.nan
         if not base_subset.empty:
             base = base_subset.iloc[0]
             for metric in metric_cols:
                 out[f"{metric}_delta_vs_model_global"] = float(row[metric]) - float(base[metric])
+            out["boundary_shortage_energy_mean_delta_vs_model_global"] = (
+                float(row["shortage_energy_mean"]) - float(base["shortage_energy_mean"]) if is_boundary else np.nan
+            )
         else:
             for metric in metric_cols:
                 out[f"{metric}_delta_vs_model_global"] = np.nan
+            out["boundary_shortage_energy_mean_delta_vs_model_global"] = np.nan
+        out["subset_operational_value"] = _subset_operational_value(out)
         rows.append(out)
     result = pd.DataFrame(rows)
     if result.empty:
         return result
     result["gate_value_window"] = ""
+    result["gate_operational_value"] = ""
     for model_name in result["model"].dropna().astype(str).unique():
         gate_rows = result[result["model"].astype(str).eq(model_name) & result["policy"].astype(str).eq("gate-bin")]
         boundary = gate_rows[gate_rows["subset"].astype(str).eq("boundary")]
         non_boundary = gate_rows[gate_rows["subset"].astype(str).eq("non_boundary")]
         if boundary.empty:
             label = "not_tested"
+            operational_label = "not_tested"
         else:
-            boundary_delta = pd.to_numeric(boundary["total_cost_mean_delta_vs_model_global"], errors="coerce").iloc[0]
-            non_boundary_delta = (
+            boundary_row = boundary.iloc[0]
+            boundary_cost_delta = _numeric_row_value(boundary_row, "total_cost_mean_delta_vs_model_global")
+            boundary_violation_delta = _numeric_row_value(boundary_row, "violation_rate_mean_delta_vs_model_global")
+            boundary_shortage_delta = _numeric_row_value(
+                boundary_row,
+                "boundary_shortage_energy_mean_delta_vs_model_global",
+            )
+            non_boundary_cost_delta = (
                 pd.to_numeric(non_boundary["total_cost_mean_delta_vs_model_global"], errors="coerce").iloc[0]
                 if not non_boundary.empty
                 else np.nan
             )
-            if pd.notna(boundary_delta) and boundary_delta < 0 and (pd.isna(non_boundary_delta) or non_boundary_delta >= 0):
+            non_boundary_violation_delta = (
+                pd.to_numeric(non_boundary["violation_rate_mean_delta_vs_model_global"], errors="coerce").iloc[0]
+                if not non_boundary.empty
+                else np.nan
+            )
+            non_boundary_shortage_delta = (
+                pd.to_numeric(non_boundary["shortage_energy_mean_delta_vs_model_global"], errors="coerce").iloc[0]
+                if not non_boundary.empty
+                else np.nan
+            )
+            boundary_improves = _all_negative(
+                boundary_cost_delta,
+                boundary_violation_delta,
+                boundary_shortage_delta,
+            )
+            non_boundary_improves = _all_negative(
+                non_boundary_cost_delta,
+                non_boundary_violation_delta,
+                non_boundary_shortage_delta,
+            )
+            if pd.notna(boundary_cost_delta) and boundary_cost_delta < 0 and (
+                pd.isna(non_boundary_cost_delta) or non_boundary_cost_delta >= 0
+            ):
                 label = "boundary_only_cost_reduction"
-            elif pd.notna(boundary_delta) and boundary_delta < 0 and pd.notna(non_boundary_delta) and non_boundary_delta < 0:
+            elif pd.notna(boundary_cost_delta) and boundary_cost_delta < 0 and pd.notna(non_boundary_cost_delta) and non_boundary_cost_delta < 0:
                 label = "cost_reduction_not_boundary_only"
             else:
                 label = "no_boundary_cost_reduction"
+            if boundary_improves and not non_boundary_improves:
+                operational_label = "boundary_only_operational_gain"
+            elif boundary_improves and non_boundary_improves:
+                operational_label = "operational_gain_not_boundary_only"
+            elif pd.notna(boundary_cost_delta) and boundary_cost_delta < 0:
+                operational_label = "boundary_cost_reduction_with_risk_tradeoff"
+            else:
+                operational_label = "no_boundary_operational_gain"
         result.loc[
             result["model"].astype(str).eq(model_name) & result["policy"].astype(str).eq("gate-bin"),
             "gate_value_window",
         ] = label
+        result.loc[
+            result["model"].astype(str).eq(model_name) & result["policy"].astype(str).eq("gate-bin"),
+            "gate_operational_value",
+        ] = operational_label
     sort_cols = ["subset", "total_cost_mean", "model", "policy"]
     return result.sort_values(sort_cols, na_position="last").reset_index(drop=True)
+
+
+def _numeric_row_value(row: pd.Series, column: str) -> float:
+    return float(pd.to_numeric(pd.Series([row.get(column)]), errors="coerce").iloc[0])
+
+
+def _all_negative(*values: float) -> bool:
+    return all(pd.notna(value) and float(value) < 0.0 for value in values)
+
+
+def _subset_operational_value(row: dict[str, Any]) -> str:
+    if str(row.get("policy", "")) == "global":
+        return "reference"
+    cost_delta = _numeric_mapping_value(row, "total_cost_mean_delta_vs_model_global")
+    violation_delta = _numeric_mapping_value(row, "violation_rate_mean_delta_vs_model_global")
+    shortage_delta = _numeric_mapping_value(row, "shortage_energy_mean_delta_vs_model_global")
+    if any(pd.isna(value) for value in [cost_delta, violation_delta, shortage_delta]):
+        return "not_comparable"
+    if _all_negative(cost_delta, violation_delta, shortage_delta):
+        return "operational_gain"
+    if cost_delta < 0.0:
+        return "cost_reduction_with_risk_tradeoff"
+    return "no_operational_gain"
+
+
+def _numeric_mapping_value(row: dict[str, Any], column: str) -> float:
+    return float(pd.to_numeric(pd.Series([row.get(column)]), errors="coerce").iloc[0])
 
 
 def _unique_join(values: pd.Series) -> str:
@@ -1231,8 +1304,15 @@ def run_reserve_decision_guard(
         "shortage_energy_mean",
         "boundary_shortage_energy_mean",
         "total_cost_mean_delta_vs_model_global",
+        "violation_rate_mean_delta_vs_model_global",
+        "reserve_energy_mean_delta_vs_model_global",
+        "shortage_energy_mean_delta_vs_model_global",
+        "boundary_shortage_energy_mean_delta_vs_model_global",
+        "subset_operational_value",
         "gate_value_window",
+        "gate_operational_value",
     }
+    boundary_gate_operational_gain = False
     if operational_windows.empty or not required_window_cols.issubset(operational_windows.columns):
         operational_window_missing.append("reserve_decision_operational_windows.csv:required_columns")
     else:
@@ -1250,6 +1330,23 @@ def run_reserve_decision_guard(
             operational_window_missing.append("gate-bin:boundary")
         elif pd.to_numeric(boundary_gate["boundary_shortage_energy_mean"], errors="coerce").notna().sum() == 0:
             operational_window_missing.append("gate-bin:boundary_shortage_energy_mean")
+        else:
+            boundary_gate = boundary_gate.copy()
+            for col in [
+                "total_cost_mean_delta_vs_model_global",
+                "violation_rate_mean_delta_vs_model_global",
+                "boundary_shortage_energy_mean_delta_vs_model_global",
+            ]:
+                boundary_gate[col] = pd.to_numeric(boundary_gate[col], errors="coerce")
+            boundary_gate_operational_gain = bool(
+                (
+                    (boundary_gate["total_cost_mean_delta_vs_model_global"] < 0.0)
+                    & (boundary_gate["violation_rate_mean_delta_vs_model_global"] < 0.0)
+                    & (boundary_gate["boundary_shortage_energy_mean_delta_vs_model_global"] < 0.0)
+                ).any()
+            )
+            if not boundary_gate_operational_gain:
+                operational_window_missing.append("gate-bin:boundary_cost_violation_shortage_gain")
 
     checks = {
         "all_required_files_exist": all(file_status.values()),
@@ -1260,6 +1357,7 @@ def run_reserve_decision_guard(
         "requested_strata_present": not missing_strata,
         "gate_correctness_operational_loss_present": not gate_loss_missing_metrics,
         "operational_window_cost_violation_reserve_and_boundary_shortage_present": not operational_window_missing,
+        "gate_boundary_operational_gain_present": boundary_gate_operational_gain,
         "daily_costs_cover_required_seed_policy_pairs": not missing_daily_pairs,
         "paired_bootstrap_rows_at_least_min": int(len(bootstrap_ok)) >= int(min_bootstrap_rows),
         "paired_bootstrap_required_candidates_present": not missing_bootstrap_candidates,
