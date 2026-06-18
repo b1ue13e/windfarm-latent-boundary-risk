@@ -576,6 +576,8 @@ The routing claim needs an engineering consequence, not only a semantic score. W
 
 At the main shortage-to-reserve cost ratio of 10, Graph WaveNet/global-quantile reserve is the principal energy-system baseline, with mean full-sample total cost $4.6407\times10^8$; Graph WaveNet/physical-bin reserve is reported alongside it as a physics-stratified system comparator. The boundary-forced router is not the cheapest model overall. Its operational value appears in the boundary window. On boundary anchors, moving the same boundary-forced model from global reserve to a gate-bin reserve policy lowers mean total cost from 88.13M to 84.58M, violation rate from 0.1038 to 0.0900, and boundary shortage energy from 3.73M to 3.19M, while increasing reserve energy from 50.82M to 52.67M. The physical-bin policy is an oracle-style diagnostic and is slightly lower still, with 83.78M total cost and 3.05M shortage energy. On the full sample and non-boundary subset, however, the gate-bin policy lowers reserve expenditure and total cost while raising violation and shortage relative to the same model's global policy. We therefore report cost-ratio sensitivity for Graph WaveNet/global-quantile reserve, Graph WaveNet/physical-bin reserve, Boundary-forced router/global, and Boundary-forced router/gate-bin across ratios 2, 5, 10, 20, and 50. The safe conclusion is conditional: gate-aware reserve has evidence as a boundary/ramp-risk alert, not as a universal reserve policy.
 
+We also export operator-facing slices that are closer to reserve desk language than the aggregate boundary/non-boundary split. The four slices are MPPT-to-pitch transitions, pitch-to-MPPT transitions, validation-calibrated high absolute ramp, and validation-calibrated low absolute ramp. For the boundary-forced router, gate-bin reserve reduces violation and shortage energy in the MPPT-to-pitch slice relative to the same model's global policy, but it pays an added reserve-cost price: 17.93M total cost, 0.1027 violation rate, and 0.69M shortage energy, compared with 16.33M, 0.1124, and 0.77M under global reserve. The low-ramp slice shows the cleaner cost/risk improvement, with gate-bin total cost 10.73M versus 11.24M and shortage energy 0.40M versus 0.44M. The pitch-to-MPPT and high-ramp slices are not gate-bin wins: they expose the same risk tradeoff as the full-sample result. This is why the reserve claim remains a boundary-window decision diagnostic rather than a global reserve-policy claim.
+
 ```{=latex}
 \begin{table}[t]
 \centering
@@ -592,6 +594,19 @@ Physical-bin & 83.78M & 0.0880 & 53.26M & 3.05M \\
 Gate-bin & 84.58M & 0.0900 & 52.67M & 3.19M \\
 \bottomrule
 \end{tabular}
+\end{table}
+```
+
+```{=latex}
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table.} Boundary-window operational reserve slices at shortage-to-reserve cost ratio 10.}
+\resizebox{\linewidth}{!}{%
+\input{artifacts/decision_reserve_wtb_operational_windows/reserve_decision_boundary_slices.tex}
+}
 \end{table}
 ```
 
@@ -653,18 +668,33 @@ The same evidence stack is traceable to source files in \path{artifacts/strict_w
 
 ## Time-forward stress test
 
-A post-hoc time-forward test-slice audit asks whether the strict-mask evidence survives later test windows. The answer is split. Routing semantics remain stable: in the late test block, the corrected router keeps NMI/ARI 0.8661 +/- 0.0393 / 0.9079 +/- 0.0364, and late-minus-early NMI is +0.0068 with a 95% bootstrap interval from 0.0012 to 0.0156. Forecasting accuracy, however, worsens in the late block. Late-minus-early overall RMSE is +50.3454 (45.2176 to 55.1826), and switch-window RMSE is +63.3549 (59.5739 to 65.6209). This audit supports a routing-semantics claim but weakens any time-robust forecasting claim. It is a stress test on saved test predictions, not a replacement for an external dataset or a pre-specified future-period holdout.
+A post-hoc time-forward test-slice audit asks whether the strict-mask evidence survives later test windows. The answer is split. Routing semantics remain stable: in the late test block, the corrected router keeps NMI/ARI 0.8661 +/- 0.0393 / 0.9079 +/- 0.0364, and late-minus-early NMI is +0.0068 with a 95% bootstrap interval from 0.0021 to 0.0127. Forecasting accuracy, however, worsens in the late block. Late-minus-early overall RMSE is +50.3454 (46.8137 to 54.1758), and switch-window RMSE is +63.3549 (60.7291 to 65.3319). The added distribution-shift diagnostics explain this as a boundary condition: the late block has higher mean target power (+52.70), a large regime-share shift (total variation 0.2983, Jensen-Shannon divergence 0.0539), lower mask-valid coverage (-0.1446), and a lower mean wind-speed anchor (-0.3028) but much larger pitch action (+13.9845 in mean Pab). The gate still tracks the physical partition, but the value map faces a different operating distribution. This audit therefore supports a routing-semantics claim while weakening any time-robust forecasting claim. It is a stress test on saved test predictions, not a replacement for an external dataset or a pre-specified future-period holdout.
 
 ```{=latex}
 \input{artifacts/strict_wtb_evidence_sources_20260609/generated/table_strict_wtb_time_forward.tex}
 ```
 
+```{=latex}
+\input{artifacts/strict_wtb_evidence_sources_20260609/generated/table_strict_wtb_late_shift_diagnostics.tex}
+```
+
 ## Sensitivity checks
 
-Table 8 tests whether WTB routing recovery depends on a single hand-picked boundary or one large loss weight. Across three-seed sweeps, changing $\lambda_{\mathrm{align}}$ from 2500 to 7500 keeps NMI in the 0.8255--0.8546 range, and changing $\lambda_{\mathrm{force}}$ from 5000 to 15000 keeps NMI in the 0.8091--0.8406 range. The wrong-threshold controls are mask/threshold sensitivity checks only: they perturb which samples enter the operating-boundary rule, but they are not the strongest semantic negative control. The robust-threshold table must report RMSE and NMI/ARI together for every rated-wind and pitch-threshold variant. The semantic negative-control claim is reserved for `boundary_negative_controls_wtb`, where deliberately incorrect boundary labels are checked against the same intervention evidence. The main WTB result keeps the pre-specified operating-boundary rule.
+Table 8 tests whether WTB routing recovery depends on a single hand-picked boundary or one large loss weight. Across three-seed sweeps, changing $\lambda_{\mathrm{align}}$ from 2500 to 7500 keeps NMI in the 0.8255--0.8546 range, and changing $\lambda_{\mathrm{force}}$ from 5000 to 15000 keeps NMI in the 0.8091--0.8406 range. The new label-validity audit then re-labels the saved strict-cache gate outputs over the local grid rated-wind $\{10.0,10.5,11.0\}$ and pitch-threshold $\{1.5,2.0,2.5\}$ without retraining. The worst grid point still has NMI/ARI 0.8655 +/- 0.0429 / 0.9146 +/- 0.0377, and the minimum shared-valid support is 0.9909. These rows are threshold/label validity checks and mask controls, not the semantic negative control. The semantic negative-control claim is reserved for `boundary_negative_controls_wtb` and the routing placebo audit, where deliberately incorrect or shifted labels are checked against the same intervention evidence. The main WTB result keeps the pre-specified operating-boundary rule.
 
 ```{=latex}
 \input{artifacts/paper_assets/generated/table_8_wtb_sensitivity.tex}
+```
+
+```{=latex}
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table.} WTB threshold/label validity audit for saved strict-cache gate outputs.}
+\input{artifacts/threshold_label_validity_audit_wtb_strictmask/table_threshold_label_validity.tex}
+\end{table}
 ```
 
 ## Claim boundary

@@ -1,0 +1,69 @@
+{
+  "status": "passed_threshold_label_validity_audit",
+  "checks": {
+    "selected_runs_present": true,
+    "all_grid_cells_present": true,
+    "canonical_threshold_present": true,
+    "support_does_not_collapse": true,
+    "routing_recovery_conclusion_stable": true,
+    "control_taxonomy_separates_mask_and_semantic_controls": true,
+    "semantic_negative_control_passed": true
+  },
+  "run_table": "artifacts\\strictmask_combined_reviewer_stats\\reviewer_stat_pack_run_table.csv",
+  "cache_dir": "artifacts\\cache_strictmask\\wtb_245d",
+  "split": "test",
+  "models": [
+    "MoE + L_bal + L_align + L_force"
+  ],
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "rated_wind_grid": [
+    10.0,
+    10.5,
+    11.0
+  ],
+  "pitch_threshold_grid": [
+    1.5,
+    2.0,
+    2.5
+  ],
+  "expected_runs": 5,
+  "expected_grid_cells": 9,
+  "complete_grid_cells": 9,
+  "thresholds": {
+    "min_grid_nmi": 0.8,
+    "max_nmi_drop_from_canonical": 0.08,
+    "max_ari_drop_from_canonical": 0.08,
+    "min_shared_valid_rate": 0.95,
+    "min_semantic_gap": 0.1
+  },
+  "observed": {
+    "min_nmi": 0.815227369213209,
+    "max_nmi_drop_from_canonical": 0.006322177391935302,
+    "max_ari_drop_from_canonical": 0.0017961839484054165,
+    "min_shared_valid_rate": 0.9908929042366097
+  },
+  "semantic_negative_controls": {
+    "placebo_summary_exists": true,
+    "placebo_actual_nmi_mean": 0.8716182144536886,
+    "placebo_max_control_nmi_mean": 0.5426864510968955,
+    "placebo_semantic_gap_ok": true,
+    "boundary_negative_guard_exists": true,
+    "boundary_negative_guard_passed": true,
+    "threshold_semantic_guard_exists": true,
+    "threshold_semantic_guard_passed": false,
+    "semantic_negative_control_passed": true
+  },
+  "paths": {
+    "raw_csv": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\threshold_label_validity_raw.csv",
+    "summary_csv": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\threshold_label_validity_summary.csv",
+    "control_taxonomy_csv": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\control_taxonomy.csv",
+    "tex_table": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\table_threshold_label_validity.tex",
+    "guard_json": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\threshold_label_validity_guard.json"
+  }
+}

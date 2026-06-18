@@ -42,6 +42,7 @@ from windfarm_moe.spatial_holdout import (
 from windfarm_moe.strict_anchor import patch_strict_anchor_mask
 from windfarm_moe.strict_baseline import run_strict_baseline_guard, write_strict_baseline_protocol
 from windfarm_moe.threshold_controls import (
+    run_threshold_label_validity_audit,
     run_threshold_controls_evidence_guard,
     run_threshold_controls_guard,
     run_threshold_controls_semantic_guard,
@@ -494,6 +495,7 @@ def build_parser() -> argparse.ArgumentParser:
         type=str,
         default="artifacts/paper_assets/tables/wtb_test_aggregated_runs.csv",
     )
+    time_forward_parser.add_argument("--cache-dir", type=str, default=None)
     time_forward_parser.add_argument("--split", choices=["val", "test", "holdout"], default="test")
     time_forward_parser.add_argument(
         "--models",
@@ -837,6 +839,48 @@ def build_parser() -> argparse.ArgumentParser:
         default="sens_rated_7p0,sens_rated_13p0,sens_pitch_0p5,sens_pitch_20p0",
     )
     threshold_controls_guard_parser.add_argument("--seeds", type=str, default="201,202,203,204,205")
+
+    threshold_label_validity_parser = subparsers.add_parser(
+        "threshold-label-validity-audit",
+        help="Re-label saved WTB gates over nearby rated-wind/pitch thresholds and audit conclusion stability",
+    )
+    _add_common_data_args(threshold_label_validity_parser)
+    threshold_label_validity_parser.add_argument("--output-dir", type=str, required=True)
+    threshold_label_validity_parser.add_argument(
+        "--run-table",
+        type=str,
+        default="artifacts/strictmask_combined_reviewer_stats/reviewer_stat_pack_run_table.csv",
+    )
+    threshold_label_validity_parser.add_argument("--cache-dir", type=str, default="artifacts/cache_strictmask/wtb_245d")
+    threshold_label_validity_parser.add_argument("--split", choices=["val", "test", "holdout"], default="test")
+    threshold_label_validity_parser.add_argument(
+        "--models",
+        type=str,
+        default="MoE + L_bal + L_align + L_force",
+    )
+    threshold_label_validity_parser.add_argument("--seeds", type=str, default="201,202,203,204,205")
+    threshold_label_validity_parser.add_argument("--rated-wind-grid", type=str, default="10.0,10.5,11.0")
+    threshold_label_validity_parser.add_argument("--pitch-threshold-grid", type=str, default="1.5,2.0,2.5")
+    threshold_label_validity_parser.add_argument(
+        "--placebo-dir",
+        type=str,
+        default="artifacts/routing_placebo_wtb_strictmask_full",
+    )
+    threshold_label_validity_parser.add_argument(
+        "--boundary-negative-guard-dir",
+        type=str,
+        default="artifacts/boundary_negative_controls_wtb",
+    )
+    threshold_label_validity_parser.add_argument(
+        "--semantic-guard-dir",
+        type=str,
+        default="artifacts/strict_threshold_controls_semantic_guard_wtb_strictmask",
+    )
+    threshold_label_validity_parser.add_argument(
+        "--threshold-guard-dir",
+        type=str,
+        default="artifacts/strict_threshold_controls_guard_wtb_strictmask",
+    )
 
     threshold_controls_evidence_guard_parser = subparsers.add_parser(
         "threshold-controls-evidence-guard",
@@ -1565,6 +1609,7 @@ def main() -> None:
             run_table=Path(args.run_table),
             output_dir=Path(args.output_dir),
             root_dir=Path(args.root_dir),
+            cache_dir=Path(args.cache_dir) if args.cache_dir else None,
             split=args.split,
             models=args.models,
             num_blocks=args.num_blocks,
@@ -1886,6 +1931,27 @@ def main() -> None:
             seeds=args.seeds,
         )
         print(f"Threshold controls guard saved to: {output_dir}")
+        return
+
+    if args.command == "threshold-label-validity-audit":
+        if args.dataset != "wtb":
+            raise ValueError("threshold-label-validity-audit currently supports only --dataset wtb")
+        output_dir = run_threshold_label_validity_audit(
+            run_table=Path(args.run_table),
+            cache_dir=Path(args.cache_dir),
+            output_dir=Path(args.output_dir),
+            root_dir=Path(args.root_dir),
+            models=args.models,
+            seeds=args.seeds,
+            split=args.split,
+            rated_wind_grid=args.rated_wind_grid,
+            pitch_threshold_grid=args.pitch_threshold_grid,
+            placebo_dir=Path(args.placebo_dir),
+            boundary_negative_guard_dir=Path(args.boundary_negative_guard_dir),
+            semantic_guard_dir=Path(args.semantic_guard_dir),
+            threshold_guard_dir=Path(args.threshold_guard_dir),
+        )
+        print(f"Threshold-label validity audit saved to: {output_dir}")
         return
 
     if args.command == "threshold-controls-evidence-guard":

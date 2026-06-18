@@ -1,0 +1,7 @@
+control_name,control_family,purpose,evidence_source,semantic_negative_control
+strict_anchor_mask,mask/threshold control,Checks that routing evidence is evaluated only on anchor-valid WTB samples.,artifacts\strict_threshold_controls_guard_wtb_strictmask\threshold_controls_guard.json,False
+threshold_valid_support_overlap,mask/threshold control,Checks label-support and shared-valid coverage under nearby WTB rated-wind and pitch thresholds.,threshold_label_validity_raw.csv,False
+extreme_wrong_threshold_sensitivity,mask/threshold control,"Old extreme wrong-threshold sweeps are retained as sensitivity/mask perturbations, not as the main semantic falsification.",artifacts\strict_threshold_controls_guard_wtb_strictmask\threshold_controls_guard.json,False
+temporal_and_spatial_placebos,semantic negative control,"Temporal shifts, node permutation, within-time shuffle, and global shuffle should not copy actual routing semantics.",artifacts\routing_placebo_wtb_strictmask_full,True
+fake_shared_support_boundary_labels,semantic negative control,Fake boundary labels relabel shared support and must not preserve high agreement plus intervention effects.,artifacts\boundary_negative_controls_wtb\boundary_negative_controls_guard.json,True
+wrong_threshold_checkpoint_semantic_guard,semantic negative control,Wrong-threshold checkpoints must not reproduce canonical routing semantics and boundary-intervention drops.,artifacts\strict_threshold_controls_semantic_guard_wtb_strictmask\threshold_controls_semantic_guard.json,True

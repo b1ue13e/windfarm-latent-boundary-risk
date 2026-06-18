@@ -182,6 +182,44 @@ class FinalEvidenceTests(unittest.TestCase):
 
             self.assertEqual(guard["status"], "complete_ready_for_evidence_freeze")
 
+    def test_evidence_freeze_guard_ignores_its_exported_guard_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            text = "236.13 239.86 286.95 0.8716 0.9166"
+            paper = root / "paper.md"
+            paper.write_text(text, encoding="utf-8")
+            tex = root / "paper.tex"
+            tex.write_text(text, encoding="utf-8")
+            assets = root / "assets"
+            assets.mkdir()
+            (assets / "table.csv").write_text(text, encoding="utf-8")
+            final = root / "final" / "export" / "guards"
+            final.mkdir(parents=True)
+            (final / "strict_wtb_summary.csv").write_text(text, encoding="utf-8")
+            (final / "evidence_freeze_guard.json").write_text(
+                '{"stale_tokens":["269.96","273.55","429.05","0.8929"]}',
+                encoding="utf-8",
+            )
+            paired = root / "paired.csv"
+            paired.write_text(text, encoding="utf-8")
+
+            out = run_evidence_freeze_guard(
+                paper_path=paper,
+                compiled_tex=tex,
+                paper_assets_dir=assets,
+                final_package_dir=root / "final",
+                paired_effects=paired,
+                output_dir=root / "guard",
+            )
+            guard_text = (out / "evidence_freeze_guard.json").read_text(encoding="utf-8")
+            guard = load_json(out / "evidence_freeze_guard.json")
+
+            self.assertEqual(guard["status"], "complete_ready_for_evidence_freeze")
+            self.assertNotIn("269.96", guard_text)
+            self.assertNotIn("273.55", guard_text)
+            self.assertNotIn("429.05", guard_text)
+            self.assertNotIn("0.8929", guard_text)
+
     def test_final_manifest_blocks_legacy_three_seed_table(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)

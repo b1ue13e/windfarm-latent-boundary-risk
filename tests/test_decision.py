@@ -132,7 +132,16 @@ class DecisionUtilityTests(unittest.TestCase):
                 cost_ratios=[2.0, 10.0],
                 main_ratio=10.0,
                 quantiles=[0.5, 0.8, 0.95],
-                strata=["boundary", "non_boundary", "late_period", "spatial_holdout"],
+                strata=[
+                    "boundary",
+                    "non_boundary",
+                    "late_period",
+                    "spatial_holdout",
+                    "mppt_to_pitch",
+                    "pitch_to_mppt",
+                    "high_ramp",
+                    "low_ramp",
+                ],
                 bootstrap_samples=20,
                 make_plots=False,
             )
@@ -144,12 +153,15 @@ class DecisionUtilityTests(unittest.TestCase):
             bootstrap = pd.read_csv(output_dir / "reserve_decision_bootstrap.csv")
             system_baselines = pd.read_csv(output_dir / "reserve_decision_system_baselines.csv")
             sensitivity = pd.read_csv(output_dir / "reserve_decision_cost_ratio_sensitivity.csv")
+            boundary_slices = pd.read_csv(output_dir / "reserve_decision_boundary_slices.csv")
             config = load_json(output_dir / "reserve_decision_config.json")
 
             self.assertTrue((output_dir / "reserve_decision_by_risk_bin.csv").exists())
             self.assertTrue((output_dir / "reserve_decision_bootstrap.csv").exists())
             self.assertTrue((output_dir / "reserve_decision_gate_loss.csv").exists())
             self.assertTrue((output_dir / "reserve_decision_operational_windows.csv").exists())
+            self.assertTrue((output_dir / "reserve_decision_boundary_slices.csv").exists())
+            self.assertTrue((output_dir / "reserve_decision_boundary_slices.tex").exists())
             self.assertTrue((output_dir / "reserve_decision_system_baselines.tex").exists())
             self.assertTrue((output_dir / "reserve_decision_cost_ratio_sensitivity.tex").exists())
             self.assertIn("Graph WaveNet", summary["model"].tolist())
@@ -168,7 +180,23 @@ class DecisionUtilityTests(unittest.TestCase):
                 )
             )
             self.assertTrue({2.0, 10.0}.issubset(set(sensitivity["cost_ratio"].astype(float))))
-            self.assertTrue({"boundary", "non_boundary", "late_period", "spatial_holdout"}.issubset(set(raw["subset"])))
+            self.assertTrue(
+                {
+                    "boundary",
+                    "non_boundary",
+                    "late_period",
+                    "spatial_holdout",
+                    "mppt_to_pitch",
+                    "pitch_to_mppt",
+                    "high_ramp",
+                    "low_ramp",
+                }.issubset(set(raw["subset"]))
+            )
+            self.assertTrue(
+                {"mppt_to_pitch", "pitch_to_mppt", "high_ramp", "low_ramp"}.issubset(set(boundary_slices["subset"]))
+            )
+            for column in ["total_cost_mean", "violation_rate_mean", "shortage_energy_mean", "valid_cells_mean"]:
+                self.assertIn(column, boundary_slices.columns)
             self.assertIn("not_applicable", by_ratio.loc[by_ratio["policy"] == "gate-bin", "status"].tolist())
             physics_gate = summary[(summary["model"] == "Physics-Aligned MoE") & (summary["policy"] == "gate-bin")]
             self.assertFalse(physics_gate.empty)
@@ -186,7 +214,19 @@ class DecisionUtilityTests(unittest.TestCase):
             self.assertIn("gate_operational_value", operational.columns)
             self.assertTrue({"full", "boundary", "non_boundary"}.issubset(set(operational["subset"])))
             self.assertEqual(config["dataset"], "wtb")
-            self.assertEqual(config["strata"], ["boundary", "non_boundary", "late_period", "spatial_holdout"])
+            self.assertEqual(
+                config["strata"],
+                [
+                    "boundary",
+                    "non_boundary",
+                    "late_period",
+                    "spatial_holdout",
+                    "mppt_to_pitch",
+                    "pitch_to_mppt",
+                    "high_ramp",
+                    "low_ramp",
+                ],
+            )
 
             guard_dir = run_reserve_decision_guard(
                 decision_dir=output_dir,
@@ -202,6 +242,7 @@ class DecisionUtilityTests(unittest.TestCase):
             self.assertTrue(guard["checks"]["gate_correctness_operational_loss_present"])
             self.assertTrue(guard["checks"]["system_reserve_baselines_present"])
             self.assertTrue(guard["checks"]["graph_wavenet_reserve_cost_ratio_sensitivity_present"])
+            self.assertTrue(guard["checks"]["boundary_operational_slices_present"])
             self.assertFalse(guard["checks"]["operational_window_cost_violation_reserve_and_boundary_shortage_present"])
             self.assertFalse(guard["checks"]["gate_boundary_operational_gain_present"])
             self.assertIn("gate_boundary_operational_gain_present", guard["checks"])

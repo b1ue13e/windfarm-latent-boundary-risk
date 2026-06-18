@@ -1,0 +1,28 @@
+{
+  "run_table": "artifacts\\strictmask_combined_reviewer_stats\\reviewer_stat_pack_run_table.csv",
+  "root_dir": ".",
+  "cache_dir": "artifacts\\cache_strictmask\\wtb_245d",
+  "split": "test",
+  "models": [
+    "MoE + L_bal + L_align + L_force"
+  ],
+  "num_blocks": 4,
+  "steps_per_hour": 6,
+  "bootstrap_samples": 1000,
+  "seed": 42,
+  "n_raw_rows": 40,
+  "n_summary_rows": 4,
+  "n_effect_rows": 1,
+  "n_shift_diagnostic_rows": 40,
+  "n_shift_effect_rows": 1,
+  "cache_physics_loaded": true,
+  "cache_metadata": {
+    "dataset": "wtb",
+    "physics_names": [
+      "Wspd",
+      "Pab_mean",
+      "wake_score",
+      "Patv"
+    ]
+  }
+}

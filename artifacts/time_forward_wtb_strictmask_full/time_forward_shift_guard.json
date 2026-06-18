@@ -1,0 +1,18 @@
+{
+  "status": "passed_late_period_shift_diagnostics",
+  "checks": {
+    "diagnostics_rows_present": true,
+    "diagnostics_required_columns_present": true,
+    "effects_rows_present": true,
+    "effects_required_columns_present": true,
+    "late_rmse_degradation_recorded": true,
+    "routing_semantics_reported": true,
+    "distribution_shift_metrics_reported": true
+  },
+  "paths": {
+    "diagnostics_csv": "artifacts\\time_forward_wtb_strictmask_full\\time_forward_shift_diagnostics.csv",
+    "effects_csv": "artifacts\\time_forward_wtb_strictmask_full\\time_forward_shift_effects.csv",
+    "tex_table": "artifacts\\time_forward_wtb_strictmask_full\\table_strict_wtb_late_shift_diagnostics.tex",
+    "guard_json": "artifacts\\time_forward_wtb_strictmask_full\\time_forward_shift_guard.json"
+  }
+}

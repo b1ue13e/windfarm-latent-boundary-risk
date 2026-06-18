@@ -26,8 +26,8 @@
     "strict_wtb_evidence_manifest.json": {
       "path": "artifacts\\strict_wtb_evidence_sources_20260609\\strict_wtb_evidence_manifest.json",
       "exists": true,
-      "bytes": 8406,
-      "sha256": "25b1f413085077e5e8489bf63d1e5e55fa54631bbb30df339e509bbd02d84838"
+      "bytes": 9781,
+      "sha256": "fb3f25e43d823cb0c98594b542d780227673f320189a726309f582d30ba298e4"
     },
     "strict_wtb_mechanism_raw.csv": {
       "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_mechanism_raw.csv",
@@ -50,14 +50,20 @@
     "strict_wtb_time_forward_summary.csv": {
       "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_time_forward_summary.csv",
       "exists": true,
-      "bytes": 1937,
-      "sha256": "b139d30bc27f155d9ca6f69b602ee5eaba8bfec9522f3ee27349878d741649d8"
+      "bytes": 1934,
+      "sha256": "14312303b0757cb44acf3f60edfa4e093c68deaba939d88c8b53ffe4963ccfd7"
+    },
+    "strict_wtb_time_forward_shift_diagnostics.csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_time_forward_shift_diagnostics.csv",
+      "exists": true,
+      "bytes": 21344,
+      "sha256": "e42a89a40bb328650a8503574e6ba29fa1a5582ca457ed5ab51b94384a43d6ce"
     },
     "reserve_decision_raw_runs.csv": {
       "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_raw_runs.csv",
       "exists": true,
-      "bytes": 517263,
-      "sha256": "15804de9cca9ec768631dd2e6cd54f5527855fc92e11b485b6366787c5cd054c"
+      "bytes": 934777,
+      "sha256": "c6ba0487889c09f4618012b41898818e87c3ee363ce6d42fd5ebea4036e6dd5c"
     },
     "reserve_decision_daily_costs.csv": {
       "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_daily_costs.csv",
@@ -68,14 +74,32 @@
     "reserve_decision_gate_loss.csv": {
       "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_gate_loss.csv",
       "exists": true,
-      "bytes": 633750,
-      "sha256": "69ecf7b19f99810397a9f635b88a92bf3d7a91a155e5321bd105ccd6a4573a16"
+      "bytes": 1109638,
+      "sha256": "e61dc6b434d81e12ab5bdd662978e5e2387a6378aa7eb21a5d71e8d10fd9f94c"
     },
     "reserve_decision_cost_ratio_sensitivity.csv": {
       "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_cost_ratio_sensitivity.csv",
       "exists": true,
-      "bytes": 7416,
-      "sha256": "5f536c1a1eae5f4ac9951e500950b3ad9c1e12c8d9ca60b803c9fe55165880e5"
+      "bytes": 7499,
+      "sha256": "e7483ad120d0f413f0f28e5ff3ba4a409d3a1442e654e2ed5e01ccd2e99fcab1"
+    },
+    "reserve_decision_boundary_slices.csv": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_boundary_slices.csv",
+      "exists": true,
+      "bytes": 23002,
+      "sha256": "de5c46ef76dff95f55c65d640818b26f3fdd63c4b6cb90eda0f6ea2bed80730b"
+    },
+    "threshold_label_validity_raw.csv": {
+      "path": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\threshold_label_validity_raw.csv",
+      "exists": true,
+      "bytes": 21648,
+      "sha256": "17d5e50377efa8a795c8b972f2ec00ee79599e9a7de7c07dd68a80da86cd3069"
+    },
+    "control_taxonomy.csv": {
+      "path": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\control_taxonomy.csv",
+      "exists": true,
+      "bytes": 1530,
+      "sha256": "edc06f405d0b1cb7badd93fc0cf795da69abfcccb08d494729cfbd44c9c6b72b"
     },
     "operational_baseline_config.json": {
       "path": "artifacts\\operational_baselines_wtb_strictmask\\operational_baseline_config.json",
@@ -193,6 +217,18 @@
       "bytes": 1035,
       "sha256": "ed9425a3c18e4b092ebef3ae89a820063b8581cfae16c0205bd01bed61318e32"
     },
+    "strict_wtb_time_forward_shift_effects.csv": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_time_forward_shift_effects.csv",
+      "exists": true,
+      "bytes": 3338,
+      "sha256": "54343ab1f4c63738be85aa49d15aff9d64d118ffc497279d40a34e2e08a3820b"
+    },
+    "table_strict_wtb_late_shift_diagnostics.tex": {
+      "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_late_shift_diagnostics.tex",
+      "exists": true,
+      "bytes": 455,
+      "sha256": "7689bf32bcb74d6616cd058a343ff8e180e25238b32d126f43246fb1eb1123df"
+    },
     "table_strict_wtb_seed_metrics.tex": {
       "path": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_seed_metrics.tex",
       "exists": true,
@@ -220,20 +256,32 @@
     "reserve_decision_summary.csv": {
       "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_summary.csv",
       "exists": true,
-      "bytes": 24941,
-      "sha256": "1600d316b8f1f52cb4f03b4c1be8b5b567979ffb462fd72c41d845d746851a20"
+      "bytes": 46007,
+      "sha256": "725a9ded3b66f1327b43c6e64400f5aa9bcea27ef27dcb82aedb00e197299eaa"
     },
     "reserve_decision_operational_windows.csv": {
       "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_operational_windows.csv",
       "exists": true,
-      "bytes": 29245,
-      "sha256": "d55f53467193c4fc2189a151ae8558d0dcda76aa8e384011b3161addee368bc3"
+      "bytes": 29868,
+      "sha256": "76bdbb2525a1ec4043548e8fed6e35c1834cc7747ff84b9547a21b5ceb40cd3e"
+    },
+    "reserve_decision_boundary_slices.csv": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_boundary_slices.csv",
+      "exists": true,
+      "bytes": 23002,
+      "sha256": "de5c46ef76dff95f55c65d640818b26f3fdd63c4b6cb90eda0f6ea2bed80730b"
+    },
+    "reserve_decision_boundary_slices.tex": {
+      "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_boundary_slices.tex",
+      "exists": true,
+      "bytes": 1949,
+      "sha256": "ca6359151c004bcfc9bf6c5c21fc7a64fdadb81647aa52b75ae4ec7c6c08302b"
     },
     "reserve_decision_system_baselines.csv": {
       "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_system_baselines.csv",
       "exists": true,
-      "bytes": 1629,
-      "sha256": "d7c36c32022c2ea12a494d45ae49387ca1d1b4eea1726facf817b823ac4b89a3"
+      "bytes": 1642,
+      "sha256": "d6bce7e0c861cca0c24824b604c899c898fb27cb787c9c6a43e4a11669fd92af"
     },
     "reserve_decision_system_baselines.tex": {
       "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_system_baselines.tex",
@@ -244,8 +292,8 @@
     "reserve_decision_cost_ratio_sensitivity.csv": {
       "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_cost_ratio_sensitivity.csv",
       "exists": true,
-      "bytes": 7416,
-      "sha256": "5f536c1a1eae5f4ac9951e500950b3ad9c1e12c8d9ca60b803c9fe55165880e5"
+      "bytes": 7499,
+      "sha256": "e7483ad120d0f413f0f28e5ff3ba4a409d3a1442e654e2ed5e01ccd2e99fcab1"
     },
     "reserve_decision_cost_ratio_sensitivity.tex": {
       "path": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_cost_ratio_sensitivity.tex",
@@ -283,6 +331,18 @@
       "bytes": 1061,
       "sha256": "28052b6afc86131ef523802651e565306072131bd8a69b6b0c9c9d151b0c1666"
     },
+    "threshold_label_validity_summary.csv": {
+      "path": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\threshold_label_validity_summary.csv",
+      "exists": true,
+      "bytes": 2834,
+      "sha256": "2074b663bac36e22c4be2336b396ebb0221fdf71fd1e0a0276b5f3e350d17fab"
+    },
+    "table_threshold_label_validity.tex": {
+      "path": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\table_threshold_label_validity.tex",
+      "exists": true,
+      "bytes": 788,
+      "sha256": "7e8d5b11121b2194c93dc6502863c4e59c7645f47ec19f4ecfaae9b36f7d8964"
+    },
     "external_wind_run_status.csv": {
       "path": "artifacts\\external_wind_guard\\external_wind_run_status.csv",
       "exists": true,
@@ -319,13 +379,13 @@
       "path": "artifacts\\paper_assets\\figures\\figure3_summary_results.pdf",
       "exists": true,
       "bytes": 20893,
-      "sha256": "0e9854c8e598196e5593e173e2924bedd29361eb7db791593708692e77104598"
+      "sha256": "f3b9be9933f909a31239b633551e3fd22902f465bc2cf9510db02dc91b434eb0"
     },
     "figure4_routing_evidence.pdf": {
       "path": "artifacts\\paper_assets\\figures\\figure4_routing_evidence.pdf",
       "exists": true,
       "bytes": 85060,
-      "sha256": "fb99d94aabed804beba54a154cc201a6c24b11ecba992f3e4b421424f4b7483d"
+      "sha256": "4960c7347583054bb92b3f9827e97dbad6e4aabd4f0285788129f26a9233bed1"
     }
   },
   "guard_status": {
@@ -379,6 +439,21 @@
         "semantic_guard_covers_expected_runs": true
       }
     },
+    "threshold_label_validity_guard": {
+      "status": "passed_threshold_label_validity_audit",
+      "claim_gate": "",
+      "path": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\threshold_label_validity_guard.json",
+      "expected_runs": 5,
+      "checks": {
+        "selected_runs_present": true,
+        "all_grid_cells_present": true,
+        "canonical_threshold_present": true,
+        "support_does_not_collapse": true,
+        "routing_recovery_conclusion_stable": true,
+        "control_taxonomy_separates_mask_and_semantic_controls": true,
+        "semantic_negative_control_passed": true
+      }
+    },
     "reserve_decision_guard": {
       "status": "complete_ready_for_reserve_decision_evidence",
       "claim_gate": "",
@@ -393,6 +468,7 @@
         "gate_correctness_operational_loss_present": true,
         "operational_window_cost_violation_reserve_and_boundary_shortage_present": true,
         "gate_boundary_operational_gain_present": true,
+        "boundary_operational_slices_present": true,
         "system_reserve_baselines_present": true,
         "graph_wavenet_reserve_cost_ratio_sensitivity_present": true,
         "daily_costs_cover_required_seed_policy_pairs": true,
@@ -492,6 +568,17 @@
         "test_grid_evaluated": true,
         "selected_local_boundary_per_run": true,
         "default_vs_recalibrated_test_comparison_present": true
+      }
+    },
+    "evidence_freeze_guard": {
+      "status": "complete_ready_for_evidence_freeze",
+      "claim_gate": "",
+      "path": "artifacts\\final_evidence_freeze_guard\\evidence_freeze_guard.json",
+      "checks": {
+        "all_targets_exist": true,
+        "guard_scanned_text_files": true,
+        "no_stale_boundary_router_tokens": true,
+        "required_final_boundary_router_tokens_present": true
       }
     },
     "external_wind_source_guard": {

@@ -25,6 +25,8 @@ RESERVE_DECISION_REQUIRED_FILES = (
     "reserve_decision_daily_costs.csv",
     "reserve_decision_gate_loss.csv",
     "reserve_decision_operational_windows.csv",
+    "reserve_decision_boundary_slices.csv",
+    "reserve_decision_boundary_slices.tex",
     "reserve_decision_system_baselines.csv",
     "reserve_decision_system_baselines.tex",
     "reserve_decision_cost_ratio_sensitivity.csv",
@@ -89,6 +91,9 @@ class DecisionPanel:
     boundary_score: np.ndarray
     gate_correct_score: np.ndarray | None
     spatial_holdout: np.ndarray
+    mppt_to_pitch_score: np.ndarray
+    pitch_to_mppt_score: np.ndarray
+    abs_ramp_score: np.ndarray
     anchor_index: np.ndarray
     day_index: np.ndarray
 
@@ -250,6 +255,7 @@ def run_reserve_decision(
     by_bin = _aggregate_bin_rows(bin_df)
     bootstrap_df = _bootstrap_pairs(daily_df, samples=bootstrap_samples, seed=seed, main_ratio=main_ratio)
     operational_windows = _operational_window_rows(by_ratio, main_ratio=main_ratio)
+    boundary_slices = _boundary_slice_rows(by_ratio, main_ratio=main_ratio)
     system_baselines = _system_baseline_rows(by_ratio, main_ratio=main_ratio)
     cost_ratio_sensitivity = _cost_ratio_sensitivity_rows(by_ratio)
 
@@ -260,6 +266,7 @@ def run_reserve_decision(
         by_bin=by_bin,
         bootstrap_df=bootstrap_df,
         operational_windows=operational_windows,
+        boundary_slices=boundary_slices,
         system_baselines=system_baselines,
         cost_ratio_sensitivity=cost_ratio_sensitivity,
         raw_df=raw_df,
@@ -332,6 +339,7 @@ def _load_cache_meta(cache_dir: Path | str | None, *, boundary_band: float = 1.0
             "time_index": None,
             "boundary_score": None,
             "gate_true_regime": None,
+            "gate_true_regime_valid": None,
             "spatial_holdout_patch": {},
         }
     cache_path = Path(cache_dir)
@@ -340,12 +348,18 @@ def _load_cache_meta(cache_dir: Path | str | None, *, boundary_band: float = 1.0
     time_index = np.load(time_index_path, mmap_mode="r") if time_index_path.exists() else None
     boundary_score = _cache_boundary_score(cache_path, metadata, boundary_band=float(boundary_band))
     gate_true_regime = np.load(cache_path / "regime_primary.npy", mmap_mode="r") if (cache_path / "regime_primary.npy").exists() else None
+    gate_true_regime_valid = (
+        np.load(cache_path / "regime_primary_valid.npy", mmap_mode="r")
+        if (cache_path / "regime_primary_valid.npy").exists()
+        else None
+    )
     return {
         "steps_per_hour": int(metadata.get("steps_per_hour", 6)),
         "pred_len": int(metadata.get("pred_len", 24)),
         "time_index": time_index,
         "boundary_score": boundary_score,
         "gate_true_regime": gate_true_regime,
+        "gate_true_regime_valid": gate_true_regime_valid,
         "spatial_holdout_patch": metadata.get("spatial_holdout_patch", {}),
         "split_bounds": metadata.get("split_bounds", {}),
     }
@@ -415,7 +429,13 @@ def _load_panel(metrics_dir: Path, cache_meta: dict[str, Any]) -> DecisionPanel:
     boundary_score = _window_cache_score(cache_meta.get("boundary_score"), anchor_index, regime_arr.shape[1])
     gate_correct_score = _window_gate_correctness(metrics_dir, cache_meta, anchor_index)
     spatial_holdout = _spatial_holdout_rows(cache_meta, anchor_index)
+    mppt_to_pitch_score = _window_transition_score(cache_meta, anchor_index, from_regime=1, to_regime=2)
+    pitch_to_mppt_score = _window_transition_score(cache_meta, anchor_index, from_regime=2, to_regime=1)
     day_index = _day_index_from_anchor(anchor_index, cache_meta)
+    if actual.shape[1] > 1:
+        abs_ramp_score = np.abs(actual[:, -1] - actual[:, 0]).astype(np.float64)
+    else:
+        abs_ramp_score = np.zeros(actual.shape[0], dtype=np.float64)
     return DecisionPanel(
         forecast=forecast,
         actual=actual,
@@ -426,6 +446,9 @@ def _load_panel(metrics_dir: Path, cache_meta: dict[str, Any]) -> DecisionPanel:
         boundary_score=boundary_score,
         gate_correct_score=gate_correct_score,
         spatial_holdout=spatial_holdout,
+        mppt_to_pitch_score=mppt_to_pitch_score,
+        pitch_to_mppt_score=pitch_to_mppt_score,
+        abs_ramp_score=abs_ramp_score,
         anchor_index=anchor_index,
         day_index=day_index,
     )
@@ -444,6 +467,47 @@ def _window_cache_score(score: Any, anchor_index: np.ndarray, num_nodes: int) ->
     if selected.ndim >= 2:
         return selected.reshape(selected.shape[0], -1).mean(axis=1).astype(np.float64)
     return np.zeros(anchor_index.shape[0], dtype=np.float64)
+
+
+def _window_transition_score(
+    cache_meta: dict[str, Any],
+    anchor_index: np.ndarray,
+    *,
+    from_regime: int,
+    to_regime: int,
+) -> np.ndarray:
+    regime = cache_meta.get("gate_true_regime")
+    if regime is None:
+        return np.zeros(anchor_index.shape[0], dtype=np.float64)
+    try:
+        regime_arr = np.asarray(regime)
+        anchors = np.asarray(anchor_index, dtype=np.int64)
+        next_anchor = anchors + 1
+        valid_rows = (anchors >= 0) & (next_anchor < regime_arr.shape[0])
+        current = np.asarray(regime_arr[np.clip(anchors, 0, max(regime_arr.shape[0] - 1, 0))])
+        nxt = np.asarray(regime_arr[np.clip(next_anchor, 0, max(regime_arr.shape[0] - 1, 0))])
+    except (IndexError, ValueError, TypeError):
+        return np.zeros(anchor_index.shape[0], dtype=np.float64)
+    if current.ndim == 1:
+        current = current[:, None]
+        nxt = nxt[:, None]
+    usable = np.ones_like(current, dtype=bool)
+    valid_cache = cache_meta.get("gate_true_regime_valid")
+    if valid_cache is not None:
+        try:
+            valid_arr = np.asarray(valid_cache)
+            current_valid = np.asarray(valid_arr[np.clip(anchors, 0, max(valid_arr.shape[0] - 1, 0))]) > 0
+            next_valid = np.asarray(valid_arr[np.clip(next_anchor, 0, max(valid_arr.shape[0] - 1, 0))]) > 0
+            if current_valid.ndim == 1:
+                current_valid = current_valid[:, None]
+                next_valid = next_valid[:, None]
+            usable = current_valid & next_valid
+        except (IndexError, ValueError, TypeError):
+            usable = np.ones_like(current, dtype=bool)
+    transition = (current == int(from_regime)) & (nxt == int(to_regime)) & usable
+    transition = np.where(valid_rows[:, None], transition, False)
+    denom = np.maximum(usable.reshape(usable.shape[0], -1).sum(axis=1), 1)
+    return (transition.reshape(transition.shape[0], -1).sum(axis=1) / denom).astype(np.float64)
 
 
 def _window_gate_correctness(metrics_dir: Path, cache_meta: dict[str, Any], anchor_index: np.ndarray) -> np.ndarray | None:
@@ -529,7 +593,16 @@ def _normalize_strata(strata: list[str] | tuple[str, ...] | str | None) -> list[
         raw = [token.strip() for token in strata.split(",") if token.strip()]
     else:
         raw = [str(token).strip() for token in strata if str(token).strip()]
-    valid = {"boundary", "non_boundary", "late_period", "spatial_holdout"}
+    valid = {
+        "boundary",
+        "non_boundary",
+        "late_period",
+        "spatial_holdout",
+        "mppt_to_pitch",
+        "pitch_to_mppt",
+        "high_ramp",
+        "low_ramp",
+    }
     unknown = sorted(set(raw).difference(valid))
     if unknown:
         raise ValueError(f"Unsupported reserve-decision strata: {unknown}. Available: {sorted(valid)}")
@@ -585,6 +658,40 @@ def _iter_subsets(
                 _filter_panel(test, test.spatial_holdout),
             )
         )
+    if "mppt_to_pitch" in requested:
+        subsets.append(
+            (
+                "mppt_to_pitch",
+                _filter_panel(val, _transition_selector(val, "mppt_to_pitch")),
+                _filter_panel(test, _transition_selector(test, "mppt_to_pitch")),
+            )
+        )
+    if "pitch_to_mppt" in requested:
+        subsets.append(
+            (
+                "pitch_to_mppt",
+                _filter_panel(val, _transition_selector(val, "pitch_to_mppt")),
+                _filter_panel(test, _transition_selector(test, "pitch_to_mppt")),
+            )
+        )
+    if "high_ramp" in requested or "low_ramp" in requested:
+        high_threshold, low_threshold = _validation_ramp_thresholds(val)
+        if "high_ramp" in requested:
+            subsets.append(
+                (
+                    "high_ramp",
+                    _filter_panel(val, _ramp_selector(val, threshold=high_threshold, high=True)),
+                    _filter_panel(test, _ramp_selector(test, threshold=high_threshold, high=True)),
+                )
+            )
+        if "low_ramp" in requested:
+            subsets.append(
+                (
+                    "low_ramp",
+                    _filter_panel(val, _ramp_selector(val, threshold=low_threshold, high=False)),
+                    _filter_panel(test, _ramp_selector(test, threshold=low_threshold, high=False)),
+                )
+            )
     return subsets
 
 
@@ -603,6 +710,33 @@ def _late_period_selector(panel: DecisionPanel) -> np.ndarray:
     return panel.anchor_index.astype(np.float64) >= float(cutoff)
 
 
+def _transition_selector(panel: DecisionPanel, name: str) -> np.ndarray:
+    if name == "mppt_to_pitch":
+        score = np.asarray(panel.mppt_to_pitch_score, dtype=np.float64)
+    elif name == "pitch_to_mppt":
+        score = np.asarray(panel.pitch_to_mppt_score, dtype=np.float64)
+    else:
+        raise ValueError(f"Unsupported transition selector: {name}")
+    return score > 0.0
+
+
+def _validation_ramp_thresholds(panel: DecisionPanel) -> tuple[float, float]:
+    score = np.asarray(panel.abs_ramp_score, dtype=np.float64)
+    valid_window = np.asarray(panel.valid, dtype=bool).any(axis=1) if panel.valid.ndim > 1 else np.asarray(panel.valid, dtype=bool)
+    values = score[valid_window & np.isfinite(score)]
+    if values.size == 0:
+        return float("inf"), float("-inf")
+    return float(np.quantile(values, 0.90)), float(np.quantile(values, 0.10))
+
+
+def _ramp_selector(panel: DecisionPanel, *, threshold: float, high: bool) -> np.ndarray:
+    score = np.asarray(panel.abs_ramp_score, dtype=np.float64)
+    valid_window = np.asarray(panel.valid, dtype=bool).any(axis=1) if panel.valid.ndim > 1 else np.asarray(panel.valid, dtype=bool)
+    if high:
+        return valid_window & (score >= float(threshold))
+    return valid_window & (score <= float(threshold))
+
+
 def _filter_panel(panel: DecisionPanel, rows: np.ndarray) -> DecisionPanel:
     rows = np.asarray(rows, dtype=bool)
     return DecisionPanel(
@@ -615,6 +749,9 @@ def _filter_panel(panel: DecisionPanel, rows: np.ndarray) -> DecisionPanel:
         boundary_score=panel.boundary_score[rows],
         gate_correct_score=panel.gate_correct_score[rows] if panel.gate_correct_score is not None else None,
         spatial_holdout=panel.spatial_holdout[rows],
+        mppt_to_pitch_score=panel.mppt_to_pitch_score[rows],
+        pitch_to_mppt_score=panel.pitch_to_mppt_score[rows],
+        abs_ramp_score=panel.abs_ramp_score[rows],
         anchor_index=panel.anchor_index[rows],
         day_index=panel.day_index[rows],
     )
@@ -903,7 +1040,7 @@ def _gate_correctness_loss_rows(
 
 def _aggregate_metric_rows(raw_df: pd.DataFrame) -> pd.DataFrame:
     group_cols = ["subset", "cost_ratio", "model", "policy", "status"]
-    metric_cols = ["total_cost", "mean_cost", "violation_rate", "mean_reserve", "reserve_energy", "shortage_energy"]
+    metric_cols = ["total_cost", "mean_cost", "violation_rate", "mean_reserve", "reserve_energy", "shortage_energy", "valid_cells"]
     rows = []
     for keys, group in raw_df.groupby(group_cols, dropna=False):
         row = dict(zip(group_cols, keys))
@@ -1062,6 +1199,56 @@ def _operational_window_rows(by_ratio: pd.DataFrame, *, main_ratio: float) -> pd
         ] = operational_label
     sort_cols = ["subset", "total_cost_mean", "model", "policy"]
     return result.sort_values(sort_cols, na_position="last").reset_index(drop=True)
+
+
+def _boundary_slice_rows(by_ratio: pd.DataFrame, *, main_ratio: float) -> pd.DataFrame:
+    if by_ratio.empty:
+        return pd.DataFrame()
+    required = {
+        "subset",
+        "cost_ratio",
+        "model",
+        "policy",
+        "status",
+        "total_cost_mean",
+        "violation_rate_mean",
+        "reserve_energy_mean",
+        "shortage_energy_mean",
+        "valid_cells_mean",
+    }
+    if not required.issubset(by_ratio.columns):
+        return pd.DataFrame()
+    slice_names = ["mppt_to_pitch", "pitch_to_mppt", "high_ramp", "low_ramp"]
+    frame = by_ratio[
+        by_ratio["status"].astype(str).eq("applicable")
+        & np.isclose(pd.to_numeric(by_ratio["cost_ratio"], errors="coerce").astype(float), float(main_ratio))
+        & by_ratio["subset"].astype(str).isin(slice_names)
+    ].copy()
+    if frame.empty:
+        return pd.DataFrame()
+    metric_cols = ["total_cost_mean", "violation_rate_mean", "reserve_energy_mean", "shortage_energy_mean", "valid_cells_mean"]
+    rows: list[dict[str, Any]] = []
+    for _, row in frame.iterrows():
+        out = row.to_dict()
+        base = frame[
+            frame["model"].astype(str).eq(str(row["model"]))
+            & frame["subset"].astype(str).eq(str(row["subset"]))
+            & frame["policy"].astype(str).eq("global")
+        ]
+        if not base.empty:
+            base_row = base.iloc[0]
+            for metric in metric_cols:
+                out[f"{metric}_delta_vs_model_global"] = float(row[metric]) - float(base_row[metric])
+        else:
+            for metric in metric_cols:
+                out[f"{metric}_delta_vs_model_global"] = np.nan
+        out["slice_operational_value"] = _subset_operational_value(out)
+        rows.append(out)
+    result = pd.DataFrame(rows)
+    result["subset"] = pd.Categorical(result["subset"], categories=slice_names, ordered=True)
+    result = result.sort_values(["subset", "total_cost_mean", "model", "policy"], na_position="last").reset_index(drop=True)
+    result["subset"] = result["subset"].astype(str)
+    return result
 
 
 def _system_baseline_rows(by_ratio: pd.DataFrame, *, main_ratio: float) -> pd.DataFrame:
@@ -1228,6 +1415,7 @@ def _write_outputs(
     by_bin: pd.DataFrame,
     bootstrap_df: pd.DataFrame,
     operational_windows: pd.DataFrame,
+    boundary_slices: pd.DataFrame,
     system_baselines: pd.DataFrame,
     cost_ratio_sensitivity: pd.DataFrame,
     raw_df: pd.DataFrame,
@@ -1241,15 +1429,45 @@ def _write_outputs(
     by_bin.to_csv(output_dir / "reserve_decision_by_risk_bin.csv", index=False)
     bootstrap_df.to_csv(output_dir / "reserve_decision_bootstrap.csv", index=False)
     operational_windows.to_csv(output_dir / "reserve_decision_operational_windows.csv", index=False)
+    boundary_slices.to_csv(output_dir / "reserve_decision_boundary_slices.csv", index=False)
     raw_df.to_csv(output_dir / "reserve_decision_raw_runs.csv", index=False)
     bin_df.to_csv(output_dir / "reserve_decision_raw_bins.csv", index=False)
     daily_df.to_csv(output_dir / "reserve_decision_daily_costs.csv", index=False)
     gate_loss_df.to_csv(output_dir / "reserve_decision_gate_loss.csv", index=False)
     system_baselines.to_csv(output_dir / "reserve_decision_system_baselines.csv", index=False)
     cost_ratio_sensitivity.to_csv(output_dir / "reserve_decision_cost_ratio_sensitivity.csv", index=False)
+    _write_boundary_slice_tex_table(boundary_slices, output_dir / "reserve_decision_boundary_slices.tex")
     _write_reserve_tex_table(system_baselines, output_dir / "reserve_decision_system_baselines.tex")
     _write_reserve_tex_table(cost_ratio_sensitivity, output_dir / "reserve_decision_cost_ratio_sensitivity.tex")
     save_json(output_dir / "reserve_decision_config.json", config)
+
+
+def _write_boundary_slice_tex_table(frame: pd.DataFrame, path: Path) -> None:
+    lines = [
+        "\\begin{tabular}{llrrrrr}",
+        "\\toprule",
+        "Slice & Policy & Cost & Violation & Reserve & Shortage & Valid cells \\\\",
+        "\\midrule",
+    ]
+    if not frame.empty:
+        display = frame.copy()
+        display = display[display["model"].astype(str).isin({"Graph WaveNet", "Boundary-forced router"})].copy()
+        if not display.empty:
+            display.loc[:, "policy_label"] = display["model"].astype(str) + "/" + display["policy"].astype(str)
+        else:
+            display.loc[:, "policy_label"] = ""
+        for _, row in display.iterrows():
+            lines.append(
+                f"{_latex_escape(str(row.get('subset', '')))} & "
+                f"{_latex_escape(str(row.get('policy_label', '')))} & "
+                f"{_format_millions(row.get('total_cost_mean'))} & "
+                f"{_format_float(row.get('violation_rate_mean'), precision=4)} & "
+                f"{_format_millions(row.get('reserve_energy_mean'))} & "
+                f"{_format_millions(row.get('shortage_energy_mean'))} & "
+                f"{_format_float(row.get('valid_cells_mean'), precision=0)} \\\\"
+            )
+    lines.extend(["\\bottomrule", "\\end{tabular}"])
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def _write_reserve_tex_table(frame: pd.DataFrame, path: Path) -> None:
@@ -1350,6 +1568,7 @@ def run_reserve_decision_guard(
     gate_loss = _read_csv_if_exists(decision_path / "reserve_decision_gate_loss.csv")
     bootstrap = _read_csv_if_exists(decision_path / "reserve_decision_bootstrap.csv")
     operational_windows = _read_csv_if_exists(decision_path / "reserve_decision_operational_windows.csv")
+    boundary_slices = _read_csv_if_exists(decision_path / "reserve_decision_boundary_slices.csv")
     system_baselines = _read_csv_if_exists(decision_path / "reserve_decision_system_baselines.csv")
     sensitivity = _read_csv_if_exists(decision_path / "reserve_decision_cost_ratio_sensitivity.csv")
     config_path = decision_path / "reserve_decision_config.json"
@@ -1513,6 +1732,40 @@ def run_reserve_decision_guard(
             if not boundary_gate_operational_gain:
                 operational_window_missing.append("gate-bin:boundary_cost_violation_shortage_gain")
 
+    boundary_slice_missing: list[str] = []
+    required_slice_cols = {
+        "subset",
+        "model",
+        "policy",
+        "total_cost_mean",
+        "violation_rate_mean",
+        "reserve_energy_mean",
+        "shortage_energy_mean",
+        "valid_cells_mean",
+        "total_cost_mean_delta_vs_model_global",
+        "violation_rate_mean_delta_vs_model_global",
+        "shortage_energy_mean_delta_vs_model_global",
+        "slice_operational_value",
+    }
+    required_slices = {"mppt_to_pitch", "pitch_to_mppt", "high_ramp", "low_ramp"}
+    required_slice_pairs = {
+        ("Graph WaveNet", "global"),
+        ("Graph WaveNet", "physical-bin"),
+        ("Boundary-forced router", "global"),
+        ("Boundary-forced router", "gate-bin"),
+    }
+    if boundary_slices.empty or not required_slice_cols.issubset(boundary_slices.columns):
+        boundary_slice_missing.append("reserve_decision_boundary_slices.csv:required_columns")
+    else:
+        present_slices = set(boundary_slices["subset"].dropna().astype(str))
+        boundary_slice_missing.extend(sorted(required_slices.difference(present_slices)))
+        for subset in sorted(required_slices):
+            slice_frame = boundary_slices[boundary_slices["subset"].astype(str).eq(subset)].copy()
+            present_pairs = set(zip(slice_frame["model"].astype(str), slice_frame["policy"].astype(str)))
+            for model, policy in sorted(required_slice_pairs):
+                if (model, policy) not in present_pairs:
+                    boundary_slice_missing.append(f"{subset}:{model}/{policy}")
+
     missing_system_baselines = _missing_system_baselines(
         system_baselines,
         baseline_labels=RESERVE_SYSTEM_BASELINE_LABELS,
@@ -1538,6 +1791,7 @@ def run_reserve_decision_guard(
         "gate_correctness_operational_loss_present": not gate_loss_missing_metrics,
         "operational_window_cost_violation_reserve_and_boundary_shortage_present": not operational_window_missing,
         "gate_boundary_operational_gain_present": boundary_gate_operational_gain,
+        "boundary_operational_slices_present": not boundary_slice_missing,
         "system_reserve_baselines_present": not missing_system_baselines and system_baseline_metrics_present,
         "graph_wavenet_reserve_cost_ratio_sensitivity_present": not missing_sensitivity and sensitivity_metrics_present,
         "daily_costs_cover_required_seed_policy_pairs": not missing_daily_pairs,
@@ -1570,6 +1824,7 @@ def run_reserve_decision_guard(
         "missing_strata": missing_strata,
         "gate_loss_missing_metrics": gate_loss_missing_metrics,
         "operational_window_missing": operational_window_missing,
+        "boundary_slice_missing": boundary_slice_missing,
         "missing_system_reserve_baselines": missing_system_baselines,
         "missing_graph_wavenet_reserve_sensitivity": missing_sensitivity,
         "missing_daily_seed_policy_pairs": missing_daily_pairs,

@@ -75,6 +75,24 @@ DEFAULT_REPRODUCIBILITY_FILES: tuple[dict[str, Any], ...] = (
         "required": True,
     },
     {
+        "category": "evidence",
+        "label": "WTB boundary-window reserve operational slices",
+        "path": "artifacts/decision_reserve_wtb_operational_windows/reserve_decision_boundary_slices.csv",
+        "required": True,
+    },
+    {
+        "category": "evidence",
+        "label": "WTB threshold-label validity audit summary",
+        "path": "artifacts/threshold_label_validity_audit_wtb_strictmask/threshold_label_validity_summary.csv",
+        "required": True,
+    },
+    {
+        "category": "evidence",
+        "label": "WTB late-period shift diagnostics",
+        "path": "artifacts/strict_wtb_evidence_sources_20260609/tables/strict_wtb_time_forward_shift_effects.csv",
+        "required": True,
+    },
+    {
         "category": "guard",
         "label": "Strict strong-baseline guard",
         "path": "artifacts/strict_baseline_protocol_wtb_strictmask_20260609/guard_refresh/strict_baseline_guard.json",
@@ -126,6 +144,12 @@ DEFAULT_REPRODUCIBILITY_FILES: tuple[dict[str, Any], ...] = (
         "category": "guard",
         "label": "Threshold controls evidence guard",
         "path": "artifacts/strict_threshold_controls_evidence_guard_wtb_strictmask/threshold_controls_evidence_guard.json",
+        "required": True,
+    },
+    {
+        "category": "guard",
+        "label": "Threshold-label validity guard",
+        "path": "artifacts/threshold_label_validity_audit_wtb_strictmask/threshold_label_validity_guard.json",
         "required": True,
     },
     {

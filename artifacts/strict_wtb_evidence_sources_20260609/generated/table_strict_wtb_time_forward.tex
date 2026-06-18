@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Strict-mask WTB post-hoc time-forward test-slice audit.}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+Block & Anchor range & Overall RMSE & Switch RMSE & NMI & ARI \\
+\midrule
+1 early & 30275-31520 & 217.4623 +/- 9.6060 & 209.3283 +/- 8.7584 & 0.8593 +/- 0.0420 & 0.9182 +/- 0.0325 \\
+2 middle\_2 & 31521-32765 & 243.6546 +/- 7.4467 & 250.9040 +/- 9.6873 & 0.8693 +/- 0.0374 & 0.9117 +/- 0.0365 \\
+3 middle\_3 & 32766-34010 & 199.7237 +/- 7.6958 & 200.7185 +/- 7.9983 & 0.8500 +/- 0.0445 & 0.9207 +/- 0.0318 \\
+4 late & 34011-35255 & 267.8077 +/- 10.4767 & 272.6831 +/- 9.7232 & 0.8661 +/- 0.0393 & 0.9079 +/- 0.0364 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

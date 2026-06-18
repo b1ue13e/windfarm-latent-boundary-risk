@@ -53,6 +53,22 @@
     },
     {
       "group": "table_outputs",
+      "name": "strict_wtb_time_forward_shift_effects.csv",
+      "source": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_time_forward_shift_effects.csv",
+      "target": "artifacts\\final_evidence_package\\export\\tables\\strict_wtb_time_forward_shift_effects.csv",
+      "bytes": 3338,
+      "sha256": "54343ab1f4c63738be85aa49d15aff9d64d118ffc497279d40a34e2e08a3820b"
+    },
+    {
+      "group": "table_outputs",
+      "name": "table_strict_wtb_late_shift_diagnostics.tex",
+      "source": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_late_shift_diagnostics.tex",
+      "target": "artifacts\\final_evidence_package\\export\\tables\\table_strict_wtb_late_shift_diagnostics.tex",
+      "bytes": 455,
+      "sha256": "7689bf32bcb74d6616cd058a343ff8e180e25238b32d126f43246fb1eb1123df"
+    },
+    {
+      "group": "table_outputs",
       "name": "table_strict_wtb_seed_metrics.tex",
       "source": "artifacts\\strict_wtb_evidence_sources_20260609\\generated\\table_strict_wtb_seed_metrics.tex",
       "target": "artifacts\\final_evidence_package\\export\\tables\\table_strict_wtb_seed_metrics.tex",
@@ -88,24 +104,40 @@
       "name": "reserve_decision_summary.csv",
       "source": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_summary.csv",
       "target": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_summary.csv",
-      "bytes": 24941,
-      "sha256": "1600d316b8f1f52cb4f03b4c1be8b5b567979ffb462fd72c41d845d746851a20"
+      "bytes": 46007,
+      "sha256": "725a9ded3b66f1327b43c6e64400f5aa9bcea27ef27dcb82aedb00e197299eaa"
     },
     {
       "group": "table_outputs",
       "name": "reserve_decision_operational_windows.csv",
       "source": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_operational_windows.csv",
       "target": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_operational_windows.csv",
-      "bytes": 29245,
-      "sha256": "d55f53467193c4fc2189a151ae8558d0dcda76aa8e384011b3161addee368bc3"
+      "bytes": 29868,
+      "sha256": "76bdbb2525a1ec4043548e8fed6e35c1834cc7747ff84b9547a21b5ceb40cd3e"
+    },
+    {
+      "group": "table_outputs",
+      "name": "reserve_decision_boundary_slices.csv",
+      "source": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_boundary_slices.csv",
+      "target": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_boundary_slices.csv",
+      "bytes": 23002,
+      "sha256": "de5c46ef76dff95f55c65d640818b26f3fdd63c4b6cb90eda0f6ea2bed80730b"
+    },
+    {
+      "group": "table_outputs",
+      "name": "reserve_decision_boundary_slices.tex",
+      "source": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_boundary_slices.tex",
+      "target": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_boundary_slices.tex",
+      "bytes": 1949,
+      "sha256": "ca6359151c004bcfc9bf6c5c21fc7a64fdadb81647aa52b75ae4ec7c6c08302b"
     },
     {
       "group": "table_outputs",
       "name": "reserve_decision_system_baselines.csv",
       "source": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_system_baselines.csv",
       "target": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_system_baselines.csv",
-      "bytes": 1629,
-      "sha256": "d7c36c32022c2ea12a494d45ae49387ca1d1b4eea1726facf817b823ac4b89a3"
+      "bytes": 1642,
+      "sha256": "d6bce7e0c861cca0c24824b604c899c898fb27cb787c9c6a43e4a11669fd92af"
     },
     {
       "group": "table_outputs",
@@ -120,8 +152,8 @@
       "name": "reserve_decision_cost_ratio_sensitivity.csv",
       "source": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_cost_ratio_sensitivity.csv",
       "target": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_cost_ratio_sensitivity.csv",
-      "bytes": 7416,
-      "sha256": "5f536c1a1eae5f4ac9951e500950b3ad9c1e12c8d9ca60b803c9fe55165880e5"
+      "bytes": 7499,
+      "sha256": "e7483ad120d0f413f0f28e5ff3ba4a409d3a1442e654e2ed5e01ccd2e99fcab1"
     },
     {
       "group": "table_outputs",
@@ -173,6 +205,22 @@
     },
     {
       "group": "table_outputs",
+      "name": "threshold_label_validity_summary.csv",
+      "source": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\threshold_label_validity_summary.csv",
+      "target": "artifacts\\final_evidence_package\\export\\tables\\threshold_label_validity_summary.csv",
+      "bytes": 2834,
+      "sha256": "2074b663bac36e22c4be2336b396ebb0221fdf71fd1e0a0276b5f3e350d17fab"
+    },
+    {
+      "group": "table_outputs",
+      "name": "table_threshold_label_validity.tex",
+      "source": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\table_threshold_label_validity.tex",
+      "target": "artifacts\\final_evidence_package\\export\\tables\\table_threshold_label_validity.tex",
+      "bytes": 788,
+      "sha256": "7e8d5b11121b2194c93dc6502863c4e59c7645f47ec19f4ecfaae9b36f7d8964"
+    },
+    {
+      "group": "table_outputs",
       "name": "external_wind_run_status.csv",
       "source": "artifacts\\external_wind_guard\\external_wind_run_status.csv",
       "target": "artifacts\\final_evidence_package\\export\\tables\\external_wind_run_status.csv",
@@ -208,8 +256,8 @@
       "name": "strict_wtb_evidence_manifest.json",
       "source": "artifacts\\strict_wtb_evidence_sources_20260609\\strict_wtb_evidence_manifest.json",
       "target": "artifacts\\final_evidence_package\\export\\source_data\\strict_wtb_evidence_manifest.json",
-      "bytes": 8406,
-      "sha256": "25b1f413085077e5e8489bf63d1e5e55fa54631bbb30df339e509bbd02d84838"
+      "bytes": 9781,
+      "sha256": "fb3f25e43d823cb0c98594b542d780227673f320189a726309f582d30ba298e4"
     },
     {
       "group": "source_artifacts",
@@ -240,16 +288,24 @@
       "name": "strict_wtb_time_forward_summary.csv",
       "source": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_time_forward_summary.csv",
       "target": "artifacts\\final_evidence_package\\export\\source_data\\strict_wtb_time_forward_summary.csv",
-      "bytes": 1937,
-      "sha256": "b139d30bc27f155d9ca6f69b602ee5eaba8bfec9522f3ee27349878d741649d8"
+      "bytes": 1934,
+      "sha256": "14312303b0757cb44acf3f60edfa4e093c68deaba939d88c8b53ffe4963ccfd7"
+    },
+    {
+      "group": "source_artifacts",
+      "name": "strict_wtb_time_forward_shift_diagnostics.csv",
+      "source": "artifacts\\strict_wtb_evidence_sources_20260609\\tables\\strict_wtb_time_forward_shift_diagnostics.csv",
+      "target": "artifacts\\final_evidence_package\\export\\source_data\\strict_wtb_time_forward_shift_diagnostics.csv",
+      "bytes": 21344,
+      "sha256": "e42a89a40bb328650a8503574e6ba29fa1a5582ca457ed5ab51b94384a43d6ce"
     },
     {
       "group": "source_artifacts",
       "name": "reserve_decision_raw_runs.csv",
       "source": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_raw_runs.csv",
       "target": "artifacts\\final_evidence_package\\export\\source_data\\reserve_decision_raw_runs.csv",
-      "bytes": 517263,
-      "sha256": "15804de9cca9ec768631dd2e6cd54f5527855fc92e11b485b6366787c5cd054c"
+      "bytes": 934777,
+      "sha256": "c6ba0487889c09f4618012b41898818e87c3ee363ce6d42fd5ebea4036e6dd5c"
     },
     {
       "group": "source_artifacts",
@@ -264,16 +320,40 @@
       "name": "reserve_decision_gate_loss.csv",
       "source": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_gate_loss.csv",
       "target": "artifacts\\final_evidence_package\\export\\source_data\\reserve_decision_gate_loss.csv",
-      "bytes": 633752,
-      "sha256": "5c318e0275a89930eaa74cf72c95f8f81ffecac97537133a693ce6c51d8f847e"
+      "bytes": 1109640,
+      "sha256": "29efd4055402ccee1f52e91274ab3dfd03fc5ea17372a892a6b79af5180f2eab"
     },
     {
       "group": "source_artifacts",
       "name": "reserve_decision_cost_ratio_sensitivity.csv",
       "source": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_cost_ratio_sensitivity.csv",
       "target": "artifacts\\final_evidence_package\\export\\source_data\\reserve_decision_cost_ratio_sensitivity.csv",
-      "bytes": 7416,
-      "sha256": "5f536c1a1eae5f4ac9951e500950b3ad9c1e12c8d9ca60b803c9fe55165880e5"
+      "bytes": 7499,
+      "sha256": "e7483ad120d0f413f0f28e5ff3ba4a409d3a1442e654e2ed5e01ccd2e99fcab1"
+    },
+    {
+      "group": "source_artifacts",
+      "name": "reserve_decision_boundary_slices.csv",
+      "source": "artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_boundary_slices.csv",
+      "target": "artifacts\\final_evidence_package\\export\\source_data\\reserve_decision_boundary_slices.csv",
+      "bytes": 23002,
+      "sha256": "de5c46ef76dff95f55c65d640818b26f3fdd63c4b6cb90eda0f6ea2bed80730b"
+    },
+    {
+      "group": "source_artifacts",
+      "name": "threshold_label_validity_raw.csv",
+      "source": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\threshold_label_validity_raw.csv",
+      "target": "artifacts\\final_evidence_package\\export\\source_data\\threshold_label_validity_raw.csv",
+      "bytes": 21648,
+      "sha256": "17d5e50377efa8a795c8b972f2ec00ee79599e9a7de7c07dd68a80da86cd3069"
+    },
+    {
+      "group": "source_artifacts",
+      "name": "control_taxonomy.csv",
+      "source": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\control_taxonomy.csv",
+      "target": "artifacts\\final_evidence_package\\export\\source_data\\control_taxonomy.csv",
+      "bytes": 1530,
+      "sha256": "edc06f405d0b1cb7badd93fc0cf795da69abfcccb08d494729cfbd44c9c6b72b"
     },
     {
       "group": "source_artifacts",
@@ -401,7 +481,7 @@
       "source": "artifacts\\paper_assets\\figures\\figure3_summary_results.pdf",
       "target": "artifacts\\final_evidence_package\\export\\figures\\figure3_summary_results.pdf",
       "bytes": 20893,
-      "sha256": "8c1d7674ff63b3c00da903433b3cebe9622fbf6288be76843e5eb5fb60182133"
+      "sha256": "f3b9be9933f909a31239b633551e3fd22902f465bc2cf9510db02dc91b434eb0"
     },
     {
       "group": "figure_outputs",
@@ -409,7 +489,7 @@
       "source": "artifacts\\paper_assets\\figures\\figure4_routing_evidence.pdf",
       "target": "artifacts\\final_evidence_package\\export\\figures\\figure4_routing_evidence.pdf",
       "bytes": 85060,
-      "sha256": "5ee258e306802dcad57e7673ecf89581a6255682c09c64f0a86110154eebfef4"
+      "sha256": "4960c7347583054bb92b3f9827e97dbad6e4aabd4f0285788129f26a9233bed1"
     },
     {
       "group": "guard_status",
@@ -429,11 +509,19 @@
     },
     {
       "group": "guard_status",
+      "name": "threshold_label_validity_guard",
+      "source": "artifacts\\threshold_label_validity_audit_wtb_strictmask\\threshold_label_validity_guard.json",
+      "target": "artifacts\\final_evidence_package\\export\\guards\\threshold_label_validity_guard.json",
+      "bytes": 2376,
+      "sha256": "1c0007ca6f3a06167e204650b40f3727841ad6d575899d0930e6985f8df49850"
+    },
+    {
+      "group": "guard_status",
       "name": "reserve_decision_guard",
       "source": "artifacts\\decision_reserve_wtb_operational_windows_guard\\reserve_decision_guard.json",
       "target": "artifacts\\final_evidence_package\\export\\guards\\reserve_decision_guard.json",
-      "bytes": 2992,
-      "sha256": "3a5ae9166b1fd7b150490173e526760c62e77efa372937815b3e63266dd3a84a"
+      "bytes": 3177,
+      "sha256": "765bf48cc5830a9caf81b7a0c9fb4b792a484c539e5569670642abdf5b3f1c39"
     },
     {
       "group": "guard_status",
@@ -477,6 +565,14 @@
     },
     {
       "group": "guard_status",
+      "name": "evidence_freeze_guard",
+      "source": "artifacts\\final_evidence_freeze_guard\\evidence_freeze_guard.json",
+      "target": "artifacts\\final_evidence_package\\export\\guards\\evidence_freeze_guard.json",
+      "bytes": 17969,
+      "sha256": "1ba3326d486c6da6c202d15c6214d46b62fd08e71d2419c8fdfa1c0405fae31f"
+    },
+    {
+      "group": "guard_status",
       "name": "external_wind_source_guard",
       "source": "artifacts\\external_wind_source_guard\\external_wind_source_guard.json",
       "target": "artifacts\\final_evidence_package\\export\\guards\\external_wind_source_guard.json",
@@ -488,8 +584,8 @@
       "name": "evidence_manifest_final.json",
       "source": "artifacts\\final_evidence_package\\manifest\\evidence_manifest_final.json",
       "target": "artifacts\\final_evidence_package\\export\\manifest\\evidence_manifest_final.json",
-      "bytes": 32982,
-      "sha256": "12a0b3e4c3e92961cddcf11522aa4b58f9da1d41d24b6c477e5c6f8aaba4de98"
+      "bytes": 37062,
+      "sha256": "1ffe976a5df338a191c774631917bd0c15fb0ef34a22d7e44d071f4be08eecf7"
     },
     {
       "group": "manifest",

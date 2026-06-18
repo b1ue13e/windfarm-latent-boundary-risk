@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Per-seed strict-mask WTB mechanism intervention effects.}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+Seed & Intervention & Delta RMSE & Delta switch RMSE & Drop NMI & Drop ARI \\
+\midrule
+201 & anchor\_boundary\_zero & 3.6255 & 3.9414 & 0.6710 & 0.8560 \\
+202 & anchor\_boundary\_zero & -0.0719 & -0.0840 & 0.8745 & 0.9466 \\
+203 & anchor\_boundary\_zero & 4.6187 & 5.2961 & 0.6312 & 0.8020 \\
+204 & anchor\_boundary\_zero & 5.1827 & 5.5364 & 0.6722 & 0.8418 \\
+205 & anchor\_boundary\_zero & 0.0408 & 0.0450 & 0.6597 & 0.8499 \\
+201 & anchor\_wake\_zero & -0.0013 & -0.0017 & 0.0005 & 0.0007 \\
+202 & anchor\_wake\_zero & 0.0006 & 0.0007 & -0.0002 & -0.0001 \\
+203 & anchor\_wake\_zero & 0.0187 & 0.0180 & 0.0011 & 0.0012 \\
+204 & anchor\_wake\_zero & -0.0027 & -0.0012 & 0.0033 & 0.0033 \\
+205 & anchor\_wake\_zero & 0.0001 & 0.0001 & 0.0002 & 0.0001 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

@@ -24,7 +24,11 @@
   "strata": [
     "boundary",
     "non_boundary",
-    "late_period"
+    "late_period",
+    "mppt_to_pitch",
+    "pitch_to_mppt",
+    "high_ramp",
+    "low_ramp"
   ],
   "boundary_band": 1.0,
   "reserve_cost": 1.0,

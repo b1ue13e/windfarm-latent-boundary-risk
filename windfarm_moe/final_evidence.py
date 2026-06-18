@@ -700,7 +700,7 @@ def run_evidence_freeze_guard(
                         {
                             "label": label,
                             "path": _portable_path(file_path),
-                            "token": token,
+                            "token": _freeze_safe_token(token),
                             "count": int(count),
                         }
                     )
@@ -717,7 +717,8 @@ def run_evidence_freeze_guard(
     report = {
         "status": status,
         "checks": checks,
-        "stale_tokens": stale_list,
+        "stale_tokens": [_freeze_safe_token(token) for token in stale_list],
+        "stale_token_patterns": [_freeze_safe_token(token) for token in stale_list],
         "required_tokens": required_list,
         "required_token_status": required_status,
         "missing_paths": missing_paths,
@@ -746,10 +747,14 @@ def _parse_token_list(values: Iterable[str] | str) -> list[str]:
 
 def _iter_evidence_freeze_files(path: Path) -> list[Path]:
     if path.is_file():
+        if path.name == "evidence_freeze_guard.json":
+            return []
         return [path] if path.suffix.lower() in EVIDENCE_FREEZE_TEXT_SUFFIXES else []
     files: list[Path] = []
     for child in path.rglob("*"):
         if not child.is_file():
+            continue
+        if child.name == "evidence_freeze_guard.json":
             continue
         if child.suffix.lower() not in EVIDENCE_FREEZE_TEXT_SUFFIXES:
             continue
@@ -769,6 +774,10 @@ def _read_text_for_guard(path: Path) -> str | None:
         return path.read_text(encoding="utf-8", errors="ignore")
     except OSError:
         return None
+
+
+def _freeze_safe_token(token: str) -> str:
+    return EVIDENCE_FREEZE_SAFE_TOKEN_REPLACEMENTS.get(str(token), str(token))
 
 
 def _sanitize_freeze_stale_tokens(path: Path) -> None:
