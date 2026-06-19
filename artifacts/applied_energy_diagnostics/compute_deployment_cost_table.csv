@@ -1,0 +1,5 @@
+model,n_runs,parameters,train_seconds,eval_seconds,windows_per_second,deployment_reading
+PatchTST,5,111512.0,324.4358047199988,4.078604279999854,1221.7001231755962,fastest inference
+Physics-Aligned MoE,5,110012.0,2235.48608294,13.241283259997726,376.182951088828,router adds interpretable responsibility at moderate cost
+Boundary-forced router,10,110012.0,2131.1992788800003,13.893635899999207,370.9769642299288,router adds interpretable responsibility at moderate cost
+Graph WaveNet,5,123800.0,5415.61099346,23.012486100003297,216.45471546155915,"best strict-cache RMSE, slower"

@@ -1,0 +1,12 @@
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+Model & Params & Train h & Eval s & Win/s & Reading \\
+\midrule
+PatchTST & 111512 & 0.09 & 4.08 & 1221.7 & fastest inference \\
+Physics-Aligned MoE & 110012 & 0.62 & 13.24 & 376.2 & router adds interpretable responsibility at moderate cost \\
+Boundary-forced router & 110012 & 0.59 & 13.89 & 371.0 & router adds interpretable responsibility at moderate cost \\
+Graph WaveNet & 123800 & 1.50 & 23.01 & 216.5 & best strict-cache RMSE, slower \\
+\bottomrule
+\end{tabular}
+}

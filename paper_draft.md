@@ -560,6 +560,19 @@ Routing recovery is the positive result. Across five ERA5 seeds, Unconstrained M
 \input{artifacts/strict_wtb_evidence_sources_20260609/generated/table_strict_wtb_seed_metrics.tex}
 ```
 
+Anchor-only routing is not a straw baseline. A deterministic rule built from the physical anchor reaches slightly higher strict-test semantic agreement than the trainable boundary-forced router (NMI/ARI 0.8895/0.9219 versus 0.8716/0.9166), and it also has lower headline RMSE. The proposed model is therefore not claimed to be a better semantic rule in isolation. Its advantage is narrower: it keeps trainable MoE responsibility assignment coupled to the forecast and reserve evaluation, lowers strict pitch-control RMSE relative to anchor-only, and is much less brittle when boundary-anchor channels are corrupted. Under 0.5-standard-deviation boundary-anchor noise, anchor-only overall RMSE degradation is 105.56, whereas the trainable router degrades by 5.78. This is the answer to the rule-based-router concern: if a site only needs a fixed labeler, anchor-only is strong; if the gate must remain part of a forecast/reserve model under sensor noise and held-out turbine stress, trainable responsibility matters.
+
+```{=latex}
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table.} Anchor-only and rule-based router comparison on strict-cache WTB.}
+\input{artifacts/applied_energy_diagnostics/table_anchor_only_rule_router_main.tex}
+\end{table}
+```
+
 The current WTB mechanism table above is the submission-facing source for the corrected router. ERA5 routing values are used only as the observability contrast already summarized in the text and final evidence package.
 
 Figure 4 makes the WTB repair visible in the operating plane. After correction, the dominant expert regions align with the MPPT and pitch-control structure, and the confusion matrices contract around the intended operating partition. The corrected gate becomes readable at the boundary that matters operationally, with the RMSE cost already quantified above.
@@ -572,13 +585,28 @@ Figure 5 traces the same contrast through time. In the WTB switch window, the bo
 
 ## Operational value and failure cases
 
-The routing claim needs an energy-system consequence, not only a semantic score. A high gate NMI is useful only if it changes the tradeoff an operator actually sees in a transition window: how much reserve energy is carried, how often the scheduled reserve is violated, and how much shortage energy remains when the turbine crosses from MPPT into pitch control. We therefore turn the earlier reserve proxy into a conditional operating audit: from the saved WTB validation and test predictions, each model calibrates reserve levels on validation shortfall and is charged reserve cost plus a shortage penalty on test shortfall. The audit reports the quantities a reserve desk would inspect--total cost, violation rate, reserve energy, and shortage energy--and deliberately asks a local question. Does a gate-aware reserve rule reduce transition-window shortage and violations where the gate is supposed to matter, namely MPPT-to-pitch boundary anchors within +/-1.0 m s$^{-1}$ of rated wind, and what reserve-energy price does it pay? We count this as operating value only when the gate-aware policy improves total cost, violation rate, and shortage energy together in that boundary window.
+The routing claim needs an energy-system consequence, not only a semantic score. A high gate NMI is useful only if it changes the tradeoff an operator actually sees in a transition window: how much reserve energy is carried, how often the scheduled reserve is violated, and how much shortage energy remains when the turbine crosses from MPPT into pitch control. We therefore upgrade the earlier reserve proxy into a formal dispatch/reserve audit. From saved WTB validation and test predictions, each model calibrates reserve levels on validation shortfall, chooses from the pre-specified quantile grid $\{0.50,0.60,0.70,0.80,0.85,0.90,0.95,0.975,0.99\}$, and is charged reserve cost plus a shortage penalty on held-out test shortfall. The audit reports total cost, violation rate, reserve energy, and shortage energy for multiple shortage-to-reserve cost ratios, and it compares the four energy-system policies an operator would naturally ask for: Graph WaveNet/global, Graph WaveNet/physical-bin, boundary router/global, and boundary router/gate-bin.
 
-At the main shortage-to-reserve cost ratio of 10, Graph WaveNet/global-quantile reserve is the principal energy-system baseline, with mean full-sample total cost $4.6407\times10^8$; Graph WaveNet/physical-bin reserve is reported alongside it as a physics-stratified system comparator. The boundary-forced router is not the cheapest full-sample reserve system. Its operational value appears in the boundary window. On boundary anchors, moving the same boundary-forced model from global reserve to a gate-bin reserve policy lowers mean total cost from 88.13M to 84.58M, violation rate from 0.1038 to 0.0900, and boundary shortage energy from 3.73M to 3.19M, while increasing reserve energy from 50.82M to 52.67M. The physical-bin policy is an oracle-style diagnostic and is slightly lower still, with 83.78M total cost and 3.05M shortage energy. On the full sample and non-boundary subset, however, the gate-bin policy can reduce reserve expenditure and total cost while raising violation and shortage relative to the same model's global policy. The system claim is therefore not that the gate produces a globally better reserve policy; it is that operating-boundary accountability changes the reserve-shortage tradeoff in the window where dispatch risk is physically concentrated.
+At the main shortage-to-reserve cost ratio of 10, the full-sample result still favors Graph WaveNet/global as the system reference: its total cost is 464.07M with RMSE 225.74. The boundary-forced router pays a 10.39 RMSE penalty. Gate-bin reserve does not erase that penalty and does not become a globally better reserve policy: on the full sample it lowers same-model cost by carrying less reserve, but violation rises from 0.0857 to 0.1214 and shortage rises from 17.64M to 19.02M. The useful result is local. On boundary anchors, the boundary router/gate-bin policy lowers same-model total cost from 88.13M to 84.58M, violation from 0.1038 to 0.0900, and shortage from 3.73M to 3.19M, while reserve energy rises from 50.82M to 52.67M. Graph WaveNet/physical-bin remains the strongest physics-stratified boundary baseline at 84.31M total cost and 3.40M shortage. Thus the gate-bin win is not "better forecasting"; it is a boundary-window reserve allocation that buys lower shortage and fewer violations at a measured reserve-energy price.
 
-Cost-ratio sensitivity makes the same boundary explicit. At ratio 2, the penalty is too low to buy reserve and the gate-bin boundary policy is identical to global reserve. At ratios 5 and 10, the boundary-forced gate-bin policy lowers same-model boundary shortage and violation relative to global reserve, with the ratio-10 operating point reducing shortage from 3.73M to 3.19M. At ratio 20 the advantage narrows to a small shortage reduction with almost unchanged violation. At ratio 50 the same-model global policy is safer and cheaper. This is the Applied Energy reading of the reserve result: the gate is a conditional reserve-allocation signal around the MPPT-to-pitch boundary, not a replacement for system-level stochastic reserve optimization.
+```{=latex}
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table.} Dispatch/reserve main table at shortage-to-reserve cost ratio 10.}
+\input{artifacts/applied_energy_diagnostics/table_dispatch_reserve_main.tex}
+\end{table}
+```
+
+Cost-ratio sensitivity makes the win/loss boundary explicit. At ratio 2, the selected reserve quantile is 0.50 and the gate-bin boundary policy does not buy reserve. At ratios 5 and 10, gate-bin wins relative to the same model's global reserve because it reduces boundary shortage and violation while carrying more reserve. At ratio 20, the benefit narrows into a cost-only tradeoff: shortage falls slightly but violation is effectively unchanged. At ratio 50, gate-bin loses because the same-model global policy is safer and cheaper. This is the Applied Energy reading of the reserve result: the gate is a conditional reserve-allocation signal around the MPPT-to-pitch boundary, not a replacement for system-level stochastic reserve optimization.
 
 We also export operator-facing slices that are closer to reserve desk language than the aggregate boundary/non-boundary split. The four slices are MPPT-to-pitch transitions, pitch-to-MPPT transitions, validation-calibrated high absolute ramp, and validation-calibrated low absolute ramp. For the boundary-forced router, gate-bin reserve reduces violation and shortage energy in the MPPT-to-pitch slice relative to the same model's global policy, but it pays an added reserve-cost price: 17.93M total cost, 0.1027 violation rate, and 0.69M shortage energy, compared with 16.33M, 0.1124, and 0.77M under global reserve. The low-ramp slice shows the cleaner cost/risk improvement, with gate-bin total cost 10.73M versus 11.24M and shortage energy 0.40M versus 0.44M. The pitch-to-MPPT and high-ramp slices are not gate-bin wins. In the high-ramp slice, gate-bin reserve reduces total cost slightly but raises violation from 0.0766 to 0.1253 and shortage energy from 1.06M to 2.51M because it carries much less reserve energy. This is why the reserve claim remains a boundary-window decision diagnostic rather than a global reserve-policy claim.
+
+The operational decision curve puts the RMSE penalty and reserve-risk tradeoff in one view. It overlays boundary-window shortage energy across cost ratios with the boundary router/gate-bin reserve energy and its fixed RMSE penalty relative to Graph WaveNet/global. The curve shows why a worse-RMSE model can still be useful: the router is not selected to lower average squared error; it is selected only when the operating decision values fewer boundary shortages and violations more than the extra reserve carried in that window.
+
+![Operational decision curve for the WTB boundary window. The chart places the boundary router's RMSE penalty against Graph WaveNet/global beside reserve energy and shortage-energy changes across shortage-to-reserve cost ratios.](artifacts/applied_energy_diagnostics/operational_decision_curve.png){ width=92% }
 
 The three operational cases in the next table are included to prevent a common misreading. A correct gate can help allocate attention around the MPPT-to-pitch boundary, but it can also be misleading when the downstream forecast is bad or when a low-reserve gate-bin policy is applied to high-ramp windows.
 
@@ -590,25 +618,6 @@ The three operational cases in the next table are included to prevent a common m
 \renewcommand{\arraystretch}{1.08}
 \caption*{\textbf{Table.} Operator-facing cases: when the boundary gate helps and when it misleads.}
 \input{artifacts/applied_energy_diagnostics/table_operational_case_explanation.tex}
-\end{table}
-```
-
-```{=latex}
-\begin{table}[t]
-\centering
-\footnotesize
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.08}
-\caption*{\textbf{Table.} Boundary-window reserve audit for the WTB boundary-forced router at shortage-to-reserve cost ratio 10.}
-\begin{tabular}{lrrrr}
-\toprule
-Reserve policy & Total cost & Violation rate & Reserve energy & Boundary shortage \\
-\midrule
-Global & 88.13M & 0.1038 & 50.82M & 3.73M \\
-Physical-bin & 83.78M & 0.0880 & 53.26M & 3.05M \\
-Gate-bin & 84.58M & 0.0900 & 52.67M & 3.19M \\
-\bottomrule
-\end{tabular}
 \end{table}
 ```
 
@@ -636,6 +645,19 @@ Gate-bin & 84.58M & 0.0900 & 52.67M & 3.19M \\
 \end{table}
 ```
 
+The paired uncertainty table is intentionally conservative. It compares full-sample reserve outcomes against Graph WaveNet/global using seed-paired differences with bootstrap intervals and a sign-permutation check. These rows do not show a stable full-system cost win for the routed policies; the intervals are wide with five seeds. That is the point: the citable reserve benefit is the boundary-window operational pattern above, while the full-system comparison remains a guarded diagnostic.
+
+```{=latex}
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table.} Paired uncertainty for full-sample reserve metrics versus Graph WaveNet/global.}
+\input{artifacts/applied_energy_diagnostics/table_reserve_paired_statistics.tex}
+\end{table}
+```
+
 Lead-lag analysis gives the same operational boundary. Around physical regime switches, the corrected gate matches the new regime at rate 0.4066 six steps before the switch and 0.3636 three steps before it, then rises to 0.8008 at the switch and remains 0.6313/0.6094 three/six steps after it. This does not support an early-warning claim. It supports a narrower state-detection claim: the gate is most reliable once the transition is present, so the reserve experiment should be framed as boundary-aware reserve/ramp-risk conditioning rather than as advance prediction of the switch.
 
 The reviewer-statistics pack reports the complementary failure mode. It contains 24 gate-correct high-error cases and 24 boundary gate-correct high-error cases, and the full lists are retained in the supplement. These rows are important because they separate the two parts of the model. In those samples, the router assigns the sample to the physically appropriate operating regime, but the expert forecast is still numerically poor. The usual pattern is a value-map failure near high-error boundary windows, not a collapse of mechanism responsibility. We therefore treat these cases as evidence for the paper's boundary condition: correct routing is necessary for mechanism interpretation, but it is not sufficient for accurate power prediction.
@@ -648,7 +670,7 @@ The reviewer-facing spatial holdout tests whether the routing evidence survives 
 \input{artifacts/goal_tables_20260612/table_spatial_holdout_summary_20260612.tex}
 ```
 
-The future-period holdout uses a pre-specified later WTB period with seeds 301--305 and evaluates only the holdout split. All 5/5 runs complete, the mechanism gate passes, and the downstream holdout mechanism intervention, placebo, boundary-slice, and reviewer statistics packs are present. The boundary-forced router reaches holdout overall RMSE 235.49 +/- 7.19, switch-window RMSE 239.93 +/- 7.27, and NMI/ARI 0.8352 +/- 0.0669 / 0.8870 +/- 0.0669. Together with the spatial holdout, this supports a bounded claim: the evidence is within-farm spatial and temporal stress validation of routing semantics, not a forecast guarantee and not evidence that the rule carries to a different wind farm without local testing.
+The future-period holdout uses a pre-specified later WTB period with seeds 301--305 and evaluates only the holdout split. All 5/5 runs complete, the mechanism gate passes, and the downstream holdout mechanism intervention, placebo, boundary-slice, and reviewer statistics packs are present. The boundary-forced router reaches holdout overall RMSE 235.49 +/- 7.19, switch-window RMSE 239.93 +/- 7.27, and NMI/ARI 0.8352 +/- 0.0669 / 0.8870 +/- 0.0669. This pre-specified future holdout is the main temporal stress evidence. The later post-hoc time-forward slice in the next robustness block is used only as failure analysis for distribution shift. Together with the spatial holdout, the future holdout supports a bounded claim: the evidence is within-farm spatial and temporal stress validation of routing semantics, not a forecast guarantee and not evidence that the rule carries to a different wind farm without local testing.
 
 ```{=latex}
 \input{artifacts/goal_tables_20260612/table_future_holdout_summary_20260612.tex}
@@ -666,7 +688,18 @@ Figure 6 visualizes this frontier. Unconstrained MoE sits in the low-semantics r
 
 ## Robustness and fairness checks
 
-The stress and fairness checks rule out two easy explanations for the WTB result. The in-family comparisons use multiple strict-mask seeds, and the routed in-family variants share the same parameter count, making a pure capacity explanation unlikely. The completed strict-cache baseline refresh sharpens the forecasting check: Graph WaveNet is lower than the boundary-forced router by about 10.39 RMSE on average, PatchTST is lower by about 8.06 RMSE, and Graph Transformer and GAT-GRU are close in error but do not change the routing-accountability result. The reviewer pack therefore supports the same qualitative reading as the mechanism tables: the method earns its value through gate-regime responsibility, not headline error dominance. The corresponding ERA5 RMSE difference between physics-aligned MoE and the dense encoder is small and uncertain, about 0.009 (-0.061 to 0.085), and the expanded ERA5 baseline panel shows that even the best learned baseline still trails persistence. The efficiency rows add one more cost: the boundary-forced router is slower than the full physics-aligned MoE. These checks therefore support the routing-semantics claim and keep the accuracy claim bounded.
+The stress and fairness checks rule out two easy explanations for the WTB result. The in-family comparisons use multiple strict-mask seeds, and the routed in-family variants share the same parameter count, making a pure capacity explanation unlikely. The completed strict-cache baseline refresh sharpens the forecasting check: Graph WaveNet is lower than the boundary-forced router by about 10.39 RMSE on average, PatchTST is lower by about 8.06 RMSE, and Graph Transformer and GAT-GRU are close in error but do not change the routing-accountability result. The reviewer pack therefore supports the same qualitative reading as the mechanism tables: the method earns its value through gate-regime responsibility, not headline error dominance. The corresponding ERA5 RMSE difference between physics-aligned MoE and the dense encoder is small and uncertain, about 0.009 (-0.061 to 0.085), and the expanded ERA5 baseline panel shows that even the best learned baseline still trails persistence. The deployment-cost table adds one more constraint: PatchTST is fastest, Graph WaveNet is slower but best on strict-cache RMSE, and the routed models sit between them with about 110k trainable parameters and 13--14 s evaluation time for the strict test windows. These checks therefore support the routing-semantics claim and keep the accuracy and deployment claims bounded.
+
+```{=latex}
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table.} Parameters, training cost, and inference speed on strict-cache WTB runs.}
+\input{artifacts/applied_energy_diagnostics/table_compute_deployment_cost.tex}
+\end{table}
+```
 
 The strict replay, intervention, placebo, and time-forward tables below are the current stress evidence for the corrected-router claim.
 
@@ -736,9 +769,9 @@ Table 8 tests whether WTB routing recovery depends on a single hand-picked bound
 \end{table}
 ```
 
-The external Kelmarsh/Penmanshiel result is a failed boundary-condition test, not a new-site success. The source guard completes 80/80 runs, both leave-one-farm-out directions, and the chronological sanity checks, but the default WTB boundary gives mean routing NMI 0.4877, below the pre-specified 0.50 external-site routing criterion; the rescue guard therefore forbids portability wording and records the safe fallback as within-WTB boundary routing evidence with external boundary-condition diagnostics. This is a contribution boundary rather than a hidden weakness: the external farms show that an operating-boundary rule cannot be reused before local observability and boundary support are checked. We add local recalibration only to explain that failure mode. For each routing run, the validation gate output selects a farm-specific rated-wind/pitch-threshold pair from the pre-specified grid, and that selected boundary is evaluated once on the test gate output. This does not retrain the forecaster and does not rescue an out-of-site mechanism claim. Overall default test NMI rises only from 0.1324 to 0.1491 after recalibration, a recovery of +0.0167. Kelmarsh chronological runs recover more agreement, but Penmanshiel chronological and the leave-one-farm-out settings remain weak, so the failure is not merely a shifted threshold.
+The external Kelmarsh/Penmanshiel result is a failed boundary-condition test, not a new-site success. The source guard completes 80/80 runs, both leave-one-farm-out directions, and the chronological sanity checks, but the default WTB boundary gives mean routing NMI 0.4877, below the pre-specified 0.50 external-site routing criterion; the rescue guard therefore forbids portability wording and records the safe fallback as within-WTB boundary routing evidence with external boundary-condition diagnostics. This is negative evidence, not generalization evidence. The external farms show that an operating-boundary rule cannot be reused before local observability and boundary support are checked. We add local recalibration only to explain that failure mode. For each routing run, the validation gate output selects a farm-specific rated-wind/pitch-threshold pair from the pre-specified grid, and that selected boundary is evaluated once on the test gate output. This does not retrain the forecaster and does not rescue an out-of-site mechanism claim. Overall default test NMI rises only from 0.1324 to 0.1491 after recalibration, a recovery of +0.0167. Kelmarsh chronological runs recover more agreement, but Penmanshiel chronological and the leave-one-farm-out settings remain weak, so the failure is not merely a shifted threshold.
 
-The small calibration-window adaptation makes that boundary sharper. Using only each run's validation gate outputs, the diagnostic selects a local rated-wind/pitch pair and a majority-vote gate-to-regime map, then freezes both before evaluating held-out test gates. The guard completes 40/40 routing runs, but site-specific adaptation wording remains forbidden. Chronological adapted balanced accuracy averages 0.4787, below the 0.50 diagnostic threshold. Penmanshiel chronological improves from 0.4000 to about 0.5000 balanced accuracy, but Kelmarsh chronological declines and the leave-one-farm-out Penmanshiel-to-Kelmarsh setting collapses. The result is therefore a completed negative adaptation diagnostic: local boundary estimation is necessary, but this small window is not sufficient to recover usable routing at a new site.
+The small calibration-window adaptation makes that boundary sharper. Using only each run's validation gate outputs, the diagnostic selects a local rated-wind/pitch pair and a majority-vote gate-to-regime map, then freezes both before evaluating held-out test gates. The guard completes 40/40 routing runs, but site-specific adaptation wording remains forbidden. Chronological adapted balanced accuracy averages 0.4787, below the 0.50 diagnostic threshold. Penmanshiel chronological improves from 0.4000 to about 0.5000 balanced accuracy, but its adapted NMI remains 0.0000; Kelmarsh chronological declines, and the leave-one-farm-out Penmanshiel-to-Kelmarsh setting collapses. Therefore none of the external farms clears the positive held-out routing criterion after local calibration. The result is a completed negative adaptation diagnostic: local boundary estimation is necessary, but this small window is not sufficient to recover usable routing at a new site.
 
 The failure conditions are operationally informative. Kelmarsh has 6 Senvion MM92 turbines, whereas Penmanshiel has 14 retained Senvion MM82 turbines. Pitch-feature coverage and boundary support differ sharply, especially in leave-one-farm-out caches, and the regime shares move from WTB's 39.47% idle, 52.00% MPPT, and 8.53% pitch-control partition to Kelmarsh's MPPT-heavy chronological partition and Penmanshiel's larger pitch-control share. These differences in sensor fields, pitch observability, turbine geometry, farm scale, power-curve distribution, and label balance are exactly the conditions under which the WTB operating-boundary rule must be re-estimated and tested before any site-level claim.
 
@@ -760,6 +793,8 @@ The external failure leads to a deployment protocol rather than a portability cl
 The second step is local boundary recalibration. Rated wind speed, pitch threshold, and the boundary band must be re-estimated on a local calibration period, then frozen before held-out testing; selecting them on the test period would convert the protocol into a retrospective explanation. The calibration period must also contain enough boundary cells, not only idle or MPPT-heavy operation. The Kelmarsh/Penmanshiel diagnostics show why: a small validation-window boundary and gate-map adaptation completed, but it did not restore a stable held-out routing diagnostic across farms.
 
 The third step is a regime-share and reserve-use audit. The local idle/MPPT/pitch shares should be compared with the WTB operating envelope, and transition-window shortage, violation rate, reserve energy, and high-ramp slices should be recomputed before any gate-bin reserve rule is used. A new site passes the protocol only if the held-out gate clears a pre-specified routing criterion and the reserve audit improves shortage and violations in the intended transition window at an acceptable reserve-energy cost. Without these checks, the safe conclusion is not that the model has failed silently; it is that the operating boundary must be locally re-estimated before the routing claim can be made.
+
+![New wind-farm deployment checklist. The deployment gate moves from sensor coverage to local boundary calibration, held-out routing, reserve audit, and finally allowed or forbidden claims.](artifacts/applied_energy_diagnostics/new_wind_farm_deployment_checklist.png){ width=94% }
 
 # Discussion
 

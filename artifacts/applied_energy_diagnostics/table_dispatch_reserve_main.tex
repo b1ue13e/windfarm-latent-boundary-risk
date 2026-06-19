@@ -1,0 +1,16 @@
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lllllllll}
+\toprule
+Subset & Policy & RMSE penalty & Q & Cost & Violation & Reserve & Shortage & Reading \\
+\midrule
+boundary & Graph WaveNet/physical-bin & +0.00 & low=0.900, mid=0.900, high=0.900 & 84.31M & 0.0931 & 50.35M & 3.40M & physics-stratified graph reference \\
+boundary & Boundary router/gate-bin & +10.39 & low=0.900, mid=0.900, high=0.900 & 84.58M & 0.0900 & 52.67M & 3.19M & wins on risk, pays reserve \\
+boundary & Boundary router/global & +10.39 & all=0.900 & 88.13M & 0.1038 & 50.82M & 3.73M & same-router global reference \\
+boundary & Graph WaveNet/global & +0.00 & all=0.900 & 88.80M & 0.1022 & 50.32M & 3.85M & system reference \\
+full & Graph WaveNet/global & +0.00 & all=0.900 & 464.07M & 0.0901 & 288.01M & 17.61M & system reference \\
+full & Graph WaveNet/physical-bin & +0.00 & low=0.900, mid=0.900, high=0.900 & 464.43M & 0.1057 & 278.15M & 18.63M & physics-stratified graph reference \\
+full & Boundary router/gate-bin & +10.39 & low=0.900, mid=0.900, high=0.900 & 481.36M & 0.1214 & 291.16M & 19.02M & cost-only tradeoff \\
+full & Boundary router/global & +10.39 & all=0.900 & 501.32M & 0.0857 & 324.97M & 17.64M & same-router global reference \\
+\bottomrule
+\end{tabular}
+}
