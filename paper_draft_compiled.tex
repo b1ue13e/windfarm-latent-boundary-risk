@@ -216,11 +216,11 @@ gate-conditioned policy carries too little reserve. Gate lead-lag
 analysis also supports state detection rather than reliable advance
 warning: agreement with the new regime is 0.3636 three steps before the
 transition and 0.8008 at the transition. Kelmarsh/Penmanshiel
-external-site runs fail the pre-specified portability criterion and are
-reported as boundary-condition diagnostics. Local rated-wind/pitch
-recalibration recovers only limited test agreement, and a small
-calibration-window boundary/gate-map adaptation completes but does not
-restore robust held-out routing. The contribution is physical
+external-site runs fail the pre-specified external-site routing
+criterion and are reported as boundary-condition diagnostics. Local
+rated-wind/pitch recalibration recovers only limited test agreement, and
+a small calibration-window boundary/gate-map adaptation completes but
+does not restore usable held-out routing. The contribution is physical
 accountability of routing near wind-turbine operating transitions, with
 explicit evidence for its forecasting, reserve, and external-site
 limits.
@@ -391,7 +391,7 @@ optimization, architecture, and losses
 \citeproc{ref-parsa2025pimlreview}{Parsa, 2025}{]}. In renewable and
 atmospheric applications, physics-induced graph neural networks (GNNs),
 lidar-assisted wind-field prediction, frequency-domain PINNs, and
-physics-guided wind-farm power models improve robustness or
+physics-guided wind-farm power models improve physical consistency or
 interpretability by injecting physical information into the model
 pipeline {[}\citeproc{ref-park2019physicsinduced}{Park and Park, 2019},
 \citeproc{ref-zhang2021lidar}{Zhang and Zhao, 2021},
@@ -1187,18 +1187,23 @@ expert weights evolve coherently over a selected week.}
 cases}\label{operational-value-and-failure-cases}
 
 The routing claim needs an energy-system consequence, not only a
-semantic score. We therefore turn the earlier reserve proxy into a
+semantic score. A high gate NMI is useful only if it changes the
+tradeoff an operator actually sees in a transition window: how much
+reserve energy is carried, how often the scheduled reserve is violated,
+and how much shortage energy remains when the turbine crosses from MPPT
+into pitch control. We therefore turn the earlier reserve proxy into a
 conditional operating audit: from the saved WTB validation and test
 predictions, each model calibrates reserve levels on validation
 shortfall and is charged reserve cost plus a shortage penalty on test
 shortfall. The audit reports the quantities a reserve desk would
 inspect--total cost, violation rate, reserve energy, and shortage
 energy--and deliberately asks a local question. Does a gate-aware
-reserve rule change shortage exposure where the gate is supposed to
-matter, namely MPPT-to-pitch boundary anchors within +/-1.0 m s\(^{-1}\)
-of rated wind? We count this as operating value only when the gate-aware
-policy improves total cost, violation rate, and shortage energy together
-in that boundary window.
+reserve rule reduce transition-window shortage and violations where the
+gate is supposed to matter, namely MPPT-to-pitch boundary anchors within
++/-1.0 m s\(^{-1}\) of rated wind, and what reserve-energy price does it
+pay? We count this as operating value only when the gate-aware policy
+improves total cost, violation rate, and shortage energy together in
+that boundary window.
 
 At the main shortage-to-reserve cost ratio of 10, Graph
 WaveNet/global-quantile reserve is the principal energy-system baseline,
@@ -1402,10 +1407,10 @@ agreement but can move the model away from the lowest forecast error.}
 \subsection{Robustness and fairness
 checks}\label{robustness-and-fairness-checks}
 
-The robustness and fairness checks rule out two easy explanations for
-the WTB result. The in-family comparisons use multiple strict-mask
-seeds, and the routed in-family variants share the same parameter count,
-making a pure capacity explanation unlikely. The completed strict-cache
+The stress and fairness checks rule out two easy explanations for the
+WTB result. The in-family comparisons use multiple strict-mask seeds,
+and the routed in-family variants share the same parameter count, making
+a pure capacity explanation unlikely. The completed strict-cache
 baseline refresh sharpens the forecasting check: Graph WaveNet is lower
 than the boundary-forced router by about 10.39 RMSE on average, PatchTST
 is lower by about 8.06 RMSE, and Graph Transformer and GAT-GRU are close
@@ -1417,12 +1422,12 @@ RMSE difference between physics-aligned MoE and the dense encoder is
 small and uncertain, about 0.009 (-0.061 to 0.085), and the expanded
 ERA5 baseline panel shows that even the best learned baseline still
 trails persistence. The efficiency rows add one more cost: the
-boundary-forced router is slower than the full physics-aligned MoE. The
-robustness evidence therefore supports the routing-semantics claim and
-keeps the accuracy claim bounded.
+boundary-forced router is slower than the full physics-aligned MoE.
+These checks therefore support the routing-semantics claim and keep the
+accuracy claim bounded.
 
 The strict replay, intervention, placebo, and time-forward tables below
-are the current robustness evidence for the corrected-router claim.
+are the current stress evidence for the corrected-router claim.
 
 We also add negative-control and intervention audits for the strict-mask
 WTB gate. The five-seed strict-mask set compares the actual operating
@@ -1486,7 +1491,7 @@ mask-valid coverage (-0.1446), and a lower mean wind-speed anchor
 (-0.3028) but much larger pitch action (+13.9845 in mean Pab). The gate
 still tracks the physical partition, but the value map faces a different
 operating distribution. This audit therefore supports a
-routing-semantics claim while weakening any time-robust forecasting
+routing-semantics claim while weakening any time-stable forecasting
 claim. It is a stress test on saved test predictions, not a replacement
 for an external dataset or a pre-specified future-period holdout.
 
@@ -1542,16 +1547,19 @@ but the default WTB boundary gives mean routing NMI 0.4877, below the
 pre-specified 0.50 external-site routing criterion; the rescue guard
 therefore forbids portability wording and records the safe fallback as
 within-WTB boundary routing evidence with external boundary-condition
-diagnostics. We add local recalibration only to explain the failure
-mode. For each routing run, the validation gate output selects a
-farm-specific rated-wind/pitch-threshold pair from the pre-specified
-grid, and that selected boundary is evaluated once on the test gate
-output. This does not retrain the forecaster and does not rescue an
-out-of-site mechanism claim. Overall default test NMI rises only from
-0.1324 to 0.1491 after recalibration, a recovery of +0.0167. Kelmarsh
-chronological runs recover more agreement, but Penmanshiel chronological
-and the leave-one-farm-out settings remain weak, so the failure is not
-merely a shifted threshold.
+diagnostics. This is a contribution boundary rather than a hidden
+weakness: the external farms show that an operating-boundary rule cannot
+be reused before local observability and boundary support are checked.
+We add local recalibration only to explain that failure mode. For each
+routing run, the validation gate output selects a farm-specific
+rated-wind/pitch-threshold pair from the pre-specified grid, and that
+selected boundary is evaluated once on the test gate output. This does
+not retrain the forecaster and does not rescue an out-of-site mechanism
+claim. Overall default test NMI rises only from 0.1324 to 0.1491 after
+recalibration, a recovery of +0.0167. Kelmarsh chronological runs
+recover more agreement, but Penmanshiel chronological and the
+leave-one-farm-out settings remain weak, so the failure is not merely a
+shifted threshold.
 
 The small calibration-window adaptation makes that boundary sharper.
 Using only each run's validation gate outputs, the diagnostic selects a
@@ -1564,8 +1572,8 @@ from 0.4000 to about 0.5000 balanced accuracy, but Kelmarsh
 chronological declines and the leave-one-farm-out
 Penmanshiel-to-Kelmarsh setting collapses. The result is therefore a
 completed negative adaptation diagnostic: local boundary estimation is
-necessary, but this small window is not sufficient to restore robust
-usable routing at a new site.
+necessary, but this small window is not sufficient to recover usable
+routing at a new site.
 
 The failure conditions are operationally informative. Kelmarsh has 6
 Senvion MM92 turbines, whereas Penmanshiel has 14 retained Senvion MM82
@@ -1587,6 +1595,42 @@ site-level claim.
 \caption*{\textbf{Table.} Why external wind-farm portability failed and how the result is used.}
 \input{artifacts/applied_energy_diagnostics/table_external_site_transfer_failure.tex}
 \end{table}
+
+\subsection{Deployment protocol for a new wind
+farm}\label{deployment-protocol-for-a-new-wind-farm}
+
+The external failure leads to a deployment protocol rather than a
+portability claim. Before using the router at a new wind farm, the
+operator must first audit sensor coverage: wind speed, active power,
+turbine status or availability masks, and pitch-related channels must be
+present with enough valid overlap to construct the MPPT and
+pitch-control labels used by the gate. Pitch observability is a separate
+gate: if mean pitch, blade-pitch channels, or a reliable pitch proxy are
+missing in the intended operating window, the boundary label is not
+identifiable and the WTB-derived gate should not be interpreted as a
+physical router.
+
+The second step is local boundary recalibration. Rated wind speed, pitch
+threshold, and the boundary band must be re-estimated on a local
+calibration period, then frozen before held-out testing; selecting them
+on the test period would convert the protocol into a retrospective
+explanation. The calibration period must also contain enough boundary
+cells, not only idle or MPPT-heavy operation. The Kelmarsh/Penmanshiel
+diagnostics show why: a small validation-window boundary and gate-map
+adaptation completed, but it did not restore a stable held-out routing
+diagnostic across farms.
+
+The third step is a regime-share and reserve-use audit. The local
+idle/MPPT/pitch shares should be compared with the WTB operating
+envelope, and transition-window shortage, violation rate, reserve
+energy, and high-ramp slices should be recomputed before any gate-bin
+reserve rule is used. A new site passes the protocol only if the
+held-out gate clears a pre-specified routing criterion and the reserve
+audit improves shortage and violations in the intended transition window
+at an acceptable reserve-energy cost. Without these checks, the safe
+conclusion is not that the model has failed silently; it is that the
+operating boundary must be locally re-estimated before the routing claim
+can be made.
 
 \section{Discussion}\label{discussion}
 
@@ -1680,7 +1724,7 @@ late block, but it also shows a large late-test RMSE increase. The
 failure case is therefore explicit: late-period distribution shift
 preserves routing agreement while degrading value prediction. This is an
 important boundary condition: the method currently supports routing
-semantics, not time-robust forecasting robustness.
+semantics, not time-stable forecasting accuracy.
 
 The WTB ablation is scoped. The strict-cache 50-run ablation guard
 passes, but each cited row must report RMSE together with NMI/ARI. The
@@ -1742,10 +1786,10 @@ needs supervision over responsibility as well as supervision over
 values. The completed external wind diagnostic shows that this
 responsibility claim must be re-established when turbine geometry, pitch
 observability, sensor fields, power curves, or label distributions
-change; a small validation-window adaptation did not restore robust
+change; a small validation-window adaptation did not restore usable
 held-out routing in Kelmarsh/Penmanshiel. The gate is part of the
 model's scientific claim, and the right question is whether that claim
-is worth its measured error, reserve, robustness, and efficiency costs
+is worth its measured error, reserve, stress-test, and efficiency costs
 in the target operating setting.
 
 \section{Declaration of generative AI and AI-assisted technologies in
