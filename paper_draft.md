@@ -84,7 +84,7 @@ Wind-power forecasting is operationally useful when it supports decisions under 
 
 ## Operating regimes, SCADA observability, and physical accountability
 
-Regime-aware modeling provides a way to separate local response laws, but the separation must be physically accountable. Early adaptive and hierarchical MoE models partitioned inputs among local experts [@jacobs1991adaptive; @jordan1994hierarchical], and modern sparse MoE systems made routing scalable while exposing collapse, starvation, and unstable load allocation as practical failure modes [@shazeer2017outrageously; @fedus2022switch]. Sequence-forecasting MoE models import this specialization idea into time-series settings [@shi2025timemoe]. Physics-guided learning offers the complementary principle: theory can enter through features, pretraining, architecture, losses, or post-hoc constraints [@karpatne2017tgds; @read2019pgdl; @raissi2019pinn; @karniadakis2021piml; @parsa2025pimlreview]. For wind turbines, SCADA observability matters because operating-state labels depend on sensor coverage, pitch channels, availability masks, and turbine-specific power curves [@tautzweinert2017scada; @zhou2024sdwpfdata]. Renewable and atmospheric applications already use physical graphs, lidar information, frequency-domain constraints, and wind-farm power priors to improve physical consistency or interpretability [@park2019physicsinduced; @zhang2021lidar; @li2025fdpinn; @zehtabiyan2023physicsguided]. This paper moves the prior to the routing layer itself: the gate is evaluated as a responsibility assignment around a mechanism change.
+Regime-aware modeling provides a way to separate local response laws, but the separation must be physically accountable. Early adaptive and hierarchical MoE models partitioned inputs among local experts [@jacobs1991adaptive; @jordan1994hierarchical], and modern sparse MoE systems made routing scalable while exposing collapse, starvation, and unstable load allocation as practical failure modes [@shazeer2017outrageously; @fedus2022switch]. Sequence-forecasting MoE models import this specialization idea into time-series settings [@shi2025timemoe]. Physics-guided learning offers the complementary principle: theory can enter through features, pretraining, architecture, losses, or post-hoc constraints [@karpatne2017tgds; @read2019pgdl; @raissi2019pinn; @karniadakis2021piml; @parsa2025pimlreview]. For wind turbines, SCADA observability matters because operating-state labels depend on sensor coverage, pitch channels, availability masks, and turbine-specific power curves [@tautzweinert2017scada; @zhou2024sdwpfdata]. That condition-monitoring and operating-state literature is complementary to this paper: it establishes why state labels can be sensor- and turbine-specific, while our question is how a forecast MoE should use such labels to constrain responsibility near a control boundary. Renewable and atmospheric applications already use physical graphs, lidar information, frequency-domain constraints, and wind-farm power priors to improve physical consistency or interpretability [@park2019physicsinduced; @zhang2021lidar; @li2025fdpinn; @zehtabiyan2023physicsguided]. This paper moves the prior to the routing layer itself: the gate is evaluated as a responsibility assignment around a mechanism change.
 
 ## Forecast-driven reserve allocation and risk diagnostics
 
@@ -106,6 +106,8 @@ $$
 
 where $\mathbf{X}_{t-H+1:t} \in \mathbb{R}^{H \times N \times F}$ and $\mathcal{A}_{t-H+1:t}$ denotes either a time-varying directed graph sequence (WTB) or a static graph repeated over time (ERA5). Invalid or missing targets are excluded by a supervision mask.
 
+The time index is part of the information boundary. All inputs, graph weights, regime anchors, and gate anchors are observed no later than the anchor time $t$; the supervised targets begin at $t+1$. In WTB, active power appears both as a historical SCADA channel and as the future target. The historical/anchor value $\texttt{Patv}_{i,t}$ may enter the gate because it is observed at the decision time, but $\texttt{Patv}_{i,t+\tau}$ for $\tau \ge 1$ is used only as the held-out prediction target and its validity mask. This convention avoids target leakage in the multi-step horizon while allowing the router to use the same operational state that would be visible at the forecast issue time.
+
 Table 1 lists the notation used in the routing and loss definitions. Routing is node-level: each node at each anchor time receives its own gate distribution $\mathbf{g}_{i,t}$. This is essential because nearby turbines or grid cells can move into different local regimes within the same sequence.
 
 ```{=latex}
@@ -122,6 +124,8 @@ Symbol & Meaning & Dimension \\
 $\mathbf{x}_{i,t}$ & Node feature vector at node $i$, time $t$ & $\mathbb{R}^{F}$ \\
 $\mathbf{X}_{t-H+1:t}$ & Input history window & $\mathbb{R}^{H \times N \times F}$ \\
 $y_{i,t}$ & Scalar target & $\mathbb{R}$ \\
+$\bar{p}_{i,t}$ & Mean blade-pitch angle (\texttt{Pab\_mean}) in WTB & scalar \\
+$\texttt{Patv}_{i,t}$ & Active power observed at anchor time; future values are prediction targets & scalar \\
 $\mathbf{h}_{i,t}$ & Encoded node context & $\mathbb{R}^{d}$ \\
 $\mathbf{a}_{i,t}$ & Physics anchor vector used by the gate & $\mathbb{R}^{q}$ \\
 $\mathbf{z}_{i,t}$ & Gate logits & $\mathbb{R}^{E}$ \\
@@ -148,6 +152,8 @@ In WTB, the primary operating boundary is the transition from MPPT to pitch cont
 $$
 \bar{p}_{i,t} = \frac{1}{3}\left(p^{(1)}_{i,t}+p^{(2)}_{i,t}+p^{(3)}_{i,t}\right).
 $$
+
+The WTB column name `Pab` denotes blade pitch angle. We use $\bar{p}_{i,t}$, also reported as `Pab_mean` in tables and figures, for the three-blade pitch average. This is separate from `Patv`, the active-power channel and prediction target, and from `Wspd`, the nacelle wind-speed channel. The regime labels below use wind speed and mean pitch angle at the anchor time, not future active power.
 
 Using a cut-in threshold $u_{\mathrm{idle}}$, a pitch-transition threshold $u_{\mathrm{rated}}$, and a pitch-angle threshold $p_{\mathrm{th}}$, we define
 
@@ -323,7 +329,7 @@ WTB uses the anchor
 $$
 \mathbf{a}_{i,t}^{\mathrm{WTB}}
 =
-[\texttt{Wspd}, \texttt{Pab\_mean}, s^{\mathrm{wake}}, \texttt{Patv}],
+[\texttt{Wspd}_{i,t}, \texttt{Pab\_mean}_{i,t}, s^{\mathrm{wake}}_{i,t}, \texttt{Patv}_{i,t}],
 $$
 
 whereas ERA5 uses
@@ -331,10 +337,10 @@ whereas ERA5 uses
 $$
 \mathbf{a}_{i,t}^{\mathrm{ERA5}}
 =
-[\texttt{sshf}, \texttt{t2m}, \texttt{wind\_speed}, \Delta \texttt{sshf}].
+[\texttt{sshf}_{i,t}, \texttt{t2m}_{i,t}, \texttt{wind\_speed}_{i,t}, \Delta \texttt{sshf}_{i,t}].
 $$
 
-The difference reflects the observability contrast: WTB needs help to recover a partly hidden operating boundary, whereas ERA5 already exposes the relevant thermodynamic marker in the state.
+The difference reflects the observability contrast: WTB needs help to recover a partly hidden operating boundary, whereas ERA5 already exposes the relevant thermodynamic marker in the state. The active-power anchor is the observed value at the issue time, equivalent to a one-step-lag/status input in a rolling SCADA forecast. It is standardized using training-split statistics and is never filled from the prediction horizon. If an operator's dispatch cutoff does not make current active power available, the same protocol must drop this anchor and rerun the leakage and intervention checks before interpreting the gate physically.
 
 ![Physics-aligned regime-aware MoE. The two datasets share the same directed-diffusion GRU encoder and node-level MoE routing mechanism. WTB uses a dynamic wake graph and a boundary-focused forcing term, whereas ERA5 uses a Haversine-Gaussian graph and a thermodynamic regime anchor.](artifacts/final_evidence_package/export/figures/figure1_architecture.pdf){ width=95% }
 
@@ -378,7 +384,7 @@ where $m^{y}_{i,t+\tau}$ is the target-validity mask. All routing regularizers r
 
 ### Load balancing
 
-A slightly favored expert can dominate early training and starve the others before regime-specific structure has time to emerge. A balancing term counteracts that early collapse. Let $\mathbf{g}_n$ denote the gate distribution for the $n$-th valid routed sample in a mini-batch of size $B$. The soft importance of expert $e$ is
+A slightly favored expert can dominate early training and starve the others before regime-specific structure has time to emerge. A balancing term counteracts that early collapse. Let $\mathcal{B}$ denote the routed node-anchor samples in a mini-batch after target and anchor masks are applied, and let $B=|\mathcal{B}|$. For the $n$-th sample in this set, the soft importance of expert $e$ is
 
 $$
 I_e = \frac{1}{B}\sum_{n=1}^{B} g_n^{(e)},
@@ -398,11 +404,11 @@ $$
 \mathcal{L}_{\mathrm{bal}} = E\sum_{e=1}^{E} f_e P_e - 1.
 $$
 
-This term prevents early expert starvation. Regime ownership is supplied by the alignment terms below.
+This statistic is computed per mini-batch and averaged by the optimizer over training steps. It stabilizes expert usage but does not define physical ownership; regime ownership is supplied by the alignment terms below.
 
 ### Regime-anchor alignment
 
-Balanced expert usage can still produce a physically meaningless partition. The next term aligns the gate with the coarsest regime structure that can be identified with high confidence. Let $\mathbf{z}^{(1:C)}_{i,t}$ denote the first $C$ gate logits, and let $R_{i,t}$ and $M_{i,t}$ be the primary regime label and its validity mask. The alignment loss is
+Balanced expert usage can still produce a physically meaningless partition. The next term aligns the gate with the coarsest regime structure that can be identified with high confidence. Let $\mathbf{z}^{(1:C)}_{i,t}$ denote the first $C$ gate logits, and let $R_{i,t}$ and $M_{i,t}$ be the primary regime label and its validity mask. The mapping from primary regime labels to the first $C$ logits is fixed by construction: for WTB, idle, MPPT, and pitch-control correspond to logits 1--3; for ERA5, stable, transition, and convective correspond to logits 1--3. This supervised index convention breaks the usual MoE label-permutation symmetry only for the anchored logits. Any extra expert logits remain unassigned unless they are used by the wake auxiliary term. The alignment loss is
 
 $$
 \mathcal{L}_{\mathrm{align}}
@@ -414,7 +420,7 @@ $$
 \Omega=\{(i,t):M_{i,t}=1\},
 $$
 
-with inverse-frequency class weights estimated on the training split. Alignment stabilizes the coarse physical partition only where the labels are reliable.
+with inverse-frequency class weights estimated on the training split. Alignment stabilizes the coarse physical partition only where the labels are reliable. Cross-seed statements such as "MPPT-aligned" or "pitch-aligned" refer to this fixed logit-index convention; they are not inferred after training by relabeling experts.
 
 ### Boundary-focused forcing (WTB only)
 
@@ -428,7 +434,7 @@ Y^{\mathrm{force}}_{i,t} =
 \end{cases}
 $$
 
-Using the MPPT-aligned and pitch-aligned expert logits, we define
+Using the MPPT-aligned and pitch-aligned expert logits fixed above, we define
 
 $$
 \mathcal{L}_{\mathrm{force}}
@@ -444,7 +450,7 @@ Y^{\mathrm{force}}_{i,t}
 \right),
 $$
 
-where $\Omega_{\mathrm{force}}=\{(i,t):R^{\mathrm{wtb}}_{i,t}\in\{1,2\}\}$. This term concentrates the intervention on the mechanically important boundary.
+where $\Omega_{\mathrm{force}}=\{(i,t):R^{\mathrm{wtb}}_{i,t}\in\{1,2\}, M_{i,t}=1\}$. This term concentrates the intervention on high-confidence MPPT and pitch-control anchors. It makes the gate more identifiable once the operating state is expressed in the SCADA channels; it is not designed or evaluated as a lead-time switch predictor.
 
 ### Wake auxiliary supervision and graph smoothness
 
@@ -458,19 +464,19 @@ $$
 \mathrm{BCE}\!\left(z^{(\mathrm{wake})}_{i,t}, W_{i,t}\right),
 $$
 
-where $\Omega_{\mathrm{wake}}$ contains only MPPT and pitch-control samples for which the wake flag is defined. The smoothness term is
+where $\Omega_{\mathrm{wake}}$ contains only MPPT and pitch-control samples for which the wake flag is defined. The wake flag is a thresholded auxiliary view of the continuous wake score, using the training-split upper quartile reported in the Appendix; the continuous score still enters the anchor vector. The smoothness term is computed on the graph snapshot associated with the anchor time,
 
 $$
 \mathcal{L}_{\mathrm{smooth}}
 =
 \frac{
-\sum_{i,j}\mathcal{A}_t(i,j)\lVert \mathbf{g}_{i,t}-\mathbf{g}_{j,t}\rVert_2^2
+\sum_{t \in \mathcal{T}_{\mathcal{B}}}\sum_{i,j}\mathcal{A}_t(i,j)\lVert \mathbf{g}_{i,t}-\mathbf{g}_{j,t}\rVert_2^2
 }{
-\sum_{i,j}\mathcal{A}_t(i,j)
+\sum_{t \in \mathcal{T}_{\mathcal{B}}}\sum_{i,j}\mathcal{A}_t(i,j) + \epsilon
 }.
 $$
 
-The auxiliary term is a WTB-specific repair for wake mixing, while the smoothness term encourages locally coherent routing without prescribing a global partition.
+Here $\mathcal{T}_{\mathcal{B}}$ is the set of anchor times represented in the mini-batch, and $\epsilon$ prevents division by zero if a graph has no retained edges. The auxiliary term is a WTB-specific repair for wake mixing, while the smoothness term encourages locally coherent routing without prescribing a global partition.
 
 ## Operational reserve diagnostic protocol
 
@@ -865,9 +871,13 @@ The method is appropriate when the operating boundary is part of the scientific 
 
 # Limitations
 
-The WTB correction depends on threshold-based pseudo-labels derived from wind speed and mean pitch angle. Those thresholds are physically motivated and consistent with the implemented data pipeline, but they impose a hand-crafted boundary definition. The method is boundary-aware regularized routing.
+The WTB correction depends on threshold-based pseudo-labels derived from wind speed and mean pitch angle. Those thresholds are physically motivated and consistent with the implemented data pipeline, but they impose a hand-crafted boundary definition. The reported threshold audit re-labels saved gate outputs over a local rated-wind/pitch grid and the lambda sweep varies the two dominant routing weights, so the main result is not a single-point artifact. The coverage is still partial: it does not exhaust all anchor thresholds, loss weights, wake-score cutoffs, or turbine-control settings. The method is boundary-aware regularized routing, not a fully learned operating-state discovery system.
 
-The comparison is bounded. Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST, persistence, physical power curve, XGBoost/LightGBM lag features, and a DLinear-style LTSF readout provide completed strict-mask WTB forecasting baselines, and ERA5 is checked against persistence plus Graph WaveNet, STGCN, PatchTST, and TCN. The strict-anchor-mask rerun covers the selected WTB corrected router, replay, intervention, placebo, time-forward audits, a synchronized baseline refresh, a spatial node-held-out stress test, a future-period holdout, a quasi-external WTB deployment drill, and the transition-window reserve audit. The study does not implement unit commitment, market clearing, a full probabilistic prediction-to-reserve pipeline, real dispatch integration, or a closed-loop operator simulation. Larger general time-series backbones and broader graph-transformer variants are also outside the present benchmark. External wind-farm diagnostics are complete but fail the external-site routing criterion: the Kelmarsh/Penmanshiel audit reaches 80/80 completed runs in both leave-one-farm-out directions, while the default WTB boundary remains below the declared threshold. The added local recalibration table records how much agreement is recovered when rated-wind/pitch boundaries are re-estimated on validation gates and then fixed on test gates. The quasi-external drill shows that the calibration-to-held-out workflow can pass inside WTB, but it does not change the external-farm conclusion. The external taxonomy points to farm scale, turbine geometry, pitch observability, sensor-field coverage, power-curve differences, and regime-label imbalance as the main boundary conditions. The evidence therefore supports within-WTB spatial and temporal stress validation of routing semantics and operating-boundary reserve diagnostics, plus an external diagnostic of when those semantics need local boundary re-estimation.
+The active-power anchor has a strict timing requirement. `Patv` is allowed only as the historical/anchor-time active-power measurement available when the forecast is issued; future active power remains the supervised target. This is a defensible SCADA forecasting convention, but it is also a portability constraint. If a deployment environment delays active-power telemetry, changes channel definitions, or evaluates a decision before the current active-power value is available, the Patv anchor must be removed or lagged and the leakage, intervention, and reserve diagnostics must be rerun.
+
+The expert-regime language is tied to the implemented logit convention. The first primary-regime logits are fixed to the operating labels during supervised alignment, which prevents seed-wise permutation for those anchored meanings. That makes cross-seed MPPT/pitch statements interpretable, but only for the anchored logits and only under the declared mapping. Unassigned experts and wake auxiliary logits should not be overread as universal turbine states.
+
+The comparison is bounded. Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST, persistence, physical power curve, XGBoost/LightGBM lag features, and a DLinear-style LTSF readout provide completed strict-mask WTB forecasting baselines, and ERA5 is checked against persistence plus Graph WaveNet, STGCN, PatchTST, and TCN. The strict-anchor-mask rerun covers the selected WTB corrected router, replay, intervention, placebo, time-forward audits, a synchronized baseline refresh, a spatial node-held-out stress test, a future-period holdout, a quasi-external WTB deployment drill, and the transition-window reserve audit. The study does not implement unit commitment, market clearing, a full probabilistic prediction-to-reserve pipeline, real dispatch integration, or a closed-loop operator simulation. The reserve audit is therefore a normalized proxy decision: fixed empirical quantile bins are calibrated on validation shortfall and tested once on held-out predictions, with costs reported in normalized reserve-energy units rather than money. It is useful for ranking boundary-window risk tradeoffs under declared cost ratios, but it is not a market-price or security-constrained dispatch study. Larger general time-series backbones and broader graph-transformer variants are also outside the present benchmark. External wind-farm diagnostics are complete but fail the external-site routing criterion: the Kelmarsh/Penmanshiel audit reaches 80/80 completed runs in both leave-one-farm-out directions, while the default WTB boundary remains below the declared threshold. The added local recalibration table records how much agreement is recovered when rated-wind/pitch boundaries are re-estimated on validation gates and then fixed on test gates. The quasi-external drill shows that the calibration-to-held-out workflow can pass inside WTB, but it does not change the external-farm conclusion. The external taxonomy points to farm scale, turbine geometry, pitch observability, sensor-field coverage, power-curve differences, and regime-label imbalance as the main boundary conditions. The evidence therefore supports within-WTB spatial and temporal stress validation of routing semantics and operating-boundary reserve diagnostics, plus an external diagnostic of when those semantics need local boundary re-estimation.
 
 The time-forward audit is not an external validation. It is a post-hoc split of saved WTB test predictions into contiguous anchor-time blocks. It shows that the strict-mask gate keeps its physical partition in the late block, but it also shows a large late-test RMSE increase. The failure case is therefore explicit: late-period distribution shift preserves routing agreement while degrading value prediction. This is an important boundary condition: the method currently supports routing semantics, not time-stable forecasting accuracy.
 
