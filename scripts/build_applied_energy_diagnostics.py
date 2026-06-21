@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import itertools
 import json
 from pathlib import Path
 from typing import Any
@@ -7,6 +8,7 @@ from typing import Any
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +19,8 @@ EXTERNAL_GUARD_DIR = ROOT / "artifacts" / "external_wind_guard"
 EXTERNAL_RESCUE_DIR = ROOT / "artifacts" / "external_wind_portability_rescue"
 EXTERNAL_ADAPT_DIR = ROOT / "artifacts" / "external_wind_small_calibration_adaptation"
 REVIEWER_DIR = ROOT / "artifacts" / "strictmask_combined_reviewer_stats"
+FUTURE_HOLDOUT_DIR = ROOT / "artifacts" / "future_holdout_wtb_strictmask_runs"
+SPATIAL_HOLDOUT_DIR = ROOT / "artifacts" / "spatial_holdout_wtb_east_runs"
 
 DISPLAY_POLICIES = [
     ("Graph WaveNet", "global", "Graph WaveNet/global"),
@@ -36,6 +40,11 @@ STAT_CANDIDATES = [
     "Boundary-forced router/physical-bin",
     "Boundary-forced router/gate-bin",
 ]
+
+DEPLOYMENT_GRID_RATED = (10.0, 10.5, 11.0)
+DEPLOYMENT_GRID_PITCH = (1.5, 2.0, 2.5)
+DEPLOYMENT_PASS_NMI = 0.50
+DEPLOYMENT_PASS_BALANCED_ACCURACY = 0.50
 
 
 def _read_csv(path: Path) -> pd.DataFrame:
@@ -97,6 +106,258 @@ def _safe_cell(frame: pd.DataFrame, **conditions: str) -> pd.Series | None:
     if subset.empty:
         return None
     return subset.iloc[0]
+
+
+def _compute_wtb_regime(
+    wspd: np.ndarray,
+    pab: np.ndarray,
+    *,
+    rated_wind: float,
+    pitch_threshold: float,
+    cut_in_wind: float = 3.0,
+) -> tuple[np.ndarray, np.ndarray]:
+    regime = np.full(wspd.shape, 3, dtype=np.int16)
+    regime[wspd < float(cut_in_wind)] = 0
+    regime[(wspd >= float(cut_in_wind)) & (wspd <= float(rated_wind)) & (pab < float(pitch_threshold))] = 1
+    regime[(wspd > float(rated_wind)) & (pab >= float(pitch_threshold))] = 2
+    return regime, regime != 3
+
+
+def _balanced_accuracy_three_class(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    values: list[float] = []
+    for class_id in (0, 1, 2):
+        selector = y_true == class_id
+        if selector.any():
+            values.append(float((y_pred[selector] == class_id).mean()))
+    return float(np.mean(values)) if values else float("nan")
+
+
+def _best_gate_map(y_true: np.ndarray, gate_label: np.ndarray) -> tuple[tuple[int, int, int], float]:
+    best_perm = (0, 1, 2)
+    best_score = -1.0
+    for perm in itertools.permutations((0, 1, 2)):
+        mapped = np.asarray(perm, dtype=np.int16)[gate_label]
+        score = float((mapped == y_true).mean()) if y_true.size else float("nan")
+        if np.isfinite(score) and score > best_score:
+            best_score = score
+            best_perm = tuple(int(value) for value in perm)
+    return best_perm, best_score
+
+
+def _deployment_split_metrics(
+    *,
+    labels: np.ndarray,
+    valid: np.ndarray,
+    split_valid: np.ndarray,
+    gate_label: np.ndarray,
+    indices: np.ndarray,
+    gate_map: tuple[int, int, int],
+) -> dict[str, Any]:
+    selector = valid[indices] & split_valid[indices].astype(bool)
+    y_true = labels[indices][selector]
+    y_gate = gate_label[indices][selector]
+    if not y_true.size:
+        return {
+            "n_valid_cells": 0,
+            "n_classes": 0,
+            "nmi": float("nan"),
+            "ari": float("nan"),
+            "balanced_accuracy": float("nan"),
+        }
+    mapped = np.asarray(gate_map, dtype=np.int16)[y_gate]
+    n_classes = int(np.unique(y_true).size)
+    return {
+        "n_valid_cells": int(y_true.size),
+        "n_classes": n_classes,
+        "nmi": float(normalized_mutual_info_score(y_true, y_gate)) if n_classes >= 2 else float("nan"),
+        "ari": float(adjusted_rand_score(y_true, y_gate)) if n_classes >= 2 else float("nan"),
+        "balanced_accuracy": _balanced_accuracy_three_class(y_true, mapped),
+    }
+
+
+def _deployment_window_one_run(
+    run_dir: Path,
+    *,
+    scenario: str,
+    metrics_split: str,
+    calibration_steps: int,
+    min_boundary_cells: int,
+) -> dict[str, Any] | None:
+    metrics_dir = run_dir / metrics_split
+    required = ["gate_prob.npy", "anchor_physics.npy", "regime_primary_valid.npy"]
+    if any(not (metrics_dir / name).exists() for name in required):
+        return None
+
+    gate = np.load(metrics_dir / "gate_prob.npy", mmap_mode="r")
+    physics = np.load(metrics_dir / "anchor_physics.npy", mmap_mode="r")
+    split_valid = np.load(metrics_dir / "regime_primary_valid.npy", mmap_mode="r") > 0
+    gate_label = np.asarray(gate[..., :3]).argmax(axis=-1).astype(np.int16)
+    wspd = np.asarray(physics[..., 0], dtype=np.float32)
+    pab = np.asarray(physics[..., 1], dtype=np.float32)
+    n_windows = int(gate_label.shape[0])
+    cal_stop = min(int(calibration_steps), n_windows)
+    calibration_idx = np.arange(cal_stop, dtype=np.int64)
+    heldout_idx = np.arange(cal_stop, n_windows, dtype=np.int64)
+    if heldout_idx.size == 0:
+        heldout_idx = np.arange(n_windows, dtype=np.int64)
+
+    candidates: list[tuple[tuple[bool, float, float, int], dict[str, Any]]] = []
+    for rated in DEPLOYMENT_GRID_RATED:
+        for pitch in DEPLOYMENT_GRID_PITCH:
+            labels, valid = _compute_wtb_regime(wspd, pab, rated_wind=float(rated), pitch_threshold=float(pitch))
+            cal_selector = valid[calibration_idx] & split_valid[calibration_idx].astype(bool)
+            y_true = labels[calibration_idx][cal_selector]
+            y_gate = gate_label[calibration_idx][cal_selector]
+            if y_true.size == 0 or np.unique(y_true).size < 2:
+                continue
+            gate_map, map_accuracy = _best_gate_map(y_true, y_gate)
+            calibration_nmi = float(normalized_mutual_info_score(y_true, y_gate))
+            boundary_cells = int(
+                (
+                    valid[calibration_idx]
+                    & split_valid[calibration_idx].astype(bool)
+                    & np.isin(labels[calibration_idx], [1, 2])
+                    & (np.abs(wspd[calibration_idx] - float(rated)) <= 1.0)
+                ).sum()
+            )
+            metrics = {
+                "rated_wind": float(rated),
+                "pitch_threshold": float(pitch),
+                "gate_map": gate_map,
+                "map_accuracy": float(map_accuracy),
+                "calibration_nmi": calibration_nmi,
+                "calibration_boundary_cells": boundary_cells,
+                "labels": labels,
+                "valid": valid,
+            }
+            score = (boundary_cells >= int(min_boundary_cells), float(map_accuracy), calibration_nmi, boundary_cells)
+            candidates.append((score, metrics))
+    if not candidates:
+        return None
+
+    candidates.sort(key=lambda item: item[0], reverse=True)
+    selected = candidates[0][1]
+    labels = selected["labels"]
+    valid = selected["valid"]
+    gate_map = selected["gate_map"]
+    calibration = _deployment_split_metrics(
+        labels=labels,
+        valid=valid,
+        split_valid=split_valid,
+        gate_label=gate_label,
+        indices=calibration_idx,
+        gate_map=gate_map,
+    )
+    heldout = _deployment_split_metrics(
+        labels=labels,
+        valid=valid,
+        split_valid=split_valid,
+        gate_label=gate_label,
+        indices=heldout_idx,
+        gate_map=gate_map,
+    )
+    heldout_pass = (
+        _num(heldout.get("nmi")) >= DEPLOYMENT_PASS_NMI
+        and _num(heldout.get("balanced_accuracy")) >= DEPLOYMENT_PASS_BALANCED_ACCURACY
+    )
+    seed = str(run_dir.name).split("seed")[-1]
+    return {
+        "scenario": scenario,
+        "run_dir": str(run_dir.relative_to(ROOT) if run_dir.is_relative_to(ROOT) else run_dir),
+        "seed": int(seed) if seed.isdigit() else seed,
+        "metrics_split": metrics_split,
+        "calibration_days": float(calibration_steps / 144.0),
+        "calibration_windows": int(calibration_idx.size),
+        "heldout_windows": int(heldout_idx.size),
+        "min_boundary_cells": int(min_boundary_cells),
+        "selected_rated_wind": selected["rated_wind"],
+        "selected_pitch_threshold": selected["pitch_threshold"],
+        "gate_map": "->".join(str(value) for value in gate_map),
+        "calibration_boundary_cells": int(selected["calibration_boundary_cells"]),
+        "calibration_n_valid_cells": int(calibration["n_valid_cells"]),
+        "calibration_nmi": float(calibration["nmi"]),
+        "calibration_ari": float(calibration["ari"]),
+        "calibration_balanced_accuracy": float(calibration["balanced_accuracy"]),
+        "heldout_n_valid_cells": int(heldout["n_valid_cells"]),
+        "heldout_nmi": float(heldout["nmi"]),
+        "heldout_ari": float(heldout["ari"]),
+        "heldout_balanced_accuracy": float(heldout["balanced_accuracy"]),
+        "heldout_pass": bool(heldout_pass),
+        "claim_boundary": (
+            "quasi-external WTB deployment drill only; not Kelmarsh/Penmanshiel portability"
+            if heldout_pass
+            else "diagnostic only; held-out criterion failed"
+        ),
+    }
+
+
+def _quasi_external_deployment_table() -> pd.DataFrame:
+    rows: list[dict[str, Any]] = []
+    for run_dir in sorted(FUTURE_HOLDOUT_DIR.glob("wtb_bal_align_force_seed*")):
+        row = _deployment_window_one_run(
+            run_dir,
+            scenario="future-period WTB proxy",
+            metrics_split="holdout_metrics",
+            calibration_steps=288,
+            min_boundary_cells=50,
+        )
+        if row is not None:
+            rows.append(row)
+    for run_dir in sorted(SPATIAL_HOLDOUT_DIR.glob("wtb_bal_align_force_seed*")):
+        row = _deployment_window_one_run(
+            run_dir,
+            scenario="east-turbine WTB proxy",
+            metrics_split="test_metrics",
+            calibration_steps=1008,
+            min_boundary_cells=75,
+        )
+        if row is not None:
+            rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def _summarize_quasi_external_deployment(raw: pd.DataFrame) -> pd.DataFrame:
+    columns = [
+        "scenario",
+        "runs",
+        "calibration_days",
+        "heldout_windows_mean",
+        "boundary_cells_min",
+        "heldout_nmi_mean",
+        "heldout_ari_mean",
+        "heldout_balanced_accuracy_mean",
+        "heldout_passes",
+        "decision",
+        "claim_boundary",
+    ]
+    if raw.empty:
+        return pd.DataFrame(columns=columns)
+    rows: list[dict[str, Any]] = []
+    for scenario, group in raw.groupby("scenario", sort=False):
+        passes = int(group["heldout_pass"].astype(bool).sum())
+        total = int(len(group))
+        rows.append(
+            {
+                "scenario": scenario,
+                "runs": total,
+                "calibration_days": float(pd.to_numeric(group["calibration_days"], errors="coerce").median()),
+                "heldout_windows_mean": float(pd.to_numeric(group["heldout_windows"], errors="coerce").mean()),
+                "boundary_cells_min": int(pd.to_numeric(group["calibration_boundary_cells"], errors="coerce").min()),
+                "heldout_nmi_mean": float(pd.to_numeric(group["heldout_nmi"], errors="coerce").mean()),
+                "heldout_ari_mean": float(pd.to_numeric(group["heldout_ari"], errors="coerce").mean()),
+                "heldout_balanced_accuracy_mean": float(
+                    pd.to_numeric(group["heldout_balanced_accuracy"], errors="coerce").mean()
+                ),
+                "heldout_passes": f"{passes}/{total}",
+                "decision": "passes pre-specified held-out routing gate" if passes == total else "partial pass only",
+                "claim_boundary": (
+                    "supports calibration-to-held-out workflow inside WTB; not external-farm portability"
+                    if passes == total
+                    else "diagnostic only"
+                ),
+            }
+        )
+    return pd.DataFrame(rows, columns=columns)
 
 
 def _delta_outcome(row: pd.Series) -> str:
@@ -620,20 +881,20 @@ def _deployment_checklist() -> pd.DataFrame:
             {
                 "step": 1,
                 "gate": "sensor coverage",
-                "pass_condition": "wind speed, active power, availability mask, and pitch/proxy coverage are sufficient",
-                "fail_action": "forbid physical routing claim",
+                "pass_condition": "at least 2 calibration days with wind speed, active power, availability mask, and pitch/proxy overlap",
+                "fail_action": "forbid physical routing claim; report sensor-coverage failure",
             },
             {
                 "step": 2,
                 "gate": "local boundary calibration",
-                "pass_condition": "rated wind, pitch threshold, and boundary band selected on calibration only",
+                "pass_condition": "rated wind, pitch threshold, boundary band, and gate-map selected on calibration only",
                 "fail_action": "treat as boundary-condition diagnostic",
             },
             {
                 "step": 3,
                 "gate": "held-out routing criterion",
-                "pass_condition": "pre-specified NMI/ARI or balanced-accuracy threshold clears on held-out test",
-                "fail_action": "local re-estimation required; no generalization wording",
+                "pass_condition": "held-out NMI >= 0.50 and balanced accuracy >= 0.50 after parameters are frozen",
+                "fail_action": "local re-estimation required; no deployment or physical-router wording",
             },
             {
                 "step": 4,
@@ -651,6 +912,43 @@ def _deployment_checklist() -> pd.DataFrame:
     )
 
 
+def _cost_ratio_assumption_table() -> pd.DataFrame:
+    return pd.DataFrame(
+        [
+            {
+                "ratio": 2,
+                "system_assumption": "low scarcity or curtailment-tolerant screening",
+                "example_mapping": "if reserve costs C_r per MWh, shortage is charged 2*C_r",
+                "manuscript_use": "diagnostic only; reserve quantile stays near the median",
+            },
+            {
+                "ratio": 5,
+                "system_assumption": "moderate reliability preference for transition-window scheduling",
+                "example_mapping": "if reserve costs C_r per MWh, shortage is charged 5*C_r",
+                "manuscript_use": "usable same-model boundary tradeoff if violation and shortage fall",
+            },
+            {
+                "ratio": 10,
+                "system_assumption": "main operating case: shortage materially more expensive than reserve",
+                "example_mapping": "if reserve costs C_r per MWh, shortage is charged 10*C_r",
+                "manuscript_use": "primary reserve diagnostic; not a market-clearing claim",
+            },
+            {
+                "ratio": 20,
+                "system_assumption": "scarcity-aware dispatch or high imbalance penalty",
+                "example_mapping": "if reserve costs C_r per MWh, shortage is charged 20*C_r",
+                "manuscript_use": "narrow cost-only region; requires ramp-specific checks",
+            },
+            {
+                "ratio": 50,
+                "system_assumption": "emergency reliability or VOLL-like shortage avoidance",
+                "example_mapping": "if reserve costs C_r per MWh, shortage is charged 50*C_r",
+                "manuscript_use": "gate-bin reserve not supported; global policy is safer",
+            },
+        ]
+    )
+
+
 def _claim_boundary_table() -> pd.DataFrame:
     return pd.DataFrame(
         [
@@ -660,9 +958,14 @@ def _claim_boundary_table() -> pd.DataFrame:
                 "safe_wording": "strict-cache replay, intervention, placebo, spatial holdout, future holdout, and reserve audit support within-WTB boundary routing",
             },
             {
+                "claim": "quasi-external deployment drill",
+                "status": "supported only as WTB proxy evidence",
+                "safe_wording": "small local calibration window -> boundary/gate-map freeze -> held-out future or held-out east-turbine test passes; not a real new-farm transfer",
+            },
+            {
                 "claim": "headline forecasting dominance",
                 "status": "not supported",
-                "safe_wording": "Graph WaveNet and lag-feature baselines remain stronger RMSE forecasters; routed model pays an explicit error penalty",
+                "safe_wording": "Graph WaveNet and lag-feature baselines remain stronger RMSE forecasters; never write forecasting SOTA",
             },
             {
                 "claim": "gate-bin reserve policy",
@@ -678,6 +981,11 @@ def _claim_boundary_table() -> pd.DataFrame:
                 "claim": "external wind-farm portability",
                 "status": "not supported",
                 "safe_wording": "Kelmarsh/Penmanshiel are negative evidence requiring local boundary re-estimation and held-out routing gates",
+            },
+            {
+                "claim": "generalizable physical router or deployment-ready model",
+                "status": "forbidden",
+                "safe_wording": "write only WTB internal boundary auditability, external failure boundary, and transition-window reserve diagnosis",
             },
             {
                 "claim": "future holdout versus post-hoc time-forward",
@@ -897,6 +1205,38 @@ def _display_efficiency(frame: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def _display_quasi_external(summary: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for _, row in summary.iterrows():
+        rows.append(
+            {
+                "Scenario": str(row.get("scenario", "")),
+                "Calib. days": _fmt(row.get("calibration_days"), 1),
+                "Runs": str(row.get("heldout_passes", "")),
+                "Min boundary cells": _fmt(row.get("boundary_cells_min"), 0),
+                "Held-out NMI/ARI": f"{_fmt(row.get('heldout_nmi_mean'), 4)}/{_fmt(row.get('heldout_ari_mean'), 4)}",
+                "Bal. acc.": _fmt(row.get("heldout_balanced_accuracy_mean"), 4),
+                "Decision": str(row.get("decision", "")),
+                "Claim boundary": str(row.get("claim_boundary", "")),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def _display_cost_ratio_assumptions(frame: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for _, row in frame.iterrows():
+        rows.append(
+            {
+                "Ratio": _fmt(row.get("ratio"), 0),
+                "System assumption": str(row.get("system_assumption", "")),
+                "Economic mapping": str(row.get("example_mapping", "")),
+                "Use in paper": str(row.get("manuscript_use", "")),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
 def _plot_decision_curve(curve: pd.DataFrame, output_path: Path) -> None:
     if curve.empty:
         return
@@ -1039,6 +1379,118 @@ def _plot_deployment_checklist(checklist: pd.DataFrame, output_path: Path) -> No
     plt.close(fig)
 
 
+def _plot_operational_system_diagram(output_path: Path) -> None:
+    fig, ax = plt.subplots(figsize=(10.8, 5.4))
+    ax.axis("off")
+    boxes = [
+        (
+            0.05,
+            0.58,
+            0.20,
+            0.25,
+            "SCADA stream",
+            "wind speed\nactive power\npitch/proxy\navailability mask",
+            "#e0f2fe",
+            "#0369a1",
+        ),
+        (
+            0.31,
+            0.58,
+            0.21,
+            0.25,
+            "Boundary router",
+            "local rated-wind / pitch rule\nnode-level gate\nMPPT-to-pitch responsibility",
+            "#ecfdf5",
+            "#047857",
+        ),
+        (
+            0.58,
+            0.58,
+            0.19,
+            0.25,
+            "Reserve bin policy",
+            "validation quantile grid\nglobal / physical-bin / gate-bin\nfrozen before test",
+            "#fff7ed",
+            "#c2410c",
+        ),
+        (
+            0.82,
+            0.58,
+            0.14,
+            0.25,
+            "Audit outputs",
+            "cost\nviolation\nreserve energy\nshortage",
+            "#f8fafc",
+            "#475569",
+        ),
+    ]
+    for x, y, width, height, title, body, face, edge in boxes:
+        ax.add_patch(
+            plt.Rectangle((x, y), width, height, facecolor=face, edgecolor=edge, linewidth=1.4)
+        )
+        ax.text(
+            x + width / 2,
+            y + height - 0.045,
+            title,
+            ha="center",
+            va="center",
+            fontsize=11,
+            weight="bold",
+            color="#111827",
+        )
+        ax.text(
+            x + width / 2,
+            y + height / 2 - 0.03,
+            body,
+            ha="center",
+            va="center",
+            fontsize=8.5,
+            color="#111827",
+            linespacing=1.35,
+        )
+    for idx in range(len(boxes) - 1):
+        x, y, width, height, *_ = boxes[idx]
+        nx, ny, *_ = boxes[idx + 1]
+        ax.annotate(
+            "",
+            xy=(nx - 0.015, y + height / 2),
+            xytext=(x + width + 0.015, y + height / 2),
+            arrowprops={"arrowstyle": "->", "lw": 1.5, "color": "#334155"},
+        )
+    ax.add_patch(
+        plt.Rectangle((0.31, 0.20), 0.46, 0.20, facecolor="#fefce8", edgecolor="#a16207", linewidth=1.2)
+    )
+    ax.text(0.54, 0.34, "Deployment evidence gate", ha="center", va="center", fontsize=10.5, weight="bold", color="#713f12")
+    ax.text(
+        0.54,
+        0.26,
+        "small calibration window -> boundary / gate-map freeze -> held-out routing criterion -> reserve audit",
+        ha="center",
+        va="center",
+        fontsize=8.5,
+        color="#713f12",
+    )
+    ax.annotate(
+        "",
+        xy=(0.54, 0.58),
+        xytext=(0.54, 0.40),
+        arrowprops={"arrowstyle": "->", "lw": 1.2, "color": "#a16207"},
+    )
+    ax.text(
+        0.5,
+        0.93,
+        "Operator-facing boundary-routing workflow",
+        ha="center",
+        va="center",
+        fontsize=12,
+        weight="bold",
+        color="#0f172a",
+    )
+    fig.tight_layout()
+    fig.savefig(output_path, dpi=240)
+    plt.close(fig)
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     by_ratio = _read_csv(DECISION_DIR / "reserve_decision_by_ratio.csv")
@@ -1056,8 +1508,11 @@ def main() -> None:
     efficiency = _efficiency_table()
     external = _external_negative_table()
     checklist = _deployment_checklist()
+    cost_assumptions = _cost_ratio_assumption_table()
     claims = _claim_boundary_table()
     operator_cases = _operator_case_table(boundary_slices, reviewer_failures)
+    quasi_external_raw = _quasi_external_deployment_table()
+    quasi_external_summary = _summarize_quasi_external_deployment(quasi_external_raw)
 
     outputs = {
         "dispatch_reserve_main_table.csv": dispatch,
@@ -1071,8 +1526,11 @@ def main() -> None:
         "external_negative_evidence_table.csv": external,
         "external_site_transfer_failure_table.csv": external,
         "new_wind_farm_deployment_checklist.csv": checklist,
+        "cost_ratio_energy_system_assumptions.csv": cost_assumptions,
         "claim_boundary_applied_energy.csv": claims,
         "operational_case_explanation.csv": operator_cases,
+        "quasi_external_deployment_drill_raw.csv": quasi_external_raw,
+        "quasi_external_deployment_drill_summary.csv": quasi_external_summary,
     }
     for filename, frame in outputs.items():
         frame.to_csv(OUT / filename, index=False)
@@ -1137,6 +1595,17 @@ def main() -> None:
         resize=True,
     )
     _write_simple_tex(
+        _display_cost_ratio_assumptions(cost_assumptions),
+        OUT / "table_cost_ratio_energy_system_assumptions.tex",
+        [
+            ("Ratio", "Ratio"),
+            ("System assumption", "System assumption"),
+            ("Economic mapping", "Economic mapping"),
+            ("Use in paper", "Use in paper"),
+        ],
+        resize=True,
+    )
+    _write_simple_tex(
         _display_anchor(anchor),
         OUT / "table_anchor_only_rule_router_main.tex",
         [
@@ -1194,9 +1663,25 @@ def main() -> None:
         ],
         resize=True,
     )
+    _write_simple_tex(
+        _display_quasi_external(quasi_external_summary),
+        OUT / "table_quasi_external_deployment_drill.tex",
+        [
+            ("Scenario", "Scenario"),
+            ("Calib. days", "Calib. days"),
+            ("Runs", "Runs"),
+            ("Min boundary cells", "Min boundary cells"),
+            ("Held-out NMI/ARI", "Held-out NMI/ARI"),
+            ("Bal. acc.", "Bal. acc."),
+            ("Decision", "Decision"),
+            ("Claim boundary", "Claim boundary"),
+        ],
+        resize=True,
+    )
 
     _plot_decision_curve(curve, OUT / "operational_decision_curve.png")
     _plot_deployment_checklist(checklist, OUT / "new_wind_farm_deployment_checklist.png")
+    _plot_operational_system_diagram(OUT / "boundary_reserve_system_workflow.png")
 
     report = [
         "# Applied Energy diagnostics",
@@ -1209,13 +1694,18 @@ def main() -> None:
         "- `system_value_envelope.csv` and `table_system_value_envelope.tex`: boundary-window reserve value envelope across cost ratios.",
         "- `operational_decision_curve.png`: RMSE penalty, reserve energy, and shortage tradeoff on the boundary window.",
         "- `reserve_paired_statistics.csv`: paired bootstrap/permutation-style uncertainty summaries for reserve cost and risk metrics.",
+        "- `cost_ratio_energy_system_assumptions.csv`: mapping from abstract shortage/reserve cost ratios to energy-system reliability assumptions.",
         "- `anchor_only_rule_router_main_table.csv`: formal anchor-only/router-rule comparison.",
         "- `external_negative_evidence_table.csv`: external Kelmarsh/Penmanshiel negative evidence and allowed claims.",
+        "- `quasi_external_deployment_drill_summary.csv`: WTB proxy deployment drill using calibration-only boundary/gate-map selection and held-out testing.",
+        "- `boundary_reserve_system_workflow.png`: SCADA to boundary router to reserve-policy audit workflow.",
         "- `new_wind_farm_deployment_checklist.png`: deployment gate from sensor coverage to allowed/forbidden claims.",
         "",
         "## Claim summary",
         "",
         "Gate-bin reserve is a conditional transition-window diagnostic. It wins when moderate shortage penalties make boundary shortage and violations worth extra reserve; it loses when high-ramp or very high-penalty settings make the same-model global policy safer.",
+        "",
+        "The quasi-external deployment drill is a WTB proxy workflow only: small calibration window, local boundary/gate-map freeze, and held-out future or held-out east-turbine testing. It does not rescue the negative Kelmarsh/Penmanshiel external-site adaptation result.",
     ]
     (OUT / "README.md").write_text("\n".join(report) + "\n", encoding="utf-8")
     print(f"Wrote {OUT}")

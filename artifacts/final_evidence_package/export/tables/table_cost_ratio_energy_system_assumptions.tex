@@ -1,0 +1,13 @@
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llll}
+\toprule
+Ratio & System assumption & Economic mapping & Use in paper \\
+\midrule
+2 & low scarcity or curtailment-tolerant screening & if reserve costs C\_r per MWh, shortage is charged 2*C\_r & diagnostic only; reserve quantile stays near the median \\
+5 & moderate reliability preference for transition-window scheduling & if reserve costs C\_r per MWh, shortage is charged 5*C\_r & usable same-model boundary tradeoff if violation and shortage fall \\
+10 & main operating case: shortage materially more expensive than reserve & if reserve costs C\_r per MWh, shortage is charged 10*C\_r & primary reserve diagnostic; not a market-clearing claim \\
+20 & scarcity-aware dispatch or high imbalance penalty & if reserve costs C\_r per MWh, shortage is charged 20*C\_r & narrow cost-only region; requires ramp-specific checks \\
+50 & emergency reliability or VOLL-like shortage avoidance & if reserve costs C\_r per MWh, shortage is charged 50*C\_r & gate-bin reserve not supported; global policy is safer \\
+\bottomrule
+\end{tabular}
+}

@@ -50,6 +50,8 @@ $tables = @(
   'artifacts/applied_energy_diagnostics/table_system_value_envelope.tex',
   'artifacts/applied_energy_diagnostics/reserve_paired_statistics.csv',
   'artifacts/applied_energy_diagnostics/table_reserve_paired_statistics.tex',
+  'artifacts/applied_energy_diagnostics/cost_ratio_energy_system_assumptions.csv',
+  'artifacts/applied_energy_diagnostics/table_cost_ratio_energy_system_assumptions.tex',
   'artifacts/applied_energy_diagnostics/anchor_only_rule_router_main_table.csv',
   'artifacts/applied_energy_diagnostics/table_anchor_only_rule_router_main.tex',
   'artifacts/applied_energy_diagnostics/compute_deployment_cost_table.csv',
@@ -58,6 +60,8 @@ $tables = @(
   'artifacts/applied_energy_diagnostics/table_operational_case_explanation.tex',
   'artifacts/applied_energy_diagnostics/claim_boundary_applied_energy.csv',
   'artifacts/applied_energy_diagnostics/table_claim_boundary_applied_energy.tex',
+  'artifacts/applied_energy_diagnostics/quasi_external_deployment_drill_summary.csv',
+  'artifacts/applied_energy_diagnostics/table_quasi_external_deployment_drill.tex',
   'artifacts/applied_energy_diagnostics/external_site_transfer_failure_table.csv',
   'artifacts/applied_energy_diagnostics/table_external_site_transfer_failure.tex'
 ) -join ','
@@ -93,6 +97,7 @@ $sources = @(
   'artifacts/external_wind_protocol/external_wind_reviewer_pack_commands.ps1',
   'artifacts/applied_energy_diagnostics/operational_decision_curve.csv',
   'artifacts/applied_energy_diagnostics/new_wind_farm_deployment_checklist.csv',
+  'artifacts/applied_energy_diagnostics/quasi_external_deployment_drill_raw.csv',
   'artifacts/applied_energy_diagnostics/README.md'
 ) -join ','
 $figures = @(
@@ -103,6 +108,7 @@ $figures = @(
   'artifacts/paper_assets/figures/figure5_case_studies.pdf',
   'artifacts/paper_assets/figures/figure6_ablation_tradeoff.pdf',
   'artifacts/applied_energy_diagnostics/operational_decision_curve.png',
+  'artifacts/applied_energy_diagnostics/boundary_reserve_system_workflow.png',
   'artifacts/applied_energy_diagnostics/new_wind_farm_deployment_checklist.png'
 ) -join ','
 $guards = @(

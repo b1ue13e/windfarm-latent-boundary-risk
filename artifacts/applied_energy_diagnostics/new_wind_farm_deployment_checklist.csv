@@ -1,6 +1,6 @@
 step,gate,pass_condition,fail_action
-1,sensor coverage,"wind speed, active power, availability mask, and pitch/proxy coverage are sufficient",forbid physical routing claim
-2,local boundary calibration,"rated wind, pitch threshold, and boundary band selected on calibration only",treat as boundary-condition diagnostic
-3,held-out routing criterion,pre-specified NMI/ARI or balanced-accuracy threshold clears on held-out test,local re-estimation required; no generalization wording
+1,sensor coverage,"at least 2 calibration days with wind speed, active power, availability mask, and pitch/proxy overlap",forbid physical routing claim; report sensor-coverage failure
+2,local boundary calibration,"rated wind, pitch threshold, boundary band, and gate-map selected on calibration only",treat as boundary-condition diagnostic
+3,held-out routing criterion,held-out NMI >= 0.50 and balanced accuracy >= 0.50 after parameters are frozen,local re-estimation required; no deployment or physical-router wording
 4,reserve audit,transition-window shortage and violation improve at acceptable reserve-energy cost,do not deploy gate-bin reserve policy
 5,claim decision,all upstream gates pass,claim allowed only for diagnostics already passed

@@ -333,6 +333,22 @@
     },
     {
       "group": "table_outputs",
+      "name": "cost_ratio_energy_system_assumptions.csv",
+      "source": "artifacts\\applied_energy_diagnostics\\cost_ratio_energy_system_assumptions.csv",
+      "target": "artifacts\\final_evidence_package\\export\\tables\\cost_ratio_energy_system_assumptions.csv",
+      "bytes": 941,
+      "sha256": "06a3e872d8f104e6092af13bda774bbbff11d4a8275e10a5ae595b5d06ca4cef"
+    },
+    {
+      "group": "table_outputs",
+      "name": "table_cost_ratio_energy_system_assumptions.tex",
+      "source": "artifacts\\applied_energy_diagnostics\\table_cost_ratio_energy_system_assumptions.tex",
+      "target": "artifacts\\final_evidence_package\\export\\tables\\table_cost_ratio_energy_system_assumptions.tex",
+      "bytes": 1097,
+      "sha256": "df677e2d4f846e37f1199147b7a5ed38d209686311dafd67892bc3e6488fa7a9"
+    },
+    {
+      "group": "table_outputs",
       "name": "anchor_only_rule_router_main_table.csv",
       "source": "artifacts\\applied_energy_diagnostics\\anchor_only_rule_router_main_table.csv",
       "target": "artifacts\\final_evidence_package\\export\\tables\\anchor_only_rule_router_main_table.csv",
@@ -384,16 +400,32 @@
       "name": "claim_boundary_applied_energy.csv",
       "source": "artifacts\\applied_energy_diagnostics\\claim_boundary_applied_energy.csv",
       "target": "artifacts\\final_evidence_package\\export\\tables\\claim_boundary_applied_energy.csv",
-      "bytes": 1113,
-      "sha256": "d90ef0d38b42f00953eccb3bf2bf4586e9f51360ee72a7bff85edd8a42fa0446"
+      "bytes": 1496,
+      "sha256": "b6d02651904094f031e5b85d673ff4607d176236d44c8d0dcadce24d03a460f1"
     },
     {
       "group": "table_outputs",
       "name": "table_claim_boundary_applied_energy.tex",
       "source": "artifacts\\applied_energy_diagnostics\\table_claim_boundary_applied_energy.tex",
       "target": "artifacts\\final_evidence_package\\export\\tables\\table_claim_boundary_applied_energy.tex",
-      "bytes": 1260,
-      "sha256": "1898f15fa12fd22ef850b2a0f7e5f20314eafd636766bb1abfcf876252f16812"
+      "bytes": 1655,
+      "sha256": "b5a221335dffabbb3be7e79f5876ee0965536abea9f8d1f4be0827f3f5e7da06"
+    },
+    {
+      "group": "table_outputs",
+      "name": "quasi_external_deployment_drill_summary.csv",
+      "source": "artifacts\\applied_energy_diagnostics\\quasi_external_deployment_drill_summary.csv",
+      "target": "artifacts\\final_evidence_package\\export\\tables\\quasi_external_deployment_drill_summary.csv",
+      "bytes": 632,
+      "sha256": "eabdff78d1cd4f481c0e65cc39d26032e19982a3817e80baaf7a3fdba530dbf4"
+    },
+    {
+      "group": "table_outputs",
+      "name": "table_quasi_external_deployment_drill.tex",
+      "source": "artifacts\\applied_energy_diagnostics\\table_quasi_external_deployment_drill.tex",
+      "target": "artifacts\\final_evidence_package\\export\\tables\\table_quasi_external_deployment_drill.tex",
+      "bytes": 623,
+      "sha256": "779995450e146417d63b27c76de2866af46675b6f6459fa949ec4a1feafb18ee"
     },
     {
       "group": "table_outputs",
@@ -656,16 +688,24 @@
       "name": "new_wind_farm_deployment_checklist.csv",
       "source": "artifacts\\applied_energy_diagnostics\\new_wind_farm_deployment_checklist.csv",
       "target": "artifacts\\final_evidence_package\\export\\source_data\\new_wind_farm_deployment_checklist.csv",
-      "bytes": 714,
-      "sha256": "eda8a72805f38b5f4760cf5ee6f149671547d80d05d5c78450f201622861fe57"
+      "bytes": 790,
+      "sha256": "2a470060dfb7d7d7077fdcb7d79e78e31d7727e8d92b0e72afadd1d3a86486ad"
+    },
+    {
+      "group": "source_artifacts",
+      "name": "quasi_external_deployment_drill_raw.csv",
+      "source": "artifacts\\applied_energy_diagnostics\\quasi_external_deployment_drill_raw.csv",
+      "target": "artifacts\\final_evidence_package\\export\\source_data\\quasi_external_deployment_drill_raw.csv",
+      "bytes": 3987,
+      "sha256": "309947abd7552b6943bd35294fad803b6671275827ef94fc46e0999e52dc713b"
     },
     {
       "group": "source_artifacts",
       "name": "README.md",
       "source": "artifacts\\applied_energy_diagnostics\\README.md",
       "target": "artifacts\\final_evidence_package\\export\\source_data\\README.md",
-      "bytes": 1238,
-      "sha256": "599f42300bafd6e81418b7b5291ec3facef645964408a50ac0a56a91f7d671e7"
+      "bytes": 1897,
+      "sha256": "93ab2895415977df7a664cd758a1a5843c64523e2416007a2ce41969578c1496"
     },
     {
       "group": "figure_outputs",
@@ -725,11 +765,19 @@
     },
     {
       "group": "figure_outputs",
+      "name": "boundary_reserve_system_workflow.png",
+      "source": "artifacts\\applied_energy_diagnostics\\boundary_reserve_system_workflow.png",
+      "target": "artifacts\\final_evidence_package\\export\\figures\\boundary_reserve_system_workflow.png",
+      "bytes": 151027,
+      "sha256": "277da428ae36bc7c5e7c4d9f0b7a42bff3cfdf750cebf711b0a9609df9d8ecb1"
+    },
+    {
+      "group": "figure_outputs",
       "name": "new_wind_farm_deployment_checklist.png",
       "source": "artifacts\\applied_energy_diagnostics\\new_wind_farm_deployment_checklist.png",
       "target": "artifacts\\final_evidence_package\\export\\figures\\new_wind_farm_deployment_checklist.png",
-      "bytes": 128159,
-      "sha256": "feb4bcb8b1471707acc83b649b958ac640d81e3dc15cb3e476c3d000949f7e09"
+      "bytes": 135543,
+      "sha256": "ede2b8819fd39b7262242ab3824b049d7bc43f5eb2c2cdf65ff0e6776df111a5"
     },
     {
       "group": "guard_status",
@@ -832,8 +880,8 @@
       "name": "evidence_manifest_final.json",
       "source": "artifacts\\final_evidence_package\\manifest\\evidence_manifest_final.json",
       "target": "artifacts\\final_evidence_package\\export\\manifest\\evidence_manifest_final.json",
-      "bytes": 46035,
-      "sha256": "9344d80f92d0183dda569cf493f21a1577f24b84bb663c6a2a14022de2778084"
+      "bytes": 47760,
+      "sha256": "6c8da17937dcbba14c042755b2ec368c6b90a24c056ef9ab469661a04e57f424"
     },
     {
       "group": "manifest",

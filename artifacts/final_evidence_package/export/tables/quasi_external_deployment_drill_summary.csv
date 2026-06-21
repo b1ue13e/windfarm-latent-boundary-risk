@@ -1,0 +1,3 @@
+scenario,runs,calibration_days,heldout_windows_mean,boundary_cells_min,heldout_nmi_mean,heldout_ari_mean,heldout_balanced_accuracy_mean,heldout_passes,decision,claim_boundary
+future-period WTB proxy,5,2.0,4693.0,67,0.8397056867072106,0.890672164540006,0.9769950953709369,5/5,passes pre-specified held-out routing gate,supports calibration-to-held-out workflow inside WTB; not external-farm portability
+east-turbine WTB proxy,5,7.0,3973.0,103,0.8271994766833168,0.8780591948689993,0.970924264559937,5/5,passes pre-specified held-out routing gate,supports calibration-to-held-out workflow inside WTB; not external-farm portability

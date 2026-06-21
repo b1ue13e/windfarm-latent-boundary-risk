@@ -215,14 +215,21 @@ with more reserve, whereas high-ramp windows expose shortage increases
 when the gate-conditioned policy carries too little reserve. Gate
 lead-lag analysis supports state detection only: agreement with the new
 regime is 0.3636 three steps before the transition and 0.8008 at the
-transition. Kelmarsh/Penmanshiel external-site runs fail the
-pre-specified external-site routing criterion and are reported as failed
-boundary-condition diagnostics. Local rated-wind/pitch recalibration and
-a small calibration-window boundary/gate-map adaptation remain below the
-held-out routing criterion. The contribution is operating-boundary
-routing accountability plus a transition-window reserve diagnostic, with
-explicit evidence for error, reserve, and external-site failure
-boundaries.
+transition. A WTB proxy deployment drill then tests the required
+operating flow: small calibration window, local boundary and gate-map
+selection, frozen held-out evaluation. A 2-day future-period calibration
+and a 7-day held-out east-turbine calibration both pass the
+pre-specified held-out routing gate, with mean held-out NMI/ARI
+0.8397/0.8907 and 0.8272/0.8781, respectively. This is workflow evidence
+inside WTB, not external-farm portability. Kelmarsh/Penmanshiel
+external-site runs fail the pre-specified external-site routing
+criterion and are reported as failed boundary-condition diagnostics;
+local rated-wind/pitch recalibration and small calibration-window
+adaptation remain below the held-out criterion. The contribution is WTB
+internal boundary auditability, external failure-boundary diagnosis, and
+a transition-window reserve diagnostic. The manuscript does not claim a
+generalizable physical router, a deployment-ready model, or forecasting
+SOTA.
 
 \vspace{0.25em}
 
@@ -331,9 +338,13 @@ benchmarked against graph, transformer, persistence, power-curve,
 gradient-boosted lag, and LTSF-style baselines. The second is a
 transition-window reserve diagnostic: gate-bin reserve is evaluated only
 where MPPT-to-pitch routing has a decision role, and only as a
-cost/violation/shortage tradeoff. Kelmarsh/Penmanshiel are treated as
-failed external boundary-condition tests, not as evidence for reusing a
-WTB boundary rule.
+cost/violation/shortage tradeoff. A small-calibration deployment drill
+is reported only as WTB proxy evidence for the workflow from calibration
+to held-out testing. Kelmarsh/Penmanshiel are treated as failed external
+boundary-condition tests, not as evidence for reusing a WTB boundary
+rule. The allowed main claim is therefore WTB internal boundary
+auditability plus external failure-boundary diagnosis plus
+transition-window reserve diagnosis.
 
 The following allowed/forbidden claim boundary is part of the paper's
 contribution rather than an afterthought. It separates what the evidence
@@ -1291,27 +1302,38 @@ fewer violations at a measured reserve-energy price.
 \par
 \endgroup
 
-The cost ratio gives the reserve audit its energy-system meaning. A
-ratio of 2 means that one unit of shortage is charged as two units of
-reserve energy, so the optimizer tolerates more shortage and selects the
-median shortfall quantile. Ratios 5 and 10 represent a moderate
-reliability preference: shortage is expensive enough to justify buying
-reserve around the MPPT-to-pitch boundary, but not so expensive that a
-conservative global reserve rule dominates every local allocation.
-Ratios 20 and 50 represent severe shortage penalties, where the decision
-rule must prioritize very low violation and shortage rates over local
-cost savings. Under this reading, the win/loss boundary is explicit. At
-ratio 2, the selected reserve quantile is 0.50 and the gate-bin boundary
-policy does not buy reserve. At ratios 5 and 10, gate-bin is usable
-relative to the same model's global reserve because it reduces boundary
-shortage and violation while carrying more reserve. At ratio 20, the
-benefit narrows into a cost-only tradeoff: shortage falls slightly but
-violation is effectively unchanged. At ratio 50, gate-bin fails the
-acceptable region because the same-model global policy is safer and
-cheaper. The gate is therefore a conditional reserve-allocation signal
-around the MPPT-to-pitch boundary, not a replacement for unit
-commitment, market clearing, or system-level stochastic reserve
-optimization.
+The cost ratio gives the reserve audit its energy-system meaning. It is
+not a free abstract hyperparameter: it is the shortage penalty
+normalized by the marginal reserve-energy cost. A ratio of 2 means that
+one unit of shortage is charged as two units of reserve energy, so the
+optimizer tolerates more shortage and selects the median shortfall
+quantile. Ratios 5 and 10 represent a moderate reliability preference,
+such as transition-window scheduling where shortage or imbalance is
+expensive enough to justify extra reserve but not so expensive that the
+safest global rule dominates every local allocation. Ratios 20 and 50
+represent scarcity-aware dispatch, high imbalance penalties, or
+emergency reliability screening where the decision rule must prioritize
+very low violation and shortage rates over local cost savings. Under
+this reading, the win/loss boundary is explicit. At ratio 2, the
+selected reserve quantile is 0.50 and the gate-bin boundary policy does
+not buy reserve. At ratios 5 and 10, gate-bin is usable relative to the
+same model's global reserve because it reduces boundary shortage and
+violation while carrying more reserve. At ratio 20, the benefit narrows
+into a cost-only tradeoff: shortage falls slightly but violation is
+effectively unchanged. At ratio 50, gate-bin fails the acceptable region
+because the same-model global policy is safer and cheaper. The gate is
+therefore a conditional reserve-allocation signal around the
+MPPT-to-pitch boundary, not a replacement for unit commitment, market
+clearing, or system-level stochastic reserve optimization.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table.} Energy-system interpretation of shortage-to-reserve cost ratios.}
+\input{artifacts/final_evidence_package/export/tables/table_cost_ratio_energy_system_assumptions.tex}
+\end{table}
 
 The same result can be read as a system-value envelope. The gate-bin
 policy is reserve-active only when the shortage penalty is high enough
@@ -1371,6 +1393,16 @@ shortages and violations are worth the extra reserve. Outside that
 envelope, the lower-RMSE Graph WaveNet/global or Graph
 WaveNet/physical-bin policy remains the more appropriate system
 reference.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.94\linewidth,height=\textheight,keepaspectratio,alt={Operator-facing workflow for the reserve audit. SCADA fields define the local operating boundary, the boundary router assigns MPPT-to-pitch responsibility, the reserve-bin policy is calibrated on validation shortfall and frozen before test, and the reported outputs are cost, violation, reserve energy, and shortage energy.}]{artifacts/final_evidence_package/export/figures/boundary_reserve_system_workflow.png}
+\caption{Operator-facing workflow for the reserve audit. SCADA fields
+define the local operating boundary, the boundary router assigns
+MPPT-to-pitch responsibility, the reserve-bin policy is calibrated on
+validation shortfall and frozen before test, and the reported outputs
+are cost, violation, reserve energy, and shortage energy.}
+\end{figure}
 
 \begin{figure}
 \centering
@@ -1498,6 +1530,45 @@ value-prediction guarantee and not evidence that the rule carries to a
 different wind farm without local testing. The holdout summaries are
 retained as source-trace evidence in the final manifest rather than
 re-input from the older goal-table directory.
+
+We add a positive deployment-drill result at exactly the level supported
+by the evidence. The drill is not Kelmarsh/Penmanshiel transfer. It asks
+whether a deployable workflow can be executed inside WTB under stricter
+separation: use a small calibration window to select rated wind, pitch
+threshold, boundary support, and the gate-to-regime map; freeze those
+choices; then evaluate held-out routing once. In the future-period
+proxy, a 2-day calibration window followed by the future holdout passes
+in all 5/5 seeds, with mean held-out NMI/ARI 0.8397/0.8907 and balanced
+accuracy 0.9770. In the east-turbine proxy, a 7-day calibration window
+on held-out turbines also passes in all 5/5 seeds, with mean held-out
+NMI/ARI 0.8272/0.8781 and balanced accuracy 0.9709. The result proves an
+operational procedure inside the WTB envelope: local calibration window
+-\textgreater{} boundary re-estimation -\textgreater{} frozen held-out
+routing test. It does not prove that the WTB rule migrates to a new
+farm.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table.} Quasi-external deployment drill inside WTB: calibration-only boundary/gate-map selection followed by held-out testing.}
+\input{artifacts/final_evidence_package/export/tables/table_quasi_external_deployment_drill.tex}
+\end{table}
+
+This drill also defines the operator-facing usability checks. Threshold
+choice is restricted to a pre-specified local grid and must be frozen
+before the held-out test. Calibration support is checked by the number
+of valid boundary cells, not only by elapsed days. If pitch channels are
+missing, the site may use a documented pitch proxy only after showing
+overlap with wind speed, active power, and availability masks; otherwise
+physical-router interpretation is forbidden. If rated wind differs
+across turbine models, the rated-wind grid is estimated locally rather
+than copied from WTB. If SCADA gaps or availability masks remove too
+many boundary cells, the output is a data-coverage failure, not a weakly
+positive deployment claim. Finally, reserve use requires a separate
+high-ramp slice check because the gate-bin rule can reduce total cost by
+carrying too little reserve in ramp-heavy windows.
 
 \subsection{Ablation}\label{ablation}
 
@@ -1663,7 +1734,8 @@ pre-specified operating-boundary rule.
 \end{table}
 
 The external Kelmarsh/Penmanshiel result is a failed boundary-condition
-test. The source guard completes 80/80 runs, both leave-one-farm-out
+test, and this negative result is one of the contributions of the paper.
+The source guard completes 80/80 runs, both leave-one-farm-out
 directions, and the chronological sanity checks, but the default WTB
 boundary gives mean routing NMI 0.4877, below the pre-specified 0.50
 external-site routing criterion; the rescue guard therefore records the
@@ -1679,7 +1751,10 @@ rescue an out-of-site mechanism claim. Overall default test NMI rises
 only from 0.1324 to 0.1491 after recalibration, a recovery of +0.0167.
 Kelmarsh chronological runs recover more agreement, but Penmanshiel
 chronological and the leave-one-farm-out settings remain weak, so the
-failure is not merely a shifted threshold.
+failure is not merely a shifted threshold. The practical message is
+protective: the boundary diagnostic prevents misdeployment when sensor
+fields, turbine geometry, or regime support do not match the WTB
+operating envelope.
 
 The small calibration-window adaptation makes that boundary sharper.
 Using only each run's validation gate outputs, the diagnostic selects a
@@ -1725,34 +1800,39 @@ site-transfer claim. A new wind farm must pass three evidence gates
 before the router can be interpreted physically. First, the site must
 pass a pitch-observability gate: wind speed, active power, turbine
 status or availability masks, and pitch-related channels must be present
-with enough valid overlap to construct MPPT and pitch-control labels. If
-mean pitch, blade-pitch channels, or a reliable pitch proxy are absent
-in the intended operating window, the boundary label is not identifiable
-and physical routing interpretation is forbidden.
+with enough valid overlap to construct MPPT and pitch-control labels.
+The minimum starting point is a small calibration window of at least 2
+days when all required SCADA fields overlap; if pitch is sparse, the
+window must be extended until enough boundary cells exist. If mean
+pitch, blade-pitch channels, or a reliable pitch proxy are absent in the
+intended operating window, the boundary label is not identifiable and
+physical routing interpretation is forbidden.
 
 Second, the site must pass a local-boundary-support gate. Rated wind
-speed, pitch threshold, and the boundary band must be re-estimated on a
-local calibration period, then frozen before held-out testing; selecting
-them on the test period would convert the protocol into a retrospective
-explanation. The calibration period must contain enough boundary cells,
-not only idle or MPPT-heavy operation. If local support is too sparse,
-the result may still be reported as a data-coverage diagnostic, but the
-WTB-derived boundary rule must not be reused as a physical explanation.
+speed, pitch threshold, boundary band, and gate-to-regime map must be
+re-estimated on a local calibration period, then frozen before held-out
+testing; selecting them on the test period would convert the protocol
+into a retrospective explanation. The calibration period must contain
+enough boundary cells, not only idle or MPPT-heavy operation. If local
+support is too sparse, the result may still be reported as a
+data-coverage diagnostic, but the WTB-derived boundary rule must not be
+reused as a physical explanation.
 
 Third, the site must pass a held-out routing criterion before any
-physical-router wording is allowed. The gate-to-regime map, rated-wind
-threshold, pitch threshold, and boundary band must be selected on
-calibration data and evaluated once on held-out data. The local
-idle/MPPT/pitch shares should also be compared with the WTB operating
-envelope, and transition-window shortage, violation rate, reserve
-energy, and high-ramp slices must be recomputed before any gate-bin
-reserve rule is used. A new site passes the protocol only if the
-held-out gate clears the pre-specified routing criterion and the reserve
-audit improves shortage and violations in the intended transition window
-at an acceptable reserve-energy cost. If any gate fails, the allowed
-claim is limited to boundary-condition diagnosis; physical routing
-interpretation, new-farm operating evidence, and gate-bin reserve use
-are not supported.
+physical-router wording is allowed. The frozen gate-to-regime map,
+rated-wind threshold, pitch threshold, and boundary band must clear
+held-out NMI \textgreater= 0.50 and balanced accuracy \textgreater=
+0.50, or a stricter site-specific criterion declared before test
+evaluation. The local idle/MPPT/pitch shares should also be compared
+with the WTB operating envelope, and transition-window shortage,
+violation rate, reserve energy, and high-ramp slices must be recomputed
+before any gate-bin reserve rule is used. A new site passes the protocol
+only if the held-out gate clears the pre-specified routing criterion and
+the reserve audit improves shortage and violations in the intended
+transition window at an acceptable reserve-energy cost. If any gate
+fails, the allowed claim is limited to boundary-condition diagnosis;
+physical routing interpretation, new-farm operating evidence, and
+gate-bin reserve use are not supported.
 
 \begin{figure}
 \centering
@@ -1829,24 +1909,27 @@ persistence plus Graph WaveNet, STGCN, PatchTST, and TCN. The
 strict-anchor-mask rerun covers the selected WTB corrected router,
 replay, intervention, placebo, time-forward audits, a synchronized
 baseline refresh, a spatial node-held-out stress test, a future-period
-holdout, and the transition-window reserve audit. The study does not
-implement unit commitment, market clearing, a full probabilistic
-prediction-to-reserve pipeline, real dispatch integration, or a
-closed-loop operator simulation. Larger general time-series backbones
-and broader graph-transformer variants are also outside the present
-benchmark. External wind-farm diagnostics are complete but fail the
-external-site routing criterion: the Kelmarsh/Penmanshiel guard reaches
-80/80 completed runs in both leave-one-farm-out directions, while the
-default WTB boundary remains below the declared threshold. The added
-local recalibration table records how much agreement is recovered when
+holdout, a quasi-external WTB deployment drill, and the
+transition-window reserve audit. The study does not implement unit
+commitment, market clearing, a full probabilistic prediction-to-reserve
+pipeline, real dispatch integration, or a closed-loop operator
+simulation. Larger general time-series backbones and broader
+graph-transformer variants are also outside the present benchmark.
+External wind-farm diagnostics are complete but fail the external-site
+routing criterion: the Kelmarsh/Penmanshiel guard reaches 80/80
+completed runs in both leave-one-farm-out directions, while the default
+WTB boundary remains below the declared threshold. The added local
+recalibration table records how much agreement is recovered when
 rated-wind/pitch boundaries are re-estimated on validation gates and
-then fixed on test gates. The external taxonomy points to farm scale,
-turbine geometry, pitch observability, sensor-field coverage,
-power-curve differences, and regime-label imbalance as the main boundary
-conditions. The evidence therefore supports within-WTB spatial and
-temporal stress validation of routing semantics and operating-boundary
-reserve diagnostics, plus an external diagnostic of when those semantics
-need local boundary re-estimation.
+then fixed on test gates. The quasi-external drill shows that the
+calibration-to-held-out workflow can pass inside WTB, but it does not
+change the external-farm conclusion. The external taxonomy points to
+farm scale, turbine geometry, pitch observability, sensor-field
+coverage, power-curve differences, and regime-label imbalance as the
+main boundary conditions. The evidence therefore supports within-WTB
+spatial and temporal stress validation of routing semantics and
+operating-boundary reserve diagnostics, plus an external diagnostic of
+when those semantics need local boundary re-estimation.
 
 The time-forward audit is not an external validation. It is a post-hoc
 split of saved WTB test predictions into contiguous anchor-time blocks.
@@ -1868,7 +1951,9 @@ WaveNet, Graph Transformer, GAT-GRU, and PatchTST, and the selected
 boundary-forced router has five strict-cache seeds, five future-holdout
 seeds, and five seeds for each spatial-holdout routing comparator. ERA5
 has five seeds for the in-family models and three seeds for the learned
-baselines. The engineering baselines and reserve-window audit are
+baselines. The quasi-external WTB deployment drill has five
+future-period seeds and five east-turbine seeds, but it remains a proxy
+workflow test. The engineering baselines and reserve-window audit are
 deterministic or sampled strict-cache diagnostics rather than five-seed
 neural families. Semantic negative controls are taken from
 \texttt{boundary\_negative\_controls\_wtb}, and the mask/threshold
@@ -1901,12 +1986,15 @@ evidence then tests the selected router more severely: across five seeds
 it recovers the operating partition, passes checkpoint replay, fails
 under boundary-anchor removal, survives placebo controls, remains
 meaningful under spatial and future-period holdouts, and keeps routing
-semantics in late test windows. This is within-WTB spatial and temporal
-stress evidence for routing semantics, not evidence for a new wind farm.
-ERA5 carries the same lesson as an observability contrast: when the
-regime marker is visible and persistence is strong, physics-aligned
-routing improves gate-regime agreement more than headline forecasting
-accuracy.
+semantics in late test windows. The quasi-external WTB drill adds one
+positive operational procedure: a small calibration window can
+re-estimate the local boundary and gate map, freeze them, and pass a
+held-out future or held-out east-turbine test. This is within-WTB
+spatial and temporal stress evidence plus workflow evidence, not
+evidence for a new wind farm. ERA5 carries the same lesson as an
+observability contrast: when the regime marker is visible and
+persistence is strong, physics-aligned routing improves gate-regime
+agreement more than headline forecasting accuracy.
 
 The practical conclusion follows directly. When the regime marker is
 visible, routing regularization calibrates an already available
@@ -1924,8 +2012,9 @@ criterion in Kelmarsh/Penmanshiel. The gate is part of the model's
 scientific claim, and the right question is whether that claim is worth
 its measured error, reserve, stress-test, and efficiency costs in the
 target operating setting. Until a new wind farm passes the local
-evidence protocol, the method should be described as within-WTB
-operating-boundary evidence plus external boundary-condition diagnosis.
+evidence protocol, the method should be described only as within-WTB
+operating-boundary auditability plus external failure-boundary diagnosis
+plus transition-window reserve diagnosis.
 
 \section{Declaration of generative AI and AI-assisted technologies in
 the manuscript preparation
@@ -1956,8 +2045,9 @@ prediction paths, checkpoint hashes, and SHA256 hashes where file size
 permits. The table, figure, and source-artifact indices in
 \path{artifacts/final_evidence_package/manifest/evidence_manifest_final.json}
 are the source/checksum authority for the submission-facing artifacts,
-including the Applied Energy reserve, claim-boundary, and external-site
-diagnostics. The reproducibility manifest in
+including the Applied Energy reserve, claim-boundary, quasi-external WTB
+deployment drill, and external-site diagnostics. The reproducibility
+manifest in
 \path{artifacts/reproducibility_manifest_final/reproducibility_manifest.json}
 reports 53/53 required files present, complete strict model weights, a
 recorded Python/CUDA environment, and no active experiment gaps. Code,
@@ -1968,11 +2058,11 @@ Raw third-party data that cannot be redistributed will be accompanied by
 download instructions and rebuilding scripts. The one-command
 reproduction package rebuilds the strict evidence package, the
 engineering baseline panel, the transition-window reserve audit, the
-reserve guard, the external recalibration and small-calibration
-diagnostics, the final evidence manifest, and the reproducibility
-manifest with relative paths. The study uses turbine and atmospheric
-measurements only and involves no human participants or human-subject
-data.
+reserve guard, the quasi-external WTB deployment drill, the external
+recalibration and small-calibration diagnostics, the final evidence
+manifest, and the reproducibility manifest with relative paths. The
+study uses turbine and atmospheric measurements only and involves no
+human participants or human-subject data.
 
 \section{Appendix A. Training and implementation
 details}\label{appendix-a.-training-and-implementation-details}

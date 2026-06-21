@@ -1,7 +1,9 @@
 claim,status,safe_wording
 WTB operating-boundary routing accountability,supported,"strict-cache replay, intervention, placebo, spatial holdout, future holdout, and reserve audit support within-WTB boundary routing"
-headline forecasting dominance,not supported,Graph WaveNet and lag-feature baselines remain stronger RMSE forecasters; routed model pays an explicit error penalty
+quasi-external deployment drill,supported only as WTB proxy evidence,small local calibration window -> boundary/gate-map freeze -> held-out future or held-out east-turbine test passes; not a real new-farm transfer
+headline forecasting dominance,not supported,Graph WaveNet and lag-feature baselines remain stronger RMSE forecasters; never write forecasting SOTA
 gate-bin reserve policy,conditional,use only as a transition-window reserve diagnostic; gate-bin wins at moderate cost ratios and loses in high-ramp or very high-penalty settings
 anchor-only/router-rule replacement,not supported as a straw baseline,"anchor-only is semantically strong; proposed advantage is trainable responsibility, forecast/reserve coupling, and lower anchor-noise brittleness"
 external wind-farm portability,not supported,Kelmarsh/Penmanshiel are negative evidence requiring local boundary re-estimation and held-out routing gates
+generalizable physical router or deployment-ready model,forbidden,"write only WTB internal boundary auditability, external failure boundary, and transition-window reserve diagnosis"
 future holdout versus post-hoc time-forward,separated,pre-specified future holdout is citable stress evidence; late test slicing remains failure analysis for distribution shift
