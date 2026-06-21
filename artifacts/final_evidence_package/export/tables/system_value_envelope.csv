@@ -1,0 +1,6 @@
+cost_ratio,applicability,boundary_total_cost_delta,violation_delta,additional_reserve_energy,shortage_energy_delta,graph_physical_cost_gap,system_reading
+2.0,not reserve-active,0.0,0.0,0.0,0.0,1207263.7421483397,Shortage penalty is too low to activate reserve.
+5.0,usable moderate-cost window,-1945607.0153707564,-0.0169798971482,2173520.66768587,-823825.536611327,-123805.15748211741,Boundary gate is useful only when fewer violations/shortages justify extra reserve.
+10.0,usable moderate-cost window,-3551436.6980953366,-0.013763440860215095,1846918.2363599315,-539835.4934455268,262864.25667634606,Boundary gate is useful only when fewer violations/shortages justify extra reserve.
+20.0,narrow cost-only window,-1392694.7869443595,0.0001496026180459048,-695886.2087531388,-34840.42890956078,1490018.9070456028,Benefit narrows; use only after ramp-specific checks.
+50.0,not applicable at high penalty,5931728.713430047,0.0034969611968208997,-1044501.7379529923,139524.60902766135,6951594.402629167,Same-model global policy is safer at this penalty.

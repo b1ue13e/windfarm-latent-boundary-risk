@@ -1,0 +1,37 @@
+candidate,baseline,metric,observed_delta,ci_low,ci_high,prob_candidate_lower,paired_sign_permutation_p,n_pairs,interpretation
+Graph WaveNet/physical-bin,Graph WaveNet/global,total_cost,355142.38333179953,-1140556.3642900109,2276593.3121185303,0.4,0.8096380723855229,5,baseline lower
+Graph WaveNet/physical-bin,Graph WaveNet/global,violation_rate,0.015559199870424385,0.014273566569484988,0.01684483317136378,0.0,0.0649870025994801,5,baseline lower
+Graph WaveNet/physical-bin,Graph WaveNet/global,reserve_energy,-9866033.556510042,-10858905.24176616,-8828186.308468234,1.0,0.0649870025994801,5,candidate lower
+Graph WaveNet/physical-bin,Graph WaveNet/global,shortage_energy,1022117.5939841748,800591.9644379138,1284614.754098727,0.0,0.0649870025994801,5,baseline lower
+PatchTST/global,Graph WaveNet/global,total_cost,32641397.604128562,-27820794.577058792,80518322.80103374,0.2,0.3101379724055189,5,baseline lower
+PatchTST/global,Graph WaveNet/global,violation_rate,0.002629980563654044,-0.004778101716877236,0.010038062844185324,0.4,0.5556888622275545,5,baseline lower
+PatchTST/global,Graph WaveNet/global,reserve_energy,30495654.274672516,362999.47494679096,52722718.61702728,0.2,0.1871625674865027,5,baseline lower
+PatchTST/global,Graph WaveNet/global,shortage_energy,214574.3329456065,-3515100.292186132,3744203.51707808,0.4,0.9342131573685263,5,baseline lower
+PatchTST/physical-bin,Graph WaveNet/global,total_cost,32931927.445974838,-27263320.544264268,80349222.51655582,0.2,0.3101379724055189,5,baseline lower
+PatchTST/physical-bin,Graph WaveNet/global,violation_rate,0.015749514091350843,0.010663670229996763,0.019932377712989984,0.0,0.0649870025994801,5,baseline lower
+PatchTST/physical-bin,Graph WaveNet/global,reserve_energy,21706591.876006156,-8386586.868927079,44438951.98456266,0.2,0.1871625674865027,5,baseline lower
+PatchTST/physical-bin,Graph WaveNet/global,shortage_energy,1122533.5569968577,-2306017.048930346,4294983.444795771,0.4,0.5624875024995001,5,baseline lower
+Physics-Aligned MoE/global,Graph WaveNet/global,total_cost,51481593.95142974,-58303102.47455205,151393685.73659295,0.4,0.4469106178764247,5,baseline lower
+Physics-Aligned MoE/global,Graph WaveNet/global,violation_rate,-0.00542800453514738,-0.01911848072562358,0.005966553287981863,0.6,0.6280743851229754,5,candidate lower
+Physics-Aligned MoE/global,Graph WaveNet/global,reserve_energy,36530948.2708181,5073879.701028871,60695837.6643528,0.2,0.1267746450709858,5,baseline lower
+Physics-Aligned MoE/global,Graph WaveNet/global,shortage_energy,1495064.5680611632,-6493600.207208478,9069784.807224018,0.4,0.8076384723055389,5,baseline lower
+Physics-Aligned MoE/physical-bin,Graph WaveNet/global,total_cost,49670802.54997484,-59209865.044770494,146817805.94841057,0.4,0.4469106178764247,5,baseline lower
+Physics-Aligned MoE/physical-bin,Graph WaveNet/global,violation_rate,0.006701490119857503,-0.009459021703919619,0.019077988338192443,0.4,0.6290741851629674,5,baseline lower
+Physics-Aligned MoE/physical-bin,Graph WaveNet/global,reserve_energy,23673726.47359715,-1323715.1812557161,43612373.915255755,0.2,0.1873625274945011,5,baseline lower
+Physics-Aligned MoE/physical-bin,Graph WaveNet/global,shortage_energy,2599707.6076377733,-6073219.513742038,10860496.516929768,0.4,0.6206758648270346,5,baseline lower
+Physics-Aligned MoE/gate-bin,Graph WaveNet/global,total_cost,30671829.754907526,-63355399.924024545,111492338.65516457,0.4,0.6290741851629674,5,baseline lower
+Physics-Aligned MoE/gate-bin,Graph WaveNet/global,violation_rate,0.025093132491091703,0.009807256235827722,0.03908932620667314,0.2,0.1267746450709858,5,baseline lower
+Physics-Aligned MoE/gate-bin,Graph WaveNet/global,reserve_energy,9074629.882863993,-14623020.122837031,30472881.17505159,0.2,0.4979004199160168,5,baseline lower
+Physics-Aligned MoE/gate-bin,Graph WaveNet/global,shortage_energy,2159719.987204349,-5941582.221376361,9568137.546529396,0.4,0.6846630673865227,5,baseline lower
+Boundary-forced router/global,Graph WaveNet/global,total_cost,37246993.58519851,-31514673.76747886,107974764.34583434,0.4,0.3797240551889622,5,baseline lower
+Boundary-forced router/global,Graph WaveNet/global,violation_rate,-0.004442014901198535,-0.019810900550696415,0.012212504049238768,0.6,0.6310737852429514,5,candidate lower
+Boundary-forced router/global,Graph WaveNet/global,reserve_energy,36953690.39834233,21019311.05196073,56352688.88621525,0.0,0.0649870025994801,5,baseline lower
+Boundary-forced router/global,Graph WaveNet/global,shortage_energy,29330.318685613944,-5766032.223563945,6739570.6512005655,0.6,1.0,5,baseline lower
+Boundary-forced router/physical-bin,Graph WaveNet/global,total_cost,34407204.07504668,-34543800.91871484,106697666.86542922,0.4,0.3797240551889622,5,baseline lower
+Boundary-forced router/physical-bin,Graph WaveNet/global,violation_rate,0.0071448817622287025,-0.007440476190476197,0.023384353741496604,0.2,0.5652869426114777,5,baseline lower
+Boundary-forced router/physical-bin,Graph WaveNet/global,reserve_energy,22458971.551691182,11740800.485387255,33321382.86178698,0.0,0.0649870025994801,5,baseline lower
+Boundary-forced router/physical-bin,Graph WaveNet/global,shortage_energy,1194823.2523355447,-5170797.265076434,8114892.958992513,0.6,0.8784243151369726,5,baseline lower
+Boundary-forced router/gate-bin,Graph WaveNet/global,total_cost,17283248.21566199,-52088398.87466033,87949826.99597576,0.6,0.7520495900819836,5,baseline lower
+Boundary-forced router/gate-bin,Graph WaveNet/global,violation_rate,0.031245950761256924,0.015067217363135803,0.052949870424360244,0.0,0.0649870025994801,5,baseline lower
+Boundary-forced router/gate-bin,Graph WaveNet/global,reserve_energy,3148193.58389585,-10237118.940198207,17861111.342160188,0.4,0.6276744651069786,5,baseline lower
+Boundary-forced router/gate-bin,Graph WaveNet/global,shortage_energy,1413505.46317661,-4591123.908371838,8418980.098908791,0.6,0.7520495900819836,5,baseline lower

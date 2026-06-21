@@ -1,0 +1,12 @@
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+Model & Overall & Pitch & NMI/ARI & Noise degrade & Reading \\
+\midrule
+MoE + L\_bal + L\_align + L\_force & 236.13 & 286.95 & 0.8716/0.9166 & 5.78 & trainable responsibility and reserve coupling \\
+Anchor-only router & 233.46 & 317.81 & 0.8895/0.9219 & 105.56 & strong semantic rule baseline \\
+Context-supervised router & 242.75 & 287.75 & 0.7521/0.8020 & NA & accurate but less boundary-accountable control \\
+Physics-Aligned MoE & 241.42 & 297.02 & 0.8312/0.8820 & NA & routed forecasting compromise \\
+\bottomrule
+\end{tabular}
+}

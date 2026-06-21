@@ -17,6 +17,8 @@
     "per_example_manifest_nonempty": true,
     "failure_cases_nonempty": true,
     "boundary_failure_cases_nonempty": true,
+    "failure_cases_file_present": true,
+    "boundary_failure_cases_file_present": true,
     "required_models_present": true,
     "required_seeds_present": true,
     "required_model_seed_matrix_complete": true

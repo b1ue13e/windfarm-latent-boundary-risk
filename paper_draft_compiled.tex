@@ -333,6 +333,21 @@ external Kelmarsh/Penmanshiel result into a boundary-condition
 experiment that tests whether local rated-wind/pitch recalibration is
 needed before a WTB boundary rule is reused.
 
+The following claim boundary is part of the paper's contribution rather
+than an afterthought. It separates what the evidence supports from what
+it explicitly does not support, so that the reserve and external-site
+results are read as operating-boundary diagnostics instead of as broad
+forecasting or deployment claims.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table.} Reviewer-facing claim boundary for the current manuscript.}
+\input{artifacts/applied_energy_diagnostics/table_claim_boundary_applied_energy.tex}
+\end{table}
+
 \section{Related Work}\label{related-work}
 
 \subsection{Spatio-temporal graph
@@ -1051,13 +1066,14 @@ the narrower routing-recovery claim.
 ERA5 makes the same separation sharper. A last-value persistence
 baseline gives the lowest headline error, with overall RMSE 0.7127 and
 switch-window RMSE 0.6814. Among learned ERA5 baselines, Graph WaveNet
-is best at 0.8417 +/- 0.0540, followed by the matched dense encoder at
-0.8641 +/- 0.0690, physics-aligned MoE at 0.8735 +/- 0.0479, TCN at
-0.8784 +/- 0.0286, PatchTST at 0.8817 +/- 0.0675, Unconstrained MoE at
-0.9294 +/- 0.0451, and STGCN at 0.9893 +/- 0.1344. The forecasting
-tables set the terms of the paper: physics-aligned routing earns its
-value through interpretable responsibility. That value is only credible
-if the routing metrics improve under the same evaluation protocol.
+has the lowest learned-model RMSE at 0.8417 +/- 0.0540, followed by the
+matched dense encoder at 0.8641 +/- 0.0690, physics-aligned MoE at
+0.8735 +/- 0.0479, TCN at 0.8784 +/- 0.0286, PatchTST at 0.8817 +/-
+0.0675, Unconstrained MoE at 0.9294 +/- 0.0451, and STGCN at 0.9893 +/-
+0.1344. The forecasting tables set the terms of the paper:
+physics-aligned routing earns its value through interpretable
+responsibility. That value is only credible if the routing metrics
+improve under the same evaluation protocol.
 
 The two WTB tables below are the submission-facing forecast evidence:
 the strict-cache neural leaderboard and the strict-cache engineering
@@ -1094,7 +1110,7 @@ anchor-valid mask, the boundary-forced router reaches pitch-control RMSE
 286.95 +/- 22.07 and switch-window RMSE 239.86 +/- 8.85. These slice
 results support a mechanism-evidence update, not a headline-error claim.
 ERA5 again favors persistence. Among learned ERA5 models, Graph WaveNet
-gives the best overall and switch-window RMSE, while physics-aligned
+gives the lowest overall and switch-window RMSE, while physics-aligned
 routing improves over Unconstrained MoE in the transition slice without
 beating the dense model or persistence on headline error. This is
 calibration around a visible thermodynamic boundary, not broad forecast
@@ -1235,24 +1251,29 @@ cost is 464.07M with RMSE 225.74. The boundary-forced router pays a
 does not become a globally better reserve policy: on the full sample it
 lowers same-model cost by carrying less reserve, but violation rises
 from 0.0857 to 0.1214 and shortage rises from 17.64M to 19.02M. The
-useful result is local. On boundary anchors, the boundary
-router/gate-bin policy lowers same-model total cost from 88.13M to
-84.58M, violation from 0.1038 to 0.0900, and shortage from 3.73M to
-3.19M, while reserve energy rises from 50.82M to 52.67M. Graph
-WaveNet/physical-bin remains the strongest physics-stratified boundary
-baseline at 84.31M total cost and 3.40M shortage. Thus the gate-bin win
-is not ``better forecasting''; it is a boundary-window reserve
-allocation that buys lower shortage and fewer violations at a measured
-reserve-energy price.
+useful result is local and has the form of a reserve envelope. On
+boundary anchors, the boundary router/gate-bin policy lowers same-model
+total cost from 88.13M to 84.58M, violation from 0.1038 to 0.0900, and
+shortage from 3.73M to 3.19M, while reserve energy rises from 50.82M to
+52.67M. The operational gain is therefore a 0.0138 absolute violation
+reduction and 0.54M lower boundary shortage, bought with 1.85M
+additional reserve energy. Graph WaveNet/physical-bin remains the
+strongest physics-stratified boundary baseline at 84.31M total cost and
+3.40M shortage. Thus the gate-bin win is not ``better forecasting''; it
+is a boundary-window reserve allocation that buys lower shortage and
+fewer violations at a measured reserve-energy price.
 
-\begin{table}[t]
+\begingroup
 \centering
 \scriptsize
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table.} Dispatch/reserve main table at shortage-to-reserve cost ratio 10.}
+\noindent\begin{minipage}{\linewidth}
+\captionof*{table}{\textbf{Table.} Dispatch/reserve main table at shortage-to-reserve cost ratio 10.}
 \input{artifacts/applied_energy_diagnostics/table_dispatch_reserve_main.tex}
-\end{table}
+\end{minipage}
+\par
+\endgroup
 
 Cost-ratio sensitivity makes the win/loss boundary explicit. At ratio 2,
 the selected reserve quantile is 0.50 and the gate-bin boundary policy
@@ -1265,6 +1286,33 @@ same-model global policy is safer and cheaper. This is the Applied
 Energy reading of the reserve result: the gate is a conditional
 reserve-allocation signal around the MPPT-to-pitch boundary, not a
 replacement for system-level stochastic reserve optimization.
+
+The same result can be read as a system-value envelope. The gate-bin
+policy is reserve-active only when the shortage penalty is high enough
+to make boundary shortages matter but not so high that the safer global
+policy dominates. In this experiment, that usable range is the moderate
+cost-ratio interval 5--10. At ratio 5, the gate-bin policy lowers
+same-model boundary cost by 1.95M, violation by 0.0170, and shortage by
+0.82M, while adding 2.17M reserve energy. At ratio 10, it lowers
+same-model boundary cost by 3.55M, violation by 0.0138, and shortage by
+0.54M, while adding 1.85M reserve energy. At ratio 20 the benefit is no
+longer a clear reliability gain, and at ratio 50 the gate-bin policy is
+outside the acceptable region because it raises cost, violation, and
+shortage relative to the same-model global policy. This is the system
+claim: the gate marks a transition-window reserve tradeoff region, not a
+universally preferred reserve controller.
+
+\begingroup
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\noindent\begin{minipage}{\linewidth}
+\captionof*{table}{\textbf{Table.} Boundary-window reserve value envelope for the gate-bin policy. Positive reserve means additional reserve energy relative to the same routed model with a global reserve rule.}
+\input{artifacts/applied_energy_diagnostics/table_system_value_envelope.tex}
+\end{minipage}
+\par
+\endgroup
 
 We also export operator-facing slices that are closer to reserve desk
 language than the aggregate boundary/non-boundary split. The four slices
@@ -1287,19 +1335,24 @@ reserve-policy claim.
 The operational decision curve puts the RMSE penalty and reserve-risk
 tradeoff in one view. It overlays boundary-window shortage energy across
 cost ratios with the boundary router/gate-bin reserve energy and its
-fixed RMSE penalty relative to Graph WaveNet/global. The curve shows why
-a worse-RMSE model can still be useful: the router is not selected to
-lower average squared error; it is selected only when the operating
-decision values fewer boundary shortages and violations more than the
-extra reserve carried in that window.
+fixed RMSE penalty relative to Graph WaveNet/global. The figure should
+be read like an operating-note caption: a worse-RMSE model is useful
+only if the operator is making a transition-window reserve decision and
+the cost ratio falls in the envelope where fewer boundary shortages and
+violations are worth the extra reserve. Outside that envelope, the
+lower-RMSE Graph WaveNet/global or Graph WaveNet/physical-bin policy
+remains the more appropriate system reference.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio,alt={Operational decision curve for the WTB boundary window. The chart places the boundary router's RMSE penalty against Graph WaveNet/global beside reserve energy and shortage-energy changes across shortage-to-reserve cost ratios.}]{artifacts/applied_energy_diagnostics/operational_decision_curve.png}
+\includegraphics[width=0.92\linewidth,height=\textheight,keepaspectratio,alt={Operational decision curve for the WTB boundary window. The chart places the boundary router's RMSE penalty against Graph WaveNet/global beside reserve energy and shortage-energy changes across shortage-to-reserve cost ratios. The figure explains why a worse-RMSE model can still have local energy value: it is not chosen for average error, but for a boundary-window reserve tradeoff that is acceptable only in the moderate cost-ratio envelope.}]{artifacts/applied_energy_diagnostics/operational_decision_curve.png}
 \caption{Operational decision curve for the WTB boundary window. The
 chart places the boundary router's RMSE penalty against Graph
 WaveNet/global beside reserve energy and shortage-energy changes across
-shortage-to-reserve cost ratios.}
+shortage-to-reserve cost ratios. The figure explains why a worse-RMSE
+model can still have local energy value: it is not chosen for average
+error, but for a boundary-window reserve tradeoff that is acceptable
+only in the moderate cost-ratio envelope.}
 \end{figure}
 
 The three operational cases in the next table are included to prevent a
@@ -1471,13 +1524,14 @@ mechanism tables: the method earns its value through gate-regime
 responsibility, not headline error dominance. The corresponding ERA5
 RMSE difference between physics-aligned MoE and the dense encoder is
 small and uncertain, about 0.009 (-0.061 to 0.085), and the expanded
-ERA5 baseline panel shows that even the best learned baseline still
-trails persistence. The deployment-cost table adds one more constraint:
-PatchTST is fastest, Graph WaveNet is slower but best on strict-cache
-RMSE, and the routed models sit between them with about 110k trainable
-parameters and 13--14 s evaluation time for the strict test windows.
-These checks therefore support the routing-semantics claim and keep the
-accuracy and deployment claims bounded.
+ERA5 baseline panel shows that even the lowest-RMSE learned baseline
+still trails persistence. The deployment-cost table adds one more
+constraint: PatchTST is fastest, Graph WaveNet is slower but has the
+lowest strict-cache RMSE, and the routed models sit between them with
+about 110k trainable parameters and 13--14 s evaluation time for the
+strict test windows. These checks therefore support the
+routing-semantics claim and keep the accuracy and deployment claims
+bounded.
 
 \begin{table}[t]
 \centering
@@ -1591,17 +1645,6 @@ pre-specified operating-boundary rule.
 \input{artifacts/threshold_label_validity_audit_wtb_strictmask/table_threshold_label_validity.tex}
 \end{table}
 
-\subsection{Claim boundary}\label{claim-boundary}
-
-\begin{table}[t]
-\centering
-\footnotesize
-\setlength{\tabcolsep}{6pt}
-\renewcommand{\arraystretch}{1.08}
-\caption*{\textbf{Table 9.} Claim boundary for the current manuscript.}
-\input{artifacts/applied_energy_diagnostics/table_claim_boundary_applied_energy.tex}
-\end{table}
-
 The external Kelmarsh/Penmanshiel result is a failed boundary-condition
 test, not a new-site success. The source guard completes 80/80 runs,
 both leave-one-farm-out directions, and the chronological sanity checks,
@@ -1662,38 +1705,39 @@ site-level claim.
 \subsection{Deployment protocol for a new wind
 farm}\label{deployment-protocol-for-a-new-wind-farm}
 
-The external failure leads to a deployment protocol rather than a
-portability claim. Before using the router at a new wind farm, the
-operator must first audit sensor coverage: wind speed, active power,
-turbine status or availability masks, and pitch-related channels must be
-present with enough valid overlap to construct the MPPT and
-pitch-control labels used by the gate. Pitch observability is a separate
-gate: if mean pitch, blade-pitch channels, or a reliable pitch proxy are
-missing in the intended operating window, the boundary label is not
-identifiable and the WTB-derived gate should not be interpreted as a
-physical router.
+The external failure leads to a deployment-threshold protocol rather
+than a portability claim. A new wind farm must pass three evidence gates
+before the router can be interpreted physically. First, the site must
+pass a pitch-observability gate: wind speed, active power, turbine
+status or availability masks, and pitch-related channels must be present
+with enough valid overlap to construct MPPT and pitch-control labels. If
+mean pitch, blade-pitch channels, or a reliable pitch proxy are absent
+in the intended operating window, the boundary label is not identifiable
+and physical routing interpretation is forbidden.
 
-The second step is local boundary recalibration. Rated wind speed, pitch
-threshold, and the boundary band must be re-estimated on a local
-calibration period, then frozen before held-out testing; selecting them
-on the test period would convert the protocol into a retrospective
-explanation. The calibration period must also contain enough boundary
-cells, not only idle or MPPT-heavy operation. The Kelmarsh/Penmanshiel
-diagnostics show why: a small validation-window boundary and gate-map
-adaptation completed, but it did not restore a stable held-out routing
-diagnostic across farms.
+Second, the site must pass a local-boundary-support gate. Rated wind
+speed, pitch threshold, and the boundary band must be re-estimated on a
+local calibration period, then frozen before held-out testing; selecting
+them on the test period would convert the protocol into a retrospective
+explanation. The calibration period must contain enough boundary cells,
+not only idle or MPPT-heavy operation. If local support is too sparse,
+the result may still be reported as a data-coverage diagnostic, but the
+WTB-derived boundary rule must not be reused as a physical explanation.
 
-The third step is a regime-share and reserve-use audit. The local
-idle/MPPT/pitch shares should be compared with the WTB operating
+Third, the site must pass a held-out routing criterion before any
+physical-router wording is allowed. The gate-to-regime map, rated-wind
+threshold, pitch threshold, and boundary band must be selected on
+calibration data and evaluated once on held-out data. The local
+idle/MPPT/pitch shares should also be compared with the WTB operating
 envelope, and transition-window shortage, violation rate, reserve
-energy, and high-ramp slices should be recomputed before any gate-bin
+energy, and high-ramp slices must be recomputed before any gate-bin
 reserve rule is used. A new site passes the protocol only if the
-held-out gate clears a pre-specified routing criterion and the reserve
+held-out gate clears the pre-specified routing criterion and the reserve
 audit improves shortage and violations in the intended transition window
-at an acceptable reserve-energy cost. Without these checks, the safe
-conclusion is not that the model has failed silently; it is that the
-operating boundary must be locally re-estimated before the routing claim
-can be made.
+at an acceptable reserve-energy cost. If any gate fails, the allowed
+claim is limited to boundary-condition diagnosis; physical routing
+interpretation, external deployment validation, and gate-bin reserve use
+are not supported.
 
 \begin{figure}
 \centering
@@ -1841,10 +1885,11 @@ router more severely: across five seeds it recovers the operating
 partition, passes checkpoint replay, fails under boundary-anchor
 removal, survives placebo controls, remains meaningful under spatial and
 future-period holdouts, and keeps routing semantics in late test
-windows. ERA5 carries the same lesson as an observability contrast: when
-the regime marker is visible and persistence is strong, physics-aligned
-routing improves gate-regime agreement more than headline forecasting
-accuracy.
+windows. This is within-WTB spatial and temporal stress validation of
+routing semantics, not external deployment validation. ERA5 carries the
+same lesson as an observability contrast: when the regime marker is
+visible and persistence is strong, physics-aligned routing improves
+gate-regime agreement more than headline forecasting accuracy.
 
 The practical conclusion follows directly. When the regime marker is
 visible, routing regularization calibrates an already available
@@ -1861,7 +1906,10 @@ change; a small validation-window adaptation did not restore usable
 held-out routing in Kelmarsh/Penmanshiel. The gate is part of the
 model's scientific claim, and the right question is whether that claim
 is worth its measured error, reserve, stress-test, and efficiency costs
-in the target operating setting.
+in the target operating setting. Until a new wind farm passes the
+deployment-threshold protocol, the method should be described as
+within-WTB operating-boundary evidence plus external boundary-condition
+diagnosis, not as deployment-ready transfer.
 
 \section{Declaration of generative AI and AI-assisted technologies in
 the manuscript preparation
@@ -1889,18 +1937,27 @@ new-site portability is not claimed. The final evidence export includes
 table, figure, source-data, guard, and trace manifests; each
 submission-facing table or figure is linked to source files, seed lists,
 run tables, raw prediction paths, checkpoint hashes, and SHA256 hashes
-where file size permits. Code, configuration files, scripts, derived
-caches when licensing permits, model-weight/checkpoint hashes,
-seed-level CSV summaries, final figure source data, and evidence
-manifests can be released with the manuscript. Raw third-party data that
-cannot be redistributed will be accompanied by download instructions and
-rebuilding scripts. The one-command reproduction package rebuilds the
-strict evidence package, the engineering baseline panel, the
-transition-window reserve audit, the reserve guard, the external
-recalibration and small-calibration diagnostics, the final evidence
-manifest, and the reproducibility manifest with relative paths. The
-study uses turbine and atmospheric measurements only and involves no
-human participants or human-subject data.
+where file size permits. The table, figure, and source-artifact indices
+in
+\path{artifacts/final_evidence_package/manifest/evidence_manifest_final.json}
+are the source/checksum authority for the submission-facing artifacts,
+including the Applied Energy reserve, claim-boundary, and external-site
+diagnostics. The reproducibility manifest in
+\path{artifacts/reproducibility_manifest_final/reproducibility_manifest.json}
+reports 53/53 required files present, complete strict model weights, a
+recorded Python/CUDA environment, and no active experiment gaps. Code,
+configuration files, scripts, derived caches when licensing permits,
+model-weight/checkpoint hashes, seed-level CSV summaries, final figure
+source data, and evidence manifests can be released with the manuscript.
+Raw third-party data that cannot be redistributed will be accompanied by
+download instructions and rebuilding scripts. The one-command
+reproduction package rebuilds the strict evidence package, the
+engineering baseline panel, the transition-window reserve audit, the
+reserve guard, the external recalibration and small-calibration
+diagnostics, the final evidence manifest, and the reproducibility
+manifest with relative paths. The study uses turbine and atmospheric
+measurements only and involves no human participants or human-subject
+data.
 
 \section{Appendix A. Training and implementation
 details}\label{appendix-a.-training-and-implementation-details}

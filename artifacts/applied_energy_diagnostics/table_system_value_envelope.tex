@@ -1,0 +1,13 @@
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llllllll}
+\toprule
+Ratio & Use window & Cost vs global & Violation vs global & Extra reserve & Shortage vs global & Vs graph bin & System reading \\
+\midrule
+2 & not reserve-active & +0.00M & +0.0000 & +0.00M & +0.00M & +1.21M & Shortage penalty is too low to activate reserve. \\
+5 & usable moderate-cost window & -1.95M & -0.0170 & +2.17M & -0.82M & -0.12M & Boundary gate is useful only when fewer violations/shortages justify extra reserve. \\
+10 & usable moderate-cost window & -3.55M & -0.0138 & +1.85M & -0.54M & +0.26M & Boundary gate is useful only when fewer violations/shortages justify extra reserve. \\
+20 & narrow cost-only window & -1.39M & +0.0001 & -0.70M & -0.03M & +1.49M & Benefit narrows; use only after ramp-specific checks. \\
+50 & not applicable at high penalty & +5.93M & +0.0035 & -1.04M & +0.14M & +6.95M & Same-model global policy is safer at this penalty. \\
+\bottomrule
+\end{tabular}
+}

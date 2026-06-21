@@ -233,6 +233,76 @@ def _cost_ratio_table(by_ratio: pd.DataFrame) -> pd.DataFrame:
     return boundary.sort_values(["cost_ratio", "policy"]).reset_index(drop=True)
 
 
+def _system_value_envelope_table(by_ratio: pd.DataFrame) -> pd.DataFrame:
+    """Summarize the reserve result in energy-system rather than model-family language."""
+    rows = _subset_rows(by_ratio)
+    if rows.empty:
+        return rows
+    boundary = rows[rows["subset"].astype(str).eq("boundary")].copy()
+    gate = boundary[boundary["policy"].astype(str).eq("Boundary router/gate-bin")].copy()
+    graph_physical = boundary[boundary["policy"].astype(str).eq("Graph WaveNet/physical-bin")].copy()
+    gate = gate.sort_values("cost_ratio").reset_index(drop=True)
+    graph_physical = graph_physical.sort_values("cost_ratio").reset_index(drop=True)
+
+    rows_out: list[dict[str, Any]] = []
+    for _, row in gate.iterrows():
+        ratio = _num(row.get("cost_ratio"))
+        same_model = _safe_cell(
+            boundary,
+            cost_ratio=str(float(ratio)),
+            policy="Boundary router/global",
+        )
+        graph_ref = _safe_cell(
+            graph_physical,
+            cost_ratio=str(float(ratio)),
+            policy="Graph WaveNet/physical-bin",
+        )
+        if same_model is None:
+            continue
+        total_delta = _num(row.get("total_cost")) - _num(same_model.get("total_cost"))
+        violation_delta = _num(row.get("violation_rate")) - _num(same_model.get("violation_rate"))
+        reserve_delta = _num(row.get("reserve_energy")) - _num(same_model.get("reserve_energy"))
+        shortage_delta = _num(row.get("shortage_energy")) - _num(same_model.get("shortage_energy"))
+        graph_cost_gap = (
+            _num(row.get("total_cost")) - _num(graph_ref.get("total_cost"))
+            if graph_ref is not None
+            else np.nan
+        )
+        if ratio in {5.0, 10.0}:
+            operating_region = "usable moderate-cost window"
+        elif ratio == 20.0:
+            operating_region = "narrow cost-only window"
+        elif ratio >= 50.0:
+            operating_region = "not applicable at high penalty"
+        else:
+            operating_region = "not reserve-active"
+        rows_out.append(
+            {
+                "cost_ratio": ratio,
+                "applicability": operating_region,
+                "boundary_total_cost_delta": total_delta,
+                "violation_delta": violation_delta,
+                "additional_reserve_energy": reserve_delta,
+                "shortage_energy_delta": shortage_delta,
+                "graph_physical_cost_gap": graph_cost_gap,
+                "system_reading": (
+                    "Boundary gate is useful only when fewer violations/shortages justify extra reserve."
+                    if ratio in {5.0, 10.0}
+                    else (
+                        "Shortage penalty is too low to activate reserve."
+                        if ratio < 5.0
+                        else (
+                            "Benefit narrows; use only after ramp-specific checks."
+                            if ratio == 20.0
+                            else "Same-model global policy is safer at this penalty."
+                        )
+                    )
+                ),
+            }
+        )
+    return pd.DataFrame(rows_out)
+
+
 def _operational_curve(by_ratio: pd.DataFrame) -> pd.DataFrame:
     rows = _subset_rows(by_ratio)
     if rows.empty:
@@ -432,7 +502,7 @@ def _efficiency_table() -> pd.DataFrame:
                 "deployment_reading": "fastest inference"
                 if str(row["model"]) == "PatchTST"
                 else (
-                    "best strict-cache RMSE, slower"
+                    "lowest strict-cache RMSE, slower"
                     if str(row["model"]) == "Graph WaveNet"
                     else "router adds interpretable responsibility at moderate cost"
                 ),
@@ -745,6 +815,24 @@ def _display_cost_ratio(frame: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def _display_system_value(frame: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for _, row in frame.iterrows():
+        rows.append(
+            {
+                "Ratio": _fmt(row.get("cost_ratio"), 0),
+                "Use window": str(row.get("applicability", "")),
+                "Cost vs global": _fmt_signed_m(row.get("boundary_total_cost_delta")),
+                "Violation vs global": _fmt_signed(row.get("violation_delta"), 4),
+                "Extra reserve": _fmt_signed_m(row.get("additional_reserve_energy")),
+                "Shortage vs global": _fmt_signed_m(row.get("shortage_energy_delta")),
+                "Vs graph bin": _fmt_signed_m(row.get("graph_physical_cost_gap")),
+                "System reading": str(row.get("system_reading", "")),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
 def _display_stats(frame: pd.DataFrame) -> pd.DataFrame:
     priority = frame[
         frame["candidate"].isin(
@@ -875,51 +963,75 @@ def _plot_decision_curve(curve: pd.DataFrame, output_path: Path) -> None:
 def _plot_deployment_checklist(checklist: pd.DataFrame, output_path: Path) -> None:
     if checklist.empty:
         return
-    fig, ax = plt.subplots(figsize=(10.0, 3.2))
+    fig, ax = plt.subplots(figsize=(9.6, 5.6))
     ax.axis("off")
-    x_positions = np.linspace(0.06, 0.94, len(checklist))
-    y = 0.55
+    ax.text(
+        0.5,
+        0.96,
+        "New wind-farm deployment gate: physical routing claims require every gate to pass",
+        ha="center",
+        va="center",
+        fontsize=11,
+        weight="bold",
+        color="#111827",
+    )
+    y_positions = np.linspace(0.82, 0.18, len(checklist))
     for idx, (_, row) in enumerate(checklist.iterrows()):
-        x = x_positions[idx]
-        ax.text(
-            x,
-            y,
-            f"{int(row['step'])}. {row['gate']}",
-            ha="center",
-            va="center",
-            fontsize=9,
-            color="#111827",
-            bbox={
-                "boxstyle": "round,pad=0.32,rounding_size=0.08",
-                "facecolor": "#f8fafc",
-                "edgecolor": "#64748b",
-                "linewidth": 1.0,
-            },
+        y = y_positions[idx]
+        gate_text = f"{int(row['step'])}. {row['gate']}"
+        ax.add_patch(
+            plt.Rectangle(
+                (0.07, y - 0.045),
+                0.30,
+                0.09,
+                facecolor="#f8fafc",
+                edgecolor="#64748b",
+                linewidth=1.0,
+            )
         )
         ax.text(
-            x,
-            0.20,
-            str(row["fail_action"]),
+            0.22,
+            y,
+            gate_text,
             ha="center",
             va="center",
-            fontsize=7,
+            fontsize=9.5,
+            color="#111827",
+        )
+        ax.text(
+            0.44,
+            y,
+            "fail:",
+            ha="right",
+            va="center",
+            fontsize=8.5,
             color="#7f1d1d",
-            wrap=True,
+            weight="bold",
+        )
+        ax.text(
+            0.46,
+            y,
+            str(row["fail_action"]),
+            ha="left",
+            va="center",
+            fontsize=8.5,
+            color="#7f1d1d",
         )
         if idx < len(checklist) - 1:
             ax.annotate(
                 "",
-                xy=(x_positions[idx + 1] - 0.07, y),
-                xytext=(x + 0.07, y),
-                arrowprops={"arrowstyle": "->", "lw": 1.3, "color": "#475569"},
+                xy=(0.22, y_positions[idx + 1] + 0.055),
+                xytext=(0.22, y - 0.055),
+                arrowprops={"arrowstyle": "->", "lw": 1.2, "color": "#475569"},
             )
     ax.text(
-        0.5,
-        0.90,
-        "New wind-farm deployment gate: allowed claim requires every upstream gate to pass",
+        0.22,
+        0.08,
+        "allowed claim: local physical routing + reserve use only after all upstream gates pass",
         ha="center",
         va="center",
-        fontsize=11,
+        fontsize=8.5,
+        color="#14532d",
         weight="bold",
     )
     fig.tight_layout()
@@ -937,6 +1049,7 @@ def main() -> None:
 
     dispatch = _main_dispatch_table(by_ratio)
     cost_ratio = _cost_ratio_table(by_ratio)
+    system_value = _system_value_envelope_table(by_ratio)
     curve = _operational_curve(by_ratio)
     stats = _reserve_statistics_table(bootstrap, raw_runs)
     anchor = _anchor_main_table()
@@ -949,6 +1062,7 @@ def main() -> None:
     outputs = {
         "dispatch_reserve_main_table.csv": dispatch,
         "dispatch_reserve_cost_ratio_table.csv": cost_ratio,
+        "system_value_envelope.csv": system_value,
         "cost_ratio_sensitivity_readable.csv": _display_cost_ratio(cost_ratio),
         "operational_decision_curve.csv": curve,
         "reserve_paired_statistics.csv": stats,
@@ -991,6 +1105,21 @@ def main() -> None:
             ("Reserve", "Reserve"),
             ("Shortage", "Shortage"),
             ("Vs global", "Vs global"),
+        ],
+        resize=True,
+    )
+    _write_simple_tex(
+        _display_system_value(system_value),
+        OUT / "table_system_value_envelope.tex",
+        [
+            ("Ratio", "Ratio"),
+            ("Use window", "Use window"),
+            ("Cost vs global", "Cost vs global"),
+            ("Violation vs global", "Violation vs global"),
+            ("Extra reserve", "Extra reserve"),
+            ("Shortage vs global", "Shortage vs global"),
+            ("Vs graph bin", "Vs graph bin"),
+            ("System reading", "System reading"),
         ],
         resize=True,
     )
@@ -1077,6 +1206,7 @@ def main() -> None:
         "## Main outputs",
         "",
         "- `dispatch_reserve_main_table.csv` and `table_dispatch_reserve_main.tex`: same-table dispatch/reserve comparison at cost ratio 10.",
+        "- `system_value_envelope.csv` and `table_system_value_envelope.tex`: boundary-window reserve value envelope across cost ratios.",
         "- `operational_decision_curve.png`: RMSE penalty, reserve energy, and shortage tradeoff on the boundary window.",
         "- `reserve_paired_statistics.csv`: paired bootstrap/permutation-style uncertainty summaries for reserve cost and risk metrics.",
         "- `anchor_only_rule_router_main_table.csv`: formal anchor-only/router-rule comparison.",

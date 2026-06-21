@@ -194,7 +194,7 @@
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\guards\\external_wind_recalibration_guard.json",
-      "bytes": 703
+      "bytes": 696
     },
     {
       "label": "final_package_dir",
@@ -279,7 +279,7 @@
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\external_site_transfer_failure_table.csv",
-      "bytes": 3040
+      "bytes": 3049
     },
     {
       "label": "final_package_dir",
@@ -294,7 +294,7 @@
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_recalibration_guard.json",
-      "bytes": 703
+      "bytes": 696
     },
     {
       "label": "final_package_dir",
@@ -569,7 +569,7 @@
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\tables\\table_external_site_transfer_failure.tex",
-      "bytes": 3317
+      "bytes": 3326
     },
     {
       "label": "final_package_dir",
