@@ -1,7 +1,7 @@
 {
   "dataset": "wtb",
   "farm": "",
-  "split_id": "strict-cache",
+  "split_id": "strict-mask",
   "cache_sha256": "e27b59cec09a5e9a07ce54d8a4825521f9c89db24c3a63253fb7046756eb065d",
   "run_table": {
     "path": "artifacts\\strictmask_combined_reviewer_stats\\reviewer_stat_pack_run_table.csv",
@@ -207,7 +207,13 @@
       "path": "artifacts\\applied_energy_diagnostics\\new_wind_farm_deployment_checklist.csv",
       "exists": true,
       "bytes": 790,
-      "sha256": "2a470060dfb7d7d7077fdcb7d79e78e31d7727e8d92b0e72afadd1d3a86486ad"
+      "sha256": "533825a27ba5a8fc94305ece9adfae58ce68d8a6da51956bd0a55595b9d857d4"
+    },
+    "reserve_coverage_reliability.csv": {
+      "path": "artifacts\\applied_energy_diagnostics\\reserve_coverage_reliability.csv",
+      "exists": true,
+      "bytes": 1471,
+      "sha256": "41102dec56179272d855ca59717b565720dc982c5e58ed0c4a49893ab504aa9f"
     },
     "quasi_external_deployment_drill_raw.csv": {
       "path": "artifacts\\applied_energy_diagnostics\\quasi_external_deployment_drill_raw.csv",
@@ -218,8 +224,8 @@
     "README.md": {
       "path": "artifacts\\applied_energy_diagnostics\\README.md",
       "exists": true,
-      "bytes": 1897,
-      "sha256": "93ab2895415977df7a664cd758a1a5843c64523e2416007a2ce41969578c1496"
+      "bytes": 2002,
+      "sha256": "bfbc1b572ff3ec9e6a8d96b520fc3d01661b003bc162c89ecfa1274235b6f133"
     }
   },
   "table_outputs": {
@@ -463,6 +469,18 @@
       "bytes": 1713,
       "sha256": "15b36a1d7d1f10dd46cf56a2b781e883bd135e17b555e575230d0ae3c0f5ce27"
     },
+    "reserve_coverage_reliability.csv": {
+      "path": "artifacts\\applied_energy_diagnostics\\reserve_coverage_reliability.csv",
+      "exists": true,
+      "bytes": 1471,
+      "sha256": "41102dec56179272d855ca59717b565720dc982c5e58ed0c4a49893ab504aa9f"
+    },
+    "table_reserve_coverage_reliability.tex": {
+      "path": "artifacts\\applied_energy_diagnostics\\table_reserve_coverage_reliability.tex",
+      "exists": true,
+      "bytes": 1076,
+      "sha256": "8b66ea13e336f89668b5e0d5daf31151fb82e21db72079fdc8bc01c99a31232c"
+    },
     "cost_ratio_energy_system_assumptions.csv": {
       "path": "artifacts\\applied_energy_diagnostics\\cost_ratio_energy_system_assumptions.csv",
       "exists": true,
@@ -490,14 +508,14 @@
     "compute_deployment_cost_table.csv": {
       "path": "artifacts\\applied_energy_diagnostics\\compute_deployment_cost_table.csv",
       "exists": true,
-      "bytes": 587,
-      "sha256": "af18c3d67a74908717af0386e904fd8da944946aec0a0ead9c726bb0d7055162"
+      "bytes": 586,
+      "sha256": "4fbb64769dae850adde92fe70cfee3494a9a8355f9199d8ba9df68e4a2705f32"
     },
     "table_compute_deployment_cost.tex": {
       "path": "artifacts\\applied_energy_diagnostics\\table_compute_deployment_cost.tex",
       "exists": true,
-      "bytes": 546,
-      "sha256": "6bd74ef24e1417d1711349cb842ab73e2a25ad11c641cd94d1d3972748369ffa"
+      "bytes": 545,
+      "sha256": "1ec019eb4b4ca38440fdacb71fe40bec7f700e1a806fd61a4a4abc9ec78147f5"
     },
     "operational_case_explanation.csv": {
       "path": "artifacts\\applied_energy_diagnostics\\operational_case_explanation.csv",
@@ -508,20 +526,20 @@
     "table_operational_case_explanation.tex": {
       "path": "artifacts\\applied_energy_diagnostics\\table_operational_case_explanation.tex",
       "exists": true,
-      "bytes": 942,
-      "sha256": "bbf29e74d4bb51bbc1c659d467bcf09bfccc2ce1937dce570ff36b43c0822f7d"
+      "bytes": 944,
+      "sha256": "66615ae2c451fa8960bb1de8eb88fe803af4121b1acc9b6d5f611181aba3dbc6"
     },
     "claim_boundary_applied_energy.csv": {
       "path": "artifacts\\applied_energy_diagnostics\\claim_boundary_applied_energy.csv",
       "exists": true,
-      "bytes": 1496,
-      "sha256": "b6d02651904094f031e5b85d673ff4607d176236d44c8d0dcadce24d03a460f1"
+      "bytes": 1538,
+      "sha256": "0f7e2bdeafa7dd66fa80b6dc4cc29a136c30b5b3704823f13e1ebebdb0da0493"
     },
     "table_claim_boundary_applied_energy.tex": {
       "path": "artifacts\\applied_energy_diagnostics\\table_claim_boundary_applied_energy.tex",
       "exists": true,
-      "bytes": 1655,
-      "sha256": "b5a221335dffabbb3be7e79f5876ee0965536abea9f8d1f4be0827f3f5e7da06"
+      "bytes": 1695,
+      "sha256": "430a6c88ba35243d6900eb32f6fd60ec8938558929c5a271e8d4880ecdeaf852"
     },
     "quasi_external_deployment_drill_summary.csv": {
       "path": "artifacts\\applied_energy_diagnostics\\quasi_external_deployment_drill_summary.csv",
@@ -532,28 +550,40 @@
     "table_quasi_external_deployment_drill.tex": {
       "path": "artifacts\\applied_energy_diagnostics\\table_quasi_external_deployment_drill.tex",
       "exists": true,
-      "bytes": 623,
-      "sha256": "779995450e146417d63b27c76de2866af46675b6f6459fa949ec4a1feafb18ee"
+      "bytes": 625,
+      "sha256": "7d8570879f7f85e9e2e64770f4065a4cdea781c2409ecca8aa9e2fea2cf6e7d9"
     },
     "external_site_transfer_failure_table.csv": {
       "path": "artifacts\\applied_energy_diagnostics\\external_site_transfer_failure_table.csv",
       "exists": true,
-      "bytes": 1310,
-      "sha256": "b0a4d5576d23f41786b761b44e212f6b574f35f6099350ace95b0bc615aa2de1"
+      "bytes": 1341,
+      "sha256": "923976d85220f5b1d200d81bae0ad6bbeb424183a55cf6b5bab4bd72810b7dc0"
     },
     "table_external_site_transfer_failure.tex": {
       "path": "artifacts\\applied_energy_diagnostics\\table_external_site_transfer_failure.tex",
       "exists": true,
-      "bytes": 1472,
-      "sha256": "1df85123ff482ca4dd56d5da1cd562767ab3c2a4df98b5007a32a7702f8de28f"
+      "bytes": 1503,
+      "sha256": "d2538baeca02f8e343f591bb86222f1f166df47bb3b8000c80b424a4f2dd325e"
     }
   },
   "figure_outputs": {
     "figure1_architecture.pdf": {
       "path": "artifacts\\paper_assets\\figures\\figure1_architecture.pdf",
       "exists": true,
-      "bytes": 1009477,
-      "sha256": "a7eee1126008d85e92381d0cc24548d74af10aaf43e2e17409c88087543bd410"
+      "bytes": 30138,
+      "sha256": "c8b71e5eb938cf00ee88554d7e0632f058f88dba706eda3681c6f5e8a07c5a23"
+    },
+    "figure1_architecture.png": {
+      "path": "artifacts\\paper_assets\\figures\\figure1_architecture.png",
+      "exists": true,
+      "bytes": 314211,
+      "sha256": "0d41d3a8f8c8c6ace6532fdf54b15453b04c9e0736ff9b135021a4aaff6ee8ff"
+    },
+    "figure1_architecture.svg": {
+      "path": "artifacts\\paper_assets\\figures\\figure1_architecture.svg",
+      "exists": true,
+      "bytes": 116735,
+      "sha256": "944d8d2bc77c0133585d00e76a2b6e0e2716ddc4c5925eeeeedf81544682a3aa"
     },
     "figure2_data_boundary.pdf": {
       "path": "artifacts\\paper_assets\\figures\\figure2_data_boundary.pdf",
@@ -600,8 +630,8 @@
     "new_wind_farm_deployment_checklist.png": {
       "path": "artifacts\\applied_energy_diagnostics\\new_wind_farm_deployment_checklist.png",
       "exists": true,
-      "bytes": 135543,
-      "sha256": "ede2b8819fd39b7262242ab3824b049d7bc43f5eb2c2cdf65ff0e6776df111a5"
+      "bytes": 132551,
+      "sha256": "cbf5e143c82af0052babf84270d243e1defcadc410748f9e7b8455f24db725f3"
     }
   },
   "guard_status": {

@@ -1,7 +1,7 @@
 \resizebox{\linewidth}{!}{%
 \begin{tabular}{llll}
 \toprule
-Case & Observed & Operator reading & Claim boundary \\
+Case & Observed & Operator reading & Boundary reading \\
 \midrule
 MPPT-to-pitch reserve & global cost 16.33M, violation 0.1124, shortage 0.77M; gate-bin cost 17.93M, violation 0.1027, shortage 0.69M & gate-bin lowers transition-window violation and shortage but costs more reserve & boundary-window diagnostic, not global reserve optimization \\
 high-ramp reserve & global violation 0.0766, shortage 1.06M, reserve 57.03M; gate-bin violation 0.1253, shortage 2.51M, reserve 42.02M & gate-bin can look cheaper by carrying too little reserve & failure slice; require ramp-specific checks \\

@@ -668,6 +668,62 @@ def _reserve_statistics_table(bootstrap: pd.DataFrame, raw_runs: pd.DataFrame) -
     return pd.DataFrame(rows)
 
 
+def _parse_quantile(value: Any) -> float:
+    text = str(value)
+    values: list[float] = []
+    for token in text.replace(";", ",").split(","):
+        if "=" not in token:
+            continue
+        _, raw = token.split("=", 1)
+        parsed = pd.to_numeric(pd.Series([raw.strip()]), errors="coerce").iloc[0]
+        if pd.notna(parsed):
+            values.append(float(parsed))
+    if not values:
+        parsed = pd.to_numeric(pd.Series([text]), errors="coerce").iloc[0]
+        return float(parsed) if pd.notna(parsed) else float("nan")
+    return float(np.mean(values))
+
+
+def _reserve_coverage_table(raw_runs: pd.DataFrame) -> pd.DataFrame:
+    if raw_runs.empty:
+        return pd.DataFrame()
+    frame = raw_runs[
+        raw_runs["status"].astype(str).eq("applicable")
+        & raw_runs["subset"].astype(str).isin(["full", "boundary"])
+        & np.isclose(pd.to_numeric(raw_runs["cost_ratio"], errors="coerce").astype(float), 10.0)
+    ].copy()
+    keep = {(model, policy) for model, policy, _ in DISPLAY_POLICIES}
+    rows: list[dict[str, Any]] = []
+    for (subset, model, policy), group in frame.groupby(["subset", "model", "policy"], sort=False):
+        if (str(model), str(policy)) not in keep:
+            continue
+        target = group["best_quantile"].map(_parse_quantile)
+        realized = 1.0 - pd.to_numeric(group["violation_rate"], errors="coerce")
+        coverage_error = realized - target
+        rows.append(
+            {
+                "subset": str(subset),
+                "model": str(model),
+                "policy": str(policy),
+                "target_coverage_mean": float(target.mean()),
+                "realized_coverage_mean": float(realized.mean()),
+                "coverage_error_mean": float(coverage_error.mean()),
+                "violation_rate_mean": float(pd.to_numeric(group["violation_rate"], errors="coerce").mean()),
+                "shortage_energy_mean": float(pd.to_numeric(group["shortage_energy"], errors="coerce").mean()),
+                "reserve_energy_mean": float(pd.to_numeric(group["reserve_energy"], errors="coerce").mean()),
+                "n_runs": int(len(group)),
+                "reading": "under-covers on held-out test"
+                if float(coverage_error.mean()) < -0.02
+                else (
+                    "near calibration target"
+                    if abs(float(coverage_error.mean())) <= 0.02
+                    else "over-covers on held-out test"
+                ),
+            }
+        )
+    return pd.DataFrame(rows).sort_values(["subset", "model", "policy"]).reset_index(drop=True)
+
+
 def _anchor_main_table() -> pd.DataFrame:
     metrics = _read_csv(ANCHOR_DIR / "anchor_only_decisive_metrics.csv")
     degradation = _read_csv(ANCHOR_DIR / "anchor_stress_degradation_summary.csv")
@@ -763,7 +819,7 @@ def _efficiency_table() -> pd.DataFrame:
                 "deployment_reading": "fastest inference"
                 if str(row["model"]) == "PatchTST"
                 else (
-                    "lowest strict-cache RMSE, slower"
+                    "lowest strict-mask RMSE, slower"
                     if str(row["model"]) == "Graph WaveNet"
                     else "router adds interpretable responsibility at moderate cost"
                 ),
@@ -790,7 +846,7 @@ def _external_negative_table() -> pd.DataFrame:
                 f"mean ARI {_fmt(guard.get('mean_ari'), 4)}"
             ),
             "decision": "failed external-site routing criterion",
-            "allowed_claim": "negative boundary-condition evidence only",
+            "bounded_claim": "negative boundary-condition evidence only",
         },
         {
             "evidence_gate": "validation-selected local boundary recalibration",
@@ -800,7 +856,7 @@ def _external_negative_table() -> pd.DataFrame:
                 f"(delta {_fmt_signed(recal.get('mean_test_nmi_recovery'), 4)})"
             ),
             "decision": "small average recovery, not portability",
-            "allowed_claim": "local boundary re-estimation is required",
+            "bounded_claim": "local boundary re-estimation is required",
         },
         {
             "evidence_gate": "small calibration-window gate-map adaptation",
@@ -810,7 +866,7 @@ def _external_negative_table() -> pd.DataFrame:
                 f"below {_fmt(adapt.get('min_chronological_balanced_accuracy'), 2)}"
             ),
             "decision": "completed negative adaptation diagnostic",
-            "allowed_claim": "calibration window is insufficient without held-out pass",
+            "bounded_claim": "calibration window is insufficient without held-out pass",
         },
     ]
     if not coverage.empty:
@@ -830,7 +886,7 @@ def _external_negative_table() -> pd.DataFrame:
                         f"{_fmt(row.get('effective_boundary_cells'), 0)}"
                     ),
                     "decision": "label not observable in this transfer direction",
-                    "allowed_claim": "forbid external physical-router wording",
+                    "bounded_claim": "external physical-router interpretation is not supported",
                 }
             )
     if not recal_summary.empty:
@@ -849,7 +905,7 @@ def _external_negative_table() -> pd.DataFrame:
                         f"held-out test NMI after recalibration {_fmt(row.get('recalibrated_test_nmi_mean'), 4)}"
                     ),
                     "decision": "partial local recovery but still weak",
-                    "allowed_claim": "do not generalize beyond locally checked farms",
+                    "bounded_claim": "generalization requires local held-out checks",
                 }
             )
     if not adapt_summary.empty:
@@ -869,7 +925,7 @@ def _external_negative_table() -> pd.DataFrame:
                         f"but NMI remains {_fmt(row.get('adapted_test_nmi_mean'), 4)}"
                     ),
                     "decision": "not enough for a positive external claim",
-                    "allowed_claim": "future work: require held-out criterion before claim",
+                    "bounded_claim": "future work must satisfy a held-out criterion before site-level use",
                 }
             )
     return pd.DataFrame(rows)
@@ -882,7 +938,7 @@ def _deployment_checklist() -> pd.DataFrame:
                 "step": 1,
                 "gate": "sensor coverage",
                 "pass_condition": "at least 2 calibration days with wind speed, active power, availability mask, and pitch/proxy overlap",
-                "fail_action": "forbid physical routing claim; report sensor-coverage failure",
+                "fail_action": "report sensor-coverage failure; keep the router as a statistical diagnostic",
             },
             {
                 "step": 2,
@@ -894,19 +950,19 @@ def _deployment_checklist() -> pd.DataFrame:
                 "step": 3,
                 "gate": "held-out routing criterion",
                 "pass_condition": "held-out NMI >= 0.50 and balanced accuracy >= 0.50 after parameters are frozen",
-                "fail_action": "local re-estimation required; no deployment or physical-router wording",
+                "fail_action": "local re-estimation required before physical-router interpretation",
             },
             {
                 "step": 4,
                 "gate": "reserve audit",
                 "pass_condition": "transition-window shortage and violation improve at acceptable reserve-energy cost",
-                "fail_action": "do not deploy gate-bin reserve policy",
+                "fail_action": "withhold gate-bin reserve use",
             },
             {
                 "step": 5,
                 "gate": "claim decision",
                 "pass_condition": "all upstream gates pass",
-                "fail_action": "claim allowed only for diagnostics already passed",
+                "fail_action": "limit conclusions to diagnostics already passed",
             },
         ]
     )
@@ -955,42 +1011,42 @@ def _claim_boundary_table() -> pd.DataFrame:
             {
                 "claim": "WTB operating-boundary routing accountability",
                 "status": "supported",
-                "safe_wording": "strict-cache replay, intervention, placebo, spatial holdout, future holdout, and reserve audit support within-WTB boundary routing",
+                "bounded_wording": "strict-mask replay, intervention, placebo, spatial holdout, future holdout, and reserve audit support within-WTB boundary routing",
             },
             {
                 "claim": "quasi-external deployment drill",
                 "status": "supported only as WTB proxy evidence",
-                "safe_wording": "small local calibration window -> boundary/gate-map freeze -> held-out future or held-out east-turbine test passes; not a real new-farm transfer",
+                "bounded_wording": "small local calibration window -> boundary/gate-map freeze -> held-out future or held-out east-turbine test passes; not a real new-farm transfer",
             },
             {
                 "claim": "headline forecasting dominance",
                 "status": "not supported",
-                "safe_wording": "Graph WaveNet and lag-feature baselines remain stronger RMSE forecasters; never write forecasting SOTA",
+                "bounded_wording": "Graph WaveNet and lag-feature baselines remain stronger RMSE forecasters; report routing accountability, not forecasting dominance",
             },
             {
                 "claim": "gate-bin reserve policy",
                 "status": "conditional",
-                "safe_wording": "use only as a transition-window reserve diagnostic; gate-bin wins at moderate cost ratios and loses in high-ramp or very high-penalty settings",
+                "bounded_wording": "use only as a transition-window reserve diagnostic; gate-bin wins at moderate cost ratios and loses in high-ramp or very high-penalty settings",
             },
             {
                 "claim": "anchor-only/router-rule replacement",
                 "status": "not supported as a straw baseline",
-                "safe_wording": "anchor-only is semantically strong; proposed advantage is trainable responsibility, forecast/reserve coupling, and lower anchor-noise brittleness",
+                "bounded_wording": "anchor-only is semantically strong; proposed advantage is trainable responsibility, forecast/reserve coupling, and lower anchor-noise brittleness",
             },
             {
                 "claim": "external wind-farm portability",
                 "status": "not supported",
-                "safe_wording": "Kelmarsh/Penmanshiel are negative evidence requiring local boundary re-estimation and held-out routing gates",
+                "bounded_wording": "Kelmarsh/Penmanshiel are negative evidence requiring local boundary re-estimation and held-out routing gates",
             },
             {
-                "claim": "generalizable physical router or deployment-ready model",
-                "status": "forbidden",
-                "safe_wording": "write only WTB internal boundary auditability, external failure boundary, and transition-window reserve diagnosis",
+                "claim": "broad cross-site physical routing or site-ready reserve model",
+                "status": "not supported",
+                "bounded_wording": "write only WTB internal boundary auditability, external failure boundary, and transition-window reserve diagnosis",
             },
             {
                 "claim": "future holdout versus post-hoc time-forward",
                 "status": "separated",
-                "safe_wording": "pre-specified future holdout is citable stress evidence; late test slicing remains failure analysis for distribution shift",
+                "bounded_wording": "pre-specified future holdout is citable stress evidence; late test slicing remains failure analysis for distribution shift",
             },
         ]
     )
@@ -1173,6 +1229,25 @@ def _display_stats(frame: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def _display_coverage(frame: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for _, row in frame.iterrows():
+        label = f"{row.get('model')}/{row.get('policy')}"
+        rows.append(
+            {
+                "Subset": str(row.get("subset", "")),
+                "Policy": label,
+                "Target cov.": _fmt(row.get("target_coverage_mean"), 3),
+                "Realized cov.": _fmt(row.get("realized_coverage_mean"), 3),
+                "Error": _fmt_signed(row.get("coverage_error_mean"), 3),
+                "Violation": _fmt(row.get("violation_rate_mean"), 4),
+                "Shortage": _fmt_m(row.get("shortage_energy_mean")),
+                "Reading": str(row.get("reading", "")),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
 def _display_anchor(frame: pd.DataFrame) -> pd.DataFrame:
     rows = []
     for _, row in frame.iterrows():
@@ -1217,7 +1292,7 @@ def _display_quasi_external(summary: pd.DataFrame) -> pd.DataFrame:
                 "Held-out NMI/ARI": f"{_fmt(row.get('heldout_nmi_mean'), 4)}/{_fmt(row.get('heldout_ari_mean'), 4)}",
                 "Bal. acc.": _fmt(row.get("heldout_balanced_accuracy_mean"), 4),
                 "Decision": str(row.get("decision", "")),
-                "Claim boundary": str(row.get("claim_boundary", "")),
+                "Boundary reading": str(row.get("claim_boundary", "")),
             }
         )
     return pd.DataFrame(rows)
@@ -1308,7 +1383,7 @@ def _plot_deployment_checklist(checklist: pd.DataFrame, output_path: Path) -> No
     ax.text(
         0.5,
         0.96,
-        "New wind-farm deployment gate: physical routing claims require every gate to pass",
+        "New wind-farm local evidence protocol: physical interpretation requires every check to pass",
         ha="center",
         va="center",
         fontsize=11,
@@ -1367,7 +1442,7 @@ def _plot_deployment_checklist(checklist: pd.DataFrame, output_path: Path) -> No
     ax.text(
         0.22,
         0.08,
-        "allowed claim: local physical routing + reserve use only after all upstream gates pass",
+        "bounded interpretation: local physical routing + reserve use only after all upstream checks pass",
         ha="center",
         va="center",
         fontsize=8.5,
@@ -1504,6 +1579,7 @@ def main() -> None:
     system_value = _system_value_envelope_table(by_ratio)
     curve = _operational_curve(by_ratio)
     stats = _reserve_statistics_table(bootstrap, raw_runs)
+    coverage = _reserve_coverage_table(raw_runs)
     anchor = _anchor_main_table()
     efficiency = _efficiency_table()
     external = _external_negative_table()
@@ -1521,6 +1597,7 @@ def main() -> None:
         "cost_ratio_sensitivity_readable.csv": _display_cost_ratio(cost_ratio),
         "operational_decision_curve.csv": curve,
         "reserve_paired_statistics.csv": stats,
+        "reserve_coverage_reliability.csv": coverage,
         "anchor_only_rule_router_main_table.csv": anchor,
         "compute_deployment_cost_table.csv": efficiency,
         "external_negative_evidence_table.csv": external,
@@ -1595,6 +1672,21 @@ def main() -> None:
         resize=True,
     )
     _write_simple_tex(
+        _display_coverage(coverage),
+        OUT / "table_reserve_coverage_reliability.tex",
+        [
+            ("Subset", "Subset"),
+            ("Policy", "Policy"),
+            ("Target cov.", "Target cov."),
+            ("Realized cov.", "Realized cov."),
+            ("Error", "Error"),
+            ("Violation", "Violation"),
+            ("Shortage", "Shortage"),
+            ("Reading", "Reading"),
+        ],
+        resize=True,
+    )
+    _write_simple_tex(
         _display_cost_ratio_assumptions(cost_assumptions),
         OUT / "table_cost_ratio_energy_system_assumptions.tex",
         [
@@ -1638,7 +1730,7 @@ def main() -> None:
             ("evidence_gate", "Evidence gate"),
             ("observed", "Observed"),
             ("decision", "Decision"),
-            ("allowed_claim", "Allowed claim"),
+            ("bounded_claim", "Bounded claim"),
         ],
         resize=True,
     )
@@ -1648,7 +1740,7 @@ def main() -> None:
         [
             ("claim", "Claim"),
             ("status", "Status"),
-            ("safe_wording", "Safe wording"),
+            ("bounded_wording", "Bounded wording"),
         ],
         resize=True,
     )
@@ -1659,7 +1751,7 @@ def main() -> None:
             ("case", "Case"),
             ("observed_numbers", "Observed"),
             ("operator_reading", "Operator reading"),
-            ("claim_boundary", "Claim boundary"),
+            ("claim_boundary", "Boundary reading"),
         ],
         resize=True,
     )
@@ -1674,7 +1766,7 @@ def main() -> None:
             ("Held-out NMI/ARI", "Held-out NMI/ARI"),
             ("Bal. acc.", "Bal. acc."),
             ("Decision", "Decision"),
-            ("Claim boundary", "Claim boundary"),
+            ("Boundary reading", "Boundary reading"),
         ],
         resize=True,
     )
@@ -1686,7 +1778,7 @@ def main() -> None:
     report = [
         "# Applied Energy diagnostics",
         "",
-        "This package is generated from saved strict-cache artifacts and does not retrain models.",
+        "This package is generated from saved strict-mask artifacts and does not retrain models.",
         "",
         "## Main outputs",
         "",
@@ -1694,12 +1786,13 @@ def main() -> None:
         "- `system_value_envelope.csv` and `table_system_value_envelope.tex`: boundary-window reserve value envelope across cost ratios.",
         "- `operational_decision_curve.png`: RMSE penalty, reserve energy, and shortage tradeoff on the boundary window.",
         "- `reserve_paired_statistics.csv`: paired bootstrap/permutation-style uncertainty summaries for reserve cost and risk metrics.",
+        "- `reserve_coverage_reliability.csv`: held-out coverage check for validation-selected reserve quantiles.",
         "- `cost_ratio_energy_system_assumptions.csv`: mapping from abstract shortage/reserve cost ratios to energy-system reliability assumptions.",
         "- `anchor_only_rule_router_main_table.csv`: formal anchor-only/router-rule comparison.",
-        "- `external_negative_evidence_table.csv`: external Kelmarsh/Penmanshiel negative evidence and allowed claims.",
+        "- `external_negative_evidence_table.csv`: external Kelmarsh/Penmanshiel negative evidence and bounded claims.",
         "- `quasi_external_deployment_drill_summary.csv`: WTB proxy deployment drill using calibration-only boundary/gate-map selection and held-out testing.",
         "- `boundary_reserve_system_workflow.png`: SCADA to boundary router to reserve-policy audit workflow.",
-        "- `new_wind_farm_deployment_checklist.png`: deployment gate from sensor coverage to allowed/forbidden claims.",
+        "- `new_wind_farm_deployment_checklist.png`: deployment gate from sensor coverage to bounded operating claims.",
         "",
         "## Claim summary",
         "",

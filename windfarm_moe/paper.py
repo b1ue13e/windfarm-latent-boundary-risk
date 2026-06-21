@@ -1727,86 +1727,199 @@ def build_robustness_tex(
 
 
 def generate_architecture_figure(output_dir: Path | str) -> tuple[Path, Path]:
-    repo_root = Path(__file__).resolve().parent.parent
     output_dir = ensure_dir(output_dir)
-    drawio_path = shutil.which("DrawIO.exe")
-    pdftocairo_path = shutil.which("pdftocairo.exe")
-    xml_path = repo_root / "result_300876d33a7543568465edf130515e03.xml"
-    if drawio_path is None:
-        raise FileNotFoundError("DrawIO.exe was not found on PATH.")
-    if not xml_path.exists():
-        raise FileNotFoundError(f"Architecture XML not found: {xml_path}")
-
     png_path = Path(output_dir) / "figure1_architecture.png"
     pdf_path = Path(output_dir) / "figure1_architecture.pdf"
     svg_path = Path(output_dir) / "figure1_architecture.svg"
-    if pdftocairo_path is None:
-        raise FileNotFoundError("pdftocairo.exe was not found on PATH.")
 
-    # If the PDF already exists, treat it as the source of truth so manual edits survive.
-    # The manuscript consumes the PDF directly, so auxiliary raster/vector conversions are optional.
-    if pdf_path.exists():
-        return png_path, pdf_path
-
-    exported_stem = xml_path.stem
-    raw_png_path = Path(output_dir) / f"{exported_stem}.png"
-    raw_pdf_path = Path(output_dir) / f"{exported_stem}.pdf"
-    raw_svg_path = Path(output_dir) / f"{exported_stem}.svg"
-    for path in (png_path, pdf_path, svg_path, raw_png_path, raw_pdf_path, raw_svg_path):
+    for path in (png_path, pdf_path, svg_path):
         if path.exists():
             path.unlink()
 
-    with tempfile.TemporaryDirectory(prefix="codex_drawio_") as temp_dir_str:
-        temp_dir = Path(temp_dir_str)
-        temp_xml = temp_dir / xml_path.name
-        shutil.copy2(xml_path, temp_xml)
-        for fmt in ("pdf", "svg", "png"):
-            command = (
-                f"$draw={repr(drawio_path)}; "
-                "Start-Process -FilePath $draw "
-                f"-ArgumentList '-x','-f','{fmt}','-o','{temp_dir}','{temp_xml}' "
-                f"-WorkingDirectory '{temp_dir}' "
-                "-Wait"
-            )
-            subprocess.run(
-                ["powershell", "-NoProfile", "-Command", command],
-                check=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True,
-            )
+    fig, ax = plt.subplots(figsize=(12.0, 6.8))
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.axis("off")
 
-        temp_pdf = temp_dir / f"{exported_stem}.pdf"
-        temp_svg = temp_dir / f"{exported_stem}.svg"
-        temp_png = temp_dir / f"{exported_stem}.png"
-        if not temp_pdf.exists():
-            raise FileNotFoundError(f"DrawIO did not export PDF for {xml_path.name}")
-        if not temp_svg.exists():
-            raise FileNotFoundError(f"DrawIO did not export SVG for {xml_path.name}")
-        if not temp_png.exists():
-            raise FileNotFoundError(f"DrawIO did not export PNG for {xml_path.name}")
-        shutil.move(str(temp_pdf), pdf_path)
-        shutil.move(str(temp_svg), svg_path)
-        shutil.move(str(temp_png), png_path)
+    def box(
+        x: float,
+        y: float,
+        w: float,
+        h: float,
+        title: str,
+        body: str,
+        *,
+        face: str,
+        edge: str,
+        title_size: float = 10.5,
+        body_size: float = 8.4,
+    ) -> None:
+        ax.add_patch(
+            plt.Rectangle(
+                (x, y),
+                w,
+                h,
+                facecolor=face,
+                edgecolor=edge,
+                linewidth=1.35,
+            )
+        )
+        ax.text(
+            x + w / 2,
+            y + h - 0.035,
+            title,
+            ha="center",
+            va="top",
+            fontsize=title_size,
+            weight="bold",
+            color="#111827",
+        )
+        ax.text(
+            x + w / 2,
+            y + h / 2 - 0.015,
+            body,
+            ha="center",
+            va="center",
+            fontsize=body_size,
+            color="#111827",
+            linespacing=1.28,
+        )
 
-    subprocess.run(
-        [pdftocairo_path, "-svg", str(pdf_path), str(svg_path)],
-        check=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
+    def arrow(start: tuple[float, float], end: tuple[float, float], *, color: str = "#334155") -> None:
+        ax.annotate(
+            "",
+            xy=end,
+            xytext=start,
+            arrowprops={"arrowstyle": "->", "lw": 1.45, "color": color, "shrinkA": 2, "shrinkB": 2},
+        )
+
+    ax.text(
+        0.5,
+        0.955,
+        "Physics-aligned regime-aware MoE for operating-boundary accountability",
+        ha="center",
+        va="center",
+        fontsize=13.0,
+        weight="bold",
+        color="#0f172a",
     )
-    subprocess.run(
-        [pdftocairo_path, "-png", "-singlefile", str(pdf_path), str(png_path.with_suffix(""))],
-        check=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
+
+    box(
+        0.04,
+        0.70,
+        0.18,
+        0.16,
+        "WTB SCADA",
+        "wind speed\nactive power\npitch channels\navailability masks",
+        face="#e0f2fe",
+        edge="#0369a1",
     )
-    if raw_svg_path.exists():
-        raw_svg_path.unlink()
-    if raw_png_path.exists():
-        raw_png_path.unlink()
+    box(
+        0.04,
+        0.46,
+        0.18,
+        0.16,
+        "ERA5 Reanalysis",
+        "sensible heat flux\n2 m temperature\nwind state\nlocal grid patch",
+        face="#eff6ff",
+        edge="#2563eb",
+    )
+    box(
+        0.28,
+        0.70,
+        0.20,
+        0.16,
+        "WTB Anchors",
+        "idle / MPPT / pitch\nMPPT-to-pitch band\nwake exposure score",
+        face="#ecfdf5",
+        edge="#047857",
+    )
+    box(
+        0.28,
+        0.46,
+        0.20,
+        0.16,
+        "ERA5 Anchors",
+        "stable / convective\nflux-gradient transition\nHaversine graph",
+        face="#f0fdf4",
+        edge="#16a34a",
+    )
+    box(
+        0.54,
+        0.58,
+        0.18,
+        0.18,
+        "Shared Encoder",
+        "directed diffusion\ninbound / outbound\nGRU context state",
+        face="#fef9c3",
+        edge="#a16207",
+    )
+    box(
+        0.77,
+        0.58,
+        0.18,
+        0.18,
+        "Node-level MoE",
+        "physics anchor + context\nsoft gate distribution\nexpert forecasts",
+        face="#ffedd5",
+        edge="#c2410c",
+    )
+    box(
+        0.27,
+        0.18,
+        0.23,
+        0.16,
+        "Routing Constraints",
+        "load balance\nregime alignment\nboundary forcing\nwake auxiliary + smoothness",
+        face="#f8fafc",
+        edge="#64748b",
+        body_size=8.2,
+    )
+    box(
+        0.56,
+        0.18,
+        0.25,
+        0.16,
+        "Audits and Diagnostics",
+        "forecast RMSE\nNMI / ARI replay\nintervention + placebo\nreserve cost / violation / shortage",
+        face="#fdf2f8",
+        edge="#be185d",
+        body_size=8.1,
+    )
+
+    arrow((0.22, 0.78), (0.28, 0.78))
+    arrow((0.22, 0.54), (0.28, 0.54))
+    arrow((0.48, 0.78), (0.54, 0.68))
+    arrow((0.48, 0.54), (0.54, 0.66))
+    arrow((0.72, 0.67), (0.77, 0.67))
+    arrow((0.48, 0.73), (0.50, 0.34), color="#64748b")
+    arrow((0.50, 0.34), (0.77, 0.58), color="#64748b")
+    arrow((0.86, 0.58), (0.70, 0.34), color="#be185d")
+
+    ax.text(
+        0.04,
+        0.085,
+        "Interpretation: WTB tests a control-confounded turbine boundary; ERA5 is an observability contrast where the regime marker is visible.",
+        ha="left",
+        va="center",
+        fontsize=8.7,
+        color="#334155",
+    )
+    ax.text(
+        0.04,
+        0.045,
+        "The routed model is evaluated as an accountability object, then linked to a frozen validation-to-test reserve diagnostic.",
+        ha="left",
+        va="center",
+        fontsize=8.7,
+        color="#334155",
+    )
+
+    fig.tight_layout(pad=0.25)
+    fig.savefig(pdf_path, bbox_inches="tight")
+    fig.savefig(svg_path, bbox_inches="tight")
+    fig.savefig(png_path, dpi=240, bbox_inches="tight")
+    plt.close(fig)
 
     return png_path, pdf_path
 

@@ -1,14 +1,14 @@
 \resizebox{\linewidth}{!}{%
 \begin{tabular}{llll}
 \toprule
-Evidence gate & Observed & Decision & Allowed claim \\
+Evidence gate & Observed & Decision & Bounded claim \\
 \midrule
 pre-specified external routing criterion & 80/80 runs complete; mean NMI 0.4877 below threshold 0.50; mean ARI 0.5112 & failed external-site routing criterion & negative boundary-condition evidence only \\
 validation-selected local boundary recalibration & default test NMI 0.1324 -> recalibrated 0.1491 (delta +0.0167) & small average recovery, not portability & local boundary re-estimation is required \\
 small calibration-window gate-map adaptation & 40/40 routing runs adapted; chronological balanced accuracy 0.4787 below 0.50 & completed negative adaptation diagnostic & calibration window is insufficient without held-out pass \\
-sensor and boundary support & Penmanshiel-to-Kelmarsh leave-one pitch-feature coverage 0.0000 and effective boundary cells 0 & label not observable in this transfer direction & forbid external physical-router wording \\
-chronological-only local recalibration & boundary router chronological NMI recovery +0.0311; held-out test NMI after recalibration 0.2372 & partial local recovery but still weak & do not generalize beyond locally checked farms \\
-single-site apparent improvement & Penmanshiel chronological adapted balanced accuracy 0.5000, but NMI remains 0.0000 & not enough for a positive external claim & future work: require held-out criterion before claim \\
+sensor and boundary support & Penmanshiel-to-Kelmarsh leave-one pitch-feature coverage 0.0000 and effective boundary cells 0 & label not observable in this transfer direction & external physical-router interpretation is not supported \\
+chronological-only local recalibration & boundary router chronological NMI recovery +0.0311; held-out test NMI after recalibration 0.2372 & partial local recovery but still weak & generalization requires local held-out checks \\
+single-site apparent improvement & Penmanshiel chronological adapted balanced accuracy 0.5000, but NMI remains 0.0000 & not enough for a positive external claim & future work must satisfy a held-out criterion before site-level use \\
 \bottomrule
 \end{tabular}
 }

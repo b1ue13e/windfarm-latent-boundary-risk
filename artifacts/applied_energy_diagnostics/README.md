@@ -1,6 +1,6 @@
 # Applied Energy diagnostics
 
-This package is generated from saved strict-cache artifacts and does not retrain models.
+This package is generated from saved strict-mask artifacts and does not retrain models.
 
 ## Main outputs
 
@@ -8,12 +8,13 @@ This package is generated from saved strict-cache artifacts and does not retrain
 - `system_value_envelope.csv` and `table_system_value_envelope.tex`: boundary-window reserve value envelope across cost ratios.
 - `operational_decision_curve.png`: RMSE penalty, reserve energy, and shortage tradeoff on the boundary window.
 - `reserve_paired_statistics.csv`: paired bootstrap/permutation-style uncertainty summaries for reserve cost and risk metrics.
+- `reserve_coverage_reliability.csv`: held-out coverage check for validation-selected reserve quantiles.
 - `cost_ratio_energy_system_assumptions.csv`: mapping from abstract shortage/reserve cost ratios to energy-system reliability assumptions.
 - `anchor_only_rule_router_main_table.csv`: formal anchor-only/router-rule comparison.
-- `external_negative_evidence_table.csv`: external Kelmarsh/Penmanshiel negative evidence and allowed claims.
+- `external_negative_evidence_table.csv`: external Kelmarsh/Penmanshiel negative evidence and bounded claims.
 - `quasi_external_deployment_drill_summary.csv`: WTB proxy deployment drill using calibration-only boundary/gate-map selection and held-out testing.
 - `boundary_reserve_system_workflow.png`: SCADA to boundary router to reserve-policy audit workflow.
-- `new_wind_farm_deployment_checklist.png`: deployment gate from sensor coverage to allowed/forbidden claims.
+- `new_wind_farm_deployment_checklist.png`: local evidence protocol from sensor coverage to bounded operating claims.
 
 ## Claim summary
 

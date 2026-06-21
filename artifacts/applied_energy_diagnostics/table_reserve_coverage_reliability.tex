@@ -1,0 +1,16 @@
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llllllll}
+\toprule
+Subset & Policy & Target cov. & Realized cov. & Error & Violation & Shortage & Reading \\
+\midrule
+boundary & Boundary-forced router/gate-bin & 0.900 & 0.910 & +0.010 & 0.0900 & 3.19M & near calibration target \\
+boundary & Boundary-forced router/global & 0.900 & 0.896 & -0.004 & 0.1038 & 3.73M & near calibration target \\
+boundary & Graph WaveNet/global & 0.900 & 0.898 & -0.002 & 0.1022 & 3.85M & near calibration target \\
+boundary & Graph WaveNet/physical-bin & 0.900 & 0.907 & +0.007 & 0.0931 & 3.40M & near calibration target \\
+full & Boundary-forced router/gate-bin & 0.900 & 0.879 & -0.021 & 0.1214 & 19.02M & under-covers on held-out test \\
+full & Boundary-forced router/global & 0.900 & 0.914 & +0.014 & 0.0857 & 17.64M & near calibration target \\
+full & Graph WaveNet/global & 0.900 & 0.910 & +0.010 & 0.0901 & 17.61M & near calibration target \\
+full & Graph WaveNet/physical-bin & 0.900 & 0.894 & -0.006 & 0.1057 & 18.63M & near calibration target \\
+\bottomrule
+\end{tabular}
+}
