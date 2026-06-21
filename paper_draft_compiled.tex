@@ -433,10 +433,11 @@ operating costs and imbalance exposure
 \citeproc{ref-wang2011unitcommitment}{Wang et al., 2011},
 \citeproc{ref-zhou2013probabilisticmarkets}{Zhou et al., 2013}{]}. This
 line of work motivates the paper's reserve audit, but our scope is more
-limited than full market clearing or unit commitment. We use reserve
-cost, violation rate, reserve energy, and shortage energy as a
-diagnostic lens to test whether an auditable MPPT-to-pitch gate changes
-the decision tradeoff in the transition window.
+limited than full market clearing, unit commitment, or a trained
+probabilistic reserve baseline. We use reserve cost, violation rate,
+reserve energy, and shortage energy as a diagnostic lens to test whether
+an auditable MPPT-to-pitch gate changes the decision tradeoff in the
+transition window.
 
 \subsection{Gap summary}\label{gap-summary}
 
@@ -479,12 +480,15 @@ weights, regime anchors, and gate anchors are observed no later than the
 anchor time \(t\); the supervised targets begin at \(t+1\). In WTB,
 active power appears both as a historical SCADA channel and as the
 future target. The historical/anchor value \(\texttt{Patv}_{i,t}\) may
-enter the gate because it is observed at the decision time, but
+enter the gate because it is observed at the forecast issue time, but
 \(\texttt{Patv}_{i,t+\tau}\) for \(\tau \ge 1\) is used only as the
-held-out prediction target and its validity mask. This convention avoids
-target leakage in the multi-step horizon while allowing the router to
-use the same operational state that would be visible at the forecast
-issue time.
+held-out prediction target and its validity mask. The gate is therefore
+allowed to use the current turbine operating status, not future power.
+This convention avoids target leakage in the multi-step horizon, but it
+also narrows the interpretation: without a separate no-\texttt{Patv} or
+lagged-\texttt{Patv} ablation, the recovered gate should not be read as
+proving that the router reconstructs the MPPT-to-pitch boundary
+independently of active-power telemetry.
 
 Table 1 lists the notation used in the routing and loss definitions.
 Routing is node-level: each node at each anchor time receives its own
@@ -569,6 +573,17 @@ through
 \[
 M^{\mathrm{wtb}}_{i,t} = \mathbf{1}[R^{\mathrm{wtb}}_{i,t} \neq 3].
 \]
+
+These thresholds are operating anchors, not universal turbine constants.
+The reported WTB implementation uses \(u_{\mathrm{idle}}=3.0\) m
+s\(^{-1}\), \(u_{\mathrm{rated}}=10.5\) m s\(^{-1}\), and
+\(p_{\mathrm{th}}=2.0^\circ\), with the exact table repeated in the
+Appendix. They are treated as site- and sensor-specific choices that
+must be re-estimated before a new-farm interpretation. The threshold
+audit and local-boundary recalibration evidence test whether the saved
+gates survive nearby rated-wind and pitch-threshold changes, but they do
+not exhaust all cut-in, rated-wind, pitch-angle, wake-score, or
+turbine-control alternatives.
 
 \subsubsection{ERA5 thermodynamic
 regimes}\label{era5-thermodynamic-regimes}
@@ -786,13 +801,15 @@ whereas ERA5 uses
 The difference reflects the observability contrast: WTB needs help to
 recover a partly hidden operating boundary, whereas ERA5 already exposes
 the relevant thermodynamic marker in the state. The active-power anchor
-is the observed value at the issue time, equivalent to a
-one-step-lag/status input in a rolling SCADA forecast. It is
-standardized using training-split statistics and is never filled from
-the prediction horizon. If an operator's dispatch cutoff does not make
-current active power available, the same protocol must drop this anchor
-and rerun the leakage and intervention checks before interpreting the
-gate physically.
+is the observed value at the issue time, equivalent to a status input in
+a rolling SCADA forecast. It is standardized using training-split
+statistics and is never filled from the prediction horizon. This makes
+the router operationally admissible only when current active-power
+telemetry is available before the forecast is issued. If an operator's
+dispatch cutoff does not make current active power available, the same
+protocol must drop or lag this anchor and rerun the leakage,
+intervention, and reserve checks before interpreting the gate
+physically.
 
 \begin{figure}
 \centering
@@ -858,10 +875,14 @@ regularizers remain subordinate to this prediction objective.
 
 A slightly favored expert can dominate early training and starve the
 others before regime-specific structure has time to emerge. A balancing
-term counteracts that early collapse. Let \(\mathcal{B}\) denote the
-routed node-anchor samples in a mini-batch after target and anchor masks
-are applied, and let \(B=|\mathcal{B}|\). For the \(n\)-th sample in
-this set, the soft importance of expert \(e\) is
+term counteracts that early collapse. It follows the same practical role
+as Switch-style load and importance penalties
+{[}\citeproc{ref-fedus2022switch}{Fedus et al., 2022}{]}, but it is
+written in the notation of node-time routing rather than sequence-token
+routing. Let \(\mathcal{B}\) denote the routed node-anchor samples in a
+mini-batch after target and anchor masks are applied, and let
+\(B=|\mathcal{B}|\). For the \(n\)-th sample in this set, the soft
+importance of expert \(e\) is
 
 \[
 I_e = \frac{1}{B}\sum_{n=1}^{B} g_n^{(e)},
@@ -875,16 +896,19 @@ The empirical top-\(K\) load is
 f_e = \frac{1}{B}\sum_{n=1}^{B}\mathbf{1}\!\left[e \in \mathrm{TopK}(\mathbf{g}_n)\right].
 \]
 
-The balancing loss is
+The balancing loss couples hard usage and soft probability mass:
 
 \[
 \mathcal{L}_{\mathrm{bal}} = E\sum_{e=1}^{E} f_e P_e - 1.
 \]
 
-This statistic is computed per mini-batch and averaged by the optimizer
-over training steps. It stabilizes expert usage but does not define
-physical ownership; regime ownership is supplied by the alignment terms
-below.
+This statistic is computed per mini-batch over valid node-time samples
+and averaged by the optimizer over training steps. When the hard
+Top-\(K\) load \(f_e\) and the soft share \(P_e\) are both close to
+uniform, \(E\sum_e f_eP_e\) is close to one and the penalty is small.
+The term is therefore a training stabilizer, not a claim about optimal
+expert allocation or physical ownership. Regime ownership is supplied
+only by the anchored alignment terms below.
 
 \subsubsection{Regime-anchor alignment}\label{regime-anchor-alignment}
 
@@ -913,9 +937,11 @@ auxiliary term. The alignment loss is
 
 with inverse-frequency class weights estimated on the training split.
 Alignment stabilizes the coarse physical partition only where the labels
-are reliable. Cross-seed statements such as ``MPPT-aligned'' or
-``pitch-aligned'' refer to this fixed logit-index convention; they are
-not inferred after training by relabeling experts.
+are reliable. The fixed index convention is an implementation
+constraint, not a post-hoc naming step: it breaks permutation symmetry
+for the anchored logits during training. Cross-seed statements such as
+``MPPT-aligned'' or ``pitch-aligned'' refer to this declared mapping;
+they are not inferred after training by relabeling experts.
 
 \subsubsection{Boundary-focused forcing (WTB
 only)}\label{boundary-focused-forcing-wtb-only}
@@ -953,9 +979,10 @@ Y^{\mathrm{force}}_{i,t}
 where
 \(\Omega_{\mathrm{force}}=\{(i,t):R^{\mathrm{wtb}}_{i,t}\in\{1,2\}, M_{i,t}=1\}\).
 This term concentrates the intervention on high-confidence MPPT and
-pitch-control anchors. It makes the gate more identifiable once the
-operating state is expressed in the SCADA channels; it is not designed
-or evaluated as a lead-time switch predictor.
+pitch-control anchors already visible at the issue time. It increases
+routing identifiability around the boundary after the operating state is
+expressed in the SCADA channels; it is not designed or evaluated as a
+lead-time switch predictor.
 
 \subsubsection{Wake auxiliary supervision and graph
 smoothness}\label{wake-auxiliary-supervision-and-graph-smoothness}
@@ -978,8 +1005,11 @@ where \(\Omega_{\mathrm{wake}}\) contains only MPPT and pitch-control
 samples for which the wake flag is defined. The wake flag is a
 thresholded auxiliary view of the continuous wake score, using the
 training-split upper quartile reported in the Appendix; the continuous
-score still enters the anchor vector. The smoothness term is computed on
-the graph snapshot associated with the anchor time,
+score still enters the anchor vector. This threshold is a pragmatic
+high-exposure label rather than a complete wake model, and its
+sensitivity is treated as part of the threshold-limited evidence
+boundary. The smoothness term is computed on the graph snapshot
+associated with the anchor time,
 
 \[
 \mathcal{L}_{\mathrm{smooth}}
@@ -1002,14 +1032,14 @@ partition.
 protocol}\label{operational-reserve-diagnostic-protocol}
 
 The reserve diagnostic is a frozen validation-to-test procedure, not a
-dispatch simulator. Its purpose is to test whether a physically
-auditable gate changes the reserve tradeoff in the MPPT-to-pitch window
-after the forecast model has already been trained. For each saved WTB
-run, validation predictions are used only to select reserve levels; test
-predictions are then evaluated once with those reserve levels fixed. The
-protocol therefore follows the same information boundary as an operator
-who calibrates a short-term reserve rule before using it on a later
-operating period.
+dispatch simulator or probabilistic forecasting benchmark. Its purpose
+is to test whether a physically auditable gate changes the reserve
+tradeoff in the MPPT-to-pitch window after the point-forecast model has
+already been trained. For each saved WTB run, validation predictions are
+used only to select reserve levels; test predictions are then evaluated
+once with those reserve levels fixed. The protocol therefore follows the
+same information boundary as an operator who calibrates a short-term
+reserve rule before using it on a later operating period.
 
 Let \(\hat{y}_{i,t}\) be the scheduled point forecast and \(y_{i,t}\)
 the realized active power at an evaluated horizon cell. We define
@@ -1020,8 +1050,10 @@ s_{i,t} = \max(\hat{y}_{i,t} - y_{i,t}, 0),
 \]
 
 because this is the error direction that leaves a reserve schedule
-exposed. For a reserve policy \(b\) and quantile \(q\), the validation
-split estimates a reserve level
+exposed. The quantiles below are empirical quantiles of point-forecast
+shortfall, not outputs of a trained quantile-regression or
+distributional forecaster. For a reserve policy \(b\) and quantile
+\(q\), the validation split estimates a reserve level
 
 \[
 r_{b,q} = Q_q\!\left(\{s_{i,t}: (i,t)\in b,\ (i,t)\in \mathcal{V}\}\right),
@@ -1064,9 +1096,11 @@ imbalance screening; ratios 20--50 represent scarcity-aware or emergency
 screening where shortage avoidance dominates local cost savings. The
 paper evaluates four policies under this protocol: Graph WaveNet/global,
 Graph WaveNet/physical-bin, boundary router/global, and boundary
-router/gate-bin. Only same-model global comparisons are used to claim
-gate-bin reserve effects; Graph WaveNet/global remains the full-sample
-low-RMSE system reference.
+router/gate-bin. Only same-model global comparisons are used to
+attribute gate-bin reserve effects to the learned router. Graph
+WaveNet/global remains the full-sample low-RMSE system reference, and
+Graph WaveNet/physical-bin remains the simple physical-stratification
+baseline that tests how much can be gained without learned gates.
 
 \section{Experimental Setup}\label{experimental-setup}
 
@@ -1388,7 +1422,10 @@ applies that test to saved WTB validation and test predictions. It
 reports total cost, violation rate, reserve energy, and shortage energy
 across shortage-to-reserve cost ratios for four policies: Graph
 WaveNet/global, Graph WaveNet/physical-bin, boundary router/global, and
-boundary router/gate-bin.
+boundary router/gate-bin. Because the reserve levels are empirical
+shortfall quantiles from point forecasts, the table should be read as a
+decision diagnostic rather than as a comparison to probabilistic or
+quantile-regression forecasters.
 
 These four policies answer different decisions and should not be ranked
 as substitute forecasters. Graph WaveNet/global is the low-RMSE system
@@ -1401,9 +1438,9 @@ transition-window effect. Boundary router/global uses the higher-RMSE
 routed model with one global reserve quantile, isolating the cost of
 using the accountable router without gate-specific reserve allocation.
 Boundary router/gate-bin adds gate-conditioned reserve bins to that same
-routed model, so its only legitimate question is whether the recovered
-operating boundary changes reserve, violation, and shortage inside the
-transition window enough to justify the RMSE and reserve-energy price.
+routed model, so its only legitimate attribution question is whether the
+learned gate improves the same routed predictor's transition-window
+reserve tradeoff relative to its own global reserve rule.
 
 At the main shortage-to-reserve cost ratio of 10, the full-sample result
 still favors Graph WaveNet/global as the system reference: its total
@@ -1476,7 +1513,9 @@ The boundary router/gate-bin policy is closest to the target on boundary
 anchors, with realized coverage 0.910 and violation 0.0900, whereas its
 full-sample realized coverage falls to 0.879 and exposes the same
 full-sample risk noted above. This table is a reliability diagnostic for
-the reserve rule; it is not a full probabilistic forecasting benchmark.
+the reserve rule; it is not a calibrated distributional forecast, and it
+does not replace comparisons to quantile-regression or scenario-based
+reserve methods.
 
 \begin{table}[t]
 \centering
@@ -2050,19 +2089,23 @@ impose a hand-crafted boundary definition. The reported threshold audit
 re-labels saved gate outputs over a local rated-wind/pitch grid and the
 lambda sweep varies the two dominant routing weights, so the main result
 is not a single-point artifact. The coverage is still partial: it does
-not exhaust all anchor thresholds, loss weights, wake-score cutoffs, or
-turbine-control settings. The method is boundary-aware regularized
-routing, not a fully learned operating-state discovery system.
+not exhaust all anchor thresholds, loss weights, wake-score cutoffs,
+wake-cone parameters, or turbine-control settings. The method is
+boundary-aware regularized routing, not a fully learned operating-state
+discovery system.
 
 The active-power anchor has a strict timing requirement. \texttt{Patv}
 is allowed only as the historical/anchor-time active-power measurement
 available when the forecast is issued; future active power remains the
 supervised target. This is a defensible SCADA forecasting convention,
-but it is also a portability constraint. If a deployment environment
-delays active-power telemetry, changes channel definitions, or evaluates
-a decision before the current active-power value is available, the Patv
-anchor must be removed or lagged and the leakage, intervention, and
-reserve diagnostics must be rerun.
+but it is also a portability constraint and a possible source of
+interpretive circularity. The current intervention evidence zeroes the
+boundary-anchor input and shows that routing agreement collapses, but it
+is not a retrained no-\texttt{Patv} or lagged-\texttt{Patv} ablation. If
+a deployment environment delays active-power telemetry, changes channel
+definitions, or evaluates a decision before the current active-power
+value is available, the Patv anchor must be removed or lagged and the
+leakage, intervention, and reserve diagnostics must be rerun.
 
 The expert-regime language is tied to the implemented logit convention.
 The first primary-regime logits are fixed to the operating labels during
@@ -2080,19 +2123,24 @@ Graph WaveNet, STGCN, PatchTST, and TCN. The strict-anchor-mask rerun
 covers the selected WTB corrected router, replay, intervention, placebo,
 time-forward audits, a synchronized baseline refresh, a spatial
 node-held-out stress test, a future-period holdout, a quasi-external WTB
-deployment drill, and the transition-window reserve audit. The study
-does not implement unit commitment, market clearing, a full
+deployment drill, and the transition-window reserve audit. Larger
+general time-series backbones, broader graph-transformer variants,
+trained quantile-regression baselines, and scenario/distributional
+forecasters are outside the present benchmark.
+
+The reserve audit is deliberately narrower than power-system dispatch.
+The study does not implement unit commitment, market clearing, a full
 probabilistic prediction-to-reserve pipeline, real dispatch integration,
-or a closed-loop operator simulation. The reserve audit is therefore a
+or a closed-loop operator simulation. The audit is therefore a
 normalized proxy decision: fixed empirical quantile bins are calibrated
 on validation shortfall and tested once on held-out predictions, with
 costs reported in normalized reserve-energy units rather than money. It
 is useful for ranking boundary-window risk tradeoffs under declared cost
-ratios, but it is not a market-price or security-constrained dispatch
-study. Larger general time-series backbones and broader
-graph-transformer variants are also outside the present benchmark.
+ratios, but it is not a market-price, delivery-constrained, or
+security-constrained dispatch study.
+
 External wind-farm diagnostics are complete but fail the external-site
-routing criterion: the Kelmarsh/Penmanshiel audit reaches 80/80
+routing criterion. The Kelmarsh/Penmanshiel audit reaches 80/80
 completed runs in both leave-one-farm-out directions, while the default
 WTB boundary remains below the declared threshold. The added local
 recalibration table records how much agreement is recovered when
@@ -2135,7 +2183,7 @@ neural families. Semantic negative controls are taken from
 \texttt{boundary\_negative\_controls\_wtb}, and the mask/threshold
 sensitivity controls are reported as sensitivity checks only. The
 external Kelmarsh/Penmanshiel audit is complete at 80/80 but remains
-\texttt{within\_wtb\_only}; the recalibration and
+negative for new-site routing; the recalibration and
 small-calibration-window adaptation diagnostics are therefore reported
 as boundary-condition analyses, not as new training results or
 external-site evidence. The strongest statistical claims are therefore
