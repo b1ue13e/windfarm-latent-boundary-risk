@@ -202,8 +202,8 @@ shortage energy from 3.73M to 3.19M, at the price of 1.85M additional
 reserve energy. The diagnostic also exposes failure: high-ramp windows
 can carry too little reserve, and Kelmarsh/Penmanshiel external-site
 runs fail the pre-specified routing criterion after local recalibration.
-A WTB proxy drill shows the minimum usable workflow--small calibration
-window, local boundary and gate-map selection, and frozen held-out
+A WTB proxy drill shows a usable workflow--small calibration window,
+local boundary and gate-map selection, and frozen held-out
 testing--inside the source benchmark only. The contribution is WTB
 internal boundary auditability, external failure-boundary diagnosis, and
 a transition-window reserve diagnostic.
@@ -431,13 +431,15 @@ while trading and market studies connect wind forecast uncertainty to
 operating costs and imbalance exposure
 {[}\citeproc{ref-pinson2007trading}{Pinson et al., 2007},
 \citeproc{ref-wang2011unitcommitment}{Wang et al., 2011},
-\citeproc{ref-zhou2013probabilisticmarkets}{Zhou et al., 2013}{]}. This
-line of work motivates the paper's reserve audit, but our scope is more
-limited than full market clearing, unit commitment, or a trained
-probabilistic reserve baseline. We use reserve cost, violation rate,
-reserve energy, and shortage energy as a diagnostic lens to test whether
-an auditable MPPT-to-pitch gate changes the decision tradeoff in the
-transition window.
+\citeproc{ref-zhou2013probabilisticmarkets}{Zhou et al., 2013}{]}.
+Decision-driven forecast evaluation can also use calibrated predictive
+distributions, scenarios, quantile-regression baselines, and proper
+scores such as CRPS. This line of work motivates the paper's reserve
+audit, but our scope is more limited than full market clearing, unit
+commitment, or a trained probabilistic reserve baseline. We use reserve
+cost, violation rate, reserve energy, and shortage energy as a
+diagnostic lens to test whether an auditable MPPT-to-pitch gate changes
+the decision tradeoff in the transition window.
 
 \subsection{Gap summary}\label{gap-summary}
 
@@ -811,6 +813,23 @@ protocol must drop or lag this anchor and rerun the leakage,
 intervention, and reserve checks before interpreting the gate
 physically.
 
+\subsubsection{Routing stack and evidence
+boundary}\label{routing-stack-and-evidence-boundary}
+
+This makes the routing stack an anchor-constrained diagnostic, not an
+unsupervised operating-state discovery method. In WTB, \texttt{Wspd} and
+\texttt{Pab\_mean} appear both in the gate anchor and in the
+pseudo-label rule used for alignment, so high gate-regime agreement
+should be read as evidence that the implemented router obeys a declared
+operating boundary. It does not prove that the boundary would be
+recovered from unrelated SCADA channels. The same caution applies to
+\texttt{Patv}: the current value is an issue-time status input, but
+without a retrained no-\texttt{Patv} or lagged-\texttt{Patv} ablation
+the paper cannot separate how much of the gate comes from active-power
+telemetry versus wind-speed and pitch information. The evidence
+therefore supports auditable responsibility under the declared anchor
+set, not anchor-free regime discovery.
+
 \begin{figure}
 \centering
 \includegraphics[width=0.95\linewidth,height=\textheight,keepaspectratio,alt={Physics-aligned regime-aware MoE. The two datasets share the same directed-diffusion GRU encoder and node-level MoE routing mechanism. WTB uses a dynamic wake graph and a boundary-focused forcing term, whereas ERA5 uses a Haversine-Gaussian graph and a thermodynamic regime anchor.}]{artifacts/final_evidence_package/export/figures/figure1_architecture.pdf}
@@ -851,6 +870,19 @@ modes that matter here. The total objective is
 
 with inactive terms set to zero in settings where they are not used.
 Exact weights are listed in the Appendix.
+
+The training loop is straightforward despite the loss stack. Each
+mini-batch starts from the history window and the graph sequence, builds
+the node-level graph context, and encodes the sequence with the
+directed-diffusion GRU. The gate then combines the encoded context with
+the physics anchor, produces node-level routing probabilities, and
+aggregates the expert forecasts. The prediction loss is always evaluated
+first. Active routing losses then add expert-usage stabilization,
+regime-anchor alignment, the WTB MPPT/pitch forcing term, wake auxiliary
+supervision, and graph smoothness only in the settings where those terms
+are declared. Checkpoint selection remains based on validation RMSE, so
+the routing penalties constrain responsibility without becoming the
+validation-selection metric.
 
 \subsubsection{Prediction objective}\label{prediction-objective}
 
@@ -938,10 +970,13 @@ auxiliary term. The alignment loss is
 with inverse-frequency class weights estimated on the training split.
 Alignment stabilizes the coarse physical partition only where the labels
 are reliable. The fixed index convention is an implementation
-constraint, not a post-hoc naming step: it breaks permutation symmetry
-for the anchored logits during training. Cross-seed statements such as
-``MPPT-aligned'' or ``pitch-aligned'' refer to this declared mapping;
-they are not inferred after training by relabeling experts.
+constraint, not a post-hoc naming step: it deliberately breaks
+permutation symmetry for the anchored logits during training so that
+responsibility can be audited across seeds. The price is scope. The
+method cannot claim to discover every alternative data-driven partition
+that an unconstrained MoE might find; cross-seed statements such as
+``MPPT-aligned'' or ``pitch-aligned'' refer only to this declared
+mapping and are not inferred after training by relabeling experts.
 
 \subsubsection{Boundary-focused forcing (WTB
 only)}\label{boundary-focused-forcing-wtb-only}
@@ -1026,7 +1061,11 @@ represented in the mini-batch, and \(\epsilon\) prevents division by
 zero if a graph has no retained edges. The auxiliary term is a
 WTB-specific repair for wake mixing, while the smoothness term
 encourages locally coherent routing without prescribing a global
-partition.
+partition. This is a bias toward neighbor-consistent responsibility, not
+a physical law. In disturbed inflow or local-wake conditions, it may
+smooth over real turbine-level heterogeneity, so wake-specific failures
+are checked separately rather than treated as solved by graph
+smoothness.
 
 \subsection{Operational reserve diagnostic
 protocol}\label{operational-reserve-diagnostic-protocol}
@@ -1211,11 +1250,13 @@ sensitivity sweeps and boundary negative controls, so the main routing
 result is not selected by test-set NMI.
 
 The metrics follow the claim. Overall MAE and RMSE measure forecasting
-accuracy. Switch-window MAE and RMSE focus on mechanism changes.
-Regime-wise RMSE locates the error reduction. Normalized mutual
-information (NMI), adjusted Rand index (ARI), usage entropy, and
-confusion matrices test whether the gate corresponds to physically
-interpretable structure.
+accuracy. Switch-window MAE and RMSE use the evaluator's
+transition-window mask around regime changes. This is distinct from the
+later boundary-band audit, which isolates anchors within +/-1.0 m
+s\(^{-1}\) of the WTB rated-wind MPPT-to-pitch boundary. Regime-wise
+RMSE locates the error reduction. Normalized mutual information (NMI),
+adjusted Rand index (ARI), usage entropy, and confusion matrices test
+whether the gate corresponds to physically interpretable structure.
 
 Figure 2 gives the physical setting before the forecasting results are
 introduced.
@@ -1239,19 +1280,21 @@ thresholds estimated from the training split.}
 
 WTB delivers a hard accuracy result: the strongest graph and engineering
 forecasters beat the routed family under the synchronized strict-mask
-refresh. Graph WaveNet reaches overall RMSE 225.74 +/- 2.60 and
-switch-window RMSE 228.12 +/- 3.23 across seeds 201--205. PatchTST
-reaches 228.07 +/- 4.05 and 231.22 +/- 4.15. Graph Transformer reaches
-235.38 +/- 5.15 and 237.06 +/- 5.78, while GAT-GRU reaches 236.59 +/-
-7.80 and 240.17 +/- 8.50. Among engineering baselines, LightGBM lag
-features reach overall/switch RMSE 227.12 / 232.24, XGBoost lag features
-227.88 / 233.07, a fitted physical power curve 241.02 / 245.37,
-persistence 243.23 / 246.61, and the DLinear-style LTSF readout 246.81 /
-251.15. The boundary-forced router reaches overall RMSE 236.13 +/- 8.41,
-switch-window RMSE 239.86 +/- 8.85, and pitch-control RMSE 286.95 +/-
-22.07 across seeds 201--205. The completed strict-mask leaderboard
-places the routed model outside a headline-error objective and motivates
-the narrower routing-recovery claim.
+refresh. Here and in the baseline tables, ``switch-window'' refers to
+the precomputed transition-window mask, not to the rated-wind
+boundary-band audit below. Graph WaveNet reaches overall RMSE 225.74 +/-
+2.60 and switch-window RMSE 228.12 +/- 3.23 across seeds 201--205.
+PatchTST reaches 228.07 +/- 4.05 and 231.22 +/- 4.15. Graph Transformer
+reaches 235.38 +/- 5.15 and 237.06 +/- 5.78, while GAT-GRU reaches
+236.59 +/- 7.80 and 240.17 +/- 8.50. Among engineering baselines,
+LightGBM lag features reach overall/switch RMSE 227.12 / 232.24, XGBoost
+lag features 227.88 / 233.07, a fitted physical power curve 241.02 /
+245.37, persistence 243.23 / 246.61, and the DLinear-style LTSF readout
+246.81 / 251.15. The boundary-forced router reaches overall RMSE 236.13
++/- 8.41, switch-window RMSE 239.86 +/- 8.85, and pitch-control RMSE
+286.95 +/- 22.07 across seeds 201--205. The completed strict-mask
+leaderboard places the routed model outside a headline-error objective
+and motivates the narrower routing-recovery claim.
 
 ERA5 makes the same separation sharper. A last-value persistence
 baseline gives the lowest headline error, with overall RMSE 0.7127 and
@@ -1422,10 +1465,14 @@ applies that test to saved WTB validation and test predictions. It
 reports total cost, violation rate, reserve energy, and shortage energy
 across shortage-to-reserve cost ratios for four policies: Graph
 WaveNet/global, Graph WaveNet/physical-bin, boundary router/global, and
-boundary router/gate-bin. Because the reserve levels are empirical
-shortfall quantiles from point forecasts, the table should be read as a
-decision diagnostic rather than as a comparison to probabilistic or
-quantile-regression forecasters.
+boundary router/gate-bin. The paired uncertainty check below is
+deliberately conservative and does not support a stable whole-sample
+reserve advantage over Graph WaveNet/global with five paired seeds. The
+reserve result should therefore be read through the boundary-window
+tradeoff, not as a full-sample policy win. Because the reserve levels
+are empirical shortfall quantiles from point forecasts, the table is
+also not a comparison to calibrated probabilistic, CRPS-scored,
+quantile-regression, scenario, or distributional reserve baselines.
 
 These four policies answer different decisions and should not be ranked
 as substitute forecasters. Graph WaveNet/global is the low-RMSE system
@@ -1720,8 +1767,9 @@ retained as source-trace evidence in the final manifest rather than
 re-input from the older goal-table directory.
 
 We add a positive deployment-drill result at exactly the level supported
-by the evidence. The drill is not Kelmarsh/Penmanshiel transfer. It asks
-whether a deployable workflow can be executed inside WTB under stricter
+by the evidence. The drill is not Kelmarsh/Penmanshiel transfer and it
+does not undo the external failure reported below. It asks whether a
+deployable workflow can be executed inside WTB under stricter
 separation: use a small calibration window to select rated wind, pitch
 threshold, boundary support, and the gate-to-regime map; freeze those
 choices; then evaluate held-out routing once. In the future-period
@@ -1729,11 +1777,12 @@ proxy, a 2-day calibration window followed by the future holdout passes
 in all 5/5 seeds, with mean held-out NMI/ARI 0.8397/0.8907 and balanced
 accuracy 0.9770. In the east-turbine proxy, a 7-day calibration window
 on held-out turbines also passes in all 5/5 seeds, with mean held-out
-NMI/ARI 0.8272/0.8781 and balanced accuracy 0.9709. The result proves an
-operational procedure inside the WTB envelope: local calibration window
--\textgreater{} boundary re-estimation -\textgreater{} frozen held-out
-routing test. It does not prove that the WTB rule migrates to a new
-farm.
+NMI/ARI 0.8272/0.8781 and balanced accuracy 0.9709. The 2-day and 7-day
+windows are WTB proxy settings, not universal minimum durations for a
+new farm. The result proves an operational procedure inside the WTB
+envelope: local calibration window -\textgreater{} boundary
+re-estimation -\textgreater{} frozen held-out routing test. It does not
+prove that the WTB rule migrates to a new farm.
 
 \begin{table}[t]
 \centering
@@ -1747,16 +1796,19 @@ farm.
 This drill also defines the operator-facing usability checks. Threshold
 choice is restricted to a pre-specified local grid and must be frozen
 before the held-out test. Calibration support is checked by the number
-of valid boundary cells, not only by elapsed days. If pitch channels are
-missing, the site may use a documented pitch proxy only after showing
-overlap with wind speed, active power, and availability masks; otherwise
-the gate cannot be given a physical-router interpretation. If rated wind
-differs across turbine models, the rated-wind grid is estimated locally
-rather than copied from WTB. If SCADA gaps or availability masks remove
-too many boundary cells, the output is a data-coverage failure, not a
-weak positive site result. Finally, reserve use requires a separate
-high-ramp slice check because the gate-bin rule can reduce total cost by
-carrying too little reserve in ramp-heavy windows.
+of valid boundary cells, not only by elapsed days. The effective minimum
+calibration window is therefore governed by boundary-cell support, pitch
+observability or a validated pitch proxy, and a frozen held-out routing
+criterion. If pitch channels are missing, the site may use a documented
+pitch proxy only after showing overlap with wind speed, active power,
+and availability masks; otherwise the gate cannot be given a
+physical-router interpretation. If rated wind differs across turbine
+models, the rated-wind grid is estimated locally rather than copied from
+WTB. If SCADA gaps or availability masks remove too many boundary cells,
+the output is a data-coverage failure, not a weak positive site result.
+Finally, reserve use requires a separate high-ramp slice check because
+the gate-bin rule can reduce total cost by carrying too little reserve
+in ramp-heavy windows.
 
 \subsection{Ablation}\label{ablation}
 
@@ -1922,41 +1974,43 @@ pre-specified operating-boundary rule.
 
 The external Kelmarsh/Penmanshiel result is a failed boundary-condition
 test, and this negative result is one of the contributions of the paper.
-The source audit completes 80/80 runs, both leave-one-farm-out
-directions, and the chronological checks, but the default WTB boundary
-gives mean routing NMI 0.4877, below the pre-specified 0.50
+The source audit completes 80/80 runs, including both leave-one-farm-out
+directions and chronological checks, and it asks whether the default WTB
+operating boundary can be read on external farms. It cannot: the default
+WTB boundary gives mean routing NMI 0.4877, below the pre-specified 0.50
 external-site routing criterion. The external farms show that an
 operating-boundary rule cannot be reused before local observability and
 boundary support are checked. In deployment terms, this is a fail-fast
 safety gate rather than a hidden generalization claim: if the local
 boundary cannot be recovered on held-out data, the router must be
 treated as a diagnostic warning and not as a reserve-control signal. We
-add local recalibration only to explain that failure mode. For each
-routing run, the validation gate output selects a farm-specific
-rated-wind/pitch-threshold pair from the pre-specified grid, and that
-selected boundary is evaluated once on the test gate output. This does
-not retrain the forecaster and does not rescue an out-of-site mechanism
-claim. Overall default test NMI rises only from 0.1324 to 0.1491 after
-recalibration, a recovery of +0.0167. Kelmarsh chronological runs
-recover more agreement, but Penmanshiel chronological and the
-leave-one-farm-out settings remain weak, so the failure is not merely a
-shifted threshold. The practical message is protective: the boundary
-diagnostic prevents misdeployment when sensor fields, turbine geometry,
-or regime support do not match the WTB operating envelope.
+add validation-only local recalibration only to explain that failure
+mode. For each routing run, the validation gate output selects a
+farm-specific rated-wind/pitch-threshold pair from the pre-specified
+grid, and that selected boundary is evaluated once on the test gate
+output. This does not retrain the forecaster and does not rescue an
+out-of-site mechanism claim. Overall default test NMI rises only from
+0.1324 to 0.1491 after recalibration, a recovery of +0.0167. Kelmarsh
+chronological runs recover more agreement, but Penmanshiel chronological
+and the leave-one-farm-out settings remain weak, so the failure is not
+merely a shifted threshold. The practical message is protective: the
+boundary diagnostic prevents misdeployment when sensor fields, turbine
+geometry, or regime support do not match the WTB operating envelope.
 
 The small calibration-window adaptation makes that boundary sharper.
-Using only each run's validation gate outputs, the diagnostic selects a
-local rated-wind/pitch pair and a majority-vote gate-to-regime map, then
-freezes both before evaluating held-out test gates. The audit completes
-40/40 routing runs, and chronological adapted balanced accuracy averages
-0.4787, below the 0.50 diagnostic threshold. Penmanshiel chronological
-improves from 0.4000 to about 0.5000 balanced accuracy, but its adapted
-NMI remains 0.0000; Kelmarsh chronological declines, and the
-leave-one-farm-out Penmanshiel-to-Kelmarsh setting collapses. Therefore
-none of the external farms clears the positive held-out routing
-criterion after local calibration. The result is a completed negative
-adaptation diagnostic: local boundary estimation is necessary, but this
-small window is not sufficient to recover usable routing at a new site.
+This 40/40 diagnostic is a second external test, separate from the WTB
+proxy drill: using only each external run's validation gate outputs, it
+selects a local rated-wind/pitch pair and a majority-vote gate-to-regime
+map, then freezes both before evaluating held-out test gates.
+Chronological adapted balanced accuracy averages 0.4787, below the 0.50
+diagnostic threshold. Penmanshiel chronological improves from 0.4000 to
+about 0.5000 balanced accuracy, but its adapted NMI remains 0.0000;
+Kelmarsh chronological declines, and the leave-one-farm-out
+Penmanshiel-to-Kelmarsh setting collapses. Therefore none of the
+external farms clears the positive held-out routing criterion after
+local calibration. The result is a completed negative adaptation
+diagnostic: local boundary estimation is necessary, but this small
+window is not sufficient to recover usable routing at a new site.
 
 The failure conditions are operationally informative. Kelmarsh has 6
 Senvion MM92 turbines, whereas Penmanshiel has 14 retained Senvion MM82
@@ -1988,12 +2042,14 @@ before the router can be interpreted physically. First, the site must
 pass a pitch-observability gate: wind speed, active power, turbine
 status or availability masks, and pitch-related channels must be present
 with enough valid overlap to construct MPPT and pitch-control labels.
-The minimum starting point is a small calibration window of at least 2
-days when all required SCADA fields overlap; if pitch is sparse, the
-window must be extended until enough boundary cells exist. If mean
-pitch, blade-pitch channels, or a reliable pitch proxy are absent in the
-intended operating window, the boundary label is not identifiable and
-the router remains a statistical diagnostic.
+The minimum calibration window is not a transferable number of days. It
+is the smallest pre-declared window that contains enough effective
+boundary cells, pitch observability or a validated pitch proxy, and a
+frozen held-out routing check; if pitch is sparse, the window must be
+extended until those conditions are met. If mean pitch, blade-pitch
+channels, or a reliable pitch proxy are absent in the intended operating
+window, the boundary label is not identifiable and the router remains a
+statistical diagnostic.
 
 Second, the site must pass a local-boundary-support gate. Rated wind
 speed, pitch threshold, boundary band, and gate-to-regime map must be
