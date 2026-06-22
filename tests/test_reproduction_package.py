@@ -67,6 +67,8 @@ class ReproductionPackageTests(unittest.TestCase):
             self.assertIn("decision_reserve_wtb_operational_windows/reserve_decision_operational_windows.csv", final_text)
             self.assertIn("reserve_decision_system_baselines.csv", final_text)
             self.assertIn("reserve_decision_cost_ratio_sensitivity.csv", final_text)
+            self.assertIn("reserve_decision_horizon_time_sensitivity.csv", final_text)
+            self.assertIn("reserve_decision_horizon_quantile_whatif.csv", final_text)
             self.assertIn("decision_reserve_wtb_operational_windows_guard/reserve_decision_guard.json", final_text)
             self.assertIn("external_wind_run_status.csv", final_text)
             self.assertIn("external_wind_cache_status.csv", final_text)

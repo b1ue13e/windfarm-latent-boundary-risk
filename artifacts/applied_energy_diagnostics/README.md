@@ -9,12 +9,14 @@ This package is generated from saved strict-mask artifacts and does not retrain 
 - `operational_decision_curve.png`: RMSE penalty, reserve energy, and shortage tradeoff on the boundary window.
 - `reserve_paired_statistics.csv`: paired bootstrap/permutation-style uncertainty summaries for reserve cost and risk metrics.
 - `reserve_coverage_reliability.csv`: held-out coverage check for validation-selected reserve quantiles.
+- `reserve_horizon_time_sensitivity.csv`: post-hoc horizon and time-of-day slices using frozen cell-level empirical quantiles.
+- `reserve_horizon_quantile_whatif.csv`: horizon-specific empirical-quantile what-if without new probabilistic training.
 - `cost_ratio_energy_system_assumptions.csv`: mapping from abstract shortage/reserve cost ratios to energy-system reliability assumptions.
 - `anchor_only_rule_router_main_table.csv`: formal anchor-only/router-rule comparison.
 - `external_negative_evidence_table.csv`: external Kelmarsh/Penmanshiel negative evidence and bounded claims.
 - `quasi_external_deployment_drill_summary.csv`: WTB proxy deployment drill using calibration-only boundary/gate-map selection and held-out testing.
 - `boundary_reserve_system_workflow.png`: SCADA to boundary router to reserve-policy audit workflow.
-- `new_wind_farm_deployment_checklist.png`: local evidence protocol from sensor coverage to bounded operating claims.
+- `new_wind_farm_deployment_checklist.png`: deployment gate from sensor coverage to bounded operating claims.
 
 ## Claim summary
 

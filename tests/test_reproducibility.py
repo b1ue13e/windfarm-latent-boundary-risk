@@ -17,6 +17,8 @@ class ReproducibilityManifestTests(unittest.TestCase):
         self.assertIn("artifacts/final_evidence_package/export/final_table_export_status.json", paths)
         self.assertIn("artifacts/operational_baselines_wtb_strictmask/wtb_operational_baselines.csv", paths)
         self.assertIn("artifacts/decision_reserve_wtb_operational_windows/reserve_decision_operational_windows.csv", paths)
+        self.assertIn("artifacts/decision_reserve_wtb_operational_windows/reserve_decision_horizon_time_sensitivity.csv", paths)
+        self.assertIn("artifacts/decision_reserve_wtb_operational_windows/reserve_decision_horizon_quantile_whatif.csv", paths)
         self.assertIn("artifacts/decision_reserve_wtb_operational_windows_guard/reserve_decision_guard.json", paths)
         self.assertIn("artifacts/external_wind_guard/external_wind_guard.json", paths)
         self.assertIn("artifacts/external_wind_small_calibration_adaptation/adaptation_guard.json", paths)

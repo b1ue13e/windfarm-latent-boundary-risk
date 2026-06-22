@@ -82,6 +82,18 @@ DEFAULT_REPRODUCIBILITY_FILES: tuple[dict[str, Any], ...] = (
     },
     {
         "category": "evidence",
+        "label": "WTB reserve horizon/time-of-day sensitivity",
+        "path": "artifacts/decision_reserve_wtb_operational_windows/reserve_decision_horizon_time_sensitivity.csv",
+        "required": True,
+    },
+    {
+        "category": "evidence",
+        "label": "WTB reserve horizon-specific empirical quantile what-if",
+        "path": "artifacts/decision_reserve_wtb_operational_windows/reserve_decision_horizon_quantile_whatif.csv",
+        "required": True,
+    },
+    {
+        "category": "evidence",
         "label": "WTB threshold-label validity audit summary",
         "path": "artifacts/threshold_label_validity_audit_wtb_strictmask/threshold_label_validity_summary.csv",
         "required": True,

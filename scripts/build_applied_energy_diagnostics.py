@@ -724,6 +724,80 @@ def _reserve_coverage_table(raw_runs: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows).sort_values(["subset", "model", "policy"]).reset_index(drop=True)
 
 
+def _reserve_horizon_time_table(horizon_time: pd.DataFrame) -> pd.DataFrame:
+    if horizon_time.empty:
+        return pd.DataFrame()
+    frame = horizon_time[
+        horizon_time["subset"].astype(str).eq("boundary")
+        & np.isclose(pd.to_numeric(horizon_time["cost_ratio"], errors="coerce").astype(float), 10.0)
+        & horizon_time["model"].astype(str).eq("Boundary-forced router")
+        & horizon_time["policy"].astype(str).eq("gate-bin")
+        & horizon_time["status"].astype(str).eq("applicable")
+    ].copy()
+    if frame.empty:
+        return pd.DataFrame()
+    rows: list[dict[str, Any]] = []
+    for _, row in frame.sort_values(["slice_type", "slice_name"]).iterrows():
+        rows.append(
+            {
+                "slice_type": str(row.get("slice_type", "")),
+                "slice_name": str(row.get("slice_name", "")),
+                "policy": "Boundary router/gate-bin",
+                "total_cost": _num(row.get("total_cost_mean")),
+                "violation_rate": _num(row.get("violation_rate_mean")),
+                "reserve_energy": _num(row.get("reserve_energy_mean")),
+                "shortage_energy": _num(row.get("shortage_energy_mean")),
+                "valid_cells": _num(row.get("valid_cells_mean")),
+                "reading": "cell-level frozen empirical-quantile slice; not a trained probabilistic policy",
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def _reserve_horizon_quantile_whatif_table(horizon_whatif: pd.DataFrame) -> pd.DataFrame:
+    if horizon_whatif.empty:
+        return pd.DataFrame()
+    keep = {
+        ("Graph WaveNet", "global"): "Graph WaveNet/global",
+        ("Graph WaveNet", "physical-bin"): "Graph WaveNet/physical-bin",
+        ("Boundary-forced router", "global"): "Boundary router/global",
+        ("Boundary-forced router", "gate-bin"): "Boundary router/gate-bin",
+    }
+    frame = horizon_whatif[
+        horizon_whatif["subset"].astype(str).isin(["full", "boundary"])
+        & np.isclose(pd.to_numeric(horizon_whatif["cost_ratio"], errors="coerce").astype(float), 10.0)
+        & horizon_whatif["status"].astype(str).eq("applicable")
+    ].copy()
+    rows: list[dict[str, Any]] = []
+    for _, row in frame.iterrows():
+        label = keep.get((str(row.get("model")), str(row.get("policy"))))
+        if label is None:
+            continue
+        delta_cost = _num(row.get("delta_total_cost_vs_pooled_mean"))
+        delta_violation = _num(row.get("delta_violation_rate_vs_pooled_mean"))
+        delta_shortage = _num(row.get("delta_shortage_energy_vs_pooled_mean"))
+        reading = "sensitive to horizon-specific recalibration"
+        if np.isfinite(delta_cost) and abs(delta_cost) < 0.01 * max(abs(_num(row.get("pooled_total_cost_mean"))), 1.0):
+            reading = "small cost movement under horizon-specific Q"
+        if np.isfinite(delta_violation) and np.isfinite(delta_shortage) and delta_violation < 0.0 and delta_shortage < 0.0:
+            reading = "risk improves, post-hoc only"
+        rows.append(
+            {
+                "subset": str(row.get("subset", "")),
+                "policy": label,
+                "pooled_cost": _num(row.get("pooled_total_cost_mean")),
+                "horizon_q_cost": _num(row.get("whatif_total_cost_mean")),
+                "delta_violation": delta_violation,
+                "delta_reserve_energy": _num(row.get("delta_reserve_energy_vs_pooled_mean")),
+                "delta_shortage_energy": delta_shortage,
+                "reading": reading,
+            }
+        )
+    if not rows:
+        return pd.DataFrame()
+    return pd.DataFrame(rows).sort_values(["subset", "policy"]).reset_index(drop=True)
+
+
 def _anchor_main_table() -> pd.DataFrame:
     metrics = _read_csv(ANCHOR_DIR / "anchor_only_decisive_metrics.csv")
     degradation = _read_csv(ANCHOR_DIR / "anchor_stress_degradation_summary.csv")
@@ -937,7 +1011,7 @@ def _deployment_checklist() -> pd.DataFrame:
             {
                 "step": 1,
                 "gate": "sensor coverage",
-                "pass_condition": "at least 2 calibration days with wind speed, active power, availability mask, and pitch/proxy overlap",
+                "pass_condition": "pre-declared calibration window with enough boundary cells, active power, availability mask, and pitch/proxy overlap",
                 "fail_action": "report sensor-coverage failure; keep the router as a statistical diagnostic",
             },
             {
@@ -1242,6 +1316,42 @@ def _display_coverage(frame: pd.DataFrame) -> pd.DataFrame:
                 "Error": _fmt_signed(row.get("coverage_error_mean"), 3),
                 "Violation": _fmt(row.get("violation_rate_mean"), 4),
                 "Shortage": _fmt_m(row.get("shortage_energy_mean")),
+                "Reading": str(row.get("reading", "")),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def _display_horizon_time(frame: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for _, row in frame.iterrows():
+        rows.append(
+            {
+                "Slice": str(row.get("slice_type", "")).replace("_bucket", ""),
+                "Bucket": str(row.get("slice_name", "")),
+                "Policy": str(row.get("policy", "")),
+                "Cost": _fmt_m(row.get("total_cost")),
+                "Violation": _fmt(row.get("violation_rate"), 4),
+                "Reserve": _fmt_m(row.get("reserve_energy")),
+                "Shortage": _fmt_m(row.get("shortage_energy")),
+                "Cells": _fmt(row.get("valid_cells"), 0),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def _display_horizon_whatif(frame: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for _, row in frame.iterrows():
+        rows.append(
+            {
+                "Subset": str(row.get("subset", "")),
+                "Policy": str(row.get("policy", "")),
+                "Pooled cost": _fmt_m(row.get("pooled_cost")),
+                "Horizon-Q cost": _fmt_m(row.get("horizon_q_cost")),
+                "D violation": _fmt_signed(row.get("delta_violation"), 4),
+                "D reserve": _fmt_signed_m(row.get("delta_reserve_energy")),
+                "D shortage": _fmt_signed_m(row.get("delta_shortage_energy")),
                 "Reading": str(row.get("reading", "")),
             }
         )
@@ -1572,6 +1682,8 @@ def main() -> None:
     raw_runs = _read_csv(DECISION_DIR / "reserve_decision_raw_runs.csv")
     bootstrap = _read_csv(DECISION_DIR / "reserve_decision_bootstrap.csv")
     boundary_slices = _read_csv(DECISION_DIR / "reserve_decision_boundary_slices.csv")
+    horizon_time_raw = _read_csv(DECISION_DIR / "reserve_decision_horizon_time_sensitivity.csv")
+    horizon_whatif_raw = _read_csv(DECISION_DIR / "reserve_decision_horizon_quantile_whatif.csv")
     reviewer_failures = _read_csv(REVIEWER_DIR / "failure_cases_boundary_gate_correct_bad.csv")
 
     dispatch = _main_dispatch_table(by_ratio)
@@ -1580,6 +1692,8 @@ def main() -> None:
     curve = _operational_curve(by_ratio)
     stats = _reserve_statistics_table(bootstrap, raw_runs)
     coverage = _reserve_coverage_table(raw_runs)
+    horizon_time = _reserve_horizon_time_table(horizon_time_raw)
+    horizon_whatif = _reserve_horizon_quantile_whatif_table(horizon_whatif_raw)
     anchor = _anchor_main_table()
     efficiency = _efficiency_table()
     external = _external_negative_table()
@@ -1598,6 +1712,8 @@ def main() -> None:
         "operational_decision_curve.csv": curve,
         "reserve_paired_statistics.csv": stats,
         "reserve_coverage_reliability.csv": coverage,
+        "reserve_horizon_time_sensitivity.csv": horizon_time,
+        "reserve_horizon_quantile_whatif.csv": horizon_whatif,
         "anchor_only_rule_router_main_table.csv": anchor,
         "compute_deployment_cost_table.csv": efficiency,
         "external_negative_evidence_table.csv": external,
@@ -1682,6 +1798,36 @@ def main() -> None:
             ("Error", "Error"),
             ("Violation", "Violation"),
             ("Shortage", "Shortage"),
+            ("Reading", "Reading"),
+        ],
+        resize=True,
+    )
+    _write_simple_tex(
+        _display_horizon_time(horizon_time),
+        OUT / "table_reserve_horizon_time_sensitivity.tex",
+        [
+            ("Slice", "Slice"),
+            ("Bucket", "Bucket"),
+            ("Policy", "Policy"),
+            ("Cost", "Cost"),
+            ("Violation", "Violation"),
+            ("Reserve", "Reserve"),
+            ("Shortage", "Shortage"),
+            ("Cells", "Cells"),
+        ],
+        resize=True,
+    )
+    _write_simple_tex(
+        _display_horizon_whatif(horizon_whatif),
+        OUT / "table_reserve_horizon_quantile_whatif.tex",
+        [
+            ("Subset", "Subset"),
+            ("Policy", "Policy"),
+            ("Pooled cost", "Pooled cost"),
+            ("Horizon-Q cost", "Horizon-Q cost"),
+            ("D violation", "Delta violation"),
+            ("D reserve", "Delta reserve"),
+            ("D shortage", "Delta shortage"),
             ("Reading", "Reading"),
         ],
         resize=True,
@@ -1787,6 +1933,8 @@ def main() -> None:
         "- `operational_decision_curve.png`: RMSE penalty, reserve energy, and shortage tradeoff on the boundary window.",
         "- `reserve_paired_statistics.csv`: paired bootstrap/permutation-style uncertainty summaries for reserve cost and risk metrics.",
         "- `reserve_coverage_reliability.csv`: held-out coverage check for validation-selected reserve quantiles.",
+        "- `reserve_horizon_time_sensitivity.csv`: post-hoc horizon and time-of-day slices using frozen cell-level empirical quantiles.",
+        "- `reserve_horizon_quantile_whatif.csv`: horizon-specific empirical-quantile what-if without new probabilistic training.",
         "- `cost_ratio_energy_system_assumptions.csv`: mapping from abstract shortage/reserve cost ratios to energy-system reliability assumptions.",
         "- `anchor_only_rule_router_main_table.csv`: formal anchor-only/router-rule comparison.",
         "- `external_negative_evidence_table.csv`: external Kelmarsh/Penmanshiel negative evidence and bounded claims.",

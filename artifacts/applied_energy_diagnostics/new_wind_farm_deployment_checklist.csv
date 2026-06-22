@@ -1,5 +1,5 @@
 step,gate,pass_condition,fail_action
-1,sensor coverage,"at least 2 calibration days with wind speed, active power, availability mask, and pitch/proxy overlap",report sensor-coverage failure; keep the router as a statistical diagnostic
+1,sensor coverage,"pre-declared calibration window with enough boundary cells, active power, availability mask, and pitch/proxy overlap",report sensor-coverage failure; keep the router as a statistical diagnostic
 2,local boundary calibration,"rated wind, pitch threshold, boundary band, and gate-map selected on calibration only",treat as boundary-condition diagnostic
 3,held-out routing criterion,held-out NMI >= 0.50 and balanced accuracy >= 0.50 after parameters are frozen,local re-estimation required before physical-router interpretation
 4,reserve audit,transition-window shortage and violation improve at acceptable reserve-energy cost,withhold gate-bin reserve use

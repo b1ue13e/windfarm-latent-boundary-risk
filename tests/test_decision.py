@@ -154,6 +154,8 @@ class DecisionUtilityTests(unittest.TestCase):
             system_baselines = pd.read_csv(output_dir / "reserve_decision_system_baselines.csv")
             sensitivity = pd.read_csv(output_dir / "reserve_decision_cost_ratio_sensitivity.csv")
             boundary_slices = pd.read_csv(output_dir / "reserve_decision_boundary_slices.csv")
+            horizon_time = pd.read_csv(output_dir / "reserve_decision_horizon_time_sensitivity.csv")
+            horizon_whatif = pd.read_csv(output_dir / "reserve_decision_horizon_quantile_whatif.csv")
             config = load_json(output_dir / "reserve_decision_config.json")
 
             self.assertTrue((output_dir / "reserve_decision_by_risk_bin.csv").exists())
@@ -164,6 +166,8 @@ class DecisionUtilityTests(unittest.TestCase):
             self.assertTrue((output_dir / "reserve_decision_boundary_slices.tex").exists())
             self.assertTrue((output_dir / "reserve_decision_system_baselines.tex").exists())
             self.assertTrue((output_dir / "reserve_decision_cost_ratio_sensitivity.tex").exists())
+            self.assertTrue((output_dir / "reserve_decision_horizon_time_sensitivity.tex").exists())
+            self.assertTrue((output_dir / "reserve_decision_horizon_quantile_whatif.tex").exists())
             self.assertIn("Graph WaveNet", summary["model"].tolist())
             self.assertTrue(
                 {
@@ -197,6 +201,17 @@ class DecisionUtilityTests(unittest.TestCase):
             )
             for column in ["total_cost_mean", "violation_rate_mean", "shortage_energy_mean", "valid_cells_mean"]:
                 self.assertIn(column, boundary_slices.columns)
+            self.assertTrue({"horizon_bucket", "time_of_day_bucket"}.issubset(set(horizon_time["slice_type"])))
+            self.assertIn("h07_h07", set(horizon_time["slice_name"]))
+            self.assertIn("calibration_scope", horizon_time.columns)
+            self.assertIn("horizon_specific_cell_empirical_quantile_whatif_no_new_training", set(horizon_whatif["calibration_scope"]))
+            for column in [
+                "pooled_total_cost_mean",
+                "whatif_total_cost_mean",
+                "delta_violation_rate_vs_pooled_mean",
+                "delta_shortage_energy_vs_pooled_mean",
+            ]:
+                self.assertIn(column, horizon_whatif.columns)
             self.assertIn("not_applicable", by_ratio.loc[by_ratio["policy"] == "gate-bin", "status"].tolist())
             physics_gate = summary[(summary["model"] == "Physics-Aligned MoE") & (summary["policy"] == "gate-bin")]
             self.assertFalse(physics_gate.empty)
@@ -446,7 +461,7 @@ class DecisionUtilityTests(unittest.TestCase):
             {
                 "dataset": "wtb",
                 "steps_per_hour": 6,
-                "pred_len": 2,
+                "pred_len": 7,
                 "wtb_thresholds": {"rated_wind": 10.5},
                 "split_bounds": {"train": [0, 2], "val": [2, 5], "test": [5, 8]},
                 "spatial_holdout_patch": {"holdout_node_indices": [1]},
@@ -512,22 +527,19 @@ class DecisionUtilityTests(unittest.TestCase):
         for split, base in [("val_metrics", 0.0), ("test_metrics", 1.0)]:
             metrics = run_dir / split
             metrics.mkdir(parents=True, exist_ok=True)
-            pred = np.array(
+            window = np.array([10.0, 20.0, 30.0], dtype=np.float32)[:, None, None]
+            horizon = np.arange(7, dtype=np.float32)[None, :, None]
+            node = np.array([0.0, 2.0], dtype=np.float32)[None, None, :]
+            pred = window + horizon + node + base
+            shortage = np.array(
                 [
-                    [[10.0 + base, 12.0 + base], [11.0 + base, 13.0 + base]],
-                    [[20.0 + base, 18.0 + base], [19.0 + base, 17.0 + base]],
-                    [[30.0 + base, 32.0 + base], [29.0 + base, 31.0 + base]],
+                    [[0.0, 2.0], [3.0, 0.0], [1.0, 2.0], [0.0, 4.0], [5.0, 1.0], [2.0, 0.0], [3.0, 5.0]],
+                    [[5.0, 0.0], [0.0, 7.0], [2.0, 1.0], [6.0, 0.0], [0.0, 3.0], [4.0, 2.0], [1.0, 6.0]],
+                    [[1.0, 8.0], [2.0, 9.0], [0.0, 2.0], [3.0, 1.0], [7.0, 0.0], [2.0, 5.0], [4.0, 3.0]],
                 ],
                 dtype=np.float32,
             )
-            target = pred - np.array(
-                [
-                    [[0.0, 2.0], [3.0, 0.0]],
-                    [[5.0, 0.0], [0.0, 7.0]],
-                    [[1.0, 8.0], [2.0, 9.0]],
-                ],
-                dtype=np.float32,
-            )
+            target = pred - shortage
             mask = np.ones_like(pred, dtype=np.float32)
             regime = np.array([[0, 1], [2, 1], [3, 2]], dtype=np.int16)
             anchor = np.array([2, 4, 6], dtype=np.int64) + anchor_offset

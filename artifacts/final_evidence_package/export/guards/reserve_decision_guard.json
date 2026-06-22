@@ -70,6 +70,10 @@
     "reserve_decision_system_baselines.tex": true,
     "reserve_decision_cost_ratio_sensitivity.csv": true,
     "reserve_decision_cost_ratio_sensitivity.tex": true,
+    "reserve_decision_horizon_time_sensitivity.csv": true,
+    "reserve_decision_horizon_time_sensitivity.tex": true,
+    "reserve_decision_horizon_quantile_whatif.csv": true,
+    "reserve_decision_horizon_quantile_whatif.tex": true,
     "reserve_decision_config.json": true
   },
   "missing_model_seed_pairs": [],

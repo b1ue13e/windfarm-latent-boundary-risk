@@ -31,6 +31,10 @@ RESERVE_DECISION_REQUIRED_FILES = (
     "reserve_decision_system_baselines.tex",
     "reserve_decision_cost_ratio_sensitivity.csv",
     "reserve_decision_cost_ratio_sensitivity.tex",
+    "reserve_decision_horizon_time_sensitivity.csv",
+    "reserve_decision_horizon_time_sensitivity.tex",
+    "reserve_decision_horizon_quantile_whatif.csv",
+    "reserve_decision_horizon_quantile_whatif.tex",
     "reserve_decision_config.json",
 )
 RESERVE_REQUIRED_MODELS = ("Graph WaveNet", "PatchTST", "Physics-Aligned MoE", "Boundary-forced router")
@@ -86,6 +90,8 @@ class DecisionPanel:
     actual: np.ndarray
     shortfall: np.ndarray
     valid: np.ndarray
+    shortfall_cells: np.ndarray
+    valid_cells: np.ndarray
     physical_score: np.ndarray
     gate_score: np.ndarray | None
     boundary_score: np.ndarray
@@ -212,6 +218,8 @@ def run_reserve_decision(
     bin_rows: list[dict[str, Any]] = []
     daily_rows: list[dict[str, Any]] = []
     gate_loss_rows: list[dict[str, Any]] = []
+    horizon_time_rows: list[dict[str, Any]] = []
+    horizon_whatif_rows: list[dict[str, Any]] = []
     for data in run_data:
         for subset_name, val_subset, test_subset in _iter_subsets(
             data.val,
@@ -245,11 +253,52 @@ def run_reserve_decision(
                         gate_loss_rows.extend(
                             _gate_correctness_loss_rows(raw_row, test_subset, reserve_matrix, ratio, dt)
                         )
+                        if np.isclose(float(ratio), float(main_ratio)):
+                            emit_horizon_time = _emit_horizon_time_posthoc(data.info.model, policy, subset_name)
+                            emit_horizon_whatif = _emit_horizon_whatif_posthoc(data.info.model, policy, subset_name)
+                            if not emit_horizon_time and not emit_horizon_whatif:
+                                continue
+                            cell_calibration = _calibrate_cell_policy(
+                                policy=policy,
+                                panel=val_subset,
+                                ratio=ratio,
+                                dt=dt,
+                                quantiles=candidate_quantiles,
+                            )
+                            if cell_calibration.status != "applicable":
+                                continue
+                            if emit_horizon_time:
+                                reserve_cells, _ = _reserve_cell_matrix_for_calibration(cell_calibration, test_subset)
+                                horizon_time_rows.extend(
+                                    _horizon_time_sensitivity_rows(
+                                        base=_posthoc_base_row(data, cell_calibration, subset_name, ratio),
+                                        panel=test_subset,
+                                        reserve_cells=reserve_cells,
+                                        ratio=ratio,
+                                        dt=dt,
+                                        steps_per_hour=int(cache_meta["steps_per_hour"]),
+                                    )
+                                )
+                            if emit_horizon_whatif:
+                                horizon_whatif_rows.append(
+                                    _horizon_quantile_whatif_row(
+                                        data=data,
+                                        calibration=cell_calibration,
+                                        val_panel=val_subset,
+                                        test_panel=test_subset,
+                                        subset_name=subset_name,
+                                        ratio=ratio,
+                                        dt=dt,
+                                        quantiles=candidate_quantiles,
+                                    )
+                                )
 
     raw_df = pd.DataFrame(raw_rows)
     bin_df = pd.DataFrame(bin_rows)
     daily_df = pd.DataFrame(daily_rows)
     gate_loss_df = pd.DataFrame(gate_loss_rows)
+    horizon_time_df = _aggregate_horizon_time_rows(pd.DataFrame(horizon_time_rows))
+    horizon_whatif_df = _aggregate_horizon_whatif_rows(pd.DataFrame(horizon_whatif_rows))
     by_ratio = _aggregate_metric_rows(raw_df)
     summary = by_ratio[np.isclose(by_ratio["cost_ratio"].astype(float), float(main_ratio))].copy()
     by_bin = _aggregate_bin_rows(bin_df)
@@ -273,6 +322,8 @@ def run_reserve_decision(
         bin_df=bin_df,
         daily_df=daily_df,
         gate_loss_df=gate_loss_df,
+        horizon_time_df=horizon_time_df,
+        horizon_whatif_df=horizon_whatif_df,
         config={
             "dataset": "wtb",
             "run_table": str(Path(run_table)),
@@ -407,6 +458,8 @@ def _load_panel(metrics_dir: Path, cache_meta: dict[str, Any]) -> DecisionPanel:
     actual = np.sum(target_arr * mask_arr, axis=2)
     valid = np.sum(mask_arr, axis=2) > 0.0
     shortfall = np.maximum(forecast - actual, 0.0)
+    valid_cells = mask_arr > 0.0
+    shortfall_cells = np.maximum(pred_arr - target_arr, 0.0).astype(np.float32, copy=False)
 
     regime = np.load(metrics_dir / "regime_primary.npy", mmap_mode="r")
     regime_arr = np.asarray(regime)
@@ -441,6 +494,8 @@ def _load_panel(metrics_dir: Path, cache_meta: dict[str, Any]) -> DecisionPanel:
         actual=actual,
         shortfall=shortfall,
         valid=valid,
+        shortfall_cells=shortfall_cells,
+        valid_cells=valid_cells,
         physical_score=np.asarray(physical_score, dtype=np.float64),
         gate_score=gate_score,
         boundary_score=boundary_score,
@@ -609,6 +664,21 @@ def _normalize_strata(strata: list[str] | tuple[str, ...] | str | None) -> list[
     return raw
 
 
+def _emit_horizon_time_posthoc(model: str, policy: str, subset_name: str) -> bool:
+    return str(model) == "Boundary-forced router" and str(policy) == "gate-bin" and str(subset_name) == "boundary"
+
+
+def _emit_horizon_whatif_posthoc(model: str, policy: str, subset_name: str) -> bool:
+    if str(subset_name) not in {"full", "boundary"}:
+        return False
+    return (str(model), str(policy)) in {
+        ("Graph WaveNet", "global"),
+        ("Graph WaveNet", "physical-bin"),
+        ("Boundary-forced router", "global"),
+        ("Boundary-forced router", "gate-bin"),
+    }
+
+
 def _iter_subsets(
     val: DecisionPanel,
     test: DecisionPanel,
@@ -744,6 +814,8 @@ def _filter_panel(panel: DecisionPanel, rows: np.ndarray) -> DecisionPanel:
         actual=panel.actual[rows],
         shortfall=panel.shortfall[rows],
         valid=panel.valid[rows],
+        shortfall_cells=panel.shortfall_cells[rows],
+        valid_cells=panel.valid_cells[rows],
         physical_score=panel.physical_score[rows],
         gate_score=panel.gate_score[rows] if panel.gate_score is not None else None,
         boundary_score=panel.boundary_score[rows],
@@ -797,6 +869,46 @@ def _calibrate_policy(
     return Calibration(policy, "applicable", score_source, thresholds, reserves, selected_quantiles)
 
 
+def _calibrate_cell_policy(
+    *,
+    policy: str,
+    panel: DecisionPanel,
+    ratio: float,
+    dt: float,
+    quantiles: list[float],
+) -> Calibration:
+    if policy == "global":
+        reserve, quantile = _calibrate_scalar(panel.shortfall_cells, panel.valid_cells, ratio, dt, quantiles)
+        return Calibration(policy, "applicable", "global", None, {"all": reserve}, {"all": quantile})
+
+    if policy == "physical-bin":
+        scores = panel.physical_score
+        score_source = "physical"
+    elif policy == "gate-bin":
+        if panel.gate_score is None:
+            return Calibration(policy, "not_applicable", "gate", None, {}, {})
+        scores = panel.gate_score
+        score_source = "gate"
+    else:
+        raise ValueError(f"Unsupported reserve policy: {policy}")
+
+    thresholds = _risk_thresholds(scores)
+    labels = _assign_bins(scores, thresholds)
+    global_reserve, global_quantile = _calibrate_scalar(panel.shortfall_cells, panel.valid_cells, ratio, dt, quantiles)
+    reserves: dict[str, float] = {}
+    selected_quantiles: dict[str, float] = {}
+    for idx, name in enumerate(BIN_NAMES):
+        row_mask = labels == idx
+        cell_mask = panel.valid_cells & row_mask[:, None, None]
+        if cell_mask.any():
+            reserve, quantile = _calibrate_scalar(panel.shortfall_cells, cell_mask, ratio, dt, quantiles)
+        else:
+            reserve, quantile = global_reserve, global_quantile
+        reserves[name] = reserve
+        selected_quantiles[name] = quantile
+    return Calibration(policy, "applicable", score_source, thresholds, reserves, selected_quantiles)
+
+
 def _calibrate_scalar(
     shortfall: np.ndarray,
     valid: np.ndarray,
@@ -804,7 +916,7 @@ def _calibrate_scalar(
     dt: float,
     quantiles: list[float],
 ) -> tuple[float, float]:
-    values = shortfall[valid]
+    values = np.asarray(shortfall[valid], dtype=np.float64)
     if values.size == 0:
         return 0.0, float("nan")
     best_reserve = 0.0
@@ -812,9 +924,10 @@ def _calibrate_scalar(
     best_cost = float("inf")
     for quantile in quantiles:
         reserve = float(np.quantile(values, quantile))
-        metrics = _cost_metrics(shortfall, valid, _reserve_like(shortfall, reserve), ratio, dt)
-        if metrics["total_cost"] < best_cost:
-            best_cost = metrics["total_cost"]
+        shortage_after = np.maximum(values - reserve, 0.0)
+        total_cost = float((reserve * values.size + float(ratio) * shortage_after.sum()) * float(dt))
+        if total_cost < best_cost:
+            best_cost = total_cost
             best_reserve = reserve
             best_quantile = float(quantile)
     return best_reserve, best_quantile
@@ -876,6 +989,207 @@ def _reserve_matrix_for_calibration(
     for idx, name in enumerate(BIN_NAMES):
         reserve_by_bin[labels == idx] = calibration.reserves[name]
     return np.repeat(reserve_by_bin[:, None], panel.shortfall.shape[1], axis=1), labels
+
+
+def _reserve_cell_matrix_for_calibration(
+    calibration: Calibration,
+    panel: DecisionPanel,
+) -> tuple[np.ndarray, np.ndarray | None]:
+    if calibration.policy == "global":
+        return _reserve_like(panel.shortfall_cells, calibration.reserves["all"]), None
+
+    scores = panel.physical_score if calibration.score_source == "physical" else panel.gate_score
+    if scores is None or calibration.thresholds is None:
+        return _reserve_like(panel.shortfall_cells, 0.0), None
+    labels = _assign_bins(scores, calibration.thresholds)
+    reserve_by_window = np.zeros(labels.shape[0], dtype=np.float64)
+    for idx, name in enumerate(BIN_NAMES):
+        reserve_by_window[labels == idx] = calibration.reserves[name]
+    return np.broadcast_to(reserve_by_window[:, None, None], panel.shortfall_cells.shape).astype(np.float64), labels
+
+
+def _posthoc_base_row(data: RunDecisionData, calibration: Calibration, subset_name: str, ratio: float) -> dict[str, Any]:
+    return {
+        "model": data.info.model,
+        "source_model": data.info.source_model,
+        "seed": data.info.seed,
+        "run_dir": str(data.info.run_dir),
+        "variant_key": data.info.variant_key,
+        "experiment_group": data.info.experiment_group,
+        "overall_rmse": data.info.overall_rmse,
+        "policy": calibration.policy,
+        "subset": subset_name,
+        "cost_ratio": float(ratio),
+        "status": calibration.status,
+        "score_source": calibration.score_source,
+        "threshold_low": calibration.thresholds[0] if calibration.thresholds else np.nan,
+        "threshold_high": calibration.thresholds[1] if calibration.thresholds else np.nan,
+        "best_quantile": _format_quantiles(calibration.quantiles),
+        "reserve": _format_reserves(calibration.reserves),
+        "calibration_scope": "cell_level_pooled_empirical_quantile_frozen_on_test",
+    }
+
+
+def _horizon_time_sensitivity_rows(
+    *,
+    base: dict[str, Any],
+    panel: DecisionPanel,
+    reserve_cells: np.ndarray,
+    ratio: float,
+    dt: float,
+    steps_per_hour: int,
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for slice_name, horizon_mask in _horizon_bucket_masks(panel.shortfall_cells.shape[1]):
+        mask = panel.valid_cells & horizon_mask[None, :, None]
+        rows.append(
+            {
+                **base,
+                "slice_type": "horizon_bucket",
+                "slice_name": slice_name,
+                **_cost_metrics(panel.shortfall_cells, mask, reserve_cells, ratio, dt),
+            }
+        )
+    for slice_name, window_horizon_mask in _time_of_day_bucket_masks(
+        panel.anchor_index,
+        panel.shortfall_cells.shape[1],
+        steps_per_hour=steps_per_hour,
+    ):
+        mask = panel.valid_cells & window_horizon_mask[:, :, None]
+        rows.append(
+            {
+                **base,
+                "slice_type": "time_of_day_bucket",
+                "slice_name": slice_name,
+                **_cost_metrics(panel.shortfall_cells, mask, reserve_cells, ratio, dt),
+            }
+        )
+    return rows
+
+
+def _horizon_bucket_masks(pred_len: int) -> list[tuple[str, np.ndarray]]:
+    if pred_len <= 0:
+        return []
+    horizons = np.arange(pred_len)
+    if pred_len <= 6:
+        return [(f"h01_h{pred_len:02d}", np.ones(pred_len, dtype=bool))]
+    if pred_len <= 12:
+        return [
+            ("h01_h06", horizons < 6),
+            (f"h07_h{pred_len:02d}", horizons >= 6),
+        ]
+    return [
+        ("h01_h06", horizons < 6),
+        ("h07_h12", (horizons >= 6) & (horizons < 12)),
+        (f"h13_h{pred_len:02d}", horizons >= 12),
+    ]
+
+
+def _time_of_day_bucket_masks(
+    anchor_index: np.ndarray,
+    pred_len: int,
+    *,
+    steps_per_hour: int,
+) -> list[tuple[str, np.ndarray]]:
+    if pred_len <= 0 or anchor_index.size == 0:
+        return []
+    steps_per_hour = max(int(steps_per_hour), 1)
+    steps_per_day = steps_per_hour * 24
+    horizon_offsets = np.arange(pred_len, dtype=np.int64)
+    slots = (anchor_index.astype(np.int64)[:, None] + horizon_offsets[None, :]) % steps_per_day
+    hours = slots / float(steps_per_hour)
+    return [
+        ("tod_00_06", (hours >= 0.0) & (hours < 6.0)),
+        ("tod_06_12", (hours >= 6.0) & (hours < 12.0)),
+        ("tod_12_18", (hours >= 12.0) & (hours < 18.0)),
+        ("tod_18_24", (hours >= 18.0) & (hours < 24.0)),
+    ]
+
+
+def _horizon_quantile_whatif_row(
+    *,
+    data: RunDecisionData,
+    calibration: Calibration,
+    val_panel: DecisionPanel,
+    test_panel: DecisionPanel,
+    subset_name: str,
+    ratio: float,
+    dt: float,
+    quantiles: list[float],
+) -> dict[str, Any]:
+    base = _posthoc_base_row(data, calibration, subset_name, ratio)
+    if calibration.status != "applicable":
+        return {**base, "status": calibration.status, **_empty_whatif_metrics()}
+
+    pooled_reserve, _ = _reserve_cell_matrix_for_calibration(calibration, test_panel)
+    pooled_metrics = _cost_metrics(test_panel.shortfall_cells, test_panel.valid_cells, pooled_reserve, ratio, dt)
+    whatif_reserve = np.zeros_like(test_panel.shortfall_cells, dtype=np.float64)
+
+    if calibration.policy == "global":
+        val_labels = None
+        test_labels = None
+    else:
+        scores_val = val_panel.physical_score if calibration.score_source == "physical" else val_panel.gate_score
+        scores_test = test_panel.physical_score if calibration.score_source == "physical" else test_panel.gate_score
+        if scores_val is None or scores_test is None or calibration.thresholds is None:
+            return {**base, "status": "not_applicable", **_empty_whatif_metrics()}
+        val_labels = _assign_bins(scores_val, calibration.thresholds)
+        test_labels = _assign_bins(scores_test, calibration.thresholds)
+
+    reserve_records: list[str] = []
+    for slice_name, horizon_mask in _horizon_bucket_masks(test_panel.shortfall_cells.shape[1]):
+        val_horizon_mask = _match_horizon_mask(horizon_mask, val_panel.shortfall_cells.shape[1])
+        if calibration.policy == "global":
+            cell_mask = val_panel.valid_cells & val_horizon_mask[None, :, None]
+            reserve, quantile = _calibrate_scalar(val_panel.shortfall_cells, cell_mask, ratio, dt, quantiles)
+            test_mask = horizon_mask[None, :, None]
+            whatif_reserve = np.where(test_mask, reserve, whatif_reserve)
+            reserve_records.append(f"{slice_name}=all:{reserve:.6g}@q{quantile:.3f}")
+            continue
+        assert val_labels is not None and test_labels is not None
+        for idx, bin_name in enumerate(BIN_NAMES):
+            cell_mask = val_panel.valid_cells & (val_labels[:, None, None] == idx) & val_horizon_mask[None, :, None]
+            if cell_mask.any():
+                reserve, quantile = _calibrate_scalar(val_panel.shortfall_cells, cell_mask, ratio, dt, quantiles)
+            else:
+                reserve = float(calibration.reserves.get(bin_name, 0.0))
+                quantile = float(calibration.quantiles.get(bin_name, np.nan))
+            test_mask = (test_labels[:, None, None] == idx) & horizon_mask[None, :, None]
+            whatif_reserve = np.where(test_mask, reserve, whatif_reserve)
+            reserve_records.append(f"{slice_name}={bin_name}:{reserve:.6g}@q{quantile:.3f}")
+
+    whatif_metrics = _cost_metrics(test_panel.shortfall_cells, test_panel.valid_cells, whatif_reserve, ratio, dt)
+    row = {
+        **base,
+        "calibration_scope": "horizon_specific_cell_empirical_quantile_whatif_no_new_training",
+        "horizon_reserve": ";".join(reserve_records),
+    }
+    for metric, value in pooled_metrics.items():
+        row[f"pooled_{metric}"] = value
+    for metric, value in whatif_metrics.items():
+        row[f"whatif_{metric}"] = value
+    for metric in ["total_cost", "mean_cost", "violation_rate", "mean_reserve", "reserve_energy", "shortage_energy"]:
+        row[f"delta_{metric}_vs_pooled"] = whatif_metrics[metric] - pooled_metrics[metric]
+    return row
+
+
+def _match_horizon_mask(mask: np.ndarray, pred_len: int) -> np.ndarray:
+    if mask.shape[0] == pred_len:
+        return mask
+    matched = np.zeros(pred_len, dtype=bool)
+    matched[: min(pred_len, mask.shape[0])] = mask[: min(pred_len, mask.shape[0])]
+    return matched
+
+
+def _empty_whatif_metrics() -> dict[str, float]:
+    empty = _empty_metrics()
+    row: dict[str, float] = {}
+    for prefix in ["pooled", "whatif"]:
+        for key, value in empty.items():
+            row[f"{prefix}_{key}"] = value
+    for metric in ["total_cost", "mean_cost", "violation_rate", "mean_reserve", "reserve_energy", "shortage_energy"]:
+        row[f"delta_{metric}_vs_pooled"] = np.nan
+    return row
 
 
 def _cost_metrics(
@@ -1060,6 +1374,79 @@ def _aggregate_metric_rows(raw_df: pd.DataFrame) -> pd.DataFrame:
             best = result.loc[list(idx), "total_cost_mean"].min()
             result.loc[list(idx), "regret"] = result.loc[list(idx), "total_cost_mean"] - best
         result = result.sort_values(["subset", "cost_ratio", "total_cost_mean", "model", "policy"], na_position="last")
+    return result
+
+
+def _aggregate_horizon_time_rows(raw_df: pd.DataFrame) -> pd.DataFrame:
+    if raw_df.empty:
+        return pd.DataFrame()
+    group_cols = ["subset", "cost_ratio", "slice_type", "slice_name", "model", "policy", "status", "calibration_scope"]
+    metric_cols = ["total_cost", "mean_cost", "violation_rate", "mean_reserve", "reserve_energy", "shortage_energy", "valid_cells"]
+    rows = []
+    for keys, group in raw_df.groupby(group_cols, dropna=False):
+        row = dict(zip(group_cols, keys))
+        row["n_runs"] = int(group["seed"].nunique()) if "seed" in group else int(len(group))
+        row["overall_rmse_mean"] = float(group["overall_rmse"].mean()) if group.get("overall_rmse", pd.Series()).notna().any() else np.nan
+        for col in metric_cols:
+            row[f"{col}_mean"] = float(group[col].mean()) if group[col].notna().any() else np.nan
+            row[f"{col}_std"] = float(group[col].std(ddof=1)) if group[col].notna().sum() > 1 else 0.0
+        row["best_quantile"] = _unique_join(group["best_quantile"]) if "best_quantile" in group else ""
+        row["reserve"] = _unique_join(group["reserve"]) if "reserve" in group else ""
+        rows.append(row)
+    result = pd.DataFrame(rows)
+    if not result.empty:
+        result = result.sort_values(
+            ["subset", "cost_ratio", "slice_type", "slice_name", "total_cost_mean", "model", "policy"],
+            na_position="last",
+        )
+    return result
+
+
+def _aggregate_horizon_whatif_rows(raw_df: pd.DataFrame) -> pd.DataFrame:
+    if raw_df.empty:
+        return pd.DataFrame()
+    group_cols = ["subset", "cost_ratio", "model", "policy", "status", "calibration_scope"]
+    metric_cols = [
+        "pooled_total_cost",
+        "pooled_mean_cost",
+        "pooled_violation_rate",
+        "pooled_mean_reserve",
+        "pooled_reserve_energy",
+        "pooled_shortage_energy",
+        "pooled_valid_cells",
+        "whatif_total_cost",
+        "whatif_mean_cost",
+        "whatif_violation_rate",
+        "whatif_mean_reserve",
+        "whatif_reserve_energy",
+        "whatif_shortage_energy",
+        "whatif_valid_cells",
+        "delta_total_cost_vs_pooled",
+        "delta_mean_cost_vs_pooled",
+        "delta_violation_rate_vs_pooled",
+        "delta_mean_reserve_vs_pooled",
+        "delta_reserve_energy_vs_pooled",
+        "delta_shortage_energy_vs_pooled",
+    ]
+    rows = []
+    for keys, group in raw_df.groupby(group_cols, dropna=False):
+        row = dict(zip(group_cols, keys))
+        row["n_runs"] = int(group["seed"].nunique()) if "seed" in group else int(len(group))
+        row["overall_rmse_mean"] = float(group["overall_rmse"].mean()) if group.get("overall_rmse", pd.Series()).notna().any() else np.nan
+        row["best_quantile"] = _unique_join(group["best_quantile"]) if "best_quantile" in group else ""
+        row["reserve"] = _unique_join(group["reserve"]) if "reserve" in group else ""
+        row["horizon_reserve"] = _unique_join(group["horizon_reserve"]) if "horizon_reserve" in group else ""
+        for col in metric_cols:
+            if col not in group:
+                row[f"{col}_mean"] = np.nan
+                row[f"{col}_std"] = np.nan
+                continue
+            row[f"{col}_mean"] = float(group[col].mean()) if group[col].notna().any() else np.nan
+            row[f"{col}_std"] = float(group[col].std(ddof=1)) if group[col].notna().sum() > 1 else 0.0
+        rows.append(row)
+    result = pd.DataFrame(rows)
+    if not result.empty:
+        result = result.sort_values(["subset", "cost_ratio", "whatif_total_cost_mean", "model", "policy"], na_position="last")
     return result
 
 
@@ -1422,6 +1809,8 @@ def _write_outputs(
     bin_df: pd.DataFrame,
     daily_df: pd.DataFrame,
     gate_loss_df: pd.DataFrame,
+    horizon_time_df: pd.DataFrame,
+    horizon_whatif_df: pd.DataFrame,
     config: dict[str, Any],
 ) -> None:
     summary.to_csv(output_dir / "reserve_decision_summary.csv", index=False)
@@ -1436,9 +1825,13 @@ def _write_outputs(
     gate_loss_df.to_csv(output_dir / "reserve_decision_gate_loss.csv", index=False)
     system_baselines.to_csv(output_dir / "reserve_decision_system_baselines.csv", index=False)
     cost_ratio_sensitivity.to_csv(output_dir / "reserve_decision_cost_ratio_sensitivity.csv", index=False)
+    horizon_time_df.to_csv(output_dir / "reserve_decision_horizon_time_sensitivity.csv", index=False)
+    horizon_whatif_df.to_csv(output_dir / "reserve_decision_horizon_quantile_whatif.csv", index=False)
     _write_boundary_slice_tex_table(boundary_slices, output_dir / "reserve_decision_boundary_slices.tex")
     _write_reserve_tex_table(system_baselines, output_dir / "reserve_decision_system_baselines.tex")
     _write_reserve_tex_table(cost_ratio_sensitivity, output_dir / "reserve_decision_cost_ratio_sensitivity.tex")
+    _write_horizon_time_tex_table(horizon_time_df, output_dir / "reserve_decision_horizon_time_sensitivity.tex")
+    _write_horizon_whatif_tex_table(horizon_whatif_df, output_dir / "reserve_decision_horizon_quantile_whatif.tex")
     save_json(output_dir / "reserve_decision_config.json", config)
 
 
@@ -1490,6 +1883,71 @@ def _write_reserve_tex_table(frame: pd.DataFrame, path: Path) -> None:
                 f"{_format_float(row.get('violation_rate_mean'), precision=4)} & "
                 f"{_format_millions(row.get('reserve_energy_mean'))} & "
                 f"{_format_millions(row.get('shortage_energy_mean'))} \\\\"
+            )
+    lines.extend(["\\bottomrule", "\\end{tabular}"])
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def _write_horizon_time_tex_table(frame: pd.DataFrame, path: Path) -> None:
+    lines = [
+        "\\begin{tabular}{lllrrrr}",
+        "\\toprule",
+        "Slice & Bucket & Policy & Cost & Violation & Reserve & Shortage \\\\",
+        "\\midrule",
+    ]
+    if not frame.empty:
+        display = frame.copy()
+        display = display[
+            display["subset"].astype(str).eq("boundary")
+            & display["model"].astype(str).eq("Boundary-forced router")
+            & display["policy"].astype(str).eq("gate-bin")
+        ].copy()
+        display = display.sort_values(["slice_type", "slice_name"])
+        for _, row in display.iterrows():
+            policy = f"{row.get('model', '')}/{row.get('policy', '')}"
+            lines.append(
+                f"{_latex_escape(str(row.get('slice_type', '')))} & "
+                f"{_latex_escape(str(row.get('slice_name', '')))} & "
+                f"{_latex_escape(policy)} & "
+                f"{_format_millions(row.get('total_cost_mean'))} & "
+                f"{_format_float(row.get('violation_rate_mean'), precision=4)} & "
+                f"{_format_millions(row.get('reserve_energy_mean'))} & "
+                f"{_format_millions(row.get('shortage_energy_mean'))} \\\\"
+            )
+    lines.extend(["\\bottomrule", "\\end{tabular}"])
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def _write_horizon_whatif_tex_table(frame: pd.DataFrame, path: Path) -> None:
+    lines = [
+        "\\begin{tabular}{llrrrr}",
+        "\\toprule",
+        "Subset & Policy & Pooled cost & Horizon-Q cost & $\\Delta$ violation & $\\Delta$ shortage \\\\",
+        "\\midrule",
+    ]
+    if not frame.empty:
+        display = frame.copy()
+        display = display[
+            display["subset"].astype(str).isin({"full", "boundary"})
+            & display["model"].astype(str).isin({"Graph WaveNet", "Boundary-forced router"})
+            & (
+                (display["model"].astype(str).eq("Graph WaveNet") & display["policy"].astype(str).isin({"global", "physical-bin"}))
+                | (
+                    display["model"].astype(str).eq("Boundary-forced router")
+                    & display["policy"].astype(str).isin({"global", "gate-bin"})
+                )
+            )
+        ].copy()
+        display = display.sort_values(["subset", "model", "policy"])
+        for _, row in display.iterrows():
+            policy = f"{row.get('model', '')}/{row.get('policy', '')}"
+            lines.append(
+                f"{_latex_escape(str(row.get('subset', '')))} & "
+                f"{_latex_escape(policy)} & "
+                f"{_format_millions(row.get('pooled_total_cost_mean'))} & "
+                f"{_format_millions(row.get('whatif_total_cost_mean'))} & "
+                f"{_format_float(row.get('delta_violation_rate_vs_pooled_mean'), precision=4)} & "
+                f"{_format_millions(row.get('delta_shortage_energy_vs_pooled_mean'))} \\\\"
             )
     lines.extend(["\\bottomrule", "\\end{tabular}"])
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
