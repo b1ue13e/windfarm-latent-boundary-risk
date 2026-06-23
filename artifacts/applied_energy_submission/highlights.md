@@ -1,5 +1,4 @@
-- Audits physical accountability of routing near wind-turbine MPPT-to-pitch operating transitions.
-- Reports the RMSE cost of boundary-forced routing against graph and engineering accuracy baselines.
-- Frames reserve value as a transition-window shortage, violation, and reserve-energy tradeoff.
-- Treats Kelmarsh/Penmanshiel external runs and small-window adaptation as negative diagnostics requiring local boundary re-estimation.
-- Separates useful gate responsibility from gate-correct but forecast-bad operating cases.
+- Physics-anchored MoE gate recovers MPPT-to-pitch routing.
+- Gate-bin reserve cuts boundary shortage energy by 14.5%.
+- Reserve value holds at moderate shortage-cost ratios.
+- External-farm failure defines local deployment checks.
