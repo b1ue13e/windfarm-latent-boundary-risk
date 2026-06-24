@@ -72,6 +72,7 @@ class ReproductionPackageTests(unittest.TestCase):
             self.assertIn("reserve-probabilistic-baseline", artifact_text)
             self.assertIn("toy-operational-cost", artifact_text)
             self.assertIn("anchor-stress-cache", artifact_text)
+            self.assertIn("anchor-stress-train", artifact_text)
             self.assertIn("anchor-stress-guard", artifact_text)
             self.assertIn("reserve_quantile_baseline/reserve_quantile_baseline.csv", final_text)
             self.assertIn("reserve_toy_operational_cost/reserve_toy_operational_cost.csv", final_text)

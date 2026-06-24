@@ -18,6 +18,7 @@ Last updated: 2026-06-23.
 - `references.bib`: current bibliography.
 - `elsevier-harvard.csl`: CSL file used by `scripts/build_paper.ps1` and submission helpers.
 - `AE_MAJOR_REVISION_FAILSAFE_PLAN.md`: Applied Energy major-revision failsafe plan.
+- `docs/ieee_tste_transfer_execution.md`: IEEE TSTE transfer route, claim boundary, and anchor-stress completion commands.
 
 These files stay in the repository root because several scripts and guards use them as default paths.
 

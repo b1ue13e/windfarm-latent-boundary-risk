@@ -7,6 +7,9 @@ import shutil
 import numpy as np
 import pandas as pd
 
+from .config import EvalConfig, ModelConfig, TrainConfig
+from .data import load_cache_bundle
+from .train import train_model
 from .utils import ensure_dir, load_json, save_json
 
 
@@ -114,10 +117,131 @@ def run_anchor_stress_guard(
     return out_dir
 
 
+def run_anchor_stress_training(
+    *,
+    cache_root: Path | str,
+    output_root: Path | str,
+    variants: list[str] | tuple[str, ...] | str | None = None,
+    seeds: list[int] | tuple[int, ...] | str | None = None,
+    epochs: int = 20,
+    batch_size: int = 16,
+    hidden_dim: int = 64,
+    num_experts: int = 4,
+    dropout: float = 0.1,
+    tau: float = 0.7,
+    learning_rate: float = 2e-3,
+    weight_decay: float = 1e-4,
+    patience: int = 5,
+    limit_train_batches: int | None = None,
+    limit_val_batches: int | None = None,
+    skip_visuals: bool = True,
+    resume: bool = True,
+) -> Path:
+    cache_root = Path(cache_root)
+    out_root = ensure_dir(output_root)
+    variant_list = _parse_variants(variants)
+    seed_list = _parse_seeds(seeds)
+
+    rows: list[dict[str, Any]] = []
+    for variant in variant_list:
+        cache_dir = _resolve_variant_cache(cache_root, variant)
+        bundle = load_cache_bundle(cache_dir, mmap_mode=None)
+        for seed in seed_list:
+            run_dir = out_root / variant / f"wtb_bal_align_force_seed{seed}"
+            if resume and _run_status_row(run_dir, variant, seed)["complete"]:
+                row = _run_status_row(run_dir, variant, seed)
+                row["training_action"] = "skipped_existing_complete_run"
+                rows.append(row)
+                continue
+
+            model_config = ModelConfig(
+                hidden_dim=int(hidden_dim),
+                num_experts=int(num_experts),
+                dropout=float(dropout),
+                tau=float(tau),
+                primary_num_classes=int(bundle.metadata.get("primary_num_classes", 3)),
+                gate_physics_dim=int(bundle.physics.shape[-1]),
+            )
+            train_config = TrainConfig(
+                mode="moe_full_no_aux",
+                epochs=int(epochs),
+                batch_size=int(batch_size),
+                learning_rate=float(learning_rate),
+                weight_decay=float(weight_decay),
+                patience=int(patience),
+                seed=int(seed),
+                align_weight=5000.0,
+                aux_weight=0.0,
+                smooth_weight=0.0,
+                balance_weight=1000.0,
+                physics_force_weight=10000.0,
+                limit_train_batches=limit_train_batches,
+                limit_val_batches=limit_val_batches,
+                label=f"anchor_stress_{variant}_seed{seed}",
+            )
+            eval_config = EvalConfig(
+                skip_visuals=bool(skip_visuals),
+                save_predictions=True,
+                switch_window=3 * int(bundle.metadata.get("steps_per_hour", 6)),
+            )
+            result = train_model(bundle, run_dir, model_config, train_config, eval_config)
+            result.update(
+                {
+                    "seed": int(seed),
+                    "variant_key": "bal_align_force",
+                    "experiment_group": "anchor_stress",
+                    "anchor_stress_variant": variant,
+                    "cache_dir": str(cache_dir),
+                    "model_mode": "moe_full_no_aux",
+                    "label": "MoE + L_bal + L_align + L_force",
+                    "loss_weights": train_config.effective_loss_weights(),
+                }
+            )
+            save_json(run_dir / "training_summary.json", result)
+            row = _run_status_row(run_dir, variant, seed)
+            row["training_action"] = "trained"
+            rows.append(row)
+
+    manifest = pd.DataFrame(rows)
+    manifest.to_csv(out_root / "anchor_stress_training_manifest.csv", index=False)
+    save_json(
+        out_root / "anchor_stress_training_manifest.json",
+        {
+            "cache_root": str(cache_root),
+            "output_root": str(out_root),
+            "variants": variant_list,
+            "seeds": [int(seed) for seed in seed_list],
+            "policy": (
+                "Train the boundary-forced WTB router on derived issue-time anchor-observability caches. "
+                "Runs are written under <output_root>/<variant>/wtb_bal_align_force_seed<seed> for guard reuse."
+            ),
+        },
+    )
+    return out_root
+
+
 def _copy_cache(source: Path, target: Path) -> None:
     if target.exists():
         shutil.rmtree(target)
     shutil.copytree(source, target)
+
+
+def _resolve_variant_cache(cache_root: Path, variant: str) -> Path:
+    manifest_path = cache_root / "anchor_stress_cache_manifest.json"
+    if manifest_path.exists():
+        manifest = load_json(manifest_path)
+        variant_dirs = manifest.get("variant_dirs", {})
+        path = variant_dirs.get(variant) if isinstance(variant_dirs, dict) else None
+        if path and _cache_variant_ready(Path(path), variant):
+            return Path(path)
+    matches = sorted(cache_root.glob(f"*_{variant}"))
+    for match in matches:
+        if _cache_variant_ready(match, variant):
+            return match
+    raise FileNotFoundError(
+        f"Missing anchor-stress cache for variant '{variant}' under {cache_root}. "
+        "Run `anchor-stress-cache` first."
+    )
 
 
 def _cache_variant_ready(cache_dir: Path, variant: str) -> bool:

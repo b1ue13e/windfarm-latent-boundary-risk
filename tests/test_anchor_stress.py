@@ -3,12 +3,13 @@ from __future__ import annotations
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import numpy as np
 import pandas as pd
 
 from main import build_parser
-from windfarm_moe.anchor_stress import build_anchor_stress_caches, run_anchor_stress_guard
+from windfarm_moe.anchor_stress import build_anchor_stress_caches, run_anchor_stress_guard, run_anchor_stress_training
 from windfarm_moe.utils import load_json, save_json
 
 
@@ -20,8 +21,13 @@ class AnchorStressTests(unittest.TestCase):
         guard_args = build_parser().parse_args(
             ["anchor-stress-guard", "--suite-root", "runs", "--cache-root", "cache", "--output-dir", "out"]
         )
+        train_args = build_parser().parse_args(
+            ["anchor-stress-train", "--cache-root", "cache", "--output-root", "runs"]
+        )
 
         self.assertEqual(cache_args.command, "anchor-stress-cache")
+        self.assertEqual(train_args.command, "anchor-stress-train")
+        self.assertEqual(train_args.seeds, "201,202,203")
         self.assertEqual(guard_args.command, "anchor-stress-guard")
         self.assertEqual(guard_args.seeds, "201,202,203")
 
@@ -75,6 +81,51 @@ class AnchorStressTests(unittest.TestCase):
             self.assertEqual(summary.iloc[0]["claim_boundary"], "downgrade_to_declared_anchor_constrained_routing")
             self.assertTrue((output / "anchor_stress_summary.tex").exists())
 
+    def test_training_command_writes_standard_variant_seed_runs(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            source = _write_cache(root / "source" / "wtb_245d")
+            cache_root = build_anchor_stress_caches(
+                source_cache_dir=source,
+                output_cache_root=root / "anchor_cache",
+                variants="no_patv",
+            )
+
+            def fake_train(_bundle, run_dir, _model_config, train_config, _eval_config):
+                metrics = Path(run_dir) / "test_metrics"
+                metrics.mkdir(parents=True)
+                save_json(
+                    metrics / "metrics.json",
+                    {
+                        "overall": {"rmse": 2.0},
+                        "switch_window": {"rmse": 2.5},
+                        "gate_alignment": {"nmi": 0.7, "ari": 0.6},
+                        "leakage_guard": {"pass": True},
+                    },
+                )
+                return {"best_epoch": 1, "seed": train_config.seed}
+
+            with patch("windfarm_moe.anchor_stress.train_model", side_effect=fake_train):
+                output = run_anchor_stress_training(
+                    cache_root=cache_root,
+                    output_root=root / "runs",
+                    variants="no_patv",
+                    seeds="201,202",
+                    epochs=1,
+                    limit_train_batches=1,
+                    limit_val_batches=1,
+                )
+
+            run_201 = output / "no_patv" / "wtb_bal_align_force_seed201"
+            manifest = pd.read_csv(output / "anchor_stress_training_manifest.csv")
+            summary = load_json(run_201 / "training_summary.json")
+
+            self.assertTrue((run_201 / "test_metrics" / "metrics.json").exists())
+            self.assertEqual(set(manifest["seed"]), {201, 202})
+            self.assertEqual(summary["anchor_stress_variant"], "no_patv")
+            self.assertEqual(summary["variant_key"], "bal_align_force")
+            self.assertEqual(summary["loss_weights"]["physics_force"], 10000.0)
+
 
 def _write_cache(cache: Path) -> Path:
     cache.mkdir(parents=True)
@@ -122,6 +173,9 @@ def _write_cache(cache: Path) -> Path:
                 "Patv_hist",
             ],
             "physics_names": ["Wspd", "Pab_mean", "wake_score", "Patv"],
+            "primary_num_classes": 3,
+            "pred_len": 1,
+            "steps_per_hour": 6,
         },
     )
     return cache

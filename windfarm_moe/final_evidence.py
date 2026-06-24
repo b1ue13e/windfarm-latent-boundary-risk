@@ -843,7 +843,7 @@ def _infer_trace_command(group: str, name: str, source_path: str) -> str:
     if "reserve_toy_operational_cost" in text:
         return "python main.py toy-operational-cost"
     if "anchor_stress_guard" in text:
-        return "python main.py anchor-stress-cache / anchor-stress-guard"
+        return "python main.py anchor-stress-cache / anchor-stress-train / anchor-stress-guard"
     if "reviewer_stats" in text or "paired_" in text or "failure_cases" in text:
         return "python main.py reviewer-stat-pack / reviewer-stat-pack-guard"
     if "external_wind" in text:

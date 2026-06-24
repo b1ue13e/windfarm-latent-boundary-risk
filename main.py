@@ -9,7 +9,7 @@ import pandas as pd
 from windfarm_moe.boundary_slice import run_boundary_slice_audit
 from windfarm_moe.config import DataConfig, EvalConfig, ModelConfig, TrainConfig
 from windfarm_moe.decision import run_reserve_decision, run_reserve_decision_guard
-from windfarm_moe.anchor_stress import build_anchor_stress_caches, run_anchor_stress_guard
+from windfarm_moe.anchor_stress import build_anchor_stress_caches, run_anchor_stress_guard, run_anchor_stress_training
 from windfarm_moe.operational_cost import run_toy_operational_cost
 from windfarm_moe.operational_baselines import run_operational_baselines
 from windfarm_moe.reserve_baselines import run_reserve_probabilistic_baseline
@@ -1105,6 +1105,32 @@ def build_parser() -> argparse.ArgumentParser:
         default="no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd",
     )
 
+    anchor_stress_train_parser = subparsers.add_parser(
+        "anchor-stress-train",
+        help="Train WTB boundary-forced routers on derived anchor-observability stress caches",
+    )
+    anchor_stress_train_parser.add_argument("--cache-root", type=str, required=True)
+    anchor_stress_train_parser.add_argument("--output-root", type=str, required=True)
+    anchor_stress_train_parser.add_argument(
+        "--variants",
+        type=str,
+        default="no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd",
+    )
+    anchor_stress_train_parser.add_argument("--seeds", type=str, default="201,202,203")
+    anchor_stress_train_parser.add_argument("--epochs", type=int, default=20)
+    anchor_stress_train_parser.add_argument("--batch-size", type=int, default=16)
+    anchor_stress_train_parser.add_argument("--hidden-dim", type=int, default=64)
+    anchor_stress_train_parser.add_argument("--num-experts", type=int, default=4)
+    anchor_stress_train_parser.add_argument("--dropout", type=float, default=0.1)
+    anchor_stress_train_parser.add_argument("--tau", type=float, default=0.7)
+    anchor_stress_train_parser.add_argument("--lr", type=float, default=2e-3)
+    anchor_stress_train_parser.add_argument("--weight-decay", type=float, default=1e-4)
+    anchor_stress_train_parser.add_argument("--patience", type=int, default=5)
+    anchor_stress_train_parser.add_argument("--limit-train-batches", type=int, default=None)
+    anchor_stress_train_parser.add_argument("--limit-val-batches", type=int, default=None)
+    anchor_stress_train_parser.add_argument("--skip-visuals", action="store_true")
+    anchor_stress_train_parser.add_argument("--no-resume", action="store_true")
+
     anchor_stress_guard_parser = subparsers.add_parser(
         "anchor-stress-guard",
         help="Verify completed anchor stress training runs and produce claim-downgrade status",
@@ -1240,6 +1266,29 @@ def _default_loss_weights(dataset: str) -> dict[str, float]:
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
+    if args.command == "anchor-stress-train":
+        output_dir = run_anchor_stress_training(
+            cache_root=Path(args.cache_root),
+            output_root=Path(args.output_root),
+            variants=args.variants,
+            seeds=args.seeds,
+            epochs=args.epochs,
+            batch_size=args.batch_size,
+            hidden_dim=args.hidden_dim,
+            num_experts=args.num_experts,
+            dropout=args.dropout,
+            tau=args.tau,
+            learning_rate=args.lr,
+            weight_decay=args.weight_decay,
+            patience=args.patience,
+            limit_train_batches=args.limit_train_batches,
+            limit_val_batches=args.limit_val_batches,
+            skip_visuals=args.skip_visuals,
+            resume=not args.no_resume,
+        )
+        print(f"Anchor-stress training manifest saved to: {output_dir}")
+        return
+
     if args.command == "anchor-stress-guard":
         output_dir = run_anchor_stress_guard(
             suite_root=Path(args.suite_root),
