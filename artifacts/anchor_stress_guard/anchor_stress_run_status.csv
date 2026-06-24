@@ -1,0 +1,13 @@
+variant,seed,run_dir,summary_exists,metrics_exists,complete,leakage_guard_pass,overall_rmse,switch_rmse,nmi,ari,claim_boundary
+no_patv,201,artifacts\anchor_stress_runs\no_patv\wtb_bal_align_force_seed201,False,False,False,True,,,,,not_yet_citable
+no_patv,202,artifacts\anchor_stress_runs\no_patv\wtb_bal_align_force_seed202,False,False,False,True,,,,,not_yet_citable
+no_patv,203,artifacts\anchor_stress_runs\no_patv\wtb_bal_align_force_seed203,False,False,False,True,,,,,not_yet_citable
+lagged_patv,201,artifacts\anchor_stress_runs\lagged_patv\wtb_bal_align_force_seed201,False,False,False,True,,,,,not_yet_citable
+lagged_patv,202,artifacts\anchor_stress_runs\lagged_patv\wtb_bal_align_force_seed202,False,False,False,True,,,,,not_yet_citable
+lagged_patv,203,artifacts\anchor_stress_runs\lagged_patv\wtb_bal_align_force_seed203,False,False,False,True,,,,,not_yet_citable
+no_pab_mean,201,artifacts\anchor_stress_runs\no_pab_mean\wtb_bal_align_force_seed201,False,False,False,True,,,,,not_yet_citable
+no_pab_mean,202,artifacts\anchor_stress_runs\no_pab_mean\wtb_bal_align_force_seed202,False,False,False,True,,,,,not_yet_citable
+no_pab_mean,203,artifacts\anchor_stress_runs\no_pab_mean\wtb_bal_align_force_seed203,False,False,False,True,,,,,not_yet_citable
+lagged_pab_wspd,201,artifacts\anchor_stress_runs\lagged_pab_wspd\wtb_bal_align_force_seed201,False,False,False,True,,,,,not_yet_citable
+lagged_pab_wspd,202,artifacts\anchor_stress_runs\lagged_pab_wspd\wtb_bal_align_force_seed202,False,False,False,True,,,,,not_yet_citable
+lagged_pab_wspd,203,artifacts\anchor_stress_runs\lagged_pab_wspd\wtb_bal_align_force_seed203,False,False,False,True,,,,,not_yet_citable

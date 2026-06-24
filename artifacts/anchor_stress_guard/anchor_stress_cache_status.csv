@@ -1,0 +1,5 @@
+variant,cache_dir,metadata_exists,variant_marker_matches
+no_patv,artifacts\cache_anchor_stress\wtb_245d_no_patv,True,True
+lagged_patv,artifacts\cache_anchor_stress\wtb_245d_lagged_patv,True,True
+no_pab_mean,artifacts\cache_anchor_stress\wtb_245d_no_pab_mean,True,True
+lagged_pab_wspd,artifacts\cache_anchor_stress\wtb_245d_lagged_pab_wspd,True,True

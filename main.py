@@ -474,6 +474,7 @@ def build_parser() -> argparse.ArgumentParser:
         "toy-operational-cost",
         help="Build a normalized reserve procurement plus shortage-penalty cost proxy",
     )
+    _add_common_data_args(toy_cost_parser)
     toy_cost_parser.add_argument("--decision-dir", type=str, default="artifacts/decision_reserve_wtb_operational_windows")
     toy_cost_parser.add_argument("--probabilistic-dir", type=str, default="artifacts/reserve_quantile_baseline")
     toy_cost_parser.add_argument("--output-dir", type=str, required=True)
@@ -1095,6 +1096,7 @@ def build_parser() -> argparse.ArgumentParser:
         "anchor-stress-cache",
         help="Derive WTB strict-cache variants for training-level anchor observability stress tests",
     )
+    _add_common_data_args(anchor_stress_cache_parser)
     anchor_stress_cache_parser.add_argument("--source-cache-dir", type=str, required=True)
     anchor_stress_cache_parser.add_argument("--output-cache-root", type=str, required=True)
     anchor_stress_cache_parser.add_argument(
@@ -1238,6 +1240,18 @@ def _default_loss_weights(dataset: str) -> dict[str, float]:
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
+    if args.command == "anchor-stress-guard":
+        output_dir = run_anchor_stress_guard(
+            suite_root=Path(args.suite_root),
+            cache_root=Path(args.cache_root),
+            output_dir=Path(args.output_dir),
+            variants=args.variants,
+            seeds=args.seeds,
+            min_nmi=args.min_nmi,
+        )
+        print(f"Anchor-stress guard saved to: {output_dir}")
+        return
+
     data_config = _make_data_config(args)
 
     if args.command == "preprocess":
@@ -2223,18 +2237,6 @@ def main() -> None:
             variants=args.variants,
         )
         print(f"Anchor-stress caches saved to: {output_dir}")
-        return
-
-    if args.command == "anchor-stress-guard":
-        output_dir = run_anchor_stress_guard(
-            suite_root=Path(args.suite_root),
-            cache_root=Path(args.cache_root),
-            output_dir=Path(args.output_dir),
-            variants=args.variants,
-            seeds=args.seeds,
-            min_nmi=args.min_nmi,
-        )
-        print(f"Anchor-stress guard saved to: {output_dir}")
         return
 
     if args.command == "mechanism-intervention":

@@ -1,0 +1,5 @@
+variant,n_requested_runs,n_complete_runs,all_requested_runs_complete,leakage_guard_pass,nmi_mean,nmi_std,ari_mean,ari_std,nmi_gate_pass,claim_boundary
+lagged_pab_wspd,3,0,False,True,,0.0,,0.0,False,not_yet_citable
+lagged_patv,3,0,False,True,,0.0,,0.0,False,not_yet_citable
+no_pab_mean,3,0,False,True,,0.0,,0.0,False,not_yet_citable
+no_patv,3,0,False,True,,0.0,,0.0,False,not_yet_citable

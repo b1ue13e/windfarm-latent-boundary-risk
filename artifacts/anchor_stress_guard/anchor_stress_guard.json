@@ -1,0 +1,27 @@
+{
+  "status": "ready_to_execute_anchor_stress_training",
+  "variants": [
+    "no_patv",
+    "lagged_patv",
+    "no_pab_mean",
+    "lagged_pab_wspd"
+  ],
+  "seeds": [
+    201,
+    202,
+    203
+  ],
+  "min_nmi": 0.65,
+  "checks": {
+    "all_requested_runs_complete": false,
+    "leakage_guard_pass": true,
+    "nmi_gate_pass": false
+  },
+  "claim_use": "Training-level anchor-observability stress guard. If NMI drops below threshold or runs are incomplete, manuscript must use declared-anchor constrained routing language rather than learned physical discovery.",
+  "paths": {
+    "run_status_csv": "artifacts\\anchor_stress_guard\\anchor_stress_run_status.csv",
+    "summary_csv": "artifacts\\anchor_stress_guard\\anchor_stress_summary.csv",
+    "cache_status_csv": "artifacts\\anchor_stress_guard\\anchor_stress_cache_status.csv",
+    "tex": "artifacts\\anchor_stress_guard\\anchor_stress_summary.tex"
+  }
+}

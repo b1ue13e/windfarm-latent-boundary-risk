@@ -1,0 +1,176 @@
+{
+  "dataset": "wtb",
+  "run_table": "artifacts\\paper_assets\\tables\\wtb_test_aggregated_runs.csv",
+  "cache_dir": "artifacts\\cache_strictmask\\wtb_245d",
+  "cost_ratios": [
+    2.0,
+    5.0,
+    10.0,
+    20.0,
+    50.0
+  ],
+  "main_ratio": 10.0,
+  "quantiles": [
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    0.975,
+    0.99
+  ],
+  "boundary_band": 1.0,
+  "bootstrap_samples": 1000,
+  "seed": 42,
+  "claim_use": "Validation-frozen empirical quantile/conformal reserve baseline. If it dominates gate-bin reserves, downgrade the reserve claim to transition-window attribution diagnostic.",
+  "selected_runs": [
+    {
+      "model": "Graph WaveNet",
+      "seed": 201,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed201",
+      "variant_key": "graph_wavenet",
+      "experiment_group": "strong_baselines"
+    },
+    {
+      "model": "Graph WaveNet",
+      "seed": 202,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed202",
+      "variant_key": "graph_wavenet",
+      "experiment_group": "strong_baselines"
+    },
+    {
+      "model": "Graph WaveNet",
+      "seed": 203,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed203",
+      "variant_key": "graph_wavenet",
+      "experiment_group": "strong_baselines"
+    },
+    {
+      "model": "Graph WaveNet",
+      "seed": 204,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed204",
+      "variant_key": "graph_wavenet",
+      "experiment_group": "strong_baselines"
+    },
+    {
+      "model": "Graph WaveNet",
+      "seed": 205,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_graph_wavenet_seed205",
+      "variant_key": "graph_wavenet",
+      "experiment_group": "strong_baselines"
+    },
+    {
+      "model": "PatchTST",
+      "seed": 201,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed201",
+      "variant_key": "patchtst",
+      "experiment_group": "strong_baselines"
+    },
+    {
+      "model": "PatchTST",
+      "seed": 202,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed202",
+      "variant_key": "patchtst",
+      "experiment_group": "strong_baselines"
+    },
+    {
+      "model": "PatchTST",
+      "seed": 203,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed203",
+      "variant_key": "patchtst",
+      "experiment_group": "strong_baselines"
+    },
+    {
+      "model": "PatchTST",
+      "seed": 204,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed204",
+      "variant_key": "patchtst",
+      "experiment_group": "strong_baselines"
+    },
+    {
+      "model": "PatchTST",
+      "seed": 205,
+      "run_dir": "artifacts\\strictmask_baseline_rerun_wtb_full\\wtb_patchtst_seed205",
+      "variant_key": "patchtst",
+      "experiment_group": "strong_baselines"
+    },
+    {
+      "model": "Physics-Aligned MoE",
+      "seed": 201,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed201",
+      "variant_key": "full",
+      "experiment_group": "ablation"
+    },
+    {
+      "model": "Physics-Aligned MoE",
+      "seed": 202,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed202",
+      "variant_key": "full",
+      "experiment_group": "ablation"
+    },
+    {
+      "model": "Physics-Aligned MoE",
+      "seed": 203,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed203",
+      "variant_key": "full",
+      "experiment_group": "ablation"
+    },
+    {
+      "model": "Physics-Aligned MoE",
+      "seed": 204,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed204",
+      "variant_key": "full",
+      "experiment_group": "ablation"
+    },
+    {
+      "model": "Physics-Aligned MoE",
+      "seed": 205,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_full_seed205",
+      "variant_key": "full",
+      "experiment_group": "ablation"
+    },
+    {
+      "model": "Boundary-forced router",
+      "seed": 201,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed201",
+      "variant_key": "bal_align_force",
+      "experiment_group": "ablation"
+    },
+    {
+      "model": "Boundary-forced router",
+      "seed": 202,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed202",
+      "variant_key": "bal_align_force",
+      "experiment_group": "ablation"
+    },
+    {
+      "model": "Boundary-forced router",
+      "seed": 203,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed203",
+      "variant_key": "bal_align_force",
+      "experiment_group": "ablation"
+    },
+    {
+      "model": "Boundary-forced router",
+      "seed": 204,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed204",
+      "variant_key": "bal_align_force",
+      "experiment_group": "ablation"
+    },
+    {
+      "model": "Boundary-forced router",
+      "seed": 205,
+      "run_dir": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed205",
+      "variant_key": "bal_align_force",
+      "experiment_group": "ablation"
+    }
+  ],
+  "outputs": {
+    "summary_csv": "artifacts\\reserve_quantile_baseline\\reserve_quantile_baseline.csv",
+    "comparison_csv": "artifacts\\reserve_quantile_baseline\\reserve_quantile_baseline_comparison.csv",
+    "bootstrap_csv": "artifacts\\reserve_quantile_baseline\\reserve_quantile_baseline_bootstrap.csv",
+    "tex": "artifacts\\reserve_quantile_baseline\\reserve_quantile_baseline.tex"
+  }
+}

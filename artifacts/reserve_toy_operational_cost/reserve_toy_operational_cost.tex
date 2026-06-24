@@ -1,0 +1,27 @@
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\caption{Normalized toy operational cost at $\rho=10$.}
+\begin{tabular}{llrrrr}
+\toprule
+Subset & Policy & Toy cost & Reserve cost & Shortage penalty & Violation \\
+\midrule
+boundary & Graph WaveNet/physical-bin & 84.31M & 50.35M & 33.97M & 0.0931 \\
+boundary & Graph WaveNet/physical\_bin\_quantile & 84.31M & 50.35M & 33.97M & 0.0931 \\
+boundary & Boundary-forced router/gate-bin & 84.58M & 52.67M & 31.91M & 0.0900 \\
+boundary & Boundary-forced router/gate\_bin\_quantile & 84.58M & 52.67M & 31.91M & 0.0900 \\
+boundary & Boundary-forced router/global & 88.13M & 50.82M & 37.31M & 0.1038 \\
+boundary & Graph WaveNet/global & 88.80M & 50.32M & 38.48M & 0.1022 \\
+boundary & Graph WaveNet/global\_quantile & 88.80M & 50.32M & 38.48M & 0.1022 \\
+full & Graph WaveNet/global & 464.07M & 288.01M & 176.06M & 0.0901 \\
+full & Graph WaveNet/global\_quantile & 464.07M & 288.01M & 176.06M & 0.0901 \\
+full & Graph WaveNet/physical-bin & 464.43M & 278.15M & 186.28M & 0.1057 \\
+full & Graph WaveNet/physical\_bin\_quantile & 464.43M & 278.15M & 186.28M & 0.1057 \\
+full & Boundary-forced router/gate-bin & 481.36M & 291.16M & 190.19M & 0.1214 \\
+full & Boundary-forced router/gate\_bin\_quantile & 481.36M & 291.16M & 190.19M & 0.1214 \\
+full & Boundary-forced router/global & 501.32M & 324.97M & 176.35M & 0.0857 \\
+\bottomrule
+\end{tabular}
+\end{table}

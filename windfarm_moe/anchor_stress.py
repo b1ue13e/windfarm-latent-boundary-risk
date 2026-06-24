@@ -25,6 +25,8 @@ def build_anchor_stress_caches(
     metadata = load_json(source / "metadata.json")
     for variant in variant_list:
         target = output_root / f"{source.name}_{variant}"
+        if _cache_variant_ready(target, variant):
+            continue
         _copy_cache(source, target)
         _apply_variant(target, variant, metadata)
     save_json(
@@ -116,6 +118,18 @@ def _copy_cache(source: Path, target: Path) -> None:
     if target.exists():
         shutil.rmtree(target)
     shutil.copytree(source, target)
+
+
+def _cache_variant_ready(cache_dir: Path, variant: str) -> bool:
+    metadata_path = cache_dir / "metadata.json"
+    if not metadata_path.exists():
+        return False
+    try:
+        metadata = load_json(metadata_path)
+    except Exception:
+        return False
+    required = ["features.npy", "feature_mask.npy", "physics.npy", "physics_model.npy"]
+    return metadata.get("anchor_stress_variant") == variant and all((cache_dir / name).exists() for name in required)
 
 
 def _apply_variant(cache_dir: Path, variant: str, source_metadata: dict[str, Any]) -> None:

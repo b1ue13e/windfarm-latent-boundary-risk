@@ -1,0 +1,11 @@
+{
+  "decision_dir": "artifacts\\decision_reserve_wtb_operational_windows",
+  "probabilistic_dir": "artifacts\\reserve_quantile_baseline",
+  "main_ratio": 10.0,
+  "claim_use": "Normalized proxy operational cost: reserve procurement energy plus rho-weighted shortage energy. Not unit commitment, OPF, market clearing, or real dispatch integration.",
+  "outputs": {
+    "summary_csv": "artifacts\\reserve_toy_operational_cost\\reserve_toy_operational_cost.csv",
+    "raw_csv": "artifacts\\reserve_toy_operational_cost\\reserve_toy_operational_cost_raw.csv",
+    "tex": "artifacts\\reserve_toy_operational_cost\\reserve_toy_operational_cost.tex"
+  }
+}
