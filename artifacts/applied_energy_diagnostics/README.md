@@ -17,6 +17,10 @@ This package is generated from saved strict-mask artifacts and does not retrain 
 - `quasi_external_deployment_drill_summary.csv`: WTB proxy deployment drill using calibration-only boundary/gate-map selection and held-out testing.
 - `boundary_reserve_system_workflow.png`: SCADA to boundary router to reserve-policy audit workflow.
 - `new_wind_farm_deployment_checklist.png`: deployment gate from sensor coverage to bounded operating claims.
+- `graphical_abstract_applied_energy.png`: standalone Applied Energy graphical abstract (1800 x 840 px, 300 dpi).
+- `../reserve_quantile_baseline/reserve_quantile_baseline.{csv,tex,json}`: validation-frozen global, physical-bin, and gate-bin quantile reserve baseline.
+- `../reserve_toy_operational_cost/reserve_toy_operational_cost.{csv,tex,json}`: normalized reserve procurement plus shortage-penalty proxy.
+- `../anchor_stress_guard/anchor_stress_guard.json`: training-level anchor-stress claim guard; incomplete runs require declared-anchor wording.
 
 ## Claim summary
 

@@ -29,6 +29,16 @@ $tables = @(
   'artifacts/decision_reserve_wtb_operational_windows/reserve_decision_system_baselines.tex',
   'artifacts/decision_reserve_wtb_operational_windows/reserve_decision_cost_ratio_sensitivity.csv',
   'artifacts/decision_reserve_wtb_operational_windows/reserve_decision_cost_ratio_sensitivity.tex',
+  'artifacts/decision_reserve_wtb_operational_windows/reserve_decision_horizon_time_sensitivity.csv',
+  'artifacts/decision_reserve_wtb_operational_windows/reserve_decision_horizon_time_sensitivity.tex',
+  'artifacts/decision_reserve_wtb_operational_windows/reserve_decision_horizon_quantile_whatif.csv',
+  'artifacts/decision_reserve_wtb_operational_windows/reserve_decision_horizon_quantile_whatif.tex',
+  'artifacts/reserve_quantile_baseline/reserve_quantile_baseline.csv',
+  'artifacts/reserve_quantile_baseline/reserve_quantile_baseline.tex',
+  'artifacts/reserve_toy_operational_cost/reserve_toy_operational_cost.csv',
+  'artifacts/reserve_toy_operational_cost/reserve_toy_operational_cost.tex',
+  'artifacts/anchor_stress_guard/anchor_stress_summary.csv',
+  'artifacts/anchor_stress_guard/anchor_stress_summary.tex',
   'artifacts/operational_baselines_wtb_strictmask/wtb_operational_baselines.csv',
   'artifacts/operational_baselines_wtb_strictmask/table_wtb_operational_baselines.tex',
   'artifacts/strictmask_combined_reviewer_stats/paired_effects_summary.csv',
@@ -50,6 +60,8 @@ $tables = @(
   'artifacts/applied_energy_diagnostics/table_system_value_envelope.tex',
   'artifacts/applied_energy_diagnostics/reserve_paired_statistics.csv',
   'artifacts/applied_energy_diagnostics/table_reserve_paired_statistics.tex',
+  'artifacts/applied_energy_diagnostics/reserve_coverage_reliability.csv',
+  'artifacts/applied_energy_diagnostics/table_reserve_coverage_reliability.tex',
   'artifacts/applied_energy_diagnostics/cost_ratio_energy_system_assumptions.csv',
   'artifacts/applied_energy_diagnostics/table_cost_ratio_energy_system_assumptions.tex',
   'artifacts/applied_energy_diagnostics/anchor_only_rule_router_main_table.csv',
@@ -77,6 +89,14 @@ $sources = @(
   'artifacts/decision_reserve_wtb_operational_windows/reserve_decision_gate_loss.csv',
   'artifacts/decision_reserve_wtb_operational_windows/reserve_decision_cost_ratio_sensitivity.csv',
   'artifacts/decision_reserve_wtb_operational_windows/reserve_decision_boundary_slices.csv',
+  'artifacts/decision_reserve_wtb_operational_windows/reserve_decision_horizon_time_sensitivity.csv',
+  'artifacts/decision_reserve_wtb_operational_windows/reserve_decision_horizon_quantile_whatif.csv',
+  'artifacts/reserve_quantile_baseline/reserve_quantile_baseline.json',
+  'artifacts/reserve_quantile_baseline/reserve_quantile_baseline_comparison.csv',
+  'artifacts/reserve_quantile_baseline/reserve_quantile_baseline_bootstrap.csv',
+  'artifacts/reserve_toy_operational_cost/reserve_toy_operational_cost.json',
+  'artifacts/anchor_stress_guard/anchor_stress_run_status.csv',
+  'artifacts/anchor_stress_guard/anchor_stress_cache_status.csv',
   'artifacts/threshold_label_validity_audit_wtb_strictmask/threshold_label_validity_raw.csv',
   'artifacts/threshold_label_validity_audit_wtb_strictmask/control_taxonomy.csv',
   'artifacts/operational_baselines_wtb_strictmask/operational_baseline_config.json',
@@ -97,11 +117,14 @@ $sources = @(
   'artifacts/external_wind_protocol/external_wind_reviewer_pack_commands.ps1',
   'artifacts/applied_energy_diagnostics/operational_decision_curve.csv',
   'artifacts/applied_energy_diagnostics/new_wind_farm_deployment_checklist.csv',
+  'artifacts/applied_energy_diagnostics/reserve_coverage_reliability.csv',
   'artifacts/applied_energy_diagnostics/quasi_external_deployment_drill_raw.csv',
   'artifacts/applied_energy_diagnostics/README.md'
 ) -join ','
 $figures = @(
   'artifacts/paper_assets/figures/figure1_architecture.pdf',
+  'artifacts/paper_assets/figures/figure1_architecture.png',
+  'artifacts/paper_assets/figures/figure1_architecture.svg',
   'artifacts/paper_assets/figures/figure2_data_boundary.pdf',
   'artifacts/paper_assets/figures/figure3_summary_results.pdf',
   'artifacts/paper_assets/figures/figure4_routing_evidence.pdf',
@@ -109,13 +132,15 @@ $figures = @(
   'artifacts/paper_assets/figures/figure6_ablation_tradeoff.pdf',
   'artifacts/applied_energy_diagnostics/operational_decision_curve.png',
   'artifacts/applied_energy_diagnostics/boundary_reserve_system_workflow.png',
-  'artifacts/applied_energy_diagnostics/new_wind_farm_deployment_checklist.png'
+  'artifacts/applied_energy_diagnostics/new_wind_farm_deployment_checklist.png',
+  'artifacts/applied_energy_diagnostics/graphical_abstract_applied_energy.png'
 ) -join ','
 $guards = @(
   'artifacts/strict_ablation_evidence_guard_wtb_strictmask/strict_ablation_evidence_guard.json',
   'artifacts/strict_threshold_controls_evidence_guard_wtb_strictmask/threshold_controls_evidence_guard.json',
   'artifacts/threshold_label_validity_audit_wtb_strictmask/threshold_label_validity_guard.json',
   'artifacts/decision_reserve_wtb_operational_windows_guard/reserve_decision_guard.json',
+  'artifacts/anchor_stress_guard/anchor_stress_guard.json',
   'artifacts/strictmask_combined_reviewer_stats_guard/reviewer_stat_pack_guard.json',
   'artifacts/boundary_negative_controls_wtb/boundary_negative_controls_guard.json',
   'artifacts/mechanism_behavior_pack_wtb/mechanism_behavior_pack_guard.json',
@@ -125,7 +150,7 @@ $guards = @(
   'artifacts/final_evidence_freeze_guard/evidence_freeze_guard.json'
 ) -join ','
 
-# capped preview for reviewer-facing package. Run generate_uncapped_per_example_reviewer_stats.ps1 for the full per-example table.
+# capped preview for the artifact package. Run generate_uncapped_per_example_reviewer_stats.ps1 for the full per-example table.
 python main.py reviewer-stat-pack --dataset wtb --root-dir . --output-dir artifacts/strictmask_combined_reviewer_stats --suite-dir artifacts/strictmask_validation_wtb_full --suite-dir artifacts/strictmask_baseline_rerun_wtb_full --suite-dir artifacts/strictmask_ablation_rerun_wtb_full --cache-dir artifacts/cache_strictmask/wtb_245d --split test --models "Graph WaveNet,PatchTST,Physics-Aligned MoE,MoE + L_bal + L_align + L_force" --reference-model "MoE + L_bal + L_align + L_force" --baseline-models "Graph WaveNet,PatchTST,Physics-Aligned MoE" --bootstrap-samples 1000 --permutation-samples 1000 --max-per-example-rows 200000 --max-paired-examples 100000 --top-k-failures 24
 python main.py reviewer-stat-pack-guard --pack-dir artifacts/strictmask_combined_reviewer_stats --output-dir artifacts/strictmask_combined_reviewer_stats_guard --min-runs 20 --required-models "Graph WaveNet,PatchTST,Physics-Aligned MoE,MoE + L_bal + L_align + L_force" --required-seeds 201,202,203,204,205
 python main.py time-forward-audit --dataset wtb --root-dir . --run-table artifacts/strictmask_combined_reviewer_stats/reviewer_stat_pack_run_table.csv --cache-dir artifacts/cache_strictmask/wtb_245d --output-dir artifacts/time_forward_wtb_strictmask_full --models "MoE + L_bal + L_align + L_force" --num-blocks 4 --bootstrap-samples 1000
@@ -134,6 +159,10 @@ python main.py operational-baselines --dataset wtb --root-dir . --cache-dir arti
 python main.py threshold-label-validity-audit --dataset wtb --root-dir . --cache-dir artifacts/cache_strictmask/wtb_245d --run-table artifacts/strictmask_combined_reviewer_stats/reviewer_stat_pack_run_table.csv --output-dir artifacts/threshold_label_validity_audit_wtb_strictmask --models "MoE + L_bal + L_align + L_force" --rated-wind-grid 10.0,10.5,11.0 --pitch-threshold-grid 1.5,2.0,2.5 --seeds 201,202,203,204,205
 python main.py reserve-decision --dataset wtb --root-dir . --run-table artifacts/strictmask_combined_reviewer_stats/reviewer_stat_pack_run_table.csv --cache-dir artifacts/cache_strictmask/wtb_245d --output-dir artifacts/decision_reserve_wtb_operational_windows --strata boundary,non_boundary,late_period,mppt_to_pitch,pitch_to_mppt,high_ramp,low_ramp --bootstrap-samples 1000 --skip-plots
 python main.py reserve-decision-guard --dataset wtb --decision-dir artifacts/decision_reserve_wtb_operational_windows --output-dir artifacts/decision_reserve_wtb_operational_windows_guard
+python main.py reserve-probabilistic-baseline --dataset wtb --root-dir . --run-table artifacts/paper_assets/tables/wtb_test_aggregated_runs.csv --cache-dir artifacts/cache_strictmask/wtb_245d --output-dir artifacts/reserve_quantile_baseline --cost-ratios 2,5,10,20,50 --main-ratio 10 --bootstrap-samples 1000
+python main.py toy-operational-cost --dataset wtb --root-dir . --decision-dir artifacts/decision_reserve_wtb_operational_windows --probabilistic-dir artifacts/reserve_quantile_baseline --output-dir artifacts/reserve_toy_operational_cost --main-ratio 10
+python main.py anchor-stress-cache --dataset wtb --root-dir . --source-cache-dir artifacts/cache_strictmask/wtb_245d --output-cache-root artifacts/cache_anchor_stress --variants no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd
+python main.py anchor-stress-guard --suite-root artifacts/anchor_stress_runs --cache-root artifacts/cache_anchor_stress --output-dir artifacts/anchor_stress_guard --variants no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd --seeds 201,202,203
 python main.py external-wind-source-guard --dataset external_wind --root-dir . --output-dir artifacts/external_wind_source_guard --manifest-path artifacts/external_wind_full_manifest/external_wind_source_manifest.csv --min-files 31 --min-total-bytes 10000000000 --farms kelmarsh,penmanshiel
 python main.py external-wind-guard --dataset external_wind --root-dir . --output-dir artifacts/external_wind_guard --cache-dirs artifacts/cache_external_wind/external_wind_kelmarsh_chronological,artifacts/cache_external_wind/external_wind_penmanshiel_chronological,artifacts/cache_external_wind/external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out,artifacts/cache_external_wind/external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out --suite-dir artifacts/external_wind_runs --seeds 201,202,203,204,205
 python main.py external-wind-portability-rescue --dataset external_wind --root-dir . --output-dir artifacts/external_wind_portability_rescue --cache-dirs artifacts/cache_external_wind/external_wind_kelmarsh_chronological,artifacts/cache_external_wind/external_wind_penmanshiel_chronological,artifacts/cache_external_wind/external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out,artifacts/cache_external_wind/external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out --suite-dir artifacts/external_wind_runs --seeds 201,202,203,204,205

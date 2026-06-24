@@ -25,6 +25,9 @@ from windfarm_moe.paper import (
 from windfarm_moe.utils import load_json, save_json
 
 
+PAPER_PATH = Path(__file__).resolve().parents[1] / "paper_draft.md"
+
+
 class PaperUtilityTests(unittest.TestCase):
     def _write_fake_wtb_run(self, run_dir: Path, seed: int, overall_rmse: float, switch_rmse: float, nmi: float) -> None:
         metrics_dir = run_dir / "test_metrics"
@@ -434,6 +437,43 @@ class PaperUtilityTests(unittest.TestCase):
         )
 
         self.assertEqual(args.variant_keys, "bal_align_force")
+
+    def test_applied_energy_manuscript_structure(self) -> None:
+        text = PAPER_PATH.read_text(encoding="utf-8")
+
+        self.assertIn(
+            "Physics-Informed Reserve Diagnostics for Wind-Power Transition Windows: "
+            "An Auditable Regime-Aware Forecasting Framework",
+            text,
+        )
+        self.assertIn("# Highlights {.unnumbered}", text)
+        self.assertLess(text.index("# Nomenclature {.unnumbered}"), text.index("# Introduction"))
+        self.assertLess(
+            text.index("# Declaration of generative AI and AI-assisted technologies"),
+            text.index("# References {.unnumbered}"),
+        )
+        for heading in [
+            "# Physics-Informed Framework for Operational Boundary Identification",
+            "## Integration of Physical Constraints into Model Optimization",
+            "# Case Study Configuration and Operational Constraints",
+            "## Techno-Economic Validation and Benchmarking Framework",
+            "# System Simulation Results and Economic Implications",
+        ]:
+            self.assertIn(heading, text)
+
+    def test_applied_energy_highlights_meet_elsevier_length(self) -> None:
+        text = PAPER_PATH.read_text(encoding="utf-8")
+        start = text.index("# Highlights {.unnumbered}")
+        end = text.index("# Nomenclature {.unnumbered}")
+        highlights = [
+            line.removeprefix("- ").strip()
+            for line in text[start:end].splitlines()
+            if line.startswith("- ")
+        ]
+
+        self.assertEqual(len(highlights), 5)
+        for highlight in highlights:
+            self.assertLessEqual(len(highlight), 85, highlight)
 
     def test_paper_export_parser_accepts_multiple_suite_dirs(self) -> None:
         args = build_parser().parse_args(
