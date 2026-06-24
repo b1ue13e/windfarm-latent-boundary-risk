@@ -9,7 +9,10 @@ import pandas as pd
 from windfarm_moe.boundary_slice import run_boundary_slice_audit
 from windfarm_moe.config import DataConfig, EvalConfig, ModelConfig, TrainConfig
 from windfarm_moe.decision import run_reserve_decision, run_reserve_decision_guard
+from windfarm_moe.anchor_stress import build_anchor_stress_caches, run_anchor_stress_guard
+from windfarm_moe.operational_cost import run_toy_operational_cost
 from windfarm_moe.operational_baselines import run_operational_baselines
+from windfarm_moe.reserve_baselines import run_reserve_probabilistic_baseline
 from windfarm_moe.evidence_export import export_strict_wtb_evidence
 from windfarm_moe.boundary_negative_controls import run_boundary_negative_controls
 from windfarm_moe.external_wind import (
@@ -447,6 +450,34 @@ def build_parser() -> argparse.ArgumentParser:
     reserve_parser.add_argument("--bootstrap-samples", type=int, default=1000)
     reserve_parser.add_argument("--seed", type=int, default=42)
     reserve_parser.add_argument("--skip-plots", action="store_true")
+
+    reserve_prob_parser = subparsers.add_parser(
+        "reserve-probabilistic-baseline",
+        help="Evaluate validation-frozen probabilistic/quantile reserve baselines for WTB",
+    )
+    _add_common_data_args(reserve_prob_parser)
+    reserve_prob_parser.add_argument("--output-dir", type=str, required=True)
+    reserve_prob_parser.add_argument(
+        "--run-table",
+        type=str,
+        default="artifacts/paper_assets/tables/wtb_test_aggregated_runs.csv",
+    )
+    reserve_prob_parser.add_argument("--cache-dir", type=str, default="artifacts/cache_strictmask/wtb_245d")
+    reserve_prob_parser.add_argument("--cost-ratios", type=str, default="2,5,10,20,50")
+    reserve_prob_parser.add_argument("--main-ratio", type=float, default=10.0)
+    reserve_prob_parser.add_argument("--quantiles", type=str, default="0.50,0.60,0.70,0.80,0.85,0.90,0.95,0.975,0.99")
+    reserve_prob_parser.add_argument("--boundary-band", type=float, default=1.0)
+    reserve_prob_parser.add_argument("--bootstrap-samples", type=int, default=1000)
+    reserve_prob_parser.add_argument("--seed", type=int, default=42)
+
+    toy_cost_parser = subparsers.add_parser(
+        "toy-operational-cost",
+        help="Build a normalized reserve procurement plus shortage-penalty cost proxy",
+    )
+    toy_cost_parser.add_argument("--decision-dir", type=str, default="artifacts/decision_reserve_wtb_operational_windows")
+    toy_cost_parser.add_argument("--probabilistic-dir", type=str, default="artifacts/reserve_quantile_baseline")
+    toy_cost_parser.add_argument("--output-dir", type=str, required=True)
+    toy_cost_parser.add_argument("--main-ratio", type=float, default=10.0)
 
     operational_baseline_parser = subparsers.add_parser(
         "operational-baselines",
@@ -1060,6 +1091,33 @@ def build_parser() -> argparse.ArgumentParser:
     strict_anchor_parser.add_argument("--cache-dir", type=str, required=True)
     strict_anchor_parser.add_argument("--output-dir", type=str, default="")
 
+    anchor_stress_cache_parser = subparsers.add_parser(
+        "anchor-stress-cache",
+        help="Derive WTB strict-cache variants for training-level anchor observability stress tests",
+    )
+    anchor_stress_cache_parser.add_argument("--source-cache-dir", type=str, required=True)
+    anchor_stress_cache_parser.add_argument("--output-cache-root", type=str, required=True)
+    anchor_stress_cache_parser.add_argument(
+        "--variants",
+        type=str,
+        default="no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd",
+    )
+
+    anchor_stress_guard_parser = subparsers.add_parser(
+        "anchor-stress-guard",
+        help="Verify completed anchor stress training runs and produce claim-downgrade status",
+    )
+    anchor_stress_guard_parser.add_argument("--suite-root", type=str, required=True)
+    anchor_stress_guard_parser.add_argument("--cache-root", type=str, required=True)
+    anchor_stress_guard_parser.add_argument("--output-dir", type=str, required=True)
+    anchor_stress_guard_parser.add_argument(
+        "--variants",
+        type=str,
+        default="no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd",
+    )
+    anchor_stress_guard_parser.add_argument("--seeds", type=str, default="201,202,203")
+    anchor_stress_guard_parser.add_argument("--min-nmi", type=float, default=0.65)
+
     intervention_parser = subparsers.add_parser(
         "mechanism-intervention",
         help="Replay trained WTB MoE checkpoints after targeted physical-variable interventions",
@@ -1600,6 +1658,34 @@ def main() -> None:
         print(f"Reserve-decision artifacts saved to: {output_dir}")
         return
 
+    if args.command == "reserve-probabilistic-baseline":
+        if args.dataset != "wtb":
+            raise ValueError("reserve-probabilistic-baseline currently supports only --dataset wtb")
+        output_dir = run_reserve_probabilistic_baseline(
+            run_table=Path(args.run_table),
+            cache_dir=Path(args.cache_dir),
+            output_dir=Path(args.output_dir),
+            root_dir=Path(args.root_dir),
+            cost_ratios=[float(token.strip()) for token in args.cost_ratios.split(",") if token.strip()],
+            main_ratio=args.main_ratio,
+            quantiles=[float(token.strip()) for token in args.quantiles.split(",") if token.strip()],
+            boundary_band=args.boundary_band,
+            bootstrap_samples=args.bootstrap_samples,
+            seed=args.seed,
+        )
+        print(f"Reserve probabilistic-baseline artifacts saved to: {output_dir}")
+        return
+
+    if args.command == "toy-operational-cost":
+        output_dir = run_toy_operational_cost(
+            decision_dir=Path(args.decision_dir),
+            probabilistic_dir=Path(args.probabilistic_dir),
+            output_dir=Path(args.output_dir),
+            main_ratio=args.main_ratio,
+        )
+        print(f"Toy operational-cost artifacts saved to: {output_dir}")
+        return
+
     if args.command == "operational-baselines":
         if args.dataset != "wtb":
             raise ValueError("operational-baselines currently supports only --dataset wtb")
@@ -2128,6 +2214,27 @@ def main() -> None:
             output_dir=Path(args.output_dir) if args.output_dir else None,
         )
         print(f"Strict-anchor mask patch saved to: {output_dir}")
+        return
+
+    if args.command == "anchor-stress-cache":
+        output_dir = build_anchor_stress_caches(
+            source_cache_dir=Path(args.source_cache_dir),
+            output_cache_root=Path(args.output_cache_root),
+            variants=args.variants,
+        )
+        print(f"Anchor-stress caches saved to: {output_dir}")
+        return
+
+    if args.command == "anchor-stress-guard":
+        output_dir = run_anchor_stress_guard(
+            suite_root=Path(args.suite_root),
+            cache_root=Path(args.cache_root),
+            output_dir=Path(args.output_dir),
+            variants=args.variants,
+            seeds=args.seeds,
+            min_nmi=args.min_nmi,
+        )
+        print(f"Anchor-stress guard saved to: {output_dir}")
         return
 
     if args.command == "mechanism-intervention":
