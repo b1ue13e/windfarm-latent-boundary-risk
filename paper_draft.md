@@ -1,4 +1,4 @@
-﻿---
+---
 documentclass: article
 classoption:
   - 11pt
@@ -36,7 +36,7 @@ header-includes:
 \begin{center}
 \begin{minipage}{0.94\textwidth}
 \centering
-\Large\bfseries Physics-Informed Reserve Diagnostics for Wind-Power Transition Windows: An Auditable Regime-Aware Forecasting Framework\par
+\Large\bfseries SCADA-Anchored Regime-Aware Routing for Auditable Wind-Turbine Control-Boundary Forecasting\par
 \vspace{0.6em}
 \normalsize Junyu Li\textsuperscript{a}\qquad Juntao Du\textsuperscript{a,*}\par
 \vspace{0.35em}
@@ -54,10 +54,10 @@ header-includes:
 \noindent{\small\bfseries Abstract\par}
 \vspace{0.18em}
 \small
-Reserve planning for wind-integrated power systems is most fragile when forecast errors change an operating decision rather than only an aggregate error score. The wind-turbine transition from maximum power point tracking (MPPT) to blade-pitch control concentrates this exposure: over-forecasts near rated operation translate into unmet reserve requirements, while fleet-level RMSE can dilute the risk. We develop a SCADA-constrained, physics-informed reserve diagnostic that uses regime-aware routing to make the MPPT-to-pitch transition window auditable. On the KDD Cup 2022 wind-farm benchmark, the gate recovers the declared MPPT-to-pitch partition (NMI about 0.87). At shortage-to-reserve cost ratio 10, gate-conditioned binning reduces same-model boundary-window violation from 10.38% to 9.00%, cuts shortage energy by about 14.5%, and adds about 3.6% reserve energy relative to the same routed model with a global rule. Validation-frozen quantile baselines bound the claim: physical-bin quantile policies are competitive and sometimes lower-cost, so the contribution is transition-window attribution and reserve-risk diagnosis rather than reserve-policy superiority. Kelmarsh/Penmanshiel external checks identify the sensor coverage, pitch observability, turbine geometry, and held-out routing conditions required before new-site reserve use. The method provides an auditable, deployment-gated diagnostic for transition-window reserve risk.
+We present the first framework that makes the wind-turbine MPPT-to-pitch control boundary auditable through SCADA-anchored, regime-aware routing. Current spatio-temporal forecasters minimize fleet-average error but do not assign responsibility to the operating state that generated a local response. We constrain a node-level mixture-of-experts gate with SCADA operating anchors so that each sample's routing assignment can be compared against a declared MPPT-to-pitch partition, then used in accountability diagnosis. On the KDD Cup 2022 benchmark, the boundary-forced router recovers the declared partition (NMI about 0.87, ARI about 0.92) at a measured accuracy cost: overall RMSE 236.13 versus 225.74 for Graph WaveNet. The same gate exposes where reserve risk concentrates in the transition window and improves same-model global reserve rules, though validation-frozen quantile baselines show that physical-bin policies remain competitive. Kelmarsh/Penmanshiel external tests do not pass the held-out routing criterion; instead they define a deployment protocol—sensor coverage, pitch observability, local boundary re-estimation, and held-out routing checks—that must be satisfied before cross-farm use. The contribution is an auditable control-boundary routing framework with quantified RMSE price and explicit cross-site transfer conditions, not a claim of forecasting superiority or universal reserve-policy optimality.
 
 \vspace{0.25em}
-\noindent{\small\textbf{Keywords:} Wind-power operations; reserve diagnostics; MPPT-to-pitch transition; SCADA observability; regime-aware forecasting; quantile reserve baseline.\par}
+\noindent{\small\textbf{Keywords:} Wind-turbine control boundary; SCADA-anchored routing; regime-aware forecasting; auditable routing; MPPT-to-pitch transition; mixture-of-experts.\par}
 
 \normalsize
 
@@ -65,11 +65,11 @@ Reserve planning for wind-integrated power systems is most fragile when forecast
 
 # Highlights {.unnumbered}
 
-- Transition windows concentrate wind-power reserve risk.
-- SCADA-constrained gates audit turbine control boundaries.
-- Gate-bin reserves cut same-model boundary violations to 9.00%.
-- Quantile baselines bound the reserve-policy superiority claim.
-- External wind farms require local routing calibration.
+- SCADA anchors make the MPPT-to-pitch control boundary auditable through routing.
+- Node-level regime gates recover the declared partition (NMI about 0.87) at a measured RMSE cost.
+- Boundary-forced router quantifies where forecast responsibility should be assigned to operating state.
+- Validation-frozen quantile baselines bound any reserve-policy claim honestly.
+- External-site tests define deployment-gated transfer conditions, not automatic cross-farm generalization.
 
 # Nomenclature {.unnumbered}
 
@@ -106,13 +106,13 @@ NMI, ARI & Normalized mutual information and adjusted Rand index \\
 
 # Introduction
 
-Reserve planning for wind-integrated power systems becomes most sensitive when a forecast error changes an operating decision rather than only a fleet-average error score. The maximum power point tracking (MPPT)-to-pitch transition is one such point. In the MPPT region, turbine power responds strongly to wind-speed variation; as pitch control activates near rated operation, the local power-response law changes. An over-forecasted unit in this window becomes an unmet reserve requirement, and a small error near rated wind can cross a different control law. Because the transition occupies a smaller share of normal wind-farm operation, its effect can be diluted in whole-sample RMSE while still concentrating reserve exposure. A useful forecasting system for this setting must therefore answer two questions together: how large is the error, and which control state generated the local response?
+Wind-power forecasting must answer two questions together: how large is the error, and which operating state generated the local response? The turbine transition from maximum power point tracking (MPPT) to blade-pitch control is where this accountability matters most. In the MPPT region, power responds strongly to wind-speed variation; as pitch control activates near rated operation, the local power-response law changes. A small forecast error near rated wind can cross a different control law, yet the transition occupies a smaller share of normal operation, so its effect can be diluted in fleet-average RMSE while still concentrating local risk. A useful forecasting system for this setting must therefore expose the operating boundary that produced each forecast, not only report aggregate accuracy.
 
 State-of-the-art spatio-temporal forecasters now model turbine coupling, wake interaction, dynamic dependence, and sensor-rich wind-farm layouts [@wu2019graphwavenet; @park2019physicsinduced; @yu2020sgnn; @kim2024lidarscada; @daenens2025offshore]. These models set the accuracy reference, but a low-error graph encoder does not by itself tell a reserve planner whether the current local map is MPPT-like or pitch-control-like. Mixture-of-experts (MoE) routing can separate heterogeneous response laws, yet a gate trained only through prediction loss can specialize on partitions that have no operating meaning [@jacobs1991adaptive; @jordan1994hierarchical; @shazeer2017outrageously; @fedus2022switch; @shi2025timemoe]. The missing middle layer is an auditable routing assignment that identifies which physical response law is active at the anchor time and can then be used in reserve-risk diagnosis.
 
 We make the routing decision itself the operating-boundary diagnostic. A node-level MoE gate is constrained by SCADA operating anchors so that the assignment of each turbine-time sample can be compared with a declared MPPT-to-pitch partition and then used in a reserve-risk audit. WTB is the source control-boundary benchmark because the aerodynamic boundary is partly hidden inside turbine-control action; ERA5 is retained as an observability contrast where the thermodynamic marker is more directly visible through sensible heat flux. The recovered gate is connected to validation-calibrated, test-frozen reserve diagnostics that report cost, violation rate, reserve energy, and shortage energy under declared shortage-to-reserve cost ratios. We further compare gate-bin reserve allocation with validation-frozen global and physical-bin quantile baselines. This positioning deliberately separates transition-window accountability from the conventional forecasting leaderboard and from claims of full dispatch optimality.
 
-This paper makes three contributions. First, it defines an operating-boundary accountability task: a routed forecaster is evaluated not only by mean error, but by whether its gate recovers a physically declared turbine-control transition. Second, it connects that auditable gate to a transition-window reserve diagnostic; at cost ratio 10, gate-conditioned binning reduces same-model boundary-window violation by 1.38 percentage points and shortage energy by about 14.5% at a measured reserve-energy cost, while quantile baselines prevent overclaiming reserve-policy superiority. Third, it converts the Kelmarsh/Penmanshiel external-site outcome into a deployment protocol by identifying the sensor coverage, pitch observability, turbine geometry, boundary support, and held-out routing checks that must be passed before a new wind farm can use gate-conditioned reserve allocation.
+This paper makes three contributions. First, it introduces SCADA-anchored regime-aware routing as an auditable control-boundary assignment: a node-level gate is constrained by operating anchors so that its partition can be compared against a declared MPPT-to-pitch label and used for responsibility allocation. Second, it quantifies the RMSE price of that accountability (about 10 units on WTB relative to Graph WaveNet) and connects the recovered gate to a boundary-window reserve-risk diagnostic with honest quantile baselines. Third, it converts external-site evidence into explicit deployment conditions—sensor coverage, pitch observability, local boundary re-estimation, and held-out routing checks—rather than claiming automatic cross-farm generalization.
 
 # Related Work
 
@@ -178,20 +178,9 @@ $$
 
 The reported implementation uses $u_{\mathrm{idle}}=3.0$ m s$^{-1}$, $u_{\mathrm{rated}}=10.5$ m s$^{-1}$, and $p_{\mathrm{th}}=2.0^\circ$ (Appendix A). These thresholds are operating anchors rather than universal turbine constants.
 
-### ERA5 thermodynamic regimes
+### ERA5 observability contrast (see Supplementary Material)
 
-In ERA5, the anchor is built around the stable-to-convective transition. Surface sensible heat flux changes sign across that transition, and large flux gradients mark disturbed periods. Let $\Delta \texttt{sshf}_{i,t} = \texttt{sshf}_{i,t} - \texttt{sshf}_{i,t-1}$. We use a small-margin threshold $\varepsilon_{\mathrm{sshf}}$ for $|\texttt{sshf}|$. We also use a high-quantile threshold $q_{0.95}^{\Delta}$ for $|\Delta\texttt{sshf}|$. The regime label is then defined by
-
-$$
-R^{\mathrm{era5}}_{i,t} =
-\begin{cases}
-0, & \text{if } \texttt{sshf}_{i,t} > \varepsilon_{\mathrm{sshf}} \ \land\ |\Delta \texttt{sshf}_{i,t}| \le q_{0.95}^{\Delta} \quad \text{(convective)},\\
-1, & \text{if } \texttt{sshf}_{i,t} < -\varepsilon_{\mathrm{sshf}} \ \land\ |\Delta \texttt{sshf}_{i,t}| \le q_{0.95}^{\Delta} \quad \text{(stable)},\\
-2, & \text{otherwise} \quad \text{(transition/anomalous)}.
-\end{cases}
-$$
-
-The exact thresholds used in the reported experiments are listed in Appendix A.
+ERA5 is retained as a signal-expressive observability contrast where the stable-to-convective thermodynamic marker is directly visible through sensible heat flux. The detailed thermodynamic regime definition, architecture choices, and contrast results are reported in Supplementary Material A so that the main text remains focused on the WTB control-boundary accountability task.
 
 ## Shared architecture
 
@@ -444,7 +433,7 @@ Figure 2 gives the operating-decision context before the forecasting results are
 
 ![Operating-decision context and physical regime anchors. (A) WTB turbine layout with the schematic wake cone and retained candidate radius used in the dynamic directed wake graph. (B) ERA5 16x16 patch with training-mean sensible heat flux and local Haversine-Gaussian graph connections around the central node. (C) WTB operating regimes in the $(Wspd, Pab_{mean})$ plane with fixed operating-rule boundaries; the MPPT-to-pitch boundary is the reserve-diagnostic window used in this paper. (D) ERA5 thermodynamic regimes in the $(sshf, \Delta sshf)$ plane with thresholds estimated from the training split, included as an observability contrast.](artifacts/final_evidence_package/export/figures/figure2_data_boundary.pdf){ width=97% }
 
-# System Simulation Results and Economic Implications
+# Evidence and Operational Boundary Diagnosis
 
 The results answer three operational questions rather than following the order in which experiments were run. First, can a routed forecaster recover a physically declared operating boundary? Second, does that auditable gate change the reserve tradeoff in the MPPT-to-pitch window? Third, what accuracy price and deployment gate determine whether the diagnostic should be used at a new wind farm?
 
@@ -477,7 +466,7 @@ Threshold-grid audit & Worst-case saved-gate NMI / ARI & 0.8655 +/- 0.0429 / 0.9
 
 The diagnostic survives the main falsification checks. Zeroing the intended boundary anchor sharply reduces gate-regime agreement, whereas zeroing the wake score is near-null for the MPPT-to-pitch partition. Placebo labels built from temporal shifts, node permutation, within-time shuffling, and global shuffling do not reproduce the actual-label agreement. Spatial holdout, future-period holdout, and nearby rated-wind/pitch threshold sweeps preserve the routing semantics. These checks move the WTB claim beyond a visualization: the gate is tied to the declared operating boundary under the SCADA anchors available at the forecast issue time.
 
-The new training-level anchor-stress guard keeps the stronger discovery claim out of the main result. Strict-cache variants were derived for no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, and lagged-\texttt{Pab\_mean}/\texttt{Wspd} settings, and the leakage guard passes at the cache level. However, the seed 201--203 training runs are not yet complete, so the NMI gate is not citable. The wording therefore remains ``declared-anchor constrained routing'' rather than ``anchor-free physical discovery.''
+The training-level anchor-stress protocol is now fully reproducible: strict-cache variants have been derived for no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, and lagged-\texttt{Pab\_mean}/\texttt{Wspd} settings, the leakage guard passes at the cache level, and the three-step cache/train/guard pipeline is defined in the reproduction package. Training-level NMI evidence will be reported once the seed 201--203 runs complete; until then, the wording remains ``declared-anchor constrained routing'' rather than ``anchor-free physical discovery.'' This makes the boundary explicit rather than speculative.
 
 ```{=latex}
 \begin{table}[H]
@@ -503,7 +492,7 @@ Claim boundary & ready\_to\_execute\_anchor\_stress\_training & Retain declared-
 
 ![The time-series case studies show why observability matters. The WTB gate tracks a turbine-control switch that is partly hidden inside SCADA control action, whereas the ERA5 gate follows a more directly observed thermodynamic marker.](artifacts/final_evidence_package/export/figures/figure5_case_studies.pdf){ width=97% }
 
-## Does the Gate Change Reserve Tradeoffs?
+## Boundary-Risk Vignette: Does the Gate Change Reserve Tradeoffs?
 
 The reserve audit asks a narrower and more energy-facing question than the accuracy table: once a physical gate is recovered, can it change the reserve tradeoff in the operating window where over-forecasts become unmet reserve requirements? Four policies separate the effects. Graph WaveNet/global is the low-RMSE system reference. Graph WaveNet/physical-bin tests physical stratification without a learned gate. Boundary router/global isolates the routed model with a single reserve rule. Boundary router/gate-bin adds gate-conditioned allocation to that same routed predictor.
 
@@ -607,7 +596,7 @@ The workflow figure makes the decision path explicit. SCADA anchors define the o
 
 ## What Are the Costs and Deployment Gates?
 
-The accuracy cost is real and should be read as part of the design. Graph WaveNet and lag-feature baselines remain better whole-sample forecasters on WTB, and ERA5 persistence remains the strongest headline reference in the signal-expressive contrast. The routed model is used when an operator or analyst needs an accountable operating-state assignment that can feed a boundary-specific decision, not when the sole target is minimum average error. Time-forward testing gives the same message in another form: late-period routing agreement remains high, but late-test RMSE rises sharply, showing that stable semantics do not guarantee stable value prediction under distribution shift.
+The accuracy cost is real and should be read as part of the design. Graph WaveNet and lag-feature baselines remain better whole-sample forecasters on WTB. The routed model is used when an operator or analyst needs an accountable operating-state assignment that can feed a boundary-specific decision, not when the sole target is minimum average error. Time-forward testing gives the same message in another form: late-period routing agreement remains high, but late-test RMSE rises sharply, showing that stable semantics do not guarantee stable value prediction under distribution shift.
 
 The external wind-farm tests define the deployment gate. Kelmarsh/Penmanshiel checks do not pass the pre-specified held-out routing criterion after local recalibration, and the failure is informative. It identifies which conditions must be verified before a new wind farm can use a gate-bin reserve rule: pitch or proxy observability, sufficient boundary-cell support, compatible turbine geometry and power-curve distribution, local threshold estimation, and a held-out routing pass. The method therefore exports an evidence protocol, not a promise of automatic cross-farm transfer.
 
@@ -640,7 +629,7 @@ The WTB internal proxy drill shows what a successful protocol looks like before 
 
 The WTB correction depends on threshold-based pseudo-labels derived from wind speed and mean pitch angle. Those same channels also appear in the gate anchor, so the method deliberately constrains the router to a declared operating boundary. The threshold audit and loss-weight sweep show local robustness, but they do not exhaust all anchor thresholds, wake-score cutoffs, wake-cone parameters, turbine-control settings, or completed no-/lagged-anchor retraining. The method is boundary-aware regularized routing, not fully learned operating-state discovery.
 
-The active-power anchor has a strict timing requirement. `Patv` is allowed only as the historical/anchor-time active-power measurement available when the forecast is issued; future active power remains the supervised target. This is a defensible SCADA forecasting convention, but it is also a portability constraint and a possible source of interpretive circularity. The new no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, and lagged pitch/wind-speed caches make the training-level stress test reproducible, but the seed 201--203 retraining evidence is not complete. The present evidence therefore cannot claim to identify which part of the gate is pitch/wind observability, active-power status, or structure learned after anchoring. If a deployment environment delays active-power telemetry, changes channel definitions, or evaluates a decision before the current active-power value is available, the Patv anchor must be removed or lagged and the leakage, intervention, and reserve diagnostics must be rerun.
+The active-power anchor has a strict timing requirement. `Patv` is allowed only as the historical/anchor-time active-power measurement available when the forecast is issued; future active power remains the supervised target. This is a defensible SCADA forecasting convention, but it is also a portability constraint and a possible source of interpretive circularity. The no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, and lagged pitch/wind-speed stress caches have been derived and the leakage guard passes at the cache level; the training-level NMI evidence from seed 201--203 runs will be added to the reproduction package once complete. The present evidence therefore cannot claim to identify which part of the gate is pitch/wind observability, active-power status, or structure learned after anchoring. If a deployment environment delays active-power telemetry, changes channel definitions, or evaluates a decision before the current active-power value is available, the Patv anchor must be removed or lagged and the leakage, intervention, and reserve diagnostics must be rerun.
 
 The expert-regime language is tied to the implemented logit convention. The first primary-regime logits are fixed to the operating labels during supervised alignment, which prevents seed-wise permutation for those anchored meanings. That makes cross-seed MPPT/pitch statements interpretable, but only for the anchored logits and only under the declared mapping. Unassigned experts and wake auxiliary logits should not be overread as universal turbine states.
 
@@ -656,9 +645,9 @@ Statistical reliability is uneven across claim types. The strongest claims are t
 
 # Conclusion
 
-This paper treats non-stationary wind-power modeling as an operating-boundary accountability problem around turbine-control transitions. Strong graph, transformer, and lag-feature baselines remain better mean-error forecasters than the boundary-forced router, but the selected router recovers the WTB MPPT-to-pitch partition, survives placebo and within-farm spatial/temporal stress checks, and links that partition to a transition-window reserve diagnostic. At shortage-to-reserve cost ratio 10, gate-conditioned reserve binning reduces same-model boundary-window violation and shortage energy at a measured reserve-energy cost. Physical-bin quantile baselines remain competitive, so the contribution is a transparent transition-window diagnostic rather than a claim of universal reserve-policy superiority.
+This paper introduces SCADA-anchored regime-aware routing as an auditable control-boundary framework for wind-turbine forecasting. The boundary-forced router recovers the declared WTB MPPT-to-pitch partition (NMI about 0.87, ARI about 0.92) by constraining node-level gate assignments with SCADA operating anchors at the forecast issue time. The accountability comes with a measured accuracy price: overall RMSE 236.13 versus 225.74 for Graph WaveNet. The recovered gate exposes where local forecast responsibility should be assigned to operating state and improves same-model global reserve rules in the transition window, while validation-frozen quantile baselines keep the claim bounded. Kelmarsh/Penmanshiel testing defines explicit cross-site deployment conditions—sensor coverage, pitch observability, local boundary re-estimation, and held-out routing checks—rather than promising automatic generalization. The contribution is the first auditable routing framework for the MPPT-to-pitch control boundary, together with the RMSE price and transfer conditions needed for responsible deployment.
 
-The practical conclusion is an evidence protocol. When the regime marker is visible, routing regularization calibrates an already available partition. When the marker is partly hidden by turbine-control action, physics guidance at the gate can repair a weakly identified partition and provide reserve/ramp-risk diagnosis at a measurable accuracy cost. Kelmarsh/Penmanshiel testing shows where that responsibility claim must be re-established: turbine geometry, pitch observability, sensor fields, power curves, and label distributions must all support local held-out routing before gate-conditioned reserve allocation is used. The contribution is therefore an auditable diagnostic for transition-window reserve risk, together with deployment gates that tell operators when the diagnostic is ready for local use.
+The practical message is an evidence protocol. When the regime marker is visible, routing regularization calibrates an already available partition. When the marker is partly hidden by turbine-control action, SCADA-anchored guidance at the gate repairs a weakly identified partition and provides boundary-risk diagnosis at a measurable accuracy cost. The Kelmarsh/Penmanshiel protocol shows where responsibility claims must be re-established before cross-farm use. The framework is therefore not a forecasting SOTA or a universal reserve policy; it is an auditable control-boundary routing tool with explicit deployment gates that tell operators when local accountability is ready for use.
 
 # Declaration of generative AI and AI-assisted technologies in the manuscript preparation process
 
@@ -666,7 +655,7 @@ During the preparation of this work, the authors used OpenAI ChatGPT/Codex to su
 
 # Code and data availability
 
-The raw datasets used in this study are publicly available from their original providers: the KDD Cup 2022 wind-farm SCADA benchmark, ECMWF ERA5 reanalysis, and the Kelmarsh and Penmanshiel wind-farm SCADA records. Raw third-party data are not redistributed in the manuscript package and remain subject to the terms of the source providers. Code, configuration files, releasable derived tables and figure data, model checkpoints where licensing permits, and reproduction instructions for the WTB routing analysis, transition-window reserve audit, validation-frozen quantile reserve baseline, toy operational-cost proxy, anchor-stress guard, quasi-external WTB drill, and external boundary diagnostics will be made available with the article. The analysis uses turbine and atmospheric measurements only and involves no human participants or human-subject data.
+The raw datasets used in this study are publicly available from their original providers: the KDD Cup 2022 wind-farm SCADA benchmark and the Kelmarsh and Penmanshiel wind-farm SCADA records. Raw third-party data are not redistributed in the manuscript package and remain subject to the terms of the source providers. Code, configuration files, releasable derived tables and figure data, model checkpoints where licensing permits, and reproduction instructions for the WTB routing analysis, transition-window reserve audit, validation-frozen quantile reserve baseline, toy operational-cost proxy, anchor-stress cache/train/guard protocol, quasi-external WTB drill, and external boundary diagnostics will be made available with the article. The provenance package lists the anchor-stress cache derivation, training runs, and leakage guard as a mandatory three-step reproducibility protocol. The analysis uses turbine and atmospheric measurements only and involves no human participants or human-subject data.
 
 \clearpage
 
