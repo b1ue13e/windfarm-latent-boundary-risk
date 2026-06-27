@@ -418,7 +418,7 @@ Threshold-grid audit & Worst-case saved-gate NMI / ARI & 0.8655 +/- 0.0429 / 0.9
 
 The diagnostic survives the main falsification checks. Zeroing the intended boundary anchor sharply reduces gate-regime agreement, whereas zeroing the wake score is near-null. Placebo labels do not reproduce the actual-label agreement. Spatial holdout, future-period holdout, and threshold sweeps preserve routing semantics.
 
-The gate also provides value that a threshold label stream cannot provide when that stream degrades. We audit saved five-seed gates around MPPT-to-pitch transitions after delaying the threshold labels, randomly dropping label availability, and recomputing threshold labels under sensor noise. Table~\ref{tab:early-warning} reports recall on early pitch-control cells in a six-step transition window. With a six-step label delay, the delayed threshold rule recalls only 0.196 of early pitch cells, whereas the gate recalls 0.960. With 50% label availability, the available-label rule recalls 0.508, while the gate remains at 0.960. Under the strongest sensor-noise setting tested, the threshold rule drops to 0.652 recall and the gate remains unchanged because the saved gate is evaluated as an already issued diagnostic signal. This is the operational meaning of auditability in the paper: the gate is not merely reproducing a perfect contemporaneous threshold label, but preserving a transition-window diagnostic when that label is delayed, incomplete, or noisy.
+The gate also provides value that a threshold label stream cannot provide when that stream degrades. We audit saved five-seed gates around MPPT-to-pitch transitions after delaying the threshold labels, randomly dropping label availability, and recomputing threshold labels under sensor noise. Table~\ref{tab:early-warning} reports recall on early pitch-control cells in a six-step transition window, and Supplementary Table A9 converts the same audit into detected and missed turbine-time cells. With a six-step label delay, the delayed threshold rule recalls only 0.196 of early pitch cells, whereas the gate recalls 0.960. With 50% label availability, the available-label rule recalls 0.508, while the gate remains at 0.960. Under the strongest sensor-noise setting tested, the threshold rule drops to 0.652 recall and the gate remains unchanged because the saved gate is evaluated as an already issued diagnostic signal. This is the operational meaning of auditability in the paper: the gate is not merely reproducing a perfect contemporaneous threshold label, but preserving a transition-window diagnostic when that label is delayed, incomplete, or noisy.
 
 We price this accountability explicitly. A model receives citable degraded-label gain only after its route passes the physical-routing audit; otherwise the accountability gain is set to zero, even for an accurate or routed-capacity model. Under this rule Graph WaveNet is the zero-RMSE-price anchor without an audited operating-state route, Unconstrained MoE fails the route audit (NMI 0.014), and the boundary-forced router is the only current point that exchanges a 10.39-RMSE price for +0.764 six-step-delay recall gain, recovering about 566 early pitch-window cells per seed relative to the delayed threshold rule (Fig.~\ref{fig:accountability-tradeoff}).
 
@@ -877,6 +877,32 @@ Local boundary recalibration & Default test NMI 0.1324 $\rightarrow$ recalibrate
 Small-window adaptation & 40/40 routing runs adapted; chronological balanced accuracy 0.4787 below 0.50 & Small calibration windows must still pass the frozen held-out routing criterion & Calibration alone does not authorize external reserve use \\
 Sensor and boundary support & Penmanshiel-to-Kelmarsh leave-one pitch-feature coverage 0.0000 and effective boundary cells 0 & Pre-declared calibration window with enough boundary cells, active power, availability mask, and pitch/proxy overlap & No physical-router interpretation without observability \\
 External reserve-use decision & Upstream gates do not pass before reserve allocation is evaluated & Transition-window shortage and violation improve at acceptable reserve-energy cost & Withhold gate-bin reserve use outside WTB; report a deployment protocol only \\
+\bottomrule
+\end{tabularx}
+\end{table}
+```
+
+## Early-warning detection consequence {.unnumbered}
+
+Table A9 reports the cell-count version of the label-degradation audit. Counts are turbine-time cells per seed inside the six-step MPPT-to-pitch window; they are not MWh, currency, or dispatch-cost estimates. The purpose is narrower: it shows how many early pitch-window cells the gate preserves when a threshold-label rule is delayed, incomplete, or noisy.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.4pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table A9.} Early-warning detection consequence under degraded threshold labels.}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.28\columnwidth} >{\centering\arraybackslash}p{0.22\columnwidth} >{\centering\arraybackslash}p{0.24\columnwidth} >{\centering\arraybackslash}X}
+\toprule
+Condition & Gate detected / missed & Degraded rule detected / missed & Recovered cells \\
+\midrule
+Delay, 1 step & 710.6 $\pm$ 20.6 / 29.4 $\pm$ 20.6 & 485.0 $\pm$ 0.0 / 255.0 $\pm$ 0.0 & 225.6 $\pm$ 20.6 \\
+Delay, 3 steps & 710.6 $\pm$ 20.6 / 29.4 $\pm$ 20.6 & 282.0 $\pm$ 0.0 / 458.0 $\pm$ 0.0 & 428.6 $\pm$ 20.6 \\
+Delay, 6 steps & 710.6 $\pm$ 20.6 / 29.4 $\pm$ 20.6 & 145.0 $\pm$ 0.0 / 595.0 $\pm$ 0.0 & 565.6 $\pm$ 20.6 \\
+50\% label availability & 710.6 $\pm$ 20.6 / 29.4 $\pm$ 20.6 & 376.0 $\pm$ 10.4 / 364.0 $\pm$ 10.4 & 334.6 $\pm$ 28.1 \\
+25\% label availability & 710.6 $\pm$ 20.6 / 29.4 $\pm$ 20.6 & 179.0 $\pm$ 7.9 / 561.0 $\pm$ 7.9 & 531.6 $\pm$ 22.9 \\
+Sensor noise, strongest & 710.6 $\pm$ 20.6 / 29.4 $\pm$ 20.6 & 482.8 $\pm$ 11.0 / 257.2 $\pm$ 11.0 & 227.8 $\pm$ 20.9 \\
 \bottomrule
 \end{tabularx}
 \end{table}

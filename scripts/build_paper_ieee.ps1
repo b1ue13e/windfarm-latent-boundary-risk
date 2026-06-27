@@ -30,6 +30,12 @@ if (Test-Path $statisticalClaimScript) {
     if ($LASTEXITCODE -ne 0) { throw "Statistical claim table generation failed." }
 }
 
+$earlyWarningConsequenceScript = Join-Path $root "scripts\build_early_warning_consequence_table.py"
+if (Test-Path $earlyWarningConsequenceScript) {
+    & python $earlyWarningConsequenceScript
+    if ($LASTEXITCODE -ne 0) { throw "Early-warning consequence table generation failed." }
+}
+
 $outcomeSanityScript = Join-Path $root "scripts\build_outcome_channel_sanity.py"
 if (Test-Path $outcomeSanityScript) {
     & python $outcomeSanityScript
