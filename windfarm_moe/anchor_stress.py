@@ -6,9 +6,11 @@ import shutil
 
 import numpy as np
 import pandas as pd
+from sklearn.metrics import average_precision_score, roc_auc_score
 
 from .config import EvalConfig, ModelConfig, TrainConfig
 from .data import load_cache_bundle
+from .regimes import compute_wtb_operation_regime
 from .train import train_model
 from .utils import ensure_dir, load_json, save_json
 
@@ -113,6 +115,171 @@ def run_anchor_stress_guard(
                 "tex": str(out_dir / "anchor_stress_summary.tex"),
             },
         },
+    )
+    return out_dir
+
+
+def run_anchor_stress_early_warning(
+    *,
+    suite_root: Path | str,
+    output_dir: Path | str,
+    variants: list[str] | tuple[str, ...] | str | None = None,
+    seeds: list[int] | tuple[int, ...] | str | None = None,
+    split: str = "test",
+    early_window_steps: int = 6,
+    pretrigger_steps: list[int] | tuple[int, ...] | str | None = None,
+    delay_steps: list[int] | tuple[int, ...] | str | None = None,
+    availability_rates: list[float] | tuple[float, ...] | str | None = None,
+    noise_levels: list[tuple[float, float]] | tuple[tuple[float, float], ...] | str | None = None,
+    random_seed: int = 1729,
+    cut_in_wind: float = 3.0,
+    rated_wind: float = 10.5,
+    pitch_threshold: float = 2.0,
+    min_delay_recall_gain: float = 0.15,
+    min_low_availability_recall_gain: float = 0.20,
+    max_availability_for_gain: float = 0.50,
+    min_pretrigger_auc: float = 0.80,
+) -> Path:
+    suite = Path(suite_root)
+    out_dir = ensure_dir(output_dir)
+    variant_list = _parse_early_warning_variants(variants)
+    seed_list = _parse_seeds(seeds)
+    pre_steps = _parse_int_grid(pretrigger_steps, [1, 3, 6, 12])
+    delay_grid = _parse_int_grid(delay_steps, [1, 3, 6])
+    availability_grid = _parse_float_grid(availability_rates, [1.0, 0.75, 0.5, 0.25])
+    noise_grid = _parse_noise_grid(noise_levels, [(0.25, 0.5), (0.5, 1.0), (1.0, 2.0)])
+
+    raw_rows: list[dict[str, Any]] = []
+    status_rows: list[dict[str, Any]] = []
+    for variant in variant_list:
+        for seed in seed_list:
+            run_dir = _early_warning_run_dir(suite, variant, seed)
+            metrics_dir = run_dir / f"{split}_metrics"
+            required = ["gate_prob.npy", "regime_primary.npy", "regime_primary_valid.npy", "anchor_physics.npy"]
+            missing = [name for name in required if not (metrics_dir / name).exists()]
+            status_rows.append(
+                {
+                    "variant": variant,
+                    "seed": int(seed),
+                    "run_dir": str(run_dir),
+                    "metrics_dir": str(metrics_dir),
+                    "complete": not missing,
+                    "missing_files": ",".join(missing),
+                }
+            )
+            if missing:
+                continue
+            raw_rows.extend(
+                _early_warning_rows_for_run(
+                    variant=variant,
+                    seed=int(seed),
+                    run_dir=run_dir,
+                    metrics_dir=metrics_dir,
+                    split=split,
+                    early_window_steps=int(early_window_steps),
+                    pretrigger_steps=pre_steps,
+                    delay_steps=delay_grid,
+                    availability_rates=availability_grid,
+                    noise_levels=noise_grid,
+                    random_seed=int(random_seed),
+                    cut_in_wind=float(cut_in_wind),
+                    rated_wind=float(rated_wind),
+                    pitch_threshold=float(pitch_threshold),
+                )
+            )
+
+    status_df = pd.DataFrame(status_rows)
+    raw_df = pd.DataFrame(raw_rows)
+    summary_df = _summarize_early_warning(raw_df)
+
+    status_df.to_csv(out_dir / "anchor_stress_early_warning_run_status.csv", index=False)
+    raw_df.to_csv(out_dir / "anchor_stress_early_warning_raw.csv", index=False)
+    summary_df.to_csv(out_dir / "anchor_stress_early_warning_summary.csv", index=False)
+    _write_early_warning_latex(summary_df, out_dir / "anchor_stress_early_warning_summary.tex")
+
+    expected_runs = int(len(variant_list) * len(seed_list))
+    complete_runs = int(status_df["complete"].astype(bool).sum()) if not status_df.empty else 0
+    delay_pass = _scenario_gain_pass(
+        summary_df,
+        scenario="label_delay",
+        gain_col="recall_gain_mean",
+        min_gain=float(min_delay_recall_gain),
+    )
+    availability_pass = _low_availability_gain_pass(
+        summary_df,
+        max_availability=float(max_availability_for_gain),
+        min_gain=float(min_low_availability_recall_gain),
+    )
+    pretrigger_pass = _scenario_gain_pass(
+        summary_df,
+        scenario="pretrigger_ranking",
+        gain_col="gate_roc_auc_mean",
+        min_gain=float(min_pretrigger_auc),
+    )
+    noise_present = bool(not summary_df.empty and summary_df["scenario"].astype(str).eq("threshold_sensor_noise").any())
+    checks = {
+        "all_requested_runs_complete": complete_runs == expected_runs and expected_runs > 0,
+        "delay_degradation_curve_nonempty": bool(
+            not raw_df.empty and raw_df["scenario"].astype(str).eq("label_delay").any()
+        ),
+        "label_availability_curve_nonempty": bool(
+            not raw_df.empty and raw_df["scenario"].astype(str).eq("label_availability").any()
+        ),
+        "gate_beats_delayed_threshold_labels": delay_pass,
+        "gate_beats_low_availability_threshold_labels": availability_pass,
+        "pretrigger_ranking_auc_passes": pretrigger_pass,
+        "threshold_sensor_noise_curve_present": noise_present,
+    }
+    if not checks["all_requested_runs_complete"]:
+        status = "ready_to_execute_anchor_stress_early_warning"
+    elif checks["gate_beats_delayed_threshold_labels"] and checks["gate_beats_low_availability_threshold_labels"]:
+        status = "complete_anchor_stress_supports_label_degradation_value"
+    else:
+        status = "complete_anchor_stress_needs_early_warning_claim_downgrade"
+
+    save_json(
+        out_dir / "anchor_stress_early_warning_guard.json",
+        {
+            "status": status,
+            "variants": variant_list,
+            "seeds": [int(seed) for seed in seed_list],
+            "split": split,
+            "early_window_steps": int(early_window_steps),
+            "pretrigger_steps": pre_steps,
+            "delay_steps": delay_grid,
+            "availability_rates": availability_grid,
+            "noise_levels": [[float(wspd), float(pab)] for wspd, pab in noise_grid],
+            "thresholds": {
+                "cut_in_wind": float(cut_in_wind),
+                "rated_wind": float(rated_wind),
+                "pitch_threshold": float(pitch_threshold),
+                "min_delay_recall_gain": float(min_delay_recall_gain),
+                "min_low_availability_recall_gain": float(min_low_availability_recall_gain),
+                "max_availability_for_gain": float(max_availability_for_gain),
+                "min_pretrigger_auc": float(min_pretrigger_auc),
+            },
+            "expected_runs": expected_runs,
+            "complete_runs": complete_runs,
+            "checks": checks,
+            "claim_use": (
+                "Post-hoc label-degradation audit for MPPT-to-pitch transition value. "
+                "The citable claim is operational detection under delayed, missing, or noisy threshold labels, "
+                "not a future-label predictor unless the pre-trigger ranking slice is cited separately."
+            ),
+            "paths": {
+                "run_status_csv": str(out_dir / "anchor_stress_early_warning_run_status.csv"),
+                "raw_csv": str(out_dir / "anchor_stress_early_warning_raw.csv"),
+                "summary_csv": str(out_dir / "anchor_stress_early_warning_summary.csv"),
+                "tex": str(out_dir / "anchor_stress_early_warning_summary.tex"),
+                "guard_json": str(out_dir / "anchor_stress_early_warning_guard.json"),
+            },
+        },
+    )
+    _write_early_warning_readme(
+        out_dir / "README.md",
+        status=status,
+        checks=checks,
+        summary=summary_df,
     )
     return out_dir
 
@@ -224,6 +391,457 @@ def _copy_cache(source: Path, target: Path) -> None:
     if target.exists():
         shutil.rmtree(target)
     shutil.copytree(source, target)
+
+
+def _early_warning_run_dir(suite: Path, variant: str, seed: int) -> Path:
+    if variant == "canonical":
+        return suite / f"wtb_bal_align_force_seed{seed}"
+    return suite / variant / f"wtb_bal_align_force_seed{seed}"
+
+
+def _early_warning_rows_for_run(
+    *,
+    variant: str,
+    seed: int,
+    run_dir: Path,
+    metrics_dir: Path,
+    split: str,
+    early_window_steps: int,
+    pretrigger_steps: list[int],
+    delay_steps: list[int],
+    availability_rates: list[float],
+    noise_levels: list[tuple[float, float]],
+    random_seed: int,
+    cut_in_wind: float,
+    rated_wind: float,
+    pitch_threshold: float,
+) -> list[dict[str, Any]]:
+    gate_prob = np.asarray(np.load(metrics_dir / "gate_prob.npy", mmap_mode="r"), dtype=np.float64)
+    regime = np.asarray(np.load(metrics_dir / "regime_primary.npy", mmap_mode="r"), dtype=np.int16)
+    valid = np.asarray(np.load(metrics_dir / "regime_primary_valid.npy", mmap_mode="r"), dtype=bool)
+    physics = np.asarray(np.load(metrics_dir / "anchor_physics.npy", mmap_mode="r"), dtype=np.float64)
+    gate_classes = max(1, min(int(gate_prob.shape[-1]), 3))
+    gate_label = np.asarray(gate_prob[..., :gate_classes]).argmax(axis=-1).astype(np.int16)
+    pitch_score = gate_prob[..., 2] if gate_prob.shape[-1] > 2 else (gate_label == 2).astype(np.float64)
+    transitions = _mppt_to_pitch_transitions(regime, valid)
+    early_pitch, transition_support = _early_pitch_window(
+        regime,
+        valid,
+        transitions,
+        early_window_steps=int(early_window_steps),
+    )
+    gate_pitch = gate_label == 2
+    rows: list[dict[str, Any]] = []
+    base = {
+        "variant": variant,
+        "seed": int(seed),
+        "run_dir": str(run_dir),
+        "split": split,
+        "early_window_steps": int(early_window_steps),
+        "n_mppt_to_pitch_transitions": int(transitions.sum()),
+    }
+
+    for delay in delay_steps:
+        delayed = _delay_labels(regime, steps=int(delay), fill=0)
+        delayed_valid = _delay_labels(valid.astype(np.int16), steps=int(delay), fill=0).astype(bool) & valid
+        threshold_pitch = (delayed == 2) & delayed_valid
+        rows.append(
+            {
+                **base,
+                "scenario": "label_delay",
+                "degradation_level": int(delay),
+                "degradation_label": f"delay_steps={int(delay)}",
+                **_detection_metrics(gate_pitch, threshold_pitch, early_pitch, transition_support),
+            }
+        )
+
+    rng = np.random.default_rng(int(random_seed) + int(seed) * 1009 + _stable_variant_offset(variant))
+    for rate in availability_rates:
+        available = rng.random(regime.shape) < float(rate)
+        threshold_pitch = (regime == 2) & valid & available
+        rows.append(
+            {
+                **base,
+                "scenario": "label_availability",
+                "degradation_level": float(rate),
+                "degradation_label": f"available_rate={float(rate):.2f}",
+                **_detection_metrics(gate_pitch, threshold_pitch, early_pitch, transition_support),
+            }
+        )
+
+    if physics.ndim >= 3 and physics.shape[-1] >= 2:
+        wspd = np.asarray(physics[..., 0], dtype=np.float64)
+        pab = np.asarray(physics[..., 1], dtype=np.float64)
+        for idx, (wspd_sigma, pab_sigma) in enumerate(noise_levels):
+            noise_rng = np.random.default_rng(
+                int(random_seed) + int(seed) * 9173 + _stable_variant_offset(variant) + idx * 37
+            )
+            noisy_wspd = wspd + noise_rng.normal(0.0, float(wspd_sigma), size=wspd.shape)
+            noisy_pab = pab + noise_rng.normal(0.0, float(pab_sigma), size=pab.shape)
+            noisy_regime, noisy_valid_float = compute_wtb_operation_regime(
+                noisy_wspd,
+                noisy_pab,
+                cut_in_wind=float(cut_in_wind),
+                rated_wind=float(rated_wind),
+                pitch_threshold=float(pitch_threshold),
+            )
+            threshold_pitch = (noisy_regime == 2) & noisy_valid_float.astype(bool) & valid
+            rows.append(
+                {
+                    **base,
+                    "scenario": "threshold_sensor_noise",
+                    "degradation_level": float(wspd_sigma),
+                    "degradation_label": f"wspd_sd={float(wspd_sigma):.2f};pab_sd={float(pab_sigma):.2f}",
+                    "wspd_noise_sd": float(wspd_sigma),
+                    "pab_noise_sd": float(pab_sigma),
+                    **_detection_metrics(gate_pitch, threshold_pitch, early_pitch, transition_support),
+                }
+            )
+
+    for steps in pretrigger_steps:
+        pretrigger = _pretrigger_window(regime, valid, transitions, lead_steps=int(steps))
+        mppt_support = valid & (regime == 1)
+        y_true = (pretrigger & mppt_support).astype(np.int16)[mppt_support]
+        score = np.asarray(pitch_score[mppt_support], dtype=np.float64)
+        rows.append(
+            {
+                **base,
+                "scenario": "pretrigger_ranking",
+                "degradation_level": int(steps),
+                "degradation_label": f"lead_steps={int(steps)}",
+                "n_target_cells": int(y_true.sum()),
+                "n_support_cells": int(y_true.size),
+                "target_rate": float(y_true.mean()) if y_true.size else float("nan"),
+                "gate_average_precision": _binary_average_precision(y_true, score),
+                "gate_roc_auc": _binary_roc_auc(y_true, score),
+                "gate_target_score_mean": _safe_mean_np(score[y_true.astype(bool)]),
+                "gate_background_score_mean": _safe_mean_np(score[~y_true.astype(bool)]),
+            }
+        )
+    return rows
+
+
+def _mppt_to_pitch_transitions(regime: np.ndarray, valid: np.ndarray) -> np.ndarray:
+    transitions = np.zeros_like(regime, dtype=bool)
+    if regime.shape[0] < 2:
+        return transitions
+    changes = (regime[:-1] == 1) & (regime[1:] == 2) & valid[:-1] & valid[1:]
+    transitions[1:] = changes
+    return transitions
+
+
+def _early_pitch_window(
+    regime: np.ndarray,
+    valid: np.ndarray,
+    transitions: np.ndarray,
+    *,
+    early_window_steps: int,
+) -> tuple[np.ndarray, np.ndarray]:
+    target = np.zeros_like(regime, dtype=bool)
+    support = np.zeros_like(regime, dtype=bool)
+    num_steps = regime.shape[0]
+    for row, node in np.argwhere(transitions):
+        lo = max(0, int(row) - int(early_window_steps))
+        hi = min(num_steps, int(row) + int(early_window_steps) + 1)
+        target[int(row) : hi, int(node)] = True
+        support[lo:hi, int(node)] = True
+    target &= valid & (regime == 2)
+    support &= valid & np.isin(regime, [1, 2])
+    return target, support
+
+
+def _pretrigger_window(
+    regime: np.ndarray,
+    valid: np.ndarray,
+    transitions: np.ndarray,
+    *,
+    lead_steps: int,
+) -> np.ndarray:
+    target = np.zeros_like(regime, dtype=bool)
+    for row, node in np.argwhere(transitions):
+        lo = max(0, int(row) - int(lead_steps))
+        hi = int(row)
+        if lo < hi:
+            target[lo:hi, int(node)] = True
+    return target & valid & (regime == 1)
+
+
+def _delay_labels(values: np.ndarray, *, steps: int, fill: int) -> np.ndarray:
+    steps = max(0, int(steps))
+    out = np.empty_like(values)
+    if steps == 0:
+        out[...] = values
+        return out
+    out[:steps] = fill
+    out[steps:] = values[:-steps]
+    return out
+
+
+def _detection_metrics(
+    gate_pitch: np.ndarray,
+    threshold_pitch: np.ndarray,
+    target: np.ndarray,
+    support: np.ndarray,
+) -> dict[str, Any]:
+    gate = np.asarray(gate_pitch, dtype=bool)
+    threshold = np.asarray(threshold_pitch, dtype=bool)
+    target = np.asarray(target, dtype=bool)
+    support = np.asarray(support, dtype=bool)
+    gate_stats = _precision_recall(gate, target, support)
+    threshold_stats = _precision_recall(threshold, target, support)
+    return {
+        "n_target_cells": int(target.sum()),
+        "n_support_cells": int(support.sum()),
+        "gate_positive_cells": int((gate & support).sum()),
+        "threshold_positive_cells": int((threshold & support).sum()),
+        "gate_recall": gate_stats["recall"],
+        "threshold_recall": threshold_stats["recall"],
+        "recall_gain": gate_stats["recall"] - threshold_stats["recall"],
+        "gate_precision": gate_stats["precision"],
+        "threshold_precision": threshold_stats["precision"],
+        "precision_gain": gate_stats["precision"] - threshold_stats["precision"],
+        "gate_f1": gate_stats["f1"],
+        "threshold_f1": threshold_stats["f1"],
+        "f1_gain": gate_stats["f1"] - threshold_stats["f1"],
+    }
+
+
+def _precision_recall(pred: np.ndarray, target: np.ndarray, support: np.ndarray) -> dict[str, float]:
+    pred_support = pred & support
+    true_positive = int((pred_support & target).sum())
+    target_count = int(target.sum())
+    pred_count = int(pred_support.sum())
+    recall = float(true_positive / target_count) if target_count else float("nan")
+    precision = float(true_positive / pred_count) if pred_count else float("nan")
+    if np.isfinite(recall) and np.isfinite(precision) and (recall + precision) > 0:
+        f1 = float(2.0 * recall * precision / (recall + precision))
+    else:
+        f1 = float("nan")
+    return {"recall": recall, "precision": precision, "f1": f1}
+
+
+def _summarize_early_warning(raw_df: pd.DataFrame) -> pd.DataFrame:
+    group_cols = ["variant", "scenario", "degradation_label", "degradation_level"]
+    metric_cols = [
+        "n_mppt_to_pitch_transitions",
+        "n_target_cells",
+        "n_support_cells",
+        "gate_recall",
+        "threshold_recall",
+        "recall_gain",
+        "gate_precision",
+        "threshold_precision",
+        "precision_gain",
+        "gate_f1",
+        "threshold_f1",
+        "f1_gain",
+        "gate_average_precision",
+        "gate_roc_auc",
+        "target_rate",
+        "gate_target_score_mean",
+        "gate_background_score_mean",
+    ]
+    columns = group_cols + ["n_runs"] + [f"{col}_{suffix}" for col in metric_cols for suffix in ["mean", "std"]]
+    if raw_df.empty:
+        return pd.DataFrame(columns=columns)
+    rows: list[dict[str, Any]] = []
+    for keys, group in raw_df.groupby(group_cols, dropna=False, sort=False):
+        row = {column: value for column, value in zip(group_cols, keys)}
+        row["n_runs"] = int(group[["variant", "seed"]].drop_duplicates().shape[0])
+        for column in metric_cols:
+            if column not in group.columns:
+                row[f"{column}_mean"] = float("nan")
+                row[f"{column}_std"] = float("nan")
+                continue
+            values = pd.to_numeric(group[column], errors="coerce")
+            row[f"{column}_mean"] = float(values.mean()) if values.notna().any() else float("nan")
+            row[f"{column}_std"] = float(values.std(ddof=1)) if values.notna().sum() > 1 else 0.0
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def _scenario_gain_pass(summary: pd.DataFrame, *, scenario: str, gain_col: str, min_gain: float) -> bool:
+    if summary.empty or gain_col not in summary.columns:
+        return False
+    rows = summary[summary["scenario"].astype(str).eq(scenario)].copy()
+    if rows.empty:
+        return False
+    values = pd.to_numeric(rows[gain_col], errors="coerce").dropna()
+    return bool(not values.empty and float(values.min()) >= float(min_gain))
+
+
+def _low_availability_gain_pass(
+    summary: pd.DataFrame,
+    *,
+    max_availability: float,
+    min_gain: float,
+) -> bool:
+    if summary.empty or "recall_gain_mean" not in summary.columns:
+        return False
+    rows = summary[summary["scenario"].astype(str).eq("label_availability")].copy()
+    if rows.empty:
+        return False
+    levels = pd.to_numeric(rows["degradation_level"], errors="coerce")
+    rows = rows[levels <= float(max_availability)].copy()
+    if rows.empty:
+        return False
+    values = pd.to_numeric(rows["recall_gain_mean"], errors="coerce").dropna()
+    return bool(not values.empty and float(values.min()) >= float(min_gain))
+
+
+def _write_early_warning_latex(frame: pd.DataFrame, path: Path) -> None:
+    lines = [
+        r"\begin{table}[H]",
+        r"\centering",
+        r"\footnotesize",
+        r"\setlength{\tabcolsep}{4pt}",
+        r"\renewcommand{\arraystretch}{1.08}",
+        r"\caption{Anchor-stress label-degradation audit for MPPT-to-pitch transition detection.}",
+        r"\begin{tabular}{lllrrrr}",
+        r"\toprule",
+        r"Variant & Scenario & Degradation & Runs & Gate recall & Rule recall & Gain \\",
+        r"\midrule",
+    ]
+    if not frame.empty:
+        keep = frame[frame["scenario"].astype(str).isin(["label_delay", "label_availability", "threshold_sensor_noise"])]
+        for _, row in keep.iterrows():
+            lines.append(
+                " & ".join(
+                    [
+                        str(row.get("variant", "")).replace("_", r"\_"),
+                        str(row.get("scenario", "")).replace("_", r"\_"),
+                        str(row.get("degradation_label", "")).replace("_", r"\_"),
+                        str(int(row.get("n_runs", 0))),
+                        _fmt_pm(row.get("gate_recall_mean"), row.get("gate_recall_std")),
+                        _fmt_pm(row.get("threshold_recall_mean"), row.get("threshold_recall_std")),
+                        _fmt_pm(row.get("recall_gain_mean"), row.get("recall_gain_std")),
+                    ]
+                )
+                + r" \\"
+            )
+    lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}", ""])
+    path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def _write_early_warning_readme(
+    path: Path,
+    *,
+    status: str,
+    checks: dict[str, Any],
+    summary: pd.DataFrame,
+) -> None:
+    lines = [
+        "# Anchor-stress early-warning audit",
+        "",
+        f"Status: `{status}`",
+        "",
+        "This audit compares saved gate assignments with degraded threshold-label baselines around MPPT-to-pitch transitions.",
+        "It supports a conservative operational claim: gate value under delayed, missing, or noisy labels.",
+        "",
+        "## Checks",
+        "",
+    ]
+    for key, value in checks.items():
+        lines.append(f"- {key}: `{bool(value)}`")
+    if not summary.empty:
+        lines.extend(["", "## Summary", ""])
+        display = summary[
+            summary["scenario"].astype(str).isin(["label_delay", "label_availability", "threshold_sensor_noise"])
+        ].copy()
+        for _, row in display.iterrows():
+            lines.append(
+                "- "
+                f"{row['variant']} / {row['scenario']} / {row['degradation_label']}: "
+                f"gate recall {_fmt_float(row.get('gate_recall_mean'))}, "
+                f"rule recall {_fmt_float(row.get('threshold_recall_mean'))}, "
+                f"gain {_fmt_float(row.get('recall_gain_mean'))}"
+            )
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def _parse_early_warning_variants(values: list[str] | tuple[str, ...] | str | None) -> list[str]:
+    if values is None:
+        return ["canonical"]
+    if isinstance(values, str):
+        parsed = [token.strip() for token in values.split(",") if token.strip()]
+    else:
+        parsed = [str(value).strip() for value in values if str(value).strip()]
+    if not parsed:
+        return ["canonical"]
+    allowed = set(ANCHOR_STRESS_VARIANTS) | {"canonical"}
+    unknown = sorted(set(parsed).difference(allowed))
+    if unknown:
+        raise ValueError(f"Unsupported early-warning variant(s): {unknown}. Available: {sorted(allowed)}")
+    return parsed
+
+
+def _parse_int_grid(values: list[int] | tuple[int, ...] | str | None, default: list[int]) -> list[int]:
+    if values is None:
+        parsed = list(default)
+    elif isinstance(values, str):
+        parsed = [int(token.strip()) for token in values.split(",") if token.strip()]
+    else:
+        parsed = [int(value) for value in values]
+    return sorted({int(value) for value in parsed if int(value) >= 0})
+
+
+def _parse_float_grid(values: list[float] | tuple[float, ...] | str | None, default: list[float]) -> list[float]:
+    if values is None:
+        parsed = list(default)
+    elif isinstance(values, str):
+        parsed = [float(token.strip()) for token in values.split(",") if token.strip()]
+    else:
+        parsed = [float(value) for value in values]
+    return sorted({float(value) for value in parsed if 0.0 <= float(value) <= 1.0}, reverse=True)
+
+
+def _parse_noise_grid(
+    values: list[tuple[float, float]] | tuple[tuple[float, float], ...] | str | None,
+    default: list[tuple[float, float]],
+) -> list[tuple[float, float]]:
+    if values is None:
+        return list(default)
+    if isinstance(values, str):
+        parsed: list[tuple[float, float]] = []
+        for token in values.split(","):
+            token = token.strip()
+            if not token:
+                continue
+            if ":" not in token:
+                raise ValueError("Noise levels must use 'wspd_sd:pab_sd' entries separated by commas.")
+            wspd, pab = token.split(":", 1)
+            parsed.append((float(wspd.strip()), float(pab.strip())))
+        return parsed
+    return [(float(wspd), float(pab)) for wspd, pab in values]
+
+
+def _binary_average_precision(y_true: np.ndarray, score: np.ndarray) -> float:
+    y = np.asarray(y_true, dtype=np.int16)
+    if y.size == 0 or np.unique(y).size < 2:
+        return float("nan")
+    return float(average_precision_score(y, np.asarray(score, dtype=np.float64)))
+
+
+def _binary_roc_auc(y_true: np.ndarray, score: np.ndarray) -> float:
+    y = np.asarray(y_true, dtype=np.int16)
+    if y.size == 0 or np.unique(y).size < 2:
+        return float("nan")
+    return float(roc_auc_score(y, np.asarray(score, dtype=np.float64)))
+
+
+def _safe_mean_np(values: np.ndarray) -> float:
+    arr = np.asarray(values, dtype=np.float64)
+    arr = arr[np.isfinite(arr)]
+    return float(arr.mean()) if arr.size else float("nan")
+
+
+def _stable_variant_offset(variant: str) -> int:
+    return int(sum((idx + 1) * ord(char) for idx, char in enumerate(str(variant))))
+
+
+def _fmt_float(value: Any, digits: int = 3) -> str:
+    value_float = _num(value)
+    return "NA" if not np.isfinite(value_float) else f"{value_float:.{digits}f}"
 
 
 def _resolve_variant_cache(cache_root: Path, variant: str) -> Path:

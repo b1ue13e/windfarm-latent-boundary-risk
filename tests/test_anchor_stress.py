@@ -9,7 +9,12 @@ import numpy as np
 import pandas as pd
 
 from main import build_parser
-from windfarm_moe.anchor_stress import build_anchor_stress_caches, run_anchor_stress_guard, run_anchor_stress_training
+from windfarm_moe.anchor_stress import (
+    build_anchor_stress_caches,
+    run_anchor_stress_early_warning,
+    run_anchor_stress_guard,
+    run_anchor_stress_training,
+)
 from windfarm_moe.utils import load_json, save_json
 
 
@@ -24,12 +29,17 @@ class AnchorStressTests(unittest.TestCase):
         train_args = build_parser().parse_args(
             ["anchor-stress-train", "--cache-root", "cache", "--output-root", "runs"]
         )
+        early_args = build_parser().parse_args(
+            ["anchor-stress-early-warning", "--suite-root", "runs", "--output-dir", "out"]
+        )
 
         self.assertEqual(cache_args.command, "anchor-stress-cache")
         self.assertEqual(train_args.command, "anchor-stress-train")
         self.assertEqual(train_args.seeds, "201,202,203")
         self.assertEqual(guard_args.command, "anchor-stress-guard")
         self.assertEqual(guard_args.seeds, "201,202,203")
+        self.assertEqual(early_args.command, "anchor-stress-early-warning")
+        self.assertEqual(early_args.variants, "canonical")
 
     def test_cache_variants_modify_anchor_channels(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -126,6 +136,35 @@ class AnchorStressTests(unittest.TestCase):
             self.assertEqual(summary["variant_key"], "bal_align_force")
             self.assertEqual(summary["loss_weights"]["physics_force"], 10000.0)
 
+    def test_early_warning_audit_reports_gate_value_under_label_delay(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            run_dir = root / "runs" / "wtb_bal_align_force_seed201"
+            _write_early_warning_run(run_dir)
+
+            output = run_anchor_stress_early_warning(
+                suite_root=root / "runs",
+                output_dir=root / "early",
+                variants="canonical",
+                seeds="201",
+                early_window_steps=2,
+                pretrigger_steps="1,2",
+                delay_steps="1,2",
+                availability_rates="1.0,0.5",
+                noise_levels="0.1:0.1",
+                min_delay_recall_gain=0.10,
+                min_low_availability_recall_gain=0.10,
+            )
+            guard = load_json(output / "anchor_stress_early_warning_guard.json")
+            summary = pd.read_csv(output / "anchor_stress_early_warning_summary.csv")
+            delay = summary[summary["scenario"] == "label_delay"].sort_values("degradation_level").iloc[-1]
+
+            self.assertEqual(guard["status"], "complete_anchor_stress_supports_label_degradation_value")
+            self.assertTrue(guard["checks"]["gate_beats_delayed_threshold_labels"])
+            self.assertGreater(float(delay["gate_recall_mean"]), float(delay["threshold_recall_mean"]))
+            self.assertTrue((output / "anchor_stress_early_warning_summary.tex").exists())
+            self.assertTrue((output / "README.md").exists())
+
 
 def _write_cache(cache: Path) -> Path:
     cache.mkdir(parents=True)
@@ -179,6 +218,36 @@ def _write_cache(cache: Path) -> Path:
         },
     )
     return cache
+
+
+def _write_early_warning_run(run_dir: Path) -> None:
+    metrics = run_dir / "test_metrics"
+    metrics.mkdir(parents=True)
+    regime = np.array(
+        [
+            [1, 1],
+            [1, 1],
+            [1, 1],
+            [2, 1],
+            [2, 1],
+            [2, 2],
+            [2, 2],
+            [1, 2],
+        ],
+        dtype=np.int16,
+    )
+    gate = np.zeros((regime.shape[0], regime.shape[1], 3), dtype=np.float32)
+    for row in range(regime.shape[0]):
+        for node in range(regime.shape[1]):
+            gate[row, node, regime[row, node]] = 0.95
+            gate[row, node, 0] += 0.05
+    physics = np.zeros((regime.shape[0], regime.shape[1], 4), dtype=np.float32)
+    physics[..., 0] = np.where(regime == 2, 12.0, 8.0)
+    physics[..., 1] = np.where(regime == 2, 4.0, 1.0)
+    np.save(metrics / "gate_prob.npy", gate)
+    np.save(metrics / "regime_primary.npy", regime)
+    np.save(metrics / "regime_primary_valid.npy", np.ones_like(regime, dtype=np.float32))
+    np.save(metrics / "anchor_physics.npy", physics)
 
 
 def _write_run(run_dir: Path, *, seed: int, nmi: float) -> None:

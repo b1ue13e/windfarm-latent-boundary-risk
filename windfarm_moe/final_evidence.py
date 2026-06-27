@@ -842,6 +842,8 @@ def _infer_trace_command(group: str, name: str, source_path: str) -> str:
         return "python main.py reserve-probabilistic-baseline"
     if "reserve_toy_operational_cost" in text:
         return "python main.py toy-operational-cost"
+    if "anchor_stress_early_warning" in text:
+        return "python main.py anchor-stress-early-warning"
     if "anchor_stress_guard" in text:
         return "python main.py anchor-stress-cache / anchor-stress-train / anchor-stress-guard"
     if "reviewer_stats" in text or "paired_" in text or "failure_cases" in text:

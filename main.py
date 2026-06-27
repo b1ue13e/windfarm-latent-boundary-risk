@@ -9,7 +9,12 @@ import pandas as pd
 from windfarm_moe.boundary_slice import run_boundary_slice_audit
 from windfarm_moe.config import DataConfig, EvalConfig, ModelConfig, TrainConfig
 from windfarm_moe.decision import run_reserve_decision, run_reserve_decision_guard
-from windfarm_moe.anchor_stress import build_anchor_stress_caches, run_anchor_stress_guard, run_anchor_stress_training
+from windfarm_moe.anchor_stress import (
+    build_anchor_stress_caches,
+    run_anchor_stress_early_warning,
+    run_anchor_stress_guard,
+    run_anchor_stress_training,
+)
 from windfarm_moe.operational_cost import run_toy_operational_cost
 from windfarm_moe.operational_baselines import run_operational_baselines
 from windfarm_moe.reserve_baselines import run_reserve_probabilistic_baseline
@@ -1146,6 +1151,43 @@ def build_parser() -> argparse.ArgumentParser:
     anchor_stress_guard_parser.add_argument("--seeds", type=str, default="201,202,203")
     anchor_stress_guard_parser.add_argument("--min-nmi", type=float, default=0.65)
 
+    anchor_stress_early_warning_parser = subparsers.add_parser(
+        "anchor-stress-early-warning",
+        help="Audit gate value when MPPT-to-pitch threshold labels are delayed, missing, or noisy",
+    )
+    anchor_stress_early_warning_parser.add_argument(
+        "--suite-root",
+        type=str,
+        default="artifacts/strictmask_validation_wtb_full",
+    )
+    anchor_stress_early_warning_parser.add_argument("--output-dir", type=str, required=True)
+    anchor_stress_early_warning_parser.add_argument(
+        "--variants",
+        type=str,
+        default="canonical",
+        help="Use 'canonical' for <suite-root>/wtb_bal_align_force_seed<seed>, or anchor-stress variants.",
+    )
+    anchor_stress_early_warning_parser.add_argument("--seeds", type=str, default="201,202,203,204,205")
+    anchor_stress_early_warning_parser.add_argument("--split", choices=["val", "test", "holdout"], default="test")
+    anchor_stress_early_warning_parser.add_argument("--early-window-steps", type=int, default=6)
+    anchor_stress_early_warning_parser.add_argument("--pretrigger-steps", type=str, default="1,3,6,12")
+    anchor_stress_early_warning_parser.add_argument("--delay-steps", type=str, default="1,3,6")
+    anchor_stress_early_warning_parser.add_argument("--availability-rates", type=str, default="1.0,0.75,0.5,0.25")
+    anchor_stress_early_warning_parser.add_argument(
+        "--noise-levels",
+        type=str,
+        default="0.25:0.5,0.5:1.0,1.0:2.0",
+        help="Comma-separated wspd_sd:pab_sd noise pairs for degraded threshold recomputation.",
+    )
+    anchor_stress_early_warning_parser.add_argument("--random-seed", type=int, default=1729)
+    anchor_stress_early_warning_parser.add_argument("--cut-in-wind", type=float, default=3.0)
+    anchor_stress_early_warning_parser.add_argument("--rated-wind", type=float, default=10.5)
+    anchor_stress_early_warning_parser.add_argument("--pitch-threshold", type=float, default=2.0)
+    anchor_stress_early_warning_parser.add_argument("--min-delay-recall-gain", type=float, default=0.15)
+    anchor_stress_early_warning_parser.add_argument("--min-low-availability-recall-gain", type=float, default=0.20)
+    anchor_stress_early_warning_parser.add_argument("--max-availability-for-gain", type=float, default=0.50)
+    anchor_stress_early_warning_parser.add_argument("--min-pretrigger-auc", type=float, default=0.80)
+
     intervention_parser = subparsers.add_parser(
         "mechanism-intervention",
         help="Replay trained WTB MoE checkpoints after targeted physical-variable interventions",
@@ -1299,6 +1341,30 @@ def main() -> None:
             min_nmi=args.min_nmi,
         )
         print(f"Anchor-stress guard saved to: {output_dir}")
+        return
+
+    if args.command == "anchor-stress-early-warning":
+        output_dir = run_anchor_stress_early_warning(
+            suite_root=Path(args.suite_root),
+            output_dir=Path(args.output_dir),
+            variants=args.variants,
+            seeds=args.seeds,
+            split=args.split,
+            early_window_steps=args.early_window_steps,
+            pretrigger_steps=args.pretrigger_steps,
+            delay_steps=args.delay_steps,
+            availability_rates=args.availability_rates,
+            noise_levels=args.noise_levels,
+            random_seed=args.random_seed,
+            cut_in_wind=args.cut_in_wind,
+            rated_wind=args.rated_wind,
+            pitch_threshold=args.pitch_threshold,
+            min_delay_recall_gain=args.min_delay_recall_gain,
+            min_low_availability_recall_gain=args.min_low_availability_recall_gain,
+            max_availability_for_gain=args.max_availability_for_gain,
+            min_pretrigger_auc=args.min_pretrigger_auc,
+        )
+        print(f"Anchor-stress early-warning audit saved to: {output_dir}")
         return
 
     data_config = _make_data_config(args)

@@ -238,6 +238,24 @@ DEFAULT_REPRODUCIBILITY_FILES: tuple[dict[str, Any], ...] = (
     },
     {
         "category": "guard",
+        "label": "WTB anchor-stress early-warning guard",
+        "path": "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_guard.json",
+        "required": True,
+    },
+    {
+        "category": "evidence",
+        "label": "WTB anchor-stress early-warning summary",
+        "path": "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv",
+        "required": True,
+    },
+    {
+        "category": "evidence",
+        "label": "WTB anchor-stress early-warning LaTeX table",
+        "path": "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.tex",
+        "required": True,
+    },
+    {
+        "category": "guard",
         "label": "External wind portability guard",
         "path": "artifacts/external_wind_guard/external_wind_guard.json",
         "required": True,

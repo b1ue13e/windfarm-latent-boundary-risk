@@ -32,12 +32,21 @@ python main.py anchor-stress-train --cache-root artifacts/cache_anchor_stress --
 python main.py anchor-stress-guard --suite-root artifacts/anchor_stress_runs --cache-root artifacts/cache_anchor_stress --output-dir artifacts/anchor_stress_guard --variants no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd --seeds 201,202,203 --min-nmi 0.65
 ```
 
+Run the post-hoc label-degradation audit before citing operational early-warning value:
+
+```powershell
+python main.py anchor-stress-early-warning --suite-root artifacts/strictmask_validation_wtb_full --output-dir artifacts/anchor_stress_early_warning_wtb_strictmask --variants canonical --seeds 201,202,203,204,205
+```
+
 Decision rule:
 
 - `complete_anchor_stress_supports_partial_anchor_robustness`: cite partial anchor robustness.
 - `complete_anchor_stress_requires_claim_downgrade`: keep declared-anchor-constrained routing language.
 - `ready_to_execute_anchor_stress_training`: do not cite training-level anchor robustness.
 - `blocked_anchor_stress_leakage_guard_failed`: do not submit until the leakage issue is resolved.
+- `complete_anchor_stress_supports_label_degradation_value`: cite operational gate value under delayed, missing, or noisy threshold labels. Do not call it a future-label predictor unless the pre-trigger ranking slice is explicitly separated.
+
+Current five-seed strictmask readout: with a six-step label delay, gate recall on early MPPT-to-pitch pitch cells is 0.960 +- 0.028 versus 0.196 for the delayed threshold rule; with 50% label availability, gate recall remains 0.960 versus 0.508 for the available-label rule.
 
 ## Minimum Evidence Tables
 
@@ -46,6 +55,7 @@ The TSTE paper should retain only these table-level claims in the main text:
 - WTB forecasting tradeoff: Graph WaveNet lower RMSE versus boundary-forced router higher NMI/ARI.
 - Ablation table: unconstrained MoE, alignment, boundary force, and anchor-only/router controls.
 - Anchor stress summary after the new three-step protocol.
+- Anchor-stress early-warning label-degradation curve if page budget allows; otherwise cite it in supplementary evidence.
 - External wind deployment-gate table with Kelmarsh/Penmanshiel failure metrics.
 - Compact reserve-risk vignette showing same-model gate-bin value and physical-bin lower-cost bound.
 
@@ -54,5 +64,5 @@ The TSTE paper should retain only these table-level claims in the main text:
 - The abstract leads with SCADA-anchored routing audit, not reserve procurement.
 - The contribution statement says `auditability`, `responsibility assignment`, and `control-boundary diagnosis`.
 - The limitations explicitly say the method is not anchor-free physical discovery.
-- The final package provenance lists `anchor-stress-cache / anchor-stress-train / anchor-stress-guard`.
+- The final package provenance lists `anchor-stress-cache / anchor-stress-train / anchor-stress-guard / anchor-stress-early-warning`.
 - All code changes are covered by targeted tests before manuscript conversion starts.

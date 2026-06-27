@@ -23,6 +23,14 @@ class ReproducibilityManifestTests(unittest.TestCase):
         self.assertIn("artifacts/reserve_toy_operational_cost/reserve_toy_operational_cost.csv", paths)
         self.assertIn("artifacts/decision_reserve_wtb_operational_windows_guard/reserve_decision_guard.json", paths)
         self.assertIn("artifacts/anchor_stress_guard/anchor_stress_guard.json", paths)
+        self.assertIn(
+            "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_guard.json",
+            paths,
+        )
+        self.assertIn(
+            "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv",
+            paths,
+        )
         self.assertIn("artifacts/applied_energy_diagnostics/graphical_abstract_applied_energy.png", paths)
         self.assertIn("artifacts/external_wind_guard/external_wind_guard.json", paths)
         self.assertIn("artifacts/external_wind_small_calibration_adaptation/adaptation_guard.json", paths)
