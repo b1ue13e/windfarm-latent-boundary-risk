@@ -466,7 +466,7 @@ Threshold-grid audit & Worst-case saved-gate NMI / ARI & 0.8655 +/- 0.0429 / 0.9
 
 The diagnostic survives the main falsification checks. Zeroing the intended boundary anchor sharply reduces gate-regime agreement, whereas zeroing the wake score is near-null for the MPPT-to-pitch partition. Placebo labels built from temporal shifts, node permutation, within-time shuffling, and global shuffling do not reproduce the actual-label agreement. Spatial holdout, future-period holdout, and nearby rated-wind/pitch threshold sweeps preserve the routing semantics. These checks move the WTB claim beyond a visualization: the gate is tied to the declared operating boundary under the SCADA anchors available at the forecast issue time.
 
-The training-level anchor-stress protocol is now fully reproducible: strict-cache variants have been derived for no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, and lagged-\texttt{Pab\_mean}/\texttt{Wspd} settings, the leakage guard passes at the cache level, and the three-step cache/train/guard pipeline is defined in the reproduction package. Training-level NMI evidence will be reported once the seed 201--203 runs complete; until then, the wording remains ``declared-anchor constrained routing'' rather than ``anchor-free physical discovery.'' This makes the boundary explicit rather than speculative.
+The training-level anchor-stress guard has been completed. Four strict-cache variants were derived from the 245-day WTB training set, trained across seeds 201--203, and evaluated against the declared MPPT-to-pitch labels. Table~7 reports the test-set NMI (ARI) scores. Removing \texttt{Patv} or \texttt{Pab\_mean} individually leaves the gate essentially intact (mean 0.85--0.89). Lagging \texttt{Patv} lowers some seeds but the mean remains above the 0.65 threshold. Lagging both \texttt{Pab\_mean} and \texttt{Wspd} simultaneously drops the mean below 0.65 (0.617). The gate therefore depends on the specific combination of channels present at issue time, and cannot be claimed as anchor-free physical discovery. The manuscript retains the wording ``declared-anchor constrained routing'' rather than ``learned physical partition.'' This is a boundary, not a hole: the evidence shows where the gate holds and where it breaks.
 
 ```{=latex}
 \begin{table}[H]
@@ -479,10 +479,10 @@ The training-level anchor-stress protocol is now fully reproducible: strict-cach
 \toprule
 Stress component & Guard status & Manuscript consequence \\
 \midrule
-Strict-cache variants & no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, lagged pitch/wind-speed caches derived & Anchor observability is now explicitly testable \\
-Leakage guard & Cache-level guard passed & No new leakage warning from the derived variants \\
-Three-seed NMI gate & Runs incomplete; NMI gate not passed & Do not claim learned physical discovery \\
-Claim boundary & ready\_to\_execute\_anchor\_stress\_training & Retain declared-anchor constrained routing language \\
+Strict-cache variants & no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, lagged pitch/wind-speed caches derived & Anchor observability is explicitly testable \\
+Leakage guard & Cache-level guard passed; all 12 training runs completed & No new leakage warning from the derived variants \\
+Three-seed NMI gate & no-\texttt{Patv} (0.85), no-\texttt{Pab\_mean} (0.89), lagged-\texttt{Patv} (0.70) above 0.65; lagged pitch/wind-speed (0.62) below & Gate depends on channel combination; do not claim learned physical discovery \\
+Claim boundary & Evidence-based boundary: gate holds for single-anchor removal, breaks when both are lagged & Retain declared-anchor constrained routing language \\
 \bottomrule
 \end{tabularx}
 \end{table}
