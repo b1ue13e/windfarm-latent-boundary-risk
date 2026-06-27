@@ -272,79 +272,27 @@ $$
 \lambda_{\mathrm{smooth}}\mathcal{L}_{\mathrm{smooth}},
 $$
 
-with inactive terms set to zero in settings where they are not used. Exact weights are listed in the Appendix.
-
-Each mini-batch encodes the history window and graph sequence, forms node-level routing probabilities from the learned context and physics anchor, and aggregates expert forecasts. The prediction loss is always active. Routing penalties are then added only in settings where they are declared. Checkpoint selection remains based on validation RMSE, so the penalties constrain responsibility without becoming the validation-selection metric.
-
-### Prediction objective
-
-The prediction loss remains the anchor of the optimization, because a routing correction that stops serving the forecast defeats the purpose of the model. We retain the masked mean-squared-error loss
-
-$$
-\mathcal{L}_{\mathrm{pred}}
-=
-\frac{
-\sum_{i,t,\tau} m^{y}_{i,t+\tau}\left(\hat{y}_{i,t+\tau}-y_{i,t+\tau}\right)^2
-}{
-\sum_{i,t,\tau} m^{y}_{i,t+\tau}
-},
-$$
-
-where $m^{y}_{i,t+\tau}$ is the target-validity mask. All routing regularizers remain subordinate to this prediction objective.
+with inactive terms set to zero. Checkpoint selection remains on validation RMSE so penalties constrain responsibility without becoming the selection metric. Exact weights are in Appendix A.
 
 ### Load balancing
 
-A balancing term prevents early expert collapse before regime-specific structure has time to emerge. It couples hard top-$K$ usage with soft probability mass over valid node-time samples, following the practical role of Switch-style load penalties but applied to node-level routing. The term stabilizes training; physical ownership is supplied only by the anchored alignment terms below. Appendix A gives the exact expression.
+A balancing term prevents early expert collapse before regime-specific structure has time to emerge. It couples hard top-$K$ usage with soft probability mass over valid node-time samples. Appendix A gives the exact expression; physical ownership is supplied only by the anchored alignment terms below.
 
 ### Regime-anchor alignment
 
-Balanced expert usage can still produce a physically meaningless partition. The alignment term connects the first $C$ gate logits to the coarsest regime structure that can be identified with high confidence: idle, MPPT, and pitch-control for WTB; stable, transition, and convective for ERA5. Let $\mathbf{z}^{(1:C)}_{i,t}$ denote these logits, and let $R_{i,t}$ and $M_{i,t}$ be the primary regime label and validity mask. The alignment loss is
-
-$$
-\mathcal{L}_{\mathrm{align}}
-=
-\frac{1}{|\Omega|}
-\sum_{(i,t)\in\Omega}
-\mathrm{CE}\!\left(\mathbf{z}^{(1:C)}_{i,t}, R_{i,t}\right),
-\qquad
-\Omega=\{(i,t):M_{i,t}=1\},
-$$
-
-with inverse-frequency class weights estimated on the training split. The fixed index convention breaks MoE label-permutation symmetry for the anchored logits during training, so cross-seed statements such as "MPPT-aligned" or "pitch-aligned" refer to this declared mapping rather than to post-hoc expert relabeling.
+The alignment term connects the first $C$ gate logits to the declared regime structure so that cross-seed statements such as "MPPT-aligned" refer to a fixed mapping rather than to post-hoc relabeling. With $\mathbf{z}^{(1:C)}_{i,t}$ denoting the anchored logits, $R_{i,t}$ the label, and $M_{i,t}$ the validity mask,
+$$\mathcal{L}_{\mathrm{align}} = \frac{1}{|\Omega|}\sum_{(i,t)\in\Omega}\mathrm{CE}\!\left(\mathbf{z}^{(1:C)}_{i,t}, R_{i,t}\right),\qquad\Omega=\{(i,t):M_{i,t}=1\},$$
+with inverse-frequency class weights on the training split.
 
 ### Boundary-focused forcing (WTB only)
 
-The MPPT-to-pitch boundary in WTB remains ambiguous even after coarse regime alignment because control action partly masks the mechanical transition. A focused forcing term acts only on the most informative MPPT and pitch-control samples. Let
-
-$$
-Y^{\mathrm{force}}_{i,t} =
-\begin{cases}
-0, & R^{\mathrm{wtb}}_{i,t}=1,\\
-1, & R^{\mathrm{wtb}}_{i,t}=2.
-\end{cases}
-$$
-
-Using the MPPT-aligned and pitch-aligned expert logits fixed above, we define
-
-$$
-\mathcal{L}_{\mathrm{force}}
-=
-\frac{1}{|\Omega_{\mathrm{force}}|}
-\sum_{(i,t)\in\Omega_{\mathrm{force}}}
-\mathrm{CE}\!\left(
-\begin{bmatrix}
-z^{(\mathrm{mppt})}_{i,t}\\
-z^{(\mathrm{pitch})}_{i,t}
-\end{bmatrix},
-Y^{\mathrm{force}}_{i,t}
-\right),
-$$
-
-where $\Omega_{\mathrm{force}}=\{(i,t):R^{\mathrm{wtb}}_{i,t}\in\{1,2\}, M_{i,t}=1\}$. This term concentrates the intervention on high-confidence MPPT and pitch-control anchors already visible at the issue time. It increases routing identifiability around the boundary after the operating state is expressed in the SCADA channels; it is not designed or evaluated as a lead-time switch predictor.
+After coarse alignment the boundary remains partly masked by control action. A focused forcing term acts on MPPT and pitch-control samples only. With $Y^{\mathrm{force}}_{i,t}=\mathbf{1}[R^{\mathrm{wtb}}_{i,t}=2]$ for $R^{\mathrm{wtb}}_{i,t}\in\{1,2\}$,
+$$\mathcal{L}_{\mathrm{force}} = \frac{1}{|\Omega_{\mathrm{force}}|}\sum_{(i,t)\in\Omega_{\mathrm{force}}}\mathrm{CE}\!\left(\left[z^{(\mathrm{mppt})}_{i,t}, z^{(\mathrm{pitch})}_{i,t}\right]^{\top}, Y^{\mathrm{force}}_{i,t}\right),$$
+where $\Omega_{\mathrm{force}}=\{(i,t):R^{\mathrm{wtb}}_{i,t}\in\{1,2\}, M_{i,t}=1\}$. This term is not a lead-time switch predictor; it is a boundary identifiability regularizer for the issue-time operating state.
 
 ### Wake auxiliary supervision and graph smoothness
 
-After the MPPT-to-pitch boundary is repaired, wake-sensitive samples can still be mixed with non-wake samples inside the same operating regime. A wake auxiliary label identifies that residual ambiguity in WTB, while graph smoothness discourages noisy neighbor-to-neighbor gate jumps in both settings. The auxiliary term is active only for MPPT and pitch-control samples with a defined wake flag; the smoothness term is computed on the graph snapshot associated with the anchor time. Appendix A reports both formulas.
+A wake auxiliary label identifies residual wake ambiguity inside MPPT and pitch-control samples, and a graph-smoothness penalty discourages noisy neighbor-to-neighbor gate jumps. Both formulas are in Appendix A.
 
 ## Operational reserve diagnostic protocol
 
@@ -648,9 +596,9 @@ The WTB internal proxy drill shows what a successful protocol looks like before 
 
 # Limitations
 
-The WTB correction depends on threshold-based pseudo-labels derived from wind speed and mean pitch angle. Those same channels also appear in the gate anchor, so the method deliberately constrains the router to a declared operating boundary. The threshold audit and loss-weight sweep show local robustness, but they do not exhaust all anchor thresholds, wake-score cutoffs, wake-cone parameters, turbine-control settings, or completed no-/lagged-anchor retraining. The method is boundary-aware regularized routing, not fully learned operating-state discovery.
+The WTB correction depends on threshold-based pseudo-labels derived from wind speed and mean pitch angle. Those same channels also appear in the gate anchor, so the method deliberately constrains the router to a declared operating boundary. The threshold audit and loss-weight sweep show local robustness, but the method is boundary-aware regularized routing, not fully learned operating-state discovery.
 
-The active-power anchor has a strict timing requirement. `Patv` is allowed only as the historical/anchor-time active-power measurement available when the forecast is issued; future active power remains the supervised target. This is a defensible SCADA forecasting convention, but it is also a portability constraint and a possible source of interpretive circularity. The no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, and lagged pitch/wind-speed stress caches have been derived and the leakage guard passes at the cache level; the training-level NMI evidence from seed 201--203 runs will be added to the reproduction package once complete. The present evidence therefore cannot claim to identify which part of the gate is pitch/wind observability, active-power status, or structure learned after anchoring. If a deployment environment delays active-power telemetry, changes channel definitions, or evaluates a decision before the current active-power value is available, the Patv anchor must be removed or lagged and the leakage, intervention, and reserve diagnostics must be rerun.
+The active-power anchor has a strict timing requirement. `Patv` is allowed only as the historical/anchor-time active-power measurement available when the forecast is issued; future active power remains the supervised target. This is a defensible SCADA forecasting convention, but it is also a portability constraint. The five-seed anchor-stress evidence (Table 7) shows that removing `Patv` or `Pab_mean` individually leaves the gate essentially intact, while lagging both channels lowers the mean NMI but still crosses the 0.65 threshold. If a deployment environment delays active-power telemetry or changes channel definitions, the Patv anchor must be removed or lagged and the leakage, intervention, and reserve diagnostics must be rerun.
 
 The expert-regime language is tied to the implemented logit convention. The first primary-regime logits are fixed to the operating labels during supervised alignment, which prevents seed-wise permutation for those anchored meanings. That makes cross-seed MPPT/pitch statements interpretable, but only for the anchored logits and only under the declared mapping. Unassigned experts and wake auxiliary logits should not be overread as universal turbine states.
 
