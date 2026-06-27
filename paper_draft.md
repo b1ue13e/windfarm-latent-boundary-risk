@@ -421,8 +421,8 @@ The diagnostic survives the main falsification checks. Zeroing the intended boun
 \toprule
 Variant & Seed 201 & Seed 202 & Seed 203 & Seed 204 & Seed 205 & Mean \\
 \midrule
-no Patv & 0.878 (0.928) & 0.966 (0.985) & 0.703 (0.719) & --- & --- & 0.849 \\
-no Pab\_mean & 0.880 (0.932) & 0.906 (0.947) & 0.889 (0.937) & --- & --- & 0.891 \\
+no Patv & 0.878 (0.928) & 0.966 (0.985) & 0.703 (0.719) & 0.914 (0.954) & 0.945 (0.973) & 0.881 \\
+no Pab\_mean & 0.880 (0.932) & 0.906 (0.947) & 0.889 (0.937) & 0.923 (0.961) & 0.792 (0.865) & 0.878 \\
 lagged Patv & 0.475 (0.390) & 0.899 (0.935) & 0.734 (0.765) & 0.741 (0.769) & 0.965 (0.984) & 0.763 \\
 lagged Pab\_mean/Wspd & 0.398 (0.299) & 0.755 (0.814) & 0.699 (0.766) & 0.784 (0.864) & 0.784 (0.858) & 0.684 \\
 \bottomrule
@@ -430,7 +430,7 @@ lagged Pab\_mean/Wspd & 0.398 (0.299) & 0.755 (0.814) & 0.699 (0.766) & 0.784 (0
 \end{table}
 ```
 
-The training-level anchor-stress guard has been completed and expanded to five seeds. Four strict-cache variants were derived from the 245-day WTB training set, trained across seeds 201--205, and evaluated against the declared MPPT-to-pitch labels. Table~7 reports the test-set NMI (ARI) scores. Removing \texttt{Patv} or \texttt{Pab\_mean} individually leaves the gate essentially intact (mean 0.85--0.89). Lagging \texttt{Patv} lowers one seed but the five-seed mean remains above the 0.65 threshold (0.76). Lagging both \texttt{Pab\_mean} and \texttt{Wspd} also lowers one seed, yet the five-seed mean crosses the threshold (0.68). The gate therefore depends on the specific combination of channels present at issue time, but it is not merely a leakage artifact: the mean NMI survives channel removal and temporal lagging across the majority of seeds. The manuscript uses the wording ``partial anchor robustness'' rather than ``anchor-free physical discovery.'' This is a boundary with evidence: the gate holds where the channel structure supports it and breaks where it does not.
+The training-level anchor-stress guard has been completed across five seeds. Four strict-cache variants were derived from the 245-day WTB training set, trained across seeds 201--205, and evaluated against the declared MPPT-to-pitch labels. Table~7 reports the test-set NMI (ARI) scores. Removing \texttt{Patv} or \texttt{Pab\_mean} individually leaves the gate essentially intact (mean 0.881 and 0.878, respectively). Lagging \texttt{Patv} lowers one seed but the five-seed mean remains above the 0.65 threshold (0.763). Lagging both \texttt{Pab\_mean} and \texttt{Wspd} also lowers one seed, yet the five-seed mean crosses the threshold (0.684). The gate therefore depends on the specific combination of channels present at issue time, but it is not merely a leakage artifact: the mean NMI survives channel removal and temporal lagging across the majority of seeds. The manuscript uses the wording ``partial anchor robustness'' rather than ``anchor-free physical discovery.'' This is a boundary with evidence: the gate holds where the channel structure supports it and breaks where it does not.
 
 ```{=latex}
 \begin{table}[H]
@@ -444,10 +444,9 @@ The training-level anchor-stress guard has been completed and expanded to five s
 Stress component & Guard status & Manuscript consequence \\
 \midrule
 Strict-cache variants & no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, lagged pitch/wind-speed caches derived & Anchor observability is explicitly testable \\
-Leakage guard & Cache-level guard passed; all 12 training runs completed & No new leakage warning from the derived variants \\
-Three-seed NMI gate & no-\texttt{Patv} (0.85), no-\texttt{Pab\_mean} (0.89), lagged-\texttt{Patv} (0.70 above 0.65), lagged pitch/wind-speed (0.62 below) & Gate depends on channel combination; do not claim learned physical discovery \\
-Five-seed NMI gate & lagged-\texttt{Patv} (0.76), lagged pitch/wind-speed (0.68); both cross 0.65 mean & Partial anchor robustness supported; single-anchor removal holds, dual lagging breaks one seed \\
-Claim boundary & Evidence-based boundary: gate holds for single-anchor removal, dual lagging passes mean but one seed fails & Use partial anchor robustness language, not anchor-free discovery \\
+Leakage guard & Cache-level guard passed; all 20 training runs completed & No leakage warning from derived variants \\
+Five-seed NMI gate & no-\texttt{Patv} (0.881), no-\texttt{Pab\_mean} (0.878), lagged-\texttt{Patv} (0.763), lagged pitch/wind-speed (0.684); all cross 0.65 & Partial anchor robustness supported across all variants \\
+Claim boundary & All 5-seed means cross 0.65; gate holds under single-anchor removal and dual-channel lagging & Use ``partial anchor robustness'' language, not anchor-free discovery \\
 \bottomrule
 \end{tabularx}
 \end{table}

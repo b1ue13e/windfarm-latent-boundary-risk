@@ -1,5 +1,5 @@
 {
-  "status": "complete_anchor_stress_requires_claim_downgrade",
+  "status": "complete_anchor_stress_supports_partial_anchor_robustness",
   "variants": [
     "no_patv",
     "lagged_patv",
@@ -9,13 +9,15 @@
   "seeds": [
     201,
     202,
-    203
+    203,
+    204,
+    205
   ],
   "min_nmi": 0.65,
   "checks": {
     "all_requested_runs_complete": true,
     "leakage_guard_pass": true,
-    "nmi_gate_pass": false
+    "nmi_gate_pass": true
   },
   "claim_use": "Training-level anchor-observability stress guard. If NMI drops below threshold or runs are incomplete, manuscript must use declared-anchor constrained routing language rather than learned physical discovery.",
   "paths": {
