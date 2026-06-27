@@ -8,8 +8,9 @@ $sourceDir = Join-Path $packageRoot "source_files"
 $evidenceDir = Join-Path $packageRoot "evidence_audits"
 $buildLogDir = Join-Path $packageRoot "build_logs"
 $metadataDir = Join-Path $packageRoot "portal_metadata"
+$manifestDir = Join-Path $packageRoot "integrity_manifest"
 
-New-Item -ItemType Directory -Force -Path $packageRoot, $uploadDir, $sourceDir, $evidenceDir, $buildLogDir, $metadataDir | Out-Null
+New-Item -ItemType Directory -Force -Path $packageRoot, $uploadDir, $sourceDir, $evidenceDir, $buildLogDir, $metadataDir, $manifestDir | Out-Null
 
 function Get-RegexGroup {
     param(
@@ -155,9 +156,34 @@ $uploadFiles = @(
         note = "TSTE cover letter aligned with claim-boundary audits."
     },
     [ordered]@{
+        file = "upload_files/portal_metadata.md"
+        portal_role = "Portal metadata"
+        note = "Copy-paste submission portal fields."
+    },
+    [ordered]@{
+        file = "upload_files/portal_metadata.json"
+        portal_role = "Portal metadata"
+        note = "Machine-readable copy of the portal fields."
+    },
+    [ordered]@{
         file = "upload_files/VERIFICATION_REPORT.md"
         portal_role = "Local verification record"
         note = "Upload only if the portal allows optional supporting documentation."
+    },
+    [ordered]@{
+        file = "upload_files/UPLOAD_MANIFEST.md"
+        portal_role = "Local integrity manifest"
+        note = "Checksum and page-count record; upload only if the portal allows optional supporting documentation."
+    },
+    [ordered]@{
+        file = "upload_files/UPLOAD_MANIFEST.json"
+        portal_role = "Local integrity manifest"
+        note = "Machine-readable checksum and page-count record."
+    },
+    [ordered]@{
+        file = "upload_files/SHA256SUMS.txt"
+        portal_role = "Local integrity manifest"
+        note = "Plain SHA256 checksum list."
     }
 )
 $claimBoundaries = @(
@@ -344,11 +370,20 @@ Generated: $stamp
 - `upload_files/cover_letter.md`: TSTE cover letter aligned with claim audits.
 - `upload_files/portal_metadata.md`: copy-paste portal fields for title, abstract, keywords, authors, declarations, and file roles.
 - `upload_files/portal_metadata.json`: machine-readable copy of the same portal metadata.
+- `upload_files/UPLOAD_MANIFEST.md`: checksum, byte-size, and PDF page-count manifest for upload candidates.
+- `upload_files/UPLOAD_MANIFEST.json`: machine-readable copy of the upload manifest.
+- `upload_files/SHA256SUMS.txt`: plain SHA256 checksum list.
 
 ## Portal metadata
 
 - `portal_metadata/portal_metadata.md`: human-readable submission portal checklist.
 - `portal_metadata/portal_metadata.json`: structured metadata generated from the current IEEE manuscript.
+
+## Integrity manifest
+
+- `integrity_manifest/UPLOAD_MANIFEST.md`: checksum and page-count record.
+- `integrity_manifest/UPLOAD_MANIFEST.json`: structured checksum and page-count record.
+- `integrity_manifest/SHA256SUMS.txt`: plain checksum list.
 
 ## Verification
 
@@ -392,6 +427,7 @@ Checks completed:
 - LaTeX blocking warning/error scan passed.
 - Evidence-freeze guard completed with status $freezeStatus.
 - Portal metadata generated from the current IEEE manuscript.
+- Upload integrity manifest generated with SHA256 checksums.
 - Upload, source, build-log, and evidence-audit folders populated.
 
 Generated archives:
@@ -402,6 +438,95 @@ Generated archives:
 "@
 Set-Content -LiteralPath (Join-Path $packageRoot "VERIFICATION_REPORT.md") -Value $verification -Encoding UTF8
 Copy-Item -LiteralPath (Join-Path $packageRoot "VERIFICATION_REPORT.md") -Destination $uploadDir -Force
+
+$uploadRoleByName = @{}
+foreach ($fileSpec in $uploadFiles) {
+    $leafName = Split-Path -Leaf $fileSpec["file"]
+    $uploadRoleByName[$leafName] = $fileSpec
+}
+$manifestFileNames = @("UPLOAD_MANIFEST.md", "UPLOAD_MANIFEST.json", "SHA256SUMS.txt")
+$manifestEntries = @()
+foreach ($item in (Get-ChildItem -LiteralPath $uploadDir -File | Sort-Object Name)) {
+    if ($manifestFileNames -contains $item.Name) {
+        continue
+    }
+    $relativePath = "upload_files/$($item.Name)"
+    $fileSpec = $uploadRoleByName[$item.Name]
+    if ($null -eq $fileSpec) {
+        $portalRole = "Additional upload file"
+        $note = "No explicit portal role was declared."
+    }
+    else {
+        $portalRole = $fileSpec["portal_role"]
+        $note = $fileSpec["note"]
+    }
+    $pages = $null
+    if ($item.Extension -ieq ".pdf") {
+        $pageMatch = (& pdfinfo $item.FullName | Select-String "^Pages:\s+(\d+)").Matches[0]
+        if ($null -eq $pageMatch) {
+            throw "Could not read PDF page count for $($item.Name)."
+        }
+        $pages = [int]$pageMatch.Groups[1].Value
+    }
+    $manifestEntries += [ordered]@{
+        relative_path = $relativePath
+        portal_role = $portalRole
+        pages = $pages
+        bytes = [int64]$item.Length
+        sha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $item.FullName).Hash.ToLowerInvariant()
+        note = $note
+    }
+}
+$expectedUploadNames = @($uploadFiles | ForEach-Object { Split-Path -Leaf $_["file"] } | Where-Object { $manifestFileNames -notcontains $_ })
+$actualUploadNames = @($manifestEntries | ForEach-Object { Split-Path -Leaf $_["relative_path"] })
+$missingUploadNames = @($expectedUploadNames | Where-Object { $actualUploadNames -notcontains $_ })
+if ($missingUploadNames.Count -gt 0) {
+    throw "Upload manifest is missing expected files: $($missingUploadNames -join ', ')"
+}
+
+$manifestRows = ($manifestEntries | ForEach-Object {
+    $pageText = if ($null -eq $_["pages"]) { "n/a" } else { [string]$_["pages"] }
+    "| $($_["relative_path"]) | $($_["portal_role"]) | $pageText | $($_["bytes"]) | $($_["sha256"]) |"
+}) -join "`r`n"
+$shaLines = ($manifestEntries | ForEach-Object { "$($_["sha256"])  $($_["relative_path"])" }) -join "`r`n"
+$uploadManifestMarkdown = @"
+# Upload Integrity Manifest
+
+Generated: $stamp
+
+Package root: $packageRoot
+
+This manifest covers the upload candidate files listed below. It intentionally excludes `UPLOAD_MANIFEST.md`, `UPLOAD_MANIFEST.json`, and `SHA256SUMS.txt`.
+
+| File | Role | Pages | Bytes | SHA256 |
+|---|---|---:|---:|---|
+$manifestRows
+
+## Verification Snapshot
+
+- Main manuscript pages: $mainPages.
+- Supplementary pages: $suppPages.
+- Evidence-freeze guard status: $freezeStatus.
+- LaTeX blocking warning/error scan: passed.
+"@
+Set-Content -LiteralPath (Join-Path $manifestDir "UPLOAD_MANIFEST.md") -Value $uploadManifestMarkdown -Encoding UTF8
+Set-Content -LiteralPath (Join-Path $manifestDir "SHA256SUMS.txt") -Value $shaLines -Encoding UTF8
+$uploadManifest = [ordered]@{
+    generated = $stamp
+    package_root = $packageRoot
+    scope = "Upload candidate files; excludes manifest files themselves."
+    files = $manifestEntries
+    verification = [ordered]@{
+        main_manuscript_pages = [int]$mainPages
+        supplementary_pages = [int]$suppPages
+        evidence_freeze_guard_status = $freezeStatus
+        latex_log_scan = "passed"
+    }
+}
+$uploadManifest | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $manifestDir "UPLOAD_MANIFEST.json") -Encoding UTF8
+Copy-Item -LiteralPath (Join-Path $manifestDir "UPLOAD_MANIFEST.md") -Destination $uploadDir -Force
+Copy-Item -LiteralPath (Join-Path $manifestDir "UPLOAD_MANIFEST.json") -Destination $uploadDir -Force
+Copy-Item -LiteralPath (Join-Path $manifestDir "SHA256SUMS.txt") -Destination $uploadDir -Force
 
 Set-Content -LiteralPath (Join-Path $root "artifacts\tste_submission\LATEST_PACKAGE.txt") -Value $packageRoot -Encoding UTF8
 
