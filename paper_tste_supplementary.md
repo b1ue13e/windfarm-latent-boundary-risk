@@ -14,6 +14,7 @@ header-includes:
   - \usepackage{tabularx}
   - \usepackage{booktabs}
   - \usepackage{float}
+  - \usepackage{graphicx}
 ---
 
 # Appendix A. Training and implementation details {.unnumbered}
@@ -46,11 +47,12 @@ Select the checkpoint with the best validation RMSE
 ```{=latex}
 \begin{table}[H]
 \centering
-\small
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.1}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
 \caption*{\textbf{Table A1.} In-family model comparison used for mechanism validation.}
-\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.16\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.20\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth}}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lllll}
 \toprule
 Model & Routing & Extra terms & Params & Role \\
 \midrule
@@ -58,7 +60,8 @@ Dense (matched) & Single dense head & None & WTB 110,012 / ERA5 103,272 & Shared
 Unconstrained MoE & Node-level soft gate & Prediction loss only & WTB 110,012 / ERA5 103,843 & Routed-capacity control \\
 Corrected routing comparator & Node-level soft gate & WTB boundary-forced: $L_{bal}+L_{align}+L_{force}$; ERA5: full corrected stack & WTB 110,012 / ERA5 103,843 & Accountability comparator \\
 \bottomrule
-\end{tabularx}
+\end{tabular}%
+}
 \end{table}
 ```
 
@@ -91,7 +94,7 @@ where $\sigma$ is the median retained neighbor distance on the training graph.
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.08}
 \caption*{\textbf{Table A3.} Shared architecture, graph, and training constants used in the reported experiments.}
-\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.30\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.30\columnwidth} >{\raggedright\arraybackslash}p{0.18\columnwidth} >{\raggedright\arraybackslash}p{0.18\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
 Item & WTB & ERA5 & Role \\
 \midrule
@@ -124,7 +127,7 @@ Gradient clipping & 1.0 & 1.0 & Shared training stabilization \\
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.08}
 \caption*{\textbf{Table A4.} Dataset-specific regime thresholds used to construct routing anchors.}
-\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.28\textwidth} >{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}X}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.28\columnwidth} >{\raggedright\arraybackslash}p{0.24\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
 Dataset & Threshold & Value and meaning \\
 \midrule
@@ -146,7 +149,7 @@ ERA5 & $q_{0.95}^{\Delta}$ & 458,287.125, 95th percentile of $|\Delta\texttt{ssh
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.08}
 \caption*{\textbf{Table A5.} Active routing-loss weights in the reported corrected models.}
-\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\centering\arraybackslash}p{0.18\textwidth} >{\centering\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}X}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.18\columnwidth} >{\centering\arraybackslash}p{0.18\columnwidth} >{\centering\arraybackslash}p{0.18\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
 Weight & WTB & ERA5 & Role \\
 \midrule

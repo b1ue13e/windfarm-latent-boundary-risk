@@ -22,9 +22,14 @@ function Build-PDF {
     param($md, $label)
     $tex = Join-Path $root "build\${label}.tex"
     $pdf = Join-Path $root "build\${label}.pdf"
+    $buildDir = Join-Path $root "build"
+    $fontShim = Join-Path $root "TUptm.fd"
     if (Test-Path $tex) { Remove-Item $tex -Force }
     if (Test-Path $pdf) { Remove-Item $pdf -Force }
-    $null = New-Item -ItemType Directory -Force -Path (Join-Path $root "build")
+    $null = New-Item -ItemType Directory -Force -Path $buildDir
+    if (Test-Path $fontShim) {
+        Copy-Item -LiteralPath $fontShim -Destination (Join-Path $buildDir "TUptm.fd") -Force
+    }
     & $pandoc $md --citeproc --csl (Join-Path $root "IEEE.csl") `
         --standalone -t latex -o $tex
     if ($LASTEXITCODE -ne 0) { throw "Pandoc failed on $md" }

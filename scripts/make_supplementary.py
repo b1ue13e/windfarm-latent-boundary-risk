@@ -18,6 +18,29 @@ app_body = app_body.replace(
 app_body = app_body.replace(
     r"\begin{tabularx}{0.98\linewidth}", r"\begin{tabularx}{\columnwidth}"
 )
+app_body = app_body.replace(r"\textwidth}", r"\columnwidth}")
+app_body = app_body.replace(
+    "\\begin{table}[H]\n"
+    "\\centering\n"
+    "\\small\n"
+    "\\setlength{\\tabcolsep}{5pt}\n"
+    "\\renewcommand{\\arraystretch}{1.1}\n"
+    "\\caption*{\\textbf{Table A1.} In-family model comparison used for mechanism validation.}\n"
+    "\\begin{tabularx}{\\columnwidth}{>{\\raggedright\\arraybackslash}p{0.18\\columnwidth} >{\\raggedright\\arraybackslash}p{0.16\\columnwidth} >{\\raggedright\\arraybackslash}X >{\\raggedright\\arraybackslash}p{0.20\\columnwidth} >{\\raggedright\\arraybackslash}p{0.18\\columnwidth}}\n",
+    "\\begin{table}[H]\n"
+    "\\centering\n"
+    "\\scriptsize\n"
+    "\\setlength{\\tabcolsep}{3pt}\n"
+    "\\renewcommand{\\arraystretch}{1.05}\n"
+    "\\caption*{\\textbf{Table A1.} In-family model comparison used for mechanism validation.}\n"
+    "\\resizebox{\\columnwidth}{!}{%\n"
+    "\\begin{tabular}{lllll}\n",
+)
+app_body = app_body.replace(
+    "\\bottomrule\n\\end{tabularx}\n\\end{table}\n```\n\n## Auxiliary losses",
+    "\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n```\n\n## Auxiliary losses",
+    1,
+)
 
 supp_yaml = "\n".join([
     "---",
@@ -36,6 +59,7 @@ supp_yaml = "\n".join([
     "  - \\usepackage{tabularx}",
     "  - \\usepackage{booktabs}",
     "  - \\usepackage{float}",
+    "  - \\usepackage{graphicx}",
     "---",
 ])
 
