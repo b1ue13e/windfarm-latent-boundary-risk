@@ -403,7 +403,7 @@ The reserve audit asks whether a recovered physical gate changes the reserve tra
 
 At shortage-to-reserve cost ratio 10, gate-conditioned binning exchanges about 3.6% additional reserve energy for a 14.5% reduction in shortage energy and a 1.38 percentage-point reduction in boundary-window violation relative to the same routed model with a global rule. The comparison is deliberately same-model: the reserve change is attributed to gate-conditioned allocation, not to a different forecasting backbone.
 
-The validation-frozen quantile baseline changes how the result should be read. Boundary router/gate-bin remains better than the same routed model with a global quantile rule, but physical-bin quantile baselines are competitive and can be lower-cost in the boundary window. The strongest defensible statement is therefore attributional: the gate exposes a transition-window reserve-risk mechanism and improves a same-model global reserve rule, but it is not a universal reserve allocation policy.
+The validation-frozen quantile baseline changes how the result should be read. Boundary router/gate-bin remains better than the same routed model with a global quantile rule, but physical-bin quantile baselines are competitive and can be lower-cost in the boundary window. The strongest defensible statement is therefore attributional: the gate exposes a transition-window reserve-risk mechanism and improves a same-model global reserve rule, but it is not a universal reserve allocation policy. Supplementary Table A10 records the corresponding evidence-to-wording boundary, including the full-sample and cost-ratio cases that forbid stronger reserve-policy claims.
 
 ```{=latex}
 \begin{table}[H]

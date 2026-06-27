@@ -36,6 +36,12 @@ if (Test-Path $earlyWarningConsequenceScript) {
     if ($LASTEXITCODE -ne 0) { throw "Early-warning consequence table generation failed." }
 }
 
+$reserveClaimBoundaryScript = Join-Path $root "scripts\build_reserve_claim_boundary_table.py"
+if (Test-Path $reserveClaimBoundaryScript) {
+    & python $reserveClaimBoundaryScript
+    if ($LASTEXITCODE -ne 0) { throw "Reserve claim-boundary table generation failed." }
+}
+
 $outcomeSanityScript = Join-Path $root "scripts\build_outcome_channel_sanity.py"
 if (Test-Path $outcomeSanityScript) {
     & python $outcomeSanityScript

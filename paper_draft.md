@@ -499,7 +499,7 @@ The reserve audit asks whether a recovered physical gate changes the reserve tra
 
 At shortage-to-reserve cost ratio 10, gate-conditioned binning exchanges about 3.6% additional reserve energy for a 14.5% reduction in shortage energy and a 1.38 percentage-point reduction in boundary-window violation relative to the same routed model with a global rule. The comparison is deliberately same-model: the reserve change is attributed to gate-conditioned allocation, not to a different forecasting backbone.
 
-The validation-frozen quantile baseline changes how the result should be read. Boundary router/gate-bin remains better than the same routed model with a global quantile rule, but physical-bin quantile baselines are competitive and can be lower-cost in the boundary window. The strongest defensible statement is therefore attributional: the gate exposes a transition-window reserve-risk mechanism and improves a same-model global reserve rule, but it is not a universal reserve allocation policy.
+The validation-frozen quantile baseline changes how the result should be read. Boundary router/gate-bin remains better than the same routed model with a global quantile rule, but physical-bin quantile baselines are competitive and can be lower-cost in the boundary window. The strongest defensible statement is therefore attributional: the gate exposes a transition-window reserve-risk mechanism and improves a same-model global reserve rule, but it is not a universal reserve allocation policy. Supplementary Table A10 records the corresponding evidence-to-wording boundary, including the full-sample and cost-ratio cases that forbid stronger reserve-policy claims.
 
 ```{=latex}
 \begin{table}[H]
@@ -903,6 +903,32 @@ Delay, 6 steps & 710.6 $\pm$ 20.6 / 29.4 $\pm$ 20.6 & 145.0 $\pm$ 0.0 / 595.0 $\
 50\% label availability & 710.6 $\pm$ 20.6 / 29.4 $\pm$ 20.6 & 376.0 $\pm$ 10.4 / 364.0 $\pm$ 10.4 & 334.6 $\pm$ 28.1 \\
 25\% label availability & 710.6 $\pm$ 20.6 / 29.4 $\pm$ 20.6 & 179.0 $\pm$ 7.9 / 561.0 $\pm$ 7.9 & 531.6 $\pm$ 22.9 \\
 Sensor noise, strongest & 710.6 $\pm$ 20.6 / 29.4 $\pm$ 20.6 & 482.8 $\pm$ 11.0 / 257.2 $\pm$ 11.0 & 227.8 $\pm$ 20.9 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+```
+
+## Reserve-policy claim-boundary audit {.unnumbered}
+
+Table A10 consolidates the reserve evidence used for wording. It separates the same-model boundary-window diagnostic from claims that the experiments do not support. Costs are normalized reserve-energy proxy units, not currency, market prices, or security-constrained dispatch costs.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table A10.} Reserve-policy claim-boundary audit.}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.22\columnwidth} >{\raggedright\arraybackslash}p{0.36\columnwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Boundary & Evidence & Wording rule \\
+\midrule
+Same-model boundary reserve effect & At rho=10, gate-bin vs same-router global: Delta cost -3.55M, Delta viol. -0.0138, reserve +1.85M, shortage -0.54M. & Claim a same-predictor transition-window diagnostic; do not present this as a cross-backbone reserve win. \\
+Physical-bin quantile comparator & Boundary/physical-bin 83.78M, viol. 0.0880; GWN/physical-bin 84.31M, viol. 0.0931; Boundary/gate-bin 84.58M, viol. 0.0900. & Say physical-bin baselines are competitive and sometimes lower-cost; avoid gate-bin optimality wording. \\
+Cost-ratio applicability & rho=2 inactive; rho=5 to 10 lowers boundary cost and violation; rho=20 narrows; rho=50 favors global (+5.93M, viol. +0.0035). & Claim moderate-cost transition-window value only; do not assert a universal shortage-penalty policy. \\
+Full-sample system value & Full sample at rho=10: GWN/global 464.07M, viol. 0.0901; Boundary/gate-bin 481.36M, viol. 0.1214. & Do not claim system-wide dispatch value or reserve superiority; keep the consequence bounded to the boundary slice. \\
+Seed-level uncertainty & Full-sample paired total-cost delta +17.28M, 95\% CI [-52.09M, +87.95M], perm. p=0.752. & Use bounded diagnostic language; do not cite the reserve audit as a statistically settled improvement. \\
+Operational scope & Costs are normalized reserve-energy proxy units from validation-frozen shortfall quantiles; OPF, unit commitment, delivery constraints, market clearing, and prices are excluded. & Use as a screening audit for reserve exposure, not as a market or security-constrained dispatch study. \\
 \bottomrule
 \end{tabularx}
 \end{table}
