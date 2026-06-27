@@ -691,8 +691,6 @@ The raw datasets used in this study are publicly available from their original p
 
 ## Training loop summary {.unnumbered}
 
-The optimization procedure is identical across runs except for the routing penalties that are activated in each setting and the anchor labels that are available.
-
 ```text
 Algorithm A1  Physics-aligned MoE training
 Input: history windows X, graph sequence A, targets Y, primary regime anchors R,
@@ -735,142 +733,24 @@ Corrected routing comparator & Node-level soft gate & WTB boundary-forced: $L_{b
 \end{table}
 ```
 
-The reduced Results section reports only the tables needed for the main argument. The supplementary evidence package retains the detailed WTB boundary-slice audit, WTB engineering baselines, anchor-only/router-rule comparison, reserve coverage reliability, horizon and time-of-day reserve sensitivity, horizon-specific empirical-quantile what-if, operator-facing reserve cases, boundary-window operational reserve slices, paired reserve uncertainty, quasi-external WTB deployment drill, compute/deployment cost, strict-mask intervention and placebo checks, late-period distribution-shift diagnostics, and threshold/label validity audit. These tables are supporting checks for the three questions answered in the main text: boundary recovery, reserve tradeoff, and deployment gating.
-
 ## Auxiliary losses {.unnumbered}
 
-Let $\mathcal{B}$ denote the routed node-anchor samples in a mini-batch after target and anchor masks are applied, and let $B=|\mathcal{B}|$. For sample $n$, the soft importance and normalized share of expert $e$ are
-
-$$
-I_e = \frac{1}{B}\sum_{n=1}^{B} g_n^{(e)},
-\qquad
-P_e = \frac{I_e}{\sum_{r=1}^{E} I_r}.
-$$
-
-The empirical top-$K$ load is
-
-$$
-f_e = \frac{1}{B}\sum_{n=1}^{B}\mathbf{1}\!\left[e \in \mathrm{TopK}(\mathbf{g}_n)\right],
-$$
-
-and the balancing loss is
-
-$$
-\mathcal{L}_{\mathrm{bal}} = E\sum_{e=1}^{E} f_e P_e - 1.
-$$
-
+Let $\mathcal{B}$ denote the routed samples after masks, with $B=|\mathcal{B}|$. The soft importance and normalized share of expert $e$ are $I_e = \frac{1}{B}\sum_{n=1}^{B} g_n^{(e)}$ and $P_e = I_e / \sum_{r} I_r$. The top-$K$ load is $f_e = \frac{1}{B}\sum_{n=1}^{B}\mathbf{1}[e \in \mathrm{TopK}(\mathbf{g}_n)]$, giving
+$$\mathcal{L}_{\mathrm{bal}} = E\sum_{e=1}^{E} f_e P_e - 1.$$
 For WTB wake supervision,
-
-$$
-\mathcal{L}_{\mathrm{aux}}
-=
-\frac{1}{|\Omega_{\mathrm{wake}}|}
-\sum_{(i,t)\in\Omega_{\mathrm{wake}}}
-\mathrm{BCE}\!\left(z^{(\mathrm{wake})}_{i,t}, W_{i,t}\right),
-$$
-
-where $\Omega_{\mathrm{wake}}$ contains only MPPT and pitch-control samples for which the wake flag is defined. The graph-smoothness penalty is
-
-$$
-\mathcal{L}_{\mathrm{smooth}}
-=
-\frac{
-\sum_{t \in \mathcal{T}_{\mathcal{B}}}\sum_{i,j}\mathcal{A}_t(i,j)\lVert \mathbf{g}_{i,t}-\mathbf{g}_{j,t}\rVert_2^2
-}{
-\sum_{t \in \mathcal{T}_{\mathcal{B}}}\sum_{i,j}\mathcal{A}_t(i,j) + \epsilon
-}.
-$$
+$$\mathcal{L}_{\mathrm{aux}} = \frac{1}{|\Omega_{\mathrm{wake}}|}\sum_{(i,t)\in\Omega_{\mathrm{wake}}}\mathrm{BCE}(z^{(\mathrm{wake})}_{i,t}, W_{i,t}),$$
+where $\Omega_{\mathrm{wake}}$ contains only MPPT and pitch-control samples with defined wake flags. The graph-smoothness penalty is
+$$\mathcal{L}_{\mathrm{smooth}} = \frac{\sum_{t\in\mathcal{T}_{\mathcal{B}}}\sum_{i,j}\mathcal{A}_t(i,j)\lVert\mathbf{g}_{i,t}-\mathbf{g}_{j,t}\rVert_2^2}{\sum_{t\in\mathcal{T}_{\mathcal{B}}}\sum_{i,j}\mathcal{A}_t(i,j)+\epsilon}.$$
 
 ## Graph construction details {.unnumbered}
 
-For WTB, each turbine has a fixed coordinate $\mathbf{p}_i=(x_i,y_i)$. A candidate set is first built by retaining the $k_{\mathrm{nn}}$ nearest turbines within a maximum radius $d_{\max}$. Let $\Delta \mathbf{p}_{ij}=\mathbf{p}_j-\mathbf{p}_i$ and let $\theta_{i,t}$ denote the local meteorological wind-from direction. The downstream unit vector is
+For WTB, the downstream unit vector is $\mathbf{u}_{i,t}=[\sin(\theta_{i,t}+\pi), \cos(\theta_{i,t}+\pi)]^{\top}$. With $\Delta\mathbf{p}_{ij}=\mathbf{p}_j-\mathbf{p}_i$, the streamwise and cross-stream distances are $d^{\parallel}_{ij,t}=\Delta\mathbf{p}_{ij}^{\top}\mathbf{u}_{i,t}$ and $d^{\perp}_{ij,t}=|\Delta p^x_{ij}u^y_{i,t}-\Delta p^y_{ij}u^x_{i,t}|$. A candidate edge activates when
+$$\mathbb{I}^{\mathrm{cone}}_{ij,t}=\mathbf{1}\!\left[d^{\parallel}_{ij,t}>0\;\land\;\arctan\!\left(\frac{d^{\perp}_{ij,t}}{\max(d^{\parallel}_{ij,t},10^{-6})}\right)\le\phi\right].$$
+The wake weight is $\tilde{\mathcal{A}}_t(i,j)=\exp(-d^{\parallel}_{ij,t}/\alpha)\exp(-|d^{\perp}_{ij,t}|/\beta)\mathbb{I}^{\mathrm{cone}}_{ij,t}$. If wind direction is missing, fall back to $\mathcal{A}^{\mathrm{static}}(i,j)=\exp(-\lVert\Delta\mathbf{p}_{ij}\rVert_2/d_{\max})$. Only the strongest $M$ inbound weights are retained. The wake score and flag are $s^{\mathrm{wake}}_{i,t}=\sum_{j}\mathcal{A}_t(i,j)$ and
+$$W_{i,t}=\begin{cases}1,&s^{\mathrm{wake}}_{i,t}\ge q_{0.75}^{\mathrm{wake}}\land R^{\mathrm{wtb}}_{i,t}\in\{1,2\},\\0,&s^{\mathrm{wake}}_{i,t}<q_{0.75}^{\mathrm{wake}}\land R^{\mathrm{wtb}}_{i,t}\in\{1,2\},\\\varnothing,&\text{otherwise.}\end{cases}$$
 
-$$
-\mathbf{u}_{i,t} =
-\begin{bmatrix}
-\sin(\theta_{i,t} + \pi) \\
-\cos(\theta_{i,t} + \pi)
-\end{bmatrix}.
-$$
-
-This gives
-
-$$
-d^{\parallel}_{ij,t} = \Delta \mathbf{p}_{ij}^{\top}\mathbf{u}_{i,t},
-\qquad
-d^{\perp}_{ij,t} = \left| \Delta p^x_{ij} u^y_{i,t} - \Delta p^y_{ij} u^x_{i,t} \right|.
-$$
-
-An edge is activated only when turbine $j$ falls inside a downstream cone:
-
-$$
-\mathbb{I}^{\mathrm{cone}}_{ij,t} =
-\mathbf{1}\!\left[
-d^{\parallel}_{ij,t} > 0
-\ \land\
-\arctan\!\left(\frac{d^{\perp}_{ij,t}}{\max(d^{\parallel}_{ij,t}, 10^{-6})}\right)
-\leq \phi
-\right].
-$$
-
-The wake weight is
-
-$$
-\tilde{\mathcal{A}}_t(i,j) =
-\exp\!\left(-\frac{d^{\parallel}_{ij,t}}{\alpha}\right)
-\exp\!\left(-\frac{|d^{\perp}_{ij,t}|}{\beta}\right)
-\mathbb{I}^{\mathrm{cone}}_{ij,t}.
-$$
-
-If wind direction is missing, the implementation falls back to a static proximity weight,
-
-$$
-\mathcal{A}^{\mathrm{static}}(i,j)=\exp\!\left(-\frac{\lVert \Delta \mathbf{p}_{ij}\rVert_2}{d_{\max}}\right).
-$$
-
-Only the strongest $M$ inbound weights are retained for each target and time step. The wake score is
-
-$$
-s^{\mathrm{wake}}_{i,t} = \sum_{j} \mathcal{A}_t(i,j),
-$$
-
-and the auxiliary wake flag is
-
-$$
-W_{i,t} =
-\begin{cases}
-1, & \text{if } s^{\mathrm{wake}}_{i,t} \ge q_{0.75}^{\mathrm{wake}} \ \land\ R^{\mathrm{wtb}}_{i,t} \in \{1,2\},\\
-0, & \text{if } s^{\mathrm{wake}}_{i,t} < q_{0.75}^{\mathrm{wake}} \ \land\ R^{\mathrm{wtb}}_{i,t} \in \{1,2\},\\
-\varnothing, & \text{otherwise.}
-\end{cases}
-$$
-
-ERA5 treats each grid point as a node with geographic coordinate $(\varphi_i,\lambda_i)$ and computes great-circle distance with the Haversine formula
-
-$$
-d_{ij} = 2 R \arctan\!\left(
-\frac{\sqrt{a_{ij}}}{\sqrt{1-a_{ij}}}
-\right),
-$$
-
-where $R=6371$ km and
-
-$$
-a_{ij} =
-\sin^2\!\left(\frac{\varphi_j-\varphi_i}{2}\right)
-+
-\cos(\varphi_i)\cos(\varphi_j)\sin^2\!\left(\frac{\lambda_j-\lambda_i}{2}\right).
-$$
-
-The retained symmetric graph is
-
-$$
-\mathcal{A}(i,j) =
-\exp\!\left(
--\frac{d_{ij}^2}{2\sigma^2}
-\right)\mathbf{1}[j \in \mathcal{N}_{k_{\mathrm{nn}}}(i) \ \text{or}\ i \in \mathcal{N}_{k_{\mathrm{nn}}}(j)],
-$$
-
+For ERA5, the retained symmetric graph uses a Gaussian kernel on great-circle distances:
+$$\mathcal{A}(i,j)=\exp\!\left(-\frac{d_{ij}^2}{2\sigma^2}\right)\mathbf{1}[j\in\mathcal{N}_{k_{\mathrm{nn}}}(i)\;\text{or}\;i\in\mathcal{N}_{k_{\mathrm{nn}}}(j)],$$
 where $\sigma$ is the median retained neighbor distance on the training graph.
 
 ## Shared constants {.unnumbered}
