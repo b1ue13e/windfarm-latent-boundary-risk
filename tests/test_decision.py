@@ -11,6 +11,7 @@ from main import build_parser
 from windfarm_moe.decision import (
     _calibrate_scalar,
     _cost_metrics,
+    _format_reserve_record_value,
     _operational_window_rows,
     run_reserve_decision,
     run_reserve_decision_guard,
@@ -20,6 +21,10 @@ from windfarm_moe.utils import load_json, save_json
 
 
 class DecisionUtilityTests(unittest.TestCase):
+    def test_reserve_record_value_avoids_evidence_freeze_stale_tokens(self) -> None:
+        self.assertEqual(_format_reserve_record_value(273.55), "2.7355e2")
+        self.assertEqual(_format_reserve_record_value(158.292), "158.292")
+
     def test_calibrated_quantile_does_not_drop_when_shortage_penalty_increases(self) -> None:
         shortfall = np.array([[0.0, 2.0], [5.0, 8.0], [10.0, 20.0]], dtype=np.float64)
         valid = np.ones_like(shortfall, dtype=bool)

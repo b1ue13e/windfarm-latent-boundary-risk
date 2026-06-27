@@ -24,6 +24,12 @@ if (Test-Path $tradeoffScript) {
     if ($LASTEXITCODE -ne 0) { throw "Accountability tradeoff generation failed." }
 }
 
+$statisticalClaimScript = Join-Path $root "scripts\build_statistical_claim_table.py"
+if (Test-Path $statisticalClaimScript) {
+    & python $statisticalClaimScript
+    if ($LASTEXITCODE -ne 0) { throw "Statistical claim table generation failed." }
+}
+
 function Build-PDF {
     param($md, $label)
     $tex = Join-Path $root "build\${label}.tex"

@@ -37,8 +37,8 @@ app_body = app_body.replace(
     "\\begin{tabular}{lllll}\n",
 )
 app_body = app_body.replace(
-    "\\bottomrule\n\\end{tabularx}\n\\end{table}\n```\n\n## Auxiliary losses",
-    "\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n```\n\n## Auxiliary losses",
+    "\\bottomrule\n\\end{tabularx}\n\\end{table}",
+    "\\bottomrule\n\\end{tabular}%\n}\n\\end{table}",
     1,
 )
 

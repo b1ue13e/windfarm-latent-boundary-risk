@@ -1300,42 +1300,27 @@ late-period distribution shift preserves routing agreement while
 degrading value prediction: the method supports routing semantics, not
 time-stable forecasting accuracy.
 
-Statistical reliability is uneven across claim types. The strongest
-claims are the five-seed WTB routing-recovery, mechanism-intervention,
-and within-WTB spatial/temporal stress results. Engineering baselines,
-validation-frozen quantile reserves, and external checks are reported as
-bounded diagnostics, not broad superiority claims. Other industrial
-systems require local boundary estimation and held-out routing checks.
+Statistical reliability is uneven (Supplementary Table A6). The
+strongest claims are the five-seed WTB routing-recovery,
+mechanism-intervention, and within-WTB spatial/temporal stress results;
+gate-alignment deltas versus the full MoE and boundary-window
+reserve-cost comparisons remain bounded diagnostics, not superiority
+claims.
 
 \section{Conclusion}\label{conclusion}
 
 This paper introduces SCADA-anchored regime-aware routing as an
 auditable control-boundary framework for wind-turbine forecasting. The
 boundary-forced router recovers the declared WTB MPPT-to-pitch partition
-(NMI about 0.87, ARI about 0.92) by constraining node-level gate
-assignments with SCADA operating anchors at the forecast issue time. Its
-practical value appears when the corresponding threshold label stream
-degrades: the gate keeps 0.960 early pitch-window recall under a
-six-step label delay, while the delayed threshold rule falls to 0.196.
-The accountability comes with a measured accuracy price: overall RMSE
-236.13 versus 225.74 for Graph WaveNet. The recovered gate exposes where
-local forecast responsibility should be assigned to operating state and
-improves same-model global reserve rules in the transition window, while
-validation-frozen quantile baselines keep the claim bounded.
-Kelmarsh/Penmanshiel testing defines explicit cross-site deployment
-conditions---sensor coverage, pitch observability, local boundary
-re-estimation, and held-out routing checks---rather than promising
-automatic generalization. The contribution is an auditable routing
-framework for the MPPT-to-pitch control boundary, together with
-degraded-label value, RMSE price, and transfer conditions needed for
-responsible deployment.
-
-The practical message is an evidence protocol: SCADA-anchored routing
-can make a partly hidden turbine-control boundary auditable at a
-measurable accuracy cost, but responsibility claims must be
-re-established before cross-farm use. The framework is therefore not a
-forecasting SOTA or a universal reserve policy; it is an auditable
-control-boundary routing tool with explicit deployment gates.
+(NMI about 0.87, ARI about 0.92), keeps 0.960 early pitch-window recall
+under a six-step label delay while the delayed threshold rule falls to
+0.196, and exposes transition-window reserve risk. This accountability
+has a measured accuracy price: overall RMSE 236.13 versus 225.74 for
+Graph WaveNet. Validation-frozen quantile baselines, Supplementary Table
+A6, and Kelmarsh/Penmanshiel deployment gates keep the claim bounded.
+The contribution is not forecasting SOTA or universal reserve-policy
+optimality, but an auditable MPPT-to-pitch routing tool with
+degraded-label value, RMSE price, and explicit transfer conditions.
 
 \section{Declaration of generative AI and AI-assisted technologies in
 the manuscript preparation
@@ -1723,6 +1708,38 @@ $\lambda_{\mathrm{align}}$ & 5000 & 0.2 & Coarse regime alignment \\
 $\lambda_{\mathrm{force}}$ & 10000 & 0 & Boundary-focused forcing \\
 $\lambda_{\mathrm{aux}}$ & 250 & 0 & Wake-sensitive auxiliary routing \\
 $\lambda_{\mathrm{smooth}}$ & 0.05 & 0.05 & Local routing coherence \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Statistical claim
+boundaries}\label{statistical-claim-boundaries}
+\addcontentsline{toc}{subsection}{Statistical claim boundaries}
+
+Table A6 records the reviewer-facing statistical boundary used for
+wording. The RMSE price versus Graph WaveNet is FDR-significant,
+gate-alignment deltas versus the full physics-aligned MoE are positive
+but not FDR-significant, and boundary-window quantile reserve
+comparisons have bootstrap intervals crossing zero. These tests are why
+the main text uses price, diagnostic, and bounded-claim language rather
+than forecast- or reserve-superiority wording.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table A6.} Statistical claim boundaries used for reviewer-facing wording.}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.25\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth} >{\centering\arraybackslash}p{0.11\columnwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Claim & Estimate & 95\% CI & $p_{\mathrm{BH}}$ & Wording consequence \\
+\midrule
+Accuracy price vs Graph WaveNet & 9.029 & -- & <0.001 & Boundary router is significantly worse on headline RMSE \\
+Boundary-band accuracy price & 17.758 & -- & 0.001 & The price also appears in the boundary window \\
+Gate NMI vs full physics-aligned MoE & 0.040 & [0.008, 0.071] & 0.066 & Positive but not FDR-significant; cite as bounded mechanism contrast \\
+Gate ARI vs full physics-aligned MoE & 0.035 & [-0.000, 0.078] & 0.126 & Positive but not FDR-significant; avoid superiority wording \\
+Boundary quantile cost vs GWN physical bin & -0.263M & [-10.704M, 9.782M] & -- & CI crosses zero; reserve cost should remain a diagnostic claim \\
+Boundary quantile violation vs GWN physical bin & 0.003 & [-0.011, 0.020] & -- & CI crosses zero; no universal reserve-policy optimality claim \\
 \bottomrule
 \end{tabularx}
 \end{table}
