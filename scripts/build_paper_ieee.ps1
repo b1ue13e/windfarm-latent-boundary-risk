@@ -25,7 +25,7 @@ function Build-PDF {
     if (Test-Path $tex) { Remove-Item $tex -Force }
     if (Test-Path $pdf) { Remove-Item $pdf -Force }
     $null = New-Item -ItemType Directory -Force -Path (Join-Path $root "build")
-    & $pandoc $md --citeproc --csl (Join-Path $root "elsevier-numbered.csl") `
+    & $pandoc $md --citeproc --csl (Join-Path $root "IEEE.csl") `
         --standalone -t latex -o $tex
     if ($LASTEXITCODE -ne 0) { throw "Pandoc failed on $md" }
     $args = @("-interaction=nonstopmode", "-halt-on-error",
