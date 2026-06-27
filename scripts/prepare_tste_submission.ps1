@@ -306,6 +306,7 @@ foreach ($rel in @(
     "IEEE.csl",
     "TUptm.fd",
     "scripts\prepare_tste_submission.ps1",
+    "scripts\verify_tste_submission_package.ps1",
     "scripts\build_paper_ieee.ps1",
     "scripts\transform_ieee.py",
     "scripts\make_supplementary.py",
@@ -390,6 +391,7 @@ Generated: $stamp
 - Main manuscript pages: $mainPages.
 - Supplementary pages: $suppPages.
 - IEEE build completed through `scripts/build_paper_ieee.ps1`.
+- Package can be independently rechecked with `scripts/verify_tste_submission_package.ps1 -PackageRoot "$packageRoot"`.
 - LaTeX blocking warning/error scan: passed.
 - Evidence-freeze guard status: $freezeStatus.
 - Cover letter placeholder check: passed.
@@ -428,6 +430,7 @@ Checks completed:
 - Evidence-freeze guard completed with status $freezeStatus.
 - Portal metadata generated from the current IEEE manuscript.
 - Upload integrity manifest generated with SHA256 checksums.
+- Independent package verifier completed successfully.
 - Upload, source, build-log, and evidence-audit folders populated.
 
 Generated archives:
@@ -539,6 +542,9 @@ foreach ($zip in @($uploadZip, $sourceZip, $fullZip)) {
 Compress-Archive -Path (Join-Path $uploadDir "*") -DestinationPath $uploadZip -Force
 Compress-Archive -Path (Join-Path $sourceDir "*") -DestinationPath $sourceZip -Force
 Compress-Archive -Path (Join-Path $packageRoot "*") -DestinationPath $fullZip -Force
+
+& powershell -ExecutionPolicy Bypass -File (Join-Path $root "scripts\verify_tste_submission_package.ps1") -PackageRoot $packageRoot
+if ($LASTEXITCODE -ne 0) { throw "Independent TSTE package verification failed." }
 
 Write-Host "Prepared IEEE TSTE submission package:"
 Write-Host $packageRoot
