@@ -30,6 +30,12 @@ if (Test-Path $statisticalClaimScript) {
     if ($LASTEXITCODE -ne 0) { throw "Statistical claim table generation failed." }
 }
 
+$outcomeSanityScript = Join-Path $root "scripts\build_outcome_channel_sanity.py"
+if (Test-Path $outcomeSanityScript) {
+    & python $outcomeSanityScript
+    if ($LASTEXITCODE -ne 0) { throw "Outcome-channel sanity generation failed." }
+}
+
 function Build-PDF {
     param($md, $label)
     $tex = Join-Path $root "build\${label}.tex"

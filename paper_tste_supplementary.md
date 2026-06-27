@@ -188,3 +188,29 @@ Boundary quantile violation vs GWN physical bin & 0.003 & [-0.011, 0.020] & -- &
 \end{tabularx}
 \end{table}
 ```
+
+## Outcome-channel sanity audit {.unnumbered}
+
+Table A7 adds a bounded check for the shared-anchor concern. It does not use pitch-threshold labels to score the contrast: validation data define a wind-speed-bin power curve, and the test-set comparison is restricted to 9.5--11.5 m s$^{-1}$ boundary anchors with fine wind-bin adjustment. The result asks whether the recovered gate separates samples with different future active-power response, not whether it discovers a regime without anchors.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table A7.} Outcome-channel sanity audit for the shared-anchor concern.}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.25\columnwidth} >{\centering\arraybackslash}p{0.24\columnwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Check & Five-seed summary & Interpretation \\
+\midrule
+Boundary cells per seed & 3276 MPPT / 10465 pitch & 9.5--11.5 m s$^{-1}$ test anchors \\
+Future mean power & 100.0 $\pm$ 17.5 kW & Pitch-gate minus MPPT-gate after wind-bin adjustment \\
+Power-curve residual & 100.0 $\pm$ 17.5 kW & Validation wind-bin power curve only; no pitch label used \\
+Future power ramp & 81.8 $\pm$ 24.7 kW & Mean late-horizon minus early-horizon power \\
+Anchor-time Patv & -44.1 $\pm$ 32.5 kW & Current active power is not driving the same positive contrast \\
+Residual claim boundary & sanity check only & Mitigates circularity concern; does not prove anchor-free discovery \\
+\bottomrule
+\end{tabularx}
+\end{table}
+```
