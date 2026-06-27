@@ -18,6 +18,12 @@ $xelatex = if (Test-Path $localMiKTeX) { $localMiKTeX } elseif (
 }
 $env:PATH = (Split-Path -Parent $xelatex) + ";$env:PATH"
 
+$tradeoffScript = Join-Path $root "scripts\build_accountability_tradeoff.py"
+if (Test-Path $tradeoffScript) {
+    & python $tradeoffScript
+    if ($LASTEXITCODE -ne 0) { throw "Accountability tradeoff generation failed." }
+}
+
 function Build-PDF {
     param($md, $label)
     $tex = Join-Path $root "build\${label}.tex"

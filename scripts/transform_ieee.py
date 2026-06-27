@@ -246,6 +246,7 @@ assert r"\begin{equation}" in out            # GRU split equation
 assert r"\begin{align}" in out               # loss split equation
 assert "deployment_checklist.png" not in out # removed redundant figure
 assert "operational_decision_curve.png" not in out  # removed; Tables 3-4 cover it
+assert "accountability_tradeoff_curve.pdf" in out
 assert r"\fbox" not in out                          # algo box removed
 
 print(f"Written paper_tste_ieee.md  ({lines} lines, {words} words) - all checks passed")
