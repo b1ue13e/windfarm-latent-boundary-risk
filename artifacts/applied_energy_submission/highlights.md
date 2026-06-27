@@ -1,5 +1,0 @@
-- Operating-boundary routing recovers MPPT-to-pitch control states.
-- Gate-bin reserve cuts transition-window shortage energy by 14.5%.
-- Reserve gains hold in moderate shortage-to-reserve cost windows.
-- Stronger routing accountability carries a measured RMSE cost.
-- External-farm checks define local sensor and routing gates.
