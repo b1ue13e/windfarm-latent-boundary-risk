@@ -7,8 +7,37 @@ $uploadDir = Join-Path $packageRoot "upload_files"
 $sourceDir = Join-Path $packageRoot "source_files"
 $evidenceDir = Join-Path $packageRoot "evidence_audits"
 $buildLogDir = Join-Path $packageRoot "build_logs"
+$metadataDir = Join-Path $packageRoot "portal_metadata"
 
-New-Item -ItemType Directory -Force -Path $packageRoot, $uploadDir, $sourceDir, $evidenceDir, $buildLogDir | Out-Null
+New-Item -ItemType Directory -Force -Path $packageRoot, $uploadDir, $sourceDir, $evidenceDir, $buildLogDir, $metadataDir | Out-Null
+
+function Get-RegexGroup {
+    param(
+        [string]$Text,
+        [string]$Pattern,
+        [string]$Label
+    )
+
+    $match = [regex]::Match($Text, $Pattern, [System.Text.RegularExpressions.RegexOptions]::Singleline)
+    if (-not $match.Success) {
+        throw "Could not extract $Label from paper_tste_ieee.md."
+    }
+    return $match.Groups[1].Value
+}
+
+function Convert-PortalText {
+    param([string]$Text)
+
+    $clean = $Text
+    $clean = $clean -replace "\\%", "%"
+    $clean = $clean -replace "\\&", "&"
+    $clean = $clean -replace "\\_", "_"
+    $clean = $clean -replace "\\texttt\{([^}]*)\}", '$1'
+    $clean = $clean -replace "---", " - "
+    $clean = $clean -replace "~", " "
+    $clean = $clean -replace "\s+", " "
+    return $clean.Trim()
+}
 
 $requiredFiles = @(
     "paper_tste_ieee.pdf",
@@ -77,6 +106,160 @@ if ($freezeStatus -ne "complete_ready_for_evidence_freeze") {
     throw "Evidence-freeze guard status is $freezeStatus."
 }
 
+$paperText = Get-Content -LiteralPath (Join-Path $root "paper_tste_ieee.md") -Raw
+$targetJournal = "IEEE Transactions on Sustainable Energy"
+$articleType = "Regular Paper"
+$title = Convert-PortalText (Get-RegexGroup $paperText "\\title\{(.+?)\}" "title")
+$abstract = Convert-PortalText (Get-RegexGroup $paperText "\\begin\{abstract\}(.+?)\\end\{abstract\}" "abstract")
+$keywords = Convert-PortalText (Get-RegexGroup $paperText "\\begin\{IEEEkeywords\}(.+?)\\end\{IEEEkeywords\}" "keywords")
+$keywordText = $keywords.Trim().TrimEnd(".")
+$keywordList = @($keywordText -split ";" | ForEach-Object { $_.Trim() } | Where-Object { $_ })
+$aiStatement = Convert-PortalText (Get-RegexGroup $paperText "# Declaration of generative AI.*?\r?\n\r?\n(.+?)\r?\n\r?\n# Code and data availability" "AI use statement")
+$dataAvailability = Convert-PortalText (Get-RegexGroup $paperText "# Code and data availability\r?\n\r?\n(.+?)\r?\n\r?\n# References" "code and data availability statement")
+
+$authors = @(
+    [ordered]@{
+        order = 1
+        name = "Junyu Li"
+        email = "ljylikezmn999@gmail.com"
+        affiliation = "School of Statistics and Applied Mathematics, Anhui University of Finance and Economics, Bengbu 233030, China"
+        role = "Author"
+    },
+    [ordered]@{
+        order = 2
+        name = "Juntao Du"
+        email = "dujuntao@aufe.edu.cn"
+        affiliation = "School of Statistics and Applied Mathematics, Anhui University of Finance and Economics, Bengbu 233030, China"
+        role = "Corresponding author"
+    }
+)
+$correspondingAuthor = [ordered]@{
+    name = "Juntao Du"
+    email = "dujuntao@aufe.edu.cn"
+    affiliation = "School of Statistics and Applied Mathematics, Anhui University of Finance and Economics, Bengbu 233030, China"
+}
+$uploadFiles = @(
+    [ordered]@{
+        file = "upload_files/manuscript_ieee_tste.pdf"
+        portal_role = "Main manuscript"
+        note = "IEEEtran two-column journal manuscript."
+    },
+    [ordered]@{
+        file = "upload_files/supplementary_material.pdf"
+        portal_role = "Supplementary material"
+        note = "Supplementary appendix with Tables A1-A10."
+    },
+    [ordered]@{
+        file = "upload_files/cover_letter.md"
+        portal_role = "Cover letter"
+        note = "TSTE cover letter aligned with claim-boundary audits."
+    },
+    [ordered]@{
+        file = "upload_files/VERIFICATION_REPORT.md"
+        portal_role = "Local verification record"
+        note = "Upload only if the portal allows optional supporting documentation."
+    }
+)
+$claimBoundaries = @(
+    "Not a forecasting-SOTA claim: RMSE is reported as 236.13 versus 225.74 for Graph WaveNet.",
+    "Not a universal reserve-policy optimality claim: validation-frozen physical-bin quantile baselines remain competitive.",
+    "Not an automatic cross-farm generalization claim: Kelmarsh/Penmanshiel fail the held-out routing criterion and are treated as deployment-gate diagnostics.",
+    "Not an anchor-free discovery claim: routing is intentionally constrained by SCADA operating anchors.",
+    "Not a market-dispatch or grid-security guarantee: reserve evidence is scoped to audit and diagnosis around the MPPT-to-pitch transition."
+)
+
+$keywordsMd = ($keywordList | ForEach-Object { "- $_" }) -join "`r`n"
+$authorsMd = ($authors | ForEach-Object { "$($_.order). $($_.name) - $($_.affiliation); email: $($_.email); role: $($_.role)" }) -join "`r`n"
+$uploadFilesMd = ($uploadFiles | ForEach-Object { "- $($_.file): $($_.portal_role). $($_.note)" }) -join "`r`n"
+$claimBoundariesMd = ($claimBoundaries | ForEach-Object { "- $_" }) -join "`r`n"
+
+$portalMarkdown = @"
+# TSTE Portal Metadata
+
+Generated: $stamp
+
+## Journal and Article Type
+
+Target journal: $targetJournal
+
+Article type: $articleType
+
+## Title
+
+$title
+
+## Abstract
+
+$abstract
+
+## Keywords
+
+$keywordsMd
+
+## Authors
+
+$authorsMd
+
+## Corresponding Author
+
+$($correspondingAuthor.name), $($correspondingAuthor.affiliation), $($correspondingAuthor.email)
+
+## Upload File Roles
+
+$uploadFilesMd
+
+## Data Availability Statement
+
+$dataAvailability
+
+## Generative AI Use Statement
+
+$aiStatement
+
+## Claim-Boundary Notes For Editor
+
+$claimBoundariesMd
+
+## Verification Snapshot
+
+- Main manuscript pages: $mainPages.
+- Supplementary pages: $suppPages.
+- LaTeX blocking warning/error scan: passed.
+- Evidence-freeze guard status: $freezeStatus.
+- Cover letter placeholder check: passed.
+
+## Human Checks Before Portal Submission
+
+- Confirm funding, conflicts of interest, and author contribution fields in the portal.
+- Confirm author order, emails, ORCID records, and corresponding-author selection.
+- Confirm whether the portal accepts Markdown cover letters or requires text pasted into a form field.
+- Confirm whether source files are requested at initial submission or only after acceptance.
+"@
+Set-Content -LiteralPath (Join-Path $metadataDir "portal_metadata.md") -Value $portalMarkdown -Encoding UTF8
+
+$portalMetadata = [ordered]@{
+    generated = $stamp
+    target_journal = $targetJournal
+    article_type = $articleType
+    title = $title
+    abstract = $abstract
+    keywords = $keywordList
+    authors = $authors
+    corresponding_author = $correspondingAuthor
+    upload_files = $uploadFiles
+    data_availability_statement = $dataAvailability
+    generative_ai_use_statement = $aiStatement
+    claim_boundary_notes = $claimBoundaries
+    verification = [ordered]@{
+        main_manuscript_pages = [int]$mainPages
+        supplementary_pages = [int]$suppPages
+        latex_log_scan = "passed"
+        evidence_freeze_guard_status = $freezeStatus
+        cover_letter_placeholder_check = "passed"
+    }
+}
+$portalMetadata | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $metadataDir "portal_metadata.json") -Encoding UTF8
+
 $uploadMap = @{
     "paper_tste_ieee.pdf" = "manuscript_ieee_tste.pdf"
     "paper_tste_supplementary.pdf" = "supplementary_material.pdf"
@@ -85,6 +268,8 @@ $uploadMap = @{
 foreach ($entry in $uploadMap.GetEnumerator()) {
     Copy-Item -LiteralPath (Join-Path $root $entry.Key) -Destination (Join-Path $uploadDir $entry.Value) -Force
 }
+Copy-Item -LiteralPath (Join-Path $metadataDir "portal_metadata.md") -Destination $uploadDir -Force
+Copy-Item -LiteralPath (Join-Path $metadataDir "portal_metadata.json") -Destination $uploadDir -Force
 
 foreach ($rel in @(
     "paper_tste_ieee.md",
@@ -157,6 +342,13 @@ Generated: $stamp
 - `upload_files/manuscript_ieee_tste.pdf`: IEEEtran main manuscript.
 - `upload_files/supplementary_material.pdf`: supplementary appendix with Tables A1-A10.
 - `upload_files/cover_letter.md`: TSTE cover letter aligned with claim audits.
+- `upload_files/portal_metadata.md`: copy-paste portal fields for title, abstract, keywords, authors, declarations, and file roles.
+- `upload_files/portal_metadata.json`: machine-readable copy of the same portal metadata.
+
+## Portal metadata
+
+- `portal_metadata/portal_metadata.md`: human-readable submission portal checklist.
+- `portal_metadata/portal_metadata.json`: structured metadata generated from the current IEEE manuscript.
 
 ## Verification
 
@@ -199,6 +391,7 @@ Checks completed:
 - Supplementary page count is $suppPages.
 - LaTeX blocking warning/error scan passed.
 - Evidence-freeze guard completed with status $freezeStatus.
+- Portal metadata generated from the current IEEE manuscript.
 - Upload, source, build-log, and evidence-audit folders populated.
 
 Generated archives:
