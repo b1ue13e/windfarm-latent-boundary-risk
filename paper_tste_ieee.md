@@ -502,7 +502,7 @@ Horizon and time-of-day sensitivity checks, paired full-sample uncertainty, and 
 
 The accuracy cost is real and should be read as part of the design. Graph WaveNet and lag-feature baselines remain better whole-sample forecasters on WTB. The routed model is used when an operator or analyst needs an accountable operating-state assignment that can feed a boundary-specific decision, not when the sole target is minimum average error. Time-forward testing gives the same message in another form: late-period routing agreement remains high, but late-test RMSE rises sharply, showing that stable semantics do not guarantee stable value prediction under distribution shift.
 
-The external wind-farm tests define the deployment gate. Kelmarsh/Penmanshiel checks do not pass the held-out routing criterion, identifying the conditions that must be verified before cross-farm use: pitch or proxy observability, boundary-cell support, compatible turbine geometry, local threshold estimation, and a held-out routing pass. The method exports an evidence protocol, not a promise of automatic transfer.
+The external wind-farm tests define the deployment gate (Supplementary Table A8). Kelmarsh/Penmanshiel checks do not pass the held-out routing criterion, identifying the conditions that must be verified before cross-farm use: pitch or proxy observability, boundary-cell support, compatible turbine geometry, local threshold estimation, and a held-out routing pass. The method exports an evidence protocol, not a promise of automatic transfer.
 
 ```{=latex}
 \begin{table}[H]

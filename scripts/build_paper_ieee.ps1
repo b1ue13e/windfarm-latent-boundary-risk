@@ -36,6 +36,12 @@ if (Test-Path $outcomeSanityScript) {
     if ($LASTEXITCODE -ne 0) { throw "Outcome-channel sanity generation failed." }
 }
 
+$externalGateScript = Join-Path $root "scripts\build_external_deployment_gate_audit.py"
+if (Test-Path $externalGateScript) {
+    & python $externalGateScript
+    if ($LASTEXITCODE -ne 0) { throw "External deployment-gate audit generation failed." }
+}
+
 function Build-PDF {
     param($md, $label)
     $tex = Join-Path $root "build\${label}.tex"

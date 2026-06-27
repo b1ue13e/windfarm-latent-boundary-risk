@@ -1205,13 +1205,13 @@ late-period routing agreement remains high, but late-test RMSE rises
 sharply, showing that stable semantics do not guarantee stable value
 prediction under distribution shift.
 
-The external wind-farm tests define the deployment gate.
-Kelmarsh/Penmanshiel checks do not pass the held-out routing criterion,
-identifying the conditions that must be verified before cross-farm use:
-pitch or proxy observability, boundary-cell support, compatible turbine
-geometry, local threshold estimation, and a held-out routing pass. The
-method exports an evidence protocol, not a promise of automatic
-transfer.
+The external wind-farm tests define the deployment gate (Supplementary
+Table A8). Kelmarsh/Penmanshiel checks do not pass the held-out routing
+criterion, identifying the conditions that must be verified before
+cross-farm use: pitch or proxy observability, boundary-cell support,
+compatible turbine geometry, local threshold estimation, and a held-out
+routing pass. The method exports an evidence protocol, not a promise of
+automatic transfer.
 
 \begin{table}[H]
 \centering
@@ -1774,6 +1774,36 @@ Power-curve residual & 100.0 $\pm$ 17.5 kW & Validation wind-bin power curve onl
 Future power ramp & 81.8 $\pm$ 24.7 kW & Mean late-horizon minus early-horizon power \\
 Anchor-time Patv & -44.1 $\pm$ 32.5 kW & Current active power is not driving the same positive contrast \\
 Residual claim boundary & sanity check only & Mitigates circularity concern; does not prove anchor-free discovery \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{External-site deployment-gate
+audit}\label{external-site-deployment-gate-audit}
+\addcontentsline{toc}{subsection}{External-site deployment-gate audit}
+
+Table A8 records the go/no-go interpretation used for the
+Kelmarsh/Penmanshiel evidence. Each row maps a failed or incomplete
+external signal to the deployment action that follows. The table
+therefore supports a bounded claim: the external experiments are a
+screening protocol for new wind farms, not evidence that the WTB gate
+can be transferred directly.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table A8.} External-site deployment-gate audit and wording boundary.}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.20\columnwidth} >{\raggedright\arraybackslash}p{0.33\columnwidth} >{\raggedright\arraybackslash}p{0.22\columnwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Gate & Observed external evidence & Go/no-go rule & Claim consequence \\
+\midrule
+Cross-site routing criterion & 80/80 runs complete; mean NMI 0.4877 below threshold 0.50; mean ARI 0.5112 & Held-out NMI $\geq$ 0.50 and balanced accuracy $\geq$ 0.50 after parameters are frozen & No-go for cross-farm router interpretation; cite as negative boundary-condition evidence \\
+Local boundary recalibration & Default test NMI 0.1324 $\rightarrow$ recalibrated 0.1491 (delta +0.0167) & Rated wind, pitch threshold, boundary band, and gate-map selected on calibration only & Local threshold transfer is insufficient; re-estimate before use \\
+Small-window adaptation & 40/40 routing runs adapted; chronological balanced accuracy 0.4787 below 0.50 & Small calibration windows must still pass the frozen held-out routing criterion & Calibration alone does not authorize external reserve use \\
+Sensor and boundary support & Penmanshiel-to-Kelmarsh leave-one pitch-feature coverage 0.0000 and effective boundary cells 0 & Pre-declared calibration window with enough boundary cells, active power, availability mask, and pitch/proxy overlap & No physical-router interpretation without observability \\
+External reserve-use decision & Upstream gates do not pass before reserve allocation is evaluated & Transition-window shortage and violation improve at acceptable reserve-energy cost & Withhold gate-bin reserve use outside WTB; report a deployment protocol only \\
 \bottomrule
 \end{tabularx}
 \end{table}
