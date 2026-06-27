@@ -66,10 +66,10 @@ We present the first framework that makes the wind-turbine MPPT-to-pitch control
 # Highlights {.unnumbered}
 
 - SCADA anchors make the MPPT-to-pitch control boundary auditable through routing.
-- Node-level regime gates recover the declared partition (NMI about 0.87) at a measured RMSE cost.
-- Boundary-forced router quantifies where forecast responsibility should be assigned to operating state.
+- Regime gates recover the declared partition (NMI 0.87) at a measured RMSE cost.
+- The router assigns forecast responsibility to the active operating state.
 - Validation-frozen quantile baselines bound any reserve-policy claim honestly.
-- External-site tests define deployment-gated transfer conditions, not automatic cross-farm generalization.
+- External-site tests define deployment gates, not automatic cross-farm transfer.
 
 # Nomenclature {.unnumbered}
 

@@ -438,12 +438,12 @@ class PaperUtilityTests(unittest.TestCase):
 
         self.assertEqual(args.variant_keys, "bal_align_force")
 
-    def test_applied_energy_manuscript_structure(self) -> None:
+    def test_manuscript_structure(self) -> None:
         text = PAPER_PATH.read_text(encoding="utf-8")
 
         self.assertIn(
-            "Physics-Informed Reserve Diagnostics for Wind-Power Transition Windows: "
-            "An Auditable Regime-Aware Forecasting Framework",
+            "SCADA-Anchored Regime-Aware Routing for Auditable "
+            "Wind-Turbine Control-Boundary Forecasting",
             text,
         )
         self.assertIn("# Highlights {.unnumbered}", text)
@@ -457,11 +457,11 @@ class PaperUtilityTests(unittest.TestCase):
             "## Integration of Physical Constraints into Model Optimization",
             "# Case Study Configuration and Operational Constraints",
             "## Techno-Economic Validation and Benchmarking Framework",
-            "# System Simulation Results and Economic Implications",
+            "# Evidence and Operational Boundary Diagnosis",
         ]:
             self.assertIn(heading, text)
 
-    def test_applied_energy_highlights_meet_elsevier_length(self) -> None:
+    def test_highlights_meet_length_limit(self) -> None:
         text = PAPER_PATH.read_text(encoding="utf-8")
         start = text.index("# Highlights {.unnumbered}")
         end = text.index("# Nomenclature {.unnumbered}")

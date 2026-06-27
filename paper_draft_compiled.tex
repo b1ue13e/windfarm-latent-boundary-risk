@@ -159,7 +159,7 @@
 \begin{center}
 \begin{minipage}{0.94\textwidth}
 \centering
-\Large\bfseries Physics-Informed Reserve Diagnostics for Wind-Power Transition Windows: An Auditable Regime-Aware Forecasting Framework\par
+\Large\bfseries SCADA-Anchored Regime-Aware Routing for Auditable Wind-Turbine Control-Boundary Forecasting\par
 \vspace{0.6em}
 \normalsize Junyu Li\textsuperscript{a}\qquad Juntao Du\textsuperscript{a,*}\par
 \vspace{0.35em}
@@ -174,32 +174,32 @@
 
 \vspace{0.35em}
 
-\noindent{\small\bfseries Abstract\par} \vspace{0.18em} \small Reserve
-planning for wind-integrated power systems is most fragile when forecast
-errors change an operating decision rather than only an aggregate error
-score. The wind-turbine transition from maximum power point tracking
-(MPPT) to blade-pitch control concentrates this exposure: over-forecasts
-near rated operation translate into unmet reserve requirements, while
-fleet-level RMSE can dilute the risk. We develop a SCADA-constrained,
-physics-informed reserve diagnostic that uses regime-aware routing to
-make the MPPT-to-pitch transition window auditable. On the KDD Cup 2022
-wind-farm benchmark, the gate recovers the declared MPPT-to-pitch
-partition (NMI about 0.87). At shortage-to-reserve cost ratio 10,
-gate-conditioned binning reduces same-model boundary-window violation
-from 10.38\% to 9.00\%, cuts shortage energy by about 14.5\%, and adds
-about 3.6\% reserve energy relative to the same routed model with a
-global rule. Validation-frozen quantile baselines bound the claim:
-physical-bin quantile policies are competitive and sometimes lower-cost,
-so the contribution is transition-window attribution and reserve-risk
-diagnosis rather than reserve-policy superiority. Kelmarsh/Penmanshiel
-external checks identify the sensor coverage, pitch observability,
-turbine geometry, and held-out routing conditions required before
-new-site reserve use. The method provides an auditable, deployment-gated
-diagnostic for transition-window reserve risk.
+\noindent{\small\bfseries Abstract\par} \vspace{0.18em} \small We
+present the first framework that makes the wind-turbine MPPT-to-pitch
+control boundary auditable through SCADA-anchored, regime-aware routing.
+Current spatio-temporal forecasters minimize fleet-average error but do
+not assign responsibility to the operating state that generated a local
+response. We constrain a node-level mixture-of-experts gate with SCADA
+operating anchors so that each sample's routing assignment can be
+compared against a declared MPPT-to-pitch partition, then used in
+accountability diagnosis. On the KDD Cup 2022 benchmark, the
+boundary-forced router recovers the declared partition (NMI about 0.87,
+ARI about 0.92) at a measured accuracy cost: overall RMSE 236.13 versus
+225.74 for Graph WaveNet. The same gate exposes where reserve risk
+concentrates in the transition window and improves same-model global
+reserve rules, though validation-frozen quantile baselines show that
+physical-bin policies remain competitive. Kelmarsh/Penmanshiel external
+tests do not pass the held-out routing criterion; instead they define a
+deployment protocol---sensor coverage, pitch observability, local
+boundary re-estimation, and held-out routing checks---that must be
+satisfied before cross-farm use. The contribution is an auditable
+control-boundary routing framework with quantified RMSE price and
+explicit cross-site transfer conditions, not a claim of forecasting
+superiority or universal reserve-policy optimality.
 
 \vspace{0.25em}
 
-\noindent{\small\textbf{Keywords:} Wind-power operations; reserve diagnostics; MPPT-to-pitch transition; SCADA observability; regime-aware forecasting; quantile reserve baseline.\par}
+\noindent{\small\textbf{Keywords:} Wind-turbine control boundary; SCADA-anchored routing; regime-aware forecasting; auditable routing; MPPT-to-pitch transition; mixture-of-experts.\par}
 
 \normalsize
 
@@ -211,15 +211,20 @@ diagnostic for transition-window reserve risk.
 \begin{itemize}
 \tightlist
 \item
-  Transition windows concentrate wind-power reserve risk.
+  SCADA anchors make the MPPT-to-pitch control boundary auditable
+  through routing.
 \item
-  SCADA-constrained gates audit turbine control boundaries.
+  Regime gates recover the declared partition (NMI 0.87) at a measured
+  RMSE cost.
 \item
-  Gate-bin reserves cut same-model boundary violations to 9.00\%.
+  The router assigns forecast responsibility to the active operating
+  state.
 \item
-  Quantile baselines bound the reserve-policy superiority claim.
+  Validation-frozen quantile baselines bound any reserve-policy claim
+  honestly.
 \item
-  External wind farms require local routing calibration.
+  External-site tests define deployment gates, not automatic cross-farm
+  transfer.
 \end{itemize}
 
 \section*{Nomenclature}\label{nomenclature}
@@ -256,19 +261,18 @@ NMI, ARI & Normalized mutual information and adjusted Rand index \\
 
 \section{Introduction}\label{introduction}
 
-Reserve planning for wind-integrated power systems becomes most
-sensitive when a forecast error changes an operating decision rather
-than only a fleet-average error score. The maximum power point tracking
-(MPPT)-to-pitch transition is one such point. In the MPPT region,
-turbine power responds strongly to wind-speed variation; as pitch
+Wind-power forecasting must answer two questions together: how large is
+the error, and which operating state generated the local response? The
+turbine transition from maximum power point tracking (MPPT) to
+blade-pitch control is where this accountability matters most. In the
+MPPT region, power responds strongly to wind-speed variation; as pitch
 control activates near rated operation, the local power-response law
-changes. An over-forecasted unit in this window becomes an unmet reserve
-requirement, and a small error near rated wind can cross a different
-control law. Because the transition occupies a smaller share of normal
-wind-farm operation, its effect can be diluted in whole-sample RMSE
-while still concentrating reserve exposure. A useful forecasting system
-for this setting must therefore answer two questions together: how large
-is the error, and which control state generated the local response?
+changes. A small forecast error near rated wind can cross a different
+control law, yet the transition occupies a smaller share of normal
+operation, so its effect can be diluted in fleet-average RMSE while
+still concentrating local risk. A useful forecasting system for this
+setting must therefore expose the operating boundary that produced each
+forecast, not only report aggregate accuracy.
 
 State-of-the-art spatio-temporal forecasters now model turbine coupling,
 wake interaction, dynamic dependence, and sensor-rich wind-farm layouts
@@ -300,97 +304,59 @@ quantile baselines. This positioning deliberately separates
 transition-window accountability from the conventional forecasting
 leaderboard and from claims of full dispatch optimality.
 
-This paper makes three contributions. First, it defines an
-operating-boundary accountability task: a routed forecaster is evaluated
-not only by mean error, but by whether its gate recovers a physically
-declared turbine-control transition. Second, it connects that auditable
-gate to a transition-window reserve diagnostic; at cost ratio 10,
-gate-conditioned binning reduces same-model boundary-window violation by
-1.38 percentage points and shortage energy by about 14.5\% at a measured
-reserve-energy cost, while quantile baselines prevent overclaiming
-reserve-policy superiority. Third, it converts the Kelmarsh/Penmanshiel
-external-site outcome into a deployment protocol by identifying the
-sensor coverage, pitch observability, turbine geometry, boundary
-support, and held-out routing checks that must be passed before a new
-wind farm can use gate-conditioned reserve allocation.
+This paper makes three contributions. First, it introduces
+SCADA-anchored regime-aware routing as an auditable control-boundary
+assignment: a node-level gate is constrained by operating anchors so
+that its partition can be compared against a declared MPPT-to-pitch
+label and used for responsibility allocation. Second, it quantifies the
+RMSE price of that accountability (about 10 units on WTB relative to
+Graph WaveNet) and connects the recovered gate to a boundary-window
+reserve-risk diagnostic with honest quantile baselines. Third, it
+converts external-site evidence into explicit deployment
+conditions---sensor coverage, pitch observability, local boundary
+re-estimation, and held-out routing checks---rather than claiming
+automatic cross-farm generalization.
 
 \section{Related Work}\label{related-work}
 
 \subsection{From average wind-power accuracy to transition-window
 risk}\label{from-average-wind-power-accuracy-to-transition-window-risk}
 
-Wind-power forecasting has moved from single-site point prediction
-toward models that encode the physical sources of error. Ramp and
-process reviews identify non-stationary weather and rapid power changes
-as recurrent operational risks
-{[}\citeproc{ref-pinson2013forecasting}{11}--\citeproc{ref-yang2025windprocess}{13}{]},
-while uncertainty reviews clarify why point accuracy alone is
-insufficient for decisions that consume forecasts
-{[}\citeproc{ref-wang2025uncertaintyreview}{14},\citeproc{ref-haq2025windreview}{15}{]}.
-Spatio-temporal graph forecasting provides the main accuracy reference;
-many graph mechanisms originate in traffic forecasting and have since
-been adapted for turbine arrays and weather grids
-{[}\citeproc{ref-wu2019graphwavenet}{1},\citeproc{ref-li2018dcrnn}{16}--\citeproc{ref-wu2020connecting}{20}{]}.
-Wind-specific work is more directly relevant for this study because it
-adds wake-aware graphs, SCADA fields, LiDAR information, offshore
-layouts, and physics-guided constraints to the forecast model
-{[}\citeproc{ref-park2019physicsinduced}{2}--\citeproc{ref-daenens2025offshore}{5},\citeproc{ref-zehtabiyan2023physicsguided}{21}{]}.
-This literature defines the low-error benchmark. The remaining gap is
-diagnostic: ramp and average-error models can identify difficult
-periods, but they do not make the active turbine-control law visible to
-a reserve planner.
+Wind-power forecasting has moved from single-site prediction toward
+spatio-temporal graph models that encode physical sources of error.
+Reviews identify ramp and uncertainty as recurrent operational risks
+{[}\citeproc{ref-pinson2013forecasting}{11},\citeproc{ref-wang2025uncertaintyreview}{12}{]},
+while graph mechanisms provide the accuracy reference
+{[}\citeproc{ref-wu2019graphwavenet}{1},\citeproc{ref-guo2019astgcn}{13},\citeproc{ref-bai2020agcrn}{14}{]}.
+Wind-specific extensions add wake-aware graphs, SCADA fields, and
+physics-guided constraints
+{[}\citeproc{ref-park2019physicsinduced}{2},\citeproc{ref-kim2024lidarscada}{4},\citeproc{ref-daenens2025offshore}{5}{]}.
+The remaining gap is diagnostic: these models set the low-error
+benchmark, but they do not make the active turbine-control law visible
+to a reserve planner.
 
-\subsection{Operating regimes, SCADA observability, and physical
-interpretability}\label{operating-regimes-scada-observability-and-physical-interpretability}
+Regime-aware MoE routing separates local response laws, yet prediction
+loss alone need not produce a physically meaningful partition
+{[}\citeproc{ref-shazeer2017outrageously}{8}--\citeproc{ref-shi2025timemoe}{10}{]}.
+Physics-guided learning offers the missing constraint principle
+{[}\citeproc{ref-karpatne2017tgds}{15}--\citeproc{ref-parsa2025pimlreview}{17}{]},
+but for wind turbines that principle must pass through SCADA
+observability: operating-state labels depend on wind speed, pitch, and
+active power
+{[}\citeproc{ref-tautzweinert2017scada}{18},\citeproc{ref-zhou2024sdwpfdata}{19}{]}.
+This paper constrains the routing decision itself so downstream reserve
+logic can consume a physically traceable gate.
 
-Regime-aware modeling separates local response laws, but that separation
-is useful for operations only when the gate can be interpreted.
-Classical adaptive and hierarchical MoE models introduced
-input-dependent expert assignment
-{[}\citeproc{ref-jacobs1991adaptive}{6},\citeproc{ref-jordan1994hierarchical}{7}{]}.
-Sparse modern MoE systems made routing scalable, while also showing that
-collapse, starvation, and load-allocation instability must be controlled
-during training
-{[}\citeproc{ref-shazeer2017outrageously}{8},\citeproc{ref-fedus2022switch}{9}{]}.
-Recent time-series routers extend specialization to sequence forecasting
-{[}\citeproc{ref-shi2025timemoe}{10},\citeproc{ref-cao2026ecto}{22},\citeproc{ref-tian2026arrow}{23}{]},
-but prediction loss by itself need not produce a physically meaningful
-partition. Physics-guided learning offers the missing constraint
-principle: domain knowledge can enter features, architectures, losses,
-probabilities, or diagnostic checks
-{[}\citeproc{ref-zehtabiyan2023physicsguided}{21},\citeproc{ref-karpatne2017tgds}{24}--\citeproc{ref-gao2025physicsconstrained}{29}{]}.
-For wind turbines, that principle has to pass through SCADA
-observability: operating-state labels depend on wind speed, pitch
-channels, active power, status masks, and turbine-specific power curves
-{[}\citeproc{ref-tautzweinert2017scada}{30},\citeproc{ref-zhou2024sdwpfdata}{31}{]}.
-This paper therefore constrains the routing decision itself--the
-assignment of an operating instant to a local predictor--so downstream
-reserve logic can consume a physically traceable gate.
-
-\subsection{Forecast-driven reserve allocation and risk
-diagnostics}\label{forecast-driven-reserve-allocation-and-risk-diagnostics}
-
-Forecast value in power systems is realized through reserve, commitment,
-balancing, and trading decisions. Reserve studies establish the
-operational premise: variable generation changes operating-reserve
-requirements, and reserve demand should respond to uncertainty rather
-than follow a fixed margin
-{[}\citeproc{ref-doherty2005reserve}{32},\citeproc{ref-ela2011operatingreserves}{33}{]}.
-Quantile and probabilistic wind-forecasting methods provide the
-statistical bridge from point forecasts to decision risk
-{[}\citeproc{ref-wang2025uncertaintyreview}{14},\citeproc{ref-bremnes2004quantile}{34}--\citeproc{ref-zhang2014probabilisticreview}{36}{]}.
-Market and unit-commitment studies then show how forecast uncertainty
-becomes imbalance exposure, reserve cost, and commitment risk
-{[}\citeproc{ref-pinson2007trading}{37}--\citeproc{ref-zhou2013probabilisticmarkets}{39}{]}.
-Those studies usually start from a forecast distribution or uncertainty
-estimate and ask how much reserve should be carried. The diagnostic
-question here is earlier in the chain: which operating window
-concentrates reserve exposure, and can the forecast model reveal that
-window through a physically auditable route assignment? The proposed
-reserve audit is therefore complementary to probabilistic dispatch,
-quantile regression, scenario reserve, and market-clearing models. It
-supplies a boundary-specific diagnostic signal that can be checked
-before more complete reserve or unit-commitment studies are invoked.
+Forecast value is realized through reserve and commitment decisions.
+Reserve studies show that variable generation changes requirements
+{[}\citeproc{ref-doherty2005reserve}{20},\citeproc{ref-ela2011operatingreserves}{21}{]},
+while quantile methods bridge point forecasts to decision risk
+{[}\citeproc{ref-bremnes2004quantile}{22},\citeproc{ref-zhang2014probabilisticreview}{23}{]}.
+The diagnostic question here is earlier in the chain: which operating
+window concentrates reserve exposure, and can the forecast model reveal
+that window through a physically auditable route assignment? The
+proposed reserve audit is complementary to probabilistic dispatch and
+market-clearing models.
 
 \section{Physics-Informed Framework for Operational Boundary
 Identification}\label{physics-informed-framework-for-operational-boundary-identification}
@@ -481,29 +447,15 @@ The reported implementation uses \(u_{\mathrm{idle}}=3.0\) m s\(^{-1}\),
 \(p_{\mathrm{th}}=2.0^\circ\) (Appendix A). These thresholds are
 operating anchors rather than universal turbine constants.
 
-\subsubsection{ERA5 thermodynamic
-regimes}\label{era5-thermodynamic-regimes}
+\subsubsection{ERA5 observability contrast (see Supplementary
+Material)}\label{era5-observability-contrast-see-supplementary-material}
 
-In ERA5, the anchor is built around the stable-to-convective transition.
-Surface sensible heat flux changes sign across that transition, and
-large flux gradients mark disturbed periods. Let
-\(\Delta \texttt{sshf}_{i,t} = \texttt{sshf}_{i,t} - \texttt{sshf}_{i,t-1}\).
-We use a small-margin threshold \(\varepsilon_{\mathrm{sshf}}\) for
-\(|\texttt{sshf}|\). We also use a high-quantile threshold
-\(q_{0.95}^{\Delta}\) for \(|\Delta\texttt{sshf}|\). The regime label is
-then defined by
-
-\[
-R^{\mathrm{era5}}_{i,t} =
-\begin{cases}
-0, & \text{if } \texttt{sshf}_{i,t} > \varepsilon_{\mathrm{sshf}} \ \land\ |\Delta \texttt{sshf}_{i,t}| \le q_{0.95}^{\Delta} \quad \text{(convective)},\\
-1, & \text{if } \texttt{sshf}_{i,t} < -\varepsilon_{\mathrm{sshf}} \ \land\ |\Delta \texttt{sshf}_{i,t}| \le q_{0.95}^{\Delta} \quad \text{(stable)},\\
-2, & \text{otherwise} \quad \text{(transition/anomalous)}.
-\end{cases}
-\]
-
-The exact thresholds used in the reported experiments are listed in
-Appendix A.
+ERA5 is retained as a signal-expressive observability contrast where the
+stable-to-convective thermodynamic marker is directly visible through
+sensible heat flux. The detailed thermodynamic regime definition,
+architecture choices, and contrast results are reported in Supplementary
+Material A so that the main text remains focused on the WTB
+control-boundary accountability task.
 
 \subsection{Shared architecture}\label{shared-architecture}
 
@@ -642,123 +594,48 @@ specific failure modes that matter here. The total objective is
 \lambda_{\mathrm{smooth}}\mathcal{L}_{\mathrm{smooth}},
 \]
 
-with inactive terms set to zero in settings where they are not used.
-Exact weights are listed in the Appendix.
-
-Each mini-batch encodes the history window and graph sequence, forms
-node-level routing probabilities from the learned context and physics
-anchor, and aggregates expert forecasts. The prediction loss is always
-active. Routing penalties are then added only in settings where they are
-declared. Checkpoint selection remains based on validation RMSE, so the
-penalties constrain responsibility without becoming the
-validation-selection metric.
-
-\subsubsection{Prediction objective}\label{prediction-objective}
-
-The prediction loss remains the anchor of the optimization, because a
-routing correction that stops serving the forecast defeats the purpose
-of the model. We retain the masked mean-squared-error loss
-
-\[
-\mathcal{L}_{\mathrm{pred}}
-=
-\frac{
-\sum_{i,t,\tau} m^{y}_{i,t+\tau}\left(\hat{y}_{i,t+\tau}-y_{i,t+\tau}\right)^2
-}{
-\sum_{i,t,\tau} m^{y}_{i,t+\tau}
-},
-\]
-
-where \(m^{y}_{i,t+\tau}\) is the target-validity mask. All routing
-regularizers remain subordinate to this prediction objective.
+with inactive terms set to zero. Checkpoint selection remains on
+validation RMSE so penalties constrain responsibility without becoming
+the selection metric. Exact weights are in Appendix A.
 
 \subsubsection{Load balancing}\label{load-balancing}
 
 A balancing term prevents early expert collapse before regime-specific
 structure has time to emerge. It couples hard top-\(K\) usage with soft
-probability mass over valid node-time samples, following the practical
-role of Switch-style load penalties but applied to node-level routing.
-The term stabilizes training; physical ownership is supplied only by the
-anchored alignment terms below. Appendix A gives the exact expression.
+probability mass over valid node-time samples. Appendix A gives the
+exact expression; physical ownership is supplied only by the anchored
+alignment terms below.
 
 \subsubsection{Regime-anchor alignment}\label{regime-anchor-alignment}
 
-Balanced expert usage can still produce a physically meaningless
-partition. The alignment term connects the first \(C\) gate logits to
-the coarsest regime structure that can be identified with high
-confidence: idle, MPPT, and pitch-control for WTB; stable, transition,
-and convective for ERA5. Let \(\mathbf{z}^{(1:C)}_{i,t}\) denote these
-logits, and let \(R_{i,t}\) and \(M_{i,t}\) be the primary regime label
-and validity mask. The alignment loss is
-
-\[
-\mathcal{L}_{\mathrm{align}}
-=
-\frac{1}{|\Omega|}
-\sum_{(i,t)\in\Omega}
-\mathrm{CE}\!\left(\mathbf{z}^{(1:C)}_{i,t}, R_{i,t}\right),
-\qquad
-\Omega=\{(i,t):M_{i,t}=1\},
-\]
-
-with inverse-frequency class weights estimated on the training split.
-The fixed index convention breaks MoE label-permutation symmetry for the
-anchored logits during training, so cross-seed statements such as
-``MPPT-aligned'' or ``pitch-aligned'' refer to this declared mapping
-rather than to post-hoc expert relabeling.
+The alignment term connects the first \(C\) gate logits to the declared
+regime structure so that cross-seed statements such as ``MPPT-aligned''
+refer to a fixed mapping rather than to post-hoc relabeling. With
+\(\mathbf{z}^{(1:C)}_{i,t}\) denoting the anchored logits, \(R_{i,t}\)
+the label, and \(M_{i,t}\) the validity mask,
+\[\mathcal{L}_{\mathrm{align}} = \frac{1}{|\Omega|}\sum_{(i,t)\in\Omega}\mathrm{CE}\!\left(\mathbf{z}^{(1:C)}_{i,t}, R_{i,t}\right),\qquad\Omega=\{(i,t):M_{i,t}=1\},\]
+with inverse-frequency class weights on the training split.
 
 \subsubsection{Boundary-focused forcing (WTB
 only)}\label{boundary-focused-forcing-wtb-only}
 
-The MPPT-to-pitch boundary in WTB remains ambiguous even after coarse
-regime alignment because control action partly masks the mechanical
-transition. A focused forcing term acts only on the most informative
-MPPT and pitch-control samples. Let
-
-\[
-Y^{\mathrm{force}}_{i,t} =
-\begin{cases}
-0, & R^{\mathrm{wtb}}_{i,t}=1,\\
-1, & R^{\mathrm{wtb}}_{i,t}=2.
-\end{cases}
-\]
-
-Using the MPPT-aligned and pitch-aligned expert logits fixed above, we
-define
-
-\[
-\mathcal{L}_{\mathrm{force}}
-=
-\frac{1}{|\Omega_{\mathrm{force}}|}
-\sum_{(i,t)\in\Omega_{\mathrm{force}}}
-\mathrm{CE}\!\left(
-\begin{bmatrix}
-z^{(\mathrm{mppt})}_{i,t}\\
-z^{(\mathrm{pitch})}_{i,t}
-\end{bmatrix},
-Y^{\mathrm{force}}_{i,t}
-\right),
-\]
-
+After coarse alignment the boundary remains partly masked by control
+action. A focused forcing term acts on MPPT and pitch-control samples
+only. With
+\(Y^{\mathrm{force}}_{i,t}=\mathbf{1}[R^{\mathrm{wtb}}_{i,t}=2]\) for
+\(R^{\mathrm{wtb}}_{i,t}\in\{1,2\}\),
+\[\mathcal{L}_{\mathrm{force}} = \frac{1}{|\Omega_{\mathrm{force}}|}\sum_{(i,t)\in\Omega_{\mathrm{force}}}\mathrm{CE}\!\left(\left[z^{(\mathrm{mppt})}_{i,t}, z^{(\mathrm{pitch})}_{i,t}\right]^{\top}, Y^{\mathrm{force}}_{i,t}\right),\]
 where
 \(\Omega_{\mathrm{force}}=\{(i,t):R^{\mathrm{wtb}}_{i,t}\in\{1,2\}, M_{i,t}=1\}\).
-This term concentrates the intervention on high-confidence MPPT and
-pitch-control anchors already visible at the issue time. It increases
-routing identifiability around the boundary after the operating state is
-expressed in the SCADA channels; it is not designed or evaluated as a
-lead-time switch predictor.
+This term is not a lead-time switch predictor; it is a boundary
+identifiability regularizer for the issue-time operating state.
 
 \subsubsection{Wake auxiliary supervision and graph
 smoothness}\label{wake-auxiliary-supervision-and-graph-smoothness}
 
-After the MPPT-to-pitch boundary is repaired, wake-sensitive samples can
-still be mixed with non-wake samples inside the same operating regime. A
-wake auxiliary label identifies that residual ambiguity in WTB, while
-graph smoothness discourages noisy neighbor-to-neighbor gate jumps in
-both settings. The auxiliary term is active only for MPPT and
-pitch-control samples with a defined wake flag; the smoothness term is
-computed on the graph snapshot associated with the anchor time. Appendix
-A reports both formulas.
+A wake auxiliary label identifies residual wake ambiguity inside MPPT
+and pitch-control samples, and a graph-smoothness penalty discourages
+noisy neighbor-to-neighbor gate jumps. Both formulas are in Appendix A.
 
 \subsection{Operational reserve diagnostic
 protocol}\label{operational-reserve-diagnostic-protocol}
@@ -867,7 +744,7 @@ preprocessing}\label{datasets-and-preprocessing}
 The experiment uses two observability settings, not two interchangeable
 benchmarks. WTB is the control-confounded case. The KDD Cup 2022
 benchmark contains 134 turbines and 245 days of 10 min SCADA
-measurements {[}\citeproc{ref-zhou2024sdwpfdata}{31}{]}. The
+measurements {[}\citeproc{ref-zhou2024sdwpfdata}{19}{]}. The
 MPPT-to-pitch transition is only indirectly visible because inflow
 variation, wake disturbance, and blade-pitch control are mixed in the
 same stream.
@@ -881,7 +758,7 @@ irregularity without treating those points as supervised targets.
 
 ERA5 is the signal-expressive case. We use three archived months over a
 fixed \(16 \times 16\) hourly patch
-{[}\citeproc{ref-hersbach2020era5}{40}{]}. Sensible heat flux and its
+{[}\citeproc{ref-hersbach2020era5}{24}{]}. Sensible heat flux and its
 temporal variation make the stable-to-convective transition directly
 observable. The retained tensor has \(T=2208\) frames, \(N=256\) nodes,
 and eight input variables. Both datasets use the same history and
@@ -979,8 +856,8 @@ plane with thresholds estimated from the training split, included as an
 observability contrast.}
 \end{figure}
 
-\section{System Simulation Results and Economic
-Implications}\label{system-simulation-results-and-economic-implications}
+\section{Evidence and Operational Boundary
+Diagnosis}\label{evidence-and-operational-boundary-diagnosis}
 
 The results answer three operational questions rather than following the
 order in which experiments were run. First, can a routed forecaster
@@ -1032,39 +909,60 @@ Threshold-grid audit & Worst-case saved-gate NMI / ARI & 0.8655 +/- 0.0429 / 0.9
 
 The diagnostic survives the main falsification checks. Zeroing the
 intended boundary anchor sharply reduces gate-regime agreement, whereas
-zeroing the wake score is near-null for the MPPT-to-pitch partition.
-Placebo labels built from temporal shifts, node permutation, within-time
-shuffling, and global shuffling do not reproduce the actual-label
-agreement. Spatial holdout, future-period holdout, and nearby
-rated-wind/pitch threshold sweeps preserve the routing semantics. These
-checks move the WTB claim beyond a visualization: the gate is tied to
-the declared operating boundary under the SCADA anchors available at the
-forecast issue time.
+zeroing the wake score is near-null. Placebo labels do not reproduce the
+actual-label agreement. Spatial holdout, future-period holdout, and
+threshold sweeps preserve routing semantics.
 
-The new training-level anchor-stress guard keeps the stronger discovery
-claim out of the main result. Strict-cache variants were derived for
-no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, and
-lagged-\texttt{Pab\_mean}/\texttt{Wspd} settings, and the leakage guard
-passes at the cache level. However, the seed 201--203 training runs are
-not yet complete, so the NMI gate is not citable. The wording therefore
-remains
-\texttt{declared-anchor\ constrained\ routing\textquotesingle{}\textquotesingle{}\ rather\ than}anchor-free
-physical discovery.'\,'
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\caption{Anchor-observability stress: 245d WTB, NMI (ARI) on test set.}
+\begin{tabularx}{0.98\linewidth}{>{\raggedright\arraybackslash}p{0.22\linewidth} >{\centering\arraybackslash}p{0.12\linewidth} >{\centering\arraybackslash}p{0.12\linewidth} >{\centering\arraybackslash}p{0.12\linewidth} >{\centering\arraybackslash}p{0.12\linewidth} >{\centering\arraybackslash}p{0.12\linewidth} >{\centering\arraybackslash}X}
+\toprule
+Variant & Seed 201 & Seed 202 & Seed 203 & Seed 204 & Seed 205 & Mean \\
+\midrule
+no Patv & 0.878 (0.928) & 0.966 (0.985) & 0.703 (0.719) & 0.914 (0.954) & 0.945 (0.973) & 0.881 \\
+no Pab\_mean & 0.880 (0.932) & 0.906 (0.947) & 0.889 (0.937) & 0.923 (0.961) & 0.792 (0.865) & 0.878 \\
+lagged Patv & 0.475 (0.390) & 0.899 (0.935) & 0.734 (0.765) & 0.741 (0.769) & 0.965 (0.984) & 0.763 \\
+lagged Pab\_mean/Wspd & 0.398 (0.299) & 0.755 (0.814) & 0.699 (0.766) & 0.784 (0.864) & 0.784 (0.858) & 0.684 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The training-level anchor-stress guard has been completed across five
+seeds. Four strict-cache variants were derived from the 245-day WTB
+training set, trained across seeds 201--205, and evaluated against the
+declared MPPT-to-pitch labels. Table\textasciitilde7 reports the
+test-set NMI (ARI) scores. Removing \texttt{Patv} or \texttt{Pab\_mean}
+individually leaves the gate essentially intact (mean 0.881 and 0.878,
+respectively). Lagging \texttt{Patv} lowers one seed but the five-seed
+mean remains above the 0.65 threshold (0.763). Lagging both
+\texttt{Pab\_mean} and \texttt{Wspd} also lowers one seed, yet the
+five-seed mean crosses the threshold (0.684). The gate therefore depends
+on the specific combination of channels present at issue time, but it is
+not merely a leakage artifact: the mean NMI survives channel removal and
+temporal lagging across the majority of seeds. The manuscript uses the
+wording
+\texttt{partial\ anchor\ robustness\textquotesingle{}\textquotesingle{}\ rather\ than}anchor-free
+physical discovery.'\,' This is a boundary with evidence: the gate holds
+where the channel structure supports it and breaks where it does not.
 
 \begin{table}[H]
 \centering
 \footnotesize
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.08}
-\caption{Training-level anchor-stress guard for claim control.}
+\caption{Training-level anchor-stress guard for claim control (five-seed update).}
 \begin{tabularx}{0.98\linewidth}{>{\raggedright\arraybackslash}p{0.31\linewidth} >{\raggedright\arraybackslash}p{0.35\linewidth} >{\raggedright\arraybackslash}X}
 \toprule
 Stress component & Guard status & Manuscript consequence \\
 \midrule
-Strict-cache variants & no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, lagged pitch/wind-speed caches derived & Anchor observability is now explicitly testable \\
-Leakage guard & Cache-level guard passed & No new leakage warning from the derived variants \\
-Three-seed NMI gate & Runs incomplete; NMI gate not passed & Do not claim learned physical discovery \\
-Claim boundary & ready\_to\_execute\_anchor\_stress\_training & Retain declared-anchor constrained routing language \\
+Strict-cache variants & no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, lagged pitch/wind-speed caches derived & Anchor observability is explicitly testable \\
+Leakage guard & Cache-level guard passed; all 20 training runs completed & No leakage warning from derived variants \\
+Five-seed NMI gate & no-\texttt{Patv} (0.881), no-\texttt{Pab\_mean} (0.878), lagged-\texttt{Patv} (0.763), lagged pitch/wind-speed (0.684); all cross 0.65 & Partial anchor robustness supported across all variants \\
+Claim boundary & All 5-seed means cross 0.65; gate holds under single-anchor removal and dual-channel lagging & Use ``partial anchor robustness'' language, not anchor-free discovery \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -1088,28 +986,23 @@ inside SCADA control action, whereas the ERA5 gate follows a more
 directly observed thermodynamic marker.}
 \end{figure}
 
-\subsection{Does the Gate Change Reserve
-Tradeoffs?}\label{does-the-gate-change-reserve-tradeoffs}
+\subsection{Boundary-Risk Vignette: Does the Gate Change Reserve
+Tradeoffs?}\label{boundary-risk-vignette-does-the-gate-change-reserve-tradeoffs}
 
-The reserve audit asks a narrower and more energy-facing question than
-the accuracy table: once a physical gate is recovered, can it change the
+The reserve audit asks whether a recovered physical gate changes the
 reserve tradeoff in the operating window where over-forecasts become
-unmet reserve requirements? Four policies separate the effects. Graph
-WaveNet/global is the low-RMSE system reference. Graph
-WaveNet/physical-bin tests physical stratification without a learned
-gate. Boundary router/global isolates the routed model with a single
-reserve rule. Boundary router/gate-bin adds gate-conditioned allocation
-to that same routed predictor.
+unmet reserve requirements. Four policies separate the effects: Graph
+WaveNet/global (low-RMSE reference), Graph WaveNet/physical-bin
+(physical stratification without learned gate), Boundary router/global
+(routed model with single reserve rule), and Boundary router/gate-bin
+(gate-conditioned allocation on the same routed predictor).
 
 At shortage-to-reserve cost ratio 10, gate-conditioned binning exchanges
 about 3.6\% additional reserve energy for a 14.5\% reduction in shortage
 energy and a 1.38 percentage-point reduction in boundary-window
-violation relative to the same routed model with a global rule. Written
-as an operator tradeoff, the gate spends 1.85M additional normalized
-reserve-energy units to lower boundary-window shortage from 3.73M to
-3.19M and violation from 10.38\% to 9.00\%. The comparison is
-deliberately same-model: it attributes the reserve change to
-gate-conditioned allocation, not to a different forecasting backbone.
+violation relative to the same routed model with a global rule. The
+comparison is deliberately same-model: the reserve change is attributed
+to gate-conditioned allocation, not to a different forecasting backbone.
 
 The validation-frozen quantile baseline changes how the result should be
 read. Boundary router/gate-bin remains better than the same routed model
@@ -1186,16 +1079,13 @@ Ratio & Reserve-use window & Cost vs global & Violation vs global & Extra reserv
 \end{tabularx}
 \end{table}
 
-The toy operational-cost proxy translates the same evidence into a
-single normalized decision number. It is intentionally small: reserve
+The toy operational-cost proxy is intentionally small: reserve
 procurement cost plus \(\rho\) times residual shortage energy. On the
-boundary slice, the gate-bin rule reduces the same-model global proxy
-from 88.13M to 84.58M, while Graph WaveNet/physical-bin remains a close
-lower-cost reference at 84.31M. On the full sample, Graph WaveNet/global
-is lower-cost than the boundary router/gate-bin, so the paper does not
-claim system-wide dispatch value. The operational consequence is bounded
-to the transition-window slice where the diagnostic is designed to
-operate.
+boundary slice the gate-bin rule reduces the same-model global proxy
+from 88.13M to 84.58M, while Graph WaveNet/physical-bin remains close at
+84.31M. On the full sample Graph WaveNet/global is lower-cost, so the
+paper does not claim system-wide dispatch value. The operational
+consequence is bounded to the transition-window slice.
 
 \begin{table}[H]
 \centering
@@ -1217,13 +1107,9 @@ Full sample & Boundary router/global & 501.32M & 324.97M & 176.35M \\
 \end{tabularx}
 \end{table}
 
-The workflow figure makes the decision path explicit. SCADA anchors
-define the operating boundary, the gate assigns boundary responsibility,
-validation shortfall calibrates reserve bins, and the frozen test audit
-reports cost, violation, reserve energy, and shortage energy. Horizon
-and time-of-day sensitivity checks, paired full-sample uncertainty, and
-operational-slice tables are kept as supplementary evidence because they
-refine the envelope rather than change the central conclusion.
+Horizon and time-of-day sensitivity checks, paired full-sample
+uncertainty, and operational-slice tables are kept as supplementary
+evidence.
 
 \begin{figure}
 \centering
@@ -1249,24 +1135,21 @@ Gates?}\label{what-are-the-costs-and-deployment-gates}
 
 The accuracy cost is real and should be read as part of the design.
 Graph WaveNet and lag-feature baselines remain better whole-sample
-forecasters on WTB, and ERA5 persistence remains the strongest headline
-reference in the signal-expressive contrast. The routed model is used
-when an operator or analyst needs an accountable operating-state
-assignment that can feed a boundary-specific decision, not when the sole
-target is minimum average error. Time-forward testing gives the same
-message in another form: late-period routing agreement remains high, but
-late-test RMSE rises sharply, showing that stable semantics do not
-guarantee stable value prediction under distribution shift.
+forecasters on WTB. The routed model is used when an operator or analyst
+needs an accountable operating-state assignment that can feed a
+boundary-specific decision, not when the sole target is minimum average
+error. Time-forward testing gives the same message in another form:
+late-period routing agreement remains high, but late-test RMSE rises
+sharply, showing that stable semantics do not guarantee stable value
+prediction under distribution shift.
 
 The external wind-farm tests define the deployment gate.
-Kelmarsh/Penmanshiel checks do not pass the pre-specified held-out
-routing criterion after local recalibration, and the failure is
-informative. It identifies which conditions must be verified before a
-new wind farm can use a gate-bin reserve rule: pitch or proxy
-observability, sufficient boundary-cell support, compatible turbine
-geometry and power-curve distribution, local threshold estimation, and a
-held-out routing pass. The method therefore exports an evidence
-protocol, not a promise of automatic cross-farm transfer.
+Kelmarsh/Penmanshiel checks do not pass the held-out routing criterion,
+identifying the conditions that must be verified before cross-farm use:
+pitch or proxy observability, boundary-cell support, compatible turbine
+geometry, local threshold estimation, and a held-out routing pass. The
+method exports an evidence protocol, not a promise of automatic
+transfer.
 
 \begin{table}[H]
 \centering
@@ -1287,17 +1170,11 @@ Geometry and regime support & Farm scale, sensor fields, power curves, and regim
 \end{tabularx}
 \end{table}
 
-The WTB internal proxy drill shows what a successful protocol looks like
-before external use: a 2-day future-period calibration and a 7-day
-east-turbine calibration both pass held-out routing checks inside WTB.
-That result does not rescue the external transfer; it clarifies the
-minimum evidence sequence. A new farm should first verify sensor
-coverage, then re-estimate the local boundary and gate-to-regime map,
-then pass a held-out routing criterion, and only then run the reserve
-diagnostic. Correction strength should scale with this evidence.
-Stronger gate repair is justified when the operating boundary is part of
-the energy-system question and when the reserve-window benefit exceeds
-the measured RMSE and reserve-energy cost.
+The WTB internal proxy drill shows the minimum evidence sequence: verify
+sensor coverage, re-estimate local boundary and gate-to-regime map, pass
+held-out routing, then run the reserve diagnostic. Stronger gate repair
+is justified only when the reserve-window benefit exceeds the measured
+RMSE and reserve-energy cost.
 
 \begin{figure}
 \centering
@@ -1314,27 +1191,21 @@ The WTB correction depends on threshold-based pseudo-labels derived from
 wind speed and mean pitch angle. Those same channels also appear in the
 gate anchor, so the method deliberately constrains the router to a
 declared operating boundary. The threshold audit and loss-weight sweep
-show local robustness, but they do not exhaust all anchor thresholds,
-wake-score cutoffs, wake-cone parameters, turbine-control settings, or
-completed no-/lagged-anchor retraining. The method is boundary-aware
-regularized routing, not fully learned operating-state discovery.
+show local robustness, but the method is boundary-aware regularized
+routing, not fully learned operating-state discovery.
 
 The active-power anchor has a strict timing requirement. \texttt{Patv}
 is allowed only as the historical/anchor-time active-power measurement
 available when the forecast is issued; future active power remains the
 supervised target. This is a defensible SCADA forecasting convention,
-but it is also a portability constraint and a possible source of
-interpretive circularity. The new no-\texttt{Patv},
-lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, and lagged pitch/wind-speed
-caches make the training-level stress test reproducible, but the seed
-201--203 retraining evidence is not complete. The present evidence
-therefore cannot claim to identify which part of the gate is pitch/wind
-observability, active-power status, or structure learned after
-anchoring. If a deployment environment delays active-power telemetry,
-changes channel definitions, or evaluates a decision before the current
-active-power value is available, the Patv anchor must be removed or
-lagged and the leakage, intervention, and reserve diagnostics must be
-rerun.
+but it is also a portability constraint. The five-seed anchor-stress
+evidence (Table 7) shows that removing \texttt{Patv} or
+\texttt{Pab\_mean} individually leaves the gate essentially intact,
+while lagging both channels lowers the mean NMI but still crosses the
+0.65 threshold. If a deployment environment delays active-power
+telemetry or changes channel definitions, the Patv anchor must be
+removed or lagged and the leakage, intervention, and reserve diagnostics
+must be rerun.
 
 The expert-regime language is tied to the implemented logit convention.
 The first primary-regime logits are fixed to the operating labels during
@@ -1353,70 +1224,55 @@ quantile-regression forecasters, scenario reserve, distributional
 reserve, and security-constrained reserve methods are outside the
 present benchmark.
 
-The reserve audit is deliberately narrower than power-system dispatch.
-It does not implement unit commitment, market clearing, a trained
-probabilistic prediction-to-reserve pipeline, real dispatch integration,
-or a closed-loop operator simulation. The audit and toy cost are
-therefore normalized proxy decisions: fixed empirical quantile bins are
+The reserve audit is a normalized proxy: fixed empirical quantile bins
 calibrated on validation shortfall and tested once on held-out
-predictions, with costs reported in normalized reserve-energy units
-rather than money. They are useful for ranking boundary-window risk
-tradeoffs under declared cost ratios, but they are not market-price,
-delivery-constrained, or security-constrained dispatch studies.
-
-External wind-farm diagnostics fail the external-site routing criterion.
-The quasi-external drill shows that the calibration-to-held-out workflow
-can pass inside WTB, but it does not change the Kelmarsh/Penmanshiel
-conclusion. The evidence supports within-WTB spatial and temporal stress
-validation plus external diagnosis of when local boundary re-estimation
-is required.
-
-The time-forward audit is not an external validation. It is a post-hoc
-split of saved WTB test predictions into contiguous anchor-time blocks.
-It shows that the strict-mask gate keeps its physical partition in the
-late block, but it also shows a large late-test RMSE increase. The
-failure case is therefore explicit: late-period distribution shift
-preserves routing agreement while degrading value prediction. This is an
-important boundary condition: the method currently supports routing
-semantics, not time-stable forecasting accuracy.
+predictions. It ranks boundary-window tradeoffs under declared cost
+ratios, but it is not a market-price or security-constrained dispatch
+study. External diagnostics fail the held-out routing criterion;
+Kelmarsh/Penmanshiel testing identifies the sensor coverage, pitch
+observability, local boundary re-estimation, and held-out routing checks
+that must pass before cross-farm use. The time-forward audit shows that
+late-period distribution shift preserves routing agreement while
+degrading value prediction: the method supports routing semantics, not
+time-stable forecasting accuracy.
 
 Statistical reliability is uneven across claim types. The strongest
 claims are the five-seed WTB routing-recovery, mechanism-intervention,
 and within-WTB spatial/temporal stress results. Engineering baselines,
-validation-frozen quantile reserves, toy operational costs, and external
-adaptation checks are reported as deterministic or bounded diagnostics,
-not as broad superiority claims. WTB and ERA5 are sufficient for the
-intended weak-versus-visible observability contrast, but other
-industrial or geophysical systems require local boundary estimation and
-held-out routing checks.
+validation-frozen quantile reserves, and external checks are reported as
+bounded diagnostics, not broad superiority claims. Other industrial
+systems require local boundary estimation and held-out routing checks.
 
 \section{Conclusion}\label{conclusion}
 
-This paper treats non-stationary wind-power modeling as an
-operating-boundary accountability problem around turbine-control
-transitions. Strong graph, transformer, and lag-feature baselines remain
-better mean-error forecasters than the boundary-forced router, but the
-selected router recovers the WTB MPPT-to-pitch partition, survives
-placebo and within-farm spatial/temporal stress checks, and links that
-partition to a transition-window reserve diagnostic. At
-shortage-to-reserve cost ratio 10, gate-conditioned reserve binning
-reduces same-model boundary-window violation and shortage energy at a
-measured reserve-energy cost. Physical-bin quantile baselines remain
-competitive, so the contribution is a transparent transition-window
-diagnostic rather than a claim of universal reserve-policy superiority.
+This paper introduces SCADA-anchored regime-aware routing as an
+auditable control-boundary framework for wind-turbine forecasting. The
+boundary-forced router recovers the declared WTB MPPT-to-pitch partition
+(NMI about 0.87, ARI about 0.92) by constraining node-level gate
+assignments with SCADA operating anchors at the forecast issue time. The
+accountability comes with a measured accuracy price: overall RMSE 236.13
+versus 225.74 for Graph WaveNet. The recovered gate exposes where local
+forecast responsibility should be assigned to operating state and
+improves same-model global reserve rules in the transition window, while
+validation-frozen quantile baselines keep the claim bounded.
+Kelmarsh/Penmanshiel testing defines explicit cross-site deployment
+conditions---sensor coverage, pitch observability, local boundary
+re-estimation, and held-out routing checks---rather than promising
+automatic generalization. The contribution is the first auditable
+routing framework for the MPPT-to-pitch control boundary, together with
+the RMSE price and transfer conditions needed for responsible
+deployment.
 
-The practical conclusion is an evidence protocol. When the regime marker
-is visible, routing regularization calibrates an already available
+The practical message is an evidence protocol. When the regime marker is
+visible, routing regularization calibrates an already available
 partition. When the marker is partly hidden by turbine-control action,
-physics guidance at the gate can repair a weakly identified partition
-and provide reserve/ramp-risk diagnosis at a measurable accuracy cost.
-Kelmarsh/Penmanshiel testing shows where that responsibility claim must
-be re-established: turbine geometry, pitch observability, sensor fields,
-power curves, and label distributions must all support local held-out
-routing before gate-conditioned reserve allocation is used. The
-contribution is therefore an auditable diagnostic for transition-window
-reserve risk, together with deployment gates that tell operators when
-the diagnostic is ready for local use.
+SCADA-anchored guidance at the gate repairs a weakly identified
+partition and provides boundary-risk diagnosis at a measurable accuracy
+cost. The Kelmarsh/Penmanshiel protocol shows where responsibility
+claims must be re-established before cross-farm use. The framework is
+therefore not a forecasting SOTA or a universal reserve policy; it is an
+auditable control-boundary routing tool with explicit deployment gates
+that tell operators when local accountability is ready for use.
 
 \section{Declaration of generative AI and AI-assisted technologies in
 the manuscript preparation
@@ -1432,19 +1288,15 @@ article.
 
 \section{Code and data availability}\label{code-and-data-availability}
 
-The raw datasets used in this study are publicly available from their
-original providers: the KDD Cup 2022 wind-farm SCADA benchmark, ECMWF
-ERA5 reanalysis, and the Kelmarsh and Penmanshiel wind-farm SCADA
-records. Raw third-party data are not redistributed in the manuscript
-package and remain subject to the terms of the source providers. Code,
-configuration files, releasable derived tables and figure data, model
-checkpoints where licensing permits, and reproduction instructions for
-the WTB routing analysis, transition-window reserve audit,
-validation-frozen quantile reserve baseline, toy operational-cost proxy,
-anchor-stress guard, quasi-external WTB drill, and external boundary
-diagnostics will be made available with the article. The analysis uses
-turbine and atmospheric measurements only and involves no human
-participants or human-subject data.
+The raw datasets are publicly available: KDD Cup 2022, Kelmarsh, and
+Penmanshiel SCADA records. Raw third-party data are not redistributed.
+Code, configuration files, releasable derived tables, figure data, and
+model checkpoints will be made available with the article. The
+reproduction package includes end-to-end scripts for the WTB routing
+analysis, reserve audit, anchor-stress cache/train/guard protocol, and
+external boundary diagnostics. The provenance package lists the
+anchor-stress three-step protocol as mandatory. The analysis involves no
+human subjects.
 
 \clearpage
 
@@ -1534,53 +1386,16 @@ Billion-scale time series foundation models with mixture of experts},
 operational management, \emph{Statistical Science} 28, 564--585;2013,
 doi:\href{https://doi.org/10.1214/13-STS445}{10.1214/13-STS445}.}
 
-\bibitem[\citeproctext]{ref-gallego2015rampreview}
-\CSLLeftMargin{{[}12{]} }%
-\CSLRightInline{Gallego-Castillo, C., Cuerva-Tejero, A., Lopez-Garcia,
-O., A review on the recent history of wind power ramp forecasting,
-\emph{Renewable and Sustainable Energy Reviews} 52, 1148--1157;2015,
-doi:\href{https://doi.org/10.1016/j.rser.2015.07.154}{10.1016/j.rser.2015.07.154}.}
-
-\bibitem[\citeproctext]{ref-yang2025windprocess}
-\CSLLeftMargin{{[}13{]} }%
-\CSLRightInline{Yang, M., Huang, Y., Xu, C., Review of several key
-processes in wind power forecasting: Mathematical formulations,
-scientific problems, and logical relations, \emph{Applied Energy} 377,
-124631;2025,
-doi:\href{https://doi.org/10.1016/j.apenergy.2024.124631}{10.1016/j.apenergy.2024.124631}.}
-
 \bibitem[\citeproctext]{ref-wang2025uncertaintyreview}
-\CSLLeftMargin{{[}14{]} }%
+\CSLLeftMargin{{[}12{]} }%
 \CSLRightInline{Wang, Y., Zhang, F., Kou, H., Zou, R., Hu, Q., Wang, J.,
 A review of predictive uncertainty modeling techniques and evaluation
 metrics in probabilistic wind speed and wind power forecasting,
 \emph{Applied Energy} 396, 126234;2025,
 doi:\href{https://doi.org/10.1016/j.apenergy.2025.126234}{10.1016/j.apenergy.2025.126234}.}
 
-\bibitem[\citeproctext]{ref-haq2025windreview}
-\CSLLeftMargin{{[}15{]} }%
-\CSLRightInline{Haq, I.U., Kumar, A., Rathore, P.S., Machine learning
-approaches for wind power forecasting: A comprehensive review,
-\emph{Discover Applied Sciences} 7, 1139;2025,
-doi:\href{https://doi.org/10.1007/s42452-025-07675-x}{10.1007/s42452-025-07675-x}.}
-
-\bibitem[\citeproctext]{ref-li2018dcrnn}
-\CSLLeftMargin{{[}16{]} }%
-\CSLRightInline{Li, Y., Yu, R., Shahabi, C., Liu, Y., \emph{Diffusion
-convolutional recurrent neural network: Data-driven traffic
-forecasting}, \emph{International conference on learning
-representations} 2018, \url{https://openreview.net/forum?id=SJiHXGWAZ}.}
-
-\bibitem[\citeproctext]{ref-yu2018stgcn}
-\CSLLeftMargin{{[}17{]} }%
-\CSLRightInline{Yu, B., Yin, H., Zhu, Z., \emph{Spatio-temporal graph
-convolutional networks: A deep learning framework for traffic
-forecasting}, \emph{Proceedings of the 27th international joint
-conference on artificial intelligence} 3634--3640;2018,
-doi:\href{https://doi.org/10.24963/ijcai.2018/505}{10.24963/ijcai.2018/505}.}
-
 \bibitem[\citeproctext]{ref-guo2019astgcn}
-\CSLLeftMargin{{[}18{]} }%
+\CSLLeftMargin{{[}13{]} }%
 \CSLRightInline{Guo, S., Lin, Y., Feng, N., Song, C., Wan, H.,
 \emph{Attention based spatial-temporal graph convolutional networks for
 traffic flow forecasting}, \emph{Proceedings of the AAAI conference on
@@ -1588,42 +1403,14 @@ artificial intelligence} 33, 922--929;2019,
 doi:\href{https://doi.org/10.1609/aaai.v33i01.3301922}{10.1609/aaai.v33i01.3301922}.}
 
 \bibitem[\citeproctext]{ref-bai2020agcrn}
-\CSLLeftMargin{{[}19{]} }%
+\CSLLeftMargin{{[}14{]} }%
 \CSLRightInline{Bai, L., Yao, L., Li, C., Wang, X., Wang, C.,
 \emph{Adaptive graph convolutional recurrent network for traffic
 forecasting}, \emph{Advances in neural information processing systems}
 33, 17804--17815;2020.}
 
-\bibitem[\citeproctext]{ref-wu2020connecting}
-\CSLLeftMargin{{[}20{]} }%
-\CSLRightInline{Wu, Z., Pan, S., Long, G., Jiang, J., Chang, X., Zhang,
-C., \emph{Connecting the dots: Multivariate time series forecasting with
-graph neural networks}, \emph{Proceedings of the 26th ACM SIGKDD
-international conference on knowledge discovery and data mining}
-753--763;2020,
-doi:\href{https://doi.org/10.1145/3394486.3403118}{10.1145/3394486.3403118}.}
-
-\bibitem[\citeproctext]{ref-zehtabiyan2023physicsguided}
-\CSLLeftMargin{{[}21{]} }%
-\CSLRightInline{Zehtabiyan-Rezaie, N., Iosifidis, A., Abkar, M.,
-Physics-guided machine learning for wind-farm power prediction: Toward
-interpretability and generalizability, \emph{PRX Energy} 2, 013009;2023,
-doi:\href{https://doi.org/10.1103/PRXEnergy.2.013009}{10.1103/PRXEnergy.2.013009}.}
-
-\bibitem[\citeproctext]{ref-cao2026ecto}
-\CSLLeftMargin{{[}22{]} }%
-\CSLRightInline{Cao, Y., Wang, J., \emph{ECTO: Exogenous-conditioned
-temporal operator for ultra-short-term wind power forecasting}, 2026,
-\url{https://arxiv.org/abs/2605.12196}.}
-
-\bibitem[\citeproctext]{ref-tian2026arrow}
-\CSLLeftMargin{{[}23{]} }%
-\CSLRightInline{Tian, J., Ding, Y., Xu, R., Miao, H., Guo, C., Yang, B.,
-\emph{ARROW: An adaptive rollout and routing method for global weather
-forecasting}, 2026, \url{https://openreview.net/forum?id=Qs0BieWYEN}.}
-
 \bibitem[\citeproctext]{ref-karpatne2017tgds}
-\CSLLeftMargin{{[}24{]} }%
+\CSLLeftMargin{{[}15{]} }%
 \CSLRightInline{Karpatne, A., Atluri, G., Faghmous, J.H., Steinbach, M.,
 Banerjee, A., Ganguly, A., Shekhar, S., Samatova, N.F., Kumar, V.,
 Theory-guided data science: A new paradigm for scientific discovery from
@@ -1631,54 +1418,29 @@ data, \emph{IEEE Transactions on Knowledge and Data Engineering} 29,
 2318--2331;2017,
 doi:\href{https://doi.org/10.1109/TKDE.2017.2720168}{10.1109/TKDE.2017.2720168}.}
 
-\bibitem[\citeproctext]{ref-read2019pgdl}
-\CSLLeftMargin{{[}25{]} }%
-\CSLRightInline{Read, J.S., Jia, X., Willard, J., Appling, A.P., Zwart,
-J.A., Oliver, S.K., Karpatne, A., Hansen, G.J.A., Hanson, P.C., Watkins,
-W., Steinbach, M., Kumar, V., Process-guided deep learning predictions
-of lake water temperature, \emph{Water Resources Research} 55,
-9173--9190;2019,
-doi:\href{https://doi.org/10.1029/2019WR024922}{10.1029/2019WR024922}.}
-
-\bibitem[\citeproctext]{ref-raissi2019pinn}
-\CSLLeftMargin{{[}26{]} }%
-\CSLRightInline{Raissi, M., Perdikaris, P., Karniadakis, G.E.,
-Physics-informed neural networks: A deep learning framework for solving
-forward and inverse problems involving nonlinear partial differential
-equations, \emph{Journal of Computational Physics} 378, 686--707;2019,
-doi:\href{https://doi.org/10.1016/j.jcp.2018.10.045}{10.1016/j.jcp.2018.10.045}.}
-
 \bibitem[\citeproctext]{ref-karniadakis2021piml}
-\CSLLeftMargin{{[}27{]} }%
+\CSLLeftMargin{{[}16{]} }%
 \CSLRightInline{Karniadakis, G.E., Kevrekidis, I.G., Lu, L., Perdikaris,
 P., Wang, S., Yang, L., Physics-informed machine learning, \emph{Nature
 Reviews Physics} 3, 422--440;2021,
 doi:\href{https://doi.org/10.1038/s42254-021-00314-5}{10.1038/s42254-021-00314-5}.}
 
 \bibitem[\citeproctext]{ref-parsa2025pimlreview}
-\CSLLeftMargin{{[}28{]} }%
+\CSLLeftMargin{{[}17{]} }%
 \CSLRightInline{Parsa, S.M., Physics-informed machine learning meets
 renewable energy systems: A review of advances, challenges, guidelines,
 and future outlooks, \emph{Applied Energy} 402, 126925;2025,
 doi:\href{https://doi.org/10.1016/j.apenergy.2025.126925}{10.1016/j.apenergy.2025.126925}.}
 
-\bibitem[\citeproctext]{ref-gao2025physicsconstrained}
-\CSLLeftMargin{{[}29{]} }%
-\CSLRightInline{Gao, J., Cheng, Y., Zhang, D., Chen, Y.,
-Physics-constrained wind power forecasting aligned with probability
-distributions for noise-resilient deep learning, \emph{Applied Energy}
-383, 125295;2025,
-doi:\href{https://doi.org/10.1016/j.apenergy.2025.125295}{10.1016/j.apenergy.2025.125295}.}
-
 \bibitem[\citeproctext]{ref-tautzweinert2017scada}
-\CSLLeftMargin{{[}30{]} }%
+\CSLLeftMargin{{[}18{]} }%
 \CSLRightInline{Tautz-Weinert, J., Watson, S.J., Using SCADA data for
 wind turbine condition monitoring: A review, \emph{IET Renewable Power
 Generation} 11, 382--394;2017,
 doi:\href{https://doi.org/10.1049/iet-rpg.2016.0248}{10.1049/iet-rpg.2016.0248}.}
 
 \bibitem[\citeproctext]{ref-zhou2024sdwpfdata}
-\CSLLeftMargin{{[}31{]} }%
+\CSLLeftMargin{{[}19{]} }%
 \CSLRightInline{Zhou, J., Lu, X., Xiao, Y., Tang, J., Su, J., Li, Y.,
 Liu, J., Lyu, J., Ma, Y., Dou, D., SDWPF: A dataset for spatial dynamic
 wind power forecasting over a large turbine array, \emph{Scientific
@@ -1686,64 +1448,34 @@ Data} 11, 649;2024,
 doi:\href{https://doi.org/10.1038/s41597-024-03427-5}{10.1038/s41597-024-03427-5}.}
 
 \bibitem[\citeproctext]{ref-doherty2005reserve}
-\CSLLeftMargin{{[}32{]} }%
+\CSLLeftMargin{{[}20{]} }%
 \CSLRightInline{Doherty, R., O'Malley, M., A new approach to quantify
 reserve demand in systems with significant installed wind capacity,
 \emph{IEEE Transactions on Power Systems} 20, 587--595;2005,
 doi:\href{https://doi.org/10.1109/TPWRS.2005.846206}{10.1109/TPWRS.2005.846206}.}
 
 \bibitem[\citeproctext]{ref-ela2011operatingreserves}
-\CSLLeftMargin{{[}33{]} }%
+\CSLLeftMargin{{[}21{]} }%
 \CSLRightInline{Ela, E., Milligan, M., Kirby, B., \emph{Operating
 reserves and variable generation}, 2011,
 doi:\href{https://doi.org/10.2172/1023095}{10.2172/1023095},
 \url{https://www.osti.gov/biblio/1023095}.}
 
 \bibitem[\citeproctext]{ref-bremnes2004quantile}
-\CSLLeftMargin{{[}34{]} }%
+\CSLLeftMargin{{[}22{]} }%
 \CSLRightInline{Bremnes, J.B., Probabilistic wind power forecasts using
 local quantile regression, \emph{Wind Energy} 7, 47--54;2004,
 doi:\href{https://doi.org/10.1002/we.107}{10.1002/we.107}.}
 
-\bibitem[\citeproctext]{ref-nielsen2006quantile}
-\CSLLeftMargin{{[}35{]} }%
-\CSLRightInline{Nielsen, H.A., Madsen, H., Nielsen, T.S., Using quantile
-regression to extend an existing wind power forecasting system with
-probabilistic forecasts, \emph{Wind Energy} 9, 95--108;2006,
-doi:\href{https://doi.org/10.1002/we.180}{10.1002/we.180}.}
-
 \bibitem[\citeproctext]{ref-zhang2014probabilisticreview}
-\CSLLeftMargin{{[}36{]} }%
+\CSLLeftMargin{{[}23{]} }%
 \CSLRightInline{Zhang, Y., Wang, J., Wang, X., Review on probabilistic
 forecasting of wind power generation, \emph{Renewable and Sustainable
 Energy Reviews} 32, 255--270;2014,
 doi:\href{https://doi.org/10.1016/j.rser.2014.01.033}{10.1016/j.rser.2014.01.033}.}
 
-\bibitem[\citeproctext]{ref-pinson2007trading}
-\CSLLeftMargin{{[}37{]} }%
-\CSLRightInline{Pinson, P., Chevallier, C., Kariniotakis, G.N., Trading
-wind generation from short-term probabilistic forecasts of wind power,
-\emph{IEEE Transactions on Power Systems} 22, 1148--1156;2007,
-doi:\href{https://doi.org/10.1109/TPWRS.2007.901117}{10.1109/TPWRS.2007.901117}.}
-
-\bibitem[\citeproctext]{ref-wang2011unitcommitment}
-\CSLLeftMargin{{[}38{]} }%
-\CSLRightInline{Wang, J., Botterud, A., Bessa, R., Keko, H., Carvalho,
-L., Issicaba, D., Sumaili, J., Miranda, V., Wind power forecasting
-uncertainty and unit commitment, \emph{Applied Energy} 88,
-4014--4023;2011,
-doi:\href{https://doi.org/10.1016/j.apenergy.2011.04.011}{10.1016/j.apenergy.2011.04.011}.}
-
-\bibitem[\citeproctext]{ref-zhou2013probabilisticmarkets}
-\CSLLeftMargin{{[}39{]} }%
-\CSLRightInline{Zhou, Z., Botterud, A., Wang, J., Bessa, R.J., Keko, H.,
-Sumaili, J., Miranda, V., Application of probabilistic wind power
-forecasting in electricity markets, \emph{Wind Energy} 16,
-321--338;2013,
-doi:\href{https://doi.org/10.1002/we.1496}{10.1002/we.1496}.}
-
 \bibitem[\citeproctext]{ref-hersbach2020era5}
-\CSLLeftMargin{{[}40{]} }%
+\CSLLeftMargin{{[}24{]} }%
 \CSLRightInline{Hersbach, H., Bell, B., Berrisford, P., Hirahara, S.,
 Horányi, A., Muñoz-Sabater, J., Nicolas, J., Peubey, C., Radu, R.,
 Schepers, D., Simmons, A., Soci, C., Abdalla, S., Abellan, X., Balsamo,
@@ -1767,10 +1499,6 @@ details}
 
 \subsection*{Training loop summary}\label{training-loop-summary}
 \addcontentsline{toc}{subsection}{Training loop summary}
-
-The optimization procedure is identical across runs except for the
-routing penalties that are activated in each setting and the anchor
-labels that are available.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1817,171 +1545,45 @@ Corrected routing comparator & Node-level soft gate & WTB boundary-forced: $L_{b
 \end{tabularx}
 \end{table}
 
-The reduced Results section reports only the tables needed for the main
-argument. The supplementary evidence package retains the detailed WTB
-boundary-slice audit, WTB engineering baselines, anchor-only/router-rule
-comparison, reserve coverage reliability, horizon and time-of-day
-reserve sensitivity, horizon-specific empirical-quantile what-if,
-operator-facing reserve cases, boundary-window operational reserve
-slices, paired reserve uncertainty, quasi-external WTB deployment drill,
-compute/deployment cost, strict-mask intervention and placebo checks,
-late-period distribution-shift diagnostics, and threshold/label validity
-audit. These tables are supporting checks for the three questions
-answered in the main text: boundary recovery, reserve tradeoff, and
-deployment gating.
-
 \subsection*{Auxiliary losses}\label{auxiliary-losses}
 \addcontentsline{toc}{subsection}{Auxiliary losses}
 
-Let \(\mathcal{B}\) denote the routed node-anchor samples in a
-mini-batch after target and anchor masks are applied, and let
-\(B=|\mathcal{B}|\). For sample \(n\), the soft importance and
-normalized share of expert \(e\) are
-
-\[
-I_e = \frac{1}{B}\sum_{n=1}^{B} g_n^{(e)},
-\qquad
-P_e = \frac{I_e}{\sum_{r=1}^{E} I_r}.
-\]
-
-The empirical top-\(K\) load is
-
-\[
-f_e = \frac{1}{B}\sum_{n=1}^{B}\mathbf{1}\!\left[e \in \mathrm{TopK}(\mathbf{g}_n)\right],
-\]
-
-and the balancing loss is
-
-\[
-\mathcal{L}_{\mathrm{bal}} = E\sum_{e=1}^{E} f_e P_e - 1.
-\]
-
-For WTB wake supervision,
-
-\[
-\mathcal{L}_{\mathrm{aux}}
-=
-\frac{1}{|\Omega_{\mathrm{wake}}|}
-\sum_{(i,t)\in\Omega_{\mathrm{wake}}}
-\mathrm{BCE}\!\left(z^{(\mathrm{wake})}_{i,t}, W_{i,t}\right),
-\]
-
+Let \(\mathcal{B}\) denote the routed samples after masks, with
+\(B=|\mathcal{B}|\). The soft importance and normalized share of expert
+\(e\) are \(I_e = \frac{1}{B}\sum_{n=1}^{B} g_n^{(e)}\) and
+\(P_e = I_e / \sum_{r} I_r\). The top-\(K\) load is
+\(f_e = \frac{1}{B}\sum_{n=1}^{B}\mathbf{1}[e \in \mathrm{TopK}(\mathbf{g}_n)]\),
+giving \[\mathcal{L}_{\mathrm{bal}} = E\sum_{e=1}^{E} f_e P_e - 1.\] For
+WTB wake supervision,
+\[\mathcal{L}_{\mathrm{aux}} = \frac{1}{|\Omega_{\mathrm{wake}}|}\sum_{(i,t)\in\Omega_{\mathrm{wake}}}\mathrm{BCE}(z^{(\mathrm{wake})}_{i,t}, W_{i,t}),\]
 where \(\Omega_{\mathrm{wake}}\) contains only MPPT and pitch-control
-samples for which the wake flag is defined. The graph-smoothness penalty
-is
-
-\[
-\mathcal{L}_{\mathrm{smooth}}
-=
-\frac{
-\sum_{t \in \mathcal{T}_{\mathcal{B}}}\sum_{i,j}\mathcal{A}_t(i,j)\lVert \mathbf{g}_{i,t}-\mathbf{g}_{j,t}\rVert_2^2
-}{
-\sum_{t \in \mathcal{T}_{\mathcal{B}}}\sum_{i,j}\mathcal{A}_t(i,j) + \epsilon
-}.
-\]
+samples with defined wake flags. The graph-smoothness penalty is
+\[\mathcal{L}_{\mathrm{smooth}} = \frac{\sum_{t\in\mathcal{T}_{\mathcal{B}}}\sum_{i,j}\mathcal{A}_t(i,j)\lVert\mathbf{g}_{i,t}-\mathbf{g}_{j,t}\rVert_2^2}{\sum_{t\in\mathcal{T}_{\mathcal{B}}}\sum_{i,j}\mathcal{A}_t(i,j)+\epsilon}.\]
 
 \subsection*{Graph construction
 details}\label{graph-construction-details}
 \addcontentsline{toc}{subsection}{Graph construction details}
 
-For WTB, each turbine has a fixed coordinate \(\mathbf{p}_i=(x_i,y_i)\).
-A candidate set is first built by retaining the \(k_{\mathrm{nn}}\)
-nearest turbines within a maximum radius \(d_{\max}\). Let
-\(\Delta \mathbf{p}_{ij}=\mathbf{p}_j-\mathbf{p}_i\) and let
-\(\theta_{i,t}\) denote the local meteorological wind-from direction.
-The downstream unit vector is
-
-\[
-\mathbf{u}_{i,t} =
-\begin{bmatrix}
-\sin(\theta_{i,t} + \pi) \\
-\cos(\theta_{i,t} + \pi)
-\end{bmatrix}.
-\]
-
-This gives
-
-\[
-d^{\parallel}_{ij,t} = \Delta \mathbf{p}_{ij}^{\top}\mathbf{u}_{i,t},
-\qquad
-d^{\perp}_{ij,t} = \left| \Delta p^x_{ij} u^y_{i,t} - \Delta p^y_{ij} u^x_{i,t} \right|.
-\]
-
-An edge is activated only when turbine \(j\) falls inside a downstream
-cone:
-
-\[
-\mathbb{I}^{\mathrm{cone}}_{ij,t} =
-\mathbf{1}\!\left[
-d^{\parallel}_{ij,t} > 0
-\ \land\
-\arctan\!\left(\frac{d^{\perp}_{ij,t}}{\max(d^{\parallel}_{ij,t}, 10^{-6})}\right)
-\leq \phi
-\right].
-\]
-
+For WTB, the downstream unit vector is
+\(\mathbf{u}_{i,t}=[\sin(\theta_{i,t}+\pi), \cos(\theta_{i,t}+\pi)]^{\top}\).
+With \(\Delta\mathbf{p}_{ij}=\mathbf{p}_j-\mathbf{p}_i\), the streamwise
+and cross-stream distances are
+\(d^{\parallel}_{ij,t}=\Delta\mathbf{p}_{ij}^{\top}\mathbf{u}_{i,t}\)
+and
+\(d^{\perp}_{ij,t}=|\Delta p^x_{ij}u^y_{i,t}-\Delta p^y_{ij}u^x_{i,t}|\).
+A candidate edge activates when
+\[\mathbb{I}^{\mathrm{cone}}_{ij,t}=\mathbf{1}\!\left[d^{\parallel}_{ij,t}>0\;\land\;\arctan\!\left(\frac{d^{\perp}_{ij,t}}{\max(d^{\parallel}_{ij,t},10^{-6})}\right)\le\phi\right].\]
 The wake weight is
+\(\tilde{\mathcal{A}}_t(i,j)=\exp(-d^{\parallel}_{ij,t}/\alpha)\exp(-|d^{\perp}_{ij,t}|/\beta)\mathbb{I}^{\mathrm{cone}}_{ij,t}\).
+If wind direction is missing, fall back to
+\(\mathcal{A}^{\mathrm{static}}(i,j)=\exp(-\lVert\Delta\mathbf{p}_{ij}\rVert_2/d_{\max})\).
+Only the strongest \(M\) inbound weights are retained. The wake score
+and flag are \(s^{\mathrm{wake}}_{i,t}=\sum_{j}\mathcal{A}_t(i,j)\) and
+\[W_{i,t}=\begin{cases}1,&s^{\mathrm{wake}}_{i,t}\ge q_{0.75}^{\mathrm{wake}}\land R^{\mathrm{wtb}}_{i,t}\in\{1,2\},\\0,&s^{\mathrm{wake}}_{i,t}<q_{0.75}^{\mathrm{wake}}\land R^{\mathrm{wtb}}_{i,t}\in\{1,2\},\\\varnothing,&\text{otherwise.}\end{cases}\]
 
-\[
-\tilde{\mathcal{A}}_t(i,j) =
-\exp\!\left(-\frac{d^{\parallel}_{ij,t}}{\alpha}\right)
-\exp\!\left(-\frac{|d^{\perp}_{ij,t}|}{\beta}\right)
-\mathbb{I}^{\mathrm{cone}}_{ij,t}.
-\]
-
-If wind direction is missing, the implementation falls back to a static
-proximity weight,
-
-\[
-\mathcal{A}^{\mathrm{static}}(i,j)=\exp\!\left(-\frac{\lVert \Delta \mathbf{p}_{ij}\rVert_2}{d_{\max}}\right).
-\]
-
-Only the strongest \(M\) inbound weights are retained for each target
-and time step. The wake score is
-
-\[
-s^{\mathrm{wake}}_{i,t} = \sum_{j} \mathcal{A}_t(i,j),
-\]
-
-and the auxiliary wake flag is
-
-\[
-W_{i,t} =
-\begin{cases}
-1, & \text{if } s^{\mathrm{wake}}_{i,t} \ge q_{0.75}^{\mathrm{wake}} \ \land\ R^{\mathrm{wtb}}_{i,t} \in \{1,2\},\\
-0, & \text{if } s^{\mathrm{wake}}_{i,t} < q_{0.75}^{\mathrm{wake}} \ \land\ R^{\mathrm{wtb}}_{i,t} \in \{1,2\},\\
-\varnothing, & \text{otherwise.}
-\end{cases}
-\]
-
-ERA5 treats each grid point as a node with geographic coordinate
-\((\varphi_i,\lambda_i)\) and computes great-circle distance with the
-Haversine formula
-
-\[
-d_{ij} = 2 R \arctan\!\left(
-\frac{\sqrt{a_{ij}}}{\sqrt{1-a_{ij}}}
-\right),
-\]
-
-where \(R=6371\) km and
-
-\[
-a_{ij} =
-\sin^2\!\left(\frac{\varphi_j-\varphi_i}{2}\right)
-+
-\cos(\varphi_i)\cos(\varphi_j)\sin^2\!\left(\frac{\lambda_j-\lambda_i}{2}\right).
-\]
-
-The retained symmetric graph is
-
-\[
-\mathcal{A}(i,j) =
-\exp\!\left(
--\frac{d_{ij}^2}{2\sigma^2}
-\right)\mathbf{1}[j \in \mathcal{N}_{k_{\mathrm{nn}}}(i) \ \text{or}\ i \in \mathcal{N}_{k_{\mathrm{nn}}}(j)],
-\]
-
+For ERA5, the retained symmetric graph uses a Gaussian kernel on
+great-circle distances:
+\[\mathcal{A}(i,j)=\exp\!\left(-\frac{d_{ij}^2}{2\sigma^2}\right)\mathbf{1}[j\in\mathcal{N}_{k_{\mathrm{nn}}}(i)\;\text{or}\;i\in\mathcal{N}_{k_{\mathrm{nn}}}(j)],\]
 where \(\sigma\) is the median retained neighbor distance on the
 training graph.
 
