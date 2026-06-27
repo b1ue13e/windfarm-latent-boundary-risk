@@ -408,7 +408,7 @@ Threshold-grid audit & Worst-case saved-gate NMI / ARI & 0.8655 +/- 0.0429 / 0.9
 \end{table}
 ```
 
-The diagnostic survives the main falsification checks. Zeroing the intended boundary anchor sharply reduces gate-regime agreement, whereas zeroing the wake score is near-null for the MPPT-to-pitch partition. Placebo labels built from temporal shifts, node permutation, within-time shuffling, and global shuffling do not reproduce the actual-label agreement. Spatial holdout, future-period holdout, and nearby rated-wind/pitch threshold sweeps preserve the routing semantics. These checks move the WTB claim beyond a visualization: the gate is tied to the declared operating boundary under the SCADA anchors available at the forecast issue time.
+The diagnostic survives the main falsification checks. Zeroing the intended boundary anchor sharply reduces gate-regime agreement, whereas zeroing the wake score is near-null. Placebo labels do not reproduce the actual-label agreement. Spatial holdout, future-period holdout, and threshold sweeps preserve routing semantics.
 
 ```{=latex}
 \begin{table}[H]
@@ -459,9 +459,9 @@ Claim boundary & Evidence-based boundary: gate holds for single-anchor removal, 
 
 ## Boundary-Risk Vignette: Does the Gate Change Reserve Tradeoffs?
 
-The reserve audit asks a narrower and more energy-facing question than the accuracy table: once a physical gate is recovered, can it change the reserve tradeoff in the operating window where over-forecasts become unmet reserve requirements? Four policies separate the effects. Graph WaveNet/global is the low-RMSE system reference. Graph WaveNet/physical-bin tests physical stratification without a learned gate. Boundary router/global isolates the routed model with a single reserve rule. Boundary router/gate-bin adds gate-conditioned allocation to that same routed predictor.
+The reserve audit asks whether a recovered physical gate changes the reserve tradeoff in the operating window where over-forecasts become unmet reserve requirements. Four policies separate the effects: Graph WaveNet/global (low-RMSE reference), Graph WaveNet/physical-bin (physical stratification without learned gate), Boundary router/global (routed model with single reserve rule), and Boundary router/gate-bin (gate-conditioned allocation on the same routed predictor).
 
-At shortage-to-reserve cost ratio 10, gate-conditioned binning exchanges about 3.6% additional reserve energy for a 14.5% reduction in shortage energy and a 1.38 percentage-point reduction in boundary-window violation relative to the same routed model with a global rule. Written as an operator tradeoff, the gate spends 1.85M additional normalized reserve-energy units to lower boundary-window shortage from 3.73M to 3.19M and violation from 10.38% to 9.00%. The comparison is deliberately same-model: it attributes the reserve change to gate-conditioned allocation, not to a different forecasting backbone.
+At shortage-to-reserve cost ratio 10, gate-conditioned binning exchanges about 3.6% additional reserve energy for a 14.5% reduction in shortage energy and a 1.38 percentage-point reduction in boundary-window violation relative to the same routed model with a global rule. The comparison is deliberately same-model: the reserve change is attributed to gate-conditioned allocation, not to a different forecasting backbone.
 
 The validation-frozen quantile baseline changes how the result should be read. Boundary router/gate-bin remains better than the same routed model with a global quantile rule, but physical-bin quantile baselines are competitive and can be lower-cost in the boundary window. The strongest defensible statement is therefore attributional: the gate exposes a transition-window reserve-risk mechanism and improves a same-model global reserve rule, but it is not a universal reserve allocation policy.
 
@@ -529,7 +529,7 @@ Ratio & Reserve-use window & Cost vs global & Violation vs global & Extra reserv
 \end{table}
 ```
 
-The toy operational-cost proxy translates the same evidence into a single normalized decision number. It is intentionally small: reserve procurement cost plus $\rho$ times residual shortage energy. On the boundary slice, the gate-bin rule reduces the same-model global proxy from 88.13M to 84.58M, while Graph WaveNet/physical-bin remains a close lower-cost reference at 84.31M. On the full sample, Graph WaveNet/global is lower-cost than the boundary router/gate-bin, so the paper does not claim system-wide dispatch value. The operational consequence is bounded to the transition-window slice where the diagnostic is designed to operate.
+The toy operational-cost proxy is intentionally small: reserve procurement cost plus $\rho$ times residual shortage energy. On the boundary slice the gate-bin rule reduces the same-model global proxy from 88.13M to 84.58M, while Graph WaveNet/physical-bin remains close at 84.31M. On the full sample Graph WaveNet/global is lower-cost, so the paper does not claim system-wide dispatch value. The operational consequence is bounded to the transition-window slice.
 
 ```{=latex}
 \begin{table}[H]
@@ -553,7 +553,7 @@ Full sample & Boundary router/global & 501.32M & 324.97M & 176.35M \\
 \end{table}
 ```
 
-The workflow figure makes the decision path explicit. SCADA anchors define the operating boundary, the gate assigns boundary responsibility, validation shortfall calibrates reserve bins, and the frozen test audit reports cost, violation, reserve energy, and shortage energy. Horizon and time-of-day sensitivity checks, paired full-sample uncertainty, and operational-slice tables are kept as supplementary evidence because they refine the envelope rather than change the central conclusion.
+Horizon and time-of-day sensitivity checks, paired full-sample uncertainty, and operational-slice tables are kept as supplementary evidence.
 
 ![The reserve workflow turns gate interpretability into an operator-facing diagnostic: the same forecast model is evaluated with and without gate-conditioned reserve bins, and the resulting shortage, violation, and reserve-energy tradeoff is measured in the transition window.](artifacts/final_evidence_package/export/figures/boundary_reserve_system_workflow.png){ width=94% }
 
@@ -563,7 +563,7 @@ The workflow figure makes the decision path explicit. SCADA anchors define the o
 
 The accuracy cost is real and should be read as part of the design. Graph WaveNet and lag-feature baselines remain better whole-sample forecasters on WTB. The routed model is used when an operator or analyst needs an accountable operating-state assignment that can feed a boundary-specific decision, not when the sole target is minimum average error. Time-forward testing gives the same message in another form: late-period routing agreement remains high, but late-test RMSE rises sharply, showing that stable semantics do not guarantee stable value prediction under distribution shift.
 
-The external wind-farm tests define the deployment gate. Kelmarsh/Penmanshiel checks do not pass the pre-specified held-out routing criterion after local recalibration, and the failure is informative. It identifies which conditions must be verified before a new wind farm can use a gate-bin reserve rule: pitch or proxy observability, sufficient boundary-cell support, compatible turbine geometry and power-curve distribution, local threshold estimation, and a held-out routing pass. The method therefore exports an evidence protocol, not a promise of automatic cross-farm transfer.
+The external wind-farm tests define the deployment gate. Kelmarsh/Penmanshiel checks do not pass the held-out routing criterion, identifying the conditions that must be verified before cross-farm use: pitch or proxy observability, boundary-cell support, compatible turbine geometry, local threshold estimation, and a held-out routing pass. The method exports an evidence protocol, not a promise of automatic transfer.
 
 ```{=latex}
 \begin{table}[H]
