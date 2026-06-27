@@ -1,5 +1,5 @@
 {
-  "status": "ready_to_execute_anchor_stress_training",
+  "status": "complete_anchor_stress_requires_claim_downgrade",
   "variants": [
     "no_patv",
     "lagged_patv",
@@ -13,7 +13,7 @@
   ],
   "min_nmi": 0.65,
   "checks": {
-    "all_requested_runs_complete": false,
+    "all_requested_runs_complete": true,
     "leakage_guard_pass": true,
     "nmi_gate_pass": false
   },
