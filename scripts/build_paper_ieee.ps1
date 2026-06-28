@@ -18,6 +18,12 @@ $xelatex = if (Test-Path $localMiKTeX) { $localMiKTeX } elseif (
 }
 $env:PATH = (Split-Path -Parent $xelatex) + ";$env:PATH"
 
+$restoreRunTargetsScript = Join-Path $root "scripts\restore_run_targets.py"
+if (Test-Path $restoreRunTargetsScript) {
+    & python $restoreRunTargetsScript --root-dir $root
+    if ($LASTEXITCODE -ne 0) { throw "Run target/mask restore preflight failed." }
+}
+
 $tradeoffScript = Join-Path $root "scripts\build_accountability_tradeoff.py"
 if (Test-Path $tradeoffScript) {
     & python $tradeoffScript

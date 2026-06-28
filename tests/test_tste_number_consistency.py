@@ -20,6 +20,7 @@ class TsteNumberConsistencyTests(unittest.TestCase):
             "artifacts/final_evidence_package/export/tables/accountability_tradeoff.csv",
             "artifacts/final_evidence_package/export/tables/dispatch_reserve_main_table.csv",
             "artifacts/final_evidence_package/export/tables/engineering_unit_value_translation.csv",
+            "artifacts/anchor_stress_guard/anchor_stress_summary.csv",
             "paper_tste_ieee.md",
             "paper_tste_supplementary.md",
             "cover_letter_tste.md",

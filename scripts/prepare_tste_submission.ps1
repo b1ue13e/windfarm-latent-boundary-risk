@@ -40,6 +40,56 @@ function Convert-PortalText {
     return $clean.Trim()
 }
 
+function Invoke-RequiredPythonScript {
+    param(
+        [string]$ScriptPath,
+        [string[]]$Arguments = @(),
+        [string]$FailureMessage
+    )
+
+    if (-not (Test-Path $ScriptPath)) {
+        throw "Missing required Python script: $ScriptPath"
+    }
+    & python $ScriptPath @Arguments
+    if ($LASTEXITCODE -ne 0) { throw $FailureMessage }
+}
+
+function Invoke-RunTargetPreflight {
+    $restoreScript = Join-Path $root "scripts\restore_run_targets.py"
+    Invoke-RequiredPythonScript `
+        -ScriptPath $restoreScript `
+        -Arguments @("--root-dir", $root) `
+        -FailureMessage "Run target/mask restore preflight failed."
+}
+
+function Invoke-NumberConsistencyPreflight {
+    $numberScript = Join-Path $root "scripts\verify_tste_number_consistency.py"
+    Invoke-RequiredPythonScript `
+        -ScriptPath $numberScript `
+        -Arguments @("--output-dir", (Join-Path $root "artifacts\tste_number_consistency_audit")) `
+        -FailureMessage "TSTE number consistency audit failed."
+}
+
+function Find-LatexLogHits {
+    param(
+        [string]$Pattern,
+        [string[]]$Paths
+    )
+
+    $rgCommand = Get-Command rg -ErrorAction SilentlyContinue
+    if ($rgCommand) {
+        $hits = & $rgCommand.Source -n $Pattern @Paths -S 2>$null
+        $code = $LASTEXITCODE
+        if ($code -eq 0) { return @($hits) }
+        if ($code -eq 1) { return @() }
+        throw "ripgrep log scan failed with exit code $code."
+    }
+
+    $hits = Select-String -Path $Paths -Pattern $Pattern
+    if ($null -eq $hits) { return @() }
+    return @($hits | ForEach-Object { "$($_.Path):$($_.LineNumber):$($_.Line)" })
+}
+
 $requiredFiles = @(
     "paper_tste_ieee.pdf",
     "paper_tste_supplementary.pdf",
@@ -66,6 +116,8 @@ if (-not $coverText.Contains("Supplementary Table A11")) {
     throw "cover_letter_tste.md does not mention Supplementary Table A11 engineering-unit translation."
 }
 
+Invoke-RunTargetPreflight
+
 & python (Join-Path $root "scripts\transform_ieee.py")
 if ($LASTEXITCODE -ne 0) { throw "IEEE markdown transform failed." }
 & python (Join-Path $root "scripts\make_supplementary.py")
@@ -73,6 +125,7 @@ if ($LASTEXITCODE -ne 0) { throw "Supplementary markdown generation failed." }
 & powershell -ExecutionPolicy Bypass -File (Join-Path $root "scripts\build_paper_ieee.ps1")
 if ($LASTEXITCODE -ne 0) { throw "IEEE PDF build failed." }
 
+Invoke-NumberConsistencyPreflight
 $numberAuditDir = Join-Path $root "artifacts\tste_number_consistency_audit"
 $numberAuditJsonPath = Join-Path $numberAuditDir "tste_number_consistency_audit.json"
 if (-not (Test-Path $numberAuditJsonPath)) {
@@ -96,8 +149,8 @@ if ([int]$mainPages -gt 10) {
 $logPattern = "Font Warning|No file TUptm|undefined citation|Citation .* undefined|Overfull|Undefined control sequence|Some font shapes|TU/ptm|LaTeX Warning: Reference.*undefined|undefined references|LaTeX Error"
 $mainLog = Join-Path $root "build\paper_tste_ieee.log"
 $suppLog = Join-Path $root "build\paper_tste_supplementary.log"
-$logHits = & rg -n $logPattern $mainLog $suppLog -S 2>$null
-if ($LASTEXITCODE -eq 0) {
+$logHits = Find-LatexLogHits -Pattern $logPattern -Paths @($mainLog, $suppLog)
+if ($logHits.Count -gt 0) {
     $logHits | Set-Content -LiteralPath (Join-Path $packageRoot "latex_log_findings.txt") -Encoding UTF8
     throw "LaTeX log contains blocking warnings/errors. See latex_log_findings.txt."
 }

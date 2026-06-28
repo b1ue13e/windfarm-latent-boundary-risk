@@ -136,6 +136,7 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         / "tables"
         / "engineering_unit_value_translation.csv"
     )
+    anchor_stress = pd.read_csv(root / "artifacts" / "anchor_stress_guard" / "anchor_stress_summary.csv")
 
     graph = _lookup(benchmark, Panel="WTB", Model="Graph WaveNet")
     best_strict = _best_wtb_strict_cache_baseline(benchmark)
@@ -172,6 +173,10 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         engineering,
         comparison="Boundary gate-bin vs same-router global",
     )
+    anchor_no_patv = _lookup(anchor_stress, variant="no_patv")
+    anchor_no_pab = _lookup(anchor_stress, variant="no_pab_mean")
+    anchor_lag_patv = _lookup(anchor_stress, variant="lagged_patv")
+    anchor_lag_pab_wspd = _lookup(anchor_stress, variant="lagged_pab_wspd")
 
     return [
         _check("graph_wavenet_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(graph["Overall RMSE"]), "{:.2f}", ("main",)),
@@ -192,6 +197,10 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         _check("engineering_avoided_shortage_mwh", "artifacts/final_evidence_package/export/tables/engineering_unit_value_translation.csv", _num(engineering_same["avoided_shortage_mwh_equiv"]), "{:.1f}", ("supplementary",)),
         _check("engineering_delta_cost_mwh", "artifacts/final_evidence_package/export/tables/engineering_unit_value_translation.csv", abs(_num(engineering_same["delta_total_cost_mwh_equiv"])), "{:.1f}", ("supplementary",)),
         _check("engineering_delta_eur_100", "artifacts/final_evidence_package/export/tables/engineering_unit_value_translation.csv", abs(_num(engineering_same["delta_eur_at_100_per_mwh"])), lambda value: f"{int(round(value / 1000.0))}k", ("main", "supplementary")),
+        _check("anchor_stress_no_patv_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_no_patv["nmi_mean"]), "{:.3f}", ("main",)),
+        _check("anchor_stress_no_pab_mean_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_no_pab["nmi_mean"]), "{:.3f}", ("main",)),
+        _check("anchor_stress_lagged_patv_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_lag_patv["nmi_mean"]), "{:.3f}", ("main",)),
+        _check("anchor_stress_lagged_pab_wspd_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_lag_pab_wspd["nmi_mean"]), "{:.3f}", ("main",)),
     ]
 
 
