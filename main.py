@@ -15,7 +15,7 @@ from windfarm_moe.anchor_stress import (
     run_anchor_stress_guard,
     run_anchor_stress_training,
 )
-from windfarm_moe.operational_cost import run_toy_operational_cost
+from windfarm_moe.operational_cost import run_engineering_unit_value_translation, run_toy_operational_cost
 from windfarm_moe.operational_baselines import run_operational_baselines
 from windfarm_moe.reserve_baselines import run_reserve_probabilistic_baseline
 from windfarm_moe.evidence_export import export_strict_wtb_evidence
@@ -484,6 +484,8 @@ def build_parser() -> argparse.ArgumentParser:
     toy_cost_parser.add_argument("--probabilistic-dir", type=str, default="artifacts/reserve_quantile_baseline")
     toy_cost_parser.add_argument("--output-dir", type=str, required=True)
     toy_cost_parser.add_argument("--main-ratio", type=float, default=10.0)
+    toy_cost_parser.add_argument("--engineering-output-dir", type=str, default="")
+    toy_cost_parser.add_argument("--reserve-prices-eur-per-mwh", type=str, default="50,100,200")
 
     operational_baseline_parser = subparsers.add_parser(
         "operational-baselines",
@@ -1812,6 +1814,17 @@ def main() -> None:
             output_dir=Path(args.output_dir),
             main_ratio=args.main_ratio,
         )
+        if args.engineering_output_dir:
+            engineering_dir = run_engineering_unit_value_translation(
+                decision_dir=Path(args.decision_dir),
+                toy_cost_dir=output_dir,
+                output_dir=Path(args.engineering_output_dir),
+                main_ratio=args.main_ratio,
+                reserve_prices_eur_per_mwh=[
+                    float(token.strip()) for token in args.reserve_prices_eur_per_mwh.split(",") if token.strip()
+                ],
+            )
+            print(f"Engineering-unit value translation saved to: {engineering_dir}")
         print(f"Toy operational-cost artifacts saved to: {output_dir}")
         return
 

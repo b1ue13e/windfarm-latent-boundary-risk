@@ -42,6 +42,12 @@ if (Test-Path $reserveClaimBoundaryScript) {
     if ($LASTEXITCODE -ne 0) { throw "Reserve claim-boundary table generation failed." }
 }
 
+$engineeringValueScript = Join-Path $root "scripts\build_engineering_unit_value_translation.py"
+if (Test-Path $engineeringValueScript) {
+    & python $engineeringValueScript
+    if ($LASTEXITCODE -ne 0) { throw "Engineering-unit value translation generation failed." }
+}
+
 $outcomeSanityScript = Join-Path $root "scripts\build_outcome_channel_sanity.py"
 if (Test-Path $outcomeSanityScript) {
     & python $outcomeSanityScript

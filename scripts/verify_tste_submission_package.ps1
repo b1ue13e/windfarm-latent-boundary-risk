@@ -99,8 +99,8 @@ $coverText = Get-Content -LiteralPath (Join-Path $uploadDir "cover_letter.md") -
 if ($coverText.Contains("[Author Names]")) {
     throw "Upload cover letter still contains the [Author Names] placeholder."
 }
-if (-not $coverText.Contains("Supplementary Table A10")) {
-    throw "Upload cover letter does not mention Supplementary Table A10."
+if (-not $coverText.Contains("Supplementary Table A11")) {
+    throw "Upload cover letter does not mention Supplementary Table A11."
 }
 
 $portalMetadata = Get-Content -LiteralPath (Join-Path $metadataDir "portal_metadata.json") -Raw | ConvertFrom-Json
@@ -155,8 +155,8 @@ $suppPages = Get-PdfPages -Path (Join-Path $uploadDir "supplementary_material.pd
 if ($mainPages -gt 10) {
     throw "Main manuscript exceeds 10 pages: $mainPages"
 }
-if ($suppPages -ne 3) {
-    throw "Supplementary material page count changed: $suppPages"
+if ($suppPages -lt 3 -or $suppPages -gt 4) {
+    throw "Supplementary material page count is outside the expected 3-4 page range: $suppPages"
 }
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -178,11 +178,15 @@ if ($sourceZipEntries -notcontains "scripts/prepare_tste_submission.ps1") {
 if ($sourceZipEntries -notcontains "scripts/verify_tste_submission_package.ps1") {
     throw "Source archive is missing scripts/verify_tste_submission_package.ps1."
 }
+if ($sourceZipEntries -notcontains "scripts/build_engineering_unit_value_translation.py") {
+    throw "Source archive is missing scripts/build_engineering_unit_value_translation.py."
+}
 foreach ($name in @(
     "upload_files/manuscript_ieee_tste.pdf",
     "portal_metadata/portal_metadata.json",
     "integrity_manifest/UPLOAD_MANIFEST.json",
-    "evidence_audits/evidence_freeze_guard.json"
+    "evidence_audits/evidence_freeze_guard.json",
+    "evidence_audits/engineering_unit_value_translation.csv"
 )) {
     if ($fullZipEntries -notcontains $name) {
         throw "Full local archive is missing $name."

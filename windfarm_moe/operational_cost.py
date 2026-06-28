@@ -8,6 +8,8 @@ import pandas as pd
 
 from .utils import ensure_dir, load_json, save_json
 
+DEFAULT_ENGINEERING_RESERVE_PRICES = (50.0, 100.0, 200.0)
+
 
 def run_toy_operational_cost(
     *,
@@ -75,6 +77,105 @@ def run_toy_operational_cost(
     return out_dir
 
 
+def run_engineering_unit_value_translation(
+    *,
+    decision_dir: Path | str,
+    toy_cost_dir: Path | str,
+    output_dir: Path | str,
+    main_ratio: float = 10.0,
+    reserve_prices_eur_per_mwh: tuple[float, ...] | list[float] = DEFAULT_ENGINEERING_RESERVE_PRICES,
+) -> Path:
+    """Translate the normalized reserve audit into bounded engineering units.
+
+    The WTB active-power target is in kW and the reserve audit multiplies each
+    valid forecast cell by the configured step length in hours. Dividing these
+    kWh-equivalent totals by 1000 gives an engineering-unit accounting view.
+    The result is still a rolling forecast-cell accounting table, not delivered
+    market energy or a settlement model.
+    """
+
+    decision_path = Path(decision_dir)
+    toy_path = Path(toy_cost_dir)
+    out_dir = ensure_dir(output_dir)
+    raw_path = toy_path / "reserve_toy_operational_cost_raw.csv"
+    if not raw_path.exists():
+        raise FileNotFoundError(f"Missing toy operational-cost raw table: {raw_path}")
+
+    config_path = decision_path / "reserve_decision_config.json"
+    config = load_json(config_path) if config_path.exists() else {}
+    frame = pd.read_csv(raw_path)
+    frame = frame[
+        np.isclose(pd.to_numeric(frame["cost_ratio"], errors="coerce"), float(main_ratio))
+        & frame["source"].astype(str).eq("reserve_decision")
+    ].copy()
+    if frame.empty:
+        raise ValueError("No reserve-decision rows available for engineering-unit translation.")
+
+    comparisons = [
+        {
+            "comparison": "Boundary gate-bin vs same-router global",
+            "subset": "boundary",
+            "candidate": "Boundary-forced router/gate-bin",
+            "baseline": "Boundary-forced router/global",
+            "claim_scope": "same-model transition-window diagnostic",
+            "wording": "Use as bounded boundary-window value, not cross-backbone superiority.",
+        },
+        {
+            "comparison": "Boundary gate-bin vs GWN physical-bin",
+            "subset": "boundary",
+            "candidate": "Boundary-forced router/gate-bin",
+            "baseline": "Graph WaveNet/physical-bin",
+            "claim_scope": "competitive physical-bin comparator",
+            "wording": "Shows gate-bin is close to a strong physical-bin comparator; not a lower-cost claim.",
+        },
+        {
+            "comparison": "Boundary gate-bin vs GWN global full sample",
+            "subset": "full",
+            "candidate": "Boundary-forced router/gate-bin",
+            "baseline": "Graph WaveNet/global",
+            "claim_scope": "full-sample claim boundary",
+            "wording": "Blocks system-wide dispatch or full-sample reserve-superiority wording.",
+        },
+    ]
+    rows = [
+        row
+        for row in (_engineering_comparison_row(frame, spec, reserve_prices_eur_per_mwh) for spec in comparisons)
+        if row is not None
+    ]
+    if not rows:
+        raise ValueError("No configured engineering-unit comparisons could be computed.")
+
+    table = pd.DataFrame(rows)
+    csv_path = out_dir / "engineering_unit_value_translation.csv"
+    tex_path = out_dir / "table_engineering_unit_value_translation.tex"
+    json_path = out_dir / "engineering_unit_value_translation_summary.json"
+    table.to_csv(csv_path, index=False)
+    _write_engineering_value_latex(table, tex_path, main_ratio=float(main_ratio))
+
+    save_json(
+        json_path,
+        {
+            "inputs": {
+                "reserve_toy_operational_cost_raw": str(raw_path),
+                "reserve_decision_config": str(config_path) if config_path.exists() else None,
+            },
+            "outputs": {"csv": str(csv_path), "tex": str(tex_path)},
+            "assumptions": {
+                "target_power_unit": "kW for WTB Patv",
+                "step_hours": float(config.get("dt", 1.0 / 6.0)),
+                "conversion": "reserve_energy and shortage_energy are kWh-equivalent totals; divide by 1000 for MWh-equivalent",
+                "monetary_translation": "Delta EUR = delta reserve-cost-equivalent MWh * assumed reserve carrying cost in EUR/MWh",
+                "reserve_prices_eur_per_mwh": [float(value) for value in reserve_prices_eur_per_mwh],
+                "claim_boundary": (
+                    "Rolling 24-step forecast-cell accounting only; not delivered MWh, "
+                    "market clearing, unit commitment, OPF, or security-constrained dispatch."
+                ),
+            },
+        },
+    )
+    return out_dir
+
+
 def _decision_rows(decision_dir: Path, *, main_ratio: float) -> pd.DataFrame:
     path = decision_dir / "reserve_decision_by_ratio.csv"
     if not path.exists():
@@ -93,6 +194,96 @@ def _decision_rows(decision_dir: Path, *, main_ratio: float) -> pd.DataFrame:
             continue
         rows.append(_normalized_row(row, policy_label=f"{model}/{policy}", source="reserve_decision"))
     return pd.DataFrame(rows)
+
+
+def _engineering_comparison_row(
+    frame: pd.DataFrame,
+    spec: dict[str, str],
+    reserve_prices: tuple[float, ...] | list[float],
+) -> dict[str, Any] | None:
+    candidate = _maybe_policy_row(frame, spec["subset"], spec["candidate"])
+    baseline = _maybe_policy_row(frame, spec["subset"], spec["baseline"])
+    if candidate is None or baseline is None:
+        return None
+
+    reserve_delta_kwh = _num(candidate.get("reserve_energy")) - _num(baseline.get("reserve_energy"))
+    shortage_delta_kwh = _num(candidate.get("shortage_energy")) - _num(baseline.get("shortage_energy"))
+    total_delta_kwh_equiv = _num(candidate.get("toy_total_cost")) - _num(baseline.get("toy_total_cost"))
+    row: dict[str, Any] = {
+        "comparison": spec["comparison"],
+        "subset": spec["subset"],
+        "candidate": spec["candidate"],
+        "baseline": spec["baseline"],
+        "claim_scope": spec["claim_scope"],
+        "delta_reserve_mwh_equiv": reserve_delta_kwh / 1000.0,
+        "delta_shortage_mwh_equiv": shortage_delta_kwh / 1000.0,
+        "avoided_shortage_mwh_equiv": -shortage_delta_kwh / 1000.0,
+        "delta_total_cost_mwh_equiv": total_delta_kwh_equiv / 1000.0,
+        "delta_violation_rate": _num(candidate.get("violation_rate")) - _num(baseline.get("violation_rate")),
+        "wording": spec["wording"],
+    }
+    for price in reserve_prices:
+        label = _price_label(float(price))
+        row[f"delta_eur_at_{label}_per_mwh"] = row["delta_total_cost_mwh_equiv"] * float(price)
+    return row
+
+
+def _maybe_policy_row(frame: pd.DataFrame, subset: str, policy_label: str) -> pd.Series | None:
+    rows = frame[
+        frame["subset"].astype(str).eq(str(subset))
+        & frame["policy_label"].astype(str).eq(str(policy_label))
+    ]
+    if rows.empty:
+        return None
+    return rows.iloc[0]
+
+
+def _price_label(value: float) -> str:
+    if float(value).is_integer():
+        return str(int(value))
+    return str(value).replace(".", "p")
+
+
+def _write_engineering_value_latex(frame: pd.DataFrame, path: Path, *, main_ratio: float) -> None:
+    lines = [
+        r"\begin{table}[H]",
+        r"\centering",
+        r"\scriptsize",
+        r"\setlength{\tabcolsep}{2.0pt}",
+        r"\renewcommand{\arraystretch}{1.06}",
+        r"\caption*{\textbf{Table A11.} Engineering-unit reserve-value translation at $\rho="
+        + f"{main_ratio:g}"
+        + r"$.}",
+        r"\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.24\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\raggedright\arraybackslash}X}",
+        r"\toprule",
+        r"Comparison & $\Delta$ reserve MWh-eq. & Avoided shortage MWh-eq. & $\Delta$ cost MWh-eq. & $\Delta$ EUR at 100/MWh & Wording \\",
+        r"\midrule",
+    ]
+    for _, row in frame.iterrows():
+        lines.append(
+            " & ".join(
+                [
+                    _escape(str(row["comparison"])),
+                    _fmt_signed(row.get("delta_reserve_mwh_equiv"), 1),
+                    _fmt_signed(row.get("avoided_shortage_mwh_equiv"), 1),
+                    _fmt_signed(row.get("delta_total_cost_mwh_equiv"), 1),
+                    _fmt_signed_m_eur(row.get("delta_eur_at_100_per_mwh")),
+                    _escape(str(row["wording"])),
+                ]
+            )
+            + r" \\"
+        )
+    lines.extend(
+        [
+            r"\bottomrule",
+            r"\end{tabularx}",
+            r"\vspace{1mm}",
+            r"\footnotesize MWh-eq. denotes forecast-cell MWh-equivalent accounting from kW active-power shortfall and $\Delta t=1/6$ h. EUR values are scenario translations under an assumed reserve carrying cost of 100 EUR/MWh; they are not market-settlement, OPF, or unit-commitment results.",
+            r"\end{table}",
+            "",
+        ]
+    )
+    path.write_text("\n".join(lines), encoding="utf-8")
 
 
 def _probabilistic_rows(probabilistic_dir: Path, *, main_ratio: float) -> pd.DataFrame:
@@ -243,3 +434,28 @@ def _fmt_m(value: Any, digits: int = 2) -> str:
     if not np.isfinite(value_float):
         return "NA"
     return f"{value_float / 1_000_000.0:.{digits}f}M"
+
+
+def _fmt_signed(value: Any, digits: int = 1) -> str:
+    value_float = _num(value)
+    if not np.isfinite(value_float):
+        return "NA"
+    prefix = "+" if value_float >= 0.0 else ""
+    return f"{prefix}{value_float:.{digits}f}"
+
+
+def _fmt_signed_m_eur(value: Any) -> str:
+    value_float = _num(value)
+    if not np.isfinite(value_float):
+        return "NA"
+    prefix = "+" if value_float >= 0.0 else ""
+    return f"{prefix}{value_float / 1000.0:.0f}k"
+
+
+def _escape(text: str) -> str:
+    return (
+        text.replace("\\", r"\textbackslash{}")
+        .replace("&", r"\&")
+        .replace("%", r"\%")
+        .replace("_", r"\_")
+    )

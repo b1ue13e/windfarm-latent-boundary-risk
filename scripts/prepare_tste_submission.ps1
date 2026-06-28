@@ -62,8 +62,8 @@ $coverText = Get-Content -LiteralPath (Join-Path $root "cover_letter_tste.md") -
 if ($coverText.Contains("[Author Names]")) {
     throw "cover_letter_tste.md still contains the [Author Names] placeholder."
 }
-if (-not $coverText.Contains("Supplementary Table A10")) {
-    throw "cover_letter_tste.md does not mention Supplementary Table A10 claim boundaries."
+if (-not $coverText.Contains("Supplementary Table A11")) {
+    throw "cover_letter_tste.md does not mention Supplementary Table A11 engineering-unit translation."
 }
 
 & python (Join-Path $root "scripts\transform_ieee.py")
@@ -99,7 +99,7 @@ $freezeDir = Join-Path $root "artifacts\tste_evidence_freeze_guard"
     --final-package-dir (Join-Path $root "artifacts\final_evidence_package") `
     --paired-effects (Join-Path $root "artifacts\strictmask_combined_reviewer_stats\paired_effects_summary.csv") `
     --output-dir $freezeDir `
-    --required-tokens "236.13,225.74,0.960,0.196,0.508,0.8716,0.9166,84.58M,84.31M,88.13M,10.39,0.764,566"
+    --required-tokens "236.13,225.74,0.960,0.196,0.508,0.8716,0.9166,84.58M,84.31M,88.13M,10.39,0.764,566,1846.9,539.8,3551.4,355k"
 if ($LASTEXITCODE -ne 0) { throw "Evidence-freeze guard command failed." }
 $freezeJson = Get-Content -LiteralPath (Join-Path $freezeDir "evidence_freeze_guard.json") -Raw | ConvertFrom-Json
 $freezeStatus = [string]$freezeJson.status
@@ -148,7 +148,7 @@ $uploadFiles = @(
     [ordered]@{
         file = "upload_files/supplementary_material.pdf"
         portal_role = "Supplementary material"
-        note = "Supplementary appendix with Tables A1-A10."
+        note = "Supplementary appendix with Tables A1-A11."
     },
     [ordered]@{
         file = "upload_files/cover_letter.md"
@@ -305,6 +305,9 @@ foreach ($rel in @(
     "references.bib",
     "IEEE.csl",
     "TUptm.fd",
+    "windfarm_moe\__init__.py",
+    "windfarm_moe\operational_cost.py",
+    "windfarm_moe\utils.py",
     "scripts\prepare_tste_submission.ps1",
     "scripts\verify_tste_submission_package.ps1",
     "scripts\build_paper_ieee.ps1",
@@ -314,6 +317,7 @@ foreach ($rel in @(
     "scripts\build_statistical_claim_table.py",
     "scripts\build_early_warning_consequence_table.py",
     "scripts\build_reserve_claim_boundary_table.py",
+    "scripts\build_engineering_unit_value_translation.py",
     "scripts\build_outcome_channel_sanity.py",
     "scripts\build_external_deployment_gate_audit.py"
 )) {
@@ -345,6 +349,9 @@ $auditFiles = @(
     "table_early_warning_consequence_audit.tex",
     "reserve_claim_boundary_audit.csv",
     "table_reserve_claim_boundary_audit.tex",
+    "engineering_unit_value_translation.csv",
+    "table_engineering_unit_value_translation.tex",
+    "engineering_unit_value_translation_summary.json",
     "accountability_tradeoff.csv",
     "table_accountability_tradeoff.tex"
 )
@@ -367,7 +374,7 @@ Generated: $stamp
 ## Upload files
 
 - `upload_files/manuscript_ieee_tste.pdf`: IEEEtran main manuscript.
-- `upload_files/supplementary_material.pdf`: supplementary appendix with Tables A1-A10.
+- `upload_files/supplementary_material.pdf`: supplementary appendix with Tables A1-A11.
 - `upload_files/cover_letter.md`: TSTE cover letter aligned with claim audits.
 - `upload_files/portal_metadata.md`: copy-paste portal fields for title, abstract, keywords, authors, declarations, and file roles.
 - `upload_files/portal_metadata.json`: machine-readable copy of the same portal metadata.
@@ -403,6 +410,7 @@ Generated: $stamp
 - Supplementary Table A8: external-site deployment gates.
 - Supplementary Table A9: early-warning detection consequence.
 - Supplementary Table A10: reserve-policy claim boundary.
+- Supplementary Table A11: engineering-unit reserve-value translation.
 
 ## Human confirmations before upload
 
