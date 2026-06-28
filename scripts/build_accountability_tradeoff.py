@@ -25,6 +25,14 @@ EARLY_WARNING = (
 TOY_COST = ROOT / "artifacts" / "reserve_toy_operational_cost" / "reserve_toy_operational_cost.csv"
 
 ROUTING_NMI_PASS = 0.65
+STRICT_CACHE_FORECASTING_BASELINES = [
+    "Graph WaveNet",
+    "Graph Transformer",
+    "GAT-GRU",
+    "PatchTST",
+    "iTransformer",
+    "TiDE",
+]
 
 
 def main() -> None:
@@ -36,9 +44,9 @@ def main() -> None:
     early = pd.read_csv(EARLY_WARNING)
     cost = pd.read_csv(TOY_COST)
 
-    graph_rmse = _metric_mean(
-        _lookup(benchmark, Panel="WTB", Model="Graph WaveNet").get("Overall RMSE")
-    )
+    accuracy_anchor = _best_forecasting_anchor(benchmark)
+    anchor_model = str(accuracy_anchor["model"])
+    anchor_rmse = float(accuracy_anchor["overall_rmse"])
     boundary_rmse = _metric_mean(
         _lookup(benchmark, Panel="WTB", Model="Boundary-forced router").get("Overall RMSE")
     )
@@ -68,10 +76,12 @@ def main() -> None:
 
     rows = [
         {
-            "model": "Graph WaveNet",
+            "model": anchor_model,
             "role": "accuracy reference",
-            "overall_rmse": graph_rmse,
-            "rmse_penalty_vs_graph_wavenet": 0.0,
+            "overall_rmse": anchor_rmse,
+            "rmse_penalty_vs_best_strict_cache_baseline": 0.0,
+            "accuracy_anchor_model": anchor_model,
+            "accuracy_anchor_rmse": anchor_rmse,
             "route_nmi": math.nan,
             "route_ari": math.nan,
             "routing_gate_status": "no audited operating-state gate",
@@ -85,14 +95,16 @@ def main() -> None:
             "shortage_penalty_delta_vs_same_model_global": math.nan,
             "violation_rate_delta_vs_same_model_global": math.nan,
             "pareto_status": "frontier_anchor",
-            "claim_boundary": "forecasting baseline; no degraded-label accountability claim",
+            "claim_boundary": "lowest-RMSE strict-cache forecasting baseline; no degraded-label accountability claim",
         },
         {
             "model": "Unconstrained MoE",
             "role": "routed-capacity control",
             "overall_rmse": _metric_mean(unconstrained.get("Overall RMSE")),
-            "rmse_penalty_vs_graph_wavenet": _metric_mean(unconstrained.get("Overall RMSE"))
-            - graph_rmse,
+            "rmse_penalty_vs_best_strict_cache_baseline": _metric_mean(unconstrained.get("Overall RMSE"))
+            - anchor_rmse,
+            "accuracy_anchor_model": anchor_model,
+            "accuracy_anchor_rmse": anchor_rmse,
             "route_nmi": _metric_mean(unconstrained.get("NMI")),
             "route_ari": _metric_mean(unconstrained.get("ARI")),
             "routing_gate_status": "fails physical-route audit",
@@ -112,7 +124,9 @@ def main() -> None:
             "model": "Boundary-forced router",
             "role": "auditable boundary route",
             "overall_rmse": boundary_rmse,
-            "rmse_penalty_vs_graph_wavenet": boundary_rmse - graph_rmse,
+            "rmse_penalty_vs_best_strict_cache_baseline": boundary_rmse - anchor_rmse,
+            "accuracy_anchor_model": anchor_model,
+            "accuracy_anchor_rmse": anchor_rmse,
             "route_nmi": _metric_mean(boundary_ablation.get("NMI")),
             "route_ari": _metric_mean(boundary_ablation.get("ARI")),
             "routing_gate_status": "passes physical-route audit",
@@ -152,7 +166,7 @@ def main() -> None:
             "toy_cost": str(TOY_COST),
         },
         "routing_nmi_pass": ROUTING_NMI_PASS,
-        "six_step_label_delay": {
+            "six_step_label_delay": {
             "gate_recall": gate_recall,
             "threshold_rule_recall": rule_recall,
             "recall_gain": recall_gain,
@@ -172,6 +186,11 @@ def main() -> None:
                 gate_cost.get("delta_violation_rate_vs_boundary_router_global")
             ),
             "scope": "normalized reserve-energy cost units, not currency",
+        },
+        "accuracy_anchor": {
+            "model": anchor_model,
+            "overall_rmse": anchor_rmse,
+            "scope": "lowest mean WTB RMSE among completed strict-cache forecasting baselines",
         },
         "outputs": {
             "csv": str(OUT_TABLES / "accountability_tradeoff.csv"),
@@ -195,6 +214,21 @@ def _lookup(frame: pd.DataFrame, **equals: str) -> pd.Series:
     if rows.empty:
         raise ValueError(f"No row matches {equals}")
     return rows.iloc[0]
+
+
+def _best_forecasting_anchor(benchmark: pd.DataFrame) -> dict[str, Any]:
+    rows: list[dict[str, Any]] = []
+    for model in STRICT_CACHE_FORECASTING_BASELINES:
+        try:
+            row = _lookup(benchmark, Panel="WTB", Model=model)
+        except ValueError:
+            continue
+        rmse = _metric_mean(row.get("Overall RMSE"))
+        if math.isfinite(rmse):
+            rows.append({"model": model, "overall_rmse": rmse})
+    if not rows:
+        raise ValueError("No strict-cache forecasting baseline RMSE is available for the accountability anchor.")
+    return min(rows, key=lambda row: float(row["overall_rmse"]))
 
 
 def _metric_mean(value: Any) -> float:
@@ -249,7 +283,7 @@ def _write_latex(frame: pd.DataFrame, path: Path) -> None:
                 [
                     str(row["model"]).replace("_", r"\_"),
                     _fmt(row.get("overall_rmse"), 2),
-                    _fmt(row.get("rmse_penalty_vs_graph_wavenet"), 2),
+                    _fmt(row.get("rmse_penalty_vs_best_strict_cache_baseline"), 2),
                     _fmt3(row.get("route_nmi")),
                     _fmt3(row.get("citable_recall_gain")),
                     str(row["routing_gate_status"]).replace("_", r"\_"),
@@ -264,18 +298,19 @@ def _write_latex(frame: pd.DataFrame, path: Path) -> None:
 def _plot_tradeoff(frame: pd.DataFrame, path: Path) -> None:
     fig, ax = plt.subplots(figsize=(6.9, 2.75))
     colors = {
-        "Graph WaveNet": "#2563eb",
+        "iTransformer": "#2563eb",
         "Unconstrained MoE": "#6b7280",
         "Boundary-forced router": "#dc2626",
     }
     markers = {
-        "Graph WaveNet": "o",
+        "iTransformer": "o",
         "Unconstrained MoE": "X",
         "Boundary-forced router": "s",
     }
+    anchor_model = str(frame["accuracy_anchor_model"].dropna().iloc[0]) if "accuracy_anchor_model" in frame else "best baseline"
     for _, row in frame.iterrows():
         model = str(row["model"])
-        x = _num(row["rmse_penalty_vs_graph_wavenet"])
+        x = _num(row["rmse_penalty_vs_best_strict_cache_baseline"])
         y = _num(row["citable_recall_gain"])
         ax.scatter(
             [x],
@@ -287,19 +322,22 @@ def _plot_tradeoff(frame: pd.DataFrame, path: Path) -> None:
             linewidth=0.9,
             zorder=3,
         )
-        label = {
-            "Graph WaveNet": "Graph WaveNet",
-            "Unconstrained MoE": "Unconstrained MoE\n(no route)",
-            "Boundary-forced router": "Boundary router\n(+0.764)",
-        }[model]
+        label = (
+            f"{anchor_model}\n(best RMSE)"
+            if model == anchor_model
+            else {
+                "Unconstrained MoE": "Unconstrained MoE\n(no route)",
+                "Boundary-forced router": "Boundary router\n(+0.764)",
+            }[model]
+        )
         dx = 0.16 if model != "Boundary-forced router" else -2.85
-        dy = 0.045 if model == "Graph WaveNet" else 0.035
+        dy = 0.045 if model == anchor_model else 0.035
         ax.annotate(label, (x, y), xytext=(x + dx, y + dy), fontsize=8)
 
     frontier = frame[frame["pareto_status"].astype(str).str.startswith("frontier")].copy()
-    frontier = frontier.sort_values("rmse_penalty_vs_graph_wavenet")
+    frontier = frontier.sort_values("rmse_penalty_vs_best_strict_cache_baseline")
     ax.plot(
-        frontier["rmse_penalty_vs_graph_wavenet"],
+        frontier["rmse_penalty_vs_best_strict_cache_baseline"],
         frontier["citable_recall_gain"],
         color="#111827",
         linewidth=1.5,
@@ -312,7 +350,7 @@ def _plot_tradeoff(frame: pd.DataFrame, path: Path) -> None:
     ax.annotate(
         "gate 0.960 vs rule 0.196",
         xy=(
-            _num(boundary["rmse_penalty_vs_graph_wavenet"]),
+            _num(boundary["rmse_penalty_vs_best_strict_cache_baseline"]),
             _num(boundary["citable_recall_gain"]),
         ),
         xytext=(1.5, 0.60),
@@ -329,9 +367,9 @@ def _plot_tradeoff(frame: pd.DataFrame, path: Path) -> None:
         va="top",
         color="#374151",
     )
-    ax.set_xlabel("WTB RMSE penalty vs Graph WaveNet")
+    ax.set_xlabel(f"WTB RMSE penalty vs {anchor_model}")
     ax.set_ylabel("Citable recall gain")
-    ax.set_xlim(-0.8, 12.1)
+    ax.set_xlim(-0.8, max(12.8, float(frame["rmse_penalty_vs_best_strict_cache_baseline"].max()) + 1.0))
     ax.set_ylim(-0.05, 0.86)
     ax.grid(True, alpha=0.25)
     ax.legend(loc="lower right", fontsize=7, frameon=True)

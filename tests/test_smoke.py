@@ -140,6 +140,8 @@ class SmokeTests(unittest.TestCase):
                 "baseline_gat_gru",
                 "baseline_graph_transformer",
                 "baseline_tcn",
+                "baseline_itransformer",
+                "baseline_tide",
                 "moe_context_align",
                 "moe_anchor_only",
             ]:

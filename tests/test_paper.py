@@ -265,6 +265,22 @@ class PaperUtilityTests(unittest.TestCase):
                         "switch_mae": 186.0,
                     },
                     {
+                        "model": "iTransformer",
+                        "experiment_group": "strong_baselines",
+                        "overall_rmse": 229.0,
+                        "overall_mae": 166.0,
+                        "switch_rmse": 233.0,
+                        "switch_mae": 167.0,
+                    },
+                    {
+                        "model": "TiDE",
+                        "experiment_group": "strong_baselines",
+                        "overall_rmse": 238.0,
+                        "overall_mae": 171.0,
+                        "switch_rmse": 242.0,
+                        "switch_mae": 172.0,
+                    },
+                    {
                         "model": "MoE + L_bal + L_align + L_force",
                         "experiment_group": "ablation",
                         "overall_rmse": 270.0,
@@ -299,6 +315,8 @@ class PaperUtilityTests(unittest.TestCase):
                     "GAT-GRU",
                     "Physics-Aligned MoE",
                     "PatchTST",
+                    "iTransformer",
+                    "TiDE",
                     "Capacity-Matched Dense Diffusion-GRU",
                     "Unconstrained MoE",
                     "Boundary-forced router",
@@ -619,6 +637,27 @@ class PaperUtilityTests(unittest.TestCase):
         specs = run_sequence.call_args.kwargs["specs"]
         self.assertEqual([spec["key"] for spec in specs], ["graph_transformer", "gat_gru"])
         self.assertEqual([spec["mode"] for spec in specs], ["baseline_graph_transformer", "baseline_gat_gru"])
+
+    def test_run_paper_suite_dispatches_recent_time_series_baselines(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            with patch("windfarm_moe.paper._run_spec_sequence", return_value=[]) as run_sequence:
+                run_paper_suite(
+                    bundle=object(),
+                    output_root=Path(temp_dir),
+                    dataset="wtb",
+                    seeds=[101],
+                    strong_baseline_seeds=[301],
+                    base_model_config=ModelConfig(num_experts=4),
+                    base_train_config=TrainConfig(),
+                    eval_config=EvalConfig(),
+                    groups=["strong_baselines"],
+                    variant_keys=["itransformer", "tide"],
+                )
+
+        self.assertEqual(run_sequence.call_args.kwargs["experiment_group"], "strong_baselines")
+        specs = run_sequence.call_args.kwargs["specs"]
+        self.assertEqual([spec["key"] for spec in specs], ["itransformer", "tide"])
+        self.assertEqual([spec["mode"] for spec in specs], ["baseline_itransformer", "baseline_tide"])
 
     def test_run_paper_suite_rejects_unknown_variant_key(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

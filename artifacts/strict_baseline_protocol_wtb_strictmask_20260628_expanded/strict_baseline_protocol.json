@@ -1,0 +1,85 @@
+{
+  "status": "protocol_only_not_executed",
+  "dataset": "wtb",
+  "purpose": "Fair strict-cache rerun protocol for WTB strong forecasting baselines.",
+  "claim_supported_after_execution": "strict-cache cross-family WTB forecasting comparison",
+  "claim_not_supported_until_execution": "strict-cache leaderboard or accuracy-dominance claim",
+  "cache_policy": {
+    "cache_root": "artifacts/cache_strictmask",
+    "cache_dir": "artifacts\\cache_strictmask\\wtb_245d",
+    "required_metadata_marker": "strict_anchor_mask_patch",
+    "required_anchor_violation_count": 0
+  },
+  "split_policy": {
+    "train_days": 180,
+    "val_days": 30,
+    "test_days": 35,
+    "total_days": 245,
+    "hist_len": 36,
+    "pred_len": 24,
+    "bounds": {
+      "train": [
+        0,
+        25920
+      ],
+      "val": [
+        25920,
+        30240
+      ],
+      "test": [
+        30240,
+        35280
+      ]
+    }
+  },
+  "baselines": [
+    {
+      "variant_key": "graph_wavenet",
+      "label": "Graph WaveNet",
+      "mode": "baseline_graph_wavenet"
+    },
+    {
+      "variant_key": "graph_transformer",
+      "label": "Graph Transformer",
+      "mode": "baseline_graph_transformer"
+    },
+    {
+      "variant_key": "gat_gru",
+      "label": "GAT-GRU",
+      "mode": "baseline_gat_gru"
+    },
+    {
+      "variant_key": "patchtst",
+      "label": "PatchTST",
+      "mode": "baseline_patchtst"
+    },
+    {
+      "variant_key": "itransformer",
+      "label": "iTransformer",
+      "mode": "baseline_itransformer"
+    },
+    {
+      "variant_key": "tide",
+      "label": "TiDE",
+      "mode": "baseline_tide"
+    }
+  ],
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "training": {
+    "epochs": 20,
+    "batch_size": 16,
+    "hidden_dim": 64
+  },
+  "outputs": {
+    "suite_dir": "artifacts\\strictmask_baseline_rerun_wtb_full",
+    "split_csv": "artifacts\\strict_baseline_protocol_wtb_strictmask_20260628_expanded\\strict_baseline_split.csv",
+    "jobs_csv": "artifacts\\strict_baseline_protocol_wtb_strictmask_20260628_expanded\\strict_baseline_jobs.csv",
+    "commands_ps1": "artifacts\\strict_baseline_protocol_wtb_strictmask_20260628_expanded\\strict_baseline_commands.ps1"
+  }
+}

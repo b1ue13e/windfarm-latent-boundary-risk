@@ -9,7 +9,7 @@ import pandas as pd
 from .utils import ensure_dir, load_json, save_json
 
 
-DEFAULT_STRICT_BASELINE_DIR = Path("artifacts/strict_baseline_protocol_wtb_strictmask_20260609")
+DEFAULT_STRICT_BASELINE_DIR = Path("artifacts/strict_baseline_protocol_wtb_strictmask_20260628_expanded")
 DEFAULT_FUTURE_HOLDOUT_DIR = Path("artifacts/future_holdout_protocol_wtb_strictmask_20260609")
 DEFAULT_FUTURE_HOLDOUT_EVIDENCE_GUARD_DIR = Path("artifacts/future_holdout_evidence_guard_wtb_strictmask")
 DEFAULT_SPATIAL_HOLDOUT_DIR = Path("artifacts/spatial_holdout_protocol_wtb_east_20260611")
@@ -196,7 +196,7 @@ def _write_refresh_script(output_dir: Path) -> Path:
         "    exit 0",
         "}",
         "",
-        'python main.py strict-baseline-guard --protocol-dir artifacts/strict_baseline_protocol_wtb_strictmask_20260609 --output-dir artifacts/strict_baseline_protocol_wtb_strictmask_20260609/guard_refresh --root-dir . --cache-root artifacts/cache_strictmask --suite-dir artifacts/strictmask_baseline_rerun_wtb_full --train-days 180 --val-days 30 --test-days 35 --hist-len 36 --pred-len 24 --variant-keys graph_wavenet,graph_transformer,gat_gru,patchtst --seeds 201,202,203,204,205',
+        'python main.py strict-baseline-guard --protocol-dir artifacts/strict_baseline_protocol_wtb_strictmask_20260628_expanded --output-dir artifacts/strict_baseline_protocol_wtb_strictmask_20260628_expanded/guard_refresh --root-dir . --cache-root artifacts/cache_strictmask --suite-dir artifacts/strictmask_baseline_rerun_wtb_full --train-days 180 --val-days 30 --test-days 35 --hist-len 36 --pred-len 24 --variant-keys graph_wavenet,graph_transformer,gat_gru,patchtst,itransformer,tide --seeds 201,202,203,204,205',
         'python main.py future-holdout-guard --protocol-dir artifacts/future_holdout_protocol_wtb_strictmask_20260609 --output-dir artifacts/future_holdout_protocol_wtb_strictmask_20260609/guard_refresh --root-dir . --cache-root artifacts/cache_strictmask_future --train-days 160 --val-days 25 --test-days 25 --holdout-days 35 --hist-len 36 --pred-len 24',
         'python main.py future-holdout-evidence-guard --protocol-dir artifacts/future_holdout_protocol_wtb_strictmask_20260609 --output-dir artifacts/future_holdout_evidence_guard_wtb_strictmask --suite-dir artifacts/future_holdout_wtb_strictmask_runs --cache-dir artifacts/cache_strictmask_future/wtb_245d --mechanism-dir artifacts/future_holdout_wtb_strictmask_mechanism_gate --placebo-dir artifacts/future_holdout_wtb_strictmask_placebo --boundary-slice-dir artifacts/future_holdout_wtb_strictmask_boundary_slice --reviewer-pack-dir artifacts/future_holdout_wtb_strictmask_reviewer_stats --seeds 301,302,303,304,305',
         'python main.py spatial-holdout-guard --protocol-dir artifacts/spatial_holdout_protocol_wtb_east_20260611 --output-dir artifacts/spatial_holdout_protocol_wtb_east_20260611/guard_refresh --source-cache-dir artifacts/cache_strictmask/wtb_245d --output-cache-root artifacts/cache_strictmask_spatial_east --suite-dir artifacts/spatial_holdout_wtb_east_runs --strategy east --fraction 0.2 --seeds 401,402,403,404,405 --variant-keys bal_align_force,context_align_force,anchor_only',
@@ -316,10 +316,10 @@ def run_science_readiness_dashboard(
     items.append(
         _item(
             "fatal",
-            "Strict-cache strong baselines: Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST",
+            "Strict-cache strong baselines: Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST, iTransformer, TiDE",
             strict_status,
             str(strict_path) if strict_path else "",
-            "Wait for remaining GAT-GRU/PatchTST runs and rerun strict-baseline-guard.",
+            "Wait for remaining strict-cache baseline runs and rerun strict-baseline-guard.",
             int(strict.get("expected_runs", 0)) if strict else None,
             int(strict.get("complete_runs", 0)) if strict else None,
             int(strict.get("missing_runs", 0)) if strict else None,

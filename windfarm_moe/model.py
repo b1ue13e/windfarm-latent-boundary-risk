@@ -493,6 +493,89 @@ class PatchTSTEncoder(nn.Module):
         return self.output_norm(context)
 
 
+class InvertedTransformerEncoder(nn.Module):
+    def __init__(self, input_dim: int, config: ModelConfig) -> None:
+        super().__init__()
+        hidden = config.hidden_dim
+        self.temporal_bins = 12
+        self.value_proj = nn.Linear(input_dim, hidden)
+        self.variable_proj = nn.Linear(self.temporal_bins, hidden)
+        self.node_proj = nn.Linear(hidden * 2, hidden)
+        num_heads = 4 if hidden % 4 == 0 else 2
+        encoder_layer = nn.TransformerEncoderLayer(
+            d_model=hidden,
+            nhead=num_heads,
+            dim_feedforward=hidden * 4,
+            dropout=config.dropout,
+            activation="gelu",
+            batch_first=True,
+        )
+        self.variable_encoder = nn.TransformerEncoder(encoder_layer, num_layers=2)
+        self.output_norm = nn.LayerNorm(hidden)
+
+    def forward(
+        self,
+        x_hist: torch.Tensor,
+        edge_index_hist: torch.Tensor,
+        edge_weight_hist: torch.Tensor,
+        feature_mask_hist: torch.Tensor,
+    ) -> torch.Tensor:
+        del edge_index_hist, edge_weight_hist
+        hidden = torch.cat([x_hist, feature_mask_hist], dim=-1)
+        batch_size, history, num_nodes, channels = hidden.shape
+        temporal_value = self.value_proj(hidden[:, -1])
+        variable_series = hidden.permute(0, 2, 3, 1).reshape(batch_size * num_nodes * channels, 1, history)
+        variable_series = F.adaptive_avg_pool1d(variable_series, self.temporal_bins).reshape(
+            batch_size * num_nodes, channels, self.temporal_bins
+        )
+        variable_tokens = self.variable_proj(variable_series)
+        variable_tokens = variable_tokens + _sinusoidal_positional_encoding(
+            variable_tokens.size(1),
+            variable_tokens.size(2),
+            variable_tokens.device,
+            variable_tokens.dtype,
+        ).unsqueeze(0)
+        encoded = self.variable_encoder(variable_tokens)
+        variable_context = encoded.mean(dim=1).reshape(batch_size, num_nodes, -1)
+        context = self.node_proj(torch.cat([temporal_value, variable_context], dim=-1))
+        return self.output_norm(context)
+
+
+class TiDEEncoder(nn.Module):
+    def __init__(self, input_dim: int, config: ModelConfig) -> None:
+        super().__init__()
+        hidden = config.hidden_dim
+        self.temporal_bins = 12
+        self.flatten = nn.Linear(input_dim * self.temporal_bins, hidden * 2)
+        self.encoder = nn.Sequential(
+            nn.LayerNorm(hidden * 2),
+            nn.Linear(hidden * 2, hidden * 2),
+            nn.GELU(),
+            nn.Dropout(config.dropout),
+            nn.Linear(hidden * 2, hidden),
+        )
+        self.residual = nn.Linear(input_dim, hidden)
+        self.output_norm = nn.LayerNorm(hidden)
+
+    def forward(
+        self,
+        x_hist: torch.Tensor,
+        edge_index_hist: torch.Tensor,
+        edge_weight_hist: torch.Tensor,
+        feature_mask_hist: torch.Tensor,
+    ) -> torch.Tensor:
+        del edge_index_hist, edge_weight_hist
+        hidden = torch.cat([x_hist, feature_mask_hist], dim=-1)
+        batch_size, history, num_nodes, channels = hidden.shape
+        series = hidden.permute(0, 2, 3, 1).reshape(batch_size * num_nodes * channels, 1, history)
+        pooled = F.adaptive_avg_pool1d(series, self.temporal_bins).reshape(batch_size * num_nodes, channels, self.temporal_bins)
+        flat = pooled.reshape(batch_size * num_nodes, channels * self.temporal_bins)
+        encoded = self.encoder(self.flatten(flat))
+        residual = self.residual(hidden[:, -1].reshape(batch_size * num_nodes, channels))
+        context = (encoded + residual).reshape(batch_size, num_nodes, -1)
+        return self.output_norm(context)
+
+
 class ExpertHead(nn.Module):
     def __init__(self, hidden_dim: int, pred_len: int, dropout: float) -> None:
         super().__init__()
@@ -528,6 +611,10 @@ class RegimeAwareForecaster(nn.Module):
             self.encoder = TemporalGraphTransformerEncoder(feature_dim * 2, config)
         elif mode == "baseline_tcn":
             self.encoder = TemporalConvEncoder(feature_dim * 2, config)
+        elif mode == "baseline_itransformer":
+            self.encoder = InvertedTransformerEncoder(feature_dim * 2, config)
+        elif mode == "baseline_tide":
+            self.encoder = TiDEEncoder(feature_dim * 2, config)
         else:
             self.encoder = SpatioTemporalEncoder(feature_dim * 2, config)
         hidden = config.hidden_dim
@@ -539,6 +626,8 @@ class RegimeAwareForecaster(nn.Module):
             "baseline_gat_gru",
             "baseline_graph_transformer",
             "baseline_tcn",
+            "baseline_itransformer",
+            "baseline_tide",
         }
         self.dense_head = ExpertHead(hidden, pred_len, config.dropout)
         if self.is_baseline_mode:

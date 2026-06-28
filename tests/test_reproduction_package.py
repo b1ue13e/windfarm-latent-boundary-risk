@@ -39,8 +39,12 @@ class ReproductionPackageTests(unittest.TestCase):
 
             self.assertIn("refresh_readiness.ps1", refresh_text)
             self.assertIn("strictmask_baseline_rerun_wtb_full", queue_text)
+            self.assertIn("graph_wavenet,graph_transformer,gat_gru,patchtst,itransformer,tide", queue_text)
             self.assertIn("strict_followup_queue_20260611.ps1", queue_text)
             self.assertIn("strict-evidence-export", artifact_text)
+            self.assertIn("strict_baseline_protocol_wtb_strictmask_20260628_expanded", artifact_text)
+            self.assertIn("strict_baseline_run_status.csv", final_text)
+            self.assertIn("table_main_benchmark.csv", final_text)
             self.assertIn("reserve-decision-guard", artifact_text)
             self.assertIn("reviewer-stat-pack --dataset wtb", artifact_text)
             self.assertIn("--boundary-negative-guard-dir artifacts/boundary_negative_controls_wtb", artifact_text)

@@ -1,0 +1,100 @@
+{
+  "status": "complete_ready_for_strict_baseline_comparison",
+  "checks": {
+    "protocol_json_exists": true,
+    "protocol_status_is_not_executed": true,
+    "protocol_bounds_match_requested": true,
+    "protocol_cache_root_matches_requested": true,
+    "protocol_cache_dir_matches_requested": true,
+    "cache_metadata_exists": true,
+    "cache_bounds_match_requested": true,
+    "cache_has_strict_anchor_patch_marker": true,
+    "cache_strict_anchor_check_ran": true,
+    "cache_strict_anchor_violations_zero": true,
+    "all_expected_runs_complete": true
+  },
+  "expected_runs": 30,
+  "complete_runs": 30,
+  "missing_runs": 0,
+  "variants": [
+    "graph_wavenet",
+    "graph_transformer",
+    "gat_gru",
+    "patchtst",
+    "itransformer",
+    "tide"
+  ],
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "expected_bounds": {
+    "train": [
+      0,
+      25920
+    ],
+    "val": [
+      25920,
+      30240
+    ],
+    "test": [
+      30240,
+      35280
+    ]
+  },
+  "protocol_bounds": {
+    "train": [
+      0,
+      25920
+    ],
+    "val": [
+      25920,
+      30240
+    ],
+    "test": [
+      30240,
+      35280
+    ]
+  },
+  "cache_bounds": {
+    "train": [
+      0,
+      25920
+    ],
+    "val": [
+      25920,
+      30240
+    ],
+    "test": [
+      30240,
+      35280
+    ]
+  },
+  "anchor_mask_report": {
+    "can_check": true,
+    "anchor_feature_names": [
+      "Wspd",
+      "Pab_mean"
+    ],
+    "anchor_feature_indices": [
+      0,
+      7
+    ],
+    "total_missing_anchor_cells": 49518,
+    "strict_anchor_violations": 0,
+    "strict_anchor_pass": true,
+    "metadata_patch_present": true,
+    "metadata_removed_regime_valid": 49518,
+    "metadata_removed_aux_valid": null,
+    "metadata_patch_violations_after_patch": null
+  },
+  "paths": {
+    "protocol_json": "artifacts\\strict_baseline_protocol_wtb_strictmask_20260628_expanded\\strict_baseline_protocol.json",
+    "cache_metadata": "artifacts\\cache_strictmask\\wtb_245d\\metadata.json",
+    "suite_dir": "artifacts\\strictmask_baseline_rerun_wtb_full",
+    "run_status_csv": "artifacts\\strict_baseline_protocol_wtb_strictmask_20260628_expanded\\guard_refresh\\strict_baseline_run_status.csv"
+  }
+}

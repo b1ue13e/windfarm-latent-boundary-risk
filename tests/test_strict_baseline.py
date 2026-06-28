@@ -41,6 +41,8 @@ class StrictBaselineProtocolTests(unittest.TestCase):
         mode = {
             "graph_wavenet": "baseline_graph_wavenet",
             "patchtst": "baseline_patchtst",
+            "itransformer": "baseline_itransformer",
+            "tide": "baseline_tide",
         }[variant_key]
         save_json(
             run_dir / "training_summary.json",
@@ -62,14 +64,14 @@ class StrictBaselineProtocolTests(unittest.TestCase):
                 "--output-dir",
                 "out",
                 "--variant-keys",
-                "graph_wavenet,patchtst",
+                "graph_wavenet,patchtst,itransformer,tide",
                 "--seeds",
                 "201,202",
             ]
         )
 
         self.assertEqual(args.command, "strict-baseline-protocol")
-        self.assertEqual(args.variant_keys, "graph_wavenet,patchtst")
+        self.assertEqual(args.variant_keys, "graph_wavenet,patchtst,itransformer,tide")
         self.assertEqual(args.seeds, "201,202")
 
     def test_write_strict_baseline_protocol_outputs_jobs_and_commands(self) -> None:
@@ -84,7 +86,7 @@ class StrictBaselineProtocolTests(unittest.TestCase):
                 test_days=1,
                 hist_len=3,
                 pred_len=2,
-                variant_keys="graph_wavenet,patchtst",
+                variant_keys="graph_wavenet,patchtst,itransformer,tide",
                 seeds="201,202",
             )
 
@@ -93,9 +95,9 @@ class StrictBaselineProtocolTests(unittest.TestCase):
             commands = (output_dir / "strict_baseline_commands.ps1").read_text(encoding="utf-8")
 
             self.assertEqual(protocol["status"], "protocol_only_not_executed")
-            self.assertEqual(len(jobs), 4)
+            self.assertEqual(len(jobs), 8)
             self.assertIn("--groups strong_baselines", commands)
-            self.assertIn("--variant-keys graph_wavenet,patchtst", commands)
+            self.assertIn("--variant-keys graph_wavenet,patchtst,itransformer,tide", commands)
             self.assertIn("--strong-baseline-seeds 201,202", commands)
 
     def test_strict_baseline_guard_is_ready_when_runs_are_missing(self) -> None:
@@ -148,11 +150,13 @@ class StrictBaselineProtocolTests(unittest.TestCase):
                 test_days=1,
                 hist_len=3,
                 pred_len=2,
-                variant_keys="graph_wavenet,patchtst",
+                variant_keys="graph_wavenet,patchtst,itransformer,tide",
                 seeds="201",
             )
             self._write_complete_run(root / "suite" / "wtb_graph_wavenet_seed201", "graph_wavenet", 201)
             self._write_complete_run(root / "suite" / "wtb_patchtst_seed201", "patchtst", 201)
+            self._write_complete_run(root / "suite" / "wtb_itransformer_seed201", "itransformer", 201)
+            self._write_complete_run(root / "suite" / "wtb_tide_seed201", "tide", 201)
 
             guard_dir = run_strict_baseline_guard(
                 protocol_dir=protocol_dir,
@@ -169,7 +173,7 @@ class StrictBaselineProtocolTests(unittest.TestCase):
             guard = load_json(guard_dir / "strict_baseline_guard.json")
 
             self.assertEqual(guard["status"], "complete_ready_for_strict_baseline_comparison")
-            self.assertEqual(guard["complete_runs"], 2)
+            self.assertEqual(guard["complete_runs"], 4)
 
 
 if __name__ == "__main__":

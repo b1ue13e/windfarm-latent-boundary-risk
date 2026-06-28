@@ -347,6 +347,8 @@ def build_parser() -> argparse.ArgumentParser:
             "baseline_gat_gru",
             "baseline_graph_transformer",
             "baseline_tcn",
+            "baseline_itransformer",
+            "baseline_tide",
             "moe_no_phys",
             "moe_phys_full",
             "moe_unconstrained",
@@ -827,7 +829,7 @@ def build_parser() -> argparse.ArgumentParser:
     strict_baseline_parser.add_argument(
         "--variant-keys",
         type=str,
-        default="graph_wavenet,graph_transformer,gat_gru,patchtst",
+        default="graph_wavenet,graph_transformer,gat_gru,patchtst,itransformer,tide",
     )
     strict_baseline_parser.add_argument("--seeds", type=str, default="201,202,203,204,205")
     strict_baseline_parser.add_argument("--epochs", type=int, default=20)

@@ -59,7 +59,19 @@ WTB_FORECASTING_ORDER = [
     "GAT-GRU",
     "Physics-Aligned MoE",
     "PatchTST",
+    "iTransformer",
+    "TiDE",
     "Capacity-Matched Dense Diffusion-GRU",
+    "Unconstrained MoE",
+    WTB_CORRECTED_DISPLAY_MODEL,
+]
+
+WTB_MAIN_TABLE_ORDER = [
+    "iTransformer",
+    "Graph WaveNet",
+    "Graph Transformer",
+    "PatchTST",
+    "Physics-Aligned MoE",
     "Unconstrained MoE",
     WTB_CORRECTED_DISPLAY_MODEL,
 ]
@@ -75,6 +87,8 @@ ERA5_FORECASTING_ORDER = [
     "GAT-GRU",
     "STGCN",
     "PatchTST",
+    "iTransformer",
+    "TiDE",
     "TCN",
     "Capacity-Matched Dense Diffusion-GRU",
     "Physics-Aligned MoE",
@@ -106,6 +120,8 @@ STRONG_BASELINE_ORDER = [
     "Graph Transformer",
     "GAT-GRU",
     "PatchTST",
+    "iTransformer",
+    "TiDE",
     "TCN",
 ]
 
@@ -118,6 +134,8 @@ MODEL_SHORT_NAMES = {
     "GAT-GRU": "GAT-GRU",
     "Graph Transformer": "Graph Transformer",
     "PatchTST": "PatchTST",
+    "iTransformer": "iTransformer",
+    "TiDE": "TiDE",
     "TCN": "TCN",
     "Persistence": "Persistence",
     "MoE + L_bal": "MoE + $L_{bal}$",
@@ -138,6 +156,8 @@ LEGACY_VARIANT_KEY_ALIASES = {
     "baseline_gat_gru": "gat_gru",
     "baseline_graph_transformer": "graph_transformer",
     "baseline_tcn": "tcn",
+    "baseline_itransformer": "itransformer",
+    "baseline_tide": "tide",
     "moe_unconstrained": "unconstrained",
     "moe_balance_only": "bal",
     "moe_align_only": "align",
@@ -1395,12 +1415,12 @@ def build_main_benchmark_tex(
     era5_main = _select_era5_forecasting_subset(era5_df)
     wtb_summary = _ordered_rows(
         _summarize_metrics(
-            _ordered_rows(wtb_main[wtb_main["model"].isin(WTB_FORECASTING_ORDER)].copy(), "model", WTB_FORECASTING_ORDER),
+            _ordered_rows(wtb_main[wtb_main["model"].isin(WTB_MAIN_TABLE_ORDER)].copy(), "model", WTB_MAIN_TABLE_ORDER),
             ["model"],
             ["overall_rmse", "overall_mae", "switch_rmse", "switch_mae"],
         ),
         "model",
-        WTB_FORECASTING_ORDER,
+        WTB_MAIN_TABLE_ORDER,
     )
     era5_summary = _ordered_rows(
         _summarize_metrics(
@@ -1414,10 +1434,10 @@ def build_main_benchmark_tex(
     lines = [
         r"\begin{table}[t]",
         r"\centering",
-        r"\small",
-        r"\setlength{\tabcolsep}{7pt}",
-        r"\renewcommand{\arraystretch}{1.08}",
-        r"\caption*{\textbf{Table 3.} Main WTB forecasting performance with strong baselines, and ERA5 forecasting checks including persistence and learned baselines (mean $\pm$ std across seeds where repeated runs are available).}",
+        r"\scriptsize",
+        r"\setlength{\tabcolsep}{4pt}",
+        r"\renewcommand{\arraystretch}{1.04}",
+        r"\caption*{\textbf{Table 3.} Main forecasting performance with representative WTB baselines and ERA5 checks (mean $\pm$ std across seeds where repeated runs are available). Expanded WTB strict-cache baselines are reported in Supplementary Table A12.}",
         r"\begin{tabular}{lrrrr}",
         r"\toprule",
         r"Model & Overall RMSE & Overall MAE & Switch RMSE & Switch MAE \\",
@@ -2449,6 +2469,8 @@ def _strong_baseline_specs(dataset: str) -> list[dict[str, Any]]:
         {"key": "graph_transformer", "label": "Graph Transformer", "mode": "baseline_graph_transformer"},
         {"key": "gat_gru", "label": "GAT-GRU", "mode": "baseline_gat_gru"},
         {"key": "patchtst", "label": "PatchTST", "mode": "baseline_patchtst"},
+        {"key": "itransformer", "label": "iTransformer", "mode": "baseline_itransformer"},
+        {"key": "tide", "label": "TiDE", "mode": "baseline_tide"},
     ]
     if dataset == "era5":
         specs.append({"key": "tcn", "label": "TCN", "mode": "baseline_tcn"})

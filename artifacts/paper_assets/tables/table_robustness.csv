@@ -4,6 +4,8 @@ A_main_seeds,WTB,Graph Transformer,235.38 +/- 5.15,237.06 +/- 5.78,280.50 +/- 35
 A_main_seeds,WTB,GAT-GRU,236.59 +/- 7.80,240.17 +/- 8.50,318.28 +/- 49.88,,,,,5
 A_main_seeds,WTB,Physics-Aligned MoE,241.42 +/- 4.28,242.60 +/- 6.07,297.02 +/- 18.14,0.8312 +/- 0.0560,,,,5
 A_main_seeds,WTB,PatchTST,228.07 +/- 4.05,231.22 +/- 4.15,277.21 +/- 19.30,,,,,5
+A_main_seeds,WTB,iTransformer,224.34 +/- 2.23,228.80 +/- 2.54,303.65 +/- 25.24,,,,,5
+A_main_seeds,WTB,TiDE,227.31 +/- 3.05,231.48 +/- 2.86,284.50 +/- 8.83,,,,,5
 A_main_seeds,WTB,Capacity-Matched Dense Diffusion-GRU,231.42 +/- 5.87,233.82 +/- 5.96,271.47 +/- 22.64,,,,,5
 A_main_seeds,WTB,Unconstrained MoE,235.40 +/- 7.96,237.22 +/- 8.11,307.10 +/- 24.07,0.0136 +/- 0.0304,,,,5
 A_main_seeds,WTB,Boundary-forced router,236.13 +/- 8.41,239.86 +/- 8.85,286.95 +/- 22.07,0.8716 +/- 0.0418,,,,5
@@ -20,6 +22,8 @@ C_wtb_efficiency,WTB,Graph Transformer,,,,,"123,864",0.45,350.53 +/- 66.81,5
 C_wtb_efficiency,WTB,GAT-GRU,,,,,"90,392",0.80,264.14 +/- 63.24,5
 C_wtb_efficiency,WTB,Physics-Aligned MoE,,,,,"110,012",0.62,376.18 +/- 2.27,5
 C_wtb_efficiency,WTB,PatchTST,,,,,"111,512",0.09,1221.70 +/- 26.47,5
+C_wtb_efficiency,WTB,iTransformer,,,,,"116,376",0.17,820.81 +/- 212.34,5
+C_wtb_efficiency,WTB,TiDE,,,,,"66,264",0.09,1583.36 +/- 353.35,5
 C_wtb_efficiency,WTB,Capacity-Matched Dense Diffusion-GRU,,,,,"115,240",1.25,173.81 +/- 11.36,5
 C_wtb_efficiency,WTB,Unconstrained MoE,,,,,"110,012",1.44,194.73 +/- 6.41,5
 C_wtb_efficiency,WTB,Boundary-forced router,,,,,"110,012",0.59,370.98 +/- 66.33,5

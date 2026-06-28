@@ -1,0 +1,31 @@
+variant_key,label,mode,seed,run_dir,complete,overall_rmse,switch_rmse,check_summary_exists,check_metrics_exists,check_seed_matches,check_variant_key_matches,check_experiment_group_is_strong_baselines,check_model_mode_matches,check_overall_rmse_present
+graph_wavenet,Graph WaveNet,baseline_graph_wavenet,201,artifacts\strictmask_baseline_rerun_wtb_full\wtb_graph_wavenet_seed201,True,224.93014417203187,228.3411043023183,True,True,True,True,True,True,True
+graph_wavenet,Graph WaveNet,baseline_graph_wavenet,202,artifacts\strictmask_baseline_rerun_wtb_full\wtb_graph_wavenet_seed202,True,229.6574560259042,232.38025271415228,True,True,True,True,True,True,True
+graph_wavenet,Graph WaveNet,baseline_graph_wavenet,203,artifacts\strictmask_baseline_rerun_wtb_full\wtb_graph_wavenet_seed203,True,223.67755946218062,225.87166607598425,True,True,True,True,True,True,True
+graph_wavenet,Graph WaveNet,baseline_graph_wavenet,204,artifacts\strictmask_baseline_rerun_wtb_full\wtb_graph_wavenet_seed204,True,223.44455460351745,224.17535535429886,True,True,True,True,True,True,True
+graph_wavenet,Graph WaveNet,baseline_graph_wavenet,205,artifacts\strictmask_baseline_rerun_wtb_full\wtb_graph_wavenet_seed205,True,226.97871872193753,229.85548428913134,True,True,True,True,True,True,True
+graph_transformer,Graph Transformer,baseline_graph_transformer,201,artifacts\strictmask_baseline_rerun_wtb_full\wtb_graph_transformer_seed201,True,234.36931051690152,233.94438636823216,True,True,True,True,True,True,True
+graph_transformer,Graph Transformer,baseline_graph_transformer,202,artifacts\strictmask_baseline_rerun_wtb_full\wtb_graph_transformer_seed202,True,234.35200054614276,235.91119911528182,True,True,True,True,True,True,True
+graph_transformer,Graph Transformer,baseline_graph_transformer,203,artifacts\strictmask_baseline_rerun_wtb_full\wtb_graph_transformer_seed203,True,243.9024469856292,247.13312425276894,True,True,True,True,True,True,True
+graph_transformer,Graph Transformer,baseline_graph_transformer,204,artifacts\strictmask_baseline_rerun_wtb_full\wtb_graph_transformer_seed204,True,234.410293373028,235.5924828210498,True,True,True,True,True,True,True
+graph_transformer,Graph Transformer,baseline_graph_transformer,205,artifacts\strictmask_baseline_rerun_wtb_full\wtb_graph_transformer_seed205,True,229.87810758917365,232.69544368951114,True,True,True,True,True,True,True
+gat_gru,GAT-GRU,baseline_gat_gru,201,artifacts\strictmask_baseline_rerun_wtb_full\wtb_gat_gru_seed201,True,230.89257676379688,233.34334989645546,True,True,True,True,True,True,True
+gat_gru,GAT-GRU,baseline_gat_gru,202,artifacts\strictmask_baseline_rerun_wtb_full\wtb_gat_gru_seed202,True,247.78061941983952,251.96901783533272,True,True,True,True,True,True,True
+gat_gru,GAT-GRU,baseline_gat_gru,203,artifacts\strictmask_baseline_rerun_wtb_full\wtb_gat_gru_seed203,True,228.1584909222195,230.8177712362101,True,True,True,True,True,True,True
+gat_gru,GAT-GRU,baseline_gat_gru,204,artifacts\strictmask_baseline_rerun_wtb_full\wtb_gat_gru_seed204,True,235.81691661114502,240.6316784753569,True,True,True,True,True,True,True
+gat_gru,GAT-GRU,baseline_gat_gru,205,artifacts\strictmask_baseline_rerun_wtb_full\wtb_gat_gru_seed205,True,240.31415209258387,244.07665981312041,True,True,True,True,True,True,True
+patchtst,PatchTST,baseline_patchtst,201,artifacts\strictmask_baseline_rerun_wtb_full\wtb_patchtst_seed201,True,232.20304007362623,236.57988925517537,True,True,True,True,True,True,True
+patchtst,PatchTST,baseline_patchtst,202,artifacts\strictmask_baseline_rerun_wtb_full\wtb_patchtst_seed202,True,227.36815880100448,231.71444768867013,True,True,True,True,True,True,True
+patchtst,PatchTST,baseline_patchtst,203,artifacts\strictmask_baseline_rerun_wtb_full\wtb_patchtst_seed203,True,228.6736566557386,231.88731691511478,True,True,True,True,True,True,True
+patchtst,PatchTST,baseline_patchtst,204,artifacts\strictmask_baseline_rerun_wtb_full\wtb_patchtst_seed204,True,221.61441916773734,224.9548984445027,True,True,True,True,True,True,True
+patchtst,PatchTST,baseline_patchtst,205,artifacts\strictmask_baseline_rerun_wtb_full\wtb_patchtst_seed205,True,230.4889730007501,230.94166175034997,True,True,True,True,True,True,True
+itransformer,iTransformer,baseline_itransformer,201,artifacts\strictmask_baseline_rerun_wtb_full\wtb_itransformer_seed201,True,221.61612570985423,226.1675172388264,True,True,True,True,True,True,True
+itransformer,iTransformer,baseline_itransformer,202,artifacts\strictmask_baseline_rerun_wtb_full\wtb_itransformer_seed202,True,224.19716405048018,228.5365180712867,True,True,True,True,True,True,True
+itransformer,iTransformer,baseline_itransformer,203,artifacts\strictmask_baseline_rerun_wtb_full\wtb_itransformer_seed203,True,223.41148293809948,227.31676907857997,True,True,True,True,True,True,True
+itransformer,iTransformer,baseline_itransformer,204,artifacts\strictmask_baseline_rerun_wtb_full\wtb_itransformer_seed204,True,227.7016628730542,232.86840894357283,True,True,True,True,True,True,True
+itransformer,iTransformer,baseline_itransformer,205,artifacts\strictmask_baseline_rerun_wtb_full\wtb_itransformer_seed205,True,224.78711775042268,229.1196387807094,True,True,True,True,True,True,True
+tide,TiDE,baseline_tide,201,artifacts\strictmask_baseline_rerun_wtb_full\wtb_tide_seed201,True,225.71858052579617,229.4804947072276,True,True,True,True,True,True,True
+tide,TiDE,baseline_tide,202,artifacts\strictmask_baseline_rerun_wtb_full\wtb_tide_seed202,True,229.3769024381135,233.56016251740792,True,True,True,True,True,True,True
+tide,TiDE,baseline_tide,203,artifacts\strictmask_baseline_rerun_wtb_full\wtb_tide_seed203,True,231.64544931701454,235.4762845620006,True,True,True,True,True,True,True
+tide,TiDE,baseline_tide,204,artifacts\strictmask_baseline_rerun_wtb_full\wtb_tide_seed204,True,224.68269345419378,229.13639843947135,True,True,True,True,True,True,True
+tide,TiDE,baseline_tide,205,artifacts\strictmask_baseline_rerun_wtb_full\wtb_tide_seed205,True,225.14734589730338,229.7398406339976,True,True,True,True,True,True,True

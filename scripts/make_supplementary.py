@@ -1,5 +1,6 @@
 """Extract Appendix A from paper_draft.md -> paper_tste_supplementary.md."""
 import pathlib
+import pandas as pd
 
 ROOT = pathlib.Path(__file__).parent.parent
 src = (ROOT / "paper_draft.md").read_text(encoding="utf-8")
@@ -41,6 +42,65 @@ app_body = app_body.replace(
     "\\bottomrule\n\\end{tabular}%\n}\n\\end{table}",
     1,
 )
+
+benchmark_path = ROOT / "artifacts" / "paper_assets" / "tables" / "table_main_benchmark.csv"
+if benchmark_path.exists():
+    benchmark = pd.read_csv(benchmark_path)
+    expanded_models = [
+        "Graph WaveNet",
+        "Graph Transformer",
+        "GAT-GRU",
+        "PatchTST",
+        "iTransformer",
+        "TiDE",
+        "Physics-Aligned MoE",
+        "Boundary-forced router",
+    ]
+    rows = []
+    for model in expanded_models:
+        match = benchmark[(benchmark["Panel"].astype(str) == "WTB") & (benchmark["Model"].astype(str) == model)]
+        if match.empty:
+            continue
+        row = match.iloc[0]
+        rows.append(
+            " & ".join(
+                [
+                    str(row["Model"]).replace("_", r"\_"),
+                    str(row["Overall RMSE"]),
+                    str(row["Overall MAE"]),
+                    str(row["Switch RMSE"]),
+                    str(row["Switch MAE"]),
+                    str(row["n_runs"]),
+                ]
+            )
+            + r" \\"
+        )
+    if rows:
+        expanded_table = "\n".join(
+            [
+                "",
+                "```{=latex}",
+                r"\begin{table}[H]",
+                r"\centering",
+                r"\scriptsize",
+                r"\setlength{\tabcolsep}{3pt}",
+                r"\renewcommand{\arraystretch}{1.05}",
+                r"\caption*{\textbf{Table A12.} Expanded WTB strict-cache forecasting baselines (mean $\pm$ std across seeds where repeated runs are available).}",
+                r"\resizebox{\columnwidth}{!}{%",
+                r"\begin{tabular}{lrrrrr}",
+                r"\toprule",
+                r"Model & Overall RMSE & Overall MAE & Switch RMSE & Switch MAE & n \\",
+                r"\midrule",
+                *rows,
+                r"\bottomrule",
+                r"\end{tabular}%",
+                r"}",
+                r"\end{table}",
+                "```",
+                "",
+            ]
+        )
+        app_body = app_body + expanded_table
 
 supp_yaml = "\n".join([
     "---",

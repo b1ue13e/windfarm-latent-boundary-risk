@@ -1,0 +1,4 @@
+split,step_start,step_end_exclusive,anchor_start,anchor_end,n_anchor_windows
+train,0,25920,35,25895,25861
+val,25920,30240,25955,30215,4261
+test,30240,35280,30275,35255,4981

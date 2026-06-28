@@ -46,7 +46,7 @@ class TsteNumberConsistencyTests(unittest.TestCase):
             self._copy_fixture(root)
             main = root / "paper_tste_ieee.md"
             main.write_text(
-                main.read_text(encoding="utf-8").replace("10.39-RMSE", "10.38-RMSE"),
+                main.read_text(encoding="utf-8").replace("224.34", "224.33"),
                 encoding="utf-8",
             )
 
@@ -54,7 +54,7 @@ class TsteNumberConsistencyTests(unittest.TestCase):
             summary = load_json(out / "tste_number_consistency_audit.json")
 
             self.assertEqual(summary["status"], "blocked_tste_number_mismatch")
-            self.assertIn("rmse_price_vs_graph_wavenet", summary["failed_claims"])
+            self.assertIn("best_strict_cache_baseline_overall_rmse", summary["failed_claims"])
 
 
 if __name__ == "__main__":

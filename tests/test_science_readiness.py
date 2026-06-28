@@ -62,9 +62,9 @@ class ScienceReadinessDashboardTests(unittest.TestCase):
                 strict,
                 {
                     "status": "ready_to_execute_training",
-                    "expected_runs": 20,
+                    "expected_runs": 30,
                     "complete_runs": 10,
-                    "missing_runs": 10,
+                    "missing_runs": 20,
                     "checks": {"all_expected_runs_complete": False},
                 },
             )
@@ -146,7 +146,7 @@ class ScienceReadinessDashboardTests(unittest.TestCase):
             by_requirement = {row["requirement"]: row for row in dashboard["items"]}
             self.assertEqual(
                 by_requirement[
-                    "Strict-cache strong baselines: Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST"
+                    "Strict-cache strong baselines: Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST, iTransformer, TiDE"
                 ]["complete"],
                 10,
             )

@@ -138,6 +138,7 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
     )
 
     graph = _lookup(benchmark, Panel="WTB", Model="Graph WaveNet")
+    best_strict = _best_wtb_strict_cache_baseline(benchmark)
     boundary = _lookup(benchmark, Panel="WTB", Model="Boundary-forced router")
     boundary_ablation = _lookup(ablation, Model="MoE + L_bal + L_align + L_force")
     delay_6 = _lookup(early, variant="canonical", scenario="label_delay", degradation_label="delay_steps=6")
@@ -173,7 +174,8 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
     )
 
     return [
-        _check("graph_wavenet_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(graph["Overall RMSE"]), "{:.2f}", ("main", "cover")),
+        _check("graph_wavenet_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(graph["Overall RMSE"]), "{:.2f}", ("main",)),
+        _check("best_strict_cache_baseline_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(best_strict["Overall RMSE"]), "{:.2f}", ("main", "cover")),
         _check("boundary_router_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(boundary["Overall RMSE"]), "{:.2f}", ("main", "cover")),
         _check("boundary_router_nmi", "artifacts/paper_assets/tables/table_wtb_ablation.csv", _metric_mean(boundary_ablation["NMI"]), "{:.4f}", ("main",)),
         _check("boundary_router_ari", "artifacts/paper_assets/tables/table_wtb_ablation.csv", _metric_mean(boundary_ablation["ARI"]), "{:.4f}", ("main",)),
@@ -182,7 +184,7 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         _check("fifty_percent_availability_rule_recall", "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv", _num(availability_50["threshold_recall_mean"]), "{:.3f}", ("main", "cover")),
         _check("six_step_recall_gain", "artifacts/final_evidence_package/export/tables/accountability_tradeoff.csv", _num(accountability_boundary["citable_recall_gain"]), "{:+.3f}", ("main",)),
         _check("early_pitch_cells_recovered", "artifacts/final_evidence_package/export/tables/early_warning_consequence_audit.csv", _num(consequence_delay_6["recovered_cells_vs_rule_mean"]), lambda value: f"{int(round(value))}", ("main",)),
-        _check("rmse_price_vs_graph_wavenet", "artifacts/final_evidence_package/export/tables/accountability_tradeoff.csv", _num(accountability_boundary["rmse_penalty_vs_graph_wavenet"]), "{:.2f}", ("main",)),
+        _check("rmse_price_vs_best_strict_cache_baseline", "artifacts/final_evidence_package/export/tables/accountability_tradeoff.csv", _num(accountability_boundary["rmse_penalty_vs_best_strict_cache_baseline"]), "{:.2f}", ("main", "cover")),
         _check("boundary_gate_bin_cost", "artifacts/final_evidence_package/export/tables/dispatch_reserve_main_table.csv", _num(reserve_boundary_gate["total_cost"]), _fmt_millions, ("main",)),
         _check("boundary_global_cost", "artifacts/final_evidence_package/export/tables/dispatch_reserve_main_table.csv", _num(reserve_boundary_global["total_cost"]), _fmt_millions, ("main",)),
         _check("gwn_physical_bin_cost", "artifacts/final_evidence_package/export/tables/dispatch_reserve_main_table.csv", _num(reserve_gwn_physical["total_cost"]), _fmt_millions, ("main", "supplementary")),
@@ -212,6 +214,29 @@ def _lookup(frame: pd.DataFrame, **equals: str) -> pd.Series:
     if rows.empty:
         raise ValueError(f"No row matches {equals}")
     return rows.iloc[0]
+
+
+def _best_wtb_strict_cache_baseline(frame: pd.DataFrame) -> pd.Series:
+    candidates = [
+        "Graph WaveNet",
+        "Graph Transformer",
+        "GAT-GRU",
+        "PatchTST",
+        "iTransformer",
+        "TiDE",
+    ]
+    rows = []
+    for model in candidates:
+        try:
+            row = _lookup(frame, Panel="WTB", Model=model)
+        except ValueError:
+            continue
+        rmse = _metric_mean(row["Overall RMSE"])
+        if math.isfinite(rmse):
+            rows.append((rmse, row))
+    if not rows:
+        raise ValueError("No WTB strict-cache forecasting baseline row found.")
+    return min(rows, key=lambda item: item[0])[1]
 
 
 def _metric_mean(value: object) -> float:

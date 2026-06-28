@@ -143,7 +143,7 @@ DEFAULT_REPRODUCIBILITY_FILES: tuple[dict[str, Any], ...] = (
     {
         "category": "guard",
         "label": "Strict strong-baseline guard",
-        "path": "artifacts/strict_baseline_protocol_wtb_strictmask_20260609/guard_refresh/strict_baseline_guard.json",
+        "path": "artifacts/strict_baseline_protocol_wtb_strictmask_20260628_expanded/guard_refresh/strict_baseline_guard.json",
         "required": True,
     },
     {

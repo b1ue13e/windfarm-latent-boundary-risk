@@ -24,7 +24,9 @@ new_yaml = (
     "  - \\usepackage{booktabs}\n"
     "  - \\usepackage{float}\n"
     "  - \\usepackage{enumitem}\n"
+    "  - \\usepackage{etoolbox}\n"
     "  - \\setlist[itemize]{leftmargin=1.6em}\n"
+    "  - \\AtBeginEnvironment{CSLReferences}{\\footnotesize}\n"
     "---"
 )
 
@@ -56,7 +58,8 @@ ieee_header = (
     "delay, the gate retains 0.960 early pitch-window recall while the delayed "
     "threshold rule falls to 0.196; with only 50\\% label availability, the gate "
     "remains at 0.960 versus 0.508 for the available-label rule. This accountability "
-    "has a measured forecasting price: RMSE 236.13 versus 225.74 for Graph WaveNet. "
+    "has a measured forecasting price: RMSE 236.13 versus 224.34 for iTransformer, "
+    "the lowest-RMSE strict-cache forecasting baseline. "
     "The same gate exposes transition-window reserve risk; at shortage-to-reserve "
     "cost ratio 10, gate-conditioned binning lowers same-router boundary-window "
     "shortage energy by 14.5\\% while carrying about 3.6\\% more reserve, although "

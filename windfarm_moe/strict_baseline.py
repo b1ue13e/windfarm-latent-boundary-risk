@@ -11,7 +11,7 @@ from .strict_anchor import strict_anchor_mask_report
 from .utils import ensure_dir, load_json, save_json
 
 
-DEFAULT_BASELINE_VARIANTS = ("graph_wavenet", "graph_transformer", "gat_gru", "patchtst")
+DEFAULT_BASELINE_VARIANTS = ("graph_wavenet", "graph_transformer", "gat_gru", "patchtst", "itransformer", "tide")
 DEFAULT_STRICT_BASELINE_SEEDS = (201, 202, 203, 204, 205)
 
 BASELINE_SPECS: dict[str, dict[str, str]] = {
@@ -20,6 +20,8 @@ BASELINE_SPECS: dict[str, dict[str, str]] = {
     "graph_transformer": {"label": "Graph Transformer", "mode": "baseline_graph_transformer"},
     "gat_gru": {"label": "GAT-GRU", "mode": "baseline_gat_gru"},
     "patchtst": {"label": "PatchTST", "mode": "baseline_patchtst"},
+    "itransformer": {"label": "iTransformer", "mode": "baseline_itransformer"},
+    "tide": {"label": "TiDE", "mode": "baseline_tide"},
 }
 
 

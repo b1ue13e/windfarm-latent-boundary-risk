@@ -64,7 +64,6 @@ Corrected routing comparator & Node-level soft gate & WTB boundary-forced: $L_{b
 }
 \end{table}
 ```
-
 ## Auxiliary losses {.unnumbered}
 
 Let $\mathcal{B}$ denote the routed samples after masks, with $B=|\mathcal{B}|$. The soft importance and normalized share of expert $e$ are $I_e = \frac{1}{B}\sum_{n=1}^{B} g_n^{(e)}$ and $P_e = I_e / \sum_{r} I_r$. The top-$K$ load is $f_e = \frac{1}{B}\sum_{n=1}^{B}\mathbf{1}[e \in \mathrm{TopK}(\mathbf{g}_n)]$, giving
@@ -314,5 +313,30 @@ Boundary gate-bin vs GWN global full sample & +3148.2 & -1413.5 & +17283.2 & +17
 \end{tabularx}
 \vspace{1mm}
 \footnotesize MWh-eq. denotes forecast-cell MWh-equivalent accounting from kW active-power shortfall and $\Delta t=1/6$ h. EUR values are scenario translations under an assumed reserve carrying cost of 100 EUR/MWh; they are not market-settlement, OPF, or unit-commitment results.
+\end{table}
+```
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A12.} Expanded WTB strict-cache forecasting baselines (mean $\pm$ std across seeds where repeated runs are available).}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+Model & Overall RMSE & Overall MAE & Switch RMSE & Switch MAE & n \\
+\midrule
+Graph WaveNet & 225.74 +/- 2.60 & 160.09 +/- 2.00 & 228.12 +/- 3.23 & 159.83 +/- 1.41 & 5 \\
+Graph Transformer & 235.38 +/- 5.15 & 165.97 +/- 1.63 & 237.06 +/- 5.78 & 164.82 +/- 2.08 & 5 \\
+GAT-GRU & 236.59 +/- 7.80 & 167.31 +/- 4.37 & 240.17 +/- 8.50 & 167.71 +/- 4.79 & 5 \\
+PatchTST & 228.07 +/- 4.05 & 164.00 +/- 4.09 & 231.22 +/- 4.15 & 164.47 +/- 4.40 & 5 \\
+iTransformer & 224.34 +/- 2.23 & 160.88 +/- 4.45 & 228.80 +/- 2.54 & 162.94 +/- 4.47 & 5 \\
+TiDE & 227.31 +/- 3.05 & 160.43 +/- 4.55 & 231.48 +/- 2.86 & 161.62 +/- 4.58 & 5 \\
+Physics-Aligned MoE & 241.42 +/- 4.28 & 169.49 +/- 2.44 & 242.60 +/- 6.07 & 167.77 +/- 4.19 & 5 \\
+Boundary-forced router & 236.13 +/- 8.41 & 166.42 +/- 5.54 & 239.86 +/- 8.85 & 166.98 +/- 6.75 & 5 \\
+\bottomrule
+\end{tabular}%
+}
 \end{table}
 ```

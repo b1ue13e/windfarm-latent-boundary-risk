@@ -110,7 +110,7 @@ $freezeDir = Join-Path $root "artifacts\tste_evidence_freeze_guard"
     --final-package-dir (Join-Path $root "artifacts\final_evidence_package") `
     --paired-effects (Join-Path $root "artifacts\strictmask_combined_reviewer_stats\paired_effects_summary.csv") `
     --output-dir $freezeDir `
-    --required-tokens "236.13,225.74,0.960,0.196,0.508,0.8716,0.9166,84.58M,84.31M,88.13M,10.39,0.764,566,1846.9,539.8,3551.4,355k"
+    --required-tokens "236.13,224.34,225.74,0.960,0.196,0.508,0.8716,0.9166,84.58M,84.31M,88.13M,11.79,0.764,566,1846.9,539.8,3551.4,355k"
 if ($LASTEXITCODE -ne 0) { throw "Evidence-freeze guard command failed." }
 $freezeJson = Get-Content -LiteralPath (Join-Path $freezeDir "evidence_freeze_guard.json") -Raw | ConvertFrom-Json
 $freezeStatus = [string]$freezeJson.status
@@ -198,7 +198,7 @@ $uploadFiles = @(
     }
 )
 $claimBoundaries = @(
-    "Not a forecasting-SOTA claim: RMSE is reported as 236.13 versus 225.74 for Graph WaveNet.",
+    "Not a forecasting-SOTA claim: RMSE is reported as 236.13 versus 224.34 for iTransformer, the best completed strict-cache forecasting baseline.",
     "Not a universal reserve-policy optimality claim: validation-frozen physical-bin quantile baselines remain competitive.",
     "Not an automatic cross-farm generalization claim: Kelmarsh/Penmanshiel fail the held-out routing criterion and are treated as deployment-gate diagnostics.",
     "Not an anchor-free discovery claim: routing is intentionally constrained by SCADA operating anchors.",
@@ -318,8 +318,14 @@ foreach ($rel in @(
     "references.bib",
     "IEEE.csl",
     "TUptm.fd",
+    "main.py",
     "windfarm_moe\__init__.py",
+    "windfarm_moe\config.py",
+    "windfarm_moe\model.py",
+    "windfarm_moe\paper.py",
     "windfarm_moe\operational_cost.py",
+    "windfarm_moe\reproduction_package.py",
+    "windfarm_moe\strict_baseline.py",
     "windfarm_moe\utils.py",
     "scripts\prepare_tste_submission.ps1",
     "scripts\verify_tste_submission_package.ps1",
@@ -390,6 +396,25 @@ Copy-Item -LiteralPath (Join-Path $freezeDir "evidence_freeze_guard.json") -Dest
 Copy-Item -LiteralPath (Join-Path $freezeDir "evidence_freeze_guard_checks.csv") -Destination $evidenceDir -Force
 Copy-Item -LiteralPath (Join-Path $freezeDir "evidence_freeze_required_tokens.csv") -Destination $evidenceDir -Force
 
+foreach ($rel in @(
+    "artifacts\strict_baseline_protocol_wtb_strictmask_20260628_expanded\strict_baseline_protocol.json",
+    "artifacts\strict_baseline_protocol_wtb_strictmask_20260628_expanded\strict_baseline_jobs.csv",
+    "artifacts\strict_baseline_protocol_wtb_strictmask_20260628_expanded\strict_baseline_split.csv",
+    "artifacts\strict_baseline_protocol_wtb_strictmask_20260628_expanded\strict_baseline_commands.ps1",
+    "artifacts\strict_baseline_protocol_wtb_strictmask_20260628_expanded\guard_refresh\strict_baseline_guard.json",
+    "artifacts\strict_baseline_protocol_wtb_strictmask_20260628_expanded\guard_refresh\strict_baseline_run_status.csv",
+    "artifacts\paper_assets\tables\table_main_benchmark.csv",
+    "artifacts\paper_assets\tables\wtb_test_aggregated_runs.csv",
+    "artifacts\paper_assets\generated\table_3_main_performance.tex"
+)) {
+    $src = Join-Path $root $rel
+    if (Test-Path $src) {
+        $dest = Join-Path $evidenceDir $rel
+        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
+        Copy-Item -LiteralPath $src -Destination $dest -Force
+    }
+}
+
 $readme = @"
 # IEEE TSTE Submission Package
 
@@ -437,6 +462,7 @@ Generated: $stamp
 - Supplementary Table A10: reserve-policy claim boundary.
 - Supplementary Table A11: engineering-unit reserve-value translation.
 - TSTE number consistency audit: source-artifact to final-facing token check.
+- Expanded strict-cache baseline guard and run-status files for Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST, iTransformer, and TiDE.
 
 ## Human confirmations before upload
 
