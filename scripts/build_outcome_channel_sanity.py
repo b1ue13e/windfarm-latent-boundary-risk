@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUN_TABLE = ROOT / "artifacts" / "strictmask_combined_reviewer_stats" / "reviewer_stat_pack_run_table.csv"
 OUT_TABLES = ROOT / "artifacts" / "final_evidence_package" / "export" / "tables"
 REFERENCE = "MoE + L_bal + L_align + L_force"
+CANONICAL_SUITE = "strictmask_validation_wtb_full"
 SEEDS = (201, 202, 203, 204, 205)
 WIND_BINS = np.asarray([0, 3, 5, 7, 9, 9.5, 10, 10.5, 11, 11.5, 12, 13, 16, 30], dtype=np.float64)
 
@@ -58,7 +59,16 @@ def _select_runs(run_table: pd.DataFrame) -> pd.DataFrame:
     ].copy()
     if subset.empty:
         raise ValueError(f"No runs found for {REFERENCE}")
-    subset = subset.sort_values(["seed", "run_dir"]).drop_duplicates("seed", keep="first")
+    # The reference model is present in both the validation and ablation-rerun
+    # suites with identical results. Select the canonical validation suite
+    # explicitly so the choice is intentional rather than dependent on the
+    # alphabetical run_dir order produced by a plain sort.
+    subset["_canonical"] = subset["run_dir"].astype(str).str.contains(CANONICAL_SUITE)
+    subset = (
+        subset.sort_values(["seed", "_canonical", "run_dir"], ascending=[True, False, True])
+        .drop_duplicates("seed", keep="first")
+        .drop(columns="_canonical")
+    )
     missing = sorted(set(SEEDS) - set(subset["seed"].astype(int)))
     if missing:
         raise ValueError(f"Missing required seeds: {missing}")
