@@ -1,6 +1,8 @@
 # Project Inventory
 
-Last updated: 2026-06-23.
+Last updated: 2026-06-28.
+
+Active submission line: IEEE Transactions on Sustainable Energy (TSTE). Applied Energy materials are retained as historical/failsafe artifacts and should not be treated as the current submission target unless explicitly reactivated.
 
 ## Current Entry Points
 
@@ -11,13 +13,22 @@ Last updated: 2026-06-23.
 
 ## Manuscript Files
 
-- `paper_draft.md`: current manuscript source.
-- `paper_draft.pdf`: current rendered manuscript PDF.
-- `paper_draft_compiled.tex`: current Pandoc/XeLaTeX intermediate used by evidence-freeze checks.
-- `paper_draft_compiled.pdf`: current compiled PDF generated from `paper_draft_compiled.tex`.
+- `paper_tste_ieee.md`: active IEEE TSTE main manuscript source.
+- `paper_tste_ieee.pdf`: active IEEE TSTE main manuscript PDF, copied from `build/paper_tste_ieee.pdf` by the TSTE packaging script.
+- `paper_tste_supplementary.md`: active IEEE TSTE supplementary material source.
+- `paper_tste_supplementary.pdf`: active IEEE TSTE supplementary PDF, copied from `build/paper_tste_supplementary.pdf` by the TSTE packaging script.
+- `cover_letter_tste.md`: active TSTE cover letter.
+- `paper_draft.md`: source manuscript used by `scripts/transform_ieee.py` and retained Applied Energy/failsafe line.
+- `paper_draft.pdf`: historical/failsafe rendered manuscript PDF.
+- `paper_draft_compiled.tex`: historical/failsafe Pandoc/XeLaTeX intermediate used by legacy evidence-freeze checks.
+- `paper_draft_compiled.pdf`: historical/failsafe compiled PDF generated from `paper_draft_compiled.tex`.
 - `references.bib`: current bibliography.
-- `elsevier-harvard.csl`: CSL file used by `scripts/build_paper.ps1` and submission helpers.
-- `AE_MAJOR_REVISION_FAILSAFE_PLAN.md`: Applied Energy major-revision failsafe plan.
+- `IEEE.csl`: CSL file used by the active IEEE TSTE build.
+- `elsevier-harvard.csl`: CSL file used by legacy Applied Energy build helpers.
+- `scripts/build_paper_ieee.ps1`: active TSTE build entry point.
+- `scripts/prepare_tste_submission.ps1`: active TSTE submission-package entry point.
+- `scripts/build_paper.ps1`: legacy Applied Energy/failsafe build entry point.
+- `AE_MAJOR_REVISION_FAILSAFE_PLAN.md`: Applied Energy major-revision failsafe plan, if that line is reactivated.
 - `docs/ieee_tste_transfer_execution.md`: IEEE TSTE transfer route, claim boundary, and anchor-stress completion commands.
 
 These files stay in the repository root because several scripts and guards use them as default paths.
@@ -43,10 +54,16 @@ These files stay in the repository root because several scripts and guards use t
 
 ## Recommended Commands
 
-Build the manuscript:
+Build the active IEEE TSTE manuscript:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts/build_paper.ps1
+powershell -ExecutionPolicy Bypass -File scripts/build_paper_ieee.ps1
+```
+
+Prepare and verify the TSTE submission package:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/prepare_tste_submission.ps1
 ```
 
 Run a focused test slice:
