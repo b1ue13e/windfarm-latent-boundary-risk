@@ -60,6 +60,12 @@ if (Test-Path $externalGateScript) {
     if ($LASTEXITCODE -ne 0) { throw "External deployment-gate audit generation failed." }
 }
 
+$numberConsistencyScript = Join-Path $root "scripts\verify_tste_number_consistency.py"
+if (Test-Path $numberConsistencyScript) {
+    & python $numberConsistencyScript --output-dir (Join-Path $root "artifacts\tste_number_consistency_audit")
+    if ($LASTEXITCODE -ne 0) { throw "TSTE number consistency audit failed." }
+}
+
 function Build-PDF {
     param($md, $label)
     $tex = Join-Path $root "build\${label}.tex"

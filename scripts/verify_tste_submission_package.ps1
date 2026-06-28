@@ -66,7 +66,8 @@ foreach ($required in @(
     @{ Path = (Join-Path $manifestDir "SHA256SUMS.txt"); Label = "SHA256 checksum list" },
     @{ Path = (Join-Path $metadataDir "portal_metadata.json"); Label = "portal metadata JSON" },
     @{ Path = (Join-Path $metadataDir "portal_metadata.md"); Label = "portal metadata Markdown" },
-    @{ Path = (Join-Path $evidenceDir "evidence_freeze_guard.json"); Label = "evidence freeze guard JSON" }
+    @{ Path = (Join-Path $evidenceDir "evidence_freeze_guard.json"); Label = "evidence freeze guard JSON" },
+    @{ Path = (Join-Path $evidenceDir "tste_number_consistency_audit.json"); Label = "TSTE number consistency audit JSON" }
 )) {
     Test-RequiredPath -Path $required.Path -Label $required.Label
 }
@@ -78,6 +79,13 @@ if ([string]$freeze.status -ne "complete_ready_for_evidence_freeze") {
 }
 if ([string]$manifest.verification.evidence_freeze_guard_status -ne "complete_ready_for_evidence_freeze") {
     throw "Manifest evidence-freeze status is $($manifest.verification.evidence_freeze_guard_status)."
+}
+$numberAudit = Get-Content -LiteralPath (Join-Path $evidenceDir "tste_number_consistency_audit.json") -Raw | ConvertFrom-Json
+if ([string]$numberAudit.status -ne "complete_tste_number_consistency") {
+    throw "TSTE number consistency audit status is $($numberAudit.status)."
+}
+if ([string]$manifest.verification.number_consistency_audit_status -ne "complete_tste_number_consistency") {
+    throw "Manifest number-consistency status is $($manifest.verification.number_consistency_audit_status)."
 }
 
 $expectedUploadFiles = @(
@@ -181,12 +189,16 @@ if ($sourceZipEntries -notcontains "scripts/verify_tste_submission_package.ps1")
 if ($sourceZipEntries -notcontains "scripts/build_engineering_unit_value_translation.py") {
     throw "Source archive is missing scripts/build_engineering_unit_value_translation.py."
 }
+if ($sourceZipEntries -notcontains "scripts/verify_tste_number_consistency.py") {
+    throw "Source archive is missing scripts/verify_tste_number_consistency.py."
+}
 foreach ($name in @(
     "upload_files/manuscript_ieee_tste.pdf",
     "portal_metadata/portal_metadata.json",
     "integrity_manifest/UPLOAD_MANIFEST.json",
     "evidence_audits/evidence_freeze_guard.json",
-    "evidence_audits/engineering_unit_value_translation.csv"
+    "evidence_audits/engineering_unit_value_translation.csv",
+    "evidence_audits/tste_number_consistency_audit.csv"
 )) {
     if ($fullZipEntries -notcontains $name) {
         throw "Full local archive is missing $name."

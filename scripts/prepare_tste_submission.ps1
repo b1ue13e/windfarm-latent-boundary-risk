@@ -73,6 +73,17 @@ if ($LASTEXITCODE -ne 0) { throw "Supplementary markdown generation failed." }
 & powershell -ExecutionPolicy Bypass -File (Join-Path $root "scripts\build_paper_ieee.ps1")
 if ($LASTEXITCODE -ne 0) { throw "IEEE PDF build failed." }
 
+$numberAuditDir = Join-Path $root "artifacts\tste_number_consistency_audit"
+$numberAuditJsonPath = Join-Path $numberAuditDir "tste_number_consistency_audit.json"
+if (-not (Test-Path $numberAuditJsonPath)) {
+    throw "Missing TSTE number consistency audit JSON."
+}
+$numberAuditJson = Get-Content -LiteralPath $numberAuditJsonPath -Raw | ConvertFrom-Json
+$numberAuditStatus = [string]$numberAuditJson.status
+if ($numberAuditStatus -ne "complete_tste_number_consistency") {
+    throw "TSTE number consistency audit status is $numberAuditStatus."
+}
+
 Copy-Item -LiteralPath (Join-Path $root "build\paper_tste_ieee.pdf") -Destination (Join-Path $root "paper_tste_ieee.pdf") -Force
 Copy-Item -LiteralPath (Join-Path $root "build\paper_tste_supplementary.pdf") -Destination (Join-Path $root "paper_tste_supplementary.pdf") -Force
 
@@ -252,6 +263,7 @@ $claimBoundariesMd
 - Supplementary pages: $suppPages.
 - LaTeX blocking warning/error scan: passed.
 - Evidence-freeze guard status: $freezeStatus.
+- TSTE number consistency audit status: $numberAuditStatus.
 - Cover letter placeholder check: passed.
 
 ## Human Checks Before Portal Submission
@@ -281,6 +293,7 @@ $portalMetadata = [ordered]@{
         supplementary_pages = [int]$suppPages
         latex_log_scan = "passed"
         evidence_freeze_guard_status = $freezeStatus
+        number_consistency_audit_status = $numberAuditStatus
         cover_letter_placeholder_check = "passed"
     }
 }
@@ -319,7 +332,8 @@ foreach ($rel in @(
     "scripts\build_reserve_claim_boundary_table.py",
     "scripts\build_engineering_unit_value_translation.py",
     "scripts\build_outcome_channel_sanity.py",
-    "scripts\build_external_deployment_gate_audit.py"
+    "scripts\build_external_deployment_gate_audit.py",
+    "scripts\verify_tste_number_consistency.py"
 )) {
     $src = Join-Path $root $rel
     if (Test-Path $src) {
@@ -358,6 +372,16 @@ $auditFiles = @(
 $tableRoot = Join-Path $root "artifacts\final_evidence_package\export\tables"
 foreach ($file in $auditFiles) {
     $src = Join-Path $tableRoot $file
+    if (Test-Path $src) {
+        Copy-Item -LiteralPath $src -Destination (Join-Path $evidenceDir $file) -Force
+    }
+}
+foreach ($file in @(
+    "tste_number_consistency_audit.csv",
+    "table_tste_number_consistency_audit.tex",
+    "tste_number_consistency_audit.json"
+)) {
+    $src = Join-Path $numberAuditDir $file
     if (Test-Path $src) {
         Copy-Item -LiteralPath $src -Destination (Join-Path $evidenceDir $file) -Force
     }
@@ -401,6 +425,7 @@ Generated: $stamp
 - Package can be independently rechecked with `scripts/verify_tste_submission_package.ps1 -PackageRoot "$packageRoot"`.
 - LaTeX blocking warning/error scan: passed.
 - Evidence-freeze guard status: $freezeStatus.
+- TSTE number consistency audit status: $numberAuditStatus.
 - Cover letter placeholder check: passed.
 
 ## Claim-boundary audits included
@@ -411,6 +436,7 @@ Generated: $stamp
 - Supplementary Table A9: early-warning detection consequence.
 - Supplementary Table A10: reserve-policy claim boundary.
 - Supplementary Table A11: engineering-unit reserve-value translation.
+- TSTE number consistency audit: source-artifact to final-facing token check.
 
 ## Human confirmations before upload
 
@@ -436,6 +462,7 @@ Checks completed:
 - Supplementary page count is $suppPages.
 - LaTeX blocking warning/error scan passed.
 - Evidence-freeze guard completed with status $freezeStatus.
+- TSTE number consistency audit completed with status $numberAuditStatus.
 - Portal metadata generated from the current IEEE manuscript.
 - Upload integrity manifest generated with SHA256 checksums.
 - Independent package verifier completed successfully.
@@ -518,6 +545,7 @@ $manifestRows
 - Main manuscript pages: $mainPages.
 - Supplementary pages: $suppPages.
 - Evidence-freeze guard status: $freezeStatus.
+- TSTE number consistency audit status: $numberAuditStatus.
 - LaTeX blocking warning/error scan: passed.
 "@
 Set-Content -LiteralPath (Join-Path $manifestDir "UPLOAD_MANIFEST.md") -Value $uploadManifestMarkdown -Encoding UTF8
@@ -531,6 +559,7 @@ $uploadManifest = [ordered]@{
         main_manuscript_pages = [int]$mainPages
         supplementary_pages = [int]$suppPages
         evidence_freeze_guard_status = $freezeStatus
+        number_consistency_audit_status = $numberAuditStatus
         latex_log_scan = "passed"
     }
 }
