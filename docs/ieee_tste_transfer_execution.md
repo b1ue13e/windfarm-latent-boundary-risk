@@ -66,3 +66,38 @@ The TSTE paper should retain only these table-level claims in the main text:
 - The limitations explicitly say the method is not anchor-free physical discovery.
 - The final package provenance lists `anchor-stress-cache / anchor-stress-train / anchor-stress-guard / anchor-stress-early-warning`.
 - All code changes are covered by targeted tests before manuscript conversion starts.
+
+## Build And Submission Environment Notes
+
+Two environment conditions can break `scripts/prepare_tste_submission.ps1` even when the manuscript itself is correct. Check both before a fresh build on a new machine or after cleaning disk space.
+
+### 1. `rg` (ripgrep) must be on PATH
+
+The submission script scans the XeLaTeX logs for blocking warnings with `rg`. If `rg` is not on PATH, the call fails as a missing command and `$LASTEXITCODE` carries over the `0` from the preceding `pdfinfo`, so the script throws a false `LaTeX log contains blocking warnings/errors` even when the logs are clean.
+
+Put a `rg.exe` on PATH before running the build, for example:
+
+```powershell
+$env:PATH = "C:\Users\<user>\AppData\Local\OpenAI\Codex\bin\<hash>;" + $env:PATH
+```
+
+To sanity-check the logs independently of `rg`:
+
+```powershell
+$logPattern = "Font Warning|No file TUptm|undefined citation|Citation .* undefined|Overfull|Undefined control sequence|Some font shapes|TU/ptm|LaTeX Warning: Reference.*undefined|undefined references|LaTeX Error"
+Get-Content build/paper_tste_ieee.log, build/paper_tste_supplementary.log | Select-String -Pattern $logPattern
+```
+
+### 2. Restore run `target.npy` / `mask.npy` after cleanup
+
+Space-saving cleanup may strip the bulky `target.npy` and `mask.npy` from the run metrics dirs (each `*_metrics` folder), keeping `pred.npy` and `anchor_index.npy`. The evidence step `scripts/build_outcome_channel_sanity.py` then fails with `FileNotFoundError: ...val_metrics/target.npy`, which aborts `build_paper_ieee.ps1` and the package build.
+
+These two arrays are an exact function of the windowed cache (`target` window = `cache_target[t+1 : t+1+P]` from the still-present `anchor_index`). Restore them losslessly before rebuilding:
+
+```powershell
+python scripts/restore_run_targets.py            # runs referenced by the reviewer stat-pack run table
+python scripts/restore_run_targets.py --scan     # every run dir under artifacts/ missing the arrays
+python scripts/restore_run_targets.py --dry-run  # report only, write nothing
+```
+
+The utility refuses to write unless the reconstruction reproduces each run's stored `overall.rmse`, so it cannot corrupt evidence. The restored arrays are git-ignored and can be deleted again to reclaim space, then regenerated on demand.

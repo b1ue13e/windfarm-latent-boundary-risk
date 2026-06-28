@@ -24,6 +24,8 @@ python main.py train --root-dir . --max-days 3 --epochs 1 --batch-size 2 --mode 
 powershell -ExecutionPolicy Bypass -File scripts/build_paper_ieee.ps1
 ```
 
+打包 TSTE 投稿包前，若换了机器或刚清理过磁盘，先看构建/打包环境注意事项（`rg` 需在 PATH、run 产物 `target.npy`/`mask.npy` 清理后用 `scripts/restore_run_targets.py` 无损还原）：`docs/ieee_tste_transfer_execution.md` 的 “Build And Submission Environment Notes”。
+
 运行一组轻量测试：
 
 ```powershell
