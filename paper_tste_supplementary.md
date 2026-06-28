@@ -64,6 +64,7 @@ Corrected routing comparator & Node-level soft gate & WTB boundary-forced: $L_{b
 }
 \end{table}
 ```
+
 ## Auxiliary losses {.unnumbered}
 
 Let $\mathcal{B}$ denote the routed samples after masks, with $B=|\mathcal{B}|$. The soft importance and normalized share of expert $e$ are $I_e = \frac{1}{B}\sum_{n=1}^{B} g_n^{(e)}$ and $P_e = I_e / \sum_{r} I_r$. The top-$K$ load is $f_e = \frac{1}{B}\sum_{n=1}^{B}\mathbf{1}[e \in \mathrm{TopK}(\mathbf{g}_n)]$, giving
@@ -340,3 +341,4 @@ Boundary-forced router & 236.13 +/- 8.41 & 166.42 +/- 5.54 & 239.86 +/- 8.85 & 1
 }
 \end{table}
 ```
+
