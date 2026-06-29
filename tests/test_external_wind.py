@@ -16,9 +16,12 @@ from main import _default_num_experts, build_parser
 from main import main
 from windfarm_moe.data import load_cache_bundle
 from windfarm_moe.external_wind import (
+    EXTERNAL_FARMS,
+    EXTERNAL_STATIC_NOTES,
     ExternalWindConfig,
     _derive_turbine_id_from_source,
     _download_file,
+    _normalize_farm,
     _prepare_long_frame,
     _read_external_coords,
     fetch_external_wind_sources,
@@ -1508,6 +1511,115 @@ class ExternalWindTests(unittest.TestCase):
             self.assertIn("expert_usage", status.columns)
             self.assertEqual(set(guard["required_models"]), {"Graph WaveNet", "PatchTST", "Physics-Aligned MoE", "MoE + L_bal + L_align + L_force"})
             self.assertEqual(set(guard["routing_required_models"]), {"Physics-Aligned MoE", "MoE + L_bal + L_align + L_force"})
+
+
+class LaHauteBorneExternalWindTests(unittest.TestCase):
+    """ENGIE La Haute Borne is a second pitch-observable SCADA farm for the
+    within-/cross-farm boundary protocol. These tests lock the registry entry
+    and the ENGIE short-name column mapping (Ws_avg / Ba_avg / P_avg / ...)."""
+
+    def _write_engie_farm(self, root: Path, periods: int = 80, turbines: int = 4) -> Path:
+        farm_dir = root / "data" / "external_wind" / "la_haute_borne"
+        farm_dir.mkdir(parents=True, exist_ok=True)
+        names = [f"R{80711 + idx}" for idx in range(turbines)]
+        times = pd.date_range("2017-01-01", periods=periods, freq="10min")
+        rows = []
+        for name in names:
+            for idx, timestamp in enumerate(times):
+                wspd = 2.0 + (idx % 20) * 0.7
+                pitch = 0.5 if wspd <= 10.5 else 5.0
+                rows.append(
+                    {
+                        "Date_time": timestamp.isoformat(),
+                        "Wind_turbine_name": name,
+                        "Ws_avg": wspd,
+                        "Wa_avg": 180.0,
+                        "Ya_avg": 181.0,
+                        "Ba_avg": pitch,
+                        "P_avg": max(0.0, wspd * 100.0 - 20.0),
+                        "Q_avg": 0.0,
+                        "Ot_avg": 5.0,
+                    }
+                )
+        pd.DataFrame(rows).to_csv(farm_dir / "la-haute-borne-scada.csv", index=False)
+        pd.DataFrame(
+            {
+                "Wind_turbine_name": names,
+                "Latitude": [48.4497 + idx * 0.002 for idx in range(turbines)],
+                "Longitude": [5.5947 + idx * 0.002 for idx in range(turbines)],
+            }
+        ).to_csv(farm_dir / "la-haute-borne_turbine_static.csv", index=False)
+        return farm_dir
+
+    def test_la_haute_borne_is_a_registered_farm(self) -> None:
+        self.assertIn("la_haute_borne", EXTERNAL_FARMS)
+        self.assertIn("la_haute_borne", EXTERNAL_STATIC_NOTES)
+        for alias in ["la_haute_borne", "la-haute-borne", "La Haute Borne", "lahauteborne"]:
+            self.assertEqual(_normalize_farm(alias), "la_haute_borne")
+
+    def test_prepare_long_frame_maps_engie_short_names(self) -> None:
+        raw = pd.DataFrame(
+            {
+                "Date_time": ["2017-01-01T00:00:00", "2017-01-01T00:10:00"],
+                "Wind_turbine_name": ["R80711", "R80711"],
+                "Ws_avg": [8.0, 12.0],
+                "Wa_avg": [180.0, 190.0],
+                "Ya_avg": [181.0, 191.0],
+                "Ba_avg": [0.5, 5.0],
+                "P_avg": [1200.0, 1900.0],
+                "Q_avg": [10.0, 20.0],
+                "Ot_avg": [5.0, 6.0],
+            }
+        )
+
+        frame = _prepare_long_frame(raw)
+
+        self.assertEqual(frame["node_id"].tolist(), ["R80711", "R80711"])
+        self.assertEqual(frame["Wspd"].tolist(), [8.0, 12.0])
+        self.assertEqual(frame["Patv"].tolist(), [1200.0, 1900.0])
+        self.assertAlmostEqual(float(frame.iloc[0]["Pab_mean"]), 0.5)
+        self.assertAlmostEqual(float(frame.iloc[1]["Pab_mean"]), 5.0)
+        self.assertEqual(frame["Prtv"].tolist(), [10.0, 20.0])
+        self.assertEqual(frame["Etmp"].tolist(), [5.0, 6.0])
+
+    def test_preprocess_engie_recovers_mppt_and_pitch_regimes(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self._write_engie_farm(root)
+            config = ExternalWindConfig(
+                root_dir=root,
+                source_dir=root / "data" / "external_wind",
+                cache_root="cache",
+                farm="la_haute_borne",
+                train_days=1,
+                val_days=1,
+                test_days=1,
+                hist_len=3,
+                pred_len=2,
+            )
+
+            cache_dir = preprocess_external_wind(config)
+            bundle = load_cache_bundle(cache_dir)
+            metadata = load_json(cache_dir / "metadata.json")
+
+            self.assertEqual(metadata["dataset"], "external_wind")
+            self.assertEqual(metadata["farm"], "la_haute_borne")
+            self.assertEqual(bundle.physics.shape[-1], 4)
+            # Real blade pitch is present, so the regime must come from the pitch
+            # channel rather than the wind-only proxy fallback.
+            self.assertFalse(metadata["pitch_proxy_used_for_regime"])
+            self.assertGreater(float(metadata["pitch_observed_fraction"]), 0.5)
+            # Copy out of the memmapped cache so no open handle blocks tempdir
+            # cleanup on Windows.
+            regime = np.array(bundle.regime_primary, copy=True)
+            valid = np.array(bundle.regime_primary_valid, copy=True) > 0
+            observed = set(int(v) for v in regime[valid].ravel().tolist())
+            # Both MPPT (1) and pitch-control (2) regimes are recovered: the
+            # MPPT-to-pitch boundary is observable on this farm.
+            self.assertIn(1, observed)
+            self.assertIn(2, observed)
+            del bundle, regime, valid
+            gc.collect()
 
 
 if __name__ == "__main__":

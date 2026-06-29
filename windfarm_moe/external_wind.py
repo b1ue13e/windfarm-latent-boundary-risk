@@ -23,11 +23,18 @@ from .regimes import WTB_PRIMARY_NAMES, compute_wtb_operation_regime, inverse_fr
 from .utils import ensure_dir, fill_with_train_mean, load_json, save_json, standardize, wrap_degrees
 
 
-EXTERNAL_FARMS = ("kelmarsh", "penmanshiel")
+EXTERNAL_FARMS = ("kelmarsh", "penmanshiel", "la_haute_borne")
+# The established external-boundary protocol requires the Kelmarsh/Penmanshiel
+# pair; La Haute Borne is an optional, manual-drop add-on farm and is NOT part of
+# the required source-evidence set, so the source guard must not demand it.
+EXTERNAL_REQUIRED_FARMS = ("kelmarsh", "penmanshiel")
 EXTERNAL_SPLITS = ("chronological", "leave-one-farm-out")
 EXTERNAL_SOURCE_URLS = {
     "kelmarsh": "https://zenodo.org/records/16807551",
     "penmanshiel": "https://zenodo.org/records/16807304",
+    # ENGIE open-data 10-min SCADA (Senvion MM82, 4 turbines). Placed locally; no
+    # Zenodo auto-fetch record, so this farm is fetched as manifest-only / manual drop.
+    "la_haute_borne": "https://opendata-renewables.engie.com/explore/dataset/la-haute-borne-data-2013-2016/",
 }
 EXTERNAL_ZENODO_RECORDS = {
     "kelmarsh": "16807551",
@@ -54,6 +61,7 @@ EXTERNAL_FULL_SOURCE_MIN_BYTES = 10_000_000_000
 EXTERNAL_STATIC_NOTES = {
     "kelmarsh": "6 Senvion MM92 turbines; 10-minute SCADA/static data from 2016 to end-2024.",
     "penmanshiel": "14 Senvion MM82 turbines; 10-minute SCADA/static data from 2016 to end-2024.",
+    "la_haute_borne": "4 Senvion MM82 turbines (ENGIE open data); 10-minute SCADA with blade pitch (Ba_avg), wind speed (Ws_avg), and active power (P_avg).",
 }
 EXTERNAL_FEATURE_NAMES = WTB_FEATURE_NAMES
 EXTERNAL_PHYSICS_NAMES = ("Wspd", "Pab_mean", "wake_score", "Patv")
@@ -136,12 +144,16 @@ class ExternalWindConfig:
 
 
 def _normalize_farm(value: str) -> str:
-    farm = str(value).strip().lower().replace("_", "-")
+    farm = re.sub(r"[\s_]+", "-", str(value).strip().lower())
     aliases = {
         "kelmarsh": "kelmarsh",
         "kelmarsh-wind-farm": "kelmarsh",
         "penmanshiel": "penmanshiel",
         "penmanshiel-wind-farm": "penmanshiel",
+        "la-haute-borne": "la_haute_borne",
+        "lahauteborne": "la_haute_borne",
+        "la-haute-borne-wind-farm": "la_haute_borne",
+        "haute-borne": "la_haute_borne",
     }
     if farm not in aliases:
         raise ValueError(f"Unsupported external wind farm: {value}")
@@ -179,6 +191,7 @@ def _find_turbine_id_column(columns: Iterable[str], required: bool = True) -> st
             "turbine_id",
             "turbine_name",
             "TurbineName",
+            "wind_turbine_name",
             "asset_id",
             "Alternative Title",
             "Identity",
@@ -348,7 +361,7 @@ def _derive_turbine_id_from_source(source: str) -> str:
     stem = Path(source_text).stem
     if re.search(r"WT[_\s-]?\d{1,2}\s*[-_]\s*\d{1,2}", stem, flags=re.IGNORECASE):
         return ""
-    match = re.search(r"(KWF\d+|WT\d+|T\d+)", stem, flags=re.IGNORECASE)
+    match = re.search(r"(KWF\d+|WT\d+|T\d+|R\d{3,})", stem, flags=re.IGNORECASE)
     if not match:
         match = re.search(r"(?:Penmanshiel|Kelmarsh)[_\s-]+(\d{1,2})(?:[_\s-]|$)", stem, flags=re.IGNORECASE)
         if match:
@@ -392,13 +405,13 @@ def _external_scada_usecols(columns: Iterable[str]) -> list[int]:
     turbine_column = _find_turbine_id_column(cols, required=False)
     if turbine_column is not None and turbine_column not in selected:
         selected.append(turbine_column)
-    add(["wspd", "wind_speed", "windspeed", "wind speed", "wind speed ms", "wind speed m s", "avg wind speed"], True)
-    add(["wdir", "wind_direction", "winddirection", "wind direction", "wind direction deg", "avg wind direction"])
-    add(["ndir", "nacelle_direction", "nacelledirection", "yaw", "yaw angle", "nacelle position"])
-    add(["patv", "power", "active_power", "activepower", "active power", "active power kw", "grid power"], True)
-    add(["etmp", "environment_temperature", "ambient temperature", "nacelle ambient temperature", "outside temperature"])
+    add(["wspd", "wind_speed", "windspeed", "wind speed", "wind speed ms", "wind speed m s", "avg wind speed", "ws_avg"], True)
+    add(["wdir", "wind_direction", "winddirection", "wind direction", "wind direction deg", "avg wind direction", "wa_avg"])
+    add(["ndir", "nacelle_direction", "nacelledirection", "yaw", "yaw angle", "nacelle position", "ya_avg"])
+    add(["patv", "power", "active_power", "activepower", "active power", "active power kw", "grid power", "p_avg"], True)
+    add(["etmp", "environment_temperature", "ambient temperature", "nacelle ambient temperature", "outside temperature", "ot_avg"])
     add(["itmp", "inside_temperature", "internal temperature", "nacelle temperature"])
-    add(["prtv", "reactive_power", "reactive power"])
+    add(["prtv", "reactive_power", "reactive power", "q_avg"])
     for candidates in [
         [
             "pab1",
@@ -427,7 +440,7 @@ def _external_scada_usecols(columns: Iterable[str]) -> list[int]:
             "blade angle pitch position c",
             "blade angle (pitch position) c",
         ],
-        ["pab", "pitch", "pitch_angle", "blade_pitch_angle", "pitch angle", "blade pitch"],
+        ["pab", "pitch", "pitch_angle", "blade_pitch_angle", "pitch angle", "blade pitch", "ba_avg"],
     ]:
         add(candidates)
     return [cols.index(column) for column in selected]
@@ -705,22 +718,22 @@ def _prepare_long_frame(raw: pd.DataFrame) -> pd.DataFrame:
         raise ValueError("Could not find turbine id column and could not derive one from SCADA filenames.")
     wspd_col = _find_column(
         columns,
-        ["wspd", "wind_speed", "windspeed", "wind speed", "wind speed ms", "wind speed m s", "avg wind speed"],
+        ["wspd", "wind_speed", "windspeed", "wind speed", "wind speed ms", "wind speed m s", "avg wind speed", "ws_avg"],
         required=True,
     )
     wdir_col = _find_column(
         columns,
-        ["wdir", "wind_direction", "winddirection", "wind direction", "wind direction deg", "avg wind direction"],
+        ["wdir", "wind_direction", "winddirection", "wind direction", "wind direction deg", "avg wind direction", "wa_avg"],
         required=False,
     )
     ndir_col = _find_column(
         columns,
-        ["ndir", "nacelle_direction", "nacelledirection", "yaw", "yaw angle", "nacelle position"],
+        ["ndir", "nacelle_direction", "nacelledirection", "yaw", "yaw angle", "nacelle position", "ya_avg"],
         required=False,
     )
     patv_col = _find_column(
         columns,
-        ["patv", "power", "active_power", "activepower", "active power", "active power kw", "grid power"],
+        ["patv", "power", "active_power", "activepower", "active power", "active power kw", "grid power", "p_avg"],
         required=True,
     )
     pab_cols = [
@@ -771,14 +784,14 @@ def _prepare_long_frame(raw: pd.DataFrame) -> pd.DataFrame:
     if not pab_cols:
         single_pitch = _find_column(
             columns,
-            ["pab", "pitch", "pitch_angle", "blade_pitch_angle", "pitch angle", "blade pitch"],
+            ["pab", "pitch", "pitch_angle", "blade_pitch_angle", "pitch angle", "blade pitch", "ba_avg"],
             required=False,
         )
         if single_pitch is not None:
             pab_cols = [single_pitch]
-    etmp_col = _find_column(columns, ["etmp", "external_temperature", "ambient_temperature", "ambient temperature", "temperature"], required=False)
+    etmp_col = _find_column(columns, ["etmp", "external_temperature", "ambient_temperature", "ambient temperature", "temperature", "ot_avg"], required=False)
     itmp_col = _find_column(columns, ["itmp", "internal_temperature", "nacelle_temperature"], required=False)
-    prtv_col = _find_column(columns, ["prtv", "reactive_power", "reactivepower"], required=False)
+    prtv_col = _find_column(columns, ["prtv", "reactive_power", "reactivepower", "q_avg"], required=False)
 
     frame = pd.DataFrame(
         {
@@ -1622,7 +1635,31 @@ def fetch_external_wind_sources(
     year_set = set(_parse_csv_ints(years)) if years not in (None, "") else set()
     rows: list[dict[str, Any]] = []
     for farm in farm_list:
-        record_id = EXTERNAL_ZENODO_RECORDS[farm]
+        record_id = EXTERNAL_ZENODO_RECORDS.get(farm)
+        if record_id is None:
+            # Manual-drop farms (no Zenodo auto-fetch record, e.g. ENGIE La Haute Borne).
+            # Record a manifest-only row so inspect/preprocess still see the farm.
+            rows.append(
+                {
+                    "farm": farm,
+                    "record_id": "",
+                    "record_url": EXTERNAL_SOURCE_URLS.get(farm, ""),
+                    "api_url": "",
+                    "license": EXTERNAL_LICENSE,
+                    "key": "",
+                    "size": 0,
+                    "checksum": "",
+                    "download_url": "",
+                    "local_path": str(ensure_dir(source_root / farm)),
+                    "selected_years": ",".join(str(year) for year in sorted(year_set)),
+                    "download_requested": bool(download),
+                    "status": "manual_drop",
+                    "local_exists": (source_root / farm).exists(),
+                    "local_md5": "",
+                    "checksum_match": False,
+                }
+            )
+            continue
         record = _zenodo_record(record_id)
         farm_dir = ensure_dir(source_root / farm)
         for file_info in record.get("files", []):
@@ -1698,7 +1735,7 @@ def fetch_external_wind_sources(
 def run_external_wind_source_guard(
     output_dir: Path | str,
     manifest_path: Path | str = "artifacts/external_wind_full_manifest/external_wind_source_manifest.csv",
-    farms: Iterable[str] | str = EXTERNAL_FARMS,
+    farms: Iterable[str] | str = EXTERNAL_REQUIRED_FARMS,
     min_files: int = EXTERNAL_FULL_SOURCE_MIN_FILES,
     min_total_bytes: int = EXTERNAL_FULL_SOURCE_MIN_BYTES,
 ) -> Path:
