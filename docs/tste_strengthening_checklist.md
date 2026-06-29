@@ -89,24 +89,26 @@ issue-time 运营状态层"，降低顶刊评审的逆风。
 
 ## 3. 高风险③——单数据集 + 外部迁移失败（P1，需少量重组/补跑）
 
-目标：让主张不再只靠 WTB 单基准，把"外部失败"转成"按协议可恢复"。二选一或都做：
+目标：化解"单数据集"质疑。**调研后否决了原 3A/3B，改走 within-WTB holdout 叙事。**
 
-- [ ] **方案 3A（轻，推荐先做）：ERA5 从补充提为正文 positive control。**
-  当前 ERA5 主结果在补充，正文只剩 observability 对照一句（113–115 行）。把 ERA5 的
-  对齐改善结果（routing correction 在 marker 可见时提升 alignment）作为"第二数据集正对照"
-  拉回正文一小段 + 一行小表。数据已存在于补充与 `artifacts/paper_assets`，无需新跑。
-  这把论证从"单数据集"升级为"WTB(困难)+ERA5(可见)两端对照"。
-- [ ] **方案 3B（重，回报更高）：外部迁移"局部重校准后通过"小实验。**
-  Table A8 已显示重校准 NMI 0.1324→0.1491（仍不达标）。把它从"失败"升级为"按部署协议
-  局部重估后达到 held-out 门槛"需要一次小窗口校准实验：在 Kelmarsh/Penmanshiel 上做
-  validation-only 边界重估 + held-out routing check，目标至少一个迁移方向越过 0.50 NMI 门槛。
-  相关脚手架见 `scripts/run_external_wind_full_evidence.ps1` 与
-  `artifacts/external_wind_*` / `artifacts/spatial_holdout_*`。
-  注意：若仍不过门槛，**不要**改写成迁移成功，维持"部署门槛"叙事即可（保持诚实设限）。
-- 风险对应：评审风险④（证据基本单数据集；外部迁移失败）。
-- 页面影响：方案 3A 约 +0.4 栏（需第 0 节版面）；方案 3B 主要落补充材料，正文加一句。
-- 验收：正文出现 ≥2 个数据集的正向证据；外部部分要么明确"协议内可恢复"，要么明确
-  "部署门槛"，二者不可含糊。
+- [x] **采用方案：foreground within-WTB holdouts**（commit 9e6b5a69，`paper_draft.md` 第 419 行）：
+  把 falsification 段的 holdout 句从泛化的"preserve routing semantics"改写为显式的
+  within-WTB 泛化证据——spatial holdout NMI 0.834（留出未见风机）+ future-period holdout
+  0.835（留出未来窗口），直接回答"单基准能否支撑主张"；cross-farm 仍单列为 deployment-gate
+  失败。数字与 recovery 表一致，零新实验。
+- [×] **方案 3A（ERA5 回正文）— 否决**：(1) 与 `docs/ieee_tste_transfer_execution.md:17`
+  "Remove ERA5 from the main paper" 的既定决定冲突；(2) ERA5 无 MPPT-to-pitch 控制边界，
+  无法回答控制边界主张的单数据集风险；(3) 实测 ERA5 gate NMI 仅 ~0.21（vs WTB 0.87），
+  放进正文会**招致新批评**而非化解。
+- [×] **方案 3B（外部重校准实验）— 否决（已跑完且失败）**：`external_wind_guard.json`
+  显示 80-run 协议已完成，mean NMI 0.4877 < 0.50（`routing_nmi_meets_minimum: false`）；
+  `external_wind_small_calibration_adaptation/` 显示局部重校准使 cross-farm NMI **下降**
+  （delta 为负，cross-farm adapted NMI ~0.01–0.03），其中 penmanshiel→kelmarsh 方向
+  0 boundary cells / 0 pitch coverage（数据墙）。`adaptation_guard.json` 明确
+  `portable_wording_allowed: false`。强行过线需 overfit 小窗口 = 学术不诚实。重跑只会复现失败。
+- 风险对应：评审风险④（单数据集）。
+- 页面影响：+~0.2 栏（已由第 0 节 slack 吸收，仍 10 页）。
+- 验收：正文显式出现 within-WTB 留出泛化证据（未见风机 + 未来窗口），外部明确为 deployment gate。
 
 ---
 
