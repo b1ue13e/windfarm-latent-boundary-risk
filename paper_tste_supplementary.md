@@ -5,7 +5,7 @@ classoption:
 mainfont: TeX Gyre Termes
 mathfont: TeX Gyre Termes Math
 bibliography: references.bib
-csl: elsevier-numbered.csl
+csl: IEEE.csl
 citeproc: true
 link-citations: false
 numbersections: false
