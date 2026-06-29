@@ -31,16 +31,15 @@
 
 正文实测 10 页，IEEE PES 初投上限即 10 页，回修空间为零。先腾出约 0.5–0.8 栏：
 
-- [ ] **合并 anchor-stress 的两张表**：正文现有
-  `Table tab:anchor-stress`（数值 NMI/ARI）+ 紧随其后的"Training-level anchor-stress
-  guard for claim control"（文字状态表，`paper_tste_ieee.md` 约 381–399 行）。后者信息与
-  前者高度重叠，建议把状态表整体移到补充材料，正文只留数值表 + 一句话结论。
-  预计回收 ~0.4 栏。
-- [ ] **reserve vignette 两张表择一进正文**：正文现有
-  `Boundary-window reserve outcomes`（411–429 行）+
-  `Validation-frozen boundary-window quantile reserve baselines`（431–450 行）。两表行高度重叠，
-  后者把前者包含为子集。建议正文只保留后者（5 行全景表），前者删除或并入。预计回收 ~0.3 栏。
-- 验收：腾版面后重新 `build_paper_ieee.ps1`，`pdfinfo` 仍 ≤10 页且为补强留出空间。
+- [x] **合并 anchor-stress 的两张表**（commit d0327c98）：删除冗余的"Training-level
+  anchor-stress guard for claim control"文字状态表，把 leakage-guard/20-run provenance
+  并入上方段落；保留数值表 `tab:anchor-stress`。
+- [x] **reserve vignette 两张表择一进正文**（commit d0327c98）：删除 4 行
+  `Boundary-window reserve outcomes` 表（被相邻 5 行 validation-frozen quantile 表完整包含），
+  保留 5 行全景表并把 caption 改为覆盖两者。
+- [x] 验收：重建后 `build_paper_ieee.ps1` 干净，main 仍 10 页、supp 4 页、无阻断警告、
+  number-consistency `complete_tste_number_consistency`；末页仅 589 词（vs page9 887），
+  腾出约 0.5 栏 slack。所有被删数字均在保留表中存活。
 
 ---
 
