@@ -470,27 +470,7 @@ Lag pitch/wind & 0.684 & 0.720 & degraded but above 0.65 NMI \\
 \end{table}
 ```
 
-The training-level anchor-stress guard has been completed across five seeds. Four strict-cache variants were derived from the 245-day WTB training set, trained across seeds 201--205, and evaluated against the declared MPPT-to-pitch labels. The table reports the test-set NMI/ARI scores. Removing \texttt{Patv} or \texttt{Pab\_mean} individually leaves the gate essentially intact (mean 0.881 and 0.878, respectively). Lagging \texttt{Patv} lowers one seed but the five-seed mean remains above the 0.65 threshold (0.763). Lagging both \texttt{Pab\_mean} and \texttt{Wspd} also lowers one seed, yet the five-seed mean crosses the threshold (0.684). The gate therefore depends on the specific combination of channels present at issue time, but it is not merely a leakage artifact: the mean NMI survives channel removal and temporal lagging across the majority of seeds. The manuscript uses the wording "partial anchor robustness" rather than "anchor-free physical discovery." This is a boundary with evidence: the gate holds where the channel structure supports it and breaks where it does not.
-
-```{=latex}
-\begin{table}[H]
-\centering
-\footnotesize
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.08}
-\caption{Training-level anchor-stress guard for claim control (five-seed update).}
-\begin{tabularx}{0.98\linewidth}{>{\raggedright\arraybackslash}p{0.31\linewidth} >{\raggedright\arraybackslash}p{0.35\linewidth} >{\raggedright\arraybackslash}X}
-\toprule
-Stress component & Guard status & Manuscript consequence \\
-\midrule
-Strict-cache variants & no-\texttt{Patv}, lagged-\texttt{Patv}, no-\texttt{Pab\_mean}, lagged pitch/wind-speed caches derived & Anchor observability is explicitly testable \\
-Leakage guard & Cache-level guard passed; all 20 training runs completed & No leakage warning from derived variants \\
-Five-seed NMI gate & no-\texttt{Patv} (0.881), no-\texttt{Pab\_mean} (0.878), lagged-\texttt{Patv} (0.763), lagged pitch/wind-speed (0.684); all cross 0.65 & Partial anchor robustness supported across all variants \\
-Claim boundary & All 5-seed means cross 0.65; gate holds under single-anchor removal and dual-channel lagging & Use ``partial anchor robustness'' language, not anchor-free discovery \\
-\bottomrule
-\end{tabularx}
-\end{table}
-```
+The training-level anchor-stress guard has been completed across five seeds. Four strict-cache variants were derived from the 245-day WTB training set, trained across seeds 201--205, and evaluated against the declared MPPT-to-pitch labels; the cache-level leakage guard passed with all 20 training runs completed, so the derived variants raise no leakage warning. The table reports the test-set NMI/ARI scores. Removing \texttt{Patv} or \texttt{Pab\_mean} individually leaves the gate essentially intact (mean 0.881 and 0.878, respectively). Lagging \texttt{Patv} lowers one seed but the five-seed mean remains above the 0.65 threshold (0.763). Lagging both \texttt{Pab\_mean} and \texttt{Wspd} also lowers one seed, yet the five-seed mean crosses the threshold (0.684). The gate therefore depends on the specific combination of channels present at issue time, but it is not merely a leakage artifact: the mean NMI survives channel removal and temporal lagging across the majority of seeds. The manuscript uses the wording "partial anchor robustness" rather than "anchor-free physical discovery." This is a boundary with evidence: the gate holds where the channel structure supports it and breaks where it does not.
 
 ![The WTB operating plane shows the main mechanism: after correction, the dominant routed responsibility changes around the rated-wind and pitch-control boundary instead of forming an arbitrary expert partition. The confusion matrices summarize the same recovery numerically.](artifacts/final_evidence_package/export/figures/figure4_routing_evidence.pdf){ width=97% }
 
@@ -505,30 +485,10 @@ At shortage-to-reserve cost ratio 10, gate-conditioned binning exchanges about 3
 ```{=latex}
 \begin{table}[H]
 \centering
-\footnotesize
-\setlength{\tabcolsep}{5pt}
-\renewcommand{\arraystretch}{1.08}
-\caption{Boundary-window reserve outcomes at shortage-to-reserve cost ratio 10.}
-\begin{tabularx}{0.98\linewidth}{>{\raggedright\arraybackslash}X r r r r}
-\toprule
-Policy & Cost & Violation & Reserve & Shortage \\
-\midrule
-Graph WaveNet/physical-bin & 84.31M & 0.0931 & 50.35M & 3.40M \\
-Boundary router/gate-bin & 84.58M & 0.0900 & 52.67M & 3.19M \\
-Boundary router/global & 88.13M & 0.1038 & 50.82M & 3.73M \\
-Graph WaveNet/global & 88.80M & 0.1022 & 50.32M & 3.85M \\
-\bottomrule
-\end{tabularx}
-\end{table}
-```
-
-```{=latex}
-\begin{table}[H]
-\centering
 \scriptsize
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.08}
-\caption{Validation-frozen boundary-window quantile reserve baselines at cost ratio 10.}
+\caption{Boundary-window reserve outcomes and validation-frozen quantile baselines at cost ratio 10.}
 \begin{tabularx}{0.98\linewidth}{>{\raggedright\arraybackslash}p{0.24\linewidth} >{\centering\arraybackslash}p{0.11\linewidth} >{\centering\arraybackslash}p{0.11\linewidth} >{\centering\arraybackslash}p{0.11\linewidth} >{\centering\arraybackslash}p{0.12\linewidth} >{\raggedright\arraybackslash}X}
 \toprule
 Policy & Cost & Viol. & Reserve & Shortage & Reading \\
