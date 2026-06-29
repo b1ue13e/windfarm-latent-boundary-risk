@@ -272,6 +272,12 @@ def build_parser() -> argparse.ArgumentParser:
     external_guard_parser.add_argument("--suite-dir", type=str, default="artifacts/external_wind_runs")
     external_guard_parser.add_argument("--seeds", type=str, default="201,202,203,204,205")
     external_guard_parser.add_argument(
+        "--farms",
+        type=str,
+        default="",
+        help="Comma-separated farms to guard. Defaults to the Kelmarsh/Penmanshiel evidence pair unless --farm selects another farm.",
+    )
+    external_guard_parser.add_argument(
         "--required-models",
         type=str,
         default="Graph WaveNet,PatchTST,Physics-Aligned MoE,MoE + L_bal + L_align + L_force",
@@ -1424,12 +1430,14 @@ def main() -> None:
         return
 
     if args.command == "external-wind-guard":
+        guard_farms = args.farms or (args.farm if args.farm != "kelmarsh" else "kelmarsh,penmanshiel")
         output_dir = run_external_wind_guard(
             output_dir=Path(args.output_dir),
             cache_dirs=args.cache_dirs,
             suite_dir=Path(args.suite_dir),
             seeds=args.seeds,
             required_models=args.required_models,
+            farms=guard_farms,
             min_nmi=args.min_nmi,
             min_ari=args.min_ari,
         )

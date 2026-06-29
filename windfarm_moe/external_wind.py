@@ -1993,21 +1993,47 @@ def _manifest_problem_paths(df: pd.DataFrame, mask: pd.Series, limit: int = 20) 
     return values[: int(limit)]
 
 
+def _parse_external_farms(farms: Iterable[str] | str | None) -> list[str]:
+    if farms is None:
+        return list(EXTERNAL_REQUIRED_FARMS)
+    parsed = [_normalize_farm(token) for token in _parse_csv_strings(farms)]
+    unique: list[str] = []
+    for farm in parsed:
+        if farm not in unique:
+            unique.append(farm)
+    return unique or list(EXTERNAL_REQUIRED_FARMS)
+
+
+def _external_expected_protocols(farms: Iterable[str] | str | None) -> list[tuple[str, str, str]]:
+    farm_list = _parse_external_farms(farms)
+    protocols = [("chronological", farm, "") for farm in farm_list]
+    if len(farm_list) > 1:
+        for farm in farm_list:
+            for target in farm_list:
+                if target != farm:
+                    protocols.append(("leave-one-farm-out", farm, target))
+    return protocols
+
+
 def run_external_wind_guard(
     output_dir: Path | str,
     cache_dirs: Iterable[Path | str] | str | None = None,
     suite_dir: Path | str = "artifacts/external_wind_runs",
     seeds: Iterable[int] | str = (201, 202, 203, 204, 205),
     required_models: Iterable[str] | str = EXTERNAL_REQUIRED_MODELS,
+    farms: Iterable[str] | str = EXTERNAL_REQUIRED_FARMS,
     min_nmi: float = 0.50,
     min_ari: float = 0.30,
 ) -> Path:
     output_dir = ensure_dir(output_dir)
     seed_list = _parse_csv_ints(seeds)
+    farm_list = _parse_external_farms(farms)
+    required_protocols = _external_expected_protocols(farm_list)
     cache_list = [Path(path) for path in _parse_csv_strings(cache_dirs or "")]
     cache_rows = [_cache_status(path) for path in cache_list]
     suite = Path(suite_dir)
-    run_rows = _external_run_status(suite, seed_list, _parse_csv_strings(required_models))
+    model_list = _parse_csv_strings(required_models)
+    run_rows = _external_run_status(suite, seed_list, model_list, required_protocols=required_protocols)
     run_df = pd.DataFrame(run_rows)
     run_df.to_csv(output_dir / "external_wind_run_status.csv", index=False)
     cache_df = pd.DataFrame(cache_rows)
@@ -2042,7 +2068,7 @@ def run_external_wind_guard(
         else pd.Series(dtype=str)
     )
     expert_usage_present = expert_usage_values.map(_expert_usage_present)
-    routing_model_set = set(EXTERNAL_ROUTING_REQUIRED_MODELS).intersection(set(_parse_csv_strings(required_models)))
+    routing_model_set = set(EXTERNAL_ROUTING_REQUIRED_MODELS).intersection(set(model_list))
     routing_df = (
         run_df[run_df.get("model", pd.Series(dtype=str)).astype(str).isin(routing_model_set)].copy()
         if not run_df.empty and routing_model_set
@@ -2089,7 +2115,17 @@ def run_external_wind_guard(
             lofo.get("target_farm", pd.Series(dtype=str)).astype(str),
         )
     )
-    required_lofo_pairs = {("kelmarsh", "penmanshiel"), ("penmanshiel", "kelmarsh")}
+    required_lofo_pairs = {
+        (farm, target)
+        for split_id, farm, target in required_protocols
+        if split_id == "leave-one-farm-out"
+    }
+    required_chrono_farms = {
+        farm
+        for split_id, farm, _target in required_protocols
+        if split_id == "chronological"
+    }
+    cache_farms = {str(row.get("farm", "")) for row in cache_rows}
     chrono_farms = set(chrono.get("farm", pd.Series(dtype=str)).astype(str))
     checks = {
         "all_cache_dirs_exist": bool(cache_rows) and all(row["complete"] for row in cache_rows),
@@ -2097,11 +2133,11 @@ def run_external_wind_guard(
         and all(str(row.get("dataset", "")) == "external_wind" for row in cache_rows),
         "cache_license_is_cc_by_4": bool(cache_rows)
         and all(str(row.get("license", "")).upper() == EXTERNAL_LICENSE for row in cache_rows),
-        "required_farms_cached": {"kelmarsh", "penmanshiel"}.issubset({str(row.get("farm", "")) for row in cache_rows}),
+        "required_farms_cached": set(farm_list).issubset(cache_farms),
         "all_expected_runs_complete": expected_runs > 0 and complete_runs == expected_runs,
         "cross_farm_both_directions_complete": required_lofo_pairs.issubset(lofo_pairs)
         and bool(lofo.empty or lofo["complete"].all()),
-        "chronological_sanity_complete": {"kelmarsh", "penmanshiel"}.issubset(chrono_farms)
+        "chronological_sanity_complete": required_chrono_farms.issubset(chrono_farms)
         and bool(chrono.empty or chrono["complete"].all()),
         "all_required_metric_files_exist": expected_runs > 0 and bool(run_df.get("metric_files_complete", pd.Series(dtype=bool)).all()),
         "forecast_metric_values_present": forecast_metric_values_present,
@@ -2149,7 +2185,12 @@ def run_external_wind_guard(
         "expected_runs": expected_runs,
         "complete_runs": complete_runs,
         "seeds": seed_list,
-        "required_models": _parse_csv_strings(required_models),
+        "required_models": model_list,
+        "guard_farms": farm_list,
+        "required_protocols": [
+            {"split_id": split_id, "farm": farm, "target_farm": target}
+            for split_id, farm, target in required_protocols
+        ],
         "routing_required_models": sorted(routing_model_set),
         "expected_routing_runs": expected_routing_runs,
         "complete_routing_runs": int(routing_df["complete"].sum()) if not routing_df.empty and "complete" in routing_df else 0,
@@ -3702,8 +3743,14 @@ def _cache_status(cache_dir: Path) -> dict[str, Any]:
     }
 
 
-def _external_run_status(suite_dir: Path, seeds: list[int], required_models: list[str]) -> list[dict[str, Any]]:
+def _external_run_status(
+    suite_dir: Path,
+    seeds: list[int],
+    required_models: list[str],
+    required_protocols: list[tuple[str, str, str]] | None = None,
+) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
+    protocol_list = required_protocols or _external_expected_protocols(EXTERNAL_REQUIRED_FARMS)
     summaries = sorted(suite_dir.rglob("training_summary.json")) if suite_dir.exists() else []
     found: list[dict[str, Any]] = []
     for summary_path in summaries:
@@ -3740,12 +3787,7 @@ def _external_run_status(suite_dir: Path, seeds: list[int], required_models: lis
         )
     for model in required_models:
         for seed in seeds:
-            for split_id, farm, target in [
-                ("leave-one-farm-out", "kelmarsh", "penmanshiel"),
-                ("leave-one-farm-out", "penmanshiel", "kelmarsh"),
-                ("chronological", "kelmarsh", ""),
-                ("chronological", "penmanshiel", ""),
-            ]:
+            for split_id, farm, target in protocol_list:
                 candidates = [
                     row
                     for row in found

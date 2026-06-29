@@ -199,6 +199,25 @@ class ExternalWindTests(unittest.TestCase):
         self.assertEqual(args.dataset, "external_wind")
         self.assertEqual(args.external_split, "leave-one-farm-out")
 
+    def test_external_guard_cli_uses_non_default_farm_as_guard_farms(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            with patch(
+                "sys.argv",
+                [
+                    "main.py",
+                    "external-wind-guard",
+                    "--output-dir",
+                    str(root / "guard"),
+                    "--farm",
+                    "la_haute_borne",
+                ],
+            ):
+                with patch("main.run_external_wind_guard", return_value=root / "guard") as guard_fn:
+                    main()
+
+            self.assertEqual(guard_fn.call_args.kwargs["farms"], "la_haute_borne")
+
     def test_external_wind_default_num_experts_includes_wake_expert(self) -> None:
         self.assertEqual(_default_num_experts("external_wind"), 4)
 
@@ -1511,6 +1530,55 @@ class ExternalWindTests(unittest.TestCase):
             self.assertIn("expert_usage", status.columns)
             self.assertEqual(set(guard["required_models"]), {"Graph WaveNet", "PatchTST", "Physics-Aligned MoE", "MoE + L_bal + L_align + L_force"})
             self.assertEqual(set(guard["routing_required_models"]), {"Physics-Aligned MoE", "MoE + L_bal + L_align + L_force"})
+
+    def test_external_guard_can_scope_to_la_haute_borne_chronological_only(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            lhb_cache = self._write_external_guard_cache(root, "la_haute_borne", "chronological")
+            suite = root / "runs"
+            for model in ["Physics-Aligned MoE", "MoE + L_bal + L_align + L_force"]:
+                for seed in [201, 202]:
+                    self._write_external_guard_run(
+                        suite,
+                        model=model,
+                        seed=seed,
+                        farm="la_haute_borne",
+                        split="chronological",
+                        nmi=0.91,
+                        ari=0.82,
+                    )
+                    self._write_external_guard_run(
+                        suite,
+                        model=model,
+                        seed=seed,
+                        farm="kelmarsh",
+                        split="chronological",
+                        nmi=0.10,
+                        ari=0.05,
+                    )
+
+            out = run_external_wind_guard(
+                output_dir=root / "guard",
+                cache_dirs=str(lhb_cache),
+                suite_dir=suite,
+                seeds="201,202",
+                required_models="Physics-Aligned MoE,MoE + L_bal + L_align + L_force",
+                farms="la_haute_borne",
+            )
+            guard = load_json(out / "external_wind_guard.json")
+            status = pd.read_csv(out / "external_wind_run_status.csv")
+
+            self.assertEqual(guard["guard_farms"], ["la_haute_borne"])
+            self.assertEqual(guard["expected_runs"], 4)
+            self.assertEqual(guard["expected_routing_runs"], 4)
+            self.assertEqual(guard["complete_runs"], 4)
+            self.assertEqual({row["split_id"] for row in guard["required_protocols"]}, {"chronological"})
+            self.assertEqual(set(status["farm"]), {"la_haute_borne"})
+            self.assertTrue(guard["checks"]["required_farms_cached"])
+            self.assertTrue(guard["checks"]["cross_farm_both_directions_complete"])
+            self.assertTrue(guard["checks"]["chronological_sanity_complete"])
+            self.assertTrue(guard["checks"]["routing_nmi_meets_minimum"])
+            self.assertAlmostEqual(guard["mean_nmi"], 0.91)
 
 
 class LaHauteBorneExternalWindTests(unittest.TestCase):
