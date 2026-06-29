@@ -253,11 +253,19 @@ def _scada_csv_paths(base_dir: Path) -> list[Path]:
 def _scada_zip_paths(base_dir: Path) -> list[Path]:
     if not base_dir.exists():
         return []
-    return [
+    zips = sorted(base_dir.rglob("*.zip"))
+    preferred = [
         path
-        for path in sorted(base_dir.rglob("*.zip"))
+        for path in zips
         if "scada" in path.name.lower()
         and not any(token in path.name.lower() for token in ["mapping", "static", "grid", "pmu"])
+    ]
+    if preferred:
+        return preferred
+    return [
+        path
+        for path in zips
+        if not any(token in path.name.lower() for token in ["mapping", "static", "location", "coordinate", "grid", "pmu"])
     ]
 
 
@@ -369,27 +377,48 @@ def _derive_turbine_id_from_source(source: str) -> str:
     return match.group(1).upper() if match else ""
 
 
-def _greenbyte_header_from_sample(raw: bytes | str) -> tuple[list[str], int] | None:
+def _greenbyte_header_from_sample(raw: bytes | str) -> tuple[list[str], int, str] | None:
     text = raw.decode("utf-8-sig", errors="replace") if isinstance(raw, (bytes, bytearray)) else str(raw)
     header_index = None
     header_line = ""
+    delimiter = ","
     lines = text.splitlines()
     for index, line in enumerate(lines):
         stripped = line.lstrip()
         if stripped.startswith("#"):
             candidate = stripped.lstrip("#").strip()
-            if candidate.lower().startswith(("date and time", "timestamp", "time")) and "," in candidate:
+            candidate_delimiter = _detect_csv_delimiter(candidate)
+            if candidate.lower().startswith(("date and time", "timestamp", "time")) and candidate_delimiter is not None:
                 header_index = index
                 header_line = candidate
+                delimiter = candidate_delimiter
                 break
-        elif "," in stripped:
+        else:
+            candidate_delimiter = _detect_csv_delimiter(stripped)
+            if candidate_delimiter is None:
+                continue
             header_index = index
             header_line = stripped
+            delimiter = candidate_delimiter
             break
     if header_index is None or not header_line:
         return None
-    columns = next(csv.reader([header_line]))
-    return [str(column).strip() for column in columns], int(header_index)
+    columns = next(csv.reader([header_line], delimiter=delimiter))
+    return [str(column).strip() for column in columns], int(header_index), delimiter
+
+
+def _detect_csv_delimiter(line: str) -> str | None:
+    if not line.strip():
+        return None
+    try:
+        dialect = csv.Sniffer().sniff(line, delimiters=",;\t")
+        delimiter = dialect.delimiter
+    except csv.Error:
+        counts = {delimiter: line.count(delimiter) for delimiter in [",", ";", "\t"]}
+        delimiter = max(counts, key=counts.get)
+    if delimiter not in {",", ";", "\t"} or line.count(delimiter) == 0:
+        return None
+    return delimiter
 
 
 def _external_scada_usecols(columns: Iterable[str]) -> list[int]:
@@ -462,12 +491,13 @@ def _read_greenbyte_csv(
     if header is None:
         text = sample.decode("utf-8-sig", errors="replace") if isinstance(sample, (bytes, bytearray)) else str(sample)
         return pd.read_csv(io.StringIO(text), nrows=nrows)
-    columns, header_index = header
+    columns, header_index, delimiter = header
     usecols = _external_scada_usecols(columns) if relevant_columns_only else None
     read_kwargs = {
         "skiprows": header_index + 1,
         "names": columns,
         "header": None,
+        "sep": delimiter,
         "usecols": usecols,
         "nrows": nrows,
         "encoding": "utf-8-sig",
@@ -653,12 +683,12 @@ def _inspection_row(path: Path, farm: str, member: str, frame: pd.DataFrame) -> 
         "n_columns": int(len(frame.columns)),
         "columns": "|".join(str(column) for column in frame.columns),
         "has_timestamp_candidate": bool(_find_column(frame.columns, ["timestamp", "time", "datetime", "date"], required=False)),
-        "has_wind_speed_candidate": bool(_find_column(frame.columns, ["wind speed", "wspd", "windspeed"], required=False)),
-        "has_power_candidate": bool(_find_column(frame.columns, ["power", "active power", "patv"], required=False)),
+        "has_wind_speed_candidate": bool(_find_column(frame.columns, ["wind speed", "wspd", "windspeed", "ws_avg"], required=False)),
+        "has_power_candidate": bool(_find_column(frame.columns, ["power", "active power", "patv", "p_avg"], required=False)),
         "has_pitch_candidate": bool(
             _find_column(
                 frame.columns,
-                ["pitch", "blade angle pitch position a", "blade angle (pitch position) a", "pab"],
+                ["pitch", "blade angle pitch position a", "blade angle (pitch position) a", "pab", "ba_avg"],
                 required=False,
             )
         ),

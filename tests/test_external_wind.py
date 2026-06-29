@@ -1582,6 +1582,36 @@ class LaHauteBorneExternalWindTests(unittest.TestCase):
         self.assertEqual(frame["Prtv"].tolist(), [10.0, 20.0])
         self.assertEqual(frame["Etmp"].tolist(), [5.0, 6.0])
 
+    def test_inspect_reads_engie_semicolon_zip_without_scada_in_name(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            farm_dir = root / "data" / "external_wind" / "la_haute_borne"
+            farm_dir.mkdir(parents=True, exist_ok=True)
+            csv_text = "\n".join(
+                [
+                    "Wind_turbine_name;Date_time;Ws_avg;Wa_avg;Ya_avg;Ba_avg;P_avg;Q_avg;Ot_avg",
+                    "R80711;2017-01-01T00:00:00+01:00;8.0;180.0;181.0;0.5;1200.0;10.0;5.0",
+                    "R80711;2017-01-01T00:10:00+01:00;12.0;190.0;191.0;5.0;1900.0;20.0;6.0",
+                ]
+            )
+            with zipfile.ZipFile(farm_dir / "la-haute-borne-data-2017-2020.zip", "w") as archive:
+                archive.writestr("la-haute-borne-data-2017-2020.csv", csv_text)
+
+            out = inspect_external_wind_sources(
+                source_dir=root / "data" / "external_wind",
+                output_dir=root / "inspect",
+                farms="la_haute_borne",
+            )
+            report = load_json(out / "external_wind_scada_inspection.json")
+
+            self.assertEqual(report["n_sources"], 1)
+            self.assertIn("Wind_turbine_name", report["columns_union"])
+            self.assertIn("Ws_avg", report["columns_union"])
+            self.assertIn("Ba_avg", report["columns_union"])
+            self.assertTrue(report["rows"][0]["has_wind_speed_candidate"])
+            self.assertTrue(report["rows"][0]["has_power_candidate"])
+            self.assertTrue(report["rows"][0]["has_pitch_candidate"])
+
     def test_preprocess_engie_recovers_mppt_and_pitch_regimes(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
