@@ -24,7 +24,14 @@ def _model_config_from_checkpoint(raw: dict) -> ModelConfig:
     return ModelConfig(**values)
 
 
-def recover_one(cache_dir: Path, run_dir: Path, seed: int, device: torch.device) -> None:
+def recover_one(
+    cache_dir: Path,
+    run_dir: Path,
+    seed: int,
+    variant_key: str,
+    experiment_group: str,
+    device: torch.device,
+) -> None:
     bundle = load_cache_bundle(cache_dir)
     hist_len = int(bundle.metadata["hist_len"])
     pred_len = int(bundle.metadata["pred_len"])
@@ -82,8 +89,8 @@ def recover_one(cache_dir: Path, run_dir: Path, seed: int, device: torch.device)
         "num_experts": int(model_config.num_experts),
         "label": label,
         "seed": int(seed),
-        "variant_key": "full",
-        "experiment_group": "main",
+        "variant_key": variant_key,
+        "experiment_group": experiment_group,
         "dataset": "external_wind",
         "farm": bundle.metadata.get("farm", ""),
         "target_farm": bundle.metadata.get("target_farm", ""),
@@ -108,6 +115,7 @@ def main() -> None:
     parser.add_argument("--cache-dir", type=Path, required=True)
     parser.add_argument("--suite-dir", type=Path, required=True)
     parser.add_argument("--variant-key", type=str, default="full")
+    parser.add_argument("--experiment-group", type=str, default="main")
     parser.add_argument("--dataset", type=str, default="external_wind")
     parser.add_argument("--seeds", type=str, required=True)
     args = parser.parse_args()
@@ -119,7 +127,7 @@ def main() -> None:
         seed = int(token)
         run_dir = ensure_dir(args.suite_dir / f"{args.dataset}_{args.variant_key}_seed{seed}")
         print(f"recover_seed={seed} run_dir={run_dir}", flush=True)
-        recover_one(args.cache_dir, run_dir, seed, device)
+        recover_one(args.cache_dir, run_dir, seed, args.variant_key, args.experiment_group, device)
         print(f"done_seed={seed}", flush=True)
 
 
