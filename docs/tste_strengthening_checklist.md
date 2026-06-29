@@ -48,13 +48,15 @@
 目标：不改实验结论，但把叙事从"我们更差但可解释"重排为"我们补上了 SOTA 预测器缺失的
 issue-time 运营状态层"，降低顶刊评审的逆风。
 
-- [ ] **摘要首句重构**（`paper_tste_ieee.md` 35–37 行 abstract）：把 RMSE 让步从首屏移到
-  contribution 第三点；首屏用"degraded-label 下仍可用的可审计控制边界诊断"作为主价值。
-- [ ] **Introduction 末段 contribution 三点**（51 行）：把第三点"prices and bounds the
-  intervention"的措辞，从"costs 11.79 RMSE"改为"附带一个被显式量化、被守卫表 A6 约束的
-  精度代价"，强调代价是**被审计的**而非被掩盖的。
-- [ ] **新增一句 reviewer-facing 定位句**到 Introduction 或 Results 开头：明确"本文不与
-  forecasting leaderboard 竞争，而是为已部署的低 RMSE 预测器补一层可审计运营状态信号"。
+- [~] **摘要首句**：复核后保留——现有摘要已先讲问题/价值，RMSE 让步在中段且已用
+  "explicitly reported accuracy trade-off"措辞框定，重写风险（数字 drift）大于收益，故不动。
+- [x] **contribution 第三点重排**（commit 068cad0d，`paper_draft.md` 第 115 行）：从
+  "the route costs about 11.79 RMSE units…"改为先讲交付的运营状态层、再把 11.79 代价框定为
+  "explicitly priced and bounded… a measured 11.79-RMSE-unit price"，并补一句
+  "complementary diagnostic layer for an already-deployed low-RMSE forecaster, not a
+  leaderboard replacement"。
+- [x] **定位句**：复核发现 Introduction 第 113 行与 Results 第 394 行已各有一句 leaderboard
+  定位句；故不新增重复句，改为在 contribution 第三点末尾补一句强化（见上）。
 - 风险对应：评审风险①（卖点是更差精度）。
 - 页面影响：净零（重排为主）。
 - 验收：abstract 与 cover letter（`cover_letter_tste.md` 第 9 行）数字与措辞一致；
@@ -67,11 +69,11 @@ issue-time 运营状态层"，降低顶刊评审的逆风。
 目标：主动把"gate 读实时 anchor、阈值规则被人为退化"的不对称摆上台面并量化，堵死
 "稻草人/不公平对比"质疑。**关键利好：对称退化数据已存在**，无需新跑。
 
-- [ ] **把 anchor 同步退化曲线与早警表并列**：正文早警表 `tab:early-warning`（333–356 行，
-  退化的是标签）旁边，引用已有的 anchor-stress 表 `tab:anchor-stress`（358–377 行，退化的是
-  gate 自己的 anchor 通道）。两表已都在正文，但目前分述。补一段桥接文字，显式说明：
-  "当我们对称地退化 gate 自己的输入（去 Patv/去 Pab/滞后），五seed 均值仍 ≥0.65 NMI，
-  因此早警优势来自**可得性差距**而非信息不对称。"（正文 329 行已有雏形，强化为独立小段 + 明确对照）。
+- [x] **对称退化并列**（commit 068cad0d，`paper_draft.md` 第 423 行）：复核发现 asymmetry
+  段落已引用 `tab:anchor-stress` 并已有"separately degrade the anchor channels themselves…
+  keeps the five-seed routing means above 0.65 NMI"的对称论证。故不重复造内容，改为把段落开头
+  从被动陈述改写为**主动迎击**："We anticipate the natural objection that this comparison is
+  unfair… and we control for it directly"，让 skim 评审第一眼即见公平性对照。
 - [ ] **可选补图**：把"标签退化 vs anchor 退化"两条 recall/NMI 曲线画到同一张图，
   作为对称性的视觉证据（数据来自 `artifacts/anchor_stress_*` 与
   `artifacts/anchor_stress_early_warning_wtb_strictmask`）。若版面紧张放补充材料。
