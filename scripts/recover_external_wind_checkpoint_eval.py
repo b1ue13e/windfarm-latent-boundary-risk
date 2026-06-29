@@ -2,11 +2,14 @@ from __future__ import annotations
 
 import argparse
 import gc
+import sys
 import time
 from pathlib import Path
 
 import torch
 from torch.utils.data import DataLoader
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from windfarm_moe.config import EvalConfig, ModelConfig
 from windfarm_moe.data import RegimeWindowDataset, load_cache_bundle
