@@ -114,13 +114,12 @@ issue-time 运营状态层"，降低顶刊评审的逆风。
 
 ## 4. 高风险⑤/⑥——新颖性与 reserve 价值（P2，措辞强化）
 
-- [ ] **把新颖性从"架构"明确改述为"可审计性框架 + SCADA 可观测性约束"**：在 Related Work
-  末段（59 行）补一句和 physics-guided MoE / TimeMoE 的**差异点**：本文约束的是 routing
-  decision 本身使其可对照声明边界，而非用预测损失自发分工。
-- [ ] **reserve vignette 增补 cost-ratio 敏感性的一句话区间**：正文已有 ρ∈{2,5,10,20,50}
-  扫描提及（263 行），把"useful window 仅在 ρ=5–10"这一边界从补充提一句进正文，
-  避免评审误读为普适价值。
-- 页面影响：净零。
+- [x] **新颖性差异点**（commit 8ed63d65，`paper_draft.md` 第 123 行）：把 physics-guided/MoE
+  段改写为显式"where the physics enters"对照——先前工作约束预测输出或靠预测损失自发分工，
+  本文约束 routing decision 本身对照声明边界，使 gate assignment（而非仅 forecast）成为被审计对象。
+- [×] **reserve useful-window — 已存在**：正文第 506 行已有"useful reserve window is moderate…
+  at ratios 5--10… at ratio 50 the same-model global rule is safer"，无需改动。
+- 页面影响：净零（仍 10 页）。
 
 ---
 
