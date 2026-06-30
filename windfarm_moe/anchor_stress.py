@@ -16,6 +16,7 @@ from .utils import ensure_dir, load_json, save_json
 
 
 ANCHOR_STRESS_VARIANTS = ("no_patv", "lagged_patv", "no_pab_mean", "lagged_pab_wspd")
+DEFAULT_ANCHOR_STRESS_RUN_PREFIX = "wtb_bal_align_force_seed"
 
 
 def build_anchor_stress_caches(
@@ -57,6 +58,7 @@ def run_anchor_stress_guard(
     variants: list[str] | tuple[str, ...] | str | None = None,
     seeds: list[int] | tuple[int, ...] | str | None = None,
     min_nmi: float = 0.65,
+    run_prefix: str = DEFAULT_ANCHOR_STRESS_RUN_PREFIX,
 ) -> Path:
     suite = Path(suite_root)
     cache = Path(cache_root)
@@ -67,7 +69,7 @@ def run_anchor_stress_guard(
     rows: list[dict[str, Any]] = []
     for variant in variant_list:
         for seed in seed_list:
-            run_dir = suite / variant / f"wtb_bal_align_force_seed{seed}"
+            run_dir = suite / variant / f"{run_prefix}{seed}"
             rows.append(_run_status_row(run_dir, variant, seed))
     status_df = pd.DataFrame(rows)
     status_df.to_csv(out_dir / "anchor_stress_run_status.csv", index=False)
@@ -98,6 +100,7 @@ def run_anchor_stress_guard(
             "variants": variant_list,
             "seeds": [int(seed) for seed in seed_list],
             "min_nmi": float(min_nmi),
+            "run_prefix": str(run_prefix),
             "checks": {
                 "all_requested_runs_complete": complete,
                 "leakage_guard_pass": leakage_pass,
@@ -303,6 +306,14 @@ def run_anchor_stress_training(
     limit_val_batches: int | None = None,
     skip_visuals: bool = True,
     resume: bool = True,
+    model_mode: str = "moe_full_no_aux",
+    run_prefix: str = DEFAULT_ANCHOR_STRESS_RUN_PREFIX,
+    label: str = "",
+    align_weight: float = 5000.0,
+    aux_weight: float | None = None,
+    smooth_weight: float | None = None,
+    balance_weight: float = 1000.0,
+    physics_force_weight: float = 10000.0,
 ) -> Path:
     cache_root = Path(cache_root)
     out_root = ensure_dir(output_root)
@@ -313,8 +324,12 @@ def run_anchor_stress_training(
     for variant in variant_list:
         cache_dir = _resolve_variant_cache(cache_root, variant)
         bundle = load_cache_bundle(cache_dir, mmap_mode=None)
+        resolved_aux_weight = _default_anchor_aux_weight(model_mode, aux_weight)
+        resolved_smooth_weight = _default_anchor_smooth_weight(model_mode, smooth_weight)
+        resolved_label = label or _default_anchor_label(model_mode)
+        resolved_variant_key = _default_anchor_variant_key(model_mode)
         for seed in seed_list:
-            run_dir = out_root / variant / f"wtb_bal_align_force_seed{seed}"
+            run_dir = out_root / variant / f"{run_prefix}{seed}"
             if resume and _run_status_row(run_dir, variant, seed)["complete"]:
                 row = _run_status_row(run_dir, variant, seed)
                 row["training_action"] = "skipped_existing_complete_run"
@@ -330,21 +345,21 @@ def run_anchor_stress_training(
                 gate_physics_dim=int(bundle.physics.shape[-1]),
             )
             train_config = TrainConfig(
-                mode="moe_full_no_aux",
+                mode=str(model_mode),
                 epochs=int(epochs),
                 batch_size=int(batch_size),
                 learning_rate=float(learning_rate),
                 weight_decay=float(weight_decay),
                 patience=int(patience),
                 seed=int(seed),
-                align_weight=5000.0,
-                aux_weight=0.0,
-                smooth_weight=0.0,
-                balance_weight=1000.0,
-                physics_force_weight=10000.0,
+                align_weight=float(align_weight),
+                aux_weight=float(resolved_aux_weight),
+                smooth_weight=float(resolved_smooth_weight),
+                balance_weight=float(balance_weight),
+                physics_force_weight=float(physics_force_weight),
                 limit_train_batches=limit_train_batches,
                 limit_val_batches=limit_val_batches,
-                label=f"anchor_stress_{variant}_seed{seed}",
+                label=resolved_label,
             )
             eval_config = EvalConfig(
                 skip_visuals=bool(skip_visuals),
@@ -355,12 +370,12 @@ def run_anchor_stress_training(
             result.update(
                 {
                     "seed": int(seed),
-                    "variant_key": "bal_align_force",
+                    "variant_key": resolved_variant_key,
                     "experiment_group": "anchor_stress",
                     "anchor_stress_variant": variant,
                     "cache_dir": str(cache_dir),
-                    "model_mode": "moe_full_no_aux",
-                    "label": "MoE + L_bal + L_align + L_force",
+                    "model_mode": str(model_mode),
+                    "label": resolved_label,
                     "loss_weights": train_config.effective_loss_weights(),
                 }
             )
@@ -378,13 +393,36 @@ def run_anchor_stress_training(
             "output_root": str(out_root),
             "variants": variant_list,
             "seeds": [int(seed) for seed in seed_list],
+            "model_mode": str(model_mode),
+            "run_prefix": str(run_prefix),
+            "label": resolved_label if variant_list else str(label),
             "policy": (
-                "Train the boundary-forced WTB router on derived issue-time anchor-observability caches. "
-                "Runs are written under <output_root>/<variant>/wtb_bal_align_force_seed<seed> for guard reuse."
+                "Train the requested router on derived issue-time anchor-observability caches. "
+                "Runs are written under <output_root>/<variant>/<run_prefix><seed> for guard reuse."
             ),
         },
     )
     return out_root
+
+
+def _default_anchor_aux_weight(model_mode: str, value: float | None) -> float:
+    if value is not None:
+        return float(value)
+    return 250.0 if str(model_mode) == "moe_phys_full" else 0.0
+
+
+def _default_anchor_smooth_weight(model_mode: str, value: float | None) -> float:
+    if value is not None:
+        return float(value)
+    return 0.05 if str(model_mode) == "moe_phys_full" else 0.0
+
+
+def _default_anchor_label(model_mode: str) -> str:
+    return "Physics-Aligned MoE" if str(model_mode) == "moe_phys_full" else "MoE + L_bal + L_align + L_force"
+
+
+def _default_anchor_variant_key(model_mode: str) -> str:
+    return "full" if str(model_mode) == "moe_phys_full" else "bal_align_force"
 
 
 def _copy_cache(source: Path, target: Path) -> None:

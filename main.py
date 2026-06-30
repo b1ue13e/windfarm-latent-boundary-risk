@@ -1145,6 +1145,14 @@ def build_parser() -> argparse.ArgumentParser:
     anchor_stress_train_parser.add_argument("--limit-val-batches", type=int, default=None)
     anchor_stress_train_parser.add_argument("--skip-visuals", action="store_true")
     anchor_stress_train_parser.add_argument("--no-resume", action="store_true")
+    anchor_stress_train_parser.add_argument("--model-mode", type=str, default="moe_full_no_aux")
+    anchor_stress_train_parser.add_argument("--run-prefix", type=str, default="wtb_bal_align_force_seed")
+    anchor_stress_train_parser.add_argument("--label", type=str, default="")
+    anchor_stress_train_parser.add_argument("--align-weight", type=float, default=5000.0)
+    anchor_stress_train_parser.add_argument("--aux-weight", type=float, default=None)
+    anchor_stress_train_parser.add_argument("--smooth-weight", type=float, default=None)
+    anchor_stress_train_parser.add_argument("--balance-weight", type=float, default=1000.0)
+    anchor_stress_train_parser.add_argument("--physics-force-weight", type=float, default=10000.0)
 
     anchor_stress_guard_parser = subparsers.add_parser(
         "anchor-stress-guard",
@@ -1160,6 +1168,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     anchor_stress_guard_parser.add_argument("--seeds", type=str, default="201,202,203")
     anchor_stress_guard_parser.add_argument("--min-nmi", type=float, default=0.65)
+    anchor_stress_guard_parser.add_argument("--run-prefix", type=str, default="wtb_bal_align_force_seed")
 
     anchor_stress_early_warning_parser = subparsers.add_parser(
         "anchor-stress-early-warning",
@@ -1337,6 +1346,14 @@ def main() -> None:
             limit_val_batches=args.limit_val_batches,
             skip_visuals=args.skip_visuals,
             resume=not args.no_resume,
+            model_mode=args.model_mode,
+            run_prefix=args.run_prefix,
+            label=args.label,
+            align_weight=args.align_weight,
+            aux_weight=args.aux_weight,
+            smooth_weight=args.smooth_weight,
+            balance_weight=args.balance_weight,
+            physics_force_weight=args.physics_force_weight,
         )
         print(f"Anchor-stress training manifest saved to: {output_dir}")
         return
@@ -1349,6 +1366,7 @@ def main() -> None:
             variants=args.variants,
             seeds=args.seeds,
             min_nmi=args.min_nmi,
+            run_prefix=args.run_prefix,
         )
         print(f"Anchor-stress guard saved to: {output_dir}")
         return

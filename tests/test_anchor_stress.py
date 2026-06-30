@@ -27,7 +27,17 @@ class AnchorStressTests(unittest.TestCase):
             ["anchor-stress-guard", "--suite-root", "runs", "--cache-root", "cache", "--output-dir", "out"]
         )
         train_args = build_parser().parse_args(
-            ["anchor-stress-train", "--cache-root", "cache", "--output-root", "runs"]
+            [
+                "anchor-stress-train",
+                "--cache-root",
+                "cache",
+                "--output-root",
+                "runs",
+                "--model-mode",
+                "moe_phys_full",
+                "--run-prefix",
+                "lhb_full_anchor_stress_seed",
+            ]
         )
         early_args = build_parser().parse_args(
             ["anchor-stress-early-warning", "--suite-root", "runs", "--output-dir", "out"]
@@ -36,6 +46,8 @@ class AnchorStressTests(unittest.TestCase):
         self.assertEqual(cache_args.command, "anchor-stress-cache")
         self.assertEqual(train_args.command, "anchor-stress-train")
         self.assertEqual(train_args.seeds, "201,202,203")
+        self.assertEqual(train_args.model_mode, "moe_phys_full")
+        self.assertEqual(train_args.run_prefix, "lhb_full_anchor_stress_seed")
         self.assertEqual(guard_args.command, "anchor-stress-guard")
         self.assertEqual(guard_args.seeds, "201,202,203")
         self.assertEqual(early_args.command, "anchor-stress-early-warning")
@@ -135,6 +147,51 @@ class AnchorStressTests(unittest.TestCase):
             self.assertEqual(summary["anchor_stress_variant"], "no_patv")
             self.assertEqual(summary["variant_key"], "bal_align_force")
             self.assertEqual(summary["loss_weights"]["physics_force"], 10000.0)
+
+    def test_training_command_can_match_external_wind_full_router(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            source = _write_cache(root / "source" / "external_wind_la_haute_borne_chronological")
+            cache_root = build_anchor_stress_caches(
+                source_cache_dir=source,
+                output_cache_root=root / "anchor_cache",
+                variants="no_patv",
+            )
+
+            def fake_train(_bundle, run_dir, _model_config, train_config, _eval_config):
+                metrics = Path(run_dir) / "test_metrics"
+                metrics.mkdir(parents=True)
+                save_json(
+                    metrics / "metrics.json",
+                    {
+                        "overall": {"rmse": 2.0},
+                        "switch_window": {"rmse": 2.5},
+                        "gate_alignment": {"nmi": 0.9, "ari": 0.8},
+                        "leakage_guard": {"pass": True},
+                    },
+                )
+                return {"best_epoch": 1, "seed": train_config.seed}
+
+            with patch("windfarm_moe.anchor_stress.train_model", side_effect=fake_train):
+                output = run_anchor_stress_training(
+                    cache_root=cache_root,
+                    output_root=root / "runs",
+                    variants="no_patv",
+                    seeds="201",
+                    epochs=1,
+                    model_mode="moe_phys_full",
+                    run_prefix="lhb_full_anchor_stress_seed",
+                )
+
+            run_201 = output / "no_patv" / "lhb_full_anchor_stress_seed201"
+            summary = load_json(run_201 / "training_summary.json")
+
+            self.assertTrue((run_201 / "test_metrics" / "metrics.json").exists())
+            self.assertEqual(summary["model_mode"], "moe_phys_full")
+            self.assertEqual(summary["variant_key"], "full")
+            self.assertEqual(summary["label"], "Physics-Aligned MoE")
+            self.assertEqual(summary["loss_weights"]["aux"], 250.0)
+            self.assertEqual(summary["loss_weights"]["smooth"], 0.05)
 
     def test_early_warning_audit_reports_gate_value_under_label_delay(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
