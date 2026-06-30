@@ -164,6 +164,21 @@ def build_wtb_intervention_specs(
             "anchor_physics_intervention",
             physics_indices=boundary_physics,
         ),
+        "anchor_wspd_zero": InterventionSpec(
+            "anchor_wspd_zero",
+            "anchor_physics_intervention",
+            physics_indices=wspd_physics,
+        ),
+        "anchor_pab_zero": InterventionSpec(
+            "anchor_pab_zero",
+            "anchor_physics_intervention",
+            physics_indices=pab_physics,
+        ),
+        "anchor_patv_zero": InterventionSpec(
+            "anchor_patv_zero",
+            "anchor_physics_intervention",
+            physics_indices=_index_many(physics_names, ["Patv"]),
+        ),
         "anchor_boundary_wrong_threshold_shift": InterventionSpec(
             "anchor_boundary_wrong_threshold_shift",
             "anchor_physics_wrong_threshold_control",

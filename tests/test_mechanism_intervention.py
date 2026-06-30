@@ -47,7 +47,7 @@ class MechanismInterventionAuditTests(unittest.TestCase):
             for spec in build_wtb_intervention_specs(
                 feature_names=["Wspd", "Pab_mean", "Etmp", "Itmp"],
                 physics_names=["Wspd", "Pab_mean", "wake_score", "Patv"],
-                selected="anchor_boundary_wrong_threshold_shift,anchor_random_physics,anchor_wspd_only,anchor_pab_only,anchor_boundary_node_shuffle,anchor_boundary_global_shuffle",
+                selected="anchor_boundary_wrong_threshold_shift,anchor_random_physics,anchor_wspd_only,anchor_pab_only,anchor_wspd_zero,anchor_pab_zero,anchor_patv_zero,anchor_boundary_node_shuffle,anchor_boundary_global_shuffle",
             )
         }
         anchor = torch.arange(2 * 3 * 4, dtype=torch.float32).reshape(2, 3, 4)
@@ -68,6 +68,18 @@ class MechanismInterventionAuditTests(unittest.TestCase):
         pab_only = _apply_intervention(batch, specs["anchor_pab_only"])["anchor_physics"]
         self.assertTrue(torch.equal(pab_only[..., 1], anchor[..., 1]))
         self.assertTrue(torch.equal(pab_only[..., [0, 2, 3]], torch.zeros_like(pab_only[..., [0, 2, 3]])))
+
+        wspd_zero = _apply_intervention(batch, specs["anchor_wspd_zero"])["anchor_physics"]
+        self.assertTrue(torch.equal(wspd_zero[..., 0], torch.zeros_like(wspd_zero[..., 0])))
+        self.assertTrue(torch.equal(wspd_zero[..., 1:], anchor[..., 1:]))
+
+        pab_zero = _apply_intervention(batch, specs["anchor_pab_zero"])["anchor_physics"]
+        self.assertTrue(torch.equal(pab_zero[..., 1], torch.zeros_like(pab_zero[..., 1])))
+        self.assertTrue(torch.equal(pab_zero[..., [0, 2, 3]], anchor[..., [0, 2, 3]]))
+
+        patv_zero = _apply_intervention(batch, specs["anchor_patv_zero"])["anchor_physics"]
+        self.assertTrue(torch.equal(patv_zero[..., 3], torch.zeros_like(patv_zero[..., 3])))
+        self.assertTrue(torch.equal(patv_zero[..., :3], anchor[..., :3]))
 
         node_shuffle = _apply_intervention(batch, specs["anchor_boundary_node_shuffle"])["anchor_physics"]
         self.assertFalse(torch.equal(node_shuffle[..., :2], anchor[..., :2]))
