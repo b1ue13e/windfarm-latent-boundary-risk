@@ -217,7 +217,7 @@ Residual claim boundary & sanity check only & Mitigates circularity concern; doe
 
 ## External-site deployment-gate audit {.unnumbered}
 
-Table A8 records the go/no-go interpretation used for the Kelmarsh/Penmanshiel evidence. Each row maps a failed or incomplete external signal to the deployment action that follows. The table therefore supports a bounded claim: the external experiments are a screening protocol for new wind farms, not evidence that the WTB gate can be transferred directly.
+Table A8 records the go/no-go interpretation used for the external evidence. The first row is the positive control: retrained on the ENGIE La Haute Borne farm, where blade pitch is directly observed in 99.2\% of cells, the routing mechanism recovers the declared boundary and clears the held-out criterion. The remaining rows map the failed or incomplete Kelmarsh/Penmanshiel signals to the deployment action that follows. The table therefore supports a bounded but two-sided claim: the mechanism transfers where the control boundary is observable, while direct gate-bin reserve use at the Kelmarsh/Penmanshiel pair remains a screening protocol rather than an authorized transfer.
 
 ```{=latex}
 \begin{table}[H]
@@ -230,6 +230,7 @@ Table A8 records the go/no-go interpretation used for the Kelmarsh/Penmanshiel e
 \toprule
 Gate & Observed external evidence & Go/no-go rule & Claim consequence \\
 \midrule
+Cross-site recovery (La Haute Borne) & Five-seed chronological routing NMI 0.941, ARI 0.971; pitch observed in 99.2\% of cells, no proxy & Held-out NMI $\geq$ 0.50 with observed pitch after parameters are frozen & Go: boundary recovers where pitch is observable; cite as positive cross-site control \\
 Cross-site routing criterion & 80/80 runs complete; mean NMI 0.4877 below threshold 0.50; mean ARI 0.5112 & Held-out NMI $\geq$ 0.50 and balanced accuracy $\geq$ 0.50 after parameters are frozen & No-go for cross-farm router interpretation; cite as negative boundary-condition evidence \\
 Local boundary recalibration & Default test NMI 0.1324 $\rightarrow$ recalibrated 0.1491 (delta +0.0167) & Rated wind, pitch threshold, boundary band, and gate-map selected on calibration only & Local threshold transfer is insufficient; re-estimate before use \\
 Small-window adaptation & 40/40 routing runs adapted; chronological balanced accuracy 0.4787 below 0.50 & Small calibration windows must still pass the frozen held-out routing criterion & Calibration alone does not authorize external reserve use \\
