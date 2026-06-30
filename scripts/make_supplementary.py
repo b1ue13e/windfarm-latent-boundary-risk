@@ -85,7 +85,7 @@ if benchmark_path.exists():
                 r"\scriptsize",
                 r"\setlength{\tabcolsep}{3pt}",
                 r"\renewcommand{\arraystretch}{1.05}",
-                r"\caption*{\textbf{Table A12.} Expanded WTB strict-cache forecasting baselines (mean $\pm$ std across seeds where repeated runs are available).}",
+                r"\caption*{\textbf{Table A13.} Expanded WTB strict-cache forecasting baselines (mean $\pm$ std across seeds where repeated runs are available).}",
                 r"\resizebox{\columnwidth}{!}{%",
                 r"\begin{tabular}{lrrrrr}",
                 r"\toprule",

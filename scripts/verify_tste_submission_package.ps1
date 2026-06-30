@@ -31,11 +31,12 @@ function Test-RequiredPath {
 function Get-PdfPages {
     param([string]$Path)
 
-    $match = (& pdfinfo $Path | Select-String "^Pages:\s+(\d+)").Matches[0]
-    if ($null -eq $match) {
+    $pageText = & python -c "from pathlib import Path; from pypdf import PdfReader; print(len(PdfReader(str(Path(r'$Path'))).pages))"
+    if ($LASTEXITCODE -ne 0) {
         throw "Could not read PDF page count: $Path"
     }
-    return [int]$match.Groups[1].Value
+    $pageText = [string]$pageText
+    return [int]$pageText.Trim()
 }
 
 function Convert-ZipPath {
@@ -107,8 +108,8 @@ $coverText = Get-Content -LiteralPath (Join-Path $uploadDir "cover_letter.md") -
 if ($coverText.Contains("[Author Names]")) {
     throw "Upload cover letter still contains the [Author Names] placeholder."
 }
-if (-not $coverText.Contains("Supplementary Table A11")) {
-    throw "Upload cover letter does not mention Supplementary Table A11."
+if (-not $coverText.Contains("Supplementary Table A12")) {
+    throw "Upload cover letter does not mention Supplementary Table A12."
 }
 
 $portalMetadata = Get-Content -LiteralPath (Join-Path $metadataDir "portal_metadata.json") -Raw | ConvertFrom-Json

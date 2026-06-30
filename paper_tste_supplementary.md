@@ -241,9 +241,37 @@ External reserve-use decision & Upstream gates do not pass before reserve alloca
 \end{table}
 ```
 
+## La Haute Borne anchor-observability replay audit {.unnumbered}
+
+Table A9 audits the load-bearing channels behind the La Haute Borne positive control. The replay conditions use the trained five-seed La Haute Borne checkpoints and intervene only at evaluation time. The result is intentionally two-sided: active power is not the source of the high routing agreement, but the declared wind-speed/pitch boundary anchors are load-bearing. This supports citing La Haute Borne as an anchor-observable positive-control replication and blocks any anchor-free discovery wording.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A9.} La Haute Borne anchor-observability replay audit.}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.31\columnwidth} >{\centering\arraybackslash}p{0.12\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Replay condition & NMI & $\Delta$NMI & Interpretation \\
+\midrule
+Actual replay & 0.941 & 0.000 & reference five-seed route \\
+Zero pitch anchor & 0.696 & 0.245 & partial alignment remains \\
+Zero wind-speed anchor & 0.752 & 0.189 & partial alignment remains \\
+Zero active-power anchor & 0.953 & -0.013 & active power is not load-bearing \\
+Zero wind+pitch anchors & 0.001 & 0.940 & boundary alignment collapses \\
+Randomize anchor physics & 0.028 & 0.913 & physical anchor mapping collapses \\
+Wind-speed only & 0.752 & 0.189 & single-anchor partial control \\
+Pitch only & 0.670 & 0.271 & single-anchor partial control \\
+\bottomrule
+\end{tabularx}
+\end{table}
+```
+
 ## Early-warning detection consequence {.unnumbered}
 
-Table A9 reports the cell-count version of the label-degradation audit. Counts are turbine-time cells per seed inside the six-step MPPT-to-pitch window; they are not MWh, currency, or dispatch-cost estimates. The purpose is narrower: it shows how many early pitch-window cells the gate preserves when a threshold-label rule is delayed, incomplete, or noisy.
+Table A10 reports the cell-count version of the label-degradation audit. Counts are turbine-time cells per seed inside the six-step MPPT-to-pitch window; they are not MWh, currency, or dispatch-cost estimates. The purpose is narrower: it shows how many early pitch-window cells the gate preserves when a threshold-label rule is delayed, incomplete, or noisy.
 
 ```{=latex}
 \begin{table}[H]
@@ -251,7 +279,7 @@ Table A9 reports the cell-count version of the label-degradation audit. Counts a
 \scriptsize
 \setlength{\tabcolsep}{2.4pt}
 \renewcommand{\arraystretch}{1.08}
-\caption*{\textbf{Table A9.} Early-warning detection consequence under degraded threshold labels.}
+\caption*{\textbf{Table A10.} Early-warning detection consequence under degraded threshold labels.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.28\columnwidth} >{\centering\arraybackslash}p{0.22\columnwidth} >{\centering\arraybackslash}p{0.24\columnwidth} >{\centering\arraybackslash}X}
 \toprule
 Condition & Gate detected / missed & Degraded rule detected / missed & Recovered cells \\
@@ -269,7 +297,7 @@ Sensor noise, strongest & 710.6 $\pm$ 20.6 / 29.4 $\pm$ 20.6 & 482.8 $\pm$ 11.0 
 
 ## Reserve-policy claim-boundary audit {.unnumbered}
 
-Table A10 consolidates the reserve evidence used for wording. It separates the same-model boundary-window diagnostic from claims that the experiments do not support. Costs are normalized reserve-energy proxy units, not currency, market prices, or security-constrained dispatch costs.
+Table A11 consolidates the reserve evidence used for wording. It separates the same-model boundary-window diagnostic from claims that the experiments do not support. Costs are normalized reserve-energy proxy units, not currency, market prices, or security-constrained dispatch costs.
 
 ```{=latex}
 \begin{table}[H]
@@ -277,7 +305,7 @@ Table A10 consolidates the reserve evidence used for wording. It separates the s
 \scriptsize
 \setlength{\tabcolsep}{2.2pt}
 \renewcommand{\arraystretch}{1.08}
-\caption*{\textbf{Table A10.} Reserve-policy claim-boundary audit.}
+\caption*{\textbf{Table A11.} Reserve-policy claim-boundary audit.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.22\columnwidth} >{\raggedright\arraybackslash}p{0.36\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
 Boundary & Evidence & Wording rule \\
@@ -295,7 +323,7 @@ Operational scope & Costs are normalized reserve-energy proxy units from validat
 
 ## Engineering-unit reserve-value translation {.unnumbered}
 
-Table A11 provides the engineering-unit translation of the main reserve audit. The conversion uses the WTB active-power unit (kW) and the cache time step ($\Delta t=1/6$ h), so reserve and shortage totals become rolling forecast-cell MWh-equivalent values. The EUR column is a scenario translation under an assumed reserve carrying cost of 100 EUR/MWh. It is included to make the operational scale legible, not to claim market settlement, OPF, unit commitment, or security-constrained dispatch value.
+Table A12 provides the engineering-unit translation of the main reserve audit. The conversion uses the WTB active-power unit (kW) and the cache time step ($\Delta t=1/6$ h), so reserve and shortage totals become rolling forecast-cell MWh-equivalent values. The EUR column is a scenario translation under an assumed reserve carrying cost of 100 EUR/MWh. It is included to make the operational scale legible, not to claim market settlement, OPF, unit commitment, or security-constrained dispatch value.
 
 ```{=latex}
 \begin{table}[H]
@@ -303,7 +331,7 @@ Table A11 provides the engineering-unit translation of the main reserve audit. T
 \scriptsize
 \setlength{\tabcolsep}{2.0pt}
 \renewcommand{\arraystretch}{1.06}
-\caption*{\textbf{Table A11.} Engineering-unit reserve-value translation at $\rho=10$.}
+\caption*{\textbf{Table A12.} Engineering-unit reserve-value translation at $\rho=10$.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.24\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
 Comparison & $\Delta$ reserve MWh-eq. & Avoided shortage MWh-eq. & $\Delta$ cost MWh-eq. & $\Delta$ EUR at 100/MWh & Wording \\
@@ -323,7 +351,7 @@ Boundary gate-bin vs GWN global full sample & +3148.2 & -1413.5 & +17283.2 & +17
 \scriptsize
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A12.} Expanded WTB strict-cache forecasting baselines (mean $\pm$ std across seeds where repeated runs are available).}
+\caption*{\textbf{Table A13.} Expanded WTB strict-cache forecasting baselines (mean $\pm$ std across seeds where repeated runs are available).}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrrrr}
 \toprule

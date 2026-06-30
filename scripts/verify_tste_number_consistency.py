@@ -142,6 +142,14 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
             encoding="utf-8"
         )
     )
+    lhb_anchor_guard = json.loads(
+        (
+            root
+            / "artifacts"
+            / "external_wind_lhb_anchor_intervention_full"
+            / "lhb_anchor_observability_guard.json"
+        ).read_text(encoding="utf-8")
+    )
 
     graph = _lookup(benchmark, Panel="WTB", Model="Graph WaveNet")
     best_strict = _best_wtb_strict_cache_baseline(benchmark)
@@ -207,6 +215,9 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         _check("anchor_stress_lagged_patv_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_lag_patv["nmi_mean"]), "{:.3f}", ("main",)),
         _check("anchor_stress_lagged_pab_wspd_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_lag_pab_wspd["nmi_mean"]), "{:.3f}", ("main",)),
         _check("la_haute_borne_routing_nmi", "artifacts/external_wind_lhb_guard_full_5seed/external_wind_guard.json", _num(lhb_guard["mean_nmi"]), "{:.3f}", ("main", "cover")),
+        _check("lhb_anchor_patv_zero_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["patv_zero_nmi_mean"]), "{:.3f}", ("main", "supplementary")),
+        _check("lhb_anchor_boundary_zero_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["boundary_zero_nmi_mean"]), "{:.3f}", ("main", "supplementary")),
+        _check("lhb_anchor_random_physics_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["random_physics_nmi_mean"]), "{:.3f}", ("supplementary",)),
     ]
 
 

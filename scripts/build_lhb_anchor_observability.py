@@ -86,7 +86,7 @@ def main() -> None:
         r"\scriptsize",
         r"\setlength{\tabcolsep}{4pt}",
         r"\renewcommand{\arraystretch}{1.05}",
-        r"\caption*{\textbf{Table A8.} La Haute Borne anchor-observability replay audit.}",
+        r"\caption*{\textbf{Table A9.} La Haute Borne anchor-observability replay audit.}",
         r"\begin{tabular}{lccc}",
         r"\toprule",
         r"Replay condition & NMI & $\Delta$NMI & Interpretation \\",

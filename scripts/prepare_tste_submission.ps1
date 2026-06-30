@@ -70,6 +70,17 @@ function Invoke-NumberConsistencyPreflight {
         -FailureMessage "TSTE number consistency audit failed."
 }
 
+function Get-PdfPageCount {
+    param([string]$PdfPath)
+
+    $pageText = & python -c "from pathlib import Path; from pypdf import PdfReader; print(len(PdfReader(str(Path(r'$PdfPath'))).pages))"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Could not read PDF page count: $PdfPath"
+    }
+    $pageText = [string]$pageText
+    return [int]$pageText.Trim()
+}
+
 function Find-LatexLogHits {
     param(
         [string]$Pattern,
@@ -112,8 +123,8 @@ $coverText = Get-Content -LiteralPath (Join-Path $root "cover_letter_tste.md") -
 if ($coverText.Contains("[Author Names]")) {
     throw "cover_letter_tste.md still contains the [Author Names] placeholder."
 }
-if (-not $coverText.Contains("Supplementary Table A11")) {
-    throw "cover_letter_tste.md does not mention Supplementary Table A11 engineering-unit translation."
+if (-not $coverText.Contains("Supplementary Table A12")) {
+    throw "cover_letter_tste.md does not mention Supplementary Table A12 engineering-unit translation."
 }
 
 Invoke-RunTargetPreflight
@@ -140,8 +151,8 @@ if ($numberAuditStatus -ne "complete_tste_number_consistency") {
 Copy-Item -LiteralPath (Join-Path $root "build\paper_tste_ieee.pdf") -Destination (Join-Path $root "paper_tste_ieee.pdf") -Force
 Copy-Item -LiteralPath (Join-Path $root "build\paper_tste_supplementary.pdf") -Destination (Join-Path $root "paper_tste_supplementary.pdf") -Force
 
-$mainPages = (& pdfinfo (Join-Path $root "paper_tste_ieee.pdf") | Select-String "^Pages:\s+(\d+)").Matches[0].Groups[1].Value
-$suppPages = (& pdfinfo (Join-Path $root "paper_tste_supplementary.pdf") | Select-String "^Pages:\s+(\d+)").Matches[0].Groups[1].Value
+$mainPages = Get-PdfPageCount -PdfPath (Join-Path $root "paper_tste_ieee.pdf")
+$suppPages = Get-PdfPageCount -PdfPath (Join-Path $root "paper_tste_supplementary.pdf")
 if ([int]$mainPages -gt 10) {
     throw "IEEE main manuscript exceeds 10 pages: $mainPages"
 }
@@ -163,7 +174,7 @@ $freezeDir = Join-Path $root "artifacts\tste_evidence_freeze_guard"
     --final-package-dir (Join-Path $root "artifacts\final_evidence_package") `
     --paired-effects (Join-Path $root "artifacts\strictmask_combined_reviewer_stats\paired_effects_summary.csv") `
     --output-dir $freezeDir `
-    --required-tokens "236.13,224.34,225.74,0.960,0.196,0.508,0.8716,0.9166,84.58M,84.31M,88.13M,11.79,0.764,566,1846.9,539.8,3551.4,355k"
+    --required-tokens "236.13,224.34,225.74,0.960,0.196,0.508,0.8716,0.9166,0.941,0.953,0.001,0.028,84.58M,84.31M,88.13M,11.79,0.764,566,1846.9,539.8,3551.4,355k"
 if ($LASTEXITCODE -ne 0) { throw "Evidence-freeze guard command failed." }
 $freezeJson = Get-Content -LiteralPath (Join-Path $freezeDir "evidence_freeze_guard.json") -Raw | ConvertFrom-Json
 $freezeStatus = [string]$freezeJson.status
@@ -212,7 +223,7 @@ $uploadFiles = @(
     [ordered]@{
         file = "upload_files/supplementary_material.pdf"
         portal_role = "Supplementary material"
-        note = "Supplementary appendix with Tables A1-A11."
+        note = "Supplementary appendix with Tables A1-A13."
     },
     [ordered]@{
         file = "upload_files/cover_letter.md"
@@ -476,7 +487,7 @@ Generated: $stamp
 ## Upload files
 
 - `upload_files/manuscript_ieee_tste.pdf`: IEEEtran main manuscript.
-- `upload_files/supplementary_material.pdf`: supplementary appendix with Tables A1-A11.
+- `upload_files/supplementary_material.pdf`: supplementary appendix with Tables A1-A13.
 - `upload_files/cover_letter.md`: TSTE cover letter aligned with claim audits.
 - `upload_files/portal_metadata.md`: copy-paste portal fields for title, abstract, keywords, authors, declarations, and file roles.
 - `upload_files/portal_metadata.json`: machine-readable copy of the same portal metadata.
@@ -511,9 +522,10 @@ Generated: $stamp
 - Supplementary Table A6: statistical claim boundaries.
 - Supplementary Table A7: outcome-channel sanity audit.
 - Supplementary Table A8: external-site deployment gates.
-- Supplementary Table A9: early-warning detection consequence.
-- Supplementary Table A10: reserve-policy claim boundary.
-- Supplementary Table A11: engineering-unit reserve-value translation.
+- Supplementary Table A9: La Haute Borne anchor-observability replay audit.
+- Supplementary Table A10: early-warning detection consequence.
+- Supplementary Table A11: reserve-policy claim boundary.
+- Supplementary Table A12: engineering-unit reserve-value translation.
 - TSTE number consistency audit: source-artifact to final-facing token check.
 - Expanded strict-cache baseline guard and run-status files for Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST, iTransformer, and TiDE.
 
@@ -579,11 +591,7 @@ foreach ($item in (Get-ChildItem -LiteralPath $uploadDir -File | Sort-Object Nam
     }
     $pages = $null
     if ($item.Extension -ieq ".pdf") {
-        $pageMatch = (& pdfinfo $item.FullName | Select-String "^Pages:\s+(\d+)").Matches[0]
-        if ($null -eq $pageMatch) {
-            throw "Could not read PDF page count for $($item.Name)."
-        }
-        $pages = [int]$pageMatch.Groups[1].Value
+        $pages = Get-PdfPageCount -PdfPath $item.FullName
     }
     $manifestEntries += [ordered]@{
         relative_path = $relativePath
