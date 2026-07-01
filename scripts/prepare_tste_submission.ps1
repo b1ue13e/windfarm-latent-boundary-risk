@@ -190,7 +190,7 @@ $abstract = Convert-PortalText (Get-RegexGroup $paperText "\\begin\{abstract\}(.
 $keywords = Convert-PortalText (Get-RegexGroup $paperText "\\begin\{IEEEkeywords\}(.+?)\\end\{IEEEkeywords\}" "keywords")
 $keywordText = $keywords.Trim().TrimEnd(".")
 $keywordList = @($keywordText -split ";" | ForEach-Object { $_.Trim() } | Where-Object { $_ })
-$aiStatement = Convert-PortalText (Get-RegexGroup $paperText "# Declaration of generative AI.*?\r?\n\r?\n(.+?)\r?\n\r?\n# Code and data availability" "AI use statement")
+$aiStatement = Convert-PortalText (Get-RegexGroup $paperText "# AI Use Statement(?:\r?\n){2}(.+?)(?:\r?\n){2}# Code and data availability" "AI use statement")
 $dataAvailability = Convert-PortalText (Get-RegexGroup $paperText "# Code and data availability\r?\n\r?\n(.+?)\r?\n\r?\n# References" "code and data availability statement")
 
 $authors = @(

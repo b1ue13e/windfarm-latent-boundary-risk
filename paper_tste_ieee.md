@@ -463,9 +463,9 @@ Statistical reliability is uneven (Supplementary Table A6). The strongest claims
 
 This paper addresses a practical wind-farm forecasting failure mode: the MPPT-to-pitch label stream can degrade exactly when reserve screening needs an operating-state signal. SCADA-anchored regime-aware routing turns the node-level gate into an auditable control-boundary assignment. The boundary-forced router recovers the declared WTB MPPT-to-pitch partition (NMI about 0.87, ARI about 0.92), keeps 0.960 early pitch-window recall under a six-step label delay while the delayed threshold rule falls to 0.196, and exposes transition-window reserve risk. This operating-state signal has a measured accuracy trade-off: overall RMSE 236.13 versus 224.34 for the best strict-cache forecasting baseline. Validation-frozen quantile baselines, Supplementary Table A6, and Kelmarsh/Penmanshiel deployment gates keep the claim bounded. The contribution is an auditable MPPT-to-pitch routing tool with degraded-label value, RMSE price, and explicit transfer conditions.
 
-# Declaration of generative AI and AI-assisted technologies in the manuscript preparation process
+# AI Use Statement
 
-During the preparation of this work, the authors used OpenAI ChatGPT/Codex to support language editing, consistency checking, and submission-material drafting. The tools were not used to generate data, run analyses, create references, or determine scientific conclusions. After using these tools, the authors reviewed and edited the content as needed and take full responsibility for the content of the published article.
+The authors used OpenAI ChatGPT/Codex only to support language editing, consistency checking, and submission-material drafting. The tools were not used to generate data, run analyses, create references, or determine scientific conclusions. The authors reviewed and edited all content and take full responsibility for the manuscript.
 
 # Code and data availability
 
