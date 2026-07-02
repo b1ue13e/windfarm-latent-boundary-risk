@@ -164,7 +164,7 @@ def run_engineering_unit_value_translation(
                 "target_power_unit": "kW for WTB Patv",
                 "step_hours": float(config.get("dt", 1.0 / 6.0)),
                 "conversion": "reserve_energy and shortage_energy are kWh-equivalent totals; divide by 1000 for MWh-equivalent",
-                "monetary_translation": "Delta EUR = delta reserve-cost-equivalent MWh * assumed reserve carrying cost in EUR/MWh",
+                "monetary_translation": "Illustrative cost-scale marker = delta reserve-cost-equivalent MWh * assumed reserve carrying cost; not settlement value",
                 "reserve_prices_eur_per_mwh": [float(value) for value in reserve_prices_eur_per_mwh],
                 "claim_boundary": (
                     "Rolling 24-step forecast-cell accounting only; not delivered MWh, "
@@ -256,7 +256,7 @@ def _write_engineering_value_latex(frame: pd.DataFrame, path: Path, *, main_rati
         + r"$.}",
         r"\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{0.15\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth}}",
         r"\toprule",
-        r"Comparison & $\Delta$ reserve & Avoided shortage & $\Delta$ cost & $\Delta$ EUR@100 \\",
+        r"Comparison & $\Delta$ reserve & Avoided shortage & $\Delta$ cost & Cost-scale@100 \\",
         r"\midrule",
     ]
     for _, row in frame.iterrows():
@@ -277,7 +277,7 @@ def _write_engineering_value_latex(frame: pd.DataFrame, path: Path, *, main_rati
             r"\bottomrule",
             r"\end{tabularx}",
             r"\vspace{1mm}",
-            r"\footnotesize Values are MWh-equivalent forecast-cell accounting with $\Delta t=1/6$ h. Use same-router/global as the bounded boundary-window diagnostic; physical-bin and full-sample rows block reserve-superiority, market-settlement, OPF, and unit-commitment claims.",
+            r"\footnotesize Values are MWh-equivalent forecast-cell accounting with $\Delta t=1/6$ h. Cost-scale@100 is an illustrative reserve-cost scale marker at 100 EUR/MWh, not market revenue, settlement value, OPF, or unit-commitment output. Use same-router/global as the bounded boundary-window diagnostic; physical-bin and full-sample rows block reserve superiority.",
             r"\end{table}",
             "",
         ]

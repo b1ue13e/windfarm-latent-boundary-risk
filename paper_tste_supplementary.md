@@ -198,7 +198,7 @@ $\lambda_{\mathrm{smooth}}$ & 0.05 & 0.05 & Local routing coherence \\
 
 ## Statistical claim boundaries {.unnumbered}
 
-Table A6 separates descriptive accuracy-price statements from paired seed-level tests. The iTransformer row is the displayed five-seed mean difference used for the main RMSE price; the Graph WaveNet and boundary-window rows are paired/FDR audit rows and should not be read as simple differences between table means.
+Table A6 separates the train-only RMSE guardrail from paired seed-level tests on the archived full-audit checkpoint. The iTransformer row is the displayed five-seed train-only guardrail gap; the Graph WaveNet and boundary-window rows are legacy full-audit paired/FDR audit rows and should not be read as the current RMSE guardrail.
 
 ```{=latex}
 \begin{table}[H]
@@ -211,9 +211,9 @@ Table A6 separates descriptive accuracy-price statements from paired seed-level 
 \toprule
 Claim & Estimate & 95\% CI & $p_{\mathrm{BH}}$ & Wording consequence \\
 \midrule
-Accuracy price vs iTransformer & 11.790 & -- & -- & Descriptive price versus the lowest-RMSE strict-cache baseline; no paired FDR claim \\
-Accuracy price vs Graph WaveNet & 9.029 & -- & <0.001 & Boundary router is significantly worse on headline RMSE \\
-Boundary-band accuracy price & 17.758 & -- & 0.001 & The price also appears in the boundary window \\
+Train-only RMSE guardrail vs iTransformer & 5.589 & -- & -- & Displayed guardrail gap for the provenance-corrected rerun; legacy full-audit checkpoint is separate \\
+Legacy full-audit RMSE price vs Graph WaveNet & 9.029 & -- & <0.001 & Applies to the archived full-audit checkpoint, not the train-only RMSE guardrail \\
+Legacy boundary-band RMSE price & 17.758 & -- & 0.001 & Boundary-window price for the archived full-audit checkpoint \\
 Gate NMI vs full physics-aligned MoE & 0.040 & [0.008, 0.071] & 0.066 & Positive but not FDR-significant; cite as bounded mechanism contrast \\
 Gate ARI vs full physics-aligned MoE & 0.035 & [-0.000, 0.078] & 0.126 & Positive but not FDR-significant; avoid superiority wording \\
 Boundary quantile cost vs GWN physical bin & -0.263M & [-10.704M, 9.782M] & -- & CI crosses zero; reserve cost should remain a diagnostic claim \\
@@ -276,7 +276,7 @@ Residual claim boundary & sanity check only & Mitigates circularity concern; doe
 
 ## External-site deployment-gate audit {.unnumbered}
 
-Table A8 records the go/no-go interpretation used for the external evidence. The first row is the positive control: retrained on the ENGIE La Haute Borne farm, where blade pitch is directly observed in 99.2\% of cells, the routing mechanism recovers the declared boundary and clears the held-out criterion. The remaining rows map the failed or incomplete Kelmarsh/Penmanshiel signals to the deployment action that follows. The table therefore supports a bounded but two-sided claim: the mechanism transfers where the control boundary is observable, while direct gate-bin reserve use at the Kelmarsh/Penmanshiel pair remains a screening protocol rather than an authorized transfer.
+Table A8 records the go/no-go interpretation used for the external evidence. The first row is the cross-site mechanism replication: retrained on the ENGIE La Haute Borne farm, where blade pitch is directly observed in 99.2\% of cells, the routing mechanism recovers the declared boundary and clears the held-out criterion. The remaining rows map the failed or incomplete Kelmarsh/Penmanshiel signals to the deployment action that follows. The table therefore supports a bounded but two-sided claim: the mechanism replicates where the control boundary is observable, while direct gate-bin reserve use at the Kelmarsh/Penmanshiel pair remains a screening protocol rather than an authorized transfer.
 
 ```{=latex}
 \begin{table}[H]
@@ -289,12 +289,12 @@ Table A8 records the go/no-go interpretation used for the external evidence. The
 \toprule
 Gate & Observed external evidence & Go/no-go rule & Claim consequence \\
 \midrule
-Cross-site recovery (La Haute Borne) & Five-seed chronological routing NMI 0.941, ARI 0.971; pitch observed in 99.2\% of cells, no proxy & Held-out NMI $\geq$ 0.50 with observed pitch after parameters are frozen & Go: boundary recovers where pitch is observable; cite as positive cross-site control \\
+Cross-site mechanism replication (La Haute Borne) & Five-seed chronological routing NMI 0.941, ARI 0.971; pitch observed in 99.2\% of cells, no proxy & Held-out NMI $\geq$ 0.50 with observed pitch after parameters are frozen & Go: anchor-observable mechanism replicates on a second farm; do not claim anchor-free or automatic reserve transfer \\
 Cross-site routing criterion & 80/80 runs complete; mean NMI 0.4877 below threshold 0.50; mean ARI 0.5112 & Held-out NMI $\geq$ 0.50 and balanced accuracy $\geq$ 0.50 after parameters are frozen & No-go for cross-farm router interpretation; cite as negative boundary-condition evidence \\
 Local boundary recalibration & Default test NMI 0.1324 $\rightarrow$ recalibrated 0.1491 (delta +0.0167) & Rated wind, pitch threshold, boundary band, and gate-map selected on calibration only & Local threshold transfer is insufficient; re-estimate before use \\
 Small-window adaptation & 40/40 routing runs adapted; chronological balanced accuracy 0.4787 below 0.50 & Small calibration windows must still pass the frozen held-out routing criterion & Calibration alone does not authorize external reserve use \\
 Sensor and boundary support & Penmanshiel-to-Kelmarsh leave-one pitch-feature coverage 0.0000 and effective boundary cells 0 & Pre-declared calibration window with enough boundary cells, active power, availability mask, and pitch/proxy overlap & No physical-router interpretation without observability \\
-External reserve-use decision & Upstream gates do not pass before reserve allocation is evaluated & Transition-window shortage and violation improve at acceptable reserve-energy cost & Withhold gate-bin reserve use outside WTB; report a deployment protocol only \\
+External reserve-use decision & Upstream observability and held-out routing gates fail before external reserve allocation & Evaluate reserve only after observability and held-out routing gates pass & Withhold gate-bin reserve use outside WTB; report a deployment protocol only \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -302,7 +302,7 @@ External reserve-use decision & Upstream gates do not pass before reserve alloca
 
 ## La Haute Borne anchor-observability replay audit {.unnumbered}
 
-Table A9 audits the load-bearing channels behind the La Haute Borne positive control. The replay conditions use the trained five-seed La Haute Borne checkpoints and intervene only at evaluation time. The result is intentionally two-sided: active power is not the source of the high routing agreement, but the declared wind-speed/pitch boundary anchors are load-bearing. This supports citing La Haute Borne as an anchor-observable positive-control replication and blocks any anchor-free discovery wording.
+Table A9 audits the load-bearing channels behind the La Haute Borne cross-site mechanism replication. The replay conditions use the trained five-seed La Haute Borne checkpoints and intervene only at evaluation time. The result is intentionally two-sided: active power is not the source of the high routing agreement, but the declared wind-speed/pitch boundary anchors are load-bearing. This supports citing La Haute Borne as anchor-observable cross-site mechanism replication and blocks any anchor-free discovery or automatic cross-site reserve-use wording.
 
 ```{=latex}
 \begin{table}[H]
@@ -356,9 +356,51 @@ Sensor noise, strongest & 0.960 & 0.759 & 0.885 & 0.758 & 0.652 & 0.804 & 227.8 
 \end{table}
 ```
 
+## Gate route-evolution diagnostic {.unnumbered}
+
+Table A10b checks whether the routed responsibility changes around the declared transition rather than merely replaying a static label. Matching to the new regime peaks at the transition step and drops under lead/lag shifts, supporting a route-evolution audit while not replacing the modular classifier control.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A10b.} Gate route-evolution diagnostic around MPPT-to-pitch transitions.}
+\begin{tabular}{rrrr}
+\toprule
+Lag step & Match rate & SD & Seeds \\
+\midrule
+-6 & 0.405 & 0.005 & 5 \\
+-3 & 0.361 & 0.010 & 5 \\
++0 & 0.815 & 0.059 & 5 \\
++3 & 0.633 & 0.002 & 5 \\
++6 & 0.610 & 0.002 & 5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.0}
+\caption*{\textbf{Table A10c.} Modular classifier reserve control and responsibility-chain boundary.}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.24\columnwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Control & Result and claim boundary \\
+\midrule
+GWN+classifier-bin & 86.54M improves over GWN/global (88.80M) but trails physical-bin/gate-bin (84.31M/84.58M); paired modular-vs-gate CI crosses zero, so this is a tested modular control, not an in-model route-responsibility replacement. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+```
+
 ## Reserve-policy claim-boundary audit {.unnumbered}
 
-Table A11 is the compact reviewer-facing boundary audit. The CSV keeps the full wording rules; the table lists the evidence token and claim limit needed to keep the reserve result diagnostic rather than policy-optimal.
+Table A11 is the compact reviewer-facing boundary audit. The same-router boundary comparison has seed-paired uncertainty support, while physical-bin, full-sample, and cross-backbone comparisons still bound the claim away from policy optimality or market-dispatch value.
 
 ```{=latex}
 \begin{table}[H]
@@ -371,20 +413,22 @@ Table A11 is the compact reviewer-facing boundary audit. The CSV keeps the full 
 \toprule
 Boundary & Key evidence & Limit \\
 \midrule
-Same-model boundary reserve effect & $\rho=10$: $\Delta$cost -3.55M; $\Delta$viol. -0.0138; reserve +1.85M; shortage -0.54M & Same-model diagnostic only \\
+Same-model boundary reserve effect & $\rho=10$: $\Delta$cost -3.55M [CI -4.65M,-2.45M]; $\Delta$viol. -0.0138 [CI -0.0203,-0.0072]; shortage -0.54M [CI -0.78M,-0.30M] & Same-model diagnostic; not cross-model optimal \\
 Physical-bin quantile comparator & Boundary phys. 83.78M/0.0880; GWN phys. 84.31M/0.0931; gate 84.58M/0.0900 & Physical bins remain competitive \\
 Cost-ratio applicability & Active at $\rho=5$--10; narrows at 20; $\rho=50$ favors global (+5.93M, +0.0035) & Moderate-cost window only \\
 Full-sample system value & GWN/global 464.07M/0.0901; gate-bin 481.36M/0.1214 & No system-wide dispatch claim \\
-Seed-level uncertainty & $\Delta$cost +17.28M; 95\% CI [-52.09M,+87.95M]; p=0.752 & Not statistically settled \\
+Cross-backbone/full-sample uncertainty & $\Delta$cost +17.28M; 95\% CI [-52.09M,+87.95M]; p=0.752 & Not system-wide or cross-backbone \\
 Operational scope & Validation-frozen shortfall quantiles; no OPF, unit commitment, market clearing, or prices & Screening audit only \\
 \bottomrule
 \end{tabularx}
+\vspace{1mm}
+\footnotesize Same-model intervals are $n=5$ seed-paired bootstrap mean CIs for gate-bin minus same-router global at $\rho=10$.
 \end{table}
 ```
 
 ## Engineering-unit reserve-value translation {.unnumbered}
 
-Table A12 translates the reserve audit into MWh-equivalent forecast-cell accounting and a 100 EUR/MWh scale marker; it is not a market-settlement, OPF, unit-commitment, or security-constrained dispatch result.
+Table A12 translates the reserve audit into MWh-equivalent forecast-cell accounting and an illustrative 100 EUR/MWh reserve-cost-scale marker; it is not a market-settlement, OPF, unit-commitment, or security-constrained dispatch result.
 
 ```{=latex}
 \begin{table}[H]
@@ -395,7 +439,7 @@ Table A12 translates the reserve audit into MWh-equivalent forecast-cell account
 \caption*{\textbf{Table A12.} Engineering-unit reserve-value translation at $\rho=10$.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{0.15\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth}}
 \toprule
-Comparison & $\Delta$ reserve & Avoided shortage & $\Delta$ cost & $\Delta$ EUR@100 \\
+Comparison & $\Delta$ reserve & Avoided shortage & $\Delta$ cost & Cost-scale@100 \\
 \midrule
 Boundary gate-bin vs same-router global & +1846.9 & +539.8 & -3551.4 & -355k \\
 Boundary gate-bin vs GWN physical-bin & +2319.2 & +205.6 & +262.9 & +26k \\
@@ -403,35 +447,8 @@ Boundary gate-bin vs GWN global full sample & +3148.2 & -1413.5 & +17283.2 & +17
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\footnotesize Values are MWh-equivalent forecast-cell accounting with $\Delta t=1/6$ h. Use same-router/global as the bounded boundary-window diagnostic; physical-bin and full-sample rows block reserve-superiority, market-settlement, OPF, and unit-commitment claims.
+\footnotesize Values are MWh-equivalent forecast-cell accounting with $\Delta t=1/6$ h. Cost-scale@100 is an illustrative reserve-cost scale marker at 100 EUR/MWh, not market revenue, settlement value, OPF, or unit-commitment output. Use same-router/global as the bounded boundary-window diagnostic; physical-bin and full-sample rows block reserve superiority.
 \end{table}
 ```
 
-
-```{=latex}
-\begin{table}[H]
-\centering
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A13.} Compact WTB strong, anchor-only, and engineering baseline check (mean $\pm$ std across seeds where repeated runs are available; det. denotes a deterministic or single-run engineering baseline).}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{lrrr}
-\toprule
-Model & Overall RMSE & Switch RMSE & n \\
-\midrule
-iTransformer & 224.34 +/- 2.23 & 228.80 +/- 2.54 & 5 \\
-Graph WaveNet & 225.74 +/- 2.60 & 228.12 +/- 3.23 & 5 \\
-Boundary-forced router & 236.13 +/- 8.41 & 239.86 +/- 8.85 & 5 \\
-Anchor-only router & 233.46 & 236.90 & 5 \\
-Persistence & 243.23 & 246.61 & det. \\
-Physical power curve & 241.02 & 245.37 & det. \\
-XGBoost lag-feature & 227.88 & 233.07 & det. \\
-LightGBM lag-feature & 227.12 & 232.24 & det. \\
-DLinear-style LTSF & 246.81 & 251.15 & det. \\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
-```
 

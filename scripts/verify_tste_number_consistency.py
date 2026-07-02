@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
+import numpy as np
 import pandas as pd
 
 
@@ -142,7 +143,11 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         / "tables"
         / "engineering_unit_value_translation.csv"
     )
+    class_weight = pd.read_csv(root / "artifacts" / "class_weight_boundary_audit" / "class_weight_sensitivity_summary.csv")
+    reserve_raw = pd.read_csv(root / "artifacts" / "decision_reserve_wtb_operational_windows" / "reserve_decision_raw_runs.csv")
+    gate_evolution = pd.read_csv(root / "artifacts" / "mechanism_behavior_pack_wtb" / "gate_transition_lead_lag.csv")
     anchor_stress = pd.read_csv(root / "artifacts" / "anchor_stress_guard" / "anchor_stress_summary.csv")
+    external_guard = json.loads((root / "artifacts" / "external_wind_guard" / "external_wind_guard.json").read_text(encoding="utf-8"))
     lhb_guard = json.loads(
         (root / "artifacts" / "external_wind_lhb_guard_full_5seed" / "external_wind_guard.json").read_text(
             encoding="utf-8"
@@ -161,6 +166,7 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
     best_strict = _best_wtb_strict_cache_baseline(benchmark)
     boundary = _lookup(benchmark, Panel="WTB", Model="Boundary-forced router")
     boundary_ablation = _lookup(ablation, Model="MoE + L_bal + L_align + L_force")
+    train_only = _lookup(class_weight, suite="train_only_weight_rerun")
     delay_6 = _lookup(early, variant="canonical", scenario="label_delay", degradation_label="delay_steps=6")
     availability_50 = _lookup(
         early,
@@ -197,11 +203,19 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
     anchor_no_pab = _lookup(anchor_stress, variant="no_pab_mean")
     anchor_lag_patv = _lookup(anchor_stress, variant="lagged_patv")
     anchor_lag_pab_wspd = _lookup(anchor_stress, variant="lagged_pab_wspd")
+    same_model_stats = _same_model_reserve_stats(reserve_raw)
+    gate_evolution_summary = _gate_evolution_summary(gate_evolution)
+    train_only_rmse = _num(train_only["overall_rmse_mean"])
+    best_rmse = _metric_mean(best_strict["Overall RMSE"])
 
     return [
         _check("graph_wavenet_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(graph["Overall RMSE"]), "{:.2f}", ("main",)),
         _check("best_strict_cache_baseline_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(best_strict["Overall RMSE"]), "{:.2f}", ("main", "cover")),
-        _check("boundary_router_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(boundary["Overall RMSE"]), "{:.2f}", ("main", "cover")),
+        _check("train_only_router_overall_rmse", "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv", train_only_rmse, "{:.2f}", ("main", "cover", "supplementary")),
+        _check("train_only_rmse_gap_vs_best", "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv", train_only_rmse - best_rmse, "{:.2f}", ("main", "cover")),
+        _check("train_only_router_nmi", "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv", _num(train_only["nmi_mean"]), "{:.3f}", ("main", "cover")),
+        _check("train_only_router_ari", "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv", _num(train_only["ari_mean"]), "{:.3f}", ("main", "cover")),
+        _check("boundary_router_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(boundary["Overall RMSE"]), "{:.2f}", ("main", "supplementary")),
         _check("boundary_router_nmi", "artifacts/paper_assets/tables/table_wtb_ablation.csv", _metric_mean(boundary_ablation["NMI"]), "{:.4f}", ("main",)),
         _check("boundary_router_ari", "artifacts/paper_assets/tables/table_wtb_ablation.csv", _metric_mean(boundary_ablation["ARI"]), "{:.4f}", ("main",)),
         _check("six_step_gate_recall", "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv", _num(delay_6["gate_recall_mean"]), "{:.3f}", ("main", "cover")),
@@ -212,10 +226,15 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         _check("gate_clean_precision", "artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_summary.csv", _num(classifier_clean["gate_precision_mean"]), "{:.3f}", ("main", "supplementary")),
         _check("six_step_recall_gain", "artifacts/final_evidence_package/export/tables/accountability_tradeoff.csv", _num(accountability_boundary["citable_recall_gain"]), "{:+.3f}", ("main",)),
         _check("early_pitch_cells_recovered", "artifacts/final_evidence_package/export/tables/early_warning_consequence_audit.csv", _num(consequence_delay_6["recovered_cells_vs_rule_mean"]), lambda value: f"{int(round(value))}", ("main",)),
-        _check("rmse_price_vs_best_strict_cache_baseline", "artifacts/final_evidence_package/export/tables/accountability_tradeoff.csv", _num(accountability_boundary["rmse_penalty_vs_best_strict_cache_baseline"]), "{:.2f}", ("main", "cover")),
         _check("boundary_gate_bin_cost", "artifacts/final_evidence_package/export/tables/dispatch_reserve_main_table.csv", _num(reserve_boundary_gate["total_cost"]), _fmt_millions, ("main",)),
         _check("boundary_global_cost", "artifacts/final_evidence_package/export/tables/dispatch_reserve_main_table.csv", _num(reserve_boundary_global["total_cost"]), _fmt_millions, ("main",)),
         _check("gwn_physical_bin_cost", "artifacts/final_evidence_package/export/tables/dispatch_reserve_main_table.csv", _num(reserve_gwn_physical["total_cost"]), _fmt_millions, ("main", "supplementary")),
+        _check("same_model_cost_ci_low", "artifacts/decision_reserve_wtb_operational_windows/reserve_decision_raw_runs.csv", same_model_stats["total_cost"]["ci_low"], _fmt_millions, ("supplementary",)),
+        _check("same_model_cost_ci_high", "artifacts/decision_reserve_wtb_operational_windows/reserve_decision_raw_runs.csv", same_model_stats["total_cost"]["ci_high"], _fmt_millions, ("supplementary",)),
+        _check("same_model_violation_ci_low", "artifacts/decision_reserve_wtb_operational_windows/reserve_decision_raw_runs.csv", same_model_stats["violation_rate"]["ci_low"], "{:.4f}", ("supplementary",)),
+        _check("same_model_violation_ci_high", "artifacts/decision_reserve_wtb_operational_windows/reserve_decision_raw_runs.csv", same_model_stats["violation_rate"]["ci_high"], "{:.4f}", ("supplementary",)),
+        _check("same_model_shortage_ci_low", "artifacts/decision_reserve_wtb_operational_windows/reserve_decision_raw_runs.csv", same_model_stats["shortage_energy"]["ci_low"], _fmt_millions, ("supplementary",)),
+        _check("same_model_shortage_ci_high", "artifacts/decision_reserve_wtb_operational_windows/reserve_decision_raw_runs.csv", same_model_stats["shortage_energy"]["ci_high"], _fmt_millions, ("supplementary",)),
         _check("engineering_delta_reserve_mwh", "artifacts/final_evidence_package/export/tables/engineering_unit_value_translation.csv", _num(engineering_same["delta_reserve_mwh_equiv"]), "{:.1f}", ("supplementary",)),
         _check("engineering_avoided_shortage_mwh", "artifacts/final_evidence_package/export/tables/engineering_unit_value_translation.csv", _num(engineering_same["avoided_shortage_mwh_equiv"]), "{:.1f}", ("supplementary",)),
         _check("engineering_delta_cost_mwh", "artifacts/final_evidence_package/export/tables/engineering_unit_value_translation.csv", abs(_num(engineering_same["delta_total_cost_mwh_equiv"])), "{:.1f}", ("supplementary",)),
@@ -225,9 +244,15 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         _check("anchor_stress_lagged_patv_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_lag_patv["nmi_mean"]), "{:.3f}", ("main",)),
         _check("anchor_stress_lagged_pab_wspd_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_lag_pab_wspd["nmi_mean"]), "{:.3f}", ("main",)),
         _check("la_haute_borne_routing_nmi", "artifacts/external_wind_lhb_guard_full_5seed/external_wind_guard.json", _num(lhb_guard["mean_nmi"]), "{:.3f}", ("main", "cover")),
+        _check("la_haute_borne_routing_ari", "artifacts/external_wind_lhb_guard_full_5seed/external_wind_guard.json", _num(lhb_guard["mean_ari"]), "{:.3f}", ("main", "supplementary")),
         _check("lhb_anchor_patv_zero_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["patv_zero_nmi_mean"]), "{:.3f}", ("main", "supplementary")),
         _check("lhb_anchor_boundary_zero_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["boundary_zero_nmi_mean"]), "{:.3f}", ("main", "supplementary")),
         _check("lhb_anchor_random_physics_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["random_physics_nmi_mean"]), "{:.3f}", ("supplementary",)),
+        _check("kelmarsh_penmanshiel_mean_nmi", "artifacts/external_wind_guard/external_wind_guard.json", _num(external_guard["mean_nmi"]), "{:.4f}", ("main", "supplementary")),
+        _check("kelmarsh_penmanshiel_mean_ari", "artifacts/external_wind_guard/external_wind_guard.json", _num(external_guard["mean_ari"]), "{:.4f}", ("main", "supplementary")),
+        _check("gate_transition_match_at_step", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[0], "{:.3f}", ("main", "supplementary")),
+        _check("gate_transition_match_lead_3", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[-3], "{:.3f}", ("main", "supplementary")),
+        _check("gate_transition_match_lead_6", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[-6], "{:.3f}", ("main", "supplementary")),
     ]
 
 
@@ -287,6 +312,54 @@ def _num(value: object) -> float:
 
 def _fmt_millions(value: float) -> str:
     return f"{value / 1_000_000.0:.2f}M"
+
+
+def _same_model_reserve_stats(raw_runs: pd.DataFrame) -> dict[str, dict[str, float]]:
+    frame = raw_runs[
+        raw_runs["model"].astype(str).eq("Boundary-forced router")
+        & raw_runs["subset"].astype(str).eq("boundary")
+        & pd.to_numeric(raw_runs["cost_ratio"], errors="coerce").eq(10.0)
+        & raw_runs["policy"].astype(str).isin(["global", "gate-bin"])
+    ].copy()
+    if frame.empty:
+        raise ValueError("No boundary same-model reserve rows found for cost ratio 10.")
+
+    metrics = ["total_cost", "violation_rate", "shortage_energy"]
+    wide = frame.pivot(index="seed", columns="policy", values=metrics)
+    out: dict[str, dict[str, float]] = {}
+    for metric in metrics:
+        diffs = (wide[(metric, "gate-bin")] - wide[(metric, "global")]).dropna().astype(float)
+        if diffs.empty:
+            raise ValueError(f"No paired reserve differences available for {metric}.")
+        boot = _bootstrap_mean(diffs.to_numpy(), n_boot=20000, seed=20260702 + len(metric))
+        out[metric] = {
+            "mean": float(diffs.mean()),
+            "ci_low": float(boot.quantile(0.025)),
+            "ci_high": float(boot.quantile(0.975)),
+        }
+    return out
+
+
+def _gate_evolution_summary(gate_evolution: pd.DataFrame) -> dict[int, float]:
+    frame = gate_evolution[
+        gate_evolution["model"].astype(str).eq("MoE + L_bal + L_align + L_force")
+        & gate_evolution["run_dir"].astype(str).str.contains("strictmask_validation_wtb_full", regex=False)
+    ].copy()
+    if frame.empty:
+        raise ValueError("No strictmask WTB gate transition rows found.")
+    grouped = frame.groupby("lag_steps")["gate_matches_new_regime_rate"].mean()
+    required_lags = {-6, -3, 0}
+    missing = required_lags.difference(int(lag) for lag in grouped.index.tolist())
+    if missing:
+        raise ValueError(f"Missing gate transition lags: {sorted(missing)}")
+    return {int(lag): float(value) for lag, value in grouped.items()}
+
+
+def _bootstrap_mean(values: np.ndarray, *, n_boot: int, seed: int) -> pd.Series:
+    array = np.asarray(values, dtype=float)
+    rng = np.random.default_rng(seed)
+    samples = rng.choice(array, size=(n_boot, array.size), replace=True)
+    return pd.Series(samples.mean(axis=1))
 
 
 def _write_latex(frame: pd.DataFrame, path: Path) -> None:

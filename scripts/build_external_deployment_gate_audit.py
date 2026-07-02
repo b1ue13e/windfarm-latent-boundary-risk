@@ -9,9 +9,11 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 TABLE_DIR = ROOT / "artifacts" / "final_evidence_package" / "export" / "tables"
+EXPORT_DIR = ROOT / "artifacts" / "final_evidence_package" / "export"
 FAILURE_TABLE = TABLE_DIR / "external_site_transfer_failure_table.csv"
 CHECKLIST_TABLE = TABLE_DIR / "new_wind_farm_deployment_checklist.csv"
 LHB_GUARD = ROOT / "artifacts" / "external_wind_lhb_guard_full_5seed" / "external_wind_guard.json"
+TRANSFER_GUARD = ROOT / "artifacts" / "external_wind_guard" / "external_wind_guard.json"
 
 
 def main() -> None:
@@ -37,14 +39,44 @@ def main() -> None:
             "tex": str(out_tex),
         },
         "claim_use": (
-            "Kelmarsh/Penmanshiel external evidence is a deployment-screening "
-            "audit. It blocks automatic cross-farm portability and reserve use "
-            "until sensor coverage, local boundary calibration, frozen held-out "
-            "routing, and reserve-audit gates all pass."
+            "La Haute Borne is the anchor-observable cross-site mechanism replication. "
+            "Kelmarsh/Penmanshiel are deployment-screening no-go evidence: they block "
+            "automatic cross-farm portability and reserve use until sensor coverage, "
+            "local boundary calibration, frozen held-out routing, and reserve-audit "
+            "gates all pass."
         ),
     }
     out_json.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    _write_external_guard_exports()
     print(f"Wrote {out_csv}")
+
+
+def _write_external_guard_exports() -> None:
+    lhb = json.loads(LHB_GUARD.read_text(encoding="utf-8")) if LHB_GUARD.exists() else {}
+    transfer = json.loads(TRANSFER_GUARD.read_text(encoding="utf-8")) if TRANSFER_GUARD.exists() else {}
+    combined = {
+        "status": "external_wind_claim_boundary_index_ready",
+        "claim_gate": "lhb_anchor_observable_replication_and_kelmarsh_penmanshiel_no_go_transfer_boundary",
+        "lhb_anchor_observable_replication": lhb,
+        "kelmarsh_penmanshiel_transfer_no_go": transfer,
+        "claim_use": (
+            "Use La Haute Borne as anchor-observable cross-site mechanism replication after local training. "
+            "Use Kelmarsh/Penmanshiel as no-go deployment evidence: automatic cross-farm reserve use is not "
+            "authorized unless observability and held-out routing gates pass."
+        ),
+    }
+    for subdir in ("guards", "source_data"):
+        out_dir = EXPORT_DIR / subdir
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "external_wind_guard.json").write_text(json.dumps(combined, indent=2), encoding="utf-8")
+        if lhb:
+            (out_dir / "external_wind_lhb_anchor_observable_guard.json").write_text(
+                json.dumps(lhb, indent=2), encoding="utf-8"
+            )
+        if transfer:
+            (out_dir / "external_wind_transfer_no_go_guard.json").write_text(
+                json.dumps(transfer, indent=2), encoding="utf-8"
+            )
 
 
 def _build_rows(failure: pd.DataFrame, checklist: pd.DataFrame) -> list[dict[str, str]]:
@@ -57,13 +89,16 @@ def _build_rows(failure: pd.DataFrame, checklist: pd.DataFrame) -> list[dict[str
 
     return [
         {
-            "gate": "Cross-site recovery (La Haute Borne)",
+            "gate": "Cross-site mechanism replication (La Haute Borne)",
             "observed_external_evidence": (
                 f"Five-seed chronological routing NMI {_fmt(lhb.get('mean_nmi'))}, "
                 f"ARI {_fmt(lhb.get('mean_ari'))}; pitch observed in 99.2% of cells, no proxy"
             ),
             "go_no_go_rule": "Held-out NMI >= 0.50 with observed pitch after parameters are frozen",
-            "claim_consequence": "Go: boundary recovers where pitch is observable; cite as positive cross-site control",
+            "claim_consequence": (
+                "Go: anchor-observable mechanism replicates on a second farm; "
+                "do not claim anchor-free or automatic reserve transfer"
+            ),
         },
         {
             "gate": "Cross-site routing criterion",
@@ -92,9 +127,9 @@ def _build_rows(failure: pd.DataFrame, checklist: pd.DataFrame) -> list[dict[str
         {
             "gate": "External reserve-use decision",
             "observed_external_evidence": (
-                "Upstream gates do not pass before reserve allocation is evaluated"
+                "Upstream observability and held-out routing gates fail before external reserve allocation"
             ),
-            "go_no_go_rule": _sentence_case(_checklist_rule(checklist, "reserve audit")),
+            "go_no_go_rule": "Evaluate reserve only after observability and held-out routing gates pass",
             "claim_consequence": "Withhold gate-bin reserve use outside WTB; report a deployment protocol only",
         },
     ]

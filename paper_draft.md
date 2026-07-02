@@ -54,7 +54,7 @@ header-includes:
 \noindent{\small\bfseries Abstract\par}
 \vspace{0.18em}
 \small
-Wind-farm reserve screening near the MPPT-to-pitch transition depends on knowing which control law is active, yet the threshold label that identifies it can be delayed, missing, or noisy exactly where over-forecasts create shortage exposure. We make this control-boundary assignment auditable through SCADA-anchored, regime-aware routing. A node-level mixture-of-experts gate is constrained by operating anchors so each turbine-time route can be checked against a declared MPPT-to-pitch partition and issued before future active power is observed. On the KDD Cup 2022 benchmark, the legacy strict-cache boundary-forced router recovers the declared partition (NMI about 0.87, ARI about 0.92); recomputing alignment and forcing class weights from the training split only preserves the routing claim (NMI 0.721, ARI 0.740). Under a six-step label delay, the route retains 0.960 early pitch-window recall while the delayed threshold rule falls to 0.196; under 50% label availability, the corresponding rule reaches 0.508. A simple issue-time anchor classifier reaches 1.000 recall and 0.879 precision on clean anchors, so the claim is not superior standalone detection: the contribution is an auditable in-model route assignment coupled to forecasting and boundary-window reserve screening. This route has an explicit accuracy price (legacy overall RMSE 236.13 versus 224.34 for iTransformer) and a bounded reserve-risk consequence check: at shortage-to-reserve cost ratio 10, gate-conditioned binning lowers same-router boundary-window shortage energy by 14.5% while carrying about 3.6% more reserve, with physical-bin baselines remaining competitive. Retrained on the independent ENGIE La Haute Borne farm, the router recovers the declared boundary at five-seed NMI 0.941; Kelmarsh/Penmanshiel, lacking pitch observability, define the deployment conditions required before cross-farm use. The contribution is an auditable control-boundary routing layer with degraded-label availability evidence, a measured RMSE trade-off, second-farm anchor-observable recovery, and explicit transfer conditions.
+Wind-farm reserve screening near the MPPT-to-pitch transition depends on knowing which control law is active, yet the threshold label that identifies it can be delayed, missing, or noisy exactly where over-forecasts create shortage exposure. We make this control-boundary assignment auditable through SCADA-anchored, regime-aware routing. A node-level mixture-of-experts gate is constrained by operating anchors so each turbine-time route can be checked against a declared MPPT-to-pitch partition and issued before future active power is observed. On the KDD Cup 2022 benchmark, recomputing alignment and forcing class weights from the training split only keeps the routed forecaster below the RMSE guardrail (229.93 versus 224.34 for iTransformer) while preserving the routing claim (NMI 0.721, ARI 0.740); the fully archived legacy checkpoint gives stronger route alignment (NMI about 0.87, ARI about 0.92) for the full operational audit. Under a six-step label delay, the route retains 0.960 early pitch-window recall while the delayed threshold rule falls to 0.196; under 50% label availability, the corresponding rule reaches 0.508. A simple issue-time anchor classifier reaches 1.000 recall and 0.879 precision on clean anchors, so the claim is not superior standalone detection: the contribution is an auditable in-model route assignment coupled to forecasting and boundary-window reserve screening. At shortage-to-reserve cost ratio 10, gate-conditioned binning lowers same-router boundary-window shortage energy by 14.5% and violation by 1.38 percentage points while carrying about 3.6% more reserve; seed-paired intervals support this same-router diagnostic, but physical-bin baselines remain competitive. Retrained on the independent ENGIE La Haute Borne farm, the router provides anchor-observable cross-site mechanism replication (five-seed NMI 0.941); Kelmarsh/Penmanshiel, lacking pitch observability and boundary support, define the deployment conditions required before cross-farm use. The contribution is an auditable control-boundary routing layer with degraded-label availability evidence, a bounded RMSE guardrail, same-router reserve-screening evidence, and explicit transfer conditions.
 
 \vspace{0.25em}
 \noindent{\small\textbf{Keywords:} Wind-turbine control boundary; SCADA-anchored routing; regime-aware forecasting; auditable routing; MPPT-to-pitch transition; mixture-of-experts.\par}
@@ -66,7 +66,7 @@ Wind-farm reserve screening near the MPPT-to-pitch transition depends on knowing
 # Highlights {.unnumbered}
 
 - SCADA anchors make the MPPT-to-pitch control boundary auditable through routing.
-- Regime gates recover the declared partition (NMI 0.87) at a measured RMSE cost.
+- Train-only routing preserves the declared partition with RMSE 229.93.
 - Issue-time anchors preserve early pitch-window detection when confirmed labels degrade.
 - Validation-frozen quantile baselines bound any reserve-policy claim honestly.
 - Boundary recovers on a second anchor-observable farm; external gaps set gates.
@@ -114,7 +114,7 @@ We make the routing decision itself the operating-boundary diagnostic. A node-le
 
 The operator-facing workflow is deliberately narrow. At issue time the model may read the current SCADA anchors, historical active power, graph state, and missingness masks; it may not read future active power. A confirmed regime label, in contrast, may be delayed by validation, telemetry drop-out, or quality-control logic. The router is therefore not proposed as an anchor-free discovery device or as a better standalone classifier than a simple rule or logistic model on the same live anchors. Its role is to make the boundary assignment part of the forecasting model, so the same saved run can be audited for route semantics and then sliced for reserve-risk diagnosis.
 
-This paper makes three contributions. First, it introduces SCADA-anchored regime-aware routing as an auditable MPPT-to-pitch assignment whose semantics are fixed by operating anchors rather than post-hoc expert interpretation. Second, it quantifies degraded-label availability while disclosing a simple issue-time classifier control: the routed gate keeps early pitch-window recall at 0.960 under six-step label delay and 50% label availability, threshold-label rules fall to 0.196 and 0.508, and a logistic anchor classifier reaches 1.000 clean-anchor recall, showing that the detection value comes from issue-time anchor availability rather than a uniquely superior gate classifier. Third, it delivers this operating-state layer at an explicitly priced and bounded cost: the route improves a same-model boundary-window reserve rule at moderate cost ratios, carries a measured 11.79-RMSE-unit price relative to the best strict-cache forecasting baseline, recovers the declared boundary on a second independent anchor-observable farm (ENGIE La Haute Borne, five-seed routing NMI 0.941), and converts the Kelmarsh/Penmanshiel coverage gaps into explicit deployment conditions rather than claiming automatic cross-farm generalization. The framing throughout is a complementary diagnostic layer for an already-deployed low-RMSE forecaster, not a replacement on the forecasting leaderboard or a standalone operating-state classifier.
+This paper makes three contributions. First, it introduces SCADA-anchored regime-aware routing as an auditable MPPT-to-pitch assignment whose semantics are fixed by operating anchors rather than post-hoc expert interpretation. Second, it quantifies degraded-label availability while disclosing a simple issue-time classifier control: the routed gate keeps early pitch-window recall at 0.960 under six-step label delay and 50% label availability, threshold-label rules fall to 0.196 and 0.508, and a logistic anchor classifier reaches 1.000 clean-anchor recall, showing that the detection value comes from issue-time anchor availability rather than a uniquely superior gate classifier. Third, it delivers this operating-state layer with an explicit accuracy guardrail and bounded operating consequence: a training-split class-weight rerun preserves the route at RMSE 229.93 (5.59 units above iTransformer), the archived full-provenance route supplies same-router reserve-screening evidence with seed-paired uncertainty support, and ENGIE La Haute Borne provides anchor-observable cross-site mechanism replication at five-seed routing NMI 0.941. The Kelmarsh/Penmanshiel coverage gaps are converted into explicit deployment conditions rather than claims of automatic cross-farm generalization. The framing throughout is a complementary diagnostic layer for an already-deployed low-RMSE forecaster, not a replacement on the forecasting leaderboard or a standalone operating-state classifier.
 
 # Related Work
 
@@ -140,7 +140,7 @@ where $\mathbf{X}_{t-H+1:t} \in \mathbb{R}^{H \times N \times F}$ and $\mathcal{
 
 The information boundary is strict. All inputs, graph weights, regime anchors, and gate anchors are observed no later than the forecast issue time $t$; supervised targets begin at $t+1$. In WTB, the current active-power channel $\texttt{Patv}_{i,t}$ is treated as an issue-time status input, whereas future active power is used only as the prediction target and validity mask. This keeps the multi-step horizon free of target leakage while leaving the no-\texttt{Patv} and lagged-\texttt{Patv} variants as deployment limitations.
 
-Routing is node-level: each node at each anchor time receives its own gate distribution $\mathbf{g}_{i,t}$. This matters because nearby turbines or grid cells can occupy different local regimes within the same sequence. Core notation is listed before the Introduction; auxiliary loss definitions are provided in Appendix A.
+Routing is node-level: each node at each anchor time receives its own gate distribution $\mathbf{g}_{i,t}$. This matters because nearby turbines or grid cells can occupy different local regimes within the same sequence. Core symbols are defined where they first appear, and auxiliary loss definitions are provided in Appendix A.
 
 ## Operating-boundary anchors and labels
 
@@ -342,6 +342,8 @@ The selected $(b,q)$ rule is then frozen and applied to the test split. The repo
 
 The cost ratio $\rho$ is an energy-system assumption rather than an abstract tuning knob. If the marginal cost of carrying one unit of reserve energy is $C_r$, then $\rho=10$ charges one unit of residual shortage as $10C_r$. Ratios 5--10 represent moderate reliability settings such as transition-window scheduling or imbalance screening; ratios 20--50 represent scarcity-aware screening where shortage avoidance dominates local cost savings. The primary diagnostic compares Graph WaveNet/global, Graph WaveNet/physical-bin, boundary router/global, and boundary router/gate-bin policies. Only same-model global comparisons attribute gate-bin reserve effects to the learned router.
 
+The market-facing use case is therefore a pre-dispatch reserve and imbalance-risk screening log rather than a settlement model: the saved run records route probability, reserve bin, selected quantile, residual shortfall, and anchor state for each escalated transition-window cell. A modular low-RMSE forecaster plus issue-time classifier can also emit a state flag; the extra value claimed here is narrower--same-run responsibility attached to the forecast residual and reserve slice, not superior clean-anchor classification or market-clearing profit.
+
 To bound this diagnostic against a probabilistic reserve alternative, we additionally run validation-frozen empirical quantile baselines for the global and physical operating bins. These are not trained distributional forecasters; they are conformal-style shortfall reserves estimated on the validation split and evaluated once on the test split. The main reported boundary window is fixed at $\pm 1.0$ m s$^{-1}$ around rated wind and the main cost ratio is $\rho=10$, with sensitivity at $\rho \in \{2,5,10,20,50\}$. A separate toy operational-cost module reports reserve procurement plus $\rho$-weighted residual-shortage penalty and excludes optimal power flow, unit commitment, market clearing, delivery constraints, and price claims.
 
 ```{=latex}
@@ -380,7 +382,7 @@ The comparison has two layers. The first isolates the routing mechanism after sh
 
 The second layer tests the RMSE price against stronger and more engineering-facing baselines. Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST, iTransformer, and TiDE are included for WTB [@nie2023patchtst; @liu2024itransformer; @das2023longterm], together with deterministic persistence, a fitted physical power-curve baseline, XGBoost and LightGBM lag-feature predictors, and a DLinear-style LTSF baseline. Graph WaveNet, STGCN, PatchTST, TCN, and a deterministic persistence predictor are included for ERA5. This split avoids using one comparison for two different claims. The in-family layer tests whether physical routing changes the learned partition under a fixed backbone. The baseline layer tests whether the routing intervention remains honest about forecast error when compared with established temporal, graph, and engineering predictors.
 
-For compactness, the mechanism tables shorten the three in-family model names to **Dense (matched)**, **Unconstrained MoE**, and **Corrected routing comparator**. The main WTB forecasting table reports representative strong baselines, including the best strict-cache baseline used for the RMSE price; Supplementary Table A13 gives a compact strong/engineering baseline check with iTransformer, Graph WaveNet, the WTB boundary-forced router, persistence, power curves, gradient-boosted lag features, and a DLinear-style LTSF readout. The full neural strict-cache set remains in the source tables. The ERA5 forecasting tables additionally report persistence and four learned external baselines. The in-family mechanism families are summarized in Appendix A so that the Results section can focus on evidence rather than model bookkeeping.
+For compactness, the mechanism tables shorten the three in-family model names to **Dense (matched)**, **Unconstrained MoE**, and **Corrected routing comparator**. The main WTB forecasting table reports representative strong baselines, including the best strict-cache baseline used for the RMSE price, while the full neural, anchor-only, and engineering baseline records remain in the source tables. The ERA5 forecasting tables additionally report persistence and four learned external baselines. The in-family mechanism families are summarized in Appendix A so that the Results section can focus on evidence rather than model bookkeeping.
 
 ## Training protocol and evaluation metrics
 
@@ -398,7 +400,7 @@ The results follow the operating decision that motivates the paper: can a route 
 
 ## Can the Gate Recover the Operating Boundary?
 
-SCADA-anchored routing recovers the WTB MPPT-to-pitch partition strongly enough to make the gate an auditable operating-boundary signal. Across five WTB seeds, the legacy strict-cache boundary-forced router reaches NMI about 0.87 and ARI about 0.92 against the declared labels; the training-split class-weight rerun remains above the routing-claim threshold at NMI 0.721 and ARI 0.740. The accuracy reference remains explicit: iTransformer reaches overall RMSE 224.34 +/- 2.23, Graph WaveNet reaches 225.74 +/- 2.60, and the legacy boundary-forced router reaches 236.13 +/- 8.41. The intended operating point is therefore not leaderboard replacement, but an additional issue-time state signal for the transition window.
+SCADA-anchored routing recovers the WTB MPPT-to-pitch partition strongly enough to make the gate an auditable operating-boundary signal. Across five WTB seeds, the training-split class-weight rerun remains above the routing-claim threshold at NMI 0.721 and ARI 0.740 while reaching overall RMSE 229.93 +/- 2.50. This narrows the accuracy gap to 5.59 units relative to iTransformer (224.34 +/- 2.23) and 4.19 units relative to Graph WaveNet (225.74 +/- 2.60). The fully archived legacy strict-cache boundary-forced router has a larger accuracy price (236.13 +/- 8.41) but stronger alignment (NMI about 0.87, ARI about 0.92) and supplies the saved gate/prediction artifacts used for the downstream label-degradation and reserve audits. The intended operating point is therefore not leaderboard replacement, but an additional issue-time state signal for the transition window with its accuracy price made explicit.
 
 The boundary itself is a meaningful diagnostic target. Anchors within +/-1.0 m s$^{-1}$ of rated wind have RMSE 321.17 +/- 21.31, roughly 67 units above valid non-boundary MPPT/pitch anchors. The same boundary band has mixed-regime structure (NMI/ARI 0.6562/0.7766), so it is both a forecasting stress point and a natural reserve-risk window. ERA5 provides the positive observability contrast: when the regime marker is directly visible through sensible heat flux, routing correction improves alignment without changing the headline accuracy story.
 
@@ -418,20 +420,20 @@ Train-only class-weight rerun & Gate-regime NMI / ARI; overall RMSE & 0.7208 / 0
 WTB boundary-band audit & Boundary-band RMSE; mixed-regime NMI / ARI & 321.17 +/- 21.31; 0.6562 / 0.7766 \\
 Boundary-anchor intervention & Overall RMSE change; NMI / ARI drop & +2.6792; 0.7017 / 0.8593 \\
 WTB spatial and time holdouts & Held-out-node NMI / ARI; future-holdout NMI / ARI & 0.8340 / 0.8829; 0.8352 / 0.8870 \\
-La Haute Borne positive-control replay & NMI / ARI; Patv-zero NMI; wind+pitch-zero NMI & 0.9408 +/- 0.0336 / 0.9712 +/- 0.0201; 0.953; 0.001 \\
+La Haute Borne cross-site replication & NMI / ARI; Patv-zero NMI; wind+pitch-zero NMI & 0.9408 +/- 0.0336 / 0.9712 +/- 0.0201; 0.953; 0.001 \\
 Threshold-grid audit & Worst-case saved-gate NMI / ARI & 0.8655 +/- 0.0429 / 0.9146 +/- 0.0377 \\
 \bottomrule
 \end{tabularx}
 \end{table}
 ```
 
-The diagnostic survives the main falsification checks. Zeroing the intended boundary anchor sharply reduces gate-regime agreement, whereas zeroing the wake score is near-null. Placebo labels do not reproduce the actual-label agreement. The spatial and future-period holdouts are the within-WTB generalization evidence for the routing claim, and they directly address whether a single benchmark can support it: the gate recovers the declared boundary at NMI 0.834 on turbines withheld from training and 0.835 on a held-out future period, so the recovered semantics transfer to unseen nodes and unseen time rather than fitting the specific turbines or window used for training, and threshold sweeps preserve the same routing structure. The recovery is not specific to WTB: retrained from scratch on an independent farm--the ENGIE La Haute Borne open SCADA benchmark, a different operator and country with directly observed blade pitch (99.2\% of cells, no proxy)--the same boundary-forced routing reaches five-seed chronological NMI 0.941 and ARI 0.971, clearing the 0.50 held-out routing criterion and slightly exceeding the WTB recovery. A replay audit makes the second-site role explicit: zeroing active power leaves the La Haute Borne NMI at 0.953, whereas jointly zeroing wind speed and pitch collapses it to 0.001 (Supplementary Table A9). Thus La Haute Borne is cited as an anchor-observable positive-control replication, not as anchor-free discovery. Within-WTB generalization and this second-farm recovery are the routing claim; the Kelmarsh/Penmanshiel farms, where pitch observability and boundary-cell coverage are insufficient, are reported separately as the deployment-gate failure that defines the conditions cross-site recovery requires rather than folded into the routing claim.
+The diagnostic survives the main falsification checks. Boundary-anchor zeroing collapses route agreement, wake-score zeroing is near-null, and placebo labels do not reproduce the actual-label agreement. Within WTB, the gate recovers the declared boundary on withheld turbines (NMI 0.834) and a held-out future period (NMI 0.835). On the independent ENGIE La Haute Borne farm, retraining from scratch reaches five-seed NMI 0.941 and ARI 0.971 with directly observed pitch; zeroing active power still gives NMI 0.953, whereas jointly zeroing wind speed and pitch collapses NMI to 0.001 (Supplementary Table A9). Thus La Haute Borne is anchor-observable cross-site mechanism replication, while Kelmarsh/Penmanshiel remain deployment-gate failures caused by insufficient pitch observability and boundary-cell support.
 
 The central operating result is an availability audit rather than a claim that the gate is the best standalone detector. We audit saved five-seed gates around MPPT-to-pitch transitions after delaying threshold labels, dropping label availability, and recomputing labels under sensor noise. Table~\ref{tab:early-warning} reports recall on early pitch-control cells, and Supplementary Table A10 adds precision plus a simple issue-time logistic classifier control. With a six-step delay, the threshold rule recalls only 0.196 of early pitch cells, whereas the gate recalls 0.960 and recovers about 566 early pitch-window cells per seed. With 50% label availability, the rule recalls 0.508 while the gate remains at 0.960. On clean issue-time anchors, however, the logistic classifier reaches 1.000 recall and 0.879 precision, above the gate precision of 0.759. The result therefore shows that live SCADA anchors preserve early-window state information when the confirmed label stream degrades; the MoE contribution is that this state assignment is embedded in the forecaster and can be audited and sliced, not that it dominates all issue-time classifiers.
 
-This audit deliberately asks about a degraded confirmation stream, not clean-anchor classifier ranking. A confirmed threshold label requires the wind-speed and pitch crossing to be observed, validated, and recorded; the gate and logistic control consume live issue-time SCADA anchors. A stronger modular alternative is therefore a low-RMSE forecaster plus a live-anchor classifier and a physical-bin reserve rule. That is a valid deployment choice when only a state flag is needed, and the clean classifier result shows that we do not claim otherwise. What it does not provide is trainable route responsibility attached to each forecast and same-run route-conditioned residual/reserve slicing. The anchor-only router control makes the boundary concrete: it has lower overall RMSE (233.46) and slightly higher NMI/ARI (0.8895/0.9219), but worse pitch-control RMSE (317.81 versus 286.95) and far larger 0.5-std boundary-anchor-noise degradation (105.56 versus 5.78). To show that the learned route is not merely exploiting one clean channel, we separately degrade anchor channels: removing \texttt{Patv} or \texttt{Pab\_mean}, and lagging \texttt{Patv} or both pitch and wind speed, keeps five-seed routing means above the 0.65 NMI threshold (Table~\ref{tab:anchor-stress}).
+This audit asks about a degraded confirmation stream, not clean-anchor classifier ranking. A modular low-RMSE forecaster plus live-anchor classifier and physical-bin reserve rule is a valid alternative when only a state flag is needed. Its missing piece is trainable route responsibility attached to each forecast and same-run route-conditioned residual/reserve slicing. A direct Graph WaveNet+classifier-bin reserve control improves over Graph WaveNet/global (86.54M versus 88.80M) but trails physical-bin and boundary-gate references (84.31M and 84.58M; source table in the evidence package), so it is a tested modular control rather than a replacement for in-model responsibility. The route-evolution audit adds the dynamic check: gate matching to the new regime peaks at the transition step (0.815) and drops under three- and six-step lead shifts (0.361 and 0.405; Supplementary Table A10b). The anchor-only router has lower overall RMSE (233.46) and slightly higher NMI/ARI (0.8895/0.9219), but worse pitch-control RMSE (317.81 versus 286.95) and far larger 0.5-std boundary-anchor-noise degradation (105.56 versus 5.78).
 
-We report the operating trade-off explicitly. A model receives citable degraded-label gain only after its route passes the physical-routing audit; otherwise the accountability gain is set to zero, even for an accurate or routed-capacity model. Under this rule iTransformer is the zero-RMSE-price anchor without an audited operating-state route, Unconstrained MoE fails the route audit (NMI 0.014), and the boundary-forced router is the only current forecasting model in the comparison that exchanges an 11.79-RMSE trade-off for an audited issue-time route and +0.764 six-step-delay recall gain (Fig.~\ref{fig:accountability-tradeoff}). The logistic control is reported separately because it is a detector on live anchors, not a forecaster with routed attribution.
+We report the operating trade-off explicitly. A model receives citable degraded-label gain only after its route passes the physical-routing audit; otherwise the accountability gain is set to zero, even for an accurate or routed-capacity model. Under this rule iTransformer is the zero-RMSE-price anchor without an audited operating-state route, Unconstrained MoE fails the route audit (NMI 0.014), and the fully archived boundary-forced checkpoint is the complete operational-audit run that carries a larger historical RMSE cost for an audited issue-time route and +0.764 six-step-delay recall gain (Fig.~\ref{fig:accountability-tradeoff}). The train-only class-weight rerun shows that the same routed operating layer can be kept within a 5.59-RMSE gap, while the legacy checkpoint remains the run with complete gate, prediction, and reserve artifacts. The logistic control is reported separately because it is a detector on live anchors, not a forecaster with routed attribution.
 
 ```{=latex}
 \begin{table}[H]
@@ -458,38 +460,15 @@ Noise & Wspd 1.0, Pab 2.0 & 0.960 & 0.652 & +0.308 \\
 \end{table}
 ```
 
-```{=latex}
-\begin{table}[H]
-\centering
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.08}
-\caption{Anchor-observability stress: 245d WTB test routing recovery.}
-\label{tab:anchor-stress}
-\begin{tabularx}{0.98\linewidth}{>{\raggedright\arraybackslash}p{0.32\linewidth} >{\centering\arraybackslash}p{0.18\linewidth} >{\centering\arraybackslash}p{0.18\linewidth} >{\raggedright\arraybackslash}X}
-\toprule
-Variant & Mean NMI & Mean ARI & Reading \\
-\midrule
-Remove \texttt{Patv} & 0.881 & 0.912 & single-channel removal passes \\
-Remove \texttt{Pab\_mean} & 0.878 & 0.928 & single-channel removal passes \\
-Lag \texttt{Patv} & 0.763 & 0.769 & delayed active power passes \\
-Lag pitch/wind & 0.684 & 0.720 & degraded but above 0.65 NMI \\
-\bottomrule
-\end{tabularx}
-\end{table}
-```
-
-The training-level anchor-stress guard has been completed across five seeds. Four strict-cache variants were derived from the 245-day WTB training set, trained across seeds 201--205, and evaluated against the declared MPPT-to-pitch labels; the cache-level leakage guard passed with all 20 training runs completed, so the derived variants raise no leakage warning. The table reports the test-set NMI/ARI scores. Removing \texttt{Patv} or \texttt{Pab\_mean} individually leaves the gate essentially intact (mean 0.881 and 0.878, respectively). Lagging \texttt{Patv} lowers one seed but the five-seed mean remains above the 0.65 threshold (0.763). Lagging both \texttt{Pab\_mean} and \texttt{Wspd} also lowers one seed, yet the five-seed mean crosses the threshold (0.684). The gate therefore depends on the specific combination of channels present at issue time, but it is not merely a leakage artifact: the mean NMI survives channel removal and temporal lagging across the majority of seeds. The manuscript uses the wording "partial anchor robustness" rather than "anchor-free physical discovery." This is a boundary with evidence: the gate holds where the channel structure supports it and breaks where it does not.
+The training-level anchor-stress guard also keeps the leakage boundary visible. Across five seeds and 20 completed variant runs, removing \texttt{Patv} or \texttt{Pab\_mean} leaves mean NMI at 0.881 and 0.878, while lagging \texttt{Patv} and lagging pitch/wind give 0.763 and 0.684. We therefore use "partial anchor robustness" wording: the route is not a leakage artifact, but it is still a declared-anchor mechanism rather than anchor-free discovery.
 
 ![The WTB operating plane shows the main mechanism: after correction, the dominant routed responsibility changes around the rated-wind and pitch-control boundary instead of forming an arbitrary expert partition. The confusion matrices summarize the same recovery numerically.](artifacts/final_evidence_package/export/figures/figure4_routing_evidence.pdf){ width=97% }
 
-![The time-series case studies show why observability matters. The WTB gate tracks a turbine-control switch that is partly hidden inside SCADA control action, whereas the ERA5 gate follows a more directly observed thermodynamic marker.](artifacts/final_evidence_package/export/figures/figure5_case_studies.pdf){ width=97% }
-
 ## Boundary-Risk Vignette: Does the Gate Change Reserve Tradeoffs?
 
-The reserve audit is a consequence check for the recovered route, not a standalone dispatch optimizer. A validation-calibrated short-term reserve screener is applied to later turbine-time cells near the MPPT-to-pitch boundary. A global rule treats all boundary cells as one pool; a gate-conditioned rule carries a different reserve level when the audited route indicates pitch-control entry. Four policies separate the effects: Graph WaveNet/global (low-RMSE reference), Graph WaveNet/physical-bin (physical stratification without learned gate), Boundary router/global (routed model with single reserve rule), and Boundary router/gate-bin (gate-conditioned allocation on the same routed predictor).
+The reserve audit is a consequence check for the recovered route, not a dispatch optimizer. A validation-calibrated reserve screener is frozen and applied to later MPPT-to-pitch boundary cells, comparing global, physical-bin, and gate-bin quantile rules for Graph WaveNet and the boundary router.
 
-At shortage-to-reserve cost ratio 10, gate-conditioned binning exchanges about 3.6% additional reserve energy for a 14.5% reduction in shortage energy and a 1.38 percentage-point reduction in boundary-window violation relative to the same routed model with a global rule. The comparison is deliberately same-model: the reserve change is attributed to gate-conditioned allocation, not to a different forecasting backbone. Physical-bin quantile baselines remain competitive and can be lower-cost, and bootstrap intervals for the reserve comparisons cross zero, so the defensible claim is attributional and diagnostic: the gate exposes a transition-window reserve-risk mechanism and improves a same-model global reserve rule at moderate cost ratios, not a statistically settled reserve-policy superiority result. Supplementary Tables A11--A12 record the wording boundary and engineering-unit translation.
+At shortage-to-reserve cost ratio 10, gate-conditioned binning carries about 3.6% more reserve for 14.5% lower shortage energy and a 1.38 percentage-point lower violation rate than the same routed model with a global rule. Seed-paired intervals for this same-router boundary comparison stay below zero for total cost, violation, and shortage (Supplementary Table A11). Physical-bin baselines remain competitive and cross-backbone/full-sample uncertainty remains unfavorable, so the claim is a statistically supported same-model transition-window diagnostic, not reserve-policy superiority.
 
 ```{=latex}
 \begin{table}[H]
@@ -497,7 +476,7 @@ At shortage-to-reserve cost ratio 10, gate-conditioned binning exchanges about 3
 \scriptsize
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.08}
-\caption{Boundary-window reserve diagnostic and validation-frozen quantile baselines at cost ratio 10. Reserve comparisons are bounded diagnostics; Supplementary Table A11 reports uncertainty and wording limits.}
+\caption{Boundary-window reserve diagnostic and validation-frozen quantile baselines at cost ratio 10. Same-model gate-bin differences have seed-paired support; physical-bin and full-sample comparisons bound the claim.}
 \begin{tabularx}{0.98\linewidth}{>{\raggedright\arraybackslash}p{0.24\linewidth} >{\centering\arraybackslash}p{0.11\linewidth} >{\centering\arraybackslash}p{0.11\linewidth} >{\centering\arraybackslash}p{0.11\linewidth} >{\centering\arraybackslash}p{0.12\linewidth} >{\raggedright\arraybackslash}X}
 \toprule
 Policy & Cost & Viol. & Reserve & Shortage & Reading \\
@@ -512,17 +491,15 @@ GWN/global & 88.80M & 0.1022 & 50.32M & 3.85M & Global low-RMSE reference \\
 \end{table}
 ```
 
-The useful reserve window is moderate rather than universal. At low shortage penalty, the validation-selected quantile tolerates too much residual shortage for gate-bin allocation to matter; at ratios 5--10, the gate lowers boundary shortage and violation while carrying more reserve; at ratio 50, the same-model global rule is safer and cheaper. The toy operational-cost proxy is intentionally small: reserve procurement cost plus $\rho$ times residual shortage energy. On the boundary slice the gate-bin rule reduces the same-model global proxy from 88.13M to 84.58M; Supplementary Table A12 translates this into about 540 avoided MWh-equivalent shortage cells and -355k EUR at an illustrative 100 EUR/MWh carrying cost. Graph WaveNet/physical-bin remains close at 84.31M, and on the full sample Graph WaveNet/global is lower-cost, so the paper does not claim system-wide dispatch value. Cost-ratio sensitivity, paired full-sample uncertainty, and operational-slice tables are kept as supplementary evidence.
+The useful reserve window is moderate rather than universal: ratios 5--10 favor gate-bin screening, ratio 50 favors the same-model global rule, and Graph WaveNet/physical-bin remains close at 84.31M. The boundary-slice proxy falls from 88.13M to 84.58M, which Supplementary Table A12 translates into about 540 avoided MWh-equivalent shortage cells and a 355k illustrative reserve-cost-scale marker at 100 EUR/MWh. The paper therefore claims pre-dispatch screening value, not market revenue or system-wide dispatch value.
 
 ![Accountability value versus forecasting RMSE price. Citable degraded-label gain is assigned only after the physical-routing audit passes. \label{fig:accountability-tradeoff}](artifacts/final_evidence_package/export/figures/accountability_tradeoff_curve.pdf){ width=90% }
 
-![The decision curve places the reserve benefit beside the measured RMSE price. Gate-conditioned allocation is attractive only where the transition-window shortage reduction is worth the added reserve energy.](artifacts/final_evidence_package/export/figures/operational_decision_curve.png){ width=92% }
-
 ## What Are the Costs and Deployment Gates?
 
-The accuracy cost is real and should be read as part of the design. iTransformer, Graph WaveNet, and lag-feature baselines remain better whole-sample forecasters on WTB. The routed model is used when an operator or analyst needs an accountable operating-state assignment that can feed a boundary-specific decision, not when the sole target is minimum average error. Time-forward testing gives the same message in another form: late-period routing agreement remains high, but late-test RMSE rises sharply, showing that stable semantics do not guarantee stable value prediction under distribution shift.
+The accuracy cost is real. iTransformer, Graph WaveNet, and lag-feature baselines remain better whole-sample forecasters on WTB; the routed model is useful when an operator needs an accountable operating-state assignment for a boundary-specific decision. Time-forward testing similarly shows that stable routing semantics do not guarantee stable value prediction under distribution shift.
 
-The external evidence has two sides. Where the control boundary is observed, the mechanism transfers as an anchor-observable positive control: retrained on the independent ENGIE La Haute Borne farm, the boundary-forced router recovers the declared partition at five-seed NMI 0.941 and ARI 0.971, well clear of the 0.50 held-out criterion, and the replay audit rules out active-power feedback while confirming wind-speed/pitch anchors as the load-bearing boundary evidence (Supplementary Tables A8--A9). Where pitch observability or boundary coverage is missing, it does not: the Kelmarsh/Penmanshiel checks do not authorize direct gate-bin reserve use because they fail the same criterion. Together they make transfer a testable condition rather than an assumption: before a new farm uses the route, it must verify pitch or proxy observability, boundary-cell support, compatible turbine geometry, local threshold estimation, and a held-out routing pass--the checks La Haute Borne passes and the Kelmarsh/Penmanshiel pair fails. The method exports an evidence protocol, not a promise of automatic transfer.
+The external evidence is deliberately two-sided. La Haute Borne passes the anchor-observable replication check (NMI 0.941, ARI 0.971, with replay support in Supplementary Tables A8--A9). Kelmarsh/Penmanshiel do not authorize gate-bin reserve use because pitch observability and boundary coverage fail. Before a new farm uses the route, it must verify pitch or proxy observability, boundary-cell support, compatible geometry, local threshold estimation, and a held-out routing pass.
 
 ```{=latex}
 \begin{table}[H]
@@ -535,7 +512,7 @@ The external evidence has two sides. Where the control boundary is observed, the
 \toprule
 Gate & Observed evidence & Required decision before reserve use \\
 \midrule
-Held-out routing criterion & Default WTB boundary gives mean external NMI 0.4877, below the 0.50 criterion & Re-establish routing agreement locally \\
+Held-out routing criterion & Default WTB boundary gives mean external NMI 0.4877 and ARI 0.5112, below the 0.50 NMI criterion & Re-establish routing agreement locally \\
 Local boundary recalibration & Average test NMI changes from 0.1324 to 0.1491 after validation-only recalibration & Treat threshold transfer as insufficient \\
 Pitch/proxy observability & One transfer direction has no effective pitch-feature coverage or boundary cells & Require pitch channels or a validated proxy \\
 Calibration-window adaptation & Small-window adaptation remains below the held-out balanced-accuracy threshold & Use calibration only after a held-out pass \\
@@ -545,25 +522,17 @@ Geometry and regime support & Farm scale, sensor fields, power curves, and regim
 \end{table}
 ```
 
-![The new-site protocol turns external failure into a practical safety check: sensor coverage, local boundary calibration, held-out routing, and reserve audit must all pass before gate-conditioned reserve allocation is used.](artifacts/final_evidence_package/export/figures/new_wind_farm_deployment_checklist.png){ width=94% }
-
 # Limitations
 
-The WTB correction uses threshold pseudo-labels from wind speed and mean pitch angle, and those same channels appear in the gate anchor. The method therefore constrains a router to a declared operating boundary rather than discovering an anchor-free physical state. Supplementary Table A7 and the La Haute Borne replay audit bound the shared-anchor concern: active power is not load-bearing, but joint wind-speed/pitch evidence is. The label-degradation result is likewise not standalone classifier superiority; the claim is auditable in-model route attribution when the confirmed label stream degrades.
+The WTB correction uses threshold pseudo-labels from wind speed and mean pitch angle, and those same channels appear in the gate anchor. The method therefore constrains a router to a declared operating boundary rather than discovering an anchor-free physical state. The active-power anchor is also a timing constraint: inputs may contain $\texttt{Patv}_{t-H+1:t}$ and issue-time $\texttt{Patv}_{t}$, while targets begin at $\texttt{Patv}_{t+1:t+P}$.
 
-The active-power anchor has a strict timing requirement: inputs may contain $\texttt{Patv}_{t-H+1:t}$ and issue-time $\texttt{Patv}_{t}$, while targets begin at $\texttt{Patv}_{t+1:t+P}$. This is a defensible SCADA convention but a portability constraint. Table~\ref{tab:anchor-stress} shows partial anchor robustness, yet deployments with delayed active-power telemetry or changed channel definitions must rerun the leakage, intervention, and reserve diagnostics.
+The expert-regime language is tied to the implemented logit convention: anchored logits are interpretable under the declared mapping, while unassigned experts and wake auxiliary logits should not be overread as universal turbine states. The comparison is bounded to the implemented WTB baselines and validation-frozen quantile reserve checks; trained quantile forecasters, scenario reserve, OPF, unit commitment, market clearing, and security-constrained reserve are outside scope.
 
-The expert-regime language is tied to the implemented logit convention. The first primary-regime logits are fixed to the operating labels during supervised alignment, which prevents seed-wise permutation for those anchored meanings. That makes cross-seed MPPT/pitch statements interpretable, but only for the anchored logits and only under the declared mapping. Unassigned experts and wake auxiliary logits should not be overread as universal turbine states.
-
-The comparison is bounded. WTB includes graph, Transformer, MLP-style, lag-feature, persistence, power-curve, DLinear-style references, and validation-frozen quantile reserve baselines; broader graph-transformer variants, trained quantile forecasters, scenario reserve, and security-constrained reserve are outside this benchmark.
-
-The reserve audit is a normalized proxy: fixed empirical quantile bins calibrated on validation shortfall and tested once on held-out predictions. It ranks boundary-window tradeoffs under declared cost ratios, but it is not a market-price or security-constrained dispatch study. Cross-site recovery is demonstrated on one additional anchor-observable farm (La Haute Borne) and is not claimed beyond the conditions it requires; the Kelmarsh/Penmanshiel pair fails the held-out routing criterion and identifies the sensor coverage, pitch observability, local boundary re-estimation, and held-out routing checks that must pass before cross-farm use. The time-forward audit shows that late-period distribution shift preserves routing agreement while degrading value prediction: the method supports routing semantics, not time-stable forecasting accuracy.
-
-Statistical reliability is uneven (Supplementary Table A6). The strongest claims are the five-seed WTB routing-recovery, mechanism-intervention, and within-WTB spatial/temporal stress results; gate-alignment deltas versus the full MoE and boundary-window reserve-cost comparisons remain bounded diagnostics, not superiority claims.
+The strongest claims are five-seed WTB routing recovery, mechanism intervention, within-WTB spatial/temporal stress, La Haute Borne anchor-observable replication, and same-router boundary reserve diagnostics. Gate-alignment deltas versus the full MoE and cross-backbone reserve comparisons remain bounded diagnostics; automatic cross-farm reserve use is outside authorized claims unless observability and held-out routing gates pass.
 
 # Conclusion
 
-SCADA-anchored regime-aware routing turns the node-level gate into an auditable MPPT-to-pitch assignment inside the forecaster. The legacy strict-cache boundary-forced router recovers the declared WTB partition (NMI about 0.87, ARI about 0.92), and the training-split class-weight rerun preserves the routing claim at NMI 0.721 and ARI 0.740. The route keeps 0.960 early pitch-window recall under a six-step label delay while the delayed threshold rule falls to 0.196 and exposes transition-window reserve risk. A simple issue-time anchor classifier is disclosed as a stronger clean-anchor detector, so the claim remains in-model route attribution rather than classifier superiority. The signal carries a measured legacy accuracy price (RMSE 236.13 versus 224.34 for the best strict-cache baseline), and validation-frozen quantile baselines plus deployment gates keep the claim bounded.
+SCADA-anchored regime-aware routing turns the node-level gate into an auditable MPPT-to-pitch assignment inside the forecaster. The training-split class-weight rerun preserves the routing claim at NMI 0.721 and ARI 0.740 while keeping overall RMSE at 229.93, within 5.59 units of the best strict-cache baseline; the fully archived legacy checkpoint recovers the declared WTB partition more strongly (NMI about 0.87, ARI about 0.92) and supplies the complete operational audit artifacts. The route keeps 0.960 early pitch-window recall under a six-step label delay while the delayed threshold rule falls to 0.196 and exposes transition-window reserve risk. A simple issue-time anchor classifier is disclosed as a stronger clean-anchor detector, so the claim remains in-model route attribution rather than classifier superiority. Same-router gate-bin reserve screening has boundary-window statistical support, while validation-frozen physical-bin baselines and deployment gates keep the claim bounded.
 
 # AI Use Statement
 
@@ -728,7 +697,7 @@ $\lambda_{\mathrm{smooth}}$ & 0.05 & 0.05 & Local routing coherence \\
 
 ## Statistical claim boundaries {.unnumbered}
 
-Table A6 records the reviewer-facing statistical boundary used for wording. The RMSE price versus Graph WaveNet is FDR-significant, gate-alignment deltas versus the full physics-aligned MoE are positive but not FDR-significant, and boundary-window quantile reserve comparisons have bootstrap intervals crossing zero. These tests are why the main text uses price, diagnostic, and bounded-claim language rather than forecast- or reserve-superiority wording.
+Table A6 records the reviewer-facing statistical boundary used for wording. It separates the train-only RMSE guardrail from legacy full-audit paired RMSE prices, gate-alignment deltas versus the full physics-aligned MoE, and boundary-window quantile reserve comparisons. These tests are why the main text uses guardrail, diagnostic, and bounded-claim language rather than forecast- or reserve-superiority wording.
 
 ```{=latex}
 \begin{table}[H]
@@ -741,8 +710,8 @@ Table A6 records the reviewer-facing statistical boundary used for wording. The 
 \toprule
 Claim & Estimate & 95\% CI & $p_{\mathrm{BH}}$ & Wording consequence \\
 \midrule
-Accuracy price vs Graph WaveNet & 9.029 & -- & <0.001 & Boundary router is significantly worse on headline RMSE \\
-Boundary-band accuracy price & 17.758 & -- & 0.001 & The price also appears in the boundary window \\
+Legacy full-audit RMSE price vs Graph WaveNet & 9.029 & -- & <0.001 & Applies to the archived full-audit checkpoint, not the train-only RMSE guardrail \\
+Legacy boundary-band RMSE price & 17.758 & -- & 0.001 & Boundary-window price for the archived full-audit checkpoint \\
 Gate NMI vs full physics-aligned MoE & 0.040 & [0.008, 0.071] & 0.066 & Positive but not FDR-significant; cite as bounded mechanism contrast \\
 Gate ARI vs full physics-aligned MoE & 0.035 & [-0.000, 0.078] & 0.126 & Positive but not FDR-significant; avoid superiority wording \\
 Boundary quantile cost vs GWN physical bin & -0.263M & [-10.704M, 9.782M] & -- & CI crosses zero; reserve cost should remain a diagnostic claim \\
@@ -780,7 +749,7 @@ Residual claim boundary & sanity check only & Mitigates circularity concern; doe
 
 ## External-site deployment-gate audit {.unnumbered}
 
-Table A8 records the go/no-go interpretation used for the external evidence. The first row is the positive control: retrained on the ENGIE La Haute Borne farm, where blade pitch is directly observed in 99.2\% of cells, the routing mechanism recovers the declared boundary and clears the held-out criterion. The remaining rows map the failed or incomplete Kelmarsh/Penmanshiel signals to the deployment action that follows. The table therefore supports a bounded but two-sided claim: the mechanism transfers where the control boundary is observable, while direct gate-bin reserve use at the Kelmarsh/Penmanshiel pair remains a screening protocol rather than an authorized transfer.
+Table A8 records the go/no-go interpretation used for the external evidence. The first row is the cross-site mechanism replication: retrained on the ENGIE La Haute Borne farm, where blade pitch is directly observed in 99.2\% of cells, the routing mechanism recovers the declared boundary and clears the held-out criterion. The remaining rows map the failed or incomplete Kelmarsh/Penmanshiel signals to the deployment action that follows. The table therefore supports a bounded but two-sided claim: the mechanism replicates where the control boundary is observable, while direct gate-bin reserve use at the Kelmarsh/Penmanshiel pair remains a screening protocol rather than an authorized transfer.
 
 ```{=latex}
 \begin{table}[H]
@@ -793,12 +762,12 @@ Table A8 records the go/no-go interpretation used for the external evidence. The
 \toprule
 Gate & Observed external evidence & Go/no-go rule & Claim consequence \\
 \midrule
-Cross-site recovery (La Haute Borne) & Five-seed chronological routing NMI 0.941, ARI 0.971; pitch observed in 99.2\% of cells, no proxy & Held-out NMI $\geq$ 0.50 with observed pitch after parameters are frozen & Go: boundary recovers where pitch is observable; cite as positive cross-site control \\
+Cross-site mechanism replication (La Haute Borne) & Five-seed chronological routing NMI 0.941, ARI 0.971; pitch observed in 99.2\% of cells, no proxy & Held-out NMI $\geq$ 0.50 with observed pitch after parameters are frozen & Go: anchor-observable mechanism replicates on a second farm; do not claim anchor-free or automatic reserve transfer \\
 Cross-site routing criterion & 80/80 runs complete; mean NMI 0.4877 below threshold 0.50; mean ARI 0.5112 & Held-out NMI $\geq$ 0.50 and balanced accuracy $\geq$ 0.50 after parameters are frozen & No-go for cross-farm router interpretation; cite as negative boundary-condition evidence \\
 Local boundary recalibration & Default test NMI 0.1324 $\rightarrow$ recalibrated 0.1491 (delta +0.0167) & Rated wind, pitch threshold, boundary band, and gate-map selected on calibration only & Local threshold transfer is insufficient; re-estimate before use \\
 Small-window adaptation & 40/40 routing runs adapted; chronological balanced accuracy 0.4787 below 0.50 & Small calibration windows must still pass the frozen held-out routing criterion & Calibration alone does not authorize external reserve use \\
 Sensor and boundary support & Penmanshiel-to-Kelmarsh leave-one pitch-feature coverage 0.0000 and effective boundary cells 0 & Pre-declared calibration window with enough boundary cells, active power, availability mask, and pitch/proxy overlap & No physical-router interpretation without observability \\
-External reserve-use decision & Upstream gates do not pass before reserve allocation is evaluated & Transition-window shortage and violation improve at acceptable reserve-energy cost & Withhold gate-bin reserve use outside WTB; report a deployment protocol only \\
+External reserve-use decision & Upstream observability and held-out routing gates fail before external reserve allocation & Evaluate reserve only after observability and held-out routing gates pass & Withhold gate-bin reserve use outside WTB; report a deployment protocol only \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -806,7 +775,7 @@ External reserve-use decision & Upstream gates do not pass before reserve alloca
 
 ## La Haute Borne anchor-observability replay audit {.unnumbered}
 
-Table A9 audits the load-bearing channels behind the La Haute Borne positive control. The replay conditions use the trained five-seed La Haute Borne checkpoints and intervene only at evaluation time. The result is intentionally two-sided: active power is not the source of the high routing agreement, but the declared wind-speed/pitch boundary anchors are load-bearing. This supports citing La Haute Borne as an anchor-observable positive-control replication and blocks any anchor-free discovery wording.
+Table A9 audits the load-bearing channels behind the La Haute Borne cross-site mechanism replication. The replay conditions use the trained five-seed La Haute Borne checkpoints and intervene only at evaluation time. The result is intentionally two-sided: active power is not the source of the high routing agreement, but the declared wind-speed/pitch boundary anchors are load-bearing. This supports citing La Haute Borne as anchor-observable cross-site mechanism replication and blocks any anchor-free discovery or automatic cross-site reserve-use wording.
 
 ```{=latex}
 \begin{table}[H]
@@ -860,7 +829,7 @@ Sensor noise, strongest & 710.6 $\pm$ 20.6 / 29.4 $\pm$ 20.6 & 482.8 $\pm$ 11.0 
 
 ## Reserve-policy claim-boundary audit {.unnumbered}
 
-Table A11 consolidates the reserve evidence used for wording. It separates the same-model boundary-window diagnostic from claims that the experiments do not support. Costs are normalized reserve-energy proxy units, not currency, market prices, or security-constrained dispatch costs.
+Table A11 consolidates the reserve evidence used for wording. It separates the statistically supported same-model boundary-window diagnostic from claims that the experiments do not support. Costs are normalized reserve-energy proxy units, not currency, market prices, or security-constrained dispatch costs.
 
 ```{=latex}
 \begin{table}[H]
@@ -873,11 +842,11 @@ Table A11 consolidates the reserve evidence used for wording. It separates the s
 \toprule
 Boundary & Evidence & Wording rule \\
 \midrule
-Same-model boundary reserve effect & At rho=10, gate-bin vs same-router global: Delta cost -3.55M, Delta viol. -0.0138, reserve +1.85M, shortage -0.54M. & Claim a same-predictor transition-window diagnostic; do not present this as a cross-backbone reserve win. \\
+Same-model boundary reserve effect & At rho=10, gate-bin vs same-router global: Delta cost -3.55M [CI -4.65M,-2.45M], Delta viol. -0.0138 [CI -0.0203,-0.0072], shortage -0.54M [CI -0.78M,-0.30M]. & Claim a statistically supported same-predictor transition-window diagnostic; do not present this as a cross-backbone reserve win. \\
 Physical-bin quantile comparator & Boundary/physical-bin 83.78M, viol. 0.0880; GWN/physical-bin 84.31M, viol. 0.0931; Boundary/gate-bin 84.58M, viol. 0.0900. & Say physical-bin baselines are competitive and sometimes lower-cost; avoid gate-bin optimality wording. \\
 Cost-ratio applicability & rho=2 inactive; rho=5 to 10 lowers boundary cost and violation; rho=20 narrows; rho=50 favors global (+5.93M, viol. +0.0035). & Claim moderate-cost transition-window value only; do not assert a universal shortage-penalty policy. \\
 Full-sample system value & Full sample at rho=10: GWN/global 464.07M, viol. 0.0901; Boundary/gate-bin 481.36M, viol. 0.1214. & Do not claim system-wide dispatch value or reserve superiority; keep the consequence bounded to the boundary slice. \\
-Seed-level uncertainty & Full-sample paired total-cost delta +17.28M, 95\% CI [-52.09M, +87.95M], perm. p=0.752. & Use bounded diagnostic language; do not cite the reserve audit as a statistically settled improvement. \\
+Cross-backbone/full-sample uncertainty & Full-sample paired total-cost delta +17.28M, 95\% CI [-52.09M, +87.95M], perm. p=0.752. & Use bounded diagnostic language; do not cite the reserve audit as system-wide or cross-backbone improvement. \\
 Operational scope & Costs are normalized reserve-energy proxy units from validation-frozen shortfall quantiles; OPF, unit commitment, delivery constraints, market clearing, and prices are excluded. & Use as a screening audit for reserve exposure, not as a market or security-constrained dispatch study. \\
 \bottomrule
 \end{tabularx}
@@ -886,7 +855,7 @@ Operational scope & Costs are normalized reserve-energy proxy units from validat
 
 ## Engineering-unit reserve-value translation {.unnumbered}
 
-Table A12 provides the engineering-unit translation of the main reserve audit. The conversion uses the WTB active-power unit (kW) and the cache time step ($\Delta t=1/6$ h), so reserve and shortage totals become rolling forecast-cell MWh-equivalent values. The EUR column is a scenario translation under an assumed reserve carrying cost of 100 EUR/MWh. It is included to make the operational scale legible, not to claim market settlement, OPF, unit commitment, or security-constrained dispatch value.
+Table A12 provides the engineering-unit translation of the main reserve audit. The conversion uses the WTB active-power unit (kW) and the cache time step ($\Delta t=1/6$ h), so reserve and shortage totals become rolling forecast-cell MWh-equivalent values. The cost-scale column is a scenario marker under an assumed reserve carrying cost of 100 EUR/MWh. It is included to make the operational scale legible, not to claim market settlement, OPF, unit commitment, or security-constrained dispatch value.
 
 ```{=latex}
 \begin{table}[H]
@@ -897,14 +866,14 @@ Table A12 provides the engineering-unit translation of the main reserve audit. T
 \caption*{\textbf{Table A12.} Engineering-unit reserve-value translation at $\rho=10$.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.24\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
-Comparison & $\Delta$ reserve MWh-eq. & Avoided shortage MWh-eq. & $\Delta$ cost MWh-eq. & $\Delta$ EUR at 100/MWh & Wording \\
+Comparison & $\Delta$ reserve MWh-eq. & Avoided shortage MWh-eq. & $\Delta$ cost MWh-eq. & Cost-scale at 100/MWh & Wording \\
 \midrule
-Boundary gate-bin vs same-router global & +1846.9 & +539.8 & -3551.4 & -355k & Use as bounded boundary-window value, not cross-backbone superiority. \\
+Boundary gate-bin vs same-router global & +1846.9 & +539.8 & -3551.4 & -355k & Illustrative cost-scale marker for bounded boundary-window value, not cross-backbone superiority. \\
 Boundary gate-bin vs GWN physical-bin & +2319.2 & +205.6 & +262.9 & +26k & Shows gate-bin is close to a strong physical-bin comparator; not a lower-cost claim. \\
 Boundary gate-bin vs GWN global full sample & +3148.2 & -1413.5 & +17283.2 & +1728k & Blocks system-wide dispatch or full-sample reserve-superiority wording. \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\footnotesize MWh-eq. denotes forecast-cell MWh-equivalent accounting from kW active-power shortfall and $\Delta t=1/6$ h. EUR values are scenario translations under an assumed reserve carrying cost of 100 EUR/MWh; they are not market-settlement, OPF, or unit-commitment results.
+\footnotesize MWh-eq. denotes forecast-cell MWh-equivalent accounting from kW active-power shortfall and $\Delta t=1/6$ h. Cost-scale values are scenario markers under an assumed reserve carrying cost of 100 EUR/MWh; they are not market-settlement, OPF, or unit-commitment results.
 \end{table}
 ```

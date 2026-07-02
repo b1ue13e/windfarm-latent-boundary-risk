@@ -2178,7 +2178,11 @@ def run_external_wind_guard(
         and checks["routing_nmi_meets_minimum"]
         and checks["routing_ari_meets_minimum"]
     )
-    if portable_ready:
+    lhb_anchor_observable_only = set(farm_list) == {"la_haute_borne"} and not required_lofo_pairs
+    if portable_ready and lhb_anchor_observable_only:
+        status = "anchor_observable_replication_ready"
+        claim_gate = "anchor_observable_replication_passed_not_portability_not_reserve_transfer"
+    elif portable_ready:
         status = "portable_mechanism_ready"
         claim_gate = "portable_mechanism_passed"
     elif data_and_protocol_complete:
@@ -2215,6 +2219,13 @@ def run_external_wind_guard(
         "license": EXTERNAL_LICENSE,
         "source_urls": EXTERNAL_SOURCE_URLS,
         "static_notes": EXTERNAL_STATIC_NOTES,
+        "claim_use": (
+            "La Haute Borne is citable as anchor-observable cross-site mechanism replication "
+            "after local training and held-out routing checks. This guard does not authorize "
+            "anchor-free discovery, automatic cross-site portability, or reserve transfer."
+            if lhb_anchor_observable_only
+            else "External wind guard for portability/deployment-gate wording."
+        ),
     }
     save_json(output_dir / "external_wind_guard.json", report)
     return output_dir

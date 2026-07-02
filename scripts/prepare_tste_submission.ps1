@@ -195,7 +195,7 @@ $freezeDir = Join-Path $root "artifacts\tste_evidence_freeze_guard"
     --final-package-dir (Join-Path $root "artifacts\final_evidence_package") `
     --paired-effects (Join-Path $root "artifacts\strictmask_combined_reviewer_stats\paired_effects_summary.csv") `
     --output-dir $freezeDir `
-    --required-tokens "236.13,224.34,225.74,0.960,0.196,0.508,1.000,0.879,0.759,0.8716,0.9166,0.941,0.953,0.001,0.028,84.58M,84.31M,88.13M,11.79,0.764,566,1846.9,539.8,3551.4,355k"
+    --required-tokens "229.93,224.34,225.74,236.13,0.960,0.196,0.508,1.000,0.879,0.721,0.740,0.941,0.971,0.953,0.001,0.028,0.4877,0.5112,84.58M,84.31M,88.13M,5.59,0.764,566,-4.65M,-2.45M,-0.0203,-0.0072,-0.78M,-0.30M,0.815,0.361,0.405"
 if ($LASTEXITCODE -ne 0) { throw "Evidence-freeze guard command failed." }
 $freezeJson = Get-Content -LiteralPath (Join-Path $freezeDir "evidence_freeze_guard.json") -Raw | ConvertFrom-Json
 $freezeStatus = [string]$freezeJson.status
@@ -244,7 +244,7 @@ $uploadFiles = @(
     [ordered]@{
         file = "upload_files/supplementary_material.pdf"
         portal_role = "Supplementary material"
-        note = "Supplementary appendix with Tables A1-A6, A6b, and A7-A13."
+        note = "Supplementary appendix with Tables A1-A6, A6b, A7-A10, A10b-A10c, and A11-A12."
     },
     [ordered]@{
         file = "upload_files/cover_letter.md"
@@ -283,9 +283,9 @@ $uploadFiles = @(
     }
 )
 $claimBoundaries = @(
-    "Not a forecasting-SOTA claim: RMSE is reported as 236.13 versus 224.34 for iTransformer, the best completed strict-cache forecasting baseline.",
+    "Not a forecasting-SOTA claim: the training-split class-weight rerun is reported at RMSE 229.93 versus 224.34 for iTransformer; the legacy 236.13 checkpoint is used only as the fully archived operational-audit run.",
     "Not a universal reserve-policy optimality claim: validation-frozen physical-bin quantile baselines remain competitive.",
-    "Not an automatic cross-farm generalization claim: Kelmarsh/Penmanshiel fail the held-out routing criterion and are treated as deployment-gate diagnostics.",
+    "Not an automatic cross-farm transfer claim: La Haute Borne supports anchor-observable cross-site mechanism replication, while Kelmarsh/Penmanshiel fail the observability/routing gates.",
     "Not an anchor-free discovery claim: routing is intentionally constrained by SCADA operating anchors.",
     "Not a standalone classifier-superiority claim: a simple issue-time anchor classifier reaches 1.000 recall and 0.879 precision on clean anchors.",
     "Not a market-dispatch or grid-security guarantee: reserve evidence is scoped to audit and diagnosis around the MPPT-to-pitch transition."
@@ -422,6 +422,7 @@ foreach ($rel in @(
     "scripts\build_statistical_claim_table.py",
     "scripts\build_early_warning_classifier_baseline.py",
     "scripts\build_early_warning_consequence_table.py",
+    "scripts\build_modular_classifier_reserve_baseline.py",
     "scripts\build_reserve_claim_boundary_table.py",
     "scripts\build_engineering_unit_value_translation.py",
     "scripts\build_outcome_channel_sanity.py",
@@ -496,6 +497,9 @@ $auditFiles = @(
     "table_external_deployment_gate_audit.tex",
     "early_warning_consequence_audit.csv",
     "table_early_warning_consequence_audit.tex",
+    "modular_classifier_reserve_summary.csv",
+    "modular_classifier_reserve_paired.csv",
+    "table_modular_classifier_reserve_control.tex",
     "reserve_claim_boundary_audit.csv",
     "table_reserve_claim_boundary_audit.tex",
     "engineering_unit_value_translation.csv",
@@ -532,6 +536,44 @@ foreach ($rel in @(
     "artifacts\early_warning_classifier_baseline_wtb\early_warning_classifier_baseline_summary.csv",
     "artifacts\early_warning_classifier_baseline_wtb\early_warning_classifier_baseline_raw.csv",
     "artifacts\early_warning_classifier_baseline_wtb\early_warning_classifier_baseline_guard.json"
+)) {
+    $src = Join-Path $root $rel
+    if (Test-Path $src) {
+        $dest = Join-Path $evidenceDir $rel
+        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
+        Copy-Item -LiteralPath $src -Destination $dest -Force
+    }
+}
+
+foreach ($rel in @(
+    "artifacts\modular_classifier_reserve_control\modular_classifier_reserve_raw.csv",
+    "artifacts\modular_classifier_reserve_control\modular_classifier_reserve_summary.csv",
+    "artifacts\modular_classifier_reserve_control\modular_classifier_reserve_paired.csv",
+    "artifacts\modular_classifier_reserve_control\table_modular_classifier_reserve_control.tex",
+    "artifacts\modular_classifier_reserve_control\modular_classifier_reserve_control.json"
+)) {
+    $src = Join-Path $root $rel
+    if (Test-Path $src) {
+        $dest = Join-Path $evidenceDir $rel
+        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
+        Copy-Item -LiteralPath $src -Destination $dest -Force
+    }
+}
+
+foreach ($rel in @(
+    "artifacts\final_evidence_package\export\guards\external_wind_guard.json",
+    "artifacts\final_evidence_package\export\guards\external_wind_lhb_anchor_observable_guard.json",
+    "artifacts\final_evidence_package\export\guards\external_wind_transfer_no_go_guard.json",
+    "artifacts\final_evidence_package\export\source_data\external_wind_guard.json",
+    "artifacts\external_wind_lhb_guard_full_5seed\external_wind_guard.json",
+    "artifacts\external_wind_lhb_guard_full_5seed\external_wind_run_status.csv",
+    "artifacts\external_wind_lhb_guard_full_5seed\external_wind_cache_status.csv",
+    "artifacts\external_wind_lhb_anchor_intervention_full\lhb_anchor_observability_guard.json",
+    "artifacts\external_wind_lhb_anchor_intervention_full\lhb_anchor_observability_compact.csv",
+    "artifacts\external_wind_lhb_anchor_intervention_full\table_lhb_anchor_observability.tex",
+    "artifacts\external_wind_guard\external_wind_guard.json",
+    "artifacts\external_wind_guard\external_wind_run_status.csv",
+    "artifacts\external_wind_guard\external_wind_cache_status.csv"
 )) {
     $src = Join-Path $root $rel
     if (Test-Path $src) {
@@ -610,7 +652,7 @@ Generated: $stamp
 ## Upload files
 
 - `upload_files/manuscript_ieee_tste.pdf`: IEEEtran main manuscript.
-- `upload_files/supplementary_material.pdf`: supplementary appendix with Tables A1-A6, A6b, and A7-A13.
+- `upload_files/supplementary_material.pdf`: supplementary appendix with Tables A1-A6, A6b, A7-A10, A10b-A10c, and A11-A12.
 - `upload_files/cover_letter.md`: TSTE cover letter aligned with claim audits.
 - `upload_files/portal_metadata.md`: copy-paste portal fields for title, abstract, keywords, authors, declarations, and file roles.
 - `upload_files/portal_metadata.json`: machine-readable copy of the same portal metadata.
@@ -648,6 +690,8 @@ Generated: $stamp
 - Supplementary Table A8: external-site deployment gates.
 - Supplementary Table A9: La Haute Borne anchor-observability replay audit.
 - Supplementary Table A10: early-warning detection consequence.
+- Supplementary Table A10b: gate route-evolution diagnostic.
+- Supplementary Table A10c: modular live-anchor classifier reserve control and responsibility-chain boundary.
 - Supplementary Table A11: reserve-policy claim boundary.
 - Supplementary Table A12: engineering-unit reserve-value translation.
 - Class-weight boundary audit: source uses train-only weights for reruns and identifies legacy cache metadata.

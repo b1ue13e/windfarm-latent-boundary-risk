@@ -40,7 +40,7 @@ def main() -> None:
 
     guard = {
         "status": "complete_anchor_observability_audited",
-        "claim_gate": "anchor_observable_positive_control_not_anchor_free_discovery",
+        "claim_gate": "anchor_observable_cross_site_replication_not_anchor_free_discovery",
         "n_runs": int(summary.loc["actual", "n_runs"]),
         "actual_nmi_mean": actual_nmi,
         "pab_zero_nmi_mean": pab_zero_nmi,
@@ -58,9 +58,9 @@ def main() -> None:
             "randomized_anchor_collapses_alignment": bool(random_nmi < 0.10),
         },
         "claim_use": (
-            "La Haute Borne should be described as an anchor-observable positive-control replication. "
+            "La Haute Borne should be described as an anchor-observable cross-site mechanism replication. "
             "The replay audit rules out active-power feedback as the driver and shows that Wspd/Pab boundary anchors, "
-            "jointly, are load-bearing; it does not support anchor-free discovery wording."
+            "jointly, are load-bearing; it does not support anchor-free discovery or automatic cross-site reserve-use wording."
         ),
     }
     guard["checks"]["all_checks_pass"] = bool(all(guard["checks"].values()))

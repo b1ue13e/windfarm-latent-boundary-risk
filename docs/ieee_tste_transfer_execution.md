@@ -8,7 +8,7 @@ Primary claim:
 
 > SCADA-anchored mixture-of-experts routing can make the MPPT-to-pitch control boundary auditable in wind-power forecasting, exposing where a low-RMSE graph forecaster loses operating-regime accountability.
 
-The manuscript must not claim forecasting SOTA, reserve-policy superiority, external-site generalization, or full dispatch readiness.
+The manuscript must not claim forecasting SOTA, reserve-policy superiority, automatic cross-site reserve transfer, or full dispatch readiness. It may claim bounded anchor-observable cross-site mechanism replication on La Haute Borne after local retraining and held-out routing checks.
 
 ## Manuscript Rewrite
 
@@ -16,9 +16,9 @@ The manuscript must not claim forecasting SOTA, reserve-policy superiority, exte
 - Compress the paper to the IEEE PES Transactions initial-submission budget of 10 double-column pages.
 - Remove ERA5 from the main paper unless a page-budget exception is explicitly justified; keep WTB as the main wind-energy case.
 - Keep reserve evidence as a short boundary-risk vignette, not as the central contribution.
-- Report Graph WaveNet's lower RMSE as the accuracy price of auditability.
+- Report the train-only class-weight rerun as the RMSE guardrail (229.93 versus 224.34 for iTransformer) and the legacy boundary-forced checkpoint as the fully archived operational-audit run.
 - Report physical-bin quantile baselines as honest controls that bound any reserve-policy claim.
-- Report Kelmarsh/Penmanshiel as external boundary-condition failure, not as transfer success.
+- Report La Haute Borne as cross-site mechanism replication and Kelmarsh/Penmanshiel as external boundary-condition failure, not as automatic transfer success.
 
 ## Anchor-Stress Completion
 
@@ -52,11 +52,11 @@ Current five-seed strictmask readout: with a six-step label delay, gate recall o
 
 The TSTE paper should retain only these table-level claims in the main text:
 
-- WTB forecasting tradeoff: Graph WaveNet lower RMSE versus boundary-forced router higher NMI/ARI.
+- WTB forecasting tradeoff: train-only RMSE guardrail versus iTransformer, plus legacy full-audit route alignment.
 - Ablation table: unconstrained MoE, alignment, boundary force, and anchor-only/router controls.
 - Anchor stress summary after the new three-step protocol.
 - Anchor-stress early-warning label-degradation curve if page budget allows; otherwise cite it in supplementary evidence.
-- External wind deployment-gate table with Kelmarsh/Penmanshiel failure metrics.
+- External wind deployment-gate table with La Haute Borne replication and Kelmarsh/Penmanshiel failure metrics.
 - Compact reserve-risk vignette showing same-model gate-bin value and physical-bin lower-cost bound.
 
 ## Acceptance Checklist

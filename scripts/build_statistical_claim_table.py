@@ -23,24 +23,25 @@ def main() -> None:
     multiplicity = pd.read_csv(MULTIPLICITY)
     reserve = pd.read_csv(RESERVE)
     benchmark = pd.read_csv(ROOT / "artifacts" / "paper_assets" / "tables" / "table_main_benchmark.csv")
+    class_weight = pd.read_csv(ROOT / "artifacts" / "class_weight_boundary_audit" / "class_weight_sensitivity_summary.csv")
 
     rows = [
-        _descriptive_itransformer_row(benchmark),
+        _train_only_itransformer_row(benchmark, class_weight),
         _rmse_row(
             paired,
             multiplicity,
             comparator="Graph WaveNet",
             slice_name="overall",
-            label="Accuracy price vs Graph WaveNet",
-            interpretation="Boundary router is significantly worse on headline RMSE",
+            label="Legacy full-audit RMSE price vs Graph WaveNet",
+            interpretation="Applies to the archived full-audit checkpoint, not the train-only RMSE guardrail",
         ),
         _rmse_row(
             paired,
             multiplicity,
             comparator="Graph WaveNet",
             slice_name="boundary_band",
-            label="Boundary-band accuracy price",
-            interpretation="The price also appears in the boundary window",
+            label="Legacy boundary-band RMSE price",
+            interpretation="Boundary-window price for the archived full-audit checkpoint",
         ),
         _gate_row(
             paired,
@@ -88,9 +89,9 @@ def main() -> None:
             "tex": str(OUT_TABLES / "table_statistical_claim_boundaries.tex"),
         },
         "claim_use": (
-            "Reviewer-facing statistical boundary table. It documents significant RMSE price, "
-            "non-significant gate-alignment superiority versus the full MoE comparator, and reserve "
-            "bootstrap intervals that cross zero."
+            "Reviewer-facing statistical boundary table. It documents the train-only RMSE guardrail, "
+            "legacy full-audit RMSE prices, non-significant gate-alignment superiority versus the "
+            "full MoE comparator, and reserve bootstrap intervals that cross zero."
         ),
     }
     (OUT_TABLES / "statistical_claim_boundaries_summary.json").write_text(
@@ -137,13 +138,13 @@ def _rmse_row(
     }
 
 
-def _descriptive_itransformer_row(benchmark: pd.DataFrame) -> dict[str, Any]:
-    boundary = _lookup(benchmark, Panel="WTB", Model="Boundary-forced router")
+def _train_only_itransformer_row(benchmark: pd.DataFrame, class_weight: pd.DataFrame) -> dict[str, Any]:
     itransformer = _lookup(benchmark, Panel="WTB", Model="iTransformer")
-    boundary_rmse = _metric_mean(boundary["Overall RMSE"])
+    train_only = _lookup(class_weight, suite="train_only_weight_rerun")
+    boundary_rmse = _num(train_only["overall_rmse_mean"])
     itransformer_rmse = _metric_mean(itransformer["Overall RMSE"])
     return {
-        "claim": "Accuracy price vs iTransformer",
+        "claim": "Train-only RMSE guardrail vs iTransformer",
         "statistic": "Delta RMSE",
         "estimate": boundary_rmse - itransformer_rmse,
         "ci_low": math.nan,
@@ -151,7 +152,7 @@ def _descriptive_itransformer_row(benchmark: pd.DataFrame) -> dict[str, Any]:
         "p_value": math.nan,
         "n": 5,
         "result": "descriptive",
-        "interpretation": "Descriptive price versus the lowest-RMSE strict-cache baseline; no paired FDR claim",
+        "interpretation": "Displayed guardrail gap for the provenance-corrected rerun; legacy full-audit checkpoint is separate",
     }
 
 

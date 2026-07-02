@@ -77,6 +77,12 @@ if (Test-Path $earlyWarningConsequenceScript) {
     if ($LASTEXITCODE -ne 0) { throw "Early-warning consequence table generation failed." }
 }
 
+$modularClassifierReserveScript = Join-Path $root "scripts\build_modular_classifier_reserve_baseline.py"
+if (Test-Path $modularClassifierReserveScript) {
+    & python $modularClassifierReserveScript
+    if ($LASTEXITCODE -ne 0) { throw "Modular classifier reserve control generation failed." }
+}
+
 $reserveClaimBoundaryScript = Join-Path $root "scripts\build_reserve_claim_boundary_table.py"
 if (Test-Path $reserveClaimBoundaryScript) {
     & python $reserveClaimBoundaryScript

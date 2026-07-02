@@ -13,6 +13,7 @@ OUT_TABLES = ROOT / "artifacts" / "final_evidence_package" / "export" / "tables"
 SUMMARY = OUT_TABLES / "reserve_decision_summary.csv"
 SYSTEM_ENVELOPE = OUT_TABLES / "system_value_envelope.csv"
 PAIRED_STATS = OUT_TABLES / "reserve_paired_statistics.csv"
+RAW_RUNS = ROOT / "artifacts" / "decision_reserve_wtb_operational_windows" / "reserve_decision_raw_runs.csv"
 
 
 def main() -> None:
@@ -20,9 +21,11 @@ def main() -> None:
     summary = pd.read_csv(SUMMARY)
     envelope = pd.read_csv(SYSTEM_ENVELOPE)
     paired = pd.read_csv(PAIRED_STATS)
+    raw_runs = pd.read_csv(RAW_RUNS)
+    same_model = _same_model_paired_stats(raw_runs)
 
     rows = [
-        _same_model_boundary_row(envelope),
+        _same_model_boundary_row(envelope, same_model),
         _physical_bin_row(summary),
         _cost_ratio_row(envelope),
         _full_sample_row(summary),
@@ -42,6 +45,7 @@ def main() -> None:
             "reserve_decision_summary": str(SUMMARY),
             "system_value_envelope": str(SYSTEM_ENVELOPE),
             "reserve_paired_statistics": str(PAIRED_STATS),
+            "reserve_decision_raw_runs": str(RAW_RUNS),
         },
         "outputs": {"csv": str(out_csv), "tex": str(out_tex)},
         "claim_use": (
@@ -54,21 +58,27 @@ def main() -> None:
     print(f"Wrote {out_csv}")
 
 
-def _same_model_boundary_row(envelope: pd.DataFrame) -> dict[str, str]:
+def _same_model_boundary_row(envelope: pd.DataFrame, same_model: dict[str, dict[str, float]]) -> dict[str, str]:
     row = _lookup(envelope, cost_ratio=10.0)
+    cost = same_model["total_cost"]
+    violation = same_model["violation_rate"]
+    shortage = same_model["shortage_energy"]
     evidence = (
         "At rho=10, gate-bin vs same-router global: "
-        f"Delta cost {_fmt_m(row['boundary_total_cost_delta'])}, "
-        f"Delta viol. {_fmt_float(row['violation_delta'], 4)}, "
+        f"Delta cost {_fmt_m(row['boundary_total_cost_delta'])} "
+        f"(seed-paired 95% CI [{_fmt_m(cost['ci_low'])}, {_fmt_m(cost['ci_high'])}]), "
+        f"Delta viol. {_fmt_float(row['violation_delta'], 4)} "
+        f"(CI [{_fmt_float(violation['ci_low'], 4)}, {_fmt_float(violation['ci_high'], 4)}]), "
         f"reserve {_fmt_m(row['additional_reserve_energy'], signed=True)}, "
-        f"shortage {_fmt_m(row['shortage_energy_delta'], signed=True)}."
+        f"shortage {_fmt_m(row['shortage_energy_delta'], signed=True)} "
+        f"(CI [{_fmt_m(shortage['ci_low'])}, {_fmt_m(shortage['ci_high'])}])."
     )
     return {
         "boundary": "Same-model boundary reserve effect",
         "evidence": evidence,
         "wording_rule": (
-            "Claim a same-predictor transition-window diagnostic; do not present "
-            "this as a cross-backbone reserve win."
+            "Claim a statistically supported same-predictor transition-window diagnostic; "
+            "do not present this as a cross-backbone reserve win."
         ),
     }
 
@@ -147,11 +157,11 @@ def _paired_uncertainty_row(paired: pd.DataFrame) -> dict[str, str]:
         f"perm. p={_fmt_float(row['paired_sign_permutation_p'], 3)}."
     )
     return {
-        "boundary": "Seed-level uncertainty",
+        "boundary": "Cross-backbone/full-sample uncertainty",
         "evidence": evidence,
         "wording_rule": (
             "Use bounded diagnostic language; do not cite the reserve audit as a "
-            "statistically settled improvement."
+            "system-wide or cross-backbone improvement."
         ),
     }
 
@@ -169,6 +179,43 @@ def _scope_row() -> dict[str, str]:
             "security-constrained dispatch study."
         ),
     }
+
+
+def _same_model_paired_stats(raw_runs: pd.DataFrame) -> dict[str, dict[str, float]]:
+    frame = raw_runs[
+        raw_runs["model"].astype(str).eq("Boundary-forced router")
+        & raw_runs["subset"].astype(str).eq("boundary")
+        & pd.to_numeric(raw_runs["cost_ratio"], errors="coerce").eq(10.0)
+        & raw_runs["policy"].astype(str).isin(["global", "gate-bin"])
+    ].copy()
+    if frame.empty:
+        raise ValueError("No boundary same-model reserve rows found for cost ratio 10.")
+
+    metrics = ["total_cost", "violation_rate", "reserve_energy", "shortage_energy"]
+    wide = frame.pivot(index="seed", columns="policy", values=metrics)
+    out: dict[str, dict[str, float]] = {}
+    for metric in metrics:
+        diffs = (wide[(metric, "gate-bin")] - wide[(metric, "global")]).dropna().astype(float)
+        if diffs.empty:
+            raise ValueError(f"No paired differences available for {metric}.")
+        values = diffs.to_numpy()
+        boot = _bootstrap_mean(values, n_boot=20000, seed=20260702 + len(metric))
+        out[metric] = {
+            "mean": float(values.mean()),
+            "ci_low": float(boot.quantile(0.025)),
+            "ci_high": float(boot.quantile(0.975)),
+            "n_pairs": float(len(values)),
+        }
+    return out
+
+
+def _bootstrap_mean(values: Any, *, n_boot: int, seed: int) -> pd.Series:
+    import numpy as np
+
+    array = np.asarray(values, dtype=float)
+    rng = np.random.default_rng(seed)
+    samples = rng.choice(array, size=(n_boot, array.size), replace=True)
+    return pd.Series(samples.mean(axis=1))
 
 
 def _reserve_row(summary: pd.DataFrame, subset: str, model: str, policy: str) -> pd.Series:
@@ -230,7 +277,7 @@ def _write_latex(frame: pd.DataFrame, path: Path) -> None:
         r"\midrule",
     ]
     display_evidence = [
-        r"$\rho=10$: $\Delta$cost -3.55M; $\Delta$viol. -0.0138; reserve +1.85M; shortage -0.54M",
+        r"$\rho=10$: $\Delta$cost -3.55M [CI -4.65M,-2.45M]; $\Delta$viol. -0.0138 [CI -0.0203,-0.0072]; shortage -0.54M [CI -0.78M,-0.30M]",
         r"Boundary phys. 83.78M/0.0880; GWN phys. 84.31M/0.0931; gate 84.58M/0.0900",
         r"Active at $\rho=5$--10; narrows at 20; $\rho=50$ favors global (+5.93M, +0.0035)",
         r"GWN/global 464.07M/0.0901; gate-bin 481.36M/0.1214",
@@ -238,11 +285,11 @@ def _write_latex(frame: pd.DataFrame, path: Path) -> None:
         r"Validation-frozen shortfall quantiles; no OPF, unit commitment, market clearing, or prices",
     ]
     display_limits = [
-        "Same-model diagnostic only",
+        "Same-model diagnostic; not cross-model optimal",
         "Physical bins remain competitive",
         "Moderate-cost window only",
         "No system-wide dispatch claim",
-        "Not statistically settled",
+        "Not system-wide or cross-backbone",
         "Screening audit only",
     ]
     for (_, row), evidence, limit in zip(frame.iterrows(), display_evidence, display_limits):
@@ -256,7 +303,16 @@ def _write_latex(frame: pd.DataFrame, path: Path) -> None:
             )
             + r" \\"
         )
-    lines.extend([r"\bottomrule", r"\end{tabularx}", r"\end{table}", ""])
+    lines.extend(
+        [
+            r"\bottomrule",
+            r"\end{tabularx}",
+            r"\vspace{1mm}",
+            r"\footnotesize Same-model intervals are $n=5$ seed-paired bootstrap mean CIs for gate-bin minus same-router global at $\rho=10$.",
+            r"\end{table}",
+            "",
+        ]
+    )
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
