@@ -203,11 +203,19 @@ def _preprocess_wtb(config: DataConfig) -> Path:
     op_regime = np.where(anchor_observed, op_regime, 3).astype(np.int16)
     op_valid = (op_valid.astype(bool) & anchor_observed).astype(np.float32)
     wake_flag, wake_valid, wake_threshold = compute_wtb_wake_flag(wake_score, op_regime, train_stop)
-    primary_class_weights = inverse_frequency_weights_from_labels(op_regime, op_valid, 3)
+    primary_class_weights = inverse_frequency_weights_from_labels(
+        op_regime[:train_stop],
+        op_valid[:train_stop],
+        3,
+    )
     pitch_binary_labels = np.zeros_like(op_regime, dtype=np.int16)
     pitch_valid = ((op_regime == 1) | (op_regime == 2)).astype(np.float32)
     pitch_binary_labels[op_regime == 2] = 1
-    pitch_force_weights = inverse_frequency_weights_from_labels(pitch_binary_labels, pitch_valid, 2)
+    pitch_force_weights = inverse_frequency_weights_from_labels(
+        pitch_binary_labels[:train_stop],
+        pitch_valid[:train_stop],
+        2,
+    )
 
     wake_valid_mask = wake_valid.astype(bool)
     if wake_valid_mask.any():
@@ -277,6 +285,7 @@ def _preprocess_wtb(config: DataConfig) -> Path:
         "physics_model_stats": physics_model_stats,
         "primary_class_weights": primary_class_weights,
         "pitch_force_weights": pitch_force_weights,
+        "class_weight_source_split": "train",
         "wake_pos_weight": wake_pos_weight,
         "wake_threshold": wake_threshold,
         "graph_config": {

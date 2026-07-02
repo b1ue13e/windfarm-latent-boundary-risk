@@ -1008,11 +1008,19 @@ def _write_cache_from_frame(
     anchor_observed = np.isfinite(raw["Wspd"]) & np.isfinite(pab_for_regime)
     regime = np.where(anchor_observed, regime, 3).astype(np.int16)
     valid = (valid.astype(bool) & anchor_observed).astype(np.float32)
-    primary_class_weights = inverse_frequency_weights_from_labels(regime, valid, 3)
+    primary_class_weights = inverse_frequency_weights_from_labels(
+        regime[:train_stop],
+        valid[:train_stop],
+        3,
+    )
     pitch_binary = np.zeros_like(regime, dtype=np.int16)
     pitch_valid = ((regime == 1) | (regime == 2)).astype(np.float32)
     pitch_binary[regime == 2] = 1
-    pitch_force_weights = inverse_frequency_weights_from_labels(pitch_binary, pitch_valid, 2)
+    pitch_force_weights = inverse_frequency_weights_from_labels(
+        pitch_binary[:train_stop],
+        pitch_valid[:train_stop],
+        2,
+    )
     physics = np.stack(
         [
             filled["Wspd"],
@@ -1093,6 +1101,7 @@ def _write_cache_from_frame(
         "pitch_observed_fraction": float(np.isfinite(raw["Pab_mean"]).mean()),
         "primary_class_weights": primary_class_weights,
         "pitch_force_weights": pitch_force_weights,
+        "class_weight_source_split": "train",
         "wake_pos_weight": 1.0,
         "wake_threshold": 0.0,
         "wtb_thresholds": {

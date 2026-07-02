@@ -249,14 +249,14 @@ def _write_engineering_value_latex(frame: pd.DataFrame, path: Path, *, main_rati
         r"\begin{table}[H]",
         r"\centering",
         r"\scriptsize",
-        r"\setlength{\tabcolsep}{2.0pt}",
-        r"\renewcommand{\arraystretch}{1.06}",
-        r"\caption*{\textbf{Table A11.} Engineering-unit reserve-value translation at $\rho="
+        r"\setlength{\tabcolsep}{3.0pt}",
+        r"\renewcommand{\arraystretch}{1.03}",
+        r"\caption*{\textbf{Table A12.} Engineering-unit reserve-value translation at $\rho="
         + f"{main_ratio:g}"
         + r"$.}",
-        r"\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.24\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\raggedright\arraybackslash}X}",
+        r"\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{0.15\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth}}",
         r"\toprule",
-        r"Comparison & $\Delta$ reserve MWh-eq. & Avoided shortage MWh-eq. & $\Delta$ cost MWh-eq. & $\Delta$ EUR at 100/MWh & Wording \\",
+        r"Comparison & $\Delta$ reserve & Avoided shortage & $\Delta$ cost & $\Delta$ EUR@100 \\",
         r"\midrule",
     ]
     for _, row in frame.iterrows():
@@ -268,7 +268,6 @@ def _write_engineering_value_latex(frame: pd.DataFrame, path: Path, *, main_rati
                     _fmt_signed(row.get("avoided_shortage_mwh_equiv"), 1),
                     _fmt_signed(row.get("delta_total_cost_mwh_equiv"), 1),
                     _fmt_signed_m_eur(row.get("delta_eur_at_100_per_mwh")),
-                    _escape(str(row["wording"])),
                 ]
             )
             + r" \\"
@@ -278,7 +277,7 @@ def _write_engineering_value_latex(frame: pd.DataFrame, path: Path, *, main_rati
             r"\bottomrule",
             r"\end{tabularx}",
             r"\vspace{1mm}",
-            r"\footnotesize MWh-eq. denotes forecast-cell MWh-equivalent accounting from kW active-power shortfall and $\Delta t=1/6$ h. EUR values are scenario translations under an assumed reserve carrying cost of 100 EUR/MWh; they are not market-settlement, OPF, or unit-commitment results.",
+            r"\footnotesize Values are MWh-equivalent forecast-cell accounting with $\Delta t=1/6$ h. Use same-router/global as the bounded boundary-window diagnostic; physical-bin and full-sample rows block reserve-superiority, market-settlement, OPF, and unit-commitment claims.",
             r"\end{table}",
             "",
         ]

@@ -30,6 +30,41 @@ if (Test-Path $tradeoffScript) {
     if ($LASTEXITCODE -ne 0) { throw "Accountability tradeoff generation failed." }
 }
 
+$appliedEnergyScript = Join-Path $root "scripts\build_applied_energy_diagnostics.py"
+if (Test-Path $appliedEnergyScript) {
+    & python $appliedEnergyScript
+    if ($LASTEXITCODE -ne 0) { throw "Applied-energy diagnostic generation failed." }
+    $appliedDir = Join-Path $root "artifacts\applied_energy_diagnostics"
+    $finalTablesDir = Join-Path $root "artifacts\final_evidence_package\export\tables"
+    $finalFiguresDir = Join-Path $root "artifacts\final_evidence_package\export\figures"
+    New-Item -ItemType Directory -Force -Path $finalTablesDir, $finalFiguresDir | Out-Null
+    foreach ($item in Get-ChildItem -LiteralPath $appliedDir -File | Where-Object { $_.Extension -in @(".csv", ".tex", ".json") }) {
+        Copy-Item -LiteralPath $item.FullName -Destination (Join-Path $finalTablesDir $item.Name) -Force
+    }
+    foreach ($item in Get-ChildItem -LiteralPath $appliedDir -File | Where-Object { $_.Extension -in @(".png", ".pdf", ".svg") }) {
+        Copy-Item -LiteralPath $item.FullName -Destination (Join-Path $finalFiguresDir $item.Name) -Force
+    }
+}
+
+$classWeightAuditScript = Join-Path $root "scripts\audit_class_weight_boundary.py"
+$trainWeightCacheScript = Join-Path $root "scripts\build_train_weight_cache.py"
+$strictCacheDir = Join-Path $root "artifacts\cache_strictmask\wtb_245d"
+$trainWeightCacheDir = Join-Path $root "artifacts\cache_strictmask_trainweights\wtb_245d"
+if ((Test-Path $trainWeightCacheScript) -and (Test-Path (Join-Path $strictCacheDir "metadata.json")) -and -not (Test-Path (Join-Path $trainWeightCacheDir "metadata.json"))) {
+    & python $trainWeightCacheScript --source-cache $strictCacheDir --target-cache $trainWeightCacheDir
+    if ($LASTEXITCODE -ne 0) { throw "Train-weight cache generation failed." }
+}
+if (Test-Path $classWeightAuditScript) {
+    & python $classWeightAuditScript
+    if ($LASTEXITCODE -ne 0) { throw "Class-weight boundary audit failed." }
+}
+$classWeightSensitivityScript = Join-Path $root "scripts\build_class_weight_sensitivity_audit.py"
+$classWeightRerunMetric = Join-Path $root "artifacts\trainweight_class_weight_rerun_20260702\wtb_bal_align_force_seed201\test_metrics\metrics.json"
+if ((Test-Path $classWeightSensitivityScript) -and (Test-Path $classWeightRerunMetric)) {
+    & python $classWeightSensitivityScript
+    if ($LASTEXITCODE -ne 0) { throw "Class-weight sensitivity audit failed." }
+}
+
 $statisticalClaimScript = Join-Path $root "scripts\build_statistical_claim_table.py"
 if (Test-Path $statisticalClaimScript) {
     & python $statisticalClaimScript
@@ -70,6 +105,18 @@ $numberConsistencyScript = Join-Path $root "scripts\verify_tste_number_consisten
 if (Test-Path $numberConsistencyScript) {
     & python $numberConsistencyScript --output-dir (Join-Path $root "artifacts\tste_number_consistency_audit")
     if ($LASTEXITCODE -ne 0) { throw "TSTE number consistency audit failed." }
+}
+
+$transformScript = Join-Path $root "scripts\transform_ieee.py"
+if (Test-Path $transformScript) {
+    & python $transformScript
+    if ($LASTEXITCODE -ne 0) { throw "IEEE markdown transform failed." }
+}
+
+$supplementaryScript = Join-Path $root "scripts\make_supplementary.py"
+if (Test-Path $supplementaryScript) {
+    & python $supplementaryScript
+    if ($LASTEXITCODE -ne 0) { throw "Supplementary markdown generation failed." }
 }
 
 function Build-PDF {

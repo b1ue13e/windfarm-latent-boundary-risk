@@ -367,8 +367,8 @@ def _delta_outcome(row: pd.Series) -> str:
     reserve = _num(row.get("reserve_energy_mean_delta_vs_model_global"))
     if all(np.isfinite(value) and value < 0.0 for value in [cost, violation, shortage]):
         if np.isfinite(reserve) and reserve > 0.0:
-            return "wins on risk, pays reserve"
-        return "operational win"
+            return "same-model risk reduction; pays reserve"
+        return "conditional boundary-window tradeoff"
     if np.isfinite(cost) and cost < 0.0:
         return "cost-only tradeoff"
     if np.isfinite(violation) and violation > 0.0 or np.isfinite(shortage) and shortage > 0.0:

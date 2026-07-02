@@ -1131,7 +1131,7 @@ def build_parser() -> argparse.ArgumentParser:
         type=str,
         default="no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd",
     )
-    anchor_stress_train_parser.add_argument("--seeds", type=str, default="201,202,203")
+    anchor_stress_train_parser.add_argument("--seeds", type=str, default="201,202,203,204,205")
     anchor_stress_train_parser.add_argument("--epochs", type=int, default=20)
     anchor_stress_train_parser.add_argument("--batch-size", type=int, default=16)
     anchor_stress_train_parser.add_argument("--hidden-dim", type=int, default=64)
@@ -1166,7 +1166,7 @@ def build_parser() -> argparse.ArgumentParser:
         type=str,
         default="no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd",
     )
-    anchor_stress_guard_parser.add_argument("--seeds", type=str, default="201,202,203")
+    anchor_stress_guard_parser.add_argument("--seeds", type=str, default="201,202,203,204,205")
     anchor_stress_guard_parser.add_argument("--min-nmi", type=float, default=0.65)
     anchor_stress_guard_parser.add_argument("--run-prefix", type=str, default="wtb_bal_align_force_seed")
 

@@ -49,34 +49,32 @@ ieee_header = (
     "Wind-farm reserve screening near the MPPT-to-pitch transition depends on "
     "knowing which control law is active, yet the threshold label that identifies "
     "it can be delayed, missing, or noisy exactly where over-forecasts create "
-    "shortage exposure. We make this control-boundary assignment auditable and "
-    "keep it usable when the label stream degrades, through SCADA-anchored, "
-    "regime-aware routing. A node-level mixture-of-experts gate is constrained by "
-    "operating anchors so each turbine-time route can be checked against a "
-    "declared MPPT-to-pitch partition and issued, before future active power is "
-    "observed, as a real-time operating-state diagnostic. On the KDD Cup 2022 "
-    "benchmark, the boundary-forced router recovers the declared partition "
-    "(NMI~0.87, ARI~0.92). Its operational value is robustness to label "
-    "degradation: because the route reads live SCADA anchors rather than a "
-    "confirmed threshold stream, it retains 0.960 early pitch-window recall under "
-    "a six-step label delay while the delayed threshold rule falls to 0.196, and "
-    "stays at 0.960 under 50\\% label availability versus 0.508 for the "
-    "available-label rule. This auditable route has an explicitly reported "
-    "accuracy trade-off (overall RMSE 236.13 versus 224.34 for iTransformer, the "
-    "lowest-RMSE strict-cache forecasting baseline) and exposes transition-window "
-    "reserve risk: at shortage-to-reserve cost ratio 10, gate-conditioned binning "
-    "lowers same-router boundary-window shortage energy by 14.5\\% while carrying "
-    "about 3.6\\% more reserve. The recovery is not specific to one benchmark: "
-    "retrained on the independent ENGIE La Haute Borne farm, the router recovers "
-    "the declared boundary at five-seed NMI~0.941; replay audits rule out "
-    "active-power feedback (Patv-zero NMI 0.953) and show joint wind-speed/pitch "
-    "anchors are load-bearing (joint-zero NMI 0.001). The Kelmarsh/Penmanshiel "
-    "farms, lacking pitch observability, define the conditions cross-site transfer "
-    "requires--sensor coverage, pitch observability, local boundary re-estimation, "
-    "and a held-out routing check. The contribution is an auditable, "
-    "label-degradation-robust control-boundary routing framework with quantified "
-    "operating value, a measured accuracy trade-off, second-farm recovery, and "
-    "explicit transfer conditions.\n"
+    "shortage exposure. We make this control-boundary assignment auditable "
+    "through SCADA-anchored, regime-aware routing. A node-level mixture-of-experts "
+    "gate is constrained by operating anchors so each turbine-time route can be "
+    "checked against a declared MPPT-to-pitch partition and issued before future "
+    "active power is observed. On the KDD Cup 2022 benchmark, the legacy "
+    "strict-cache boundary-forced router recovers the declared partition "
+    "(NMI~0.87, ARI~0.92); recomputing alignment and forcing class weights "
+    "from the training split only preserves the routing claim (NMI 0.721, "
+    "ARI 0.740). Under a six-step label delay, the route retains 0.960 "
+    "early pitch-window recall "
+    "while the delayed threshold rule falls to 0.196; under 50\\% label "
+    "availability, the corresponding rule reaches 0.508. A simple issue-time "
+    "anchor classifier reaches 1.000 recall and 0.879 precision on clean anchors, "
+    "so the claim is not superior standalone detection: the contribution is an "
+    "auditable in-model route assignment coupled to forecasting and boundary-window "
+    "reserve screening. This route has an explicit accuracy price (legacy overall RMSE "
+    "236.13 versus 224.34 for iTransformer) and a bounded reserve-risk consequence "
+    "check: at shortage-to-reserve cost ratio 10, gate-conditioned binning lowers "
+    "same-router boundary-window shortage energy by 14.5\\% while carrying about "
+    "3.6\\% more reserve, with physical-bin baselines remaining competitive. "
+    "Retrained on the independent ENGIE La Haute Borne farm, the router recovers "
+    "the declared boundary at five-seed NMI~0.941; Kelmarsh/Penmanshiel, lacking "
+    "pitch observability, define the deployment conditions required before "
+    "cross-farm use. The contribution is an auditable control-boundary routing "
+    "layer with degraded-label availability evidence, a measured RMSE trade-off, "
+    "second-farm anchor-observable recovery, and explicit transfer conditions.\n"
     "\\end{abstract}\n"
     "\n"
     "\\begin{IEEEkeywords}\n"
@@ -192,7 +190,25 @@ old_dec_curve = (
 )
 body = body.replace(old_dec_curve, "\n")
 
-# ── 4e. Remove reserve-diagnostic algorithm box (math in text is sufficient) ──
+# ── 4e. Remove secondary case-study figure (routing evidence figure carries the main claim) ─
+old_case_studies = (
+    "\n![The time-series case studies show why observability matters. The WTB gate "
+    "tracks a turbine-control switch that is partly hidden inside SCADA control action, "
+    "whereas the ERA5 gate follows a more directly observed thermodynamic marker.]"
+    "(artifacts/final_evidence_package/export/figures/figure5_case_studies.pdf){ width=97% }\n"
+)
+body = body.replace(old_case_studies, "\n")
+
+# ── 4f. Remove accountability trade-off figure (numbers are in text/table; saves IEEE page budget) ──
+old_accountability = (
+    "\n![Accountability value versus forecasting RMSE price. Citable degraded-label "
+    "gain is assigned only after the physical-routing audit passes. \\label{fig:accountability-tradeoff}]"
+    "(artifacts/final_evidence_package/export/figures/accountability_tradeoff_curve.pdf){ width=90% }\n"
+)
+body = body.replace(old_accountability, "\n")
+body = body.replace(" (Fig.~\\ref{fig:accountability-tradeoff})", "")
+
+# ── 4g. Remove reserve-diagnostic algorithm box (math in text is sufficient) ──
 # The box content starts with \begingroup\footnotesize...\noindent\fbox
 # Search for it in the body (after step 4 table-width subs, 0.96\columnwidth)
 algo_start = "\n```{=latex}\n\\begingroup\n\\footnotesize\n\\setlength{\\fboxsep}{5pt}"
@@ -256,7 +272,8 @@ assert r"\begin{equation}" in out            # GRU split equation
 assert r"\begin{align}" in out               # loss split equation
 assert "deployment_checklist.png" not in out # removed redundant figure
 assert "operational_decision_curve.png" not in out  # removed; Tables 3-4 cover it
-assert "accountability_tradeoff_curve.pdf" in out
+assert "figure5_case_studies.pdf" not in out         # removed; Figure 4 carries routing evidence
+assert "accountability_tradeoff_curve.pdf" not in out
 assert r"\fbox" not in out                          # algo box removed
 assert "not a claim of forecasting superiority" not in out
 

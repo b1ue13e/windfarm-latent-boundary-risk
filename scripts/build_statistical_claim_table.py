@@ -22,8 +22,10 @@ def main() -> None:
     paired = pd.read_csv(PAIRED)
     multiplicity = pd.read_csv(MULTIPLICITY)
     reserve = pd.read_csv(RESERVE)
+    benchmark = pd.read_csv(ROOT / "artifacts" / "paper_assets" / "tables" / "table_main_benchmark.csv")
 
     rows = [
+        _descriptive_itransformer_row(benchmark),
         _rmse_row(
             paired,
             multiplicity,
@@ -135,6 +137,24 @@ def _rmse_row(
     }
 
 
+def _descriptive_itransformer_row(benchmark: pd.DataFrame) -> dict[str, Any]:
+    boundary = _lookup(benchmark, Panel="WTB", Model="Boundary-forced router")
+    itransformer = _lookup(benchmark, Panel="WTB", Model="iTransformer")
+    boundary_rmse = _metric_mean(boundary["Overall RMSE"])
+    itransformer_rmse = _metric_mean(itransformer["Overall RMSE"])
+    return {
+        "claim": "Accuracy price vs iTransformer",
+        "statistic": "Delta RMSE",
+        "estimate": boundary_rmse - itransformer_rmse,
+        "ci_low": math.nan,
+        "ci_high": math.nan,
+        "p_value": math.nan,
+        "n": 5,
+        "result": "descriptive",
+        "interpretation": "Descriptive price versus the lowest-RMSE strict-cache baseline; no paired FDR claim",
+    }
+
+
 def _gate_row(
     paired: pd.DataFrame,
     multiplicity: pd.DataFrame,
@@ -212,6 +232,14 @@ def _lookup(frame: pd.DataFrame, **equals: str) -> pd.Series:
     if rows.empty:
         raise ValueError(f"No row matches {equals}")
     return rows.iloc[0]
+
+
+def _metric_mean(value: object) -> float:
+    text = str(value)
+    try:
+        return float(text.split("+/-")[0].strip())
+    except ValueError:
+        return _num(value)
 
 
 def _num(value: Any) -> float:

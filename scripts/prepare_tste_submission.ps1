@@ -40,6 +40,24 @@ function Convert-PortalText {
     return $clean.Trim()
 }
 
+function Get-RelativePathCompat {
+    param(
+        [string]$BasePath,
+        [string]$TargetPath
+    )
+
+    $baseFull = [System.IO.Path]::GetFullPath($BasePath)
+    $targetFull = [System.IO.Path]::GetFullPath($TargetPath)
+    if (-not $baseFull.EndsWith([System.IO.Path]::DirectorySeparatorChar)) {
+        $baseFull += [System.IO.Path]::DirectorySeparatorChar
+    }
+
+    $baseUri = New-Object System.Uri($baseFull)
+    $targetUri = New-Object System.Uri($targetFull)
+    $relativeUri = $baseUri.MakeRelativeUri($targetUri)
+    return [System.Uri]::UnescapeDataString($relativeUri.ToString()).Replace('/', [System.IO.Path]::DirectorySeparatorChar)
+}
+
 function Invoke-RequiredPythonScript {
     param(
         [string]$ScriptPath,
@@ -156,6 +174,9 @@ $suppPages = Get-PdfPageCount -PdfPath (Join-Path $root "paper_tste_supplementar
 if ([int]$mainPages -gt 10) {
     throw "IEEE main manuscript exceeds 10 pages: $mainPages"
 }
+if ([int]$suppPages -lt 3 -or [int]$suppPages -gt 4) {
+    throw "IEEE supplementary material page count is outside the expected 3-4 page range: $suppPages"
+}
 
 $logPattern = "Font Warning|No file TUptm|undefined citation|Citation .* undefined|Overfull|Undefined control sequence|Some font shapes|TU/ptm|LaTeX Warning: Reference.*undefined|undefined references|LaTeX Error"
 $mainLog = Join-Path $root "build\paper_tste_ieee.log"
@@ -174,7 +195,7 @@ $freezeDir = Join-Path $root "artifacts\tste_evidence_freeze_guard"
     --final-package-dir (Join-Path $root "artifacts\final_evidence_package") `
     --paired-effects (Join-Path $root "artifacts\strictmask_combined_reviewer_stats\paired_effects_summary.csv") `
     --output-dir $freezeDir `
-    --required-tokens "236.13,224.34,225.74,0.960,0.196,0.508,0.8716,0.9166,0.941,0.953,0.001,0.028,84.58M,84.31M,88.13M,11.79,0.764,566,1846.9,539.8,3551.4,355k"
+    --required-tokens "236.13,224.34,225.74,0.960,0.196,0.508,1.000,0.879,0.759,0.8716,0.9166,0.941,0.953,0.001,0.028,84.58M,84.31M,88.13M,11.79,0.764,566,1846.9,539.8,3551.4,355k"
 if ($LASTEXITCODE -ne 0) { throw "Evidence-freeze guard command failed." }
 $freezeJson = Get-Content -LiteralPath (Join-Path $freezeDir "evidence_freeze_guard.json") -Raw | ConvertFrom-Json
 $freezeStatus = [string]$freezeJson.status
@@ -223,7 +244,7 @@ $uploadFiles = @(
     [ordered]@{
         file = "upload_files/supplementary_material.pdf"
         portal_role = "Supplementary material"
-        note = "Supplementary appendix with Tables A1-A13."
+        note = "Supplementary appendix with Tables A1-A6, A6b, and A7-A13."
     },
     [ordered]@{
         file = "upload_files/cover_letter.md"
@@ -266,6 +287,7 @@ $claimBoundaries = @(
     "Not a universal reserve-policy optimality claim: validation-frozen physical-bin quantile baselines remain competitive.",
     "Not an automatic cross-farm generalization claim: Kelmarsh/Penmanshiel fail the held-out routing criterion and are treated as deployment-gate diagnostics.",
     "Not an anchor-free discovery claim: routing is intentionally constrained by SCADA operating anchors.",
+    "Not a standalone classifier-superiority claim: a simple issue-time anchor classifier reaches 1.000 recall and 0.879 precision on clean anchors.",
     "Not a market-dispatch or grid-security guarantee: reserve evidence is scoped to audit and diagnosis around the MPPT-to-pitch transition."
 )
 
@@ -398,18 +420,61 @@ foreach ($rel in @(
     "scripts\make_supplementary.py",
     "scripts\build_accountability_tradeoff.py",
     "scripts\build_statistical_claim_table.py",
+    "scripts\build_early_warning_classifier_baseline.py",
     "scripts\build_early_warning_consequence_table.py",
     "scripts\build_reserve_claim_boundary_table.py",
     "scripts\build_engineering_unit_value_translation.py",
     "scripts\build_outcome_channel_sanity.py",
     "scripts\build_external_deployment_gate_audit.py",
-    "scripts\verify_tste_number_consistency.py"
+    "scripts\verify_tste_number_consistency.py",
+    "scripts\audit_class_weight_boundary.py",
+    "scripts\build_train_weight_cache.py",
+    "scripts\build_class_weight_sensitivity_audit.py"
 )) {
     $src = Join-Path $root $rel
     if (Test-Path $src) {
         $dest = Join-Path $sourceDir $rel
         New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
         Copy-Item -LiteralPath $src -Destination $dest -Force
+    }
+}
+
+foreach ($dir in @("windfarm_moe", "scripts", "tests")) {
+    $srcDir = Join-Path $root $dir
+    if (Test-Path $srcDir) {
+        Get-ChildItem -LiteralPath $srcDir -Recurse -File |
+            Where-Object { $_.Extension -in @(".py", ".ps1") } |
+            ForEach-Object {
+                $relPath = Get-RelativePathCompat -BasePath $root -TargetPath $_.FullName
+                $dest = Join-Path $sourceDir $relPath
+                New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
+                Copy-Item -LiteralPath $_.FullName -Destination $dest -Force
+            }
+    }
+}
+
+Push-Location $sourceDir
+try {
+    & python -c "import main; import windfarm_moe.data; import windfarm_moe.preprocess; import windfarm_moe.train; import windfarm_moe.anchor_stress; import windfarm_moe.regimes"
+    if ($LASTEXITCODE -ne 0) { throw "Source package import smoke test failed." }
+    & python main.py --help | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "Source package CLI smoke test failed." }
+}
+finally {
+    Pop-Location
+}
+
+$sourcePrefix = [System.IO.Path]::GetFullPath($sourceDir).TrimEnd([System.IO.Path]::DirectorySeparatorChar) + [System.IO.Path]::DirectorySeparatorChar
+foreach ($cacheDir in @(Get-ChildItem -LiteralPath $sourceDir -Recurse -Directory | Where-Object { $_.Name -eq "__pycache__" })) {
+    $cachePath = [System.IO.Path]::GetFullPath($cacheDir.FullName)
+    if ($cachePath.StartsWith($sourcePrefix)) {
+        Remove-Item -LiteralPath $cachePath -Recurse -Force
+    }
+}
+foreach ($bytecode in @(Get-ChildItem -LiteralPath $sourceDir -Recurse -File | Where-Object { $_.Extension -in @(".pyc", ".pyo") })) {
+    $bytecodePath = [System.IO.Path]::GetFullPath($bytecode.FullName)
+    if ($bytecodePath.StartsWith($sourcePrefix)) {
+        Remove-Item -LiteralPath $bytecodePath -Force
     }
 }
 
@@ -436,6 +501,9 @@ $auditFiles = @(
     "engineering_unit_value_translation.csv",
     "table_engineering_unit_value_translation.tex",
     "engineering_unit_value_translation_summary.json",
+    "class_weight_sensitivity_audit.csv",
+    "table_class_weight_sensitivity_audit.tex",
+    "class_weight_sensitivity_audit.json",
     "accountability_tradeoff.csv",
     "table_accountability_tradeoff.tex"
 )
@@ -459,6 +527,61 @@ foreach ($file in @(
 Copy-Item -LiteralPath (Join-Path $freezeDir "evidence_freeze_guard.json") -Destination $evidenceDir -Force
 Copy-Item -LiteralPath (Join-Path $freezeDir "evidence_freeze_guard_checks.csv") -Destination $evidenceDir -Force
 Copy-Item -LiteralPath (Join-Path $freezeDir "evidence_freeze_required_tokens.csv") -Destination $evidenceDir -Force
+
+foreach ($rel in @(
+    "artifacts\early_warning_classifier_baseline_wtb\early_warning_classifier_baseline_summary.csv",
+    "artifacts\early_warning_classifier_baseline_wtb\early_warning_classifier_baseline_raw.csv",
+    "artifacts\early_warning_classifier_baseline_wtb\early_warning_classifier_baseline_guard.json"
+)) {
+    $src = Join-Path $root $rel
+    if (Test-Path $src) {
+        $dest = Join-Path $evidenceDir $rel
+        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
+        Copy-Item -LiteralPath $src -Destination $dest -Force
+    }
+}
+
+foreach ($rel in @(
+    "artifacts\class_weight_boundary_audit\class_weight_boundary_audit.csv",
+    "artifacts\class_weight_boundary_audit\class_weight_boundary_audit.json",
+    "artifacts\class_weight_boundary_audit\class_weight_sensitivity_audit.csv",
+    "artifacts\class_weight_boundary_audit\class_weight_sensitivity_summary.csv",
+    "artifacts\class_weight_boundary_audit\class_weight_sensitivity_audit.json",
+    "artifacts\class_weight_boundary_audit\table_class_weight_sensitivity_audit.tex"
+)) {
+    $src = Join-Path $root $rel
+    if (Test-Path $src) {
+        $dest = Join-Path $evidenceDir $rel
+        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
+        Copy-Item -LiteralPath $src -Destination $dest -Force
+    }
+}
+
+foreach ($rel in @(
+    "artifacts\trainweight_class_weight_rerun_20260702\suite_summary.json"
+)) {
+    $src = Join-Path $root $rel
+    if (Test-Path $src) {
+        $dest = Join-Path $evidenceDir $rel
+        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
+        Copy-Item -LiteralPath $src -Destination $dest -Force
+    }
+}
+$classWeightRerunDir = Join-Path $root "artifacts\trainweight_class_weight_rerun_20260702"
+if (Test-Path $classWeightRerunDir) {
+    Get-ChildItem -LiteralPath $classWeightRerunDir -Directory -Filter "wtb_bal_align_force_seed*" |
+        ForEach-Object {
+            foreach ($relChild in @("training_summary.json", "test_metrics\metrics.json")) {
+                $src = Join-Path $_.FullName $relChild
+                if (Test-Path $src) {
+                    $relPath = Get-RelativePathCompat -BasePath $root -TargetPath $src
+                    $dest = Join-Path $evidenceDir $relPath
+                    New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
+                    Copy-Item -LiteralPath $src -Destination $dest -Force
+                }
+            }
+        }
+}
 
 foreach ($rel in @(
     "artifacts\strict_baseline_protocol_wtb_strictmask_20260628_expanded\strict_baseline_protocol.json",
@@ -487,7 +610,7 @@ Generated: $stamp
 ## Upload files
 
 - `upload_files/manuscript_ieee_tste.pdf`: IEEEtran main manuscript.
-- `upload_files/supplementary_material.pdf`: supplementary appendix with Tables A1-A13.
+- `upload_files/supplementary_material.pdf`: supplementary appendix with Tables A1-A6, A6b, and A7-A13.
 - `upload_files/cover_letter.md`: TSTE cover letter aligned with claim audits.
 - `upload_files/portal_metadata.md`: copy-paste portal fields for title, abstract, keywords, authors, declarations, and file roles.
 - `upload_files/portal_metadata.json`: machine-readable copy of the same portal metadata.
@@ -520,12 +643,15 @@ Generated: $stamp
 ## Claim-boundary audits included
 
 - Supplementary Table A6: statistical claim boundaries.
+- Supplementary Table A6b: class-weight sensitivity audit.
 - Supplementary Table A7: outcome-channel sanity audit.
 - Supplementary Table A8: external-site deployment gates.
 - Supplementary Table A9: La Haute Borne anchor-observability replay audit.
 - Supplementary Table A10: early-warning detection consequence.
 - Supplementary Table A11: reserve-policy claim boundary.
 - Supplementary Table A12: engineering-unit reserve-value translation.
+- Class-weight boundary audit: source uses train-only weights for reruns and identifies legacy cache metadata.
+- Class-weight sensitivity audit: five-seed train-only loss-weight rerun for the boundary router.
 - TSTE number consistency audit: source-artifact to final-facing token check.
 - Expanded strict-cache baseline guard and run-status files for Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST, iTransformer, and TiDE.
 
@@ -665,6 +791,9 @@ foreach ($zip in @($uploadZip, $sourceZip, $fullZip)) {
 }
 Compress-Archive -Path (Join-Path $uploadDir "*") -DestinationPath $uploadZip -Force
 Compress-Archive -Path (Join-Path $sourceDir "*") -DestinationPath $sourceZip -Force
+if (-not (Test-Path $sourceZip)) {
+    throw "Source archive was not created: $sourceZip"
+}
 Compress-Archive -Path (Join-Path $packageRoot "*") -DestinationPath $fullZip -Force
 
 & powershell -ExecutionPolicy Bypass -File (Join-Path $root "scripts\verify_tste_submission_package.ps1") -PackageRoot $packageRoot

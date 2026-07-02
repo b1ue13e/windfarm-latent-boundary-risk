@@ -104,6 +104,12 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         / "anchor_stress_early_warning_wtb_strictmask"
         / "anchor_stress_early_warning_summary.csv"
     )
+    classifier = pd.read_csv(
+        root
+        / "artifacts"
+        / "early_warning_classifier_baseline_wtb"
+        / "early_warning_classifier_baseline_summary.csv"
+    )
     consequence = pd.read_csv(
         root
         / "artifacts"
@@ -162,6 +168,7 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         scenario="label_availability",
         degradation_label="available_rate=0.50",
     )
+    classifier_clean = _lookup(classifier, scenario="clean", degradation_label="clean_live_anchor")
     consequence_delay_6 = _lookup(consequence, scenario="label_delay", degradation_label="delay_steps=6")
     accountability_boundary = _lookup(accountability, model="Boundary-forced router")
     reserve_boundary_gate = _lookup(
@@ -200,6 +207,9 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         _check("six_step_gate_recall", "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv", _num(delay_6["gate_recall_mean"]), "{:.3f}", ("main", "cover")),
         _check("six_step_threshold_recall", "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv", _num(delay_6["threshold_recall_mean"]), "{:.3f}", ("main", "cover")),
         _check("fifty_percent_availability_rule_recall", "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv", _num(availability_50["threshold_recall_mean"]), "{:.3f}", ("main", "cover")),
+        _check("classifier_clean_recall", "artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_summary.csv", _num(classifier_clean["clf_recall_mean"]), "{:.3f}", ("main", "cover", "supplementary")),
+        _check("classifier_clean_precision", "artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_summary.csv", _num(classifier_clean["clf_precision_mean"]), "{:.3f}", ("main", "cover", "supplementary")),
+        _check("gate_clean_precision", "artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_summary.csv", _num(classifier_clean["gate_precision_mean"]), "{:.3f}", ("main", "supplementary")),
         _check("six_step_recall_gain", "artifacts/final_evidence_package/export/tables/accountability_tradeoff.csv", _num(accountability_boundary["citable_recall_gain"]), "{:+.3f}", ("main",)),
         _check("early_pitch_cells_recovered", "artifacts/final_evidence_package/export/tables/early_warning_consequence_audit.csv", _num(consequence_delay_6["recovered_cells_vs_rule_mean"]), lambda value: f"{int(round(value))}", ("main",)),
         _check("rmse_price_vs_best_strict_cache_baseline", "artifacts/final_evidence_package/export/tables/accountability_tradeoff.csv", _num(accountability_boundary["rmse_penalty_vs_best_strict_cache_baseline"]), "{:.2f}", ("main", "cover")),

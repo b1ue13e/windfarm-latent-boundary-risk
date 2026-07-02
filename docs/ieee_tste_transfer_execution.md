@@ -27,9 +27,9 @@ Run the training-level anchor-observability stress sequence before citing anchor
 ```powershell
 python main.py anchor-stress-cache --dataset wtb --root-dir . --source-cache-dir artifacts/cache_strictmask/wtb_245d --output-cache-root artifacts/cache_anchor_stress --variants no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd
 
-python main.py anchor-stress-train --cache-root artifacts/cache_anchor_stress --output-root artifacts/anchor_stress_runs --variants no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd --seeds 201,202,203 --skip-visuals
+python main.py anchor-stress-train --cache-root artifacts/cache_anchor_stress --output-root artifacts/anchor_stress_runs --variants no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd --seeds 201,202,203,204,205 --skip-visuals
 
-python main.py anchor-stress-guard --suite-root artifacts/anchor_stress_runs --cache-root artifacts/cache_anchor_stress --output-dir artifacts/anchor_stress_guard --variants no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd --seeds 201,202,203 --min-nmi 0.65
+python main.py anchor-stress-guard --suite-root artifacts/anchor_stress_runs --cache-root artifacts/cache_anchor_stress --output-dir artifacts/anchor_stress_guard --variants no_patv,lagged_patv,no_pab_mean,lagged_pab_wspd --seeds 201,202,203,204,205 --min-nmi 0.65
 ```
 
 Run the post-hoc label-degradation audit before citing operational early-warning value:

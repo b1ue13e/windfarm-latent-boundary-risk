@@ -221,21 +221,37 @@ def _write_latex(frame: pd.DataFrame, path: Path) -> None:
         r"\begin{table}[H]",
         r"\centering",
         r"\scriptsize",
-        r"\setlength{\tabcolsep}{2.2pt}",
-        r"\renewcommand{\arraystretch}{1.08}",
-        r"\caption*{\textbf{Table A10.} Reserve-policy claim-boundary audit.}",
-        r"\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.22\columnwidth} >{\raggedright\arraybackslash}p{0.36\columnwidth} >{\raggedright\arraybackslash}X}",
+        r"\setlength{\tabcolsep}{2.4pt}",
+        r"\renewcommand{\arraystretch}{1.03}",
+        r"\caption*{\textbf{Table A11.} Reserve-policy claim-boundary audit.}",
+        r"\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.25\columnwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.22\columnwidth}}",
         r"\toprule",
-        r"Boundary & Evidence & Wording rule \\",
+        r"Boundary & Key evidence & Limit \\",
         r"\midrule",
     ]
-    for _, row in frame.iterrows():
+    display_evidence = [
+        r"$\rho=10$: $\Delta$cost -3.55M; $\Delta$viol. -0.0138; reserve +1.85M; shortage -0.54M",
+        r"Boundary phys. 83.78M/0.0880; GWN phys. 84.31M/0.0931; gate 84.58M/0.0900",
+        r"Active at $\rho=5$--10; narrows at 20; $\rho=50$ favors global (+5.93M, +0.0035)",
+        r"GWN/global 464.07M/0.0901; gate-bin 481.36M/0.1214",
+        r"$\Delta$cost +17.28M; 95\% CI [-52.09M,+87.95M]; p=0.752",
+        r"Validation-frozen shortfall quantiles; no OPF, unit commitment, market clearing, or prices",
+    ]
+    display_limits = [
+        "Same-model diagnostic only",
+        "Physical bins remain competitive",
+        "Moderate-cost window only",
+        "No system-wide dispatch claim",
+        "Not statistically settled",
+        "Screening audit only",
+    ]
+    for (_, row), evidence, limit in zip(frame.iterrows(), display_evidence, display_limits):
         lines.append(
             " & ".join(
                 [
                     _escape(str(row["boundary"])),
-                    _escape(str(row["evidence"])),
-                    _escape(str(row["wording_rule"])),
+                    evidence,
+                    _escape(limit),
                 ]
             )
             + r" \\"

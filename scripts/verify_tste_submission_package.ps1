@@ -176,6 +176,13 @@ $uploadZipEntries = @([System.IO.Compression.ZipFile]::OpenRead($uploadZip).Entr
 $sourceZipEntries = @([System.IO.Compression.ZipFile]::OpenRead($sourceZip).Entries | ForEach-Object { Convert-ZipPath $_.FullName })
 $fullZipEntries = @([System.IO.Compression.ZipFile]::OpenRead($fullZip).Entries | ForEach-Object { Convert-ZipPath $_.FullName })
 
+$cacheEntries = @($sourceZipEntries + $fullZipEntries | Where-Object {
+    $_ -match "(^|/)__pycache__/" -or $_ -match "\.py[co]$"
+})
+if ($cacheEntries.Count -gt 0) {
+    throw "Submission archives contain Python bytecode/cache files: $($cacheEntries[0])"
+}
+
 foreach ($name in $expectedUploadFiles) {
     if ($uploadZipEntries -notcontains $name) {
         throw "Upload archive is missing $name."
@@ -190,19 +197,61 @@ if ($sourceZipEntries -notcontains "scripts/verify_tste_submission_package.ps1")
 if ($sourceZipEntries -notcontains "scripts/build_engineering_unit_value_translation.py") {
     throw "Source archive is missing scripts/build_engineering_unit_value_translation.py."
 }
+if ($sourceZipEntries -notcontains "scripts/build_early_warning_classifier_baseline.py") {
+    throw "Source archive is missing scripts/build_early_warning_classifier_baseline.py."
+}
+if ($sourceZipEntries -notcontains "scripts/audit_class_weight_boundary.py") {
+    throw "Source archive is missing scripts/audit_class_weight_boundary.py."
+}
+if ($sourceZipEntries -notcontains "scripts/build_train_weight_cache.py") {
+    throw "Source archive is missing scripts/build_train_weight_cache.py."
+}
+if ($sourceZipEntries -notcontains "scripts/build_class_weight_sensitivity_audit.py") {
+    throw "Source archive is missing scripts/build_class_weight_sensitivity_audit.py."
+}
 if ($sourceZipEntries -notcontains "scripts/verify_tste_number_consistency.py") {
     throw "Source archive is missing scripts/verify_tste_number_consistency.py."
+}
+foreach ($name in @(
+    "windfarm_moe/data.py",
+    "windfarm_moe/preprocess.py",
+    "windfarm_moe/train.py",
+    "windfarm_moe/anchor_stress.py",
+    "windfarm_moe/regimes.py"
+)) {
+    if ($sourceZipEntries -notcontains $name) {
+        throw "Source archive is missing core module $name."
+    }
 }
 foreach ($name in @(
     "upload_files/manuscript_ieee_tste.pdf",
     "portal_metadata/portal_metadata.json",
     "integrity_manifest/UPLOAD_MANIFEST.json",
     "evidence_audits/evidence_freeze_guard.json",
+    "evidence_audits/artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_summary.csv",
+    "evidence_audits/artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_raw.csv",
+    "evidence_audits/artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_guard.json",
+    "evidence_audits/artifacts/class_weight_boundary_audit/class_weight_boundary_audit.csv",
+    "evidence_audits/artifacts/class_weight_boundary_audit/class_weight_boundary_audit.json",
+    "evidence_audits/artifacts/class_weight_boundary_audit/class_weight_sensitivity_audit.csv",
+    "evidence_audits/artifacts/class_weight_boundary_audit/class_weight_sensitivity_audit.json",
+    "evidence_audits/artifacts/class_weight_boundary_audit/table_class_weight_sensitivity_audit.tex",
+    "evidence_audits/artifacts/trainweight_class_weight_rerun_20260702/suite_summary.json",
     "evidence_audits/engineering_unit_value_translation.csv",
     "evidence_audits/tste_number_consistency_audit.csv"
 )) {
     if ($fullZipEntries -notcontains $name) {
         throw "Full local archive is missing $name."
+    }
+}
+foreach ($seed in 201, 202, 203, 204, 205) {
+    foreach ($name in @(
+        "evidence_audits/artifacts/trainweight_class_weight_rerun_20260702/wtb_bal_align_force_seed$seed/training_summary.json",
+        "evidence_audits/artifacts/trainweight_class_weight_rerun_20260702/wtb_bal_align_force_seed$seed/test_metrics/metrics.json"
+    )) {
+        if ($fullZipEntries -notcontains $name) {
+            throw "Full local archive is missing $name."
+        }
     }
 }
 

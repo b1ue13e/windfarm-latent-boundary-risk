@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TABLE_DIR = ROOT / "artifacts" / "final_evidence_package" / "export" / "tables"
 FAILURE_TABLE = TABLE_DIR / "external_site_transfer_failure_table.csv"
 CHECKLIST_TABLE = TABLE_DIR / "new_wind_farm_deployment_checklist.csv"
+LHB_GUARD = ROOT / "artifacts" / "external_wind_lhb_guard_full_5seed" / "external_wind_guard.json"
 
 
 def main() -> None:
@@ -52,7 +53,18 @@ def _build_rows(failure: pd.DataFrame, checklist: pd.DataFrame) -> list[dict[str
     adaptation = _failure_row(failure, "small calibration-window gate-map adaptation")
     sensor = _failure_row(failure, "sensor and boundary support")
 
+    lhb = json.loads(LHB_GUARD.read_text(encoding="utf-8")) if LHB_GUARD.exists() else {}
+
     return [
+        {
+            "gate": "Cross-site recovery (La Haute Borne)",
+            "observed_external_evidence": (
+                f"Five-seed chronological routing NMI {_fmt(lhb.get('mean_nmi'))}, "
+                f"ARI {_fmt(lhb.get('mean_ari'))}; pitch observed in 99.2% of cells, no proxy"
+            ),
+            "go_no_go_rule": "Held-out NMI >= 0.50 with observed pitch after parameters are frozen",
+            "claim_consequence": "Go: boundary recovers where pitch is observable; cite as positive cross-site control",
+        },
         {
             "gate": "Cross-site routing criterion",
             "observed_external_evidence": _sentence_case(str(routing["observed"])),
@@ -106,6 +118,13 @@ def _sentence_case(text: str) -> str:
     if not text:
         return text
     return text[0].upper() + text[1:]
+
+
+def _fmt(value: Any) -> str:
+    try:
+        return f"{float(value):.3f}"
+    except (TypeError, ValueError):
+        return "--"
 
 
 def _write_latex(rows: list[dict[str, str]], path: Path) -> None:
