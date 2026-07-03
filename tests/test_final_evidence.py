@@ -29,8 +29,8 @@ class FinalEvidenceTests(unittest.TestCase):
     def _write_external_guard(
         self,
         path: Path,
-        status: str = "portable_mechanism_ready",
-        claim_gate: str = "portable_mechanism_passed",
+        status: str = "cross_site_mechanism_ready",
+        claim_gate: str = "cross_site_mechanism_passed",
     ) -> None:
         save_json(
             path,
@@ -547,7 +547,7 @@ class FinalEvidenceTests(unittest.TestCase):
             self.assertFalse(manifest["checks"]["external_source_guard_passing_if_external_requested"])
             self.assertFalse(manifest["checks"]["external_portability_ready"])
 
-    def test_final_manifest_allows_portable_mechanism_only_after_external_and_source_guards_pass(self) -> None:
+    def test_final_manifest_allows_cross_site_mechanism_only_after_external_and_source_guards_pass(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             cache = root / "cache"
@@ -577,7 +577,7 @@ class FinalEvidenceTests(unittest.TestCase):
             )
             manifest = load_json(out / "evidence_manifest_final.json")
 
-            self.assertEqual(manifest["claim_gate"], "portable_mechanism_passed")
+            self.assertEqual(manifest["claim_gate"], "cross_site_mechanism_passed")
             self.assertEqual(manifest["status"], "complete_ready_for_submission_tables")
             self.assertTrue(manifest["checks"]["external_guard_passing_if_requested"])
             self.assertTrue(manifest["checks"]["external_guard_protocol_complete_if_requested"])
@@ -603,7 +603,7 @@ class FinalEvidenceTests(unittest.TestCase):
             run_table = root / "runs.csv"
             pd.DataFrame(rows).to_csv(run_table, index=False)
             external_guard = root / "external_guard.json"
-            save_json(external_guard, {"status": "portable_mechanism_ready", "claim_gate": "portable_mechanism_passed"})
+            save_json(external_guard, {"status": "cross_site_mechanism_ready", "claim_gate": "cross_site_mechanism_passed"})
 
             out = build_final_evidence_manifest(
                 output_dir=root / "manifest",

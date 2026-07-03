@@ -404,6 +404,7 @@ foreach ($rel in @(
     "references.bib",
     "IEEE.csl",
     "TUptm.fd",
+    "pytest.ini",
     "main.py",
     "windfarm_moe\__init__.py",
     "windfarm_moe\config.py",
@@ -440,6 +441,10 @@ foreach ($rel in @(
     }
 }
 
+$sourceExcludeRelativePaths = @(
+    "scripts\prepare_eaai_submission.ps1"
+)
+
 foreach ($dir in @("windfarm_moe", "scripts", "tests")) {
     $srcDir = Join-Path $root $dir
     if (Test-Path $srcDir) {
@@ -447,10 +452,50 @@ foreach ($dir in @("windfarm_moe", "scripts", "tests")) {
             Where-Object { $_.Extension -in @(".py", ".ps1") } |
             ForEach-Object {
                 $relPath = Get-RelativePathCompat -BasePath $root -TargetPath $_.FullName
-                $dest = Join-Path $sourceDir $relPath
-                New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
-                Copy-Item -LiteralPath $_.FullName -Destination $dest -Force
+                if ($sourceExcludeRelativePaths -notcontains $relPath) {
+                    $dest = Join-Path $sourceDir $relPath
+                    New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
+                    Copy-Item -LiteralPath $_.FullName -Destination $dest -Force
+                }
             }
+    }
+}
+
+$sourceFigureRoot = Join-Path $root "artifacts\final_evidence_package\export\figures"
+if (Test-Path $sourceFigureRoot) {
+    Get-ChildItem -LiteralPath $sourceFigureRoot -File |
+        Where-Object { $_.Extension -in @(".pdf", ".png", ".svg") } |
+        ForEach-Object {
+            $relPath = Get-RelativePathCompat -BasePath $root -TargetPath $_.FullName
+            $dest = Join-Path $sourceDir $relPath
+            New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
+            Copy-Item -LiteralPath $_.FullName -Destination $dest -Force
+        }
+}
+
+foreach ($rel in @(
+    "artifacts\paper_assets\tables\table_main_benchmark.csv",
+    "artifacts\paper_assets\tables\table_wtb_ablation.csv",
+    "artifacts\anchor_stress_early_warning_wtb_strictmask\anchor_stress_early_warning_summary.csv",
+    "artifacts\early_warning_classifier_baseline_wtb\early_warning_classifier_baseline_summary.csv",
+    "artifacts\final_evidence_package\export\tables\early_warning_consequence_audit.csv",
+    "artifacts\final_evidence_package\export\tables\accountability_tradeoff.csv",
+    "artifacts\final_evidence_package\export\tables\dispatch_reserve_main_table.csv",
+    "artifacts\final_evidence_package\export\tables\engineering_unit_value_translation.csv",
+    "artifacts\class_weight_boundary_audit\class_weight_sensitivity_summary.csv",
+    "artifacts\decision_reserve_wtb_operational_windows\reserve_decision_raw_runs.csv",
+    "artifacts\mechanism_behavior_pack_wtb\gate_transition_lead_lag.csv",
+    "artifacts\anchor_stress_guard\anchor_stress_summary.csv",
+    "artifacts\external_wind_guard\external_wind_guard.json",
+    "artifacts\external_wind_lhb_guard_full_5seed\external_wind_guard.json",
+    "artifacts\external_wind_lhb_anchor_intervention_full\lhb_anchor_observability_guard.json",
+    "artifacts\modular_classifier_reserve_control\modular_classifier_reserve_summary.csv"
+)) {
+    $src = Join-Path $root $rel
+    if (Test-Path $src) {
+        $dest = Join-Path $sourceDir $rel
+        New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
+        Copy-Item -LiteralPath $src -Destination $dest -Force
     }
 }
 

@@ -12,7 +12,7 @@ import pandas as pd
 from .utils import ensure_dir, load_json, save_json
 
 
-CLAIM_GATES = {"portable_mechanism_passed", "within_wtb_only", "blocked_not_citable"}
+CLAIM_GATES = {"cross_site_mechanism_passed", "within_wtb_only", "blocked_not_citable"}
 DEFAULT_EVIDENCE_FREEZE_STALE_TOKENS = ("269.96", "273.55", "429.05", "0.8929")
 DEFAULT_EVIDENCE_FREEZE_REQUIRED_TOKENS = ("236.13", "239.86", "286.95", "0.8716", "0.9166")
 EVIDENCE_FREEZE_TEXT_SUFFIXES = {
@@ -175,8 +175,8 @@ def _external_guard_claim_state(row: dict[str, Any]) -> dict[str, Any]:
     }
     protocol_complete = all(protocol_checks.values())
     raw_gate = str(row.get("claim_gate", "") or "")
-    if protocol_complete and raw_gate == "portable_mechanism_passed":
-        claim_gate = "portable_mechanism_passed"
+    if protocol_complete and raw_gate == "cross_site_mechanism_passed":
+        claim_gate = "cross_site_mechanism_passed"
     elif protocol_complete and raw_gate == "within_wtb_only":
         claim_gate = "within_wtb_only"
     else:
@@ -425,11 +425,11 @@ def build_final_evidence_manifest(
     external_gate = external_claim_state.get("claim_gate") or "within_wtb_only"
     base_internal_citable = bool(run_summary.get("has_required_seeds")) and bool(run_artifacts.get("all_required_run_artifacts_exist"))
     external_protocol_and_source_ready = bool(external_guard_ok and external_protocol_ok and external_source_ok)
-    external_portability_ready = bool(external_protocol_and_source_ready and external_gate == "portable_mechanism_passed")
+    external_portability_ready = bool(external_protocol_and_source_ready and external_gate == "cross_site_mechanism_passed")
     if not guard_paths_ok:
         claim_gate = "blocked_not_citable"
     elif external_portability_ready:
-        claim_gate = "portable_mechanism_passed"
+        claim_gate = "cross_site_mechanism_passed"
     elif allow_within_wtb_only and base_internal_citable:
         claim_gate = "within_wtb_only"
     else:

@@ -32,8 +32,8 @@ new_yaml = (
 
 # ── 2. IEEEtran title / author / abstract block ───────────────────────────────
 ieee_header = (
-    "\\title{SCADA-Anchored Regime-Aware Routing for Auditable "
-    "Wind-Turbine Control-Boundary Forecasting}\n"
+    "\\title{SCADA-Anchored Regime-Aware Routing for Operational Reserve Diagnosis "
+    "in Wind-Turbine Control-Boundary Forecasting}\n"
     "\n"
     "\\author{%\n"
     "\\IEEEauthorblockN{Junyu Li and Juntao Du\\IEEEauthorrefmark{1}}\n"

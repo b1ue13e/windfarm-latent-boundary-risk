@@ -1,6 +1,6 @@
 # IEEE TSTE Strengthening Checklist
 
-Last updated: 2026-07-02. Target journal: IEEE Transactions on Sustainable Energy.
+Last updated: 2026-07-03. Target journal: IEEE Transactions on Sustainable Energy.
 This checklist tracks the current "steady IEEE journal" route after the July 2026
 evidence tightening pass.
 

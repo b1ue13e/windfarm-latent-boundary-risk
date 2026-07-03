@@ -460,16 +460,17 @@ class PaperUtilityTests(unittest.TestCase):
         text = PAPER_PATH.read_text(encoding="utf-8")
 
         self.assertIn(
-            "SCADA-Anchored Regime-Aware Routing for Auditable "
-            "Wind-Turbine Control-Boundary Forecasting",
+            "SCADA-Anchored Regime-Aware Routing for Operational Reserve Diagnosis "
+            "in Wind-Turbine Control-Boundary Forecasting",
             text,
         )
         self.assertIn("# Highlights {.unnumbered}", text)
         self.assertLess(text.index("# Nomenclature {.unnumbered}"), text.index("# Introduction"))
         self.assertLess(
-            text.index("# Declaration of generative AI and AI-assisted technologies"),
+            text.index("# AI Use Statement"),
             text.index("# References {.unnumbered}"),
         )
+        self.assertLess(text.index("# Code and data availability"), text.index("# References {.unnumbered}"))
         for heading in [
             "# Physics-Informed Framework for Operational Boundary Identification",
             "## Integration of Physical Constraints into Model Optimization",

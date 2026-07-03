@@ -2183,8 +2183,8 @@ def run_external_wind_guard(
         status = "anchor_observable_replication_ready"
         claim_gate = "anchor_observable_replication_passed_not_portability_not_reserve_transfer"
     elif portable_ready:
-        status = "portable_mechanism_ready"
-        claim_gate = "portable_mechanism_passed"
+        status = "cross_site_mechanism_ready"
+        claim_gate = "cross_site_mechanism_passed"
     elif data_and_protocol_complete:
         status = "complete_but_within_wtb_only"
         claim_gate = "within_wtb_only"
@@ -2391,8 +2391,8 @@ def run_external_wind_portability_rescue(
         and checks["routing_ari_meets_minimum"]
     )
     if portable_ready:
-        status = "portable_mechanism_ready"
-        claim_gate = "portable_mechanism_passed"
+        status = "cross_site_mechanism_ready"
+        claim_gate = "cross_site_mechanism_passed"
     elif data_and_protocol_complete:
         status = "complete_with_external_boundary_condition_diagnostics"
         claim_gate = EXTERNAL_RESCUE_DIAGNOSTIC_CLAIM_GATE

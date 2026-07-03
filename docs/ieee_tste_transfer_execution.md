@@ -12,7 +12,7 @@ The manuscript must not claim forecasting SOTA, reserve-policy superiority, auto
 
 ## Manuscript Rewrite
 
-- Replace the Applied Energy reserve-diagnostics title with a TSTE-facing title such as `SCADA-Anchored Regime-Aware Routing for Auditable Wind-Turbine Control-Boundary Forecasting`.
+- Replace the Applied Energy reserve-diagnostics title with the TSTE-facing title `SCADA-Anchored Regime-Aware Routing for Operational Reserve Diagnosis in Wind-Turbine Control-Boundary Forecasting`.
 - Compress the paper to the IEEE PES Transactions initial-submission budget of 10 double-column pages.
 - Remove ERA5 from the main paper unless a page-budget exception is explicitly justified; keep WTB as the main wind-energy case.
 - Keep reserve evidence as a short boundary-risk vignette, not as the central contribution.

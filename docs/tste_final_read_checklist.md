@@ -1,6 +1,6 @@
 # TSTE Final-Read Checklist
 
-Last updated: 2026-07-02. Use with `paper_tste_ieee.pdf`,
+Last updated: 2026-07-03. Use with `paper_tste_ieee.pdf`,
 `paper_tste_supplementary.pdf`, and `cover_letter_tste.md` open. Machine checks should
 already pass; this list is the human reviewer-eye pass before upload.
 
@@ -54,11 +54,12 @@ already pass; this list is the human reviewer-eye pass before upload.
 
 ## 7. Modular Alternative Is Treated Fairly
 
-- Where: early-warning/classifier-control paragraph and route-evolution paragraph.
+- Where: Introduction workflow paragraph, early-warning/classifier-control paragraph, and route-evolution paragraph.
 - Pass: the simple issue-time anchor classifier is disclosed as stronger on clean
   standalone detection. The gate's narrower value is in-model route responsibility,
-  same-run route-conditioned residual/reserve slicing, and A10b route-evolution behavior
-  around transitions.
+  same-run route-conditioned residual/reserve slicing, a single deployable provenance
+  trail for versioning/calibration/monitoring, and A10b route-evolution behavior around
+  transitions.
 
 ## 8. IEEE Formatting Residue Is Removed
 

@@ -113,7 +113,7 @@ if (-not $coverText.Contains("Supplementary Table A12")) {
 }
 
 $portalMetadata = Get-Content -LiteralPath (Join-Path $metadataDir "portal_metadata.json") -Raw | ConvertFrom-Json
-if ([string]$portalMetadata.title -ne "SCADA-Anchored Regime-Aware Routing for Auditable Wind-Turbine Control-Boundary Forecasting") {
+if ([string]$portalMetadata.title -ne "SCADA-Anchored Regime-Aware Routing for Operational Reserve Diagnosis in Wind-Turbine Control-Boundary Forecasting") {
     throw "Portal metadata title does not match the TSTE manuscript."
 }
 if (@($portalMetadata.keywords).Count -lt 5) {

@@ -45,11 +45,11 @@ class AnchorStressTests(unittest.TestCase):
 
         self.assertEqual(cache_args.command, "anchor-stress-cache")
         self.assertEqual(train_args.command, "anchor-stress-train")
-        self.assertEqual(train_args.seeds, "201,202,203")
+        self.assertEqual(train_args.seeds, "201,202,203,204,205")
         self.assertEqual(train_args.model_mode, "moe_phys_full")
         self.assertEqual(train_args.run_prefix, "lhb_full_anchor_stress_seed")
         self.assertEqual(guard_args.command, "anchor-stress-guard")
-        self.assertEqual(guard_args.seeds, "201,202,203")
+        self.assertEqual(guard_args.seeds, "201,202,203,204,205")
         self.assertEqual(early_args.command, "anchor-stress-early-warning")
         self.assertEqual(early_args.variants, "canonical")
 

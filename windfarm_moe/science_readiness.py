@@ -79,7 +79,7 @@ def _external_wind_status(guard: dict[str, Any]) -> str:
         return "missing"
     claim_gate = str(guard.get("claim_gate", ""))
     status = str(guard.get("status", ""))
-    if claim_gate == "portable_mechanism_passed":
+    if claim_gate == "cross_site_mechanism_passed":
         return "complete"
     if claim_gate == "within_wtb_only" or status == "complete_but_within_wtb_only":
         return "complete_but_within_wtb_only"
@@ -93,7 +93,7 @@ def _final_evidence_status(manifest: dict[str, Any]) -> str:
         return "missing"
     status = str(manifest.get("status", ""))
     claim_gate = str(manifest.get("claim_gate", ""))
-    if status == "complete_ready_for_submission_tables" and claim_gate == "portable_mechanism_passed":
+    if status == "complete_ready_for_submission_tables" and claim_gate == "cross_site_mechanism_passed":
         return "portable_ready"
     if status == "complete_ready_for_submission_tables" and claim_gate == "within_wtb_only":
         return "within_wtb_ready"

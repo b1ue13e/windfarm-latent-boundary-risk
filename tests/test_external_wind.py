@@ -1516,7 +1516,7 @@ class ExternalWindTests(unittest.TestCase):
             )
             guard = load_json(out / "external_wind_guard.json")
 
-            self.assertEqual(guard["claim_gate"], "portable_mechanism_passed")
+            self.assertEqual(guard["claim_gate"], "cross_site_mechanism_passed")
             self.assertTrue(guard["checks"]["cross_farm_both_directions_complete"])
             self.assertTrue(guard["checks"]["chronological_sanity_complete"])
             self.assertTrue(guard["checks"]["forecast_metric_values_present"])

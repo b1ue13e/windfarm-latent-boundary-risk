@@ -22,6 +22,7 @@ EARLY_WARNING = (
     / "anchor_stress_early_warning_wtb_strictmask"
     / "anchor_stress_early_warning_summary.csv"
 )
+CLASS_WEIGHT_SUMMARY = ROOT / "artifacts" / "class_weight_boundary_audit" / "class_weight_sensitivity_summary.csv"
 TOY_COST = ROOT / "artifacts" / "reserve_toy_operational_cost" / "reserve_toy_operational_cost.csv"
 
 ROUTING_NMI_PASS = 0.65
@@ -42,14 +43,14 @@ def main() -> None:
     benchmark = pd.read_csv(MAIN_BENCHMARK)
     ablation = pd.read_csv(WTB_ABLATION)
     early = pd.read_csv(EARLY_WARNING)
+    class_weight = pd.read_csv(CLASS_WEIGHT_SUMMARY)
     cost = pd.read_csv(TOY_COST)
 
     accuracy_anchor = _best_forecasting_anchor(benchmark)
     anchor_model = str(accuracy_anchor["model"])
     anchor_rmse = float(accuracy_anchor["overall_rmse"])
-    boundary_rmse = _metric_mean(
-        _lookup(benchmark, Panel="WTB", Model="Boundary-forced router").get("Overall RMSE")
-    )
+    train_only_boundary = _lookup(class_weight, suite="train_only_weight_rerun")
+    boundary_rmse = _num(train_only_boundary.get("overall_rmse_mean"))
     unconstrained = _lookup(ablation, Model="Unconstrained MoE")
     boundary_ablation = _lookup(ablation, Model="MoE + L_bal + L_align + L_force")
 
@@ -127,8 +128,8 @@ def main() -> None:
             "rmse_penalty_vs_best_strict_cache_baseline": boundary_rmse - anchor_rmse,
             "accuracy_anchor_model": anchor_model,
             "accuracy_anchor_rmse": anchor_rmse,
-            "route_nmi": _metric_mean(boundary_ablation.get("NMI")),
-            "route_ari": _metric_mean(boundary_ablation.get("ARI")),
+            "route_nmi": _num(train_only_boundary.get("nmi_mean")),
+            "route_ari": _num(train_only_boundary.get("ari_mean")),
             "routing_gate_status": "passes physical-route audit",
             "six_step_gate_recall": gate_recall,
             "six_step_threshold_rule_recall": rule_recall,
@@ -147,7 +148,7 @@ def main() -> None:
             ),
             "pareto_status": "frontier_accountability",
             "claim_boundary": (
-                "only audited point with a citable degraded-label early-warning signal"
+                "train-only RMSE guardrail point; archived full-audit artifacts supply downstream diagnostics"
             ),
         },
     ]
@@ -163,6 +164,7 @@ def main() -> None:
             "main_benchmark": str(MAIN_BENCHMARK),
             "wtb_ablation": str(WTB_ABLATION),
             "early_warning": str(EARLY_WARNING),
+            "class_weight_summary": str(CLASS_WEIGHT_SUMMARY),
             "toy_cost": str(TOY_COST),
         },
         "routing_nmi_pass": ROUTING_NMI_PASS,
