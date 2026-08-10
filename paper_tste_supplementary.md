@@ -50,7 +50,9 @@ Select the checkpoint with the best validation RMSE
 \scriptsize
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A1.} In-family model comparison used for mechanism validation.}
+Table A1 is designed to separate shared representation capacity from expert allocation, following the standard mixture-of-experts comparison logic [@jacobs1991adaptive; @shazeer2017outrageously].
+
+\caption*{\textbf{Table A1.} In-family model comparison used for mechanism validation. Encoder capacity is held approximately fixed so that routing terms, rather than parameter count alone, explain the mechanism contrast.}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{lllll}
 \toprule
@@ -126,7 +128,7 @@ where $\sigma$ is the median retained neighbor distance on the training graph.
 \footnotesize
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.08}
-\caption*{\textbf{Table A3.} Shared architecture, graph, and training constants used in the reported experiments.}
+\caption*{\textbf{Table A3.} Shared architecture, graph, and training constants used in the reported experiments. Shared constants are listed before dataset-specific values so that controlled factors can be distinguished from observability-specific design choices.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.30\columnwidth} >{\raggedright\arraybackslash}p{0.18\columnwidth} >{\raggedright\arraybackslash}p{0.18\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
 Item & WTB & ERA5 & Role \\
@@ -159,7 +161,7 @@ Gradient clipping & 1.0 & 1.0 & Shared training stabilization \\
 \footnotesize
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.08}
-\caption*{\textbf{Table A4.} Dataset-specific regime thresholds used to construct routing anchors.}
+\caption*{\textbf{Table A4.} Dataset-specific regime thresholds used to construct routing anchors. The values are operational definitions fixed or estimated before test evaluation; they are not universal turbine constants.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.28\columnwidth} >{\raggedright\arraybackslash}p{0.24\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
 Dataset & Threshold & Value and meaning \\
@@ -181,7 +183,9 @@ ERA5 & $q_{0.95}^{\Delta}$ & 458,287.125, 95th percentile of $|\Delta\texttt{ssh
 \footnotesize
 \setlength{\tabcolsep}{6pt}
 \renewcommand{\arraystretch}{1.08}
-\caption*{\textbf{Table A5.} Active routing-loss weights in the reported corrected models.}
+The loss-weight table follows the physics-informed learning principle that a scientific constraint must be named and scaled explicitly [@karniadakis2021piml; @karpatne2017tgds].
+
+\caption*{\textbf{Table A5.} Active routing-loss weights in the reported corrected models. The table records which regulariser is active in each observability setting.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.18\columnwidth} >{\centering\arraybackslash}p{0.18\columnwidth} >{\centering\arraybackslash}p{0.18\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
 Weight & WTB & ERA5 & Role \\
@@ -250,7 +254,7 @@ Delta & -6.20 & -8.21 & 2.68 & -0.1508 & -0.1768 \\
 
 ## Outcome-channel sanity audit {.unnumbered}
 
-Table A7 adds a bounded check for the shared-anchor concern. It does not use pitch-threshold labels to score the contrast: validation data define a wind-speed-bin power curve, and the test-set comparison is restricted to 9.5--11.5 m s$^{-1}$ boundary anchors with fine wind-bin adjustment. The result asks whether the recovered gate separates samples with different future active-power response, not whether it discovers a regime without anchors.
+Table A7 adds a bounded check for the shared-anchor concern. It does not use pitch-threshold labels to score the contrast. Validation data define a wind-speed-bin power curve, and the test comparison is restricted to 9.5--11.5 m s$^{-1}$ boundary anchors with fine wind-bin adjustment. This table is arranged as a sanity audit because SCADA studies must separate issue-time signals from the future outcomes they predict [@tautzweinert2017scada; @zhou2024sdwpfdata]. The result asks whether the recovered gate separates samples with different future active-power response, not whether it discovers a regime without anchors.
 
 ```{=latex}
 \begin{table}[H]
@@ -276,7 +280,7 @@ Residual claim boundary & sanity check only & Mitigates circularity concern; doe
 
 ## External-site deployment-gate audit {.unnumbered}
 
-Table A8 records the go/no-go interpretation used for the external evidence. The first row is the cross-site mechanism replication: retrained on the ENGIE La Haute Borne farm, where blade pitch is directly observed in 99.2\% of cells, the routing mechanism recovers the declared boundary and clears the held-out criterion. The remaining rows map the failed or incomplete Kelmarsh/Penmanshiel signals to the deployment action that follows. The table therefore supports a bounded but two-sided claim: the mechanism replicates where the control boundary is observable, while direct gate-bin reserve use at the Kelmarsh/Penmanshiel pair remains a screening protocol rather than an authorized transfer.
+Table A8 records the go/no-go interpretation used for the external evidence. The first row is the cross-site mechanism replication: retrained on the ENGIE La Haute Borne farm, where blade pitch is directly observed in 99.2\% of cells, the routing mechanism recovers the declared boundary and clears the held-out criterion. The remaining rows map the failed or incomplete Kelmarsh/Penmanshiel signals to the deployment action that follows. The table is deliberately decision-shaped, with evidence, criterion and consequence in separate columns. It therefore supports a bounded two-sided claim: the mechanism replicates where the control boundary is observable, whereas direct gate-bin reserve use at the Kelmarsh/Penmanshiel pair remains unauthorised.
 
 ```{=latex}
 \begin{table}[H]
@@ -330,7 +334,7 @@ Pitch only & 0.670 & 0.271 & single-anchor partial control \\
 
 ## Early-warning detection consequence {.unnumbered}
 
-Table A10 reports the reviewer-facing detector control for the label-degradation audit. The simple classifier is a validation-fit multinomial logistic regression on the same issue-time anchors. It matches or exceeds the gate on clean-anchor standalone detection, so the manuscript claims auditable in-model route attribution rather than classifier superiority. Recovered cells are turbine-time cells per seed inside the six-step MPPT-to-pitch window and are not MWh, currency, or dispatch-cost estimates.
+Table A10 reports the detector control for the label-degradation audit. The simple classifier is a validation-fit multinomial logistic regression on the same issue-time anchors. It matches or exceeds the gate on clean-anchor standalone detection, so the manuscript claims auditable in-model route attribution rather than classifier superiority. Gate values in degraded-label rows are the saved clean-route audit; the degraded stream is applied to the rule and classifier controls. Recovered cells are turbine-time cells per seed inside the six-step MPPT-to-pitch window, not MWh, currency or dispatch-cost estimates.
 
 ```{=latex}
 \begin{table}[H]
@@ -400,7 +404,7 @@ GWN+classifier-bin & 86.54M improves over GWN/global (88.80M) but trails physica
 
 ## Reserve-policy claim-boundary audit {.unnumbered}
 
-Table A11 is the compact reviewer-facing boundary audit. The same-router boundary comparison has seed-paired uncertainty support, while physical-bin, full-sample, and cross-backbone comparisons still bound the claim away from policy optimality or market-dispatch value.
+Table A11 is the compact reviewer-facing boundary audit. The same-router boundary comparison has seed-paired uncertainty support, while physical-bin, full-sample and cross-backbone comparisons still bound the claim away from policy optimality or market-dispatch value. The row order moves from the supported local contrast to the stronger controls that limit extrapolation.
 
 ```{=latex}
 \begin{table}[H]
@@ -428,7 +432,7 @@ Operational scope & Validation-frozen shortfall quantiles; no OPF, unit commitme
 
 ## Engineering-unit reserve-value translation {.unnumbered}
 
-Table A12 translates the reserve audit into MWh-equivalent forecast-cell accounting and an illustrative 100 EUR/MWh reserve-cost-scale marker; it is not a market-settlement, OPF, unit-commitment, or security-constrained dispatch result.
+Table A12 translates the reserve audit into MWh-equivalent forecast-cell accounting and an illustrative 100 EUR/MWh reserve-cost-scale marker. Its role is unit interpretation, not market valuation. Full decision links require probabilistic forecasts and system-level constraints beyond this screening protocol [@bremnes2004quantile; @zhou2013probabilisticmarkets].
 
 ```{=latex}
 \begin{table}[H]
