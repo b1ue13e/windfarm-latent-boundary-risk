@@ -1365,6 +1365,37 @@ def _pad_time_window(
     return out
 
 
+def _best_anchor_window_start(
+    feature_mask: np.ndarray,
+    length: int,
+    feature_names: list[str],
+    anchor_columns: tuple[str, ...] = ("Wspd", "Pab_mean"),
+) -> tuple[int, float]:
+    """Pick the contiguous window whose joint anchor-observability is highest.
+
+    Greenbyte exports can lack pitch channels for long stretches (e.g. Kelmarsh
+    2016 Jan-Apr, Penmanshiel 2016-2017), so a naive head-of-series window can
+    end up with zero observed pitch even when the farm overall has high pitch
+    coverage. The leave-one-farm-out deployment gate must be evaluated where
+    the anchors (wind speed and blade pitch) are actually observable.
+    """
+    total = int(feature_mask.shape[0])
+    length = max(1, min(int(length), total))
+    anchor = np.ones((total, feature_mask.shape[1]), dtype=np.float32)
+    used = False
+    for name in anchor_columns:
+        if name in feature_names:
+            anchor = anchor * np.asarray(feature_mask[..., feature_names.index(name)], dtype=np.float32)
+            used = True
+    if not used:
+        return 0, float("nan")
+    score = anchor.mean(axis=1)
+    csum = np.concatenate([[0.0], np.cumsum(score, dtype=np.float64)])
+    window_sums = csum[length:] - csum[:-length]
+    best = int(np.argmax(window_sums))
+    return best, float(window_sums[best] / length)
+
+
 def _write_leave_one_farm_cache_from_chronological(
     config: ExternalWindConfig,
     cache_dir: Path,
@@ -1388,11 +1419,20 @@ def _write_leave_one_farm_cache_from_chronological(
     total_nodes = source_nodes + target_nodes
     output_dir = ensure_dir(cache_dir)
 
-    source_features = np.load(source_cache / "features.npy", mmap_mode="r")[:source_end]
-    source_feature_mask = np.load(source_cache / "feature_mask.npy", mmap_mode="r")[:source_end]
-    target_feature_mask = np.load(target_cache / "feature_mask.npy", mmap_mode="r")[:target_end]
+    source_feature_names = list(source_meta.get("feature_names", EXTERNAL_FEATURE_NAMES))
+    target_feature_names = list(target_meta.get("feature_names", EXTERNAL_FEATURE_NAMES))
+    source_mask_full = np.load(source_cache / "feature_mask.npy", mmap_mode="r")
+    target_mask_full = np.load(target_cache / "feature_mask.npy", mmap_mode="r")
+    source_start, source_anchor_coverage = _best_anchor_window_start(source_mask_full, source_end, source_feature_names)
+    target_start, target_anchor_coverage = _best_anchor_window_start(target_mask_full, target_end, target_feature_names)
+    source_stop = source_start + source_end
+    target_stop = target_start + target_end
+
+    source_features = np.load(source_cache / "features.npy", mmap_mode="r")[source_start:source_stop]
+    source_feature_mask = source_mask_full[source_start:source_stop]
+    target_feature_mask = target_mask_full[target_start:target_stop]
     target_features = _retarget_features_to_source_stats(
-        np.load(target_cache / "features.npy", mmap_mode="r")[:target_end],
+        np.load(target_cache / "features.npy", mmap_mode="r")[target_start:target_stop],
         target_feature_mask,
         target_meta.get("feature_stats", {}),
         source_meta.get("feature_stats", {}),
@@ -1417,8 +1457,8 @@ def _write_leave_one_farm_cache_from_chronological(
         target_arr = np.load(target_cache / f"{name}.npy", mmap_mode="r")
         return np.concatenate(
             [
-                _pad_time_window(source_arr, 0, source_end, 0, total_nodes, fill_value),
-                _pad_time_window(target_arr, 0, target_end, source_nodes, total_nodes, fill_value),
+                _pad_time_window(source_arr, source_start, source_stop, 0, total_nodes, fill_value),
+                _pad_time_window(target_arr, target_start, target_stop, source_nodes, total_nodes, fill_value),
             ],
             axis=0,
         )
@@ -1431,9 +1471,9 @@ def _write_leave_one_farm_cache_from_chronological(
     regime_aux = concat_padded("regime_aux", 0).astype(np.int16)
     regime_aux_valid = concat_padded("regime_aux_valid", 0.0).astype(np.float32)
     physics = concat_padded("physics", 0.0).astype(np.float32)
-    source_physics_model = np.load(source_cache / "physics_model.npy", mmap_mode="r")[:source_end]
+    source_physics_model = np.load(source_cache / "physics_model.npy", mmap_mode="r")[source_start:source_stop]
     target_physics_model = _retarget_physics_model_to_source_stats(
-        np.load(target_cache / "physics.npy", mmap_mode="r")[:target_end],
+        np.load(target_cache / "physics.npy", mmap_mode="r")[target_start:target_stop],
         target_feature_mask,
         source_meta.get("physics_model_stats", {}),
     )
@@ -1487,6 +1527,10 @@ def _write_leave_one_farm_cache_from_chronological(
         "test": [source_end, source_end + target_end],
     }
     metadata = dict(source_meta)
+    pab_index = source_feature_names.index("Pab_mean") if "Pab_mean" in source_feature_names else None
+    pitch_observed_fraction = (
+        float(np.mean(feature_mask[..., pab_index] > 0.0)) if pab_index is not None else float("nan")
+    )
     metadata.update(
         {
             "dataset": "external_wind",
@@ -1513,6 +1557,12 @@ def _write_leave_one_farm_cache_from_chronological(
             "split_farm_roles": _split_farm_roles("leave-one-farm-out", source_farm, target_farm),
             "feature_stats": source_meta.get("feature_stats", {}),
             "physics_model_stats": source_meta.get("physics_model_stats", {}),
+            "pitch_observed_fraction": pitch_observed_fraction,
+            "lofo_window_protocol": "anchor_observability_max_v1",
+            "lofo_source_window": [int(source_start), int(source_stop)],
+            "lofo_target_window": [int(target_start), int(target_stop)],
+            "lofo_source_anchor_coverage": float(source_anchor_coverage),
+            "lofo_target_anchor_coverage": float(target_anchor_coverage),
         }
     )
     save_json(output_dir / "metadata.json", metadata)
