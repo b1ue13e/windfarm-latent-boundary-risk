@@ -431,6 +431,7 @@ def build_parser() -> argparse.ArgumentParser:
     paper_batch_parser.add_argument("--parallel", action="store_true")
     paper_batch_parser.add_argument("--max-parallel", type=int, default=None)
     paper_batch_parser.add_argument("--device-ids", type=str, default=None)
+    paper_batch_parser.add_argument("--num-workers", type=int, default=0)
     paper_batch_parser.add_argument("--shard-id", type=int, default=0)
     paper_batch_parser.add_argument("--num-shards", type=int, default=1)
     paper_batch_parser.add_argument("--no-resume", action="store_true")
@@ -1712,6 +1713,7 @@ def main() -> None:
             smooth_weight=_default_loss_weights(args.dataset)["smooth"],
             balance_weight=_default_loss_weights(args.dataset)["balance"],
             physics_force_weight=_default_loss_weights(args.dataset)["physics_force"],
+            num_workers=int(getattr(args, "num_workers", 0)),
         )
         eval_config = EvalConfig(
             skip_visuals=args.skip_visuals,
