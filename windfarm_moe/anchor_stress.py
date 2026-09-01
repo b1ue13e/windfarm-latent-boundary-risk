@@ -23,6 +23,7 @@ ANCHOR_STRESS_VARIANTS = (
     "signature_full",
     "signature_core",
     "signature_full_shuffled",
+    "signature_core_shuffled",
 )
 DEFAULT_ANCHOR_STRESS_RUN_PREFIX = "wtb_bal_align_force_seed"
 
@@ -978,7 +979,18 @@ def _apply_variant(cache_dir: Path, variant: str, source_metadata: dict[str, Any
         _zero_feature(features, feature_mask, feature_names, "Pab_mean")
         _zero_physics_model(physics_model, physics_names, "Wspd")
         _zero_physics_model(physics_model, physics_names, "Pab_mean")
-        _shuffle_regime_labels(cache_dir, metadata)
+        _shuffle_regime_labels(cache_dir, metadata, shuffle_seed=1729)
+    elif variant == "signature_core_shuffled":
+        # Negative control for signature_core: remove Wspd/Pab_mean/Patv and
+        # shuffle valid regime labels. Expected NMI should also collapse to
+        # chance if the non-power signature in signature_core is real.
+        _zero_feature(features, feature_mask, feature_names, "Wspd")
+        _zero_feature(features, feature_mask, feature_names, "Pab_mean")
+        _zero_feature(features, feature_mask, feature_names, "Patv_hist")
+        _zero_physics_model(physics_model, physics_names, "Wspd")
+        _zero_physics_model(physics_model, physics_names, "Pab_mean")
+        _zero_physics_model(physics_model, physics_names, "Patv")
+        _shuffle_regime_labels(cache_dir, metadata, shuffle_seed=1730)
     else:
         raise ValueError(f"Unsupported anchor stress variant: {variant}")
 
@@ -1018,7 +1030,9 @@ def _zero_physics_model(physics_model: np.ndarray, names: list[str], name: str) 
     physics_model[..., idx] = 0.0
 
 
-def _shuffle_regime_labels(cache_dir: Path, metadata: dict[str, Any]) -> None:
+def _shuffle_regime_labels(
+    cache_dir: Path, metadata: dict[str, Any], shuffle_seed: int = 1729
+) -> None:
     """Shuffle valid regime labels to break input-label correlation.
 
     Only labels marked valid by regime_primary_valid are permuted, so the
@@ -1026,7 +1040,6 @@ def _shuffle_regime_labels(cache_dir: Path, metadata: dict[str, Any]) -> None:
     Wake auxiliary labels are disabled because they depend on the now-shuffled
     primary regime assignment.
     """
-    shuffle_seed = int(metadata.get("signature_shuffle_seed", 1729))
     rng = np.random.default_rng(shuffle_seed)
 
     regime_primary = np.load(cache_dir / "regime_primary.npy")
@@ -1042,7 +1055,7 @@ def _shuffle_regime_labels(cache_dir: Path, metadata: dict[str, Any]) -> None:
     if aux_valid_path.exists():
         np.save(aux_valid_path, np.zeros_like(np.load(aux_valid_path), dtype=np.float32))
 
-    metadata["signature_full_shuffled"] = True
+    metadata["signature_shuffled"] = True
     metadata["signature_shuffle_seed"] = shuffle_seed
 
 
@@ -1163,6 +1176,10 @@ def _variant_description(variant: str) -> str:
         ),
         "signature_full_shuffled": (
             "Negative control: same channel mask as signature_full but valid "
+            "regime labels are shuffled to destroy input-label correlation."
+        ),
+        "signature_core_shuffled": (
+            "Negative control: same channel mask as signature_core but valid "
             "regime labels are shuffled to destroy input-label correlation."
         ),
     }[variant]
