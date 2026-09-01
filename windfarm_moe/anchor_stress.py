@@ -15,7 +15,14 @@ from .train import train_model
 from .utils import ensure_dir, load_json, save_json
 
 
-ANCHOR_STRESS_VARIANTS = ("no_patv", "lagged_patv", "no_pab_mean", "lagged_pab_wspd")
+ANCHOR_STRESS_VARIANTS = (
+    "no_patv",
+    "lagged_patv",
+    "no_pab_mean",
+    "lagged_pab_wspd",
+    "signature_full",
+    "signature_core",
+)
 DEFAULT_ANCHOR_STRESS_RUN_PREFIX = "wtb_bal_align_force_seed"
 
 
@@ -940,6 +947,25 @@ def _apply_variant(cache_dir: Path, variant: str, source_metadata: dict[str, Any
         _lag_feature(features, feature_names, "Wspd")
         _lag_physics(physics, physics_model, physics_names, "Pab_mean")
         _lag_physics(physics, physics_model, physics_names, "Wspd")
+    elif variant == "signature_full":
+        # Remove the label-defining channels (Wspd, Pab_mean) from every
+        # model-visible path: encoder features and the gate anchor. Raw
+        # physics.npy is kept intact for evaluation/analysis only; the model
+        # consumes physics_model.npy (see windfarm_moe/data.py).
+        _zero_feature(features, feature_mask, feature_names, "Wspd")
+        _zero_feature(features, feature_mask, feature_names, "Pab_mean")
+        _zero_physics_model(physics_model, physics_names, "Wspd")
+        _zero_physics_model(physics_model, physics_names, "Pab_mean")
+    elif variant == "signature_core":
+        # Strictest signature probe: additionally remove the power channel so
+        # only non-power consequence channels remain (Pab_std, Prtv, wake,
+        # directions, temperatures).
+        _zero_feature(features, feature_mask, feature_names, "Wspd")
+        _zero_feature(features, feature_mask, feature_names, "Pab_mean")
+        _zero_feature(features, feature_mask, feature_names, "Patv_hist")
+        _zero_physics_model(physics_model, physics_names, "Wspd")
+        _zero_physics_model(physics_model, physics_names, "Pab_mean")
+        _zero_physics_model(physics_model, physics_names, "Patv")
     else:
         raise ValueError(f"Unsupported anchor stress variant: {variant}")
 
@@ -963,6 +989,19 @@ def _zero_physics(physics: np.ndarray, physics_model: np.ndarray, names: list[st
         return
     idx = names.index(name)
     physics[..., idx] = 0.0
+    physics_model[..., idx] = 0.0
+
+
+def _zero_physics_model(physics_model: np.ndarray, names: list[str], name: str) -> None:
+    """Zero a model-facing gate-anchor channel while keeping raw physics intact.
+
+    Signature variants must block model access to label-defining channels
+    without corrupting evaluation artifacts (raw physics.npy is not consumed
+    by the model).
+    """
+    if name not in names:
+        return
+    idx = names.index(name)
     physics_model[..., idx] = 0.0
 
 
@@ -1073,6 +1112,14 @@ def _variant_description(variant: str) -> str:
         "lagged_patv": "Replace Patv issue-time status channel with one-step lag.",
         "no_pab_mean": "Zero pitch-angle issue-time anchor channels.",
         "lagged_pab_wspd": "Replace pitch-angle and wind-speed anchors with one-step lag.",
+        "signature_full": (
+            "Remove label-defining channels (Wspd, Pab_mean) from features and "
+            "model-facing gate anchor; raw physics kept for evaluation only."
+        ),
+        "signature_core": (
+            "signature_full plus removal of the power channel (Patv_hist, Patv "
+            "anchor); only non-power consequence channels remain."
+        ),
     }[variant]
 
 

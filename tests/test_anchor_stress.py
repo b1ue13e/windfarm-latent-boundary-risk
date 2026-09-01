@@ -76,6 +76,54 @@ class AnchorStressTests(unittest.TestCase):
             self.assertTrue(np.allclose(lagged_features[1:, :, 0], source_features[:-1, :, 0]))
             self.assertTrue((output / "anchor_stress_cache_manifest.json").exists())
 
+    def test_signature_variants_remove_defining_channels_only(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            source = _write_cache(root / "source" / "wtb_245d")
+
+            output = build_anchor_stress_caches(
+                source_cache_dir=source,
+                output_cache_root=root / "signature_cache",
+                variants="signature_full,signature_core",
+            )
+
+            source_features = np.load(source / "features.npy")
+            source_physics = np.load(source / "physics.npy")
+            source_regime = np.load(source / "regime_primary.npy")
+
+            full = output / "wtb_245d_signature_full"
+            full_features = np.load(full / "features.npy")
+            full_mask = np.load(full / "feature_mask.npy")
+            full_physics = np.load(full / "physics.npy")
+            full_physics_model = np.load(full / "physics_model.npy")
+            full_meta = load_json(full / "metadata.json")
+
+            # Label-defining channels removed from encoder features.
+            self.assertTrue(np.allclose(full_features[..., 0], 0.0))  # Wspd
+            self.assertTrue(np.allclose(full_features[..., 7], 0.0))  # Pab_mean
+            self.assertTrue(np.allclose(full_mask[..., 0], 0.0))
+            self.assertTrue(np.allclose(full_mask[..., 7], 0.0))
+            # Consequence channels retained (Patv_hist, Pab_std).
+            self.assertTrue(np.allclose(full_features[..., 10], source_features[..., 10]))
+            self.assertTrue(np.allclose(full_features[..., 8], source_features[..., 8]))
+            # Model-facing gate anchor loses Wspd/Pab_mean, keeps wake/Patv.
+            self.assertTrue(np.allclose(full_physics_model[..., 0], 0.0))
+            self.assertTrue(np.allclose(full_physics_model[..., 1], 0.0))
+            self.assertTrue(np.allclose(full_physics_model[..., 2], source_physics[..., 2]))
+            self.assertTrue(np.allclose(full_physics_model[..., 3], source_physics[..., 3]))
+            # Raw physics and regime labels untouched for evaluation.
+            self.assertTrue(np.allclose(full_physics, source_physics))
+            self.assertTrue(np.allclose(np.load(full / "regime_primary.npy"), source_regime))
+            self.assertEqual(full_meta["anchor_stress_variant"], "signature_full")
+
+            core = output / "wtb_245d_signature_core"
+            core_features = np.load(core / "features.npy")
+            core_physics_model = np.load(core / "physics_model.npy")
+            # Additionally removes the power channel.
+            self.assertTrue(np.allclose(core_features[..., 10], 0.0))  # Patv_hist
+            self.assertTrue(np.allclose(core_physics_model[..., 3], 0.0))  # Patv anchor
+            self.assertTrue(np.allclose(np.load(core / "physics.npy"), source_physics))
+
     def test_guard_reports_claim_downgrade_when_nmi_below_gate(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
