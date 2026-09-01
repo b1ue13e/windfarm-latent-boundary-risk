@@ -1142,6 +1142,7 @@ def build_parser() -> argparse.ArgumentParser:
     anchor_stress_train_parser.add_argument("--lr", type=float, default=2e-3)
     anchor_stress_train_parser.add_argument("--weight-decay", type=float, default=1e-4)
     anchor_stress_train_parser.add_argument("--patience", type=int, default=5)
+    anchor_stress_train_parser.add_argument("--num-workers", type=int, default=0)
     anchor_stress_train_parser.add_argument("--limit-train-batches", type=int, default=None)
     anchor_stress_train_parser.add_argument("--limit-val-batches", type=int, default=None)
     anchor_stress_train_parser.add_argument("--skip-visuals", action="store_true")
@@ -1343,6 +1344,7 @@ def main() -> None:
             learning_rate=args.lr,
             weight_decay=args.weight_decay,
             patience=args.patience,
+            num_workers=args.num_workers,
             limit_train_batches=args.limit_train_batches,
             limit_val_batches=args.limit_val_batches,
             skip_visuals=args.skip_visuals,
