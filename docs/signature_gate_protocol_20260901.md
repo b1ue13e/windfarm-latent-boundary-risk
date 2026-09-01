@@ -74,8 +74,9 @@
 - [x] 远程缓存构建：`grokking:/root/paper3_audit_rerun_20260830/artifacts/cache_signature_trainweight/`（源 `cache_strictmask_trainweights`，与 train-only 干净证据线同源，零化语义逐通道核验一致）。
 - [x] 远程 10 runs 队列：2026-09-01 16:15 启动（`run_signature_gate.sh`，4 GPU 工人 3/3/2/2 均衡），日志 `logs/signature_gate_20260901/`，预计 3–6 h。
 - [ ] guard 汇总（队列自动执行：`artifacts/signature_gate_guard_20260901/`，min-nmi 0.40）+ gate 熵诊断（从各 run `test_metrics/gate_prob.npy` 补）。
-- [ ] 结果判定（对照 §2 预声明阈值）
-- [ ] 结果文档 `signature_gate_results_YYYYMMDD.md`
+- [x] 结果判定（对照 §2 预声明阈值）：H1 成立（signature_full mean NMI 0.5613，min 0.5350）；H2 成立（Δ = 0.1942）；signature_core 命中灰色区上沿（mean 0.3671，min 0.3398，但 3/5 种子 expert 坍缩）。
+- [x] 结果文档 `docs/signature_gate_results_20260902.md` 已生成。
+- [ ] shuffled-label 负对照（后续优先级最高补实验）。
 
 ### 回收与分析命令（结果回收时执行）
 
