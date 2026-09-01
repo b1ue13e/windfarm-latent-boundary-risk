@@ -76,6 +76,38 @@ class AnchorStressTests(unittest.TestCase):
             self.assertTrue(np.allclose(lagged_features[1:, :, 0], source_features[:-1, :, 0]))
             self.assertTrue((output / "anchor_stress_cache_manifest.json").exists())
 
+    def test_signature_full_shuffled_breaks_label_correlation(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            source = _write_cache(root / "source" / "wtb_245d")
+            # Replace uniform labels with varied valid labels so shuffling is observable.
+            varied_regime = np.array([[0, 1], [1, 2], [2, 0], [1, 1], [0, 2]], dtype=np.int16)
+            np.save(source / "regime_primary.npy", varied_regime)
+            np.save(source / "regime_primary_valid.npy", np.ones_like(varied_regime, dtype=np.float32))
+
+            output = build_anchor_stress_caches(
+                source_cache_dir=source,
+                output_cache_root=root / "signature_cache",
+                variants="signature_full_shuffled",
+            )
+
+            source_regime = np.load(source / "regime_primary.npy")
+            source_valid = np.load(source / "regime_primary_valid.npy").astype(bool)
+            shuffled_dir = output / "wtb_245d_signature_full_shuffled"
+            shuffled_regime = np.load(shuffled_dir / "regime_primary.npy")
+            shuffled_valid = np.load(shuffled_dir / "regime_primary_valid.npy").astype(bool)
+            shuffled_aux_valid = np.load(shuffled_dir / "regime_aux_valid.npy")
+
+            # Valid mask unchanged.
+            self.assertTrue(np.array_equal(source_valid, shuffled_valid))
+            # Labels differ while valid class marginals preserved.
+            self.assertFalse(np.array_equal(source_regime, shuffled_regime))
+            source_counts = np.bincount(source_regime[source_valid].astype(int))
+            shuffled_counts = np.bincount(shuffled_regime[shuffled_valid].astype(int))
+            self.assertTrue(np.array_equal(source_counts, shuffled_counts))
+            # Wake auxiliary supervision disabled.
+            self.assertTrue(np.allclose(shuffled_aux_valid, 0.0))
+
     def test_signature_variants_remove_defining_channels_only(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)

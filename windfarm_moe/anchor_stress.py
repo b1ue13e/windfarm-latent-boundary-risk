@@ -22,6 +22,7 @@ ANCHOR_STRESS_VARIANTS = (
     "lagged_pab_wspd",
     "signature_full",
     "signature_core",
+    "signature_full_shuffled",
 )
 DEFAULT_ANCHOR_STRESS_RUN_PREFIX = "wtb_bal_align_force_seed"
 
@@ -968,6 +969,16 @@ def _apply_variant(cache_dir: Path, variant: str, source_metadata: dict[str, Any
         _zero_physics_model(physics_model, physics_names, "Wspd")
         _zero_physics_model(physics_model, physics_names, "Pab_mean")
         _zero_physics_model(physics_model, physics_names, "Patv")
+    elif variant == "signature_full_shuffled":
+        # Negative control: same channel mask as signature_full, but regime
+        # labels are permuted among valid samples so the input-label physical
+        # relationship is destroyed. If the gate still aligns, it is an artifact
+        # of the supervision or class marginals, not a true signature.
+        _zero_feature(features, feature_mask, feature_names, "Wspd")
+        _zero_feature(features, feature_mask, feature_names, "Pab_mean")
+        _zero_physics_model(physics_model, physics_names, "Wspd")
+        _zero_physics_model(physics_model, physics_names, "Pab_mean")
+        _shuffle_regime_labels(cache_dir, metadata)
     else:
         raise ValueError(f"Unsupported anchor stress variant: {variant}")
 
@@ -1005,6 +1016,34 @@ def _zero_physics_model(physics_model: np.ndarray, names: list[str], name: str) 
         return
     idx = names.index(name)
     physics_model[..., idx] = 0.0
+
+
+def _shuffle_regime_labels(cache_dir: Path, metadata: dict[str, Any]) -> None:
+    """Shuffle valid regime labels to break input-label correlation.
+
+    Only labels marked valid by regime_primary_valid are permuted, so the
+    supervision mask and class marginals among valid samples stay intact.
+    Wake auxiliary labels are disabled because they depend on the now-shuffled
+    primary regime assignment.
+    """
+    shuffle_seed = int(metadata.get("signature_shuffle_seed", 1729))
+    rng = np.random.default_rng(shuffle_seed)
+
+    regime_primary = np.load(cache_dir / "regime_primary.npy")
+    valid_mask = np.load(cache_dir / "regime_primary_valid.npy").astype(bool)
+    valid_labels = regime_primary[valid_mask].copy()
+    perm = rng.permutation(valid_labels.size)
+    regime_primary[valid_mask] = valid_labels[perm]
+    np.save(cache_dir / "regime_primary.npy", regime_primary.astype(np.int16))
+
+    # Wake auxiliary supervision is meaningless after shuffling the primary
+    # regime; disable it to avoid misleading the router.
+    aux_valid_path = cache_dir / "regime_aux_valid.npy"
+    if aux_valid_path.exists():
+        np.save(aux_valid_path, np.zeros_like(np.load(aux_valid_path), dtype=np.float32))
+
+    metadata["signature_full_shuffled"] = True
+    metadata["signature_shuffle_seed"] = shuffle_seed
 
 
 def _lag_feature(features: np.ndarray, names: list[str], name: str) -> None:
@@ -1121,6 +1160,10 @@ def _variant_description(variant: str) -> str:
         "signature_core": (
             "signature_full plus removal of the power channel (Patv_hist, Patv "
             "anchor); only non-power consequence channels remain."
+        ),
+        "signature_full_shuffled": (
+            "Negative control: same channel mask as signature_full but valid "
+            "regime labels are shuffled to destroy input-label correlation."
         ),
     }[variant]
 
