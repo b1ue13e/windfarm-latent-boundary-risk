@@ -334,7 +334,7 @@ Pitch only & 0.670 & 0.271 & single-anchor partial control \\
 
 ## Signature-gate identifiability probe {.unnumbered}
 
-Table A9b reports the signature-gate probe that tests whether the MPPT-to-pitch boundary is recoverable when the label-defining channels are withheld from the model. The variants re-train five seeds from a frozen strict cache: `signature_full` removes \texttt{Wspd} and \texttt{Pab\_mean} from both encoder features and the gate anchor while retaining \texttt{Patv}; `signature_core` additionally removes \texttt{Patv}; the shuffled variants apply the same channel masks but permute valid regime labels so the input-label relationship is destroyed. Raw physics arrays are kept intact for evaluation only. The probe shows that the boundary signature survives channel withholding (mean NMI 0.561) and collapses to chance under label permutation (mean NMI 4e-6), ruling out accidental correlation between input statistics and the threshold rule. Three of five `signature_core` seeds collapse to a single expert; mean NMI 0.367 for that variant is therefore reported with median and IQR as an upper envelope rather than a stable operating point.
+Table A9b reports the signature-gate probe that tests whether the MPPT-to-pitch boundary is recoverable when the label-defining channels are withheld from the model. The variants re-train five seeds from a frozen strict cache: `signature_full` removes \texttt{Wspd} and \texttt{Pab\_mean} from both encoder features and the gate anchor while retaining \texttt{Patv}; `signature_core` additionally removes \texttt{Patv}; the shuffled variants apply the same channel masks but permute valid regime labels so the input-label relationship is destroyed. Raw physics arrays are kept intact for evaluation only. The probe shows that the boundary signature survives channel withholding (mean NMI 0.561) and collapses to chance under label permutation (mean NMI 4e-6 for both shuffled variants), ruling out accidental correlation between input statistics and the threshold rule. Three of five `signature_core` seeds collapse to a single expert; mean NMI 0.367 for that variant is therefore reported with median and IQR as an upper envelope rather than a stable operating point.
 
 ```{=latex}
 \begin{table}[H]
@@ -350,11 +350,11 @@ Probe & RMSE & NMI & ARI & Reading \\
 `signature_full' & 241.84 $\\pm$ 7.19 & 0.5613 $\\pm$ 0.0199 & 0.6347 $\\pm$ 0.0239 & Boundary recoverable from consequence channels \\
 `signature_core' & 302.10 $\\pm$ 9.16 & 0.3671 $\\pm$ 0.0372 (median 0.3535) & 0.4342 $\\pm$ 0.0378 & Weaker non-power signature; 3/5 seeds expert-collapsed \\
 `signature_full_shuffled' & 241.50 $\\pm$ 10.25 & 4.0e-6 $\\pm$ 2.1e-6 & $-$1.3e-5 $\\pm$ 5.3e-5 & Chance level under permuted labels \\
-`signature_core_shuffled' & --- & --- & --- & Negative control for the non-power signature \\
+`signature_core_shuffled' & 296.69 $\\pm$ 16.22 & 4.7e-6 $\\pm$ 3.4e-6 & $-$2.0e-4 $\\pm$ 1.7e-4 & Chance level under permuted labels \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\footnotesize Expert-usage entropy per seed is archived with the run artifacts; seeds with single-expert usage are flagged before any mean-based wording. The `signature_core_shuffled' row is reported in the reproduction package upon completion of its five-seed queue.
+\footnotesize Expert-usage entropy per seed is archived with the run artifacts; seeds with single-expert usage are flagged before any mean-based wording.
 \end{table}
 ```
 
