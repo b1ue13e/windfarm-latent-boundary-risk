@@ -16,6 +16,7 @@ from .utils import ensure_dir, load_json, save_json
 
 
 ANCHOR_STRESS_VARIANTS = (
+    "canonical",
     "no_patv",
     "lagged_patv",
     "no_pab_mean",
@@ -938,6 +939,11 @@ def _apply_variant(cache_dir: Path, variant: str, source_metadata: dict[str, Any
     if variant == "no_patv":
         _zero_feature(features, feature_mask, feature_names, "Patv_hist")
         _zero_physics(physics, physics_model, physics_names, "Patv")
+    elif variant == "canonical":
+        # Full-anchor reference under the identical training protocol.
+        # No channel is modified; the cache copy exists so that training
+        # and guard paths treat canonical and signature variants uniformly.
+        pass
     elif variant == "lagged_patv":
         _lag_feature(features, feature_names, "Patv_hist")
         _lag_physics(physics, physics_model, physics_names, "Patv")
@@ -1162,6 +1168,10 @@ def _claim_boundary(nmi: float, leakage_pass: bool) -> str:
 
 def _variant_description(variant: str) -> str:
     return {
+        "canonical": (
+            "Full-anchor reference: identical training protocol with no "
+            "channel modification."
+        ),
         "no_patv": "Zero Patv issue-time status channel in features and gate physics.",
         "lagged_patv": "Replace Patv issue-time status channel with one-step lag.",
         "no_pab_mean": "Zero pitch-angle issue-time anchor channels.",
