@@ -120,9 +120,10 @@ signature_core_shuffled:
 
 ## 6. 下一步实验建议（按优先级）
 
-1. **signature_full 跨场验证**（中优先级）：在 LHB（Patv 可观测）上重跑 `signature_full`，看跨场 NMI 是否保持；这能把泛化故事从“参数不可迁移”升级为“signature 可迁移”。
-2. **早停加入 gate entropy 监控**（方法学补丁）：`signature_core` 的坍缩说明早停仅看 val_rmse 会锁定未收敛路由；加入 entropy 监控可减少坍缩种子比例，让 mean 更可信。
-3. **审稿人再模拟**：用更新后的结果（含负对照）重新跑 `topconf-reviewer` 或 `claim-evidence-mapper`，确认循环性/新颖性质疑被降级到几号风险，补哪些图/表。
+1. **~~signature_full 跨场验证~~**（已完成，2026-09-02）：LHB 上 `signature_full` 0.674（min 0.499）、`signature_core` 0.575（0/5 坍缩）→ 跨场成立，详见 `docs/lhb_signature_results_20260902.md`。
+2. **LHB `signature_full_shuffled` 负对照**（可选，低）：封堵"LHB 输入分布偶然相关"解释，成本 ~2-3h（4 节点快）。
+3. **早停加入 gate entropy 监控**（方法学补丁）：WTB `signature_core` 的坍缩说明早停仅看 val_rmse 会锁定未收敛路由；LHB 无坍缩反证这是数据集噪声特性。
+4. **审稿人再模拟**：用更新后的证据（含 LHB 跨场）重新跑 `topconf-reviewer`，确认循环性/新颖性质疑降级幅度。
 
 ## 7. 决策更新
 

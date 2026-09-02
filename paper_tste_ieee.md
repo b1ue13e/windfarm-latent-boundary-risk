@@ -335,7 +335,7 @@ Threshold-grid audit & Worst-case saved-gate NMI / ARI & 0.8655 +/- 0.0429 / 0.9
 
 ## Withheld-channel signature recovery
 
-The route is then tested for circularity. If the gate merely replayed the threshold rule, removing the wind-speed and pitch-angle channels from the anchor should destroy alignment. Instead, a signature-gate probe zeros `Wspd` and `Pab_mean` at the anchor while retaining active power and the remaining consequence channels, and re-trains five seeds from a frozen strict cache. The gate still recovers the operating boundary with mean NMI 0.561 and ARI 0.635 (Table \ref{tab:signature-gate}; per-seed values in Supplementary Table A9b). Removing active power as well (`signature_core`) drops mean NMI to 0.367, with three of five seeds collapsing to a single expert; the non-power consequence channels therefore carry a weaker but non-zero signature. When the withheld-channel probe is repeated with permuted regime labels, NMI collapses to 4e-6, confirming that the 0.561 result is not an accidental correlation between input statistics and the threshold rule.
+The route is then tested for circularity. If the gate merely replayed the threshold rule, removing the wind-speed and pitch-angle channels from the anchor should destroy alignment. Instead, a signature-gate probe zeros `Wspd` and `Pab_mean` at the anchor while retaining active power and the remaining consequence channels, and re-trains five seeds from a frozen strict cache. The gate still recovers the operating boundary with mean NMI 0.561 and ARI 0.635 (Table \ref{tab:signature-gate}; per-seed values in Supplementary Table A9b). Removing active power as well (`signature_core`) drops mean NMI to 0.367, with three of five seeds collapsing to a single expert; the non-power consequence channels therefore carry a weaker but non-zero signature. When the withheld-channel probe is repeated with permuted regime labels, NMI collapses to 4e-6, confirming that the 0.561 result is not an accidental correlation between input statistics and the threshold rule. The same probe on ENGIE La Haute Borne, under the identical threshold definition and a full-anchor baseline of NMI 0.975, keeps mean NMI 0.674 for `signature_full` and 0.575 for `signature_core` with no collapsed seeds, so the boundary signature is recoverable across farms rather than being WTB-specific.
 
 ```{=latex}
 \begin{table}[H]
@@ -354,6 +354,11 @@ Canonical full-anchor & 229.93 & 0.7208 / 0.7398 & Train-only clean baseline \\
 `signature_core' (no Wspd/Pab_mean/Patv) & 302.10 $\\pm$ 9.16 & 0.3671 $\\pm$ 0.0372 / 0.4342 $\\pm$ 0.0378 & Weaker non-power signature; 3/5 seeds collapsed \\
 `signature_full_shuffled' & 241.50 $\\pm$ 10.25 & 4.0e-6 $\\pm$ 2.1e-6 / $-$1.3e-5 $\\pm$ 5.3e-5 & Negative control: chance level under permuted labels \\
 Unconstrained MoE & --- & 0.014 / --- & No declared-boundary supervision \\
+\midrule
+\multicolumn{4}{l}{\textit{Cross-farm replication, ENGIE La Haute Borne (same threshold definition)}} \\
+LHB canonical (full anchor) & 185.0 $\\pm$ 1.9 & 0.9752 $\\pm$ 0.0088 / 0.9904 $\\pm$ 0.0044 & Full-anchor baseline, identical protocol \\
+LHB `signature_full' & 185.1 $\\pm$ 1.4 & 0.6743 $\\pm$ 0.1209 / 0.7401 $\\pm$ 0.1604 & Boundary signature transfers; min-seed 0.499 \\
+LHB `signature_core' & 188.0 $\\pm$ 1.0 & 0.5750 $\\pm$ 0.0423 / 0.6270 $\\pm$ 0.0638 & Non-power signature transfers; 0/5 collapsed \\
 \bottomrule
 \end{tabularx}
 \end{table}

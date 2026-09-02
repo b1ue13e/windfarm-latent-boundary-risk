@@ -358,6 +358,29 @@ Probe & RMSE & NMI & ARI & Reading \\
 \end{table}
 ```
 
+Table A9c reports the same probe on ENGIE La Haute Borne under the identical threshold definition. The full-anchor canonical baseline reaches NMI 0.975 under the same training protocol; `signature_full` retains mean NMI 0.674 (min-seed 0.499) and `signature_core` mean NMI 0.575 with no expert collapse in any seed. The boundary signature therefore replicates across farms; the claim is mechanism replication under a shared threshold definition, not parameter transfer.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A9c.} Cross-farm signature-gate replication, ENGIE La Haute Borne. Mean$\\pm$sd over five seeds; per-seed values archived.}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.30\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Probe & RMSE & NMI & ARI & Reading \\
+\midrule
+`canonical' & 185.0 $\\pm$ 1.9 & 0.9752 $\\pm$ 0.0088 & 0.9904 $\\pm$ 0.0044 & Full-anchor reference \\
+`signature_full' & 185.1 $\\pm$ 1.4 & 0.6743 $\\pm$ 0.1209 & 0.7401 $\\pm$ 0.1604 & Signature transfers; min-seed 0.499 \\
+`signature_core' & 188.0 $\\pm$ 1.0 & 0.5750 $\\pm$ 0.0423 & 0.6270 $\\pm$ 0.0638 & Non-power signature transfers; 0/5 collapsed \\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\footnotesize LHB is a four-turbine Senvion MM82 farm with directly observed pitch (99.2\% coverage) and no wake graph support (wake score identically zero). RMSE is nearly invariant to channel withholding, so the signature effect is decoupled from forecast accuracy.
+\end{table}
+```
+
 ## Early-warning detection consequence {.unnumbered}
 
 Table A10 reports the detector control for the label-degradation audit. The simple classifier is a validation-fit multinomial logistic regression on the same issue-time anchors. It matches or exceeds the gate on clean-anchor standalone detection, so the manuscript claims auditable in-model route attribution rather than classifier superiority. Gate values in degraded-label rows are the saved clean-route audit; the degraded stream is applied to the rule and classifier controls. Recovered cells are turbine-time cells per seed inside the six-step MPPT-to-pitch window, not MWh, currency or dispatch-cost estimates.
