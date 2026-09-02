@@ -39,7 +39,10 @@
 - 首次队列（00:44）用原始缓存 → Penmanshiel align=0 无效，发现后立即止损（00:52）。
 - 二次队列（01:32）用重建缓存 + num_workers=0 → 有效但 ~13-30 min/epoch（宿主机 CPU 被 paper1 占用）。
 - 三次切换 num_workers=4 实测**更慢**（20min 0.45 epoch vs nw0 1.5 epoch，CPU 竞争下多进程切换开销大于收益）→ 切回 num_workers=0。
-- 当前队列（01:57）num_workers=0 运行中。预计 14-21 小时（后台，不占用老师 CPU 之外资源）。
+- 最终分工（01:57-02:10，双机并行）：
+  - **grokking（25329）**：Kelmarsh 15 runs（GPU0-3，num_workers=0 + OMP/MKL=2，CPU 留给老师）；脚本 `run_kelmarsh_grokking.sh`，watcher `watch_kelmarsh_grokking.sh`。
+  - **25979**：Penmanshiel 20 runs（GPU1-5，num_workers=0 + OMP/MKL=4）；脚本 `run_penmanshiel_25979.sh`，watcher `watch_penmanshiel_25979.sh`。
+  - 并行度 9 GPU → 预计 8-12 小时（每 GPU ≤5 runs 串行）。
 
 ## 6. 环境注意
 
