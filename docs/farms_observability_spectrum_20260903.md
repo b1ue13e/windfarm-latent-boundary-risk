@@ -44,6 +44,13 @@
   - **25979**：Penmanshiel 20 runs（GPU1-5，num_workers=0 + OMP/MKL=4）；脚本 `run_penmanshiel_25979.sh`，watcher `watch_penmanshiel_25979.sh`。
   - 并行度 9 GPU → 预计 8-12 小时（每 GPU ≤5 runs 串行）。
 
+## 5b. 25979 OOM 与迁移（06:40）
+
+- Kelmarsh 05:05 全部完成（grokking）：canonical 0.4705±0.2783 / signature_full 0.3415±0.0727 / signature_core 0.3775±0.0783，5/5 leakage 通过。
+- 25979 的 Penmanshiel seed201 完成后，seed202 阶段触发 **cgroup OOM kill**（`CONSTRAINT_MEMCG`，单 python 进程 anon-rss 47.5GB；25979 容器有 Kubernetes cgroup 内存上限，4 进程并行超限）。宿主机本身内存充足（473GB available）。
+- 处置：Penmanshiel 4 个已完成 run（各变体 seed201，104 文件）从 25979 迁移到 grokking，队列改为 grokking GPU0-3（resume 跳过 seed201），num_workers=0 + OMP/MKL=2。25979 不再跑我们的训练。
+- grokking 上 Penmanshiel 训练 GPU 利用率 70-72%（明显好于 25979 的 22-28%）。
+
 ## 6. 环境注意
 
 - 25979 容器与 grokking 共享宿主内核：`kill` 训练进程会把 DataLoader workers 变孤儿（spawn_main 僵尸），需同步清理；正常跑完不会产生。
