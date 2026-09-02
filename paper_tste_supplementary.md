@@ -358,7 +358,7 @@ Probe & RMSE & NMI & ARI & Reading \\
 \end{table}
 ```
 
-Table A9c reports the same probe on ENGIE La Haute Borne under the identical threshold definition. The full-anchor canonical baseline reaches NMI 0.975 under the same training protocol; `signature_full` retains mean NMI 0.674 (min-seed 0.499) and `signature_core` mean NMI 0.575 with no expert collapse in any seed. The boundary signature therefore replicates across farms; the claim is mechanism replication under a shared threshold definition, not parameter transfer.
+Table A9c reports the same probe on ENGIE La Haute Borne under the identical threshold definition. The full-anchor canonical baseline reaches NMI 0.975 under the same training protocol; `signature_full` retains mean NMI 0.674 (min-seed 0.499) and `signature_core` mean NMI 0.575 with no expert collapse in any seed. Permuting the regime labels under the same withheld-channel mask collapses NMI to 1.92e-04. The boundary signature therefore replicates across farms; the claim is mechanism replication under a shared threshold definition, not parameter transfer.
 
 ```{=latex}
 \begin{table}[H]
@@ -374,6 +374,7 @@ Probe & RMSE & NMI & ARI & Reading \\
 `canonical' & 185.0 $\\pm$ 1.9 & 0.9752 $\\pm$ 0.0088 & 0.9904 $\\pm$ 0.0044 & Full-anchor reference \\
 `signature_full' & 185.1 $\\pm$ 1.4 & 0.6743 $\\pm$ 0.1209 & 0.7401 $\\pm$ 0.1604 & Signature transfers; min-seed 0.499 \\
 `signature_core' & 188.0 $\\pm$ 1.0 & 0.5750 $\\pm$ 0.0423 & 0.6270 $\\pm$ 0.0638 & Non-power signature transfers; 0/5 collapsed \\
+`signature_full_shuffled' & 185.4 $\\pm$ 1.2 & 1.92e-04 $\\pm$ 8.90e-05 & 5.19e-04 $\\pm$ 2.86e-03 & Chance level under permuted labels \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
