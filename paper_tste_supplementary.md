@@ -509,6 +509,33 @@ Operational scope & Validation-frozen shortfall quantiles; no OPF, unit commitme
 \end{table}
 ```
 
+## Uncertainty-conditioned reserve pricing {.unnumbered}
+
+Table A11b reports the soft-posterior reserve strategies. All strategies use validation-frozen shortfall quantiles inside the +/-1.0 m s$^{-1}$ boundary band; bin edges for the learned strategies are fitted on validation anchor posteriors only. P(pitch) quintiles (soft-gate-bin) carry the boundary-direction information, while gate-entropy and max-probability quintiles are pure routing-uncertainty signals that require no physical bin and no threshold. Seed-paired bootstrap CIs are reported against global and physical-bin references.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.4pt}
+\renewcommand{\arraystretch}{1.03}
+\caption*{\textbf{Table A11b.} Soft-posterior reserve strategies at $\rho=10$ (5 seeds, boundary band).}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.12\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.12\columnwidth}}
+\toprule
+Strategy & Total cost & Violation & Reserve & Shortage \\
+\midrule
+Global & 16.632M & 0.1000 & 10.948M & 0.568M \\
+Physical-bin & 16.190M & 0.0996 & 10.722M & 0.547M \\
+Soft-gate-bin (P(pitch) quintiles) & 16.065M & 0.1012 & 10.331M & 0.573M \\
+Entropy-bin (gate-entropy quintiles) & 16.324M & 0.1010 & 10.591M & 0.573M \\
+Maxprob-bin (max-probability quintiles) & 16.307M & 0.1014 & 10.530M & 0.578M \\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\footnotesize Seed-paired 95\% bootstrap CIs (strategy minus baseline): soft-gate-bin vs global $\Delta$cost -568k [-726k,-406k], $\Delta$pinball@0.9 -1.82 [-2.33,-1.30]; entropy-bin vs global $\Delta$cost -309k [-396k,-221k], $\Delta$pinball -0.99 [-1.27,-0.71]; maxprob-bin vs global $\Delta$cost -325k [-454k,-214k], $\Delta$pinball -1.04 [-1.45,-0.69]. Versus physical-bin: entropy-bin +133k [+0.8k,+256k], maxprob-bin +117k [-29k,+264k] (matches). Violation rises by about 0.001 for the learned strategies. Protocol: boundary-band anchor cells only; not interchangeable with the full-sample Table III audit.
+\end{table}
+```
+
 ## Engineering-unit reserve-value translation {.unnumbered}
 
 Table A12 translates the reserve audit into MWh-equivalent forecast-cell accounting and an illustrative 100 EUR/MWh reserve-cost-scale marker. Its role is unit interpretation, not market valuation. Full decision links require probabilistic forecasts and system-level constraints beyond this screening protocol [@bremnes2004quantile; @zhou2013probabilisticmarkets].

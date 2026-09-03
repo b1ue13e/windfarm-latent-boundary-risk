@@ -438,6 +438,8 @@ GWN/global & 88.80M & 0.1022 & 50.32M & 3.85M & Global low-RMSE reference \\
 
 The useful reserve window is moderate rather than universal: ratios 5--10 favor gate-bin screening, ratio 50 favors the same-model global rule, and Graph WaveNet/physical-bin remains close at 84.31M. The boundary-slice proxy falls from 88.13M to 84.58M, which Supplementary Table A12 translates into about 540 avoided MWh-equivalent shortage cells and a 355k illustrative reserve-cost-scale marker at 100 EUR/MWh. The engineering value is an auditable triage signal for balancing/reserve review near the control boundary, not market revenue or system-wide dispatch value.
 
+A softer reading of the same route adds the within-regime gradation that a hard rule cannot express. Inside the +/-1.0 m s$^{-1}$ boundary band, validation-frozen quintile bins of the gate posterior reduce total cost below the global quantile: P(pitch) bins by 568k, gate-entropy bins by 309k and max-probability bins by 325k, with pinball improvements of 1.82, 0.99 and 1.04 points at $q{=}0.90$ (all 95% seed-paired CIs exclude zero; Supplementary Table A11b). The uncertainty-only strategies match the physical-bin cost without requiring any pre-defined physical bin, so the route posterior prices forecast risk inside the MPPT class where the threshold rule is blind. Violation rate rises by about 0.001 in exchange, which is reported rather than hidden.
+
 
 # Discussion
 
