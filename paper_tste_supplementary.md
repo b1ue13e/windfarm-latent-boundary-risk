@@ -589,6 +589,36 @@ Maxprob-bin (max-probability quintiles) & 16.307M & 0.1014 & 10.530M & 0.578M \\
 \end{table}
 ```
 
+Table A11c reports the modular-equivalence control on the same boundary-router backbone. The classifier is a validation-fit logistic regression on issue-time anchors (Wspd, Pab\_mean), and its hard and soft bins are compared with the gate's. On clean anchors the classifier reproduces the physical-bin reserve almost exactly and beats the hard gate route, so the hard route has no reserve increment; the soft gate posterior remains the only component below every modular alternative.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.4pt}
+\renewcommand{\arraystretch}{1.03}
+\caption*{\textbf{Table A11c.} Modular-equivalence reserve control on the same backbone ($\rho=10$, 5 seeds, boundary band).}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{0.14\columnwidth} >{\centering\arraybackslash}p{0.18\columnwidth} >{\centering\arraybackslash}p{0.18\columnwidth}}
+\toprule
+Strategy & Total cost & $\Delta$ vs global & $\Delta$ vs physical-bin \\
+\midrule
+Global & 16.632M & -- & -- \\
+Physical-bin (rule labels) & 16.190M & -- & -- \\
+Classifier-bin (hard) & 16.190M & -442k [-534k, -355k] & -68 [-112, -28] \\
+Soft-clf-bin (P(pitch) quintiles) & 16.234M & -398k [-483k, -324k] & +44k [+29k, +61k] \\
+Gate-bin (hard route) & 16.398M & -234k [-369k, -107k] & +208k [+93k, +332k] \\
+Soft-gate-bin (P(pitch) quintiles) & 16.065M & -568k [-726k, -406k] & -125k [-297k, +34k] \\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\footnotesize The classifier is refit per seed on validation anchors only. Hard classifier bins are nearly equivalent to physical bins on clean anchors; the hard gate route is worse than both. The soft gate posterior is the only strategy below every modular alternative (16.065M). Combined with the fair-degradation audit, where the classifier falls to recall 0.885 under the strongest noise against 0.951 for the gate, the modular classifier is an equivalent clean-anchor replacement while the soft posterior keeps the degraded-stream robustness in one deployment object. Script: `scripts/modular_equiv_reserve.py`.
+\end{table}
+```
+
+## Kelmarsh real-degradation grounding {.unnumbered}
+
+The confirming-stream delay scenario has a real-world counterpart in the Kelmarsh 2016 archive. The Status stream exported by the Greenbyte platform carries 14,019 status events with second-level timestamps; 99.6\% of them fall strictly between the 10-minute turbine-data grid points, so the 10-minute channel cannot confirm the event time at issue time. Pitch-system state arrives as a separate event stream (e.g. "Pitch measuring system 1><2"), and the archive export timestamp (2022-01-27) post-dates the 2016 data interval by years, showing that confirmed labels can lag the raw channel arbitrarily long. This grounds the paper's delayed, incomplete confirming-stream scenario in real turbine data rather than in a synthetic shift. Script: `scripts/kelmarsh_grounding_audit.py`; artifact: `artifacts/kelmarsh_grounding_20260903/kelmarsh_grounding_summary.json`.
+
 ## Engineering-unit reserve-value translation {.unnumbered}
 
 Table A12 translates the reserve audit into MWh-equivalent forecast-cell accounting and an illustrative 100 EUR/MWh reserve-cost-scale marker. Its role is unit interpretation, not market valuation. Full decision links require probabilistic forecasts and system-level constraints beyond this screening protocol [@bremnes2004quantile; @zhou2013probabilisticmarkets].
