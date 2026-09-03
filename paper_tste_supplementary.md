@@ -411,6 +411,33 @@ Kelmarsh `signature_full_shuffled' & 9.2e-05 $\\pm$ 2.5e-05 & 1.6e-03 $\\pm$ 2.0
 \end{table}
 ```
 
+Table A9e reports two robustness additions. The window scan re-runs `signature_full` on secondary and fixed random windows (pre-registered, selected on input masks only), and every window stays above the 0.20 criterion. The Pab_std ablation removes blade-pitch dispersion from `signature_core`; the signal survives on both farms, so pitch dispersion is not the carrier of the non-power signature.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.4pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A9e.} Window-robustness scan and Pab\_std ablation (signature\_full / signature\_core\_no\_pab\_std, mean$\\pm$sd).}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{0.16\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Probe & NMI & ARI & Reading \\
+\midrule
+Penmanshiel secondary window (day 965, pitch 77.5\%) & 0.458 $\\pm$ 0.099 & 0.405 $\\pm$ 0.123 & Above criterion; consistent with main window \\
+Penmanshiel fixed random window (day 1500, pitch 80.5\%) & 0.294 $\\pm$ 0.007 & 0.128 $\\pm$ 0.004 & Above criterion \\
+Kelmarsh secondary window (day 365, pitch 54.9\%) & 0.359 $\\pm$ 0.188 & 0.328 $\\pm$ 0.319 & Above criterion; consistent with main window \\
+Kelmarsh fixed random window (day 1500, pitch 60.1\%) & 0.277 $\\pm$ 0.106 & 0.218 $\\pm$ 0.175 & Above criterion \\
+\midrule
+WTB `signature_core_no_pab_std' & 0.309 $\\pm$ 0.066 & 0.356 $\\pm$ 0.075 & Signal survives without pitch dispersion (vs core 0.367) \\
+LHB `signature_core_no_pab_std' & 0.578 $\\pm$ 0.135 & 0.617 $\\pm$ 0.200 & Signal unchanged without pitch dispersion (vs core 0.575) \\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\footnotesize Window rules: secondary = the first contiguous 245-day window after the main window satisfying the same input-mask rule; random = a fixed pre-registered start day (1500). All runs are five seeds except the scan rows, which are three seeds. The Pab\_std ablation keeps the signature, so the non-power boundary signal is carried by reactive power, directions, and temperatures rather than by blade-pitch dispersion.
+\end{table}
+```
+
 ## Early-warning detection consequence {.unnumbered}
 
 Table A10 reports the detector control for the label-degradation audit. The simple classifier is a validation-fit multinomial logistic regression on the same issue-time anchors. It matches or exceeds the gate on clean-anchor standalone detection, so the manuscript claims auditable in-model route attribution rather than classifier superiority. Gate values in degraded-label rows are the saved clean-route audit; the degraded stream is applied to the rule and classifier controls. Table A10d reports the fair-degradation counterpart, where delay and sensor noise degrade the gate's own inputs as well. Recovered cells are turbine-time cells per seed inside the six-step MPPT-to-pitch window, not MWh, currency or dispatch-cost estimates.
