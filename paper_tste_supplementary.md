@@ -501,7 +501,7 @@ Lag step & Match rate & SD & Seeds \\
 \toprule
 Control & Result and claim boundary \\
 \midrule
-GWN+classifier-bin & 86.54M improves over GWN/global (88.80M) but trails physical-bin/gate-bin (84.31M/84.58M); paired modular-vs-gate CI crosses zero, so this is a tested modular control, not an in-model route-responsibility replacement. \\
+GWN+classifier-bin & 86.54M improves over GWN/global (88.80M) but trails physical-bin/gate-bin (84.31M/95.13M train-only); paired modular-vs-gate CI crosses zero, so this is a tested modular control, not an in-model route-responsibility replacement. \\
 \bottomrule
 \end{tabularx}
 \end{table}
