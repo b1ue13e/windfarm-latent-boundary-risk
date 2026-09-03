@@ -44,14 +44,14 @@ ARRAYS = [
 ]
 
 
-def rebuild(farm: str) -> None:
+def rebuild(farm: str, start_day: int | None = None, out_name: str | None = None) -> None:
     src = ROOT / "artifacts/cache_external_wind" / f"external_wind_{farm}_chronological"
-    dst = ROOT / "artifacts/cache_external_wind" / f"external_wind_{farm}_obs_window"
+    dst = ROOT / "artifacts/cache_external_wind" / (out_name or f"external_wind_{farm}_obs_window")
     if dst.exists():
         shutil.rmtree(dst)
     dst.mkdir(parents=True)
 
-    start = WINDOW_START_DAY[farm] * SLOTS
+    start = (start_day if start_day is not None else WINDOW_START_DAY[farm]) * SLOTS
     stop = start + W
 
     metadata = json.loads((src / "metadata.json").read_text(encoding="utf-8"))
@@ -114,7 +114,7 @@ def rebuild(farm: str) -> None:
     metadata["pitch_force_weights"] = [float(x) for x in pitch_w]
     metadata["feature_stats"] = feature_stats
     metadata["physics_model_stats"] = physics_stats
-    metadata["window_offset_days"] = WINDOW_START_DAY[farm]
+    metadata["window_offset_days"] = start_day if start_day is not None else WINDOW_START_DAY[farm]
     metadata["window_rule"] = (
         "Earliest contiguous 245-day window with daily pitch-coverage >= 0.70 and daily "
         "regime-valid >= 0.70 (penmanshiel) / daily regime-valid >= 0.70 (kelmarsh). "
@@ -124,12 +124,18 @@ def rebuild(farm: str) -> None:
     metadata["window_valid_rate"] = float(valid.mean())
 
     (dst / "metadata.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
-    print(f"[{farm}] rebuilt: start day {WINDOW_START_DAY[farm]}, "
+    print(f"[{farm}] rebuilt: start day {start_day if start_day is not None else WINDOW_START_DAY[farm]}, "
           f"pitch={metadata['window_pitch_coverage']:.3f}, valid={metadata['window_valid_rate']:.3f}, "
           f"class_weights={primary_w}")
 
 
 if __name__ == "__main__":
-    for farm in ("penmanshiel", "kelmarsh"):
-        rebuild(farm)
+    import argparse
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--farm", required=True)
+    ap.add_argument("--start-day", type=int, default=None)
+    ap.add_argument("--out-name", default=None)
+    args = ap.parse_args()
+    rebuild(args.farm, start_day=args.start_day, out_name=args.out_name)
     print("REBUILD_DONE")

@@ -23,6 +23,7 @@ ANCHOR_STRESS_VARIANTS = (
     "lagged_pab_wspd",
     "signature_full",
     "signature_core",
+    "signature_core_no_pab_std",
     "signature_full_shuffled",
     "signature_core_shuffled",
 )
@@ -976,6 +977,19 @@ def _apply_variant(cache_dir: Path, variant: str, source_metadata: dict[str, Any
         _zero_physics_model(physics_model, physics_names, "Wspd")
         _zero_physics_model(physics_model, physics_names, "Pab_mean")
         _zero_physics_model(physics_model, physics_names, "Patv")
+    elif variant == "signature_core_no_pab_std":
+        # Ablation requested by the final review: remove blade-pitch dispersion
+        # from signature_core to bound how much of the non-power signature is
+        # carried by Pab_std (a control consequence that may correlate with the
+        # boundary). Remaining channels: reactive power, wind/nacelle
+        # directions, temperatures.
+        _zero_feature(features, feature_mask, feature_names, "Wspd")
+        _zero_feature(features, feature_mask, feature_names, "Pab_mean")
+        _zero_feature(features, feature_mask, feature_names, "Pab_std")
+        _zero_feature(features, feature_mask, feature_names, "Patv_hist")
+        _zero_physics_model(physics_model, physics_names, "Wspd")
+        _zero_physics_model(physics_model, physics_names, "Pab_mean")
+        _zero_physics_model(physics_model, physics_names, "Patv")
     elif variant == "signature_full_shuffled":
         # Negative control: same channel mask as signature_full, but regime
         # labels are permuted among valid samples so the input-label physical
@@ -1183,6 +1197,10 @@ def _variant_description(variant: str) -> str:
         "signature_core": (
             "signature_full plus removal of the power channel (Patv_hist, Patv "
             "anchor); only non-power consequence channels remain."
+        ),
+        "signature_core_no_pab_std": (
+            "signature_core plus removal of blade-pitch dispersion (Pab_std); "
+            "only reactive power, directions, and temperatures remain."
         ),
         "signature_full_shuffled": (
             "Negative control: same channel mask as signature_full but valid "

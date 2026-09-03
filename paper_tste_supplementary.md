@@ -461,7 +461,7 @@ Noise, Wspd 1.0 / Pab 2.0 & 0.9505 $\pm$ 0.0363 & 0.680 $\pm$ 0.019 & +0.271 \\
 \bottomrule
 \end{tabular}
 \vspace{1mm}
-\footnotesize Script: `scripts/fair_degradation_replay.py`; checkpoints: train-only class-weight rerun; cache: train-only strict-mask weights. Early-window targets are defined by clean-regime transitions.
+\footnotesize Script: `scripts/fair_degradation_replay.py`; checkpoints: train-only class-weight rerun; cache: train-only strict-mask weights. Early-window targets are defined by clean-regime transitions. Upper-bound variant: when the delay also stalls the archived history channels (worst-case degradation), the gate retains 0.846/0.628/0.416 at one/three/six-step delays against 0.655/0.381/0.196 for the rule (gains +0.19/+0.25/+0.22, all five seeds positive); the robustness margin narrows but does not disappear.
 \end{table}
 ```
 

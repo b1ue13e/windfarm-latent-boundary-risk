@@ -63,6 +63,7 @@ def _forward_collect(model, loader, bundle, device, degrade: dict[str, Any] | No
     wspd_phy = physics_names.index("Wspd") if "Wspd" in physics_names else 0
     pab_phy = physics_names.index("Pab_mean") if "Pab_mean" in physics_names else 1
     delay = int(degrade.get("delay", 0)) if degrade else 0
+    history_delay = bool(degrade.get("history_delay", False)) if degrade else False
     noise = degrade.get("noise") if degrade else None
 
     raw_physics = np.asarray(bundle.physics, dtype=np.float64)
@@ -83,6 +84,14 @@ def _forward_collect(model, loader, bundle, device, degrade: dict[str, Any] | No
             lag_idx = np.clip(anchor_idx - delay, 0, raw_physics.shape[0] - 1)
             anchor_physics[:, :, wspd_phy] = torch.from_numpy(std_physics[lag_idx, :, wspd_phy]).float()
             anchor_physics[:, :, pab_phy] = torch.from_numpy(std_physics[lag_idx, :, pab_phy]).float()
+            if history_delay and delay > 0:
+                for idx in (wspd_feat, pab_feat):
+                    if idx < 0:
+                        continue
+                    vals = x_hist[..., idx]  # (B, H, N)
+                    head = vals[:, :1, :].repeat(1, delay, 1)
+                    shifted = torch.cat([head, vals[:, :-delay, :]], dim=1)
+                    x_hist[..., idx] = shifted
             if noise is not None:
                 bsz = anchor_idx.shape[0]
                 nodes = x_hist.shape[2]
@@ -130,6 +139,8 @@ def main() -> None:
     ap.add_argument("--output-dir", default="artifacts/fair_degradation_replay_20260903")
     ap.add_argument("--seeds", default="201,202,203,204,205")
     ap.add_argument("--device", default="cuda")
+    ap.add_argument("--degrade-history", action="store_true",
+                    help="Also shift the Wspd/Pab history channels by the delay (upper-bound degradation)")
     ap.add_argument("--cut-in", type=float, default=3.0)
     ap.add_argument("--rated", type=float, default=10.5)
     ap.add_argument("--pitch-th", type=float, default=2.0)
@@ -168,7 +179,11 @@ def main() -> None:
                 gate_label = gate_label_clean
                 rule_pitch = (regime == 2) & valid
             else:
-                gate_prob, _ = _forward_collect(model, loader, bundle, device, {"delay": delay, "noise": noise}, seed)
+                gate_prob, _ = _forward_collect(
+                    model, loader, bundle, device,
+                    {"delay": delay, "noise": noise, "history_delay": args.degrade_history},
+                    seed,
+                )
                 gate_label = gate_prob[..., :gate_classes].argmax(axis=-1)
                 rule_pitch = _rule_pitch_from_degraded(
                     raw_physics, anchors, delay, noise, seed, args.cut_in, args.rated, args.pitch_th
@@ -178,7 +193,7 @@ def main() -> None:
             rows.append(
                 {
                     "seed": seed,
-                    "condition": name,
+                    "condition": name + ("_histdelay" if (args.degrade_history and delay not in (None, 0)) else ""),
                     "delay_steps": 0 if delay is None else int(delay),
                     "wspd_noise": 0.0 if noise is None else float(noise[0]),
                     "pab_noise": 0.0 if noise is None else float(noise[1]),
