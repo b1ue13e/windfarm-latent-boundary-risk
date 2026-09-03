@@ -382,6 +382,35 @@ Probe & RMSE & NMI & ARI & Reading \\
 \end{table}
 ```
 
+Table A9d reports the same probe on two farms with partial pitch observability. Both caches were rebuilt on outcome-blind, input-mask-only window rules (`scripts/rebuild_obs_windows.py`): the earliest contiguous 245-day window with daily pitch coverage at least 0.70 and daily regime-valid at least 0.70 for Penmanshiel (day 720; realised pitch 78.1\%), and the earliest window with daily regime-valid at least 0.70 for Kelmarsh (day 120; realised pitch 55.1\%). Permuted-label controls collapse to chance at both farms, and the withheld-channel variants stay above chance even at 55\% pitch coverage, so the deployment decision for pitch-sparse farms is a graded signature-strength check rather than a binary observability gate.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A9d.} Signature-gate probe on partial-pitch-observability farms. Mean$\\pm$sd over five seeds; per-seed values archived.}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.30\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Probe & NMI & ARI & Reading \\
+\midrule
+Penmanshiel canonical & 0.6987 $\\pm$ 0.4004 & 0.6342 $\\pm$ 0.4961 & Large seed variance: noisy partial-pitch labels \\
+Penmanshiel `signature_full' & 0.3024 $\\pm$ 0.0343 & 0.1613 $\\pm$ 0.1150 & Above 0.20 criterion \\
+Penmanshiel `signature_core' & 0.1954 $\\pm$ 0.0961 & 0.1302 $\\pm$ 0.1816 & Below 0.20; 4400x above shuffled chance \\
+Penmanshiel `signature_full_shuffled' & 4.4e-05 $\\pm$ 2.3e-05 & 1.6e-03 $\\pm$ 1.7e-03 & Chance level \\
+\midrule
+Kelmarsh canonical & 0.4441 $\\pm$ 0.2413 & 0.4499 $\\pm$ 0.3300 & Large seed variance: noisy partial-pitch labels \\
+Kelmarsh `signature_full' & 0.3402 $\\pm$ 0.0736 & 0.3461 $\\pm$ 0.1399 & Above 0.20 criterion \\
+Kelmarsh `signature_core' & 0.3775 $\\pm$ 0.0783 & 0.4763 $\\pm$ 0.0758 & Above 0.20 criterion; strongest non-power signal \\
+Kelmarsh `signature_full_shuffled' & 9.2e-05 $\\pm$ 2.5e-05 & 1.6e-03 $\\pm$ 2.0e-03 & Chance level \\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\footnotesize Pitch coverage is the fraction of cells with a directly observed blade-pitch channel inside the rebuilt window. Signature strength is not monotonic in pitch coverage (Penmanshiel 78\% scores lower than Kelmarsh 55\%), so the graded reading attributes the remaining signal to consequence-channel quality (reactive power, pitch dispersion, temperatures) rather than to pitch coverage alone.
+\end{table}
+```
+
 ## Early-warning detection consequence {.unnumbered}
 
 Table A10 reports the detector control for the label-degradation audit. The simple classifier is a validation-fit multinomial logistic regression on the same issue-time anchors. It matches or exceeds the gate on clean-anchor standalone detection, so the manuscript claims auditable in-model route attribution rather than classifier superiority. Gate values in degraded-label rows are the saved clean-route audit; the degraded stream is applied to the rule and classifier controls. Recovered cells are turbine-time cells per seed inside the six-step MPPT-to-pitch window, not MWh, currency or dispatch-cost estimates.

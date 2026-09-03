@@ -48,7 +48,7 @@ signature_full_shuffled:201:4.80e-05 202:1.78e-04 203:2.37e-04 204:2.17e-04 205:
 - 泛化叙事升级成立：从"signature 仅 WTB"升级为"**signature 在 WTB 与 LHB 两个 anchor-observable 农场均可恢复**"。
 - 建议正文措辞："the boundary signature transfers across farms under a shared threshold definition"——**不是**参数/权重迁移，而是**机制可复制性**（mechanism replication across farms）。
 - 必须披露：LHB 4 节点小规模、signature_full 种子波动（min 0.499）、wake_score 恒 0（无尾流维度）。
-- 下一步可选：LHB `signature_core_shuffled` 负对照（如需进一步验证非功率指纹），或直接进入论文主线重写。
+- 下一步可选：LHB `signature_core_shuffled` 负对照（2026-09-03 完成：NMI 2.40e-04 ± 1.23e-04，随机水平 ✓），或直接进入论文主线重写。
 
 ## 5. 数据溯源
 

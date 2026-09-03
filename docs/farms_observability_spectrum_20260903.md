@@ -55,3 +55,28 @@
 
 - 25979 容器与 grokking 共享宿主内核：`kill` 训练进程会把 DataLoader workers 变孤儿（spawn_main 僵尸），需同步清理；正常跑完不会产生。
 - paper1（老师的 `run_physgate_cross_site.py`）占 GPU0 + 大量 CPU；我们只用 GPU1-5 且数据加载单线程。
+
+## 7. 结果（2026-09-03 全部完成，本地 guard 复跑一致）
+
+### 可观测性谱系主表（5 seeds，leakage guard 全通过）
+
+| 农场（pitch 覆盖） | canonical | signature_full | signature_core | shuffled（full） |
+| :--- | :--- | :--- | :--- | :--- |
+| WTB（~100%，134 节点） | 0.7208 | 0.5613 | 0.3671（3/5 坍缩） | 4.0e-06 |
+| LHB（99.2%，4 节点） | 0.9752 | 0.6743 | 0.5750（0/5 坍缩） | 1.9e-04 |
+| Penmanshiel（78.1%，14 节点） | 0.6987 ± 0.4004 | **0.3024 ± 0.0343** | **0.1954 ± 0.0961** | 4.4e-05 |
+| Kelmarsh（55.1%，6 节点） | 0.4441 ± 0.2413 | **0.3402 ± 0.0736** | **0.3775 ± 0.0783** | 9.2e-05 |
+| （LHB core_shuffled 补充） | — | — | shuffled=2.4e-04 | — |
+
+### 判据裁决
+
+- **Kelmarsh**：signature_full 0.340、signature_core 0.378 均过 0.20 判据 → "严重 pitch 稀疏（55%）农场边界可恢复"成立。
+- **Penmanshiel**：signature_full 0.302 过判据；signature_core 0.195 **略低于 0.20 门槛**（差 0.005），但比 shuffled（4.4e-05）高 ~4400 倍 → 诚实定位为 **borderline weak-positive**，不称"通过"。
+- 两个农场的 shuffled 负对照均为随机水平（4.4e-05 / 9.2e-05），正信号非偶然。
+- **谱系非严格单调**：Penmanshiel（78%）的 core 反而低于 Kelmarsh（55%）。正确叙事不是"pitch 覆盖率决定一切"，而是"pitch 部分可观测农场的边界信号恒高于随机，强度由**后果通道质量**（Prtv/Pab_std 覆盖率与噪声）调制"——Kelmarsh 的后果通道比 Penmanshiel 更干净。
+
+### 论文措辞红线
+
+- 不写 "recoverable at 55% pitch coverage with NMI 0.38 and 0.30 at 78%"这种单调故事；写 "recovery persists above chance at all partial-pitch farms (0.20-0.38), modulated by consequence-channel quality"。
+- Penmanshiel core 必须带 0.1954±0.0961 + "below the 0.20 criterion, 4400× above shuffled chance"的完整披露。
+- canonical 的大方差（0.24-0.40 std）作为"pitch 部分观测导致标签噪声"的证据呈现，用 median/IQR 报告。
