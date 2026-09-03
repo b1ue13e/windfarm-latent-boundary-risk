@@ -587,4 +587,53 @@ Boundary gate-bin vs GWN global full sample (legacy) & +3148.2 & -1413.5 & +1728
 \end{table}
 ```
 
+## Complete forecasting benchmark {.unnumbered}
+
+Table A13 reports the full WTB and ERA5 benchmark used for the RMSE-price guardrail. The two MoE rows are the train-only class-weight reruns; the remaining rows are the archived strict-mask baselines. The displayed guardrail is the 5.59 RMSE gap between the train-only boundary router and iTransformer.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.6pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A13.} Complete forecasting benchmark (WTB RMSE in kW; ERA5 normalised flux RMSE).}
+\begin{tabular}{lll}
+\toprule
+Model & Overall RMSE & Switch RMSE \\
+\midrule
+iTransformer & 224.34 $\\pm$ 2.23 & 228.80 $\\pm$ 2.54 \\
+Graph WaveNet & 225.74 $\\pm$ 2.60 & 228.12 $\\pm$ 3.23 \\
+TiDE & 227.31 $\\pm$ 3.05 & 231.48 $\\pm$ 2.86 \\
+PatchTST & 228.07 $\\pm$ 4.05 & 231.22 $\\pm$ 4.15 \\
+Boundary-forced router (train-only) & 229.93 $\\pm$ 2.50 & 231.65 (5 seeds) \\
+Capacity-Matched Dense & 231.42 $\\pm$ 5.87 & 233.82 $\\pm$ 5.96 \\
+Physics-Aligned MoE (train-only) & 231.90 (5 seeds, 225.35-236.21) & -- \\
+Graph Transformer & 235.38 $\\pm$ 5.15 & 237.06 $\\pm$ 5.78 \\
+Unconstrained MoE & 235.40 $\\pm$ 7.96 & 237.22 $\\pm$ 8.11 \\
+GAT-GRU & 236.59 $\\pm$ 7.80 & 240.17 $\\pm$ 8.50 \\
+Boundary-forced router (legacy) & 236.13 $\\pm$ 8.41 & 239.86 $\\pm$ 8.85 \\
+Physics-Aligned MoE (legacy) & 241.42 $\\pm$ 4.28 & 242.60 $\\pm$ 6.07 \\
+\midrule
+ERA5 Graph WaveNet & 0.8417 $\\pm$ 0.0661 & 0.7934 $\\pm$ 0.0652 \\
+ERA5 Physics-Aligned MoE & 0.8735 $\\pm$ 0.0536 & 0.8507 $\\pm$ 0.0363 \\
+ERA5 TCN & 0.8784 $\\pm$ 0.0351 & 0.8338 $\\pm$ 0.0292 \\
+ERA5 PatchTST & 0.8817 $\\pm$ 0.0827 & 0.8248 $\\pm$ 0.0842 \\
+ERA5 STGCN & 0.9893 $\\pm$ 0.1646 & 0.8908 $\\pm$ 0.1239 \\
+ERA5 Persistence & 0.7127 & 0.6814 \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+\footnotesize The two train-only MoE rows are the provenance-corrected reruns used for the headline guardrail; their MAE and switch statistics are available in the archived run tables. The legacy MoE rows remain listed for provenance transparency only.
+\end{table}
+```
+
+## ERA5 observability contrast {.unnumbered}
+
+The ERA5 contrast tests a setting in which the physical marker is directly visible. Three archived months of hourly data over a fixed $16\times16$ patch are reorganised into a $T{=}2208$-frame tensor with $N{=}256$ nodes and eight input variables. The thermodynamic regime label separates stable from convective near-surface states using sensible heat flux and its local time delta: convective samples have positive afternoon flux anomaly, stable samples do not; the label is available at 60\% coverage and enters only alignment supervision. The gate anchor is $[\texttt{sshf}, \texttt{t2m}, \texttt{wind\_speed}, \Delta\texttt{sshf}]$, and the graph is a static Haversine-Gaussian $k_{\mathrm{nn}}$ structure because no wake directionality is defined on a grid. The same directed-diffusion GRU and node-level MoE are trained with the full corrected stack; the contrast result is that alignment is recoverable at NMI 0.90$+$ when the marker is directly observed, whereas WTB must recover a boundary partly hidden by control action. The ERA5 rows in Table A13 and the shared-architecture table carry the numerical record; ERA5 is not used for any reserve or deployment claim.
+
+## Compute disclosure {.unnumbered}
+
+All neural runs use a single GPU (NVIDIA RTX 4090), mixed precision, AdamW, gradient clipping, and early stopping on validation RMSE. The WTB boundary router has 110,012 parameters; one epoch takes approximately 445 s and early stopping selects checkpoints at 6-9 epochs, so a five-seed family costs roughly 6-7 GPU-hours. The signature-gate probes, fair-degradation replays, and reserve audits reuse saved checkpoints and test arrays and are CPU-minute analyses except the replay forwards, which re-evaluate the test split in under ten minutes on one GPU. All experiments are reproducible across the declared seeds; bitwise reproducibility across CUDA environments is not claimed.
+
 
