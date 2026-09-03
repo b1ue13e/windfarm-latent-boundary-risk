@@ -365,6 +365,7 @@ def build_parser() -> argparse.ArgumentParser:
             "moe_full_no_smooth",
             "moe_context_align",
             "moe_anchor_only",
+            "dense_classifier",
         ],
         default="moe_phys_full",
     )

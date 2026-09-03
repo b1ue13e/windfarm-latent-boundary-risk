@@ -300,6 +300,14 @@ class TrainConfig:
                 "balance": self.balance_weight,
                 "physics_force": self.physics_force_weight,
             }
+        if self.mode == "dense_classifier":
+            return {
+                "align": self.align_weight,
+                "aux": 0.0,
+                "smooth": 0.0,
+                "balance": 0.0,
+                "physics_force": 0.0,
+            }
         return {"align": 0.0, "aux": 0.0, "smooth": 0.0, "balance": 0.0, "physics_force": 0.0}
 
 

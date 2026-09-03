@@ -630,7 +630,17 @@ class RegimeAwareForecaster(nn.Module):
             "baseline_tide",
         }
         self.dense_head = ExpertHead(hidden, pred_len, config.dropout)
-        if self.is_baseline_mode:
+        self.is_dense_classifier = mode == "dense_classifier"
+        if self.is_dense_classifier:
+            self.experts = nn.ModuleList()
+            self.gate = None
+            self.classifier_head = nn.Sequential(
+                nn.Linear(hidden + config.gate_physics_dim, config.gate_hidden_dim),
+                nn.GELU(),
+                nn.Dropout(config.dropout),
+                nn.Linear(config.gate_hidden_dim, config.primary_num_classes),
+            )
+        elif self.is_baseline_mode:
             self.experts = nn.ModuleList()
             self.gate = None
         else:
@@ -661,6 +671,20 @@ class RegimeAwareForecaster(nn.Module):
         edge_index_hist = edge_index_hist.long()
         feature_mask_hist = feature_mask_hist.float()
         context = self.encoder(x_hist, edge_index_hist, edge_weight_hist, feature_mask_hist)
+        if self.is_dense_classifier:
+            pred = self.dense_head(context).transpose(1, 2)
+            if anchor_physics is None:
+                anchor_physics = x_hist.new_zeros((x_hist.shape[0], x_hist.shape[2], self.gate_physics_dim))
+            cls_logits = self.classifier_head(torch.cat([context, anchor_physics], dim=-1))
+            pad = torch.full(
+                (cls_logits.shape[0], cls_logits.shape[1], 1),
+                float("-inf"),
+                device=cls_logits.device,
+            )
+            gate_logits = torch.cat([cls_logits, pad], dim=-1)
+            gate_prob = torch.softmax(gate_logits / self.tau, dim=-1)
+            aux = {"context": context, "gate_logits": gate_logits, "anchor_physics": anchor_physics}
+            return pred, gate_prob, aux
         if self.is_baseline_mode:
             pred = self.dense_head(context).transpose(1, 2)
             return pred, None, {"context": context}
