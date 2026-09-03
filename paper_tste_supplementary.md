@@ -202,7 +202,7 @@ $\lambda_{\mathrm{smooth}}$ & 0.05 & 0.05 & Local routing coherence \\
 
 ## Statistical claim boundaries {.unnumbered}
 
-Table A6 separates the train-only RMSE guardrail from paired seed-level tests on the archived full-audit checkpoint. The iTransformer row is the displayed five-seed train-only guardrail gap; the Graph WaveNet and boundary-window rows are legacy full-audit paired/FDR audit rows and should not be read as the current RMSE guardrail.
+Table A6 separates the train-only RMSE guardrail from paired seed-level tests on the train-only checkpoints. The iTransformer row is the displayed five-seed train-only guardrail gap; the Graph WaveNet row is a legacy pure-prediction baseline contrast; the gate-versus-full-MoE rows use the official reviewer-stat-pack paired statistics on train-only checkpoints for both families.
 
 ```{=latex}
 \begin{table}[H]
@@ -215,11 +215,11 @@ Table A6 separates the train-only RMSE guardrail from paired seed-level tests on
 \toprule
 Claim & Estimate & 95\% CI & $p_{\mathrm{BH}}$ & Wording consequence \\
 \midrule
-Train-only RMSE guardrail vs iTransformer & 5.589 & -- & -- & Displayed guardrail gap for the provenance-corrected rerun; legacy full-audit checkpoint is separate \\
-Legacy full-audit RMSE price vs Graph WaveNet & 9.029 & -- & <0.001 & Applies to the archived full-audit checkpoint, not the train-only RMSE guardrail \\
-Legacy boundary-band RMSE price & 17.758 & -- & 0.001 & Boundary-window price for the archived full-audit checkpoint \\
-Gate NMI vs full physics-aligned MoE & 0.040 & [0.008, 0.071] & 0.066 & Positive but not FDR-significant; cite as bounded mechanism contrast \\
-Gate ARI vs full physics-aligned MoE & 0.035 & [-0.000, 0.078] & 0.126 & Positive but not FDR-significant; avoid superiority wording \\
+Train-only RMSE guardrail vs iTransformer & 5.589 & -- & -- & Displayed guardrail gap for the provenance-corrected rerun \\
+Legacy RMSE price vs Graph WaveNet & 9.029 & -- & <0.001 & Legacy full-audit checkpoint contrast only \\
+Legacy boundary-band RMSE price & 17.758 & -- & 0.001 & Boundary-window price for the legacy checkpoint \\
+Gate NMI vs full physics-aligned MoE (train-only) & -0.109 & [-0.280, 0.084] & 0.352 & No significant alignment difference; do not claim boundary forcing is required for alignment \\
+Gate ARI vs full physics-aligned MoE (train-only) & -0.138 & [-0.356, 0.088] & 0.379 & Same; no superiority wording \\
 Boundary quantile cost vs GWN physical bin & -0.263M & [-10.704M, 9.782M] & -- & CI crosses zero; reserve cost should remain a diagnostic claim \\
 Boundary quantile violation vs GWN physical bin & 0.003 & [-0.011, 0.020] & -- & CI crosses zero; no universal reserve-policy optimality claim \\
 \bottomrule
@@ -280,7 +280,7 @@ Residual claim boundary & sanity check only & Mitigates circularity concern; doe
 
 ## External-site deployment-gate audit {.unnumbered}
 
-Table A8 records the go/no-go interpretation used for the external evidence. The first row is the cross-site mechanism replication: retrained on the ENGIE La Haute Borne farm, where blade pitch is directly observed in 99.2\% of cells, the routing mechanism recovers the declared boundary and clears the held-out criterion. The remaining rows map the failed or incomplete Kelmarsh/Penmanshiel signals to the deployment action that follows. The table is deliberately decision-shaped, with evidence, criterion and consequence in separate columns. It therefore supports a bounded two-sided claim: the mechanism replicates where the control boundary is observable, whereas direct gate-bin reserve use at the Kelmarsh/Penmanshiel pair remains unauthorised.
+Table A8 records the deployment interpretation used for the external evidence. The first row is the cross-site mechanism replication: retrained on the ENGIE La Haute Borne farm, where blade pitch is directly observed in 99.2\% of cells, the routing mechanism recovers the declared boundary and clears the held-out criterion. The remaining rows map the Kelmarsh/Penmanshiel signals to the deployment action that follows. The table is deliberately decision-shaped, with evidence, criterion and consequence in separate columns. The signature-gate probe (Table A9d) upgrades the binary go/no-go into a graded signature-strength reading: partial pitch observability modulates rather than extinguishes boundary recoverability.
 
 ```{=latex}
 \begin{table}[H]
@@ -294,11 +294,11 @@ Table A8 records the go/no-go interpretation used for the external evidence. The
 Gate & Observed external evidence & Go/no-go rule & Claim consequence \\
 \midrule
 Cross-site mechanism replication (La Haute Borne) & Five-seed chronological routing NMI 0.941, ARI 0.971; pitch observed in 99.2\% of cells, no proxy & Held-out NMI $\geq$ 0.50 with observed pitch after parameters are frozen & Go: anchor-observable mechanism replicates on a second farm; do not claim anchor-free or automatic reserve transfer \\
-Cross-site routing criterion & 80/80 runs complete; mean NMI 0.4877 below threshold 0.50; mean ARI 0.5112 & Held-out NMI $\geq$ 0.50 and balanced accuracy $\geq$ 0.50 after parameters are frozen & No-go for cross-farm router interpretation; cite as negative boundary-condition evidence \\
+Cross-site routing criterion & 80/80 runs complete; aggregated mean NMI 0.557 passes the 0.50 criterion; direction-dependent (0.341 in the reverse direction) & Held-out NMI $\geq$ 0.50 and balanced accuracy $\geq$ 0.50 after parameters are frozen, reported per direction & Aggregate pass, direction-dependent; cite with per-direction values \\
 Local boundary recalibration & Default test NMI 0.1324 $\rightarrow$ recalibrated 0.1491 (delta +0.0167) & Rated wind, pitch threshold, boundary band, and gate-map selected on calibration only & Local threshold transfer is insufficient; re-estimate before use \\
 Small-window adaptation & 40/40 routing runs adapted; chronological balanced accuracy 0.4787 below 0.50 & Small calibration windows must still pass the frozen held-out routing criterion & Calibration alone does not authorize external reserve use \\
-Sensor and boundary support & Penmanshiel-to-Kelmarsh leave-one pitch-feature coverage 0.0000 and effective boundary cells 0 & Pre-declared calibration window with enough boundary cells, active power, availability mask, and pitch/proxy overlap & No physical-router interpretation without observability \\
-External reserve-use decision & Upstream observability and held-out routing gates fail before external reserve allocation & Evaluate reserve only after observability and held-out routing gates pass & Withhold gate-bin reserve use outside WTB; report a deployment protocol only \\
+Withheld-channel signature at partial pitch & Kelmarsh (55\% pitch): 0.340/0.378; Penmanshiel (78\%): 0.302/0.195; shuffled controls at chance & Signature strength graded against the farm's own shuffled control & Partial pitch observability grades, not voids, boundary recoverability \\
+External reserve-use decision & Local evidence protocol must still pass before external reserve allocation & Evaluate reserve only after observability and held-out routing gates pass & Withhold gate-bin reserve use outside WTB; report a deployment protocol only \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -413,7 +413,7 @@ Kelmarsh `signature_full_shuffled' & 9.2e-05 $\\pm$ 2.5e-05 & 1.6e-03 $\\pm$ 2.0
 
 ## Early-warning detection consequence {.unnumbered}
 
-Table A10 reports the detector control for the label-degradation audit. The simple classifier is a validation-fit multinomial logistic regression on the same issue-time anchors. It matches or exceeds the gate on clean-anchor standalone detection, so the manuscript claims auditable in-model route attribution rather than classifier superiority. Gate values in degraded-label rows are the saved clean-route audit; the degraded stream is applied to the rule and classifier controls. Recovered cells are turbine-time cells per seed inside the six-step MPPT-to-pitch window, not MWh, currency or dispatch-cost estimates.
+Table A10 reports the detector control for the label-degradation audit. The simple classifier is a validation-fit multinomial logistic regression on the same issue-time anchors. It matches or exceeds the gate on clean-anchor standalone detection, so the manuscript claims auditable in-model route attribution rather than classifier superiority. Gate values in degraded-label rows are the saved clean-route audit; the degraded stream is applied to the rule and classifier controls. Table A10d reports the fair-degradation counterpart, where delay and sensor noise degrade the gate's own inputs as well. Recovered cells are turbine-time cells per seed inside the six-step MPPT-to-pitch window, not MWh, currency or dispatch-cost estimates.
 
 ```{=latex}
 \begin{table}[H]
@@ -421,21 +421,47 @@ Table A10 reports the detector control for the label-degradation audit. The simp
 \scriptsize
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A10.} Early-warning detector control under degraded threshold labels.}
+\caption*{\textbf{Table A10.} Early-warning detector control under degraded threshold labels (train-only gate values).}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrrrrrr}
 \toprule
 Condition & Gate R & Gate P & Classifier R & Classifier P & Rule R & Rule P & Recovered cells \\
 \midrule
-Clean live anchors & 0.960 & 0.759 & 1.000 & 0.879 & 1.000 & 0.879 & -- \\
-Delay, 6 steps & 0.960 & 0.759 & 1.000 & 0.879 & 0.196 & 0.342 & 565.6 $\pm$ 20.6 \\
-50\% label availability & 0.960 & 0.759 & 1.000 & 0.879 & 0.508 & 0.877 & 334.6 $\pm$ 28.1 \\
-Sensor noise, strongest & 0.960 & 0.759 & 0.885 & 0.758 & 0.652 & 0.804 & 227.8 $\pm$ 20.9 \\
+Clean live anchors & 0.971 & 0.630 & 1.000 & 0.879 & 1.000 & 0.879 & -- \\
+Delay, 6 steps & 0.971 & 0.630 & 1.000 & 0.879 & 0.196 & 0.342 & 565.6 $\pm$ 20.6 \\
+50\% label availability & 0.971 & 0.630 & 1.000 & 0.879 & 0.508 & 0.877 & 334.6 $\pm$ 28.1 \\
+Sensor noise, strongest & 0.971 & 0.630 & 0.885 & 0.758 & 0.652 & 0.804 & 227.8 $\pm$ 20.9 \\
 \bottomrule
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize R/P denote recall and precision on early pitch-window cells. The simple classifier is a validation-fit logistic model on the same issue-time anchors; it is a detector control, not a routed forecaster. In sensor-noise rows, gate values are the saved clean-route audit; classifier/rule values are recomputed from noisy anchors.
+\footnotesize R/P denote recall and precision on early pitch-window cells. The simple classifier is a validation-fit logistic model on the same issue-time anchors; it is a detector control, not a routed forecaster. In sensor-noise rows, gate values are the saved clean-route audit; classifier/rule values are recomputed from noisy anchors. Gate precision drops to 0.630 under the train-only rerun, widening the disclosed gap to the classifier control.
+\end{table}
+```
+
+Table A10d reports the fair-degradation audit: the confirming-stream delay applies the late wind-speed and pitch readings to the gate anchor and the rule identically (the archived history window remains available), and sensor noise corrupts the same channels in the gate's encoder features and anchor. The gate's early-window recall degrades by only 3.9\% across a six-step delay while the rule falls by 80.4\%, and the noise rows keep the gain positive for all five seeds.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A10d.} Fair-degradation audit: gate and rule consume the same degraded readings. Mean$\\pm$sd over five train-only seeds.}
+\begin{tabular}{lrrr}
+\toprule
+Condition & Gate recall & Rule recall & Gain \\
+\midrule
+Clean anchors & 0.9705 $\pm$ 0.0299 & 1.000 & -0.029 \\
+Delay, 1 step & 0.9622 $\pm$ 0.0306 & 0.655 & +0.307 \\
+Delay, 3 steps & 0.9430 $\pm$ 0.0361 & 0.381 & +0.562 \\
+Delay, 6 steps & 0.9327 $\pm$ 0.0429 & 0.196 & +0.737 \\
+Noise, Wspd 0.5 / Pab 1.0 & 0.9635 $\pm$ 0.0375 & 0.811 $\pm$ 0.016 & +0.152 \\
+Noise, Wspd 1.0 / Pab 2.0 & 0.9505 $\pm$ 0.0363 & 0.680 $\pm$ 0.019 & +0.271 \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+\footnotesize Script: `scripts/fair_degradation_replay.py`; checkpoints: train-only class-weight rerun; cache: train-only strict-mask weights. Early-window targets are defined by clean-regime transitions.
 \end{table}
 ```
 
@@ -496,8 +522,8 @@ Table A11 is the compact reviewer-facing boundary audit. The same-router boundar
 \toprule
 Boundary & Key evidence & Limit \\
 \midrule
-Same-model boundary reserve effect & $\rho=10$: $\Delta$cost -3.55M [CI -4.65M,-2.45M]; $\Delta$viol. -0.0138 [CI -0.0203,-0.0072]; shortage -0.54M [CI -0.78M,-0.30M] & Same-model diagnostic; not cross-model optimal \\
-Physical-bin quantile comparator & Boundary phys. 83.78M/0.0880; GWN phys. 84.31M/0.0931; gate 84.58M/0.0900 & Physical bins remain competitive \\
+Same-model boundary reserve effect & $\rho=10$: $\Delta$cost -4.42M [CI -7.36M,-1.27M]; $\Delta$viol. -0.0145 [CI -0.0220,-0.0073]; shortage -0.637M [CI -0.976M,-0.300M]; full-MoE family -4.26M [CI -5.43M,-3.04M] & Same-model diagnostic; not cross-model optimal \\
+Physical-bin quantile comparator & Boundary phys. 93.82M/0.1010; GWN phys. 84.31M/0.0931; gate 95.13M/0.1021 & Physical bins remain competitive \\
 Cost-ratio applicability & Active at $\rho=5$--10; narrows at 20; $\rho=50$ favors global (+5.93M, +0.0035) & Moderate-cost window only \\
 Full-sample system value & GWN/global 464.07M/0.0901; gate-bin 481.36M/0.1214 & No system-wide dispatch claim \\
 Cross-backbone/full-sample uncertainty & $\Delta$cost +17.28M; 95\% CI [-52.09M,+87.95M]; p=0.752 & Not system-wide or cross-backbone \\
@@ -551,13 +577,13 @@ Table A12 translates the reserve audit into MWh-equivalent forecast-cell account
 \toprule
 Comparison & $\Delta$ reserve & Avoided shortage & $\Delta$ cost & Cost-scale@100 \\
 \midrule
-Boundary gate-bin vs same-router global & +1846.9 & +539.8 & -3551.4 & -355k \\
-Boundary gate-bin vs GWN physical-bin & +2319.2 & +205.6 & +262.9 & +26k \\
-Boundary gate-bin vs GWN global full sample & +3148.2 & -1413.5 & +17283.2 & +1728k \\
+Boundary gate-bin vs same-router global (train-only) & +1950 & +637 & -4420 & -442k \\
+Boundary gate-bin vs GWN physical-bin (legacy) & +2319.2 & +205.6 & +262.9 & +26k \\
+Boundary gate-bin vs GWN global full sample (legacy) & +3148.2 & -1413.5 & +17283.2 & +1728k \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\footnotesize Values are MWh-equivalent forecast-cell accounting with $\Delta t=1/6$ h. Cost-scale@100 is an illustrative reserve-cost scale marker at 100 EUR/MWh, not market revenue, settlement value, OPF, or unit-commitment output. Use same-router/global as the bounded boundary-window diagnostic; physical-bin and full-sample rows block reserve superiority.
+\footnotesize Values are MWh-equivalent forecast-cell accounting with $\Delta t=1/6$ h. Cost-scale@100 is an illustrative reserve-cost scale marker at 100 EUR/MWh, not market revenue, settlement value, OPF, or unit-commitment output. Boundary rows are from the train-only rerun; GWN comparison rows remain legacy pure-prediction baselines. Use same-router/global as the bounded boundary-window diagnostic; physical-bin and full-sample rows block reserve superiority.
 \end{table}
 ```
 
