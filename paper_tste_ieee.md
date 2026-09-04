@@ -17,8 +17,20 @@ header-includes:
   - \usepackage{float}
   - \usepackage{enumitem}
   - \usepackage{etoolbox}
-  - \setlist[itemize]{leftmargin=1.6em}
-  - \AtBeginEnvironment{CSLReferences}{\footnotesize}
+  - \setlist[itemize]{leftmargin=1.4em,nosep}
+  - \AtBeginEnvironment{CSLReferences}{\scriptsize\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+  - \AtBeginDocument{\renewcommand{\CSLBlock}[1]{#1\par}}
+  - \setlength{\abovedisplayskip}{2pt plus 1pt minus 1pt}
+  - \setlength{\belowdisplayskip}{2pt plus 1pt minus 1pt}
+  - \setlength{\abovedisplayshortskip}{1pt plus 1pt}
+  - \setlength{\belowdisplayshortskip}{1pt plus 1pt}
+  - \setlength{\floatsep}{3pt plus 1pt minus 1pt}
+  - \setlength{\textfloatsep}{3.5pt plus 1pt minus 1pt}
+  - \setlength{\intextsep}{3pt plus 1pt minus 1pt}
+  - \setlength{\dblfloatsep}{3pt plus 1pt minus 1pt}
+  - \setlength{\dbltextfloatsep}{3.5pt plus 1pt minus 1pt}
+  - \setlength{\abovecaptionskip}{2pt plus 1pt minus 1pt}
+  - \setlength{\belowcaptionskip}{1pt plus 1pt minus 1pt}
 ---
 
 \title{Jointly-Learned Boundary-Risk Posterior for Wind-Turbine Reserve Diagnosis at the MPPT-to-Pitch Boundary}
@@ -46,7 +58,7 @@ Wind-farm reserve screening near the transition from maximum power point trackin
 
 Recent spatio-temporal forecasters encode turbine coupling, wake interaction and sensor-rich wind-farm layouts with graph or attention mechanisms [@wu2019graphwavenet; @park2019physicsinduced; @kim2024lidarscada; @daenens2025offshore]. They provide an appropriate accuracy reference, but a low-error encoder does not reveal whether a turbine is operating under an MPPT-like or pitch-control-like response law. Mixture-of-experts (MoE) models provide a natural language for heterogeneous response laws, although prediction loss alone does not guarantee a physically meaningful partition [@jacobs1991adaptive; @jordan1994hierarchical; @shazeer2017outrageously; @fedus2022switch]. The unresolved problem is therefore not another aggregate forecaster. It is an auditable assignment that links an issue-time route to a declared operating boundary and can be consumed by a reserve-risk diagnostic.
 
-Here we treat the jointly-learned boundary-risk posterior as the operating-boundary diagnostic. A node-level posterior is trained together with the power forecaster on SCADA anchors, allowing each turbine-time assignment to be compared with a declared MPPT-to-pitch partition before future active-power outcomes are available. The routed mixture-of-experts gate is one implementation of this posterior; the evidence below localizes the value to joint learning (pricing) and to the routing structure (degradation robustness), rather than to the expert partition itself. WTB is used as the control-confounded benchmark because the aerodynamic boundary is partly embedded in turbine-control action. ERA5 is retained as an observability contrast in which sensible heat flux exposes the thermodynamic marker [@hersbach2020era5]. ENGIE La Haute Borne, Kelmarsh and Penmanshiel extend the probe across farms with 99\%, 55\% and 78\% pitch coverage, turning observability into a graded deployment spectrum rather than a binary gate. The recovered posterior is then connected to validation-calibrated, test-frozen reserve diagnostics that report cost, violation rate, reserve energy and shortage energy. We compare posterior-bin allocation with global, physical-bin and soft-physical empirical-quantile baselines. This design separates transition-window accountability from the forecasting leaderboard and from full dispatch optimisation.
+Here we treat the jointly-learned boundary-risk posterior as the operating-boundary diagnostic. A node-level posterior is trained jointly with the power forecaster on SCADA anchors, allowing issue-time assignments to be audited against a declared MPPT-to-pitch partition before future power outcomes occur. The routed MoE gate is one implementation; our evidence localizes its value to joint learning (pricing) and routing structure (degradation robustness), rather than the expert partition itself. WTB serves as the control-confounded benchmark, while ERA5 provides an observability contrast where sensible heat flux exposes the thermodynamic marker [@hersbach2020era5]. ENGIE La Haute Borne, Kelmarsh, and Penmanshiel extend the evaluation across farms with 99\%, 55\%, and 78\% pitch coverage. The recovered posterior feeds validation-calibrated, test-frozen reserve screeners reporting cost, violation rate, reserve energy, and shortage energy against global, physical-bin, and soft-physical baselines, separating transition-window accountability from leaderboard forecasting.
 
 The operator-facing workflow is intentionally narrow. At issue time, the model may use current SCADA anchors, historical active power, graph state and missingness masks, but it cannot use future active power. A confirmed regime label is treated as a separate stream because validation, telemetry or quality-control logic can delay it. We therefore report a modular forecaster-plus-classifier control rather than implying that the gate is the best standalone detector. The proposed advantage is narrower: one saved run links route probability, forecast residual, reserve bin and anchor evidence for each escalated cell. The router is consequently an in-model provenance layer, not an anchor-free discovery device or a replacement for a low-error forecaster.
 
@@ -82,9 +94,7 @@ Routing is node-level: each node at each anchor time receives its own gate distr
 
 The gate is not supervised everywhere. It is anchored where the physical interpretation is clearest, while ambiguous samples remain governed by prediction loss and routing regularisation. This design follows the theory-guided learning principle that scientific constraints should enter the learning problem at an identifiable interface [@karpatne2017tgds; @karniadakis2021piml]. The engineering layer defines what counts as a control regime and when that regime is observable from the data [@tautzweinert2017scada].
 
-### WTB operating regimes
-
-In WTB, the primary operating boundary is the transition from MPPT to pitch control. Let
+**WTB operating regimes:** In WTB, the primary operating boundary is the transition from MPPT to pitch control. Let
 
 $$
 \bar{p}_{i,t} = \frac{1}{3}\left(p^{(1)}_{i,t}+p^{(2)}_{i,t}+p^{(3)}_{i,t}\right).
@@ -112,19 +122,13 @@ $$
 
 The reported implementation uses $u_{\mathrm{idle}}=3.0$ m s$^{-1}$, $u_{\mathrm{rated}}=10.5$ m s$^{-1}$, and $p_{\mathrm{th}}=2.0^\circ$ (Appendix A). These thresholds are declared operating anchors, fixed before test evaluation and then audited by threshold-grid sensitivity checks; they are not universal turbine constants and are not selected by test-set NMI.
 
-### ERA5 observability contrast (see Supplementary Material)
-
-ERA5 is retained as a signal-expressive observability contrast where the stable-to-convective thermodynamic marker is directly visible through sensible heat flux. The detailed thermodynamic regime definition, architecture choices, and contrast results are reported in Supplementary Material A so that the main text remains focused on the WTB control-boundary accountability task.
+**ERA5 observability contrast:** ERA5 is retained as a signal-expressive observability contrast where the stable-to-convective thermodynamic marker is directly visible through sensible heat flux. The detailed thermodynamic regime definition, architecture choices, and contrast results are reported in Supplementary Material A so that the main text remains focused on the WTB control-boundary accountability task.
 
 ## Shared architecture
 
-### Physical graph construction
+**Physical graph construction:** The graph is part of the physical problem specification. Directed diffusion is a natural representation when information propagates asymmetrically through a spatial network [@li2018dcrnn; @wu2019graphwavenet]. WTB therefore uses a directed wake graph: candidate turbine pairs are filtered by proximity, activated when an upstream turbine lies inside a wind-aligned downstream cone, weighted by streamwise and cross-stream decay, and pruned to the strongest inbound neighbours. This construction follows the broader use of wake and SCADA structure in physics-guided wind-power forecasting [@park2019physicsinduced; @zehtabiyan2023physicsguided]. The same directed weights define a wake score, which supplies the WTB wake auxiliary label on MPPT and pitch-control samples. ERA5 uses a symmetric Haversine-Gaussian $k_{\mathrm{nn}}$ graph because the thermodynamic regime marker is already visible in the observed state [@hersbach2020era5]. Appendix A gives the graph equations and constants.
 
-The graph is part of the physical problem specification. Directed diffusion is a natural representation when information propagates asymmetrically through a spatial network [@li2018dcrnn; @wu2019graphwavenet]. WTB therefore uses a directed wake graph: candidate turbine pairs are filtered by proximity, activated when an upstream turbine lies inside a wind-aligned downstream cone, weighted by streamwise and cross-stream decay, and pruned to the strongest inbound neighbours. This construction follows the broader use of wake and SCADA structure in physics-guided wind-power forecasting [@park2019physicsinduced; @zehtabiyan2023physicsguided]. The same directed weights define a wake score, which supplies the WTB wake auxiliary label on MPPT and pitch-control samples. ERA5 uses a symmetric Haversine-Gaussian $k_{\mathrm{nn}}$ graph because the thermodynamic regime marker is already visible in the observed state [@hersbach2020era5]. Appendix A gives the graph equations and constants.
-
-### Directed-diffusion GRU encoder and node-level gate
-
-The encoder is kept modest so that changes in performance can be traced to routing and regularisation rather than capacity. Each input window is concatenated with its feature-missingness mask before projection. Two directed diffusion blocks then aggregate self, inbound and outbound messages on each graph snapshot. This follows the diffusion-convolution principle used in spatio-temporal graph forecasting [@li2018dcrnn], while retaining separate inbound and outbound operators for the wind-aligned graph. Let $\mathbf{X}^{(\ell)}_{t}$ denote the node state at layer $\ell$ and time $t$. A diffusion block updates each node by
+**Directed-diffusion GRU encoder and node-level gate:** The encoder is kept modest so that changes in performance can be traced to routing and regularisation rather than capacity. Each input window is concatenated with its feature-missingness mask before projection. Two directed diffusion blocks then aggregate self, inbound and outbound messages on each graph snapshot. This follows the diffusion-convolution principle used in spatio-temporal graph forecasting [@li2018dcrnn], while retaining separate inbound and outbound operators for the wind-aligned graph. Let $\mathbf{X}^{(\ell)}_{t}$ denote the node state at layer $\ell$ and time $t$. A diffusion block updates each node by
 
 ```{=latex}
 \begin{equation}
@@ -178,9 +182,7 @@ $$
 
 The difference reflects the observability contrast: WTB needs help to recover a partly hidden operating boundary, whereas ERA5 already exposes the relevant thermodynamic marker in the state. The active-power anchor is standardized from training-split statistics and is never filled from the prediction horizon.
 
-### Routing stack and evidence boundary
-
-This makes the routing stack an anchor-constrained diagnostic rather than an unsupervised operating-state discovery method. High gate-regime agreement means that the implemented router obeys the declared SCADA boundary under the available anchor set; it does not establish anchor-free regime recovery.
+**Routing stack and evidence boundary:** This makes the routing stack an anchor-constrained diagnostic rather than an unsupervised operating-state discovery method. High gate-regime agreement means that the implemented router obeys the declared SCADA boundary under the available anchor set; it does not establish anchor-free regime recovery.
 
 ![Physics-aligned regime-aware MoE. The two datasets share the same directed-diffusion GRU encoder and node-level MoE routing mechanism. WTB uses a dynamic wake graph and a boundary-focused forcing term, whereas ERA5 uses a Haversine-Gaussian graph and a thermodynamic regime anchor.](artifacts/final_evidence_package/export/figures/figure1_architecture.pdf){ width=95% }
 
@@ -197,13 +199,9 @@ Prediction loss does not uniquely identify the gate when several experts can fit
 
 with inactive terms set to zero. Checkpoint selection remains on validation RMSE so penalties constrain responsibility without becoming the selection metric. Exact weights are in Supplementary Appendix~A.
 
-### Load balancing
+**Load balancing:** A balancing term prevents early expert collapse before regime-specific structure has time to emerge. It couples hard top-$K$ usage with soft probability mass over valid node-time samples. Supplementary Appendix~A gives the exact expression; physical ownership is supplied only by the anchored alignment terms below.
 
-A balancing term prevents early expert collapse before regime-specific structure has time to emerge. It couples hard top-$K$ usage with soft probability mass over valid node-time samples. Supplementary Appendix~A gives the exact expression; physical ownership is supplied only by the anchored alignment terms below.
-
-### Regime-anchor alignment
-
-The alignment term connects the first $C$ gate logits to the declared regime structure so that cross-seed statements such as "MPPT-aligned" refer to a fixed mapping rather than to post-hoc relabeling. With $\mathbf{z}^{(1:C)}_{i,t}$ denoting the anchored logits, $R_{i,t}$ the label, and $M_{i,t}$ the validity mask,
+**Regime-anchor alignment:** The alignment term connects the first $C$ gate logits to the declared regime structure so that cross-seed statements such as "MPPT-aligned" refer to a fixed mapping rather than to post-hoc relabeling. With $\mathbf{z}^{(1:C)}_{i,t}$ denoting the anchored logits, $R_{i,t}$ the label, and $M_{i,t}$ the validity mask,
 $$
 \begin{aligned}
 \mathcal{L}_{\mathrm{align}}
@@ -220,15 +218,11 @@ strict-cache checkpoints. In that five-seed rerun, the boundary-forced router
 keeps strong route recovery (NMI 0.721, ARI 0.740) while keeping the same
 strict-mask evaluation boundary.
 
-### Boundary-focused forcing (WTB only)
-
-After coarse alignment the boundary remains partly masked by control action. A focused forcing term acts on MPPT and pitch-control samples only. With $Y^{\mathrm{force}}_{i,t}=\mathbf{1}[R^{\mathrm{wtb}}_{i,t}=2]$ for $R^{\mathrm{wtb}}_{i,t}\in\{1,2\}$,
+**Boundary-focused forcing (WTB only):** After coarse alignment the boundary remains partly masked by control action. A focused forcing term acts on MPPT and pitch-control samples only. With $Y^{\mathrm{force}}_{i,t}=\mathbf{1}[R^{\mathrm{wtb}}_{i,t}=2]$ for $R^{\mathrm{wtb}}_{i,t}\in\{1,2\}$,
 $$\mathcal{L}_{\mathrm{force}} = \frac{1}{|\Omega_{\mathrm{force}}|}\sum_{(i,t)\in\Omega_{\mathrm{force}}}\mathrm{CE}\!\left(\left[z^{(\mathrm{mppt})}_{i,t}, z^{(\mathrm{pitch})}_{i,t}\right]^{\top}, Y^{\mathrm{force}}_{i,t}\right),$$
 where $\Omega_{\mathrm{force}}=\{(i,t):R^{\mathrm{wtb}}_{i,t}\in\{1,2\}, M_{i,t}=1\}$. This term is not a lead-time switch predictor; it is a boundary identifiability regularizer for the issue-time operating state.
 
-### Wake auxiliary supervision and graph smoothness
-
-A wake auxiliary label identifies residual wake ambiguity inside MPPT and pitch-control samples, and a graph-smoothness penalty discourages noisy neighbor-to-neighbor gate jumps. Both formulas are in Supplementary Appendix~A.
+**Wake auxiliary supervision and graph smoothness:** A wake auxiliary label identifies residual wake ambiguity inside MPPT and pitch-control samples, and a graph-smoothness penalty discourages noisy neighbor-to-neighbor gate jumps. Both formulas are in Supplementary Appendix~A.
 
 ## Operational reserve diagnostic protocol
 
@@ -267,28 +261,18 @@ The selected $(b,q)$ rule is then frozen and applied to the test split. The repo
 
 The cost ratio $\rho$ is an energy-system assumption rather than an abstract tuning knob. If the marginal cost of carrying one unit of reserve energy is $C_r$, then $\rho=10$ charges one unit of residual shortage as $10C_r$. Ratios 5--10 represent moderate reliability settings such as transition-window scheduling or imbalance screening; ratios 20--50 represent scarcity-aware screening where shortage avoidance dominates local cost savings. The primary diagnostic compares Graph WaveNet/global, Graph WaveNet/physical-bin, boundary router/global, and boundary router/gate-bin policies. Only same-model global comparisons attribute gate-bin reserve effects to the learned router.
 
-The market-facing use case is therefore a pre-dispatch reserve and imbalance-risk screening log rather than a settlement model: the saved run records route probability, reserve bin, selected quantile, residual shortfall, and anchor state for each escalated transition-window cell. A balancing desk can use this record to prioritize transition-window cells for operator review or reserve sensitivity checks before settlement exposure is known. A modular low-RMSE forecaster plus issue-time classifier can also emit a state flag; the extra value claimed here is narrower--same-run responsibility attached to the forecast residual and reserve slice, not superior clean-anchor classification or market-clearing profit.
-
-To bound this diagnostic against a probabilistic reserve alternative, we additionally run validation-frozen empirical quantile baselines for the global and physical operating bins. These are not trained distributional forecasters; they are conformal-style shortfall reserves estimated on the validation split and evaluated once on the test split. The main reported boundary window is fixed at $\pm 1.0$ m s$^{-1}$ around rated wind and the main cost ratio is $\rho=10$, with sensitivity at $\rho \in \{2,5,10,20,50\}$. A separate toy operational-cost module reports reserve procurement plus $\rho$-weighted residual-shortage penalty and excludes optimal power flow, unit commitment, market clearing, delivery constraints, and price claims.
+The operational use case is a pre-dispatch reserve and imbalance-risk screening log rather than a settlement model: the saved run records route probability, reserve bin, selected quantile, residual shortfall, and anchor state for each escalated transition-window cell. To bound this diagnostic against probabilistic alternatives, we evaluate validation-frozen empirical quantile baselines across global and physical operating bins, fixed at $\pm 1.0$ m s$^{-1}$ around rated wind with main cost ratio $\rho=10$ (sensitivity $\rho \in \{2,5,10,20,50\}$). The evaluation reports reserve procurement plus $\rho$-weighted residual shortage penalties, excluding optimal power flow, unit commitment, market clearing, delivery constraints, and price claims.
 
 
 # Case Study Configuration and Operational Constraints
 
 ## Datasets and preprocessing
 
-The experiment uses two observability settings, not two interchangeable benchmarks. WTB is the control-confounded case. The KDD Cup 2022 benchmark contains 134 turbines and 245 days of 10 min SCADA measurements [@zhou2024sdwpfdata]. Its role is to test whether a declared control boundary can be made auditable when inflow variation, wake disturbance and blade-pitch control are mixed in the same stream. The MPPT-to-pitch transition is therefore only indirectly visible from the aggregate forecast inputs.
-
-The data are reorganized into synchronous tensors with $T=35{,}280$ time steps, $N=134$ turbines, and $F=11$ dynamic inputs. Missing inputs are forward-filled within turbine and then completed with training-set means. Invalid or non-positive active power is retained only through its mask so that the model still sees operational irregularity without treating those points as supervised targets.
-
-ERA5 is the signal-expressive case. We use three archived months over a fixed $16 \times 16$ hourly patch [@hersbach2020era5]. Its role is not to provide a second wind-power leaderboard, but to contrast a setting in which the thermodynamic marker is directly visible through sensible heat flux. The retained tensor has $T=2208$ frames, $N=256$ nodes and eight input variables. Both datasets use the same history and horizon lengths, $H=36$ and $P=24$, so differences in performance cannot be attributed to unequal context length. The chronological split is 180/30/35 days for WTB and 1325/441/442 frames for ERA5.
+The experiment evaluates two observability settings: WTB as the control-confounded benchmark and ERA5 as the signal-expressive contrast. WTB (KDD Cup 2022) comprises 134 turbines and 245 days of 10-min SCADA records ($T=35{,}280$, $N=134$, $F=11$) [@zhou2024sdwpfdata], where inflow, wake, and pitch control interact, making the MPPT-to-pitch transition indirectly visible. Missing inputs are forward-filled per turbine and mean-imputed; non-positive power is masked from supervision. ERA5 covers three archived months on a $16 \times 16$ hourly patch ($T=2208$, $N=256$, eight features) [@hersbach2020era5], where sensible heat flux directly marks convective regimes. Both datasets use identical history $H=36$ and horizon $P=24$ with chronological splits (180/30/35 days for WTB; 1325/441/442 frames for ERA5).
 
 ## Techno-Economic Validation and Benchmarking Framework
 
-The comparison has two layers. The first isolates the routing mechanism after shared-capacity explanations have been controlled. The dense baseline uses the same directed-diffusion GRU encoder and replaces the expert mixture with one dense prediction head. The unconstrained MoE adds routed capacity without physical correction. The corrected-routing comparator is dataset-specific: ERA5 uses the full corrected stack, whereas WTB uses the boundary-focused variant selected for gate recovery. Parameter budgets are matched within each dataset. This in-family comparison is necessary because MoE studies distinguish the effect of routing capacity from the effect of routing constraints [@jacobs1991adaptive; @shazeer2017outrageously; @fedus2022switch].
-
-The second layer tests the RMSE price against stronger and more engineering-facing baselines. Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST, iTransformer, and TiDE are included for WTB [@nie2023patchtst; @liu2024itransformer; @das2023longterm], together with deterministic persistence, a fitted physical power-curve baseline, XGBoost and LightGBM lag-feature predictors, and a DLinear-style LTSF baseline. Graph WaveNet, STGCN, PatchTST, TCN, and a deterministic persistence predictor are included for ERA5. This split avoids using one comparison for two different claims. The in-family layer tests whether physical routing changes the learned partition under a fixed backbone. The baseline layer tests whether the routing intervention remains honest about forecast error when compared with established temporal, graph, and engineering predictors.
-
-For compactness, the mechanism tables shorten the three in-family model names to **Dense (matched)**, **Unconstrained MoE**, and **Corrected routing comparator**. The main WTB forecasting table reports representative strong baselines, including the best strict-cache baseline used for the RMSE price, while the full neural, anchor-only, and engineering baseline records remain in the source tables. The ERA5 forecasting tables additionally report persistence and four learned external baselines. The in-family mechanism families are summarized in Supplementary Appendix~A so that the Results section can focus on evidence rather than model bookkeeping.
+The benchmarking framework has two layers. The first isolates routing mechanisms under matched capacity: the dense baseline replaces the expert mixture with a single head, unconstrained MoE adds capacity without physical loss, and the corrected routing comparator incorporates the physics loss suite [@shazeer2017outrageously; @fedus2022switch]. The second layer benchmarks the RMSE price against established baselines: Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST, iTransformer, and TiDE for WTB [@nie2023patchtst; @liu2024itransformer; @das2023longterm], along with persistence, physical power curves, and GBDT lag models. In mechanism tables, in-family models are designated **Dense (matched)**, **Unconstrained MoE**, and **Corrected routing comparator**; complete baseline configurations appear in Supplementary Appendix~A.
 
 ## Training protocol and evaluation metrics
 
@@ -306,16 +290,16 @@ The results are organised as an evidence ladder. We first establish the informat
 
 ## Can the Gate Recover the Operating Boundary?
 
-The first question is whether routing improves forecast accuracy. It does not. Across five WTB seeds, the boundary-forced router reaches RMSE 236.13 +/- 8.41, compared with 224.34 +/- 2.23 for iTransformer and 225.74 +/- 2.60 for Graph WaveNet. The router is therefore 11.79 RMSE units above iTransformer and 10.39 units above Graph WaveNet. The provenance-corrected train-only rerun reduces this gap to 5.59 units, with RMSE 229.93 +/- 2.50, but its route artifacts are not the same saved checkpoint used in the full operational audit. We consequently treat the routed forecaster as a diagnostic layer with an explicit accuracy price, not as a forecasting leaderboard replacement.
+The first question is whether routing improves forecast accuracy. It does not. Across five WTB seeds, the boundary-forced router reaches RMSE 236.13 +/- 8.41, compared with 224.34 +/- 2.23 for iTransformer and 225.74 +/- 2.60 for Graph WaveNet. The router is therefore 11.79 RMSE units above iTransformer and 10.39 units above Graph WaveNet. The provenance-corrected train-only rerun reduces this gap to 5.59 units, with RMSE 229.93 +/- 2.50. This train-only rerun is the single provenance-corrected evidence source for all headline claims, while legacy checkpoints are retained strictly as historical reference. We treat the routed forecaster as a diagnostic layer with an explicit accuracy price, not as a forecasting leaderboard replacement.
 
 The second question is whether the selected boundary is a meaningful stress slice. Anchors within +/-1.0 m s$^{-1}$ of rated wind have RMSE 321.17 +/- 21.31, approximately 67 units above valid non-boundary MPPT/pitch anchors. The same band has mixed-regime structure, with NMI/ARI of 0.6562/0.7766. These observations motivate the reserve audit, but they do not show that routing caused the stress. ERA5 serves only as an observability contrast: the thermodynamic marker is directly visible there, so alignment can be examined separately from the WTB control-confounded case.
 
 ```{=latex}
-\begin{table}[H]
+\begin{table}[!t]
 \centering
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.08}
+\scriptsize
+\setlength{\tabcolsep}{1.0pt}
+\renewcommand{\arraystretch}{0.85}
 \caption{Operating-boundary recovery and mechanism checks.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.30\linewidth} >{\raggedright\arraybackslash}p{0.34\linewidth} >{\raggedright\arraybackslash}X}
 \toprule
@@ -335,67 +319,67 @@ Threshold-grid audit & Worst-case saved-gate NMI / ARI & 0.8655 +/- 0.0429 / 0.9
 
 ## Withheld-channel signature recovery
 
-The route is then tested for circularity. If the gate merely replayed the threshold rule, removing the wind-speed and pitch-angle channels from the anchor should destroy alignment. Instead, a signature-gate probe zeros `Wspd` and `Pab_mean` at the anchor while retaining active power and the remaining consequence channels, and re-trains five seeds from a frozen strict cache. The gate still recovers the operating boundary with mean NMI 0.561 and ARI 0.635 (Table \ref{tab:signature-gate}; per-seed values in Supplementary Table A9b). Removing active power as well (`signature_core`) drops mean NMI to 0.367, with three of five seeds collapsing to a single expert; the non-power consequence channels therefore carry a weaker but non-zero signature. When the withheld-channel probe is repeated with permuted regime labels, NMI collapses to 4e-6, confirming that the 0.561 result is not an accidental correlation between input statistics and the threshold rule. The same probe on ENGIE La Haute Borne, under the identical threshold definition and a full-anchor baseline of NMI 0.975, keeps mean NMI 0.674 for `signature_full` and 0.575 for `signature_core` with no collapsed seeds and collapses to 1.92e-04 under permuted labels, so the boundary signature is recoverable across farms rather than being WTB-specific. On two farms with partial pitch observability, the probe persists above chance: Kelmarsh (55% pitch coverage) reaches 0.340/0.378 for the two withheld-channel variants, and Penmanshiel (78%) reaches 0.302 with `signature_core` at 0.195, just below the 0.20 criterion but more than three orders of magnitude above the shuffled control (4.4e-05). Secondary and fixed random windows on both farms stay above the 0.20 criterion (0.277-0.458; Supplementary Table A9e), so the result is not an artefact of window selection. The signature strength is therefore modulated by consequence-channel quality rather than by pitch coverage alone, and the permuted-label controls rule out input-distribution artefacts at every farm.
+The route is tested for circularity: if the gate merely replayed the threshold rule, removing wind-speed and pitch-angle channels should destroy alignment. Instead, zeroing `Wspd` and `Pab_mean` while retaining active power and conseq. channels yields mean NMI 0.561 and ARI 0.635 across five seeds (Table~\ref{tab:signature-gate}; Supplementary Table A9b). Removing active power (`signature_core`) drops mean NMI to 0.367 (three seeds collapsing). Under permuted labels, NMI collapses to 4e-6, ruling out spurious correlation. On ENGIE La Haute Borne (full-anchor baseline NMI 0.975), the probe keeps mean NMI 0.674 for `signature_full` and 0.575 for `signature_core` (collapsing to 1.92e-04 under permuted labels). On partial-pitch farms, the probe persists above chance: Kelmarsh (55\% pitch coverage) reaches 0.340/0.378, and Penmanshiel (78\%) reaches 0.302 (`signature_core` at 0.195, above shuffled 4.4e-05). Fixed windows stay above 0.20 (0.277--0.458; Supplementary Table A9e), confirming signature recoverability across sites.
 
 ```{=latex}
-\begin{table}[H]
+\begin{table}[!t]
 \centering
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.08}
-\caption{Signature-gate identifiability probe on WTB. The gate anchor never sees the withheld channels. All values are mean$\\pm$sd over five seeds; collapsed seeds are noted for `signature_core'.}
+\scriptsize
+\setlength{\tabcolsep}{1.0pt}
+\renewcommand{\arraystretch}{0.85}
+\caption{Signature-gate identifiability probe on WTB. The gate anchor never sees the withheld channels. All values are mean $\pm$ sd over five seeds; collapsed seeds are noted for \texttt{signature\_core}.}
 \label{tab:signature-gate}
-\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.30\linewidth} >{\centering\arraybackslash}p{0.18\linewidth} >{\centering\arraybackslash}p{0.18\linewidth} >{\raggedright\arraybackslash}X}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.36\linewidth} >{\centering\arraybackslash}p{0.15\linewidth} >{\centering\arraybackslash}p{0.15\linewidth} >{\raggedright\arraybackslash}X}
 \toprule
 Probe & RMSE & NMI / ARI & Interpretation \\
 \midrule
 Canonical full-anchor & 229.93 & 0.7208 / 0.7398 & Train-only clean baseline \\
-`signature_full' (no Wspd/Pab_mean) & 241.84 $\\pm$ 7.19 & 0.5613 $\\pm$ 0.0199 / 0.6347 $\\pm$ 0.0239 & Boundary recoverable from consequence channels \\
-`signature_core' (no Wspd/Pab_mean/Patv) & 302.10 $\\pm$ 9.16 & 0.3671 $\\pm$ 0.0372 / 0.4342 $\\pm$ 0.0378 & Weaker non-power signature; 3/5 seeds collapsed \\
-`signature_full_shuffled' & 241.50 $\\pm$ 10.25 & 4.0e-6 $\\pm$ 2.1e-6 / $-$1.3e-5 $\\pm$ 5.3e-5 & Negative control: chance level under permuted labels \\
+\texttt{signature\_full} (no \texttt{Wspd}/\texttt{Pab\_mean}) & 241.84 $\pm$ 7.19 & 0.5613 $\pm$ 0.0199 / 0.6347 $\pm$ 0.0239 & Boundary recoverable from conseq. channels \\
+\texttt{signature\_core} (no \texttt{Wspd}/\texttt{Pab\_mean}/\texttt{Patv}) & 302.10 $\pm$ 9.16 & 0.3671 $\pm$ 0.0372 / 0.4342 $\pm$ 0.0378 & Weaker non-power signature; 3/5 seeds collapsed \\
+\texttt{sig\_full\_shuffled} & 241.50 $\pm$ 10.25 & 4.0e-6 $\pm$ 2.1e-6 / $-$1.3e-5 $\pm$ 5.3e-5 & Negative control: chance level under permuted labels \\
 Unconstrained MoE & --- & 0.014 / --- & No declared-boundary supervision \\
 \midrule
-\multicolumn{4}{l}{\textit{Cross-farm replication, ENGIE La Haute Borne (same threshold definition)}} \\
-LHB canonical (full anchor) & 185.0 $\\pm$ 1.9 & 0.9752 $\\pm$ 0.0088 / 0.9904 $\\pm$ 0.0044 & Full-anchor baseline, identical protocol \\
-LHB `signature_full' & 185.1 $\\pm$ 1.4 & 0.6743 $\\pm$ 0.1209 / 0.7401 $\\pm$ 0.1604 & Boundary signature transfers; min-seed 0.499 \\
-LHB `signature_core' & 188.0 $\\pm$ 1.0 & 0.5750 $\\pm$ 0.0423 / 0.6270 $\\pm$ 0.0638 & Non-power signature transfers; 0/5 collapsed \\
+\multicolumn{4}{@{}p{\linewidth}@{}}{\textit{Cross-farm replication, ENGIE La Haute Borne (identical threshold)}} \\
+LHB canonical (full anchor) & 185.0 $\pm$ 1.9 & 0.9752 $\pm$ 0.0088 / 0.9904 $\pm$ 0.0044 & Full-anchor baseline, identical protocol \\
+LHB \texttt{signature\_full} & 185.1 $\pm$ 1.4 & 0.6743 $\pm$ 0.1209 / 0.7401 $\pm$ 0.1604 & Boundary signature transfers; min-seed 0.499 \\
+LHB \texttt{signature\_core} & 188.0 $\pm$ 1.0 & 0.5750 $\pm$ 0.0423 / 0.6270 $\pm$ 0.0638 & Non-power signature transfers; 0/5 collapsed \\
 \midrule
-\multicolumn{4}{l}{\textit{Partial-pitch-observability farms (pitch coverage: Penmanshiel 78\%, Kelmarsh 55\%)}} \\
-Penmanshiel `signature_full' & --- & 0.3024 $\\pm$ 0.0343 & Above the 0.20 criterion; shuffled 4.4e-5 \\
-Penmanshiel `signature_core' & --- & 0.1954 $\\pm$ 0.0961 & Borderline: below 0.20 but 4400x above shuffled chance \\
-Kelmarsh `signature_full' & --- & 0.3402 $\\pm$ 0.0736 & Above the 0.20 criterion; shuffled 9.2e-5 \\
-Kelmarsh `signature_core' & --- & 0.3775 $\\pm$ 0.0783 & Above the 0.20 criterion \\
+\multicolumn{4}{@{}p{\linewidth}@{}}{\textit{Partial-pitch farms (pitch coverage: Penmanshiel 78\%, Kelmarsh 55\%)}} \\
+Penmanshiel \texttt{signature\_full} & --- & 0.3024 $\pm$ 0.0343 & Above the 0.20 criterion; shuffled 4.4e-5 \\
+Penmanshiel \texttt{signature\_core} & --- & 0.1954 $\pm$ 0.0961 & Borderline: below 0.20 but 4400x above shuffled chance \\
+Kelmarsh \texttt{signature\_full} & --- & 0.3402 $\pm$ 0.0736 & Above the 0.20 criterion; shuffled 9.2e-5 \\
+Kelmarsh \texttt{signature\_core} & --- & 0.3775 $\pm$ 0.0783 & Above the 0.20 criterion \\
 \bottomrule
 \end{tabularx}
 \end{table}
 ```
 
-The route then passes targeted falsification checks, with an important qualification. Zeroing the boundary anchors increases RMSE by 2.679 and reduces NMI/ARI by 0.702/0.859, whereas zeroing the wake score has a near-null effect. The result identifies the declared boundary anchors, rather than the wake auxiliary channel, as the load-bearing information source. Within WTB, alignment remains detectable on withheld turbines (NMI 0.834) and a future holdout (NMI 0.835). The signature-gate probe in Table~\\ref{tab:signature-gate} further shows that the boundary is recoverable even when the defining wind-speed and pitch-angle channels are withheld from the gate. On ENGIE La Haute Borne, retraining from scratch reaches NMI 0.941 and ARI 0.971 with directly observed pitch; this is anchor-observable re-trainability, not evidence for anchor-free discovery or cross-farm transfer. On Kelmarsh and Penmanshiel, partial pitch observability no longer reads as a hard no-go: the withheld-channel probe stays above chance (0.30-0.38), so these farms sit on a graded deployment spectrum in which pitch coverage modulates, but does not extinguish, boundary recoverability.
+The route then passes targeted falsification checks, with an important qualification. Zeroing the boundary anchors increases RMSE by 2.679 and reduces NMI/ARI by 0.702/0.859, whereas zeroing the wake score has a near-null effect. The result identifies the declared boundary anchors, rather than the wake auxiliary channel, as the load-bearing information source. Within WTB, alignment remains detectable on withheld turbines (NMI 0.834) and a future holdout (NMI 0.835). The signature-gate probe in Table~\ref{tab:signature-gate} further shows that the boundary is recoverable even when the defining wind-speed and pitch-angle channels are withheld from the gate. On ENGIE La Haute Borne, retraining from scratch reaches NMI 0.941 and ARI 0.971 with directly observed pitch; this is anchor-observable re-trainability, not evidence for anchor-free discovery or cross-farm transfer. On Kelmarsh and Penmanshiel, partial pitch observability no longer reads as a hard no-go: the withheld-channel probe stays above chance (0.30-0.38), so these farms sit on a graded deployment spectrum in which pitch coverage modulates, but does not extinguish, boundary recoverability.
 
-The third question is whether the route remains useful when the confirming label stream degrades. We define the deployment semantics explicitly: a confirming-stream delay means the issue-time wind-speed and pitch readings used by every detector arrive $d$ steps late, while the archived history window remains available; sensor noise corrupts all current and historical readings of the same two channels. The Kelmarsh 2016 archive grounds this scenario: its Status stream carries 14,019 second-level timestamped events of which 99.6\% fall strictly between 10-minute turbine-data grid points, so the 10-minute confirming channel cannot confirm the event time at issue time, and the archive export post-dates the data interval by years (Supplementary Material). Under the fair degradation defined above, the routed posterior retains recall 0.962/0.943/0.933 at one/three/six-step delays while the rule falls from 1.000 to 0.196 (Table~\ref{tab:early-warning}). The routing structure is load-bearing here, not incidental: a jointly-trained but non-routed posterior head on the same encoder falls to 0.286 at the same six-step delay, and an independently-trained multi-channel classifier keeps 0.868 only because it never consumes the delayed channels (and we show below that its posterior has no pricing value). Under the strongest noise level the routed posterior keeps 0.951 against 0.680 for the rule, and a worst-case upper-bound variant, in which the delay also stalls the archived history channels, keeps it at 0.846/0.628/0.416 against 0.655/0.381/0.196 (gains +0.19/+0.25/+0.22). In the clean-anchor condition the rule remains the stronger detector (1.000 versus 0.971), and the clean-anchor logistic classifier reaches 1.000 recall with 0.879 precision, above the routed posterior's precision of 0.630. The supported claim is therefore degradation-robust boundary detection through the routing structure, not superior standalone detection.
+The third question is whether the route remains useful when the confirming label stream degrades. We define the deployment semantics explicitly: a confirming-stream delay means the issue-time wind-speed and pitch readings used by every detector arrive $d$ steps late, while the archived history window remains available; sensor noise corrupts all current and historical readings of the same two channels. The Kelmarsh 2016 archive grounds this scenario in asynchronous event streams: its Status stream carries 14,019 second-level timestamped events of which 99.6\% fall strictly between 10-minute turbine-data grid points, so the 10-minute confirming channel cannot confirm the event time at issue time, and the archive export post-dates the data interval by years (Supplementary Material). The synthetic delay and noise injection on WTB serves as a controlled deployment stress test evaluating detector robustness across varying delay horizons. Under fair degradation, the routed posterior retains recall 0.962/0.943/0.933 at one/three/six-step delays while the rule falls from 1.000 to 0.196 (Table~\ref{tab:early-warning}). The routing structure is load-bearing: a jointly-trained but non-routed posterior head on the same encoder falls to 0.286 at six steps, and an independent classifier keeps 0.868 only because it never consumes the delayed channels (with zero pricing value). Under maximum noise, the routed posterior keeps 0.951 versus 0.680 for the rule; in stalled-history bounds it keeps 0.846/0.628/0.416 versus 0.655/0.381/0.196 (gains +0.19/+0.25/+0.22). With clean anchors, the rule remains the stronger detector (1.000 versus 0.971), and clean logistic regression reaches 1.000 recall with 0.879 precision (above the routed posterior's 0.630). Thus, routing delivers degradation-robust boundary detection rather than superior standalone accuracy.
 
 This audit asks about a degraded confirmation stream, not clean-anchor classifier ranking. A modular low-RMSE forecaster plus live-anchor classifier and physical-bin reserve rule is a valid alternative when only a state flag is needed, and we report it honestly: the Graph WaveNet+classifier-bin control costs 86.54M, which is lower than the boundary-router gate-bin at 95.13M because Graph WaveNet is the stronger forecaster, but it trails the same backbone's physical-bin reference (84.31M; Supplementary Table A10c). The in-model route is therefore not required to win the reserve leaderboard; its missing piece is trainable route responsibility attached to each forecast, same-run route-conditioned residual/reserve slicing, and a single deployment object whose version, calibration, and monitoring state can be audited together. The route-evolution audit adds the dynamic check: gate matching to the new regime peaks at the transition step (0.815) and drops under three- and six-step lead shifts (0.361 and 0.405; Supplementary Table A10b). The anchor-only router has lower overall RMSE (233.46) and slightly higher NMI/ARI (0.8895/0.9219), but worse pitch-control RMSE (317.81 versus 286.95) and far larger 0.5-std boundary-anchor-noise degradation (105.56 versus 5.78).
 
 We report the operating trade-off explicitly. A model receives citable degraded-label gain only after its route passes the physical-routing audit; otherwise the accountability gain is set to zero, even for an accurate or routed-capacity model. Under this rule iTransformer is the zero-RMSE-price anchor without an audited operating-state route, Unconstrained MoE fails the route audit (NMI 0.014), and the train-only class-weight rerun is the single evidence source for the headline audit: RMSE 229.93, a six-step fair-degradation recall gain of +0.737, and the reserve diagnostics below, all drawn from the same five-seed provenance-corrected checkpoints. The logistic control is reported separately because it is a detector on live anchors, not a forecaster with routed attribution.
 
 ```{=latex}
-\begin{table}[H]
+\begin{table}[!t]
 \centering
 \scriptsize
-\setlength{\tabcolsep}{1.5pt}
-\renewcommand{\arraystretch}{1.05}
-\caption{Early MPPT-to-pitch pitch-window detection under fair input degradation. Delay and noise degrade the gate's own anchor readings and the rule identically; mean$\\pm$sd over five train-only seeds. Availability rows degrade the confirming label stream only, which the gate does not consume at test time.}
+\setlength{\tabcolsep}{1.0pt}
+\renewcommand{\arraystretch}{0.85}
+\caption{Early MPPT-to-pitch pitch-window detection under fair input degradation. Delay and noise degrade the gate's own anchor readings and the rule identically; mean $\pm$ sd over five train-only seeds. Availability rows degrade the confirming label stream only, which the gate does not consume at test time.}
 \label{tab:early-warning}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.22\linewidth} >{\raggedright\arraybackslash}p{0.24\linewidth} >{\centering\arraybackslash}p{0.15\linewidth} >{\centering\arraybackslash}p{0.15\linewidth} >{\centering\arraybackslash}X}
 \toprule
 Scenario & Setting & Gate & Rule & Gain \\
 \midrule
-Clean anchors & --- & 0.9705 $\\pm$ 0.0299 & 1.000 & $-$0.029 \\
-Delay (fair) & 1 step & 0.9622 $\\pm$ 0.0306 & 0.655 & +0.307 \\
-Delay (fair) & 3 steps & 0.9430 $\\pm$ 0.0361 & 0.381 & +0.562 \\
-Delay (fair) & 6 steps & 0.9327 $\\pm$ 0.0429 & 0.196 & +0.737 \\
-Noise (fair) & Wspd 0.5, Pab 1.0 & 0.9635 $\\pm$ 0.0375 & 0.811 $\\pm$ 0.016 & +0.152 \\
-Noise (fair) & Wspd 1.0, Pab 2.0 & 0.9505 $\\pm$ 0.0363 & 0.680 $\\pm$ 0.019 & +0.271 \\
+Clean anchors & --- & 0.9705 $\pm$ 0.0299 & 1.000 & $-$0.029 \\
+Delay (fair) & 1 step & 0.9622 $\pm$ 0.0306 & 0.655 & +0.307 \\
+Delay (fair) & 3 steps & 0.9430 $\pm$ 0.0361 & 0.381 & +0.562 \\
+Delay (fair) & 6 steps & 0.9327 $\pm$ 0.0429 & 0.196 & +0.737 \\
+Noise (fair) & Wspd 0.5, Pab 1.0 & 0.9635 $\pm$ 0.0375 & 0.811 $\pm$ 0.016 & +0.152 \\
+Noise (fair) & Wspd 1.0, Pab 2.0 & 0.9505 $\pm$ 0.0363 & 0.680 $\pm$ 0.019 & +0.271 \\
 \midrule
 Availability & 75\% labels & 0.971 & 0.744 & +0.227 \\
 Availability & 50\% labels & 0.971 & 0.508 & +0.462 \\
@@ -405,7 +389,7 @@ Availability & 25\% labels & 0.971 & 0.242 & +0.729 \\
 \end{table}
 ```
 
-The training-level anchor-stress guard keeps the leakage boundary visible. In the clean train-only rerun, removing \texttt{Patv} or \texttt{Pab\_mean} leaves mean NMI at 0.881 and 0.878, while lagging \texttt{Patv} and lagging pitch/wind give 0.763 and 0.684. These older ablations are reported with the same strict-cache protocol but under a different auxiliary-weight configuration from the signature-gate probe in Table~\\ref{tab:signature-gate}; the two probe families should not be numerically merged. The consistent finding is that the route is not a leakage artifact, but it remains a declared-anchor mechanism rather than anchor-free discovery.
+The training-level anchor-stress guard keeps the leakage boundary visible. In the clean train-only rerun, removing \texttt{Patv} or \texttt{Pab\_mean} leaves mean NMI at 0.881 and 0.878, while lagging \texttt{Patv} and lagging pitch/wind give 0.763 and 0.684. These older ablations are reported with the same strict-cache protocol but under a different auxiliary-weight configuration from the signature-gate probe in Table~\ref{tab:signature-gate}; the two probe families should not be numerically merged. The consistent finding is that the route is not a leakage artifact, but it remains a declared-anchor mechanism rather than anchor-free discovery.
 
 ![The WTB operating plane shows the main mechanism: after correction, the dominant routed responsibility changes around the rated-wind and pitch-control boundary instead of forming an arbitrary expert partition. The confusion matrices summarize the same recovery numerically.](artifacts/final_evidence_package/export/figures/figure4_routing_evidence.pdf){ width=97% }
 
@@ -416,11 +400,11 @@ The reserve audit is a consequence check for the recovered route, not a dispatch
 At a shortage-to-reserve cost ratio of 10, gate-conditioned binning carries 1.95M more reserve than the same-router global rule, while shortage energy decreases by 16.9% (seed-paired mean difference -0.637M, CI [-0.976M, -0.300M]) and violation rate decreases by 1.45 percentage points (CI [-0.0220, -0.0073]). The same-model cost difference is -4.42M (CI [-7.36M, -1.27M]), and the parallel Physics-Aligned MoE family reproduces the direction (-4.26M, CI [-5.43M, -3.04M]). The physical-bin reference remains competitive, and the full-sample cross-backbone uncertainty interval crosses zero. The result therefore supports a conditional transition-window diagnostic, not reserve-policy superiority.
 
 ```{=latex}
-\begin{table}[H]
+\begin{table}[!t]
 \centering
 \scriptsize
-\setlength{\tabcolsep}{2pt}
-\renewcommand{\arraystretch}{1.08}
+\setlength{\tabcolsep}{1.0pt}
+\renewcommand{\arraystretch}{0.85}
 \caption{Boundary-window reserve diagnostic and validation-frozen quantile baselines at cost ratio 10, train-only class-weight checkpoints for both MoE families. Same-model gate-bin differences have seed-paired support; physical-bin and full-sample comparisons bound the claim.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.24\linewidth} >{\centering\arraybackslash}p{0.11\linewidth} >{\centering\arraybackslash}p{0.11\linewidth} >{\centering\arraybackslash}p{0.11\linewidth} >{\centering\arraybackslash}p{0.12\linewidth} >{\raggedright\arraybackslash}X}
 \toprule
@@ -442,28 +426,30 @@ The useful reserve window is moderate rather than universal: ratios 5--10 favor 
 
 The modular-equivalence control quantifies what the in-model posterior adds on the same backbone. A validation-fit logistic classifier on the same issue-time anchors reproduces the physical-bin reserve almost exactly (16.190M versus 16.190M; seed-paired mean difference -68, CI [-112, -28]), and both beat the hard gate-bin route (16.398M). So the hard route has no reserve increment on clean anchors. The jointly-learned soft posterior does: it reaches 16.065M, below the classifier control by 125k (CI [-297k, +34k]) and below the global rule by 568k (CI [-726k, -406k]; Supplementary Table A11c). Combined with the fair-degradation audit, where the classifier's clean-anchor advantage disappears (recall 0.885 under the strongest noise against 0.951 for the routed posterior), the honest statement is: a modular classifier is an equivalent clean-anchor replacement for pricing, while the jointly-learned posterior keeps both the pricing increment (through joint learning, Table~\ref{tab:mechanism}) and the degraded-stream robustness (through the routing structure, 0.933 versus 0.286) in one deployment object.
 
-A softer reading of the same route adds the within-regime gradation that a hard rule cannot express. Inside the +/-1.0 m s$^{-1}$ boundary band, validation-frozen quintile bins of the jointly-learned posterior reduce total cost below the global quantile: pitch-probability bins by 568k (CI [-726k, -406k]) with pinball improvement 1.82 at $q{=}0.90$ (Supplementary Table A11b). The mechanism decomposition in Table~\ref{tab:mechanism} localizes where this value comes from. Joint learning is the source: a posterior head trained jointly with the same encoder but without routing prices at 16.076M, statistically indistinguishable from the routed posterior at 16.065M, while an independently-trained GBDT posterior on the same consequence channels prices at 17.656M---1.6M worse than the joint posterior and 1.0M worse than the global rule. The honest clean-observation baseline is the continuous pitch-angle quantile, which prices at 15.538M, below every learned strategy (its advantage narrows and its usability disappears as pitch observations degrade; Supplementary Table A11b). We therefore claim the joint posterior, not the routing choice: with clean, complete observations an operator should use the physical quantile; when the confirming channels degrade, the jointly-learned posterior is the pricing signal that survives, and the routing structure is what keeps its detection alive (0.933 versus 0.286). Violation rate rises by about 0.001 for the learned strategies, which is reported rather than hidden.
+A softer reading of the same route adds the within-regime gradation that a hard rule cannot express. Inside the +/-1.0 m s$^{-1}$ boundary band, validation-frozen quintile bins of the jointly-learned posterior reduce total cost below the global quantile: pitch-probability bins by 568k (CI [-726k, -406k]) with pinball improvement 1.82 at $q{=}0.90$ (Supplementary Table A11b). The mechanism decomposition in Table~\ref{tab:mechanism} localizes where this value comes from. The evidence is consistent with a joint-learning and shared-representation explanation rather than a strictly causal claim: a posterior head trained jointly with the same encoder but without routing prices at 16.076M (no detected difference from the routed posterior at 16.065M, noting that no formal equivalence margin was prespecified), while an independently-trained GBDT posterior on the same conseq. channels prices at 17.656M---1.6M worse than the joint posterior and 1.0M worse than the global rule. The honest clean-observation baseline is the continuous pitch-angle quantile, which prices at 15.538M, below every learned strategy (its advantage narrows and its usability disappears as pitch observations degrade; Supplementary Table A11b). We therefore claim the joint posterior, not the routing choice: with clean, complete observations an operator should use the physical quantile; when the confirming channels degrade, the jointly-learned posterior is the pricing signal that survives, and the routing structure is what keeps its detection alive (0.933 versus 0.286). Violation rate rises by about 0.001 for the learned strategies, which is reported rather than hidden.
 
 ```{=latex}
-\begin{table}[H]
+\begin{table}[!t]
 \centering
-\footnotesize
-\setlength{\tabcolsep}{2.2pt}
-\renewcommand{\arraystretch}{1.06}
+\scriptsize
+\setlength{\tabcolsep}{1.0pt}
+\renewcommand{\arraystretch}{0.85}
 \caption{Mechanism decomposition: where the boundary-risk posterior's value comes from. Reserve costs are validation-frozen boundary-band totals at $\rho{=}10$ (mean over five seeds); degraded recall is the early-window recall under a six-step confirming-stream delay applied identically to every detector.}
 \label{tab:mechanism}
-\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{0.10\columnwidth} >{\centering\arraybackslash}p{0.10\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth}}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.33\columnwidth} >{\centering\arraybackslash}p{0.09\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}X}
 \toprule
 Pricing / detection method & Jointly trained & Needs physical channels & Reserve cost & Degraded recall \\
 \midrule
-Continuous pitch quantile (soft-pab) & no & yes & 15.538M & 16.048M (collapses) \\
+Continuous pitch quantile (soft-pab) & no & yes & 15.538M & --$^{\dagger}$ \\
 Threshold rule & no & yes & 16.190M (physical-bin) & 0.196 \\
 Independent logistic classifier & no & yes & 16.190M & 0.885 (noise) \\
-Independent GBDT posterior & no & consequence channels & 17.656M & 0.868 \\
+Independent GBDT posterior & no & conseq. channels & 17.656M & 0.868 \\
 Joint non-routed posterior head & yes & weak & 16.076M & 0.286 \\
 Joint routed posterior (this work) & yes & weak & 16.065M & 0.933 \\
 \midrule
 Global quantile & -- & -- & 16.632M & 0.971 (clean rule) \\
+\midrule
+\multicolumn{5}{p{0.96\linewidth}}{\scriptsize $^{\dagger}$Soft-pab is a continuous quantile pricing rule, not a binary detector; under degraded pitch its reserve cost degrades to 16.048M.} \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -476,16 +462,14 @@ The same posterior stratifies forecast risk inside the rule classes. On rule-MPP
 
 ## Accuracy, accountability and deployment gates
 
-The accuracy cost is not a secondary detail. iTransformer, Graph WaveNet and lag-feature baselines remain better whole-sample forecasters on WTB, and the routed model should therefore be paired with an established low-RMSE forecaster when aggregate prediction is the primary objective. Its narrower use is an accountable operating-state assignment for a boundary-specific decision. Time-forward testing further shows that stable routing semantics do not guarantee stable reserve value under distribution shift.
-
-The external evidence is deliberately graded rather than two-sided. La Haute Borne passes the anchor-observable replication check (canonical NMI 0.975, with replay support in Supplementary Tables A8--A9), and the withheld-channel probe keeps 0.674/0.575 there. On Kelmarsh (55\% pitch coverage) the probe stays at 0.340/0.378, and on Penmanshiel (78\%) at 0.302 with `signature_core` just below the 0.20 criterion, in both cases orders of magnitude above the permuted-label controls (Supplementary Table A9d). Partial pitch observability therefore modulates rather than extinguishes boundary recoverability, and the deployment decision is a graded signature-strength check. Direct gate-bin reserve use at a new farm still requires pitch or proxy observability, boundary-cell support, compatible geometry, local threshold estimation and a held-out routing pass; these gates are part of the method specification because SCADA-based condition monitoring is only as portable as the measured operating channels [@tautzweinert2017scada].
+The accuracy cost is not secondary: iTransformer, Graph WaveNet, and lag baselines remain superior whole-sample forecasters on WTB; the routed model should pair with an established low-RMSE forecaster when aggregate accuracy is paramount. Its targeted role is an accountable operating-state diagnostic for boundary-specific decisions. External testing is graded rather than binary: La Haute Borne demonstrates anchor-observable replication (canonical NMI 0.975; withheld probe 0.674/0.575). On Kelmarsh (55\% pitch) the probe reaches 0.340/0.378, and on Penmanshiel (78\%) 0.302 (`signature_core` 0.195, far above permuted controls; Supplementary Table A9d). Partial pitch observability modulates rather than eliminates boundary recoverability. Direct reserve deployment at new farms still requires pitch or proxy observability, boundary support, compatible geometry, local recalibration, and a held-out routing pass [@tautzweinert2017scada].
 
 ```{=latex}
-\begin{table}[H]
+\begin{table}[!t]
 \centering
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.08}
+\scriptsize
+\setlength{\tabcolsep}{1.0pt}
+\renewcommand{\arraystretch}{0.85}
 \caption{Deployment checks identified by multi-farm testing. The withheld-channel probe replaces the binary observability gate with a graded signature-strength reading.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.28\linewidth} >{\raggedright\arraybackslash}p{0.38\linewidth} >{\raggedright\arraybackslash}X}
 \toprule
@@ -503,11 +487,7 @@ Geometry and regime support & Farm scale, sensor fields, power curves, and regim
 
 # Limitations
 
-The WTB correction uses threshold pseudo-labels from wind speed and mean pitch angle, and those same channels appear in the gate anchor. The signature-gate probes show that the boundary remains recoverable when these channels are withheld, because the control transition leaves a detectable signature in consequence channels such as active power, reactive power and blade-pitch dispersion, and this signature replicates across four farms with permuted-label controls at chance level. A further ablation removes blade-pitch dispersion as well: the non-power signature survives with mean NMI 0.309 on WTB and 0.578 on La Haute Borne, so pitch dispersion is not the carrier of the signal. Nevertheless, the method still constrains a router to a declared operating boundary rather than discovering an anchor-free physical state. This is consistent with the observability requirement in physics-guided learning: a constraint cannot be interpreted independently of the measured variables that define it [@karniadakis2021piml; @zehtabiyan2023physicsguided]. The active-power anchor is also a timing constraint: inputs may contain $\texttt{Patv}_{t-H+1:t}$ and issue-time $\texttt{Patv}_{t}$, while targets begin at $\texttt{Patv}_{t+1:t+P}$.
-
-The expert-regime language is tied to the implemented logit convention: anchored logits are interpretable under the declared mapping, whereas unassigned experts and wake auxiliary logits should not be overread as universal turbine states. The comparison is bounded to the implemented WTB baselines and validation-frozen empirical-quantile reserve checks. Trained quantile forecasters, scenario reserve, optimal power flow, unit commitment, market clearing and security-constrained reserve remain outside scope. This boundary keeps the reserve analysis aligned with the decision-oriented role of probabilistic forecasting without claiming a complete dispatch model [@bremnes2004quantile; @zhou2013probabilisticmarkets].
-
-The strongest claims are five-seed WTB routing recovery, mechanism intervention, within-WTB spatial/temporal stress, La Haute Borne anchor-observable replication, and same-router boundary reserve diagnostics. Gate-alignment deltas versus the full MoE and cross-backbone reserve comparisons remain bounded diagnostics; automatic cross-farm reserve use is outside authorized claims unless observability and held-out routing gates pass.
+WTB pseudo-labels derive from wind speed and pitch angle, channels present in full gate anchors. Withheld-channel probes prove the boundary survives without them via consequence signatures across four farms (permuted controls at chance). Removing pitch dispersion retains non-power NMI 0.309 on WTB and 0.578 on La Haute Borne, confirming dispersion does not carry the signal. Yet routing remains an anchor-constrained diagnostic rather than anchor-free discovery [@karniadakis2021piml; @zehtabiyan2023physicsguided]. Inputs may contain history $\texttt{Patv}_{t-H+1:t}$ and issue-time $\texttt{Patv}_{t}$, while targets begin at $t+1$. Expert semantics reflect the declared mapping; unassigned logits are not universal physical states. Comparisons are bounded to empirical-quantile screening, excluding optimal power flow, unit commitment, and market settlement [@bremnes2004quantile; @zhou2013probabilisticmarkets]. Strongest claims remain five-seed WTB recovery, mechanism intervention, La Haute Borne replication, and same-router reserve triage.
 
 # Conclusion
 
@@ -527,4 +507,3 @@ The raw KDD Cup 2022, ENGIE La Haute Borne, Kelmarsh, and Penmanshiel SCADA data
 ::: {#refs}
 :::
 
-\clearpage

@@ -216,8 +216,8 @@ Table A6 separates the train-only RMSE guardrail from paired seed-level tests on
 Claim & Estimate & 95\% CI & $p_{\mathrm{BH}}$ & Wording consequence \\
 \midrule
 Train-only RMSE guardrail vs iTransformer & 5.589 & -- & -- & Displayed guardrail gap for the provenance-corrected rerun \\
-Legacy RMSE price vs Graph WaveNet & 9.029 & -- & <0.001 & Legacy full-audit checkpoint contrast only \\
-Legacy boundary-band RMSE price & 17.758 & -- & 0.001 & Boundary-window price for the legacy checkpoint \\
+Legacy RMSE price vs Graph WaveNet & 9.029 & -- & <0.001 & Legacy historical checkpoint contrast only \\
+Legacy boundary-band RMSE price & 17.758 & -- & 0.001 & Boundary-window price for the legacy historical checkpoint \\
 Gate NMI vs full physics-aligned MoE (train-only) & -0.109 & [-0.280, 0.084] & 0.352 & No significant alignment difference; do not claim boundary forcing is required for alignment \\
 Gate ARI vs full physics-aligned MoE (train-only) & -0.138 & [-0.356, 0.088] & 0.379 & Same; no superiority wording \\
 Boundary quantile cost vs GWN physical bin & -0.263M & [-10.704M, 9.782M] & -- & CI crosses zero; reserve cost should remain a diagnostic claim \\
@@ -229,7 +229,7 @@ Boundary quantile violation vs GWN physical bin & 0.003 & [-0.011, 0.020] & -- &
 
 ## Class-weight sensitivity audit {.unnumbered}
 
-Table A6b makes the class-weight provenance boundary explicit. The legacy strict-cache row is the originally frozen boundary-router checkpoint used for the headline audit; the train-only rerun recomputes alignment and pitch-forcing class weights from the training split only while preserving the same strict-mask evaluation protocol. The train-only rerun lowers NMI/ARI but remains above the routing-claim threshold.
+Table A6b makes the class-weight provenance boundary explicit. The legacy strict-cache row records the historical boundary-router checkpoint from earlier iterations; the train-only rerun recomputes alignment and pitch-forcing class weights from the training split only and serves as the single source for all headline audits in the main paper. The train-only rerun lowers NMI/ARI but remains above the routing-claim threshold.
 
 ```{=latex}
 \begin{table}[H]
@@ -342,15 +342,15 @@ Table A9b reports the signature-gate probe that tests whether the MPPT-to-pitch 
 \scriptsize
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A9b.} Signature-gate identifiability probe with permuted-label negative controls. Mean$\\pm$sd over five seeds.}
+\caption*{\textbf{Table A9b.} Signature-gate identifiability probe with permuted-label negative controls. Mean$\pm$sd over five seeds.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.27\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
 Probe & RMSE & NMI & ARI & Reading \\
 \midrule
-`signature_full' & 241.84 $\\pm$ 7.19 & 0.5613 $\\pm$ 0.0199 & 0.6347 $\\pm$ 0.0239 & Boundary recoverable from consequence channels \\
-`signature_core' & 302.10 $\\pm$ 9.16 & 0.3671 $\\pm$ 0.0372 (median 0.3535) & 0.4342 $\\pm$ 0.0378 & Weaker non-power signature; 3/5 seeds expert-collapsed \\
-`signature_full_shuffled' & 241.50 $\\pm$ 10.25 & 4.0e-6 $\\pm$ 2.1e-6 & $-$1.3e-5 $\\pm$ 5.3e-5 & Chance level under permuted labels \\
-`signature_core_shuffled' & 296.69 $\\pm$ 16.22 & 4.7e-6 $\\pm$ 3.4e-6 & $-$2.0e-4 $\\pm$ 1.7e-4 & Chance level under permuted labels \\
+`signature_full' & 241.84 $\pm$ 7.19 & 0.5613 $\pm$ 0.0199 & 0.6347 $\pm$ 0.0239 & Boundary recoverable from consequence channels \\
+`signature_core' & 302.10 $\pm$ 9.16 & 0.3671 $\pm$ 0.0372 (median 0.3535) & 0.4342 $\pm$ 0.0378 & Weaker non-power signature; 3/5 seeds expert-collapsed \\
+`signature_full_shuffled' & 241.50 $\pm$ 10.25 & 4.0e-6 $\pm$ 2.1e-6 & $-$1.3e-5 $\pm$ 5.3e-5 & Chance level under permuted labels \\
+`signature_core_shuffled' & 296.69 $\pm$ 16.22 & 4.7e-6 $\pm$ 3.4e-6 & $-$2.0e-4 $\pm$ 1.7e-4 & Chance level under permuted labels \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
@@ -366,15 +366,15 @@ Table A9c reports the same probe on ENGIE La Haute Borne under the identical thr
 \scriptsize
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A9c.} Cross-farm signature-gate replication, ENGIE La Haute Borne. Mean$\\pm$sd over five seeds; per-seed values archived.}
+\caption*{\textbf{Table A9c.} Cross-farm signature-gate replication, ENGIE La Haute Borne. Mean$\pm$sd over five seeds; per-seed values archived.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.30\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
 Probe & RMSE & NMI & ARI & Reading \\
 \midrule
-`canonical' & 185.0 $\\pm$ 1.9 & 0.9752 $\\pm$ 0.0088 & 0.9904 $\\pm$ 0.0044 & Full-anchor reference \\
-`signature_full' & 185.1 $\\pm$ 1.4 & 0.6743 $\\pm$ 0.1209 & 0.7401 $\\pm$ 0.1604 & Signature transfers; min-seed 0.499 \\
-`signature_core' & 188.0 $\\pm$ 1.0 & 0.5750 $\\pm$ 0.0423 & 0.6270 $\\pm$ 0.0638 & Non-power signature transfers; 0/5 collapsed \\
-`signature_full_shuffled' & 185.4 $\\pm$ 1.2 & 1.92e-04 $\\pm$ 8.90e-05 & 5.19e-04 $\\pm$ 2.86e-03 & Chance level under permuted labels \\
+`canonical' & 185.0 $\pm$ 1.9 & 0.9752 $\pm$ 0.0088 & 0.9904 $\pm$ 0.0044 & Full-anchor reference \\
+`signature_full' & 185.1 $\pm$ 1.4 & 0.6743 $\pm$ 0.1209 & 0.7401 $\pm$ 0.1604 & Signature transfers; min-seed 0.499 \\
+`signature_core' & 188.0 $\pm$ 1.0 & 0.5750 $\pm$ 0.0423 & 0.6270 $\pm$ 0.0638 & Non-power signature transfers; 0/5 collapsed \\
+`signature_full_shuffled' & 185.4 $\pm$ 1.2 & 1.92e-04 $\pm$ 8.90e-05 & 5.19e-04 $\pm$ 2.86e-03 & Chance level under permuted labels \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
@@ -390,20 +390,20 @@ Table A9d reports the same probe on two farms with partial pitch observability. 
 \scriptsize
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A9d.} Signature-gate probe on partial-pitch-observability farms. Mean$\\pm$sd over five seeds; per-seed values archived.}
+\caption*{\textbf{Table A9d.} Signature-gate probe on partial-pitch-observability farms. Mean$\pm$sd over five seeds; per-seed values archived.}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.30\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
 Probe & NMI & ARI & Reading \\
 \midrule
-Penmanshiel canonical & 0.6987 $\\pm$ 0.4004 & 0.6342 $\\pm$ 0.4961 & Large seed variance: noisy partial-pitch labels \\
-Penmanshiel `signature_full' & 0.3024 $\\pm$ 0.0343 & 0.1613 $\\pm$ 0.1150 & Above 0.20 criterion \\
-Penmanshiel `signature_core' & 0.1954 $\\pm$ 0.0961 & 0.1302 $\\pm$ 0.1816 & Below 0.20; 4400x above shuffled chance \\
-Penmanshiel `signature_full_shuffled' & 4.4e-05 $\\pm$ 2.3e-05 & 1.6e-03 $\\pm$ 1.7e-03 & Chance level \\
+Penmanshiel canonical & 0.6987 $\pm$ 0.4004 & 0.6342 $\pm$ 0.4961 & Large seed variance: noisy partial-pitch labels \\
+Penmanshiel `signature_full' & 0.3024 $\pm$ 0.0343 & 0.1613 $\pm$ 0.1150 & Above 0.20 criterion \\
+Penmanshiel `signature_core' & 0.1954 $\pm$ 0.0961 & 0.1302 $\pm$ 0.1816 & Below 0.20; 4400x above shuffled chance \\
+Penmanshiel `signature_full_shuffled' & 4.4e-05 $\pm$ 2.3e-05 & 1.6e-03 $\pm$ 1.7e-03 & Chance level \\
 \midrule
-Kelmarsh canonical & 0.4441 $\\pm$ 0.2413 & 0.4499 $\\pm$ 0.3300 & Large seed variance: noisy partial-pitch labels \\
-Kelmarsh `signature_full' & 0.3402 $\\pm$ 0.0736 & 0.3461 $\\pm$ 0.1399 & Above 0.20 criterion \\
-Kelmarsh `signature_core' & 0.3775 $\\pm$ 0.0783 & 0.4763 $\\pm$ 0.0758 & Above 0.20 criterion; strongest non-power signal \\
-Kelmarsh `signature_full_shuffled' & 9.2e-05 $\\pm$ 2.5e-05 & 1.6e-03 $\\pm$ 2.0e-03 & Chance level \\
+Kelmarsh canonical & 0.4441 $\pm$ 0.2413 & 0.4499 $\pm$ 0.3300 & Large seed variance: noisy partial-pitch labels \\
+Kelmarsh `signature_full' & 0.3402 $\pm$ 0.0736 & 0.3461 $\pm$ 0.1399 & Above 0.20 criterion \\
+Kelmarsh `signature_core' & 0.3775 $\pm$ 0.0783 & 0.4763 $\pm$ 0.0758 & Above 0.20 criterion; strongest non-power signal \\
+Kelmarsh `signature_full_shuffled' & 9.2e-05 $\pm$ 2.5e-05 & 1.6e-03 $\pm$ 2.0e-03 & Chance level \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
@@ -422,19 +422,19 @@ Table A9f reports median/IQR for every farm probe: the Penmanshiel and Kelmarsh 
 \caption*{\textbf{Table A9f.} Farm signature probes: median and IQR (five seeds unless noted).}
 \begin{tabular}{llrrrrr}
 \toprule
-Farm & Variant & $n$ & Median & Q25 & Q75 & Mean $\\pm$ SD \\
+Farm & Variant & $n$ & Median & Q25 & Q75 & Mean $\pm$ SD \\
 \midrule
-WTB & signature\_full & 5 & 0.563 & 0.554 & 0.565 & 0.561 $\\pm$ 0.018 \\
-WTB & signature\_core & 5 & 0.354 & 0.348 & 0.363 & 0.367 $\\pm$ 0.033 \\
-LHB & canonical & 5 & 0.978 & 0.977 & 0.979 & 0.975 $\\pm$ 0.008 \\
-LHB & signature\_full & 5 & 0.733 & 0.603 & 0.742 & 0.674 $\\pm$ 0.108 \\
-LHB & signature\_core & 5 & 0.598 & 0.540 & 0.607 & 0.575 $\\pm$ 0.038 \\
-Penmanshiel & canonical & 5 & 0.985 & 0.279 & 0.994 & 0.699 $\\pm$ 0.358 \\
-Penmanshiel & signature\_full & 5 & 0.299 & 0.270 & 0.332 & 0.302 $\\pm$ 0.031 \\
-Penmanshiel & signature\_core & 5 & 0.207 & 0.133 & 0.213 & 0.195 $\\pm$ 0.086 \\
-Kelmarsh & canonical & 5 & 0.292 & 0.275 & 0.683 & 0.444 $\\pm$ 0.216 \\
-Kelmarsh & signature\_full & 5 & 0.313 & 0.295 & 0.388 & 0.340 $\\pm$ 0.066 \\
-Kelmarsh & signature\_core & 5 & 0.328 & 0.323 & 0.421 & 0.378 $\\pm$ 0.070 \\
+WTB & signature\_full & 5 & 0.563 & 0.554 & 0.565 & 0.561 $\pm$ 0.018 \\
+WTB & signature\_core & 5 & 0.354 & 0.348 & 0.363 & 0.367 $\pm$ 0.033 \\
+LHB & canonical & 5 & 0.978 & 0.977 & 0.979 & 0.975 $\pm$ 0.008 \\
+LHB & signature\_full & 5 & 0.733 & 0.603 & 0.742 & 0.674 $\pm$ 0.108 \\
+LHB & signature\_core & 5 & 0.598 & 0.540 & 0.607 & 0.575 $\pm$ 0.038 \\
+Penmanshiel & canonical & 5 & 0.985 & 0.279 & 0.994 & 0.699 $\pm$ 0.358 \\
+Penmanshiel & signature\_full & 5 & 0.299 & 0.270 & 0.332 & 0.302 $\pm$ 0.031 \\
+Penmanshiel & signature\_core & 5 & 0.207 & 0.133 & 0.213 & 0.195 $\pm$ 0.086 \\
+Kelmarsh & canonical & 5 & 0.292 & 0.275 & 0.683 & 0.444 $\pm$ 0.216 \\
+Kelmarsh & signature\_full & 5 & 0.313 & 0.295 & 0.388 & 0.340 $\pm$ 0.066 \\
+Kelmarsh & signature\_core & 5 & 0.328 & 0.323 & 0.421 & 0.378 $\pm$ 0.070 \\
 \bottomrule
 \end{tabular}
 \vspace{1mm}
@@ -450,18 +450,18 @@ Table A9e reports two robustness additions. The window scan re-runs `signature_f
 \scriptsize
 \setlength{\tabcolsep}{2.4pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A9e.} Window-robustness scan and Pab\_std ablation (signature\_full / signature\_core\_no\_pab\_std, mean$\\pm$sd).}
+\caption*{\textbf{Table A9e.} Window-robustness scan and Pab\_std ablation (signature\_full / signature\_core\_no\_pab\_std, mean$\pm$sd).}
 \begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{0.16\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\raggedright\arraybackslash}X}
 \toprule
 Probe & NMI & ARI & Reading \\
 \midrule
-Penmanshiel secondary window (day 965, pitch 77.5\%) & 0.458 $\\pm$ 0.099 & 0.405 $\\pm$ 0.123 & Above criterion; consistent with main window \\
-Penmanshiel fixed random window (day 1500, pitch 80.5\%) & 0.294 $\\pm$ 0.007 & 0.128 $\\pm$ 0.004 & Above criterion \\
-Kelmarsh secondary window (day 365, pitch 54.9\%) & 0.359 $\\pm$ 0.188 & 0.328 $\\pm$ 0.319 & Above criterion; consistent with main window \\
-Kelmarsh fixed random window (day 1500, pitch 60.1\%) & 0.277 $\\pm$ 0.106 & 0.218 $\\pm$ 0.175 & Above criterion \\
+Penmanshiel secondary window (day 965, pitch 77.5\%) & 0.458 $\pm$ 0.099 & 0.405 $\pm$ 0.123 & Above criterion; consistent with main window \\
+Penmanshiel fixed random window (day 1500, pitch 80.5\%) & 0.294 $\pm$ 0.007 & 0.128 $\pm$ 0.004 & Above criterion \\
+Kelmarsh secondary window (day 365, pitch 54.9\%) & 0.359 $\pm$ 0.188 & 0.328 $\pm$ 0.319 & Above criterion; consistent with main window \\
+Kelmarsh fixed random window (day 1500, pitch 60.1\%) & 0.277 $\pm$ 0.106 & 0.218 $\pm$ 0.175 & Above criterion \\
 \midrule
-WTB `signature_core_no_pab_std' & 0.309 $\\pm$ 0.066 & 0.356 $\\pm$ 0.075 & Signal survives without pitch dispersion (vs core 0.367) \\
-LHB `signature_core_no_pab_std' & 0.578 $\\pm$ 0.135 & 0.617 $\\pm$ 0.200 & Signal unchanged without pitch dispersion (vs core 0.575) \\
+WTB `signature_core_no_pab_std' & 0.309 $\pm$ 0.066 & 0.356 $\pm$ 0.075 & Signal survives without pitch dispersion (vs core 0.367) \\
+LHB `signature_core_no_pab_std' & 0.578 $\pm$ 0.135 & 0.617 $\pm$ 0.200 & Signal unchanged without pitch dispersion (vs core 0.575) \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
@@ -505,7 +505,7 @@ Table A10d reports the fair-degradation audit: the confirming-stream delay appli
 \scriptsize
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A10d.} Fair-degradation audit: gate and rule consume the same degraded readings. Mean$\\pm$sd over five train-only seeds.}
+\caption*{\textbf{Table A10d.} Fair-degradation audit: gate and rule consume the same degraded readings. Mean$\pm$sd over five train-only seeds.}
 \begin{tabular}{lrrr}
 \toprule
 Condition & Gate recall & Rule recall & Gain \\
@@ -642,7 +642,7 @@ Soft-gate-bin (P(pitch) quintiles) & 16.065M & -568k [-726k, -406k] & -125k [-29
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\footnotesize The classifier is refit per seed on validation anchors only. Hard classifier bins are nearly equivalent to physical bins on clean anchors; the hard gate route is worse than both. The soft gate posterior is the only strategy below every modular alternative (16.065M). Combined with the fair-degradation audit, where the classifier falls to recall 0.885 under the strongest noise against 0.951 for the gate, the modular classifier is an equivalent clean-anchor replacement while the soft posterior keeps the degraded-stream robustness in one deployment object. Script: `scripts/modular_equiv_reserve.py`.
+\footnotesize The classifier is refit per seed on validation anchors only. Hard classifier bins are nearly equivalent to physical bins on clean anchors; the hard gate route is worse than both. The soft gate posterior is the only strategy below every modular alternative (16.065M). Combined with the fair-degradation audit, where the classifier falls to recall 0.885 under the strongest noise against 0.951 for the gate, the modular classifier matches clean-anchor pricing with no detected difference while the soft posterior keeps the degraded-stream robustness in one deployment object. Script: `scripts/modular_equiv_reserve.py`.
 \end{table}
 ```
 
@@ -661,7 +661,7 @@ Table A11d consolidates the counterfactual controls that localize where the post
 \toprule
 Method & Jointly trained & Needs physical channels & Routed & Reserve cost & Degraded recall & Reading \\
 \midrule
-Soft physical pitch quantile & no & yes & no & 15.538M & 16.048M (delay6) & Honest clean-observation baseline; collapses toward the others under degradation \\
+Soft physical pitch quantile & no & yes & no & 15.538M & -- & Honest clean-observation pricing baseline; collapses toward others under degradation \\
 Threshold rule (physical-bin) & no & yes & no & 16.190M & 0.196 & Collapses under confirming-stream delay \\
 Independent logistic classifier & no & yes & no & 16.190M & 0.885 (noise) & Equivalent clean pricing; no degradation robustness \\
 Independent GBDT posterior & no & consequence channels & no & 17.656M & 0.868 & Immune to Wspd/Pab delay but prices 1.0M worse than the global rule \\
@@ -672,17 +672,17 @@ Global quantile & -- & -- & -- & 16.632M & 0.971 (clean) & Reference \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\footnotesize Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs independent GBDT -1.59M (see `artifacts/breakthrough_20260904`). Degraded recall is early-window recall under a six-step confirming-stream delay (or the strongest noise level where noted) applied identically to every detector. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a pooled week-block bootstrap over daily reserve costs keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router CI [-170M, -58M]; Physics-Aligned MoE CI [-182M, -55M]), so the seed-paired conclusions are not an artefact of ignoring temporal correlation.
+\footnotesize Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs independent GBDT -1.59M (see `artifacts/breakthrough_20260904`). Degraded recall is early-window recall under a six-step confirming-stream delay (or strongest noise level where noted) applied identically to every detector; the soft-physical pitch quantile is a continuous pricing rule without discrete recall, and under a 6-step delay its reserve cost degrades to 16.048M. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a hierarchical seed-and-week-block bootstrap over daily reserve costs across the 35-day test period keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router observed mean delta across seeds -22.40M, 95\% hierarchical block CI [-39.55M, -7.61M]; Physics-Aligned MoE observed mean -23.39M, CI [-42.41M, -7.02M]), confirming that the reserve advantage is robust to temporal autocorrelation across weeks.
 \end{table}
 ```
 
-## Kelmarsh real-degradation grounding {.unnumbered}
+## Kelmarsh asynchronous event-stream grounding {.unnumbered}
 
-The confirming-stream delay scenario has a real-world counterpart in the Kelmarsh 2016 archive. The Status stream exported by the Greenbyte platform carries 14,019 status events with second-level timestamps; 99.6\% of them fall strictly between the 10-minute turbine-data grid points, so the 10-minute channel cannot confirm the event time at issue time. Pitch-system state arrives as a separate event stream (e.g. "Pitch measuring system 1><2"), and the archive export timestamp (2022-01-27) post-dates the 2016 data interval by years, showing that confirmed labels can lag the raw channel arbitrarily long. This grounds the paper's delayed, incomplete confirming-stream scenario in real turbine data rather than in a synthetic shift. Script: `scripts/kelmarsh_grounding_audit.py`; artifact: `artifacts/kelmarsh_grounding_20260903/kelmarsh_grounding_summary.json`.
+The confirming-stream delay scenario is grounded in the operational reality of asynchronous event streams as observed in the Kelmarsh 2016 archive. The Status stream exported by the Greenbyte platform carries 14,019 status events with second-level timestamps; 99.6\% of them fall strictly between the 10-minute turbine-data periodic grid points, meaning that 10-minute periodic SCADA sampling cannot synchronously confirm operating state events at issue time. Pitch-system operating states arrive as a separate asynchronous event stream (e.g. "Pitch measuring system 1><2"). Rather than claiming a fixed runtime delay in field telemetry, we evaluate operational resilience via a controlled deployment stress test with 1- to 6-step confirmation delays and sensor noise. Script: `scripts/kelmarsh_grounding_audit.py`; artifact: `artifacts/kelmarsh_grounding_20260903/kelmarsh_grounding_summary.json`.
 
 ## Unified mechanism-control statistics {.unnumbered}
 
-Table A11e consolidates every mechanism control into one reviewer-facing statistics table with multiplicity handling. All intervals are five-seed bootstrap CIs; significance at the 95\% level is declared only when the CI excludes zero, and the family size ($m=13$) is stated so that Bonferroni-adjusted reads are possible (none of the significant controls is close to zero, so the reported directions survive the adjustment).
+Table A11e consolidates every mechanism control into one reviewer-facing statistics table with family-wise multiplicity control ($m=13$). Both nominal 95\% bootstrap CIs and Bonferroni-adjusted 99.62\% CIs ($\alpha = 0.05/13$) are reported. Every control declared significant at the 95\% level survives the Bonferroni adjustment without crossing zero. For the joint non-routed dense head versus the joint gate router (+0.01M, 95\% CI [-0.16M, +0.19M]), no difference is detected; we do not assert formal equivalence because no equivalence margin was prespecified for TOST.
 
 ```{=latex}
 \begin{table}[H]
@@ -700,11 +700,11 @@ Soft-physical vs physical-bin & -0.65M & [-0.80M, -0.50M] & yes & WTB clean \\
 Joint gate vs global & -0.57M & [-0.73M, -0.41M] & yes & WTB clean \\
 Joint gate vs physical-bin & -0.13M & [-0.30M, +0.03M] & no & WTB clean \\
 Independent GBDT vs joint gate & +1.59M & [+1.40M, +1.76M] & yes & WTB clean \\
-Joint non-routed vs joint gate & +0.01M & [-0.16M, +0.19M] & no (equivalence) & WTB clean \\
+Joint non-routed vs joint gate & +0.01M & [-0.16M, +0.19M] & no (no detected diff.) & WTB clean \\
 Joint gate vs global (sparse farm) & -0.04M & [-0.20M, +0.13M] & no & Kelmarsh 55\% \\
 Soft-physical vs global (sparse farm) & -0.03M & [-0.09M, +0.05M] & no & Kelmarsh 55\% \\
 \midrule
-\multicolumn{5}{l}{\footnotesize $m=13$ family; all 95\%-significant controls remain significant under Bonferroni because their CIs are far from zero. Raw tables and scripts: `artifacts/breakthrough_20260904/`, `scripts/soft_rule_contrast.py`, `scripts/gbdt_reserve_pricing.py`, `scripts/dense_classifier_pricing.py`, `scripts/kelmarsh_reserve_pricing.py`.} \\
+\multicolumn{5}{l}{\footnotesize $m=13$ family; all 95\%-significant controls remain significant under Bonferroni ($\alpha=0.05/13$, 99.62\% CI) because their CIs exclude zero. CI crossing zero indicates no detected difference, not formal equivalence. Raw tables and scripts: `artifacts/p1_stats_20260904/unified_control_table.csv`, `scripts/p1b_unified_stats.py`.} \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -750,24 +750,24 @@ Table A13 reports the full WTB and ERA5 benchmark used for the RMSE-price guardr
 \toprule
 Model & Overall RMSE & Switch RMSE \\
 \midrule
-iTransformer & 224.34 $\\pm$ 2.23 & 228.80 $\\pm$ 2.54 \\
-Graph WaveNet & 225.74 $\\pm$ 2.60 & 228.12 $\\pm$ 3.23 \\
-TiDE & 227.31 $\\pm$ 3.05 & 231.48 $\\pm$ 2.86 \\
-PatchTST & 228.07 $\\pm$ 4.05 & 231.22 $\\pm$ 4.15 \\
-Boundary-forced router (train-only) & 229.93 $\\pm$ 2.50 & 231.65 (5 seeds) \\
-Capacity-Matched Dense & 231.42 $\\pm$ 5.87 & 233.82 $\\pm$ 5.96 \\
+iTransformer & 224.34 $\pm$ 2.23 & 228.80 $\pm$ 2.54 \\
+Graph WaveNet & 225.74 $\pm$ 2.60 & 228.12 $\pm$ 3.23 \\
+TiDE & 227.31 $\pm$ 3.05 & 231.48 $\pm$ 2.86 \\
+PatchTST & 228.07 $\pm$ 4.05 & 231.22 $\pm$ 4.15 \\
+Boundary-forced router (train-only) & 229.93 $\pm$ 2.50 & 231.65 (5 seeds) \\
+Capacity-Matched Dense & 231.42 $\pm$ 5.87 & 233.82 $\pm$ 5.96 \\
 Physics-Aligned MoE (train-only) & 231.90 (5 seeds, 225.35-236.21) & -- \\
-Graph Transformer & 235.38 $\\pm$ 5.15 & 237.06 $\\pm$ 5.78 \\
-Unconstrained MoE & 235.40 $\\pm$ 7.96 & 237.22 $\\pm$ 8.11 \\
-GAT-GRU & 236.59 $\\pm$ 7.80 & 240.17 $\\pm$ 8.50 \\
-Boundary-forced router (legacy) & 236.13 $\\pm$ 8.41 & 239.86 $\\pm$ 8.85 \\
-Physics-Aligned MoE (legacy) & 241.42 $\\pm$ 4.28 & 242.60 $\\pm$ 6.07 \\
+Graph Transformer & 235.38 $\pm$ 5.15 & 237.06 $\pm$ 5.78 \\
+Unconstrained MoE & 235.40 $\pm$ 7.96 & 237.22 $\pm$ 8.11 \\
+GAT-GRU & 236.59 $\pm$ 7.80 & 240.17 $\pm$ 8.50 \\
+Boundary-forced router (legacy) & 236.13 $\pm$ 8.41 & 239.86 $\pm$ 8.85 \\
+Physics-Aligned MoE (legacy) & 241.42 $\pm$ 4.28 & 242.60 $\pm$ 6.07 \\
 \midrule
-ERA5 Graph WaveNet & 0.8417 $\\pm$ 0.0661 & 0.7934 $\\pm$ 0.0652 \\
-ERA5 Physics-Aligned MoE & 0.8735 $\\pm$ 0.0536 & 0.8507 $\\pm$ 0.0363 \\
-ERA5 TCN & 0.8784 $\\pm$ 0.0351 & 0.8338 $\\pm$ 0.0292 \\
-ERA5 PatchTST & 0.8817 $\\pm$ 0.0827 & 0.8248 $\\pm$ 0.0842 \\
-ERA5 STGCN & 0.9893 $\\pm$ 0.1646 & 0.8908 $\\pm$ 0.1239 \\
+ERA5 Graph WaveNet & 0.8417 $\pm$ 0.0661 & 0.7934 $\pm$ 0.0652 \\
+ERA5 Physics-Aligned MoE & 0.8735 $\pm$ 0.0536 & 0.8507 $\pm$ 0.0363 \\
+ERA5 TCN & 0.8784 $\pm$ 0.0351 & 0.8338 $\pm$ 0.0292 \\
+ERA5 PatchTST & 0.8817 $\pm$ 0.0827 & 0.8248 $\pm$ 0.0842 \\
+ERA5 STGCN & 0.9893 $\pm$ 0.1646 & 0.8908 $\pm$ 0.1239 \\
 ERA5 Persistence & 0.7127 & 0.6814 \\
 \bottomrule
 \end{tabular}

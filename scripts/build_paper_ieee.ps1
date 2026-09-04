@@ -113,17 +113,9 @@ if (Test-Path $numberConsistencyScript) {
     if ($LASTEXITCODE -ne 0) { throw "TSTE number consistency audit failed." }
 }
 
-$transformScript = Join-Path $root "scripts\transform_ieee.py"
-if (Test-Path $transformScript) {
-    & python $transformScript
-    if ($LASTEXITCODE -ne 0) { throw "IEEE markdown transform failed." }
-}
+# paper_tste_ieee.md and paper_tste_supplementary.md are maintained directly as primary source of truth.
+# Legacy one-time transforms (transform_ieee.py, make_supplementary.py) are disarmed to avoid overwriting.
 
-$supplementaryScript = Join-Path $root "scripts\make_supplementary.py"
-if (Test-Path $supplementaryScript) {
-    & python $supplementaryScript
-    if ($LASTEXITCODE -ne 0) { throw "Supplementary markdown generation failed." }
-}
 
 function Build-PDF {
     param($md, $label)

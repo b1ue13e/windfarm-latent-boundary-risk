@@ -253,13 +253,14 @@ body = body.replace(
     " Appendix~A. The analysis involves no human subjects.",
 )
 
-# ── 8. Write output ───────────────────────────────────────────────────────────
-out = new_yaml + "\n\n" + ieee_header + "\n\n" + body + "\n"
+import sys
 dest = ROOT / "paper_tste_ieee.md"
-dest.write_text(out, encoding="utf-8")
+if "--force" in sys.argv:
+    dest.write_text(out, encoding="utf-8")
+    print(f"Force-written {dest.name}")
+else:
+    print(f"Protected: {dest.name} is the primary source of truth. Pass --force to overwrite.")
 
-lines = len(out.splitlines())
-words = len(out.split())
 
 # Sanity checks
 assert "IEEEtran" in out

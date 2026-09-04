@@ -308,7 +308,10 @@ supp_yaml = "\n".join([
     "---",
 ])
 
-out = supp_yaml + "\n\n" + app_body + "\n"
 dest = ROOT / "paper_tste_supplementary.md"
-dest.write_text(out, encoding="utf-8")
-print(f"Written {dest.name}  ({len(out.splitlines())} lines)")
+if "--force" in sys.argv:
+    dest.write_text(out, encoding="utf-8")
+    print(f"Force-written {dest.name}  ({len(out.splitlines())} lines)")
+else:
+    print(f"Protected: {dest.name} is the primary source of truth. Pass --force to overwrite.")
+

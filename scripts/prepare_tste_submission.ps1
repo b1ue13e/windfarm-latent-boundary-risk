@@ -147,10 +147,7 @@ if (-not $coverText.Contains("Supplementary Table A12")) {
 
 Invoke-RunTargetPreflight
 
-& python (Join-Path $root "scripts\transform_ieee.py")
-if ($LASTEXITCODE -ne 0) { throw "IEEE markdown transform failed." }
-& python (Join-Path $root "scripts\make_supplementary.py")
-if ($LASTEXITCODE -ne 0) { throw "Supplementary markdown generation failed." }
+# paper_tste_ieee.md and paper_tste_supplementary.md are maintained directly as primary source of truth.
 & powershell -ExecutionPolicy Bypass -File (Join-Path $root "scripts\build_paper_ieee.ps1")
 if ($LASTEXITCODE -ne 0) { throw "IEEE PDF build failed." }
 
@@ -195,7 +192,7 @@ $freezeDir = Join-Path $root "artifacts\tste_evidence_freeze_guard"
     --final-package-dir (Join-Path $root "artifacts\final_evidence_package") `
     --paired-effects (Join-Path $root "artifacts\strictmask_combined_reviewer_stats\paired_effects_summary.csv") `
     --output-dir $freezeDir `
-    --required-tokens "229.93,224.34,225.74,236.13,0.960,0.196,0.508,1.000,0.879,0.721,0.740,0.941,0.971,0.953,0.001,0.028,0.4877,0.5112,84.58M,84.31M,88.13M,5.59,0.764,566,-4.65M,-2.45M,-0.0203,-0.0072,-0.78M,-0.30M,0.815,0.361,0.405"
+    --required-tokens "229.93,224.34,225.74,236.13,5.59,0.721,0.740,0.941,0.971,0.933,0.196,0.508,1.000,0.879,0.630,+0.737,95.13M,99.55M,84.31M,-4.42M,442k,0.815,0.361,0.405,16.065M,15.538M,17.656M,16.632M"
 if ($LASTEXITCODE -ne 0) { throw "Evidence-freeze guard command failed." }
 $freezeJson = Get-Content -LiteralPath (Join-Path $freezeDir "evidence_freeze_guard.json") -Raw | ConvertFrom-Json
 $freezeStatus = [string]$freezeJson.status
