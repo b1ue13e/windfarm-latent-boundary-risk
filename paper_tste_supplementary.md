@@ -589,7 +589,7 @@ Maxprob-bin (max-probability quintiles) & 16.307M & 0.1014 & 10.530M & 0.578M \\
 \end{table}
 ```
 
-Table A11c reports the modular-equivalence control on the same boundary-router backbone. The classifier is a validation-fit logistic regression on issue-time anchors (Wspd, Pab\_mean), and its hard and soft bins are compared with the gate's. On clean anchors the classifier reproduces the physical-bin reserve almost exactly and beats the hard gate route, so the hard route has no reserve increment; the soft gate posterior remains the only component below every modular alternative.
+Table A11c reports the modular-equivalence control on the same boundary-router backbone. The classifier is a validation-fit logistic regression on issue-time anchors (Wspd, Pab\_mean), and its hard and soft bins are compared with the gate's. On clean anchors the classifier reproduces the physical-bin reserve almost exactly and beats the hard gate route, so the hard route has no reserve increment; the jointly-learned soft posterior remains below every modular alternative, and Table A11d localizes that pricing increment to joint learning rather than to the routing structure.
 
 ```{=latex}
 \begin{table}[H]
@@ -612,6 +612,36 @@ Soft-gate-bin (P(pitch) quintiles) & 16.065M & -568k [-726k, -406k] & -125k [-29
 \end{tabularx}
 \vspace{1mm}
 \footnotesize The classifier is refit per seed on validation anchors only. Hard classifier bins are nearly equivalent to physical bins on clean anchors; the hard gate route is worse than both. The soft gate posterior is the only strategy below every modular alternative (16.065M). Combined with the fair-degradation audit, where the classifier falls to recall 0.885 under the strongest noise against 0.951 for the gate, the modular classifier is an equivalent clean-anchor replacement while the soft posterior keeps the degraded-stream robustness in one deployment object. Script: `scripts/modular_equiv_reserve.py`.
+\end{table}
+```
+
+## Mechanism decomposition of the boundary-risk posterior {.unnumbered}
+
+Table A11d consolidates the counterfactual controls that localize where the posterior's value comes from. The soft-physical pitch quantile is the honest clean-observation baseline; joint learning is what prices reserve risk below the global rule and far below an independent classifier posterior; the routing structure is what survives confirming-stream degradation. Scripts: `scripts/soft_rule_contrast.py`, `scripts/degraded_gate_reserve.py`, `scripts/kelmarsh_reserve_pricing.py`, `scripts/multichannel_classifier.py`, `scripts/gbdt_reserve_pricing.py`, `scripts/dense_classifier_pricing.py`, `scripts/fair_degradation_replay.py`.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.0pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A11d.} Mechanism decomposition with counterfactual controls ($\rho=10$, 5 seeds, boundary band).}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.26\columnwidth} >{\centering\arraybackslash}p{0.09\columnwidth} >{\centering\arraybackslash}p{0.09\columnwidth} >{\centering\arraybackslash}p{0.10\columnwidth} >{\centering\arraybackslash}p{0.10\columnwidth} >{\centering\arraybackslash}p{0.11\columnwidth} >{\centering\arraybackslash}X}
+\toprule
+Method & Jointly trained & Needs physical channels & Routed & Reserve cost & Degraded recall & Reading \\
+\midrule
+Soft physical pitch quantile & no & yes & no & 15.538M & 16.048M (delay6) & Honest clean-observation baseline; collapses toward the others under degradation \\
+Threshold rule (physical-bin) & no & yes & no & 16.190M & 0.196 & Collapses under confirming-stream delay \\
+Independent logistic classifier & no & yes & no & 16.190M & 0.885 (noise) & Equivalent clean pricing; no degradation robustness \\
+Independent GBDT posterior & no & consequence channels & no & 17.656M & 0.868 & Immune to Wspd/Pab delay but prices 1.0M worse than the global rule \\
+Joint non-routed posterior head & yes & weak & no & 16.076M & 0.286 & Joint learning prices; without routing it collapses under delay \\
+Joint routed posterior (this work) & yes & weak & yes & 16.065M & 0.933 & Joint learning prices and the routing structure survives degradation \\
+\midrule
+Global quantile & -- & -- & -- & 16.632M & 0.971 (clean) & Reference \\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\footnotesize Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs independent GBDT -1.59M (see `artifacts/breakthrough_20260904`). Degraded recall is early-window recall under a six-step confirming-stream delay (or the strongest noise level where noted) applied identically to every detector. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such.
 \end{table}
 ```
 
