@@ -407,7 +407,38 @@ Kelmarsh `signature_full_shuffled' & 9.2e-05 $\\pm$ 2.5e-05 & 1.6e-03 $\\pm$ 2.0
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\footnotesize Pitch coverage is the fraction of cells with a directly observed blade-pitch channel inside the rebuilt window. Signature strength is not monotonic in pitch coverage (Penmanshiel 78\% scores lower than Kelmarsh 55\%), so the graded reading attributes the remaining signal to consequence-channel quality (reactive power, pitch dispersion, temperatures) rather than to pitch coverage alone.
+\footnotesize Pitch coverage is the fraction of cells with a directly observed blade-pitch channel inside the rebuilt window. Signature strength is not monotonic in pitch coverage (Penmanshiel 78\% scores lower than Kelmarsh 55\%), so the graded reading attributes the remaining signal to consequence-channel quality (reactive power, pitch dispersion, temperatures) rather than to pitch coverage alone. Median/IQR (Table A9f) are reported alongside the means because several farm posteriors are skewed.
+\end{table}
+```
+
+Table A9f reports median/IQR for every farm probe: the Penmanshiel and Kelmarsh canonical posteriors are strongly skewed (Penmanshiel canonical median 0.985 versus mean 0.699), so median-based readings are the honest summary for those cells.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A9f.} Farm signature probes: median and IQR (five seeds unless noted).}
+\begin{tabular}{llrrrrr}
+\toprule
+Farm & Variant & $n$ & Median & Q25 & Q75 & Mean $\\pm$ SD \\
+\midrule
+WTB & signature\_full & 5 & 0.563 & 0.554 & 0.565 & 0.561 $\\pm$ 0.018 \\
+WTB & signature\_core & 5 & 0.354 & 0.348 & 0.363 & 0.367 $\\pm$ 0.033 \\
+LHB & canonical & 5 & 0.978 & 0.977 & 0.979 & 0.975 $\\pm$ 0.008 \\
+LHB & signature\_full & 5 & 0.733 & 0.603 & 0.742 & 0.674 $\\pm$ 0.108 \\
+LHB & signature\_core & 5 & 0.598 & 0.540 & 0.607 & 0.575 $\\pm$ 0.038 \\
+Penmanshiel & canonical & 5 & 0.985 & 0.279 & 0.994 & 0.699 $\\pm$ 0.358 \\
+Penmanshiel & signature\_full & 5 & 0.299 & 0.270 & 0.332 & 0.302 $\\pm$ 0.031 \\
+Penmanshiel & signature\_core & 5 & 0.207 & 0.133 & 0.213 & 0.195 $\\pm$ 0.086 \\
+Kelmarsh & canonical & 5 & 0.292 & 0.275 & 0.683 & 0.444 $\\pm$ 0.216 \\
+Kelmarsh & signature\_full & 5 & 0.313 & 0.295 & 0.388 & 0.340 $\\pm$ 0.066 \\
+Kelmarsh & signature\_core & 5 & 0.328 & 0.323 & 0.421 & 0.378 $\\pm$ 0.070 \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+\footnotesize The window scan (Table A9e) passes at 4/4 windows with per-seed pass-rate 1.0 (3/3 seeds above the 0.20 criterion in every window).
 \end{table}
 ```
 
@@ -641,13 +672,43 @@ Global quantile & -- & -- & -- & 16.632M & 0.971 (clean) & Reference \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\footnotesize Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs independent GBDT -1.59M (see `artifacts/breakthrough_20260904`). Degraded recall is early-window recall under a six-step confirming-stream delay (or the strongest noise level where noted) applied identically to every detector. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such.
+\footnotesize Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs independent GBDT -1.59M (see `artifacts/breakthrough_20260904`). Degraded recall is early-window recall under a six-step confirming-stream delay (or the strongest noise level where noted) applied identically to every detector. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a pooled week-block bootstrap over daily reserve costs keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router CI [-170M, -58M]; Physics-Aligned MoE CI [-182M, -55M]), so the seed-paired conclusions are not an artefact of ignoring temporal correlation.
 \end{table}
 ```
 
 ## Kelmarsh real-degradation grounding {.unnumbered}
 
 The confirming-stream delay scenario has a real-world counterpart in the Kelmarsh 2016 archive. The Status stream exported by the Greenbyte platform carries 14,019 status events with second-level timestamps; 99.6\% of them fall strictly between the 10-minute turbine-data grid points, so the 10-minute channel cannot confirm the event time at issue time. Pitch-system state arrives as a separate event stream (e.g. "Pitch measuring system 1><2"), and the archive export timestamp (2022-01-27) post-dates the 2016 data interval by years, showing that confirmed labels can lag the raw channel arbitrarily long. This grounds the paper's delayed, incomplete confirming-stream scenario in real turbine data rather than in a synthetic shift. Script: `scripts/kelmarsh_grounding_audit.py`; artifact: `artifacts/kelmarsh_grounding_20260903/kelmarsh_grounding_summary.json`.
+
+## Unified mechanism-control statistics {.unnumbered}
+
+Table A11e consolidates every mechanism control into one reviewer-facing statistics table with multiplicity handling. All intervals are five-seed bootstrap CIs; significance at the 95\% level is declared only when the CI excludes zero, and the family size ($m=13$) is stated so that Bonferroni-adjusted reads are possible (none of the significant controls is close to zero, so the reported directions survive the adjustment).
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.0pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A11e.} Unified mechanism-control statistics (total cost, $\rho=10$).}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{0.11\columnwidth} >{\centering\arraybackslash}p{0.12\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\centering\arraybackslash}p{0.10\columnwidth}}
+\toprule
+Control & $\Delta$ & 95\% CI & Excludes zero & Condition \\
+\midrule
+Soft-physical vs global & -1.09M & [-1.32M, -0.88M] & yes & WTB clean \\
+Soft-physical vs physical-bin & -0.65M & [-0.80M, -0.50M] & yes & WTB clean \\
+Joint gate vs global & -0.57M & [-0.73M, -0.41M] & yes & WTB clean \\
+Joint gate vs physical-bin & -0.13M & [-0.30M, +0.03M] & no & WTB clean \\
+Independent GBDT vs joint gate & +1.59M & [+1.40M, +1.76M] & yes & WTB clean \\
+Joint non-routed vs joint gate & +0.01M & [-0.16M, +0.19M] & no (equivalence) & WTB clean \\
+Joint gate vs global (sparse farm) & -0.04M & [-0.20M, +0.13M] & no & Kelmarsh 55\% \\
+Soft-physical vs global (sparse farm) & -0.03M & [-0.09M, +0.05M] & no & Kelmarsh 55\% \\
+\midrule
+\multicolumn{5}{l}{\footnotesize $m=13$ family; all 95\%-significant controls remain significant under Bonferroni because their CIs are far from zero. Raw tables and scripts: `artifacts/breakthrough_20260904/`, `scripts/soft_rule_contrast.py`, `scripts/gbdt_reserve_pricing.py`, `scripts/dense_classifier_pricing.py`, `scripts/kelmarsh_reserve_pricing.py`.} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+```
 
 ## Engineering-unit reserve-value translation {.unnumbered}
 
