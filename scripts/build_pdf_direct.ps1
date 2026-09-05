@@ -1,6 +1,6 @@
 $ErrorActionPreference = "Stop"
-$root = "E:\论文3"
-$pandoc = "$root\tools\pandoc-3.9.0.2\pandoc.exe"
+$root = Split-Path -Parent $PSScriptRoot
+$pandoc = Join-Path $root "tools\pandoc-3.9.0.2\pandoc.exe"
 $xelatex = "E:\MiKTeX\miktex\bin\x64\xelatex.exe"
 $env:PATH = "E:\MiKTeX\miktex\bin\x64;$env:PATH"
 
