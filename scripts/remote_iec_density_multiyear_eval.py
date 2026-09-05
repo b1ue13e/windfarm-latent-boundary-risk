@@ -206,7 +206,7 @@ def run_inference_on_slice(
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-root", default="/root/paper3_audit_rerun_20260830")
-    parser.add_argument("--farm", default="kelmarsh", choices=["kelmarsh", "la_haute_borne"])
+    parser.add_argument("--farm", default="kelmarsh", choices=["kelmarsh", "penmanshiel", "la_haute_borne"])
     parser.add_argument("--gpu-id", type=int, default=0)
     parser.add_argument("--seeds", default="201")
     parser.add_argument("--rated-wind", type=float, default=None)
@@ -227,6 +227,12 @@ def main():
         rated_wind = 11.0 if args.rated_wind is None else args.rated_wind
         cache_dir = repo / "artifacts/cache_external_wind/external_wind_kelmarsh_chronological"
         model_root = repo / "artifacts/signature_gate_farms_runs_20260903/kelmarsh/canonical"
+        steps_per_year = 52560
+    elif args.farm == "penmanshiel":
+        elevation = 230.0
+        rated_wind = 11.5 if args.rated_wind is None else args.rated_wind
+        cache_dir = repo / "artifacts/cache_external_wind/external_wind_penmanshiel_chronological"
+        model_root = repo / "artifacts/signature_gate_farms_runs_20260903/penmanshiel/canonical"
         steps_per_year = 52560
     else:  # la_haute_borne
         elevation = 380.0
@@ -280,21 +286,22 @@ def main():
 
         # Define evaluation windows
         windows = []
-        if args.farm == "kelmarsh":
-            # 7 Walk-Forward Rolling Folds (2 years train/cal, 1 year test)
-            for f_idx in range(7):
+        if args.farm in ["kelmarsh", "penmanshiel"]:
+            # Walk-Forward Rolling Folds (2 years train/cal, 1 year test)
+            n_years = num_steps // steps_per_year
+            for f_idx in range(n_years - 2):
                 v_start = f_idx * steps_per_year
                 v_end = v_start + 2 * steps_per_year
                 t_start = v_end
                 t_end = min(t_start + steps_per_year, num_steps)
                 windows.append((f"rolling_fold_{f_idx+1}", v_start, v_end, t_start, t_end))
-            # 9 Individual Annual Windows (calibrated on prior year or baseline window)
+            # Individual Annual Windows (calibrated on prior year or baseline window)
             cal_base_start, cal_base_end = 0, steps_per_year
-            for y_idx in range(9):
+            for y_idx in range(n_years):
                 t_start = y_idx * steps_per_year
                 t_end = min(t_start + steps_per_year, num_steps)
                 windows.append((f"year_{y_idx+1}", cal_base_start, cal_base_end, t_start, t_end))
-            # Full Pooled Multi-Year Window (Calibrate on initial 180 days, test on all remaining 8.5 years)
+            # Full Pooled Multi-Year Window (Calibrate on initial 180 days, test on all remaining multi-year data)
             windows.append(("pooled_multiyear_full", 0, 180 * 144, 180 * 144, num_steps))
         else:
             # LHB Quarterly Folds

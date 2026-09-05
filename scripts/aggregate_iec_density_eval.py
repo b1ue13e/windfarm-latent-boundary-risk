@@ -81,11 +81,13 @@ def main():
 
     out_dir = Path(args.output_dir)
     kelmarsh_summary = summarize_farm(out_dir, "kelmarsh")
+    penmanshiel_summary = summarize_farm(out_dir, "penmanshiel")
     lhb_summary = summarize_farm(out_dir, "la_haute_borne")
 
     guard = {
         "status": "iec_density_multiyear_rolling_completed",
         "kelmarsh_completed": kelmarsh_summary is not None,
+        "penmanshiel_completed": penmanshiel_summary is not None,
         "lhb_completed": lhb_summary is not None,
     }
     if kelmarsh_summary is not None:
@@ -94,6 +96,13 @@ def main():
             guard["kelmarsh_pooled_delta_cost"] = float(k_pooled["delta_mean"].iloc[0])
             guard["kelmarsh_pooled_ci_95"] = [float(k_pooled["ci_low"].iloc[0]), float(k_pooled["ci_high"].iloc[0])]
             guard["kelmarsh_pooled_ci_excludes_zero"] = bool(k_pooled["ci_excludes_zero"].iloc[0])
+
+    if penmanshiel_summary is not None:
+        p_pooled = penmanshiel_summary[(penmanshiel_summary["window"] == "pooled_multiyear_full") & (penmanshiel_summary["rho"] == 10.0) & (penmanshiel_summary["metric"] == "total_cost") & (penmanshiel_summary["strategy"] == "soft-gate-bin") & (penmanshiel_summary["baseline"] == "global")]
+        if not p_pooled.empty:
+            guard["penmanshiel_pooled_delta_cost"] = float(p_pooled["delta_mean"].iloc[0])
+            guard["penmanshiel_pooled_ci_95"] = [float(p_pooled["ci_low"].iloc[0]), float(p_pooled["ci_high"].iloc[0])]
+            guard["penmanshiel_pooled_ci_excludes_zero"] = bool(p_pooled["ci_excludes_zero"].iloc[0])
 
     if lhb_summary is not None:
         l_pooled = lhb_summary[(lhb_summary["window"] == "pooled_annual_full") & (lhb_summary["rho"] == 10.0) & (lhb_summary["metric"] == "total_cost") & (lhb_summary["strategy"] == "soft-gate-bin") & (lhb_summary["baseline"] == "global")]

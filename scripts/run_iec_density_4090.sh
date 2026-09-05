@@ -37,6 +37,15 @@ run_worker() {
         --output-dir "$OUT_DIR" \
         --batch-size 256 >> "$log_file" 2>&1
         
+    # 3. Penmanshiel 8.6-year rolling evaluation
+    python3 "$REPO_ROOT/scripts/remote_iec_density_multiyear_eval.py" \
+        --repo-root "$REPO_ROOT" \
+        --farm "penmanshiel" \
+        --gpu-id "$gpu_id" \
+        --seeds "$seeds" \
+        --output-dir "$OUT_DIR" \
+        --batch-size 256 >> "$log_file" 2>&1
+        
     echo "[GPU ${gpu_id}] Completed all tasks!"
 }
 
