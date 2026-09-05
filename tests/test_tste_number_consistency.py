@@ -32,6 +32,8 @@ class TsteNumberConsistencyTests(unittest.TestCase):
             "artifacts/markov_gilbert_eval_honest/markov_gilbert_guard.json",
             "artifacts/iec_density_rolling_eval/iec_rolling_guard.json",
             "artifacts/multiyear_gate_representation_audit/gate_representation_decay_summary.csv",
+            "artifacts/dynamic_price_settlement_audit/kelmarsh_real_price_paired_summary.csv",
+            "artifacts/dynamic_price_settlement_audit/penmanshiel_real_price_paired_summary.csv",
             "docs/tste_trainonly_rerun_results_20260830.md",
             "paper_tste_ieee.md",
             "paper_tste_supplementary.md",

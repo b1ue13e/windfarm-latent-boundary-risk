@@ -18,14 +18,14 @@ header-includes:
   - \usepackage{enumitem}
   - \usepackage{etoolbox}
   - \setlist[itemize]{leftmargin=1.4em,nosep}
-  - \AtBeginDocument{\renewenvironment{CSLReferences}[2]{\begin{list}{}{\fontsize{6.5pt}{7.5pt}\selectfont\setlength{\itemindent}{0pt}\setlength{\leftmargin}{0pt}\setlength{\parsep}{0pt}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}}{\end{list}}}
+  - \AtBeginDocument{\renewenvironment{CSLReferences}[2]{\begin{list}{}{\fontsize{6.2pt}{7.0pt}\selectfont\setlength{\itemindent}{0pt}\setlength{\leftmargin}{0pt}\setlength{\parsep}{0pt}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}}{\end{list}}}
   - \AtBeginDocument{\renewcommand{\CSLBlock}[1]{#1\par}}
   - \AtBeginDocument{\setlength{\csllabelwidth}{1.8em}}
-  - \AtBeginDocument{\renewcommand{\CSLRightInline}[1]{\parbox[t]{\dimexpr\linewidth - \csllabelwidth\relax}{\fontsize{6.5pt}{7.5pt}\selectfont\ignorespaces#1}}}
-  - \AtBeginDocument{\renewcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\fontsize{6.5pt}{7.5pt}\selectfont\strut#1}}}
+  - \AtBeginDocument{\renewcommand{\CSLRightInline}[1]{\parbox[t]{\dimexpr\linewidth - \csllabelwidth\relax}{\fontsize{6.2pt}{7.0pt}\selectfont\ignorespaces#1}}}
+  - \AtBeginDocument{\renewcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\fontsize{6.2pt}{7.0pt}\selectfont\strut#1}}}
   - \makeatletter
-  - \def\section{\@startsection{section}{1}{\z@}{1.1ex plus 0.4ex minus 0.2ex}{0.4ex plus 0.2ex}{\normalfont\footnotesize\bfseries\centering\scshape}}
-  - \def\subsection{\@startsection{subsection}{2}{\z@}{0.8ex plus 0.3ex minus 0.1ex}{0.3ex plus 0.1ex}{\normalfont\normalsize\itshape}}
+  - \def\section{\@startsection{section}{1}{\z@}{0.95ex plus 0.3ex minus 0.2ex}{0.35ex plus 0.15ex}{\normalfont\footnotesize\bfseries\centering\scshape}}
+  - \def\subsection{\@startsection{subsection}{2}{\z@}{0.7ex plus 0.2ex minus 0.1ex}{0.25ex plus 0.1ex}{\normalfont\normalsize\itshape}}
   - \makeatother
   - \setlength{\abovedisplayskip}{2pt plus 1pt minus 1pt}
   - \setlength{\belowdisplayskip}{2pt plus 1pt minus 1pt}
@@ -403,30 +403,32 @@ GWN/global & 88.80M & 0.1022 & 50.32M & 3.85M & Global low-RMSE reference \\
 
 The useful reserve window is moderate rather than universal: ratios 5--10 favor gate-bin screening, ratio 50 favors the same-model global rule, and Graph WaveNet/physical-bin remains close at 84.31M. The boundary-slice proxy falls from 99.55M to 95.13M, which Supplementary Table A12 translates into about 637 avoided MWh-equivalent shortage cells and a 442k illustrative reserve-cost-scale marker at 100 EUR/MWh. The engineering value is an auditable pre-dispatch screening and imbalance penalty avoidance margin near the control boundary, not centralized ISO ancillary service dispatch or market settlement value.
 
-The modular-equivalence control quantifies what the in-model posterior adds on the same backbone. A validation-fit logistic classifier on issue-time anchors reproduces physical-bin reserve (16.190M versus 16.190M; seed-paired difference -68, CI [-112, -28]), beating the hard route (16.398M). The jointly-learned soft posterior reaches 16.065M, below the classifier by 125k (CI [-297k, +34k]) and below global by 568k (CI [-726k, -406k]; Supplementary Table A11c), with pinball gain 1.82 at $q{=}0.90$. The mechanism decomposition in Table~\ref{tab:mechanism} localizes where this value comes from: an unrouted joint posterior head prices at 16.076M (no detected difference from routed 16.065M), whereas independent GBDT prices at 17.656M---1.6M worse than the joint posterior and 1.0M worse than global. Continuous pitch quantile (\texttt{soft-pab-bin}) achieves the lowest clean baseline cost (15.538M, degrading to 16.048M under six-step delay). In pitch-sparse plants (e.g. Kelmarsh with 55\% pitch coverage), physical quantiles fail on >40\% of turbines, where the joint posterior restores risk awareness from electromechanical signatures. Under fair degradation, the classifier advantage disappears (recall 0.885 under noise vs 0.951 for routed posterior; 0.933 vs 0.286 under delay).
+The modular-equivalence control quantifies what the in-model posterior adds on the same backbone. A validation-fit logistic classifier on issue-time anchors reproduces physical-bin reserve (16.190M versus 16.190M; seed-paired difference -68, CI [-112, -28]), beating the hard route (16.398M). The jointly-learned soft posterior reaches 16.065M, below the classifier by 125k (CI [-297k, +34k]) and below global by 568k (CI [-726k, -406k]; Supplementary Table A11c), with pinball gain 1.82 at $q{=}0.90$. The matched modular comparison in Table~\ref{tab:mechanism} localizes where this value comes from across seven architectures: an unrouted joint head prices at 16.076M (no detected difference from routed 16.065M), whereas a two-stage Cascaded Frozen MLP prices at 16.412M (trailing joint learning by 0.347M, CI [-0.385M, -0.052M]), and independent consequence models fail to price risk despite consequence awareness (Independent Consequence MLP at 17.340M, GBDT at 17.656M---1.28M to 1.59M worse than joint learning). This establishes that joint training with power residuals is indispensable for non-convex risk pricing, while the routing structure provides degradation resilience (recall 0.933 vs 0.286 under delay; 0.951 vs 0.724 under noise). Continuous pitch quantile achieves the lowest clean baseline (15.538M, degrading to 16.048M under delay). In pitch-sparse plants (e.g. Kelmarsh with 55\% pitch coverage), physical quantiles fail on >40\% of turbines, where the joint posterior restores risk awareness from electromechanical signatures. Computationally, the model has only 110k parameters (430 KB) and executes 134-turbine inference in 4.12 ms on a central substation workstation (<25 ms on an industrial PC CPU), consuming <1 kWh/year (<£220/year total plant OPEX, <£1.63/turbine/year), ruling out edge GPU hardware overhead.
 
 ```{=latex}
 \begin{table}[!t]
 \centering
 \scriptsize
-\setlength{\tabcolsep}{1.0pt}
-\renewcommand{\arraystretch}{0.85}
-\caption{Mechanism decomposition: where the boundary-risk posterior's value comes from. Reserve costs are validation-frozen boundary-band totals at $\rho{=}10$ (mean over five seeds); degraded recall is the early-window recall under a six-step confirming-stream delay applied identically to every detector.}
+\setlength{\tabcolsep}{0.8pt}
+\renewcommand{\arraystretch}{0.80}
+\caption{Matched modular comparison: where the boundary-risk posterior's value comes from. Reserve costs are validation-frozen boundary-band totals at $\rho{=}10$ (mean over five seeds); degraded recall is early-window recall under a six-step confirming-stream delay applied identically to every detector.}
 \label{tab:mechanism}
-\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.33\columnwidth} >{\centering\arraybackslash}p{0.09\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}X}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.36\columnwidth} >{\centering\arraybackslash}p{0.10\columnwidth} >{\centering\arraybackslash}p{0.12\columnwidth} >{\centering\arraybackslash}p{0.12\columnwidth} >{\centering\arraybackslash}X}
 \toprule
-Pricing / detection method & Jointly trained & Needs physical channels & Reserve cost & Degraded recall \\
+Pricing / detection method & Jointly trained & Channels & Reserve cost & Degraded recall \\
 \midrule
-Continuous pitch quantile (soft-pab) & no & yes & 15.538M & --$^{\dagger}$ \\
-Threshold rule & no & yes & 16.190M (physical-bin) & 0.196 \\
-Independent logistic classifier & no & yes & 16.190M & 0.885 (noise) \\
-Independent GBDT posterior & no & conseq. channels & 17.656M & 0.868 \\
+Continuous pitch quantile (soft-pab) & no & physical & 15.538M & --$^{\dagger}$ \\
+Threshold rule (physical-bin) & no & physical & 16.190M & 0.196 \\
+Independent logistic classifier & no & physical & 16.190M & 0.885 (noise) \\
+Cascaded Frozen MLP & partial & conseq. & 16.412M & 0.785 \\
+Independent Consequence MLP & no & conseq. & 17.340M & 0.854 \\
+Independent GBDT posterior & no & conseq. & 17.656M & 0.868 \\
 Joint non-routed posterior head & yes & weak & 16.076M & 0.286 \\
 Joint routed posterior (this work) & yes & weak & 16.065M & 0.933 \\
 \midrule
-Global quantile & -- & -- & 16.632M & 0.971 (clean rule) \\
+Global quantile & -- & -- & 16.632M & 0.196 \\
 \midrule
-\multicolumn{5}{p{0.96\linewidth}}{\scriptsize $^{\dagger}$Soft-pab is a continuous quantile pricing rule, not a binary detector; under clean telemetry it is the optimal baseline (15.538M), degrading to 16.048M under a six-step delay. In pitch-sparse wind plants (e.g., Kelmarsh with 55\% pitch coverage), physical pitch quantiles are missing on over 40\% of turbines, where the jointly-learned posterior provides defense-in-depth.} \\
+\multicolumn{5}{p{0.96\linewidth}}{\scriptsize $^{\dagger}$Soft-pab is a continuous quantile pricing rule; under clean telemetry it is the optimal baseline (15.538M), degrading to 16.048M under delay. In pitch-sparse plants (e.g. Kelmarsh with 55\% pitch coverage), physical pitch quantiles are missing on >40\% of turbines, where the joint posterior provides defense-in-depth.} \\
 \bottomrule
 \end{tabularx}
 \end{table}

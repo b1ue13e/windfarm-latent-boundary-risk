@@ -304,6 +304,32 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
             _check("penmanshiel_year2_inv_w_pitch", gate_decay_file, _num(pm_y2["inverse_wasserstein_pitch_mean"]), "{:.4f}", ("supplementary",)),
         ])
 
+    dynamic_km_file = "artifacts/dynamic_price_settlement_audit/kelmarsh_real_price_paired_summary.csv"
+    dynamic_pm_file = "artifacts/dynamic_price_settlement_audit/penmanshiel_real_price_paired_summary.csv"
+    if (root / dynamic_km_file).exists() and (root / dynamic_pm_file).exists():
+        km_dyn = pd.read_csv(root / dynamic_km_file)
+        pm_dyn = pd.read_csv(root / dynamic_pm_file)
+        km_pool = km_dyn[
+            (km_dyn["window"] == "walkforward_rolling_pooled")
+            & (km_dyn["baseline"] == "global")
+            & (np.isclose(km_dyn["rho"], 10.0))
+            & (km_dyn["metric"] == "total_cashflow_gbp")
+        ].iloc[0]
+        pm_pool = pm_dyn[
+            (pm_dyn["window"] == "walkforward_rolling_pooled")
+            & (pm_dyn["baseline"] == "global")
+            & (np.isclose(pm_dyn["rho"], 10.0))
+            & (pm_dyn["metric"] == "total_cashflow_gbp")
+        ].iloc[0]
+        km_sav = -float(km_pool["delta_mean"])
+        pm_sav = -float(pm_pool["delta_mean"])
+        comb_sav = km_sav + pm_sav
+        checks.extend([
+            _check("dynamic_price_kelmarsh_savings_rho10", dynamic_km_file, km_sav, lambda v: f"+£{v/1e3:.1f}k", ("supplementary",)),
+            _check("dynamic_price_penmanshiel_savings_rho10", dynamic_pm_file, pm_sav, lambda v: f"+£{v/1e3:.1f}k", ("supplementary",)),
+            _check("dynamic_price_combined_savings_rho10", dynamic_km_file, comb_sav, lambda v: f"+£{v/1e3:.1f}k", ("supplementary",)),
+        ])
+
     return checks
 
 
