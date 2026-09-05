@@ -113,7 +113,7 @@ if (-not $coverText.Contains("Supplementary Table A12")) {
 }
 
 $portalMetadata = Get-Content -LiteralPath (Join-Path $metadataDir "portal_metadata.json") -Raw | ConvertFrom-Json
-$expectedTitle = "Jointly-Learned Boundary-Risk Posterior for Wind-Turbine Reserve Diagnosis at the MPPT-to-Pitch Boundary"
+$expectedTitle = "Jointly-Learned Boundary-Risk Posterior for Wind Plant Reserve Pricing under Telemetry Degradation: A Defense-in-Depth Approach"
 if ([string]$portalMetadata.title -ne $expectedTitle) {
     throw "Portal metadata title does not match the TSTE manuscript."
 }
