@@ -25,6 +25,7 @@ build/
 logs/
 archives/
 cloud_revision_bundle/
+.workbuddy/
 $root/
 
 # LaTeX build side products

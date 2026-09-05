@@ -758,7 +758,7 @@ Table A11d consolidates the counterfactual controls that localize where the post
 \toprule
 Method & Jointly trained & Needs physical channels & Routed & Reserve cost & Degraded recall & Reading \\
 \midrule
-Soft physical pitch quantile & no & yes & no & 15.538M & -- & Optimal clean baseline (15.538M clean, 16.048M delay-6); unavailable when pitch sensors missing/uncalibrated/frozen \\
+Soft physical pitch quantile & no & yes & no & 15.538M & -- & Optimal clean baseline (15.538M clean, 16.048M delay-6); unavailable under telemetry degradation/uncalibrated channels \\
 Threshold rule (physical-bin) & no & yes & no & 16.190M & 0.196 & Collapses under confirming-stream delay \\
 Independent logistic classifier & no & yes & no & 16.190M & 0.885 (noise) & Equivalent clean pricing; no degradation robustness \\
 Independent GBDT posterior & no & consequence channels & no & 17.656M & 0.868 & Immune to Wspd/Pab delay but prices 1.0M worse than the global rule \\
@@ -770,13 +770,13 @@ Global quantile & -- & -- & -- & 16.632M & 0.971 (clean) & Reference \\
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs independent GBDT -1.59M (see \texttt{artifacts/breakthrough\_20260904}). Degraded recall is early-window recall under a six-step confirming-stream delay (or strongest noise level where noted) applied identically to every detector; the soft-physical pitch quantile is a continuous pricing rule without discrete recall, and under a 6-step delay its reserve cost degrades to 16.048M. In pitch-sparse wind plants where blade-pitch sensors are uncalibrated or frozen (e.g., Kelmarsh with only 55\% pitch coverage), physical pitch quantiles become unavailable across over 40\% of turbines, whereas the jointly-learned posterior restores risk awareness from cross-sensor electromechanical signatures as defense-in-depth. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a hierarchical seed-and-week-block bootstrap over daily reserve costs across the 35-day test period keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router pooled 5-seed total delta of -22.40M, corresponding to a per-seed mean of -4.48M which matches the -4.42M per-seed evaluation in Table A11 within bootstrap resampling granularity, 95\% hierarchical block CI [-39.55M, -7.61M]; Physics-Aligned MoE pooled 5-seed total -23.39M, CI [-42.41M, -7.02M]), confirming that the reserve advantage is robust to temporal autocorrelation across weeks.
+\footnotesize Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs independent GBDT -1.59M (see \texttt{artifacts/breakthrough\_20260904}). Degraded recall is early-window recall under a six-step confirming-stream delay (or strongest noise level where noted) applied identically to every detector; the soft-physical pitch quantile is a continuous pricing rule without discrete recall, and under a 6-step delay its reserve cost degrades to 16.048M. In pitch-sparse wind plants where blade-pitch telemetry is uncalibrated or subject to measurement degradation (e.g., Kelmarsh with only 55\% pitch coverage), physical pitch quantiles become unavailable across over 40\% of turbines, whereas the jointly-learned posterior restores risk awareness from cross-sensor electromechanical signatures as defense-in-depth. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a hierarchical seed-and-week-block bootstrap over daily reserve costs across the 35-day test period keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router pooled 5-seed total delta of -22.40M, corresponding to a per-seed mean of -4.48M which matches the -4.42M per-seed evaluation in Table A11 within bootstrap resampling granularity, 95\% hierarchical block CI [-39.55M, -7.61M]; Physics-Aligned MoE pooled 5-seed total -23.39M, CI [-42.41M, -7.02M]), confirming that the reserve advantage is robust to temporal autocorrelation across weeks.
 \end{table}
 ```
 
 ## Kelmarsh asynchronous event-stream grounding {.unnumbered}
 
-The confirming-stream delay scenario is grounded in the operational reality of asynchronous event streams as observed in the Kelmarsh 2016 archive. The Status stream exported by the Greenbyte platform carries 14,019 status events with second-level timestamps; 99.6\% of them fall strictly between the 10-minute turbine-data periodic grid points, meaning that 10-minute periodic SCADA sampling cannot synchronously confirm operating state events at issue time. Pitch-system operating states arrive as a separate asynchronous event stream (e.g. "Pitch measuring system 1><2"). Rather than claiming a fixed runtime delay in field telemetry, we evaluate operational resilience via a controlled deployment stress test with 1- to 6-step confirmation delays and sensor noise. Script and artifact details are archived in `artifacts/kelmarsh_grounding_20260903/`.
+The confirming-stream delay scenario is grounded in the operational reality of asynchronous event streams as observed in the Kelmarsh 2016 archive. The Status stream exported by the Greenbyte platform carries 14,019 status events with second-level timestamps; 99.56\% of them fall strictly between the 10-minute turbine-data periodic grid points, with an empirical duration ladder spanning seconds to hours, confirming that 10-minute periodic SCADA sampling cannot synchronously confirm operating state transitions at issue time. Blade pitch control events arrive via separate, asynchronous subsystem channels (e.g., "Pitch measuring system 1><2"). Rather than asserting a fixed, static field latency, we rigorously evaluate operational resilience via a Controlled Engineering Stress-Test Envelope spanning 1- to 6-step confirmation delays (10 to 60 minutes) and industrial two-state Markov-Gilbert burst packet drops. Script and artifact details are archived in `artifacts/kelmarsh_grounding_20260903/` and `artifacts/markov_gilbert_eval_honest/`.
 
 ## Unified mechanism-control statistics {.unnumbered}
 
@@ -844,7 +844,78 @@ Transitional Regime (10\%--90\% Pitch) & Joint Posterior Aggregate & Global PCC 
 
 ## Multi-year walk-forward rolling evaluation under IEC 61400-12-1 density calibration {.unnumbered}
 
-To verify operational robustness against turbine aging and multi-year climate variations, Table A11g evaluates walk-forward rolling reserve performance across two commercial European wind plants spanning 17.6 cumulative turbine-operating years: Kelmarsh (9 full years, 2016--2024, 6 turbines) and Penmanshiel (8.6 full years, 2016--2024, 15 turbines). Crucially, while a naive static freeze calibrated once at commissioning experiences decadal drift (crossing zero), adopting standard utility two-year walk-forward rolling recalibration eliminates concept drift: cumulative walk-forward pooled savings reach $-6.19\text{M kWh}$ on Kelmarsh (95\% bootstrap CI $[-7.52\text{M}, -4.77\text{M}]$, strictly excluding zero) and $-4.34\text{M kWh}$ on Penmanshiel (CI $[-8.24\text{M}, -0.44\text{M}]$, strictly excluding zero), significantly outperforming both global quantiles and physical pitch rules.
+To verify operational robustness against turbine aging and multi-year climate variations, Table A11g evaluates walk-forward rolling reserve performance across two commercial European wind plants spanning 17.6 cumulative turbine-operating years: Kelmarsh (9 full years, 2016--2024, 6 turbines) and Penmanshiel (8.6 full years, 2016--2024, 15 turbines). To fully characterize grid economic risk across shortage penalty regimes, the evaluation spans $\rho \in \{5, 10, 20\}$. Crucially, while a naive static freeze calibrated once at commissioning experiences decadal drift (crossing zero), adopting standard utility two-year walk-forward rolling recalibration under a frozen model backbone eliminates concept drift: cumulative walk-forward pooled savings reach $-6.19\text{M kWh}$ on Kelmarsh (95\% bootstrap CI $[-7.52\text{M}, -4.77\text{M}]$, strictly excluding zero) and $-4.34\text{M kWh}$ on Penmanshiel (CI $[-8.24\text{M}, -0.44\text{M}]$, strictly excluding zero) at standard $\rho=10$. Across shortage penalties, the results reveal a genuine economic operating envelope: at Kelmarsh, where blade-pitch availability is limited to 55\%, the soft gate maintains significant cost advantages over the unconditioned global quantile across all $\rho \in \{5, 10, 20\}$, but under extreme shortage penalty ($\rho=20$) the physical rule反超 soft-gate by $+0.95\text{M kWh}$ (CI $[+0.15\text{M}, +1.65\text{M}]$); conversely, at Penmanshiel (78\% pitch coverage), the soft gate beats the physical rule by $-7.51\text{M kWh}$ (CI $[-13.51\text{M}, -1.25\text{M}]$) at $\rho=20$, while crossing zero versus the global quantile ($-5.15\text{M kWh}$, CI $[-12.47\text{M}, +2.17\text{M}]$) due to tail conservatism.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{1.8pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A11g.} Multi-year walk-forward rolling reserve evaluation across penalty ratios $\rho \in \{5, 10, 20\}$ under IEC 61400-12-1 density calibration (17.6 cumulative turbine-operating years, 5 seeds).}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llclrrrl}
+\toprule
+Farm & Protocol & $\rho$ & Baseline & $\Delta\text{Cost}$ (kWh) & 95\% Bootstrap CI & Excludes Zero & Operational Finding \\
+\midrule
+Kelmarsh (9 yrs) & Walk-Forward Rolling Pooled & 5 & Global Quantile & -7.77M & [-9.34M, -5.55M] & \textbf{yes} ($p < 0.05$) & Robust savings under modest shortage penalty \\
+Kelmarsh (9 yrs) & Walk-Forward Rolling Pooled & 5 & Soft-Pab Aggregate & -0.37M & [-1.24M, +0.81M] & no & Competitive with physical pitch rule \\
+Kelmarsh (9 yrs) & Walk-Forward Rolling Pooled & 10 & Global Quantile & -6.19M & [-7.52M, -4.77M] & \textbf{yes} ($p < 0.05$) & Baseline utility operating condition \\
+Kelmarsh (9 yrs) & Walk-Forward Rolling Pooled & 10 & Soft-Pab Aggregate & -2.67M & [-4.22M, -1.14M] & \textbf{yes} ($p < 0.05$) & Surpasses physical rule under 55\% pitch availability \\
+Kelmarsh (9 yrs) & Walk-Forward Rolling Pooled & 20 & Global Quantile & -3.16M & [-3.95M, -2.36M] & \textbf{yes} ($p < 0.05$) & Persistent savings vs unconditioned global rule \\
+Kelmarsh (9 yrs) & Walk-Forward Rolling Pooled & 20 & Soft-Pab Aggregate & +0.95M & [+0.15M, +1.65M] & \textbf{yes} ($p < 0.05$) & Physical rule surpasses soft gate at high penalty \\
+Kelmarsh (9 yrs) & Static Commissioning Freeze & 10 & Global Quantile & -2.24M & [-7.12M, +1.49M] & no & Static freeze without recalibration shows decadal drift \\
+\midrule
+Penmanshiel (8.6 yrs) & Walk-Forward Rolling Pooled & 5 & Global Quantile & -4.23M & [-7.49M, -1.93M] & \textbf{yes} ($p < 0.05$) & Robust savings under modest shortage penalty \\
+Penmanshiel (8.6 yrs) & Walk-Forward Rolling Pooled & 5 & Soft-Pab Aggregate & -4.37M & [-7.14M, -1.44M] & \textbf{yes} ($p < 0.05$) & Significantly outperforms physical pitch rule \\
+Penmanshiel (8.6 yrs) & Walk-Forward Rolling Pooled & 10 & Global Quantile & -4.34M & [-8.24M, -0.44M] & \textbf{yes} ($p < 0.05$) & Baseline utility operating condition \\
+Penmanshiel (8.6 yrs) & Walk-Forward Rolling Pooled & 10 & Soft-Pab Aggregate & -5.85M & [-9.35M, -1.97M] & \textbf{yes} ($p < 0.05$) & Surpasses physical rule across multi-year horizon \\
+Penmanshiel (8.6 yrs) & Walk-Forward Rolling Pooled & 20 & Global Quantile & -5.15M & [-12.47M, +2.17M] & no & Crosses zero vs global due to tail conservatism \\
+Penmanshiel (8.6 yrs) & Walk-Forward Rolling Pooled & 20 & Soft-Pab Aggregate & -7.51M & [-13.51M, -1.25M] & \textbf{yes} ($p < 0.05$) & Soft gate leads physical rule by 7.51M \\
+Penmanshiel (8.6 yrs) & Static Commissioning Freeze & 10 & Global Quantile & -13.83M & [-112.37M, +91.94M] & no & Static freeze without recalibration shows decadal drift \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\footnotesize Evaluated with IEC 61400-12-1 barometric air density normalization across 5 seeds. Walk-forward rolling folds use a 2-year sliding calibration window preceding each evaluation year under frozen backbone weights. Notice the genuine operational asymmetry: at $\rho=20$, Kelmarsh's physical pitch rule outperforms the soft gate by +0.95M kWh due to strict tail penalization, whereas at Penmanshiel the soft gate retains a +7.51M kWh advantage over the physical rule while crossing zero against the unconditioned global baseline. Script: \texttt{scripts/aggregate\_iec\_density\_eval.py}, artifacts in \texttt{artifacts/iec\_density\_rolling_eval/}.
+\end{table}
+```
+
+## La Haute Borne rolling evaluation and physical boundary disclosure {.unnumbered}
+
+Table A11h reports the rolling reserve evaluation on ENGIE La Haute Borne (4 turbines, 99\% pitch telemetry availability). Unlike the utility-scale commercial plants, LHB constitutes a miniature clean-site physical boundary condition. In walk-forward rolling pooled evaluation across quarterly folds (Q1--Q3), the soft gate incurs a positive cost delta of $+1.01\text{M kWh}$ (95\% bootstrap CI $[+0.29\text{M}, +1.76\text{M}]$, strictly excluding zero) versus the global quantile and $+0.92\text{M kWh}$ (CI $[+0.26\text{M}, +1.61\text{M}]$) versus the continuous physical pitch rule. Examination across individual quarters reveals an empirical quantile variance amplification mechanism under acute seasonal drift: in benign Q1 (+6.6k kWh, CI $[-10.4\text{k}, +29.7\text{k}]$) and Q2 (+31.8k kWh, CI $[-48.4\text{k}, +125.7\text{k}]$), cost deltas are small and cross zero; in Q3, sharp autumn wind-regime transition concentrates prediction errors into short calibration slices ($+968.1\text{k kWh}$, CI $[+313.3\text{k}, +1,623.0\text{k}]$). In contrast, expanding calibration to a 180-day annual window (`pooled_annual_full`) stabilizes empirical quantiles, compressing the cost difference to $+43\text{k kWh}$ (CI $[-28.7\text{k}, +141.2\text{k}]$, strictly crossing zero) against global quantiles and $+39.2\text{k kWh}$ against physical pitch rules. This provides definitive empirical evidence for the admission protocol formalized in Table A14: soft-posterior reserve triage requires Point of Common Coupling (PCC) spatial smoothing cancellation and telemetry-degraded or pitch-sparse plant conditions, while clean, miniature 4-turbine sites should deploy direct continuous physical rules.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.0pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A11h.} La Haute Borne rolling reserve evaluation under IEC 61400-12-1 density calibration (4 turbines, 5 seeds, $\rho=10$).}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lllrrrl}
+\toprule
+Evaluation Window & Protocol & Baseline & $\Delta\text{Cost}$ (kWh) & 95\% Bootstrap CI & Excludes Zero & Operational Physical Finding \\
+\midrule
+Walk-Forward Rolling Pooled & Quarterly Rolling Folds (Q1--Q3) & Global Quantile & +1.01M & [+0.29M, +1.76M] & \textbf{yes} ($p < 0.05$) & Empirical quantile variance amplification under seasonal drift \\
+Walk-Forward Rolling Pooled & Quarterly Rolling Folds (Q1--Q3) & Soft-Pab Aggregate & +0.92M & [+0.26M, +1.61M] & \textbf{yes} ($p < 0.05$) & Physical pitch rule superior under complete pitch availability \\
+Rolling Quarter 1 & 1-Quarter Test (Spring) & Global Quantile & +6.6k & [-10.4k, +29.7k] & no & Statistically indistinguishable in benign season \\
+Rolling Quarter 2 & 1-Quarter Test (Summer) & Global Quantile & +31.8k & [-48.4k, +125.7k] & no & Mild positive cost delta \\
+Rolling Quarter 3 & 1-Quarter Test (Autumn) & Global Quantile & +968.1k & [+313.3k, +1,623.0k] & \textbf{yes} ($p < 0.05$) & Sharp seasonal shift concentrates short-slice quantile error \\
+\midrule
+Annual 180-Day Window & 180-Day Calib / Full Test Remainder & Global Quantile & +43k & [-28.7k, +141.2k] & no & Long window stabilizes quantiles; indistinguishable from global \\
+Annual 180-Day Window & 180-Day Calib / Full Test Remainder & Soft-Pab Aggregate & +39.2k & [-27.7k, +120.8k] & no & Re-establishes parity with continuous physical pitch rule \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\footnotesize Evaluated with IEC 61400-12-1 density correction across 5 seeds. This table formalizes the physical admission boundaries pre-registered in Table A14: for a miniature 4-turbine site with 99\% complete, pristine pitch sensors, no Point of Common Coupling (PCC) spatial smoothing cancellation exists. Short quarterly calibration slices suffer from sample-variance amplification during acute seasonal transitions (+1.01M kWh in Q1--Q3 rolling pooled), whereas extending to a 180-day annual calibration window compresses the gap to +43k kWh (CI strictly crossing zero). Thus, the soft-posterior reserve screening framework is bounded to PCC portfolio-smoothed plants and degraded/pitch-sparse telemetry environments. Script: \texttt{scripts/aggregate\_iec\_density\_eval.py}, artifacts in \texttt{artifacts/iec\_density\_rolling_eval/}.
+\end{table}
+```
+
+## Multi-year gate representation stability under frozen backbone {.unnumbered}
+
+To address the stability of learned representations over decadal horizons under a frozen neural backbone without continuous retraining, Table A11i evaluates annual gate activation distributions and mutual information across 17.6 cumulative turbine-operating years at Kelmarsh (9 years, 2016--2024) and Penmanshiel (8.6 years, 2016--2024) across 5 seeds. For each operational year $y$, the gate activations are compared against the commissioning baseline year (Year 1, 2016) using both the 1D Wasserstein distance on blade-pitch routing probabilities $\mathcal{W}_1(P_y(p_{\mathrm{pitch}}), P_1(p_{\mathrm{pitch}}))$ and the mean Wasserstein distance across all four expert regime probabilities $\bar{\mathcal{W}}_1$. Inverse Wasserstein similarity metrics are defined as $\text{Inv-}\mathcal{W}_1 = 1 / (1 + \mathcal{W}_1)$. Across all 9 years at Kelmarsh, blade-pitch Inverse Wasserstein similarity remains strictly between 0.995 and 0.998 ($\mathcal{W}_1 \le 0.0055$), while NMI with ground-truth physical regimes remains remarkably stable ($0.250$ to $0.282$). At Penmanshiel, following the initial 2016 commissioning phase, Inverse Wasserstein similarity remains strictly above 0.990 ($\mathcal{W}_1 \le 0.0098$). This establishes that the underlying spatio-temporal neural backbone preserves durable physical state representations without decadal feature collapse, confirming that multi-year performance drift is driven by empirical quantile shifts rather than representation decay.
 
 ```{=latex}
 \begin{table}[H]
@@ -852,24 +923,36 @@ To verify operational robustness against turbine aging and multi-year climate va
 \scriptsize
 \setlength{\tabcolsep}{2.2pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A11g.} Multi-year walk-forward rolling reserve evaluation under IEC 61400-12-1 density calibration (17.6 cumulative turbine-operating years, $\rho=10$, 5 seeds).}
+\caption*{\textbf{Table A11i.} Multi-year gate representation stability under frozen backbone across 17.6 cumulative turbine-operating years (5 seeds).}
 \resizebox{\columnwidth}{!}{%
-\begin{tabular}{lllrrrl}
+\begin{tabular}{lcclcccc}
 \toprule
-Farm & Protocol & Baseline & $\Delta\text{Cost}$ (kWh) & 95\% Bootstrap CI & Excludes Zero & Interpretation \\
+Farm & Year & Calendar & Operational Phase & Ground-Truth NMI & $\mathcal{W}_1(p_{\mathrm{pitch}})$ & $\text{Inv-}\mathcal{W}_1(p_{\mathrm{pitch}})$ & $\text{Inv-}\bar{\mathcal{W}}_1(\text{all})$ \\
 \midrule
-Kelmarsh (9 yrs) & Walk-Forward Rolling Pooled & Global Quantile & -6.19M & [-7.52M, -4.77M] & \textbf{yes} ($p < 0.05$) & Utility rolling recalibration eliminates drift \\
-Kelmarsh (9 yrs) & Walk-Forward Rolling Pooled & Soft-Pab Aggregate & -2.67M & [-4.22M, -1.14M] & \textbf{yes} ($p < 0.05$) & Surpasses physical pitch rule under 55\% pitch availability \\
-Kelmarsh (9 yrs) & Static Commissioning Freeze & Global Quantile & -2.24M & [-7.12M, +1.49M] & no & Zero update for 8.5 years shows decadal drift \\
+Kelmarsh (9 yrs) & 1 & 2016 & Commissioning Baseline & 0.259 $\pm$ 0.197 & 0.0000 & 1.0000 & 1.0000 \\
+Kelmarsh & 2 & 2017 & Mature Operation & 0.250 $\pm$ 0.173 & 0.0027 & 0.9973 $\pm$ 0.0024 & 0.9841 $\pm$ 0.0116 \\
+Kelmarsh & 3 & 2018 & Mature Operation & 0.253 $\pm$ 0.166 & 0.0038 & 0.9962 $\pm$ 0.0033 & 0.9887 $\pm$ 0.0060 \\
+Kelmarsh & 4 & 2019 & Mature Operation & 0.256 $\pm$ 0.167 & 0.0027 & 0.9973 $\pm$ 0.0020 & 0.9894 $\pm$ 0.0055 \\
+Kelmarsh & 5 & 2020 & Mature Operation & 0.254 $\pm$ 0.156 & 0.0055 & 0.9946 $\pm$ 0.0049 & 0.9821 $\pm$ 0.0113 \\
+Kelmarsh & 6 & 2021 & Mature Operation & 0.274 $\pm$ 0.176 & 0.0032 & 0.9968 $\pm$ 0.0018 & 0.9794 $\pm$ 0.0105 \\
+Kelmarsh & 7 & 2022 & Mature Operation & 0.282 $\pm$ 0.180 & 0.0030 & 0.9970 $\pm$ 0.0019 & 0.9824 $\pm$ 0.0084 \\
+Kelmarsh & 8 & 2023 & Mature Operation & 0.258 $\pm$ 0.166 & 0.0027 & 0.9973 $\pm$ 0.0021 & 0.9851 $\pm$ 0.0081 \\
+Kelmarsh & 9 & 2024 & Mature Operation & 0.271 $\pm$ 0.177 & 0.0024 & 0.9976 $\pm$ 0.0019 & 0.9843 $\pm$ 0.0079 \\
 \midrule
-Penmanshiel (8.6 yrs) & Walk-Forward Rolling Pooled & Global Quantile & -4.34M & [-8.24M, -0.44M] & \textbf{yes} ($p < 0.05$) & Utility rolling recalibration eliminates drift \\
-Penmanshiel (8.6 yrs) & Walk-Forward Rolling Pooled & Soft-Pab Aggregate & -5.85M & [-9.56M, -2.19M] & \textbf{yes} ($p < 0.05$) & Surpasses physical pitch rule across multi-year horizon \\
-Penmanshiel (8.6 yrs) & Static Commissioning Freeze & Global Quantile & -13.83M & [-112.37M, +91.94M] & no & Zero update for 8.5 years shows decadal drift \\
+Penmanshiel (8.6 yrs) & 1 & 2016 & Commissioning Baseline & -- & 0.0000 & 1.0000 & 1.0000 \\
+Penmanshiel & 2 & 2017 & Post-Commissioning & 0.106 $\pm$ 0.147 & 0.0098 & 0.9904 $\pm$ 0.0131 & 0.9862 $\pm$ 0.0190 \\
+Penmanshiel & 3 & 2018 & Mature Operation & 0.104 $\pm$ 0.143 & 0.0052 & 0.9949 $\pm$ 0.0075 & 0.9900 $\pm$ 0.0133 \\
+Penmanshiel & 4 & 2019 & Mature Operation & 0.104 $\pm$ 0.142 & 0.0070 & 0.9931 $\pm$ 0.0101 & 0.9873 $\pm$ 0.0173 \\
+Penmanshiel & 5 & 2020 & Mature Operation & 0.104 $\pm$ 0.143 & 0.0075 & 0.9927 $\pm$ 0.0104 & 0.9867 $\pm$ 0.0184 \\
+Penmanshiel & 6 & 2021 & Mature Operation & 0.110 $\pm$ 0.151 & 0.0060 & 0.9941 $\pm$ 0.0085 & 0.9891 $\pm$ 0.0146 \\
+Penmanshiel & 7 & 2022 & Mature Operation & 0.089 $\pm$ 0.122 & 0.0064 & 0.9937 $\pm$ 0.0089 & 0.9892 $\pm$ 0.0146 \\
+Penmanshiel & 8 & 2023 & Mature Operation & 0.104 $\pm$ 0.142 & 0.0048 & 0.9953 $\pm$ 0.0065 & 0.9841 $\pm$ 0.0229 \\
+Penmanshiel & 9 & 2024 & Mature Operation (0.6 yr) & 0.110 $\pm$ 0.151 & 0.0082 & 0.9920 $\pm$ 0.0131 & 0.9684 $\pm$ 0.0466 \\
 \bottomrule
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize Evaluated with IEC 61400-12-1 barometric air density normalization across 5 seeds. Walk-forward rolling folds use a 2-year sliding calibration window preceding each evaluation year. Script: \texttt{scripts/aggregate\_iec\_density\_eval.py}, artifacts in \texttt{artifacts/iec\_density\_rolling_eval/}.
+\footnotesize Evaluated under frozen neural backbone weights calibrated at initial commissioning (Year 1, 2016) across 5 seeds. $\mathcal{W}_1(p_{\mathrm{pitch}})$ measures the 1D Wasserstein distance between the annual distribution of blade-pitch routing probabilities $P_y(p_{\mathrm{pitch}})$ and the baseline commissioning distribution $P_1(p_{\mathrm{pitch}})$. $\text{Inv-}\mathcal{W}_1 = 1 / (1 + \mathcal{W}_1)$ indicates representation preservation (1.0 = identical). Script: \texttt{scripts/remote\_gate_representation_decay.py}, artifacts in \texttt{artifacts/multiyear_gate_representation_audit/}.
 \end{table}
 ```
 

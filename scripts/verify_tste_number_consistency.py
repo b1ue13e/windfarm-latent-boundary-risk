@@ -286,8 +286,10 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
     if (root / iec_file).exists():
         iec_guard = json.loads((root / iec_file).read_text(encoding="utf-8"))
         checks.extend([
-            _check("kelmarsh_walkforward_pooled_savings", iec_file, _num(iec_guard["kelmarsh_walkforward_pooled_delta_cost"]), _fmt_millions, ("cover", "supplementary")),
-            _check("penmanshiel_walkforward_pooled_savings", iec_file, _num(iec_guard["penmanshiel_walkforward_pooled_delta_cost"]), _fmt_millions, ("cover", "supplementary")),
+            _check("kelmarsh_walkforward_pooled_savings", iec_file, _num(iec_guard["kelmarsh_walkforward_pooled_delta_cost"]), _fmt_millions, ("main", "cover", "supplementary")),
+            _check("penmanshiel_walkforward_pooled_savings", iec_file, _num(iec_guard["penmanshiel_walkforward_pooled_delta_cost"]), _fmt_millions, ("main", "cover", "supplementary")),
+            _check("lhb_walkforward_pooled_delta", iec_file, _num(iec_guard["lhb_walkforward_pooled_delta_cost"]), lambda v: f"+{v / 1_000_000.0:.2f}M", ("main", "supplementary")),
+            _check("lhb_annual_pooled_delta", iec_file, _num(iec_guard["lhb_pooled_delta_cost"]), lambda v: f"+{int(round(v / 1000.0))}k", ("main", "supplementary")),
         ])
 
     return checks
