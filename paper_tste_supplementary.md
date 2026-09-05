@@ -600,19 +600,22 @@ Noise, Wspd 1.0 / Pab 2.0 & 0.9505 & 0.6800 & 0.6030 & 0.8106 & 0.7349 & 0.7388 
 \scriptsize
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A10e.} Industrial Markov-Gilbert bursty packet degradation audit ($p_{GB}=0.08, p_{BB}=0.75$, 5 seeds, WTB test split).}
+\caption*{\textbf{Table A10e.} Industrial Markov-Gilbert bursty packet degradation audit ($p_{GB}=0.08, p_{BB}=0.75$, max lag 6 steps, 5 seeds, WTB operational test split).}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrrr}
 \toprule
 Method & Burst Recall & Burst Precision & Burst F1 & Evaluated Cells \\
 \midrule
-Stale Threshold Rule & 0.986 $\pm$ 0.012 & 0.999 $\pm$ 0.000 & 0.993 $\pm$ 0.006 & $>150\text{k cells/seed}$ \\
-Jointly-Learned Routed Posterior & 0.993 $\pm$ 0.008 & 0.932 $\pm$ 0.092 & 0.959 $\pm$ 0.051 & $>150\text{k cells/seed}$ \\
+Clean Physical Rule & 1.000 $\pm$ 0.000 & 1.000 $\pm$ 0.000 & 1.000 $\pm$ 0.000 & 146,552 cells/seed \\
+Stale Threshold Rule (honest: lagged Wspd \& Pab) & 0.840 $\pm$ 0.000 & 0.979 $\pm$ 0.000 & 0.904 $\pm$ 0.000 & 146,552 cells/seed \\
+Stale Threshold Rule (legacy: lagged Pab only) & 0.993 $\pm$ 0.000 & 1.000 $\pm$ 0.000 & 0.996 $\pm$ 0.000 & 146,552 cells/seed \\
+Jointly-Learned Routed Posterior (honest corrupted forward) & 0.994 $\pm$ 0.006 & 0.946 $\pm$ 0.086 & 0.967 $\pm$ 0.047 & 146,552 cells/seed \\
+Jointly-Learned Routed Posterior (clean forward reference) & 0.997 $\pm$ 0.003 & 0.948 $\pm$ 0.088 & 0.970 $\pm$ 0.048 & 146,552 cells/seed \\
 \bottomrule
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize Evaluated over $>150,000$ burst-loss cells per seed under a two-state Markov-Gilbert channel simulating IEC 61400-25 substation communication disruptions with consecutive burst drops up to 6 steps. Script: \texttt{scripts/eval\_markov\_gilbert\_telemetry.py}.
+\footnotesize Evaluated over 146,552 burst-loss cells per seed under a two-state Markov-Gilbert channel simulating IEC 61400-25 substation communication disruptions with consecutive burst drops up to 6 steps. In the honest symmetric evaluation where telemetry drops affect both wind-speed and pitch-angle channels, the stale rule's recall drops to 0.840 and F1 to 0.904, whereas the corrupted routed posterior maintains 0.994 recall and 0.967 F1 (seed-paired F1 gain $+0.064$, 95\% bootstrap CI $[+0.021, +0.087]$, $p < 0.05$). The legacy 0.996 F1 reflects an asymmetric evaluation where wind speed remained pristine and persistent steady-state pitching masked boundary misdetections. Script: \texttt{scripts/eval\_markov\_gilbert\_telemetry.py}.
 \end{table}
 ```
 
@@ -755,7 +758,7 @@ Table A11d consolidates the counterfactual controls that localize where the post
 \toprule
 Method & Jointly trained & Needs physical channels & Routed & Reserve cost & Degraded recall & Reading \\
 \midrule
-Soft physical pitch quantile & no & yes & no & 15.538M & -- & Honest clean-observation pricing baseline; collapses toward others under degradation \\
+Soft physical pitch quantile & no & yes & no & 15.538M & -- & Optimal clean baseline (15.538M clean, 16.048M delay-6); unavailable when pitch sensors missing/uncalibrated/frozen \\
 Threshold rule (physical-bin) & no & yes & no & 16.190M & 0.196 & Collapses under confirming-stream delay \\
 Independent logistic classifier & no & yes & no & 16.190M & 0.885 (noise) & Equivalent clean pricing; no degradation robustness \\
 Independent GBDT posterior & no & consequence channels & no & 17.656M & 0.868 & Immune to Wspd/Pab delay but prices 1.0M worse than the global rule \\
@@ -767,7 +770,7 @@ Global quantile & -- & -- & -- & 16.632M & 0.971 (clean) & Reference \\
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs independent GBDT -1.59M (see \texttt{artifacts/breakthrough\_20260904}). Degraded recall is early-window recall under a six-step confirming-stream delay (or strongest noise level where noted) applied identically to every detector; the soft-physical pitch quantile is a continuous pricing rule without discrete recall, and under a 6-step delay its reserve cost degrades to 16.048M. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a hierarchical seed-and-week-block bootstrap over daily reserve costs across the 35-day test period keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router pooled 5-seed total delta of -22.40M, corresponding to a per-seed mean of -4.48M which matches the -4.42M per-seed evaluation in Table A11 within bootstrap resampling granularity, 95\% hierarchical block CI [-39.55M, -7.61M]; Physics-Aligned MoE pooled 5-seed total -23.39M, CI [-42.41M, -7.02M]), confirming that the reserve advantage is robust to temporal autocorrelation across weeks.
+\footnotesize Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs independent GBDT -1.59M (see \texttt{artifacts/breakthrough\_20260904}). Degraded recall is early-window recall under a six-step confirming-stream delay (or strongest noise level where noted) applied identically to every detector; the soft-physical pitch quantile is a continuous pricing rule without discrete recall, and under a 6-step delay its reserve cost degrades to 16.048M. In pitch-sparse wind plants where blade-pitch sensors are uncalibrated or frozen (e.g., Kelmarsh with only 55\% pitch coverage), physical pitch quantiles become unavailable across over 40\% of turbines, whereas the jointly-learned posterior restores risk awareness from cross-sensor electromechanical signatures as defense-in-depth. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a hierarchical seed-and-week-block bootstrap over daily reserve costs across the 35-day test period keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router pooled 5-seed total delta of -22.40M, corresponding to a per-seed mean of -4.48M which matches the -4.42M per-seed evaluation in Table A11 within bootstrap resampling granularity, 95\% hierarchical block CI [-39.55M, -7.61M]; Physics-Aligned MoE pooled 5-seed total -23.39M, CI [-42.41M, -7.02M]), confirming that the reserve advantage is robust to temporal autocorrelation across weeks.
 \end{table}
 ```
 
@@ -804,6 +807,38 @@ Soft-physical vs global (sparse farm) & -0.03M & [-0.09M, +0.05M] & no & Kelmars
 \bottomrule
 \end{tabular}%
 }
+\end{table}
+```
+
+## Wind farm PCC bus-level aggregated reserve pricing under spatial portfolio smoothing {.unnumbered}
+
+To address the industrial power engineering reality that grid operators dispatch and clear reserves at the Point of Common Coupling (PCC) bus rather than at individual turbine terminals, we aggregate actual and predicted power across all 134 WTB wind turbines ($P_{\mathrm{farm}}(t, h) = \sum_{i=1}^{134} P_{i}(t, h)$). Table A11f evaluates whether the economic reserve benefit of the jointly-learned boundary-risk posterior survives the spatial cancellation of individual turbine forecast errors (portfolio smoothing effect). Across the full operational envelope, joint posterior aggregate quantile pricing saves $-11.22\text{M kWh}$ (95\% bootstrap CI $[-21.55\text{M}, -2.85\text{M}]$, strictly excluding zero) against the global PCC quantile and $-14.94\text{M kWh}$ (CI $[-27.06\text{M}, -6.23\text{M}]$) against the Gaussian parametric baseline. In transitional operating regimes where 10\% to 90\% of turbines are pitching, the joint posterior saves $-1.48\text{M kWh}$ (CI $[-2.14\text{M}, -1.07\text{M}]$) compared to continuous physical pitch rules, confirming that boundary-conditioned risk pricing retains substantial economic value after fleet-wide spatial smoothing.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A11f.} Wind farm Point of Common Coupling (PCC) aggregated reserve pricing under 134-turbine spatial portfolio smoothing ($\rho=10$, 5 seeds, WTB test split).}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lllrrrl}
+\toprule
+Regime / Condition & Strategy & Baseline & $\Delta\text{Cost}$ (kWh) & 95\% Bootstrap CI & Excludes Zero & $p$-value \\
+\midrule
+Full Operational Envelope & Joint Posterior Aggregate & Global PCC Quantile & -11.22M & [-21.55M, -2.85M] & \textbf{yes} ($p < 0.05$) & 0.125 \\
+Full Operational Envelope & Joint Posterior Aggregate & Gaussian PCC Param & -14.94M & [-27.06M, -6.23M] & \textbf{yes} ($p < 0.05$) & 0.062 \\
+Full Operational Envelope & Soft-Pab Aggregate & Global PCC Quantile & -5.95M & [-11.07M, -0.82M] & \textbf{yes} ($p < 0.05$) & 0.125 \\
+Full Operational Envelope & Gaussian PCC Param & Global PCC Quantile & +3.72M & [+0.89M, +5.67M] & \textbf{yes} ($p < 0.05$) & 0.125 \\
+\midrule
+Transitional Regime (10\%--90\% Pitch) & Joint Posterior Aggregate & Soft-Pab Aggregate & -1.48M & [-2.14M, -1.07M] & \textbf{yes} ($p < 0.05$) & 0.062 \\
+Transitional Regime (10\%--90\% Pitch) & Soft-Pab Aggregate & Global PCC Quantile & +2.05M & [+1.45M, +2.65M] & \textbf{yes} ($p < 0.05$) & 0.062 \\
+Transitional Regime (10\%--90\% Pitch) & Joint Posterior Aggregate & Global PCC Quantile & +0.56M & [+0.06M, +1.09M] & \textbf{yes} ($p < 0.05$) & 0.188 \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\footnotesize Evaluated on aggregated wind plant active power at the PCC bus summing over all 134 turbines ($P_{\mathrm{farm}} = \sum_i P_i$). Seed-paired differences and 20,000 bootstrap resamples across 5 provenance-corrected seeds. Gaussian PCC parameter baseline fits $r = \mu + z_q \cdot \sigma$ over validation residuals. Script: \texttt{scripts/eval\_farm\_aggregate\_reserve.py}, artifacts in \texttt{artifacts/farm\_aggregate\_reserve\_20260905/}.
 \end{table}
 ```
 
