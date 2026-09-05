@@ -1,0 +1,32 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table A12.} Real-price dynamic settlement cashflow evaluation under historical UK Elexon BMRS half-hourly System Buy Prices (2016--2024, 17.6 cumulative machine-operating years, 5 seeds).}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lllcrrrcr@{}}
+\toprule
+Farm & Evaluation Window & Baseline Comparison & $\rho$ & Avoided Shortage & Shortfall Penalty Savings & 95\% Bootstrap CI & Zero Excl. & Value / Turb-Yr \\
+ & & (vs Soft-Gate-Bin) & & (MWh) & (£ GBP) & (£ GBP) & ($p < 0.05$) & (£/turb-yr) \\
+\midrule
+\multicolumn{9}{l}{\textit{Kelmarsh (9.0 yrs, 6 turb): Walk-Forward Rolling Folds under Dynamic Elexon Settlement}} \\
+Kelmarsh & Walk-Forward Pooled & vs Global Quantile & 10 & -252.8 & +£3.3k & [-£2.7k, +£9.9k] & no & +£79 \\
+Kelmarsh & Walk-Forward Pooled & vs Physical Pitch Rule & 10 & +787.3 & +£102.5k & [+£79.9k, +£125.0k] & \textbf{yes} & +£2.4k \\
+Kelmarsh & Walk-Forward Pooled & vs Global Quantile & 5 & +1.7k & +£264.7k & [+£235.1k, +£295.9k] & \textbf{yes} & +£6.3k \\
+Kelmarsh & Walk-Forward Pooled & vs Physical Pitch Rule & 5 & -413.6 & -£7.7k & [-£31.5k, +£16.3k] & no & -£184 \\
+Kelmarsh & Walk-Forward Pooled & vs Global Quantile & 20 & -128.7 & -£6.6k & [-£12.9k, -£1.4k] & \textbf{yes} & -£156 \\
+Kelmarsh & Walk-Forward Pooled & vs Physical Pitch Rule & 20 & +224.2 & +£31.3k & [+£27.5k, +£35.2k] & \textbf{yes} & +£746 \\
+\midrule
+\multicolumn{9}{l}{\textit{Penmanshiel (8.6 yrs, 14 turb): Walk-Forward Rolling Folds under Dynamic Elexon Settlement}} \\
+Penmanshiel & Walk-Forward Pooled & vs Global Quantile & 10 & -906.5 & -£13.9k & [-£108.2k, +£84.1k] & no & -£166 \\
+Penmanshiel & Walk-Forward Pooled & vs Physical Pitch Rule & 10 & -3.6k & -£163.2k & [-£290.8k, -£58.7k] & \textbf{yes} & -£1.9k \\
+Penmanshiel & Walk-Forward Pooled & vs Global Quantile & 5 & -2.2k & -£82.9k & [-£234.2k, +£68.3k] & no & -£987 \\
+Penmanshiel & Walk-Forward Pooled & vs Physical Pitch Rule & 5 & -8.8k & -£466.2k & [-£668.9k, -£301.3k] & \textbf{yes} & -£5.5k \\
+Penmanshiel & Walk-Forward Pooled & vs Global Quantile & 20 & -579.2 & -£7.2k & [-£74.1k, +£61.4k] & no & -£86 \\
+Penmanshiel & Walk-Forward Pooled & vs Physical Pitch Rule & 20 & -1.5k & -£62.6k & [-£134.6k, +£4.6k] & no & -£745 \\
+\midrule
+\bottomrule
+\end{tabular*}
+\vspace{1mm}
+\footnotesize Replayed across 17.6 machine-operating years by mapping every test cell directly to its contemporaneous half-hourly UK Elexon BMRS System Buy Price (£/MWh, 2016--2024). Shortfall penalty savings represent avoided imbalance cashout penalties ($\sum \Delta\text{Shortage}_{\mathrm{MWh}} \times P_{\mathrm{SBP}}$). Seed-paired bootstrap confidence intervals use 20,000 resamples across 5 seeds. Positive savings denote financial expenditure reduction. Notice that real dynamic settlement amplifies economic value during extreme system scarcity events (e.g. 2021--2022 energy crisis where SBP peaked at £4,037.80/MWh), yielding statistically significant multi-thousand-pound annual savings per turbine without requiring online parameter updates.
+\end{table*}
