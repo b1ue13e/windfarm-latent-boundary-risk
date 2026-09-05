@@ -15,14 +15,17 @@ import pandas as pd
 
 def summarize_farm(out_dir: Path, farm: str, rhos: list[float] = [10.0, 5.0, 20.0]):
     csvs = list(out_dir.glob(f"{farm}_gpu*_results.csv"))
-    if not csvs:
+    if csvs:
+        dfs = [pd.read_csv(p) for p in csvs]
+        df = pd.concat(dfs, ignore_index=True).drop_duplicates(subset=["farm", "seed", "window", "policy", "rho"])
+        df.to_csv(out_dir / f"{farm}_rolling_by_seed.csv", index=False)
+        print(f"[{farm}] Aggregated {len(df)} rows across {df['seed'].nunique()} seeds: {sorted(df['seed'].unique())}")
+    elif (out_dir / f"{farm}_rolling_by_seed.csv").exists():
+        df = pd.read_csv(out_dir / f"{farm}_rolling_by_seed.csv")
+        print(f"[{farm}] Loaded {len(df)} rows from existing {farm}_rolling_by_seed.csv across {df['seed'].nunique()} seeds")
+    else:
         print(f"No results found for {farm} in {out_dir}")
         return None
-
-    dfs = [pd.read_csv(p) for p in csvs]
-    df = pd.concat(dfs, ignore_index=True).drop_duplicates(subset=["farm", "seed", "window", "policy", "rho"])
-    df.to_csv(out_dir / f"{farm}_rolling_by_seed.csv", index=False)
-    print(f"[{farm}] Aggregated {len(df)} rows across {df['seed'].nunique()} seeds: {sorted(df['seed'].unique())}")
 
     rng = np.random.default_rng(42)
     summary = []
@@ -56,7 +59,7 @@ def summarize_farm(out_dir: Path, farm: str, rhos: list[float] = [10.0, 5.0, 20.
                             "delta_mean": float(d.mean()),
                             "ci_low": ci_low,
                             "ci_high": ci_high,
-                            "ci_excludes_zero": bool(ci_high < 0.0) if metric == "total_cost" else bool(ci_low > 0.0 or ci_high < 0.0),
+                            "ci_excludes_zero": bool(ci_low > 0.0 or ci_high < 0.0),
                             "n_seeds": int(len(d)),
                             "strat_mean": float(wide[strat].mean()),
                             "base_mean": float(wide[base].mean()),
@@ -93,7 +96,7 @@ def summarize_farm(out_dir: Path, farm: str, rhos: list[float] = [10.0, 5.0, 20.
                             "delta_mean": float(d.mean()),
                             "ci_low": ci_low,
                             "ci_high": ci_high,
-                            "ci_excludes_zero": bool(ci_high < 0.0),
+                            "ci_excludes_zero": bool(ci_low > 0.0 or ci_high < 0.0),
                             "n_seeds": int(len(d)),
                             "strat_mean": float(grouped[strat].mean()),
                             "base_mean": float(grouped[base].mean()),

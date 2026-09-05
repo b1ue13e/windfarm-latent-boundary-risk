@@ -290,6 +290,18 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
             _check("penmanshiel_walkforward_pooled_savings", iec_file, _num(iec_guard["penmanshiel_walkforward_pooled_delta_cost"]), _fmt_millions, ("main", "cover", "supplementary")),
             _check("lhb_walkforward_pooled_delta", iec_file, _num(iec_guard["lhb_walkforward_pooled_delta_cost"]), lambda v: f"+{v / 1_000_000.0:.2f}M", ("main", "supplementary")),
             _check("lhb_annual_pooled_delta", iec_file, _num(iec_guard["lhb_pooled_delta_cost"]), lambda v: f"+{int(round(v / 1000.0))}k", ("main", "supplementary")),
+            _check("kelmarsh_static_freeze_delta", iec_file, _num(iec_guard["kelmarsh_static_freeze_delta_cost"]), _fmt_millions, ("main", "supplementary")),
+            _check("penmanshiel_static_freeze_delta", iec_file, _num(iec_guard["penmanshiel_static_freeze_delta_cost"]), _fmt_millions, ("main", "supplementary")),
+        ])
+
+    gate_decay_file = "artifacts/multiyear_gate_representation_audit/gate_representation_decay_summary.csv"
+    if (root / gate_decay_file).exists():
+        gate_df = pd.read_csv(root / gate_decay_file)
+        km_y2 = gate_df[(gate_df["farm"] == "kelmarsh") & (gate_df["year_idx"] == 2)].iloc[0]
+        pm_y2 = gate_df[(gate_df["farm"] == "penmanshiel") & (gate_df["year_idx"] == 2)].iloc[0]
+        checks.extend([
+            _check("kelmarsh_year2_inv_w_pitch", gate_decay_file, _num(km_y2["inverse_wasserstein_pitch_mean"]), "{:.4f}", ("supplementary",)),
+            _check("penmanshiel_year2_inv_w_pitch", gate_decay_file, _num(pm_y2["inverse_wasserstein_pitch_mean"]), "{:.4f}", ("supplementary",)),
         ])
 
     return checks

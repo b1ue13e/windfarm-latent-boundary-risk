@@ -31,6 +31,7 @@ class TsteNumberConsistencyTests(unittest.TestCase):
             "artifacts/farm_aggregate_reserve_20260905/farm_pcc_paired_summary.csv",
             "artifacts/markov_gilbert_eval_honest/markov_gilbert_guard.json",
             "artifacts/iec_density_rolling_eval/iec_rolling_guard.json",
+            "artifacts/multiyear_gate_representation_audit/gate_representation_decay_summary.csv",
             "docs/tste_trainonly_rerun_results_20260830.md",
             "paper_tste_ieee.md",
             "paper_tste_supplementary.md",
