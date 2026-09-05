@@ -17,7 +17,9 @@ function Build-PDF {
     & $pandoc $md --citeproc --csl "$root\IEEE.csl" --standalone -t latex -o $tex
     if ($LASTEXITCODE -ne 0) { throw "Pandoc failed on $md" }
     & $xelatex -interaction=nonstopmode -halt-on-error "-output-directory=$root\build" $tex | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "XeLaTeX pass 1 failed on $label" }
     & $xelatex -interaction=nonstopmode -halt-on-error "-output-directory=$root\build" $tex | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "XeLaTeX pass 2 failed on $label" }
     if (-not (Test-Path $pdf)) { throw "XeLaTeX did not produce $pdf" }
     Write-Host "Built $pdf"
 }

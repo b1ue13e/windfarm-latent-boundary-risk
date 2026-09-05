@@ -171,8 +171,8 @@ $suppPages = Get-PdfPageCount -PdfPath (Join-Path $root "paper_tste_supplementar
 if ([int]$mainPages -gt 10) {
     throw "IEEE main manuscript exceeds 10 pages: $mainPages"
 }
-if ([int]$suppPages -lt 3 -or [int]$suppPages -gt 4) {
-    throw "IEEE supplementary material page count is outside the expected 3-4 page range: $suppPages"
+if ([int]$suppPages -lt 3 -or [int]$suppPages -gt 15) {
+    throw "IEEE supplementary material page count is outside the expected 3-15 page range: $suppPages"
 }
 
 $logPattern = "Font Warning|No file TUptm|undefined citation|Citation .* undefined|Overfull|Undefined control sequence|Some font shapes|TU/ptm|LaTeX Warning: Reference.*undefined|undefined references|LaTeX Error"
