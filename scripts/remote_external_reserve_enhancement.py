@@ -184,7 +184,10 @@ def main():
                 rows.append(m)
 
     if not rows:
-        raise FileNotFoundError(f"No matching run metrics found for farm {args.farm} in suite {args.suite_name}")
+        raise RuntimeError(
+            f"No valid run metrics found for farm {args.farm} under {args.suite_name}. "
+            "Real evaluation files must be present before computing reserve pricing."
+        )
 
     df = pd.DataFrame(rows)
     df.to_csv(out_dir / "external_reserve_enhanced_by_seed.csv", index=False)
