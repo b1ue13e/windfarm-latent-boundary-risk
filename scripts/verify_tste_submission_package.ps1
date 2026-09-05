@@ -104,6 +104,8 @@ foreach ($name in $expectedUploadFiles) {
     Test-RequiredPath -Path (Join-Path $uploadDir $name) -Label "upload file $name"
 }
 
+$expectedTitle = "Jointly-Learned Boundary-Risk Posterior for Wind Plant Reserve Pricing under Telemetry Degradation: A Defense-in-Depth Approach"
+
 $coverText = Get-Content -LiteralPath (Join-Path $uploadDir "cover_letter.md") -Raw
 if ($coverText.Contains("[Author Names]")) {
     throw "Upload cover letter still contains the [Author Names] placeholder."
@@ -111,9 +113,14 @@ if ($coverText.Contains("[Author Names]")) {
 if (-not $coverText.Contains("Supplementary Table A12")) {
     throw "Upload cover letter does not mention Supplementary Table A12."
 }
+if (-not $coverText.Contains($expectedTitle)) {
+    throw "Upload cover letter does not contain the expected manuscript title: $expectedTitle"
+}
+if (-not $coverText.Contains("-11.22M kWh") -or -not $coverText.Contains("+0.064") -or -not $coverText.Contains("17.6 cumulative machine-operating years")) {
+    throw "Upload cover letter is missing key empirical pillar benchmarks."
+}
 
 $portalMetadata = Get-Content -LiteralPath (Join-Path $metadataDir "portal_metadata.json") -Raw | ConvertFrom-Json
-$expectedTitle = "Jointly-Learned Boundary-Risk Posterior for Wind Plant Reserve Pricing under Telemetry Degradation: A Defense-in-Depth Approach"
 if ([string]$portalMetadata.title -ne $expectedTitle) {
     throw "Portal metadata title does not match the TSTE manuscript."
 }
@@ -212,6 +219,18 @@ if ($sourceZipEntries -notcontains "scripts/build_class_weight_sensitivity_audit
 }
 if ($sourceZipEntries -notcontains "scripts/verify_tste_number_consistency.py") {
     throw "Source archive is missing scripts/verify_tste_number_consistency.py."
+}
+if ($sourceZipEntries -notcontains "scripts/eval_farm_aggregate_reserve.py") {
+    throw "Source archive is missing scripts/eval_farm_aggregate_reserve.py."
+}
+if ($sourceZipEntries -notcontains "scripts/eval_markov_gilbert_telemetry.py") {
+    throw "Source archive is missing scripts/eval_markov_gilbert_telemetry.py."
+}
+if ($sourceZipEntries -notcontains "scripts/aggregate_iec_density_eval.py") {
+    throw "Source archive is missing scripts/aggregate_iec_density_eval.py."
+}
+if ($sourceZipEntries -notcontains "tests/test_farm_aggregate_and_markov.py") {
+    throw "Source archive is missing tests/test_farm_aggregate_and_markov.py."
 }
 foreach ($name in @(
     "windfarm_moe/data.py",

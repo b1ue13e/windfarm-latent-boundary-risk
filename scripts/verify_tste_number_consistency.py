@@ -40,7 +40,7 @@ def run_number_consistency_audit(
         "cover": root / "cover_letter_tste.md",
     }
     document_text = {
-        name: path.read_text(encoding="utf-8", errors="ignore") if path.exists() else ""
+        name: _normalize_text(path.read_text(encoding="utf-8", errors="ignore")) if path.exists() else ""
         for name, path in documents.items()
     }
 
@@ -192,7 +192,7 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
     train_only_rmse = _num(train_only["overall_rmse_mean"])
     best_rmse = _metric_mean(best_strict["Overall RMSE"])
 
-    return [
+    checks = [
         _check("graph_wavenet_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(graph["Overall RMSE"]), "{:.2f}", ("main",)),
         _check("best_strict_cache_baseline_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(best_strict["Overall RMSE"]), "{:.2f}", ("main", "cover")),
         _check("train_only_router_overall_rmse", "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv", train_only_rmse, "{:.2f}", ("main", "cover", "supplementary")),
@@ -237,6 +237,60 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         _check("gate_transition_match_lead_3", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[-3], "{:.3f}", ("main", "supplementary")),
         _check("gate_transition_match_lead_6", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[-6], "{:.3f}", ("main", "supplementary")),
     ]
+
+    farm_pcc_file = "artifacts/farm_aggregate_reserve_20260905/farm_pcc_paired_summary.csv"
+    if (root / farm_pcc_file).exists():
+        farm_pcc = pd.read_csv(root / farm_pcc_file)
+        pcc_global = farm_pcc[
+            (farm_pcc["condition"] == "all_steps")
+            & (farm_pcc["metric"] == "total_cost")
+            & (farm_pcc["rho"] == 10.0)
+            & (farm_pcc["strategy"] == "joint-posterior-aggregate")
+            & (farm_pcc["baseline"] == "global-pcc-quantile")
+        ].iloc[0]
+        pcc_gaussian = farm_pcc[
+            (farm_pcc["condition"] == "all_steps")
+            & (farm_pcc["metric"] == "total_cost")
+            & (farm_pcc["rho"] == 10.0)
+            & (farm_pcc["strategy"] == "joint-posterior-aggregate")
+            & (farm_pcc["baseline"] == "gaussian-pcc-param")
+        ].iloc[0]
+        pcc_trans_pab = farm_pcc[
+            (farm_pcc["condition"] == "transitional")
+            & (farm_pcc["metric"] == "total_cost")
+            & (farm_pcc["rho"] == 10.0)
+            & (farm_pcc["strategy"] == "joint-posterior-aggregate")
+            & (farm_pcc["baseline"] == "soft-pab-aggregate")
+        ].iloc[0]
+
+        checks.extend([
+            _check("farm_pcc_savings_vs_global", farm_pcc_file, _num(pcc_global["delta_mean"]), _fmt_millions, ("main", "cover")),
+            _check("farm_pcc_ci_low_vs_global", farm_pcc_file, _num(pcc_global["ci_low"]), _fmt_millions, ("main", "cover")),
+            _check("farm_pcc_ci_high_vs_global", farm_pcc_file, _num(pcc_global["ci_high"]), _fmt_millions, ("main", "cover")),
+            _check("farm_pcc_savings_vs_gaussian", farm_pcc_file, _num(pcc_gaussian["delta_mean"]), _fmt_millions, ("main", "cover")),
+            _check("farm_pcc_transitional_savings_vs_soft_pab", farm_pcc_file, _num(pcc_trans_pab["delta_mean"]), _fmt_millions, ("main", "cover")),
+        ])
+
+    markov_file = "artifacts/markov_gilbert_eval_honest/markov_gilbert_guard.json"
+    if (root / markov_file).exists():
+        markov_guard = json.loads((root / markov_file).read_text(encoding="utf-8"))
+        methods = markov_guard["methods_summary"]
+        comp = markov_guard["honest_comparison"]
+        checks.extend([
+            _check("markov_corrupted_recall", markov_file, _num(methods["corrupted_routed_posterior"]["recall_mean"]), "{:.3f}", ("main", "cover")),
+            _check("markov_stale_rule_recall", markov_file, _num(methods["stale_threshold_rule_honest"]["recall_mean"]), "{:.3f}", ("main", "cover")),
+            _check("markov_f1_gain", markov_file, _num(comp["f1_delta_mean (model - rule_honest)"]), "{:+.3f}", ("main", "cover")),
+        ])
+
+    iec_file = "artifacts/iec_density_rolling_eval/iec_rolling_guard.json"
+    if (root / iec_file).exists():
+        iec_guard = json.loads((root / iec_file).read_text(encoding="utf-8"))
+        checks.extend([
+            _check("kelmarsh_walkforward_pooled_savings", iec_file, _num(iec_guard["kelmarsh_walkforward_pooled_delta_cost"]), _fmt_millions, ("cover", "supplementary")),
+            _check("penmanshiel_walkforward_pooled_savings", iec_file, _num(iec_guard["penmanshiel_walkforward_pooled_delta_cost"]), _fmt_millions, ("cover", "supplementary")),
+        ])
+
+    return checks
 
 
 def _check(
@@ -295,6 +349,10 @@ def _num(value: object) -> float:
 
 def _fmt_millions(value: float) -> str:
     return f"{value / 1_000_000.0:.2f}M"
+
+
+def _normalize_text(text: str) -> str:
+    return re.sub(r"\\text\{([^}]+)\}", r"\1", text)
 
 
 def _same_model_reserve_stats(raw_runs: pd.DataFrame) -> dict[str, dict[str, float]]:

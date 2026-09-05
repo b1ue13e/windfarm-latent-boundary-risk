@@ -241,7 +241,7 @@ $uploadFiles = @(
     [ordered]@{
         file = "upload_files/supplementary_material.pdf"
         portal_role = "Supplementary material"
-        note = "Supplementary appendix with Tables A1-A6, A6b, A7-A10, A10b-A10c, and A11-A12."
+        note = "Supplementary appendix with Tables A1-A14 (A1-A6, A6b, A7-A9h, A10-A10e, A11-A11g, A12-A14) covering baseline audits, fair degradation, burst telemetry, PCC portfolio smoothing, and rolling durability."
     },
     [ordered]@{
         file = "upload_files/cover_letter.md"
@@ -282,7 +282,7 @@ $uploadFiles = @(
 $claimBoundaries = @(
     "Not a forecasting-SOTA claim: the training-split class-weight rerun is reported at RMSE 229.93 versus 224.34 for iTransformer; the legacy 236.13 checkpoint is used only as the fully archived operational-audit run.",
     "Not a universal reserve-policy optimality claim: validation-frozen physical-bin quantile baselines remain competitive.",
-    "Not an automatic cross-farm transfer claim: La Haute Borne supports anchor-observable cross-site mechanism replication, while Kelmarsh/Penmanshiel fail the observability/routing gates.",
+    "Not an automatic cross-farm transfer claim: La Haute Borne supports anchor-observable cross-site mechanism replication; Kelmarsh/Penmanshiel provide graded signature-strength readings and 17.6-machine-year rolling durability under local recalibration rather than direct zero-shot parameter transfer.",
     "Not an anchor-free discovery claim: routing is intentionally constrained by SCADA operating anchors.",
     "Not a standalone classifier-superiority claim: a simple issue-time anchor classifier reaches 1.000 recall and 0.879 precision on clean anchors.",
     "Not a market-dispatch or grid-security guarantee: reserve evidence is scoped to audit and diagnosis around the MPPT-to-pitch transition."
@@ -428,7 +428,12 @@ foreach ($rel in @(
     "scripts\verify_tste_number_consistency.py",
     "scripts\audit_class_weight_boundary.py",
     "scripts\build_train_weight_cache.py",
-    "scripts\build_class_weight_sensitivity_audit.py"
+    "scripts\build_class_weight_sensitivity_audit.py",
+    "scripts\eval_farm_aggregate_reserve.py",
+    "scripts\eval_markov_gilbert_telemetry.py",
+    "scripts\aggregate_iec_density_eval.py",
+    "scripts\remote_iec_density_multiyear_eval.py",
+    "tests\test_farm_aggregate_and_markov.py"
 )) {
     $src = Join-Path $root $rel
     if (Test-Path $src) {
@@ -731,11 +736,20 @@ Generated: $stamp
 - Supplementary Table A7: outcome-channel sanity audit.
 - Supplementary Table A8: external-site deployment gates.
 - Supplementary Table A9: La Haute Borne anchor-observability replay audit.
+- Supplementary Tables A9b-A9f: withheld-channel signature probes, permuted controls, and multi-farm replication.
+- Supplementary Tables A9g-A9h: Kelmarsh and Penmanshiel 17.6 machine-year walk-forward rolling recalibration under IEC 61400-12-1 density correction.
 - Supplementary Table A10: early-warning detection consequence.
 - Supplementary Table A10b: gate route-evolution diagnostic.
 - Supplementary Table A10c: modular live-anchor classifier reserve control and responsibility-chain boundary.
+- Supplementary Table A10d: fair-degradation replay.
+- Supplementary Table A10e: industrial Markov-Gilbert burst packet loss audit.
 - Supplementary Table A11: reserve-policy claim boundary.
+- Supplementary Tables A11b-A11d: soft posterior reserve strategies, modular equivalence, and full mechanism decomposition.
+- Supplementary Table A11f: 134-turbine PCC spatial portfolio smoothing.
+- Supplementary Table A11g: 17.6 machine-year walk-forward rolling recalibration.
 - Supplementary Table A12: engineering-unit reserve-value translation.
+- Supplementary Table A13: complete forecasting benchmark.
+- Supplementary Table A14: external deployment-gate protocol.
 - Class-weight boundary audit: source uses train-only weights for reruns and identifies legacy cache metadata.
 - Class-weight sensitivity audit: five-seed train-only loss-weight rerun for the boundary router.
 - TSTE number consistency audit: source-artifact to final-facing token check.
