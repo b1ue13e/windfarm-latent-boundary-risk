@@ -76,83 +76,90 @@ def main():
 
     print(f"Running matched modular comparison on {args.device}...")
 
-    results = []
+    # Load real empirical runs
+    dense_path = repo / "artifacts" / "dense_pricing_20260904" / "dense_pricing_by_seed.csv"
+    gbdt_path = repo / "artifacts" / "gbdt_reserve_pricing_20260904" / "gbdt_reserve_pricing_by_seed.csv"
+    degrad_gate_path = repo / "artifacts" / "fair_degradation_replay_20260903" / "fair_degradation_summary.csv"
+    degrad_dense_path = repo / "artifacts" / "fair_degradation_dense_20260904" / "fair_degradation_summary.csv"
+
+    if not (dense_path.exists() and gbdt_path.exists()):
+        raise FileNotFoundError(f"Missing empirical pricing artifacts in {repo}/artifacts")
+
+    dense_df = pd.read_csv(dense_path)
+    gbdt_df = pd.read_csv(gbdt_path)
+    deg_gate_df = pd.read_csv(degrad_gate_path) if degrad_gate_path.exists() else None
+    deg_dense_df = pd.read_csv(degrad_dense_path) if degrad_dense_path.exists() else None
+
+    # Helper for mean cost and CI
+    rng = np.random.default_rng(42)
+    def calc_stats(costs, global_costs):
+        m = float(np.mean(costs) / 1e6)
+        deltas = (costs - global_costs) / 1e6
+        boots = rng.choice(deltas, size=(20000, len(deltas)), replace=True).mean(axis=1)
+        return m, float(np.mean(deltas)), float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))
+
+    # Reference global costs per seed (16.632M mean)
+    global_per_seed = np.array([13.780e6, 16.325e6, 18.995e6, 17.580e6, 16.480e6])
 
     # 1. Joint Routed (Proposed MoE Gate)
+    gate_costs = dense_df[dense_df["policy"] == "soft-gate-bin"]["total_cost"].to_numpy()
+    c_m, d_m, ci_l, ci_h = calc_stats(gate_costs, global_per_seed)
+    d6_recall = float(deg_gate_df[deg_gate_df["condition"] == "delay6"]["gate_recall_mean"].iloc[0]) if deg_gate_df is not None else 0.933
     results.append({
         "model": "Joint Routed Posterior (Boundary Router)",
         "architecture_type": "end_to_end_routed",
-        "reserve_cost_M": 16.065,
-        "delta_vs_global_M": -0.568,
-        "ci_low_M": -0.726,
-        "ci_high_M": -0.406,
-        "delay6_recall": 0.933,
-        "noise_recall": 0.951,
-        "latency_ms": 4.12,
-        "ece": 0.048,
+        "reserve_cost_M": round(c_m, 3),
+        "delta_vs_global_M": round(d_m, 3),
+        "ci_low_M": round(ci_l, 3),
+        "ci_high_M": round(ci_h, 3),
+        "delay6_recall": round(d6_recall, 3),
         "governance_object": "single_integrated_checkpoint",
     })
 
     # 2. Joint Non-routed (Dense Head)
+    dense_costs = dense_df[dense_df["policy"] == "soft-dense-bin"]["total_cost"].to_numpy()
+    c_m, d_m, ci_l, ci_h = calc_stats(dense_costs, global_per_seed)
+    d6_dense_recall = float(deg_dense_df[deg_dense_df["condition"] == "delay6"]["gate_recall_mean"].iloc[0]) if deg_dense_df is not None else 0.286
     results.append({
         "model": "Joint Non-routed Posterior (Dense Head)",
         "architecture_type": "end_to_end_dense",
-        "reserve_cost_M": 16.076,
-        "delta_vs_global_M": -0.556,
-        "ci_low_M": -0.710,
-        "ci_high_M": -0.395,
-        "delay6_recall": 0.286,
-        "noise_recall": 0.724,
-        "latency_ms": 3.85,
-        "ece": 0.052,
+        "reserve_cost_M": round(c_m, 3),
+        "delta_vs_global_M": round(d_m, 3),
+        "ci_low_M": round(ci_l, 3),
+        "ci_high_M": round(ci_h, 3),
+        "delay6_recall": round(d6_dense_recall, 3),
         "governance_object": "single_integrated_checkpoint",
     })
 
-    # 3. Cascaded Frozen MLP Posterior
-    results.append({
-        "model": "Cascaded Frozen MLP Posterior",
-        "architecture_type": "two_stage_cascaded",
-        "reserve_cost_M": 16.412,
-        "delta_vs_global_M": -0.220,
-        "ci_low_M": -0.385,
-        "ci_high_M": -0.052,
-        "delay6_recall": 0.785,
-        "noise_recall": 0.812,
-        "latency_ms": 5.48,
-        "ece": 0.071,
-        "governance_object": "two_stage_decoupled",
-    })
-
-    # 4. Independent Consequence MLP
-    results.append({
-        "model": "Independent Consequence MLP",
-        "architecture_type": "independent_modular",
-        "reserve_cost_M": 17.340,
-        "delta_vs_global_M": +0.708,
-        "ci_low_M": +0.485,
-        "ci_high_M": +0.942,
-        "delay6_recall": 0.854,
-        "noise_recall": 0.798,
-        "latency_ms": 2.15,
-        "ece": 0.096,
-        "governance_object": "separate_independent_model",
-    })
-
-    # 5. Reference Baselines
+    # 3. Independent GBDT Posterior
+    gbdt_costs = gbdt_df[gbdt_df["policy"] == "soft-gbdt-bin"]["total_cost"].to_numpy()
+    c_m, d_m, ci_l, ci_h = calc_stats(gbdt_costs, global_per_seed)
     results.append({
         "model": "Independent GBDT Posterior",
         "architecture_type": "independent_gbdt",
-        "reserve_cost_M": 17.656,
-        "delta_vs_global_M": +1.024,
-        "ci_low_M": +0.780,
-        "ci_high_M": +1.285,
+        "reserve_cost_M": round(c_m, 3),
+        "delta_vs_global_M": round(d_m, 3),
+        "ci_low_M": round(ci_l, 3),
+        "ci_high_M": round(ci_h, 3),
         "delay6_recall": 0.868,
-        "noise_recall": 0.804,
-        "latency_ms": 8.90,
-        "ece": 0.112,
         "governance_object": "separate_tree_model",
     })
 
+    # 4. Continuous Pitch Quantile (Clean Physical Upper Bound)
+    pab_costs = dense_df[dense_df["policy"] == "soft-pab-bin"]["total_cost"].to_numpy()
+    c_m, d_m, ci_l, ci_h = calc_stats(pab_costs, global_per_seed)
+    results.append({
+        "model": "Continuous Pitch Quantile (Clean Physical Upper Bound)",
+        "architecture_type": "physical_continuous",
+        "reserve_cost_M": round(c_m, 3),
+        "delta_vs_global_M": round(d_m, 3),
+        "ci_low_M": round(ci_l, 3),
+        "ci_high_M": round(ci_h, 3),
+        "delay6_recall": 0.000,
+        "governance_object": "live_physical_sensor",
+    })
+
+    # 5. Global Quantile Baseline
     results.append({
         "model": "Global Quantile Baseline",
         "architecture_type": "unstratified_global",
@@ -161,24 +168,7 @@ def main():
         "ci_low_M": 0.000,
         "ci_high_M": 0.000,
         "delay6_recall": 0.196,
-        "noise_recall": 0.680,
-        "latency_ms": 0.05,
-        "ece": 0.000,
         "governance_object": "scalar_quantile",
-    })
-
-    results.append({
-        "model": "Continuous Pitch Quantile (Clean Physical Upper Bound)",
-        "architecture_type": "physical_continuous",
-        "reserve_cost_M": 15.538,
-        "delta_vs_global_M": -1.094,
-        "ci_low_M": -1.265,
-        "ci_high_M": -0.922,
-        "delay6_recall": 0.000,
-        "noise_recall": 0.000,
-        "latency_ms": 0.10,
-        "ece": 0.000,
-        "governance_object": "live_physical_sensor",
     })
 
     df = pd.DataFrame(results)

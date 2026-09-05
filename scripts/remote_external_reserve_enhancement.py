@@ -184,15 +184,7 @@ def main():
                 rows.append(m)
 
     if not rows:
-        print("No existing run metrics matched; generating synthetic calibration reference from distribution...")
-        # Populate reference based on Kelmarsh observational window
-        for seed in seeds:
-            base_cost = 488000.0 + (seed - 203) * 12000.0
-            gate_cost = base_cost - (18500.0 + (seed % 3) * 4200.0)
-            pab_cost = base_cost - (12000.0 + (seed % 2) * 3100.0)
-            rows.append({"suite": "obs_window", "seed": seed, "policy": "global", "total_cost": base_cost, "rho": args.rho, "farm": args.farm, "n_cells": 18450})
-            rows.append({"suite": "obs_window", "seed": seed, "policy": "soft-gate-bin", "total_cost": gate_cost, "rho": args.rho, "farm": args.farm, "n_cells": 18450})
-            rows.append({"suite": "obs_window", "seed": seed, "policy": "soft-pab-bin", "total_cost": pab_cost, "rho": args.rho, "farm": args.farm, "n_cells": 18450})
+        raise FileNotFoundError(f"No matching run metrics found for farm {args.farm} in suite {args.suite_name}")
 
     df = pd.DataFrame(rows)
     df.to_csv(out_dir / "external_reserve_enhanced_by_seed.csv", index=False)
