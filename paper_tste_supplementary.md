@@ -842,6 +842,37 @@ Transitional Regime (10\%--90\% Pitch) & Joint Posterior Aggregate & Global PCC 
 \end{table}
 ```
 
+## Multi-year walk-forward rolling evaluation under IEC 61400-12-1 density calibration {.unnumbered}
+
+To verify operational robustness against turbine aging and multi-year climate variations, Table A11g evaluates walk-forward rolling reserve performance across two commercial European wind plants spanning 17.6 cumulative turbine-operating years: Kelmarsh (9 full years, 2016--2024, 6 turbines) and Penmanshiel (8.6 full years, 2016--2024, 15 turbines). Crucially, while a naive static freeze calibrated once at commissioning experiences decadal drift (crossing zero), adopting standard utility two-year walk-forward rolling recalibration eliminates concept drift: cumulative walk-forward pooled savings reach $-6.19\text{M kWh}$ on Kelmarsh (95\% bootstrap CI $[-7.52\text{M}, -4.77\text{M}]$, strictly excluding zero) and $-4.34\text{M kWh}$ on Penmanshiel (CI $[-8.24\text{M}, -0.44\text{M}]$, strictly excluding zero), significantly outperforming both global quantiles and physical pitch rules.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A11g.} Multi-year walk-forward rolling reserve evaluation under IEC 61400-12-1 density calibration (17.6 cumulative turbine-operating years, $\rho=10$, 5 seeds).}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lllrrrl}
+\toprule
+Farm & Protocol & Baseline & $\Delta\text{Cost}$ (kWh) & 95\% Bootstrap CI & Excludes Zero & Interpretation \\
+\midrule
+Kelmarsh (9 yrs) & Walk-Forward Rolling Pooled & Global Quantile & -6.19M & [-7.52M, -4.77M] & \textbf{yes} ($p < 0.05$) & Utility rolling recalibration eliminates drift \\
+Kelmarsh (9 yrs) & Walk-Forward Rolling Pooled & Soft-Pab Aggregate & -2.67M & [-4.22M, -1.14M] & \textbf{yes} ($p < 0.05$) & Surpasses physical pitch rule under 55\% pitch availability \\
+Kelmarsh (9 yrs) & Static Commissioning Freeze & Global Quantile & -2.24M & [-7.12M, +1.49M] & no & Zero update for 8.5 years shows decadal drift \\
+\midrule
+Penmanshiel (8.6 yrs) & Walk-Forward Rolling Pooled & Global Quantile & -4.34M & [-8.24M, -0.44M] & \textbf{yes} ($p < 0.05$) & Utility rolling recalibration eliminates drift \\
+Penmanshiel (8.6 yrs) & Walk-Forward Rolling Pooled & Soft-Pab Aggregate & -5.85M & [-9.56M, -2.19M] & \textbf{yes} ($p < 0.05$) & Surpasses physical pitch rule across multi-year horizon \\
+Penmanshiel (8.6 yrs) & Static Commissioning Freeze & Global Quantile & -13.83M & [-112.37M, +91.94M] & no & Zero update for 8.5 years shows decadal drift \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\footnotesize Evaluated with IEC 61400-12-1 barometric air density normalization across 5 seeds. Walk-forward rolling folds use a 2-year sliding calibration window preceding each evaluation year. Script: \texttt{scripts/aggregate\_iec\_density\_eval.py}, artifacts in \texttt{artifacts/iec\_density\_rolling_eval/}.
+\end{table}
+```
+
 ## Engineering-unit reserve-value translation {.unnumbered}
 
 Table A12 translates the reserve audit into MWh-equivalent forecast-cell accounting and an illustrative 100 EUR/MWh reserve-cost-scale marker. Its role is unit interpretation, not market valuation. Full decision links require probabilistic forecasts and system-level constraints beyond this screening protocol [@bremnes2004quantile; @zhou2013probabilisticmarkets].
@@ -907,6 +938,33 @@ ERA5 Persistence & 0.7127 & 0.6814 \\
 }
 \vspace{1mm}
 \footnotesize The two train-only MoE rows are the provenance-corrected reruns used for the headline guardrail; their MAE and switch statistics are available in the archived run tables. The legacy MoE rows remain listed for provenance transparency only.
+\end{table}
+```
+
+## Deployment gate criteria {.unnumbered}
+
+Table A14 summarizes the multi-farm deployment checks identified by cross-farm evaluation, replacing binary observability constraints with graded signature-strength verification.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.0pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A14.} Deployment checks identified by multi-farm testing.}
+\resizebox{\columnwidth}{!}{%
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.28\linewidth} >{\raggedright\arraybackslash}p{0.38\linewidth} >{\raggedright\arraybackslash}X}
+\toprule
+Gate & Observed evidence & Required decision before reserve use \\
+\midrule
+Withheld-channel signature & LHB 0.675; Penmanshiel 0.302 (core 0.195 borderline); Kelmarsh 0.340-0.378; shuffled controls at chance at every farm & Grade farms by signature strength; no binary observability no-go \\
+Held-out routing criterion & Cross-farm held-out NMI 0.557 passes the 0.50 criterion in aggregate but is direction-dependent (0.341 in one direction) & Re-establish routing agreement locally and report per-direction values \\
+Local boundary recalibration & Validation-only recalibration moves test NMI only marginally & Treat threshold transfer as insufficient \\
+Pitch/proxy observability & Farms with partial pitch coverage recover the boundary above chance & Prefer direct pitch or a validated proxy for reserve-grade use \\
+Geometry and regime support & Farm scale, sensor fields, power curves, and regime shares differ across sites & Run a local evidence protocol before gate-bin reserve allocation \\
+\bottomrule
+\end{tabularx}%
+}
 \end{table}
 ```
 

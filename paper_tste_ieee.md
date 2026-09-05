@@ -18,17 +18,23 @@ header-includes:
   - \usepackage{enumitem}
   - \usepackage{etoolbox}
   - \setlist[itemize]{leftmargin=1.4em,nosep}
-  - \AtBeginEnvironment{CSLReferences}{\scriptsize\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+  - \AtBeginEnvironment{CSLReferences}{\scriptsize\renewcommand{\baselinestretch}{0.84}\selectfont\setlength{\csllabelwidth}{1.2em}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}\setlength{\parsep}{0pt}}
   - \AtBeginDocument{\renewcommand{\CSLBlock}[1]{#1\par}}
+  - \AtBeginDocument{\renewcommand{\CSLRightInline}[1]{\parbox[t]{\dimexpr\linewidth - \csllabelwidth\relax}{\scriptsize\ignorespaces#1}}}
+  - \AtBeginDocument{\renewcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\scriptsize\strut#1}}}
+  - \makeatletter
+  - \def\section{\@startsection{section}{1}{\z@}{1.1ex plus 0.4ex minus 0.2ex}{0.4ex plus 0.2ex}{\normalfont\footnotesize\bfseries\centering\scshape}}
+  - \def\subsection{\@startsection{subsection}{2}{\z@}{0.8ex plus 0.3ex minus 0.1ex}{0.3ex plus 0.1ex}{\normalfont\normalsize\itshape}}
+  - \makeatother
   - \setlength{\abovedisplayskip}{2pt plus 1pt minus 1pt}
   - \setlength{\belowdisplayskip}{2pt plus 1pt minus 1pt}
   - \setlength{\abovedisplayshortskip}{1pt plus 1pt}
   - \setlength{\belowdisplayshortskip}{1pt plus 1pt}
-  - \setlength{\floatsep}{3pt plus 1pt minus 1pt}
-  - \setlength{\textfloatsep}{3.5pt plus 1pt minus 1pt}
-  - \setlength{\intextsep}{3pt plus 1pt minus 1pt}
-  - \setlength{\dblfloatsep}{3pt plus 1pt minus 1pt}
-  - \setlength{\dbltextfloatsep}{3.5pt plus 1pt minus 1pt}
+  - \setlength{\floatsep}{2.5pt plus 1pt minus 1pt}
+  - \setlength{\textfloatsep}{2.5pt plus 1pt minus 1pt}
+  - \setlength{\intextsep}{2.5pt plus 1pt minus 1pt}
+  - \setlength{\dblfloatsep}{2.5pt plus 1pt minus 1pt}
+  - \setlength{\dbltextfloatsep}{2.5pt plus 1pt minus 1pt}
   - \setlength{\abovecaptionskip}{2pt plus 1pt minus 1pt}
   - \setlength{\belowcaptionskip}{1pt plus 1pt minus 1pt}
 ---
@@ -184,7 +190,7 @@ The difference reflects the observability contrast: WTB needs help to recover a 
 
 **Routing stack and evidence boundary:** This makes the routing stack an anchor-constrained diagnostic rather than an unsupervised operating-state discovery method. High gate-regime agreement means that the implemented router obeys the declared SCADA boundary under the available anchor set; it does not establish anchor-free regime recovery.
 
-![Physics-aligned regime-aware MoE. The two datasets share the same directed-diffusion GRU encoder and node-level MoE routing mechanism. WTB uses a dynamic wake graph and a boundary-focused forcing term, whereas ERA5 uses a Haversine-Gaussian graph and a thermodynamic regime anchor.](artifacts/final_evidence_package/export/figures/figure1_architecture.pdf){ width=95% }
+![Physics-aligned regime-aware MoE. The two datasets share the same directed-diffusion GRU encoder and node-level MoE routing mechanism. WTB uses a dynamic wake graph and a boundary-focused forcing term, whereas ERA5 uses a Haversine-Gaussian graph and a thermodynamic regime anchor.](artifacts/final_evidence_package/export/figures/figure1_architecture.pdf){ width=88% }
 
 ## Integration of Physical Constraints into Model Optimization
 
@@ -248,7 +254,7 @@ The metrics follow the claim. Overall MAE and RMSE measure forecasting accuracy.
 
 Figure 2 gives the operating-decision context before the forecasting results are introduced: graph geometry shows where forecast errors propagate, and the regime-anchor panels show which sensor-derived boundaries can support reserve diagnostics.
 
-![Operating-decision context and physical regime anchors. (A) WTB turbine layout with the schematic wake cone and retained candidate radius used in the dynamic directed wake graph. (B) ERA5 16x16 patch with training-mean sensible heat flux and local Haversine-Gaussian graph connections around the central node. (C) WTB operating regimes in the $(Wspd, Pab_{mean})$ plane with fixed operating-rule boundaries; the MPPT-to-pitch boundary is the reserve-diagnostic window used in this paper. (D) ERA5 thermodynamic regimes in the $(sshf, \Delta sshf)$ plane with thresholds estimated from the training split, included as an observability contrast.](artifacts/final_evidence_package/export/figures/figure2_data_boundary.pdf){ width=97% }
+![Operating-decision context and physical regime anchors. (A) WTB turbine layout with the schematic wake cone and retained candidate radius used in the dynamic directed wake graph. (B) ERA5 16x16 patch with training-mean sensible heat flux and local Haversine-Gaussian graph connections around the central node. (C) WTB operating regimes in the $(Wspd, Pab_{mean})$ plane with fixed operating-rule boundaries; the MPPT-to-pitch boundary is the reserve-diagnostic window used in this paper. (D) ERA5 thermodynamic regimes in the $(sshf, \Delta sshf)$ plane with thresholds estimated from the training split, included as an observability contrast.](artifacts/final_evidence_package/export/figures/figure2_data_boundary.pdf){ width=88% }
 
 # Evidence and Operational Boundary Diagnosis
 
@@ -357,7 +363,7 @@ Availability & 25\% labels & 0.971 & 0.242 & +0.729 \\
 
 The training-level anchor-stress guard keeps the leakage boundary visible. In the clean train-only rerun, removing \texttt{Patv} or \texttt{Pab\_mean} leaves mean NMI at 0.881 and 0.878, while lagging \texttt{Patv} and lagging pitch/wind give 0.763 and 0.684. These older ablations are reported with the same strict-cache protocol but under a different auxiliary-weight configuration from the signature-gate probe in Table~\ref{tab:signature-gate}; the two probe families should not be numerically merged. The consistent finding is that the route is not a leakage artifact, but it remains a declared-anchor mechanism rather than anchor-free discovery.
 
-![The WTB operating plane shows the main mechanism: after correction, the dominant routed responsibility changes around the rated-wind and pitch-control boundary instead of forming an arbitrary expert partition. The confusion matrices summarize the same recovery numerically.](artifacts/final_evidence_package/export/figures/figure4_routing_evidence.pdf){ width=97% }
+![The WTB operating plane shows the main mechanism: after correction, the dominant routed responsibility changes around the rated-wind and pitch-control boundary instead of forming an arbitrary expert partition. The confusion matrices summarize the same recovery numerically.](artifacts/final_evidence_package/export/figures/figure4_routing_evidence.pdf){ width=88% }
 
 ## Boundary-Risk Vignette: Does the Gate Change Reserve Tradeoffs?
 
@@ -428,28 +434,7 @@ Crucially, to verify that reserve benefits survive spatial portfolio smoothing a
 
 ## Accuracy, accountability and deployment gates
 
-The accuracy cost is not secondary: iTransformer, Graph WaveNet, and lag baselines remain superior whole-sample forecasters on WTB; the routed model should pair with an established low-RMSE forecaster when aggregate accuracy is paramount. Its targeted role is an accountable operating-state diagnostic for boundary-specific decisions. External testing is graded rather than binary: La Haute Borne demonstrates anchor-observable replication (canonical NMI 0.975; withheld probe 0.674/0.575). On Kelmarsh (55\% pitch) the probe reaches 0.340/0.378, and on Penmanshiel (78\%) 0.302 (`signature_core` 0.195, far above permuted controls; Supplementary Table A9d). Partial pitch observability modulates rather than eliminates boundary recoverability. To evaluate operational durability against decadal aerodynamic wear and multi-year climate cycles, we conducted IEC 61400-12-1 density-calibrated walk-forward rolling evaluations across two independent commercial European wind farms spanning 17.6 cumulative turbine-operating years: Kelmarsh (9 full years, 2016--2024, 6 MM92 turbines, 473,184 steps) and Penmanshiel (8.6 full years, 2016--2024, 15 MM82 turbines, 451,334 steps). While static quantiles frozen at commissioning experience concept drift over multi-year horizons (crossing zero under decadal static evaluation), adopting standard utility two-year walk-forward rolling recalibration eliminates concept drift: on Kelmarsh, 6 out of 7 rolling folds (Folds 2--7, 2018--2024) strictly exclude zero with negative 95% bootstrap CIs, saving an average of $-1.025 \text{ Million kWh/year}$ ($p < 0.05$); on Penmanshiel, following initial commissioning, all 4 consecutive mature operational folds (Folds 3--6, 2020--2023) strictly exclude zero, saving an average of $-2.029 \text{ Million kWh/year}$ ($p < 0.05$). Together, 10 out of 11 mature annual folds strictly exclude zero across both commercial farms, proving that the jointly-learned boundary posterior delivers durable economic value under realistic utility maintenance protocols. Direct reserve deployment at new farms still requires pitch or proxy observability, boundary support, compatible geometry, local recalibration, and a held-out routing pass [@tautzweinert2017scada].
-
-```{=latex}
-\begin{table}[!t]
-\centering
-\scriptsize
-\setlength{\tabcolsep}{1.0pt}
-\renewcommand{\arraystretch}{0.85}
-\caption{Deployment checks identified by multi-farm testing. The withheld-channel probe replaces the binary observability gate with a graded signature-strength reading.}
-\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.28\linewidth} >{\raggedright\arraybackslash}p{0.38\linewidth} >{\raggedright\arraybackslash}X}
-\toprule
-Gate & Observed evidence & Required decision before reserve use \\
-\midrule
-Withheld-channel signature & LHB 0.675; Penmanshiel 0.302 (core 0.195 borderline); Kelmarsh 0.340-0.378; shuffled controls at chance at every farm & Grade farms by signature strength; no binary observability no-go \\
-Held-out routing criterion & Cross-farm held-out NMI 0.557 passes the 0.50 criterion in aggregate but is direction-dependent (0.341 in one direction) & Re-establish routing agreement locally and report per-direction values \\
-Local boundary recalibration & Validation-only recalibration moves test NMI only marginally & Treat threshold transfer as insufficient \\
-Pitch/proxy observability & Farms with partial pitch coverage recover the boundary above chance & Prefer direct pitch or a validated proxy for reserve-grade use \\
-Geometry and regime support & Farm scale, sensor fields, power curves, and regime shares differ across sites & Run a local evidence protocol before gate-bin reserve allocation \\
-\bottomrule
-\end{tabularx}
-\end{table}
-```
+The accuracy cost is not secondary: iTransformer, Graph WaveNet, and lag baselines remain superior whole-sample forecasters on WTB; the routed model should pair with an established low-RMSE forecaster when aggregate accuracy is paramount. Its targeted role is an accountable operating-state diagnostic for boundary-specific decisions. External testing is graded rather than binary: La Haute Borne demonstrates anchor-observable replication (canonical NMI 0.975; withheld probe 0.674/0.575). On Kelmarsh (55\% pitch) the probe reaches 0.340/0.378, and on Penmanshiel (78\%) 0.302 (`signature_core` 0.195, far above permuted controls; Supplementary Table A9d). Partial pitch observability modulates rather than eliminates boundary recoverability. To evaluate operational durability against decadal aerodynamic wear and multi-year climate cycles, we conducted IEC 61400-12-1 density-calibrated walk-forward rolling evaluations across two independent commercial European wind farms spanning 17.6 cumulative turbine-operating years: Kelmarsh (9 full years, 2016--2024, 6 MM92 turbines, 473,184 steps) and Penmanshiel (8.6 full years, 2016--2024, 15 MM82 turbines, 451,334 steps). While static quantiles frozen at commissioning experience concept drift over multi-year horizons (crossing zero under decadal static evaluation), adopting standard utility two-year walk-forward rolling recalibration eliminates concept drift: on Kelmarsh, 6 out of 7 rolling folds (Folds 2--7, 2018--2024) strictly exclude zero, with cumulative walk-forward pooled savings of $-6.19\text{M kWh}$ (95\% bootstrap CI $[-7.52\text{M}, -4.77\text{M}]$, strictly excluding zero), outperforming physical pitch rules by $-2.67\text{M kWh}$; on Penmanshiel, following initial commissioning, all 4 consecutive mature operational folds (Folds 3--6, 2020--2023) strictly exclude zero, with cumulative walk-forward pooled savings of $-4.34\text{M kWh}$ (CI $[-8.24\text{M}, -0.44\text{M}]$, strictly excluding zero), outperforming physical pitch rules by $-5.85\text{M kWh}$ (Supplementary Table A11g). Together, 10 out of 11 mature annual folds strictly exclude zero across both commercial farms, proving that the jointly-learned boundary posterior delivers durable economic value under realistic utility maintenance protocols. Direct reserve deployment at new farms still requires pitch or proxy observability, boundary support, compatible geometry, local recalibration, and a held-out routing pass (cross-farm held-out NMI reaches 0.557 in aggregate; detailed deployment gate criteria are tabulated in Supplementary Table A14) [@tautzweinert2017scada].
 
 # Limitations
 

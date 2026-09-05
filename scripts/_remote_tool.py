@@ -2,29 +2,31 @@ import subprocess
 import sys
 
 def run_remote(cmd: str, host="root@192.168.17.251", port="25329"):
+    clean_cmd = cmd.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
     proc = subprocess.run(
         ["ssh", "-p", port, host, "python3", "-"],
-        input=cmd,
+        input=clean_cmd,
         capture_output=True,
-        text=True,
-        encoding="utf-8"
     )
-    print("STDOUT:\n", proc.stdout)
-    if proc.stderr:
-        print("STDERR:\n", proc.stderr)
+    stdout = proc.stdout.decode("utf-8", errors="replace")
+    stderr = proc.stderr.decode("utf-8", errors="replace")
+    print("STDOUT:\n", stdout)
+    if stderr:
+        print("STDERR:\n", stderr)
     return proc.returncode
 
 def run_bash(bash_cmd: str, host="root@192.168.17.251", port="25329"):
+    clean_cmd = bash_cmd.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
     proc = subprocess.run(
         ["ssh", "-p", port, host, "bash", "-s"],
-        input=bash_cmd,
+        input=clean_cmd,
         capture_output=True,
-        text=True,
-        encoding="utf-8"
     )
-    print("STDOUT:\n", proc.stdout)
-    if proc.stderr:
-        print("STDERR:\n", proc.stderr)
+    stdout = proc.stdout.decode("utf-8", errors="replace")
+    stderr = proc.stderr.decode("utf-8", errors="replace")
+    print("STDOUT:\n", stdout)
+    if stderr:
+        print("STDERR:\n", stderr)
     return proc.returncode
 
 if __name__ == "__main__":
