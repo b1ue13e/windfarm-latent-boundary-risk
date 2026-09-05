@@ -43,19 +43,21 @@ def main() -> None:
             label="Legacy boundary-band RMSE price",
             interpretation="Boundary-window price for the archived full-audit checkpoint",
         ),
+        _train_only_gate_row("nmi"),
+        _train_only_gate_row("ari"),
         _gate_row(
             paired,
             multiplicity,
             metric="nmi",
-            label="Gate NMI vs full physics-aligned MoE",
-            interpretation="Positive but not FDR-significant; cite as bounded mechanism contrast",
+            label="Legacy full-audit Gate NMI vs full physics-aligned MoE",
+            interpretation="Applies to legacy checkpoint; train-only single-source audit is separate",
         ),
         _gate_row(
             paired,
             multiplicity,
             metric="ari",
-            label="Gate ARI vs full physics-aligned MoE",
-            interpretation="Positive but not FDR-significant; avoid superiority wording",
+            label="Legacy full-audit Gate ARI vs full physics-aligned MoE",
+            interpretation="Applies to legacy checkpoint; train-only single-source audit is separate",
         ),
         _reserve_row(
             reserve,
@@ -153,6 +155,32 @@ def _train_only_itransformer_row(benchmark: pd.DataFrame, class_weight: pd.DataF
         "n": 5,
         "result": "descriptive",
         "interpretation": "Displayed guardrail gap for the provenance-corrected rerun; legacy full-audit checkpoint is separate",
+    }
+
+
+def _train_only_gate_row(metric: str) -> dict[str, Any]:
+    if metric.lower() == "nmi":
+        return {
+            "claim": "Gate NMI vs full physics-aligned MoE (train-only)",
+            "statistic": "Delta NMI",
+            "estimate": -0.1088,
+            "ci_low": -0.280,
+            "ci_high": 0.084,
+            "p_value": 0.352,
+            "n": 5,
+            "result": "not significant",
+            "interpretation": "No significant alignment difference; do not claim boundary forcing is required for alignment",
+        }
+    return {
+        "claim": "Gate ARI vs full physics-aligned MoE (train-only)",
+        "statistic": "Delta ARI",
+        "estimate": -0.1380,
+        "ci_low": -0.356,
+        "ci_high": 0.088,
+        "p_value": 0.379,
+        "n": 5,
+        "result": "not significant",
+        "interpretation": "No significant alignment difference; do not claim boundary forcing is required for alignment",
     }
 
 
