@@ -1,4 +1,4 @@
-﻿"""Merges per-seed Phase 3 benchmark outputs, computes cross-seed statistics, and evaluates the pre-registered decision tree."""
+"""Merges per-seed Phase 3 benchmark outputs, computes cross-seed statistics, and evaluates the pre-registered decision tree."""
 from __future__ import annotations
 
 import argparse
@@ -88,15 +88,20 @@ def main():
                     "routed_wins": bool(diff_c.mean() > 0),
                 })
 
-    paired_df = pd.DataFrame(paired_rows)
+    paired_cols = [
+        "regime", "model", "mean_routed_cost", "mean_model_cost",
+        "delta_cost_mean", "delta_cost_std", "delta_cost_percent",
+        "p_value_cost", "delta_pinball_mean", "routed_wins"
+    ]
+    paired_df = pd.DataFrame(paired_rows, columns=paired_cols)
     paired_df.to_csv(out_dir / "paired_significance.csv", index=False)
 
     # Decision tree evaluation
     # Check Clean vs Degraded performance
-    clean_pair = paired_df[paired_df["regime"] == "clean"]
-    delay_pair = paired_df[paired_df["regime"] == "delay6"]
-    noise_pair = paired_df[paired_df["regime"] == "sensor_noise"]
-    burst_pair = paired_df[paired_df["regime"] == "markov_burst"]
+    clean_pair = paired_df[paired_df["regime"] == "clean"] if not paired_df.empty else pd.DataFrame(columns=paired_cols)
+    delay_pair = paired_df[paired_df["regime"] == "delay6"] if not paired_df.empty else pd.DataFrame(columns=paired_cols)
+    noise_pair = paired_df[paired_df["regime"] == "sensor_noise"] if not paired_df.empty else pd.DataFrame(columns=paired_cols)
+    burst_pair = paired_df[paired_df["regime"] == "markov_burst"] if not paired_df.empty else pd.DataFrame(columns=paired_cols)
 
     # 1. Compare Routed vs Dense Head
     dense_clean_delta = float(clean_pair[clean_pair["model"] == "Joint Dense Head"]["delta_cost_mean"].values[0]) if not clean_pair[clean_pair["model"] == "Joint Dense Head"].empty else 0.0
