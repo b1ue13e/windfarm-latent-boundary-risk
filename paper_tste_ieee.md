@@ -18,11 +18,11 @@ header-includes:
   - \usepackage{enumitem}
   - \usepackage{etoolbox}
   - \setlist[itemize]{leftmargin=1.4em,nosep}
-  - \AtBeginDocument{\renewenvironment{CSLReferences}[2]{\begin{list}{}{\fontsize{6.2pt}{7.0pt}\selectfont\setlength{\itemindent}{0pt}\setlength{\leftmargin}{0pt}\setlength{\parsep}{0pt}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}}{\end{list}}}
+  - \AtBeginDocument{\renewenvironment{CSLReferences}[2]{\begin{list}{}{\fontsize{5.9pt}{6.7pt}\selectfont\setlength{\itemindent}{0pt}\setlength{\leftmargin}{0pt}\setlength{\parsep}{0pt}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}}{\end{list}}}
   - \AtBeginDocument{\renewcommand{\CSLBlock}[1]{#1\par}}
   - \AtBeginDocument{\setlength{\csllabelwidth}{1.8em}}
-  - \AtBeginDocument{\renewcommand{\CSLRightInline}[1]{\parbox[t]{\dimexpr\linewidth - \csllabelwidth\relax}{\fontsize{6.2pt}{7.0pt}\selectfont\ignorespaces#1}}}
-  - \AtBeginDocument{\renewcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\fontsize{6.2pt}{7.0pt}\selectfont\strut#1}}}
+  - \AtBeginDocument{\renewcommand{\CSLRightInline}[1]{\parbox[t]{\dimexpr\linewidth - \csllabelwidth\relax}{\fontsize{5.9pt}{6.7pt}\selectfont\ignorespaces#1}}}
+  - \AtBeginDocument{\renewcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\fontsize{5.9pt}{6.7pt}\selectfont\strut#1}}}
   - \makeatletter
   - \def\section{\@startsection{section}{1}{\z@}{0.95ex plus 0.3ex minus 0.2ex}{0.35ex plus 0.15ex}{\normalfont\footnotesize\bfseries\centering\scshape}}
   - \def\subsection{\@startsection{subsection}{2}{\z@}{0.7ex plus 0.2ex minus 0.1ex}{0.25ex plus 0.1ex}{\normalfont\normalsize\itshape}}
@@ -330,7 +330,7 @@ Regime & Evaluated Model & Total Cost (kW$\cdot$h) & Violation Rate & Reserve (k
 \label{tab:h6-paired}
 \begin{tabularx}{\columnwidth}{llcc>{\raggedright\arraybackslash}X}
 \toprule
-Regime & Baseline Model & $\Delta$ Cost (kW$\cdot$h) & 95\% Bootstrap CI & Stat. Sig. \\
+Regime & Baseline Model & $\Delta$ Cost (kW$\cdot$h) & 95\% Bootstrap CI & 95\% CI Sig. \& Operational Verdict \\
 \midrule
 \textbf{Clean} & Global Quantile & +39,962 & [+12,556, +67,367] & Yes ($p < 0.05$) \\
  & Cont. Physical Quantile & $-$77,659 & [$-$106,175, $-$49,143] & Yes (Lower Clean) \\
@@ -370,7 +370,7 @@ Under nominal telemetry with complete, uncorrupted SCADA streams, Continuous Phy
 
 However, Table~\ref{tab:h6-benchmark} exposes the **catastrophic brittleness** of deterministic physical rules under telemetry impairment. When communication latency delays wind speed and pitch angle readings by 6 steps (Delay-6), the Continuous Physical Quantile rule's violation rate explodes to $\mathbf{12.52\% \pm 1.82\%}$, severely breaching the strict 10\% grid reliability compliance limit ($q^* = 0.90$). Stale anemometer and pitch values cause the deterministic rule to severely underestimate impending shortfall, dumping reserve obligations onto real-time balancing markets and accumulating $49{,}120\text{ kW}\cdot\text{h}$ of shortage energy. Under sensor noise, the physical rule's violation rate also remains elevated at $8.17\% \pm 0.53\%$.
 
-Here, the Tier 2 spatio-temporal dynamic graph functions as an indispensable **safety airbag**. While data-driven models also suffer increased costs under latency, Joint Routed achieves the lowest degraded operational cost ($1{,}149{,}897 \pm 55{,}627\text{ kW}\cdot\text{h}$) among all viable models, strictly outperforming Global Quantiles ($+17{,}010\text{ kW}\cdot\text{h}$, CI $[+3{,}486, +30{,}535]$), Joint Dense Head ($+16{,}267\text{ kW}\cdot\text{h}$, $p = 0.0251$), and GBDT ($+156{,}411\text{ kW}\cdot\text{h}$, $p < 0.0001$). Under sensor noise and Markov burst dropouts, Joint Routed maintains conservative, grid-compliant violation rates of $8.08\% \pm 1.43\%$ and $7.69\% \pm 1.54\%$, preventing grid reliability failures.
+Here, the Tier 2 spatio-temporal dynamic graph functions as an indispensable **safety airbag**. While data-driven models also suffer increased costs under latency, Joint Routed achieves the lowest degraded operational cost ($1{,}149{,}897 \pm 55{,}627\text{ kW}\cdot\text{h}$) among all viable models, strictly outperforming Global Quantiles ($+17{,}010\text{ kW}\cdot\text{h}$, CI $[+3{,}486, +30{,}535]$), Joint Dense Head ($+16{,}267\text{ kW}\cdot\text{h}$, $p = 0.0251$), and GBDT ($+156{,}411\text{ kW}\cdot\text{h}$, $p < 0.0001$). Under sensor noise and Markov burst dropouts, Joint Routed maintains conservative, grid-compliant violation rates of $8.08\% \pm 1.43\%$ and $7.69\% \pm 1.54\%$, preventing grid reliability failures. Under Delay-6, while the complete 1-hour lag in confirmation signals pushes the empirical violation rate slightly above threshold across all models ($11.56\% \pm 2.48\%$ for Joint Routed, matched by $10.61\%$ for Dense Head and $10.79\%$ for Global Quantile vs. $12.52\%$ for physical rules), the deep fallback curtails shortage energy to $42{,}046\text{ kW}\cdot\text{h}$ (a 14.4\% reduction vs. the physical rule's $49{,}120\text{ kW}\cdot\text{h}$) and delivers the lowest total system cost.
 
 ### Branch D: Decoupled Two-Stage Reserve Over-Estimation
 In contrast to end-to-end task optimization, the Frozen Backbone MLP baseline exemplifies the severe penalty of decoupled representations. Across all four regimes, Frozen Backbone MLP incurs massive reserve over-estimation, producing total costs between $1{,}477{,}967$ and $1{,}511{,}794\text{ kW}\cdot\text{h}$---representing an economic penalty of $44.57\%$ to $72.02\%$ over Joint Routed ($p < 0.01$, Table~\ref{tab:h6-paired}).
@@ -434,7 +434,7 @@ Regime & Evaluated Model & Total Cost (kW$\cdot$h) & Violation Rate & Reserve (k
 \label{tab:h1-paired}
 \begin{tabularx}{\columnwidth}{llcc>{\raggedright\arraybackslash}X}
 \toprule
-Regime & Baseline Model & $\Delta$ Cost (kW$\cdot$h) & 95\% Bootstrap CI & Stat. Sig. \\
+Regime & Baseline Model & $\Delta$ Cost (kW$\cdot$h) & 95\% Bootstrap CI & 95\% CI Sig. \& Operational Verdict \\
 \midrule
 \textbf{Clean} & Global Quantile & +59,344 & [$-$16,440, +135,127] & No (Mean Gain) \\
  & Cont. Physical Quantile & $-$68,902 & [$-$105,175, $-$32,629] & Yes (Lower Clean) \\
@@ -522,6 +522,10 @@ Cross-farm replication across three commercial wind farms confirms that conseque
 - **Penmanshiel (15 Senvion MM82 turbines, $v_{\mathrm{rated}}=14.5\text{ m s}^{-1}$, 78\% pitch):** `signature_full` achieves $0.3024 \pm 0.0343$ (6800x above shuffled chance).
 
 This demonstrates that partial pitch observability does not extinguish boundary recoverability; rather, the dynamic graph extracts operational risk from electromechanical transients, validating the blind-spot fallback across heterogeneous real-world wind plants.
+
+**Multi-day replay dispatch on commercial UK wind farms:** To verify that reserve screening benefits transfer to operational dispatch under turbine-calibrated rated wind speeds ($v_{\mathrm{rated}}=12.5\text{ m s}^{-1}$ for Kelmarsh MM92 and $14.5\text{ m s}^{-1}$ for Penmanshiel MM82), we executed full 5-seed multi-day replay benchmarks on both plants:
+- On **Penmanshiel (15 MM82 turbines)** at 1-hour dispatch ($h=6$), Joint Routed achieves $831{,}251 \pm 112{,}331\text{ kW}\cdot\text{h}$ (Clean) and $813{,}831 \pm 102{,}946\text{ kW}\cdot\text{h}$ (Delay-6). In stark contrast, Missingness-Aware GBDT collapses to $1{,}064{,}962 \pm 236{,}997\text{ kW}\cdot\text{h}$ (Clean) and $1{,}086{,}102 \pm 251{,}889\text{ kW}\cdot\text{h}$ (Delay-6), suffering severe violation rates of $24.73\% \pm 6.93\%$ and $26.46\% \pm 6.63\%$ (and up to $38.14\%$ at $h=1$). Joint Routed delivers massive, statistically definitive savings over GBDT of $+233{,}710\text{ kW}\cdot\text{h}$ under Clean ($p < 0.001$, 95\% CI $[+119{,}765, +347{,}656]$) and $+272{,}271\text{ kW}\cdot\text{h}$ under Delay-6 ($p < 0.001$, CI $[+138{,}969, +405{,}574]$). Moreover, Joint Routed surpasses Continuous Physical Quantile ($844{,}248\text{ kW}\cdot\text{h}$ Clean, $828{,}471\text{ kW}\cdot\text{h}$ Delay-6) across all regimes, confirming that dynamic graph fallback outperforms deterministic curves when pitch records are degraded.
+- On **Kelmarsh (6 MM92 turbines)** at $h=6$, despite 45\% missing pitch telemetry, Joint Routed delivers the lowest dispatch cost ($70{,}375 \pm 16{,}324\text{ kW}\cdot\text{h}$ Clean, $109{,}359 \pm 13{,}634\text{ kW}\cdot\text{h}$ Delay-6), significantly beating GBDT ($115{,}266\text{ kW}\cdot\text{h}$ Clean, $138{,}980\text{ kW}\cdot\text{h}$ Delay-6) by $+44{,}891\text{ kW}\cdot\text{h}$ ($p < 0.05$) and $+29{,}621\text{ kW}\cdot\text{h}$ ($p < 0.05$), while outperforming Continuous Physical Quantile ($82{,}456\text{ kW}\cdot\text{h}$ Clean, $116{,}409\text{ kW}\cdot\text{h}$ Delay-6) by $+12{,}081\text{ kW}\cdot\text{h}$ and $+7{,}050\text{ kW}\cdot\text{h}$.
 
 ## Degradation Resilience and Early Warning Dynamics
 
