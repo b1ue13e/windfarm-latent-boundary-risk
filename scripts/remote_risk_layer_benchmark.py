@@ -1,4 +1,4 @@
-"""Phase 3: Risk-Layer Showdown Benchmark under Causally Symmetric Arrival Feed.
+﻿"""Phase 3: Risk-Layer Showdown Benchmark under Causally Symmetric Arrival Feed.
 
 Strict evaluation of 6 risk layer architectures:
 1. Global Quantile Baseline (unconditional 90th percentile)
@@ -12,7 +12,7 @@ Under 4 controlled degradation regimes:
 - Clean
 - Delay-6 (symmetric 6-step lag)
 - Sensor Noise (sigma_wspd=1.0 m/s, sigma_pab=2.0 deg)
-- Markov-Gilbert Burst Drops (p=0.05, q=0.50)
+- Markov-Gilbert Burst Drops (p=0.08, p_bb=0.75, max_lag=6)
 
 Evaluated at unique physical delivery moments (1 decision per delivery time, eliminating 24-step over-counting).
 """
@@ -153,8 +153,8 @@ def compute_metrics(
 
     return {
         "total_cost": float(cost.sum()),
-        "mean_cost_per_event": float(cost.mean()),
-        "violation_rate": float(violation.mean()),
+        "mean_cost_per_event": float(cost.mean()) if len(cost) > 0 else 0.0,
+        "violation_rate": float(violation.mean()) if len(violation) > 0 else 0.0,
         "total_shortage": float(shortage.sum() * dt),
         "total_reserve": float(r_act.sum() * dt),
         "pinball_loss": pinball,
@@ -175,7 +175,7 @@ def block_bootstrap(
     rng = np.random.default_rng(seed)
     unique_times = np.unique(time_indices)
     n_times = len(unique_times)
-    n_blocks = int(np.ceil(n_times / block_size))
+    n_blocks = max(1, int(np.ceil(n_times / block_size)))
 
     time_to_block = {t: idx // block_size for idx, t in enumerate(unique_times)}
     sample_block_ids = np.array([time_to_block[t] for t in time_indices])
@@ -219,7 +219,7 @@ def block_bootstrap(
 
 
 def train_frozen_quantile_head(
-    encoder: nn.Module,
+    model: nn.Module,
     train_loader: DataLoader,
     device: torch.device,
     lead_step: int = 0,
@@ -230,9 +230,9 @@ def train_frozen_quantile_head(
     head = QuantileResidualHead(context_dim=64, phys_dim=4, hidden_dim=64).to(device)
     optimizer = torch.optim.Adam(head.parameters(), lr=lr)
 
-    for p in encoder.parameters():
+    for p in model.parameters():
         p.requires_grad = False
-    encoder.eval()
+    model.eval()
 
     head.train()
     for epoch in range(epochs):
@@ -245,12 +245,13 @@ def train_frozen_quantile_head(
             target = batch["target"].to(device)  # (B, H, N)
 
             with torch.no_grad():
-                context = encoder(x_hist, edge_index, edge_weight, feature_mask)
+                pred, _, aux = model(x_hist, edge_index, edge_weight, feature_mask, anchor_phys)
+                context = aux["context"]
 
             pred_r = head(context, anchor_phys)  # (B, N)
+            y_pred = pred[:, lead_step, :]       # (B, N)
             y_true = target[:, lead_step, :]     # (B, N)
-            patv_curr = anchor_phys[..., 3]
-            shortfall = torch.clamp(patv_curr - y_true, min=0.0)
+            shortfall = torch.clamp(y_pred - y_true, min=0.0)
 
             loss = pinball_loss_tensor(pred_r, shortfall, tau=CRITICAL_FRACTILE)
             optimizer.zero_grad()
@@ -266,7 +267,6 @@ def collect_split_predictions(
     loader: DataLoader,
     device: torch.device,
     lead_step: int = 0,
-    is_dense_classifier: bool = False,
 ) -> dict[str, np.ndarray]:
     """Runs forward pass and collects predictions, targets, anchor features, and probabilities."""
     all_pred = []
@@ -291,12 +291,9 @@ def collect_split_predictions(
 
             pred, gate_prob, aux = model(x_hist, edge_index, edge_weight, feature_mask, anchor_phys)
 
-            # Lead step slice (B, N)
             p_lead = pred[:, lead_step, :].cpu().numpy()
             t_lead = target[:, lead_step, :].cpu().numpy()
             anc = anchor_phys.cpu().numpy()
-
-            # Pitch probability (expert index 2)
             prob = gate_prob[..., 2].cpu().numpy()
 
             all_pred.append(p_lead)
@@ -344,13 +341,18 @@ def main():
 
     cache_path = Path(args.cache_dir)
     if not cache_path.exists():
-        # Fallback search
         for alt in ["artifacts/cache_strictmask_trainweights/wtb_245d", "artifacts/cache_strictmask/wtb_245d"]:
             if Path(alt).exists():
                 cache_path = Path(alt)
                 break
     bundle = load_cache_bundle(cache_path, mmap_mode="r")
     seeds = [int(s) for s in args.seeds.split(",")]
+
+    # Statistics for physical unit recovery
+    w_mean = float(bundle.metadata["physics_model_stats"]["0"]["mean"])
+    w_std = float(bundle.metadata["physics_model_stats"]["0"]["std"])
+    p_mean = float(bundle.metadata["physics_model_stats"]["1"]["mean"])
+    p_std = float(bundle.metadata["physics_model_stats"]["1"]["std"])
 
     # Degradation regimes
     regimes = {
@@ -382,7 +384,7 @@ def main():
 
         # 1. Train Frozen Backbone + Residual Quantile Head
         print("Training Frozen Backbone Residual Quantile Head...")
-        frozen_head = train_frozen_quantile_head(routed_model.encoder, train_loader, device, lead_step=args.lead_step, epochs=5)
+        frozen_head = train_frozen_quantile_head(routed_model, train_loader, device, lead_step=args.lead_step, epochs=5)
 
         # 2. Collect validation outputs
         print("Collecting validation outputs...")
@@ -391,19 +393,20 @@ def main():
 
         # Common shortfall on validation set using routed model forecast
         val_shortfall = np.maximum(val_routed["pred"] - val_routed["target"], 0.0)  # (B, N)
-        val_wspd = val_routed["anchor"][..., 0]
-        val_pab = val_routed["anchor"][..., 1]
-        val_active = (np.abs(val_wspd - args.rated_wind) <= args.band) & (val_routed["mask"] > 0.5)
+        val_wspd_phys = val_routed["anchor"][..., 0] * w_std + w_mean
+        val_pab_phys = val_routed["anchor"][..., 1] * p_std + p_mean
+        val_active = (np.abs(val_wspd_phys - args.rated_wind) <= args.band) & (val_routed["mask"] > 0.5)
 
         val_s_flat = val_shortfall.reshape(-1)
         val_act_flat = val_active.reshape(-1)
+        print(f"Validation active boundary cells: {val_act_flat.sum()} / {val_act_flat.size}")
 
         # Fit Global Quantile
         global_reserve_val = float(np.quantile(val_s_flat[val_act_flat], CRITICAL_FRACTILE))
         print(f"Global Quantile reserve (tau=0.90): {global_reserve_val:.2f} kW")
 
         # Fit Continuous Physical Quantile (soft-pab-bin)
-        val_pab_flat = val_pab.reshape(-1)
+        val_pab_flat = val_pab_phys.reshape(-1)
         _, phys_reserves, pab_edges = fit_and_evaluate_binned_policy(
             val_pab_flat, val_s_flat, val_act_flat, val_pab_flat, n_bins=N_BINS, tau=CRITICAL_FRACTILE
         )
@@ -422,32 +425,46 @@ def main():
 
         # Train Missingness-Aware GBDT Quantile on Train split
         print("Training Missingness-Aware GBDT Quantile...")
-        # Subsample active train boundary points for fast, rigorous fit
         train_sample_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=False, num_workers=0)
-        tr_x_list, tr_mask_list, tr_anc_list, tr_tar_list = [], [], [], []
+        tr_x_list, tr_mask_list, tr_anc_list, tr_tar_list, tr_pred_list = [], [], [], [], []
         count = 0
-        for b in train_sample_loader:
-            tr_x_list.append(b["x_hist"].numpy())
-            tr_mask_list.append(b["feature_mask_hist"].numpy())
-            tr_anc_list.append(b["anchor_physics"].numpy())
-            tr_tar_list.append(b["target"][:, args.lead_step, :].numpy())
-            count += len(b["anchor_index"])
-            if count >= 3000:  # ~400,000 turbine steps
-                break
+        routed_model.eval()
+        with torch.no_grad():
+            for b in train_sample_loader:
+                x_h = b["x_hist"].to(device)
+                ei = b["edge_index_hist"].to(device)
+                ew = b["edge_weight_hist"].to(device)
+                fm = b["feature_mask_hist"].to(device)
+                ap = b["anchor_physics"].to(device)
+                pred, _, _ = routed_model(x_h, ei, ew, fm, ap)
+
+                tr_x_list.append(b["x_hist"].numpy())
+                tr_mask_list.append(b["feature_mask_hist"].numpy())
+                tr_anc_list.append(b["anchor_physics"].numpy())
+                tr_tar_list.append(b["target"][:, args.lead_step, :].numpy())
+                tr_pred_list.append(pred[:, args.lead_step, :].cpu().numpy())
+                count += len(b["anchor_index"])
+                if count >= 3000:
+                    break
+
         tr_x = np.concatenate(tr_x_list, axis=0)
         tr_mask = np.concatenate(tr_mask_list, axis=0)
         tr_anc = np.concatenate(tr_anc_list, axis=0)
         tr_tar = np.concatenate(tr_tar_list, axis=0)
+        tr_pred = np.concatenate(tr_pred_list, axis=0)
 
         tr_feats = extract_gbdt_features(tr_x, tr_mask, tr_anc)
-        tr_shortfall = np.maximum(tr_anc[..., 3] - tr_tar, 0.0).reshape(-1)
-        tr_act = (np.abs(tr_anc[..., 0] - args.rated_wind) <= args.band).reshape(-1)
+        tr_shortfall = np.maximum(tr_pred - tr_tar, 0.0).reshape(-1)
+        tr_wspd_phys = (tr_anc[..., 0] * w_std + w_mean).reshape(-1)
+        tr_act = (np.abs(tr_wspd_phys - args.rated_wind) <= args.band)
 
-        # Subsample to 100k active boundary points
         act_idx = np.where(tr_act)[0]
         if len(act_idx) > 100_000:
             rng = np.random.default_rng(seed)
             act_idx = rng.choice(act_idx, size=100_000, replace=False)
+        elif len(act_idx) < 1000:
+            # Fallback to all samples if boundary is sparse in subsample
+            act_idx = np.arange(len(tr_shortfall))[:100_000]
 
         gbdt = HistGradientBoostingRegressor(loss="quantile", quantile=CRITICAL_FRACTILE, max_iter=100, random_state=seed)
         gbdt.fit(tr_feats[act_idx], tr_shortfall[act_idx])
@@ -459,15 +476,13 @@ def main():
             test_ds = UnifiedArrivalDataset(bundle, "test", hist_len=36, pred_len=24, degradation=reg_spec)
             test_loader = DataLoader(test_ds, batch_size=args.batch_size, shuffle=False, num_workers=0)
 
-            # Collect test predictions
             test_routed = collect_split_predictions(routed_model, test_loader, device, lead_step=args.lead_step)
             test_dense = collect_split_predictions(dense_model, test_loader, device, lead_step=args.lead_step)
 
-            # Test shortfall under shared low-RMSE backbone forecast
             test_s = np.maximum(test_routed["pred"] - test_routed["target"], 0.0)  # (B, N)
-            test_wspd = test_routed["anchor"][..., 0]
-            test_pab = test_routed["anchor"][..., 1]
-            test_active = (np.abs(test_wspd - args.rated_wind) <= args.band) & (test_routed["mask"] > 0.5)
+            test_wspd_phys = test_routed["anchor"][..., 0] * w_std + w_mean
+            test_pab_phys = test_routed["anchor"][..., 1] * p_std + p_mean
+            test_active = (np.abs(test_wspd_phys - args.rated_wind) <= args.band) & (test_routed["mask"] > 0.5)
 
             test_s_flat = test_s.reshape(-1)
             test_act_flat = test_active.reshape(-1)
@@ -480,7 +495,7 @@ def main():
             reserves_map["Global Quantile"] = np.full_like(test_s_flat, global_reserve_val)
 
             # 2. Continuous Physical Quantile (soft-pab-bin)
-            t_pab_bins = np.digitize(test_pab.reshape(-1), pab_edges)
+            t_pab_bins = np.digitize(test_pab_phys.reshape(-1), pab_edges)
             r_phys = np.zeros_like(test_s_flat)
             for b in range(N_BINS):
                 r_phys[t_pab_bins == b] = phys_reserves[b]
@@ -500,7 +515,8 @@ def main():
                     ew = batch["edge_weight_hist"].to(device)
                     fm = batch["feature_mask_hist"].to(device)
                     ap = batch["anchor_physics"].to(device)
-                    ctx = routed_model.encoder(x_h, ei, ew, fm)
+                    _, _, aux = routed_model(x_h, ei, ew, fm, ap)
+                    ctx = aux["context"]
                     rf = frozen_head(ctx, ap).cpu().numpy()
                     r_frozen_list.append(rf)
             r_frozen = np.concatenate(r_frozen_list, axis=0).reshape(-1)
