@@ -1,4 +1,4 @@
-﻿"""Phase 3: Risk-Layer Showdown Benchmark under Causally Symmetric Arrival Feed.
+"""Phase 3: Risk-Layer Showdown Benchmark under Causally Symmetric Arrival Feed.
 
 Strict evaluation of 6 risk layer architectures:
 1. Global Quantile Baseline (unconditional 90th percentile)
@@ -91,13 +91,19 @@ def pinball_loss_np(target: np.ndarray, pred_q: np.ndarray, tau: float = 0.90) -
     return float(np.mean(np.maximum(tau * u, (tau - 1.0) * u)))
 
 
-def extract_gbdt_features(batch_x: np.ndarray, batch_mask: np.ndarray, batch_anchor: np.ndarray) -> np.ndarray:
+def extract_gbdt_features(
+    batch_x: np.ndarray,
+    batch_mask: np.ndarray,
+    batch_anchor: np.ndarray,
+    w_idx: int = 0,
+    p_idx: int = 7,
+) -> np.ndarray:
     """Extract compact feature vector per turbine from symmetric arrival feed."""
     B, H, N, C = batch_x.shape
-    w_feat = batch_x[..., 0]  # Wspd
-    p_feat = batch_x[..., 7]  # Pab_mean
-    w_mask = batch_mask[..., 0]
-    p_mask = batch_mask[..., 7]
+    w_feat = batch_x[..., w_idx]  # Wspd
+    p_feat = batch_x[..., p_idx]  # Pab_mean
+    w_mask = batch_mask[..., w_idx]
+    p_mask = batch_mask[..., p_idx]
 
     feats = [
         w_feat.mean(axis=1),
@@ -347,6 +353,7 @@ def collect_split_predictions(
 
 def main():
     parser = argparse.ArgumentParser(description="Phase 3 Risk Layer Showdown Benchmark")
+    parser.add_argument("--farm", default="wtb", help="Wind farm identifier: wtb, kelmarsh, or penmanshiel")
     parser.add_argument("--cache-dir", default="artifacts/cache_signature_trainweight/wtb_245d_canonical")
     parser.add_argument("--routed-checkpoint-pattern", default="artifacts/trainweight_full_rerun_20260830/wtb_full_seed{seed}")
     parser.add_argument("--dense-checkpoint-pattern", default="artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed{seed}")
@@ -363,7 +370,7 @@ def main():
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     device = torch.device(args.device)
-    print(f"Starting Phase 3 Risk Layer Benchmark on {device} (lead_step={args.lead_step})", flush=True)
+    print(f"Starting Phase 3 Risk Layer Benchmark for [{args.farm.upper()}] on {device} (lead_step={args.lead_step})", flush=True)
     print(f"Cache: {args.cache_dir}", flush=True)
     print(f"Output: {out_dir}", flush=True)
 
@@ -375,6 +382,10 @@ def main():
                 break
     bundle = load_cache_bundle(cache_path, mmap_mode="r")
     seeds = [int(s) for s in args.seeds.split(",")]
+
+    feat_names = list(bundle.metadata.get("feature_names", []))
+    w_idx = feat_names.index("Wspd") if "Wspd" in feat_names else 0
+    p_idx = feat_names.index("Pab_mean") if "Pab_mean" in feat_names else (7 if len(feat_names) > 7 else 1)
 
     w_mean = float(bundle.metadata["physics_model_stats"]["0"]["mean"])
     w_std = float(bundle.metadata["physics_model_stats"]["0"]["std"])
@@ -395,12 +406,17 @@ def main():
         print(f"\n==================== SEED {seed} ====================", flush=True)
         t_seed_start = time.time()
         routed_path = Path(args.routed_checkpoint_pattern.format(seed=seed))
-        dense_path = Path(args.dense_checkpoint_pattern.format(seed=seed))
-
         print(f"Loading routed checkpoint: {routed_path}", flush=True)
         routed_model = _load_model_from_checkpoint(routed_path, bundle, device)
-        print(f"Loading dense checkpoint: {dense_path}", flush=True)
-        dense_model = _load_model_from_checkpoint(dense_path, bundle, device)
+
+        dense_model = None
+        if args.dense_checkpoint_pattern:
+            candidate_dense_path = Path(args.dense_checkpoint_pattern.format(seed=seed))
+            if candidate_dense_path.exists():
+                print(f"Loading dense checkpoint: {candidate_dense_path}", flush=True)
+                dense_model = _load_model_from_checkpoint(candidate_dense_path, bundle, device)
+            else:
+                print(f"Dense checkpoint {candidate_dense_path} not found, skipping Joint Dense Head", flush=True)
 
         print("Setting up datasets...", flush=True)
         train_ds = UnifiedArrivalDataset(bundle, "train", hist_len=36, pred_len=24, degradation=DegradationSpec(delay_steps=0))
@@ -415,7 +431,15 @@ def main():
         # 2. Collect validation outputs
         print("Collecting validation outputs...", flush=True)
         val_routed = collect_split_predictions(routed_model, val_loader, device, lead_step=args.lead_step)
-        val_dense = collect_split_predictions(dense_model, val_loader, device, lead_step=args.lead_step)
+        dense_reserves, dense_edges = None, None
+        if dense_model is not None:
+            val_dense = collect_split_predictions(dense_model, val_loader, device, lead_step=args.lead_step)
+            val_dense_prob_flat = val_dense["prob"].reshape(-1)
+            _, dense_reserves, dense_edges = fit_and_evaluate_binned_policy(
+                val_dense_prob_flat, val_s_flat if 'val_s_flat' in locals() else np.maximum(val_routed["pred"] - val_routed["target"], 0.0).reshape(-1),
+                val_act_flat if 'val_act_flat' in locals() else (val_routed["mask"] > 0.5).reshape(-1),
+                val_dense_prob_flat, n_bins=N_BINS, tau=CRITICAL_FRACTILE
+            )
 
         val_shortfall = np.maximum(val_routed["pred"] - val_routed["target"], 0.0)
         val_wspd_phys = val_routed["anchor"][..., 0] * w_std + w_mean
@@ -429,6 +453,12 @@ def main():
         val_act_flat = val_active.reshape(-1)
         print(f"Validation active boundary cells: {val_act_flat.sum()} / {val_act_flat.size}", flush=True)
 
+        if dense_model is not None and dense_reserves is None:
+            val_dense_prob_flat = val_dense["prob"].reshape(-1)
+            _, dense_reserves, dense_edges = fit_and_evaluate_binned_policy(
+                val_dense_prob_flat, val_s_flat, val_act_flat, val_dense_prob_flat, n_bins=N_BINS, tau=CRITICAL_FRACTILE
+            )
+
         # Fit Global Quantile
         global_reserve_val = float(np.quantile(val_s_flat[val_act_flat], CRITICAL_FRACTILE))
         print(f"Global Quantile reserve (tau=0.90): {global_reserve_val:.2f} kW", flush=True)
@@ -437,12 +467,6 @@ def main():
         val_pab_flat = val_pab_phys.reshape(-1)
         _, phys_reserves, pab_edges = fit_and_evaluate_binned_policy(
             val_pab_flat, val_s_flat, val_act_flat, val_pab_flat, n_bins=N_BINS, tau=CRITICAL_FRACTILE
-        )
-
-        # Fit Joint Dense Head Quantile (soft-dense-bin)
-        val_dense_prob_flat = val_dense["prob"].reshape(-1)
-        _, dense_reserves, dense_edges = fit_and_evaluate_binned_policy(
-            val_dense_prob_flat, val_s_flat, val_act_flat, val_dense_prob_flat, n_bins=N_BINS, tau=CRITICAL_FRACTILE
         )
 
         # Fit Joint Routed Head Quantile (soft-gate-bin)
@@ -483,7 +507,7 @@ def main():
         tr_tmask = np.concatenate(tr_tmask_list, axis=0).reshape(-1)
         tr_pred = np.concatenate(tr_pred_list, axis=0)
 
-        tr_feats = extract_gbdt_features(tr_x, tr_mask, tr_anc)
+        tr_feats = extract_gbdt_features(tr_x, tr_mask, tr_anc, w_idx=w_idx, p_idx=p_idx)
         tr_shortfall = np.maximum(tr_pred - tr_tar, 0.0).reshape(-1)
         tr_wspd_phys = (tr_anc[..., 0] * w_std + w_mean).reshape(-1)
         tr_valid = (
@@ -511,7 +535,7 @@ def main():
             test_loader = DataLoader(test_ds, batch_size=args.batch_size, shuffle=False, num_workers=0)
 
             test_routed = collect_split_predictions(routed_model, test_loader, device, lead_step=args.lead_step)
-            test_dense = collect_split_predictions(dense_model, test_loader, device, lead_step=args.lead_step)
+            test_dense = collect_split_predictions(dense_model, test_loader, device, lead_step=args.lead_step) if dense_model is not None else None
 
             test_s = np.maximum(test_routed["pred"] - test_routed["target"], 0.0)
             test_wspd_phys = test_routed["anchor"][..., 0] * w_std + w_mean
@@ -526,7 +550,7 @@ def main():
             test_act_flat = test_active.reshape(-1)
             test_times_flat = np.repeat(test_routed["time"] + args.lead_step + 1, test_s.shape[1])
 
-            # Allocate reserves for 6 models
+            # Allocate reserves for models
             reserves_map = {}
 
             # 1. Global Quantile
@@ -540,7 +564,7 @@ def main():
             reserves_map["Continuous Physical Quantile"] = r_phys
 
             # 3. Missingness-Aware GBDT Quantile
-            test_feats = extract_gbdt_features(test_routed["x"], test_routed["fmask"], test_routed["anchor"])
+            test_feats = extract_gbdt_features(test_routed["x"], test_routed["fmask"], test_routed["anchor"], w_idx=w_idx, p_idx=p_idx)
             r_gbdt = np.nan_to_num(np.maximum(gbdt.predict(test_feats), 0.0), nan=global_reserve_val)
             reserves_map["Missingness-Aware GBDT"] = r_gbdt
 
@@ -560,12 +584,13 @@ def main():
             r_frozen = np.nan_to_num(np.concatenate(r_frozen_list, axis=0).reshape(-1), nan=global_reserve_val)
             reserves_map["Frozen Backbone MLP"] = r_frozen
 
-            # 5. Joint Non-routed Head (Dense Head)
-            t_dense_bins = np.digitize(test_dense["prob"].reshape(-1), dense_edges)
-            r_dense = np.zeros_like(test_s_flat)
-            for b in range(N_BINS):
-                r_dense[t_dense_bins == b] = dense_reserves[b]
-            reserves_map["Joint Dense Head"] = r_dense
+            # 5. Joint Non-routed Head (Dense Head, if available)
+            if dense_model is not None and dense_edges is not None:
+                t_dense_bins = np.digitize(test_dense["prob"].reshape(-1), dense_edges)
+                r_dense = np.zeros_like(test_s_flat)
+                for b in range(N_BINS):
+                    r_dense[t_dense_bins == b] = dense_reserves[b]
+                reserves_map["Joint Dense Head"] = r_dense
 
             # 6. Joint Routed Head (MoE Boundary Router)
             t_routed_bins = np.digitize(test_routed["prob"].reshape(-1), routed_edges)
@@ -578,6 +603,7 @@ def main():
             for m_name, r_arr in reserves_map.items():
                 m_res = compute_metrics(test_s_flat, r_arr, test_act_flat)
                 row = {
+                    "farm": args.farm,
                     "seed": seed,
                     "regime": reg_name,
                     "lead_step": args.lead_step + 1,
@@ -593,6 +619,7 @@ def main():
             )
             for m_name, b_stat in boot_res.items():
                 all_boot_rows.append({
+                    "farm": args.farm,
                     "seed": seed,
                     "regime": reg_name,
                     "lead_step": args.lead_step + 1,
@@ -614,7 +641,7 @@ def main():
     boot_df.to_csv(out_dir / "bootstrap_summary.csv", index=False)
 
     # Aggregate cross-seed summary
-    agg = seed_df.groupby(["regime", "lead_step", "model"]).agg({
+    agg = seed_df.groupby(["farm", "regime", "lead_step", "model"]).agg({
         "total_cost": ["mean", "std"],
         "violation_rate": ["mean", "std"],
         "total_reserve": ["mean", "std"],
