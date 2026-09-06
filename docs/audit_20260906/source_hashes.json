@@ -1,0 +1,67 @@
+[
+  {
+    "path": "paper_tste_ieee.md",
+    "sha256": "1384107cc365424fc1a1c595605f8d48dd307e9d267e2cfecb6f88c2db1c5af6",
+    "bytes": 67963
+  },
+  {
+    "path": "paper_tste_supplementary.md",
+    "sha256": "3b2a4944f0ead485daa0fa3fba1a354060d716b4e5424b63d61e64b8b2557394",
+    "bytes": 94584
+  },
+  {
+    "path": "scripts/rebuild_obs_windows.py",
+    "sha256": "4dde569d223fe0e49e56e73f6ff6c91cf7530cae39232dc691fd70f7f339cbf7",
+    "bytes": 5822
+  },
+  {
+    "path": "scripts/fair_degradation_replay.py",
+    "sha256": "91337b23c0fe5e61aeefcc7e35b184eebaf3f264197ce14eb69bd3724a1172a3",
+    "bytes": 11745
+  },
+  {
+    "path": "scripts/eval_markov_gilbert_telemetry.py",
+    "sha256": "05dcca472f340676e3e472b655bf434ec985ee04c61ed71cbf97da30de3c4c7f",
+    "bytes": 14228
+  },
+  {
+    "path": "scripts/remote_matched_modular_baseline.py",
+    "sha256": "9d02e8ebb340b8f10d1a282320686cd437ffdce5a4966d97a9db31aa9259f489",
+    "bytes": 7265
+  },
+  {
+    "path": "scripts/remote_iec_density_multiyear_eval.py",
+    "sha256": "8957f8228f355686329a9bdcc5a03882daf6fc9421a575f50a3b3676236829ee",
+    "bytes": 18646
+  },
+  {
+    "path": "scripts/remote_dynamic_price_settlement_replay.py",
+    "sha256": "f4278fb6d58a07dc3bfb6b34008e60c125465079cdbb558e41e9810a053dbe8a",
+    "bytes": 15086
+  },
+  {
+    "path": "scripts/eval_farm_aggregate_reserve.py",
+    "sha256": "eaa3bd7cda3a5277c0a5f6f61f1de26cfa5ac5750becf2d211cedde82568a74b",
+    "bytes": 19225
+  },
+  {
+    "path": "artifacts/matched_modular_comparison/matched_modular_results.csv",
+    "sha256": "01b353bacd2d994d46acb07ce4e8e442c7f85094c89350cb05bc60705dd2bb26",
+    "bytes": 1002
+  },
+  {
+    "path": "artifacts/farm_aggregate_reserve_20260905/farm_pcc_regime_stats.csv",
+    "sha256": "a886f3b35c408a1e65b8c144b5283800d27dcd88b36288904455b123bee5d920",
+    "bytes": 353
+  },
+  {
+    "path": "artifacts/iec_density_rolling_eval/penmanshiel_rolling_paired_summary.csv",
+    "sha256": "38c2739854fb0a9e398fc07deaa8459d6ec3477f986e4c826545e275a008686e",
+    "bytes": 93930
+  },
+  {
+    "path": "artifacts/p1_stats_20260904/unified_control_table.csv",
+    "sha256": "04813c201f6e2a7e494f0613c49acd39026d919264809341b33da63255ad1f99",
+    "bytes": 2821
+  }
+]

@@ -1,0 +1,344 @@
+{
+  "kelmarsh": {
+    "checkpoints": [
+      {
+        "seed": 201,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_farms_runs_20260903/kelmarsh/canonical/wtb_bal_align_force_seed201/best_model.pt",
+        "window_offset_days": 120,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      },
+      {
+        "seed": 202,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_farms_runs_20260903/kelmarsh/canonical/wtb_bal_align_force_seed202/best_model.pt",
+        "window_offset_days": 120,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      },
+      {
+        "seed": 203,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_farms_runs_20260903/kelmarsh/canonical/wtb_bal_align_force_seed203/best_model.pt",
+        "window_offset_days": 120,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      },
+      {
+        "seed": 204,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_farms_runs_20260903/kelmarsh/canonical/wtb_bal_align_force_seed204/best_model.pt",
+        "window_offset_days": 120,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      },
+      {
+        "seed": 205,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_farms_runs_20260903/kelmarsh/canonical/wtb_bal_align_force_seed205/best_model.pt",
+        "window_offset_days": 120,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      }
+    ],
+    "actual_pitch_observation_fraction": 0.9732426404953003,
+    "nonzero_pitch_fraction": 0.5513463718820861,
+    "pitch_observation_by_turbine": [
+      0.9765872955322266,
+      0.968367338180542,
+      0.9729024767875671,
+      0.9766156673431396,
+      0.973044216632843,
+      0.9719387888908386
+    ],
+    "price_replay_observed_heuristic_fraction": 1.0
+  },
+  "penmanshiel": {
+    "checkpoints": [
+      {
+        "seed": 201,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_farms_runs_20260903/penmanshiel/canonical/wtb_bal_align_force_seed201/best_model.pt",
+        "window_offset_days": 720,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      },
+      {
+        "seed": 202,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_farms_runs_20260903/penmanshiel/canonical/wtb_bal_align_force_seed202/best_model.pt",
+        "window_offset_days": 720,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      },
+      {
+        "seed": 203,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_farms_runs_20260903/penmanshiel/canonical/wtb_bal_align_force_seed203/best_model.pt",
+        "window_offset_days": 720,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      },
+      {
+        "seed": 204,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_farms_runs_20260903/penmanshiel/canonical/wtb_bal_align_force_seed204/best_model.pt",
+        "window_offset_days": 720,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      },
+      {
+        "seed": 205,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_farms_runs_20260903/penmanshiel/canonical/wtb_bal_align_force_seed205/best_model.pt",
+        "window_offset_days": 720,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      }
+    ],
+    "actual_pitch_observation_fraction": 0.9913103580474854,
+    "nonzero_pitch_fraction": 0.7809179624230644,
+    "pitch_observation_by_turbine": [
+      0.9639455676078796,
+      0.9972222447395325,
+      0.9970521330833435,
+      0.99217689037323,
+      0.9887471795082092,
+      0.997137188911438,
+      0.9961734414100647,
+      0.990958034992218,
+      0.9770975112915039,
+      0.9954081773757935,
+      0.995634913444519,
+      0.995634913444519,
+      0.9955498576164246,
+      0.9956066012382507
+    ],
+    "price_replay_observed_heuristic_fraction": 1.0
+  },
+  "la_haute_borne": {
+    "checkpoints": [
+      {
+        "seed": 201,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_lhb_runs_20260902/canonical/wtb_bal_align_force_seed201/best_model.pt",
+        "window_offset_days": 0,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      },
+      {
+        "seed": 202,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_lhb_runs_20260902/canonical/wtb_bal_align_force_seed202/best_model.pt",
+        "window_offset_days": 0,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      },
+      {
+        "seed": 203,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_lhb_runs_20260902/canonical/wtb_bal_align_force_seed203/best_model.pt",
+        "window_offset_days": 0,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      },
+      {
+        "seed": 204,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_lhb_runs_20260902/canonical/wtb_bal_align_force_seed204/best_model.pt",
+        "window_offset_days": 0,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      },
+      {
+        "seed": 205,
+        "checkpoint": "/root/paper3_audit_rerun_20260830/artifacts/signature_gate_lhb_runs_20260902/canonical/wtb_bal_align_force_seed205/best_model.pt",
+        "window_offset_days": 0,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "param_count": 110012
+      }
+    ]
+  }
+}
