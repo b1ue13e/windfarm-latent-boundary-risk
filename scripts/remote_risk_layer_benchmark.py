@@ -1,4 +1,4 @@
-﻿"""Phase 3: Risk-Layer Showdown Benchmark under Causally Symmetric Arrival Feed.
+"""Phase 3: Risk-Layer Showdown Benchmark under Causally Symmetric Arrival Feed.
 
 Strict evaluation of 6 risk layer architectures:
 1. Global Quantile Baseline (unconditional 90th percentile)
@@ -356,8 +356,8 @@ def main():
     regimes = {
         "clean": DegradationSpec(delay_steps=0),
         "delay6": DegradationSpec(delay_steps=6),
-        "sensor_noise": DegradationSpec(delay_steps=0, wspd_noise_sigma=1.0, pab_noise_sigma=2.0),
-        "markov_burst": DegradationSpec(delay_steps=0, burst_p=0.05, burst_q=0.50),
+        "sensor_noise": DegradationSpec(delay_steps=0, noise_sigma_physical={"Wspd": 1.0, "Pab_mean": 2.0}),
+        "markov_burst": DegradationSpec(delay_steps=0, use_markov_gilbert=True, p_gb=0.08, p_bb=0.75, max_lag=6),
     }
 
     all_seed_rows = []
