@@ -145,7 +145,7 @@ def evaluate_single_seed(
 
     H = v_pred.shape[1]
     n_turbines = v_pred.shape[2]
-    q_target = rho / (rho + 1.0)
+    q_target = 1.0 - 1.0 / rho if rho > 1.0 else 0.50
 
     # 3. Farm-level aggregation across turbines
     # P_farm(t, h) = sum_{i in active} P_{i}(t, h)
