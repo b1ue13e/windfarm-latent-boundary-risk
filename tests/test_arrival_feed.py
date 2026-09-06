@@ -15,14 +15,23 @@ from windfarm_moe.arrival_feed import (
 from windfarm_moe.data import RegimeWindowDataset, load_cache_bundle
 
 
-CACHE_DIR = Path("artifacts/cache_strictmask/wtb_245d")
+CACHE_DIRS = [
+    Path("artifacts/cache_strictmask/wtb_245d"),
+    Path("artifacts/cache_strictmask_trainweights/wtb_245d"),
+    Path("artifacts/cache_signature_trainweight/wtb_245d_canonical"),
+]
 
 
 @pytest.fixture(scope="module")
 def wtb_bundle():
-    if not CACHE_DIR.exists():
-        pytest.skip(f"Cache {CACHE_DIR} not found.")
-    return load_cache_bundle(CACHE_DIR, mmap_mode="r")
+    cache_dir = None
+    for c in CACHE_DIRS:
+        if c.exists() and (c / "metadata.json").exists():
+            cache_dir = c
+            break
+    if cache_dir is None:
+        pytest.skip("No valid WTB cache directory found.")
+    return load_cache_bundle(cache_dir, mmap_mode="r")
 
 
 def test_clean_equivalence(wtb_bundle):
