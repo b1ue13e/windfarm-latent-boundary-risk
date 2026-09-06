@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
-export LD_PRELOAD='/opt/hpcx/ucx/lib/libucm.so.0 /opt/hpcx/ucx/lib/libucs.so.0 /opt/hpcx/ucx/lib/libuct.so.0 /opt/hpcx/ucx/lib/libucp.so.0'
+
+if [ -d "/opt/hpcx/ucx/lib" ]; then
+  export LD_PRELOAD='/opt/hpcx/ucx/lib/libucm.so.0 /opt/hpcx/ucx/lib/libucs.so.0 /opt/hpcx/ucx/lib/libuct.so.0 /opt/hpcx/ucx/lib/libucp.so.0'
+fi
 export PYTHONPATH=.
 export OMP_NUM_THREADS=2
 export MKL_NUM_THREADS=2
@@ -14,6 +17,7 @@ mkdir -p artifacts/clean_evidence_v2/risk_layer_benchmark/kelmarsh_h6
 
 CACHE="artifacts/cache_signature_kelmarsh/external_wind_kelmarsh_obs_window_canonical"
 CKPT="artifacts/signature_gate_farms_runs_20260903/kelmarsh/canonical/wtb_bal_align_force_seed{seed}"
+DENSE_CKPT="artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed{seed}"
 
 echo "==================== LAUNCHING KELMARSH BENCHMARK (NODE 25329) ===================="
 echo "Time: $(date)"
@@ -26,7 +30,10 @@ for s in 201 202 203; do
       --farm kelmarsh \
       --cache-dir "$CACHE" \
       --routed-checkpoint-pattern "$CKPT" \
-      --dense-checkpoint-pattern "" \
+      --dense-checkpoint-pattern "$DENSE_CKPT" \
+      --rated-wind 12.5 \
+      --band 1.0 \
+      --dataloader-workers 0 \
       --seeds "$s" \
       --device cuda:0 \
       --lead-step 0 \
@@ -44,7 +51,10 @@ for s in 204 205; do
       --farm kelmarsh \
       --cache-dir "$CACHE" \
       --routed-checkpoint-pattern "$CKPT" \
-      --dense-checkpoint-pattern "" \
+      --dense-checkpoint-pattern "$DENSE_CKPT" \
+      --rated-wind 12.5 \
+      --band 1.0 \
+      --dataloader-workers 0 \
       --seeds "$s" \
       --device cuda:1 \
       --lead-step 0 \
@@ -54,6 +64,8 @@ done
 ) &
 PID_GPU1=$!
 
+wait $PID_GPU0 $PID_GPU1
+
 # GPU 2: h=6, seeds 201, 202, 203
 (
 for s in 201 202 203; do
@@ -62,7 +74,10 @@ for s in 201 202 203; do
       --farm kelmarsh \
       --cache-dir "$CACHE" \
       --routed-checkpoint-pattern "$CKPT" \
-      --dense-checkpoint-pattern "" \
+      --dense-checkpoint-pattern "$DENSE_CKPT" \
+      --rated-wind 12.5 \
+      --band 1.0 \
+      --dataloader-workers 0 \
       --seeds "$s" \
       --device cuda:2 \
       --lead-step 5 \
@@ -80,7 +95,10 @@ for s in 204 205; do
       --farm kelmarsh \
       --cache-dir "$CACHE" \
       --routed-checkpoint-pattern "$CKPT" \
-      --dense-checkpoint-pattern "" \
+      --dense-checkpoint-pattern "$DENSE_CKPT" \
+      --rated-wind 12.5 \
+      --band 1.0 \
+      --dataloader-workers 0 \
       --seeds "$s" \
       --device cuda:3 \
       --lead-step 5 \
@@ -90,7 +108,7 @@ done
 ) &
 PID_GPU3=$!
 
-wait $PID_GPU0 $PID_GPU1 $PID_GPU2 $PID_GPU3
+wait $PID_GPU2 $PID_GPU3
 
 echo "All Kelmarsh runs completed! Running cross-seed merge for h1 and h6..."
 python3 scripts/merge_phase3_results.py \

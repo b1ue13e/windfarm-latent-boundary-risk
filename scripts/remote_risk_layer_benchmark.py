@@ -43,6 +43,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import HistGradientBoostingRegressor
+from sklearn.preprocessing import StandardScaler
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
@@ -104,6 +105,10 @@ def extract_gbdt_features(
     p_feat = batch_x[..., p_idx]  # Pab_mean
     w_mask = batch_mask[..., w_idx]
     p_mask = batch_mask[..., p_idx]
+
+    # Ensure batch_anchor is (B, N, C_anchor) to match turbine dimension
+    if batch_anchor.ndim == 2:
+        batch_anchor = np.broadcast_to(batch_anchor[:, None, :], (B, N, batch_anchor.shape[-1]))
 
     feats = [
         w_feat.mean(axis=1),
@@ -365,6 +370,7 @@ def main():
     parser.add_argument("--rated-wind", type=float, default=10.5)
     parser.add_argument("--band", type=float, default=1.0)
     parser.add_argument("--n-boot", type=int, default=1000)
+    parser.add_argument("--dataloader-workers", type=int, default=0, help="DataLoader num_workers (default 0 to prevent cgroup OOM)")
     args = parser.parse_args()
 
     out_dir = Path(args.output_dir)
@@ -421,8 +427,8 @@ def main():
         print("Setting up datasets...", flush=True)
         train_ds = UnifiedArrivalDataset(bundle, "train", hist_len=36, pred_len=24, degradation=DegradationSpec(delay_steps=0))
         val_ds = UnifiedArrivalDataset(bundle, "val", hist_len=36, pred_len=24, degradation=DegradationSpec(delay_steps=0))
-        train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True, num_workers=0)
-        val_loader = DataLoader(val_ds, batch_size=args.batch_size, shuffle=False, num_workers=0)
+        train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True, num_workers=args.dataloader_workers)
+        val_loader = DataLoader(val_ds, batch_size=args.batch_size, shuffle=False, num_workers=args.dataloader_workers)
 
         # 1. Train Frozen Backbone + Residual Quantile Head
         print("Training Frozen Backbone Residual Quantile Head...", flush=True)
@@ -477,7 +483,7 @@ def main():
 
         # Train Missingness-Aware GBDT Quantile on Train split
         print("Training Missingness-Aware GBDT Quantile...", flush=True)
-        train_sample_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=False, num_workers=0)
+        train_sample_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=False, num_workers=args.dataloader_workers)
         tr_x_list, tr_mask_list, tr_anc_list, tr_tar_list, tr_tmask_list, tr_pred_list = [], [], [], [], [], []
         count = 0
         routed_model.eval()
@@ -524,15 +530,19 @@ def main():
             finite_idx = np.where(np.isfinite(tr_shortfall) & (tr_tmask > 0.5))[0]
             act_idx = finite_idx[:min(50_000, len(finite_idx))]
 
+        gbdt_scaler = StandardScaler()
+        tr_feats_act = np.nan_to_num(tr_feats[act_idx], nan=0.0, posinf=0.0, neginf=0.0)
+        tr_feats_scaled = gbdt_scaler.fit_transform(tr_feats_act)
+
         gbdt = HistGradientBoostingRegressor(loss="quantile", quantile=CRITICAL_FRACTILE, max_iter=50, random_state=seed)
-        gbdt.fit(tr_feats[act_idx], tr_shortfall[act_idx])
-        print("GBDT training complete.", flush=True)
+        gbdt.fit(tr_feats_scaled, tr_shortfall[act_idx])
+        print("GBDT training complete with StandardScaler.", flush=True)
 
         # 3. Evaluate across 4 Controlled Degradation Regimes
         for reg_name, reg_spec in regimes.items():
             print(f"\n--- Testing Regime: {reg_name} ---", flush=True)
             test_ds = UnifiedArrivalDataset(bundle, "test", hist_len=36, pred_len=24, degradation=reg_spec)
-            test_loader = DataLoader(test_ds, batch_size=args.batch_size, shuffle=False, num_workers=0)
+            test_loader = DataLoader(test_ds, batch_size=args.batch_size, shuffle=False, num_workers=args.dataloader_workers)
 
             test_routed = collect_split_predictions(routed_model, test_loader, device, lead_step=args.lead_step)
             test_dense = collect_split_predictions(dense_model, test_loader, device, lead_step=args.lead_step) if dense_model is not None else None
@@ -563,9 +573,11 @@ def main():
                 r_phys[t_pab_bins == b] = phys_reserves[b]
             reserves_map["Continuous Physical Quantile"] = r_phys
 
-            # 3. Missingness-Aware GBDT Quantile
+            # 3. Missingness-Aware GBDT Quantile (scaled and symmetric)
             test_feats = extract_gbdt_features(test_routed["x"], test_routed["fmask"], test_routed["anchor"], w_idx=w_idx, p_idx=p_idx)
-            r_gbdt = np.nan_to_num(np.maximum(gbdt.predict(test_feats), 0.0), nan=global_reserve_val)
+            test_feats_clean = np.nan_to_num(test_feats, nan=0.0, posinf=0.0, neginf=0.0)
+            test_feats_scaled = gbdt_scaler.transform(test_feats_clean)
+            r_gbdt = np.nan_to_num(np.maximum(gbdt.predict(test_feats_scaled), 0.0), nan=global_reserve_val)
             reserves_map["Missingness-Aware GBDT"] = r_gbdt
 
             # 4. Frozen Backbone + Residual Quantile Head

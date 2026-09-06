@@ -2,7 +2,9 @@
 set -euo pipefail
 cd /root/paper3_audit_rerun_20260830
 
-export LD_PRELOAD='/opt/hpcx/ucx/lib/libucm.so.0 /opt/hpcx/ucx/lib/libucs.so.0 /opt/hpcx/ucx/lib/libuct.so.0 /opt/hpcx/ucx/lib/libucp.so.0'
+if [ -d "/opt/hpcx/ucx/lib" ]; then
+  export LD_PRELOAD='/opt/hpcx/ucx/lib/libucm.so.0 /opt/hpcx/ucx/lib/libucs.so.0 /opt/hpcx/ucx/lib/libuct.so.0 /opt/hpcx/ucx/lib/libucp.so.0'
+fi
 export PYTHONPATH=.
 export PYTHONUNBUFFERED=1
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
@@ -20,6 +22,7 @@ run_seed_h6() {
     --seeds "$seed" \
     --device "cuda:$gpu" \
     --lead-step 5 \
+    --dataloader-workers 0 \
     --output-dir "$OUT_ROOT/run_seed_${seed}" \
     --n-boot 1000 \
     > "$LOG_DIR/seed_${seed}.log" 2>&1
@@ -36,22 +39,30 @@ run_seed_h24() {
     --seeds "$seed" \
     --device "cuda:$gpu" \
     --lead-step 23 \
+    --dataloader-workers 0 \
     --output-dir "$h24_root/run_seed_${seed}" \
     --n-boot 1000 \
     > "$LOG_DIR/seed_${seed}_h24.log" 2>&1
   echo "[GPU $gpu] Completed Seed $seed (h=24) at $(date +%H:%M:%S)"
 }
 
-# 6 GPUs on 25979
+# Throttled execution on 25979: concurrency <= 2 to prevent 45.9GB cgroup OOM
+echo "=== Batch 1 (max 2 concurrent) ==="
 run_seed_h6 201 0 &
 run_seed_h6 202 1 &
+wait
+
+echo "=== Batch 2 (max 2 concurrent) ==="
 run_seed_h6 203 2 &
 run_seed_h6 204 3 &
+wait
+
+echo "=== Batch 3 (max 2 concurrent) ==="
 run_seed_h6 205 4 &
 run_seed_h24 201 5 &
-
 wait
-echo "ALL 6 GPUS ON 25979 COMPLETED AT $(date +%H:%M:%S)"
+
+echo "ALL GPUS ON 25979 COMPLETED AT $(date +%H:%M:%S)"
 
 python3 scripts/merge_phase3_results.py --input-root "$OUT_ROOT" --output-dir "$OUT_ROOT"
 echo "H=6 MERGE COMPLETED AT $(date +%H:%M:%S)"
