@@ -1,4 +1,4 @@
-"""Phase 3: Risk-Layer Showdown Benchmark under Causally Symmetric Arrival Feed.
+﻿"""Phase 3: Risk-Layer Showdown Benchmark under Causally Symmetric Arrival Feed.
 
 Strict evaluation of 6 risk layer architectures:
 1. Global Quantile Baseline (unconditional 90th percentile)
@@ -18,6 +18,22 @@ Evaluated at unique physical delivery moments (1 decision per delivery time, eli
 """
 from __future__ import annotations
 
+import os
+import sys
+
+# Prevent OpenMP thread contention across parallel processes
+os.environ["OMP_NUM_THREADS"] = "2"
+os.environ["MKL_NUM_THREADS"] = "2"
+os.environ["OPENBLAS_NUM_THREADS"] = "2"
+os.environ["VECLIB_MAXIMUM_THREADS"] = "2"
+os.environ["NUMEXPR_NUM_THREADS"] = "2"
+os.environ["PYTHONUNBUFFERED"] = "1"
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(line_buffering=True)
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(line_buffering=True)
+
 import argparse
 import json
 import time
@@ -30,6 +46,8 @@ from sklearn.ensemble import HistGradientBoostingRegressor
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
+
+torch.set_num_threads(2)
 
 from windfarm_moe.arrival_feed import (
     DegradationSpec,
@@ -172,31 +190,33 @@ def block_bootstrap(
     n_boot: int = 1000,
     seed: int = 42,
 ) -> dict[str, Any]:
-    """Weather event block bootstrap for 95% CI and paired difference vs Joint Routed."""
+    """Fast vectorized weather event block bootstrap for 95% CI and paired difference vs Joint Routed."""
     rng = np.random.default_rng(seed)
     unique_times = np.unique(time_indices)
     n_times = len(unique_times)
     n_blocks = max(1, int(np.ceil(n_times / block_size)))
 
     time_to_block = {t: idx // block_size for idx, t in enumerate(unique_times)}
-    sample_block_ids = np.array([time_to_block[t] for t in time_indices])
-
-    models = list(reserves_dict.keys())
-    boot_costs = {m: np.zeros(n_boot) for m in models}
+    sample_block_ids = np.array([time_to_block[t] for t in time_indices], dtype=np.int64)
 
     valid = active & np.isfinite(s)
-    event_costs = {}
+    models = list(reserves_dict.keys())
+
+    # Pre-aggregate cost per block for each model using np.bincount
+    block_costs = {}
     for m in models:
         r = np.nan_to_num(reserves_dict[m], nan=0.0)
         sh = np.maximum(s - r, 0.0)
         c = (r + RHO * sh) * DT
-        event_costs[m] = c
+        c_valid = np.where(valid, c, 0.0)
+        block_sum = np.bincount(sample_block_ids, weights=c_valid, minlength=n_blocks)[:n_blocks]
+        block_costs[m] = block_sum
 
-    for b in range(n_boot):
-        chosen_blocks = rng.integers(0, n_blocks, size=n_blocks)
-        chosen_mask = np.isin(sample_block_ids, chosen_blocks) & valid
-        for m in models:
-            boot_costs[m][b] = event_costs[m][chosen_mask].sum()
+    # Vectorized bootstrap resample
+    chosen_blocks = rng.integers(0, n_blocks, size=(n_boot, n_blocks))
+    boot_costs = {}
+    for m in models:
+        boot_costs[m] = block_costs[m][chosen_blocks].sum(axis=1)
 
     summary = {}
     ref_model = "Joint Routed"
@@ -225,7 +245,8 @@ def train_frozen_quantile_head(
     train_loader: DataLoader,
     device: torch.device,
     lead_step: int = 0,
-    epochs: int = 5,
+    max_batches: int = 300,
+    epochs: int = 3,
     lr: float = 1e-3,
 ) -> QuantileResidualHead:
     """Trains a 2-layer residual quantile head on frozen spatio-temporal representations."""
@@ -238,27 +259,32 @@ def train_frozen_quantile_head(
 
     head.train()
     for epoch in range(epochs):
+        batch_count = 0
         for batch in train_loader:
             x_hist = batch["x_hist"].to(device)
             edge_index = batch["edge_index_hist"].to(device)
             edge_weight = batch["edge_weight_hist"].to(device)
             feature_mask = batch["feature_mask_hist"].to(device)
             anchor_phys = batch["anchor_physics"].to(device)
-            target = batch["target"].to(device)  # (B, H, N)
+            target = batch["target"].to(device)
 
             with torch.no_grad():
                 pred, _, aux = model(x_hist, edge_index, edge_weight, feature_mask, anchor_phys)
                 context = aux["context"]
 
-            pred_r = head(context, anchor_phys)  # (B, N)
-            y_pred = pred[:, lead_step, :]       # (B, N)
-            y_true = target[:, lead_step, :]     # (B, N)
+            pred_r = head(context, anchor_phys)
+            y_pred = pred[:, lead_step, :]
+            y_true = target[:, lead_step, :]
             shortfall = torch.clamp(y_pred - y_true, min=0.0)
 
             loss = pinball_loss_tensor(pred_r, shortfall, tau=CRITICAL_FRACTILE)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+
+            batch_count += 1
+            if batch_count >= max_batches:
+                break
 
     head.eval()
     return head
@@ -328,7 +354,7 @@ def main():
     parser.add_argument("--output-dir", default="artifacts/clean_evidence_v2/risk_layer_benchmark")
     parser.add_argument("--device", default="cuda:0" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--batch-size", type=int, default=64)
-    parser.add_argument("--lead-step", type=int, default=0, help="0-indexed lead step (0 = horizon 1, 10 min)")
+    parser.add_argument("--lead-step", type=int, default=0, help="0-indexed lead step (0 = horizon 1, 10 min; 5 = horizon 6, 1 hr)")
     parser.add_argument("--rated-wind", type=float, default=10.5)
     parser.add_argument("--band", type=float, default=1.0)
     parser.add_argument("--n-boot", type=int, default=1000)
@@ -337,9 +363,9 @@ def main():
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     device = torch.device(args.device)
-    print(f"Starting Phase 3 Risk Layer Benchmark on {device}")
-    print(f"Cache: {args.cache_dir}")
-    print(f"Output: {out_dir}")
+    print(f"Starting Phase 3 Risk Layer Benchmark on {device} (lead_step={args.lead_step})", flush=True)
+    print(f"Cache: {args.cache_dir}", flush=True)
+    print(f"Output: {out_dir}", flush=True)
 
     cache_path = Path(args.cache_dir)
     if not cache_path.exists():
@@ -350,13 +376,11 @@ def main():
     bundle = load_cache_bundle(cache_path, mmap_mode="r")
     seeds = [int(s) for s in args.seeds.split(",")]
 
-    # Statistics for physical unit recovery
     w_mean = float(bundle.metadata["physics_model_stats"]["0"]["mean"])
     w_std = float(bundle.metadata["physics_model_stats"]["0"]["std"])
     p_mean = float(bundle.metadata["physics_model_stats"]["1"]["mean"])
     p_std = float(bundle.metadata["physics_model_stats"]["1"]["std"])
 
-    # Degradation regimes
     regimes = {
         "clean": DegradationSpec(delay_steps=0),
         "delay6": DegradationSpec(delay_steps=6),
@@ -368,44 +392,46 @@ def main():
     all_boot_rows = []
 
     for seed in seeds:
-        print(f"\n==================== SEED {seed} ====================")
+        print(f"\n==================== SEED {seed} ====================", flush=True)
+        t_seed_start = time.time()
         routed_path = Path(args.routed_checkpoint_pattern.format(seed=seed))
         dense_path = Path(args.dense_checkpoint_pattern.format(seed=seed))
 
-        print(f"Loading routed checkpoint: {routed_path}")
+        print(f"Loading routed checkpoint: {routed_path}", flush=True)
         routed_model = _load_model_from_checkpoint(routed_path, bundle, device)
-        print(f"Loading dense checkpoint: {dense_path}")
+        print(f"Loading dense checkpoint: {dense_path}", flush=True)
         dense_model = _load_model_from_checkpoint(dense_path, bundle, device)
 
-        # Datasets
-        print("Setting up datasets...")
+        print("Setting up datasets...", flush=True)
         train_ds = UnifiedArrivalDataset(bundle, "train", hist_len=36, pred_len=24, degradation=DegradationSpec(delay_steps=0))
         val_ds = UnifiedArrivalDataset(bundle, "val", hist_len=36, pred_len=24, degradation=DegradationSpec(delay_steps=0))
         train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True, num_workers=0)
         val_loader = DataLoader(val_ds, batch_size=args.batch_size, shuffle=False, num_workers=0)
 
         # 1. Train Frozen Backbone + Residual Quantile Head
-        print("Training Frozen Backbone Residual Quantile Head...")
-        frozen_head = train_frozen_quantile_head(routed_model, train_loader, device, lead_step=args.lead_step, epochs=5)
+        print("Training Frozen Backbone Residual Quantile Head...", flush=True)
+        frozen_head = train_frozen_quantile_head(routed_model, train_loader, device, lead_step=args.lead_step, max_batches=300, epochs=3)
 
         # 2. Collect validation outputs
-        print("Collecting validation outputs...")
+        print("Collecting validation outputs...", flush=True)
         val_routed = collect_split_predictions(routed_model, val_loader, device, lead_step=args.lead_step)
         val_dense = collect_split_predictions(dense_model, val_loader, device, lead_step=args.lead_step)
 
-        # Common shortfall on validation set using routed model forecast
-        val_shortfall = np.maximum(val_routed["pred"] - val_routed["target"], 0.0)  # (B, N)
+        val_shortfall = np.maximum(val_routed["pred"] - val_routed["target"], 0.0)
         val_wspd_phys = val_routed["anchor"][..., 0] * w_std + w_mean
         val_pab_phys = val_routed["anchor"][..., 1] * p_std + p_mean
-        val_active = (np.abs(val_wspd_phys - args.rated_wind) <= args.band) & (val_routed["mask"] > 0.5)
-
         val_s_flat = val_shortfall.reshape(-1)
+        val_active = (
+            (np.abs(val_wspd_phys - args.rated_wind) <= args.band)
+            & (val_routed["mask"] > 0.5)
+            & np.isfinite(val_shortfall)
+        )
         val_act_flat = val_active.reshape(-1)
-        print(f"Validation active boundary cells: {val_act_flat.sum()} / {val_act_flat.size}")
+        print(f"Validation active boundary cells: {val_act_flat.sum()} / {val_act_flat.size}", flush=True)
 
         # Fit Global Quantile
         global_reserve_val = float(np.quantile(val_s_flat[val_act_flat], CRITICAL_FRACTILE))
-        print(f"Global Quantile reserve (tau=0.90): {global_reserve_val:.2f} kW")
+        print(f"Global Quantile reserve (tau=0.90): {global_reserve_val:.2f} kW", flush=True)
 
         # Fit Continuous Physical Quantile (soft-pab-bin)
         val_pab_flat = val_pab_phys.reshape(-1)
@@ -426,7 +452,7 @@ def main():
         )
 
         # Train Missingness-Aware GBDT Quantile on Train split
-        print("Training Missingness-Aware GBDT Quantile...")
+        print("Training Missingness-Aware GBDT Quantile...", flush=True)
         train_sample_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=False, num_workers=0)
         tr_x_list, tr_mask_list, tr_anc_list, tr_tar_list, tr_tmask_list, tr_pred_list = [], [], [], [], [], []
         count = 0
@@ -447,7 +473,7 @@ def main():
                 tr_tmask_list.append(b["target_mask"][:, args.lead_step, :].numpy())
                 tr_pred_list.append(pred[:, args.lead_step, :].cpu().numpy())
                 count += len(b["anchor_index"])
-                if count >= 3000:
+                if count >= 1000:
                     break
 
         tr_x = np.concatenate(tr_x_list, axis=0)
@@ -467,27 +493,27 @@ def main():
         )
 
         act_idx = np.where(tr_valid)[0]
-        if len(act_idx) > 100_000:
+        if len(act_idx) > 50_000:
             rng = np.random.default_rng(seed)
-            act_idx = rng.choice(act_idx, size=100_000, replace=False)
+            act_idx = rng.choice(act_idx, size=50_000, replace=False)
         elif len(act_idx) < 1000:
             finite_idx = np.where(np.isfinite(tr_shortfall) & (tr_tmask > 0.5))[0]
-            act_idx = finite_idx[:min(100_000, len(finite_idx))]
+            act_idx = finite_idx[:min(50_000, len(finite_idx))]
 
-        gbdt = HistGradientBoostingRegressor(loss="quantile", quantile=CRITICAL_FRACTILE, max_iter=100, random_state=seed)
+        gbdt = HistGradientBoostingRegressor(loss="quantile", quantile=CRITICAL_FRACTILE, max_iter=50, random_state=seed)
         gbdt.fit(tr_feats[act_idx], tr_shortfall[act_idx])
-        print("GBDT training complete.")
+        print("GBDT training complete.", flush=True)
 
         # 3. Evaluate across 4 Controlled Degradation Regimes
         for reg_name, reg_spec in regimes.items():
-            print(f"\n--- Testing Regime: {reg_name} ---")
+            print(f"\n--- Testing Regime: {reg_name} ---", flush=True)
             test_ds = UnifiedArrivalDataset(bundle, "test", hist_len=36, pred_len=24, degradation=reg_spec)
             test_loader = DataLoader(test_ds, batch_size=args.batch_size, shuffle=False, num_workers=0)
 
             test_routed = collect_split_predictions(routed_model, test_loader, device, lead_step=args.lead_step)
             test_dense = collect_split_predictions(dense_model, test_loader, device, lead_step=args.lead_step)
 
-            test_s = np.maximum(test_routed["pred"] - test_routed["target"], 0.0)  # (B, N)
+            test_s = np.maximum(test_routed["pred"] - test_routed["target"], 0.0)
             test_wspd_phys = test_routed["anchor"][..., 0] * w_std + w_mean
             test_pab_phys = test_routed["anchor"][..., 1] * p_std + p_mean
             test_active = (
@@ -515,7 +541,7 @@ def main():
 
             # 3. Missingness-Aware GBDT Quantile
             test_feats = extract_gbdt_features(test_routed["x"], test_routed["fmask"], test_routed["anchor"])
-            r_gbdt = np.maximum(gbdt.predict(test_feats), 0.0)
+            r_gbdt = np.nan_to_num(np.maximum(gbdt.predict(test_feats), 0.0), nan=global_reserve_val)
             reserves_map["Missingness-Aware GBDT"] = r_gbdt
 
             # 4. Frozen Backbone + Residual Quantile Head
@@ -531,7 +557,7 @@ def main():
                     ctx = aux["context"]
                     rf = frozen_head(ctx, ap).cpu().numpy()
                     r_frozen_list.append(rf)
-            r_frozen = np.concatenate(r_frozen_list, axis=0).reshape(-1)
+            r_frozen = np.nan_to_num(np.concatenate(r_frozen_list, axis=0).reshape(-1), nan=global_reserve_val)
             reserves_map["Frozen Backbone MLP"] = r_frozen
 
             # 5. Joint Non-routed Head (Dense Head)
@@ -560,7 +586,7 @@ def main():
                 }
                 all_seed_rows.append(row)
 
-            # Compute Weather Block Bootstrap
+            # Compute Fast Weather Block Bootstrap
             boot_res = block_bootstrap(
                 test_s_flat, reserves_map, test_act_flat, test_times_flat,
                 block_size=144, n_boot=args.n_boot, seed=seed
@@ -574,9 +600,11 @@ def main():
                     **b_stat,
                 })
 
-            print(f"Summary for {reg_name} (Seed {seed}):")
+            print(f"Summary for {reg_name} (Seed {seed}):", flush=True)
             summary_df = pd.DataFrame([r for r in all_seed_rows if r["seed"] == seed and r["regime"] == reg_name])
-            print(summary_df[["model", "total_cost", "violation_rate", "total_reserve", "total_shortage"]].to_string())
+            print(summary_df[["model", "total_cost", "violation_rate", "total_reserve", "total_shortage"]].to_string(), flush=True)
+
+        print(f"Seed {seed} total elapsed time: {time.time() - t_seed_start:.1f}s", flush=True)
 
     # Save final artifacts
     seed_df = pd.DataFrame(all_seed_rows)
@@ -595,8 +623,8 @@ def main():
     }).reset_index()
     agg.to_csv(out_dir / "cross_seed_aggregate.csv", index=False)
 
-    print("\n==================== CROSS-SEED BENCHMARK COMPLETE ====================")
-    print(agg.to_string())
+    print("\n==================== BENCHMARK COMPLETE ====================", flush=True)
+    print(agg.to_string(), flush=True)
 
 
 if __name__ == "__main__":
