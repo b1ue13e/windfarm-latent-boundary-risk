@@ -490,11 +490,15 @@ def main():
             test_s = np.maximum(test_routed["pred"] - test_routed["target"], 0.0)  # (B, N)
             test_wspd_phys = test_routed["anchor"][..., 0] * w_std + w_mean
             test_pab_phys = test_routed["anchor"][..., 1] * p_std + p_mean
-            test_active = (np.abs(test_wspd_phys - args.rated_wind) <= args.band) & (test_routed["mask"] > 0.5)
+            test_active = (
+                (np.abs(test_wspd_phys - args.rated_wind) <= args.band)
+                & (test_routed["mask"] > 0.5)
+                & np.isfinite(test_s)
+            )
 
             test_s_flat = test_s.reshape(-1)
             test_act_flat = test_active.reshape(-1)
-            test_times_flat = np.repeat(test_routed["time"] + args.lead_step + 1, bundle.num_nodes)
+            test_times_flat = np.repeat(test_routed["time"] + args.lead_step + 1, test_s.shape[1])
 
             # Allocate reserves for 6 models
             reserves_map = {}
