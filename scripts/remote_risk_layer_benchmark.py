@@ -1,4 +1,4 @@
-﻿"""Phase 3: Risk-Layer Showdown Benchmark under Causally Symmetric Arrival Feed.
+"""Phase 3: Risk-Layer Showdown Benchmark under Causally Symmetric Arrival Feed.
 
 Strict evaluation of 6 risk layer architectures:
 1. Global Quantile Baseline (unconditional 90th percentile)
@@ -144,8 +144,9 @@ def compute_metrics(
     tau: float = CRITICAL_FRACTILE,
 ) -> dict[str, float]:
     """Compute cost, violation, shortage, reserve, and pinball loss on active cells."""
-    s_act = s[active]
-    r_act = r[active]
+    valid = active & np.isfinite(s) & np.isfinite(r)
+    s_act = s[valid]
+    r_act = r[valid]
     shortage = np.maximum(s_act - r_act, 0.0)
     cost = (r_act + rho * shortage) * dt
     violation = (s_act > r_act).astype(np.float64)
@@ -158,7 +159,7 @@ def compute_metrics(
         "total_shortage": float(shortage.sum() * dt),
         "total_reserve": float(r_act.sum() * dt),
         "pinball_loss": pinball,
-        "n_events": int(active.sum()),
+        "n_events": int(valid.sum()),
     }
 
 
@@ -183,16 +184,17 @@ def block_bootstrap(
     models = list(reserves_dict.keys())
     boot_costs = {m: np.zeros(n_boot) for m in models}
 
+    valid = active & np.isfinite(s)
     event_costs = {}
     for m in models:
-        r = reserves_dict[m]
+        r = np.nan_to_num(reserves_dict[m], nan=0.0)
         sh = np.maximum(s - r, 0.0)
         c = (r + RHO * sh) * DT
         event_costs[m] = c
 
     for b in range(n_boot):
         chosen_blocks = rng.integers(0, n_blocks, size=n_blocks)
-        chosen_mask = np.isin(sample_block_ids, chosen_blocks) & active
+        chosen_mask = np.isin(sample_block_ids, chosen_blocks) & valid
         for m in models:
             boot_costs[m][b] = event_costs[m][chosen_mask].sum()
 
@@ -426,7 +428,7 @@ def main():
         # Train Missingness-Aware GBDT Quantile on Train split
         print("Training Missingness-Aware GBDT Quantile...")
         train_sample_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=False, num_workers=0)
-        tr_x_list, tr_mask_list, tr_anc_list, tr_tar_list, tr_pred_list = [], [], [], [], []
+        tr_x_list, tr_mask_list, tr_anc_list, tr_tar_list, tr_tmask_list, tr_pred_list = [], [], [], [], [], []
         count = 0
         routed_model.eval()
         with torch.no_grad():
@@ -442,6 +444,7 @@ def main():
                 tr_mask_list.append(b["feature_mask_hist"].numpy())
                 tr_anc_list.append(b["anchor_physics"].numpy())
                 tr_tar_list.append(b["target"][:, args.lead_step, :].numpy())
+                tr_tmask_list.append(b["target_mask"][:, args.lead_step, :].numpy())
                 tr_pred_list.append(pred[:, args.lead_step, :].cpu().numpy())
                 count += len(b["anchor_index"])
                 if count >= 3000:
@@ -451,20 +454,25 @@ def main():
         tr_mask = np.concatenate(tr_mask_list, axis=0)
         tr_anc = np.concatenate(tr_anc_list, axis=0)
         tr_tar = np.concatenate(tr_tar_list, axis=0)
+        tr_tmask = np.concatenate(tr_tmask_list, axis=0).reshape(-1)
         tr_pred = np.concatenate(tr_pred_list, axis=0)
 
         tr_feats = extract_gbdt_features(tr_x, tr_mask, tr_anc)
         tr_shortfall = np.maximum(tr_pred - tr_tar, 0.0).reshape(-1)
         tr_wspd_phys = (tr_anc[..., 0] * w_std + w_mean).reshape(-1)
-        tr_act = (np.abs(tr_wspd_phys - args.rated_wind) <= args.band)
+        tr_valid = (
+            (np.abs(tr_wspd_phys - args.rated_wind) <= args.band)
+            & (tr_tmask > 0.5)
+            & np.isfinite(tr_shortfall)
+        )
 
-        act_idx = np.where(tr_act)[0]
+        act_idx = np.where(tr_valid)[0]
         if len(act_idx) > 100_000:
             rng = np.random.default_rng(seed)
             act_idx = rng.choice(act_idx, size=100_000, replace=False)
         elif len(act_idx) < 1000:
-            # Fallback to all samples if boundary is sparse in subsample
-            act_idx = np.arange(len(tr_shortfall))[:100_000]
+            finite_idx = np.where(np.isfinite(tr_shortfall) & (tr_tmask > 0.5))[0]
+            act_idx = finite_idx[:min(100_000, len(finite_idx))]
 
         gbdt = HistGradientBoostingRegressor(loss="quantile", quantile=CRITICAL_FRACTILE, max_iter=100, random_state=seed)
         gbdt.fit(tr_feats[act_idx], tr_shortfall[act_idx])
