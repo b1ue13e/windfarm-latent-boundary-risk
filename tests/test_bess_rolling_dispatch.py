@@ -186,6 +186,57 @@ class TestBESSOptimizerTrajectoryAndLP(unittest.TestCase):
         shortage = np.maximum(commit - p_pcc, 0.0)
         np.testing.assert_allclose(p_short, shortage, atol=1e-5)
 
+        # 4. Strict check that surplus wind actually charges the battery
+        # (regression test against one-sided A_ub formulation bug)
+        surplus_steps = np.where(wind > commit)[0]
+        self.assertGreater(len(surplus_steps), 0)
+        self.assertGreater(np.sum(p_ch[surplus_steps]), 0.0)
+
+    def test_lp_charges_battery_during_surplus_and_curtails_excess(self) -> None:
+        # 3 steps of 8 MW wind with 5 MW commitment. Surplus is 3 MW each step.
+        # Battery has 10 MWh capacity, 2 MW power rating, starts at 5 MWh.
+        cfg_small = BESSConfig(capacity_mwh=10.0, power_rating_mw=2.0, dt_hours=1.0)
+        opt_small = WindBESSRollingOptimizer(cfg_small)
+        wind = np.array([8.0, 8.0, 8.0])
+        commit = np.array([5.0, 5.0, 5.0])
+
+        p_ch, p_dis, p_curt, p_short, e_traj = opt_small.solve_multi_period_lp(wind, commit)
+
+        # Must charge up to power/headroom limits and curtail the remainder
+        # In all steps, p_ch + p_curt must exactly balance surplus (3 MW)
+        np.testing.assert_allclose(p_ch + p_curt, 3.0, atol=1e-5)
+        self.assertTrue(np.all(p_ch <= 2.0 + 1e-6))
+        self.assertGreater(np.sum(p_curt), 0.0)
+        self.assertGreater(np.sum(p_ch), 0.0)
+        self.assertAlmostEqual(np.sum(p_short), 0.0)
+
+    def test_rolling_mpc_trajectory_simulation(self) -> None:
+        wind = np.array([5.0, 7.0, 2.0, 4.0, 8.0, 1.0])
+        commit = np.full(6, 5.0)
+
+        res_mpc = self.opt.simulate_trajectory(wind, commit, mode="mpc")
+        self.assertEqual(res_mpc.n_steps, 6)
+        self.assertGreater(res_mpc.delivered_mwh, 0.0)
+        self.assertGreater(res_mpc.total_cost, 0.0)
+        for step in res_mpc.step_results:
+            self.assertTrue(self.cfg.soc_min - 1e-5 <= step.soc_end <= self.cfg.soc_max + 1e-5)
+
+    def test_rolling_mpc_with_forecast_error(self) -> None:
+        wind_act = np.array([5.0, 3.0, 7.0, 2.0, 6.0, 4.0])
+        # Forecast deviates from actuals
+        wind_fc = np.array([4.0, 5.0, 5.0, 3.0, 7.0, 3.0])
+        commit = np.full(6, 5.0)
+
+        res_mpc = self.opt.simulate_rolling_mpc(
+            wind_actual_mw=wind_act,
+            wind_forecast_mw=wind_fc,
+            commit_schedule_mw=commit,
+            lookahead_steps=3,
+        )
+        self.assertEqual(res_mpc.n_steps, 6)
+        for r in res_mpc.step_results:
+            self.assertTrue(self.cfg.soc_min - 1e-5 <= r.soc_end <= self.cfg.soc_max + 1e-5)
+
     def test_trajectory_simulation_heuristic_and_lp(self) -> None:
         wind = np.array([5.0, 7.0, 2.0, 4.0, 8.0, 1.0])
         commit = np.full(6, 5.0)
@@ -195,7 +246,6 @@ class TestBESSOptimizerTrajectoryAndLP(unittest.TestCase):
 
         self.assertEqual(res_heur.n_steps, 6)
         self.assertEqual(res_lp.n_steps, 6)
-        # Both modes should achieve meaningful cost reduction
         self.assertGreater(res_heur.delivered_mwh, 0.0)
         self.assertGreater(res_lp.delivered_mwh, 0.0)
 

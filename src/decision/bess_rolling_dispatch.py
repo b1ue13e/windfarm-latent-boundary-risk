@@ -296,30 +296,21 @@ class WindBESSRollingOptimizer:
             A_eq_list.append(row)
             b_eq_list.append(target_final_soc * cfg.capacity_mwh)
 
+        # Power balance equality constraint:
+        # P_pcc[k] = P_wind[k] - P_curt[k] + P_dis[k] - P_ch[k] == P_commit[k] - P_short[k]
+        # => P_ch[k] - P_dis[k] + P_curt[k] - P_short[k] == P_wind[k] - P_commit[k]
+        for k in range(H):
+            row = np.zeros(n_vars)
+            idx = 5 * k
+            row[idx + 0] = 1.0   # +P_ch
+            row[idx + 1] = -1.0  # -P_dis
+            row[idx + 2] = 1.0   # +P_curt
+            row[idx + 3] = -1.0  # -P_short
+            A_eq_list.append(row)
+            b_eq_list.append(float(wind_forecast_mw[k] - commit_schedule_mw[k]))
+
         A_eq = np.array(A_eq_list)
         b_eq = np.array(b_eq_list)
-
-        # Inequality constraints: A_ub @ x <= b_ub
-        # Shortage definition:
-        # P_pcc = P_wind - P_curt + P_dis - P_ch
-        # P_short >= P_commit - P_pcc
-        # => P_short >= P_commit - (P_wind - P_curt + P_dis - P_ch)
-        # => -P_short + P_curt - P_dis + P_ch <= P_wind - P_commit
-        # => P_ch - P_dis + P_curt - P_short <= P_wind - P_commit
-        A_ub_list = []
-        b_ub_list = []
-        for k in range(H):
-            idx = 5 * k
-            row1 = np.zeros(n_vars)
-            row1[idx + 0] = 1.0   # +P_ch
-            row1[idx + 1] = -1.0  # -P_dis
-            row1[idx + 2] = 1.0   # +P_curt
-            row1[idx + 3] = -1.0  # -P_short
-            A_ub_list.append(row1)
-            b_ub_list.append(float(wind_forecast_mw[k] - commit_schedule_mw[k]))
-
-        A_ub = np.array(A_ub_list)
-        b_ub = np.array(b_ub_list)
 
         # Variable bounds: (lb, ub)
         bounds = []
@@ -330,7 +321,7 @@ class WindBESSRollingOptimizer:
             bounds.append((0.0, None))                              # P_short
             bounds.append((e_min, e_max))                           # E_next
 
-        res = linprog(c, A_ub=A_ub, b_ub=b_ub, A_eq=A_eq, b_eq=b_eq, bounds=bounds, method="highs")
+        res = linprog(c, A_eq=A_eq, b_eq=b_eq, bounds=bounds, method="highs")
         if not res.success:
             # Fallback to step heuristic if LP solver reports infeasibility or numerical warning
             p_ch = np.zeros(H)
@@ -362,6 +353,145 @@ class WindBESSRollingOptimizer:
 
         return p_charge, p_discharge, p_curtail, p_shortage, energy_traj
 
+    def simulate_rolling_mpc(
+        self,
+        wind_actual_mw: np.ndarray,
+        wind_forecast_mw: np.ndarray,
+        commit_schedule_mw: np.ndarray,
+        lookahead_steps: int = 6,
+    ) -> DispatchTrajectoryResult:
+        """Runs a receding-horizon Model Predictive Control (MPC) dispatch simulation.
+
+        At each step k:
+        1. Solves multi-period LP over lookahead window [k, min(k + lookahead_steps, N)]
+           using forecasted wind and committed schedule, starting from current BESS energy.
+        2. Applies first-step planned BESS dispatch against realized wind_actual_mw[k].
+        3. Enforces real-time power balancing at PCC:
+           - Over-delivery above commitment is curtailed.
+           - Under-delivery below commitment constitutes shortage.
+        4. Updates physical battery SoC and operational cost accounting.
+        5. Rolls forward to step k + 1.
+
+        Args:
+            wind_actual_mw: Realized wind generation trajectory (MW).
+            wind_forecast_mw: Forecasted wind generation trajectory (MW).
+            commit_schedule_mw: Contracted commitment schedule (MW).
+            lookahead_steps: MPC lookahead horizon in steps (default: 6 steps = 1 hr).
+
+        Returns:
+            DispatchTrajectoryResult with complete closed-loop performance metrics.
+        """
+        cfg = self.config
+        N = len(wind_actual_mw)
+        if N != len(commit_schedule_mw) or N != len(wind_forecast_mw):
+            raise ValueError(
+                f"Array length mismatch: wind_actual={N}, forecast={len(wind_forecast_mw)}, commit={len(commit_schedule_mw)}"
+            )
+
+        step_results: List[DispatchStepResult] = []
+        current_energy = cfg.soc_initial * cfg.capacity_mwh
+        e_min = cfg.soc_min * cfg.capacity_mwh
+        e_max = cfg.soc_max * cfg.capacity_mwh
+        dt = cfg.dt_hours
+
+        for k in range(N):
+            w_end = min(k + lookahead_steps, N)
+            w_fc = wind_forecast_mw[k:w_end]
+            c_fc = commit_schedule_mw[k:w_end]
+
+            p_ch_plan, p_dis_plan, _, _, _ = self.solve_multi_period_lp(
+                w_fc, c_fc, initial_energy_mwh=current_energy
+            )
+
+            ch_exec = float(p_ch_plan[0])
+            dis_exec = float(p_dis_plan[0])
+
+            w_act = max(0.0, float(wind_actual_mw[k]))
+            c_act = max(0.0, float(commit_schedule_mw[k]))
+            soc_start = current_energy / cfg.capacity_mwh
+
+            max_ch_e = max(0.0, (e_max - current_energy) / (cfg.eta_charge * dt)) if dt > 0 else 0.0
+            max_dis_e = max(0.0, (current_energy - e_min) * cfg.eta_discharge / dt) if dt > 0 else 0.0
+            ch_exec = min(ch_exec, max_ch_e, cfg.power_rating_mw)
+            dis_exec = min(dis_exec, max_dis_e, cfg.power_rating_mw)
+
+            next_energy = current_energy + (cfg.eta_charge * ch_exec - dis_exec / cfg.eta_discharge) * dt
+            next_energy = min(max(next_energy, e_min), e_max)
+            soc_end = next_energy / cfg.capacity_mwh
+
+            p_raw = w_act + dis_exec - ch_exec
+            diff = p_raw - c_act
+
+            if diff >= 0:
+                p_curt = diff
+                p_short = 0.0
+                p_pcc = c_act
+            else:
+                p_curt = 0.0
+                p_short = -diff
+                p_pcc = p_raw
+
+            c_short = cfg.shortage_penalty_per_mwh * p_short * dt
+            c_curt = cfg.curtailment_penalty_per_mwh * p_curt * dt
+            c_deg = cfg.degradation_cost_per_mwh * (ch_exec + dis_exec) * dt
+            tot_step_cost = c_short + c_curt + c_deg
+
+            step_res = DispatchStepResult(
+                step=k,
+                p_wind=w_act,
+                p_commit=c_act,
+                p_charge=ch_exec,
+                p_discharge=dis_exec,
+                p_curtail=p_curt,
+                p_shortage=p_short,
+                p_pcc=p_pcc,
+                soc_start=soc_start,
+                soc_end=soc_end,
+                energy_stored_mwh=next_energy,
+                cost_shortage=c_short,
+                cost_curtail=c_curt,
+                cost_degradation=c_deg,
+                total_cost=tot_step_cost,
+            )
+            step_results.append(step_res)
+            current_energy = next_energy
+
+        # Aggregate metrics
+        tot_cost = sum(r.total_cost for r in step_results)
+        tot_cost_shortage = sum(r.cost_shortage for r in step_results)
+        tot_cost_curtail = sum(r.cost_curtail for r in step_results)
+        tot_cost_deg = sum(r.cost_degradation for r in step_results)
+
+        tot_shortage_mwh = sum(r.p_shortage for r in step_results) * dt
+        tot_curtail_mwh = sum(r.p_curtail for r in step_results) * dt
+        tot_wind_mwh = sum(r.p_wind for r in step_results) * dt
+        tot_commit_mwh = sum(r.p_commit for r in step_results) * dt
+        tot_delivered_mwh = sum(r.p_pcc for r in step_results) * dt
+
+        throughput_mwh = sum(r.p_charge + r.p_discharge for r in step_results) * dt
+        efc = throughput_mwh / (2.0 * cfg.capacity_mwh)
+        violations = sum(1 for r in step_results if r.p_shortage > 1e-4)
+        violation_rate = violations / max(1, N)
+        mean_soc = float(np.mean([r.soc_end for r in step_results]))
+
+        return DispatchTrajectoryResult(
+            n_steps=N,
+            total_cost=tot_cost,
+            cost_shortage=tot_cost_shortage,
+            cost_curtail=tot_cost_curtail,
+            cost_degradation=tot_cost_deg,
+            shortage_mwh=tot_shortage_mwh,
+            curtailment_mwh=tot_curtail_mwh,
+            wind_generation_mwh=tot_wind_mwh,
+            committed_mwh=tot_commit_mwh,
+            delivered_mwh=tot_delivered_mwh,
+            bess_throughput_mwh=throughput_mwh,
+            equivalent_full_cycles=efc,
+            violation_rate=violation_rate,
+            mean_soc=mean_soc,
+            step_results=step_results,
+        )
+
     def simulate_trajectory(
         self,
         wind_actual_mw: np.ndarray,
@@ -373,7 +503,7 @@ class WindBESSRollingOptimizer:
         Args:
             wind_actual_mw: Array of realized wind power (MW)
             commit_schedule_mw: Array of contracted committed power (MW)
-            mode: 'heuristic' for fast closed-loop rule or 'lp' for full horizon optimal
+            mode: 'heuristic' for fast closed-loop rule, 'lp' for full horizon optimal, or 'mpc' for rolling horizon MPC
 
         Returns:
             DispatchTrajectoryResult with comprehensive IEEE TSTE metrics.
@@ -382,6 +512,9 @@ class WindBESSRollingOptimizer:
         N = len(wind_actual_mw)
         if N != len(commit_schedule_mw):
             raise ValueError(f"Length mismatch: {N} vs {len(commit_schedule_mw)}")
+
+        if mode == "mpc":
+            return self.simulate_rolling_mpc(wind_actual_mw, wind_actual_mw, commit_schedule_mw)
 
         step_results: List[DispatchStepResult] = []
         current_energy = cfg.soc_initial * cfg.capacity_mwh

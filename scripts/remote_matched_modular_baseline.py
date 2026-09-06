@@ -249,7 +249,7 @@ def main():
         "channels": "--",
         "reserve_cost_M": round(cost_global, 3),
         "delta_vs_global_M": 0.0,
-        "delay6_recall": round(rule_delay6_recall, 3),
+        "delay6_recall": None,
         "governance_object": "scalar_quantile",
     })
 
