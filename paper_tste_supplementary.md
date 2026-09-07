@@ -685,7 +685,7 @@ Operational scope & Validation-frozen shortfall quantiles; no OPF, unit commitme
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\footnotesize Same-model intervals are $n=5$ seed-paired bootstrap mean CIs for gate-bin minus same-router global at $\rho=10$. Throughout this supplementary material, ``Reserve Cost'' denotes the Penalized Reserve-Shortfall Energy Index (PSREI in kWh at $\rho=10$), an upstream pre-dispatch screening metric rather than dynamic wholesale market settlement cashflows.
+\footnotesize Same-model intervals are $n=5$ seed-paired bootstrap mean CIs for gate-bin minus same-router global at $\rho=10$. Reserve cost denotes Penalized Reserve-Shortfall Energy Index (PSREI in kWh at $\rho=10$) as formalized in Section III-D of the main paper, serving as an upstream pre-dispatch screening metric rather than dynamic wholesale market settlement cashflows.
 \end{table}
 ```
 
@@ -968,7 +968,7 @@ Penmanshiel & 9 & 2024 & Mature Operation (0.6 yr) & 0.110 $\pm$ 0.151 & 0.0082 
 
 ## Ultra-short horizon dispatch benchmark ($h=1$, 10-minute immediate dispatch) {.unnumbered}
 
-Table A11j reports the multi-regime operational dispatch benchmark at $h=1$ across all five random seeds (201--205) on the 134-turbine WTB test split, and Table A11k provides the corresponding seed-paired bootstrap difference statistics against Joint Routed.
+Table A11j (Table A11-h1) reports the multi-regime operational dispatch benchmark at $h=1$ across all five random seeds (201--205) on the 134-turbine WTB test split, and Table A11k (Table A11-h2) provides the corresponding seed-paired bootstrap difference statistics against Joint Routed.
 
 ```{=latex}
 \begin{table}[H]
@@ -976,7 +976,7 @@ Table A11j reports the multi-regime operational dispatch benchmark at $h=1$ acro
 \scriptsize
 \setlength{\tabcolsep}{1.8pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A11j.} Cross-Seed Multi-Regime Operational Dispatch Benchmark ($h=1$, 10-Minute Immediate Dispatch, 5 Seeds 201--205). Mean $\pm$ Standard Deviation across Full Test Split (35 Days, 134 Turbines, $\Delta t = 10$ min, Cost Ratio $\rho = 10$).}
+\caption*{\textbf{Table A11j (Table A11-h1).} Cross-Seed Multi-Regime Operational Dispatch Benchmark ($h=1$, 10-Minute Immediate Dispatch, 5 Seeds 201--205). Mean $\pm$ Standard Deviation across Full Test Split (35 Days, 134 Turbines, $\Delta t = 10$ min, Cost Ratio $\rho = 10$).}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{llccccc}
 \toprule
@@ -1024,7 +1024,7 @@ Regime & Evaluated Model & Penalized Reserve-Shortfall Energy & Violation Rate &
 \scriptsize
 \setlength{\tabcolsep}{1.5pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A11k.} Seed-Paired Difference in Penalized Reserve-Shortfall Energy against Joint Routed ($h=1$, $\Delta\text{Cost} = \text{Cost}_{\text{Baseline}} - \text{Cost}_{\text{Joint Routed}}$, positive indicates Joint Routed saves energy/cost at $\rho=10$).}
+\caption*{\textbf{Table A11k (Table A11-h2).} Seed-Paired Difference in Penalized Reserve-Shortfall Energy against Joint Routed ($h=1$, $\Delta\text{Cost} = \text{Cost}_{\text{Baseline}} - \text{Cost}_{\text{Joint Routed}}$, positive indicates Joint Routed saves energy/cost at $\rho=10$).}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{llcc>{\raggedright\arraybackslash}p{0.32\columnwidth}}
 \toprule
@@ -1120,7 +1120,7 @@ Penmanshiel (8.6 yrs, 14 turb) & vs Physical Pitch Rule & 20 & -1,549.2 & -£62.
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{llrrrrrl}
 \toprule
-Calendar Year & Operating Phase / Context & Mean SBP & Max SBP & Avoided Shortage & Net Cash Savings & 95\% Bootstrap CI & Excludes Zero \\
+Calendar Year & Operating Phase / Context & Mean SBP & Max SBP & Avoided Shortage & Net Price-Weighted Savings & 95\% Bootstrap CI & Excludes Zero \\
  & & (£/MWh) & (£/MWh) & (MWh) & (£ GBP) & (£ GBP) & ($p < 0.05$) \\
 \midrule
 Year 1 (2016) & Baseline Commissioning & £39.38 & £1,528.72 & -29.9 & +£16.2k & [+£10.1k, +£26.2k] & \textbf{yes} \\
@@ -1144,7 +1144,7 @@ Year 9 (2024) & Mature Decadal Operation & £71.17 & £669.21 & -307.7 & +£32.5
 
 To address potential concerns regarding hardware investment and operational expenditure (OPEX) in field deployments, Table A12c details the computational footprint, inference latency, and annual power costs of the proposed model on standard wind farm central substation supervisory infrastructure. In industrial wind power operations, telemetry streams from all 134 turbines are aggregated over the wind farm optical fiber ring network and processed at the central substation Supervisory Control and Data Acquisition (SCADA) / Energy Management System (EMS) terminal, rather than on embedded edge compute nodes at individual turbine nacelles.
 
-With only 110,012 parameters (430 KB storage footprint), the entire model resides in the L2/L3 cache of modern industrial CPUs. A full-farm inference pass across all 134 turbines requires only 4.12 ms on a standard industrial GPU (NVIDIA RTX 4000 Ada / T4 / RTX 4090) or 21.8 ms on a standard industrial PC CPU (Intel Xeon E5 / Core i7 industrial rackmount). Given a 10-minute (600 s) SCADA dispatch interval, the computational duty cycle is strictly below 0.004\%. Continuous 24/7/365 server operation at an average load of 100 W incurs an annual electricity consumption of 876 kWh, translating to £219/year for the entire 134-turbine wind plant at commercial rates (£0.25/kWh), or £1.63 per turbine per year. Compared against the annual net cash savings of +£3,190/turbine-year at Kelmarsh and +£5,540/turbine-year at Penmanshiel (Table A12), the incremental computing cost represents less than 0.05\% of gross economic benefit, confirming that the system induces zero edge-hardware capital expenditure (CAPEX) and negligible operational overhead.
+With only 110,012 parameters (430 KB storage footprint), the entire model resides in the L2/L3 cache of modern industrial CPUs. A full-farm inference pass across all 134 turbines requires only 4.12 ms on a standard industrial GPU (NVIDIA RTX 4000 Ada / T4 / RTX 4090) or 21.8 ms on a standard industrial PC CPU (Intel Xeon E5 / Core i7 industrial rackmount). Given a 10-minute (600 s) SCADA dispatch interval, the computational duty cycle is strictly below 0.004\%. Continuous 24/7/365 server operation at an average load of 100 W incurs an annual electricity consumption of 876 kWh, translating to £219/year for the entire 134-turbine wind plant at commercial rates (£0.25/kWh), or £1.63 per turbine per year. Compared against the annual exploratory price-weighted loss reduction (+£3,190/turbine-year at Kelmarsh and +£5,540/turbine-year at Penmanshiel, Table A12 Panel B), the incremental computing cost (£1.63/turbine-year) represents less than 0.05\% of the indicative price-weighted benefit margin, confirming that edge substation execution induces negligible operational overhead without incremental CAPEX.
 
 ```{=latex}
 \begin{table}[H]
@@ -1168,8 +1168,8 @@ Workstation power draw (24/7 base) & $\sim$100 W (industrial rackmount IPC) & St
 Annual electricity consumption & 876 kWh / year (entire plant) & $0.10\text{ kW} \times 8760\text{ h/year}$ continuous operation \\
 Annual electricity cost (commercial rate) & £219.00 / year (entire 134-turbine farm) & Based on UK commercial tariff of £0.25 / kWh \\
 Annual compute cost per turbine & £1.63 / turbine-year & Negligible overhead across 134-turbine fleet \\
-Kelmarsh net savings vs compute cost & +£3,190 / turb-yr vs £1.63 compute & Computing cost is 0.051\% of gross financial gain ($>$1900$\times$ ROI) \\
-Penmanshiel net savings vs compute cost & +£5,540 / turb-yr vs £1.63 compute & Computing cost is 0.029\% of gross financial gain ($>$3400$\times$ ROI) \\
+Kelmarsh price-weighted reduction vs compute & +£3,190 / turb-yr vs £1.63 compute & Compute cost is 0.051\% of exploratory price-weighted margin \\
+Penmanshiel price-weighted reduction vs compute & +£5,540 / turb-yr vs £1.63 compute & Compute cost is 0.029\% of exploratory price-weighted margin \\
 \bottomrule
 \end{tabular}%
 }
