@@ -19,9 +19,15 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
+os.environ["OMP_NUM_THREADS"] = "2"
+os.environ["MKL_NUM_THREADS"] = "2"
+os.environ["OPENBLAS_NUM_THREADS"] = "2"
+
 import numpy as np
 import pandas as pd
 import torch
+
+torch.set_num_threads(2)
 from torch.utils.data import DataLoader
 
 
@@ -163,6 +169,16 @@ def main():
     wspd_phy = physics_names.index("Wspd") if "Wspd" in physics_names else 0
     pab_phy = physics_names.index("Pab_mean") if "Pab_mean" in physics_names else 1
 
+    feature_names = list(bundle.metadata.get("feature_names", []))
+    wspd_feat = feature_names.index("Wspd") if "Wspd" in feature_names else -1
+    pab_feat = feature_names.index("Pab_mean") if "Pab_mean" in feature_names else -1
+    patv_feat = -1
+    for cand in ("Patv_hist", "Patv"):
+        if cand in feature_names:
+            patv_feat = feature_names.index(cand)
+            break
+    degrade_feat_indices = [idx for idx in (wspd_feat, pab_feat, patv_feat) if idx >= 0]
+
     # Simulate Markov-Gilbert channel
     rng = np.random.default_rng(2026)
     burst_states, burst_lags = simulate_markov_gilbert(N, p_gb=args.p_gb, p_bb=args.p_bb, max_lag=args.max_lag, rng=rng)
@@ -215,7 +231,7 @@ def main():
         with torch.no_grad():
             for batch in loader:
                 b_anchors = batch["anchor_index"].numpy().astype(np.int64)
-                x_hist = batch["x_hist"].to(device)
+                x_hist = batch["x_hist"].clone()
                 edge_index = batch["edge_index_hist"].to(device)
                 edge_weight = batch["edge_weight_hist"].to(device)
                 feature_mask = batch["feature_mask_hist"].to(device)
@@ -227,12 +243,18 @@ def main():
                     t_match = np.where(anchor_indices == global_idx)[0]
                     if len(t_match) > 0:
                         t = t_match[0]
-                        lag = burst_lags[t]
+                        lag = int(burst_lags[t])
                         if lag > 0:
                             lag_idx = max(0, global_idx - lag)
                             anc_corrupted[b_i, :, wspd_phy] = torch.from_numpy(std_physics[lag_idx, :, wspd_phy]).float()
                             anc_corrupted[b_i, :, pab_phy] = torch.from_numpy(std_physics[lag_idx, :, pab_phy]).float()
+                            for feat_idx in degrade_feat_indices:
+                                vals = x_hist[b_i, :, :, feat_idx]
+                                head = vals[:1, :].repeat(lag, 1)
+                                shifted = torch.cat([head, vals[:-lag, :]], dim=0)
+                                x_hist[b_i, :, :, feat_idx] = shifted
 
+                x_hist = x_hist.to(device)
                 anc_corrupted = anc_corrupted.to(device)
                 _, g_cor, _ = model(x_hist, edge_index, edge_weight, feature_mask, anc_corrupted)
                 gate_corrupted.append(g_cor.cpu().numpy())

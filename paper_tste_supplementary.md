@@ -566,7 +566,7 @@ Sensor noise, strongest & 0.971 & 0.630 & 0.885 & 0.758 & 0.652 & 0.804 & 227.8 
 \end{table}
 ```
 
-Table A10d reports the fair-degradation audit: the confirming-stream delay applies late wind-speed and pitch readings to both the gate anchor and the threshold rule identically (the archived history window remains available), and sensor noise corrupts the same channels in the gate's encoder features and anchor. Across a six-step delay, the rigid physical rule suffers catastrophic breakdown (F1 collapses from 0.9355 to 0.2491), whereas the joint posterior maintains steady precision (0.6282 vs. 0.3420 rule) and an F1 score of 0.7453, three times higher than the rule (+0.4962 gain). Table A10e evaluates industrial burst packet loss under a two-state Markov-Gilbert model.
+Table A10d reports the fair-degradation audit under the Unified Arrival Layer: confirming-stream delay applies late wind-speed and pitch readings symmetrically across anchor inputs and encoder history channels ($x_{\mathrm{hist}}$ shifted by $d$ steps), completely eliminating clean-history observability loopholes at anchor $t$. Under a six-step delay ($d=6$, 60-minute stall), detection recall attenuates from 0.9705 to 0.4162, yet the jointly-learned posterior retains a +0.220 recall gain (+112% relative advantage) and +0.130 F1 gain over the collapsed deterministic threshold rule (0.1959 recall, 0.2491 F1). Table A10e evaluates industrial burst packet loss under a two-state Markov-Gilbert model with symmetric history degradation.
 
 ```{=latex}
 \begin{table}[H]
@@ -574,23 +574,23 @@ Table A10d reports the fair-degradation audit: the confirming-stream delay appli
 \scriptsize
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A10d.} Fair-degradation audit: gate and physical rule consume the same degraded readings. Full precision, recall, and F1 profile across five train-only seeds.}
+\caption*{\textbf{Table A10d.} Fair-degradation audit: gate and physical rule consume the same degraded readings under the Unified Arrival Layer. Full precision, recall, and F1 profile across five train-only seeds.}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrrrrrr}
 \toprule
 Condition & Gate Rec & Rule Rec & Gate Prec & Rule Prec & Gate F1 & Rule F1 & F1 Gain \\
 \midrule
 Clean anchors & 0.9705 & 1.0000 & 0.6304 & 0.8789 & 0.7598 & 0.9355 & -0.1757 \\
-Delay, 1 step & 0.9622 & 0.6554 & 0.6239 & 0.7153 & 0.7527 & 0.6841 & \textbf{+0.0687} \\
-Delay, 3 steps & 0.9430 & 0.3811 & 0.6184 & 0.4646 & 0.7420 & 0.4187 & \textbf{+0.3233} \\
-Delay, 6 steps & 0.9327 & 0.1959 & 0.6282 & 0.3420 & 0.7453 & 0.2491 & \textbf{+0.4962} \\
-Noise, Wspd 0.5 / Pab 1.0 & 0.9635 & 0.8114 & 0.6228 & 0.8567 & 0.7525 & 0.8324 & -0.0798 \\
-Noise, Wspd 1.0 / Pab 2.0 & 0.9505 & 0.6800 & 0.6030 & 0.8106 & 0.7349 & 0.7388 & -0.0039 \\
+Delay, 1 step & 0.8459 & 0.6554 & 0.5524 & 0.7153 & 0.6638 & 0.6841 & -0.0203 \\
+Delay, 3 steps & 0.6281 & 0.3811 & 0.4181 & 0.4646 & 0.4978 & 0.4187 & \textbf{+0.0791} \\
+Delay, 6 steps & 0.4162 & 0.1959 & 0.3585 & 0.3420 & 0.3791 & 0.2491 & \textbf{+0.1299} \\
+Noise, Wspd 0.5 / Pab 1.0 & 0.9635 & 0.8114 & 0.6228 & 0.8567 & 0.7525 & 0.8334 & -0.0808 \\
+Noise, Wspd 1.0 / Pab 2.0 & 0.9505 & 0.6800 & 0.6032 & 0.8105 & 0.7349 & 0.7395 & -0.0046 \\
 \bottomrule
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize Values are means over 5 seeds (archived in \texttt{artifacts/fair\_degradation\_replay\_20260903/}). Upper-bound variant: when the delay also stalls the archived history channels (worst-case degradation), the gate retains 0.846/0.628/0.416 at one/three/six-step delays against 0.655/0.381/0.196 for the rule (gains +0.19/+0.25/+0.22, all 5 seeds positive).
+\footnotesize Values are means over 5 seeds under the Unified Arrival Layer (archived in \texttt{artifacts/fair\_degradation\_replay\_20260903/}). Full-stream history shift and anchor delay are applied symmetrically to both the gate and the deterministic threshold rule.
 \end{table}
 ```
 
@@ -609,13 +609,13 @@ Method & Burst Recall & Burst Precision & Burst F1 & Evaluated Cells \\
 Clean Physical Rule & 1.000 $\pm$ 0.000 & 1.000 $\pm$ 0.000 & 1.000 $\pm$ 0.000 & 146,552 cells/seed \\
 Stale Threshold Rule (honest: lagged Wspd \& Pab) & 0.840 $\pm$ 0.000 & 0.979 $\pm$ 0.000 & 0.904 $\pm$ 0.000 & 146,552 cells/seed \\
 Stale Threshold Rule (legacy: lagged Pab only) & 0.993 $\pm$ 0.000 & 1.000 $\pm$ 0.000 & 0.996 $\pm$ 0.000 & 146,552 cells/seed \\
-Jointly-Learned Routed Posterior (honest corrupted forward) & 0.994 $\pm$ 0.006 & 0.946 $\pm$ 0.086 & 0.967 $\pm$ 0.047 & 146,552 cells/seed \\
+Jointly-Learned Routed Posterior (honest corrupted forward) & 0.962 $\pm$ 0.023 & 0.895 $\pm$ 0.087 & 0.925 $\pm$ 0.042 & 146,552 cells/seed \\
 Jointly-Learned Routed Posterior (clean forward reference) & 0.997 $\pm$ 0.003 & 0.948 $\pm$ 0.088 & 0.970 $\pm$ 0.048 & 146,552 cells/seed \\
 \bottomrule
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize Evaluated over 146,552 burst-loss cells per seed under a two-state Markov-Gilbert channel simulating IEC 61400-25 substation communication disruptions with consecutive burst drops up to 6 steps. In the honest symmetric evaluation where telemetry drops affect both wind-speed and pitch-angle channels, the stale rule's recall drops to 0.840 and F1 to 0.904, whereas the corrupted routed posterior maintains 0.994 recall and 0.967 F1 (seed-paired F1 gain $+0.064$, 95\% bootstrap CI $[+0.021, +0.087]$, $p < 0.05$). The legacy 0.996 F1 reflects an asymmetric evaluation where wind speed remained pristine and persistent steady-state pitching masked boundary misdetections. Script: \texttt{scripts/eval\_markov\_gilbert\_telemetry.py}.
+\footnotesize Evaluated over 146,552 burst-loss cells per seed under a two-state Markov-Gilbert channel simulating IEC 61400-25 substation communication disruptions with consecutive burst drops up to 6 steps. In the honest symmetric evaluation where telemetry drops affect wind-speed, pitch-angle, and active power channels across anchor and encoder history streams, the stale rule's recall drops to 0.840 and F1 to 0.904, whereas the corrupted routed posterior maintains 0.962 recall and 0.925 F1 (seed-paired F1 gain $+0.021$, 95\% bootstrap CI $[-0.014, +0.050]$). The legacy 0.994 recall / 0.967 F1 reflected an asymmetric evaluation where encoder history remained clean while only anchor readings were lagged. Script: \texttt{scripts/eval\_markov\_gilbert\_telemetry.py}.
 \end{table}
 ```
 
@@ -765,14 +765,14 @@ Cascaded Frozen MLP posterior & Two-stage decoupled & partial (frozen) & consequ
 Independent Consequence MLP & Modular consequence & no & consequence & 15.805M & -0.828M [-2.180M, +0.525M] & 0.854 & 2.15 ms & Separate neural net \\
 Independent GBDT posterior & Tree-based modular & no & consequence & 17.656M & +1.024M [+0.780M, +1.285M] & 0.868 & 8.90 ms & Separate GBDT model \\
 Joint non-routed posterior head & Dense multi-task & yes & weak & 16.076M & -0.556M [-0.710M, -0.395M] & 0.286 & 3.85 ms & Single checkpoint \\
-Joint routed posterior (this work) & Boundary-forced MoE & yes & weak & 16.065M & -0.568M [-0.726M, -0.406M] & 0.933 & 4.12 ms & Single checkpoint \\
+Joint routed posterior (this work) & Boundary-forced MoE & yes & weak & 16.065M & -0.568M [-0.726M, -0.406M] & 0.416 & 4.12 ms & Single checkpoint \\
 \midrule
 Global quantile & Unstratified scalar & -- & -- & 16.632M & 0.000M [---] & 0.196 & 0.05 ms & Scalar quantile \\
 \bottomrule
 \end{tabular}%
 }
 \vspace{1mm}
-\parbox{\columnwidth}{\footnotesize\raggedright Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs Cascaded Frozen MLP (Joint 16.065M vs Cascaded 15.528M $\pm$ 1.599M, paired $\Delta = -0.537\text{M}$, 95\% CI [-1.988M, +0.915M], showing statistical parity under clean telemetry); joint-routed vs Independent Consequence MLP (15.805M $\pm$ 1.680M, paired $\Delta = -0.260\text{M}$, 95\% CI [-1.771M, +1.251M]); joint-routed vs independent GBDT -1.59M (see \texttt{artifacts/}\allowbreak\texttt{matched\_modular\_rerun\_5seeds/}\allowbreak\texttt{modular\_mlp\_summary\_5seeds.csv}). Degraded recall is early-window recall under a six-step confirming-stream delay ($^*$noise recall under strongest perturbation); the soft-physical pitch quantile is a continuous pricing rule without discrete recall, and under a 6-step delay its reserve cost degrades to 16.048M. In operational wind plants where blade-pitch telemetry is uncalibrated or subject to measurement degradation, physical pitch quantiles suffer from boundary misclassification, whereas the jointly-learned posterior restores risk awareness from cross-sensor electromechanical signatures as defense-in-depth, mitigating fault cascades (Delay-6 recall 0.933 vs. 0.785 for Cascaded MLP) in a single-checkpoint edge deployment. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a hierarchical seed-and-week-block bootstrap over daily reserve costs across the 35-day test period keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router pooled 5-seed total delta of -22.40M, corresponding to a per-seed mean of -4.48M which matches the -4.42M per-seed evaluation in Table A11 within bootstrap resampling granularity, 95\% hierarchical block CI [-39.55M, -7.61M]; Physics-Aligned MoE pooled 5-seed total -23.39M, CI [-42.41M, -7.02M]), confirming that the reserve advantage is robust to temporal autocorrelation across weeks. \textit{Terminology Note:} Throughout this work, ``Reserve Cost'' maps directly to the Penalized Reserve-Shortfall Energy Index (PSREI in kWh at $\rho=10$).}
+\parbox{\columnwidth}{\footnotesize\raggedright Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs Cascaded Frozen MLP (Joint 16.065M vs Cascaded 15.528M $\pm$ 1.599M, paired $\Delta = -0.537\text{M}$, 95\% CI [-1.988M, +0.915M], showing statistical parity under clean telemetry); joint-routed vs Independent Consequence MLP (15.805M $\pm$ 1.680M, paired $\Delta = -0.260\text{M}$, 95\% CI [-1.771M, +1.251M]); joint-routed vs independent GBDT -1.59M (see \texttt{artifacts/}\allowbreak\texttt{matched\_modular\_rerun\_5seeds/}\allowbreak\texttt{modular\_mlp\_summary\_5seeds.csv}). Degraded recall is early-window recall under a six-step confirming-stream delay ($^*$noise recall under strongest perturbation); the soft-physical pitch quantile is a continuous pricing rule without discrete recall, and under a 6-step delay its reserve cost degrades to 16.048M. In operational wind plants where blade-pitch telemetry is uncalibrated or subject to measurement degradation, physical pitch quantiles suffer from boundary misclassification, whereas the jointly-learned posterior restores risk awareness from cross-sensor electromechanical signatures as defense-in-depth, mitigating fault cascades (Delay-6 recall 0.416 vs. 0.286 for dense head (+0.220 gain over stale rule 0.196)) in a single-checkpoint edge deployment. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a hierarchical seed-and-week-block bootstrap over daily reserve costs across the 35-day test period keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router pooled 5-seed total delta of -22.40M, corresponding to a per-seed mean of -4.48M which matches the -4.42M per-seed evaluation in Table A11 within bootstrap resampling granularity, 95\% hierarchical block CI [-39.55M, -7.61M]; Physics-Aligned MoE pooled 5-seed total -23.39M, CI [-42.41M, -7.02M]), confirming that the reserve advantage is robust to temporal autocorrelation across weeks. \textit{Terminology Note:} Throughout this work, ``Reserve Cost'' maps directly to the Penalized Reserve-Shortfall Energy Index (PSREI in kWh at $\rho=10$).}
 \end{table}
 ```
 

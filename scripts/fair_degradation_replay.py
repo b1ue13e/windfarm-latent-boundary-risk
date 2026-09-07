@@ -19,12 +19,24 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import sys
 from pathlib import Path
 from typing import Any
+
+os.environ["OMP_NUM_THREADS"] = "2"
+os.environ["MKL_NUM_THREADS"] = "2"
+os.environ["OPENBLAS_NUM_THREADS"] = "2"
+
+repo_root = Path(__file__).resolve().parents[1]
+if str(repo_root) not in sys.path:
+    sys.path.insert(0, str(repo_root))
 
 import numpy as np
 import pandas as pd
 import torch
+
+torch.set_num_threads(2)
 from torch.utils.data import DataLoader
 
 from windfarm_moe.anchor_stress import (
@@ -63,7 +75,7 @@ def _forward_collect(model, loader, bundle, device, degrade: dict[str, Any] | No
     wspd_phy = physics_names.index("Wspd") if "Wspd" in physics_names else 0
     pab_phy = physics_names.index("Pab_mean") if "Pab_mean" in physics_names else 1
     delay = int(degrade.get("delay", 0)) if degrade else 0
-    history_delay = bool(degrade.get("history_delay", False)) if degrade else False
+    history_delay = bool(degrade.get("history_delay", True)) if degrade else True
     noise = degrade.get("noise") if degrade else None
 
     raw_physics = np.asarray(bundle.physics, dtype=np.float64)
@@ -139,8 +151,10 @@ def main() -> None:
     ap.add_argument("--output-dir", default="artifacts/fair_degradation_replay_20260903")
     ap.add_argument("--seeds", default="201,202,203,204,205")
     ap.add_argument("--device", default="cuda")
-    ap.add_argument("--degrade-history", action="store_true",
-                    help="Also shift the Wspd/Pab history channels by the delay (upper-bound degradation)")
+    ap.add_argument("--degrade-history", dest="degrade_history", action="store_true", default=True,
+                    help="Shift the Wspd/Pab history channels by the delay (Unified Arrival Layer, default: True)")
+    ap.add_argument("--no-degrade-history", dest="degrade_history", action="store_false",
+                    help="Disable shifting Wspd/Pab history channels")
     ap.add_argument("--cut-in", type=float, default=3.0)
     ap.add_argument("--rated", type=float, default=10.5)
     ap.add_argument("--pitch-th", type=float, default=2.0)
@@ -193,7 +207,7 @@ def main() -> None:
             rows.append(
                 {
                     "seed": seed,
-                    "condition": name + ("_histdelay" if (args.degrade_history and delay not in (None, 0)) else ""),
+                    "condition": name if args.degrade_history else (name + ("_no_histdelay" if delay not in (None, 0) else "")),
                     "delay_steps": 0 if delay is None else int(delay),
                     "wspd_noise": 0.0 if noise is None else float(noise[0]),
                     "pab_noise": 0.0 if noise is None else float(noise[1]),
@@ -228,8 +242,8 @@ def main() -> None:
                 "delays": DELAYS,
                 "noise_levels": NOISE_LEVELS,
                 "policy": (
-                    "Fair degradation: gate and rule see the same degraded Wspd/Pab readings. "
-                    "Early-window targets are defined by clean-regime transitions."
+                    "Fair degradation (Unified Arrival Layer): gate and rule see the same degraded Wspd/Pab readings "
+                    "across both anchor and history channels. Early-window targets are defined by clean-regime transitions."
                 ),
             },
             f,
