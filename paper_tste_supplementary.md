@@ -685,7 +685,7 @@ Operational scope & Validation-frozen shortfall quantiles; no OPF, unit commitme
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\footnotesize Same-model intervals are $n=5$ seed-paired bootstrap mean CIs for gate-bin minus same-router global at $\rho=10$.
+\footnotesize Same-model intervals are $n=5$ seed-paired bootstrap mean CIs for gate-bin minus same-router global at $\rho=10$. Throughout this supplementary material, ``Reserve Cost'' denotes the Penalized Reserve-Shortfall Energy Index (PSREI in kWh at $\rho=10$), an upstream pre-dispatch screening metric rather than dynamic wholesale market settlement cashflows.
 \end{table}
 ```
 
@@ -772,7 +772,7 @@ Global quantile & Unstratified scalar & -- & -- & 16.632M & 0.000M [---] & 0.196
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs Cascaded Frozen MLP (Joint 16.065M vs Cascaded 15.528M $\pm$ 1.599M, paired $\Delta = -0.537\text{M}$, 95\% CI [-1.988M, +0.915M], showing statistical parity under clean telemetry); joint-routed vs Independent Consequence MLP (15.805M $\pm$ 1.680M, paired $\Delta = -0.260\text{M}$, 95\% CI [-1.771M, +1.251M]); joint-routed vs independent GBDT -1.59M (see \texttt{artifacts/matched\_modular\_rerun\_5seeds/modular\_mlp\_summary\_5seeds.csv}). Degraded recall is early-window recall under a six-step confirming-stream delay ($^*$noise recall under strongest perturbation); the soft-physical pitch quantile is a continuous pricing rule without discrete recall, and under a 6-step delay its reserve cost degrades to 16.048M. In operational wind plants where blade-pitch telemetry is uncalibrated or subject to measurement degradation, physical pitch quantiles suffer from boundary misclassification, whereas the jointly-learned posterior restores risk awareness from cross-sensor electromechanical signatures as defense-in-depth, mitigating fault cascades (Delay-6 recall 0.933 vs. 0.785 for Cascaded MLP) in a single-checkpoint edge deployment. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a hierarchical seed-and-week-block bootstrap over daily reserve costs across the 35-day test period keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router pooled 5-seed total delta of -22.40M, corresponding to a per-seed mean of -4.48M which matches the -4.42M per-seed evaluation in Table A11 within bootstrap resampling granularity, 95\% hierarchical block CI [-39.55M, -7.61M]; Physics-Aligned MoE pooled 5-seed total -23.39M, CI [-42.41M, -7.02M]), confirming that the reserve advantage is robust to temporal autocorrelation across weeks.
+\parbox{\columnwidth}{\footnotesize\raggedright Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs Cascaded Frozen MLP (Joint 16.065M vs Cascaded 15.528M $\pm$ 1.599M, paired $\Delta = -0.537\text{M}$, 95\% CI [-1.988M, +0.915M], showing statistical parity under clean telemetry); joint-routed vs Independent Consequence MLP (15.805M $\pm$ 1.680M, paired $\Delta = -0.260\text{M}$, 95\% CI [-1.771M, +1.251M]); joint-routed vs independent GBDT -1.59M (see \texttt{artifacts/}\allowbreak\texttt{matched\_modular\_rerun\_5seeds/}\allowbreak\texttt{modular\_mlp\_summary\_5seeds.csv}). Degraded recall is early-window recall under a six-step confirming-stream delay ($^*$noise recall under strongest perturbation); the soft-physical pitch quantile is a continuous pricing rule without discrete recall, and under a 6-step delay its reserve cost degrades to 16.048M. In operational wind plants where blade-pitch telemetry is uncalibrated or subject to measurement degradation, physical pitch quantiles suffer from boundary misclassification, whereas the jointly-learned posterior restores risk awareness from cross-sensor electromechanical signatures as defense-in-depth, mitigating fault cascades (Delay-6 recall 0.933 vs. 0.785 for Cascaded MLP) in a single-checkpoint edge deployment. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a hierarchical seed-and-week-block bootstrap over daily reserve costs across the 35-day test period keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router pooled 5-seed total delta of -22.40M, corresponding to a per-seed mean of -4.48M which matches the -4.42M per-seed evaluation in Table A11 within bootstrap resampling granularity, 95\% hierarchical block CI [-39.55M, -7.61M]; Physics-Aligned MoE pooled 5-seed total -23.39M, CI [-42.41M, -7.02M]), confirming that the reserve advantage is robust to temporal autocorrelation across weeks. \textit{Terminology Note:} Throughout this work, ``Reserve Cost'' maps directly to the Penalized Reserve-Shortfall Energy Index (PSREI in kWh at $\rho=10$).}
 \end{table}
 ```
 
@@ -966,9 +966,104 @@ Penmanshiel & 9 & 2024 & Mature Operation (0.6 yr) & 0.110 $\pm$ 0.151 & 0.0082 
 \end{figure}
 ```
 
-## Engineering-unit reserve-value translation and real-price dynamic settlement cashflow {.unnumbered}
+## Ultra-short horizon dispatch benchmark ($h=1$, 10-minute immediate dispatch) {.unnumbered}
 
-Table A12 translates the reserve audit into MWh-equivalent forecast-cell accounting and evaluates decadal operational cashflows under historical UK Elexon BMRS half-hourly dynamic settlement prices (2016--2024, 17.6 cumulative machine-operating years across 5 seeds). Panel A reports the controlled engineering-unit benchmark on the WTB test split at $\rho=10$ under an illustrative 100 EUR/MWh reserve-cost marker [@bremnes2004quantile; @zhou2013probabilisticmarkets]. Panel B expands this screening protocol into real-market cashflows by replaying every test cell against its contemporaneous half-hourly System Buy Price ($P_{\mathrm{SBP}} \in [-£185.33, +£4,037.80]/\text{MWh}$, 157,804 settlement periods) under utility two-year walk-forward rolling recalibration with frozen backbone weights across Kelmarsh (9 full years, 6 turbines) and Penmanshiel (8.6 full years, 14 turbines). Table A12b details the annual decadal cashflow breakdown across calendar years (2016--2024), highlighting the empirical market impact during extreme energy crisis volatility. Across all 13 rolling walk-forward folds, 13 out of 13 exhibit positive net cashflow savings ($p = 0.000122 < 0.0002$ under exact binomial sign test; 10 folds strictly excluding zero in 95\% bootstrap intervals), achieving multi-year pooled net cash savings of +£134.0k on Kelmarsh and +£187.1k on Penmanshiel (+£321.2k combined).
+Table A11j reports the multi-regime operational dispatch benchmark at $h=1$ across all five random seeds (201--205) on the 134-turbine WTB test split, and Table A11k provides the corresponding seed-paired bootstrap difference statistics against Joint Routed.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{1.8pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A11j.} Cross-Seed Multi-Regime Operational Dispatch Benchmark ($h=1$, 10-Minute Immediate Dispatch, 5 Seeds 201--205). Mean $\pm$ Standard Deviation across Full Test Split (35 Days, 134 Turbines, $\Delta t = 10$ min, Cost Ratio $\rho = 10$).}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llccccc}
+\toprule
+Regime & Evaluated Model & Penalized Reserve-Shortfall Energy & Violation Rate & Reserve (kW) & Shortage (kW$\cdot$h) & Pinball Loss \\
+ & & (kW$\cdot$h, Proxy at $\rho=10$) & & & & \\
+\midrule
+\textbf{Clean} & Continuous Physical Quantile & $\mathbf{589{,}535 \pm 77{,}390}$ & $7.73\% \pm 1.56\%$ & $358{,}722 \pm 30{,}279$ & $23{,}081 \pm 5{,}172$ & $21.70 \pm 2.52$ \\
+ & Frozen Backbone Direct Quantile MLP & $1{,}074{,}875 \pm 296{,}315$ & $1.36\% \pm 0.81\%$ & $1{,}030{,}913 \pm 319{,}358$ & $4{,}396 \pm 2{,}565$ & $42.68 \pm 13.38$ \\
+ & Global Quantile & $717{,}781 \pm 80{,}823$ & $6.16\% \pm 1.65\%$ & $494{,}374 \pm 99{,}462$ & $22{,}341 \pm 4{,}832$ & $27.25 \pm 3.27$ \\
+ & Joint Dense Head & $686{,}555 \pm 70{,}084$ & $7.17\% \pm 1.28\%$ & $450{,}074 \pm 63{,}929$ & $23{,}648 \pm 4{,}171$ & $25.90 \pm 2.49$ \\
+ & \textbf{Joint Routed (Ours)} & $658{,}437 \pm 79{,}817$ & $7.67\% \pm 1.08\%$ & $397{,}056 \pm 81{,}728$ & $26{,}138 \pm 3{,}700$ & $24.68 \pm 2.69$ \\
+ & Missingness-Aware GBDT & $608{,}916 \pm 74{,}931$ & $5.81\% \pm 1.17\%$ & $423{,}500 \pm 44{,}130$ & $18{,}542 \pm 4{,}128$ & $22.54 \pm 2.66$ \\
+\midrule
+\textbf{Delay-6} & Continuous Physical Quantile & $739{,}262 \pm 62{,}423$ & $12.60\% \pm 1.94\%^{\dagger}$ & $362{,}746 \pm 30{,}973$ & $37{,}652 \pm 5{,}915$ & $26.46 \pm 2.03$ \\
+ & Frozen Backbone Direct Quantile MLP & $1{,}112{,}826 \pm 296{,}762$ & $1.63\% \pm 0.76\%$ & $1{,}063{,}303 \pm 318{,}675$ & $4{,}952 \pm 2{,}538$ & $42.41 \pm 13.08$ \\
+ & Global Quantile & $790{,}677 \pm 74{,}232$ & $8.60\% \pm 2.23\%$ & $500{,}534 \pm 100{,}702$ & $29{,}014 \pm 4{,}762$ & $28.66 \pm 2.81$ \\
+ & Joint Dense Head & $788{,}230 \pm 75{,}895$ & $10.70\% \pm 1.15\%^{\dagger}$ & $454{,}103 \pm 63{,}610$ & $33{,}413 \pm 2{,}328$ & $28.55 \pm 2.82$ \\
+ & \textbf{Joint Routed (Ours)} & $747{,}948 \pm 66{,}436$ & $10.74\% \pm 2.02\%^{\dagger}$ & $403{,}402 \pm 89{,}912$ & $34{,}455 \pm 5{,}760$ & $26.83 \pm 2.20$ \\
+ & Missingness-Aware GBDT & $\mathbf{685{,}944 \pm 57{,}157}$ & $5.74\% \pm 1.09\%$ & $501{,}925 \pm 35{,}452$ & $18{,}402 \pm 3{,}994$ & $24.19 \pm 2.08$ \\
+\midrule
+\textbf{Noise} & Continuous Physical Quantile & $700{,}307 \pm 91{,}043$ & $10.71\% \pm 2.72\%^{\dagger}$ & $382{,}282 \pm 35{,}606$ & $31{,}802 \pm 7{,}975$ & $24.74 \pm 2.84$ \\
+ & Frozen Backbone Direct Quantile MLP & $1{,}052{,}607 \pm 242{,}635$ & $2.28\% \pm 1.08\%$ & $985{,}760 \pm 271{,}026$ & $6{,}685 \pm 3{,}296$ & $39.36 \pm 10.78$ \\
+ & Global Quantile & $757{,}012 \pm 78{,}469$ & $6.96\% \pm 2.02\%$ & $514{,}778 \pm 103{,}567$ & $24{,}223 \pm 5{,}577$ & $27.10 \pm 2.89$ \\
+ & Joint Dense Head & $738{,}914 \pm 81{,}871$ & $9.29\% \pm 1.76\%$ & $447{,}191 \pm 57{,}304$ & $29{,}172 \pm 5{,}233$ & $26.34 \pm 2.66$ \\
+ & \textbf{Joint Routed (Ours)} & $711{,}218 \pm 87{,}033$ & $9.56\% \pm 1.08\%$ & $399{,}588 \pm 83{,}563$ & $31{,}163 \pm 3{,}761$ & $25.20 \pm 2.70$ \\
+ & Missingness-Aware GBDT & $\mathbf{691{,}744 \pm 80{,}257}$ & $6.57\% \pm 1.37\%$ & $482{,}524 \pm 51{,}570$ & $20{,}922 \pm 4{,}704$ & $24.39 \pm 2.52$ \\
+\midrule
+\textbf{Markov} & Continuous Physical Quantile & $\mathbf{611{,}462 \pm 78{,}376}$ & $8.21\% \pm 1.63\%$ & $364{,}021 \pm 31{,}123$ & $24{,}744 \pm 5{,}247$ & $21.98 \pm 2.48$ \\
+ & Frozen Backbone Direct Quantile MLP & $1{,}098{,}616 \pm 301{,}206$ & $1.42\% \pm 0.80\%$ & $1{,}051{,}516 \pm 324{,}901$ & $4{,}710 \pm 2{,}628$ & $42.64 \pm 13.36$ \\
+ & Global Quantile & $743{,}045 \pm 82{,}567$ & $6.52\% \pm 1.74\%$ & $503{,}739 \pm 101{,}347$ & $23{,}931 \pm 5{,}036$ & $27.56 \pm 3.25$ \\
+ & Joint Dense Head & $711{,}324 \pm 71{,}786$ & $7.60\% \pm 1.28\%$ & $458{,}884 \pm 65{,}446$ & $25{,}244 \pm 4{,}368$ & $26.21 \pm 2.48$ \\
+ & \textbf{Joint Routed (Ours)} & $684{,}945 \pm 80{,}533$ & $8.04\% \pm 1.22\%$ & $405{,}099 \pm 81{,}991$ & $27{,}985 \pm 4{,}018$ & $25.10 \pm 2.66$ \\
+ & Missingness-Aware GBDT & $\mathbf{633{,}745 \pm 76{,}259}$ & $5.95\% \pm 1.20\%$ & $438{,}277 \pm 43{,}705$ & $19{,}547 \pm 4{,}435$ & $22.92 \pm 2.63$ \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\footnotesize $^{\dagger}$Exceeds the 10\% grid reliability compliance limit ($q^* = 0.90$). Bold numbers denote lowest cost within data-driven models or physical benchmark. $^{\ddagger}$Frozen Backbone Direct Quantile MLP performs direct pinball quantile regression on frozen spatial representations without downstream recalibration, exhibiting severe tail conservatism (>1.03M kW reserve, <2.3\% violation rate).
+\end{table}
+```
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{1.5pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A11k.} Seed-Paired Difference in Penalized Reserve-Shortfall Energy against Joint Routed ($h=1$, $\Delta\text{Cost} = \text{Cost}_{\text{Baseline}} - \text{Cost}_{\text{Joint Routed}}$, positive indicates Joint Routed saves energy/cost at $\rho=10$).}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcc>{\raggedright\arraybackslash}p{0.32\columnwidth}}
+\toprule
+Regime & Baseline Model & $\Delta$ Cost (kW$\cdot$h) & 95\% Bootstrap CI & 95\% CI Sig. \& Operational Verdict \\
+\midrule
+\textbf{Clean} & Global Quantile & +59,344 & [$-$16,440, +135,127] & No (Parity, CI crosses 0) \\
+ & Cont. Physical Quantile & $-$68,902 & [$-$105,175, $-$32,629] & Yes (Lower Clean) \\
+ & Missingness GBDT & $-$49,521 & [$-$115,426, +16,384] & No (GBDT Lower) \\
+ & Frozen Backbone Direct Quantile MLP & +416,438 & [+105,990, +726,886] & Yes ($p < 0.05$) \\
+ & Joint Dense Head & +28,118 & [$-$25,901, +82,138] & No (Parity, CI crosses 0) \\
+\midrule
+\textbf{Delay-6} & Global Quantile & +42,730 & [$-$15,276, +100,736] & No (Parity, CI crosses 0) \\
+ & Cont. Physical Quantile & $-$8,686 & [$-$41,273, +23,901] & Viol. Exceeded ($12.60\%$) \\
+ & Missingness GBDT & $-$62,003 & [$-$132,867, +8,860] & No (GBDT Lower) \\
+ & Frozen Backbone Direct Quantile MLP & +364,879 & [+72,780, +656,977] & Yes ($p < 0.05$) \\
+ & Joint Dense Head & +40,282 & [$-$18,752, +99,316] & No (Parity, CI crosses 0) \\
+\midrule
+\textbf{Noise} & Global Quantile & +45,794 & [$-$22,405, +113,994] & No (Parity, CI crosses 0) \\
+ & Cont. Physical Quantile & $-$10,911 & [$-$28,924, +7,101] & Viol. Exceeded ($10.71\%$) \\
+ & Missingness GBDT & $-$19,474 & [$-$77,894, +38,947] & No (GBDT Lower) \\
+ & Frozen Backbone Direct Quantile MLP & +341,389 & [+74,234, +608,544] & Yes ($p < 0.05$) \\
+ & Joint Dense Head & +27,696 & [$-$15,571, +70,962] & No (Parity, CI crosses 0) \\
+\midrule
+\textbf{Markov} & Global Quantile & +58,100 & [$-$14,351, +130,551] & No (Parity, CI crosses 0) \\
+ & Cont. Physical Quantile & $-$73,483 & [$-$112,039, $-$34,927] & Yes (Lower Clean) \\
+ & Missingness GBDT & $-$51,200 & [$-$120,274, +17,874] & No (GBDT Lower) \\
+ & Frozen Backbone Direct Quantile MLP & +413,671 & [+101,079, +726,264] & Yes ($p < 0.05$) \\
+ & Joint Dense Head & +26,379 & [$-$25,724, +78,483] & No (Parity, CI crosses 0) \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\footnotesize Note: At $h=1$, Joint Dense Head and Joint Routed show statistical parity across all regimes (all 95\% bootstrap CIs cross zero), as 10-minute lag autocorrelation dominates immediate dispatch.
+\end{table}
+```
+
+## Engineering-unit reserve-value translation and exploratory price-weighted forecast loss {.unnumbered}
+
+Table A12 translates the reserve audit into MWh-equivalent forecast-cell accounting and evaluates decadal exploratory price-weighted forecast loss under historical UK Elexon BMRS half-hourly dynamic settlement prices (2016--2024, 17.6 cumulative machine-operating years across 5 seeds). Panel A reports the controlled engineering-unit benchmark on the WTB test split at $\rho=10$ under an illustrative 100 EUR/MWh reserve-cost marker [@bremnes2004quantile; @zhou2013probabilisticmarkets]. Panel B evaluates this screening protocol under historical market price series by replaying every test cell against its contemporaneous half-hourly System Buy Price ($P_{\mathrm{SBP}} \in [-£185.33, +£4,037.80]/\text{MWh}$, 157,804 settlement periods) under utility two-year walk-forward rolling recalibration with frozen backbone weights across Kelmarsh (9 full years, 6 turbines) and Penmanshiel (8.6 full years, 14 turbines). In alignment with Cover Letter Note 6 and Quarantine Item Q-03, these values are formally characterized as exploratory price-weighted forecast loss metrics rather than realized wholesale market settlement cashflows, as they do not simulate dynamic market clearing, transmission-constrained dispatch, or single-delivery moment settlement. Table A12b details the annual decadal price-weighted loss breakdown across calendar years (2016--2024), highlighting the empirical market impact during extreme energy crisis volatility. Across all 13 rolling walk-forward folds, 13 out of 13 exhibit positive net price-weighted loss savings ($p = 0.000122 < 0.0002$ under exact binomial sign test; 10 folds strictly excluding zero in 95\% bootstrap intervals), achieving multi-year pooled net price-weighted savings of +£134.0k on Kelmarsh and +£187.1k on Penmanshiel (+£321.2k combined).
 
 ```{=latex}
 \begin{table}[H]
@@ -976,7 +1071,7 @@ Table A12 translates the reserve audit into MWh-equivalent forecast-cell account
 \scriptsize
 \setlength{\tabcolsep}{1.8pt}
 \renewcommand{\arraystretch}{1.06}
-\caption*{\textbf{Table A12.} Engineering-unit translation and real-price dynamic settlement cashflow evaluation under UK Elexon BMRS half-hourly System Buy Prices (2016--2024, 17.6 cumulative machine-operating years, 5 seeds).}
+\caption*{\textbf{Table A12.} Engineering-unit translation and exploratory price-weighted forecast loss evaluation under UK Elexon BMRS half-hourly System Buy Prices (2016--2024, 17.6 cumulative machine-operating years, 5 seeds).}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{llcrrrrl}
 \toprule
@@ -989,9 +1084,9 @@ Boundary gate-bin vs same-router global (train-only) & boundary & +1950 & +637 &
 Boundary gate-bin vs GWN physical-bin (legacy) & boundary & +2319.2 & +205.6 & +262.9 & +26k & competitive & Strong physical-bin parity \\
 Boundary gate-bin vs GWN global full sample (legacy) & full & +3148.2 & -1413.5 & +17283.2 & +1728k & positive delta & Blocks full-sample reserve claim \\
 \midrule
-\multicolumn{8}{l}{\textbf{Panel B: Walk-forward rolling pooled settlement cashflow under historical UK Elexon BMRS SBP (2016--2024)}} \\
+\multicolumn{8}{l}{\textbf{Panel B: Walk-forward rolling pooled exploratory price-weighted forecast loss under historical UK Elexon BMRS SBP (2016--2024)}} \\
 \midrule
-Farm \& Cumulative Years & Baseline Comparison & $\rho$ & Avoided Shortage & Penalty Savings & Net Cash Savings & 95\% Bootstrap CI & Value / Turb-Yr \\
+Farm \& Cumulative Years & Baseline Comparison & $\rho$ & Avoided Shortage & Price-Weighted Shortage Diff & Net Price-Weighted Savings & 95\% Bootstrap CI & Value / Turb-Yr \\
  & (vs Soft-Gate-Bin) & & (MWh) & (£ GBP) & (£ GBP) & (£ GBP) & (£/turb-yr) \\
 \midrule
 Kelmarsh (9.0 yrs, 6 turb) & vs Global Quantile & 10 & -252.8 & +£3.3k & +£134.0k & [+£97.4k, +£166.7k]$^*$ & +£3.19k \\
@@ -1011,7 +1106,7 @@ Penmanshiel (8.6 yrs, 14 turb) & vs Physical Pitch Rule & 20 & -1,549.2 & -£62.
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize Values in Panel A are MWh-equivalent forecast-cell accounting with $\Delta t=1/6$ h under an illustrative 100 EUR/MWh marker. Panel B reports empirical market cashflows replaying every test cell against contemporaneous UK Elexon BMRS half-hourly System Buy Prices (£/MWh, 157,804 periods spanning 2016--2024, mean £77.43/MWh, range [-£185.33, +£4,037.80]/MWh). Shortfall penalty savings represent avoided imbalance cashout penalties ($\sum \Delta\text{Shortage}_{\mathrm{MWh}} \times P_{\mathrm{SBP}}$); net cash savings include reserve capacity procurement cost at $c_{\mathrm{res}} = £15/\text{MWh}$. Bootstrap intervals ($^*$ = strictly excluding zero) use 20,000 paired resamples across 5 seeds. Across all 13 rolling walk-forward folds, 13 out of 13 exhibit positive net cashflow savings ($p = 0.000122 < 0.0002$ under exact binomial sign test).
+\footnotesize Values in Panel A are MWh-equivalent forecast-cell accounting with $\Delta t=1/6$ h under an illustrative 100 EUR/MWh marker. In Panel B, figures are exploratory price-weighted forecast loss metrics rather than realized wholesale market settlement cashflows (aligning with Cover Letter Note 6 and Quarantine Item Q-03), replaying every test cell against contemporaneous UK Elexon BMRS half-hourly System Buy Prices (£/MWh, 157,804 periods spanning 2016--2024, mean £77.43/MWh, range [-£185.33, +£4,037.80]/MWh). Shortfall penalty savings represent avoided price-weighted imbalance loss ($\sum \Delta\text{Shortage}_{\mathrm{MWh}} \times P_{\mathrm{SBP}}$); net savings include reserve capacity procurement cost at $c_{\mathrm{res}} = £15/\text{MWh}$. Bootstrap intervals ($^*$ = strictly excluding zero) use 20,000 paired resamples across 5 seeds. Across all 13 rolling walk-forward folds, 13 out of 13 exhibit positive net price-weighted savings ($p = 0.000122 < 0.0002$ under exact binomial sign test).
 \end{table}
 ```
 
@@ -1021,7 +1116,7 @@ Penmanshiel (8.6 yrs, 14 turb) & vs Physical Pitch Rule & 20 & -1,549.2 & -£62.
 \scriptsize
 \setlength{\tabcolsep}{2.2pt}
 \renewcommand{\arraystretch}{1.06}
-\caption*{\textbf{Table A12b.} Decadal annual settlement cashflow breakdown and energy crisis price sensitivity across calendar years (2016--2024, 5 seeds, Kelmarsh vs Global Quantile, $\rho=10$).}
+\caption*{\textbf{Table A12b.} Decadal annual exploratory price-weighted loss breakdown and energy crisis price sensitivity across calendar years (2016--2024, 5 seeds, Kelmarsh vs Global Quantile, $\rho=10$).}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{llrrrrrl}
 \toprule
@@ -1041,7 +1136,7 @@ Year 9 (2024) & Mature Decadal Operation & £71.17 & £669.21 & -307.7 & +£32.5
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize Annual sensitivity breakdown replaying the frozen neural backbone against contemporaneous Elexon System Buy Prices under commissioning static freeze ($P_{\mathrm{SBP}}$ calendar mean and maximum). In 8 out of 9 calendar years, the soft gate achieves statistically significant positive net financial savings (strictly excluding zero). In 2022, peak gas and balancing power prices (£200.08/MWh mean, £4,035.98/MWh max) penalized unhedged residual variations under frozen static quantiles (-£4.0k). Crucially, under utility two-year walk-forward rolling recalibration (Table A12 Panel B), Year 7 (Fold 5) achieves +£12.4k net cash savings (CI [+£9.5k, +£15.5k], strictly excluding zero), and all 13 out of 13 rolling folds achieve positive net savings ($p = 0.000122$), confirming that rolling recalibration provides robust financial protection across unprecedented market shocks.
+\footnotesize Annual sensitivity breakdown replaying the frozen neural backbone against contemporaneous Elexon System Buy Prices under commissioning static freeze ($P_{\mathrm{SBP}}$ calendar mean and maximum). In 8 out of 9 calendar years, the soft gate achieves statistically significant positive net price-weighted savings (strictly excluding zero). In 2022, peak gas and balancing power prices (£200.08/MWh mean, £4,035.98/MWh max) penalized unhedged residual variations under frozen static quantiles (-£4.0k). Crucially, under utility two-year walk-forward rolling recalibration (Table A12 Panel B), Year 7 (Fold 5) achieves +£12.4k net price-weighted savings (CI [+£9.5k, +£15.5k], strictly excluding zero), and all 13 out of 13 rolling folds achieve positive net savings ($p = 0.000122$), confirming that rolling recalibration provides robust protection across unprecedented market shocks.
 \end{table}
 ```
 

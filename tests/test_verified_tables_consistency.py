@@ -13,6 +13,9 @@ class VerifiedTablesConsistencyTests(unittest.TestCase):
         self.benchmark_root = self.root / "artifacts" / "clean_evidence_v2" / "risk_layer_benchmark"
         self.paper_path = self.root / "paper_tste_ieee.md"
         self.paper_text = self.paper_path.read_text(encoding="utf-8")
+        self.supp_path = self.root / "paper_tste_supplementary.md"
+        self.supp_text = self.supp_path.read_text(encoding="utf-8")
+        self.combined_text = self.paper_text + "\n" + self.supp_text
 
     def test_all_six_suites_passed_hard_gates(self):
         suites = ["h1_lead1", "h6_lead6", "kelmarsh_h1", "kelmarsh_h6", "penmanshiel_h1", "penmanshiel_h6"]
@@ -65,10 +68,10 @@ class VerifiedTablesConsistencyTests(unittest.TestCase):
             cost_m = int(round(row["total_cost_mean"]))
             cost_with_braces = f"{cost_m:,}".replace(",", "{,}")
             cost_plain = f"{cost_m:,}"
-            found = (cost_with_braces in self.paper_text) or (cost_plain in self.paper_text)
+            found = (cost_with_braces in self.combined_text) or (cost_plain in self.combined_text)
             self.assertTrue(
                 found,
-                f"Table 3 number for {row['regime']} {row['model']} (cost {cost_plain}) not found in manuscript!",
+                f"Table 3 (Table A11j) number for {row['regime']} {row['model']} (cost {cost_plain}) not found in manuscript/supplementary!",
             )
 
     def test_table4_h1_paired_numbers_in_manuscript(self):
@@ -80,10 +83,10 @@ class VerifiedTablesConsistencyTests(unittest.TestCase):
             delta = int(round(row["mean_cost_delta"]))
             delta_with_braces = f"{abs(delta):,}".replace(",", "{,}")
             delta_plain = f"{abs(delta):,}"
-            found = (delta_with_braces in self.paper_text) or (delta_plain in self.paper_text)
+            found = (delta_with_braces in self.combined_text) or (delta_plain in self.combined_text)
             self.assertTrue(
                 found,
-                f"Table 4 delta for {row['regime']} {row['model']} ({delta_plain}) not found in manuscript!",
+                f"Table 4 (Table A11k) delta for {row['regime']} {row['model']} ({delta_plain}) not found in manuscript/supplementary!",
             )
 
 
