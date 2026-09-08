@@ -232,7 +232,7 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         _check("lhb_anchor_patv_zero_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["patv_zero_nmi_mean"]), "{:.3f}", ("supplementary",)),
         _check("lhb_anchor_boundary_zero_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["boundary_zero_nmi_mean"]), "{:.3f}", ("main", "supplementary")),
         _check("lhb_anchor_random_physics_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["random_physics_nmi_mean"]), "{:.3f}", ("supplementary",)),
-        _check("kelmarsh_penmanshiel_mean_nmi", "artifacts/external_wind_guard_windowfix/external_wind_guard.json", _num(external_guard["mean_nmi"]), "{:.3f}", ("main", "supplementary")),
+        _check("kelmarsh_penmanshiel_mean_nmi", "artifacts/external_wind_guard_windowfix/external_wind_guard.json", _num(external_guard["mean_nmi"]), "{:.3f}", ("supplementary",)),
         _check("gate_transition_match_at_step", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[0], "{:.3f}", ("main", "supplementary")),
         _check("gate_transition_match_lead_3", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[-3], "{:.3f}", ("main", "supplementary")),
         _check("gate_transition_match_lead_6", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[-6], "{:.3f}", ("main", "supplementary")),
@@ -286,12 +286,12 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
     if (root / iec_file).exists():
         iec_guard = json.loads((root / iec_file).read_text(encoding="utf-8"))
         checks.extend([
-            _check("kelmarsh_walkforward_pooled_savings", iec_file, _num(iec_guard["kelmarsh_walkforward_pooled_delta_cost"]), _fmt_millions, ("main", "cover", "supplementary")),
-            _check("penmanshiel_walkforward_pooled_savings", iec_file, _num(iec_guard["penmanshiel_walkforward_pooled_delta_cost"]), _fmt_millions, ("main", "cover", "supplementary")),
+            _check("kelmarsh_walkforward_pooled_savings", iec_file, _num(iec_guard["kelmarsh_walkforward_pooled_delta_cost"]), _fmt_millions, ("supplementary",)),
+            _check("penmanshiel_walkforward_pooled_savings", iec_file, _num(iec_guard["penmanshiel_walkforward_pooled_delta_cost"]), _fmt_millions, ("supplementary",)),
             _check("lhb_walkforward_pooled_delta", iec_file, _num(iec_guard["lhb_walkforward_pooled_delta_cost"]), lambda v: f"+{v / 1_000_000.0:.2f}M", ("main", "supplementary")),
             _check("lhb_annual_pooled_delta", iec_file, _num(iec_guard["lhb_pooled_delta_cost"]), lambda v: f"+{int(round(v / 1000.0))}k", ("main", "supplementary")),
-            _check("kelmarsh_static_freeze_delta", iec_file, _num(iec_guard["kelmarsh_static_freeze_delta_cost"]), _fmt_millions, ("main", "supplementary")),
-            _check("penmanshiel_static_freeze_delta", iec_file, _num(iec_guard["penmanshiel_static_freeze_delta_cost"]), _fmt_millions, ("main", "supplementary")),
+            _check("kelmarsh_static_freeze_delta", iec_file, _num(iec_guard["kelmarsh_static_freeze_delta_cost"]), _fmt_millions, ("supplementary",)),
+            _check("penmanshiel_static_freeze_delta", iec_file, _num(iec_guard["penmanshiel_static_freeze_delta_cost"]), _fmt_millions, ("supplementary",)),
         ])
 
     gate_decay_file = "artifacts/multiyear_gate_representation_audit/gate_representation_decay_summary.csv"
