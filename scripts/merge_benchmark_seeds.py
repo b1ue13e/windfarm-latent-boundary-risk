@@ -43,11 +43,15 @@ def merge_seeds(farm: str, base_dir: Path, parts_dirs: list[Path], out_dir: Path
     df_boot.to_csv(out_dir / "decisive_bootstrap_by_seed.csv", index=False)
 
     agg_df = df_metrics.groupby(["farm", "regime", "model"]).agg({
-        "gamma_iso_test": ["mean", "std"],
+        "compliant": ["mean"],
         "violation_rate": ["mean", "std"],
         "reserve_mwh": ["mean", "std"],
         "shortage_mwh": ["mean", "std"],
         "total_cost": ["mean", "std"],
+        "gamma_clean_val": ["mean", "std"],
+        "gamma_stale_val": ["mean", "std"],
+        "gamma_iso_test_diagnostic": ["mean", "std"],
+        "delta_iso_test_diagnostic": ["mean", "std"],
         "false_alarm_rate": ["mean", "std"],
         "event_recall": ["mean", "std"],
         "brier_score": ["mean", "std"],
@@ -64,35 +68,39 @@ def merge_seeds(farm: str, base_dir: Path, parts_dirs: list[Path], out_dir: Path
     md_report = [
         f"# Decisive Fair Risk Benchmark Report: {farm.upper()}",
         f"**Date / Time**: {time.strftime('%Y-%m-%d %H:%M:%S')}",
-        f"**Benchmark Output Version**: `artifacts/clean_evidence_v3/decisive_experiment`",
+        f"**Benchmark Output Directory**: `{out_dir}`",
         f"**Evaluated Seeds**: {seeds_list} (Total: {len(seeds_list)} seeds)",
         f"**Delivery Horizon**: Lead Step 1 (10-minute dispatch delivery)",
-        f"**Target Reliability**: Strict Iso-Reliability Violation Rate <= {TARGET_VIOLATION * 100.0:.1f}% (Critical Fractile q* = {CRITICAL_FRACTILE:.2f})",
+        f"**Calibration Protocol**: State-Conditional Validation Multipliers (gamma_clean_val, gamma_stale_val) FROZEN on test set",
+        f"**Target Reliability**: Violation Rate <= {TARGET_VIOLATION * 100.0:.1f}% (Critical Fractile q* = {CRITICAL_FRACTILE:.2f})",
         "",
-        "## 1. Strict Iso-Reliability Performance Summary (Across Seeds)",
+        "## 1. Primary Evaluation: Frozen Validation Calibration Test Performance",
         "",
-        "| Regime | Model | Test Iso Gamma | Test Violation Rate | Reserve (MWh) | Shortage (MWh) | Total Cost Regret | False Alarm Rate | Event Recall |",
-        "|---|---|---|---|---|---|---|---|---|",
+        "| Regime | Model | Compliant (Pass Rate) | Test Violation Rate | Reserve (MWh) | Shortage (MWh) | Total Cost Regret | Gamma Clean Val | Gamma Stale Val | Test Iso Gamma Diagnostic |",
+        "|---|---|---|---|---|---|---|---|---|---|",
     ]
 
     for _, row in agg_df.iterrows():
         reg = row[("regime", "")]
         mod = row[("model", "")]
-        gamma = f"{row[('gamma_iso_test', 'mean')]:.2f}"
+        pass_rate = f"{row[('compliant', 'mean')]*100.0:.0f}%"
         viol = f"{row[('violation_rate', 'mean')]*100.0:.1f}%"
         res = f"{row[('reserve_mwh', 'mean')]:.2f} +/- {row[('reserve_mwh', 'std')]:.2f}"
         sh = f"{row[('shortage_mwh', 'mean')]:.2f} +/- {row[('shortage_mwh', 'std')]:.2f}"
         cost = f"{row[('total_cost', 'mean')]:.1f} +/- {row[('total_cost', 'std')]:.1f}"
-        far = f"{row[('false_alarm_rate', 'mean')]*100.0:.1f}%"
-        rec = f"{row[('event_recall', 'mean')]*100.0:.1f}%"
-        md_report.append(f"| {reg} | {mod} | {gamma} | {viol} | {res} | {sh} | {cost} | {far} | {rec} |")
+        gc = f"{row[('gamma_clean_val', 'mean')]:.2f}"
+        gs = f"{row[('gamma_stale_val', 'mean')]:.2f}"
+        g_diag = f"{row[('gamma_iso_test_diagnostic', 'mean')]:.2f}"
+        md_report.append(f"| {reg} | {mod} | {pass_rate} | {viol} | {res} | {sh} | {cost} | {gc} | {gs} | {g_diag} |")
 
     md_report.extend([
         "",
-        "## 2. Decision Route Dispatch Verdict",
-        f"**Recommended Route**: `{verdict['recommended_route']}`",
+        "## 2. Decision Route & Manuscript Track Verdict",
+        f"**Track Recommendation**: `{verdict.get('track_recommendation', 'N/A')}`",
+        f"**Recommended Decision Route**: `{verdict['recommended_route']}`",
         "",
         "### Criteria Evaluation:",
+        f"- **State-Conditional Hybrid Compliant (All Regimes)**: {verdict.get('hybrid_compliant_all', False)}",
         f"- **Dense vs MoE Equivalent**: {verdict['dense_vs_moe_equivalent']} (Dense/MoE Cost Ratio: {verdict['dense_vs_moe_ratio']:.3f})",
         f"- **Simple Quantile Wins over Deep**: {verdict['simple_quantile_beats_deep']}",
         f"- **Recognition Better but Decision Not Improved**: {verdict['recognition_better_decision_no']}",
@@ -112,21 +120,21 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Merge multi-seed benchmark results")
     parser.add_argument("--farm", default="wtb", choices=["wtb", "kelmarsh", "penmanshiel"])
-    parser.add_argument("--output-dir", default="artifacts/clean_evidence_v3/decisive_experiment/risk_layer_benchmark")
+    parser.add_argument("--output-dir", default="artifacts/decisive_fair_risk")
     args = parser.parse_args()
 
     farm = args.farm
     base = Path(f"{args.output_dir}/{farm}")
-    if farm == "wtb":
-        parts = []
-        for s in [202, 203, 204, 205]:
-            p1 = Path(f"{args.output_dir}/wtb_parts/seed{s}/wtb")
-            p2 = Path(f"artifacts/decisive_benchmark_v1/risk_layer_benchmark/wtb_parts/seed{s}/wtb")
-            if p1.exists():
-                parts.append(p1)
-            elif p2.exists():
-                parts.append(p2)
-    else:
-        parts = []
+    parts = []
+    for s in [201, 202, 203, 204, 205]:
+        p1 = Path(f"{args.output_dir}/wtb_parts/seed{s}/{farm}")
+        p2 = Path(f"{args.output_dir}/parts/seed{s}/{farm}")
+        p3 = Path(f"{args.output_dir}/seed{s}/{farm}")
+        if p1.exists():
+            parts.append(p1)
+        elif p2.exists():
+            parts.append(p2)
+        elif p3.exists():
+            parts.append(p3)
     out = Path(f"{args.output_dir}/{farm}")
     merge_seeds(farm, base, parts, out)

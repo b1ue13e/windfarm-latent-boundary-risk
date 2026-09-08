@@ -188,3 +188,88 @@ def test_evaluate_route_verdict():
     v1 = evaluate_route_verdict(df1)
     assert "Route 2" in v1["recommended_route"]
     assert v1["simple_quantile_beats_deep"] is True
+
+
+def test_state_conditional_hybrid_policy_switching():
+    """Verify state-conditional hybrid policy switches accurately based on observable health signal."""
+    N = 100
+    r_phys = np.full(N, 10.0)
+    r_moe = np.full(N, 25.0)
+    g_clean_phys, d_clean_phys = 1.0, 0.0
+    g_stale_moe, d_stale_moe = 1.2, 5.0
+
+    # Lags: first 50 are clean (tau = 0), next 50 are stale (tau >= 1)
+    lags = np.array([0] * 50 + [6] * 50)
+    missing = np.zeros(N, dtype=bool)
+
+    is_clean = (lags == 0) & (~missing)
+    r_clean_part = np.maximum(g_clean_phys * r_phys + d_clean_phys, 0.0)
+    r_stale_part = np.maximum(g_stale_moe * r_moe + d_stale_moe, 0.0)
+    r_hybrid = np.where(is_clean, r_clean_part, r_stale_part)
+
+    # First 50 must match clean physical rule (10.0)
+    assert np.allclose(r_hybrid[:50], 10.0)
+    # Next 50 must match stale learned posterior rule (1.2 * 25.0 + 5.0 = 35.0)
+    assert np.allclose(r_hybrid[50:], 35.0)
+
+
+def test_validation_frozen_compliance_flag():
+    """Verify that models with test violation > 10.0% are strictly flagged non-compliant."""
+    N = 100
+    shortfall = np.array([20.0] * 15 + [0.0] * 85)  # 15% positive shortfall
+    reserve = np.array([5.0] * 100)
+    active = np.ones(N, dtype=bool)
+
+    metrics = compute_decisive_metrics(
+        shortfall=shortfall,
+        reserve=reserve,
+        active=active,
+        prob=None,
+        regime=np.ones(N, dtype=int),
+    )
+
+    assert metrics["violation_rate"] == 0.15
+    is_compliant = bool(metrics["violation_rate"] <= 0.10)
+    assert is_compliant is False
+
+    # Now make it compliant
+    reserve_high = np.array([25.0] * 100)
+    metrics_high = compute_decisive_metrics(
+        shortfall=shortfall,
+        reserve=reserve_high,
+        active=active,
+        prob=None,
+        regime=np.ones(N, dtype=int),
+    )
+    assert metrics_high["violation_rate"] == 0.0
+    assert bool(metrics_high["violation_rate"] <= 0.10) is True
+
+
+def test_evaluate_route_verdict_dual_track():
+    """Verify Track A vs Track B recommendation logic."""
+    # Scenario Track A: Hybrid is compliant across clean and delay
+    df_track_a = pd.DataFrame([
+        {"farm": "wtb", "regime": "clean", "model": "State-Conditional Hybrid Policy", ("violation_rate", "mean"): 0.095, ("total_cost", "mean"): 400.0, ("event_recall", "mean"): 0.8},
+        {"farm": "wtb", "regime": "delay6", "model": "State-Conditional Hybrid Policy", ("violation_rate", "mean"): 0.098, ("total_cost", "mean"): 1000.0, ("event_recall", "mean"): 0.8},
+        {"farm": "wtb", "regime": "clean", "model": "Joint Routed", ("total_cost", "mean"): 500.0, ("event_recall", "mean"): 0.8},
+        {"farm": "wtb", "regime": "delay6", "model": "Joint Routed", ("total_cost", "mean"): 1100.0, ("event_recall", "mean"): 0.8},
+        {"farm": "wtb", "regime": "clean", "model": "Continuous Physical Quantile", ("total_cost", "mean"): 420.0, ("event_recall", "mean"): 0.5},
+        {"farm": "wtb", "regime": "delay6", "model": "Continuous Physical Quantile", ("total_cost", "mean"): 1500.0, ("event_recall", "mean"): 0.4},
+    ])
+    v_a = evaluate_route_verdict(df_track_a)
+    assert "Track A" in v_a["track_recommendation"]
+    assert v_a["hybrid_compliant_all"] is True
+
+    # Scenario Track B: Hybrid fails on delay6 (violation > 10%)
+    df_track_b = pd.DataFrame([
+        {"farm": "wtb", "regime": "clean", "model": "State-Conditional Hybrid Policy", ("violation_rate", "mean"): 0.095, ("total_cost", "mean"): 400.0, ("event_recall", "mean"): 0.8},
+        {"farm": "wtb", "regime": "delay6", "model": "State-Conditional Hybrid Policy", ("violation_rate", "mean"): 0.145, ("total_cost", "mean"): 1000.0, ("event_recall", "mean"): 0.8},
+        {"farm": "wtb", "regime": "clean", "model": "Joint Routed", ("total_cost", "mean"): 500.0, ("event_recall", "mean"): 0.8},
+        {"farm": "wtb", "regime": "delay6", "model": "Joint Routed", ("total_cost", "mean"): 1100.0, ("event_recall", "mean"): 0.8},
+        {"farm": "wtb", "regime": "clean", "model": "Continuous Physical Quantile", ("total_cost", "mean"): 420.0, ("event_recall", "mean"): 0.5},
+        {"farm": "wtb", "regime": "delay6", "model": "Continuous Physical Quantile", ("total_cost", "mean"): 1500.0, ("event_recall", "mean"): 0.4},
+    ])
+    v_b = evaluate_route_verdict(df_track_b)
+    assert "Track B" in v_b["track_recommendation"]
+    assert v_b["hybrid_compliant_all"] is False
+

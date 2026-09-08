@@ -410,6 +410,7 @@ def run_forward_pass(
     lead_step: int = 0,
 ) -> Dict[str, np.ndarray]:
     all_pred, all_target, all_anchor, all_prob, all_time, all_mask, all_x, all_fmask, all_regime = [], [], [], [], [], [], [], [], []
+    all_lag = []
     model.eval()
     with torch.no_grad():
         for batch in loader:
@@ -434,6 +435,15 @@ def run_forward_pass(
             all_fmask.append(feature_mask.cpu().numpy())
             all_regime.append(batch["regime_primary"].cpu().numpy())
 
+            if "lag_applied" in batch:
+                lags = batch["lag_applied"]
+                if isinstance(lags, torch.Tensor):
+                    all_lag.append(lags.cpu().numpy())
+                else:
+                    all_lag.append(np.asarray(lags))
+            else:
+                all_lag.append(np.zeros(len(t_idx), dtype=np.int64))
+
     return {
         "pred": np.concatenate(all_pred, axis=0),
         "target": np.concatenate(all_target, axis=0),
@@ -444,6 +454,7 @@ def run_forward_pass(
         "x": np.concatenate(all_x, axis=0),
         "fmask": np.concatenate(all_fmask, axis=0),
         "regime": np.concatenate(all_regime, axis=0),
+        "lag": np.concatenate(all_lag, axis=0),
     }
 
 
@@ -606,11 +617,17 @@ def run_decisive_benchmark_for_seed(
     p_idx = feat_names.index("Pab_mean") if "Pab_mean" in feat_names else (7 if len(feat_names) > 7 else 1)
 
     # 1. Prepare Datasets (Clean arrival feed for training/calibration)
+    # 1. Prepare Datasets (Clean & Stale arrival feeds for training/calibration)
     clean_spec = DegradationSpec(delay_steps=0, corrupted_channels=("all",))
+    stale_spec = DegradationSpec(delay_steps=6, corrupted_channels=("all",), history_policy="stalled")
+
     train_ds = UnifiedArrivalDataset(bundle, "train", hist_len=36, pred_len=24, degradation=clean_spec)
-    val_ds = UnifiedArrivalDataset(bundle, "val", hist_len=36, pred_len=24, degradation=clean_spec)
+    val_ds_clean = UnifiedArrivalDataset(bundle, "val", hist_len=36, pred_len=24, degradation=clean_spec)
+    val_ds_stale = UnifiedArrivalDataset(bundle, "val", hist_len=36, pred_len=24, degradation=stale_spec)
+
     train_loader = DataLoader(train_ds, batch_size=64, shuffle=True)
-    val_loader = DataLoader(val_ds, batch_size=64, shuffle=False)
+    val_loader_clean = DataLoader(val_ds_clean, batch_size=64, shuffle=False)
+    val_loader_stale = DataLoader(val_ds_stale, batch_size=64, shuffle=False)
 
     # 2. Train Heads on Train Split
     print("Training Sequence GRU Classifier (fast)...", flush=True)
@@ -671,68 +688,117 @@ def run_decisive_benchmark_for_seed(
     gbdt = HistGradientBoostingRegressor(loss="quantile", quantile=CRITICAL_FRACTILE, max_iter=50, random_state=seed)
     gbdt.fit(tr_feats_scaled, tr_shortfall[act_idx])
 
-    # 4. Collect Validation Outputs and Fit 5-Bin Quantiles (Equal Calibration Budget)
-    print("Collecting validation outputs and calibrating 5-bin policies...", flush=True)
-    val_routed = run_forward_pass(routed_model, val_loader, device, lead_step=lead_step)
-    val_s = np.maximum(val_routed["pred"] - val_routed["target"], 0.0).reshape(-1)
-    val_wspd_phys = (val_routed["anchor"][..., 0] * w_std + w_mean).reshape(-1)
-    val_pab_phys = (val_routed["anchor"][..., 1] * p_std + p_mean).reshape(-1)
-    val_active = ((np.abs(val_wspd_phys - rated_wind) <= band) & (val_routed["mask"].reshape(-1) > 0.5) & np.isfinite(val_s))
+    # 4. Collect Validation Outputs and Fit State-Conditional Multipliers
+    print("Collecting validation outputs (Clean & Stale) and calibrating...", flush=True)
+    val_routed_clean = run_forward_pass(routed_model, val_loader_clean, device, lead_step=lead_step)
+    val_routed_stale = run_forward_pass(routed_model, val_loader_stale, device, lead_step=lead_step)
 
-    # 4a. Continuous Physical Quantile (pitch bins)
-    phys_reserves, phys_edges, global_reserve = fit_5bin_quantiles(val_pab_phys, val_s, val_active)
+    val_dense_clean = run_forward_pass(dense_model, val_loader_clean, device, lead_step=lead_step) if dense_model is not None else None
+    val_dense_stale = run_forward_pass(dense_model, val_loader_stale, device, lead_step=lead_step) if dense_model is not None else None
+
+    # Clean validation targets and active boundary filter
+    val_s_clean = np.maximum(val_routed_clean["pred"] - val_routed_clean["target"], 0.0).reshape(-1)
+    val_wspd_clean = (val_routed_clean["anchor"][..., 0] * w_std + w_mean).reshape(-1)
+    val_pab_clean = (val_routed_clean["anchor"][..., 1] * p_std + p_mean).reshape(-1)
+    val_active_clean = ((np.abs(val_wspd_clean - rated_wind) <= band) & (val_routed_clean["mask"].reshape(-1) > 0.5) & np.isfinite(val_s_clean))
+
+    # Stale validation targets and active boundary filter
+    val_s_stale = np.maximum(val_routed_stale["pred"] - val_routed_stale["target"], 0.0).reshape(-1)
+    val_wspd_stale = (val_routed_stale["anchor"][..., 0] * w_std + w_mean).reshape(-1)
+    val_pab_stale = (val_routed_stale["anchor"][..., 1] * p_std + p_mean).reshape(-1)
+    val_active_stale = ((np.abs(val_wspd_stale - rated_wind) <= band) & (val_routed_stale["mask"].reshape(-1) > 0.5) & np.isfinite(val_s_stale))
+
+    # 4a. Continuous Physical Quantile (pitch bins fit on clean validation)
+    phys_reserves, phys_edges, global_reserve = fit_5bin_quantiles(val_pab_clean, val_s_clean, val_active_clean)
 
     # 4b. Missingness-Aware GBDT
-    val_feats = extract_gbdt_features(val_routed["x"], val_routed["fmask"], val_routed["anchor"], w_idx=w_idx, p_idx=p_idx)
-    val_feats_scaled = gbdt_scaler.transform(np.nan_to_num(val_feats, nan=0.0))
-    val_gbdt_pred = np.nan_to_num(np.maximum(gbdt.predict(val_feats_scaled), 0.0), nan=global_reserve)
-    gbdt_reserves, gbdt_edges, _ = fit_5bin_quantiles(val_gbdt_pred, val_s, val_active)
+    val_feats_clean = extract_gbdt_features(val_routed_clean["x"], val_routed_clean["fmask"], val_routed_clean["anchor"], w_idx=w_idx, p_idx=p_idx)
+    val_gbdt_clean = np.nan_to_num(np.maximum(gbdt.predict(gbdt_scaler.transform(np.nan_to_num(val_feats_clean, nan=0.0))), 0.0), nan=global_reserve)
+    gbdt_reserves, gbdt_edges, _ = fit_5bin_quantiles(val_gbdt_clean, val_s_clean, val_active_clean)
+
+    val_feats_stale = extract_gbdt_features(val_routed_stale["x"], val_routed_stale["fmask"], val_routed_stale["anchor"], w_idx=w_idx, p_idx=p_idx)
+    val_gbdt_stale = np.nan_to_num(np.maximum(gbdt.predict(gbdt_scaler.transform(np.nan_to_num(val_feats_stale, nan=0.0))), 0.0), nan=global_reserve)
 
     # 4c. Sequence Classifier
-    val_seq_probs = []
+    val_seq_clean_list, val_seq_stale_list = [], []
     with torch.no_grad():
-        for b in val_loader:
+        for b in val_loader_clean:
             p_seq = seq_clf(b["x_hist"].to(device), b["anchor_physics"].to(device))
-            val_seq_probs.append(p_seq.cpu().numpy())
-    val_seq_prob_flat = np.concatenate(val_seq_probs, axis=0).reshape(-1)
-    seq_reserves, seq_edges, _ = fit_5bin_quantiles(val_seq_prob_flat, val_s, val_active)
+            val_seq_clean_list.append(p_seq.cpu().numpy())
+        for b in val_loader_stale:
+            p_seq = seq_clf(b["x_hist"].to(device), b["anchor_physics"].to(device))
+            val_seq_stale_list.append(p_seq.cpu().numpy())
+    val_seq_clean = np.concatenate(val_seq_clean_list, axis=0).reshape(-1)
+    val_seq_stale = np.concatenate(val_seq_stale_list, axis=0).reshape(-1)
+    seq_reserves, seq_edges, _ = fit_5bin_quantiles(val_seq_clean, val_s_clean, val_active_clean)
 
     # 4d. Frozen Backbone + Residual Quantile Head
-    val_frozen_list = []
+    val_frozen_clean_list, val_frozen_stale_list = [], []
     with torch.no_grad():
-        for b in val_loader:
+        for b in val_loader_clean:
             _, _, aux = routed_model(b["x_hist"].to(device), b["edge_index_hist"].to(device), b["edge_weight_hist"].to(device), b["feature_mask_hist"].to(device), b["anchor_physics"].to(device))
             rf = frozen_head(aux["context"], b["anchor_physics"].to(device)).cpu().numpy()
-            val_frozen_list.append(rf)
-    val_frozen_flat = np.concatenate(val_frozen_list, axis=0).reshape(-1)
-    frozen_reserves, frozen_edges, _ = fit_5bin_quantiles(val_frozen_flat, val_s, val_active)
+            val_frozen_clean_list.append(rf)
+        for b in val_loader_stale:
+            _, _, aux = routed_model(b["x_hist"].to(device), b["edge_index_hist"].to(device), b["edge_weight_hist"].to(device), b["feature_mask_hist"].to(device), b["anchor_physics"].to(device))
+            rf = frozen_head(aux["context"], b["anchor_physics"].to(device)).cpu().numpy()
+            val_frozen_stale_list.append(rf)
+    val_frozen_clean = np.concatenate(val_frozen_clean_list, axis=0).reshape(-1)
+    val_frozen_stale = np.concatenate(val_frozen_stale_list, axis=0).reshape(-1)
+    frozen_head_reserves, frozen_head_edges, _ = fit_5bin_quantiles(val_frozen_clean, val_s_clean, val_active_clean)
 
     # 4e. Joint Dense Head
     dense_reserves, dense_edges = None, None
-    val_dense = None
-    if dense_model is not None:
-        val_dense = run_forward_pass(dense_model, val_loader, device, lead_step=lead_step)
-        dense_reserves, dense_edges, _ = fit_5bin_quantiles(val_dense["prob"].reshape(-1), val_s, val_active)
+    if val_dense_clean is not None:
+        dense_reserves, dense_edges, _ = fit_5bin_quantiles(val_dense_clean["prob"].reshape(-1), val_s_clean, val_active_clean)
 
     # 4f. Joint Routed Head
-    routed_reserves, routed_edges, _ = fit_5bin_quantiles(val_routed["prob"].reshape(-1), val_s, val_active)
+    routed_reserves, routed_edges, _ = fit_5bin_quantiles(val_routed_clean["prob"].reshape(-1), val_s_clean, val_active_clean)
 
-    # Validation Raw Reserves
-    val_reserves_raw = {
-        "Continuous Physical Quantile": apply_5bin_policy(val_pab_phys, phys_reserves, phys_edges),
-        "Missingness-Aware GBDT": apply_5bin_policy(val_gbdt_pred, gbdt_reserves, gbdt_edges),
-        "Sequence Classifier": apply_5bin_policy(val_seq_prob_flat, seq_reserves, seq_edges),
-        "Frozen Backbone + Residual Quantile": apply_5bin_policy(val_frozen_flat, frozen_reserves, frozen_edges),
-        "Joint Routed": apply_5bin_policy(val_routed["prob"].reshape(-1), routed_reserves, routed_edges),
+    # Clean Raw Reserves on val_clean
+    val_clean_raw = {
+        "Continuous Physical Quantile": apply_5bin_policy(val_pab_clean, phys_reserves, phys_edges),
+        "Missingness-Aware GBDT": apply_5bin_policy(val_gbdt_clean, gbdt_reserves, gbdt_edges),
+        "Sequence Classifier": apply_5bin_policy(val_seq_clean, seq_reserves, seq_edges),
+        "Frozen Backbone + Residual Quantile": apply_5bin_policy(val_frozen_clean, frozen_head_reserves, frozen_head_edges),
+        "Joint Routed": apply_5bin_policy(val_routed_clean["prob"].reshape(-1), routed_reserves, routed_edges),
     }
-    if val_dense is not None and dense_reserves is not None:
-        val_reserves_raw["Joint Dense"] = apply_5bin_policy(val_dense["prob"].reshape(-1), dense_reserves, dense_edges)
+    if val_dense_clean is not None and dense_reserves is not None:
+        val_clean_raw["Joint Dense"] = apply_5bin_policy(val_dense_clean["prob"].reshape(-1), dense_reserves, dense_edges)
 
-    # Validation-calibrated multipliers (target <= 10.0%)
-    val_iso_multipliers = {}
-    for m_name, v_r in val_reserves_raw.items():
-        g, _, _ = find_iso_reliability_multiplier(val_s, v_r, val_active, target_violation=TARGET_VIOLATION)
-        val_iso_multipliers[m_name] = g
+    # Stale Raw Reserves on val_stale
+    val_stale_raw = {
+        "Continuous Physical Quantile": apply_5bin_policy(val_pab_stale, phys_reserves, phys_edges),
+        "Missingness-Aware GBDT": apply_5bin_policy(val_gbdt_stale, gbdt_reserves, gbdt_edges),
+        "Sequence Classifier": apply_5bin_policy(val_seq_stale, seq_reserves, seq_edges),
+        "Frozen Backbone + Residual Quantile": apply_5bin_policy(val_frozen_stale, frozen_head_reserves, frozen_head_edges),
+        "Joint Routed": apply_5bin_policy(val_routed_stale["prob"].reshape(-1), routed_reserves, routed_edges),
+    }
+    if val_dense_stale is not None and dense_reserves is not None:
+        val_stale_raw["Joint Dense"] = apply_5bin_policy(val_dense_stale["prob"].reshape(-1), dense_reserves, dense_edges)
+
+    # Calibrate multipliers on validation subsets
+    gamma_clean_val, delta_clean_val = {}, {}
+    for m_name, v_r in val_clean_raw.items():
+        g, d, _ = find_iso_reliability_multiplier(val_s_clean, v_r, val_active_clean, target_violation=TARGET_VIOLATION)
+        gamma_clean_val[m_name] = g
+        delta_clean_val[m_name] = d
+
+    gamma_stale_val, delta_stale_val = {}, {}
+    for m_name, v_r in val_stale_raw.items():
+        g, d, _ = find_iso_reliability_multiplier(val_s_stale, v_r, val_active_stale, target_violation=TARGET_VIOLATION)
+        gamma_stale_val[m_name] = g
+        delta_stale_val[m_name] = d
+
+    # State-Conditional Hybrid Policy mapping
+    gamma_clean_val["State-Conditional Hybrid Policy"] = gamma_clean_val["Continuous Physical Quantile"]
+    delta_clean_val["State-Conditional Hybrid Policy"] = delta_clean_val["Continuous Physical Quantile"]
+    gamma_stale_val["State-Conditional Hybrid Policy"] = gamma_stale_val["Joint Routed"]
+    delta_stale_val["State-Conditional Hybrid Policy"] = delta_stale_val["Joint Routed"]
+
+    print("Validation Calibration Multipliers (Target Violation <= 10.0%):", flush=True)
+    for m_name in gamma_clean_val:
+        print(f"  {m_name:38s} | Clean: gamma={gamma_clean_val[m_name]:.3f}, delta={delta_clean_val[m_name]:.2f} | Stale: gamma={gamma_stale_val.get(m_name, 1.0):.3f}, delta={delta_stale_val.get(m_name, 0.0):.2f}", flush=True)
 
     # 5. Evaluate Across 4 Standardized Ingress Regimes
     regimes = {
@@ -759,6 +825,11 @@ def run_decisive_benchmark_for_seed(
         test_active = ((np.abs(test_wspd_phys - rated_wind) <= band) & (test_routed["mask"].reshape(-1) > 0.5) & np.isfinite(test_s))
         test_times = np.repeat(test_routed["time"] + lead_step + 1, test_routed["pred"].shape[1])
         test_regime = test_routed["regime"].reshape(-1)
+
+        # Causal health status based strictly on observable arrival lag tau and feature mask
+        test_lag = np.repeat(test_routed["lag"], test_routed["pred"].shape[1])
+        test_missing = (test_routed["fmask"][:, -1, :, :].reshape(-1, test_routed["fmask"].shape[-1]) < 0.5).any(axis=-1)
+        is_clean = (test_lag == 0) & (~test_missing)
 
         # 5a. Sequence Classifier Test Probs
         test_seq_probs = []
@@ -787,32 +858,45 @@ def run_decisive_benchmark_for_seed(
             "Continuous Physical Quantile": apply_5bin_policy(test_pab_phys, phys_reserves, phys_edges),
             "Missingness-Aware GBDT": apply_5bin_policy(test_gbdt_pred, gbdt_reserves, gbdt_edges),
             "Sequence Classifier": apply_5bin_policy(test_seq_prob_flat, seq_reserves, seq_edges),
-            "Frozen Backbone + Residual Quantile": apply_5bin_policy(test_frozen_flat, frozen_reserves, frozen_edges),
+            "Frozen Backbone + Residual Quantile": apply_5bin_policy(test_frozen_flat, frozen_head_reserves, frozen_head_edges),
             "Joint Routed": apply_5bin_policy(test_routed["prob"].reshape(-1), routed_reserves, routed_edges),
         }
         if test_dense is not None and dense_reserves is not None:
             raw_reserves["Joint Dense"] = apply_5bin_policy(test_dense["prob"].reshape(-1), dense_reserves, dense_edges)
 
-        # Compute True Test Iso-Reliability Multipliers (enforcing strictly violation_rate <= 10.0%)
-        test_iso_multipliers = {}
-        test_iso_deltas = {}
-        iso_reserves = {}
-        for m in raw_reserves:
-            g, d, r_iso = find_iso_reliability_multiplier(test_s, raw_reserves[m], test_active, target_violation=TARGET_VIOLATION)
-            test_iso_multipliers[m] = g
-            test_iso_deltas[m] = d
-            iso_reserves[m] = r_iso
+        # Build Frozen Validation-Calibrated Test Reserves (No test tuning)
+        calibrated_reserves = {}
+
+        # 1. Oblivious baseline: clean calibration only (breaks under degradation)
+        r_phys_raw = raw_reserves["Continuous Physical Quantile"]
+        calibrated_reserves["Continuous Physical Quantile (Clean-Calibrated)"] = np.maximum(
+            gamma_clean_val["Continuous Physical Quantile"] * r_phys_raw + delta_clean_val["Continuous Physical Quantile"],
+            0.0,
+        )
+
+        # 2-6. State-conditional baselines
+        for m_name in raw_reserves:
+            r_c = np.maximum(gamma_clean_val[m_name] * raw_reserves[m_name] + delta_clean_val[m_name], 0.0)
+            r_s = np.maximum(gamma_stale_val[m_name] * raw_reserves[m_name] + delta_stale_val[m_name], 0.0)
+            calibrated_reserves[m_name] = np.where(is_clean, r_c, r_s)
+
+        # 7. State-Conditional Hybrid Policy
+        r_clean_part = np.maximum(gamma_clean_val["Continuous Physical Quantile"] * r_phys_raw + delta_clean_val["Continuous Physical Quantile"], 0.0)
+        r_stale_part = np.maximum(gamma_stale_val["Joint Routed"] * raw_reserves["Joint Routed"] + delta_stale_val["Joint Routed"], 0.0)
+        calibrated_reserves["State-Conditional Hybrid Policy"] = np.where(is_clean, r_clean_part, r_stale_part)
 
         model_probs = {
+            "Continuous Physical Quantile (Clean-Calibrated)": None,
             "Continuous Physical Quantile": None,
             "Missingness-Aware GBDT": None,
             "Sequence Classifier": test_seq_prob_flat,
             "Frozen Backbone + Residual Quantile": None,
             "Joint Dense": test_dense["prob"].reshape(-1) if test_dense is not None else None,
             "Joint Routed": test_routed["prob"].reshape(-1),
+            "State-Conditional Hybrid Policy": test_routed["prob"].reshape(-1),
         }
 
-        for m_name, r_arr in iso_reserves.items():
+        for m_name, r_arr in calibrated_reserves.items():
             metrics = compute_decisive_metrics(
                 shortfall=test_s,
                 reserve=r_arr,
@@ -820,21 +904,27 @@ def run_decisive_benchmark_for_seed(
                 prob=model_probs.get(m_name),
                 regime=test_regime,
             )
+            # Post-hoc diagnostic: how much scaling would be needed on test set to force <= 10%
+            g_iso_test, d_iso_test, _ = find_iso_reliability_multiplier(test_s, r_arr, test_active, target_violation=TARGET_VIOLATION)
+            is_compliant = bool(metrics["violation_rate"] <= (TARGET_VIOLATION + 1e-6))
+
             row = {
                 "farm": farm,
                 "seed": seed,
                 "regime": reg_name,
                 "model": m_name,
-                "gamma_val": round(val_iso_multipliers.get(m_name, 1.0), 3),
-                "gamma_iso_test": round(test_iso_multipliers[m_name], 3),
-                "delta_iso_test": round(test_iso_deltas[m_name], 3),
+                "compliant": is_compliant,
+                "gamma_clean_val": round(gamma_clean_val.get(m_name, gamma_clean_val.get("Continuous Physical Quantile", 1.0)), 3),
+                "gamma_stale_val": round(gamma_stale_val.get(m_name, gamma_stale_val.get("Joint Routed", 1.0)), 3),
+                "gamma_iso_test_diagnostic": round(g_iso_test, 3),
+                "delta_iso_test_diagnostic": round(d_iso_test, 3),
                 **metrics,
             }
             seed_metric_rows.append(row)
 
-        # Weather event block bootstrap under Iso-Reliability
+        # Weather event block bootstrap under Frozen Validation Reserves
         boot_res = weather_block_bootstrap(
-            test_s, iso_reserves, test_active, test_times,
+            test_s, calibrated_reserves, test_active, test_times,
             block_size=144, n_boot=n_boot, seed=seed, ref_model="Joint Routed",
         )
         for m_name, b_stat in boot_res.items():
@@ -846,9 +936,9 @@ def run_decisive_benchmark_for_seed(
                 **b_stat,
             })
 
-        print(f"Summary for {reg_name} (Seed {seed}):", flush=True)
+        print(f"Summary for {reg_name} (Seed {seed}) [Validation-Frozen Evaluation]:", flush=True)
         cur_df = pd.DataFrame([r for r in seed_metric_rows if r["seed"] == seed and r["regime"] == reg_name])
-        print(cur_df[["model", "gamma_iso_test", "violation_rate", "reserve_mwh", "shortage_mwh", "total_cost", "false_alarm_rate", "event_recall"]].to_string(), flush=True)
+        print(cur_df[["model", "compliant", "violation_rate", "reserve_mwh", "shortage_mwh", "total_cost", "gamma_clean_val", "gamma_stale_val", "gamma_iso_test_diagnostic"]].to_string(), flush=True)
 
     print(f"Seed {seed} finished in {time.time() - t_start:.1f}s", flush=True)
     return seed_metric_rows, seed_boot_rows
@@ -874,7 +964,7 @@ def _get_stat(df: pd.DataFrame, model: str, col: str, stat: str = "mean") -> Opt
 
 
 def evaluate_route_verdict(agg_df: pd.DataFrame) -> Dict[str, Any]:
-    """Evaluates the 4 decision criteria specified in the problem statement."""
+    """Evaluates the decision criteria, including State-Conditional Hybrid compliance and Track A/B."""
     reg_col = "regime" if "regime" in agg_df.columns else ("regime", "")
     mod_col = "model" if "model" in agg_df.columns else ("model", "")
 
@@ -909,8 +999,16 @@ def evaluate_route_verdict(agg_df: pd.DataFrame) -> Dict[str, Any]:
     # Criterion 3: Recognition vs Decision
     recognition_better_decision_no = (routed_clean_recall > 0.70) and (routed_clean_cost >= phys_clean_cost)
 
-    # Criterion 4: Cross-Farm Decision Increment (MoE must strictly beat simple models and frozen representation across clean & delay)
+    # Criterion 4: Cross-Farm Decision Increment
     cross_farm_increment = (routed_clean_cost < phys_clean_cost) and (routed_delay_cost < phys_delay_cost) and (routed_delay_cost <= frozen_delay_cost)
+
+    # Criterion 5: State-Conditional Hybrid Compliance and Failure Law Confirmation
+    hybrid_clean_viol = _get_stat(clean_agg, "State-Conditional Hybrid Policy", "violation_rate")
+    hybrid_delay_viol = _get_stat(delay_agg, "State-Conditional Hybrid Policy", "violation_rate")
+
+    hybrid_compliant_all = False
+    if hybrid_clean_viol is not None and hybrid_delay_viol is not None:
+        hybrid_compliant_all = bool((hybrid_clean_viol <= TARGET_VIOLATION + 1e-4) and (hybrid_delay_viol <= TARGET_VIOLATION + 1e-4))
 
     route_rationale = []
     if cross_farm_increment and not simple_quantile_wins:
@@ -929,8 +1027,17 @@ def evaluate_route_verdict(agg_df: pd.DataFrame) -> Dict[str, Any]:
         recommended_route = "Route 2: Stop Claiming Method Advantage, Refocus on Physical Failure Laws"
         route_rationale.append("MoE routing demonstrates no consistent cross-farm decision advantage over simpler physical, sequence, or frozen representations under iso-reliability.")
 
+    if hybrid_compliant_all:
+        track_recommendation = "Track A: Defensive State-Conditional Hybrid Reserve Policy (maintains <= 10% violation on frozen test set)"
+        route_rationale.append("State-Conditional Hybrid Policy successfully maintains <= 10.0% violation rate across clean and delay-6 regimes under frozen validation multipliers.")
+    else:
+        track_recommendation = "Track B: SCADA Telemetry Staleness Breakdown & Learned Posterior Risk Diagnostic"
+        route_rationale.append("Telecommunication staleness causes reliability breakdown; learned posterior mitigates risk but does not eliminate distribution shift without adaptive margin.")
+
     return {
         "recommended_route": recommended_route,
+        "track_recommendation": track_recommendation,
+        "hybrid_compliant_all": hybrid_compliant_all,
         "dense_vs_moe_ratio": dense_cost_ratio,
         "dense_vs_moe_equivalent": bool(dense_vs_moe_verdict),
         "simple_quantile_beats_deep": bool(simple_quantile_wins),
@@ -947,7 +1054,7 @@ def main():
     parser.add_argument("--device", default="cuda:0" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--lead-step", type=int, default=0, help="0 = 10 min horizon")
     parser.add_argument("--n-boot", type=int, default=1000)
-    parser.add_argument("--output-dir", default="artifacts/clean_evidence_v3/decisive_experiment/risk_layer_benchmark")
+    parser.add_argument("--output-dir", default="artifacts/decisive_fair_risk")
     args = parser.parse_args()
 
     out_dir = Path(args.output_dir) / args.farm
@@ -1014,13 +1121,17 @@ def main():
     df_boot = pd.DataFrame(all_boots)
     df_boot.to_csv(out_dir / "decisive_bootstrap_by_seed.csv", index=False)
 
-    # Cross-seed aggregation
+    # Cross-seed aggregation under Validation-Frozen Protocol
     agg_df = df_metrics.groupby(["farm", "regime", "model"]).agg({
-        "gamma_iso_test": ["mean", "std"],
+        "compliant": ["mean"],
         "violation_rate": ["mean", "std"],
         "reserve_mwh": ["mean", "std"],
         "shortage_mwh": ["mean", "std"],
         "total_cost": ["mean", "std"],
+        "gamma_clean_val": ["mean", "std"],
+        "gamma_stale_val": ["mean", "std"],
+        "gamma_iso_test_diagnostic": ["mean", "std"],
+        "delta_iso_test_diagnostic": ["mean", "std"],
         "false_alarm_rate": ["mean", "std"],
         "event_recall": ["mean", "std"],
         "brier_score": ["mean", "std"],
@@ -1038,34 +1149,39 @@ def main():
     md_report = [
         f"# Decisive Fair Risk Benchmark Report: {args.farm.upper()}",
         f"**Date / Time**: {time.strftime('%Y-%m-%d %H:%M:%S')}",
-        f"**Benchmark Output Version**: `artifacts/clean_evidence_v3/decisive_experiment`",
+        f"**Benchmark Output Directory**: `{args.output_dir}`",
+        f"**Evaluated Seeds**: {seeds} (Total: {len(seeds)} seeds)",
         f"**Delivery Horizon**: Lead Step {args.lead_step + 1} (10-minute dispatch delivery)",
-        f"**Target Reliability**: Strict Iso-Reliability Violation Rate <= {TARGET_VIOLATION * 100.0:.1f}% (Critical Fractile q* = {CRITICAL_FRACTILE:.2f})",
+        f"**Calibration Protocol**: State-Conditional Validation Multipliers (gamma_clean_val, gamma_stale_val) FROZEN on test set",
+        f"**Target Reliability**: Violation Rate <= {TARGET_VIOLATION * 100.0:.1f}% (Critical Fractile q* = {CRITICAL_FRACTILE:.2f})",
         "",
-        "## 1. Strict Iso-Reliability Performance Summary (Across Seeds)",
+        "## 1. Primary Evaluation: Frozen Validation Calibration Test Performance",
         "",
-        "| Regime | Model | Test Iso Gamma | Test Violation Rate | Reserve (MWh) | Shortage (MWh) | Total Cost Regret | False Alarm Rate | Event Recall |",
-        "|---|---|---|---|---|---|---|---|---|",
+        "| Regime | Model | Compliant (Pass Rate) | Test Violation Rate | Reserve (MWh) | Shortage (MWh) | Total Cost Regret | Gamma Clean Val | Gamma Stale Val | Test Iso Gamma Diagnostic |",
+        "|---|---|---|---|---|---|---|---|---|---|",
     ]
 
     for _, row in agg_df.iterrows():
         reg = row[("regime", "")]
         mod = row[("model", "")]
-        gamma = f"{row[('gamma_iso_test', 'mean')]:.2f}"
+        pass_rate = f"{row[('compliant', 'mean')]*100.0:.0f}%"
         viol = f"{row[('violation_rate', 'mean')]*100.0:.1f}%"
         res = f"{row[('reserve_mwh', 'mean')]:.2f} +/- {row[('reserve_mwh', 'std')]:.2f}"
         sh = f"{row[('shortage_mwh', 'mean')]:.2f} +/- {row[('shortage_mwh', 'std')]:.2f}"
         cost = f"{row[('total_cost', 'mean')]:.1f} +/- {row[('total_cost', 'std')]:.1f}"
-        far = f"{row[('false_alarm_rate', 'mean')]*100.0:.1f}%"
-        rec = f"{row[('event_recall', 'mean')]*100.0:.1f}%"
-        md_report.append(f"| {reg} | {mod} | {gamma} | {viol} | {res} | {sh} | {cost} | {far} | {rec} |")
+        gc = f"{row[('gamma_clean_val', 'mean')]:.2f}"
+        gs = f"{row[('gamma_stale_val', 'mean')]:.2f}"
+        g_diag = f"{row[('gamma_iso_test_diagnostic', 'mean')]:.2f}"
+        md_report.append(f"| {reg} | {mod} | {pass_rate} | {viol} | {res} | {sh} | {cost} | {gc} | {gs} | {g_diag} |")
 
     md_report.extend([
         "",
-        "## 2. Decision Route Dispatch Verdict",
-        f"**Recommended Route**: `{verdict['recommended_route']}`",
+        "## 2. Decision Route & Manuscript Track Verdict",
+        f"**Track Recommendation**: `{verdict.get('track_recommendation', 'N/A')}`",
+        f"**Recommended Decision Route**: `{verdict['recommended_route']}`",
         "",
         "### Criteria Evaluation:",
+        f"- **State-Conditional Hybrid Compliant (All Regimes)**: {verdict.get('hybrid_compliant_all', False)}",
         f"- **Dense vs MoE Equivalent**: {verdict['dense_vs_moe_equivalent']} (Dense/MoE Cost Ratio: {verdict['dense_vs_moe_ratio']:.3f})",
         f"- **Simple Quantile Wins over Deep**: {verdict['simple_quantile_beats_deep']}",
         f"- **Recognition Better but Decision Not Improved**: {verdict['recognition_better_decision_no']}",
