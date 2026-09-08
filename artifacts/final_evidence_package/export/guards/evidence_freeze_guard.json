@@ -19,42 +19,80 @@
     "8.929e-1"
   ],
   "required_tokens": [
+    "229.93",
+    "224.34",
+    "225.74",
     "236.13",
-    "239.86",
-    "286.95",
-    "0.8716",
-    "0.9166"
+    "5.59",
+    "0.721",
+    "0.740",
+    "0.941",
+    "0.971",
+    "0.416",
+    "0.196",
+    "0.508",
+    "1.000",
+    "0.879",
+    "0.630",
+    "+0.220",
+    "95.13M",
+    "99.55M",
+    "84.31M",
+    "442k",
+    "0.815",
+    "0.361",
+    "0.405",
+    "16.065M"
   ],
   "required_token_status": {
+    "229.93": true,
+    "224.34": true,
+    "225.74": true,
     "236.13": true,
-    "239.86": true,
-    "286.95": true,
-    "0.8716": true,
-    "0.9166": true
+    "5.59": true,
+    "0.721": true,
+    "0.740": true,
+    "0.941": true,
+    "0.971": true,
+    "0.416": true,
+    "0.196": true,
+    "0.508": true,
+    "1.000": true,
+    "0.879": true,
+    "0.630": true,
+    "+0.220": true,
+    "95.13M": true,
+    "99.55M": true,
+    "84.31M": true,
+    "442k": true,
+    "0.815": true,
+    "0.361": true,
+    "0.405": true,
+    "16.065M": true
   },
   "missing_paths": [],
   "stale_offenders": [],
-  "n_scanned_files": 121,
+  "n_scanned_files": 201,
   "scanned_files": [
     {
       "label": "paper_path",
-      "path": "paper_draft.md",
-      "bytes": 82027
+      "path": "paper_tste_ieee.md",
+      "bytes": 77302
     },
     {
       "label": "compiled_tex",
-      "path": "paper_draft_compiled.tex",
-      "bytes": 104236
+      "path": "build\\paper_tste_ieee.tex",
+      "bytes": 93401
     },
     {
       "label": "paper_assets_dir",
       "path": "artifacts\\paper_assets\\generated\\table_3_main_performance.tex",
-      "bytes": 2153
+      "bytes": 2091
     },
     {
       "label": "paper_assets_dir",
       "path": "artifacts\\paper_assets\\generated\\table_4_regime_slices.tex",
-      "bytes": 2441
+      "bytes": 2668
     },
     {
       "label": "paper_assets_dir",
@@ -69,12 +107,12 @@
     {
       "label": "paper_assets_dir",
       "path": "artifacts\\paper_assets\\generated\\table_7_robustness.csv",
-      "bytes": 2143
+      "bytes": 2446
     },
     {
       "label": "paper_assets_dir",
       "path": "artifacts\\paper_assets\\generated\\table_7_robustness.tex",
-      "bytes": 2551
+      "bytes": 2812
     },
     {
       "label": "paper_assets_dir",
@@ -104,22 +142,22 @@
     {
       "label": "paper_assets_dir",
       "path": "artifacts\\paper_assets\\tables\\table_main_benchmark.csv",
-      "bytes": 1499
+      "bytes": 1659
     },
     {
       "label": "paper_assets_dir",
       "path": "artifacts\\paper_assets\\tables\\table_main_results.csv",
-      "bytes": 1499
+      "bytes": 1659
     },
     {
       "label": "paper_assets_dir",
       "path": "artifacts\\paper_assets\\tables\\table_regime_wise.csv",
-      "bytes": 1701
+      "bytes": 1898
     },
     {
       "label": "paper_assets_dir",
       "path": "artifacts\\paper_assets\\tables\\table_robustness.csv",
-      "bytes": 2143
+      "bytes": 2446
     },
     {
       "label": "paper_assets_dir",
@@ -149,27 +187,27 @@
     {
       "label": "paper_assets_dir",
       "path": "artifacts\\paper_assets\\tables\\wtb_test_aggregated_runs.csv",
-      "bytes": 39424
+      "bytes": 43884
     },
     {
       "label": "paper_assets_dir",
       "path": "artifacts\\paper_assets\\tables\\wtb_test_aggregated_runs.json",
-      "bytes": 100054
+      "bytes": 113054
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\figure_index.csv",
-      "bytes": 1041
+      "bytes": 2849
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\final_table_export_manifest.csv",
-      "bytes": 23804
+      "bytes": 35714
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\final_table_export_status.json",
-      "bytes": 35557
+      "bytes": 53057
     },
     {
       "label": "final_package_dir",
@@ -189,7 +227,12 @@
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\guards\\external_wind_guard.json",
-      "bytes": 1878
+      "bytes": 5124
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\guards\\external_wind_lhb_anchor_observable_guard.json",
+      "bytes": 2469
     },
     {
       "label": "final_package_dir",
@@ -203,18 +246,23 @@
     },
     {
       "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\guards\\external_wind_transfer_no_go_guard.json",
+      "bytes": 1876
+    },
+    {
+      "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\guards\\mechanism_behavior_pack_guard.json",
       "bytes": 568
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\guards\\reserve_decision_guard.json",
-      "bytes": 3177
+      "bytes": 3415
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\guards\\reviewer_stat_pack_guard.json",
-      "bytes": 1875
+      "bytes": 1968
     },
     {
       "label": "final_package_dir",
@@ -234,7 +282,7 @@
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\manifest\\evidence_manifest_final.json",
-      "bytes": 40757
+      "bytes": 52621
     },
     {
       "label": "final_package_dir",
@@ -253,13 +301,23 @@
     },
     {
       "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\anchor_only_rule_router_main_table.csv",
+      "bytes": 1249
+    },
+    {
+      "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\boundary_slice_summary.csv",
       "bytes": 1835
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\claim_boundary_applied_energy.csv",
-      "bytes": 1549
+      "bytes": 1538
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\compute_deployment_cost_table.csv",
+      "bytes": 586
     },
     {
       "label": "final_package_dir",
@@ -268,23 +326,48 @@
     },
     {
       "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\cost_ratio_energy_system_assumptions.csv",
+      "bytes": 941
+    },
+    {
+      "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\cost_ratio_sensitivity_readable.csv",
-      "bytes": 1376
+      "bytes": 1945
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\cover_letter.md",
-      "bytes": 2715
+      "bytes": 2730
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\dispatch_reserve_cost_ratio_table.csv",
+      "bytes": 5021
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\dispatch_reserve_main_table.csv",
+      "bytes": 2462
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\external_negative_evidence_table.csv",
+      "bytes": 1341
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\external_site_transfer_failure_table.csv",
-      "bytes": 3049
+      "bytes": 1341
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_guard.json",
-      "bytes": 1878
+      "bytes": 5124
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_lhb_anchor_observable_guard.json",
+      "bytes": 2469
     },
     {
       "label": "final_package_dir",
@@ -333,8 +416,18 @@
     },
     {
       "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\external_wind_transfer_no_go_guard.json",
+      "bytes": 1876
+    },
+    {
+      "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\highlights.md",
       "bytes": 526
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\new_wind_farm_deployment_checklist.csv",
+      "bytes": 805
     },
     {
       "label": "final_package_dir",
@@ -344,7 +437,12 @@
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\operational_case_explanation.csv",
-      "bytes": 1651
+      "bytes": 817
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\operational_decision_curve.csv",
+      "bytes": 5190
     },
     {
       "label": "final_package_dir",
@@ -368,6 +466,26 @@
     },
     {
       "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\quasi_external_deployment_drill_raw.csv",
+      "bytes": 3987
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\quasi_external_deployment_drill_summary.csv",
+      "bytes": 632
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\README.md",
+      "bytes": 2252
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\reserve_coverage_reliability.csv",
+      "bytes": 1471
+    },
+    {
+      "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\reserve_decision_boundary_slices.csv",
       "bytes": 23002
     },
@@ -388,8 +506,33 @@
     },
     {
       "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\reserve_decision_horizon_quantile_whatif.csv",
+      "bytes": 15645
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\reserve_decision_horizon_time_sensitivity.csv",
+      "bytes": 4655
+    },
+    {
+      "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\reserve_decision_raw_runs.csv",
       "bytes": 934777
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\reserve_horizon_quantile_whatif.csv",
+      "bytes": 1369
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\reserve_horizon_time_sensitivity.csv",
+      "bytes": 1608
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\reserve_paired_statistics.csv",
+      "bytes": 5949
     },
     {
       "label": "final_package_dir",
@@ -423,28 +566,43 @@
     },
     {
       "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\source_data\\system_value_envelope.csv",
+      "bytes": 1057
+    },
+    {
+      "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data\\threshold_label_validity_raw.csv",
       "bytes": 21648
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_data_index.csv",
-      "bytes": 9279
+      "bytes": 10831
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_trace_manifest.csv",
-      "bytes": 46223
+      "bytes": 73322
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\source_trace_manifest.json",
-      "bytes": 72222
+      "bytes": 114698
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\table_index.csv",
-      "bytes": 9816
+      "bytes": 18366
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\accountability_tradeoff.csv",
+      "bytes": 1408
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\accountability_tradeoff_summary.json",
+      "bytes": 1998
     },
     {
       "label": "final_package_dir",
@@ -453,8 +611,93 @@
     },
     {
       "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\anchor_only_rule_router_main_table.csv",
+      "bytes": 1249
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\claim_boundary_applied_energy.csv",
+      "bytes": 1538
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\class_weight_sensitivity_audit.csv",
+      "bytes": 2249
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\class_weight_sensitivity_audit.json",
+      "bytes": 2412
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\compute_deployment_cost_table.csv",
+      "bytes": 586
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\cost_ratio_energy_system_assumptions.csv",
+      "bytes": 941
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\cost_ratio_sensitivity_readable.csv",
+      "bytes": 2010
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\dispatch_reserve_cost_ratio_table.csv",
+      "bytes": 5086
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\dispatch_reserve_main_table.csv",
+      "bytes": 2473
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\early_warning_consequence_audit.csv",
+      "bytes": 2084
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\early_warning_consequence_audit_summary.json",
+      "bytes": 900
+    },
+    {
+      "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\tables\\efficiency_fairness_table.csv",
       "bytes": 1061
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\engineering_unit_value_translation.csv",
+      "bytes": 1369
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\engineering_unit_value_translation_summary.json",
+      "bytes": 1208
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\external_deployment_gate_audit.csv",
+      "bytes": 1731
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\external_deployment_gate_audit_summary.json",
+      "bytes": 887
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\external_negative_evidence_table.csv",
+      "bytes": 1341
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\external_site_transfer_failure_table.csv",
+      "bytes": 1341
     },
     {
       "label": "final_package_dir",
@@ -473,6 +716,36 @@
     },
     {
       "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\new_wind_farm_deployment_checklist.csv",
+      "bytes": 805
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\operational_case_explanation.csv",
+      "bytes": 817
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\operational_decision_curve.csv",
+      "bytes": 5190
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\outcome_channel_sanity_by_seed.csv",
+      "bytes": 814
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\outcome_channel_sanity_summary.csv",
+      "bytes": 1288
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\outcome_channel_sanity_summary.json",
+      "bytes": 935
+    },
+    {
+      "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\tables\\paired_effects_summary.csv",
       "bytes": 4304
     },
@@ -480,6 +753,31 @@
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\tables\\paired_multiplicity_table.csv",
       "bytes": 2389
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\quasi_external_deployment_drill_raw.csv",
+      "bytes": 3987
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\quasi_external_deployment_drill_summary.csv",
+      "bytes": 632
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_claim_boundary_audit.csv",
+      "bytes": 1704
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_claim_boundary_audit_summary.json",
+      "bytes": 1044
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_coverage_reliability.csv",
+      "bytes": 1471
     },
     {
       "label": "final_package_dir",
@@ -503,6 +801,26 @@
     },
     {
       "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_horizon_quantile_whatif.csv",
+      "bytes": 15645
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_horizon_quantile_whatif.tex",
+      "bytes": 801
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_horizon_time_sensitivity.csv",
+      "bytes": 4655
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_horizon_time_sensitivity.tex",
+      "bytes": 877
+    },
+    {
+      "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_operational_windows.csv",
       "bytes": 29868
     },
@@ -520,6 +838,31 @@
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_decision_system_baselines.tex",
       "bytes": 850
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_horizon_quantile_whatif.csv",
+      "bytes": 1369
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_horizon_time_sensitivity.csv",
+      "bytes": 1608
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\reserve_paired_statistics.csv",
+      "bytes": 5949
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\statistical_claim_boundaries.csv",
+      "bytes": 1897
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\statistical_claim_boundaries_summary.json",
+      "bytes": 943
     },
     {
       "label": "final_package_dir",
@@ -553,13 +896,63 @@
     },
     {
       "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\system_value_envelope.csv",
+      "bytes": 1057
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_accountability_tradeoff.tex",
+      "bytes": 568
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_anchor_only_rule_router_main.tex",
+      "bytes": 608
+    },
+    {
+      "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\tables\\table_claim_boundary_applied_energy.tex",
-      "bytes": 1800
+      "bytes": 1695
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_class_weight_sensitivity_audit.tex",
+      "bytes": 662
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_compute_deployment_cost.tex",
+      "bytes": 545
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_cost_ratio_energy_system_assumptions.tex",
+      "bytes": 1097
     },
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\tables\\table_cost_ratio_sensitivity_readable.tex",
-      "bytes": 1697
+      "bytes": 2454
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_dispatch_reserve_main.tex",
+      "bytes": 1278
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_early_warning_consequence_audit.tex",
+      "bytes": 1132
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_engineering_unit_value_translation.tex",
+      "bytes": 1226
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_external_deployment_gate_audit.tex",
+      "bytes": 2288
     },
     {
       "label": "final_package_dir",
@@ -569,7 +962,7 @@
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\tables\\table_external_site_transfer_failure.tex",
-      "bytes": 3326
+      "bytes": 1503
     },
     {
       "label": "final_package_dir",
@@ -579,7 +972,47 @@
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\tables\\table_operational_case_explanation.tex",
-      "bytes": 1709
+      "bytes": 944
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_outcome_channel_sanity.tex",
+      "bytes": 1082
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_quasi_external_deployment_drill.tex",
+      "bytes": 625
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_reserve_claim_boundary_audit.tex",
+      "bytes": 1483
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_reserve_coverage_reliability.tex",
+      "bytes": 1076
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_reserve_horizon_quantile_whatif.tex",
+      "bytes": 1150
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_reserve_horizon_time_sensitivity.tex",
+      "bytes": 876
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_reserve_paired_statistics.tex",
+      "bytes": 1713
+    },
+    {
+      "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_statistical_claim_boundaries.tex",
+      "bytes": 2039
     },
     {
       "label": "final_package_dir",
@@ -608,6 +1041,11 @@
     },
     {
       "label": "final_package_dir",
+      "path": "artifacts\\final_evidence_package\\export\\tables\\table_system_value_envelope.tex",
+      "bytes": 973
+    },
+    {
+      "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\export\\tables\\table_threshold_label_validity.tex",
       "bytes": 788
     },
@@ -629,7 +1067,7 @@
     {
       "label": "final_package_dir",
       "path": "artifacts\\final_evidence_package\\manifest\\evidence_manifest_final.json",
-      "bytes": 40757
+      "bytes": 52621
     },
     {
       "label": "final_package_dir",

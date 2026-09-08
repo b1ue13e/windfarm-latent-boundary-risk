@@ -425,7 +425,7 @@ Crucially, these numerical comparisons reflect site-specific local model trainin
 
 ## Degradation Resilience and Early Warning Dynamics
 
-Table~\ref{tab:early-warning} stress-tests detection fidelity when issue-time telemetry is delayed or corrupted under the Unified Arrival Layer. Under clean anchors, the deterministic threshold rule remains the stronger detector (1.000 versus 0.9705), and clean logistic regression reaches 1.000 recall with 0.879 precision (above the routed posterior's 0.630). Under a 6-step delay ($d=6$) with full-stream history shift (where both anchor readings and encoder history stall by 60 minutes), the deterministic threshold rule's recall collapses from $1.000$ to $0.196$, its precision drops to $0.342$, and its F1 score collapses to $0.249$. In contrast, the jointly-learned routed posterior maintains an early-window recall of $0.4162 \pm 0.1362$ (+0.220 over the rule, more than doubling detection sensitivity) and an F1 score of $0.3791$ (+0.130 over the rule). When telemetry stalls for 60 minutes, detection recall naturally attenuates from 0.971 to 0.416, but the spatio-temporal graph representations double the surviving resilience without any clean-history information leaks.
+Table~\ref{tab:early-warning} stress-tests detection fidelity when issue-time telemetry is delayed or corrupted under the Unified Arrival Layer. Under clean anchors, the deterministic threshold rule remains the stronger detector (1.000 versus 0.9705), and clean logistic regression reaches 1.000 recall with 0.879 precision (above the routed posterior's 0.630). Under a 6-step delay ($d=6$) with full-stream history shift (where both anchor readings and encoder history stall by 60 minutes), the deterministic threshold rule's recall collapses from $1.000$ to $0.196$, its precision drops to $0.342$, and its F1 score collapses to $0.249$. In contrast, the jointly-learned routed posterior maintains an early-window recall of $0.4170 \pm 0.1137$ (+0.221 over the rule, more than doubling detection sensitivity) and an F1 score of $0.3802$ (+0.131 over the rule). When telemetry stalls for 60 minutes, detection recall naturally attenuates from 0.971 to 0.417, but the spatio-temporal graph representations double the surviving resilience without any clean-history information leaks.
 
 ```{=latex}
 \begin{table}[!htbp]
@@ -440,9 +440,9 @@ Table~\ref{tab:early-warning} stress-tests detection fidelity when issue-time te
 Scenario & Setting & Gate & Rule & Gain \\
 \midrule
 Clean anchors & --- & 0.9705 $\pm$ 0.0299 & 1.000 & $-$0.029 \\
-Delay (fair) & 1 step & 0.8459 $\pm$ 0.0769 & 0.655 & +0.191 \\
-Delay (fair) & 3 steps & 0.6281 $\pm$ 0.1298 & 0.381 & +0.247 \\
-Delay (fair) & 6 steps & 0.4162 $\pm$ 0.1362 & 0.196 & +0.220 \\
+Delay (fair) & 1 step & 0.8346 $\pm$ 0.0771 & 0.655 & +0.179 \\
+Delay (fair) & 3 steps & 0.6200 $\pm$ 0.1209 & 0.381 & +0.239 \\
+Delay (fair) & 6 steps & 0.4170 $\pm$ 0.1137 & 0.196 & +0.221 \\
 Noise (fair) & Wspd 0.5, Pab 1.0 & 0.9635 $\pm$ 0.0375 & 0.811 $\pm$ 0.016 & +0.152 \\
 Noise (fair) & Wspd 1.0, Pab 2.0 & 0.9505 $\pm$ 0.0363 & 0.680 $\pm$ 0.019 & +0.271 \\
 \midrule

@@ -81,6 +81,7 @@ def _forward_collect(model, loader, bundle, device, degrade: dict[str, Any] | No
     wspd_phy = physics_names.index("Wspd") if "Wspd" in physics_names else 0
     pab_phy = physics_names.index("Pab_mean") if "Pab_mean" in physics_names else 1
     patv_phy = physics_names.index("Patv") if "Patv" in physics_names else -1
+    channel_policy = str(degrade.get("channel_policy", "primary")) if degrade else "primary"
     delay = int(degrade.get("delay", 0)) if degrade else 0
     history_delay = bool(degrade.get("history_delay", True)) if degrade else True
     noise = degrade.get("noise") if degrade else None
@@ -101,16 +102,22 @@ def _forward_collect(model, loader, bundle, device, degrade: dict[str, Any] | No
             x_hist = batch["x_hist"].clone()
             anchor_physics = batch["anchor_physics"].clone()
             lag_idx = np.clip(anchor_idx - delay, 0, raw_physics.shape[0] - 1)
-            anchor_physics[:, :, wspd_phy] = torch.from_numpy(std_physics[lag_idx, :, wspd_phy]).float()
-            anchor_physics[:, :, pab_phy] = torch.from_numpy(std_physics[lag_idx, :, pab_phy]).float()
-            if patv_phy >= 0:
-                anchor_physics[:, :, patv_phy] = torch.from_numpy(std_physics[lag_idx, :, patv_phy]).float()
-            if history_delay and delay > 0:
-                for idx in degrade_feat_indices:
-                    vals = x_hist[..., idx]  # (B, H, N)
-                    head = vals[:, :1, :].repeat(1, delay, 1)
-                    shifted = torch.cat([head, vals[:, :-delay, :]], dim=1)
-                    x_hist[..., idx] = shifted
+            if channel_policy == "all":
+                anchor_physics = torch.from_numpy(std_physics[lag_idx]).float()
+                if history_delay and delay > 0:
+                    head = x_hist[:, :1, :, :].repeat(1, delay, 1, 1)
+                    x_hist = torch.cat([head, x_hist[:, :-delay, :, :]], dim=1)
+            else:
+                anchor_physics[:, :, wspd_phy] = torch.from_numpy(std_physics[lag_idx, :, wspd_phy]).float()
+                anchor_physics[:, :, pab_phy] = torch.from_numpy(std_physics[lag_idx, :, pab_phy]).float()
+                if patv_phy >= 0:
+                    anchor_physics[:, :, patv_phy] = torch.from_numpy(std_physics[lag_idx, :, patv_phy]).float()
+                if history_delay and delay > 0:
+                    for idx in degrade_feat_indices:
+                        vals = x_hist[..., idx]  # (B, H, N)
+                        head = vals[:, :1, :].repeat(1, delay, 1)
+                        shifted = torch.cat([head, vals[:, :-delay, :]], dim=1)
+                        x_hist[..., idx] = shifted
             if noise is not None:
                 bsz = anchor_idx.shape[0]
                 nodes = x_hist.shape[2]
@@ -165,6 +172,8 @@ def main() -> None:
     ap.add_argument("--cut-in", type=float, default=3.0)
     ap.add_argument("--rated", type=float, default=10.5)
     ap.add_argument("--pitch-th", type=float, default=2.0)
+    ap.add_argument("--channel-policy", default="primary", choices=["all", "primary"],
+                    help="Channels degraded: 'primary' (Wspd, Pab, Patv) or 'all' (all 11 telemetry channels)")
     args = ap.parse_args()
 
     out_dir = ensure_dir(args.output_dir)
@@ -202,7 +211,7 @@ def main() -> None:
             else:
                 gate_prob, _ = _forward_collect(
                     model, loader, bundle, device,
-                    {"delay": delay, "noise": noise, "history_delay": args.degrade_history},
+                    {"delay": delay, "noise": noise, "history_delay": args.degrade_history, "channel_policy": args.channel_policy},
                     seed,
                 )
                 gate_label = gate_prob[..., :gate_classes].argmax(axis=-1)
