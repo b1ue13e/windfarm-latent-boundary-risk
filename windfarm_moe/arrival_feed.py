@@ -27,7 +27,7 @@ from .data import CacheBundle, RegimeWindowDataset
 class DegradationSpec:
     """Specification of communication/sensor degradation applied at arrival time."""
     delay_steps: int = 0
-    corrupted_channels: Tuple[str, ...] = ("Wspd", "Pab_mean")
+    corrupted_channels: Optional[Tuple[str, ...]] = ("Wspd", "Pab_mean")  # Pass ('all',) or None for all channels
     history_policy: str = "stalled"  # 'stalled' (sample-and-hold from t-d) or 'shifted'
     noise_sigma_physical: Dict[str, float] = field(default_factory=dict)
     # Markov-Gilbert parameters (if active, overrides static delay_steps)
@@ -97,12 +97,18 @@ class UnifiedArrivalDataset(Dataset):
         feature_names = list(bundle.metadata.get("feature_names", []))
         physics_names = list(bundle.metadata.get("physics_names", ["Wspd", "Pab_mean", "wake_score", "Patv"]))
 
-        self.feat_indices = {
-            name: feature_names.index(name) for name in self.degradation.corrupted_channels if name in feature_names
-        }
-        self.phy_indices = {
-            name: physics_names.index(name) for name in self.degradation.corrupted_channels if name in physics_names
-        }
+        target_corrupted = self.degradation.corrupted_channels
+        if target_corrupted is None or "all" in target_corrupted:
+            # Degrade ALL telemetry channels synchronously
+            self.feat_indices = {name: i for i, name in enumerate(feature_names)}
+            self.phy_indices = {name: i for i, name in enumerate(physics_names)}
+        else:
+            self.feat_indices = {
+                name: feature_names.index(name) for name in target_corrupted if name in feature_names
+            }
+            self.phy_indices = {
+                name: physics_names.index(name) for name in target_corrupted if name in physics_names
+            }
 
         # Precompute noise scales in normalized feature space if specified
         self.feat_noise_stds: Dict[str, float] = {}
@@ -162,10 +168,11 @@ class UnifiedArrivalDataset(Dataset):
             for ch, phy_idx in self.phy_indices.items():
                 item["anchor_physics"][:, phy_idx] = lagged_physics[:, phy_idx]
 
-        # 2. Synchronously degrade x_hist to eliminate information asymmetry
+        # 2. Synchronously degrade x_hist and feature_mask_hist to eliminate information asymmetry
         # When lag > 0, the readings at steps (H - lag) to (H - 1) have not arrived yet.
         if lag > 0 and self.feat_indices:
             x_hist = item["x_hist"].clone()
+            fmask_hist = item["feature_mask_hist"].clone()
             H = x_hist.shape[0]
 
             for ch, feat_idx in self.feat_indices.items():
@@ -173,8 +180,10 @@ class UnifiedArrivalDataset(Dataset):
                     # Sample-and-hold: replicate reading from t - lag to all subsequent unarrived steps
                     stalled_step = max(0, H - 1 - lag)
                     last_known_val = x_hist[stalled_step:stalled_step + 1, :, feat_idx]
+                    last_known_mask = fmask_hist[stalled_step:stalled_step + 1, :, feat_idx]
                     for step_idx in range(stalled_step + 1, H):
                         x_hist[step_idx, :, feat_idx] = last_known_val[0]
+                        fmask_hist[step_idx, :, feat_idx] = last_known_mask[0]
                 elif self.degradation.history_policy == "shifted":
                     # Shift entire history backwards by lag steps
                     vals = x_hist[:, :, feat_idx]  # (H, N)
@@ -182,7 +191,13 @@ class UnifiedArrivalDataset(Dataset):
                     shifted = torch.cat([head, vals[:-lag, :]], dim=0)
                     x_hist[:, :, feat_idx] = shifted
 
+                    mvals = fmask_hist[:, :, feat_idx]
+                    mhead = mvals[:1, :].repeat(lag, 1)
+                    mshifted = torch.cat([mhead, mvals[:-lag, :]], dim=0)
+                    fmask_hist[:, :, feat_idx] = mshifted
+
             item["x_hist"] = x_hist
+            item["feature_mask_hist"] = fmask_hist
 
         # 3. Add synchronous sensor noise if specified
         if self.degradation.noise_sigma_physical:

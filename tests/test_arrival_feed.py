@@ -127,3 +127,33 @@ def test_markov_gilbert_synchrony(wtb_bundle):
             )
             break
     assert found_lag, "Expected at least one burst lag > 0 in 100 steps."
+
+
+def test_all_channels_and_mask_synchrony(wtb_bundle):
+    delay = 3
+    feed_ds = UnifiedArrivalDataset(
+        wtb_bundle,
+        "test",
+        hist_len=36,
+        pred_len=24,
+        degradation=DegradationSpec(
+            delay_steps=delay,
+            corrupted_channels=("all",),
+            history_policy="stalled",
+        ),
+    )
+    item = feed_ds[5]
+    H = item["x_hist"].shape[0]
+    stalled_step = H - 1 - delay
+
+    # All feature channels must be stalled
+    for feat_idx in range(item["x_hist"].shape[-1]):
+        assert torch.equal(
+            item["x_hist"][H - 1, :, feat_idx],
+            item["x_hist"][stalled_step, :, feat_idx],
+        )
+        assert torch.equal(
+            item["feature_mask_hist"][H - 1, :, feat_idx],
+            item["feature_mask_hist"][stalled_step, :, feat_idx],
+        )
+
