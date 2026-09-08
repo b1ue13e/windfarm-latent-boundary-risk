@@ -104,7 +104,19 @@ foreach ($name in $expectedUploadFiles) {
     Test-RequiredPath -Path (Join-Path $uploadDir $name) -Label "upload file $name"
 }
 
-$expectedTitle = "Jointly-Learned Boundary-Risk Posterior for Wind Plant Reserve Pricing under Telemetry Degradation: A Defense-in-Depth Approach"
+$paperPath = Join-Path $root "paper_tste_ieee.md"
+$expectedTitle = if (Test-Path $paperPath) {
+    $match = [regex]::Match((Get-Content -LiteralPath $paperPath -Raw), "\\title\{(.+?)\}", [System.Text.RegularExpressions.RegexOptions]::Singleline)
+    if ($match.Success) {
+        $t = $match.Groups[1].Value
+        $t = $t -replace "\\%", "%" -replace "\\&", "&" -replace "\\_", "_" -replace "\\texttt\{([^}]*)\}", '$1' -replace "---", " - " -replace "~", " " -replace "\s+", " "
+        $t.Trim()
+    } else {
+        "Reliability Breakdown of Wind Turbine Operating Reserve Rules under Stale SCADA Telemetry and Boundary-Risk Posterior Diagnostics"
+    }
+} else {
+    "Reliability Breakdown of Wind Turbine Operating Reserve Rules under Stale SCADA Telemetry and Boundary-Risk Posterior Diagnostics"
+}
 
 $coverText = Get-Content -LiteralPath (Join-Path $uploadDir "cover_letter.md") -Raw
 if ($coverText.Contains("[Author Names]")) {
