@@ -752,27 +752,27 @@ Table A11d consolidates the counterfactual controls and strictly matched modular
 \scriptsize
 \setlength{\tabcolsep}{1.8pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A11d.} Matched modular comparison with counterfactual controls ($\rho=10$, 5 seeds, boundary band, 134 turbines).}
+\caption*{\textbf{Table A11d.} Matched modular comparison with counterfactual controls ($\rho=10$, 5 seeds, boundary band, 134 turbines; hardware latency and cashflow figures isolated per audit protocol).}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{lllllllcl}
 \toprule
-Pricing / Detection Method & Architecture & Jointly Trained & Channels & Reserve Cost & $\Delta$ vs Global [95\% CI] & Delay-6 Recall & Latency & Governance Object \\
+Pricing / Detection Method & Architecture & Jointly Trained & Channels & Reserve Cost & $\Delta$ vs Global [95\% CI] & Delay-6 Recall & Footprint & Governance Object \\
 \midrule
-Continuous pitch quantile (soft-pab) & Physical upper bound & no & physical & 15.538M & -1.094M [-1.265M, -0.922M] & --$^{\dagger}$ & 0.10 ms & Live physical sensor \\
-Threshold rule (physical-bin) & Discrete physical rule & no & physical & 16.190M & -0.442M [-0.582M, -0.301M] & 0.196 & 0.05 ms & Discrete SCADA rule \\
-Independent logistic classifier & Validation-fit modular & no & physical & 16.190M & -0.442M [-0.580M, -0.298M] & --$^{\ddagger}$ & 0.45 ms & Separate classifier \\
-Cascaded Frozen MLP posterior & Two-stage decoupled & partial (frozen) & consequence & 15.528M & -1.104M [-2.397M, +0.189M] & --$^{\ddagger}$ & 5.48 ms & Two-stage pipeline \\
-Independent Consequence MLP & Modular consequence & no & consequence & 15.805M & -0.828M [-2.180M, +0.525M] & --$^{\ddagger}$ & 2.15 ms & Separate neural net \\
-Independent GBDT posterior & Tree-based modular & no & consequence & 17.656M & +1.024M [+0.780M, +1.285M] & --$^{\ddagger}$ & 8.90 ms & Separate GBDT model \\
-Joint non-routed posterior head & Dense multi-task & yes & weak & 16.076M & -0.556M [-0.710M, -0.395M] & 0.286 & 3.85 ms & Single checkpoint \\
-Joint routed posterior (this work) & Boundary-forced MoE & yes & weak & 16.065M & -0.568M [-0.726M, -0.406M] & 0.416 & 4.12 ms & Single checkpoint \\
+Continuous pitch quantile (soft-pab) & Physical upper bound & no & physical & 15.538M & -1.094M [-1.265M, -0.922M] & --$^{\dagger}$ & Rule & Live physical sensor \\
+Threshold rule (physical-bin) & Discrete physical rule & no & physical & 16.190M & -0.442M [-0.582M, -0.301M] & 0.196 & Rule & Discrete SCADA rule \\
+Independent logistic classifier & Validation-fit modular & no & physical & 16.190M & -0.442M [-0.580M, -0.298M] & --$^{\ddagger}$ & Modular & Separate classifier \\
+Cascaded Frozen MLP posterior & Two-stage decoupled & partial (frozen) & consequence & 15.528M & -1.104M [-2.397M, +0.189M] & --$^{\ddagger}$ & Modular & Two-stage pipeline \\
+Independent Consequence MLP & Modular consequence & no & consequence & 15.805M & -0.828M [-2.180M, +0.525M] & --$^{\ddagger}$ & Modular & Separate neural net \\
+Independent GBDT posterior & Tree-based modular & no & consequence & 17.656M & +1.024M [+0.780M, +1.285M] & --$^{\ddagger}$ & Tabular & Separate GBDT model \\
+Joint non-routed posterior head & Dense multi-task & yes & weak & 16.076M & -0.556M [-0.710M, -0.395M] & 0.286 & 110k param & Single checkpoint \\
+Joint routed posterior (this work) & Boundary-forced MoE & yes & weak & 16.065M & -0.568M [-0.726M, -0.406M] & 0.416 & 110k param & Single checkpoint \\
 \midrule
-Global quantile & Unstratified scalar & -- & -- & 16.632M & 0.000M [---] & 0.196 & 0.05 ms & Scalar quantile \\
+Global quantile & Unstratified scalar & -- & -- & 16.632M & 0.000M [---] & 0.196 & Baseline & Scalar quantile \\
 \bottomrule
 \end{tabular}%
 }
 \vspace{1mm}
-\parbox{\columnwidth}{\footnotesize\raggedright Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs Cascaded Frozen MLP (Joint 16.065M vs Cascaded 15.528M $\pm$ 1.599M, paired $\Delta = -0.537\text{M}$, 95\% CI [-1.988M, +0.915M], showing statistical parity under clean telemetry); joint-routed vs Independent Consequence MLP (15.805M $\pm$ 1.680M, paired $\Delta = -0.260\text{M}$, 95\% CI [-1.771M, +1.251M]); joint-routed vs independent GBDT -1.59M (see \texttt{artifacts/}\allowbreak\texttt{matched\_modular\_rerun\_5seeds/}\allowbreak\texttt{modular\_mlp\_summary\_5seeds.csv}). Degraded recall is early-window recall under a six-step confirming-stream delay ($^{\ddagger}$Consequence-only and modular baselines operate on aerodynamic-withheld channels for nominal consequence mapping and are not evaluated on spatio-temporal history temporal shift); the soft-physical pitch quantile is a continuous pricing rule without discrete recall, and under a 6-step delay its reserve cost degrades to 16.048M. In operational wind plants where blade-pitch telemetry is uncalibrated or subject to measurement degradation, physical pitch quantiles suffer from boundary misclassification, whereas the jointly-learned posterior restores risk awareness from cross-sensor electromechanical signatures as defense-in-depth, mitigating fault cascades (Delay-6 recall 0.416 vs. 0.286 for dense head (+0.220 gain over stale rule 0.196)) in a single-checkpoint edge deployment. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a hierarchical seed-and-week-block bootstrap over daily reserve costs across the 35-day test period keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router pooled 5-seed total delta of -22.40M, corresponding to a per-seed mean of -4.48M which matches the -4.42M per-seed evaluation in Table A11 within bootstrap resampling granularity, 95\% hierarchical block CI [-39.55M, -7.61M]; Physics-Aligned MoE pooled 5-seed total -23.39M, CI [-42.41M, -7.02M]), confirming that the reserve advantage is robust to temporal autocorrelation across weeks. \textit{Terminology Note:} Throughout this work, ``Reserve Cost'' maps directly to the Penalized Reserve-Shortfall Energy Index (PSREI in kWh at $\rho=10$).}
+\parbox{\columnwidth}{\footnotesize\raggedright Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs Cascaded Frozen MLP (Joint 16.065M vs Cascaded 15.528M $\pm$ 1.599M, paired $\Delta = -0.537\text{M}$, 95\% CI [-1.988M, +0.915M], showing statistical parity under clean telemetry); joint-routed vs Independent Consequence MLP (15.805M $\pm$ 1.680M, paired $\Delta = -0.260\text{M}$, 95\% CI [-1.771M, +1.251M]); joint-routed vs independent GBDT -1.59M (see \texttt{artifacts/}\allowbreak\texttt{matched\_modular\_rerun\_5seeds/}\allowbreak\texttt{modular\_mlp\_summary\_5seeds.csv}). Degraded recall is early-window recall under a six-step confirming-stream delay ($^{\ddagger}$Consequence-only and modular baselines operate on aerodynamic-withheld channels for nominal consequence mapping and are not evaluated on spatio-temporal history temporal shift); the soft-physical pitch quantile is a continuous pricing rule without discrete recall, and under a 6-step delay its reserve cost degrades to 16.048M. In operational wind plants where blade-pitch telemetry is uncalibrated or subject to measurement degradation, physical pitch quantiles suffer from boundary misclassification, whereas the jointly-learned posterior restores risk awareness from cross-sensor electromechanical signatures as defense-in-depth, mitigating fault cascades (Delay-6 recall 0.416 vs. 0.286 for dense head (+0.220 gain over stale rule 0.196)) in a single-checkpoint edge deployment. Hardware latency values (previously listed as 0.05--8.90 ms) and cashflow figures have been quarantined in accordance with Step 1 audit protocols pending physical RTU testbed validation. Kelmarsh sparse-farm pricing increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a hierarchical seed-and-week-block bootstrap over daily reserve costs across the 35-day test period keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router pooled 5-seed total delta of -22.40M, corresponding to a per-seed mean of -4.48M which matches the -4.42M per-seed evaluation in Table A11 within bootstrap resampling granularity, 95\% hierarchical block CI [-39.55M, -7.61M]; Physics-Aligned MoE pooled 5-seed total -23.39M, CI [-42.41M, -7.02M]), confirming that the reserve advantage is robust to temporal autocorrelation across weeks. \textit{Terminology Note:} Throughout this work, ``Reserve Cost'' maps directly to the Penalized Reserve-Shortfall Energy Index (PSREI in kWh at $\rho=10$).}
 \end{table}
 ```
 
@@ -1142,9 +1142,11 @@ Year 9 (2024) & Mature Decadal Operation & £71.17 & £669.21 & -307.7 & +£32.5
 
 ## Substation computational footprint and operational expenditure audit {.unnumbered}
 
-To address potential concerns regarding hardware investment and operational expenditure (OPEX) in field deployments, Table A12c details the computational footprint, inference latency, and annual power costs of the proposed model on standard wind farm central substation supervisory infrastructure. In industrial wind power operations, telemetry streams from all 134 turbines are aggregated over the wind farm optical fiber ring network and processed at the central substation Supervisory Control and Data Acquisition (SCADA) / Energy Management System (EMS) terminal, rather than on embedded edge compute nodes at individual turbine nacelles.
+> **[GOVERNANCE ISOLATION NOTICE]**: In accordance with the Step 1 evidence-base audit protocol (`artifacts/decisive_benchmark_v1/evidence_base/isolation_manifest.json`), hardware execution timing (4.12 ms GPU / 21.8 ms IPC CPU), runtime RAM claims (<1.5 MB), and cashflow revenue conversions (£/GBP) are exploratory proxy estimates uncalibrated on physical RTU industrial testbeds or verified market settlement pipelines. They are strictly quarantined and superseded by rigorous physical engineering units (MWh reserve/shortage and normalized cost regret under strict iso-reliability). Only the parameter count (110,012 parameters, ~430 KB in float32) is verified from checkpoint artifacts.
 
-With only 110,012 parameters (430 KB storage footprint), the entire model resides in the L2/L3 cache of modern industrial CPUs. A full-farm inference pass across all 134 turbines requires only 4.12 ms on a standard industrial GPU (NVIDIA RTX 4000 Ada / T4 / RTX 4090) or 21.8 ms on a standard industrial PC CPU (Intel Xeon E5 / Core i7 industrial rackmount). Given a 10-minute (600 s) SCADA dispatch interval, the computational duty cycle is strictly below 0.004\%. Continuous 24/7/365 server operation at an average load of 100 W incurs an annual electricity consumption of 876 kWh, translating to £219/year for the entire 134-turbine wind plant at commercial rates (£0.25/kWh), or £1.63 per turbine per year. Compared against the annual exploratory price-weighted loss reduction (+£3,190/turbine-year at Kelmarsh and +£5,540/turbine-year at Penmanshiel, Table A12 Panel B), the incremental computing cost (£1.63/turbine-year) represents less than 0.05\% of the indicative price-weighted benefit margin, confirming that edge substation execution induces negligible operational overhead without incremental CAPEX.
+To address potential computational feasibility in field deployments, Table A12c presents the theoretical parameter footprint on standard wind farm central substation supervisory infrastructure. In industrial wind power operations, telemetry streams from all 134 turbines are aggregated over the wind farm optical fiber ring network and processed at the central substation Supervisory Control and Data Acquisition (SCADA) / Energy Management System (EMS) terminal.
+
+With 110,012 parameters (430 KB storage footprint), the entire model architecture is exceptionally compact, well suited for central substation SCADA/EMS co-location. Physical deployment on industrial hardware will require verified on-chip profiler logs and physical RTU measurement in subsequent experimental phases.
 
 ```{=latex}
 \begin{table}[H]
@@ -1152,29 +1154,24 @@ With only 110,012 parameters (430 KB storage footprint), the entire model reside
 \scriptsize
 \setlength{\tabcolsep}{3.0pt}
 \renewcommand{\arraystretch}{1.08}
-\caption*{\textbf{Table A12c.} Computational footprint, inference latency, and operational expenditure (OPEX) audit across central substation supervisory infrastructure (134 turbines, 10-minute dispatch interval).}
+\caption*{\textbf{Table A12c.} Computational footprint audit across central substation supervisory infrastructure (134 turbines, 10-minute dispatch interval; latency and cashflows isolated per audit protocol).}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{lll}
 \toprule
 Engineering Parameter & Value & Industrial Dispatch Context \\
 \midrule
-Model parameter count & 110,012 parameters & Single integrated checkpoint ($\sim$430 KB in float32) \\
-Memory residency & $<$ 1.5 MB runtime RAM & Resides entirely in CPU/GPU cache without paging \\
-Inference latency (Full 134-turbine farm) & 4.12 ms (GPU) / 21.8 ms (IPC CPU) & Well below typical 1-second SCADA pre-dispatch deadline \\
+Model parameter count & 110,012 parameters & Single integrated checkpoint ($\sim$430 KB in float32, verified) \\
+Storage footprint & 430 KB & Resides in memory/cache without paging \\
+Inference latency & [Quarantined] & Theoretical proxy (4.12 ms GPU / 21.8 ms CPU) isolated pending RTU testbed \\
+Runtime RAM residency & [Quarantined] & Unprofiled runtime allocation isolated pending memory profiler audit \\
 Dispatch interval & 10 minutes (600 seconds) & Standard IEC 61400-25 SCADA logging period \\
-Computational duty cycle & 0.00069\% (GPU) / 0.0036\% (CPU) & Processor remains idle for $>$ 99.99\% of dispatch period \\
-Deployment architecture & Central substation SCADA/EMS & Co-located with existing plant supervisory server (Incremental CAPEX = £0) \\
-Workstation power draw (24/7 base) & $\sim$100 W (industrial rackmount IPC) & Standard substation Advantech / Siemens industrial PC \\
-Annual electricity consumption & 876 kWh / year (entire plant) & $0.10\text{ kW} \times 8760\text{ h/year}$ continuous operation \\
-Annual electricity cost (commercial rate) & £219.00 / year (entire 134-turbine farm) & Based on UK commercial tariff of £0.25 / kWh \\
-Annual compute cost per turbine & £1.63 / turbine-year & Negligible overhead across 134-turbine fleet \\
-Kelmarsh price-weighted reduction vs compute & +£3,190 / turb-yr vs £1.63 compute & Compute cost is 0.051\% of exploratory price-weighted margin \\
-Penmanshiel price-weighted reduction vs compute & +£5,540 / turb-yr vs £1.63 compute & Compute cost is 0.029\% of exploratory price-weighted margin \\
+Deployment architecture & Central substation SCADA/EMS & Co-located with existing plant supervisory server \\
+Energy / Cashflow Metrics & [Quarantined] & Commercial cashflow (£/GBP) isolated; evaluated via engineering MWh \\
 \bottomrule
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize Hardware audit based on standard wind farm substation industrial PCs (e.g. Advantech IPC-610 / Siemens SIMATIC IPC647E). Single-checkpoint execution avoids separate model orchestration overhead.
+\footnotesize Single-checkpoint execution avoids separate model orchestration overhead. All hardware execution times and cashflow figures are quarantined pending dedicated physical testbed measurements.
 \end{table}
 ```
 

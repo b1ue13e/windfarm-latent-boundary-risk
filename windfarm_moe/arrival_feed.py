@@ -174,11 +174,12 @@ class UnifiedArrivalDataset(Dataset):
             x_hist = item["x_hist"].clone()
             fmask_hist = item["feature_mask_hist"].clone()
             H = x_hist.shape[0]
+            eff_lag = min(lag, H - 1)
 
             for ch, feat_idx in self.feat_indices.items():
                 if self.degradation.history_policy == "stalled":
                     # Sample-and-hold: replicate reading from t - lag to all subsequent unarrived steps
-                    stalled_step = max(0, H - 1 - lag)
+                    stalled_step = max(0, H - 1 - eff_lag)
                     last_known_val = x_hist[stalled_step:stalled_step + 1, :, feat_idx]
                     last_known_mask = fmask_hist[stalled_step:stalled_step + 1, :, feat_idx]
                     for step_idx in range(stalled_step + 1, H):
@@ -187,13 +188,13 @@ class UnifiedArrivalDataset(Dataset):
                 elif self.degradation.history_policy == "shifted":
                     # Shift entire history backwards by lag steps
                     vals = x_hist[:, :, feat_idx]  # (H, N)
-                    head = vals[:1, :].repeat(lag, 1)
-                    shifted = torch.cat([head, vals[:-lag, :]], dim=0)
+                    head = vals[:1, :].repeat(eff_lag, 1)
+                    shifted = torch.cat([head, vals[:-eff_lag, :]], dim=0)
                     x_hist[:, :, feat_idx] = shifted
 
                     mvals = fmask_hist[:, :, feat_idx]
-                    mhead = mvals[:1, :].repeat(lag, 1)
-                    mshifted = torch.cat([mhead, mvals[:-lag, :]], dim=0)
+                    mhead = mvals[:1, :].repeat(eff_lag, 1)
+                    mshifted = torch.cat([mhead, mvals[:-eff_lag, :]], dim=0)
                     fmask_hist[:, :, feat_idx] = mshifted
 
             item["x_hist"] = x_hist
@@ -204,17 +205,17 @@ class UnifiedArrivalDataset(Dataset):
                 e_hist = item["edge_index_hist"].clone()
                 w_hist = item["edge_weight_hist"].clone()
                 if self.degradation.history_policy == "stalled":
-                    stalled_step = max(0, H - 1 - lag)
+                    stalled_step = max(0, H - 1 - eff_lag)
                     last_e = e_hist[stalled_step:stalled_step + 1]
                     last_w = w_hist[stalled_step:stalled_step + 1]
                     for step_idx in range(stalled_step + 1, H):
                         e_hist[step_idx] = last_e[0]
                         w_hist[step_idx] = last_w[0]
                 elif self.degradation.history_policy == "shifted":
-                    e_head = e_hist[:1].repeat(lag, 1, 1)
-                    e_hist = torch.cat([e_head, e_hist[:-lag]], dim=0)
-                    w_head = w_hist[:1].repeat(lag, 1, 1)
-                    w_hist = torch.cat([w_head, w_hist[:-lag]], dim=0)
+                    e_head = e_hist[:1].repeat(eff_lag, 1, 1)
+                    e_hist = torch.cat([e_head, e_hist[:-eff_lag]], dim=0)
+                    w_head = w_hist[:1].repeat(eff_lag, 1, 1)
+                    w_hist = torch.cat([w_head, w_hist[:-eff_lag]], dim=0)
                 item["edge_index_hist"] = e_hist
                 item["edge_weight_hist"] = w_hist
 

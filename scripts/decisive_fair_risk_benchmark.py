@@ -188,11 +188,16 @@ def fit_5bin_quantiles(
     n_bins: int = N_BINS,
     tau: float = CRITICAL_FRACTILE,
 ) -> Tuple[Dict[int, float], np.ndarray, float]:
-    """Fit 5 quintile reserve values on validation active boundary cells."""
+    """Fit 5 quintile reserve values on validation active boundary cells with robust fallback."""
     v_s_act = val_shortfall[val_active]
     v_sc_act = val_score[val_active]
 
     global_reserve = float(np.quantile(v_s_act, tau)) if len(v_s_act) > 0 else 0.0
+    if global_reserve <= 0.0:
+        # Robust fallback: if active boundary band has sparse positive shortfalls,
+        # use the 90th percentile of overall positive shortfalls to guarantee a non-zero floor
+        val_pos = val_shortfall[val_shortfall > 0]
+        global_reserve = float(np.quantile(val_pos, tau)) if len(val_pos) > 0 else 1.0
 
     quantiles = np.linspace(0.0, 1.0, n_bins + 1)[1:-1]
     edges = np.quantile(v_sc_act, quantiles) if len(v_sc_act) > n_bins else np.zeros(n_bins - 1)
@@ -204,7 +209,8 @@ def fit_5bin_quantiles(
         if len(sub_s) < 30:
             reserves[b] = global_reserve
         else:
-            reserves[b] = float(np.quantile(sub_s, tau))
+            q_val = float(np.quantile(sub_s, tau))
+            reserves[b] = max(q_val, 0.05 * global_reserve) if q_val <= 0.0 else q_val
 
     return reserves, edges, global_reserve
 
@@ -228,31 +234,38 @@ def find_iso_reliability_multiplier(
     raw_reserve: np.ndarray,
     active: np.ndarray,
     target_violation: float = TARGET_VIOLATION,
-) -> float:
-    """Finds exact scaling multiplier gamma such that violation_rate <= target_violation."""
+) -> Tuple[float, float, np.ndarray]:
+    """Finds exact scaling multiplier gamma and minimal additive delta such that violation_rate <= target_violation."""
     valid = active & np.isfinite(shortfall) & np.isfinite(raw_reserve)
     s_act = shortfall[valid]
     r_act = raw_reserve[valid]
 
     if len(s_act) == 0:
-        return 1.0
+        return 1.0, 0.0, raw_reserve
 
     raw_viol = float(np.mean(s_act > r_act))
     if raw_viol <= target_violation:
-        # Check if we can scale down while staying compliant
-        gammas = np.linspace(0.2, 1.0, 81)
+        # Check if we can scale down while staying strictly compliant
+        gammas = np.linspace(0.05, 1.0, 96)
         for g in gammas:
             if float(np.mean(s_act > g * r_act)) <= target_violation:
-                return float(g)
-        return 1.0
+                return float(g), 0.0, raw_reserve * float(g)
+        return 1.0, 0.0, raw_reserve
 
-    # Scale up search
-    gammas = np.linspace(1.0, 5.0, 401)
+    # Scale up search over broad grid [1.0, 15.0]
+    gammas = np.linspace(1.0, 15.0, 281)
     for g in gammas:
         if float(np.mean(s_act > g * r_act)) <= target_violation:
-            return float(g)
+            return float(g), 0.0, raw_reserve * float(g)
 
-    return 5.0
+    # Conformal additive fallback if multiplicative scaling is blocked by flat zero cells
+    best_g = 5.0
+    scaled_r = raw_reserve * best_g
+    scaled_r_act = scaled_r[valid]
+    excess = np.maximum(s_act - scaled_r_act, 0.0)
+    delta = float(np.quantile(excess, 1.0 - target_violation))
+    iso_res = np.maximum(scaled_r + delta, 0.0)
+    return best_g, float(delta), iso_res
 
 
 # ==============================================================================
@@ -708,10 +721,10 @@ def run_decisive_benchmark_for_seed(
         val_reserves_raw["Joint Dense"] = apply_5bin_policy(val_dense["prob"].reshape(-1), dense_reserves, dense_edges)
 
     # Validation-calibrated multipliers (target <= 10.0%)
-    val_iso_multipliers = {
-        m_name: find_iso_reliability_multiplier(val_s, v_r, val_active, target_violation=TARGET_VIOLATION)
-        for m_name, v_r in val_reserves_raw.items()
-    }
+    val_iso_multipliers = {}
+    for m_name, v_r in val_reserves_raw.items():
+        g, _, _ = find_iso_reliability_multiplier(val_s, v_r, val_active, target_violation=TARGET_VIOLATION)
+        val_iso_multipliers[m_name] = g
 
     # 5. Evaluate Across 4 Standardized Ingress Regimes
     regimes = {
@@ -773,13 +786,14 @@ def run_decisive_benchmark_for_seed(
             raw_reserves["Joint Dense"] = apply_5bin_policy(test_dense["prob"].reshape(-1), dense_reserves, dense_edges)
 
         # Compute True Test Iso-Reliability Multipliers (enforcing strictly violation_rate <= 10.0%)
-        test_iso_multipliers = {
-            m: find_iso_reliability_multiplier(test_s, raw_reserves[m], test_active, target_violation=TARGET_VIOLATION)
-            for m in raw_reserves
-        }
-
-        # Levelled Reserves under Strict Iso-Reliability
-        iso_reserves = {m: raw_reserves[m] * test_iso_multipliers[m] for m in raw_reserves}
+        test_iso_multipliers = {}
+        test_iso_deltas = {}
+        iso_reserves = {}
+        for m in raw_reserves:
+            g, d, r_iso = find_iso_reliability_multiplier(test_s, raw_reserves[m], test_active, target_violation=TARGET_VIOLATION)
+            test_iso_multipliers[m] = g
+            test_iso_deltas[m] = d
+            iso_reserves[m] = r_iso
 
         model_probs = {
             "Continuous Physical Quantile": None,
@@ -805,6 +819,7 @@ def run_decisive_benchmark_for_seed(
                 "model": m_name,
                 "gamma_val": round(val_iso_multipliers.get(m_name, 1.0), 3),
                 "gamma_iso_test": round(test_iso_multipliers[m_name], 3),
+                "delta_iso_test": round(test_iso_deltas[m_name], 3),
                 **metrics,
             }
             seed_metric_rows.append(row)
@@ -849,6 +864,10 @@ def evaluate_route_verdict(agg_df: pd.DataFrame) -> Dict[str, Any]:
     phys_clean_cost = clean_agg.loc["Continuous Physical Quantile", ("total_cost", "mean")]
     gbdt_clean_cost = clean_agg.loc["Missingness-Aware GBDT", ("total_cost", "mean")]
 
+    phys_delay_cost = delay_agg.loc["Continuous Physical Quantile", ("total_cost", "mean")] if "Continuous Physical Quantile" in delay_agg.index else float("inf")
+    seq_delay_cost = delay_agg.loc["Sequence Classifier", ("total_cost", "mean")] if "Sequence Classifier" in delay_agg.index else float("inf")
+    frozen_delay_cost = delay_agg.loc["Frozen Backbone + Residual Quantile", ("total_cost", "mean")] if "Frozen Backbone + Residual Quantile" in delay_agg.index else float("inf")
+
     routed_clean_recall = clean_agg.loc["Joint Routed", ("event_recall", "mean")] if ("event_recall", "mean") in clean_agg.columns else 0.8
 
     # Criterion 1: Dense vs MoE
@@ -864,15 +883,16 @@ def evaluate_route_verdict(agg_df: pd.DataFrame) -> Dict[str, Any]:
     # Criterion 3: Recognition vs Decision
     recognition_better_decision_no = (routed_clean_recall > 0.70) and (routed_clean_cost >= phys_clean_cost)
 
-    # Criterion 4: Cross-Farm Decision Increment
-    cross_farm_increment = (routed_clean_cost < phys_clean_cost) and (routed_delay_cost < delay_agg.loc["Continuous Physical Quantile", ("total_cost", "mean")])
+    # Criterion 4: Cross-Farm Decision Increment (MoE must strictly beat simple models and frozen representation across clean & delay)
+    cross_farm_increment = (routed_clean_cost < phys_clean_cost) and (routed_delay_cost < phys_delay_cost) and (routed_delay_cost <= frozen_delay_cost)
 
-    recommended_route = "Route 4: IEEE TSTE Full Submission"
     route_rationale = []
-
-    if simple_quantile_wins:
+    if cross_farm_increment and not simple_quantile_wins:
+        recommended_route = "Route 4: Firm IEEE TSTE Submission (Cross-Farm Decision Increment Confirmed)"
+        route_rationale.append("Boundary-supervised representation maintains statistically significant decision increment under identical arrival feed and iso-reliability across all tested regimes.")
+    elif simple_quantile_wins:
         recommended_route = "Route 2: Stop Claiming Method Advantage, Refocus on Physical Failure Laws"
-        route_rationale.append("Simple quantile baseline (Physical or GBDT) outperforms deep representation under identical arrival feed and iso-reliability.")
+        route_rationale.append("Simple quantile baseline (Physical or GBDT) outperforms deep representation under clean arrival feed and iso-reliability.")
     elif dense_vs_moe_verdict:
         recommended_route = "Route 1: Pivot to 'Boundary-Supervised Risk Representation' (Adopt Simple Dense Implementation)"
         route_rationale.append(f"Joint Dense performs equivalently to MoE (Cost ratio = {dense_cost_ratio:.3f}). Architectural complexity of MoE routing is unnecessary.")
@@ -880,8 +900,8 @@ def evaluate_route_verdict(agg_df: pd.DataFrame) -> Dict[str, Any]:
         recommended_route = "Route 3: Refocus as Diagnostic / Early-Warning Paper (Drop Economic Cost Narrative)"
         route_rationale.append("Classification recall is high, but decision cost regret does not improve over physical baselines under iso-reliability.")
     else:
-        recommended_route = "Route 4: Firm IEEE TSTE Submission (Cross-Farm Decision Increment Confirmed)"
-        route_rationale.append("Boundary-supervised representation maintains statistically significant decision increment under identical arrival feed and iso-reliability.")
+        recommended_route = "Route 2: Stop Claiming Method Advantage, Refocus on Physical Failure Laws"
+        route_rationale.append("MoE routing demonstrates no consistent cross-farm decision advantage over simpler physical, sequence, or frozen representations under iso-reliability.")
 
     return {
         "recommended_route": recommended_route,
@@ -901,7 +921,7 @@ def main():
     parser.add_argument("--device", default="cuda:0" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--lead-step", type=int, default=0, help="0 = 10 min horizon")
     parser.add_argument("--n-boot", type=int, default=1000)
-    parser.add_argument("--output-dir", default="artifacts/decisive_benchmark_v1/risk_layer_benchmark")
+    parser.add_argument("--output-dir", default="artifacts/clean_evidence_v3/decisive_experiment/risk_layer_benchmark")
     args = parser.parse_args()
 
     out_dir = Path(args.output_dir) / args.farm
@@ -992,7 +1012,7 @@ def main():
     md_report = [
         f"# Decisive Fair Risk Benchmark Report: {args.farm.upper()}",
         f"**Date / Time**: {time.strftime('%Y-%m-%d %H:%M:%S')}",
-        f"**Benchmark Output Version**: `artifacts/decisive_benchmark_v1`",
+        f"**Benchmark Output Version**: `artifacts/clean_evidence_v3/decisive_experiment`",
         f"**Delivery Horizon**: Lead Step {args.lead_step + 1} (10-minute dispatch delivery)",
         f"**Target Reliability**: Strict Iso-Reliability Violation Rate <= {TARGET_VIOLATION * 100.0:.1f}% (Critical Fractile q* = {CRITICAL_FRACTILE:.2f})",
         "",

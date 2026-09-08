@@ -64,7 +64,7 @@ def merge_seeds(farm: str, base_dir: Path, parts_dirs: list[Path], out_dir: Path
     md_report = [
         f"# Decisive Fair Risk Benchmark Report: {farm.upper()}",
         f"**Date / Time**: {time.strftime('%Y-%m-%d %H:%M:%S')}",
-        f"**Benchmark Output Version**: `artifacts/decisive_benchmark_v1`",
+        f"**Benchmark Output Version**: `artifacts/clean_evidence_v3/decisive_experiment`",
         f"**Evaluated Seeds**: {seeds_list} (Total: {len(seeds_list)} seeds)",
         f"**Delivery Horizon**: Lead Step 1 (10-minute dispatch delivery)",
         f"**Target Reliability**: Strict Iso-Reliability Violation Rate <= {TARGET_VIOLATION * 100.0:.1f}% (Critical Fractile q* = {CRITICAL_FRACTILE:.2f})",
@@ -109,12 +109,20 @@ def merge_seeds(farm: str, base_dir: Path, parts_dirs: list[Path], out_dir: Path
 
 
 if __name__ == "__main__":
-    base = Path("artifacts/decisive_benchmark_v1/risk_layer_benchmark/wtb")
-    parts = [
-        Path("artifacts/decisive_benchmark_v1/risk_layer_benchmark/wtb_parts/seed202/wtb"),
-        Path("artifacts/decisive_benchmark_v1/risk_layer_benchmark/wtb_parts/seed203/wtb"),
-        Path("artifacts/decisive_benchmark_v1/risk_layer_benchmark/wtb_parts/seed204/wtb"),
-        Path("artifacts/decisive_benchmark_v1/risk_layer_benchmark/wtb_parts/seed205/wtb"),
-    ]
-    out = Path("artifacts/decisive_benchmark_v1/risk_layer_benchmark/wtb")
-    merge_seeds("wtb", base, parts, out)
+    import argparse
+    parser = argparse.ArgumentParser(description="Merge multi-seed benchmark results")
+    parser.add_argument("--farm", default="wtb", choices=["wtb", "kelmarsh", "penmanshiel"])
+    parser.add_argument("--output-dir", default="artifacts/clean_evidence_v3/decisive_experiment/risk_layer_benchmark")
+    args = parser.parse_args()
+
+    farm = args.farm
+    base = Path(f"{args.output_dir}/{farm}")
+    if farm == "wtb":
+        parts = [
+            Path(f"artifacts/decisive_benchmark_v1/risk_layer_benchmark/wtb_parts/seed{s}/wtb")
+            for s in [202, 203, 204, 205]
+        ]
+    else:
+        parts = []
+    out = Path(f"{args.output_dir}/{farm}")
+    merge_seeds(farm, base, parts, out)
