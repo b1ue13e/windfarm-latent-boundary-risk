@@ -240,7 +240,7 @@ def main() -> None:
 
     # Save isolation policy manifest
     isolation_manifest = {
-        "benchmark_version": "decisive_benchmark_v1",
+        "benchmark_version": "clean_evidence_v3",
         "evidence_base_status": "verified",
         "unsourced_hardware_metrics_quarantined": [
             "4.12 ms GPU full-farm inference latency (isolated: theoretical proxy unverified on physical RTU)",

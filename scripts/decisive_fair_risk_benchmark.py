@@ -243,23 +243,31 @@ def find_iso_reliability_multiplier(
     if len(s_act) == 0:
         return 1.0, 0.0, raw_reserve
 
+    # 1. Baseline violation rate at zero reserve
+    zero_reserve_viol = float(np.mean(s_act > 0.0))
+    if zero_reserve_viol <= target_violation:
+        # The empirical frequency of positive shortfall is ALREADY below target_violation.
+        # Target violation cannot be reached by scaling down (even at g=0, viol <= target_violation).
+        # Retain the calibrated reserve without arbitrary downward truncation.
+        return 1.0, 0.0, raw_reserve
+
+    # 2. If raw reserve is already compliant (viol <= target_violation), search minimal scaling factor
     raw_viol = float(np.mean(s_act > r_act))
     if raw_viol <= target_violation:
-        # Check if we can scale down while staying strictly compliant
-        gammas = np.linspace(0.05, 1.0, 96)
+        gammas = np.linspace(0.05, 1.0, 191)
         for g in gammas:
             if float(np.mean(s_act > g * r_act)) <= target_violation:
                 return float(g), 0.0, raw_reserve * float(g)
         return 1.0, 0.0, raw_reserve
 
-    # Scale up search over broad grid [1.0, 15.0]
+    # 3. If raw reserve violates target (viol > target_violation), scale up
     gammas = np.linspace(1.0, 15.0, 281)
     for g in gammas:
         if float(np.mean(s_act > g * r_act)) <= target_violation:
             return float(g), 0.0, raw_reserve * float(g)
 
-    # Conformal additive fallback if multiplicative scaling is blocked by flat zero cells
-    best_g = 5.0
+    # 4. Conformal additive fallback if multiplicative scaling is blocked by flat zero cells
+    best_g = float(gammas[-1])
     scaled_r = raw_reserve * best_g
     scaled_r_act = scaled_r[valid]
     excess = np.maximum(s_act - scaled_r_act, 0.0)
@@ -850,25 +858,43 @@ def run_decisive_benchmark_for_seed(
 # Route Decision Dispatcher (Step 5)
 # ==============================================================================
 
+def _get_stat(df: pd.DataFrame, model: str, col: str, stat: str = "mean") -> Optional[float]:
+    if model not in df.index:
+        return None
+    if isinstance(df.columns, pd.MultiIndex):
+        if (col, stat) in df.columns:
+            val = df.loc[model, (col, stat)]
+            return float(val) if pd.notna(val) else None
+    else:
+        for cand in [(col, stat), f"{col}_{stat}", col, str((col, stat))]:
+            if cand in df.columns:
+                val = df[cand].loc[model]
+                return float(val) if pd.notna(val) else None
+    return None
+
+
 def evaluate_route_verdict(agg_df: pd.DataFrame) -> Dict[str, Any]:
     """Evaluates the 4 decision criteria specified in the problem statement."""
-    clean_agg = agg_df[agg_df["regime"] == "clean"].set_index("model")
-    delay_agg = agg_df[agg_df["regime"] == "delay6"].set_index("model")
+    reg_col = "regime" if "regime" in agg_df.columns else ("regime", "")
+    mod_col = "model" if "model" in agg_df.columns else ("model", "")
 
-    routed_clean_cost = clean_agg.loc["Joint Routed", ("total_cost", "mean")] if "Joint Routed" in clean_agg.index else 1.0
-    routed_delay_cost = delay_agg.loc["Joint Routed", ("total_cost", "mean")] if "Joint Routed" in delay_agg.index else 1.0
+    clean_agg = agg_df[agg_df[reg_col] == "clean"].set_index(mod_col)
+    delay_agg = agg_df[agg_df[reg_col] == "delay6"].set_index(mod_col)
 
-    dense_clean_cost = clean_agg.loc["Joint Dense", ("total_cost", "mean")] if "Joint Dense" in clean_agg.index else None
-    dense_delay_cost = delay_agg.loc["Joint Dense", ("total_cost", "mean")] if "Joint Dense" in delay_agg.index else None
+    routed_clean_cost = _get_stat(clean_agg, "Joint Routed", "total_cost") or 1.0
+    routed_delay_cost = _get_stat(delay_agg, "Joint Routed", "total_cost") or 1.0
 
-    phys_clean_cost = clean_agg.loc["Continuous Physical Quantile", ("total_cost", "mean")]
-    gbdt_clean_cost = clean_agg.loc["Missingness-Aware GBDT", ("total_cost", "mean")]
+    dense_clean_cost = _get_stat(clean_agg, "Joint Dense", "total_cost")
+    dense_delay_cost = _get_stat(delay_agg, "Joint Dense", "total_cost")
 
-    phys_delay_cost = delay_agg.loc["Continuous Physical Quantile", ("total_cost", "mean")] if "Continuous Physical Quantile" in delay_agg.index else float("inf")
-    seq_delay_cost = delay_agg.loc["Sequence Classifier", ("total_cost", "mean")] if "Sequence Classifier" in delay_agg.index else float("inf")
-    frozen_delay_cost = delay_agg.loc["Frozen Backbone + Residual Quantile", ("total_cost", "mean")] if "Frozen Backbone + Residual Quantile" in delay_agg.index else float("inf")
+    phys_clean_cost = _get_stat(clean_agg, "Continuous Physical Quantile", "total_cost") or float("inf")
+    gbdt_clean_cost = _get_stat(clean_agg, "Missingness-Aware GBDT", "total_cost") or float("inf")
 
-    routed_clean_recall = clean_agg.loc["Joint Routed", ("event_recall", "mean")] if ("event_recall", "mean") in clean_agg.columns else 0.8
+    phys_delay_cost = _get_stat(delay_agg, "Continuous Physical Quantile", "total_cost") or float("inf")
+    seq_delay_cost = _get_stat(delay_agg, "Sequence Classifier", "total_cost") or float("inf")
+    frozen_delay_cost = _get_stat(delay_agg, "Frozen Backbone + Residual Quantile", "total_cost") or float("inf")
+
+    routed_clean_recall = _get_stat(clean_agg, "Joint Routed", "event_recall") or 0.8
 
     # Criterion 1: Dense vs MoE
     dense_vs_moe_verdict = False

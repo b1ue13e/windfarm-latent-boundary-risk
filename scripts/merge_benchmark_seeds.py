@@ -60,7 +60,7 @@ def merge_seeds(farm: str, base_dir: Path, parts_dirs: list[Path], out_dir: Path
     with open(out_dir / "route_dispatch_verdict.json", "w", encoding="utf-8") as f:
         json.dump(verdict, f, indent=2)
 
-    seeds_list = sorted(df_metrics["seed"].unique())
+    seeds_list = [int(s) for s in sorted(df_metrics["seed"].unique())]
     md_report = [
         f"# Decisive Fair Risk Benchmark Report: {farm.upper()}",
         f"**Date / Time**: {time.strftime('%Y-%m-%d %H:%M:%S')}",
@@ -118,10 +118,14 @@ if __name__ == "__main__":
     farm = args.farm
     base = Path(f"{args.output_dir}/{farm}")
     if farm == "wtb":
-        parts = [
-            Path(f"artifacts/decisive_benchmark_v1/risk_layer_benchmark/wtb_parts/seed{s}/wtb")
-            for s in [202, 203, 204, 205]
-        ]
+        parts = []
+        for s in [202, 203, 204, 205]:
+            p1 = Path(f"{args.output_dir}/wtb_parts/seed{s}/wtb")
+            p2 = Path(f"artifacts/decisive_benchmark_v1/risk_layer_benchmark/wtb_parts/seed{s}/wtb")
+            if p1.exists():
+                parts.append(p1)
+            elif p2.exists():
+                parts.append(p2)
     else:
         parts = []
     out = Path(f"{args.output_dir}/{farm}")
