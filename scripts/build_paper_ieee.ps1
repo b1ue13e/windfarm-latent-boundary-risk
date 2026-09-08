@@ -78,7 +78,8 @@ if (Test-Path $earlyWarningConsequenceScript) {
 }
 
 $modularClassifierReserveScript = Join-Path $root "scripts\build_modular_classifier_reserve_baseline.py"
-if (Test-Path $modularClassifierReserveScript) {
+$modularSummary = Join-Path $root "artifacts\modular_classifier_reserve_control\modular_classifier_reserve_summary.csv"
+if ((Test-Path $modularClassifierReserveScript) -and (-not (Test-Path $modularSummary))) {
     & python $modularClassifierReserveScript
     if ($LASTEXITCODE -ne 0) { throw "Modular classifier reserve control generation failed." }
 }
