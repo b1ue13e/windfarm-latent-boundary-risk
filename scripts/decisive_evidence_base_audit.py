@@ -151,6 +151,14 @@ def audit_quantile_targets() -> Dict[str, Any]:
 
 
 def main() -> None:
+    import argparse
+    parser = argparse.ArgumentParser(description="Evidence base audit")
+    parser.add_argument("--output-dir", default="artifacts/decisive_benchmark_v1/evidence_base")
+    args = parser.parse_args()
+
+    out_dir = REPO_ROOT / args.output_dir
+    out_dir.mkdir(parents=True, exist_ok=True)
+
     print("=== Step 1: Auditing Evidence Base ===", flush=True)
 
     missingness_rows = []
@@ -176,8 +184,8 @@ def main() -> None:
         "pitch_mppt_zero_deg_pct": r["pitch_mppt_fraction_zero_deg"],
         "pitch_active_pitching_pct": r["pitch_active_fraction_pitching"],
     } for r in missingness_rows])
-    m_df.to_csv(OUT_DIR / "true_missingness_audit.csv", index=False)
-    with open(OUT_DIR / "true_missingness_audit.json", "w", encoding="utf-8") as f:
+    m_df.to_csv(out_dir / "true_missingness_audit.csv", index=False)
+    with open(out_dir / "true_missingness_audit.json", "w", encoding="utf-8") as f:
         json.dump(missingness_rows, f, indent=2)
 
     # Save split audit
@@ -189,16 +197,16 @@ def main() -> None:
         "strict_isolation_passed": r["strict_isolation_passed"],
         "has_calendar_time_index": r["has_calendar_time_index"],
     } for r in split_rows])
-    s_df.to_csv(OUT_DIR / "temporal_split_audit.csv", index=False)
+    s_df.to_csv(out_dir / "temporal_split_audit.csv", index=False)
 
     # Save quantile targets
     q_res = audit_quantile_targets()
-    with open(OUT_DIR / "quantile_target_audit.json", "w", encoding="utf-8") as f:
+    with open(out_dir / "quantile_target_audit.json", "w", encoding="utf-8") as f:
         json.dump(q_res, f, indent=2)
 
     # Save isolation policy manifest
     isolation_manifest = {
-        "benchmark_version": "decisive_experiment_v3",
+        "benchmark_version": "decisive_benchmark_v1",
         "evidence_base_status": "verified",
         "unsourced_hardware_metrics_removed": [
             "4.12 ms hardware dispatch claim (removed as unmeasured on physical RTU)",
@@ -218,14 +226,14 @@ def main() -> None:
         ],
         "quantile_formula_verified": "q*(rho) = 1 - 1/rho (exactly 0.90 for rho=10.0)",
     }
-    with open(OUT_DIR / "isolation_manifest.json", "w", encoding="utf-8") as f:
+    with open(out_dir / "isolation_manifest.json", "w", encoding="utf-8") as f:
         json.dump(isolation_manifest, f, indent=2)
 
     print("\n--- Missingness Audit Summary ---")
     print(m_df.to_string())
     print("\n--- Temporal Split Isolation Summary ---")
     print(s_df.to_string())
-    print(f"\nWrote artifacts to {OUT_DIR}", flush=True)
+    print(f"\nWrote artifacts to {out_dir}", flush=True)
 
 
 if __name__ == "__main__":
