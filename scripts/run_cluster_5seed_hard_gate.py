@@ -229,6 +229,10 @@ def verify_and_aggregate_5seeds(
         print("\n[HARD GATES PASSED] All required seeds verified complete and uncorrupted.")
 
     # 1. Save combined raw results
+    if "farm" in combined_df.columns:
+        combined_df["farm"] = combined_df["farm"].fillna("wtb")
+    else:
+        combined_df["farm"] = "wtb"
     combined_df.to_csv(output_dir / "results_by_seed.csv", index=False)
 
     # 2. Compute group aggregate summary (mean and std across seeds)

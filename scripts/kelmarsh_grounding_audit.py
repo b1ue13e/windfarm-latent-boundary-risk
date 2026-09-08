@@ -99,11 +99,10 @@ def main() -> None:
         "grid_seconds": GRID_SECONDS,
         "reading": (
             "The Status confirming stream is event-driven with second-level timestamps: "
-            "nearly every event falls between 10-minute turbine-data grid points, so the "
-            "10-minute channel cannot confirm the event time at issue time; pitch-system "
-            "status arrives as a separate event stream; and the archive export timestamp "
-            "post-dates the data interval by years. This is the real-world counterpart of "
-            "the delayed/incomplete confirming-stream scenario used in the paper."
+            "nearly every event (99.6%) falls between 10-minute turbine-data grid points, "
+            "demonstrating that confirming-stream SCADA events arrive asynchronously with respect to "
+            "regular dispatch intervals. In our benchmark, this motivates controlled multi-step "
+            "transmission latency stress tests (10-60 min) to evaluate operating reserve robustness under telemetry bottlenecks."
         ),
     }
     (out_dir / "kelmarsh_grounding_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
