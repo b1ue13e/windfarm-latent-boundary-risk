@@ -72,8 +72,15 @@ def _forward_collect(model, loader, bundle, device, degrade: dict[str, Any] | No
     physics_names = list(bundle.metadata.get("physics_names", []))
     wspd_feat = feature_names.index("Wspd") if "Wspd" in feature_names else -1
     pab_feat = feature_names.index("Pab_mean") if "Pab_mean" in feature_names else -1
+    patv_feat = -1
+    for cand in ("Patv_hist", "Patv"):
+        if cand in feature_names:
+            patv_feat = feature_names.index(cand)
+            break
+    degrade_feat_indices = [idx for idx in (wspd_feat, pab_feat, patv_feat) if idx >= 0]
     wspd_phy = physics_names.index("Wspd") if "Wspd" in physics_names else 0
     pab_phy = physics_names.index("Pab_mean") if "Pab_mean" in physics_names else 1
+    patv_phy = physics_names.index("Patv") if "Patv" in physics_names else -1
     delay = int(degrade.get("delay", 0)) if degrade else 0
     history_delay = bool(degrade.get("history_delay", True)) if degrade else True
     noise = degrade.get("noise") if degrade else None
@@ -96,10 +103,10 @@ def _forward_collect(model, loader, bundle, device, degrade: dict[str, Any] | No
             lag_idx = np.clip(anchor_idx - delay, 0, raw_physics.shape[0] - 1)
             anchor_physics[:, :, wspd_phy] = torch.from_numpy(std_physics[lag_idx, :, wspd_phy]).float()
             anchor_physics[:, :, pab_phy] = torch.from_numpy(std_physics[lag_idx, :, pab_phy]).float()
+            if patv_phy >= 0:
+                anchor_physics[:, :, patv_phy] = torch.from_numpy(std_physics[lag_idx, :, patv_phy]).float()
             if history_delay and delay > 0:
-                for idx in (wspd_feat, pab_feat):
-                    if idx < 0:
-                        continue
+                for idx in degrade_feat_indices:
                     vals = x_hist[..., idx]  # (B, H, N)
                     head = vals[:, :1, :].repeat(1, delay, 1)
                     shifted = torch.cat([head, vals[:, :-delay, :]], dim=1)
