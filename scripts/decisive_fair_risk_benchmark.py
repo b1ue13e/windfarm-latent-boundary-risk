@@ -34,9 +34,9 @@ os.environ["OPENBLAS_NUM_THREADS"] = "2"
 os.environ["PYTHONUNBUFFERED"] = "1"
 
 if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(line_buffering=True)
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
 if hasattr(sys.stderr, "reconfigure"):
-    sys.stderr.reconfigure(line_buffering=True)
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
 
 import argparse
 import json
@@ -280,26 +280,15 @@ def compute_decisive_metrics(
     violation = (s > r).astype(np.float64)
     pinball = pinball_loss_np(s, r, tau=tau)
 
-    # Physical alarm threshold: use median shortfall of pitching events as benchmark
-    pitch_valid = valid & (regime.reshape(-1) == 2)
-    if high_risk_reserve_thresh is None:
-        if pitch_valid.sum() > 0:
-            high_risk_reserve_thresh = float(np.median(s[pitch_valid[valid]]))
-        else:
-            high_risk_reserve_thresh = float(np.median(s)) if len(s) > 0 else 0.0
+    # Event Detection Recall & False Alarm Rate on active cells
+    # Region 2 MPPT (reg == 1, unpitched) vs Region 3 pitching (reg == 2, pitched)
+    reg = regime.reshape(-1)[valid]
+    mppt_cells = (reg == 1)
+    pitch_cells = (reg == 2)
 
-    # False Alarm Rate during Region 2 MPPT (regime == 1, unpitched)
-    mppt_valid = valid & (regime.reshape(-1) == 1)
-    if mppt_valid.sum() > 0:
-        far = float((reserve[mppt_valid] >= high_risk_reserve_thresh).mean())
-    else:
-        far = 0.0
-
-    # Event Detection Recall (regime == 2, pitching active)
-    if pitch_valid.sum() > 0:
-        recall = float((reserve[pitch_valid] >= high_risk_reserve_thresh).mean())
-    else:
-        recall = 1.0
+    r_thresh = float(np.median(r)) if len(r) > 0 else 0.0
+    far = float((r[mppt_cells] > r_thresh).mean()) if mppt_cells.sum() > 0 else 0.0
+    recall = float((r[pitch_cells] > r_thresh).mean()) if pitch_cells.sum() > 0 else 1.0
 
     # Probabilistic Calibration (Brier Score and ECE)
     brier_score = 0.0
@@ -1018,9 +1007,9 @@ def main():
         mod = row[("model", "")]
         gamma = f"{row[('gamma_iso_test', 'mean')]:.2f}"
         viol = f"{row[('violation_rate', 'mean')]*100.0:.1f}%"
-        res = f"{row[('reserve_mwh', 'mean')]:.2f} ± {row[('reserve_mwh', 'std')]:.2f}"
-        sh = f"{row[('shortage_mwh', 'mean')]:.2f} ± {row[('shortage_mwh', 'std')]:.2f}"
-        cost = f"{row[('total_cost', 'mean')]:.1f} ± {row[('total_cost', 'std')]:.1f}"
+        res = f"{row[('reserve_mwh', 'mean')]:.2f} +/- {row[('reserve_mwh', 'std')]:.2f}"
+        sh = f"{row[('shortage_mwh', 'mean')]:.2f} +/- {row[('shortage_mwh', 'std')]:.2f}"
+        cost = f"{row[('total_cost', 'mean')]:.1f} +/- {row[('total_cost', 'std')]:.1f}"
         far = f"{row[('false_alarm_rate', 'mean')]*100.0:.1f}%"
         rec = f"{row[('event_recall', 'mean')]*100.0:.1f}%"
         md_report.append(f"| {reg} | {mod} | {gamma} | {viol} | {res} | {sh} | {cost} | {far} | {rec} |")
