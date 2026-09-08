@@ -3,9 +3,9 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+$repoRoot = Split-Path -Parent $PSScriptRoot
 
 if ([string]::IsNullOrWhiteSpace($PackageRoot)) {
-    $repoRoot = Split-Path -Parent $PSScriptRoot
     $latestPath = Join-Path $repoRoot "artifacts\tste_submission\LATEST_PACKAGE.txt"
     if (-not (Test-Path $latestPath)) {
         throw "PackageRoot was not provided and LATEST_PACKAGE.txt does not exist."
@@ -104,7 +104,7 @@ foreach ($name in $expectedUploadFiles) {
     Test-RequiredPath -Path (Join-Path $uploadDir $name) -Label "upload file $name"
 }
 
-$paperPath = Join-Path $root "paper_tste_ieee.md"
+$paperPath = Join-Path $repoRoot "paper_tste_ieee.md"
 $expectedTitle = if (Test-Path $paperPath) {
     $match = [regex]::Match((Get-Content -LiteralPath $paperPath -Raw), "\\title\{(.+?)\}", [System.Text.RegularExpressions.RegexOptions]::Singleline)
     if ($match.Success) {
