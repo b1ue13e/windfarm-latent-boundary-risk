@@ -229,6 +229,21 @@ def apply_5bin_policy(
     return r_out
 
 
+def compute_hybrid_policy_reserve(
+    is_clean: np.ndarray,
+    clean_base_reserve: np.ndarray,
+    gamma_clean: float,
+    delta_clean: float,
+    stale_base_reserve: np.ndarray,
+    gamma_stale: float,
+    delta_stale: float,
+) -> np.ndarray:
+    """Computes state-conditional reserve switching based on causal health indicator."""
+    r_clean = np.maximum(gamma_clean * clean_base_reserve + delta_clean, 0.0)
+    r_stale = np.maximum(gamma_stale * stale_base_reserve + delta_stale, 0.0)
+    return np.where(is_clean, r_clean, r_stale)
+
+
 def find_iso_reliability_multiplier(
     shortfall: np.ndarray,
     raw_reserve: np.ndarray,
@@ -796,6 +811,12 @@ def run_decisive_benchmark_for_seed(
     gamma_stale_val["State-Conditional Hybrid Policy"] = gamma_stale_val["Joint Routed"]
     delta_stale_val["State-Conditional Hybrid Policy"] = delta_stale_val["Joint Routed"]
 
+    # Continuous Physical Quantile (Clean-Calibrated) explicitly retains clean validation multipliers
+    gamma_clean_val["Continuous Physical Quantile (Clean-Calibrated)"] = gamma_clean_val["Continuous Physical Quantile"]
+    delta_clean_val["Continuous Physical Quantile (Clean-Calibrated)"] = delta_clean_val["Continuous Physical Quantile"]
+    gamma_stale_val["Continuous Physical Quantile (Clean-Calibrated)"] = gamma_clean_val["Continuous Physical Quantile"]
+    delta_stale_val["Continuous Physical Quantile (Clean-Calibrated)"] = delta_clean_val["Continuous Physical Quantile"]
+
     print("Validation Calibration Multipliers (Target Violation <= 10.0%):", flush=True)
     for m_name in gamma_clean_val:
         print(f"  {m_name:38s} | Clean: gamma={gamma_clean_val[m_name]:.3f}, delta={delta_clean_val[m_name]:.2f} | Stale: gamma={gamma_stale_val.get(m_name, 1.0):.3f}, delta={delta_stale_val.get(m_name, 0.0):.2f}", flush=True)
@@ -881,9 +902,15 @@ def run_decisive_benchmark_for_seed(
             calibrated_reserves[m_name] = np.where(is_clean, r_c, r_s)
 
         # 7. State-Conditional Hybrid Policy
-        r_clean_part = np.maximum(gamma_clean_val["Continuous Physical Quantile"] * r_phys_raw + delta_clean_val["Continuous Physical Quantile"], 0.0)
-        r_stale_part = np.maximum(gamma_stale_val["Joint Routed"] * raw_reserves["Joint Routed"] + delta_stale_val["Joint Routed"], 0.0)
-        calibrated_reserves["State-Conditional Hybrid Policy"] = np.where(is_clean, r_clean_part, r_stale_part)
+        calibrated_reserves["State-Conditional Hybrid Policy"] = compute_hybrid_policy_reserve(
+            is_clean=is_clean,
+            clean_base_reserve=r_phys_raw,
+            gamma_clean=gamma_clean_val["Continuous Physical Quantile"],
+            delta_clean=delta_clean_val["Continuous Physical Quantile"],
+            stale_base_reserve=raw_reserves["Joint Routed"],
+            gamma_stale=gamma_stale_val["Joint Routed"],
+            delta_stale=delta_stale_val["Joint Routed"],
+        )
 
         model_probs = {
             "Continuous Physical Quantile (Clean-Calibrated)": None,
@@ -915,7 +942,7 @@ def run_decisive_benchmark_for_seed(
                 "model": m_name,
                 "compliant": is_compliant,
                 "gamma_clean_val": round(gamma_clean_val.get(m_name, gamma_clean_val.get("Continuous Physical Quantile", 1.0)), 3),
-                "gamma_stale_val": round(gamma_stale_val.get(m_name, gamma_stale_val.get("Joint Routed", 1.0)), 3),
+                "gamma_stale_val": round(gamma_stale_val.get(m_name, gamma_clean_val.get(m_name, 1.0)), 3),
                 "gamma_iso_test_diagnostic": round(g_iso_test, 3),
                 "delta_iso_test_diagnostic": round(d_iso_test, 3),
                 **metrics,
@@ -1002,13 +1029,19 @@ def evaluate_route_verdict(agg_df: pd.DataFrame) -> Dict[str, Any]:
     # Criterion 4: Cross-Farm Decision Increment
     cross_farm_increment = (routed_clean_cost < phys_clean_cost) and (routed_delay_cost < phys_delay_cost) and (routed_delay_cost <= frozen_delay_cost)
 
-    # Criterion 5: State-Conditional Hybrid Compliance and Failure Law Confirmation
-    hybrid_clean_viol = _get_stat(clean_agg, "State-Conditional Hybrid Policy", "violation_rate")
-    hybrid_delay_viol = _get_stat(delay_agg, "State-Conditional Hybrid Policy", "violation_rate")
-
-    hybrid_compliant_all = False
-    if hybrid_clean_viol is not None and hybrid_delay_viol is not None:
-        hybrid_compliant_all = bool((hybrid_clean_viol <= TARGET_VIOLATION + 1e-4) and (hybrid_delay_viol <= TARGET_VIOLATION + 1e-4))
+    # Criterion 5: State-Conditional Hybrid Compliance and Failure Law Confirmation across all tested regimes
+    unique_regimes = list(agg_df[reg_col].unique()) if reg_col in agg_df.columns else ["clean", "delay6"]
+    hybrid_compliant_all = True
+    hybrid_regime_violations = {}
+    for r_name in unique_regimes:
+        r_agg = agg_df[agg_df[reg_col] == r_name].set_index(mod_col)
+        v = _get_stat(r_agg, "State-Conditional Hybrid Policy", "violation_rate")
+        if v is not None:
+            hybrid_regime_violations[str(r_name)] = round(v, 4)
+            if v > (TARGET_VIOLATION + 1e-4):
+                hybrid_compliant_all = False
+        else:
+            hybrid_compliant_all = False
 
     route_rationale = []
     if cross_farm_increment and not simple_quantile_wins:
@@ -1029,7 +1062,7 @@ def evaluate_route_verdict(agg_df: pd.DataFrame) -> Dict[str, Any]:
 
     if hybrid_compliant_all:
         track_recommendation = "Track A: Defensive State-Conditional Hybrid Reserve Policy (maintains <= 10% violation on frozen test set)"
-        route_rationale.append("State-Conditional Hybrid Policy successfully maintains <= 10.0% violation rate across clean and delay-6 regimes under frozen validation multipliers.")
+        route_rationale.append("State-Conditional Hybrid Policy successfully maintains <= 10.0% violation rate across all evaluated regimes under frozen validation multipliers.")
     else:
         track_recommendation = "Track B: SCADA Telemetry Staleness Breakdown & Learned Posterior Risk Diagnostic"
         route_rationale.append("Telecommunication staleness causes reliability breakdown; learned posterior mitigates risk but does not eliminate distribution shift without adaptive margin.")
@@ -1038,6 +1071,7 @@ def evaluate_route_verdict(agg_df: pd.DataFrame) -> Dict[str, Any]:
         "recommended_route": recommended_route,
         "track_recommendation": track_recommendation,
         "hybrid_compliant_all": hybrid_compliant_all,
+        "hybrid_regime_violations": hybrid_regime_violations,
         "dense_vs_moe_ratio": dense_cost_ratio,
         "dense_vs_moe_equivalent": bool(dense_vs_moe_verdict),
         "simple_quantile_beats_deep": bool(simple_quantile_wins),

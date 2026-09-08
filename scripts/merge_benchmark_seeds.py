@@ -17,17 +17,7 @@ def merge_seeds(farm: str, base_dir: Path, parts_dirs: list[Path], out_dir: Path
     all_metrics = []
     all_boots = []
 
-    # 1. Base seed (e.g. seed 201)
-    base_m = base_dir / "decisive_results_by_seed.csv"
-    base_b = base_dir / "decisive_bootstrap_by_seed.csv"
-    if base_m.exists():
-        df_m = pd.read_csv(base_m)
-        all_metrics.append(df_m)
-    if base_b.exists():
-        df_b = pd.read_csv(base_b)
-        all_boots.append(df_b)
-
-    # 2. Parts seeds (e.g. seeds 202, 203, 204, 205)
+    # 1. Parts seeds (e.g. seeds 201, 202, 203, 204, 205)
     for p in parts_dirs:
         p_m = p / "decisive_results_by_seed.csv"
         p_b = p / "decisive_bootstrap_by_seed.csv"
@@ -36,8 +26,25 @@ def merge_seeds(farm: str, base_dir: Path, parts_dirs: list[Path], out_dir: Path
         if p_b.exists():
             all_boots.append(pd.read_csv(p_b))
 
-    df_metrics = pd.concat(all_metrics, ignore_index=True).drop_duplicates(subset=["farm", "seed", "regime", "model"])
-    df_boot = pd.concat(all_boots, ignore_index=True).drop_duplicates(subset=["farm", "seed", "regime", "model"])
+    # 2. Base directory (only if distinct from out_dir or if parts_dirs provided no data)
+    if base_dir.resolve() != out_dir.resolve() or len(all_metrics) == 0:
+        base_m = base_dir / "decisive_results_by_seed.csv"
+        base_b = base_dir / "decisive_bootstrap_by_seed.csv"
+        if base_m.exists():
+            all_metrics.append(pd.read_csv(base_m))
+        if base_b.exists():
+            all_boots.append(pd.read_csv(base_b))
+
+    if not all_metrics:
+        print(f"No metric files found for farm {farm} in {base_dir} or {parts_dirs}")
+        return
+
+    df_metrics = pd.concat(all_metrics, ignore_index=True).drop_duplicates(
+        subset=["farm", "seed", "regime", "model"], keep="last"
+    )
+    df_boot = pd.concat(all_boots, ignore_index=True).drop_duplicates(
+        subset=["farm", "seed", "regime", "model"], keep="last"
+    )
 
     df_metrics.to_csv(out_dir / "decisive_results_by_seed.csv", index=False)
     df_boot.to_csv(out_dir / "decisive_bootstrap_by_seed.csv", index=False)
@@ -91,7 +98,9 @@ def merge_seeds(farm: str, base_dir: Path, parts_dirs: list[Path], out_dir: Path
         gc = f"{row[('gamma_clean_val', 'mean')]:.2f}"
         gs = f"{row[('gamma_stale_val', 'mean')]:.2f}"
         g_diag = f"{row[('gamma_iso_test_diagnostic', 'mean')]:.2f}"
-        md_report.append(f"| {reg} | {mod} | {pass_rate} | {viol} | {res} | {sh} | {cost} | {gc} | {gs} | {g_diag} |")
+        d_diag = row.get(('delta_iso_test_diagnostic', 'mean'), 0.0)
+        diag_str = f"{g_diag}" if (pd.isna(d_diag) or float(d_diag) <= 1e-4) else f"{g_diag} (+{float(d_diag):.1f})"
+        md_report.append(f"| {reg} | {mod} | {pass_rate} | {viol} | {res} | {sh} | {cost} | {gc} | {gs} | {diag_str} |")
 
     md_report.extend([
         "",
