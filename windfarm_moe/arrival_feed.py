@@ -27,7 +27,7 @@ from .data import CacheBundle, RegimeWindowDataset
 class DegradationSpec:
     """Specification of communication/sensor degradation applied at arrival time."""
     delay_steps: int = 0
-    corrupted_channels: Optional[Tuple[str, ...]] = ("Wspd", "Pab_mean")  # Pass ('all',) or None for all channels
+    corrupted_channels: Optional[Tuple[str, ...]] = ("all",)  # Pass ('all',) or None for all channels
     history_policy: str = "stalled"  # 'stalled' (sample-and-hold from t-d) or 'shifted'
     noise_sigma_physical: Dict[str, float] = field(default_factory=dict)
     # Markov-Gilbert parameters (if active, overrides static delay_steps)
@@ -198,6 +198,25 @@ class UnifiedArrivalDataset(Dataset):
 
             item["x_hist"] = x_hist
             item["feature_mask_hist"] = fmask_hist
+
+            # Synchronously degrade dynamic graph topology
+            if "edge_index_hist" in item and "edge_weight_hist" in item:
+                e_hist = item["edge_index_hist"].clone()
+                w_hist = item["edge_weight_hist"].clone()
+                if self.degradation.history_policy == "stalled":
+                    stalled_step = max(0, H - 1 - lag)
+                    last_e = e_hist[stalled_step:stalled_step + 1]
+                    last_w = w_hist[stalled_step:stalled_step + 1]
+                    for step_idx in range(stalled_step + 1, H):
+                        e_hist[step_idx] = last_e[0]
+                        w_hist[step_idx] = last_w[0]
+                elif self.degradation.history_policy == "shifted":
+                    e_head = e_hist[:1].repeat(lag, 1, 1)
+                    e_hist = torch.cat([e_head, e_hist[:-lag]], dim=0)
+                    w_head = w_hist[:1].repeat(lag, 1, 1)
+                    w_hist = torch.cat([w_head, w_hist[:-lag]], dim=0)
+                item["edge_index_hist"] = e_hist
+                item["edge_weight_hist"] = w_hist
 
         # 3. Add synchronous sensor noise if specified
         if self.degradation.noise_sigma_physical:

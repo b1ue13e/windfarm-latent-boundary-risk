@@ -157,3 +157,14 @@ def test_all_channels_and_mask_synchrony(wtb_bundle):
             item["feature_mask_hist"][stalled_step, :, feat_idx],
         )
 
+    # Dynamic edge graphs must also be stalled
+    if "edge_index_hist" in item:
+        assert torch.equal(
+            item["edge_index_hist"][H - 1],
+            item["edge_index_hist"][stalled_step],
+        )
+        assert torch.equal(
+            item["edge_weight_hist"][H - 1],
+            item["edge_weight_hist"][stalled_step],
+        )
+
