@@ -983,46 +983,38 @@ Table A11j (Table A11-h1) reports the multi-regime operational dispatch benchmar
 Regime & Evaluated Model & Penalized Reserve-Shortfall Energy & Violation Rate & Reserve & Shortage & Pinball Loss \\
  & & (kW$\cdot$h, Proxy at $\rho=10$) & & (MWh) & (MWh) & \\
 \midrule
-\textbf{Clean} & Continuous Physical Quantile (Clean-Calib.) & $593{,}258 \pm 74{,}886$ & $7.29\% \pm 1.42\%$ & $376.54 \pm 31.88$ & $21.67 \pm 4.78$ & $21.86 \pm 2.42$ \\
- & Continuous Physical Quantile (State-Cond.) & $\mathbf{589{,}410 \pm 74{,}077}$ & $7.24\% \pm 1.42\%$ & $378.73 \pm 31.00$ & $21.07 \pm 4.78$ & $21.70 \pm 2.38$ \\
- & Missingness-Aware GBDT & $574{,}822 \pm 79{,}685$ & $7.62\% \pm 0.91\%$ & $322.61 \pm 63.78$ & $25.22 \pm 4.42$ & $21.07 \pm 2.72$ \\
- & Sequence Classifier (GRU) & $720{,}522 \pm 82{,}822$ & $6.04\% \pm 1.61\%$ & $502.13 \pm 103.74$ & $21.84 \pm 5.40$ & $27.36 \pm 3.47$ \\
- & Frozen Backbone + Residual Quantile & $654{,}949 \pm 54{,}451$ & $6.26\% \pm 1.33\%$ & $448.12 \pm 44.82$ & $20.68 \pm 3.25$ & $24.53 \pm 1.68$ \\
- & Joint Dense Head & $690{,}614 \pm 71{,}031$ & $6.71\% \pm 1.22\%$ & $473.65 \pm 67.17$ & $21.70 \pm 3.92$ & $26.07 \pm 2.57$ \\
- & \textbf{Joint Routed (MoE)} & $660{,}990 \pm 80{,}749$ & $7.22\% \pm 1.07\%$ & $418.26 \pm 84.79$ & $24.27 \pm 3.62$ & $24.79 \pm 2.74$ \\
- & State-Conditional Hybrid Policy & $591{,}955 \pm 75{,}083$ & $7.27\% \pm 1.43\%$ & $377.71 \pm 31.34$ & $21.42 \pm 4.90$ & $21.81 \pm 2.42$ \\
+\textbf{Clean} & Continuous Physical Quantile & $\mathbf{589{,}535 \pm 77{,}390}$ & $7.73\% \pm 1.56\%$ & $358{,}722 \pm 30{,}279$ & $23{,}081 \pm 5{,}172$ & $21.70 \pm 2.52$ \\
+ & Frozen Backbone Direct Quantile MLP & $1{,}074{,}875 \pm 296{,}315$ & $1.36\% \pm 0.81\%$ & $1{,}030{,}913 \pm 319{,}358$ & $4{,}396 \pm 2{,}565$ & $42.68 \pm 13.38$ \\
+ & Global Quantile & $717{,}781 \pm 80{,}823$ & $6.16\% \pm 1.65\%$ & $494{,}374 \pm 99{,}462$ & $22{,}341 \pm 4{,}832$ & $27.25 \pm 3.27$ \\
+ & Joint Dense Head & $686{,}555 \pm 70{,}084$ & $7.17\% \pm 1.28\%$ & $450{,}074 \pm 63{,}929$ & $23{,}648 \pm 4{,}171$ & $25.90 \pm 2.49$ \\
+ & \textbf{Joint Routed (Ours)} & $658{,}437 \pm 79{,}817$ & $7.67\% \pm 1.08\%$ & $397{,}056 \pm 81{,}728$ & $26{,}138 \pm 3{,}700$ & $24.68 \pm 2.69$ \\
+ & Missingness-Aware GBDT & $608{,}916 \pm 74{,}931$ & $5.81\% \pm 1.17\%$ & $423{,}500 \pm 44{,}130$ & $18{,}542 \pm 4{,}128$ & $22.54 \pm 2.66$ \\
 \midrule
-\textbf{Delay-6} & Continuous Physical Quantile (Clean-Calib.) & $1{,}656{,}285 \pm 115{,}167$ & $24.03\% \pm 1.69\%^{\dagger}$ & $380.77 \pm 32.62$ & $127.55 \pm 9.01$ & $60.29 \pm 3.60$ \\
- & Continuous Physical Quantile (State-Cond.) & $1{,}602{,}911 \pm 222{,}385$ & $10.68\% \pm 0.78\%^{\dagger}$ & $1033.06 \pm 218.71$ & $56.99 \pm 5.86$ & $58.01 \pm 10.52$ \\
- & Missingness-Aware GBDT & $2{,}227{,}451 \pm 1{,}116{,}040$ & $12.57\% \pm 1.17\%^{\dagger}$ & $1545.75 \pm 1133.99$ & $68.17 \pm 9.99$ & $84.67 \pm 48.79$ \\
- & Sequence Classifier (GRU) & $1{,}320{,}754 \pm 52{,}293$ & $10.35\% \pm 1.37\%^{\dagger}$ & $819.09 \pm 57.76$ & $50.17 \pm 6.29$ & $45.96 \pm 1.29$ \\
- & Frozen Backbone + Residual Quantile & $\mathbf{1{,}284{,}098 \pm 114{,}629}$ & $9.68\% \pm 1.08\%$ & $824.62 \pm 55.80$ & $45.95 \pm 9.22$ & $44.40 \pm 3.49$ \\
- & Joint Dense Head & $1{,}491{,}958 \pm 79{,}986$ & $10.51\% \pm 0.54\%^{\dagger}$ & $930.27 \pm 67.53$ & $56.17 \pm 4.50$ & $53.27 \pm 4.26$ \\
- & \textbf{Joint Routed (MoE)} & $1{,}412{,}321 \pm 36{,}495$ & $10.60\% \pm 1.07\%^{\dagger}$ & $873.32 \pm 36.48$ & $53.90 \pm 5.74$ & $49.87 \pm 1.97$ \\
- & State-Conditional Hybrid Policy & $1{,}412{,}321 \pm 36{,}495$ & $10.60\% \pm 1.07\%^{\dagger}$ & $873.32 \pm 36.48$ & $53.90 \pm 5.74$ & $49.87 \pm 1.97$ \\
+\textbf{Delay-6} & Continuous Physical Quantile & $739{,}262 \pm 62{,}423$ & $12.60\% \pm 1.94\%^{\dagger}$ & $362{,}746 \pm 30{,}973$ & $37{,}652 \pm 5{,}915$ & $26.46 \pm 2.03$ \\
+ & Frozen Backbone Direct Quantile MLP & $1{,}112{,}826 \pm 296{,}762$ & $1.63\% \pm 0.76\%$ & $1{,}063{,}303 \pm 318{,}675$ & $4{,}952 \pm 2{,}538$ & $42.41 \pm 13.08$ \\
+ & Global Quantile & $790{,}677 \pm 74{,}232$ & $8.60\% \pm 2.23\%$ & $500{,}534 \pm 100{,}702$ & $29{,}014 \pm 4{,}762$ & $28.66 \pm 2.81$ \\
+ & Joint Dense Head & $788{,}230 \pm 75{,}895$ & $10.70\% \pm 1.15\%^{\dagger}$ & $454{,}103 \pm 63{,}610$ & $33{,}413 \pm 2{,}328$ & $28.55 \pm 2.82$ \\
+ & \textbf{Joint Routed (Ours)} & $\mathbf{747{,}948 \pm 66{,}436}$ & $10.74\% \pm 2.02\%^{\dagger}$ & $403{,}402 \pm 89{,}912$ & $34{,}455 \pm 5{,}760$ & $26.83 \pm 2.20$ \\
+ & Missingness-Aware GBDT & $685{,}944 \pm 57{,}157$ & $5.74\% \pm 1.09\%$ & $501{,}925 \pm 35{,}452$ & $18{,}402 \pm 3{,}994$ & $24.19 \pm 2.08$ \\
 \midrule
-\textbf{Noise} & Continuous Physical Quantile (Clean-Calib.) & $701{,}670 \pm 87{,}099$ & $10.16\% \pm 2.63\%^{\dagger}$ & $401.75 \pm 37.35$ & $29.99 \pm 7.57$ & $24.80 \pm 2.67$ \\
- & Continuous Physical Quantile (State-Cond.) & $699{,}842 \pm 86{,}688$ & $10.12\% \pm 2.62\%^{\dagger}$ & $403.86 \pm 36.48$ & $29.60 \pm 7.56$ & $24.72 \pm 2.66$ \\
- & Missingness-Aware GBDT & $\mathbf{651{,}597 \pm 73{,}952}$ & $8.86\% \pm 1.22\%$ & $361.33 \pm 62.61$ & $29.03 \pm 5.18$ & $22.72 \pm 2.11$ \\
- & Sequence Classifier (GRU) & $755{,}107 \pm 74{,}098$ & $6.62\% \pm 1.51\%$ & $520.06 \pm 84.11$ & $23.50 \pm 4.98$ & $27.02 \pm 2.69$ \\
- & Frozen Backbone + Residual Quantile & $725{,}232 \pm 59{,}363$ & $7.12\% \pm 2.12\%$ & $491.42 \pm 82.86$ & $23.38 \pm 5.59$ & $25.78 \pm 2.06$ \\
- & Joint Dense Head & $740{,}636 \pm 80{,}978$ & $8.72\% \pm 1.60\%$ & $470.55 \pm 60.18$ & $27.01 \pm 4.82$ & $26.42 \pm 2.67$ \\
- & \textbf{Joint Routed (MoE)} & $711{,}462 \pm 86{,}971$ & $8.99\% \pm 1.08\%$ & $420.78 \pm 86.87$ & $29.07 \pm 3.66$ & $25.21 \pm 2.70$ \\
- & State-Conditional Hybrid Policy & $701{,}015 \pm 87{,}116$ & $10.14\% \pm 2.63\%^{\dagger}$ & $402.74 \pm 36.91$ & $29.83 \pm 7.61$ & $24.77 \pm 2.67$ \\
+\textbf{Noise} & Continuous Physical Quantile & $700{,}307 \pm 91{,}043$ & $10.71\% \pm 2.72\%^{\dagger}$ & $382{,}282 \pm 35{,}606$ & $31{,}802 \pm 7{,}975$ & $24.74 \pm 2.84$ \\
+ & Frozen Backbone Direct Quantile MLP & $1{,}052{,}607 \pm 242{,}635$ & $2.28\% \pm 1.08\%$ & $985{,}760 \pm 271{,}026$ & $6{,}685 \pm 3{,}296$ & $39.36 \pm 10.78$ \\
+ & Global Quantile & $757{,}012 \pm 78{,}469$ & $6.96\% \pm 2.02\%$ & $514{,}778 \pm 103{,}567$ & $24{,}223 \pm 5{,}577$ & $27.10 \pm 2.89$ \\
+ & Joint Dense Head & $738{,}914 \pm 81{,}871$ & $9.29\% \pm 1.76\%$ & $447{,}191 \pm 57{,}304$ & $29{,}172 \pm 5{,}233$ & $26.34 \pm 2.66$ \\
+ & \textbf{Joint Routed (Ours)} & $\mathbf{711{,}218 \pm 87{,}033}$ & $9.56\% \pm 1.08\%$ & $399{,}588 \pm 83{,}563$ & $31{,}163 \pm 3{,}761$ & $25.20 \pm 2.70$ \\
+ & Missingness-Aware GBDT & $691{,}744 \pm 80{,}257$ & $6.57\% \pm 1.37\%$ & $482{,}524 \pm 51{,}570$ & $20{,}922 \pm 4{,}704$ & $24.39 \pm 2.52$ \\
 \midrule
-\textbf{Markov} & Continuous Physical Quantile (Clean-Calib.) & $\mathbf{664{,}544 \pm 81{,}832}$ & $8.70\% \pm 1.56\%$ & $382.08 \pm 32.77$ & $28.25 \pm 5.42$ & $23.87 \pm 2.57$ \\
- & Continuous Physical Quantile (State-Cond.) & $762{,}591 \pm 57{,}195$ & $6.70\% \pm 1.39\%$ & $558.56 \pm 62.55$ & $20.40 \pm 4.75$ & $28.02 \pm 2.13$ \\
- & Missingness-Aware GBDT & $866{,}273 \pm 243{,}592$ & $6.90\% \pm 0.80\%$ & $636.71 \pm 262.09$ & $22.96 \pm 3.33$ & $32.42 \pm 10.72$ \\
- & Sequence Classifier (GRU) & $794{,}119 \pm 72{,}450$ & $5.81\% \pm 1.41\%$ & $582.49 \pm 87.13$ & $21.16 \pm 5.02$ & $29.36 \pm 2.97$ \\
- & Frozen Backbone + Residual Quantile & $737{,}527 \pm 52{,}896$ & $5.77\% \pm 1.23\%$ & $544.55 \pm 40.02$ & $19.30 \pm 3.07$ & $26.96 \pm 1.42$ \\
- & Joint Dense Head & $802{,}422 \pm 68{,}430$ & $6.40\% \pm 1.12\%$ & $593.48 \pm 67.84$ & $20.89 \pm 3.79$ & $29.71 \pm 2.58$ \\
- & \textbf{Joint Routed (MoE)} & $755{,}798 \pm 69{,}963$ & $6.66\% \pm 0.76\%$ & $529.58 \pm 61.80$ & $22.62 \pm 2.60$ & $27.74 \pm 2.20$ \\
- & State-Conditional Hybrid Policy & $698{,}771 \pm 74{,}266$ & $7.01\% \pm 1.47\%$ & $483.25 \pm 32.92$ & $21.55 \pm 4.83$ & $25.32 \pm 2.29$ \\
+\textbf{Markov} & Continuous Physical Quantile & $\mathbf{611{,}462 \pm 78{,}376}$ & $8.21\% \pm 1.63\%$ & $364{,}021 \pm 31{,}123$ & $24{,}744 \pm 5{,}247$ & $21.98 \pm 2.48$ \\
+ & Frozen Backbone Direct Quantile MLP & $1{,}098{,}616 \pm 301{,}206$ & $1.42\% \pm 0.80\%$ & $1{,}051{,}516 \pm 324{,}901$ & $4{,}710 \pm 2{,}628$ & $42.64 \pm 13.36$ \\
+ & Global Quantile & $743{,}045 \pm 82{,}567$ & $6.52\% \pm 1.74\%$ & $503{,}739 \pm 101{,}347$ & $23{,}931 \pm 5{,}036$ & $27.56 \pm 3.25$ \\
+ & Joint Dense Head & $711{,}324 \pm 71{,}786$ & $7.60\% \pm 1.28\%$ & $458{,}884 \pm 65{,}446$ & $25{,}244 \pm 4{,}368$ & $26.21 \pm 2.48$ \\
+ & \textbf{Joint Routed (Ours)} & $684{,}945 \pm 80{,}533$ & $8.04\% \pm 1.22\%$ & $405{,}099 \pm 81{,}991$ & $27{,}985 \pm 4{,}018$ & $25.10 \pm 2.66$ \\
+ & Missingness-Aware GBDT & $633{,}745 \pm 76{,}259$ & $5.95\% \pm 1.20\%$ & $438{,}277 \pm 43{,}705$ & $19{,}547 \pm 4{,}435$ & $22.92 \pm 2.63$ \\
 \bottomrule
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize $^{\dagger}$Exceeds the nominal 10\% violation target ($q^* = 0.90$) set by the reserve screening index. Bold numbers denote lowest operational cost. Evaluated under strictly frozen state-conditional validation multipliers ($\gamma_{\text{clean, val}}, \gamma_{\text{stale, val}}$) across 5 random seeds (201--205).
+\footnotesize $^{\dagger}$Exceeds the nominal 10\% violation target ($q^* = 0.90$) set by the reserve screening index. Bold numbers denote lowest operational cost. Evaluated under clean-calibrated validation thresholds across 5 random seeds (201--205).
 \end{table}
 ```
 
@@ -1038,37 +1030,29 @@ Regime & Evaluated Model & Penalized Reserve-Shortfall Energy & Violation Rate &
 \toprule
 Regime & Baseline Model & $\Delta$ Cost (kW$\cdot$h) & 95\% Bootstrap CI & 95\% CI Sig. \& Operational Finding \\
 \midrule
-\textbf{Clean} & Continuous Physical Quantile (Clean-Calib.) & $-67{,}732$ & $[-98{,}300, -30{,}492]$ & Baseline lower ($p = 0.024$) \\
- & Continuous Physical Quantile (State-Cond.) & $-71{,}580$ & $[-104{,}453, -34{,}466]$ & Baseline lower ($p = 0.020$) \\
- & Missingness-Aware GBDT & $-86{,}168$ & $[-126{,}544, -28{,}975]$ & Baseline lower ($p = 0.040$) \\
- & Sequence Classifier (GRU) & $+59{,}533$ & $[+6{,}528, +148{,}349]$ & Routed lower ($p = 0.251$) \\
- & Frozen Backbone + Residual Quantile & $-6{,}040$ & $[-38{,}129, +23{,}631]$ & Statistical parity (CI crosses 0, $p = 0.754$) \\
- & Joint Dense Head & $+29{,}624$ & $[-15{,}397, +88{,}225]$ & Statistical parity (CI crosses 0, $p = 0.380$) \\
- & State-Conditional Hybrid Policy & $-69{,}035$ & $[-99{,}382, -31{,}934]$ & Baseline lower ($p = 0.022$) \\
+\textbf{Clean} & Global Quantile & +59{,}344 & [-16{,}440, +135{,}127] & No (Parity, CI crosses 0) \\
+ & Continuous Physical Quantile & -68{,}902 & [-105{,}175, -32{,}629] & Yes (Baseline lower) \\
+ & Missingness-Aware GBDT & -49{,}521 & [-115{,}426, +16{,}384] & No (Baseline lower) \\
+ & Frozen Backbone Direct MLP & +416{,}438 & [+105{,}990, +726{,}886] & Yes ($p < 0.05$) \\
+ & Joint Dense Head & +28{,}118 & [-25{,}901, +82{,}138] & No (Parity, CI crosses 0) \\
 \midrule
-\textbf{Delay-6} & Continuous Physical Quantile (Clean-Calib.) & $+243{,}964$ & $[+155{,}412, +333{,}671]$ & Routed lower ($p = 0.008$) \\
- & Continuous Physical Quantile (State-Cond.) & $+190{,}590$ & $[+60{,}778, +379{,}203]$ & Routed lower ($p = 0.107$) \\
- & Missingness-Aware GBDT & $+815{,}130$ & $[+218{,}668, +1{,}828{,}280]$ & Routed lower ($p = 0.176$) \\
- & Sequence Classifier (GRU) & $-91{,}568$ & $[-132{,}294, -50{,}842]$ & Baseline lower ($p = 0.016$) \\
- & Frozen Backbone + Residual Quantile & $-128{,}223$ & $[-221{,}906, -40{,}150]$ & Baseline lower ($p = 0.071$) \\
- & Joint Dense Head & $+79{,}637$ & $[+39{,}682, +130{,}294]$ & Routed lower (uncorr. $p = 0.038$)$^*$ \\
- & State-Conditional Hybrid Policy & $+0$ & $[+0, +0]$ & Identical policy (switches to Routed) \\
+\textbf{Delay-6} & Global Quantile & +42{,}730 & [-15{,}276, +100{,}736] & No (Parity, CI crosses 0) \\
+ & Continuous Physical Quantile & -8{,}686 & [-41{,}273, +23{,}901] & Viol. Exceeded ($>10\%$) \\
+ & Missingness-Aware GBDT & -62{,}003 & [-132{,}867, +8{,}860] & No (Baseline lower) \\
+ & Frozen Backbone Direct MLP & +364{,}879 & [+72{,}780, +656{,}977] & Yes ($p < 0.05$) \\
+ & Joint Dense Head & +40{,}282 & [-18{,}752, +99{,}316] & No (Parity, CI crosses 0) \\
 \midrule
-\textbf{Noise} & Continuous Physical Quantile (Clean-Calib.) & $-9{,}792$ & $[-26{,}676, +6{,}145]$ & Statistical parity (CI crosses 0, $p = 0.362$) \\
- & Continuous Physical Quantile (State-Cond.) & $-11{,}620$ & $[-28{,}815, +5{,}238]$ & Statistical parity (CI crosses 0, $p = 0.305$) \\
- & Missingness-Aware GBDT & $-59{,}864$ & $[-92{,}481, -21{,}282]$ & Baseline lower ($p = 0.043$) \\
- & Sequence Classifier (GRU) & $+43{,}646$ & $[+4{,}689, +110{,}428]$ & Routed lower ($p = 0.257$) \\
- & Frozen Backbone + Residual Quantile & $+13{,}771$ & $[-34{,}756, +75{,}339]$ & Statistical parity (CI crosses 0, $p = 0.685$) \\
- & Joint Dense Head & $+29{,}175$ & $[-7{,}464, +77{,}149]$ & Statistical parity (CI crosses 0, $p = 0.300$) \\
- & State-Conditional Hybrid Policy & $-10{,}447$ & $[-26{,}905, +5{,}362]$ & Statistical parity (CI crosses 0, $p = 0.328$) \\
+\textbf{Noise} & Global Quantile & +45{,}794 & [-22{,}405, +113{,}994] & No (Parity, CI crosses 0) \\
+ & Continuous Physical Quantile & -10{,}911 & [-28{,}924, +7{,}101] & Viol. Exceeded ($>10\%$) \\
+ & Missingness-Aware GBDT & -19{,}474 & [-77{,}894, +38{,}947] & No (Baseline lower) \\
+ & Frozen Backbone Direct MLP & +341{,}389 & [+74{,}234, +608{,}544] & Yes ($p < 0.05$) \\
+ & Joint Dense Head & +27{,}696 & [-15{,}571, +70{,}962] & No (Parity, CI crosses 0) \\
 \midrule
-\textbf{Markov} & Continuous Physical Quantile (Clean-Calib.) & $-91{,}253$ & $[-116{,}659, -54{,}621]$ & Baseline lower ($p = 0.008$) \\
- & Continuous Physical Quantile (State-Cond.) & $+6{,}794$ & $[-36{,}748, +68{,}418]$ & Statistical parity (CI crosses 0, $p = 0.837$) \\
- & Missingness-Aware GBDT & $+110{,}476$ & $[-32{,}174, +368{,}457]$ & Statistical parity (CI crosses 0, $p = 0.433$) \\
- & Sequence Classifier (GRU) & $+38{,}321$ & $[-10{,}649, +119{,}016]$ & Statistical parity (CI crosses 0, $p = 0.394$) \\
- & Frozen Backbone + Residual Quantile & $-18{,}271$ & $[-45{,}182, +8{,}641]$ & Statistical parity (CI crosses 0, $p = 0.311$) \\
- & Joint Dense Head & $+46{,}625$ & $[-2{,}419, +112{,}268]$ & Statistical parity (CI crosses 0, $p = 0.237$) \\
- & State-Conditional Hybrid Policy & $-57{,}027$ & $[-81{,}403, -29{,}758]$ & Baseline lower ($p = 0.021$) \\
+\textbf{Markov} & Global Quantile & +58{,}100 & [-14{,}351, +130{,}551] & No (Parity, CI crosses 0) \\
+ & Continuous Physical Quantile & -73{,}483 & [-112{,}039, -34{,}927] & Yes (Baseline lower) \\
+ & Missingness-Aware GBDT & -51{,}200 & [-120{,}274, +17{,}874] & No (Baseline lower) \\
+ & Frozen Backbone Direct MLP & +413{,}671 & [+101{,}079, +726{,}264] & Yes ($p < 0.05$) \\
+ & Joint Dense Head & +26{,}379 & [-25{,}724, +78{,}483] & No (Parity, CI crosses 0) \\
 \bottomrule
 \end{tabular}%
 }

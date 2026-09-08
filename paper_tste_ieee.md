@@ -268,35 +268,35 @@ Table~\ref{tab:h6-benchmark} summarizes the multi-day replay dispatch benchmark 
 \toprule
 Regime & Evaluated Model & \shortstack{Penalized Reserve-Shortfall\\Energy (kW$\cdot$h, Proxy at $\rho=10$)} & Violation Rate & Reserve (kW) & Shortage (kW$\cdot$h) & Pinball Loss \\
 \midrule
-\textbf{Clean} & Continuous Physical Quantile & $\mathbf{871{,}408 \pm 27{,}661}$ & $7.20\% \pm 1.34\%$ & $631{,}018 \pm 58{,}457$ & $24{,}039 \pm 3{,}080$ & $31.18 \pm 1.07$ \\
- & Frozen Backbone Direct Quantile MLP & $1{,}477{,}967 \pm 104{,}136$ & $0.75\% \pm 0.15\%$ & $1{,}452{,}636 \pm 109{,}452$ & $2{,}533 \pm 532$ & $57.39 \pm 4.37$ \\
- & Global Quantile & $998{,}266 \pm 83{,}671$ & $6.53\% \pm 1.34\%$ & $768{,}427 \pm 127{,}911$ & $22{,}984 \pm 4{,}424$ & $36.66 \pm 3.49$ \\
- & Joint Dense Head & $1{,}009{,}265 \pm 77{,}336$ & $6.39\% \pm 0.90\%$ & $782{,}924 \pm 108{,}912$ & $22{,}634 \pm 3158$ & $37.14 \pm 3.21$ \\
- & \textbf{Joint Routed (Ours)} & $959{,}972 \pm 89{,}006$ & $7.28\% \pm 1.48\%$ & $710{,}705 \pm 135{,}297$ & $24{,}927 \pm 4{,}629$ & $35.01 \pm 3.72$ \\
- & Missingness-Aware GBDT & $1{,}213{,}587 \pm 67{,}825$ & $5.19\% \pm 0.53\%$ & $1{,}030{,}953 \pm 83{,}087$ & $18{,}263 \pm 1{,}526$ & $45.97 \pm 2.80$ \\
+\textbf{Clean} & Continuous Physical Quantile & $\mathbf{881{,}367 \pm 95{,}741}$ & $6.81\% \pm 1.13\%$ & $653{,}738 \pm 72{,}557$ & $22{,}763 \pm 4{,}013$ & $31.41 \pm 2.66$ \\
+ & Frozen Backbone Direct Quantile MLP & $1{,}649{,}721 \pm 285{,}682$ & $0.58\% \pm 0.26\%$ & $1{,}630{,}572 \pm 293{,}346$ & $1{,}915 \pm 958$ & $64.62 \pm 12.05$ \\
+ & Global Quantile & $998{,}988 \pm 107{,}360$ & $6.46\% \pm 1.31\%$ & $771{,}304 \pm 95{,}661$ & $22{,}768 \pm 4{,}854$ & $36.50 \pm 3.41$ \\
+ & Joint Dense Head & $991{,}181 \pm 110{,}211$ & $6.54\% \pm 1.04\%$ & $761{,}480 \pm 94{,}244$ & $22{,}970 \pm 4{,}121$ & $36.16 \pm 3.58$ \\
+ & \textbf{Joint Routed (Ours)} & $959{,}027 \pm 103{,}290$ & $7.10\% \pm 1.17\%$ & $707{,}249 \pm 91{,}305$ & $25{,}178 \pm 4{,}816$ & $34.77 \pm 3.16$ \\
+ & Missingness-Aware GBDT & $1{,}238{,}603 \pm 112{,}051$ & $4.50\% \pm 0.73\%$ & $1{,}085{,}168 \pm 118{,}015$ & $15{,}343 \pm 2{,}870$ & $46.85 \pm 3.48$ \\
 \midrule
-\textbf{Delay-6} & Continuous Physical Quantile & $1{,}130{,}288 \pm 22{,}383$ & $12.52\% \pm 1.82\%^{\dagger}$ & $639{,}091 \pm 58{,}731$ & $49{,}120 \pm 3{,}635$ & $38.89 \pm 0.86$ \\
- & Frozen Backbone Direct Quantile MLP & $1{,}511{,}794 \pm 105{,}761$ & $1.67\% \pm 0.27\%$ & $1{,}466{,}631 \pm 112{,}557$ & $4{,}516 \pm 680$ & $55.17 \pm 4.42$ \\
- & Global Quantile & $1{,}174{,}384 \pm 43{,}031$ & $10.79\% \pm 2.19\%^{\dagger}$ & $778{,}003 \pm 129{,}504$ & $39{,}638 \pm 8{,}647$ & $40.77 \pm 1.74$ \\
- & Joint Dense Head & $1{,}174{,}319 \pm 48{,}668$ & $10.61\% \pm 1.62\%^{\dagger}$ & $792{,}825 \pm 108{,}850$ & $38{,}149 \pm 6{,}018$ & $40.77 \pm 1.98$ \\
- & \textbf{Joint Routed (Ours)} & $\mathbf{1{,}149{,}897 \pm 55{,}627}$ & $11.56\% \pm 2.48\%^{\dagger}$ & $729{,}434 \pm 135{,}372$ & $42{,}046 \pm 7{,}974$ & $39.73 \pm 2.28$ \\
- & Missingness-Aware GBDT & $1{,}305{,}148 \pm 47{,}029$ & $9.13\% \pm 1.28\%$ & $972{,}784 \pm 88{,}307$ & $33{,}236 \pm 4{,}128$ & $46.35 \pm 1.91$ \\
+\textbf{Delay-6} & Continuous Physical Quantile & $1{,}136{,}466 \pm 84{,}101$ & $12.20\% \pm 1.25\%^{\dagger}$ & $662{,}335 \pm 73{,}483$ & $47{,}413 \pm 3{,}091$ & $38.85 \pm 2.06$ \\
+ & Frozen Backbone Direct Quantile MLP & $1{,}682{,}251 \pm 284{,}323$ & $1.20\% \pm 0.52\%$ & $1{,}651{,}979 \pm 297{,}715$ & $3{,}027 \pm 1{,}594$ & $62.15 \pm 11.70$ \\
+ & Global Quantile & $1{,}180{,}603 \pm 91{,}754$ & $10.85\% \pm 1.55\%^{\dagger}$ & $780{,}916 \pm 96{,}853$ & $39{,}969 \pm 6{,}087$ & $40.73 \pm 2.43$ \\
+ & Joint Dense Head & $1{,}179{,}859 \pm 95{,}268$ & $11.04\% \pm 1.22\%^{\dagger}$ & $773{,}103 \pm 94{,}462$ & $40{,}676 \pm 4{,}788$ & $40.70 \pm 2.66$ \\
+ & \textbf{Joint Routed (Ours)} & $\mathbf{1{,}163{,}593 \pm 91{,}299}$ & $11.82\% \pm 1.64\%^{\dagger}$ & $720{,}015 \pm 92{,}196$ & $44{,}358 \pm 7{,}341$ & $40.01 \pm 2.54$ \\
+ & Missingness-Aware GBDT & $1{,}320{,}003 \pm 93{,}135$ & $8.36\% \pm 0.97\%$ & $1{,}030{,}858 \pm 114{,}266$ & $28{,}915 \pm 4{,}469$ & $46.68 \pm 2.45$ \\
 \midrule
-\textbf{Noise} & Continuous Physical Quantile & $987{,}802 \pm 65{,}477$ & $8.17\% \pm 0.53\%$ & $718{,}607 \pm 74{,}279$ & $26{,}919 \pm 880$ & $33.67 \pm 2.06$ \\
- & Frozen Backbone Direct Quantile MLP & $1{,}490{,}909 \pm 131{,}305$ & $0.98\% \pm 0.22\%$ & $1{,}463{,}407 \pm 137{,}165$ & $2{,}750 \pm 586$ & $54.57 \pm 4.79$ \\
- & Global Quantile & $1{,}048{,}440 \pm 93{,}591$ & $7.53\% \pm 1.16\%$ & $799{,}368 \pm 133{,}061$ & $24{,}907 \pm 3{,}947$ & $36.19 \pm 3.22$ \\
- & Joint Dense Head & $1{,}053{,}794 \pm 91{,}327$ & $7.50\% \pm 0.58\%$ & $804{,}981 \pm 111{,}689$ & $24{,}881 \pm 2{,}036$ & $36.41 \pm 3.13$ \\
- & \textbf{Joint Routed (Ours)} & $\mathbf{1{,}023{,}091 \pm 106{,}220}$ & $8.08\% \pm 1.43\%$ & $757{,}131 \pm 153{,}165$ & $26{,}596 \pm 4{,}694$ & $35.14 \pm 3.75$ \\
- & Missingness-Aware GBDT & $1{,}283{,}507 \pm 72{,}236$ & $5.43\% \pm 0.15\%$ & $1{,}098{,}462 \pm 77{,}040$ & $18{,}505 \pm 480$ & $45.96 \pm 2.34$ \\
+\textbf{Noise} & Continuous Physical Quantile & $998{,}273 \pm 106{,}253$ & $7.59\% \pm 0.95\%$ & $746{,}697 \pm 82{,}474$ & $25{,}158 \pm 3{,}968$ & $33.97 \pm 2.78$ \\
+ & Frozen Backbone Direct Quantile MLP & $1{,}639{,}909 \pm 242{,}922$ & $0.80\% \pm 0.28\%$ & $1{,}618{,}439 \pm 249{,}374$ & $2{,}147 \pm 953$ & $60.62 \pm 9.85$ \\
+ & Global Quantile & $1{,}053{,}552 \pm 114{,}150$ & $7.48\% \pm 1.48\%$ & $802{,}361 \pm 99{,}513$ & $25{,}119 \pm 5{,}822$ & $36.26 \pm 3.24$ \\
+ & Joint Dense Head & $1{,}048{,}083 \pm 115{,}181$ & $7.63\% \pm 1.13\%$ & $792{,}472 \pm 92{,}391$ & $25{,}561 \pm 4{,}643$ & $36.04 \pm 3.28$ \\
+ & \textbf{Joint Routed (Ours)} & $\mathbf{1{,}027{,}077 \pm 114{,}317}$ & $7.62\% \pm 1.09\%$ & $769{,}864 \pm 106{,}672$ & $25{,}721 \pm 3{,}963$ & $35.16 \pm 3.19$ \\
+ & Missingness-Aware GBDT & $1{,}314{,}640 \pm 129{,}158$ & $4.66\% \pm 0.80\%$ & $1{,}160{,}329 \pm 137{,}650$ & $15{,}431 \pm 3{,}099$ & $47.11 \pm 3.87$ \\
 \midrule
-\textbf{Markov} & Continuous Physical Quantile & $\mathbf{897{,}650 \pm 23{,}667}$ & $7.58\% \pm 1.39\%$ & $640{,}527 \pm 59{,}019$ & $25{,}712 \pm 3{,}535$ & $31.35 \pm 0.89$ \\
- & Frozen Backbone Direct Quantile MLP & $1{,}506{,}492 \pm 105{,}395$ & $0.74\% \pm 0.20\%$ & $1{,}479{,}075 \pm 111{,}713$ & $2{,}742 \pm 632$ & $57.20 \pm 4.35$ \\
- & Global Quantile & $1{,}029{,}614 \pm 80{,}016$ & $6.96\% \pm 1.43\%$ & $782{,}375 \pm 130{,}232$ & $24{,}724 \pm 5{,}022$ & $36.95 \pm 3.28$ \\
- & Joint Dense Head & $1{,}041{,}204 \pm 75{,}376$ & $6.82\% \pm 0.94\%$ & $797{,}045 \pm 110{,}728$ & $24{,}416 \pm 3{,}535$ & $37.45 \pm 3.08$ \\
- & \textbf{Joint Routed (Ours)} & $988{,}887 \pm 86{,}280$ & $7.69\% \pm 1.54\%$ & $723{,}872 \pm 137{,}661$ & $26{,}502 \pm 5{,}138$ & $35.23 \pm 3.54$ \\
- & Missingness-Aware GBDT & $1{,}238{,}971 \pm 61{,}848$ & $5.60\% \pm 0.55\%$ & $1{,}038{,}867 \pm 83{,}868$ & $20{,}010 \pm 2{,}202$ & $45.84 \pm 2.51$ \\
+\textbf{Markov} & Continuous Physical Quantile & $\mathbf{907{,}871 \pm 96{,}820}$ & $7.20\% \pm 1.15\%$ & $663{,}875 \pm 73{,}821$ & $24{,}400 \pm 4{,}106$ & $31.59 \pm 2.61$ \\
+ & Frozen Backbone Direct Quantile MLP & $1{,}680{,}339 \pm 289{,}602$ & $0.57\% \pm 0.25\%$ & $1{,}660{,}135 \pm 298{,}104$ & $2{,}020 \pm 992$ & $64.38 \pm 12.00$ \\
+ & Global Quantile & $1{,}030{,}131 \pm 108{,}592$ & $6.87\% \pm 1.39\%$ & $785{,}305 \pm 97{,}397$ & $24{,}483 \pm 5{,}104$ & $36.78 \pm 3.35$ \\
+ & Joint Dense Head & $1{,}020{,}078 \pm 112{,}195$ & $6.90\% \pm 1.07\%$ & $775{,}899 \pm 96{,}235$ & $24{,}418 \pm 4{,}246$ & $36.35 \pm 3.57$ \\
+ & \textbf{Joint Routed (Ours)} & $990{,}625 \pm 104{,}487$ & $7.51\% \pm 1.22\%$ & $720{,}858 \pm 92{,}754$ & $26{,}977 \pm 5{,}183$ & $35.10 \pm 3.10$ \\
+ & Missingness-Aware GBDT & $1{,}261{,}941 \pm 112{,}754$ & $4.88\% \pm 0.75\%$ & $1{,}094{,}730 \pm 120{,}612$ & $16{,}721 \pm 3{,}298$ & $46.62 \pm 3.40$ \\
 \bottomrule
-\multicolumn{7}{@{}p{\textwidth}@{}}{\tiny $^{\dagger}$Exceeds nominal 10\% violation target ($q^* = 0.90$). Bold numbers denote lowest cost. \textbf{Protocol Attribution:} Reports the \textit{Clean-Calibrated Operational Protocol} at $h=6$ (thresholds frozen on clean validation data); Continuous Physical Quantile collapses to 12.52\% violation under Delay-6. For the \textit{State-Conditional Validation-Calibrated Protocol} at immediate horizon ($h=1$), see Section~\ref{sec:branch-b} and Table~A11-h1, where clean-calibrated physical rules collapse to 24.0\% violation under Delay-6 while state-conditional calibration mitigates violations to 10.7\% (physical) and 10.6\% (joint model). Test-set iso-multipliers ($\gamma_{\text{iso, test}}$) serve strictly as post-hoc diagnostics. $^{\ddagger}$Direct pinball regression on frozen embeddings exhibits severe tail conservatism (>1.45M kW reserve, <1.7\% violation). For calibrated modular baselines (Cascaded Frozen MLP $15.528\text{M} \pm 1.599\text{M}$ vs Joint Routed 16.065M in statistical parity), see Section~\ref{sec:branch-d} and Table~A11d.}
+\multicolumn{7}{@{}p{\textwidth}@{}}{\tiny $^{\dagger}$Exceeds nominal 10\% violation target ($q^* = 0.90$). Bold numbers denote lowest cost. \textbf{Protocol Attribution:} Reports the \textit{Clean-Calibrated Operational Protocol} at $h=6$ (thresholds frozen on clean validation data); Continuous Physical Quantile collapses to 12.20\% violation under Delay-6. For the \textit{State-Conditional Validation-Calibrated Protocol} at immediate horizon ($h=1$), see Section~\ref{sec:branch-b}, where clean-calibrated physical rules collapse to 24.0\% violation under Delay-6 while state-conditional calibration mitigates violations to 10.7\% (physical) and 10.6\% (joint model). Test-set iso-multipliers ($\gamma_{\text{iso, test}}$) serve strictly as post-hoc diagnostics. $^{\ddagger}$Direct pinball regression on frozen embeddings exhibits severe tail conservatism (>1.63M kW reserve, <1.2\% violation). For calibrated modular baselines (Cascaded Frozen MLP $15.528\text{M} \pm 1.599\text{M}$ vs Joint Routed 16.065M in statistical parity), see Section~\ref{sec:branch-d}.}
 \end{tabular*}
 \end{table*}
 ```
@@ -365,7 +365,86 @@ Thus, diagnostic reserve benefits are not exclusive to MoE routing. Modular mode
 
 Comparing immediate 10-minute dispatch ($h=1$) against 1-hour ahead dispatch ($h=6$) exposes a fundamental horizon disconnect across model families (complete multi-regime benchmarks and seed-paired bootstrap significance tests are reported in Supplementary Tables A11j/A11-h1 and A11k/A11-h2). At $h=1$, shallow decision trees (Missingness-Aware GBDT) capitalize aggressively on high 10-minute lag wind-speed autocorrelation, achieving the lowest data-driven nominal dispatch cost ($574{,}822 \pm 79{,}685\text{ kW}\cdot\text{h}$ in Clean with $7.6\%$ violation, outperforming all deep models). Local inertia dominates ultra-short horizons, enabling tabular tree ensembles with lag features to track short-term persistence. However, across dispatch-grade horizons ($h=6$), GBDT undergoes severe breakdown: its operational costs inflate by $13.44\%$ to $29.15\%$ (reaching $1{,}213{,}587\text{ kW}\cdot\text{h}$ in Clean and $1{,}305{,}148\text{ kW}\cdot\text{h}$ in Delay-6), trailing Joint Routed by $+156{,}411$ to $+287{,}563\text{ kW}\cdot\text{h}$ across all regimes ($p < 0.0001$, Table~\ref{tab:h6-paired}). Because tabular trees lack spatial awareness of aerodynamic wake advection propagating at $8$--$12\text{ m s}^{-1}$ across turbine rows, they cannot represent multi-turbine spatio-temporal phase shifts over 1-hour lead times.
 
-Crucially, at $h=1$, Joint Dense Head and Joint Routed exhibit statistical parity across Clean, Noise, and Markov regimes, where bootstrap 95\% confidence intervals cross zero (Supplementary Table~A11-h2, e.g., $+29{,}624\text{ kW}\cdot\text{h}$, 95\% CI $[-53{,}774, +113{,}023]$, $p=0.380$ in Clean). In Delay-6, Joint Routed holds a modest cost advantage ($+79{,}637\text{ kW}\cdot\text{h}$, 95\% CI $[+7{,}055, +152{,}218]$, uncorrected $p=0.038$, non-significant under Bonferroni $\alpha=0.0125$) while matching empirical violation rates ($10.6\% \pm 1.1\%$ vs. $10.5\% \pm 0.5\%$). Finally, clean-calibrated Continuous Physical Quantile rules remain equally vulnerable across horizons, collapsing under Delay-6 to $24.0\% \pm 1.7\%$ violation at $h=1$ and $12.52\% \pm 1.82\%$ at $h=6$, underscoring the universal vulnerability of unadapted physical rules to stale telemetry.
+Crucially, at $h=1$, Joint Dense Head and Joint Routed exhibit statistical parity across Clean, Noise, and Markov regimes, where bootstrap 95\% confidence intervals cross zero (Supplementary Table~A11-h2, e.g., $+29{,}624\text{ kW}\cdot\text{h}$, 95\% CI $[-53{,}774, +113{,}023]$, $p=0.380$ in Clean). In Delay-6, Joint Routed holds a modest cost advantage ($+79{,}637\text{ kW}\cdot\text{h}$, 95\% CI $[+7{,}055, +152{,}218]$, uncorrected $p=0.038$, non-significant under Bonferroni $\alpha=0.0125$) while matching empirical violation rates ($10.6\% \pm 1.1\%$ vs. $10.5\% \pm 0.5\%$). Finally, clean-calibrated Continuous Physical Quantile rules remain equally vulnerable across horizons, collapsing under Delay-6 to $24.0\% \pm 1.7\%$ violation at $h=1$ and $12.20\% \pm 1.25\%$ at $h=6$, underscoring the universal vulnerability of unadapted physical rules to stale telemetry.
+
+## Multidimensional Operational Boundaries and Selective Decision Abstention
+
+To delineate the operational boundaries governing telemetry degradation, we scan across transmission delays $\tau \in \{0, 10, 20, 30, 60\}\text{ min}$, horizons $h \in \{1, 3, 6\}$, and pitch channel observabilities (\texttt{all} vs. \texttt{no\_pitch}) across all 5 seeds on the 134-turbine WTB plant (Table~\ref{tab:phase-scan}). This empirical trajectory establishes a rigorous **Three-Regime Operational Framework**:
+
+1. **Regime I: Simple Recalibration Sufficient ($\tau = 0\text{ min}$ or mild delays):** Under fresh telemetry ($\tau=0$), deterministic continuous physical quantiles achieve the lowest operational reserve cost ($593{,}258 \pm 74{,}886\text{ kW}\cdot\text{h}$ at $h=1$, with well-calibrated $7.29\% \pm 1.42\%$ violation). Machine-learning representations incur substantial reserve penalties without reliability gains ($763{,}140\text{ kW}\cdot\text{h}$ for modular frozen backbones, $+28.6\%$).
+2. **Regime II: Learned Representation Advantage ($\tau = 10\text{--}30\text{ min}$ and unobservable pitch):** As telemetry latency increases to $10\text{--}30$ minutes, physical rules calibrated on clean data suffer rapid violation breakdown ($11.18\% \to 13.98\% \to 16.58\%$). While adapting calibration to degraded states restores physical compliance ($3.07\%\text{--}6.06\%$), it severely inflates reserve costs ($1{,}126{,}243\text{--}1{,}266{,}032\text{ kW}\cdot\text{h}$). Decoupled modular representations (\textit{Frozen Backbone + Residual Quantile}) maintain compliant violation rates ($6.37\%\text{--}9.91\%$) while saving $262{,}978\text{--}296{,}722\text{ kW}\cdot\text{h}$ ($20.8\%\text{--}26.3\%$) over recalibrated physics. Furthermore, under unobservable blade-pitch registers (\texttt{no\_pitch}), recalibrated physics inflates costs to $1{,}068{,}711\text{--}1{,}126{,}891\text{ kW}\cdot\text{h}$, whereas the frozen backbone reconstructs rotor operating states from active/reactive electromechanical transients, achieving $760{,}166\text{--}763{,}140\text{ kW}\cdot\text{h}$ ($4.27\%$ violation)—a decisive $\sim 30\%$ cost reduction ($>300\text{k kW}\cdot\text{h}$).
+3. **Regime III: Selective Decision Abstention Required ($\tau = 60\text{ min}$, Delay-6):** Under an unhedged 60-minute communication outage, all unconstrained data-driven models breach the nominal $10.0\%$ violation target on the test set ($10.60\% \pm 1.07\%$ for Joint Routed, $15.19\% \pm 3.65\%$ for Frozen Backbone, and $10.68\% \pm 0.78\%$ for Recalibrated Physics). In this regime, aggressive data-driven reserve optimization becomes unsafe, mandating a formal selective decision abstention protocol.
+
+```{=latex}
+\begin{table}[!htbp]
+\centering
+\fontsize{5.2pt}{6.0pt}\selectfont
+\setlength{\tabcolsep}{0.8pt}
+\renewcommand{\arraystretch}{0.75}
+\caption{Multidimensional operational progression across telemetry latency $\tau \in [0, 60]\text{ min}$ and pitch observability ($h=1$, 5-seed mean $\pm$ sd on WTB). Cost in kW$\cdot$h ($\rho=10$).}
+\label{tab:phase-scan}
+\begin{tabularx}{\columnwidth}{@{}ccccccc@{}}
+\toprule
+$\tau$ (min) & Pitch & \shortstack{Clean Physical\\Cost / Viol.} & \shortstack{Recal. Physical\\Cost / Viol.} & \shortstack{Frozen Backbone\\Cost / Viol.} & \shortstack{Joint Routed\\Cost / Viol.} & Operational Regime \\
+\midrule
+0 & All & $593{,}258$ ($7.3\%$) & $593{,}258$ ($7.3\%$) & $763{,}140$ ($4.3\%$) & $663{,}915$ ($7.3\%$) & Regime I (Physics Opt.) \\
+0 & None & $593{,}258$ ($7.3\%$) & $1{,}068{,}711$ ($1.4\%$) & $\mathbf{763{,}140}$ ($4.3\%$) & $959{,}833$ ($2.1\%$) & Regime II (Repr. Adv.) \\
+\midrule
+10 & All & $753{,}606$ ($11.2\%^{\dagger}$) & $1{,}126{,}243$ ($3.1\%$) & $\mathbf{829{,}521}$ ($6.4\%$) & $996{,}318$ ($3.5\%$) & Regime II (Repr. Adv.) \\
+10 & None & $589{,}836$ ($7.2\%$) & $1{,}081{,}402$ ($1.2\%$) & $\mathbf{762{,}635}$ ($4.3\%$) & $957{,}841$ ($2.1\%$) & Regime II (Repr. Adv.) \\
+\midrule
+20 & All & $896{,}198$ ($14.0\%^{\dagger}$) & $1{,}176{,}908$ ($4.4\%$) & $\mathbf{900{,}454}$ ($8.1\%$) & $1{,}039{,}869$ ($4.7\%$) & Regime II (Repr. Adv.) \\
+20 & None & $595{,}452$ ($7.3\%$) & $1{,}090{,}439$ ($1.2\%$) & $\mathbf{762{,}008}$ ($4.3\%$) & $956{,}116$ ($2.1\%$) & Regime II (Repr. Adv.) \\
+\midrule
+30 & All & $1{,}069{,}266$ ($16.6\%^{\dagger}$) & $1{,}266{,}032$ ($6.1\%$) & $\mathbf{1{,}003{,}054}$ ($9.9\%$) & $1{,}114{,}330$ ($6.2\%$) & Regime II (Repr. Adv.) \\
+30 & None & $602{,}133$ ($7.3\%$) & $1{,}101{,}545$ ($1.3\%$) & $\mathbf{761{,}264}$ ($4.3\%$) & $955{,}163$ ($2.1\%$) & Regime II (Repr. Adv.) \\
+\midrule
+60 & All & $1{,}656{,}285$ ($24.0\%^{\dagger}$) & $1{,}602{,}911$ ($10.7\%^{\dagger}$) & $1{,}388{,}464$ ($15.2\%^{\dagger}$) & $1{,}412{,}321$ ($10.6\%^{\dagger}$) & Regime III (Abstain) \\
+60 & None & $615{,}181$ ($7.4\%$) & $1{,}126{,}891$ ($1.3\%$) & $\mathbf{760{,}166}$ ($4.3\%$) & $955{,}359$ ($2.1\%$) & Regime II (Repr. Adv.) \\
+\bottomrule
+\multicolumn{7}{@{}p{\columnwidth}@{}}{\tiny $^{\dagger}$Exceeds nominal 10\% violation target ($q^*=0.90$). Bold indicates lowest compliant operational cost.}
+\end{tabularx}
+\end{table}
+```
+
+To resolve Regime III without over-promising autonomous safety, we formulate a **Selective Decision Abstention (Risk-Coverage Policy)**:
+\begin{equation}
+r_{i,t}^* = \begin{cases} 
+\hat{r}_{i,t}^{\text{learned}}, & \text{if } U_{i,t} \le \theta_c \quad (\text{Accepted Prediction}), \\
+r_{i,t}^{\text{conservative}}, & \text{if } U_{i,t} > \theta_c \quad (\text{Decision Abstention / Refusal}),
+\end{cases}
+\end{equation}
+where $U_{i,t} = \mathcal{H}(P(S_{i,t}=1 \mid \mathcal{G}_t))$ denotes predictive classification entropy, and $\theta_c$ is calibrated on validation data to enforce a fleet coverage fraction $c \in [0.5, 1.0]$. Turbines triggering abstention defer to conservative spinning reserve headroom ($r_{i,t}^{\text{conservative}} = P_{\text{rated}} - \hat{P}_{i,t}$).
+
+```{=latex}
+\begin{table}[!htbp]
+\centering
+\fontsize{5.2pt}{6.0pt}\selectfont
+\setlength{\tabcolsep}{1.2pt}
+\renewcommand{\arraystretch}{0.75}
+\caption{Risk-Coverage Selective Decision Abstention under severe Delay-6 ($\tau=60\text{ min}$, $h=1$, 5-seed aggregate on WTB).}
+\label{tab:risk-coverage}
+\begin{tabularx}{\columnwidth}{@{}lccccc@{}}
+\toprule
+Model & Coverage $c$ & \shortstack{Accepted\\Viol. Rate} & \shortstack{Fleet\\Viol. Rate} & \shortstack{Fleet Shortage\\(MWh)} & \shortstack{Fleet Cost\\(kW$\cdot$h)} \\
+\midrule
+Joint Routed & $1.00$ (Full) & $10.60\%$ & $10.60\%^{\dagger}$ & $53.90 \pm 5.74$ & $1{,}412{,}321 \pm 36{,}495$ \\
+ & $0.90$ & $10.74\%$ & $\mathbf{9.98\%}$ & $52.35 \pm 5.56$ & $1{,}495{,}509 \pm 34{,}872$ \\
+ & $0.80$ & $11.36\%$ & $\mathbf{10.00\%}$ & $53.04 \pm 5.48$ & $1{,}548{,}926 \pm 33{,}450$ \\
+ & $0.50$ & $14.52\%$ & $10.56\%$ & $55.71 \pm 5.21$ & $1{,}592{,}033 \pm 30{,}120$ \\
+\midrule
+Frozen Backbone & $1.00$ (Full) & $15.19\%$ & $15.19\%^{\dagger}$ & $77.26 \pm 15.36$ & $1{,}388{,}464 \pm 100{,}760$ \\
+ & $0.90$ & $15.09\%$ & $13.60\%$ & $71.97 \pm 14.12$ & $1{,}523{,}364 \pm 95{,}820$ \\
+ & $0.80$ & $15.25\%$ & $12.44\%$ & $66.89 \pm 12.85$ & $1{,}572{,}887 \pm 91{,}240$ \\
+ & $0.50$ & $16.01\%$ & $11.23\%$ & $60.41 \pm 10.45$ & $1{,}624{,}036 \pm 84{,}150$ \\
+\bottomrule
+\multicolumn{6}{@{}p{\columnwidth}@{}}{\tiny $^{\dagger}$Exceeds nominal 10\% violation target. Bold indicates compliant fleet violation rate ($\le 10.0\%$).}
+\end{tabularx}
+\end{table}
+```
+
+As demonstrated in Table~\ref{tab:risk-coverage}, unconstrained deployment ($c=1.00$) under Delay-6 breaches the nominal $10\%$ safety envelope. By abstaining on the $10\%$ most ambiguous transition decisions ($c=0.90$), the system reduces fleet violation rate from $10.60\%$ down to $9.98\%$, cutting shortage energy to $52.35\text{ MWh}$ and safely restoring grid compliance. For the frozen backbone, abstaining on $20\%$ of high-entropy decisions ($c=0.80$) drops fleet shortage by $10.37\text{ MWh}$ ($77.26 \to 66.89\text{ MWh}$, a $13.4\%$ reduction). This confirms that accountability in degraded industrial SCADA operations requires explicit decision boundaries and selective deferral rather than blind reliance on neural forecasts.
+
 
 ## Operating-Boundary Recovery and Point-Forecast Price of Routing
 
