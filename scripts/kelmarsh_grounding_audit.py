@@ -1,15 +1,23 @@
 """Kelmarsh real-degradation grounding audit.
 
-Quantifies the real-world counterpart of the paper's confirming-stream delay
-scenario using the Kelmarsh 2016 SCADA archive:
+Quantifies the empirical counterpart of SCADA telemetry asynchrony using the
+Kelmarsh 2016 SCADA archive:
 
   1. The Status stream is event-driven with second-level timestamps while the
      turbine data stream is a 10-minute sampling grid: the fraction of status
-     events that fall strictly between two grid points measures how often the
-     10-minute confirming channel cannot confirm the event time.
-  2. Pitch-system status events (e.g. 'Pitch measuring system') exist as a
+     events that fall strictly between two grid points (99.6%) measures
+     event-driven SCADA logging asynchrony (second-level discrete event logging
+     between 10-minute dispatch boundaries).
+  2. This metric reflects discrete logging mechanics rather than proving that
+     physical communication channels suffered 10- to 60-minute transmission
+     delays in routine operation.
+  3. The 10- to 60-minute latency experiments in the paper are explicitly
+     characterized as controlled synthetic stress tests designed to explore
+     operational reserve vulnerability under severe communication backlog and
+     queuing degradation.
+  4. Pitch-system status events (e.g. 'Pitch measuring system') exist as a
      separate confirming stream with their own timestamps.
-  3. The archive export timestamp is years after the data interval, showing
+  5. The archive export timestamp is years after the data interval, showing
      that confirmed labels can lag the raw channel arbitrarily long.
 
 Output: a compact JSON + CSV with the grounding numbers for the paper.
@@ -99,10 +107,11 @@ def main() -> None:
         "grid_seconds": GRID_SECONDS,
         "reading": (
             "The Status confirming stream is event-driven with second-level timestamps: "
-            "nearly every event (99.6%) falls between 10-minute turbine-data grid points, "
-            "demonstrating that confirming-stream SCADA events arrive asynchronously with respect to "
-            "regular dispatch intervals. In our benchmark, this motivates controlled multi-step "
-            "transmission latency stress tests (10-60 min) to evaluate operating reserve robustness under telemetry bottlenecks."
+            "99.6% of status events fall strictly between 10-minute dispatch grid points, "
+            "serving as empirical evidence of event-driven SCADA logging asynchrony rather than proving "
+            "physical communication channels suffered 10-60 min transmission delays. In our benchmark, "
+            "the 10-60 min latency evaluations are explicitly characterized as controlled synthetic stress tests "
+            "designed to explore operational reserve vulnerability under severe communication backlog and queuing degradation."
         ),
     }
     (out_dir / "kelmarsh_grounding_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")

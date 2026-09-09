@@ -5,6 +5,7 @@ import numpy as np
 import pytest
 
 from scripts.eval_farm_aggregate_reserve import (
+    aggregate_farm_pcc_causal,
     compute_pinball_loss,
     fit_binned_policy,
     fit_gaussian_reserve,
@@ -114,3 +115,53 @@ def test_fit_binned_policy():
     assert len(reserves) == 5
     for b in range(5):
         assert reserves[b] >= 0
+
+
+def test_aggregate_farm_pcc_causal_no_future_leakage():
+    # Setup: 2 samples, 3 horizon steps, 4 turbines
+    # Turbine 0: always online (mask=1 everywhere)
+    # Turbine 1: online at t=0, fails at t=1,2 (mask=1 at t=0, mask=0 at t>0)
+    # Turbine 2: offline at t=0, comes online at t=1 (mask=0 at t=0, mask=1 at t>0)
+    # Turbine 3: always offline (mask=0 everywhere)
+    n_samples = 2
+    h = 3
+    n_turbines = 4
+
+    pred = np.ones((n_samples, h, n_turbines), dtype=np.float32) * 100.0
+    target = np.ones((n_samples, h, n_turbines), dtype=np.float32) * 80.0
+
+    mask = np.zeros((n_samples, h, n_turbines), dtype=np.float32)
+    mask[:, :, 0] = 1.0  # turbine 0
+    mask[:, 0, 1] = 1.0  # turbine 1 online only at t=0
+    mask[:, 1:, 2] = 1.0  # turbine 2 offline at t=0, online at t>0
+    # turbine 3 remains 0
+
+    p_pred, p_target, valid, p_eval_sub, active = aggregate_farm_pcc_causal(
+        pred, target, mask, min_active_turbines=1
+    )
+
+    # 1. Causal forecast P_pred MUST sum over anchor-available turbines (turbines 0 and 1) = 2 * 100 = 200
+    # at ALL horizons, without presciently excluding turbine 1 at t=1,2 or including turbine 2 at t=1,2
+    assert np.allclose(p_pred, 200.0)
+
+    # 2. Target power P_target:
+    # at t=0: turbines 0 and 1 are valid -> 2 * 80 = 160
+    # at t=1,2: only turbine 0 is online and valid -> 1 * 80 = 80
+    assert np.allclose(p_target[:, 0], 160.0)
+    assert np.allclose(p_target[:, 1:], 80.0)
+
+    # 3. Offline evaluated subset forecast P_pred_eval_subset:
+    # at t=0: turbines 0 and 1 -> 2 * 100 = 200
+    # at t=1,2: only turbine 0 -> 1 * 100 = 100
+    assert np.allclose(p_eval_sub[:, 0], 200.0)
+    assert np.allclose(p_eval_sub[:, 1:], 100.0)
+
+    # 4. Proves strict separation and zero future leakage:
+    # At t=1,2, p_pred (200.0) != p_eval_sub (100.0) because p_pred was not prescient
+    assert not np.allclose(p_pred[:, 1:], p_eval_sub[:, 1:])
+
+    # 5. Active count: 2 at t=0, 1 at t=1,2
+    assert np.all(active[:, 0] == 2)
+    assert np.all(active[:, 1:] == 1)
+    assert np.all(valid)
+

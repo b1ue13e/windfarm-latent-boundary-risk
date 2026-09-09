@@ -113,6 +113,49 @@ def compute_pinball_loss(shortfall: np.ndarray, reserve: np.ndarray, q: float) -
     return float(np.mean(np.maximum(q * diff, (q - 1.0) * diff)))
 
 
+def aggregate_farm_pcc_causal(
+    pred: np.ndarray,
+    target: np.ndarray,
+    mask: np.ndarray,
+    min_active_turbines: int = 50,
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """Aggregate turbine forecasts to farm-level PCC bus with strictly causal masking.
+
+    To eliminate causal aggregation leakage:
+    - At issue time t=0, dispatch operator knows which turbines are online and reporting.
+      The causal operational dispatch forecast P_pred sums over all turbines reported online
+      at anchor time t=0 (mask[:, 0:1, :]), WITHOUT using the future target mask to presciently
+      exclude future-failing turbines.
+    - In offline evaluation, delivered target power P_target is evaluated across turbines that were
+      online at anchor and remain valid at target (eval_mask = anchor_avail & mask).
+    - An offline evaluated subset forecast P_pred_eval_subset is also computed for paired diagnostic
+      reference, clearly separating the operational dispatch forecast from the offline evaluated subset.
+
+    Returns:
+        P_pred_causal: (N, H) strictly causal operational dispatch forecast
+        P_target: (N, H) actual delivered generation across reporting turbines
+        valid_step: (N, H) boolean mask indicating sufficient active reporting turbines
+        P_pred_eval_subset: (N, H) offline evaluated subset forecast
+        active_count: (N, H) number of active reporting turbines
+    """
+    anchor_avail = mask[:, 0:1, :] > 0.5  # (N, 1, n_turbines)
+    eval_mask = anchor_avail & (mask > 0.5)  # (N, H, n_turbines)
+
+    # Causal operational forecast (sums over anchor-available turbines, no future mask leakage)
+    P_pred_causal = np.sum(np.where(anchor_avail, pred, 0.0), axis=-1)  # (N, H)
+
+    # Delivered target power (evaluates reporting turbines; missing/failed turbines deliver 0.0)
+    P_target = np.sum(np.where(eval_mask, target, 0.0), axis=-1)  # (N, H)
+
+    # Offline evaluated subset forecast (diagnostic reference without attrition)
+    P_pred_eval_subset = np.sum(np.where(eval_mask, pred, 0.0), axis=-1)  # (N, H)
+
+    active_count = eval_mask.sum(axis=-1)
+    valid_step = active_count >= min_active_turbines
+
+    return P_pred_causal, P_target, valid_step, P_pred_eval_subset, active_count
+
+
 def evaluate_single_seed(
     run_dir: Path,
     seed: int,
@@ -147,26 +190,19 @@ def evaluate_single_seed(
     n_turbines = v_pred.shape[2]
     q_target = 1.0 - 1.0 / rho if rho > 1.0 else 0.50
 
-    # 3. Farm-level aggregation across turbines (Causally Symmetric Operational Protocol)
+    # 3. Farm-level aggregation across turbines (Strictly Causal Operational Protocol)
     # At issue time t=0, dispatch operator knows which turbines are online and reporting.
-    # To prevent future target mask leakage into the dispatch forecast:
-    # - Model prediction P_pred aggregates turbines verified online at anchor time t=0.
-    # - Evaluation enforces joint validity (anchor online AND target valid) to ensure fair pairing.
-    v_anchor_avail = v_mask[:, 0:1, :]  # (N_v, 1, n_turbines)
-    t_anchor_avail = t_mask[:, 0:1, :]  # (N_t, 1, n_turbines)
-
-    v_eval_mask = v_anchor_avail & v_mask
-    t_eval_mask = t_anchor_avail & t_mask
-
-    v_P_pred = np.sum(np.where(v_eval_mask, v_pred, 0.0), axis=-1)      # (N_v, H)
-    v_P_target = np.sum(np.where(v_eval_mask, v_target, 0.0), axis=-1)  # (N_v, H)
-    v_active = v_eval_mask.sum(axis=-1)                                 # (N_v, H)
-    v_valid_step = v_active >= min_active_turbines
-
-    t_P_pred = np.sum(np.where(t_eval_mask, t_pred, 0.0), axis=-1)      # (N_t, H)
-    t_P_target = np.sum(np.where(t_eval_mask, t_target, 0.0), axis=-1)  # (N_t, H)
-    t_active = t_eval_mask.sum(axis=-1)                                 # (N_t, H)
-    t_valid_step = t_active >= min_active_turbines
+    # To strictly prevent future target mask leakage into the dispatch forecast:
+    # - Model prediction P_pred aggregates turbines verified online at anchor time t=0
+    #   WITHOUT presciently excluding future-failing turbines.
+    # - In evaluation, the causally aggregated operational forecast is clearly separated
+    #   from the offline evaluated subset (where anchor online AND target valid).
+    v_P_pred, v_P_target, v_valid_step, v_P_pred_eval, v_active = aggregate_farm_pcc_causal(
+        v_pred, v_target, v_mask, min_active_turbines
+    )
+    t_P_pred, t_P_target, t_valid_step, t_P_pred_eval, t_active = aggregate_farm_pcc_causal(
+        t_pred, t_target, t_mask, min_active_turbines
+    )
 
     # Shortfall: s = max(P_pred - P_target, 0)
     v_shortfall = np.maximum(v_P_pred - v_P_target, 0.0)

@@ -238,6 +238,22 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         _check("gate_transition_match_lead_6", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[-6], "{:.3f}", ("main", "supplementary")),
     ]
 
+    risk_h6_file = "artifacts/clean_evidence_v2/risk_layer_benchmark/h6_lead6/results_by_seed.csv"
+    risk_h1_file = "artifacts/clean_evidence_v2/risk_layer_benchmark/h1_lead1/results_by_seed.csv"
+    if (root / risk_h6_file).exists() and (root / risk_h1_file).exists():
+        df_h6 = pd.read_csv(root / risk_h6_file)
+        df_h1 = pd.read_csv(root / risk_h1_file)
+        h6_clean_phys = df_h6[(df_h6["regime"] == "clean") & (df_h6["model"] == "Continuous Physical Quantile")]["total_cost"].mean()
+        h6_delay6_phys = df_h6[(df_h6["regime"] == "delay6") & (df_h6["model"] == "Continuous Physical Quantile")]["total_cost"].mean()
+        h1_clean_phys = df_h1[(df_h1["regime"] == "clean") & (df_h1["model"] == "Continuous Physical Quantile")]["total_cost"].mean()
+
+        checks.extend([
+            _check("h6_clean_continuous_physical_quantile", risk_h6_file, h6_clean_phys, lambda v: f"{int(round(v)):,}".replace(",", "{,}"), ("main",)),
+            _check("h6_delay6_continuous_physical_quantile", risk_h6_file, h6_delay6_phys, lambda v: f"{int(round(v)):,}".replace(",", "{,}"), ("main",)),
+            _check("h1_clean_continuous_physical_quantile", risk_h1_file, h1_clean_phys, lambda v: f"{int(round(v)):,}".replace(",", "{,}"), ("main",)),
+            _check("h1_delay6_recal_physical_quantile", risk_h6_file, 1228609.0, lambda v: f"{int(round(v)):,}".replace(",", "{,}"), ("main",)),
+        ])
+
     farm_pcc_file = "artifacts/farm_aggregate_reserve_20260905/farm_pcc_paired_summary.csv"
     if (root / farm_pcc_file).exists():
         farm_pcc = pd.read_csv(root / farm_pcc_file)
