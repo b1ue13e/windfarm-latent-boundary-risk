@@ -210,6 +210,9 @@ def merge_and_aggregate():
         "uniform_alpha": ["mean", "std"],
         "uniform_fleet_viol": ["mean", "std"],
         "uniform_fleet_cost": ["mean", "std"],
+        "uniform_val_alpha": ["mean", "std"],
+        "uniform_val_fleet_viol": ["mean", "std"],
+        "uniform_val_fleet_cost": ["mean", "std"],
     }).reset_index()
     agg_abs.to_csv(local_base / "phase_scan_risk_coverage_aggregate.csv", index=False)
 

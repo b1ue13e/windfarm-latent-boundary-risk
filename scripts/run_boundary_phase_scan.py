@@ -94,6 +94,7 @@ def evaluate_frozen_threshold_abstention(
     seed: int = 42,
     dt: float = DT,
     rho: float = RHO,
+    frozen_alpha_val: Optional[Dict[float, float]] = None,
 ) -> List[Dict[str, Any]]:
     """Evaluates selective abstention using thresholds frozen on the validation set, with mandatory controls."""
     valid = t_act & np.isfinite(t_s) & np.isfinite(t_r) & np.isfinite(t_fb) & np.isfinite(t_u)
@@ -141,7 +142,7 @@ def evaluate_frozen_threshold_abstention(
         rand_cost = float(np.sum((rand_res + rho * rand_shortage) * dt))
         rand_acc_viol = float(np.mean(s_val[rand_mask] > r_val[rand_mask])) if rand_mask.sum() > 0 else 0.0
 
-        # Control Benchmark 2: Uniform Margin Inflation (same total fleet reserve budget)
+        # Control Benchmark 2a: Uniform Margin Inflation (Ex-Post Test Budget-Matching Control)
         sum_base = float(np.sum(r_val))
         sum_target = float(np.sum(blended_reserve))
         alpha = sum_target / max(sum_base, 1e-6)
@@ -149,6 +150,13 @@ def evaluate_frozen_threshold_abstention(
         unif_shortage = np.maximum(s_val - unif_res, 0.0)
         unif_viol = float(np.mean(s_val > unif_res))
         unif_cost = float(np.sum((unif_res + rho * unif_shortage) * dt))
+
+        # Control Benchmark 2b: Uniform Margin Inflation (Ex-Ante Validation-Frozen Deployable Policy)
+        alpha_val = frozen_alpha_val.get(cov, alpha) if frozen_alpha_val is not None else alpha
+        unif_val_res = r_val * alpha_val
+        unif_val_shortage = np.maximum(s_val - unif_val_res, 0.0)
+        unif_val_viol = float(np.mean(s_val > unif_val_res))
+        unif_val_cost = float(np.sum((unif_val_res + rho * unif_val_shortage) * dt))
 
         results.append({
             "coverage": float(cov),
@@ -166,10 +174,14 @@ def evaluate_frozen_threshold_abstention(
             "random_fleet_viol": rand_viol,
             "random_fleet_cost": rand_cost,
             "random_acc_viol": rand_acc_viol,
-            # Uniform Margin Inflation Benchmark
+            # Uniform Margin Inflation: Ex-Post Test Budget-Matching Diagnostic Control
             "uniform_alpha": alpha,
             "uniform_fleet_viol": unif_viol,
             "uniform_fleet_cost": unif_cost,
+            # Uniform Margin Inflation: Ex-Ante Validation-Frozen Deployable Policy
+            "uniform_val_alpha": alpha_val,
+            "uniform_val_fleet_viol": unif_val_viol,
+            "uniform_val_fleet_cost": unif_val_cost,
         })
     return results
 
@@ -342,11 +354,45 @@ def run_phase_scan_for_seed(
                 thresh_spr = {c: float(np.quantile(v_spr_act, c)) if c < 1.0 else np.inf for c in abstention_coverages}
                 thresh_hyb = {c: float(np.quantile(v_hyb_act, c)) if c < 1.0 else np.inf for c in abstention_coverages}
 
+                # Validation candidate models and fallback for ex-ante alpha computation
+                P_rated = 1500.0
+                v_pred = v_out["pred"][lead].reshape(-1)
+                v_aero_fb = np.maximum(0.0, np.minimum(P_rated - v_pred, P_rated))
+                v_r_phys = np.maximum(g_phys * v_phys_raw + d_phys, 0.0)
+                v_r_fb = np.maximum(v_r_phys, v_aero_fb)
+                v_r_froz = np.maximum(g_froz * v_froz_bin + d_froz, 0.0)
+                v_r_rout = np.maximum(g_rout * v_rout_bin + d_rout, 0.0)
+
+                def compute_val_alpha_dict(v_r_cand, v_u, th_dict):
+                    a_dict = {}
+                    v_r_sub = v_r_cand[v_act]
+                    v_fb_sub = v_r_fb[v_act]
+                    v_u_sub = v_u[v_act]
+                    base_mwh = float(np.sum(v_r_sub))
+                    for c in abstention_coverages:
+                        th = th_dict.get(c, np.inf)
+                        mask = (v_u_sub <= th) if (c < 1.0 and not np.isinf(th)) else np.ones(len(v_u_sub), dtype=bool)
+                        blended = np.where(mask, v_r_sub, v_fb_sub)
+                        target_mwh = float(np.sum(blended))
+                        a_dict[c] = float(target_mwh / max(base_mwh, 1e-6))
+                    return a_dict
+
+                alpha_val_frozen_hyb = compute_val_alpha_dict(v_r_froz, v_hyb, thresh_hyb)
+                alpha_val_frozen_ent = compute_val_alpha_dict(v_r_froz, v_ent, thresh_ent)
+                alpha_val_frozen_spr = compute_val_alpha_dict(v_r_froz, v_spr, thresh_spr)
+                alpha_val_routed_hyb = compute_val_alpha_dict(v_r_rout, v_hyb, thresh_hyb)
+                alpha_val_routed_ent = compute_val_alpha_dict(v_r_rout, v_ent, thresh_ent)
+
                 val_calibrations[(lead, lag, ch_mode)] = {
                     "phys_res": p_res, "phys_edg": p_edg, "g_phys": g_phys, "d_phys": d_phys, "glob_res": glob_res,
                     "froz_res": froz_res, "froz_edg": froz_edg, "g_froz": g_froz, "d_froz": d_froz,
                     "rout_res": rout_res, "rout_edg": rout_edg, "g_rout": g_rout, "d_rout": d_rout,
                     "thresh_ent": thresh_ent, "thresh_spr": thresh_spr, "thresh_hyb": thresh_hyb,
+                    "alpha_val_frozen_hyb": alpha_val_frozen_hyb,
+                    "alpha_val_frozen_ent": alpha_val_frozen_ent,
+                    "alpha_val_frozen_spr": alpha_val_frozen_spr,
+                    "alpha_val_routed_hyb": alpha_val_routed_hyb,
+                    "alpha_val_routed_ent": alpha_val_routed_ent,
                 }
 
     # 4. Multi-Dimensional Grid Scan on Test Split (One Pass Per Condition)
@@ -448,12 +494,12 @@ def run_phase_scan_for_seed(
                 t_aero_fallback = np.maximum(0.0, np.minimum(P_rated - test_pred, P_rated))
                 r_fallback = np.maximum(r_phys_recal, t_aero_fallback)
 
-                for m_label, r_cand, u_cand, th_dict in [
-                    ("Frozen Backbone + Residual Quantile", r_frozen, t_hyb, calib["thresh_hyb"]),
-                    ("Frozen Backbone (Entropy)", r_frozen, t_ent, calib["thresh_ent"]),
-                    ("Frozen Backbone (Spread)", r_frozen, t_spr, calib["thresh_spr"]),
-                    ("Joint Routed", r_routed, t_hyb, calib["thresh_hyb"]),
-                    ("Joint Routed (Entropy)", r_routed, t_ent, calib["thresh_ent"]),
+                for m_label, r_cand, u_cand, th_dict, a_val_dict in [
+                    ("Frozen Backbone + Residual Quantile", r_frozen, t_hyb, calib["thresh_hyb"], calib["alpha_val_frozen_hyb"]),
+                    ("Frozen Backbone (Entropy)", r_frozen, t_ent, calib["thresh_ent"], calib["alpha_val_frozen_ent"]),
+                    ("Frozen Backbone (Spread)", r_frozen, t_spr, calib["thresh_spr"], calib["alpha_val_frozen_spr"]),
+                    ("Joint Routed", r_routed, t_hyb, calib["thresh_hyb"], calib["alpha_val_routed_hyb"]),
+                    ("Joint Routed (Entropy)", r_routed, t_ent, calib["thresh_ent"], calib["alpha_val_routed_ent"]),
                 ]:
                     abs_evals = evaluate_frozen_threshold_abstention(
                         t_s=test_s,
@@ -464,6 +510,7 @@ def run_phase_scan_for_seed(
                         frozen_thresh=th_dict,
                         coverages=abstention_coverages,
                         seed=seed,
+                        frozen_alpha_val=a_val_dict,
                     )
                     for res in abs_evals:
                         res.update({
