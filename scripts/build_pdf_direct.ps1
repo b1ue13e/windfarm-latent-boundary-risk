@@ -21,7 +21,8 @@ function Build-PDF {
     & $xelatex -interaction=nonstopmode -halt-on-error "-output-directory=$root\build" $tex | Out-Null
     if ($LASTEXITCODE -ne 0) { throw "XeLaTeX pass 2 failed on $label" }
     if (-not (Test-Path $pdf)) { throw "XeLaTeX did not produce $pdf" }
-    Write-Host "Built $pdf"
+    Copy-Item -LiteralPath $pdf -Destination "$root\${label}.pdf" -Force
+    Write-Host "Built $pdf and copied to $root\${label}.pdf"
 }
 
 Build-PDF "$root\paper_tste_ieee.md" "paper_tste_ieee"

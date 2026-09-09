@@ -58,27 +58,28 @@ def sync_files():
 
 
 def launch_jobs():
-    print("=== 2. LAUNCHING 5 SEEDS IN PARALLEL ON NODE 2 (GPUs 0-4) ===")
+    print("=== 2. LAUNCHING 5 SEEDS IN PARALLEL ON NODE 2 (GPUs 0-4) ===", flush=True)
     ssh = get_client()
     ssh.exec_command(f"mkdir -p {REMOTE_ROOT}/logs/phase_scan {REMOTE_ROOT}/artifacts/boundary_phase_scan")
 
+    # Launch all 5 seeds in a single detached shell command so paramiko does not block
+    launch_cmds = []
     for gpu_id, seed in enumerate(SEEDS):
         log_path = f"{REMOTE_ROOT}/logs/phase_scan/seed{seed}.log"
         out_dir = f"artifacts/boundary_phase_scan/parts/seed{seed}"
-        cmd = (
-            f"cd {REMOTE_ROOT} && "
-            f"nohup env CUDA_VISIBLE_DEVICES={gpu_id} ./run_env.sh python3 scripts/run_boundary_phase_scan.py "
-            f"--farm wtb --seeds {seed} --device cuda:0 --output-dir {out_dir} > {log_path} 2>&1 & echo $!"
+        launch_cmds.append(
+            f"( CUDA_VISIBLE_DEVICES={gpu_id} ./run_env.sh python3 -u scripts/run_boundary_phase_scan.py "
+            f"--farm wtb --seeds {seed} --device cuda:0 --output-dir {out_dir} > {log_path} 2>&1 & )"
         )
-        stdin, stdout, stderr = ssh.exec_command(cmd)
-        pid = stdout.read().decode().strip()
-        print(f"  GPU {gpu_id}: Seed {seed} launched with PID {pid} (log: {log_path})")
+    full_cmd = f"cd {REMOTE_ROOT} && " + " ; ".join(launch_cmds)
+    stdin, stdout, stderr = ssh.exec_command(full_cmd)
+    stdout.channel.recv_exit_status()
     ssh.close()
-    print("All 5 seeds launched in parallel.\n")
+    print("All 5 seeds launched concurrently on GPUs 0-4.\n", flush=True)
 
 
 def monitor_jobs():
-    print("=== 3. MONITORING RUNNING JOBS ===")
+    print("=== 3. MONITORING RUNNING JOBS ===", flush=True)
     t0 = time.time()
     while True:
         all_done = True
@@ -98,19 +99,19 @@ def monitor_jobs():
         ssh.close()
 
         elapsed = int(time.time() - t0)
-        print(f"[{elapsed}s elapsed]")
+        print(f"[{elapsed}s elapsed]", flush=True)
         for l in status_lines:
-            print(l)
-        print("-" * 50)
+            print(l, flush=True)
+        print("-" * 50, flush=True)
 
         if all_done:
-            print(f"All 5 seeds completed successfully in {elapsed}s!\n")
+            print(f"All 5 seeds completed successfully in {elapsed}s!\n", flush=True)
             break
-        time.sleep(20)
+        time.sleep(10)
 
 
 def retrieve_artifacts():
-    print("=== 4. RETRIEVING ARTIFACTS FROM NODE 2 ===")
+    print("=== 4. RETRIEVING ARTIFACTS FROM NODE 2 ===", flush=True)
     local_base = REPO_ROOT / "artifacts" / "boundary_phase_scan"
     local_base.mkdir(parents=True, exist_ok=True)
 
@@ -197,11 +198,18 @@ def merge_and_aggregate():
 
     # Aggregate Risk-Coverage Curves
     agg_abs = full_abs.groupby(["model", "lead_step", "lag_steps", "channel_mode", "coverage"]).agg({
+        "realized_coverage": ["mean", "std"],
         "accepted_violation_rate": ["mean", "std"],
         "fleet_violation_rate": ["mean", "std"],
         "fleet_total_cost": ["mean", "std"],
         "fleet_shortage_mwh": ["mean", "std"],
         "fleet_reserve_mwh": ["mean", "std"],
+        "random_fleet_viol": ["mean", "std"],
+        "random_fleet_cost": ["mean", "std"],
+        "random_acc_viol": ["mean", "std"],
+        "uniform_alpha": ["mean", "std"],
+        "uniform_fleet_viol": ["mean", "std"],
+        "uniform_fleet_cost": ["mean", "std"],
     }).reset_index()
     agg_abs.to_csv(local_base / "phase_scan_risk_coverage_aggregate.csv", index=False)
 

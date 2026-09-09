@@ -371,9 +371,9 @@ Crucially, at $h=1$, Joint Dense Head and Joint Routed exhibit statistical parit
 
 To delineate the operational boundaries governing telemetry degradation, we scan across transmission delays $\tau \in \{0, 10, 20, 30, 60\}\text{ min}$, horizons $h \in \{1, 3, 6\}$, and pitch channel observabilities (\texttt{all} vs. \texttt{no\_pitch}) across all 5 seeds on the 134-turbine WTB plant (Table~\ref{tab:phase-scan}). This empirical trajectory establishes a rigorous **Three-Regime Operational Framework**:
 
-1. **Regime I: Simple Recalibration Sufficient ($\tau = 0\text{ min}$ or mild delays):** Under fresh telemetry ($\tau=0$), deterministic continuous physical quantiles achieve the lowest operational reserve cost ($593{,}258 \pm 74{,}886\text{ kW}\cdot\text{h}$ at $h=1$, with well-calibrated $7.29\% \pm 1.42\%$ violation). Machine-learning representations incur substantial reserve penalties without reliability gains ($763{,}140\text{ kW}\cdot\text{h}$ for modular frozen backbones, $+28.6\%$).
-2. **Regime II: Learned Representation Advantage ($\tau = 10\text{--}30\text{ min}$ and unobservable pitch):** As telemetry latency increases to $10\text{--}30$ minutes, physical rules calibrated on clean data suffer rapid violation breakdown ($11.18\% \to 13.98\% \to 16.58\%$). While adapting calibration to degraded states restores physical compliance ($3.07\%\text{--}6.06\%$), it severely inflates reserve costs ($1{,}126{,}243\text{--}1{,}266{,}032\text{ kW}\cdot\text{h}$). Decoupled modular representations (\textit{Frozen Backbone + Residual Quantile}) maintain compliant violation rates ($6.37\%\text{--}9.91\%$) while saving $262{,}978\text{--}296{,}722\text{ kW}\cdot\text{h}$ ($20.8\%\text{--}26.3\%$) over recalibrated physics. Furthermore, under unobservable blade-pitch registers (\texttt{no\_pitch}), recalibrated physics inflates costs to $1{,}068{,}711\text{--}1{,}126{,}891\text{ kW}\cdot\text{h}$, whereas the frozen backbone reconstructs rotor operating states from active/reactive electromechanical transients, achieving $760{,}166\text{--}763{,}140\text{ kW}\cdot\text{h}$ ($4.27\%$ violation)—a decisive $\sim 30\%$ cost reduction ($>300\text{k kW}\cdot\text{h}$).
-3. **Regime III: Selective Decision Abstention Required ($\tau = 60\text{ min}$, Delay-6):** Under an unhedged 60-minute communication outage, all unconstrained data-driven models breach the nominal $10.0\%$ violation target on the test set ($10.60\% \pm 1.07\%$ for Joint Routed, $15.19\% \pm 3.65\%$ for Frozen Backbone, and $10.68\% \pm 0.78\%$ for Recalibrated Physics). In this regime, aggressive data-driven reserve optimization becomes unsafe, mandating a formal selective decision abstention protocol.
+1. **Regime I: Simple Recalibration Sufficient ($\tau = 0\text{ min}$ or mild delays under full observability):** Under fresh telemetry ($\tau=0$, \texttt{all}), deterministic continuous physical quantiles achieve the lowest operational reserve cost ($593{,}258 \pm 74{,}886\text{ kW}\cdot\text{h}$ at $h=1$, with well-calibrated $7.29\% \pm 1.42\%$ violation). Machine-learning representations incur reserve penalties without reliability gains ($663{,}347\text{ kW}\cdot\text{h}$ for modular frozen backbones, $+11.8\%$). When telemetry latency increases to $\tau \in [10, 30]\text{ min}$ with all channels observable, clean-calibrated physical rules collapse ($11.18\% \to 13.98\% \to 16.58\%$). However, state-conditional recalibration fully restores physical compliance ($7.1\%\text{--}7.5\%$ violation) at lower cost than neural models ($742{,}211\text{--}939{,}190\text{ kW}\cdot\text{h}$ vs. $786{,}366\text{--}987{,}760\text{ kW}\cdot\text{h}$), proving that simple recalibration is sufficient when all telemetry channels remain observable.
+2. **Regime II: Learned Representation Advantage (Unobservable pitch channels / partial observability):** When blade-pitch telemetry is withheld across aggregator or OEM boundaries (\texttt{no\_pitch}), physical aerodynamic rules lose direct rotor state awareness. Recalibrated physics based solely on wind-speed binning inflates reserve costs ($824{,}393\text{ kW}\cdot\text{h}$ at $\tau=0$; $928{,}028\text{ kW}\cdot\text{h}$ at $\tau=10$; $1{,}010{,}530\text{ kW}\cdot\text{h}$ at $\tau=20$; $1{,}101{,}292\text{ kW}\cdot\text{h}$ at $\tau=30$; $1{,}378{,}900\text{ kW}\cdot\text{h}$ at $\tau=60$). In contrast, learned representations (\textit{Frozen Backbone + Residual Quantile}) reconstruct operating states from electromechanical transients (active/reactive power, rotor speed), achieving $755{,}794\text{ kW}\cdot\text{h}$ at $\tau=0$ (an $8.3\%$ cost reduction of $68{,}599\text{ kW}\cdot\text{h}$ over recalibrated physics) and maintaining consistent cost savings across all latencies ($866{,}753\text{ kW}\cdot\text{h}$ at $\tau=10$, $-61.3\text{k}$; $947{,}869\text{ kW}\cdot\text{h}$ at $\tau=20$, $-62.7\text{k}$; $1{,}054{,}592\text{ kW}\cdot\text{h}$ at $\tau=30$, $-46.7\text{k}$; $1{,}330{,}318\text{ kW}\cdot\text{h}$ at $\tau=60$, $-48.6\text{k}$).
+3. **Regime III: Compound Breakdown and Conservative Safeguards ($\tau = 60\text{ min}$, Delay-6):** Under 60-minute latency, unadapted physical rules experience catastrophic collapse ($24.02\% \pm 1.69\%$ violation, dumping $127.6\text{ MWh}$ shortage). While state-conditional recalibration restores fleet-average violation to $9.46\%\text{--}9.62\%$ across both physical and learned models ($1{,}228{,}609\text{ kW}\cdot\text{h}$ for physics, $1{,}283{,}855\text{ kW}\cdot\text{h}$ for Frozen Backbone, and $1{,}274{,}047\text{ kW}\cdot\text{h}$ for Joint Routed), the empirical by-seed compliance rate is strictly $3/5$ seeds ($60\%$), with seeds 201 and 203 exceeding the $10.0\%$ target ($10.2\%\text{--}10.7\%$). In this severe telemetry regime, unconstrained neural optimization is vulnerable to tail risk.
 
 ```{=latex}
 \begin{table}[!htbp]
@@ -381,69 +381,76 @@ To delineate the operational boundaries governing telemetry degradation, we scan
 \fontsize{5.2pt}{6.0pt}\selectfont
 \setlength{\tabcolsep}{0.8pt}
 \renewcommand{\arraystretch}{0.75}
-\caption{Multidimensional operational progression across telemetry latency $\tau \in [0, 60]\text{ min}$ and pitch observability ($h=1$, 5-seed mean $\pm$ sd on WTB). Cost in kW$\cdot$h ($\rho=10$).}
+\caption{Multidimensional operational progression across telemetry latency $\tau \in [0, 60]\text{ min}$ and pitch observability ($h=1$, 5-seed mean on WTB). Cost in kW$\cdot$h ($\rho=10$).}
 \label{tab:phase-scan}
 \begin{tabularx}{\columnwidth}{@{}ccccccc@{}}
 \toprule
 $\tau$ (min) & Pitch & \shortstack{Clean Physical\\Cost / Viol.} & \shortstack{Recal. Physical\\Cost / Viol.} & \shortstack{Frozen Backbone\\Cost / Viol.} & \shortstack{Joint Routed\\Cost / Viol.} & Operational Regime \\
 \midrule
-0 & All & $593{,}258$ ($7.3\%$) & $593{,}258$ ($7.3\%$) & $763{,}140$ ($4.3\%$) & $663{,}915$ ($7.3\%$) & Regime I (Physics Opt.) \\
-0 & None & $593{,}258$ ($7.3\%$) & $1{,}068{,}711$ ($1.4\%$) & $\mathbf{763{,}140}$ ($4.3\%$) & $959{,}833$ ($2.1\%$) & Regime II (Repr. Adv.) \\
+0 & All & $\mathbf{593{,}258}$ ($7.3\%$) & $\mathbf{593{,}258}$ ($7.3\%$) & $663{,}347$ ($6.1\%$) & $663{,}915$ ($7.3\%$) & Regime I (Physics Opt.) \\
+0 & None & $961{,}024$ ($3.2\%$) & $824{,}393$ ($5.4\%$) & $\mathbf{755{,}794}$ ($5.8\%$) & $756{,}257$ ($6.4\%$) & Regime II (Repr. Adv.) \\
 \midrule
-10 & All & $753{,}606$ ($11.2\%^{\dagger}$) & $1{,}126{,}243$ ($3.1\%$) & $\mathbf{829{,}521}$ ($6.4\%$) & $996{,}318$ ($3.5\%$) & Regime II (Repr. Adv.) \\
-10 & None & $589{,}836$ ($7.2\%$) & $1{,}081{,}402$ ($1.2\%$) & $\mathbf{762{,}635}$ ($4.3\%$) & $957{,}841$ ($2.1\%$) & Regime II (Repr. Adv.) \\
+10 & All & $753{,}606$ ($11.2\%^{\dagger}$) & $\mathbf{742{,}211}$ ($7.4\%$) & $786{,}366$ ($6.7\%$) & $789{,}094$ ($7.6\%$) & Regime I (Recal. Suff.) \\
+10 & None & $1{,}008{,}743$ ($4.8\%$) & $928{,}028$ ($6.2\%$) & $\mathbf{866{,}753}$ ($6.1\%$) & $874{,}156$ ($6.6\%$) & Regime II (Repr. Adv.) \\
 \midrule
-20 & All & $896{,}198$ ($14.0\%^{\dagger}$) & $1{,}176{,}908$ ($4.4\%$) & $\mathbf{900{,}454}$ ($8.1\%$) & $1{,}039{,}869$ ($4.7\%$) & Regime II (Repr. Adv.) \\
-20 & None & $595{,}452$ ($7.3\%$) & $1{,}090{,}439$ ($1.2\%$) & $\mathbf{762{,}008}$ ($4.3\%$) & $956{,}116$ ($2.1\%$) & Regime II (Repr. Adv.) \\
+20 & All & $896{,}198$ ($14.0\%^{\dagger}$) & $\mathbf{841{,}734}$ ($7.1\%$) & $875{,}838$ ($7.4\%$) & $879{,}750$ ($8.0\%$) & Regime I (Recal. Suff.) \\
+20 & None & $1{,}062{,}646$ ($6.1\%$) & $1{,}010{,}530$ ($6.2\%$) & $\mathbf{947{,}869}$ ($6.7\%$) & $959{,}934$ ($7.1\%$) & Regime II (Repr. Adv.) \\
 \midrule
-30 & All & $1{,}069{,}266$ ($16.6\%^{\dagger}$) & $1{,}266{,}032$ ($6.1\%$) & $\mathbf{1{,}003{,}054}$ ($9.9\%$) & $1{,}114{,}330$ ($6.2\%$) & Regime II (Repr. Adv.) \\
-30 & None & $602{,}133$ ($7.3\%$) & $1{,}101{,}545$ ($1.3\%$) & $\mathbf{761{,}264}$ ($4.3\%$) & $955{,}163$ ($2.1\%$) & Regime II (Repr. Adv.) \\
+30 & All & $1{,}069{,}266$ ($16.6\%^{\dagger}$) & $\mathbf{939{,}190}$ ($7.5\%$) & $987{,}760$ ($7.1\%$) & $990{,}091$ ($7.6\%$) & Regime I (Recal. Suff.) \\
+30 & None & $1{,}138{,}774$ ($7.5\%$) & $1{,}101{,}292$ ($6.7\%$) & $\mathbf{1{,}054{,}592}$ ($6.4\%$) & $1{,}064{,}238$ ($6.7\%$) & Regime II (Repr. Adv.) \\
 \midrule
-60 & All & $1{,}656{,}285$ ($24.0\%^{\dagger}$) & $1{,}602{,}911$ ($10.7\%^{\dagger}$) & $1{,}388{,}464$ ($15.2\%^{\dagger}$) & $1{,}412{,}321$ ($10.6\%^{\dagger}$) & Regime III (Abstain) \\
-60 & None & $615{,}181$ ($7.4\%$) & $1{,}126{,}891$ ($1.3\%$) & $\mathbf{760{,}166}$ ($4.3\%$) & $955{,}359$ ($2.1\%$) & Regime II (Repr. Adv.) \\
+60 & All & $1{,}656{,}285$ ($24.0\%^{\dagger}$) & $\mathbf{1{,}228{,}609}$ ($9.5\%$) & $1{,}283{,}855$ ($9.6\%$) & $1{,}274{,}047$ ($9.6\%$) & Regime III (Abstain / Inflat.) \\
+60 & None & $1{,}437{,}280$ ($11.8\%^{\dagger}$) & $1{,}378{,}900$ ($9.0\%$) & $\mathbf{1{,}330{,}318}$ ($8.7\%$) & $1{,}331{,}840$ ($8.8\%$) & Regime II (Repr. Adv.) \\
 \bottomrule
-\multicolumn{7}{@{}p{\columnwidth}@{}}{\tiny $^{\dagger}$Exceeds nominal 10\% violation target ($q^*=0.90$). Bold indicates lowest compliant operational cost.}
+\multicolumn{7}{@{}p{\columnwidth}@{}}{\tiny $^{\dagger}$Exceeds nominal 10\% violation target ($q^*=0.90$). Bold indicates lowest compliant operational cost. Under $\tau=60\text{ min}$, by-seed compliance is $3/5$ seeds ($60\%$) across models.}
 \end{tabularx}
 \end{table}
 ```
 
-To resolve Regime III without over-promising autonomous safety, we formulate a **Selective Decision Abstention (Risk-Coverage Policy)**:
+To safeguard operations in Regime III without over-promising autonomous safety, we evaluate a **Selective Decision Abstention (Risk-Coverage Policy)**:
 \begin{equation}
 r_{i,t}^* = \begin{cases} 
 \hat{r}_{i,t}^{\text{learned}}, & \text{if } U_{i,t} \le \theta_c \quad (\text{Accepted Prediction}), \\
-r_{i,t}^{\text{conservative}}, & \text{if } U_{i,t} > \theta_c \quad (\text{Decision Abstention / Refusal}),
+r_{i,t}^{\text{fallback}}, & \text{if } U_{i,t} > \theta_c \quad (\text{Decision Abstention / Refusal}),
 \end{cases}
 \end{equation}
-where $U_{i,t} = \mathcal{H}(P(S_{i,t}=1 \mid \mathcal{G}_t))$ denotes predictive classification entropy, and $\theta_c$ is calibrated on validation data to enforce a fleet coverage fraction $c \in [0.5, 1.0]$. Turbines triggering abstention defer to conservative spinning reserve headroom ($r_{i,t}^{\text{conservative}} = P_{\text{rated}} - \hat{P}_{i,t}$).
+where $U_{i,t}$ denotes predictive uncertainty (entropy or quantile spread), $\theta_c$ is calibrated on validation data to target coverage fraction $c \in [0.5, 1.0]$, and abstained turbines defer to nameplate headroom fallback ($r_{i,t}^{\text{fallback}} = P_{\text{rated}} - \hat{P}_{i,t}$). To audit this mechanism, Table~\ref{tab:risk-coverage} benchmarks selective abstention against two mandatory controls: **Random Abstention** (matching realized coverage $\hat{c}$) and **Uniform Margin Inflation** (scaling reserve headroom uniformly to match total fleet reserve budget).
 
 ```{=latex}
 \begin{table}[!htbp]
 \centering
-\fontsize{5.2pt}{6.0pt}\selectfont
-\setlength{\tabcolsep}{1.2pt}
+\fontsize{5.0pt}{6.0pt}\selectfont
+\setlength{\tabcolsep}{1.0pt}
 \renewcommand{\arraystretch}{0.75}
-\caption{Risk-Coverage Selective Decision Abstention under severe Delay-6 ($\tau=60\text{ min}$, $h=1$, 5-seed aggregate on WTB).}
+\caption{Risk-Coverage Selective Decision Abstention vs. Random and Uniform Controls under Delay-6 ($\tau=60\text{ min}$, $h=1$, 5-seed aggregate on WTB).}
 \label{tab:risk-coverage}
-\begin{tabularx}{\columnwidth}{@{}lccccc@{}}
+\begin{tabularx}{\columnwidth}{@{}llccc@{}}
 \toprule
-Model & Coverage $c$ & \shortstack{Accepted\\Viol. Rate} & \shortstack{Fleet\\Viol. Rate} & \shortstack{Fleet Shortage\\(MWh)} & \shortstack{Fleet Cost\\(kW$\cdot$h)} \\
+Model & Target $c$ ($\hat{c}$) & \shortstack{Selective Abstention\\Fleet Viol. / Cost} & \shortstack{Random Control\\Fleet Viol. / Cost} & \shortstack{Uniform Inflation\\Fleet Viol. / Cost} \\
 \midrule
-Joint Routed & $1.00$ (Full) & $10.60\%$ & $10.60\%^{\dagger}$ & $53.90 \pm 5.74$ & $1{,}412{,}321 \pm 36{,}495$ \\
- & $0.90$ & $10.74\%$ & $\mathbf{9.98\%}$ & $52.35 \pm 5.56$ & $1{,}495{,}509 \pm 34{,}872$ \\
- & $0.80$ & $11.36\%$ & $\mathbf{10.00\%}$ & $53.04 \pm 5.48$ & $1{,}548{,}926 \pm 33{,}450$ \\
- & $0.50$ & $14.52\%$ & $10.56\%$ & $55.71 \pm 5.21$ & $1{,}592{,}033 \pm 30{,}120$ \\
+\multicolumn{5}{@{}l}{\textit{Mode: All Channels Observable}} \\
+Joint Routed & $1.00$ ($1.00$) & $9.62\%$ / $1{,}274{,}047$ & $9.62\%$ / $1{,}274{,}047$ & $9.62\%$ / $1{,}274{,}047$ \\
+ & $0.90$ ($0.93$) & $9.46\%$ / $1{,}276{,}238$ & $9.50\%$ / $1{,}272{,}870$ & $9.47\%$ / $1{,}274{,}106$ \\
+ & $0.80$ ($0.86$) & $9.17\%$ / $1{,}276{,}706$ & $9.36\%$ / $1{,}270{,}990$ & $9.29\%$ / $1{,}274{,}474$ \\
+ & $0.50$ ($0.55$) & $8.67\%$ / $1{,}276{,}097$ & $8.78\%$ / $1{,}265{,}902$ & $8.87\%$ / $1{,}277{,}102$ \\
 \midrule
-Frozen Backbone & $1.00$ (Full) & $15.19\%$ & $15.19\%^{\dagger}$ & $77.26 \pm 15.36$ & $1{,}388{,}464 \pm 100{,}760$ \\
- & $0.90$ & $15.09\%$ & $13.60\%$ & $71.97 \pm 14.12$ & $1{,}523{,}364 \pm 95{,}820$ \\
- & $0.80$ & $15.25\%$ & $12.44\%$ & $66.89 \pm 12.85$ & $1{,}572{,}887 \pm 91{,}240$ \\
- & $0.50$ & $16.01\%$ & $11.23\%$ & $60.41 \pm 10.45$ & $1{,}624{,}036 \pm 84{,}150$ \\
+Frozen Backbone & $1.00$ ($1.00$) & $9.55\%$ / $1{,}283{,}855$ & $9.55\%$ / $1{,}283{,}855$ & $9.55\%$ / $1{,}283{,}855$ \\
+ & $0.90$ ($0.93$) & $9.43\%$ / $1{,}280{,}596$ & $9.43\%$ / $1{,}281{,}737$ & $9.49\%$ / $1{,}284{,}137$ \\
+ & $0.80$ ($0.86$) & $9.11\%$ / $1{,}274{,}933$ & $9.28\%$ / $1{,}279{,}718$ & $9.25\%$ / $1{,}284{,}676$ \\
+ & $0.50$ ($0.55$) & $8.55\%$ / $1{,}269{,}148$ & $8.76\%$ / $1{,}271{,}385$ & $8.90\%$ / $1{,}286{,}719$ \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Mode: No Pitch Telemetry (Withheld)}} \\
+Frozen Backbone & $1.00$ ($1.00$) & $8.69\%$ / $1{,}330{,}318$ & $8.69\%$ / $1{,}330{,}318$ & $8.69\%$ / $1{,}330{,}318$ \\
+ & $0.90$ ($0.91$) & $9.02\%$ / $1{,}342{,}823$ & $8.61\%$ / $1{,}334{,}006$ & $\mathbf{8.93\%}$ / $\mathbf{1{,}329{,}130}$ \\
+ & $0.80$ ($0.82$) & $9.35\%$ / $1{,}352{,}252$ & $8.66\%$ / $1{,}337{,}746$ & $\mathbf{9.11\%}$ / $\mathbf{1{,}329{,}783}$ \\
+ & $0.50$ ($0.48$) & $8.84\%$ / $1{,}375{,}310$ & $8.55\%$ / $1{,}353{,}405$ & $\mathbf{8.33\%}$ / $\mathbf{1{,}332{,}649}$ \\
 \bottomrule
-\multicolumn{6}{@{}p{\columnwidth}@{}}{\tiny $^{\dagger}$Exceeds nominal 10\% violation target. Bold indicates compliant fleet violation rate ($\le 10.0\%$).}
+\multicolumn{5}{@{}p{\columnwidth}@{}}{\tiny Cost in kW$\cdot$h ($\rho=10$). Fleet target $q^*=0.90$ ($10\%$ viol). Note: In \textit{No Pitch}, uniform margin inflation strictly Pareto-dominates selective abstention, achieving lower violation ($8.33\%$ vs. $8.84\%$) at lower cost ($1{,}332\text{k}$ vs. $1{,}375\text{k}$).}
 \end{tabularx}
 \end{table}
 ```
 
-As demonstrated in Table~\ref{tab:risk-coverage}, unconstrained deployment ($c=1.00$) under Delay-6 breaches the nominal $10\%$ safety envelope. By abstaining on the $10\%$ most ambiguous transition decisions ($c=0.90$), the system reduces fleet violation rate from $10.60\%$ down to $9.98\%$, cutting shortage energy to $52.35\text{ MWh}$ and safely restoring grid compliance. For the frozen backbone, abstaining on $20\%$ of high-entropy decisions ($c=0.80$) drops fleet shortage by $10.37\text{ MWh}$ ($77.26 \to 66.89\text{ MWh}$, a $13.4\%$ reduction). This confirms that accountability in degraded industrial SCADA operations requires explicit decision boundaries and selective deferral rather than blind reliance on neural forecasts.
+The empirical audit reveals that **heuristic uncertainty scores (predictive entropy and quantile spread) fail to reliably isolate tail shortfall risk under severe telemetry staleness.** Under observable telemetry (\texttt{all}), selective abstention modestly reduces violation ($9.62\% \to 9.46\%$ at $c=0.90$ for Joint Routed; $9.55\% \to 9.43\%$ for Frozen Backbone), but its pricing and violation trajectory remain statistically indistinguishable from random abstention ($9.50\%$ and $9.43\%$). Furthermore, while fleet violation averages $9.43\%\text{--}9.46\%$, the by-seed compliance rate remains $3/5$ seeds ($60\%$), as Seed 201 accepted violation actually rises to $10.48\%$ (vs. $10.22\%$ unrejected). Crucially, under withheld pitch (\texttt{no\_pitch}), selective abstention is strictly Pareto-dominated by uniform margin inflation: at $c=0.50$, selective abstention costs $1{,}375{,}310\text{ kW}\cdot\text{h}$ ($8.84\%$ viol), whereas uniform margin inflation achieves lower violation ($8.33\%$) at lower total cost ($1{,}332{,}649\text{ kW}\cdot\text{h}$, saving $42{,}661\text{ kW}\cdot\text{h}$). Because stale SCADA telemetry corrupts both the point prediction and the uncertainty proxy, selective rejection incurs the penalty of bloated fallback reserves on safe turbines while missing true tail shortfalls. In industrial operations facing multi-step SCADA disruption, **uniform reserve margin inflation and aerodynamic physical fallbacks provide more reliable, cost-effective risk hedging than heuristic selective abstention.**
 
 
 ## Operating-Boundary Recovery and Point-Forecast Price of Routing

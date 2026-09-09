@@ -147,16 +147,25 @@ def evaluate_single_seed(
     n_turbines = v_pred.shape[2]
     q_target = 1.0 - 1.0 / rho if rho > 1.0 else 0.50
 
-    # 3. Farm-level aggregation across turbines
-    # P_farm(t, h) = sum_{i in active} P_{i}(t, h)
-    v_P_pred = np.sum(np.where(v_mask, v_pred, 0.0), axis=-1)      # (N_v, H)
-    v_P_target = np.sum(np.where(v_mask, v_target, 0.0), axis=-1)  # (N_v, H)
-    v_active = v_mask.sum(axis=-1)                                 # (N_v, H)
+    # 3. Farm-level aggregation across turbines (Causally Symmetric Operational Protocol)
+    # At issue time t=0, dispatch operator knows which turbines are online and reporting.
+    # To prevent future target mask leakage into the dispatch forecast:
+    # - Model prediction P_pred aggregates turbines verified online at anchor time t=0.
+    # - Evaluation enforces joint validity (anchor online AND target valid) to ensure fair pairing.
+    v_anchor_avail = v_mask[:, 0:1, :]  # (N_v, 1, n_turbines)
+    t_anchor_avail = t_mask[:, 0:1, :]  # (N_t, 1, n_turbines)
+
+    v_eval_mask = v_anchor_avail & v_mask
+    t_eval_mask = t_anchor_avail & t_mask
+
+    v_P_pred = np.sum(np.where(v_eval_mask, v_pred, 0.0), axis=-1)      # (N_v, H)
+    v_P_target = np.sum(np.where(v_eval_mask, v_target, 0.0), axis=-1)  # (N_v, H)
+    v_active = v_eval_mask.sum(axis=-1)                                 # (N_v, H)
     v_valid_step = v_active >= min_active_turbines
 
-    t_P_pred = np.sum(np.where(t_mask, t_pred, 0.0), axis=-1)      # (N_t, H)
-    t_P_target = np.sum(np.where(t_mask, t_target, 0.0), axis=-1)  # (N_t, H)
-    t_active = t_mask.sum(axis=-1)                                 # (N_t, H)
+    t_P_pred = np.sum(np.where(t_eval_mask, t_pred, 0.0), axis=-1)      # (N_t, H)
+    t_P_target = np.sum(np.where(t_eval_mask, t_target, 0.0), axis=-1)  # (N_t, H)
+    t_active = t_eval_mask.sum(axis=-1)                                 # (N_t, H)
     t_valid_step = t_active >= min_active_turbines
 
     # Shortfall: s = max(P_pred - P_target, 0)

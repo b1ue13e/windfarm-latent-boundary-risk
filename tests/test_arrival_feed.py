@@ -168,3 +168,55 @@ def test_all_channels_and_mask_synchrony(wtb_bundle):
             item["edge_weight_hist"][stalled_step],
         )
 
+
+def test_channel_withholding(wtb_bundle):
+    feat_names = list(wtb_bundle.metadata["feature_names"])
+    pab_idx = feat_names.index("Pab_mean")
+    wspd_idx = feat_names.index("Wspd")
+    phy_names = list(wtb_bundle.metadata.get("physics_names", []))
+    phy_pab_idx = phy_names.index("Pab_mean")
+
+    base_ds = RegimeWindowDataset(wtb_bundle, "test", hist_len=36, pred_len=24)
+    item_base = base_ds[10]
+
+    # Test 1: delay_steps=0 with withheld pitch
+    feed_clean_ds = UnifiedArrivalDataset(
+        wtb_bundle,
+        "test",
+        hist_len=36,
+        pred_len=24,
+        degradation=DegradationSpec(delay_steps=0, withheld_channels=("Pab_mean",)),
+    )
+    item_clean = feed_clean_ds[10]
+    assert torch.all(item_clean["x_hist"][:, :, pab_idx] == 0.0)
+    assert torch.all(item_clean["feature_mask_hist"][:, :, pab_idx] == 0.0)
+    assert torch.all(item_clean["anchor_physics"][:, phy_pab_idx] == 0.0)
+    # Other channels should match base
+    assert torch.equal(item_clean["x_hist"][:, :, wspd_idx], item_base["x_hist"][:, :, wspd_idx])
+
+    # Test 2: delay_steps=6 with withheld pitch and stalled other channels
+    feed_stale_ds = UnifiedArrivalDataset(
+        wtb_bundle,
+        "test",
+        hist_len=36,
+        pred_len=24,
+        degradation=DegradationSpec(
+            delay_steps=6,
+            corrupted_channels=("all",),
+            withheld_channels=("Pab_mean",),
+            history_policy="stalled",
+        ),
+    )
+    item_stale = feed_stale_ds[10]
+    assert torch.all(item_stale["x_hist"][:, :, pab_idx] == 0.0)
+    assert torch.all(item_stale["feature_mask_hist"][:, :, pab_idx] == 0.0)
+    assert torch.all(item_stale["anchor_physics"][:, phy_pab_idx] == 0.0)
+
+    # Wspd should be stalled
+    H = item_stale["x_hist"].shape[0]
+    stalled_step = H - 1 - 6
+    assert torch.equal(
+        item_stale["x_hist"][H - 1, :, wspd_idx],
+        item_stale["x_hist"][stalled_step, :, wspd_idx],
+    )
+
