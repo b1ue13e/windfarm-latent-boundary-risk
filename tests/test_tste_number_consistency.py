@@ -34,6 +34,8 @@ class TsteNumberConsistencyTests(unittest.TestCase):
             "artifacts/multiyear_gate_representation_audit/gate_representation_decay_summary.csv",
             "artifacts/dynamic_price_settlement_audit/kelmarsh_real_price_paired_summary.csv",
             "artifacts/dynamic_price_settlement_audit/penmanshiel_real_price_paired_summary.csv",
+            "artifacts/wind_bess_simulation/bess_dispatch_guard.json",
+            "artifacts/wind_bess_simulation/bess_dispatch_summary.csv",
             "docs/tste_trainonly_rerun_results_20260830.md",
             "paper_tste_ieee.md",
             "paper_tste_supplementary.md",

@@ -327,7 +327,7 @@ def generate_latex_table(df_summary: pd.DataFrame, out_path: Path) -> None:
 
     lines.extend([
         r"\bottomrule",
-        r"\multicolumn{8}{@{}p{\textwidth}@{}}{\tiny Evaluated using exact receding-horizon LP optimization via HiGHS with 1-hour lookahead ($H=6$). BESS parameters: 20\,MWh capacity, 10\,MW power rating, 95\% charge/discharge efficiency, 10\%--90\% SoC operating band, \$150/MWh shortage penalty, \$20/MWh curtailment penalty, \$15/MWh throughput degradation wear.}",
+        r"\multicolumn{8}{@{}p{\textwidth}@{}}{\tiny Evaluated using exact receding-horizon LP optimization via HiGHS with 1-hour lookahead ($H=6$). Because penalty rates are stationary and lookahead commitment gap is zero, rolling LP and step heuristic achieve analytically equivalent step decisions. BESS parameters: 20\,MWh capacity, 10\,MW power rating, 95\% charge/discharge efficiency, 10\%--90\% SoC operating band, \$150/MWh shortage penalty, \$20/MWh curtailment penalty, \$15/MWh throughput degradation wear.}",
         r"\end{tabular*}",
         r"\end{table*}",
     ])
