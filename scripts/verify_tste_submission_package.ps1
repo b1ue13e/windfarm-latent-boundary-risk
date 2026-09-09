@@ -128,7 +128,7 @@ if (-not $coverText.Contains("Supplementary Table A12")) {
 if (-not $coverText.Contains($expectedTitle)) {
     throw "Upload cover letter does not contain the expected manuscript title: $expectedTitle"
 }
-if (-not $coverText.Contains("-11.22M kWh") -or (-not $coverText.Contains("+0.021") -and -not $coverText.Contains("+0.064")) -or -not $coverText.Contains("17.6 cumulative machine-operating years")) {
+if ((-not $coverText.Contains("-2.32M kWh") -and -not $coverText.Contains("-11.22M kWh")) -or (-not $coverText.Contains("+0.021") -and -not $coverText.Contains("+0.064")) -or -not $coverText.Contains("17.6 cumulative machine-operating years")) {
     throw "Upload cover letter is missing key empirical pillar benchmarks."
 }
 

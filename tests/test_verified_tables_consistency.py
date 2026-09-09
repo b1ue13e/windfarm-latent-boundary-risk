@@ -49,7 +49,8 @@ class VerifiedTablesConsistencyTests(unittest.TestCase):
         df = pd.read_csv(paired_csv)
 
         for _, row in df.iterrows():
-            delta = int(round(row["mean_cost_delta"]))
+            delta_val = row["delta_cost_mean"] if "delta_cost_mean" in row else row["mean_cost_delta"]
+            delta = int(round(delta_val))
             delta_with_braces = f"{abs(delta):,}".replace(",", "{,}")
             delta_plain = f"{abs(delta):,}"
             found = (delta_with_braces in self.paper_text) or (delta_plain in self.paper_text)
@@ -80,7 +81,8 @@ class VerifiedTablesConsistencyTests(unittest.TestCase):
         df = pd.read_csv(paired_csv)
 
         for _, row in df.iterrows():
-            delta = int(round(row["mean_cost_delta"]))
+            delta_val = row["delta_cost_mean"] if "delta_cost_mean" in row else row["mean_cost_delta"]
+            delta = int(round(delta_val))
             delta_with_braces = f"{abs(delta):,}".replace(",", "{,}")
             delta_plain = f"{abs(delta):,}"
             found = (delta_with_braces in self.combined_text) or (delta_plain in self.combined_text)

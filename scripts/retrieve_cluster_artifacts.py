@@ -9,6 +9,7 @@ CLUSTERS = [
             "artifacts/clean_evidence_v2/risk_layer_benchmark/h1_lead1",
             "artifacts/clean_evidence_v2/risk_layer_benchmark/kelmarsh_h1",
             "artifacts/clean_evidence_v2/risk_layer_benchmark/kelmarsh_h6",
+            "artifacts/wind_bess_simulation",
             "logs/phase3_h1",
             "logs/kelmarsh_bench",
         ]

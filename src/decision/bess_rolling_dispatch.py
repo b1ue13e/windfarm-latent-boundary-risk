@@ -396,11 +396,19 @@ class WindBESSRollingOptimizer:
 
         for k in range(N):
             w_end = min(k + lookahead_steps, N)
-            w_fc = wind_forecast_mw[k:w_end]
+            H_step = w_end - k
+
+            # Real-time state feedback: at step k, current realized generation is observed at PCC bus.
+            # Lookahead steps 1..H-1 utilize the receding horizon forecast.
+            w_fc_receding = np.empty(H_step, dtype=np.float64)
+            w_fc_receding[0] = max(0.0, float(wind_actual_mw[k]))
+            if H_step > 1:
+                w_fc_receding[1:] = wind_forecast_mw[k + 1:w_end]
+
             c_fc = commit_schedule_mw[k:w_end]
 
             p_ch_plan, p_dis_plan, _, _, _ = self.solve_multi_period_lp(
-                w_fc, c_fc, initial_energy_mwh=current_energy
+                w_fc_receding, c_fc, initial_energy_mwh=current_energy
             )
 
             ch_exec = float(p_ch_plan[0])

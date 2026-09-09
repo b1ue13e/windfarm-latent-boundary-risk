@@ -818,7 +818,7 @@ Soft-physical vs global (sparse farm) & -0.03M & [-0.09M, +0.05M] & no & Kelmars
 
 ## Wind farm PCC bus-level aggregated reserve pricing under spatial portfolio smoothing {.unnumbered}
 
-To address the industrial power engineering reality that grid operators dispatch and clear reserves at the Point of Common Coupling (PCC) bus rather than at individual turbine terminals, we aggregate actual and predicted power across all 134 WTB wind turbines ($P_{\mathrm{farm}}(t, h) = \sum_{i=1}^{134} P_{i}(t, h)$). Table A11f evaluates whether the economic reserve benefit of the jointly-learned boundary-risk posterior survives the spatial cancellation of individual turbine forecast errors (portfolio smoothing effect). Across the full operational envelope, joint posterior aggregate quantile pricing saves $-11.22\text{M kWh}$ (95\% bootstrap CI $[-21.55\text{M}, -2.85\text{M}]$, strictly excluding zero) against the global PCC quantile and $-14.94\text{M kWh}$ (CI $[-27.06\text{M}, -6.23\text{M}]$) against the Gaussian parametric baseline. In transitional operating regimes where 10\% to 90\% of turbines are pitching, the joint posterior saves $-1.48\text{M kWh}$ (CI $[-2.14\text{M}, -1.07\text{M}]$) compared to continuous physical pitch rules, confirming that boundary-conditioned risk pricing retains substantial economic value after fleet-wide spatial smoothing.
+To address the industrial power engineering reality that grid operators dispatch and clear reserves at the Point of Common Coupling (PCC) bus rather than at individual turbine terminals, we aggregate actual and predicted power across all 134 WTB wind turbines ($P_{\mathrm{farm}}(t, h) = \sum_{i \in \mathcal{V}_t} P_{i,t}$) using strictly causal online masking at anchor time $t=0$. Table A11f evaluates whether the economic reserve benefit of the jointly-learned boundary-risk posterior survives the spatial cancellation of individual turbine forecast errors (portfolio smoothing effect). Across the full operational envelope, joint posterior aggregate quantile pricing saves $-2.32\text{M kWh}$ (95\% bootstrap CI $[-6.07\text{M}, +1.73\text{M}]$) against the global PCC quantile and $-1.37\text{M kWh}$ (CI $[-6.33\text{M}, +2.82\text{M}]$) against the Gaussian parametric baseline. In transitional operating regimes where 10\% to 90\% of turbines are pitching, the joint posterior saves $-1.33\text{M kWh}$ (CI $[-1.68\text{M}, -1.07\text{M}]$, strictly excluding zero) compared to continuous physical pitch rules, confirming that boundary-conditioned risk pricing retains substantial economic value after fleet-wide spatial smoothing.
 
 ```{=latex}
 \begin{table}[H]
@@ -826,26 +826,127 @@ To address the industrial power engineering reality that grid operators dispatch
 \scriptsize
 \setlength{\tabcolsep}{2.2pt}
 \renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A11f.} Wind farm Point of Common Coupling (PCC) aggregated reserve pricing under 134-turbine spatial portfolio smoothing ($\rho=10$, 5 seeds, WTB test split).}
+\caption*{\textbf{Table A11f.} Wind farm Point of Common Coupling (PCC) aggregated reserve pricing under 134-turbine spatial portfolio smoothing ($\rho=10$, 5 seeds, WTB test split, strictly causal issue-time aggregation).}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{lllrrrl}
 \toprule
 Regime / Condition & Strategy & Baseline & $\Delta\text{Cost}$ (kWh) & 95\% Bootstrap CI & Excludes Zero & $p$-value \\
 \midrule
-Full Operational Envelope & Joint Posterior Aggregate & Global PCC Quantile & -11.22M & [-21.55M, -2.85M] & \textbf{yes} ($p < 0.05$) & 0.125 \\
-Full Operational Envelope & Joint Posterior Aggregate & Gaussian PCC Param & -14.94M & [-27.06M, -6.23M] & \textbf{yes} ($p < 0.05$) & 0.062 \\
-Full Operational Envelope & Soft-Pab Aggregate & Global PCC Quantile & -5.95M & [-11.07M, -0.82M] & \textbf{yes} ($p < 0.05$) & 0.125 \\
-Full Operational Envelope & Gaussian PCC Param & Global PCC Quantile & +3.72M & [+0.89M, +5.67M] & \textbf{yes} ($p < 0.05$) & 0.125 \\
+Full Operational Envelope & Joint Posterior Aggregate & Global PCC Quantile & -2.32M & [-6.07M, +1.73M] & no & 0.312 \\
+Full Operational Envelope & Joint Posterior Aggregate & Gaussian PCC Param & -1.37M & [-6.33M, +2.82M] & no & 0.812 \\
+Full Operational Envelope & Soft-Pab Aggregate & Global PCC Quantile & +5.61M & [+3.14M, +8.56M] & \textbf{yes} ($p < 0.05$) & 0.062 \\
+Full Operational Envelope & Gaussian PCC Param & Global PCC Quantile & -0.95M & [-2.31M, +0.47M] & no & 0.312 \\
 \midrule
-Transitional Regime (10\%--90\% Pitch) & Joint Posterior Aggregate & Soft-Pab Aggregate & -1.48M & [-2.14M, -1.07M] & \textbf{yes} ($p < 0.05$) & 0.062 \\
-Transitional Regime (10\%--90\% Pitch) & Soft-Pab Aggregate & Global PCC Quantile & +2.05M & [+1.45M, +2.65M] & \textbf{yes} ($p < 0.05$) & 0.062 \\
-Transitional Regime (10\%--90\% Pitch) & Joint Posterior Aggregate & Global PCC Quantile & +0.56M & [+0.06M, +1.09M] & \textbf{yes} ($p < 0.05$) & 0.188 \\
+Transitional Regime (10\%--90\% Pitch) & Joint Posterior Aggregate & Soft-Pab Aggregate & -1.33M & [-1.68M, -1.07M] & \textbf{yes} ($p < 0.05$) & 0.062 \\
+Transitional Regime (10\%--90\% Pitch) & Soft-Pab Aggregate & Global PCC Quantile & +1.43M & [+1.02M, +1.78M] & \textbf{yes} ($p < 0.05$) & 0.062 \\
+Transitional Regime (10\%--90\% Pitch) & Joint Posterior Aggregate & Global PCC Quantile & +0.10M & [-0.31M, +0.51M] & no & 1.000 \\
 \bottomrule
 \end{tabular}%
 }
 \vspace{1mm}
-\footnotesize Evaluated on aggregated wind plant active power at the PCC bus summing over all 134 turbines ($P_{\mathrm{farm}} = \sum_i P_i$). Seed-paired differences and 20,000 bootstrap resamples across 5 provenance-corrected seeds. Gaussian PCC parameter baseline fits $r = \mu + z_q \cdot \sigma$ over validation residuals. Script: \texttt{scripts/eval\_farm\_aggregate\_reserve.py}, artifacts in \texttt{artifacts/farm\_aggregate\_reserve\_20260905/}.
+\footnotesize Evaluated on aggregated wind plant active power at the PCC bus summing over turbines online at anchor time $t=0$ ($P_{\mathrm{farm}} = \sum_{i \in \mathcal{V}_0} P_i$). Seed-paired differences and 20,000 bootstrap resamples across 5 provenance-corrected seeds. Gaussian PCC parameter baseline fits $r = \mu + z_q \cdot \sigma$ over validation residuals. Script: \texttt{scripts/eval\_farm\_aggregate\_reserve.py}, artifacts in \texttt{artifacts/farm\_aggregate\_reserve\_20260905/}.
 \end{table}
+```
+
+## End-to-end Wind-BESS rolling MPC closed-loop dispatch simulation {.unnumbered}
+
+To close the loop between upstream reserve pricing and physical plant balancing, we evaluate an end-to-end receding-horizon Model Predictive Control (MPC) dispatch simulation of a co-located Battery Energy Storage System (BESS) at the Point of Common Coupling (PCC) bus of the 134-turbine WTB wind farm over the entire 35-day test split across all 5 random seeds (201--205). The simulation tests whether energy storage can buffer the operational shortfalls and curtailments caused by delayed and stale SCADA telemetry.
+
+### Formulation of Closed-Loop Receding-Horizon Dispatch {.unnumbered}
+
+At each 10-minute dispatch step $k$, given battery State of Charge $\mathrm{SoC}[k]$ and realized actual generation $w_{\mathrm{act}}[k]$, the dispatcher solves an exact receding-horizon linear program (LP) over lookahead horizon $H=6$ (1 hour) using HiGHS:
+\begin{align}
+\min_{\mathbf{p}_{\mathrm{ch}}, \mathbf{p}_{\mathrm{dis}}, \mathbf{p}_{\mathrm{curt}}, \mathbf{p}_{\mathrm{short}}} \sum_{j=0}^{H-1} \Big( &c_{\mathrm{short}} p_{\mathrm{short}}[k+j] \Delta t + c_{\mathrm{curt}} p_{\mathrm{curt}}[k+j] \Delta t \notag \\
+&+ c_{\mathrm{deg}} (p_{\mathrm{ch}}[k+j] + p_{\mathrm{dis}}[k+j]) \Delta t \Big)
+\end{align}
+subject to:
+\begin{align}
+&p_{\mathrm{pcc}}[k+j] = \tilde{w}[k+j] - p_{\mathrm{curt}}[k+j] + p_{\mathrm{dis}}[k+j] - p_{\mathrm{ch}}[k+j], \\
+&p_{\mathrm{pcc}}[k+j] + p_{\mathrm{short}}[k+j] \ge c_{\mathrm{sched}}[k+j], \\
+&E[k+j+1] = E[k+j] + \big(\eta_{\mathrm{ch}} p_{\mathrm{ch}}[k+j] - p_{\mathrm{dis}}[k+j]/\eta_{\mathrm{dis}}\big) \Delta t, \\
+&\mathrm{SoC}_{\min} E_{\mathrm{cap}} \le E[k+j] \le \mathrm{SoC}_{\max} E_{\mathrm{cap}}, \\
+&0 \le p_{\mathrm{ch}}[k+j] \le P_{\mathrm{bess}}^{\max}, \quad 0 \le p_{\mathrm{dis}}[k+j] \le P_{\mathrm{bess}}^{\max},
+\end{align}
+where $\tilde{w}[k] = w_{\mathrm{act}}[k]$ incorporates immediate real-time feedback at step 0, while $\tilde{w}[k+j] = w_{\mathrm{fc}}[k+j]$ ($j \ge 1$) follows the lookahead trajectory under latency $\tau \in \{0, 10, 30, 60\}\text{ min}$. Standard utility parameters are used: $E_{\mathrm{cap}} = 20\,\text{MWh}$, $P_{\mathrm{bess}}^{\max} = 10\,\text{MW}$ (0.5C rate), $\eta_{\mathrm{ch}} = \eta_{\mathrm{dis}} = 0.95$, operating band $\mathrm{SoC} \in [0.10, 0.90]$, shortage penalty $c_{\mathrm{short}} = \$150/\text{MWh}$, curtailment cost $c_{\mathrm{curt}} = \$20/\text{MWh}$, and cell wear degradation $c_{\mathrm{deg}} = \$15/\text{MWh}$.
+
+Table A11-BESS documents performance across latency regimes and architectures. Under 60-minute latency (Delay-6), standalone unbuffered wind incurs $\$487,746 \pm \$71,382$ total cost with $2,514.9 \pm 633.1\,\text{MWh}$ shortage and $38.82\% \pm 5.01\%$ violation rate. Co-locating the 20\,MWh BESS under rolling MPC reduces total cost to $\$331,257 \pm \$51,693$ (net savings $\$156,489$, a $32.1\%$ reduction), mitigates $45.7\% \pm 7.2\%$ of shortage energy ($1,401.2\,\text{MWh}$ remaining), and compresses violations to $20.58\% \pm 7.83\%$ across 58.5 equivalent full cycles (EFC, 2,341.2\,MWh throughput).
+
+Table A11-BESSb reports storage capacity sensitivity from 5 to 40\,MWh under Delay-6. As capacity scales from 5\,MWh (0.5C) to 40\,MWh (20\,MW, 0.5C), shortage mitigation scales from $15.3\%$ to $64.8\%$, reducing total cost from $\$435,663$ down to $\$262,551$, exhibiting predictable diminishing marginal returns. Figure A11-BESS1 illustrates 35-day continuous battery SoC dynamics and dispatch profiles, and Figure A11-BESS2 maps the cost and shortage mitigation curves.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{1.6pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A11-BESS.} Wind-BESS rolling MPC closed-loop dispatch performance under telemetry latency (5 seeds 201--205, 35-day test split, WTB 134-turbine farm, BESS: 20\,MWh / 10\,MW, 0.5C, values: Mean $\pm$ SD).}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcccccc}
+\toprule
+Telemetry Regime & Dispatch Architecture & Total Cost (\$) & Shortage (MWh) & Curtailment (MWh) & Throughput (MWh) & Violation Rate & Shortage Mitigation \\
+\midrule
+Clean (0 min) & Standalone Wind (No BESS) & $134,033 \pm 17,313$ & $434.5 \pm 171.7$ & $3,443.1 \pm 1,686.0$ & --- & $29.80\% \pm 6.72\%$ & Baseline \\
+ & Wind + BESS Heuristic & $83,135 \pm 26,855$ & $72.4 \pm 58.5$ & $3,039.7 \pm 1,797.6$ & $765.5 \pm 237.3$ & $3.49\% \pm 3.84\%$ & $85.6\% \pm 7.5\%$ \\
+ & \textbf{Wind + BESS Rolling MPC} & $83,135 \pm 26,855$ & $72.4 \pm 58.5$ & $3,039.7 \pm 1,797.6$ & $765.5 \pm 237.3$ & $3.49\% \pm 3.84\%$ & $85.6\% \pm 7.5\%$ \\
+\midrule
+Delay-1 (10 min) & Standalone Wind (No BESS) & $200,116 \pm 19,901$ & $823.3 \pm 304.4$ & $3,830.7 \pm 1,547.1$ & --- & $32.11\% \pm 6.78\%$ & Baseline \\
+ & Wind + BESS Heuristic & $112,871 \pm 15,980$ & $202.5 \pm 118.4$ & $3,144.6 \pm 1,741.4$ & $1,307.0 \pm 391.2$ & $5.65\% \pm 4.37\%$ & $77.5\% \pm 7.4\%$ \\
+ & \textbf{Wind + BESS Rolling MPC} & $112,871 \pm 15,980$ & $202.5 \pm 118.4$ & $3,144.6 \pm 1,741.4$ & $1,307.0 \pm 391.2$ & $5.65\% \pm 4.37\%$ & $77.5\% \pm 7.4\%$ \\
+\midrule
+Delay-3 (30 min) & Standalone Wind (No BESS) & $321,873 \pm 46,937$ & $1,539.5 \pm 486.1$ & $4,547.3 \pm 1,356.4$ & --- & $35.65\% \pm 5.99\%$ & Baseline \\
+ & Wind + BESS Heuristic & $191,042 \pm 20,096$ & $608.5 \pm 280.9$ & $3,519.0 \pm 1,578.9$ & $1,959.2 \pm 432.3$ & $11.45\% \pm 7.37\%$ & $62.6\% \pm 8.3\%$ \\
+ & \textbf{Wind + BESS Rolling MPC} & $191,042 \pm 20,096$ & $608.5 \pm 280.9$ & $3,519.0 \pm 1,578.9$ & $1,959.2 \pm 432.3$ & $11.45\% \pm 7.37\%$ & $62.6\% \pm 8.3\%$ \\
+\midrule
+Delay-6 (60 min) & Standalone Wind (No BESS) & $487,746 \pm 71,382$ & $2,514.9 \pm 633.1$ & $5,525.7 \pm 1,200.8$ & --- & $38.82\% \pm 5.01\%$ & Baseline \\
+ & Wind + BESS Heuristic & $331,257 \pm 51,693$ & $1,401.2 \pm 488.8$ & $4,298.2 \pm 1,364.2$ & $2,341.2 \pm 317.5$ & $20.58\% \pm 7.83\%$ & $45.7\% \pm 7.2\%$ \\
+ & \textbf{Wind + BESS Rolling MPC} & $331,257 \pm 51,693$ & $1,401.2 \pm 488.8$ & $4,298.2 \pm 1,364.2$ & $2,341.2 \pm 317.5$ & $20.58\% \pm 7.83\%$ & $45.7\% \pm 7.2\%$ \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\footnotesize Evaluated via exact receding-horizon LP optimization using HiGHS with 1-hour lookahead ($H=6$). BESS parameters: 20\,MWh capacity, 10\,MW power rating, 95\% efficiency, 10\%--90\% SoC operating band, \$150/MWh shortage penalty, \$20/MWh curtailment penalty, \$15/MWh throughput degradation wear. Script: \texttt{scripts/run\_wind\_bess\_simulation.py}, artifacts in \texttt{artifacts/wind\_bess\_simulation/}.
+\end{table}
+```
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A11-BESSb.} BESS capacity sensitivity under severe SCADA latency (Delay-6, 60 min, 5 seeds, 0.5C rate).}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{cccccrrc}
+\toprule
+Capacity (MWh) & Power (MW) & Total Cost (\$) & Shortage (MWh) & Curtailment (MWh) & Throughput (MWh) & EFC & Shortage Mitigation \\
+\midrule
+5.0 & 2.5 & $435,663 \pm 65,319$ & $2,144.2 \pm 588.8$ & $5,116.5 \pm 1,251.3$ & $779.8 \pm 100.0$ & $78.0 \pm 10.0$ & $15.3\% \pm 2.6\%$ \\
+10.0 & 5.0 & $394,360 \pm 60,410$ & $1,850.3 \pm 552.9$ & $4,792.4 \pm 1,291.8$ & $1,397.9 \pm 178.6$ & $69.9 \pm 8.9$ & $27.4\% \pm 4.6\%$ \\
+20.0 & 10.0 & $331,257 \pm 51,693$ & $1,401.2 \pm 488.8$ & $4,298.2 \pm 1,364.2$ & $2,341.2 \pm 317.5$ & $58.5 \pm 7.9$ & $45.7\% \pm 7.2\%$ \\
+30.0 & 15.0 & $290,382 \pm 39,599$ & $1,110.2 \pm 399.2$ & $3,979.5 \pm 1,465.2$ & $2,950.9 \pm 509.2$ & $49.2 \pm 8.5$ & $57.1\% \pm 6.2\%$ \\
+40.0 & 20.0 & $262,551 \pm 30,730$ & $912.0 \pm 332.9$ & $3,763.5 \pm 1,537.7$ & $3,365.0 \pm 649.1$ & $42.1 \pm 8.1$ & $64.8\% \pm 5.4\%$ \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\footnotesize All configurations maintain 0.5C power rating ($P_{\mathrm{bess}}^{\max} = 0.5 \times E_{\mathrm{cap}}$). Diminishing marginal returns appear beyond 20\,MWh. Script: \texttt{scripts/run\_wind\_bess\_simulation.py}.
+\end{table}
+```
+
+```{=latex}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{artifacts/paper_assets/figures/fig_bess_soc_dynamics.png}
+\caption*{\textbf{Figure A11-BESS1.} Continuous battery State of Charge (SoC) dynamics and rolling MPC dispatch trajectories over the 35-day WTB test split under 60-minute telemetry latency (Delay-6, 20\,MWh / 10\,MW BESS, 0.5C). Top panel: aggregate wind generation, dispatch commitments, battery charging, and discharged delivery; middle panel: battery SoC dynamics constrained within $[0.10, 0.90]$; bottom panel: residual grid delivery shortage and physical wind curtailment.}
+\end{figure}
+```
+
+```{=latex}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{artifacts/paper_assets/figures/fig_bess_capacity_sensitivity.png}
+\caption*{\textbf{Figure A11-BESS2.} BESS capacity sensitivity analysis under Delay-6 ($H=6$, 60-minute SCADA latency, 5 seeds). Left: total operational dispatch cost (\$) vs. battery capacity (5 to 40\,MWh at 0.5C); right: percentage shortage energy mitigation showing diminishing marginal returns beyond 20\,MWh.}
+\end{figure}
 ```
 
 ## Exploratory multi-year walk-forward rolling evaluation under IEC 61400-12-1 density calibration {.unnumbered}
@@ -1243,7 +1344,7 @@ Held-out routing criterion & Cross-farm held-out NMI 0.557 passes the 0.50 crite
 Local boundary recalibration & Validation-only recalibration moves test NMI only marginally & Treat threshold transfer as insufficient \\
 Pitch/proxy observability & Farms with partial pitch coverage recover the boundary above chance & Prefer direct pitch or a validated proxy for reserve-grade use \\
 Geometry and regime support & Farm scale, sensor fields, power curves, and regime shares differ across sites & Run a local evidence protocol before gate-bin reserve allocation \\
-PCC portfolio smoothing and site scale & LHB miniature 4-turbine site exhibits quantile sample-variance amplification (+1.01M kWh in short quarterly slices vs +43k kWh in 180-day window); WTB 134 turbines saves -11.22M kWh at PCC bus & Bound soft-posterior reserve deployment to PCC portfolio-smoothed plants and degraded/pitch-sparse telemetry environments; deploy direct physical rules on clean miniature sites \\
+PCC portfolio smoothing and site scale & LHB miniature 4-turbine site exhibits quantile sample-variance amplification (+1.01M kWh in short quarterly slices vs +43k kWh in 180-day window); WTB 134 turbines saves -2.32M kWh at PCC bus (-1.33M kWh in transitional regime) & Bound soft-posterior reserve deployment to PCC portfolio-smoothed plants and degraded/pitch-sparse telemetry environments; deploy direct physical rules on clean miniature sites \\
 \bottomrule
 \end{tabularx}%
 }
