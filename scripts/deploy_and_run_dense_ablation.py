@@ -188,15 +188,19 @@ def retrieve_artifacts():
         except Exception as e:
             print(f"  Error retrieving seed {seed}: {e}", flush=True)
 
-        # Retrieve training summary if present
+        # Retrieve trained model checkpoint and training summary
         try:
-            rem_sum = f"{REMOTE_ROOT}/artifacts/capacity_matched_dense_wtb/wtb_dense_seed{seed}/training_summary.json"
-            loc_sum = REPO_ROOT / "artifacts" / "capacity_matched_dense_wtb" / f"wtb_dense_seed{seed}" / "training_summary.json"
-            loc_sum.parent.mkdir(parents=True, exist_ok=True)
-            sftp.get(rem_sum, str(loc_sum))
-            print(f"  Downloaded training summary for Seed {seed}", flush=True)
-        except Exception:
-            pass
+            rem_dir = f"{REMOTE_ROOT}/artifacts/capacity_matched_dense_wtb/wtb_dense_seed{seed}"
+            loc_dir = REPO_ROOT / "artifacts" / "capacity_matched_dense_wtb" / f"wtb_dense_seed{seed}"
+            loc_dir.mkdir(parents=True, exist_ok=True)
+            for fn in ["best_model.pt", "training_summary.json"]:
+                try:
+                    sftp.get(f"{rem_dir}/{fn}", str(loc_dir / fn))
+                    print(f"  Downloaded {fn} for Seed {seed}", flush=True)
+                except Exception as e:
+                    print(f"  Could not download {fn} for Seed {seed}: {e}", flush=True)
+        except Exception as e:
+            print(f"  Error accessing checkpoint dir for seed {seed}: {e}", flush=True)
 
     sftp.close()
     ssh.close()
