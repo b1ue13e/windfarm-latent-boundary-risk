@@ -107,7 +107,9 @@
 **对标文献价值**：
 - **Dowell & Pinson (2015, IEEE TSG)** 奠定了非对称电量惩罚与分位数回归在风电备用领域的理论正当性。指出风电天然具有上下界约束 $[0, P_{\\mathrm{rated}}]$，在进行备用容量决策时，必须通过 Pinball 损失或分位数筛选来平衡备用电量采购成本与短缺电量惩罚。
 - **Kruse & Cramer et al. (2023, PRX Energy)** 进一步从大电网质心频率动态出发，证明了新能源高估短缺会直接削弱电网等效惯量并诱发低频越限事件，因而发电侧预调度层面的备用筛选指数（PSREI）具有明确的物理保障意义。
-- **审稿防御**：面对审稿人“为何不以 RMSE 决胜负”的质疑，本论文指出：在 $\\rho = 10$ 的工业短缺惩罚场景下，理论最优置信分位数精确对应 $q^* = 1 - 1/\\rho = 0.90$（允许 $10\\%$ 违规率）。若单纯优化对称二次方 RMSE，等价于假设惩罚倍率 $\\rho=2$（$q^*=0.50$），在遭遇极端天气或突发时延时，将导致高达 $24.0\\%$ 的备用穿透与巨额短缺冲击。
+- **审稿防御**：面对审稿人“为何不以 RMSE 决胜负”的质疑，本论文构建了从损失几何到工业惩罚的双重严密防御：
+  1. **统计损失几何错位**：对称二次方 RMSE 损失（$L_2$ 范数）的贝叶斯最优解在数学上收敛于条件均值 $\mathbb{E}[Y \mid \mathbf{x}]$，而对称线性绝对损失（$L_1$ 范数，对应无偏对称报童 $\rho=2$）才收敛于条件中位数。在风电受 $[0, P_{\mathrm{rated}}]$ 截断且风速呈威布尔偏态分布的现实下，条件均值与中位数存在显著系统性偏离，优化 RMSE 甚至无法保障中位数对称风险；
+  2. **长尾短缺非对称惩罚驱动**：在电网 $\rho = 10$ 的工业考核场景下，短缺调节惩罚远高于富余弃风，根据 PSREI 极值条件，理论最优经济备用容量边界严格锚定在 $90\%$ 分位数点（$q^* = 1 - 1/\rho = 0.90$）。优化点预测 RMSE 对 $90\%$ 尾部分位数风险完全钝化。而论文实测表明，在 60 分钟合成通信延迟（Delay-6）下，依据纯净数据标定的确定性物理变桨分位数规则发生控制断崖（Control Cliff）失效，其实测违规率飙升至 $24.0\% \pm 1.7\%$（产生 $127.6\text{ MWh}$ 巨额短缺击穿），充分证明了联合学习物理边界与时延应力测试的必要性。
 
 ---
 
@@ -176,9 +178,9 @@ Gaertner (2020, NREL) 将风力机运行工况在风速轴上严格划分为四�
 1. **Region 1 ($v < u_{\mathrm{idle}}$)**：切入风速以下，机组待机（Idle），发电机电磁转矩为零，叶片顺桨以减小载荷。
 2. **Region 2 ($u_{\mathrm{idle}} \le v \le u_{\mathrm{rated}}$)**：最大功率点跟踪（MPPT）。变桨角固定在设计最优细调角 $\beta = \beta_{\mathrm{opt}} \approx 0^\circ$，此时 $\partial C_p / \partial \lambda = 0$ 保持在最佳叶尖速比 $\lambda_{\mathrm{opt}}$。发电机反转矩执行平方律控制：
    $$
-   T_g^* = K_{\mathrm{opt}} \cdot \omega_g^2, \quad K_{\mathrm{opt}} = \frac{1}{2} \rho_{\mathrm{air}} \pi R^5 \frac{C_{p,\max}}{\lambda_{\mathrm{opt}}^3 \cdot \eta_{\mathrm{gear}}^3}
+   T_g^* = K_{\mathrm{opt}} \cdot \omega_g^2, \quad K_{\mathrm{opt}} = \frac{1}{2} \rho_{\mathrm{air}} \pi R^5 \frac{C_{p,\max} \cdot \eta_{\mathrm{gear}}}{\lambda_{\mathrm{opt}}^3 \cdot N_{\mathrm{gear}}^3}
    $$
-   此区域内风机发电功率随风速呈**立方激增**：$P(v) \propto v^3$。
+   式中，$N_{\mathrm{gear}} = \omega_g / \omega_r > 1$ 为齿轮箱增速传动比（典型兆瓦级双馈机组通常约为 $80 \sim 100$；直驱机组则 $N_{\mathrm{gear}}=1$），$\eta_{\mathrm{gear}} \in (0, 1]$ 为机械传动效率。此区域内风机发电功率随风速呈**立方激增**：$P(v) \propto v^3$。
 3. **Region 3 ($u_{\mathrm{rated}} < v \le u_{\mathrm{cut-out}}$)**：恒功率限幅变桨区。发电机转速达到额定值 $\omega_{\mathrm{rated}}$，转矩控制器锁定额定转矩，主控 PI 控制器驱动变桨执行机构增大变桨角 $\beta$，主动降载并将功率钳位在额定铭牌容量 $P_{\mathrm{rated}}$：
    $$
    \beta_{\mathrm{cmd}}(t) = K_P (\omega_g(t) - \omega_{\mathrm{rated}}) + K_I \int_0^t (\omega_g(\tau) - \omega_{\mathrm{rated}}) d\tau
@@ -558,13 +560,13 @@ $$
 
 | 序号 | 论文名称与规范出处 | 官方 DOI / 访问类型 | 官方原始 URL | AUFE 校园网 WebVPN 一键授权直达链接 | CARSI 机构登录一键直达入口 |
 |:---:|:---|:---:|:---|:---|:---|
-| **01** | **Slootweg et al. (2003)**<br>*Modeling of Wind Turbines for Power System Studies* (IEEE TPWRS) | `10.1109/TPWRS.2002.807113`<br><span style="color:red">IEEE 闭源</span> | [IEEE Xplore 原链](https://ieeexplore.ieee.org/document/1179612) | [AUFE WebVPN 直达](https://ieeexplore-ieee-org.webvpn.aufe.edu.cn/document/1179612) | [CARSI-IEEE 认证](https://ieeexplore.ieee.org/servlet/wayf.jsp?entityId=https%3A%2F%2Fidp.aufe.edu.cn%2Fidp%2Fshibboleth) |
-| **02** | **Dowell & Pinson (2015)**<br>*Very-Short-Term Probabilistic Wind Power Forecasts by Sparse VAR* (IEEE TSG) | `10.1109/TSG.2015.2424078`<br><span style="color:red">IEEE 闭源</span> | [IEEE Xplore 原链](https://ieeexplore.ieee.org/document/7091016) | [AUFE WebVPN 直达](https://ieeexplore-ieee-org.webvpn.aufe.edu.cn/document/7091016) | [CARSI-IEEE 认证](https://ieeexplore.ieee.org/servlet/wayf.jsp?entityId=https%3A%2F%2Fidp.aufe.edu.cn%2Fidp%2Fshibboleth) |
-| **03** | **Pierre et al. (2019)**<br>*Design of the Pacific DC Intertie Wide Area Damping Controller* (IEEE TPWRS) | `10.1109/TPWRS.2019.2906355`<br><span style="color:red">IEEE 闭源</span> | [IEEE Xplore 原链](https://ieeexplore.ieee.org/document/8672153) | [AUFE WebVPN 直达](https://ieeexplore-ieee-org.webvpn.aufe.edu.cn/document/8672153) | [CARSI-IEEE 认证](https://ieeexplore.ieee.org/servlet/wayf.jsp?entityId=https%3A%2F%2Fidp.aufe.edu.cn%2Fidp%2Fshibboleth) |
-| **04** | **Ravikumar & Govindarasu (2020)**<br>*Anomaly Detection and Mitigation for Wide-Area Damping Control* (IEEE TSG) | `10.1109/TSG.2020.3000958`<br><span style="color:red">IEEE 闭源</span> | [IEEE Xplore 原链](https://ieeexplore.ieee.org/document/9112239) | [AUFE WebVPN 直达](https://ieeexplore-ieee-org.webvpn.aufe.edu.cn/document/9112239) | [CARSI-IEEE 认证](https://ieeexplore.ieee.org/servlet/wayf.jsp?entityId=https%3A%2F%2Fidp.aufe.edu.cn%2Fidp%2Fshibboleth) |
+| **01** | **Slootweg et al. (2003)**<br>*General Model for Representing Variable Speed Wind Turbines in Power System Dynamics Simulations* (IEEE TPWRS) | `10.1109/TPWRS.2002.807113`<br><span style="color:red">IEEE 闭源</span> | [IEEE Xplore 原链](https://ieeexplore.ieee.org/document/1178790) | [AUFE WebVPN 直达](https://ieeexplore-ieee-org.webvpn.aufe.edu.cn/document/1178790) | [CARSI-IEEE 认证](https://ieeexplore.ieee.org/servlet/wayf.jsp?entityId=https%3A%2F%2Fidp.aufe.edu.cn%2Fidp%2Fshibboleth) |
+| **02** | **Dowell & Pinson (2015)**<br>*Very-Short-Term Probabilistic Wind Power Forecasts by Sparse VAR* (IEEE TSG) | `10.1109/TSG.2015.2424078`<br><span style="color:red">IEEE 闭源</span> | [IEEE Xplore 原链](https://ieeexplore.ieee.org/document/7105918) | [AUFE WebVPN 直达](https://ieeexplore-ieee-org.webvpn.aufe.edu.cn/document/7105918) | [CARSI-IEEE 认证](https://ieeexplore.ieee.org/servlet/wayf.jsp?entityId=https%3A%2F%2Fidp.aufe.edu.cn%2Fidp%2Fshibboleth) |
+| **03** | **Pierre et al. (2019)**<br>*Design of the Pacific DC Intertie Wide Area Damping Controller* (IEEE TPWRS) | `10.1109/TPWRS.2019.2903782`<br><span style="color:red">IEEE 闭源</span> | [IEEE Xplore 原链](https://ieeexplore.ieee.org/document/8663425) | [AUFE WebVPN 直达](https://ieeexplore-ieee-org.webvpn.aufe.edu.cn/document/8663425) | [CARSI-IEEE 认证](https://ieeexplore.ieee.org/servlet/wayf.jsp?entityId=https%3A%2F%2Fidp.aufe.edu.cn%2Fidp%2Fshibboleth) |
+| **04** | **Ravikumar & Govindarasu (2020)**<br>*Anomaly Detection and Mitigation for Wide-Area Damping Control* (IEEE TSG) | `10.1109/TSG.2020.2995313`<br><span style="color:red">IEEE 闭源</span> | [IEEE Xplore 原链](https://ieeexplore.ieee.org/document/9094728) | [AUFE WebVPN 直达](https://ieeexplore-ieee-org.webvpn.aufe.edu.cn/document/9094728) | [CARSI-IEEE 认证](https://ieeexplore.ieee.org/servlet/wayf.jsp?entityId=https%3A%2F%2Fidp.aufe.edu.cn%2Fidp%2Fshibboleth) |
 | **05** | **Gaertner et al. (2020)**<br>*Definition of the IEA Wind 15-MW Offshore Reference Wind Turbine* (NREL) | `10.2172/1603478`<br><span style="color:green">DOE 开源公开发布</span> | [NREL 官方报告原链](https://www.nrel.gov/docs/fy20osti/75698.pdf) | [NREL 官网直接下载](https://www.nrel.gov/docs/fy20osti/75698.pdf) (无需 VPN) | [OSTI 权威归档](https://www.osti.gov/biblio/1603478) |
-| **06** | **Zhang & Zhao (2021)**<br>*Spatiotemporal Wind Field Prediction Based on PINN and LIDAR* (Applied Energy) | `10.1016/j.apenergy.2021.116641`<br><span style="color:red">Elsevier 闭源</span> | [ScienceDirect 原链](https://doi.org/10.1016/j.apenergy.2021.116641) | [AUFE WebVPN 直达](https://www-sciencedirect-com.webvpn.aufe.edu.cn/science/article/pii/S0306261921000676) | [CARSI-Elsevier 认证](https://auth.elsevier.com/ShibAuth/institutionLogin?entityID=https%3A%2F%2Fidp.aufe.edu.cn%2Fidp%2Fshibboleth) |
-| **07** | **Ullah et al. (2022)**<br>*Enabling mMTC in Remote Areas: LoRaWAN and LEO Satellite for Offshore Wind* (IEEE TII) | `10.1109/TII.2021.3117976`<br><span style="color:red">IEEE 闭源</span> | [IEEE Xplore 原链](https://ieeexplore.ieee.org/document/9559388) | [AUFE WebVPN 直达](https://ieeexplore-ieee-org.webvpn.aufe.edu.cn/document/9559388) | [CARSI-IEEE 认证](https://ieeexplore.ieee.org/servlet/wayf.jsp?entityId=https%3A%2F%2Fidp.aufe.edu.cn%2Fidp%2Fshibboleth) |
+| **06** | **Zhang & Zhao (2021)**<br>*Spatiotemporal Wind Field Prediction Based on PINN and LIDAR* (Applied Energy) | `10.1016/j.apenergy.2021.116641`<br><span style="color:red">Elsevier 闭源</span> | [ScienceDirect 原链](https://doi.org/10.1016/j.apenergy.2021.116641) | [AUFE WebVPN 直达](https://www-sciencedirect-com.webvpn.aufe.edu.cn/science/article/pii/S0306261921001732) | [CARSI-Elsevier 认证](https://auth.elsevier.com/ShibAuth/institutionLogin?entityID=https%3A%2F%2Fidp.aufe.edu.cn%2Fidp%2Fshibboleth) |
+| **07** | **Ullah et al. (2022)**<br>*Enabling mMTC in Remote Areas: LoRaWAN and LEO Satellite for Offshore Wind* (IEEE TII) | `10.1109/TII.2021.3112386`<br><span style="color:red">IEEE 闭源</span> | [IEEE Xplore 原链](https://ieeexplore.ieee.org/document/9537682) | [AUFE WebVPN 直达](https://ieeexplore-ieee-org.webvpn.aufe.edu.cn/document/9537682) | [CARSI-IEEE 认证](https://ieeexplore.ieee.org/servlet/wayf.jsp?entityId=https%3A%2F%2Fidp.aufe.edu.cn%2Fidp%2Fshibboleth) |
 | **08** | **Karniadakis et al. (2021)**<br>*Physics-Informed Machine Learning* (Nature Reviews Physics) | `10.1038/s42254-021-00314-5`<br><span style="color:red">Nature 闭源</span> | [Nature 官方原链](https://www.nature.com/articles/s42254-021-00314-5) | [AUFE WebVPN 直达](https://www-nature-com.webvpn.aufe.edu.cn/articles/s42254-021-00314-5) | [Nature 官方免费只读只看版](https://rdcu.be/ci7jV) |
 | **09** | **Zhou et al. (2022)**<br>*SDWPF: A Dataset for Spatial Dynamic Wind Power Forecasting Challenge* (KDD Cup) | `10.48550/arXiv.2208.04360`<br><span style="color:green">arXiv 全球开放获取</span> | [arXiv 预印本原链](https://arxiv.org/abs/2208.04360) | [arXiv 官方直达下载](https://arxiv.org/pdf/2208.04360.pdf) (无需 VPN) | [Baidu 官方大赛主页](https://aistudio.baidu.com/competition/detail/152) |
 | **10** | **Kruse & Cramer et al. (2023)**<br>*Physics-Informed Machine Learning for Power Grid Frequency Modeling* (PRX Energy) | `10.1103/PRXEnergy.2.043003`<br><span style="color:green">APS 完全开源 OA</span> | [APS PRX Energy 原链](https://journals.aps.org/prxenergy/abstract/10.1103/PRXEnergy.2.043003) | [APS PRX 直达下载](https://journals.aps.org/prxenergy/pdf/10.1103/PRXEnergy.2.043003) (全球免费) | [AUFE WebVPN 备用](https://journals-aps-org.webvpn.aufe.edu.cn/prxenergy/abstract/10.1103/PRXEnergy.2.043003) |
@@ -577,10 +579,10 @@ $$
 为了保持本课题组在后续 IEEE Transactions 论文修订过程中的最高学术产出效能，推荐遵循如下标准化文献检索与排版协作工作流：
 1. **文献元数据管理**：在 `references.bib` 中为每篇新吸收文献录入标准 BibTeX 字段（确保含有 `doi`、`journal`、`year` 与完整的作者姓名全称，杜绝 `et al.` 简写遗漏）。
 2. **手稿编译自动化验证**：每次修改正文引用或更新 bib 数据库后，在命令行执行一键编译脚本：
-   ```bash
-   pandoc paper_tste_ieee.md -o paper_tste_ieee.pdf --citeproc --csl=IEEE.csl --bibliography=references.bib --pdf-engine=xelatex
+   ```powershell
+   powershell scripts\build_pdf_direct.ps1
    ```
-   严密监控终端输出，确认无 `[WARNING] Missing citation` 告警。
+   脚本已内置本地绿色 `tools\pandoc-3.9.0.2\pandoc.exe` 与字体描述符配置，编译完成后自动检查 PDF 生成状态并确认无缺失引用。
 3. **审稿防御材料打包归档**：在准备向 IEEE Transactions on Sustainable Energy 提交最终稿与 Response Letter 时，本手册第二部分的数学模型对比与第三部分的句式库可作为答辩备忘录，保障在面对多轮严苛 Peer Review 时论据一致、坚如磐石。
 
 ---
