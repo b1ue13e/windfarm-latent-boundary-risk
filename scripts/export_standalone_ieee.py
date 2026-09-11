@@ -53,7 +53,9 @@ if os.path.exists(xelatex_cmd):
         [xelatex_cmd, "-interaction=nonstopmode", "-halt-on-error", "main.tex"],
         cwd=PKG_DIR,
         capture_output=True,
-        text=True
+        text=True,
+        encoding="utf-8",
+        errors="ignore",
     )
     if res.returncode == 0:
         # Run second pass
@@ -61,7 +63,9 @@ if os.path.exists(xelatex_cmd):
             [xelatex_cmd, "-interaction=nonstopmode", "-halt-on-error", "main.tex"],
             cwd=PKG_DIR,
             capture_output=True,
-            text=True
+            text=True,
+            encoding="utf-8",
+            errors="ignore",
         )
         pdf_path = os.path.join(PKG_DIR, "main.pdf")
         if os.path.exists(pdf_path):
