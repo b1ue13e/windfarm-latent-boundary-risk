@@ -1275,7 +1275,7 @@ Model parameter count & 110,012 parameters & Single integrated checkpoint ($\sim
 Storage footprint & 430 KB & Resides in memory/cache without paging \\
 Inference latency & [Quarantined] & Theoretical proxy (4.12 ms GPU / 21.8 ms CPU) isolated pending RTU testbed \\
 Runtime RAM residency & [Quarantined] & Unprofiled runtime allocation isolated pending memory profiler audit \\
-Dispatch interval & 10 minutes (600 seconds) & Standard IEC 61400-25 SCADA logging period \\
+Dispatch interval & 10 minutes (600 seconds) & Standard 10-min SCADA historian logging grid (IEC 61400-25 context) \\
 Deployment architecture & Central substation SCADA/EMS & Co-located with existing plant supervisory server \\
 Energy / Cashflow Metrics & [Quarantined] & Commercial cashflow (£/GBP) isolated; evaluated via engineering MWh \\
 \bottomrule
@@ -1410,7 +1410,7 @@ All 38 references cited in the main manuscript have been audited and verified ag
 [8] & Tautz-Weinert (2017) & IET Renewable Power Ge.. & \texttt{10.1049/iet-rpg.2016.0248} \\
 [9] & Ullah (2022) & IEEE Trans. Industrial.. & \texttt{10.1109/TII.2021.3112386} \\
 [10] & Pierre (2019) & IEEE Trans. Power Syst.. & \texttt{10.1109/TPWRS.2019.2903782} \\
-[11] & Ravikumar (2020) & IEEE Trans. Smart Grid & \texttt{10.1109/TSG.2020.2995313} \\
+[11] & Ravikumar (2024) & IEEE Trans. Smart Grid & \texttt{10.1109/TSG.2020.2995313} \\
 [12] & Daenens (2025) & Wind Energy Science & \texttt{10.5194/wes-10-1137-2025} \\
 [13] & Wu (2019) & Proc. 28th Internation.. & \texttt{10.24963/ijcai.2019/264} \\
 [14] & Guo (2019) & Proc. AAAI Conference .. & \texttt{10.1609/aaai.v33i01.3301898} \\
