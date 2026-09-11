@@ -351,13 +351,13 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         bess_guard = json.loads((root / bess_file).read_text(encoding="utf-8"))
         hl = bess_guard.get("highlights_delay6_mpc", {})
         checks.extend([
-            _check("bess_delay6_unbuffered_cost", bess_file, _num(hl["unbuffered_total_cost"]), lambda v: f"{int(round(v)):,}", ("main", "supplementary")),
-            _check("bess_delay6_mpc_cost", bess_file, _num(hl["mpc_total_cost"]), lambda v: f"{int(round(v)):,}", ("main", "supplementary")),
+            _check("bess_delay6_unbuffered_cost", bess_file, _num(hl["unbuffered_total_cost"]), lambda v: f"{int(round(v)):,}", ("supplementary",)),
+            _check("bess_delay6_mpc_cost", bess_file, _num(hl["mpc_total_cost"]), lambda v: f"{int(round(v)):,}", ("supplementary",)),
             _check("bess_delay6_cost_savings", bess_file, _num(hl["cost_savings"]), lambda v: f"{int(round(v)):,}", ("supplementary",)),
-            _check("bess_delay6_cost_reduction_pct", bess_file, _num(hl["cost_reduction_pct"]), lambda v: f"{v:.1f}\\%", ("main", "supplementary")),
-            _check("bess_delay6_unbuffered_shortage", bess_file, _num(hl["unbuffered_shortage_mwh"]), lambda v: f"{v:,.1f}", ("main", "supplementary")),
-            _check("bess_delay6_mpc_shortage", bess_file, _num(hl["mpc_shortage_mwh"]), lambda v: f"{v:,.1f}", ("main", "supplementary")),
-            _check("bess_delay6_shortage_mitigation_pct", bess_file, _num(hl["shortage_mitigation_pct"]), lambda v: f"{v:.1f}\\%", ("main", "supplementary")),
+            _check("bess_delay6_cost_reduction_pct", bess_file, _num(hl["cost_reduction_pct"]), lambda v: f"{v:.1f}\\%", ("supplementary",)),
+            _check("bess_delay6_unbuffered_shortage", bess_file, _num(hl["unbuffered_shortage_mwh"]), lambda v: f"{v:,.1f}", ("supplementary",)),
+            _check("bess_delay6_mpc_shortage", bess_file, _num(hl["mpc_shortage_mwh"]), lambda v: f"{v:,.1f}", ("supplementary",)),
+            _check("bess_delay6_shortage_mitigation_pct", bess_file, _num(hl["shortage_mitigation_pct"]), lambda v: f"{v:.1f}\\%", ("supplementary",)),
         ])
 
     return checks

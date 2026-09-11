@@ -47,16 +47,21 @@ Unsubstantiated marketing claims, post-hoc rationalizations, and over-generalize
 
 ---
 
-### Audit Entry 5: Downscaling of Battery Energy Storage (BESS) Dispatch Scope
-- **Historical Text / Claim**: *"We formulate an end-to-end BESS rolling dispatch Model Predictive Control algorithm that optimizes wholesale market revenue and proves commercial arbitrage value."*
-- **Forensic Status**: **DOWNGRADED & RELEGATED TO SUPPLEMENTARY MATERIAL**.
-- **Empirical Evidence**: The linear program used simple static round-trip efficiency ($\eta=0.90$) and did not model non-linear electrochemical degradation, solid-electrolyte interphase (SEI) growth, ambient thermal effects, or real AC power-flow grid constraints.
-- **Revised Framing in Reconstruction**: BESS MPC is moved entirely to **Supplementary Material**, retaining only a single illustrative paragraph in Section II-D/Discussion to illustrate downstream dispatchability. The main paper's benchmark endpoint remains anchored strictly to the upstream Penalized Reserve-Shortfall Energy Index (PSREI).
+### Audit Entry 5: Complete Excision of Battery Energy Storage (BESS) from Main Text
+- **Historical Text / Claim**: *"We formulate an end-to-end BESS rolling dispatch Model Predictive Control algorithm that optimizes wholesale market revenue and proves commercial arbitrage value (reducing Delay-6 cost by 32.1% and shortage by 45.7%)."*
+- **Forensic Status**: **COMPLETELY PURGED FROM MAIN TEXT; ISOLATED IN SUPPLEMENTARY**.
+- **Empirical Evidence**: The linear program used simple static round-trip efficiency ($\eta=0.90$) and did not model non-linear electrochemical degradation, solid-electrolyte interphase (SEI) growth, ambient thermal effects, or real AC power-flow grid constraints. Retaining numerical results in the main text invited unnecessary reviewer scrutiny on storage sizing, SOC initialization, and battery degradation.
+- **Revised Framing in Reconstruction**: All BESS formulations and simulation numbers ($20\text{ MWh}/10\text{ MW}$, $32.1\%$, $45.7\%$) have been **completely excised from the main text** (Sections II-D and IV-F/G). Only a single generalized sentence is retained in the Discussion noting that coordinating wind reserve margins with downstream flexible resources represents a future operational extension. The full LP formulation and Table A11-BESS remain strictly in the Supplementary Material.
 
 ---
 
-### Audit Entry 6: Tone Down Unconditional Compliance and Universal Superiority
-- **Historical Text / Claim**: *"Our physics-guided model guarantees operational compliance and eliminates tail risk across all utility deployments."*
-- **Forensic Status**: **DOWNGRADED TO STATISTICALLY BOUNDED RELATIVE MITIGATION**.
-- **Empirical Evidence**: Under Delay-6, learned posteriors settle test violation at $10.6\% \pm 1.1\%$, with only 3 out of 5 random seeds ($60\%$) strictly achieving $\le 10.0\%$ violation. State-conditional recalibration absorbs $55.3\%$ of shortage, while learned models add $5.4\%$.
-- **Revised Framing in Reconstruction**: Explicitly phrased as **relative risk mitigation under frozen validation calibration**, acknowledging that no model provides unconditional compliance under severe telemetry loss without conservative margin inflation.
+### Audit Entry 6: Tone Down Epistemic Assertions & Removal of (Ours) Tag
+- **Historical Text / Claim**: *"Making complex learned models unnecessary under full observability", "decisively cost-saving", "Joint Routed (Ours)".*
+- **Forensic Status**: **DE-MARKETED AND REPLACED WITH CAUTIOUS IEEE PES PHRASING**.
+- **Empirical Evidence**: Under Delay-6, learned posteriors settle test violation at $10.6\% \pm 1.1\%$, with only 3 out of 5 random seeds ($60\%$) strictly achieving $\le 10.0\%$ violation. Dense and Routed models are statistically equivalent ($p=0.380$).
+- **Revised Framing in Reconstruction**: 
+  - Abstract softened from *"making complex learned models unnecessary"* to *"providing no additional operational benefit under the evaluated full-observability conditions"*.
+  - Contribution 3 softened from *"become decisively cost-saving"* to *"consistently reduce the evaluated PSREI proxy by $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ over recalibrated physics across all $\tau$"*.
+  - All `(Ours)` tags in Table 1~7 removed, presenting `Joint Routed` objectively as an architectural comparator.
+  - Substation edge computing assertions reframed as desktop benchmark characteristics with explicit disclaimers regarding unvalidated physical RTU deployment.
+  - Categorical OEM firewall claims softened to commercial boundary partitions and proprietary communication protocol restrictions.
