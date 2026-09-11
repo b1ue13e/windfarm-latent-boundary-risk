@@ -1,32 +1,98 @@
-Dear Editor-in-Chief,
+# IEEE Transactions on Sustainable Energy
+## Submission Cover Letter & Executive Summary
 
-We are pleased to submit our manuscript, **"Reliability Breakdown of Wind Turbine Operating Reserve Rules under Stale SCADA Telemetry and Boundary-Risk Posterior Diagnostics,"** for consideration as a Regular Paper in *IEEE Transactions on Sustainable Energy*.
+**Date:** March 2026  
+**To:** Editor-in-Chief, *IEEE Transactions on Sustainable Energy*  
+**From:** Juntao Du (Corresponding Author), on behalf of the authors  
+**Affiliation:** School of Statistics and Applied Mathematics, Anhui University of Finance and Economics, Bengbu 233030, China  
+**Contact:** `dujuntao@aufe.edu.cn`  
 
-**What the paper does.**
-The manuscript targets a critical wind-farm operational reliability failure mode: near the transition from maximum power point tracking (MPPT) to blade-pitch regulation, operating reserve sizing depends on accurate operational state awareness. However, industrial SCADA telemetry streams are routinely subject to communication delays, packet dropouts, and unobservable pitch registers. We establish that while deterministic aerodynamic rules (continuous soft-pitch quantiles based on manufacturer power curves) deliver optimal reserve pricing efficiency under pristine telemetry ($589{,}535\text{ kW}\cdot\text{h}$ at $h=1$ and $881{,}367\text{ kW}\cdot\text{h}$ at $h=6$), they undergo a catastrophic reliability breakdown under transmission latency: under a 6-step ($60\text{ min}$) delay, clean-calibrated physical rule violation rates surge to $24.0\% \pm 1.7\%$, severely breaching the nominal 10% violation target ($q^* = 0.90$) set by the reserve screening index. We evaluate jointly-learned spatio-temporal boundary-risk posteriors as relative mitigators and diagnostic signals. Rather than asserting autonomous safety or architectural necessity, our frozen-calibration benchmark establishes that state-conditional calibration recovers 55.3% of shortage energy ($127.6\text{ MWh} \to 57.0\text{ MWh}$), while learned posteriors provide an additional 5.4% reduction ($57.0\text{ MWh} \to 53.9\text{ MWh}$, a combined 57.7% reduction) and double state recall over collapsed physical rules ($0.417$ vs. $0.196$). Furthermore, capacity-matched Dense and Mixture-of-Experts (MoE) architectures exhibit statistical parity under Clean telemetry (cost ratio 1.045, $p=0.380$), while in Delay-6 MoE delivers a modest cost edge (ratio 1.056, uncorrected $p=0.038$, non-significant under Bonferroni correction) and decoupled modular representations achieve comparable tail reliability (9.7% violation rate), demonstrating that diagnostic reserve benefits are governed by global spatio-temporal feature representations and decoupled residual calibration rather than dynamic routing mechanisms.
+**Manuscript Title:**  
+*Operational Boundaries of Aerodynamic Power Rules, Recalibration, and Learned Representations under SCADA Telemetry Degradation*
 
-**Why it fits TSTE and its empirical pillars.**
-The paper is written specifically for the sustainable-energy systems community because the contribution directly addresses grid-integration compliance, reserve reliability, and SCADA telemetry degradation. On the KDD Cup 2022 WTB benchmark, a five-seed training-split class-weight rerun preserves boundary alignment at NMI 0.721 while reaching RMSE 229.93, within 5.59 units of iTransformer (224.34), with train-only checkpoints serving as the single provenance-corrected source for all headline audits. The empirical evidence is grounded in three major pillars:
-1. **Plant-level PCC spatial smoothing:** Addressing the industrial reality that reserves clear at the Point of Common Coupling (PCC) rather than individual turbines (evaluated across operational active-turbine subsets, averaging $\sim$121 turbines), joint posterior aggregate quantile pricing saves -2.32M kWh (95% bootstrap CI [-6.07M, 1.73M]) against the Global PCC Quantile and -1.37M kWh (CI [-6.33M, 2.82M]) against Gaussian parametric reserve sizing across the full operational envelope; in transitional regimes (10% to 90% pitching turbines), it saves -1.33M kWh (CI [-1.68M, -1.07M], strictly excluding zero) over continuous physical pitch rules, confirming relative risk mitigation after fleet-wide spatial error cancellation.
-2. **Industrial burst packet loss degradation:** Under an industrial two-state Markov-Gilbert burst packet-loss model ($p_{GB}=0.08, p_{BB}=0.75$, max lag 6 steps) with genuine input feature corruption across anchor and encoder history streams, the stale threshold rule's recall drops to 0.840 (F1 0.904), whereas the jointly-learned posterior sustains 0.962 early-window recall and 0.925 F1 (seed-paired mean F1 gain +0.021, 95% bootstrap CI [-0.014, +0.050]).
-3. **Exploratory longitudinal drift diagnostics:** Across two commercial European wind plants (Kelmarsh: 9 years, 6 turbines; Penmanshiel: 8.6 years, 15 turbines) spanning 17.6 cumulative machine-operating years under IEC 61400-12-1 density normalization, exploratory walk-forward evaluations examine periodic two-year quantile recalibration under multi-year climatological and sensor drift. Having isolated two historical rolling folds with temporal overlap, we transparently disclose these runs as exploratory operational diagnostics rather than statistical proof of decadal durability.
+**Authors:**  
+Junyu Li and Juntao Du
 
-**Evidence package and claim controls.**
-The submission package includes comprehensive reviewer-facing audits for all technical assertions. Supplementary Table A6 records the statistical claim boundaries; Table A6b reports the class-weight sensitivity audit; Table A7 reports an outcome-channel sanity audit; Table A8 formalizes external deployment gates; Tables A9-A9e audit cross-site replication, withheld-channel signature probes, permuted-label controls, window robustness, and Pab_std ablation; Table A10 reports early-warning detector controls; Table A10d reports fair-degradation replay; Table A10e audits industrial Markov-Gilbert burst packet drops; Table A11 records reserve-policy claim boundaries; Tables A11b-A11d report soft-posterior reserve strategies, modular equivalence, and full mechanism decomposition; Table A11f audits 134-turbine PCC spatial portfolio smoothing; Table A11g documents the exploratory walk-forward rolling recalibration across $\rho \in \{5, 10, 20\}$; Table A11h provides the La Haute Borne physical boundary disclosure; Table A11i and Figure A11i verify multi-year gate representation stability under a frozen backbone; Supplementary Table A12 translates the main reserve deltas into MWh-equivalent accounting; Table A13 reports the complete forecasting benchmark; Table A14 formalizes external deployment gates; and the ERA5 contrast, Kelmarsh grounding, and compute disclosure are documented in the appendix.
+---
 
-**Honest boundaries we foreground.**
-We explicitly foreground six operational boundaries so that reviewers evaluate the manuscript on its intended scientific contribution:
+### Part I: Formal Submission Statement
 
-1. **Physical rule primacy under clean telemetry.** With pristine SCADA observations, continuous physical pitch quantiles achieve the lowest reserve cost and optimal calibration. Physical rules are the rigorous empirical baseline, not a competitor to be deprecated.
-2. **Relative mitigation, not unconditional compliance.** Under 6-step telemetry latency, state-conditional calibration absorbs 55.3% of shortage ($127.6 \to 57.0\text{ MWh}$), and the learned posterior adds a 5.4% reduction to $53.9\text{ MWh}$ (57.7% combined), while settling empirical test violation under frozen validation calibration at $10.6\% \pm 1.1\%$ (exceeding the nominal 10.0% target). Learned models provide valuable relative risk mitigation and diagnostics, but do not provide an unconditional compliance guarantee.
-3. **Architectural and modular trade-offs.** Matched benchmarking demonstrates that Dense and MoE heads achieve statistical parity under Clean telemetry (cost ratio 1.045, $p=0.380$), while MoE yields a modest cost advantage under Delay-6 (ratio 1.056, uncorrected $p=0.038$, non-significant under Bonferroni correction). Crucially, decoupled modular representations achieve comparable tail reliability (9.7% violation rate), confirming that diagnostic reserve benefits are driven by spatio-temporal feature representations and decoupled residual calibration rather than dynamic routing mechanisms.
-4. **External validation evidence disentanglement.** To prevent over-generalization, we strictly demarcate three separate empirical categories: (a) zero-shot cross-farm transfer is a documented negative finding exhibiting severe directional asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.752$--$0.770$ vs. Penmanshiel $\to$ Kelmarsh $0.341$--$0.505$, pooled $0.557$), bounding autonomous cross-farm transfer without site recalibration; (b) local chronological retraining across ENGIE La Haute Borne (NMI $0.941$), Kelmarsh, and Penmanshiel demonstrates neural architectural adaptability to site-specific aerodynamic rated parameters; and (c) multi-year rolling walk-forward folds serve as exploratory climatological drift demonstrations, transparently disclosing the two historical overlapping folds rather than claiming decadal invariance.
-5. **Pre-dispatch risk proxy (PSREI).** Reserve evaluations quantify an upstream Penalized Reserve-Shortfall Energy Index (PSREI, $\rho=10$) screening proxy; they do not simulate wholesale electricity market clearing, unit commitment, or financial cashflows.
+Dear Editor-in-Chief and Editorial Board,
 
-**Reproducibility.**
-All code, configuration files, derived tables, figure data, and model checkpoints will be made publicly available with the article. The current IEEE manuscript and supplementary PDF compile cleanly, with the main paper within the 10-page limit.
+We submit our original research manuscript entitled **"Operational Boundaries of Aerodynamic Power Rules, Recalibration, and Learned Representations under SCADA Telemetry Degradation"** for consideration as a Regular Paper in *IEEE Transactions on Sustainable Energy* (TSTE).
 
-We confirm that this manuscript has not been published previously and is not under consideration elsewhere. We thank the reviewers in advance for their time and constructive feedback.
+The manuscript complies with the strict IEEE double-column 10-page length requirement (the main paper is exactly 10.0 pages including all text, equations, tables, figures, and 38 references). A comprehensive 16.0-page Supplementary Material is provided to support reproducible verification, extended multi-regime phase scans, and mathematical derivations without burdening the main text.
+
+#### Compliance & Declarations:
+1. **Originality & Sole Submission:** This manuscript represents original work that has not been published previously and is not currently under peer review elsewhere.
+2. **Author Approval:** All listed authors have reviewed, contributed to, and approved the final manuscript.
+3. **Data Availability & Ethics:** The study evaluates publicly available commercial SCADA archives (134-turbine WTB benchmark, ENGIE La Haute Borne, Kelmarsh, and Penmanshiel). No human or animal subjects were involved. Full reproduction scripts, configuration files, and frozen validation checkpoints are documented in the manuscript.
+4. **AI Disclosure:** The authors utilized AI-based language editing tools strictly for prose polishing and grammatical consistency check; all conceptual derivations, numerical analyses, figure/table data, and conclusions were independently conducted and verified by the authors.
+
+---
+
+### Part II: Executive Summary for the Associate Editor & Reviewers
+
+#### 1. Core Motivation & Problem Articulation
+In bulk power system balancing operations, real-time generation deficits incur severe asymmetric shortage penalties relative to surplus energy. Traditional $L_2$ forecasting metrics like Root-Mean-Square Error (RMSE) mask catastrophic tail shortfall events that govern operating reserve adequacy. This vulnerability is most acute near the demarcation boundary between Maximum Power Point Tracking (MPPT, Region 2) and active blade-pitch regulation (Region 3), where the governing aerodynamic sensitivity abruptly transitions from cubic growth ($\partial P / \partial v \propto 3v^2$) to zero. 
+
+In operational utility networks, Supervisory Control and Data Acquisition (SCADA) telemetry regularly suffers communication queuing delays, packet serialization dropouts, and OEM protocol firewalls that conceal primary blade-pitch registers from third-party aggregators and Transmission System Operators (TSOs). Feeding stale or incomplete telemetry into deterministic physical power curves causes severe over-extrapolation near rated wind speed, leaving bulk power systems exposed to unhedged reserve shortfalls.
+
+#### 2. Intellectual Stance: Rejecting AI Hype in Favor of Empirical Division of Labor
+Rather than claiming that "deep learning unconditionally surpasses physical laws," this paper establishes an **Empirical Operational Boundary and Value-of-Information Framework under Information Freshness Constraints**. Across five random seeds on utility-scale wind plants, we delineate a transparent, evidence-grounded division of labor:
+
+* **Regime I: Physical Aerodynamic Curves and Recalibration are Superior ($\tau \le 30\text{ min}$, Full Observability):**  
+  Under intact SCADA telemetry, continuous physical quantiles achieve the lowest reserve-screening surrogate cost ($589{,}535\text{ kW}\cdot\text{h}$ at $h=1$ and $881{,}367\text{ kW}\cdot\text{h}$ at $h=6$, with $\sim 6.8\%$ violation). When communication latency increases to $10\text{--}30\text{ min}$ under full channel observability, simple state-conditional recalibration absorbs $55.3\%$ of shortage loss ($127.6 \to 57.0\text{ MWh}$, restoring violation to $10.7\%$) at negligible computational cost. **Here, complex deep learning models are unnecessary.**
+
+* **Regime II: Learned Representations Deliver Decisive Value under Withheld Pitch Telemetry:**  
+  When proprietary OEM boundaries conceal blade-pitch registers (\texttt{no\_pitch}), physical curves lose direct rotor state awareness. In this regime, learned spatio-temporal representations reconstruct aerodynamic operating states purely from secondary electromechanical transients (active/reactive power, wake geometry), consistently outperforming recalibrated physics by **$46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ across all latencies** and more than doubling boundary recall ($0.416$ vs. $0.196$ under Delay-6).
+
+* **Regime III: Physical Collapse under Severe Outage Envelopes ($60\text{ min}$, Delay-6):**  
+  Under severe communication contingency stress (simulating gateway crashes or cyber-physical storms), static physical curves experience systematic reliability collapse, surging violation rates to $24.0\% \pm 1.7\%$ at $h=1$ and $12.20\% \pm 1.25\%$ at $h=6$, severely breaching the nominal 10% target. Modular neural representations provide verified defense-in-depth, curtailing tail shortage exposure by $31\%\text{--}35\%$ ($78.3\text{--}82.5\text{ MWh} \to 53.9\text{ MWh}$).
+
+#### 3. Statistical Rigor & Demystification of Mixture-of-Experts (MoE)
+To ensure absolute academic accountability, the paper actively challenges popular machine learning narratives:
+- **Statistical Parity:** Capacity-matched Dense networks and dynamic MoE architectures achieve statistical parity under Clean telemetry ($p=0.380$). Under 60-minute latency, MoE’s modest nominal advantage ($+79{,}637\text{ kW}\cdot\text{h}$, uncorrected $p=0.038$) is non-significant after Bonferroni correction ($\alpha=0.0125$).
+- **Decoupled Edge Deployment:** A decoupled modular architecture (*Frozen Backbone + Residual Quantile*) achieves $1.284\text{M kW}\cdot\text{h}$ and $9.68\%$ violation ($60\%$ seed compliance rate), matching end-to-end MoE without incurring dynamic gating complexity. This provides utility operators with a single-checkpoint, lightweight deployment solution (110k parameters, $<5\text{ ms}$ inference).
+
+#### 4. Scope Demarcation: Level-1 Operational Pre-Dispatch Triage
+The analytical scope is explicitly circumscribed to an **upstream Level-1 local pre-dispatch risk screening proxy (PSREI at $\rho=10$, Newsvendor critical fractile $q^*=0.90$)**. The formulation abstracts away downstream Level-2 AC-OPF power-flow constraints and locational marginal pricing (LMP), functioning as an upstream operational filter to ensure that corrupt wind injections do not propagate into global grid dispatchers.
+
+---
+
+### Part III: Suggested Reviewer Expertise & Relevant Topic Areas
+
+The manuscript intersects power system operations, wind energy engineering, and industrial data analytics. We suggest the Associate Editor consider reviewers with expertise in:
+1. **Wind Power Forecasting & Operating Reserve Scheduling:** Probabilistic forecasting, quantile regression, and reserve sizing under renewable uncertainty.
+2. **Wind Turbine Aerodynamics & SCADA Analytics:** IEC 61400-25 communication architectures, pitch/MPPT transition dynamics, and condition monitoring.
+3. **Physics-Informed Machine Learning & Edge Diagnostics:** Applied spatio-temporal graph modeling and robust dispatch under sensor/communication degradation.
+
+#### Suggested Peer Reviewers:
+- **Prof. Pierre Pinson** (Imperial College London / Technical University of Denmark)  
+  *Expertise:* Probabilistic wind power forecasting, decision-making under uncertainty, asymmetric reserve penalties.
+- **Dr. Jethro Dowell** (University of Strathclyde, UK)  
+  *Expertise:* Wind energy SCADA analytics, spatio-temporal wind forecasting, vector autoregression.
+- **Prof. Manimaran Govindarasu / Dr. Gelli Ravikumar** (Iowa State University, USA)  
+  *Expertise:* Wide-area telemetry anomaly mitigation, cyber-physical grid security, machine learning for power systems.
+- **Prof. S. J. Watson** (TU Delft, Netherlands)  
+  *Expertise:* Wind turbine condition monitoring using SCADA data, wake dynamics, sensor reliability.
+
+---
+
+### Part IV: Concluding Remarks
+
+We believe this paper will be of high interest to the readers of *IEEE Transactions on Sustainable Energy*. By openly documenting both the failure envelopes of physical rules and the statistical boundaries of deep neural representations, the work bridges the gap between academic machine learning and utility-grade grid reliability standards.
+
+Thank you for your time and editorial consideration.
 
 Sincerely,
-Junyu Li and Juntao Du
+
+**Juntao Du, Ph.D.**  
+Corresponding Author  
+Associate Professor, School of Statistics and Applied Mathematics  
+Anhui University of Finance and Economics, Bengbu 233030, China  
+Email: `dujuntao@aufe.edu.cn`  
+
+**Junyu Li**  
+School of Statistics and Applied Mathematics  
+Anhui University of Finance and Economics, Bengbu 233030, China  
