@@ -1,0 +1,10 @@
+\ProvidesFile{TUptm.fd}[local ptm compatibility shim for IEEEtran under XeLaTeX]
+\DeclareFontFamily{TU}{ptm}{}
+\DeclareFontShape{TU}{ptm}{m}{n}{<-> "TeXGyreTermes-Regular"}{}
+\DeclareFontShape{TU}{ptm}{m}{it}{<-> "TeXGyreTermes-Italic"}{}
+\DeclareFontShape{TU}{ptm}{b}{n}{<-> "TeXGyreTermes-Bold"}{}
+\DeclareFontShape{TU}{ptm}{b}{it}{<-> "TeXGyreTermes-BoldItalic"}{}
+\DeclareFontShape{TU}{ptm}{bx}{n}{<-> "TeXGyreTermes-Bold"}{}
+\DeclareFontShape{TU}{ptm}{bx}{it}{<-> "TeXGyreTermes-BoldItalic"}{}
+\DeclareFontShape{TU}{ptm}{m}{sc}{<-> "TeXGyreTermes-Regular"}{}
+\endinput
