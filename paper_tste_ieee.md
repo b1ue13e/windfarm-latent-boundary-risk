@@ -367,13 +367,13 @@ Regime & Baseline Model & $\Delta$ Cost (kW$\cdot$h) & 95\% Bootstrap CI & Sig. 
  & Cont. Physical Quantile & $-$27,126 & [$-$46,907, $-$7,346] & Viol. Exceeded ($12.20\%$) \\
  & Missingness GBDT & +156,411 & [+140,004, +172,817] & Yes ($p < 0.0001$) \\
  & Frozen Backbone Direct MLP & +518,658 & [+307,212, +730,104] & Yes ($p < 0.01$) \\
- & Joint Dense Head & +16,267 & [+7,131, +25,402] & \textbf{Yes} ($p = 0.0251$) \\
+ & Joint Dense Head & +16,267 & [+7,131, +25,402] & Nominal ($p = 0.0251$, non-sig. Bonferroni) \\
 \midrule
 \textbf{Noise} & Global Quantile & +26,475 & [+9,121, +43,828] & Yes ($p < 0.05$) \\
- & Cont. Physical Quantile & $-$28,804 & [$-$47,555, $-$10,053] & Viol. ($7.59\%$) \\
+ & Cont. Physical Quantile & $-$28,804 & [$-$47,555, $-$10,053] & Physical lower cost (7.59\% viol., compliant) \\
  & Missingness GBDT & +287,563 & [+248,847, +326,279] & Yes ($p < 0.0001$) \\
  & Frozen Backbone Direct MLP & +612,832 & [+413,733, +811,931] & Yes ($p < 0.01$) \\
- & Joint Dense Head & +21,006 & [+2,419, +39,594] & \textbf{Yes} ($p < 0.05$) \\
+ & Joint Dense Head & +21,006 & [+2,419, +39,594] & Nominal ($p < 0.05$, non-sig. Bonferroni) \\
 \midrule
 \textbf{Markov} & Global Quantile & +39,506 & [+15,961, +63,052] & Yes ($p < 0.05$) \\
  & Cont. Physical Quantile & $-$82,754 & [$-$111,026, $-$54,482] & Yes (Lower Clean) \\
@@ -383,7 +383,7 @@ Regime & Baseline Model & $\Delta$ Cost (kW$\cdot$h) & 95\% Bootstrap CI & Sig. 
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\raggedright\tiny Note: Under Clean and Markov regimes, the 95\% bootstrap CI against Joint Dense Head crosses zero, establishing statistical parity resulting from end-to-end task-loss alignment. The distinct empirical value of dynamic MoE routing is localized to continuous telemetry impairment (Delay-6 $p=0.0251$, Noise $p<0.05$).
+\raggedright\tiny Note: Under Clean and Markov regimes, the 95\% bootstrap CI against Joint Dense Head crosses zero, establishing statistical parity resulting from end-to-end task-loss alignment. Nominal routing advantages appear under Delay-6 and Noise, but these gains do not survive Bonferroni multiple-comparison correction ($\alpha=0.0125$).
 \end{table}
 ```
 
@@ -422,7 +422,7 @@ To delineate the operational boundaries governing telemetry degradation, we scan
 
 1. **Regime I: Simple Recalibration Sufficient ($\tau = 0\text{ min}$ or mild delays under full observability):** Under fresh telemetry ($\tau=0$, \texttt{all}), deterministic continuous physical quantiles achieve the lowest operational reserve cost ($593{,}258 \pm 74{,}886\text{ kW}\cdot\text{h}$ at $h=1$ across the phase-scan sweep, aligning within $0.6\%$ of the primary $589{,}535\text{ kW}\cdot\text{h}$ benchmark, with well-calibrated $7.29\% \pm 1.42\%$ violation). Machine-learning representations incur reserve penalties without reliability gains ($663{,}347\text{ kW}\cdot\text{h}$ for modular frozen backbones, $+11.8\%$). When telemetry latency increases to $\tau \in [10, 30]\text{ min}$ with all channels observable, clean-calibrated physical rules collapse ($11.18\% \to 13.98\% \to 16.58\%$). However, state-conditional recalibration fully restores physical compliance ($7.1\%\text{--}7.5\%$ violation) at lower cost than neural models ($742{,}211\text{--}939{,}190\text{ kW}\cdot\text{h}$ vs. $786{,}366\text{--}987{,}760\text{ kW}\cdot\text{h}$), indicating that simple recalibration provides the most cost-effective recovery among evaluated methods under full observability.
 2. **Regime II: Learned Representation Advantage (Unobservable pitch channels / partial observability):** When blade-pitch telemetry is withheld across aggregator or OEM boundaries (\texttt{no\_pitch}), physical aerodynamic rules lose direct rotor state awareness. Recalibrated physics based solely on wind-speed binning inflates reserve costs ($824{,}393\text{ kW}\cdot\text{h}$ at $\tau=0$; $928{,}028\text{ kW}\cdot\text{h}$ at $\tau=10$; $1{,}010{,}530\text{ kW}\cdot\text{h}$ at $\tau=20$; $1{,}101{,}292\text{ kW}\cdot\text{h}$ at $\tau=30$; $1{,}378{,}900\text{ kW}\cdot\text{h}$ at $\tau=60$). In contrast, learned representations (\textit{Frozen Backbone + Residual Quantile}) reconstruct operating states from electromechanical transients (active/reactive power, rotor speed), achieving $755{,}794\text{ kW}\cdot\text{h}$ at $\tau=0$ (an $8.3\%$ cost reduction of $68{,}599\text{ kW}\cdot\text{h}$ over recalibrated physics) and maintaining consistent cost savings across all latencies ($866{,}753\text{ kW}\cdot\text{h}$ at $\tau=10$, $-61.3\text{k}$; $947{,}869\text{ kW}\cdot\text{h}$ at $\tau=20$, $-62.7\text{k}$; $1{,}054{,}592\text{ kW}\cdot\text{h}$ at $\tau=30$, $-46.7\text{k}$; $1{,}330{,}318\text{ kW}\cdot\text{h}$ at $\tau=60$, $-48.6\text{k}$).
-3. **Regime III: Compound Breakdown and Conservative Safeguards ($\tau = 60\text{ min}$, Delay-6):** Under 60-minute latency, unadapted physical rules experience systematic collapse ($24.02\% \pm 1.69\%$ violation, incurring $127.6\text{ MWh}$ of unhedged shortfall exposure). Condition-matching recalibration restores fleet-average violation below the $10.0\%$ target across all three model families ($9.46\%$ for physical rules, $9.55\%$ for Frozen Backbone, and $9.62\%$ for Joint Routed), with the recalibrated physical rule delivering the lowest operating cost ($1{,}228{,}609\text{ kW}\cdot\text{h}$). This directly refutes the prior assumption that multi-step SCADA latency unconditionally collapses all models or makes selective rejection mandatory to meet fleet-average compliance. However, fleet-average compliance conceals critical tail risk: across the five random seeds, every method achieves strictly a $3/5$ ($60\%$) seed compliance rate, as Seeds 201 and 203 experience residual breaches ($10.2\%\text{--}10.7\%$) across all architectures. In this severe telemetry regime, unconstrained neural optimization is vulnerable to tail risk.
+3. **Regime III: Recalibrated but Tail-Risk Limited ($\tau = 60\text{ min}$, Delay-6):** Under 60-minute latency, unadapted physical rules experience systematic collapse ($24.02\% \pm 1.69\%$ violation, incurring $127.6\text{ MWh}$ of unhedged shortfall exposure). Condition-matching recalibration restores fleet-average violation below the $10.0\%$ target across all three model families ($9.46\%$ for physical rules, $9.55\%$ for Frozen Backbone, and $9.62\%$ for Joint Routed), with the recalibrated physical rule delivering the lowest operating cost ($1{,}228{,}609\text{ kW}\cdot\text{h}$). This directly refutes the prior assumption that multi-step SCADA latency unconditionally collapses all models or makes selective rejection mandatory to meet fleet-average compliance. However, fleet-average compliance conceals critical tail risk: across the five random seeds, every method achieves strictly a $3/5$ ($60\%$) seed compliance rate, as Seeds 201 and 203 experience residual breaches ($10.2\%\text{--}10.7\%$) across all architectures. In this severe telemetry regime, unconstrained neural optimization is vulnerable to tail risk.
 
 ```{=latex}
 \begin{table}[!htbp]
@@ -448,7 +448,7 @@ $\tau$ (min) & Pitch & \shortstack{Clean Physical\\Cost / Viol.} & \shortstack{R
 30 & All & $1{,}069{,}266$ ($16.6\%^{\dagger}$) & $\mathbf{939{,}190}$ ($7.5\%$) & $987{,}760$ ($7.1\%$) & $990{,}091$ ($7.6\%$) & Regime I (Recal. Suff.) \\
 30 & None & $1{,}138{,}774$ ($7.5\%$) & $1{,}101{,}292$ ($6.7\%$) & $\mathbf{1{,}054{,}592}$ ($6.4\%$) & $1{,}064{,}238$ ($6.7\%$) & Regime II (Repr. Adv.) \\
 \midrule
-60 & All & $1{,}656{,}285$ ($24.0\%^{\dagger}$) & $\mathbf{1{,}228{,}609}$ ($9.5\%$) & $1{,}283{,}855$ ($9.6\%$) & $1{,}274{,}047$ ($9.6\%$) & Regime III (Abstain / Inflat.) \\
+60 & All & $1{,}656{,}285$ ($24.0\%^{\dagger}$) & $\mathbf{1{,}228{,}609}$ ($9.5\%$) & $1{,}283{,}855$ ($9.6\%$) & $1{,}274{,}047$ ($9.6\%$) & Regime III (Tail-Risk Limited) \\
 60 & None & $1{,}437{,}280$ ($11.8\%^{\dagger}$) & $1{,}378{,}900$ ($9.0\%$) & $\mathbf{1{,}330{,}318}$ ($8.7\%$) & $1{,}331{,}840$ ($8.8\%$) & Regime II (Repr. Adv.) \\
 \bottomrule
 \multicolumn{7}{@{}p{\columnwidth}@{}}{\tiny $^{\dagger}$Exceeds nominal 10\% violation target ($q^*=0.90$). Bold indicates lowest compliant operational cost. Under $\tau=60\text{ min}$, by-seed compliance is $3/5$ seeds ($60\%$) across models.}
