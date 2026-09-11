@@ -30,7 +30,7 @@ def compile_pdf(md_file, label):
         '-t', 'latex',
         '-o', tex_file
     ]
-    res_p = subprocess.run(cmd_pandoc, capture_output=True, text=True)
+    res_p = subprocess.run(cmd_pandoc, capture_output=True, text=True, encoding="utf-8", errors="ignore")
     if res_p.returncode != 0:
         print("Pandoc stdout:", res_p.stdout)
         print("Pandoc stderr:", res_p.stderr)
@@ -46,7 +46,7 @@ def compile_pdf(md_file, label):
     ]
     for p in range(1, 3):
         print(f"XeLaTeX pass {p}...")
-        res_x = subprocess.run(cmd_xelatex, capture_output=True, text=True)
+        res_x = subprocess.run(cmd_xelatex, capture_output=True, text=True, encoding="utf-8", errors="ignore")
         if res_x.returncode != 0:
             print("XeLaTeX stdout:", res_x.stdout[-1500:])
             print("XeLaTeX stderr:", res_x.stderr)
