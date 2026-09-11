@@ -15,6 +15,10 @@ header-includes:
   - \usepackage{booktabs}
   - \usepackage{float}
   - \usepackage{graphicx}
+  - \linespread{0.985}
+  - \renewcommand{\dbltopfraction}{0.95}
+  - \renewcommand{\dblfloatpagefraction}{0.85}
+  - \setcounter{dbltopnumber}{3}
 ---
 
 # Appendix A. Training and implementation details {.unnumbered}
@@ -1368,7 +1372,7 @@ Figure S1 visualizes the empirical Pareto trade-off between unconstrained point-
 ```{=latex}
 \begin{figure*}[t!]
 \centering
-\includegraphics[width=0.92\textwidth]{artifacts/final_evidence_package/export/figures/figure_s_tradeoff.pdf}
+\includegraphics[width=0.70\textwidth]{artifacts/final_evidence_package/export/figures/figure_s_tradeoff.pdf}
 \caption*{\textbf{Figure S1.} Empirical Pareto trade-off between whole-sample point forecasting accuracy (overall test RMSE on WTB, $x$-axis) and operational resilience under 60-minute telemetry latency (Delay-6, $y$-axis). (A) Whole-sample RMSE vs. Delay-6 reserve shortage exposure $\mathcal{S}$ (MWh, Newsvendor proxy at $\rho=10$). Unconstrained state-of-the-art point predictors (iTransformer, Graph WaveNet) achieve lower overall RMSE ($224.34$ and $225.74$) by minimizing quadratic loss across prevailing stationary regimes, but lack aerodynamic state awareness, causing shortage exposures to surge ($>78\text{--}82\text{ MWh}$). The proposed boundary-aware representations (Joint Routed $229.93\text{ kW}$ and Frozen Backbone + Residual Quantile $230.12\text{ kW}$) define a robust Pareto frontier, deliberately trading a modest $+2.5\%$ whole-sample RMSE margin to compress unhedged shortfall exposure to $53.9\text{--}54.2\text{ MWh}$ (a $>35\%$ reduction). (B) Whole-sample RMSE vs. Delay-6 boundary transition regime recall. Learned representations sustain regime awareness ($0.408\text{--}0.416$ recall), achieving a $+112\%$ improvement over collapsed clean physical rules ($0.196$), preventing pre-dispatch reserve clearance against obsolete operating regimes.}
 \end{figure*}
 ```
@@ -1382,7 +1386,78 @@ In utility-scale wind plants, supervisory control and data acquisition systems s
 
 ## Appendix B. Complete reference verification and official DOI directory {.unnumbered}
 
-All 38 references cited in the main manuscript have been audited and verified against official publisher metadata and CrossRef records. In particular, Reference [2] (*Physics-Informed Machine Learning for Power Grid Frequency Modeling*, Kruse et al.) is published in the American Physical Society journal *PRX Energy* (DOI: `10.1103/PRXEnergy.2.043003`), correcting the typographical `10.1109` IEEE prefix in legacy bibtex records. All digital object identifiers in the accompanying `references.bib` are confirmed active.
+All 38 references cited in the main manuscript have been audited and verified against official publisher metadata and CrossRef records. In particular, Reference [2] (*Physics-Informed Machine Learning for Power Grid Frequency Modeling*, Kruse et al.) is published in the American Physical Society journal *PRX Energy* (DOI: 10.1103/PRXEnergy.2.043003), correcting legacy typographical errors. Tables B1 and B2 provide the complete audited directory for all cited works across both parts of the bibliography.
 
+`{=latex}
+\begin{table}[H]
+\centering
+\fontsize{4.6pt}{5.5pt}\selectfont
+\setlength{\tabcolsep}{1.5pt}
+\renewcommand{\arraystretch}{0.94}
+\caption*{\textbf{Table B1. Verified Reference Directory (Part 1: Refs [1]--[19]).}}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{r l l l}
+\toprule
+\textbf{Ref} & \textbf{Author (Year)} & \textbf{Venue} & \textbf{Verified Official DOI / Registry} \\
+\midrule
+[1] & Dowell (2016) & IEEE Trans. Smart Grid & \texttt{10.1109/TSG.2015.2424078} \\
+[2] & Kruse (2023) & PRX Energy & \texttt{10.1103/PRXEnergy.2.043003} \\
+[3] & Pinson (2013) & Statistical Science & \texttt{10.1214/13-sts445} \\
+[4] & Doherty (2005) & IEEE Trans. Power Syst.. & \texttt{10.1109/TPWRS.2005.846206} \\
+[5] & Wang (2025) & Applied Energy & \texttt{10.1016/j.apenergy.2025.126234} \\
+[6] & Slootweg (2003) & IEEE Trans. Power Syst.. & \texttt{10.1109/TPWRS.2002.807113} \\
+[7] & Gaertner (2020) & National Renewable Ene.. & \texttt{10.2172/1603478} \\
+[8] & Tautz-Weinert (2017) & IET Renewable Power Ge.. & \texttt{10.1049/iet-rpg.2016.0248} \\
+[9] & Ullah (2022) & IEEE Trans. Industrial.. & \texttt{10.1109/TII.2021.3112386} \\
+[10] & Pierre (2019) & IEEE Trans. Power Syst.. & \texttt{10.1109/TPWRS.2019.2903782} \\
+[11] & Ravikumar (2020) & IEEE Trans. Smart Grid & \texttt{10.1109/TSG.2020.2995313} \\
+[12] & Daenens (2025) & Wind Energy Science & \texttt{10.5194/wes-10-1137-2025} \\
+[13] & Wu (2019) & Proc. 28th Internation.. & \texttt{10.24963/ijcai.2019/264} \\
+[14] & Guo (2019) & Proc. AAAI Conference .. & \texttt{10.1609/aaai.v33i01.3301898} \\
+[15] & Bai (2020) & Advances in Neural Inf.. & \textit{Proceedings} \\
+[16] & Park (2019) & Energy & \texttt{10.1016/j.energy.2019.115883} \\
+[17] & Kim (2024) & Applied Energy & \texttt{10.1016/j.apenergy.2024.123882} \\
+[18] & Zehtabiyan-Rezaie (2023) & PRX Energy & \texttt{10.1103/PRXEnergy.2.013009} \\
+[19] & Zhang (2021) & Applied Energy & \texttt{10.1016/j.apenergy.2021.116641} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+`
 
-
+`{=latex}
+\begin{table}[H]
+\centering
+\fontsize{4.6pt}{5.5pt}\selectfont
+\setlength{\tabcolsep}{1.5pt}
+\renewcommand{\arraystretch}{0.94}
+\caption*{\textbf{Table B2. Verified Reference Directory (Part 2: Refs [20]--[38]).}}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{r l l l}
+\toprule
+\textbf{Ref} & \textbf{Author (Year)} & \textbf{Venue} & \textbf{Verified Official DOI / Registry} \\
+\midrule
+[20] & Shazeer (2017) & Int. Conf. Learning Re.. & \textit{Proceedings} \\
+[21] & Fedus (2022) & Journal of Machine Lea.. & \textit{Proceedings} \\
+[22] & Karpatne (2017) & IEEE Trans. Knowledge .. & \texttt{10.1109/TKDE.2017.2720168} \\
+[23] & Karniadakis (2021) & Nature Reviews Physics & \texttt{10.1038/s42254-021-00314-5} \\
+[24] & Bossanyi (2000) & Wind Energy & \texttt{10.1002/we.34} \\
+[25] & Bianchi (2006) & Springer & \texttt{10.1007/1-84628-493-7} \\
+[26] & Pao (2011) & IEEE Control Systems M.. & \texttt{10.1109/MCS.2010.939962} \\
+[27] & Johnson (2004) & Journal of Solar Energ.. & \texttt{10.1115/1.1792653} \\
+[28] & Ela (2011) & National Renewable Ene.. & \texttt{10.2172/1023095} \\
+[29] & Bremnes (2004) & Wind Energy & \texttt{10.1002/we.107} \\
+[30] & Zhang (2014) & Renewable and Sustaina.. & \texttt{10.1016/j.rser.2014.01.033} \\
+[31] & Zhou (2013) & Wind Energy & \texttt{10.1002/we.1496} \\
+[32] & Li (2018) & Int. Conf. Learning Re.. & \textit{Proceedings} \\
+[33] & Hersbach (2020) & Quarterly Journal of t.. & \texttt{10.1002/qj.3803} \\
+[34] & Nielsen (2006) & Wind Energy & \texttt{10.1002/we.180} \\
+[35] & Zhou (2024) & Scientific Data & \texttt{10.1038/s41597-024-03427-5} \\
+[36] & Nie (2023) & Int. Conf. Learning Re.. & \textit{Proceedings} \\
+[37] & Liu (2024) & Int. Conf. Learning Re.. & \textit{Proceedings} \\
+[38] & Das (2023) & Transactions on Machin.. & \textit{Proceedings} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+`
