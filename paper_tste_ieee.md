@@ -17,8 +17,8 @@ header-includes:
   - \usepackage{float}
   - \usepackage{enumitem}
   - \usepackage{etoolbox}
-  - \linespread{0.895}
-  - \AtBeginDocument{\fontsize{9.4pt}{10.8pt}\selectfont}
+  - \linespread{0.890}
+  - \AtBeginDocument{\fontsize{9.35pt}{10.7pt}\selectfont}
   - \setlist[itemize]{leftmargin=1.4em,nosep}
   - \setlist[enumerate]{leftmargin=1.4em,nosep,itemsep=0.2ex}
   - \AtBeginDocument{\renewenvironment{CSLReferences}[2]{\begin{list}{}{\fontsize{5.0pt}{5.7pt}\selectfont\setlength{\itemindent}{0pt}\setlength{\leftmargin}{0pt}\setlength{\parsep}{0pt}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}}{\end{list}}}
@@ -54,7 +54,7 @@ header-includes:
   - \renewcommand{\dblfloatpagefraction}{0.85}
 ---
 
-\title{Reliability Breakdown of Wind Turbine Operating Reserve Rules under Stale SCADA Telemetry and Boundary-Risk Posterior Diagnostics}
+\title{Operational Boundaries of Aerodynamic Power Rules, Recalibration, and Learned Representations under SCADA Telemetry Degradation}
 
 \author{%
 \IEEEauthorblockN{Junyu Li and Juntao Du\IEEEauthorrefmark{1}}
@@ -156,9 +156,7 @@ $$
 
 Aerodynamic rated wind speeds are calibrated to the specific turbine technology at each wind plant: WTB (134 turbines: $u_{\mathrm{idle}}=3.0\text{ m s}^{-1}$, $u_{\mathrm{rated}}=10.5\text{ m s}^{-1}$, $p_{\mathrm{th}}=2.0^\circ$), Kelmarsh (6 MM92 turbines: $u_{\mathrm{idle}}=3.0$, $u_{\mathrm{rated}}=12.5\text{ m s}^{-1}$, $p_{\mathrm{th}}=1.0^\circ$), Penmanshiel (15 MM82 turbines: $u_{\mathrm{idle}}=3.0$, $u_{\mathrm{rated}}=14.5\text{ m s}^{-1}$, $p_{\mathrm{th}}=1.0^\circ$), and ENGIE La Haute Borne (4 MM82 turbines: $u_{\mathrm{idle}}=3.0$, $u_{\mathrm{rated}}=14.5\text{ m s}^{-1}$, $p_{\mathrm{th}}=1.0^\circ$).
 
-Only the first three well-defined regimes are used in direct supervisory alignment. Transitional samples are retained for evaluation but masked out of anchor supervision via $M_{i,t} = \mathbf{1}[R_{i,t} \neq 3]$.
-
-These thresholds define the **Aerodynamic Power-Curve Baseline**: when SCADA telemetry is complete and intact, continuous soft-pitch quantiles derived from these anchors achieve the lowest baseline reserve-screening cost. When telemetry degrades through communication latency or sensor corruption, however, this deterministic rule experiences severe reliability breakdown, requiring learned diagnostic representations.
+Only the first three well-defined regimes are used in direct supervisory alignment; transitional samples are retained for evaluation but masked out of anchor supervision via $M_{i,t} = \mathbf{1}[R_{i,t} \neq 3]$. These thresholds define the **Aerodynamic Power-Curve Baseline**: under fresh, intact SCADA telemetry, continuous soft-pitch quantiles derived from these anchors achieve the lowest baseline reserve-screening cost. Under communication latency or sensor corruption, however, deterministic physical rules experience systematic reliability breakdown, requiring learned diagnostic representations. Crucially, blade pitch $\bar{p}_{i,t}$ and anemometer wind $w_{i,t}$ serve strictly as *offline supervisory anchors* to delineate ground-truth regimes $R_{i,t}$ and calibrate baseline curves; online inference relies strictly on available operational telemetry $\mathbf{X}_{t-H+1:t}$. In pitch-withheld evaluations (Section\ \ref{sec:withheld-channel}), $\bar{p}_{i,t}$ is completely excluded from $\mathbf{X}$, and the network reconstructs regimes purely from secondary electromechanical channels (active/reactive power) and dynamic wake topology (recovering NMI $= 0.561$), ensuring zero circular leakage.
 
 **ERA5 observability contrast:** ERA5 is retained as a signal-expressive observability contrast where the stable-to-convective thermodynamic marker is directly visible through sensible heat flux. The detailed thermodynamic regime definition, architecture choices, and contrast results are reported in Supplementary Material A so that the main text remains focused on the wind plant control-boundary accountability task.
 
@@ -278,9 +276,9 @@ All neural models use the same training protocol where the architecture permits 
 
 Evaluation metrics span three operational criteria: (1) point forecasting accuracy (overall MAE/RMSE and switch-window RMSE within $\pm 1.0\text{ m s}^{-1}$ of rated wind); (2) physical regime alignment (normalized mutual information, adjusted Rand index, and gate usage entropy); and (3) operational reserve consequence (PSREI cost, empirical violation rate, and unhedged shortage MWh under the Newsvendor proxy).
 
-## Controlled Telemetry Degradation Protocols
+## Controlled Telemetry Degradation Protocols and Realism Mapping
 
-To stress-test model resilience under adverse field conditions, we formalize four controlled telemetry regimes across all 5 seeds (201--205): (1) \textbf{Clean (Nominal):} uncorrupted SCADA telemetry; (2) \textbf{Delay-6 (Worst-Case Communication Stress Test, Upper Envelope):} 6-step ($60\text{ min}$) controlled synthetic latency on wind-speed and pitch-angle streams, representing a conservative severity bound on severe communication backlog, buffer congestion, serialization queuing, and gateway outage cascades in industrial IoT telemetry [@ullah2022enabling; @pierre2019design]; this 60-min scenario is evaluated as a deliberate stress-test upper envelope to delineate worst-case physical rule vulnerability; (3) \textbf{Sensor Noise:} additive zero-mean Gaussian perturbations on wind speed ($\sigma = 1.0\text{ m s}^{-1}$) and pitch angle ($\sigma = 2.0^\circ$), simulating calibration drift and sensor jitter; and (4) \textbf{Markov-Gilbert Burst Drops:} two-state discrete Markov chain ($p_{GB} = 0.08, p_{BB} = 0.75, d \le 6$) simulating bursty communication blackouts [@ullah2022enabling; @ravikumar2020anomaly].
+To stress-test reserve screening resilience under adverse communication conditions, we formalize a **Three-Tier Telemetry Realism Protocol** alongside sensor perturbation models across all 5 seeds (201--205): (1) \textbf{Tier 1: Nominal SCADA Polling ($0\text{--}10\text{ min}$, Clean):} fresh telemetry streams adhering to standard IEC 61400-25 10-minute snapshot intervals under complete channel observability; (2) \textbf{Tier 2: Plausible Degraded Telemetry ($10\text{--}30\text{ min}$, Delay-1 to Delay-3):} realistic industrial latencies induced by substation ring buffer backlogs, lossy cellular retransmissions across remote terrain, or gateway serialization queues [@ullah2022enabling], challenging unadapted physical curves near control transition boundaries; (3) \textbf{Tier 3: Contingency Stress-Test Upper Envelope ($60\text{ min}$, Delay-6):} a 6-step ($60\text{ min}$) controlled synthetic transmission lag on wind and pitch streams, evaluated strictly as an operational stress-test upper envelope representing extended packet dropouts, cyber-physical network storms, or gateway outage cascades [@pierre2019design; @ravikumar2020anomaly] to delineate the asymptotic failure boundary of unadapted physical rules rather than claiming routine industrial delays; and (4) \textbf{Sensor Perturbation Controls:} additive Gaussian noise ($\sigma_v = 1.0\text{ m s}^{-1}, \sigma_\beta = 2.0^\circ$) simulating calibration drift, alongside a two-state Markov-Gilbert burst dropout chain ($p_{GB}=0.08, p_{BB}=0.75, d \le 6$) simulating transient wireless blackouts [@ullah2022enabling; @ravikumar2020anomaly].
 
 Fig. 1 illustrates the operating-decision context before the forecasting results are introduced: graph geometry shows where forecast errors propagate, and the regime-anchor panels show which sensor-derived boundaries can support reserve diagnostics.
 
@@ -501,7 +499,7 @@ Evaluating point-forecasting accuracy across five WTB seeds, the boundary-forced
 
 Input ablation stress guards confirm that routing fidelity does not arise from target leakage: withholding \texttt{Patv} or \texttt{Pab\_mean} preserves mean NMI at 0.881 and 0.878, while lagging \texttt{Patv} and lagging pitch/wind yield 0.763 and 0.684. In addition, gate matching to the active operating regime peaks at the transition step (0.815) and attenuates under three- and six-step lead shifts (0.361 and 0.405), confirming that gate activations track dynamic physical state transitions.
 
-## Withheld-Channel Electromechanical Signature Recovery
+## Withheld-Channel Electromechanical Signature Recovery \label{sec:withheld-channel}
 
 The operational integrity of the blind-spot fallback rests on whether the model can infer operational regime boundaries when primary pitch and anemometer channels are withheld across commercial OEM protocol boundaries or VPP administrative interfaces. To test whether secondary electromechanical consequence channels carry sufficient information to reconstruct operating state posteriors without circular dependence, we formulate a strict **counterfactual stress-testing probe**: withholding `Wspd` and `Pab_mean` while retaining active power and downstream electromechanical channels yields a mean NMI of 0.561 and ARI of 0.635 across five seeds on WTB (Table\ \ref{tab:signature-gate}). Removing active power (`signature_core`) drops mean NMI to 0.367, whereas permuted label negative controls collapse to $4.0 \times 10^{-6}$, definitively ruling out spurious correlations.
 
