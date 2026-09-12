@@ -94,7 +94,7 @@
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{etoolbox}
-\linespread{0.870}
+\linespread{0.855}
 \AtBeginDocument{\fontsize{9.2pt}{10.4pt}\selectfont}
 \setlist[itemize]{leftmargin=1.4em,nosep}
 \setlist[enumerate]{leftmargin=1.4em,nosep,itemsep=0.2ex}
@@ -153,7 +153,7 @@ Anhui University of Finance and Economics, Bengbu 233030, China\\
 \maketitle
 
 \begin{abstract}
-Operating reserve screening near the demarcation boundary between maximum power point tracking (MPPT, Region 2) and blade-pitch regulation (Region 3) is critical for pre-dispatch imbalance risk mitigation in wind-integrated power systems. However, industrial Supervisory Control and Data Acquisition (SCADA) telemetry is vulnerable to communication queuing delays, packet serialization dropouts, and unobservable pitch registers. While deterministic aerodynamic power-curve quantile rules achieve the lowest reserve-screening surrogate cost under pristine telemetry ($589{,}535\text{ kW}\cdot\text{h}$ at immediate dispatch $h=1$ and $881{,}367\text{ kW}\cdot\text{h}$ at 1-hour dispatch $h=6$, with $\sim 6.8\%$ violation), they exhibit systematic reliability breakdown under communication latency. Under a 6-step ($60\text{ min}$) synthetic transmission lag (evaluated strictly as a severe contingency outage-envelope stress condition rather than routine operational latency), the steep change in local control sensitivity near rated wind speed amplifies stale-state estimation errors, surging clean-calibrated physical rule violation rates to $24.0\% \pm 1.7\%$ ($h=1$) and $12.20\% \pm 1.25\%$ ($h=6$), severely breaching the nominal 10\% violation target ($q^* = 0.90$) and leaving $127.6\text{ MWh}$ of unhedged shortfall exposure under the Level-1 balancing-risk proxy. To systematically diagnose these operational vulnerabilities and establish an empirical division of labor, we delineate an **Empirical Operational Boundary and Value-of-Information Framework under Information Freshness Constraints**, evaluating aerodynamic power rules, state-conditional recalibration, and spatio-temporal representations across communication and observability stresses. Disentangling distribution recalibration from neural representation reveals a distinct Value-of-Information hierarchy: under full observability, simple state-conditional recalibration absorbs the primary macro-distribution shift, cutting shortage by $55.3\%$ ($127.6 \to 57.0\text{ MWh}$, $10.7\%$ violation) at lower cost than neural models, providing no additional operational benefit under the evaluated full-observability conditions. However, when pitch registers are withheld across commercial aggregator boundaries or proprietary protocol interfaces, learned representations reconstruct operating regimes from electromechanical transients, consistently outperforming recalibrated physics by $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ across all latencies and doubling boundary recall ($0.416$ vs. $0.196$). Capacity-matched dense and routed architectures achieve statistical parity under clean telemetry (cost ratio $1.045$, $p=0.380$), while decoupled modular representations (Frozen Backbone + Residual Quantile) achieve lower reserve cost ($1.284\text{M kW}\cdot\text{h}$) and compliant tail coverage ($9.7\%$ violation). Withheld-channel counterfactual stress testing confirms robust regime recovery under unobservable pitch (NMI $0.561$), and Point of Common Coupling (PCC) aggregation demonstrates net plant-level portfolio smoothing. These empirical boundaries show that the operational utility of machine learning is localized to partially observable regimes where spatio-temporal representations recover critical aerodynamic state boundaries that simple recalibration cannot resolve.
+Operating reserve screening near the demarcation boundary between maximum power point tracking (MPPT, Region 2) and blade-pitch regulation (Region 3) is critical for pre-dispatch imbalance risk mitigation in wind-integrated power systems. However, industrial Supervisory Control and Data Acquisition (SCADA) telemetry is vulnerable to communication queuing delays, packet serialization dropouts, and unobservable pitch registers. While deterministic aerodynamic power-curve quantile rules achieve the lowest reserve-screening surrogate cost under pristine telemetry ($589{,}535\text{ kW}\cdot\text{h}$ at immediate dispatch $h=1$ and $881{,}367\text{ kW}\cdot\text{h}$ at 1-hour dispatch $h=6$, with $\sim 6.8\%$ violation), they exhibit systematic reliability breakdown under communication latency. Under a 6-step ($60\text{ min}$) synthetic transmission lag (evaluated strictly as a severe contingency outage-envelope stress condition rather than routine operational latency), the steep change in local control sensitivity near rated wind speed amplifies stale-state estimation errors, surging clean-calibrated physical rule violation rates to $24.0\% \pm 1.7\%$ ($h=1$) and $12.20\% \pm 1.25\%$ ($h=6$), severely breaching the nominal 10\% violation target ($q^* = 0.90$) and leaving $127.6\text{ MWh}$ of unhedged shortfall exposure under the Level-1 balancing-risk proxy. To systematically diagnose these operational vulnerabilities and establish an empirical division of labor, we delineate an **Empirical Operational Boundary and Value-of-Information Framework under Information Freshness Constraints**, evaluating aerodynamic power rules, state-conditional recalibration, and the **Spatio-Temporal Graph Quantile (STGQ)** representation family across communication and observability stresses. Disentangling distribution recalibration from neural representation reveals a distinct Value-of-Information hierarchy: under full observability, simple state-conditional recalibration absorbs the primary macro-distribution shift, cutting shortage by $55.3\%$ ($127.6 \to 57.0\text{ MWh}$, $10.7\%$ violation) at lower cost than neural models, providing no additional operational benefit under the evaluated full-observability conditions. However, when pitch registers are withheld across commercial aggregator boundaries or proprietary protocol interfaces, learned representations reconstruct operating regimes from electromechanical transients, consistently outperforming recalibrated physics by $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ across all latencies and doubling boundary recall ($0.416$ vs. $0.196$). Capacity-matched dense (STGQ-Dense) and routed architectures (STGQ-Routed) achieve statistical parity under clean telemetry (cost ratio $1.045$, $p=0.380$), while decoupled modular representations (STGQ-Modular: Frozen Backbone + Residual Quantile) achieve lower reserve cost ($1.284\text{M kW}\cdot\text{h}$) and compliant tail coverage ($9.7\%$ violation). Withheld-channel counterfactual stress testing confirms robust regime recovery under unobservable pitch (NMI $0.561$), and Point of Common Coupling (PCC) aggregation demonstrates net plant-level portfolio smoothing. These empirical boundaries show that the operational utility of machine learning is localized to partially observable regimes where spatio-temporal representations recover critical aerodynamic state boundaries that simple recalibration cannot resolve.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -171,10 +171,10 @@ and operating reserve adequacy in Level-1 pre-dispatch screening
 screening near the demarcation boundary between maximum power point
 tracking (MPPT, Region 2) and blade-pitch regulation (Region 3)
 represents an acute operational bottleneck. At this demarcation
-boundary, the governing aerodynamic control law undergoes a structural
-discontinuity: local power sensitivity drops abruptly from a cubic
-trajectory (\(\partial P / \partial v \propto v^2\)) to zero as active
-pitch regulation sheds excess aerodynamic lift {[}6{]}, {[}7{]}.
+boundary, under the idealized rated-power regulation approximation,
+local power sensitivity transitions from a steep cubic trajectory
+(\(\partial P / \partial v \propto v^2\)) toward approximately zero as
+active pitch regulation sheds excess aerodynamic lift {[}6{]}, {[}7{]}.
 Deterministic power-curve formulations embody an intrinsic vulnerability
 near rated inflow velocities: unobserved aerodynamic fluctuations shift
 operating states across the rated threshold, inducing delayed or
@@ -189,17 +189,17 @@ Kelmarsh plant, for instance, 99.6\% of turbine status transition events
 carry timestamps falling strictly between 10-minute SCADA grid
 boundaries, demonstrating that operational state transitions regularly
 unfold within reporting blind spots. To systematically stress-test
-reserve screening resilience, we evaluate controlled transmission
-latency profiles from 10 to 60 minutes: while 10--30 min latencies
-represent plausible substation buffer backlogs and lossy cellular
-retransmissions, 60-min latency is evaluated deliberately as a severe
-contingency outage-envelope stress condition (e.g., gateway failures or
-extended cyber-physical network storms) to probe the asymptotic
-breakdown boundary of unadapted physical rules {[}10{]}, {[}11{]}.
-Furthermore, in third-party aggregator, Virtual Power Plant (VPP), and
-Transmission System Operator (TSO) pre-dispatch triage, primary
-blade-pitch registers may be unavailable or inaccessible in external
-operational interfaces due to commercial access boundaries or
+reserve screening resilience, we evaluate controlled counterfactual
+transmission latency profiles from 10 to 60 minutes: while 10--30 min
+latencies represent plausible substation buffer backlogs and lossy
+cellular retransmissions, 60-min latency is evaluated deliberately as a
+severe contingency outage-envelope stress condition (e.g., gateway
+failures or extended cyber-physical network storms) to probe the
+asymptotic breakdown boundary of unadapted physical rules {[}10{]},
+{[}11{]}. Furthermore, in third-party aggregator, Virtual Power Plant
+(VPP), and Transmission System Operator (TSO) pre-dispatch triage,
+primary blade-pitch registers may be unavailable or restricted in
+external operational interfaces due to commercial access boundaries or
 proprietary protocol restrictions. Feeding stale or missing sensor
 measurements into deterministic physical mappings precipitates severe
 misclassification, compelling pre-dispatch algorithms to clear reserve
@@ -225,9 +225,9 @@ unhedged shortfall exposure under the balancing-risk proxy. Conversely,
 shallow tabular models (Missingness-Aware GBDT) capitalize on
 ultra-short lag autocorrelation at \(h=1\) but undergo severe breakdown
 across dispatch-grade horizons (\(h=6\)), inflating reserve costs by
-\(13.44\%\) to \(29.15\%\) (\(p < 0.0001\)) because tabular baselines
-cannot capture spatial wake advection propagating across turbine arrays
-{[}12{]}.
+\(13.44\%\) to \(29.15\%\) (Table~\ref{tab:h6-paired}) because tabular
+baselines cannot capture spatial wake advection propagating across
+turbine arrays {[}12{]}.
 
 To resolve this operational tension, we establish an \textbf{Empirical
 Operational Boundary and Value-of-Information Diagnostic Framework under
@@ -265,21 +265,22 @@ validation calibration frozen prior to testing, physical rules achieve
 the lowest reserve-screening cost under clean telemetry
 (\(589{,}535\text{ kW}\cdot\text{h}\) at \(h=1\),
 \(881{,}367\text{ kW}\cdot\text{h}\) at \(h=6\)). Dynamic MoE routing
-confers no statistical advantage over unrouted dense baselines
-(\(p=0.380\)). Under stale telemetry, state-conditional calibration
-absorbs the primary reliability loss (\(10.7\%\) violation,
-\(57.0\text{ MWh}\) shortage), while learned posteriors achieve
-\(10.6\% \pm 1.1\%\) violation and \(53.9\text{ MWh}\) shortage.
-Decoupled modular architectures (Frozen Backbone + Residual Quantile)
-achieve lower reserve cost (\(1.284\text{M kW}\cdot\text{h}\)) and
-compliant tail coverage (\(9.68\%\) violation), showing that operational
-gains arise from spatio-temporal feature representations and decoupled
-residual calibration rather than dynamic MoE routing. 3.
-\textbf{Disentangled Value-of-Information Diagnostics and Boundary
-Delineation (55.3\% vs.~5.4\%):} Disentangling calibration adaptation
-from neural representation reveals that state-conditional calibration
-absorbs \(55.3\%\) of shortage loss (\(127.6 \to 57.0\text{ MWh}\)),
-making it the most cost-effective solution under full observability. The
+(STGQ-Routed) confers no statistical advantage over unrouted dense
+baselines (STGQ-Dense, \(p=0.380\)). Under stale telemetry,
+state-conditional calibration absorbs the primary reliability loss
+(\(10.7\%\) violation, \(57.0\text{ MWh}\) shortage), while learned
+posteriors achieve \(10.6\% \pm 1.1\%\) violation and
+\(53.9\text{ MWh}\) shortage. Decoupled modular architectures
+(STGQ-Modular: Frozen Backbone + Residual Quantile) achieve lower
+reserve cost (\(1.284\text{M kW}\cdot\text{h}\)) and compliant tail
+coverage (\(9.68\%\) violation), showing that operational gains arise
+from spatio-temporal feature representations and decoupled residual
+calibration rather than dynamic MoE routing. 3. \textbf{Disentangled
+Value-of-Information Diagnostics and Boundary Delineation (55.3\%
+vs.~5.4\%):} Disentangling calibration adaptation from neural
+representation reveals that state-conditional calibration absorbs
+\(55.3\%\) of shortage loss (\(127.6 \to 57.0\text{ MWh}\)), making it
+the most cost-effective solution under full observability. The
 incremental \(5.4\%\) shortage reduction (\(57.0 \to 53.9\text{ MWh}\),
 combined \(57.7\%\)) and doubled regime recall (\(0.416\) vs.~\(0.196\)
 under Delay-6) delivered by learned posteriors consistently reduce the
@@ -442,13 +443,16 @@ first-order actuator lag and slew limits
 {[}6{]}, {[}7{]}.
 
 At the rated transition boundary \(v = u_{\mathrm{rated}}\), the
-governing control objective undergoes a structural discontinuity: the
-marginal aerodynamic power response drops abruptly from a steep cubic
-slope to zero as blade-pitch regulation engages {[}6{]}, {[}7{]}:
-\begin{equation}
-\left. \frac{\partial P}{\partial v} \right|_{v \to u_{\mathrm{rated}}^-} = \frac{3}{2} \rho_{\mathrm{air}} \pi R^2 C_{p,\max} u_{\mathrm{rated}}^2 \gg 0, \quad \left. \frac{\partial P}{\partial v} \right|_{v \to u_{\mathrm{rated}}^+} = 0.
-\end{equation} When SCADA telemetry experiences transmission latency
-\(\tau > 0\), deterministic physical rules evaluate stale state tuples
+governing control objective undergoes a structural shift. In idealized
+aerodynamic control representations, this transition is modeled as a
+localized slope discontinuity {[}6{]}, {[}7{]}: \begin{equation}
+\left. \frac{\partial P}{\partial v} \right|_{v \to u_{\mathrm{rated}}^-} = \frac{3}{2} \rho_{\mathrm{air}} \pi R^2 C_{p,\max} u_{\mathrm{rated}}^2 \gg 0, \quad \left. \frac{\partial P}{\partial v} \right|_{v \to u_{\mathrm{rated}}^+} \approx 0.
+\end{equation} While physical utility-scale turbines exhibit aeroelastic
+damping, pitch actuator rate limits, and turbulence-induced fluctuations
+around rated capacity rather than an unyielding mathematical plateau,
+this idealized control cliff serves as an analytical diagnostic proxy.
+When SCADA telemetry experiences transmission latency \(\tau > 0\),
+deterministic physical curves evaluate stale state tuples
 \((v_{t-\tau}, \beta_{t-\tau})\). When actual inflow wind shifts into
 Region 3 while delayed pitch readings remain at \(\beta = 0^\circ\),
 this steep sensitivity change amplifies stale-state estimation errors:
@@ -515,19 +519,27 @@ recalibration. Given delayed telemetry
 \(\mathbf{s}_{i,t-\tau} = (w_{i,t-\tau}, \bar{p}_{i,t-\tau})\), we
 partition the state space into \(K\) operational bins
 \(\{\mathcal{B}_k\}_{k=1}^K\) defined by cut-in, rated wind speed, and
-pitch thresholds (\(R_{i,t-\tau} = k\)). For each operating bin
-\(\mathcal{B}_k\), the empirical quantile reserve margin
-\(\hat{r}^{\mathrm{recal}}(k)\) is calibrated on training residuals to
-satisfy: \begin{equation}
-\hat{r}^{\mathrm{recal}}(k) = \inf \left\{ r \in \mathbb{R} : \frac{1}{|\mathcal{D}_k|} \sum_{(i,t) \in \mathcal{D}_k} \mathbf{1}\left[ \hat{y}^{\mathrm{phys}}_{i,t} - y_{i,t} \le r \right] \ge q^* \right\},
+pitch thresholds (\(R_{i,t-\tau} = k\)). To strictly eliminate data
+leakage, empirical quantile reserve margins \(\hat{r}(k)\) are
+calibrated strictly on held-out validation residuals
+\(\mathcal{D}_k^{\mathrm{val}}\) rather than training or test sets:
+\begin{equation}
+\hat{r}(k) = \inf \left\{ r \in \mathbb{R} : \frac{1}{|\mathcal{D}_k^{\mathrm{val}}|} \sum_{(i,t) \in \mathcal{D}_k^{\mathrm{val}}} \mathbf{1}\left[ \hat{y}^{\mathrm{phys}}_{i,t} - y_{i,t} \le r \right] \ge q^* \right\},
 \end{equation} where
-\(\mathcal{D}_k = \{(i,t) : \mathbf{s}_{i,t-\tau} \in \mathcal{B}_k\}\)
-and \(q^* = 1 - 1/\rho = 0.90\). At dispatch anchor \(t\), upon
-observing delayed telemetry in bin \(\mathcal{B}_k\), the dispatch
-reserve allocation is set to
-\(\hat{r}_{i,t} = \hat{r}^{\mathrm{recal}}(k)\). This condition-matching
-mapping absorbs distribution shifts arising from stale telemetry under
-full observability.
+\(\mathcal{D}_k^{\mathrm{val}} = \{(i,t) \in \mathcal{D}_{\mathrm{val}} : \mathbf{s}_{i,t-\tau} \in \mathcal{B}_k\}\)
+and \(q^* = 1 - 1/\rho = 0.90\). We formalize two distinct calibration
+protocols: (1) \textit{Clean-Frozen Calibration}, where reserve margins
+\(\hat{r}^{\mathrm{clean}}(k)\) are calibrated exclusively on nominal
+clean validation data (\(\tau = 0\)) and strictly frozen prior to
+deployment, quantifying unadapted vulnerability to information delay
+when deployed under latency (\(\tau > 0\)); and (2)
+\textit{Condition-Matched Validation Calibration}, where for a known
+delay \(\tau\), reserve margins \(\hat{r}(k; \tau)\) are re-estimated on
+held-out validation residuals undergoing the identical delay \(\tau\),
+establishing a non-neural benchmark that absorbs distribution drift
+under full channel observability. At dispatch anchor \(t\), observing
+delayed telemetry in bin \(\mathcal{B}_k\) yields reserve allocation
+\(\hat{r}_{i,t} = \hat{r}(k)\).
 
 \textbf{ERA5 observability contrast:} ERA5 is retained as a
 signal-expressive observability contrast where the stable-to-convective
@@ -583,17 +595,25 @@ denote normalized weighted aggregations over inbound and outbound wake
 neighbors. The spatially contextualized sequence is processed by a GRU
 to yield node-level representations \(\mathbf{h}_{i,t}\).
 
-In the primary Spatio-Temporal Graph Quantile (STGQ) architecture,
-turbine representations \(\mathbf{h}_{i,t}\) drive a linear projection
-for trajectory forecast \(\hat{\mathbf{y}}_{i,t+1:t+P}\) and a dedicated
-residual quantile head estimating reserve margin \(\hat{r}_{i,t}\) via
-pinball loss (\(q^*=0.90\)). For architectural comparison, dynamic
-Mixture-of-Experts (MoE) routing---computing gating
-\(\mathbf{g}_{i,t} = \mathrm{softmax}(\mathbf{z}_{i,t}/\tau)\) with
+We formalize the Spatio-Temporal Graph Quantile (STGQ) framework as a
+unified representation family comprising three architectural
+configurations: (1) \textbf{STGQ-Dense}, an unrouted baseline coupling
+spatial graph embeddings \(\mathbf{h}_{i,t}\) to a shared linear
+projection for point forecasts \(\hat{\mathbf{y}}_{i,t+1:t+P}\) and a
+joint dense quantile head; (2) \textbf{STGQ-Routed}, an architectural
+comparator evaluating dynamic Mixture-of-Experts (MoE) routing, where
+gating logits
 \(\mathbf{z}_{i,t} = \mathrm{MLP}_{\mathrm{gate}}([\mathbf{h}_{i,t}; \mathbf{a}_{i,t}])\)
-and trajectory
-\(\hat{\mathbf{y}}_{i,t+1:t+P} = \sum_{e=1}^E g_{i,t}^{(e)} f_e(\mathbf{h}_{i,t})\)---is
-evaluated as an ablation comparator.
+compute soft routing weights
+\(\mathbf{g}_{i,t} = \mathrm{softmax}(\mathbf{z}_{i,t}/\tau_{\mathrm{gate}})\)
+to combine specialized expert outputs
+\(\hat{\mathbf{y}}_{i,t+1:t+P} = \sum_{e=1}^E g_{i,t}^{(e)} f_e(\mathbf{h}_{i,t})\);
+and (3) \textbf{STGQ-Modular}, a decoupled architecture pairing frozen
+spatio-temporal backbone representations with a dedicated residual
+quantile head estimating reserve margin \(\hat{r}_{i,t}\) via pinball
+loss (\(q^*=0.90\)). This taxonomy isolates whether diagnostic reserve
+resilience stems from dynamic expert routing, shared spatio-temporal
+representations, or decoupled residual calibration.
 
 \textbf{Cross-sensor electromechanical diagnostic mechanism:} The
 primary operational utility of the spatio-temporal representation lies
@@ -799,17 +819,18 @@ Framework}\label{techno-economic-validation-and-benchmarking-framework}
 
 The empirical benchmarking protocol evaluates two complementary axes: 1.
 \emph{Isolating routing mechanisms under matched parameter capacity:}
-Comparing Dense single-head baselines, Unconstrained MoE, and
-Physics-Aligned MoE comparators {[}22{]}, {[}23{]} to determine whether
-dynamic routing adds value beyond shared spatio-temporal
-representations. 2. \emph{Benchmarking forecasting accuracy and reserve
-cost against established spatio-temporal baselines:} Evaluating Graph
-WaveNet, Graph Transformer, GAT-GRU, PatchTST, iTransformer, and TiDE
-{[}34{]}, {[}35{]}, {[}36{]}, alongside persistence, deterministic
-aerodynamic curves, and GBDT lag models. Mechanism comparisons designate
-in-family architectures as \textbf{Dense (matched)},
-\textbf{Unconstrained MoE}, and \textbf{Corrected routing comparator};
-Supplementary Appendix~A details baseline configurations.
+Comparing unrouted dense representations (STGQ-Dense), dynamic
+Mixture-of-Experts routing (STGQ-Routed), and decoupled modular
+architectures (STGQ-Modular) to determine whether dynamic expert routing
+adds operational value beyond shared spatio-temporal representations. 2.
+\emph{Benchmarking forecasting accuracy and reserve cost against
+established spatio-temporal baselines:} Evaluating Graph WaveNet, Graph
+Transformer, GAT-GRU, PatchTST, iTransformer, and TiDE {[}34{]},
+{[}35{]}, {[}36{]}, alongside persistence, deterministic aerodynamic
+curves, and GBDT lag models. Mechanism comparisons designate in-family
+architectures as \textbf{STGQ-Dense}, \textbf{STGQ-Routed}, and
+\textbf{STGQ-Modular}; Supplementary Appendix~A details baseline
+configurations.
 
 \subsection{Training Protocol and Evaluation
 Metrics}\label{training-protocol-and-evaluation-metrics}
@@ -818,9 +839,9 @@ All neural architectures share an identical training protocol where
 structure permits. Optimization uses AdamW with early stopping on
 validation RMSE, gradient clipping, and mixed-precision execution on a
 single CUDA-enabled GPU (hyperparameters detailed in Supplementary
-Appendix~A). The WTB dense baseline, Unconstrained MoE, full
-physics-aligned MoE, and boundary-forced router are evaluated across
-five strict-mask random seeds (201--205). The synchronized
+Appendix~A). The WTB STGQ-Dense baseline, unconstrained MoE, full
+physics-aligned STGQ-Routed, and boundary-forced router are evaluated
+across five strict-mask random seeds (201--205). The synchronized
 strong-baseline refresh covers Graph WaveNet, Graph Transformer,
 GAT-GRU, PatchTST, iTransformer, and TiDE across seeds 201--205 (30
 completed runs under identical evaluation caches). Deterministic
@@ -831,11 +852,40 @@ baselines repeat across three seeds. All decision thresholds and routing
 weights are fixed prior to test evaluation and audited via sensitivity
 sweeps, preventing test-set selection bias.
 
-Evaluation spans three operational dimensions: 1. \emph{Point
-forecasting accuracy:} Overall MAE/RMSE and switch-window RMSE within
-\(\pm 1.0\text{ m s}^{-1}\) of rated wind speed. 2. \emph{Physical
+To eliminate data leakage and clarify estimation timing, the
+experimental pipeline strictly enforces a sequential three-split
+dataflow:
+\(\mathcal{D}_{\mathrm{train}} \xrightarrow{\text{train } \theta} \mathcal{D}_{\mathrm{val}} \xrightarrow{\text{calibrate } \hat{r}(k)} \text{Freeze } \{\theta, \hat{r}\} \xrightarrow{\text{causal replay}} \mathcal{D}_{\mathrm{test}}\).
+Model weights \(\theta\) are trained on \(\mathcal{D}_{\mathrm{train}}\)
+using validation RMSE for early stopping. Residual quantile offsets and
+bin multipliers \(\hat{r}(k)\) are estimated strictly on held-out
+validation residuals \(\mathcal{D}_{\mathrm{val}}\). Once calibrated,
+parameters and quantile thresholds are frozen; evaluation on
+\(\mathcal{D}_{\mathrm{test}}\) proceeds via strictly causal rolling
+replay without adaptation.
+
+To evaluate empirical significance without confusing model training
+variability with operational time-series uncertainty, we establish a
+dual-level resampling hierarchy: (1)
+\textit{Model Initialization Robustness}, where five random seeds
+(201--205) evaluate stochastic initialization across all neural
+architectures, reporting mean \(\pm\) standard deviation across
+independent training runs; and (2)
+\textit{Operational Time-Series Uncertainty}, where because 10-minute
+wind dispatch time series exhibit pronounced serial autocorrelation,
+asymptotic hypothesis tests (such as Student's \(t\)-tests claiming
+\(p < 0.0001\)) are methodologically invalid for assessing time-series
+significance across five seeds. We therefore evaluate operational risk
+metrics via a 35-day daily block bootstrap (1,000 resamples of 144-step
+daily blocks, preserving diurnal cycles and serial autocorrelation) to
+construct empirical 95\% confidence intervals and paired difference
+distributions.
+
+Evaluation spans three operational dimensions: (1) \emph{Point
+forecasting accuracy:} overall MAE/RMSE and switch-window RMSE within
+\(\pm 1.0\text{ m s}^{-1}\) of rated wind speed; (2) \emph{Physical
 regime alignment:} Normalized Mutual Information (NMI), Adjusted Rand
-Index (ARI), and routing gate usage entropy. 3. \emph{Operational
+Index (ARI), and routing gate usage entropy; and (3) \emph{Operational
 reserve consequence:} PSREI reserve-shortfall cost, empirical violation
 rate, and unhedged shortage MWh under the Newsvendor proxy.
 
@@ -843,43 +893,33 @@ rate, and unhedged shortage MWh under the Newsvendor proxy.
 Mapping}\label{controlled-telemetry-degradation-protocols-and-realism-mapping}
 
 To stress-test reserve screening resilience under adverse communication
-conditions, we formalize a \textbf{Three-Tier Telemetry Realism
-Protocol} alongside sensor perturbation controls across all five seeds
-(201--205):
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Tier 1 (Nominal SCADA Polling, \(0\text{--}10\text{ min}\),
-  Clean):} Fresh telemetry represented on the 10-min SCADA aggregation
-  grid used by the benchmark, consistent with common wind-plant
-  historian practice; IEC 61400-25 provides the
-  communication/information-model context.
-\item
-  \textbf{Tier 2 (Plausible Degraded Telemetry,
-  \(10\text{--}30\text{ min}\), Delay-1 to Delay-3):} Realistic
-  communication latencies induced by substation ring-buffer backlogs,
-  lossy cellular retransmissions across rugged terrain, and gateway
-  serialization queues {[}9{]}, challenging unadapted physical curves
-  near control boundaries.
-\item
-  \textbf{Tier 3 (Contingency Stress-Test Upper Envelope,
-  \(60\text{ min}\), Delay-6):} A 6-step (\(60\text{ min}\)) synthetic
-  transmission lag evaluated strictly as an upper contingency stress
-  envelope (simulating extended packet dropouts, gateway failures, or
-  cyber-physical storms) {[}10{]}, {[}11{]} to establish the asymptotic
-  breakdown boundary of unadapted physical rules. Discrete fixed-shift
-  lags represent deterministic worst-case buffer stalls, complementing
-  two-state Markov-Gilbert dropouts and withheld-channel probes across
-  both uniform delay ceilings and asynchronous packet losses.
-\item
-  \textbf{Sensor Perturbation Controls:} Additive Gaussian noise
-  (\(\sigma_v = 1.0\text{ m s}^{-1}, \sigma_\beta = 2.0^\circ\))
-  simulating instrumentation drift, paired with a two-state
-  Markov-Gilbert burst dropout chain
-  (\(p_{GB}=0.08, p_{BB}=0.75, d \le 6\)) simulating transient wireless
-  dropouts {[}9{]}, {[}11{]}.
-\end{itemize}
+conditions, we evaluate controlled counterfactual telemetry degradation
+protocols alongside sensor perturbation controls across all five seeds
+(201--205). Rather than asserting that severe delays represent standard
+field operations, these protocols are designed as systematic stress
+tests to map operational breakdown boundaries and quantify the value of
+information: (1) \textbf{Tier 1 (Nominal SCADA Polling,
+\(0\text{--}10\text{ min}\), Clean):} fresh telemetry represented on the
+10-min SCADA aggregation grid used by the benchmark, consistent with
+common wind-plant historian practice (IEC 61400-25); (2) \textbf{Tier 2
+(Plausible Degraded Telemetry, \(10\text{--}30\text{ min}\), Delay-1 to
+Delay-3):} communication latencies induced by substation ring-buffer
+backlogs, lossy cellular retransmissions across rugged terrain, and
+gateway serialization queues {[}9{]}; and (3) \textbf{Tier 3
+(Contingency Stress-Test Upper Envelope, \(60\text{ min}\), Delay-6):} a
+6-step (\(60\text{ min}\)) synthetic transmission lag evaluated strictly
+as an upper contingency stress envelope (simulating extended packet
+dropouts, gateway failures, or cyber-physical storms) {[}10{]}, {[}11{]}
+to establish the asymptotic breakdown boundary of unadapted physical
+rules. Discrete fixed-shift lags represent deterministic worst-case
+buffer stalls, complementing two-state Markov-Gilbert dropouts and
+withheld-channel probes across both uniform delay ceilings and
+asynchronous packet losses. Sensor perturbation controls comprise
+additive Gaussian noise
+(\(\sigma_v = 1.0\text{ m s}^{-1}, \sigma_\beta = 2.0^\circ\))
+simulating instrumentation drift, paired with a two-state Markov-Gilbert
+burst dropout chain (\(p_{GB}=0.08, p_{BB}=0.75, d \le 6\)) simulating
+transient wireless dropouts {[}9{]}, {[}11{]}.
 
 Fig. 1 illustrates the operational dispatch setting: graph topology
 reveals how prediction errors propagate across turbine rows, while
@@ -916,9 +956,9 @@ Table~\ref{tab:h6-benchmark} summarizes the multi-day replay dispatch
 benchmark for 1-hour ahead operational dispatch (\(h=6\)) across 134
 turbines over the 35-day test split. Table~\ref{tab:h6-paired} reports
 seed-paired cost differences
-\(\Delta\text{Cost} = \text{Cost}_{\text{Baseline}} - \text{Cost}_{\text{Joint Routed}}\),
+\(\Delta\text{Cost} = \text{Cost}_{\text{Baseline}} - \text{Cost}_{\text{STGQ-Routed}}\),
 where positive values denote surrogate reserve penalty reductions
-delivered by Joint Routed, along with 95\% bootstrap confidence
+delivered by STGQ-Routed, along with 95\% bootstrap confidence
 intervals.
 
 \begin{table*}[!t]
@@ -933,34 +973,34 @@ intervals.
 Regime & Evaluated Model & \shortstack{Penalized Reserve-Shortfall\\Energy (kW$\cdot$h, Proxy at $\rho=10$)} & Violation Rate & Reserve (kW) & Shortage (kW$\cdot$h) & Pinball Loss \\
 \midrule
 \textbf{Clean} & Continuous Physical Quantile & $\mathbf{881{,}367 \pm 95{,}741}$ & $6.81\% \pm 1.13\%$ & $653{,}738 \pm 72{,}557$ & $22{,}763 \pm 4{,}013$ & $31.41 \pm 2.66$ \\
- & Frozen Backbone Direct Quantile MLP & $1{,}649{,}721 \pm 285{,}682$ & $0.58\% \pm 0.26\%$ & $1{,}630{,}572 \pm 293{,}346$ & $1{,}915 \pm 958$ & $64.62 \pm 12.05$ \\
+ & STGQ-Modular (Direct MLP) & $1{,}649{,}721 \pm 285{,}682$ & $0.58\% \pm 0.26\%$ & $1{,}630{,}572 \pm 293{,}346$ & $1{,}915 \pm 958$ & $64.62 \pm 12.05$ \\
  & Global Quantile & $998{,}988 \pm 107{,}360$ & $6.46\% \pm 1.31\%$ & $771{,}304 \pm 95{,}661$ & $22{,}768 \pm 4{,}854$ & $36.50 \pm 3.41$ \\
- & Joint Dense Head & $991{,}181 \pm 110{,}211$ & $6.54\% \pm 1.04\%$ & $761{,}480 \pm 94{,}244$ & $22{,}970 \pm 4{,}121$ & $36.16 \pm 3.58$ \\
- & Joint Routed & $959{,}027 \pm 103{,}290$ & $7.10\% \pm 1.17\%$ & $707{,}249 \pm 91{,}305$ & $25{,}178 \pm 4{,}816$ & $34.77 \pm 3.16$ \\
- & Missingness-Aware GBDT & $1{,}238{,}603 \pm 112{,}051$ & $4.50\% \pm 0.73\%$ & $1{,}085{,}168 \pm 118{,}015$ & $15{,}343 \pm 2{,}870$ & $46.85 \pm 3.48$ \\
+ & STGQ-Dense & $991{,}181 \pm 110{,}211$ & $6.54\% \pm 1.04\%$ & $761{,}480 \pm 94{,}244$ & $22{,}970 \pm 4{,}121$ & $36.16 \pm 3.58$ \\
+ & STGQ-Routed & $959{,}027 \pm 103{,}290$ & $7.10\% \pm 1.17\%$ & $707{,}249 \pm 91{,}305$ & $25{,}178 \pm 4{,}816$ & $34.77 \pm 3.16$ \\
+ & Missingness-Aware GBDT & $1{,}238{,}603 \pm 112{,}051$ & $4.50\% \pm 0.73\%$ & $1{,}085{,}168 \pm 118{,}015$ & $15{,}343 \pm 2870$ & $46.85 \pm 3.48$ \\
 \midrule
 \textbf{Delay-6} & Continuous Physical Quantile & $1{,}136{,}466 \pm 84{,}101$ & $12.20\% \pm 1.25\%^{\dagger}$ & $662{,}335 \pm 73{,}483$ & $47{,}413 \pm 3{,}091$ & $38.85 \pm 2.06$ \\
- & Frozen Backbone Direct Quantile MLP & $1{,}682{,}251 \pm 284{,}323$ & $1.20\% \pm 0.52\%$ & $1{,}651{,}979 \pm 297{,}715$ & $3{,}027 \pm 1{,}594$ & $62.15 \pm 11.70$ \\
+ & STGQ-Modular (Direct MLP) & $1{,}682{,}251 \pm 284{,}323$ & $1.20\% \pm 0.52\%$ & $1{,}651{,}979 \pm 297{,}715$ & $3{,}027 \pm 1{,}594$ & $62.15 \pm 11.70$ \\
  & Global Quantile & $1{,}180{,}603 \pm 91{,}754$ & $10.85\% \pm 1.55\%^{\dagger}$ & $780{,}916 \pm 96{,}853$ & $39{,}969 \pm 6{,}087$ & $40.73 \pm 2.43$ \\
- & Joint Dense Head & $1{,}179{,}859 \pm 95{,}268$ & $11.04\% \pm 1.22\%^{\dagger}$ & $773{,}103 \pm 94{,}462$ & $40{,}676 \pm 4{,}788$ & $40.70 \pm 2.66$ \\
- & Joint Routed & $1{,}163{,}593 \pm 91{,}299$ & $11.82\% \pm 1.64\%^{\dagger}$ & $720{,}015 \pm 92{,}196$ & $44{,}358 \pm 7{,}341$ & $40.01 \pm 2.54$ \\
+ & STGQ-Dense & $1{,}179{,}859 \pm 95{,}268$ & $11.04\% \pm 1.22\%^{\dagger}$ & $773{,}103 \pm 94{,}462$ & $40{,}676 \pm 4{,}788$ & $40.70 \pm 2.66$ \\
+ & STGQ-Routed & $1{,}163{,}593 \pm 91{,}299$ & $11.82\% \pm 1.64\%^{\dagger}$ & $720{,}015 \pm 92{,}196$ & $44{,}358 \pm 7{,}341$ & $40.01 \pm 2.54$ \\
  & Missingness-Aware GBDT & $1{,}320{,}003 \pm 93{,}135$ & $8.36\% \pm 0.97\%$ & $1{,}030{,}858 \pm 114{,}266$ & $28{,}915 \pm 4{,}469$ & $46.68 \pm 2.45$ \\
 \midrule
 \textbf{Noise} & Continuous Physical Quantile & $\mathbf{998{,}273 \pm 106{,}253}$ & $7.59\% \pm 0.95\%$ & $746{,}697 \pm 82{,}474$ & $25{,}158 \pm 3{,}968$ & $33.97 \pm 2.78$ \\
- & Frozen Backbone Direct Quantile MLP & $1{,}639{,}909 \pm 242{,}922$ & $0.80\% \pm 0.28\%$ & $1{,}618{,}439 \pm 249{,}374$ & $2{,}147 \pm 953$ & $60.62 \pm 9.85$ \\
+ & STGQ-Modular (Direct MLP) & $1{,}639{,}909 \pm 242{,}922$ & $0.80\% \pm 0.28\%$ & $1{,}618{,}439 \pm 249{,}374$ & $2{,}147 \pm 953$ & $60.62 \pm 9.85$ \\
  & Global Quantile & $1{,}053{,}552 \pm 114{,}150$ & $7.48\% \pm 1.48\%$ & $802{,}361 \pm 99{,}513$ & $25{,}119 \pm 5{,}822$ & $36.26 \pm 3.24$ \\
- & Joint Dense Head & $1{,}048{,}083 \pm 115{,}181$ & $7.63\% \pm 1.13\%$ & $792{,}472 \pm 92{,}391$ & $25{,}561 \pm 4{,}643$ & $36.04 \pm 3.28$ \\
- & Joint Routed & $1{,}027{,}077 \pm 114{,}317$ & $7.62\% \pm 1.09\%$ & $769{,}864 \pm 106{,}672$ & $25{,}721 \pm 3{,}963$ & $35.16 \pm 3.19$ \\
+ & STGQ-Dense & $1{,}048{,}083 \pm 115{,}181$ & $7.63\% \pm 1.13\%$ & $792{,}472 \pm 92{,}391$ & $25{,}561 \pm 4{,}643$ & $36.04 \pm 3.28$ \\
+ & STGQ-Routed & $1{,}027{,}077 \pm 114{,}317$ & $7.62\% \pm 1.09\%$ & $769{,}864 \pm 106{,}672$ & $25{,}721 \pm 3{,}963$ & $35.16 \pm 3.19$ \\
  & Missingness-Aware GBDT & $1{,}314{,}640 \pm 129{,}158$ & $4.66\% \pm 0.80\%$ & $1{,}160{,}329 \pm 137{,}650$ & $15{,}431 \pm 3{,}099$ & $47.11 \pm 3.87$ \\
 \midrule
 \textbf{Markov} & Continuous Physical Quantile & $\mathbf{907{,}871 \pm 96{,}820}$ & $7.20\% \pm 1.15\%$ & $663{,}875 \pm 73{,}821$ & $24{,}400 \pm 4{,}106$ & $31.59 \pm 2.61$ \\
- & Frozen Backbone Direct Quantile MLP & $1{,}680{,}339 \pm 289{,}602$ & $0.57\% \pm 0.25\%$ & $1{,}660{,}135 \pm 298{,}104$ & $2{,}020 \pm 992$ & $64.38 \pm 12.00$ \\
+ & STGQ-Modular (Direct MLP) & $1{,}680{,}339 \pm 289{,}602$ & $0.57\% \pm 0.25\%$ & $1{,}660{,}135 \pm 298{,}104$ & $2{,}020 \pm 992$ & $64.38 \pm 12.00$ \\
  & Global Quantile & $1{,}030{,}131 \pm 108{,}592$ & $6.87\% \pm 1.39\%$ & $785{,}305 \pm 97{,}397$ & $24{,}483 \pm 5{,}104$ & $36.78 \pm 3.35$ \\
- & Joint Dense Head & $1{,}020{,}078 \pm 112{,}195$ & $6.90\% \pm 1.07\%$ & $775{,}899 \pm 96{,}235$ & $24{,}418 \pm 4{,}246$ & $36.35 \pm 3.57$ \\
- & Joint Routed & $990{,}625 \pm 104{,}487$ & $7.51\% \pm 1.22\%$ & $720{,}858 \pm 92{,}754$ & $26{,}977 \pm 5{,}183$ & $35.10 \pm 3.10$ \\
+ & STGQ-Dense & $1{,}020{,}078 \pm 112{,}195$ & $6.90\% \pm 1.07\%$ & $775{,}899 \pm 96{,}235$ & $24{,}418 \pm 4{,}246$ & $36.35 \pm 3.57$ \\
+ & STGQ-Routed & $990{,}625 \pm 104{,}487$ & $7.51\% \pm 1.22\%$ & $720{,}858 \pm 92{,}754$ & $26{,}977 \pm 5{,}183$ & $35.10 \pm 3.10$ \\
  & Missingness-Aware GBDT & $1{,}261{,}941 \pm 112{,}754$ & $4.88\% \pm 0.75\%$ & $1{,}094{,}730 \pm 120{,}612$ & $16{,}721 \pm 3{,}298$ & $46.62 \pm 3.40$ \\
 \bottomrule
-\multicolumn{7}{@{}p{\textwidth}@{}}{\tiny $^{\dagger}$Exceeds nominal 10\% violation target ($q^* = 0.90$). Bold numbers denote lowest cost. \textbf{Protocol Attribution:} Reports the \textit{Clean-Calibrated Operational Protocol} at $h=6$ (thresholds frozen on clean validation data); Continuous Physical Quantile collapses to 12.20\% violation under Delay-6. For the \textit{State-Conditional Validation-Calibrated Protocol} at immediate horizon ($h=1$), see Section~\ref{sec:physical-breakdown}, where clean-calibrated physical rules collapse to 24.0\% violation under Delay-6 while state-conditional calibration mitigates violations to 10.7\% (physical) and 10.6\% (joint model). Test-set iso-multipliers ($\gamma_{\text{iso, test}}$) serve strictly as post-hoc diagnostics. $^{\ddagger}$Direct pinball regression on frozen embeddings exhibits severe tail conservatism (>1.63M kW reserve, <1.2\% violation). For calibrated modular baselines (Cascaded Frozen MLP $15.528\text{M} \pm 1.599\text{M}$ vs Joint Routed 16.065M in statistical parity), see Section~\ref{sec:modular-baseline}.}
+\multicolumn{7}{@{}p{\textwidth}@{}}{\tiny $^{\dagger}$Exceeds nominal 10\% violation target ($q^* = 0.90$). Bold numbers denote lowest cost. \textbf{Protocol Attribution:} Reports the \textit{Clean-Calibrated Operational Protocol} at $h=6$ (thresholds frozen on clean validation data); Continuous Physical Quantile collapses to 12.20\% violation under Delay-6. For the \textit{State-Conditional Validation-Calibrated Protocol} at immediate horizon ($h=1$), see Section~\ref{sec:physical-breakdown}, where clean-calibrated physical rules collapse to 24.0\% violation under Delay-6 while state-conditional calibration mitigates violations to 10.7\% (physical) and 10.6\% (joint model). Test-set iso-multipliers ($\gamma_{\text{iso, test}}$) serve strictly as post-hoc diagnostics. $^{\ddagger}$Direct pinball regression on frozen embeddings exhibits severe tail conservatism (>1.63M kW reserve, <1.2\% violation). For calibrated modular baselines (Cascaded Frozen MLP $15.528\text{M} \pm 1.599\text{M}$ vs STGQ-Routed 16.065M in statistical parity), see Section~\ref{sec:modular-baseline}.}
 \end{tabular*}
 \end{table*}
 
@@ -969,39 +1009,39 @@ Regime & Evaluated Model & \shortstack{Penalized Reserve-Shortfall\\Energy (kW$\
 \fontsize{5.2pt}{6.0pt}\selectfont
 \setlength{\tabcolsep}{0.6pt}
 \renewcommand{\arraystretch}{0.75}
-\caption{Seed-Paired Difference in Penalized Reserve-Shortfall Energy against Joint Routed ($h=6$, $\Delta\text{Cost} = \text{Cost}_{\text{Baseline}} - \text{Cost}_{\text{Joint Routed}}$, positive indicates Joint Routed saves energy/cost at $\rho=10$).}
+\caption{Seed-Paired Difference in Penalized Reserve-Shortfall Energy against STGQ-Routed ($h=6$, $\Delta\text{Cost} = \text{Cost}_{\text{Baseline}} - \text{Cost}_{\text{STGQ-Routed}}$, positive indicates STGQ-Routed saves energy/cost at $\rho=10$).}
 \label{tab:h6-paired}
 \begin{tabularx}{\columnwidth}{@{}llcc>{\raggedright\arraybackslash}X@{}}
 \toprule
 Regime & Baseline Model & $\Delta$ Cost (kW$\cdot$h) & 95\% Bootstrap CI & Sig. \& Operational Verdict \\
 \midrule
-\textbf{Clean} & Global Quantile & +39,962 & [+12,556, +67,367] & Yes ($p < 0.05$) \\
- & Cont. Physical Quantile & $-$77,659 & [$-$106,175, $-$49,143] & Yes (Lower Clean) \\
- & Missingness GBDT & +279,576 & [+249,539, +309,613] & Yes ($p < 0.0001$) \\
- & Frozen Backbone Direct MLP & +690,695 & [+448,769, +932,621] & Yes ($p < 0.01$) \\
- & Joint Dense Head & +32,154 & [$-$1,148, +65,456] & No (Parity, CI crosses 0) \\
+\textbf{Clean} & Global Quantile & +39,962 & [+12,556, +67,367] & Credible reduction (CI excludes 0) \\
+ & Cont. Physical Quantile & $-$77,659 & [$-$106,175, $-$49,143] & Physical lower cost (CI excludes 0) \\
+ & Missingness GBDT & +279,576 & [+249,539, +309,613] & Credible reduction (CI excludes 0) \\
+ & STGQ-Modular (Direct MLP) & +690,695 & [+448,769, +932,621] & Modular conservative (CI excludes 0) \\
+ & STGQ-Dense & +32,154 & [$-$1,148, +65,456] & Statistical parity (CI crosses 0) \\
 \midrule
-\textbf{Delay-6} & Global Quantile & +17,010 & [+3,486, +30,535] & Yes ($p < 0.05$) \\
+\textbf{Delay-6} & Global Quantile & +17,010 & [+3,486, +30,535] & Credible reduction (CI excludes 0) \\
  & Cont. Physical Quantile & $-$27,126 & [$-$46,907, $-$7,346] & Viol. Exceeded ($12.20\%$) \\
- & Missingness GBDT & +156,411 & [+140,004, +172,817] & Yes ($p < 0.0001$) \\
- & Frozen Backbone Direct MLP & +518,658 & [+307,212, +730,104] & Yes ($p < 0.01$) \\
- & Joint Dense Head & +16,267 & [+7,131, +25,402] & Nominal ($p = 0.0251$, non-sig. Bonferroni) \\
+ & Missingness GBDT & +156,411 & [+140,004, +172,817] & Credible reduction (CI excludes 0) \\
+ & STGQ-Modular (Direct MLP) & +518,658 & [+307,212, +730,104] & Modular conservative (CI excludes 0) \\
+ & STGQ-Dense & +16,267 & [+7,131, +25,402] & Nominal margin (non-sig. Bonferroni) \\
 \midrule
-\textbf{Noise} & Global Quantile & +26,475 & [+9,121, +43,828] & Yes ($p < 0.05$) \\
- & Cont. Physical Quantile & $-$28,804 & [$-$47,555, $-$10,053] & Physical lower cost (7.59\% viol., compliant) \\
- & Missingness GBDT & +287,563 & [+248,847, +326,279] & Yes ($p < 0.0001$) \\
- & Frozen Backbone Direct MLP & +612,832 & [+413,733, +811,931] & Yes ($p < 0.01$) \\
- & Joint Dense Head & +21,006 & [+2,419, +39,594] & Nominal ($p < 0.05$, non-sig. Bonferroni) \\
+\textbf{Noise} & Global Quantile & +26,475 & [+9,121, +43,828] & Credible reduction (CI excludes 0) \\
+ & Cont. Physical Quantile & $-$28,804 & [$-$47,555, $-$10,053] & Physical lower cost ($7.59\%$ viol., compliant) \\
+ & Missingness GBDT & +287,563 & [+248,847, +326,279] & Credible reduction (CI excludes 0) \\
+ & STGQ-Modular (Direct MLP) & +612,832 & [+413,733, +811,931] & Modular conservative (CI excludes 0) \\
+ & STGQ-Dense & +21,006 & [+2,419, +39,594] & Nominal margin (non-sig. Bonferroni) \\
 \midrule
-\textbf{Markov} & Global Quantile & +39,506 & [+15,961, +63,052] & Yes ($p < 0.05$) \\
- & Cont. Physical Quantile & $-$82,754 & [$-$111,026, $-$54,482] & Yes (Lower Clean) \\
- & Missingness GBDT & +271,316 & [+245,044, +297,588] & Yes ($p < 0.0001$) \\
- & Frozen Backbone Direct MLP & +689,714 & [+448,689, +930,739] & Yes ($p < 0.01$) \\
- & Joint Dense Head & +29,453 & [$-$2,874, +61,779] & No (Parity, CI crosses 0) \\
+\textbf{Markov} & Global Quantile & +39,506 & [+15,961, +63,052] & Credible reduction (CI excludes 0) \\
+ & Cont. Physical Quantile & $-$82,754 & [$-$111,026, $-$54,482] & Physical lower cost (CI excludes 0) \\
+ & Missingness GBDT & +271,316 & [+245,044, +297,588] & Credible reduction (CI excludes 0) \\
+ & STGQ-Modular (Direct MLP) & +689,714 & [+448,689, +930,739] & Modular conservative (CI excludes 0) \\
+ & STGQ-Dense & +29,453 & [$-$2,874, +61,779] & Statistical parity (CI crosses 0) \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\raggedright\tiny Note: Under Clean and Markov regimes, the 95\% bootstrap CI against Joint Dense Head crosses zero, establishing statistical parity resulting from end-to-end task-loss alignment. Nominal routing advantages appear under Delay-6 and Noise, but these gains do not survive Bonferroni multiple-comparison correction ($\alpha=0.0125$).
+\raggedright\tiny Note: Under Clean and Markov regimes, the 95\% bootstrap CI against STGQ-Dense crosses zero, establishing statistical parity resulting from shared representation learning. Nominal routing advantages appear under Delay-6 and Noise, but these gains do not survive Bonferroni multiple-comparison correction ($\alpha=0.0125$). Statistical verdicts are based on empirical 95% block bootstrap confidence intervals rather than asymptotic parametric tests on autocorrelated data.
 \end{table}
 
 \subsubsection{Comparative Architecture Analysis: Dynamic Routing versus
@@ -1010,10 +1050,10 @@ Representations}\label{comparative-architecture-analysis-dynamic-routing-versus-
 
 Benchmarking capacity-matched neural architectures directly tests
 whether dynamic expert routing provides operational benefits over
-unrouted dense heads. Under nominal Clean telemetry, Joint Routed
+unrouted dense heads. Under nominal Clean telemetry, STGQ-Routed
 (\(959{,}027 \pm 103{,}290\text{ kW}\cdot\text{h}\) at \(h=6\);
-\(660{,}990 \pm 80{,}749\text{ kW}\cdot\text{h}\) at \(h=1\)) and Joint
-Dense Head (\(991{,}181 \pm 110{,}211\text{ kW}\cdot\text{h}\) at
+\(660{,}990 \pm 80{,}749\text{ kW}\cdot\text{h}\) at \(h=1\)) and
+STGQ-Dense (\(991{,}181 \pm 110{,}211\text{ kW}\cdot\text{h}\) at
 \(h=6\); \(690{,}614 \pm 71{,}031\text{ kW}\cdot\text{h}\) at \(h=1\))
 achieve statistical parity. At \(h=6\), the seed-paired cost difference
 is \(+32{,}154\text{ kW}\cdot\text{h}\) with a bootstrap 95\% confidence
@@ -1025,18 +1065,18 @@ Table~\ref{tab:h6-paired}). At \(h=1\), the Dense/MoE cost ratio is
 (\([-53{,}774, +113{,}023]\text{ kW}\cdot\text{h}\), \(p=0.380\)),
 matching the Markov burst regime
 (\([-46{,}422, +139{,}671]\text{ kW}\cdot\text{h}\), \(p=0.237\)). Under
-persistent 6-step latency (Delay-6, \(h=1\)), Joint Routed shows a
-modest cost reduction over Joint Dense (\(1{,}412{,}321\)
+persistent 6-step latency (Delay-6, \(h=1\)), STGQ-Routed shows a modest
+cost reduction over STGQ-Dense (\(1{,}412{,}321\)
 vs.~\(1{,}491{,}958\text{ kW}\cdot\text{h}\); cost ratio \(1.056\),
 paired difference \(+79{,}637\text{ kW}\cdot\text{h}\), uncorrected
 \(p=0.038\), non-significant under Bonferroni \(\alpha=0.0125\)) while
 maintaining virtually identical empirical violation rates
-(\(10.6\% \pm 1.1\%\) for Routed vs.~\(10.5\% \pm 0.5\%\) for Dense).
-Decoupled modular architectures (Section~\ref{sec:modular-baseline})
-achieve \(9.7\% \pm 1.1\%\) violation in Delay-6 without expert routing,
-confirming that diagnostic reserve utility arises from shared
-spatio-temporal representations and residual calibration rather than
-dynamic gate routing.
+(\(10.6\% \pm 1.1\%\) for STGQ-Routed vs.~\(10.5\% \pm 0.5\%\) for
+STGQ-Dense). Decoupled modular architectures
+(Section~\ref{sec:modular-baseline}) achieve \(9.7\% \pm 1.1\%\)
+violation in Delay-6 without expert routing, confirming that diagnostic
+reserve utility arises from shared spatio-temporal representations and
+residual calibration rather than dynamic gate routing.
 
 \subsubsection{\texorpdfstring{Reliability Breakdown of Deterministic
 Physical Rules under Stale Telemetry
@@ -1068,8 +1108,8 @@ calibration to degraded operating states alone cuts shortage from
 (\(10.7\%\) violation), absorbing \(55.3\%\) of the shortfall exposure
 and recovering physical reserve cost to
 \(1{,}228{,}609 \pm 71{,}940\text{ kW}\cdot\text{h}\) (\(h=1\)
-condition-recalibrated, \(9.46\%\) fleet violation). Joint Routed
-further curtails shortage to \(53.9\text{ MWh}\) (\(10.6\% \pm 1.1\%\)
+condition-recalibrated, \(9.46\%\) fleet violation). STGQ-Routed further
+curtails shortage to \(53.9\text{ MWh}\) (\(10.6\% \pm 1.1\%\)
 violation), delivering an incremental \(5.4\%\) shortage reduction under
 matched state-conditional calibration (combined \(57.7\%\) reduction
 vs.~clean-calibrated physics) while saving
@@ -1085,14 +1125,14 @@ envelopes under multi-step latency.
 Conservatism Analysis
 \label{sec:modular-baseline}}{Decoupled Modular Architectures and Tail Conservatism Analysis }}\label{decoupled-modular-architectures-and-tail-conservatism-analysis}
 
-In contrast to end-to-end task optimization, the Frozen Backbone Direct
-Quantile MLP in Table~\ref{tab:h6-benchmark} illustrates the pathology
-of naive decoupled quantile regression. Across all regimes, direct
-pinball regression on frozen spatial embeddings incurs massive reserve
+In contrast to end-to-end task optimization, STGQ-Modular (Direct MLP)
+in Table~\ref{tab:h6-benchmark} illustrates the pathology of naive
+decoupled quantile regression. Across all regimes, direct pinball
+regression on frozen spatial embeddings incurs massive reserve
 over-estimation (\(1{,}477{,}967\) to
 \(1{,}511{,}794\text{ kW}\cdot\text{h}\), a \(44.57\%\) to \(72.02\%\)
-penalty over Joint Routed, \(p < 0.01\), Table~\ref{tab:h6-paired}),
-hoarding \(>1.45\text{M kW}\) in bloated reserves.
+penalty over STGQ-Routed, Table~\ref{tab:h6-paired}), hoarding
+\(>1.45\text{M kW}\) in bloated reserves.
 
 Benchmarking calibrated modular architectures across five seeds
 (Supplementary Table~A11d) resolves this tail conservatism: 1.
@@ -1100,7 +1140,7 @@ Benchmarking calibrated modular architectures across five seeds
 frozen backbone embeddings, it achieves
 \(15.528\text{M} \pm 1.599\text{M kW}\cdot\text{h}\) across the
 multi-horizon 24-step dispatch envelope
-(vs.~\(16.065\text{M kW}\cdot\text{h}\) for Joint Routed; paired
+(vs.~\(16.065\text{M kW}\cdot\text{h}\) for STGQ-Routed; paired
 difference \(-0.537\text{M}\), 95\% CI
 \([-1.988\text{M}, +0.915\text{M}]\) crosses zero). 2. \emph{Independent
 Consequence MLP:} Yields
@@ -1108,9 +1148,10 @@ Consequence MLP:} Yields
 \(-0.260\text{M}\), 95\% CI \([-1.771\text{M}, +1.251\text{M}]\)),
 confirming statistical parity. 3. \emph{Decoupled Residual Quantile
 Head:} In Delay-6 (\(h=1\)), Frozen Backbone + Residual Quantile
-achieves \(1{,}284{,}098 \pm 114{,}629\text{ kW}\cdot\text{h}\) per
-single dispatch interval and \(9.7\% \pm 1.1\%\) violation (60\% seed
-pass rate), matching or slightly surpassing end-to-end MoE
+(STGQ-Modular) achieves
+\(1{,}284{,}098 \pm 114{,}629\text{ kW}\cdot\text{h}\) per single
+dispatch interval and \(9.7\% \pm 1.1\%\) violation (60\% seed pass
+rate), matching or slightly surpassing end-to-end STGQ-Routed
 (\(1{,}412{,}321\text{ kW}\cdot\text{h}\), \(10.6\% \pm 1.1\%\)).
 
 These empirical findings indicate that diagnostic reserve benefits do
@@ -1130,7 +1171,7 @@ families (complete multi-regime benchmarks and seed-paired bootstrap
 significance tests are reported in Supplementary Tables A11j/A11-h1 and
 A11k/A11-h2). At \(h=1\), shallow decision trees (Missingness-Aware
 GBDT) capitalize aggressively on high 10-minute lag wind-speed
-autocorrelation, achieving the lowest data-driven nominal dispatch cost
+autocorrelation, achieving the lowest data-driven reserve surrogate cost
 (\(574{,}822 \pm 79{,}685\text{ kW}\cdot\text{h}\) in Clean with
 \(7.6\%\) violation, outperforming all deep models). Local inertia
 dominates ultra-short horizons, enabling tabular tree ensembles with lag
@@ -1138,20 +1179,20 @@ features to track short-term persistence. Across dispatch-grade horizons
 (\(h=6\)), however, GBDT undergoes severe breakdown: operational costs
 inflate by \(13.44\%\) to \(29.15\%\) (reaching
 \(1{,}238{,}603\text{ kW}\cdot\text{h}\) in Clean and
-\(1{,}320{,}003\text{ kW}\cdot\text{h}\) in Delay-6), trailing Joint
-Routed by \(+156{,}411\) to \(+287{,}563\text{ kW}\cdot\text{h}\) across
-all regimes (\(p < 0.0001\), Table~\ref{tab:h6-paired}). Because tabular
-trees lack spatial awareness of aerodynamic wake advection propagating
-at \(8\)--\(12\text{ m s}^{-1}\) across turbine rows, they cannot
-represent multi-turbine spatio-temporal phase shifts over 1-hour lead
-times.
+\(1{,}320{,}003\text{ kW}\cdot\text{h}\) in Delay-6), trailing
+STGQ-Routed by \(+156{,}411\) to \(+287{,}563\text{ kW}\cdot\text{h}\)
+across all regimes (95\% block bootstrap CIs strictly excluding zero,
+Table~\ref{tab:h6-paired}). Because tabular trees lack spatial awareness
+of aerodynamic wake advection propagating at
+\(8\)--\(12\text{ m s}^{-1}\) across turbine rows, they cannot represent
+multi-turbine spatio-temporal phase shifts over 1-hour lead times.
 
-At immediate horizon \(h=1\), Joint Dense Head and Joint Routed exhibit
+At immediate horizon \(h=1\), STGQ-Dense and STGQ-Routed exhibit
 statistical parity across Clean, Noise, and Markov regimes, where
 bootstrap 95\% confidence intervals cross zero (Supplementary
 Table~A11-h2, e.g., \(+29{,}624\text{ kW}\cdot\text{h}\), 95\% CI
-\([-53{,}774, +113{,}023]\), \(p=0.380\) in Clean). In Delay-6, Joint
-Routed holds a modest cost advantage
+\([-53{,}774, +113{,}023]\), \(p=0.380\) in Clean). In Delay-6,
+STGQ-Routed holds a modest cost advantage
 (\(+79{,}637\text{ kW}\cdot\text{h}\), 95\% CI
 \([+7{,}055, +152{,}218]\), uncorrected \(p=0.038\), non-significant
 under Bonferroni \(\alpha=0.0125\)) while matching empirical violation
@@ -1209,7 +1250,8 @@ a \textbf{Three-Regime Operational Framework}:
   \(1{,}010{,}530\text{ kW}\cdot\text{h}\) at \(\tau=20\);
   \(1{,}101{,}292\text{ kW}\cdot\text{h}\) at \(\tau=30\);
   \(1{,}378{,}900\text{ kW}\cdot\text{h}\) at \(\tau=60\)). In contrast,
-  learned representations (\textit{Frozen Backbone + Residual Quantile})
+  learned representations
+  (\textit{STGQ-Modular: Frozen Backbone + Residual Quantile})
   reconstruct operating states from electromechanical transients
   (active/reactive power, rotor speed), achieving
   \(755{,}794\text{ kW}\cdot\text{h}\) at \(\tau=0\) (an \(8.3\%\) cost
@@ -1229,7 +1271,7 @@ a \textbf{Three-Regime Operational Framework}:
   unhedged shortfall exposure). Condition-matching recalibration
   restores fleet-average violation below the \(10.0\%\) target across
   all three model families (\(9.46\%\) for physical rules, \(9.55\%\)
-  for Frozen Backbone, and \(9.62\%\) for Joint Routed), with the
+  for STGQ-Modular, and \(9.62\%\) for STGQ-Routed), with the
   recalibrated physical rule delivering the lowest operating cost
   (\(1{,}228{,}609\text{ kW}\cdot\text{h}\)). This directly refutes the
   prior assumption that multi-step SCADA latency unconditionally
@@ -1251,7 +1293,7 @@ a \textbf{Three-Regime Operational Framework}:
 \label{tab:phase-scan}
 \begin{tabularx}{\columnwidth}{@{}ccccccc@{}}
 \toprule
-$\tau$ (min) & Pitch & \shortstack{Clean Phys.\\Cost (Viol.)} & \shortstack{Recal. Phys.\\Cost (Viol.)} & \shortstack{Frozen BB\\Cost (Viol.)} & \shortstack{Joint Routed\\Cost (Viol.)} & \shortstack{Operational\\Regime} \\
+$\tau$ (min) & Pitch & \shortstack{Clean Phys.\\Cost (Viol.)} & \shortstack{Recal. Phys.\\Cost (Viol.)} & \shortstack{STGQ-Mod.\\Cost (Viol.)} & \shortstack{STGQ-Rout.\\Cost (Viol.)} & \shortstack{Operational\\Regime} \\
 \midrule
 0 & All & $\mathbf{593{,}258}$ ($7.3\%$) & $\mathbf{593{,}258}$ ($7.3\%$) & $663{,}347$ ($6.1\%$) & $663{,}915$ ($7.3\%$) & Regime I (Physics Opt.) \\
 0 & None & $961{,}024$ ($3.2\%$) & $824{,}393$ ($5.4\%$) & $\mathbf{755{,}794}$ ($5.8\%$) & $756{,}257$ ($6.4\%$) & Regime II (Repr. Adv.) \\
@@ -1594,7 +1636,9 @@ gate-bin policy costs 95.13M, outperforming the same-model global rule
 achieves 84.31M (corresponding to
 \(\approx 1.28\text{M kW}\cdot\text{h}\) per single dispatch interval).
 This translates into approximately 637 avoided MWh-equivalent shortage
-cells and a 442k illustrative reserve-cost-scale marker at 100 EUR/MWh.
+cells (corresponding to a 442k illustrative scale marker in Table~A12;
+see Supplementary Material for dimensional sensitivity and physical unit
+conversions without asserting commercial market settlements).
 
 \subsection{Point of Common Coupling (PCC) Portfolio Smoothing \&
 Exploratory Longitudinal Drift
@@ -1606,12 +1650,17 @@ Coupling (PCC) bus
 \(\sim 121\) active turbines) unlocks spatial portfolio diversification:
 localized high-frequency aerodynamic turbulence cancels out across the
 array, leaving boundary transitions as the dominant source of reserve
-shortfall risk. Across the full operational envelope, joint posterior
-aggregate quantile pricing reduces reserve cost by \(-2.32\text{M kWh}\)
-(95\% bootstrap CI \([-6.07\text{M}, 1.73\text{M}]\)) against global PCC
+shortfall risk. Across the unstratified full-year test envelope, the
+paired difference between individual turbine summing and farm-level
+aggregation is statistically inconclusive: joint posterior aggregate
+quantile pricing shows a mean difference of \(-2.32\text{M kWh}\) with
+an empirical 95\% block bootstrap CI crossing zero
+(\([-6.07\text{M}, 1.73\text{M}]\text{ kWh}\)) against global PCC
 quantiles and by \(-1.37\text{M kWh}\) (CI
-\([-6.33\text{M}, 2.82\text{M}]\)) against Gaussian parametric sizing;
-in transitional regimes (10\%--90\% pitching), it saves
+\([-6.33\text{M}, 2.82\text{M}]\)) against Gaussian parametric sizing,
+because calm and rated hours dilute tail differences. Crucially, the
+statistically significant diversification benefit is concentrated in
+transitional regimes (10\%--90\% pitching): here, it saves
 \(-1.33\text{M kWh}\) (CI \([-1.68\text{M}, -1.07\text{M}]\), strictly
 excluding zero) over continuous physical pitch, confirming net
 risk-reduction value after fleet-wide spatial cancellation.
@@ -1678,16 +1727,20 @@ incurs a positive cost delta of \(+1.01\text{M kWh}\) (95\% bootstrap CI
 \([+0.29\text{M}, +1.76\text{M}]\), strictly excluding zero) versus the
 global quantile and \(+0.92\text{M kWh}\) (CI
 \([+0.26\text{M}, +1.61\text{M}]\)) versus continuous physical pitch
-(Supplementary Table~A11h). This defines a clear operational boundary
-condition: on a micro-scale 4-turbine site situated in complex rolling
-terrain, spatial wake propagation lacks multi-path physical redundancy,
-causing spatial graph convolution to overfit localized terrain
-distortions and amplify variance during seasonal regime shifts (+968.1k
-kWh in Q3, while Q1--Q2 cross zero). Expanding calibration to a 180-day
-annual window compresses the cost gap to \(+43\text{k kWh}\) (CI
-\([-28.7\text{k}, +141.2\text{k}]\), strictly crossing zero), bounding
-learned spatio-temporal representations to utility-scale turbine arrays
-(\(\ge 6\text{--}15\) turbines) and degraded/pitch-sparse telemetry.
+(Supplementary Table~A11h). This empirical contrast highlights a key
+operational boundary: on a compact 4-turbine micro-farm situated in
+rolling terrain, spatial wake propagation provides limited multi-turbine
+physical redundancy, which we hypothesize allows spatial graph
+convolutions to overfit localized terrain features and amplify variance
+during seasonal regime shifts (+968.1k kWh in Q3, while Q1--Q2 cross
+zero). Expanding calibration to a 180-day annual window compresses the
+cost gap to \(+43\text{k kWh}\) (CI \([-28.7\text{k}, +141.2\text{k}]\),
+strictly crossing zero). In contrast to utility-scale multi-row plants
+(such as 134-turbine WTB, 15-turbine Penmanshiel, or 6-turbine
+Kelmarsh), applying complex spatio-temporal architectures to micro-scale
+farms under fresh, complete telemetry is unnecessary, confirming that
+learned models should be reserved for utility arrays or
+degraded/pitch-sparse telemetry conditions.
 
 Evaluating across shortage penalty ratios \(\rho \in \{5, 10, 20\}\)
 articulates an operational envelope (``Telemetry Availability \(\times\)
