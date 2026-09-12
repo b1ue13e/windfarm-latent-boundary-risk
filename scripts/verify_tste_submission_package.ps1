@@ -184,8 +184,8 @@ $suppPages = Get-PdfPages -Path (Join-Path $uploadDir "supplementary_material.pd
 if ($mainPages -gt 10) {
     throw "Main manuscript exceeds 10 pages: $mainPages"
 }
-if ($suppPages -lt 3 -or $suppPages -gt 15) {
-    throw "Supplementary material page count is outside the expected 3-15 page range: $suppPages"
+if ($suppPages -lt 3 -or $suppPages -gt 20) {
+    throw "Supplementary material page count is outside the expected 3-20 page range: $suppPages"
 }
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem

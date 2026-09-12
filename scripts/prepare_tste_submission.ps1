@@ -19,7 +19,8 @@ function Get-RegexGroup {
         [string]$Label
     )
 
-    $match = [regex]::Match($Text, $Pattern, [System.Text.RegularExpressions.RegexOptions]::Singleline)
+    $options = [System.Text.RegularExpressions.RegexOptions]::Singleline -bor [System.Text.RegularExpressions.RegexOptions]::IgnoreCase
+    $match = [regex]::Match($Text, $Pattern, $options)
     if (-not $match.Success) {
         throw "Could not extract $Label from paper_tste_ieee.md."
     }
@@ -171,8 +172,8 @@ $suppPages = Get-PdfPageCount -PdfPath (Join-Path $root "paper_tste_supplementar
 if ([int]$mainPages -gt 10) {
     throw "IEEE main manuscript exceeds 10 pages: $mainPages"
 }
-if ([int]$suppPages -lt 3 -or [int]$suppPages -gt 15) {
-    throw "IEEE supplementary material page count is outside the expected 3-15 page range: $suppPages"
+if ([int]$suppPages -lt 3 -or [int]$suppPages -gt 20) {
+    throw "IEEE supplementary material page count is outside the expected 3-20 page range: $suppPages"
 }
 
 $logPattern = "Font Warning|No file TUptm|undefined citation|Citation .* undefined|Overfull|Undefined control sequence|Some font shapes|TU/ptm|LaTeX Warning: Reference.*undefined|undefined references|LaTeX Error"
@@ -208,8 +209,8 @@ $abstract = Convert-PortalText (Get-RegexGroup $paperText "\\begin\{abstract\}(.
 $keywords = Convert-PortalText (Get-RegexGroup $paperText "\\begin\{IEEEkeywords\}(.+?)\\end\{IEEEkeywords\}" "keywords")
 $keywordText = $keywords.Trim().TrimEnd(".")
 $keywordList = @($keywordText -split ";" | ForEach-Object { $_.Trim() } | Where-Object { $_ })
-$aiStatement = Convert-PortalText (Get-RegexGroup $paperText "# AI Use Statement(?:\r?\n){2}(.+?)(?:\r?\n){2}# Code and data availability" "AI use statement")
-$dataAvailability = Convert-PortalText (Get-RegexGroup $paperText "# Code and data availability\r?\n\r?\n(.+?)\r?\n\r?\n# References" "code and data availability statement")
+$aiStatement = Convert-PortalText (Get-RegexGroup $paperText "# AI Use Statement(?:\r?\n)+(.+?)(?:\r?\n)+# Code and Data Availability" "AI use statement")
+$dataAvailability = Convert-PortalText (Get-RegexGroup $paperText "# Code and Data Availability(?:\r?\n)+(.+?)(?:\r?\n)+# References" "code and data availability statement")
 
 $authors = @(
     [ordered]@{

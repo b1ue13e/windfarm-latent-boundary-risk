@@ -867,9 +867,10 @@ subject to:
 \begin{align}
 &p_{\mathrm{pcc}}[k+j] = \tilde{w}[k+j] - p_{\mathrm{curt}}[k+j] + p_{\mathrm{dis}}[k+j] - p_{\mathrm{ch}}[k+j], \\
 &p_{\mathrm{pcc}}[k+j] + p_{\mathrm{short}}[k+j] \ge c_{\mathrm{sched}}[k+j], \\
-&E[k+j+1] = E[k+j] + \big(\eta_{\mathrm{ch}} p_{\mathrm{ch}}[k+j] - p_{\mathrm{dis}}[k+j]/\eta_{\mathrm{dis}}\big) \Delta t, \\
+&E[k+j+1] = E[k+j] + (\eta_{\mathrm{ch}} p_{\mathrm{ch}}[k+j] - \eta_{\mathrm{dis}}^{-1} p_{\mathrm{dis}}[k+j]) \Delta t, \\
 &\mathrm{SoC}_{\min} E_{\mathrm{cap}} \le E[k+j] \le \mathrm{SoC}_{\max} E_{\mathrm{cap}}, \\
-&0 \le p_{\mathrm{ch}}[k+j] \le P_{\mathrm{bess}}^{\max}, \quad 0 \le p_{\mathrm{dis}}[k+j] \le P_{\mathrm{bess}}^{\max},
+&0 \le p_{\mathrm{ch}}[k+j] \le P_{\mathrm{bess}}^{\max}, \\
+&0 \le p_{\mathrm{dis}}[k+j] \le P_{\mathrm{bess}}^{\max},
 \end{align}
 where $\tilde{w}[k] = w_{\mathrm{act}}[k]$ incorporates immediate real-time feedback at step 0, while $\tilde{w}[k+j] = w_{\mathrm{fc}}[k+j]$ ($j \ge 1$) follows the lookahead trajectory under latency $\tau \in \{0, 10, 30, 60\}\text{ min}$. Standard utility parameters are used: $E_{\mathrm{cap}} = 20\,\text{MWh}$, $P_{\mathrm{bess}}^{\max} = 10\,\text{MW}$ (0.5C rate), $\eta_{\mathrm{ch}} = \eta_{\mathrm{dis}} = 0.95$, operating band $\mathrm{SoC} \in [0.10, 0.90]$, shortage penalty $c_{\mathrm{short}} = \$150/\text{MWh}$, curtailment cost $c_{\mathrm{curt}} = \$20/\text{MWh}$, and cell wear degradation $c_{\mathrm{deg}} = \$15/\text{MWh}$.
 
