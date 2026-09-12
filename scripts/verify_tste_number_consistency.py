@@ -222,7 +222,7 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         _check("engineering_delta_reserve_mwh", "docs/tste_trainonly_rerun_results_20260830.md", 1950.0, lambda value: f"+{int(round(value))}", ("supplementary",)),
         _check("engineering_avoided_shortage_mwh", "docs/tste_trainonly_rerun_results_20260830.md", 637.0, lambda value: f"+{int(round(value))}", ("supplementary",)),
         _check("engineering_delta_cost_mwh", "docs/tste_trainonly_rerun_results_20260830.md", 4420.0, lambda value: f"{int(round(value))}", ("supplementary",)),
-        _check("engineering_delta_eur_100", "docs/tste_trainonly_rerun_results_20260830.md", 442000.0, lambda value: f"{int(round(value / 1000.0))}k", ("main", "supplementary")),
+        _check("engineering_delta_eur_100", "docs/tste_trainonly_rerun_results_20260830.md", 442000.0, lambda value: f"{int(round(value / 1000.0))}k", ("supplementary",)),
         _check("anchor_stress_no_patv_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_no_patv["nmi_mean"]), "{:.3f}", ("main",)),
         _check("anchor_stress_no_pab_mean_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_no_pab["nmi_mean"]), "{:.3f}", ("main",)),
         _check("anchor_stress_lagged_patv_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_lag_patv["nmi_mean"]), "{:.3f}", ("main",)),

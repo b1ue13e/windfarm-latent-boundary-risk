@@ -193,7 +193,7 @@ $freezeDir = Join-Path $root "artifacts\tste_evidence_freeze_guard"
     --final-package-dir (Join-Path $root "artifacts\final_evidence_package") `
     --paired-effects (Join-Path $root "artifacts\strictmask_combined_reviewer_stats\paired_effects_summary.csv") `
     --output-dir $freezeDir `
-    --required-tokens "229.93,224.34,225.74,236.13,5.59,0.721,0.740,0.941,0.971,0.417,0.196,0.508,1.000,0.879,0.630,+0.221,95.13M,99.55M,84.31M,442k,0.815,0.361,0.405,16.065M"
+    --required-tokens "229.93,224.34,225.74,236.13,5.59,0.721,0.740,0.941,0.971,0.417,0.196,0.508,1.000,0.879,0.630,+0.221,95.13M,99.55M,84.31M,0.815,0.361,0.405,16.065M"
 if ($LASTEXITCODE -ne 0) { throw "Evidence-freeze guard command failed." }
 $freezeJson = Get-Content -LiteralPath (Join-Path $freezeDir "evidence_freeze_guard.json") -Raw | ConvertFrom-Json
 $freezeStatus = [string]$freezeJson.status

@@ -750,6 +750,46 @@ Soft-gate-bin (P(pitch) quintiles) & 16.065M & -568k [-726k, -406k] & -125k [-29
 \end{table}
 ```
 
+## Selective decision abstention and risk-coverage policy {.unnumbered}
+
+Table A11j benchmarks the selective decision abstention policy ($r_{i,t}^* = \hat{r}_{i,t}^{\text{learned}}$ if $U_{i,t} \le \theta_c$, else fallback headroom clamped to $P_{\text{rated}}$) against random abstention and uniform margin inflation under Delay-6 ($\tau=60\text{ min}$, $h=1$, 5 seeds on WTB).
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.03}
+\caption*{\textbf{Table A11j.} Risk-Coverage Selective Decision Abstention vs. Random and Uniform Controls under Delay-6 ($\tau=60\text{ min}$, $h=1$, 5-seed aggregate on WTB).}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Model & Target $c$ ($\hat{c}$) & \shortstack{Selective Abstention\\Fleet Viol. / Cost} & \shortstack{Random Control\\Fleet Viol. / Cost} & \shortstack{Uniform Inflation\\Fleet Viol. / Cost} \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Mode: All Channels Observable}} \\
+Joint Routed & $1.00$ ($1.00$) & $9.62\%$ / $1{,}274{,}047$ & $9.62\%$ / $1{,}274{,}047$ & $9.62\%$ / $1{,}274{,}047$ \\
+ & $0.90$ ($0.94$) & $9.44\%$ / $1{,}274{,}784$ & $9.50\%$ / $1{,}272{,}870$ & $9.45\%$ / $1{,}273{,}944$ \\
+ & $0.80$ ($0.85$) & $9.14\%$ / $1{,}277{,}532$ & $9.36\%$ / $1{,}270{,}990$ & $9.24\%$ / $1{,}274{,}781$ \\
+ & $0.50$ ($0.53$) & $8.54\%$ / $1{,}276{,}252$ & $8.78\%$ / $1{,}265{,}902$ & $8.80\%$ / $1{,}277{,}570$ \\
+\midrule
+Frozen Backbone & $1.00$ ($1.00$) & $9.52\%$ / $1{,}283{,}268$ & $9.52\%$ / $1{,}283{,}268$ & $9.52\%$ / $1{,}283{,}268$ \\
+ & $0.90$ ($0.94$) & $9.30\%$ / $1{,}277{,}806$ & $9.36\%$ / $1{,}281{,}737$ & $9.36\%$ / $1{,}283{,}424$ \\
+ & $0.80$ ($0.85$) & $9.01\%$ / $1{,}273{,}271$ & $9.28\%$ / $1{,}279{,}718$ & $9.16\%$ / $1{,}284{,}225$ \\
+ & $0.50$ ($0.53$) & $8.37\%$ / $1{,}264{,}384$ & $8.76\%$ / $1{,}271{,}385$ & $8.78\%$ / $1{,}286{,}221$ \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Mode: No Pitch Telemetry (Withheld)}} \\
+Frozen Backbone & $1.00$ ($1.00$) & $8.68\%$ / $1{,}331{,}356$ & $8.68\%$ / $1{,}331{,}356$ & $8.68\%$ / $1{,}331{,}356$ \\
+ & $0.90$ ($0.92$) & $8.93\%$ / $1{,}343{,}555$ & $8.61\%$ / $1{,}334{,}006$ & $\mathbf{8.83\%}$ / $\mathbf{1{,}330{,}829}$ \\
+ & $0.80$ ($0.84$) & $9.15\%$ / $1{,}350{,}059$ & $8.66\%$ / $1{,}337{,}746$ & $\mathbf{8.92\%}$ / $\mathbf{1{,}331{,}452}$ \\
+ & $0.50$ ($0.55$) & $8.84\%$ / $1{,}371{,}729$ & $8.55\%$ / $1{,}353{,}405$ & $\mathbf{8.29\%}$ / $\mathbf{1{,}333{,}906}$ \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\footnotesize Cost in kW$\cdot$h ($\rho=10$). Fleet target $q^*=0.90$ ($10\%$ viol). Note: In \textit{No Pitch}, uniform margin inflation strictly Pareto-dominates selective abstention: ex-post equal-budget uniform inflation achieves $8.29\%$ violation at $1{,}334\text{k kW}\cdot\text{h}$, and ex-ante validation-frozen inflation achieves $7.12\%$ violation at $1{,}348\text{k kW}\cdot\text{h}$.
+\end{table}
+```
+
 ## Mechanism decomposition of the boundary-risk posterior {.unnumbered}
 
 Table A11d consolidates the counterfactual controls and strictly matched modular comparison that localize where the posterior's value comes from. The soft-physical pitch quantile is the honest clean-observation baseline; joint learning is what prices reserve risk below the global rule and far below an independent classifier posterior; the routing structure is what survives confirming-stream degradation. Scripts: `scripts/remote_matched_modular_baseline.py`, `scripts/soft_rule_contrast.py`, `scripts/degraded_gate_reserve.py`, `scripts/kelmarsh_reserve_pricing.py`, `scripts/multichannel_classifier.py`, `scripts/gbdt_reserve_pricing.py`, `scripts/dense_classifier_pricing.py`, `scripts/fair_degradation_replay.py`.
