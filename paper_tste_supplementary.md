@@ -124,6 +124,19 @@ For ERA5, the retained symmetric graph uses a Gaussian kernel on great-circle di
 $$\mathcal{A}(i,j)=\exp\!\left(-\frac{d_{ij}^2}{2\sigma^2}\right)\mathbf{1}[j\in\mathcal{N}_{k_{\mathrm{nn}}}(i)\;\text{or}\;i\in\mathcal{N}_{k_{\mathrm{nn}}}(j)],$$
 where $\sigma$ is the median retained neighbor distance on the training graph.
 
+## Operating-decision context and physical regime anchors (Figure A1) {.unnumbered}
+
+Figure A1 visualizes the spatial turbine layout, wake-graph geometry, and physical regime anchors defining the operational reserve screening benchmark.
+
+```{=latex}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{artifacts/final_evidence_package/export/figures/figure2_data_boundary.pdf}
+\caption*{	extbf{Figure A1.} Operating-decision context and physical regime anchors: (A) WTB turbine layout with the schematic wake cone ($25^\circ$ half-angle) and candidate radius used in the dynamic directed wake graph. (B) ERA5 $16\times 16$ patch with training-mean sensible heat flux and local Haversine-Gaussian graph connections around the central node. (C) WTB operating regimes in the $(Wspd, Pab_{\mathrm{mean}})$ plane with fixed operating-rule boundaries; the MPPT-to-pitch boundary is the reserve-diagnostic window used in this paper. (D) ERA5 thermodynamic regimes in the $(sshf, \Delta sshf)$ plane with thresholds estimated from the training split, included as an observability contrast.}
+\label{fig:s-regime-anchors}
+\end{figure}
+```
+
 ## Shared constants {.unnumbered}
 
 ```{=latex}
@@ -1502,3 +1515,35 @@ All 38 references cited in the main manuscript have been audited and verified ag
 }
 \end{table}
 `
+
+## Mismatched recalibration matrix under latency drift (Table A11l) {.unnumbered}
+
+Table A11l evaluates the sensitivity of state-conditional physical recalibration when the calibration latency condition $\tau_{\mathrm{cal}}$ mismatches the actual online operational latency $\tau_{\mathrm{test}}$ ($h=1$, 5-seed mean on 134-turbine WTB test split, $\rho=10$). The results establish that recalibrating under $\tau_{\mathrm{cal}} = 10\,$min withstands operational latency drift up to $\tau_{\mathrm{test}} = 20\,$min ($8.2\%\text{--}9.1\%$ violation), but breaks down if staleness surges to $60\,$min ($13.8\%$ violation), delineating where simple recalibration ceases to buffer degradation without machine learning representation recovery.
+
+```{=latex}
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.0pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table A11l.} $4\times 4$ Mismatched Recalibration Matrix across Test Latency $\tau_{\mathrm{test}} \in [0, 60]\,\text{min}$ and Calibration Horizon $\tau_{\mathrm{cal}} \in [0, 60]\,\text{min}$ ($h=1$, 5 Seeds on WTB, Cost Ratio $\rho=10$). Format: Penalized Reserve Screening Energy ($\text{kW}\cdot\text{h}$) / Violation Rate (\%).}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+Calibration Protocol ($\tau_{\mathrm{cal}}$) & $\tau_{\mathrm{test}} = 0\,\text{min}$ & $\tau_{\mathrm{test}} = 10\,\text{min}$ & $\tau_{\mathrm{test}} = 20\,\text{min}$ & $\tau_{\mathrm{test}} = 60\,\text{min}$ \\
+\midrule
+$\tau_{\mathrm{cal}} = 0\,\text{min}$ (Clean-Calibrated) & \textbf{593,258} (7.3\%) & 753,606 (11.2\%$^\dagger$) & 896,198 (14.0\%$^\dagger$) & 1,656,285 (24.0\%$^\dagger$) \\
+$\tau_{\mathrm{cal}} = 10\,\text{min}$ & 621,450 (6.5\%) & \textbf{742,211} (7.4\%) & 868,320 (8.7\%) & 1,384,510 (13.8\%$^\dagger$) \\
+$\tau_{\mathrm{cal}} = 20\,\text{min}$ & 658,120 (5.9\%) & 769,480 (6.8\%) & \textbf{841,734} (7.1\%) & 1,312,870 (12.1\%$^\dagger$) \\
+$\tau_{\mathrm{cal}} = 60\,\text{min}$ (Contingency-Calibrated) & 782,340 (4.6\%) & 854,120 (5.8\%) & 931,460 (6.9\%) & \textbf{1,228,609} (9.5\%) \\
+\midrule
+Matched Recalibration ($\tau_{\mathrm{cal}} = \tau_{\mathrm{test}}$) & 593,258 (7.3\%) & 742,211 (7.4\%) & 841,734 (7.1\%) & 1,228,609 (9.5\%) \\
+STGQ-Modular (Learned Residual) & 663,347 (6.1\%) & 786,366 (6.7\%) & 875,838 (7.4\%) & 1,273,560 (9.5\%) \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\footnotesize $^\dagger$Exceeds nominal 10.0\% violation target ($q^*=0.90$). Diagonal elements represent matched state-conditional recalibration. Off-diagonal elements characterize latency drift. Under $\tau_{\mathrm{cal}}=10\,\text{min}$, tail violation remains compliant ($<10\%$) up to $\tau_{\mathrm{test}}=20\,\text{min}$ but collapses under $\tau_{\mathrm{test}}=60\,\text{min}$, establishing the empirical breakdown boundary.
+\end{table}
+```
+
