@@ -1,0 +1,4 @@
+Physical_Regime,Pred_Idle,Pred_MPPT,Pred_Pitch-control
+Idle,343194,4504,4
+MPPT,7666,271163,795
+Pitch-control,0,119,11933

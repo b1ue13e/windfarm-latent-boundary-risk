@@ -1,0 +1,11 @@
+Model,Overall_RMSE_Mean,Overall_RMSE_Std,Switch_RMSE_Mean,Switch_RMSE_Std,PitchControl_RMSE_Mean,PitchControl_RMSE_Std
+Graph WaveNet,225.74,2.6,228.12,3.23,,
+Graph Transformer,235.38,5.15,237.06,5.78,,
+GAT-GRU,236.59,7.8,240.17,8.5,,
+Physics-Aligned MoE,241.42,4.28,242.6,6.07,,
+PatchTST,228.07,4.05,231.22,4.15,,
+iTransformer,224.34,2.23,228.8,2.54,,
+TiDE,227.31,3.05,231.48,2.86,,
+Capacity-Matched Dense Diffusion-GRU,231.42,5.87,233.82,5.96,,
+Unconstrained MoE,235.4,7.96,237.22,8.11,,
+Boundary-forced router,236.13,8.41,239.86,8.85,,

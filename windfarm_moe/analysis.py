@@ -21,36 +21,36 @@ WTB_FULL_CORRECTED_SOURCE = "priority2_full_corrected_family"
 
 
 PAPER_REGIME_COLORS = {
-    "idle": "#8e97d0",
-    "stable": "#8e97d0",
-    "mppt": "#8a9446",
-    "pitch_control": "#eb7954",
-    "convective": "#eb7954",
-    "transition": "#d4a5d3",
+    "idle": "#475569",
+    "stable": "#475569",
+    "mppt": "#047857",
+    "pitch_control": "#D55E00",
+    "convective": "#D55E00",
+    "transition": "#7E22CE",
 }
 PAPER_MODEL_COLORS = {
-    "Capacity-Matched Dense Diffusion-GRU": "#6b7280",
-    "Unconstrained MoE": "#9d2a7b",
-    "Physics-Aligned MoE": "#e5a544",
-    WTB_CORRECTED_DISPLAY_MODEL: "#e5a544",
-    "Graph WaveNet": "#2563eb",
+    "Capacity-Matched Dense Diffusion-GRU": "#56B4E9",
+    "Unconstrained MoE": "#D97706",
+    "Physics-Aligned MoE": "#047857",
+    WTB_CORRECTED_DISPLAY_MODEL: "#047857",
+    "Graph WaveNet": "#1E3A8A",
     "GAT-GRU": "#0891b2",
-    "Graph Transformer": "#db2777",
-    "PatchTST": "#7c3aed",
+    "Graph Transformer": "#7E22CE",
+    "PatchTST": "#2563eb",
     "STGCN": "#0f766e",
     "TCN": "#dc2626",
     "Persistence": "#111827",
 }
-PAPER_EXPERT_COLORS = ["#1d136d", "#421b7b", "#600e86", "#da596c"]
+PAPER_EXPERT_COLORS = ["#1E3A8A", "#047857", "#D97706", "#7E22CE"]
 FIGURE3_MODEL_COLORS = {
-    "Capacity-Matched Dense Diffusion-GRU": "#9DC2D5",
-    "Unconstrained MoE": "#2A6398",
-    "Physics-Aligned MoE": "#7EB87B",
-    WTB_CORRECTED_DISPLAY_MODEL: "#7EB87B",
-    "Graph WaveNet": "#2563eb",
+    "Capacity-Matched Dense Diffusion-GRU": "#56B4E9",
+    "Unconstrained MoE": "#D97706",
+    "Physics-Aligned MoE": "#047857",
+    WTB_CORRECTED_DISPLAY_MODEL: "#047857",
+    "Graph WaveNet": "#1E3A8A",
     "GAT-GRU": "#0891b2",
-    "Graph Transformer": "#db2777",
-    "PatchTST": "#7c3aed",
+    "Graph Transformer": "#7E22CE",
+    "PatchTST": "#2563eb",
     "STGCN": "#0f766e",
     "TCN": "#dc2626",
     "Persistence": "#111827",
@@ -58,48 +58,54 @@ FIGURE3_MODEL_COLORS = {
 
 
 def apply_manuscript_style() -> None:
-    sns.set_theme(style="whitegrid", context="paper")
+    sns.set_theme(style="ticks", context="paper")
     plt.rcParams.update(
         {
-            "font.family": "DejaVu Sans",
+            "font.family": "sans-serif",
+            "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
+            "mathtext.fontset": "dejavusans",
             "figure.facecolor": "white",
             "axes.facecolor": "white",
-            "axes.titlesize": 10.5,
-            "axes.labelsize": 9.0,
-            "xtick.labelsize": 8.2,
-            "ytick.labelsize": 8.2,
-            "legend.fontsize": 8.2,
-            "legend.title_fontsize": 8.2,
-            "axes.edgecolor": "#d1d5db",
-            "axes.linewidth": 0.8,
+            "axes.titlesize": 7.8,
+            "axes.labelsize": 7.0,
+            "xtick.labelsize": 6.2,
+            "ytick.labelsize": 6.2,
+            "legend.fontsize": 6.0,
+            "legend.title_fontsize": 6.2,
+            "axes.edgecolor": "#333333",
+            "axes.linewidth": 0.75,
             "grid.color": "#e5e7eb",
-            "grid.linewidth": 0.7,
-            "grid.alpha": 0.85,
-            "lines.linewidth": 2.0,
+            "grid.linewidth": 0.5,
+            "grid.alpha": 0.4,
+            "lines.linewidth": 1.3,
             "savefig.facecolor": "white",
             "savefig.bbox": "tight",
+            "savefig.pad_inches": 0.02,
         }
     )
 
 
 def _style_axis(ax: plt.Axes, *, grid_axis: str = "both") -> None:
     ax.set_facecolor("white")
-    ax.grid(True, axis=grid_axis, color="#e5e7eb", linewidth=0.7, alpha=0.85)
+    ax.grid(True, axis=grid_axis, color="#e5e7eb", linewidth=0.5, alpha=0.35, linestyle="--")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
-    ax.spines["left"].set_color("#d1d5db")
-    ax.spines["bottom"].set_color("#d1d5db")
+    ax.spines["left"].set_color("#333333")
+    ax.spines["bottom"].set_color("#333333")
+    ax.spines["left"].set_linewidth(0.75)
+    ax.spines["bottom"].set_linewidth(0.75)
+    ax.tick_params(direction="in", length=3.0, width=0.6)
 
 
-def _save_figure_variants(fig: plt.Figure, base_path: Path | str, png_dpi: int = 220) -> Path:
+def _save_figure_variants(fig: plt.Figure, base_path: Path | str, png_dpi: int = 600) -> Path:
     base_path = Path(base_path)
     ensure_dir(base_path.parent)
     pdf_path = base_path.with_suffix(".pdf")
     svg_path = base_path.with_suffix(".svg")
     png_path = base_path.with_suffix(".png")
-    fig.savefig(pdf_path)
-    fig.savefig(svg_path)
-    fig.savefig(png_path, dpi=png_dpi)
+    fig.savefig(pdf_path, format="pdf", bbox_inches="tight", pad_inches=0.02)
+    fig.savefig(svg_path, format="svg", bbox_inches="tight", pad_inches=0.02)
+    fig.savefig(png_path, format="png", dpi=png_dpi, bbox_inches="tight", pad_inches=0.02)
     plt.close(fig)
     return pdf_path
 
@@ -538,8 +544,8 @@ def build_manuscript_figure2_data_boundary(
     output_base: Path | str,
 ) -> Path:
     apply_manuscript_style()
-    fig, axes = plt.subplots(2, 2, figsize=(12.8, 10.0))
-    fig.subplots_adjust(hspace=0.28, wspace=0.22)
+    fig, axes = plt.subplots(2, 2, figsize=(7.16, 5.8), dpi=600)
+    fig.subplots_adjust(hspace=0.32, wspace=0.28, left=0.08, right=0.96, top=0.94, bottom=0.08)
 
     # Panel A: WTB layout and wake-cone sketch.
     ax = axes[0, 0]
@@ -738,8 +744,8 @@ def build_manuscript_figure3_summary_results(
     output_base: Path | str,
 ) -> Path:
     apply_manuscript_style()
-    fig, axes = plt.subplots(2, 2, figsize=(12.0, 8.8))
-    fig.subplots_adjust(hspace=0.38, wspace=0.26, top=0.90)
+    fig, axes = plt.subplots(2, 2, figsize=(7.16, 5.2), dpi=600)
+    fig.subplots_adjust(hspace=0.38, wspace=0.28, left=0.08, right=0.96, top=0.88, bottom=0.08)
 
     wtb_model_order = [
         "Graph WaveNet",
@@ -860,8 +866,8 @@ def build_manuscript_figure4_routing_evidence(
     unconstrained_run_dir = Path(unconstrained_run_dir)
     corrected = _load_eval_arrays(corrected_run_dir, "test")
     unconstrained = _load_eval_arrays(unconstrained_run_dir, "test")
-    fig, axes = plt.subplots(2, 2, figsize=(12.4, 9.7))
-    fig.subplots_adjust(hspace=0.42, wspace=0.28, top=0.94)
+    fig, axes = plt.subplots(2, 2, figsize=(7.16, 5.5), dpi=600)
+    fig.subplots_adjust(hspace=0.42, wspace=0.28, left=0.08, right=0.94, top=0.92, bottom=0.08)
 
     physics_names = list(wtb_bundle.metadata["physics_names"])
     wspd = np.asarray(corrected["anchor_physics"][..., physics_names.index("Wspd")], dtype=np.float64).reshape(-1)
@@ -1003,8 +1009,8 @@ def build_manuscript_figure5_case_studies(
     corrected = _load_eval_arrays(Path(corrected_run_dir), "test")
     era5 = _load_eval_arrays(Path(era5_corrected_run_dir), "test")
 
-    fig = plt.figure(figsize=(13.2, 8.5))
-    fig.subplots_adjust(top=0.95, bottom=0.09, left=0.06, right=0.98)
+    fig = plt.figure(figsize=(7.16, 4.6), dpi=600)
+    fig.subplots_adjust(top=0.93, bottom=0.09, left=0.08, right=0.97)
     outer = fig.add_gridspec(1, 2, width_ratios=[1.08, 1.0], wspace=0.24)
 
     # Panel A: WTB local switch window.
@@ -1201,7 +1207,8 @@ def build_manuscript_figure6_ablation_tradeoff(
     if plot_df.empty:
         raise ValueError("WTB ablation table has no plottable rows for Figure 6.")
 
-    fig, ax = plt.subplots(figsize=(7.4, 4.7))
+    fig, ax = plt.subplots(figsize=(3.5, 2.7), dpi=600)
+    fig.subplots_adjust(left=0.16, right=0.95, top=0.90, bottom=0.16)
     color_map = {
         "Unconstrained MoE": FIGURE3_MODEL_COLORS["Unconstrained MoE"],
         "MoE + L_bal": "#8e97d0",
