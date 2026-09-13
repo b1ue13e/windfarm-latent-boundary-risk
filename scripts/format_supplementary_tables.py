@@ -38,7 +38,7 @@ for reg in regimes:
         p_m, p_s = m_row["pinball_loss_mean"].values[0], m_row["pinball_loss_std"].values[0]
 
         reg_ltx = f"\\textbf{{{reg_lbl}}}" if first else ""
-        m_ltx = f"\\textbf{{{m} (Ours)}}" if m == "Joint Routed" else ("Frozen Backbone Direct Quantile MLP" if "Frozen" in m else m)
+        m_ltx = f"\\textbf{{{m} (Ours)}}" if m == "Joint Routed" else ("Frozen-Embedding Direct Quantile MLP" if "Frozen" in m else m)
         v_str = f"${fmt_pct(v_m)} \\pm {fmt_pct(v_s)}$" + ("^{\\dagger}" if v_m > 0.10 else "")
         c_str = f"${fmt_num(c_m)} \\pm {fmt_num(c_s)}$"
         if m == "Continuous Physical Quantile" and reg in ["clean", "markov_burst"]:
@@ -72,7 +72,7 @@ for reg in regimes:
         p_val = row["p_value"]
 
         reg_ltx = f"\\textbf{{{reg_lbl}}}" if first else ""
-        m_ltx = "Frozen Backbone Direct MLP" if "Frozen" in m else m
+        m_ltx = "Frozen-Embedding Direct Quantile MLP" if "Frozen" in m else m
         d_str = f"{'+' if delta > 0 else ''}{fmt_num(delta)}"
         ci_str = f"[{'+' if ci_lo > 0 else ''}{fmt_num(ci_lo)}, {'+' if ci_hi > 0 else ''}{fmt_num(ci_hi)}]"
 

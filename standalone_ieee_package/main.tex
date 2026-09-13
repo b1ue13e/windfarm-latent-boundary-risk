@@ -16,8 +16,10 @@
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-\usepackage{lmodern}
-\ifPDFTeX\else
+\ifPDFTeX
+  \usepackage{newtxtext,newtxmath}
+\else
+  \usepackage{lmodern}
   % xetex/luatex font selection
   \setmainfont[]{TeX Gyre Termes}
   \setmathfont[]{TeX Gyre Termes Math}
@@ -769,30 +771,30 @@ Regime & Evaluated Model & \shortstack{Penalized Reserve-Shortfall\\Energy (kW$\
 \label{tab:h6-paired}
 \begin{tabularx}{\columnwidth}{@{}llcc>{\raggedright\arraybackslash}X@{}}
 \toprule
-Regime & Baseline Model & $\Delta$ Cost (kW$\cdot$h) & 95\% Bootstrap CI & Sig. \& Operational Verdict \\
+Regime & Baseline Model & \shortstack{$\Delta$ Cost\\(kW$\cdot$h)} & 95\% Bootstrap CI & Sig. \& Operational Verdict \\
 \midrule
 \textbf{Clean} & Global Quantile & +39,962 & [+12,556, +67,367] & Supported reduction (95\% CI excludes zero) \\
- & Cont. Physical Quantile & $-$77,659 & [$-$106,175, $-$49,143] & Physical rule lower cost (95\% CI excludes zero) \\
+ & \shortstack[l]{Cont. Physical\\Quantile} & $-$77,659 & [$-$106,175, $-$49,143] & Physical rule lower cost (95\% CI excludes zero) \\
  & Missingness GBDT & +279,576 & [+249,539, +309,613] & Supported reduction (95\% CI excludes zero) \\
- & Frozen-Embedding Direct Quantile MLP & +690,695 & [+448,769, +932,621] & Tail-conservative Direct MLP \\
+ & \shortstack[l]{Frozen-Embedding\\Direct Quantile MLP} & +690,695 & [+448,769, +932,621] & Tail-conservative Direct MLP \\
  & STGQ-Dense & +32,154 & [$-$1,148, +65,456] & Inconclusive difference (95\% CI includes zero) \\
 \midrule
 \textbf{Delay-6} & Global Quantile & +17,010 & [+3,486, +30,535] & Supported reduction (95\% CI excludes zero) \\
- & Cont. Physical Quantile & $-$27,126 & [$-$46,907, $-$7,346] & Target exceeded ($12.20\%$ viol.) \\
+ & \shortstack[l]{Cont. Physical\\Quantile} & $-$27,126 & [$-$46,907, $-$7,346] & Target exceeded ($12.20\%$ viol.) \\
  & Missingness GBDT & +156,411 & [+140,004, +172,817] & Supported reduction (95\% CI excludes zero) \\
- & Frozen-Embedding Direct Quantile MLP & +518,658 & [+307,212, +730,104] & Tail-conservative Direct MLP \\
+ & \shortstack[l]{Frozen-Embedding\\Direct Quantile MLP} & +518,658 & [+307,212, +730,104] & Tail-conservative Direct MLP \\
  & STGQ-Dense & +16,267 & [+7,131, +25,402] & Supported reduction (95\% CI excludes zero) \\
 \midrule
 \textbf{Noise} & Global Quantile & +26,475 & [+9,121, +43,828] & Supported reduction (95\% CI excludes zero) \\
- & Cont. Physical Quantile & $-$28,804 & [$-$47,555, $-$10,053] & Physical rule lower cost (95\% CI excludes zero) \\
+ & \shortstack[l]{Cont. Physical\\Quantile} & $-$28,804 & [$-$47,555, $-$10,053] & Physical rule lower cost (95\% CI excludes zero) \\
  & Missingness GBDT & +287,563 & [+248,847, +326,279] & Supported reduction (95\% CI excludes zero) \\
- & Frozen-Embedding Direct Quantile MLP & +612,832 & [+413,733, +811,931] & Tail-conservative Direct MLP \\
+ & \shortstack[l]{Frozen-Embedding\\Direct Quantile MLP} & +612,832 & [+413,733, +811,931] & Tail-conservative Direct MLP \\
  & STGQ-Dense & +21,006 & [+2,419, +39,594] & Supported reduction (95\% CI excludes zero) \\
 \midrule
 \textbf{Markov} & Global Quantile & +39,506 & [+15,961, +63,052] & Supported reduction (95\% CI excludes zero) \\
- & Cont. Physical Quantile & $-$82,754 & [$-$111,026, $-$54,482] & Physical rule lower cost (95\% CI excludes zero) \\
+ & \shortstack[l]{Cont. Physical\\Quantile} & $-$82,754 & [$-$111,026, $-$54,482] & Physical rule lower cost (95\% CI excludes zero) \\
  & Missingness GBDT & +271,316 & [+245,044, +297,588] & Supported reduction (95\% CI excludes zero) \\
- & Frozen-Embedding Direct Quantile MLP & +689,714 & [+448,689, +930,739] & Tail-conservative Direct MLP \\
+ & \shortstack[l]{Frozen-Embedding\\Direct Quantile MLP} & +689,714 & [+448,689, +930,739] & Tail-conservative Direct MLP \\
  & STGQ-Dense & +29,453 & [$-$2,874, +61,779] & Inconclusive difference (95\% CI includes zero) \\
 \bottomrule
 \end{tabularx}

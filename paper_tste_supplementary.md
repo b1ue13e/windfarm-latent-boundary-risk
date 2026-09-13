@@ -1136,28 +1136,28 @@ Regime & Evaluated Model & Penalized Reserve-Shortfall Energy & Violation Rate &
  & & (kW$\cdot$h, Proxy at $\rho=10$) & & (MWh) & (MWh) & \\
 \midrule
 \textbf{Clean} & Continuous Physical Quantile & $\mathbf{589{,}535 \pm 77{,}390}$ & $7.73\% \pm 1.56\%$ & $358{,}722 \pm 30{,}279$ & $23{,}081 \pm 5{,}172$ & $21.70 \pm 2.52$ \\
- & Frozen Backbone Direct Quantile MLP & $1{,}074{,}875 \pm 296{,}315$ & $1.36\% \pm 0.81\%$ & $1{,}030{,}913 \pm 319{,}358$ & $4{,}396 \pm 2{,}565$ & $42.68 \pm 13.38$ \\
+ & Frozen-Embedding Direct Quantile MLP & $1{,}074{,}875 \pm 296{,}315$ & $1.36\% \pm 0.81\%$ & $1{,}030{,}913 \pm 319{,}358$ & $4{,}396 \pm 2{,}565$ & $42.68 \pm 13.38$ \\
  & Global Quantile & $717{,}781 \pm 80{,}823$ & $6.16\% \pm 1.65\%$ & $494{,}374 \pm 99{,}462$ & $22{,}341 \pm 4{,}832$ & $27.25 \pm 3.27$ \\
  & Joint Dense Head & $686{,}555 \pm 70{,}084$ & $7.17\% \pm 1.28\%$ & $450{,}074 \pm 63{,}929$ & $23{,}648 \pm 4{,}171$ & $25.90 \pm 2.49$ \\
  & \textbf{Joint Routed (Ours)} & $658{,}437 \pm 79{,}817$ & $7.67\% \pm 1.08\%$ & $397{,}056 \pm 81{,}728$ & $26{,}138 \pm 3{,}700$ & $24.68 \pm 2.69$ \\
  & Missingness-Aware GBDT & $608{,}916 \pm 74{,}931$ & $5.81\% \pm 1.17\%$ & $423{,}500 \pm 44{,}130$ & $18{,}542 \pm 4{,}128$ & $22.54 \pm 2.66$ \\
 \midrule
 \textbf{Delay-6} & Continuous Physical Quantile & $739{,}262 \pm 62{,}423$ & $12.60\% \pm 1.94\%^{\dagger}$ & $362{,}746 \pm 30{,}973$ & $37{,}652 \pm 5{,}915$ & $26.46 \pm 2.03$ \\
- & Frozen Backbone Direct Quantile MLP & $1{,}112{,}826 \pm 296{,}762$ & $1.63\% \pm 0.76\%$ & $1{,}063{,}303 \pm 318{,}675$ & $4{,}952 \pm 2{,}538$ & $42.41 \pm 13.08$ \\
+ & Frozen-Embedding Direct Quantile MLP & $1{,}112{,}826 \pm 296{,}762$ & $1.63\% \pm 0.76\%$ & $1{,}063{,}303 \pm 318{,}675$ & $4{,}952 \pm 2{,}538$ & $42.41 \pm 13.08$ \\
  & Global Quantile & $790{,}677 \pm 74{,}232$ & $8.60\% \pm 2.23\%$ & $500{,}534 \pm 100{,}702$ & $29{,}014 \pm 4{,}762$ & $28.66 \pm 2.81$ \\
  & Joint Dense Head & $788{,}230 \pm 75{,}895$ & $10.70\% \pm 1.15\%^{\dagger}$ & $454{,}103 \pm 63{,}610$ & $33{,}413 \pm 2{,}328$ & $28.55 \pm 2.82$ \\
  & \textbf{Joint Routed (Ours)} & $\mathbf{747{,}948 \pm 66{,}436}$ & $10.74\% \pm 2.02\%^{\dagger}$ & $403{,}402 \pm 89{,}912$ & $34{,}455 \pm 5{,}760$ & $26.83 \pm 2.20$ \\
  & Missingness-Aware GBDT & $685{,}944 \pm 57{,}157$ & $5.74\% \pm 1.09\%$ & $501{,}925 \pm 35{,}452$ & $18{,}402 \pm 3{,}994$ & $24.19 \pm 2.08$ \\
 \midrule
 \textbf{Noise} & Continuous Physical Quantile & $700{,}307 \pm 91{,}043$ & $10.71\% \pm 2.72\%^{\dagger}$ & $382{,}282 \pm 35{,}606$ & $31{,}802 \pm 7{,}975$ & $24.74 \pm 2.84$ \\
- & Frozen Backbone Direct Quantile MLP & $1{,}052{,}607 \pm 242{,}635$ & $2.28\% \pm 1.08\%$ & $985{,}760 \pm 271{,}026$ & $6{,}685 \pm 3{,}296$ & $39.36 \pm 10.78$ \\
+ & Frozen-Embedding Direct Quantile MLP & $1{,}052{,}607 \pm 242{,}635$ & $2.28\% \pm 1.08\%$ & $985{,}760 \pm 271{,}026$ & $6{,}685 \pm 3{,}296$ & $39.36 \pm 10.78$ \\
  & Global Quantile & $757{,}012 \pm 78{,}469$ & $6.96\% \pm 2.02\%$ & $514{,}778 \pm 103{,}567$ & $24{,}223 \pm 5{,}577$ & $27.10 \pm 2.89$ \\
  & Joint Dense Head & $738{,}914 \pm 81{,}871$ & $9.29\% \pm 1.76\%$ & $447{,}191 \pm 57{,}304$ & $29{,}172 \pm 5{,}233$ & $26.34 \pm 2.66$ \\
  & \textbf{Joint Routed (Ours)} & $\mathbf{711{,}218 \pm 87{,}033}$ & $9.56\% \pm 1.08\%$ & $399{,}588 \pm 83{,}563$ & $31{,}163 \pm 3{,}761$ & $25.20 \pm 2.70$ \\
  & Missingness-Aware GBDT & $691{,}744 \pm 80{,}257$ & $6.57\% \pm 1.37\%$ & $482{,}524 \pm 51{,}570$ & $20{,}922 \pm 4{,}704$ & $24.39 \pm 2.52$ \\
 \midrule
 \textbf{Markov} & Continuous Physical Quantile & $\mathbf{611{,}462 \pm 78{,}376}$ & $8.21\% \pm 1.63\%$ & $364{,}021 \pm 31{,}123$ & $24{,}744 \pm 5{,}247$ & $21.98 \pm 2.48$ \\
- & Frozen Backbone Direct Quantile MLP & $1{,}098{,}616 \pm 301{,}206$ & $1.42\% \pm 0.80\%$ & $1{,}051{,}516 \pm 324{,}901$ & $4{,}710 \pm 2{,}628$ & $42.64 \pm 13.36$ \\
+ & Frozen-Embedding Direct Quantile MLP & $1{,}098{,}616 \pm 301{,}206$ & $1.42\% \pm 0.80\%$ & $1{,}051{,}516 \pm 324{,}901$ & $4{,}710 \pm 2{,}628$ & $42.64 \pm 13.36$ \\
  & Global Quantile & $743{,}045 \pm 82{,}567$ & $6.52\% \pm 1.74\%$ & $503{,}739 \pm 101{,}347$ & $23{,}931 \pm 5{,}036$ & $27.56 \pm 3.25$ \\
  & Joint Dense Head & $711{,}324 \pm 71{,}786$ & $7.60\% \pm 1.28\%$ & $458{,}884 \pm 65{,}446$ & $25{,}244 \pm 4{,}368$ & $26.21 \pm 2.48$ \\
  & \textbf{Joint Routed (Ours)} & $684{,}945 \pm 80{,}533$ & $8.04\% \pm 1.22\%$ & $405{,}099 \pm 81{,}991$ & $27{,}985 \pm 4{,}018$ & $25.10 \pm 2.66$ \\
@@ -1185,25 +1185,25 @@ Regime & Baseline Model & $\Delta$ Cost (kW$\cdot$h) & 95\% Bootstrap CI & 95\% 
 \textbf{Clean} & Global Quantile & +59{,}344 & [-16{,}440, +135{,}127] & No (Parity, CI crosses 0) \\
  & Continuous Physical Quantile & -68{,}902 & [-105{,}175, -32{,}629] & Yes (Baseline lower) \\
  & Missingness-Aware GBDT & -49{,}521 & [-115{,}426, +16{,}384] & No (Baseline lower) \\
- & Frozen Backbone Direct MLP & +416{,}438 & [+105{,}990, +726{,}886] & Yes ($p < 0.05$) \\
+ & Frozen-Embedding Direct Quantile MLP & +416{,}438 & [+105{,}990, +726{,}886] & Yes ($p < 0.05$) \\
  & Joint Dense Head & +28{,}118 & [-25{,}901, +82{,}138] & No (Parity, CI crosses 0) \\
 \midrule
 \textbf{Delay-6} & Global Quantile & +42{,}730 & [-15{,}276, +100{,}736] & No (Parity, CI crosses 0) \\
  & Continuous Physical Quantile & -8{,}686 & [-41{,}273, +23{,}901] & Viol. Exceeded ($>10\%$) \\
  & Missingness-Aware GBDT & -62{,}003 & [-132{,}867, +8{,}860] & No (Baseline lower) \\
- & Frozen Backbone Direct MLP & +364{,}879 & [+72{,}780, +656{,}977] & Yes ($p < 0.05$) \\
+ & Frozen-Embedding Direct Quantile MLP & +364{,}879 & [+72{,}780, +656{,}977] & Yes ($p < 0.05$) \\
  & Joint Dense Head & +40{,}282 & [-18{,}752, +99{,}316] & No (Parity, CI crosses 0) \\
 \midrule
 \textbf{Noise} & Global Quantile & +45{,}794 & [-22{,}405, +113{,}994] & No (Parity, CI crosses 0) \\
  & Continuous Physical Quantile & -10{,}911 & [-28{,}924, +7{,}101] & Viol. Exceeded ($>10\%$) \\
  & Missingness-Aware GBDT & -19{,}474 & [-77{,}894, +38{,}947] & No (Baseline lower) \\
- & Frozen Backbone Direct MLP & +341{,}389 & [+74{,}234, +608{,}544] & Yes ($p < 0.05$) \\
+ & Frozen-Embedding Direct Quantile MLP & +341{,}389 & [+74{,}234, +608{,}544] & Yes ($p < 0.05$) \\
  & Joint Dense Head & +27{,}696 & [-15{,}571, +70{,}962] & No (Parity, CI crosses 0) \\
 \midrule
 \textbf{Markov} & Global Quantile & +58{,}100 & [-14{,}351, +130{,}551] & No (Parity, CI crosses 0) \\
  & Continuous Physical Quantile & -73{,}483 & [-112{,}039, -34{,}927] & Yes (Baseline lower) \\
  & Missingness-Aware GBDT & -51{,}200 & [-120{,}274, +17{,}874] & No (Baseline lower) \\
- & Frozen Backbone Direct MLP & +413{,}671 & [+101{,}079, +726{,}264] & Yes ($p < 0.05$) \\
+ & Frozen-Embedding Direct Quantile MLP & +413{,}671 & [+101{,}079, +726{,}264] & Yes ($p < 0.05$) \\
  & Joint Dense Head & +26{,}379 & [-25{,}724, +78{,}483] & No (Parity, CI crosses 0) \\
 \bottomrule
 \end{tabular}%
