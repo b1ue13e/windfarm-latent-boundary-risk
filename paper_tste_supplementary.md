@@ -129,12 +129,14 @@ where $\sigma$ is the median retained neighbor distance on the training graph.
 Figure A1 visualizes the spatial turbine layout, wake-graph geometry, and physical regime anchors defining the operational reserve screening benchmark.
 
 ```{=latex}
-\begin{figure}[H]
+\renewcommand{\thefigure}{A\arabic{figure}}
+\setcounter{figure}{0}
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=\columnwidth]{artifacts/final_evidence_package/export/figures/figure2_data_boundary.pdf}
-\caption*{	extbf{Figure A1.} Operating-decision context and physical regime anchors: (A) WTB turbine layout with the schematic wake cone ($25^\circ$ half-angle) and candidate radius used in the dynamic directed wake graph. (B) ERA5 $16\times 16$ patch with training-mean sensible heat flux and local Haversine-Gaussian graph connections around the central node. (C) WTB operating regimes in the $(Wspd, Pab_{\mathrm{mean}})$ plane with fixed operating-rule boundaries; the MPPT-to-pitch boundary is the reserve-diagnostic window used in this paper. (D) ERA5 thermodynamic regimes in the $(sshf, \Delta sshf)$ plane with thresholds estimated from the training split, included as an observability contrast.}
+\includegraphics[width=0.92\textwidth]{artifacts/final_evidence_package/export/figures/figure2_data_boundary.pdf}
+\caption{Diagnostic spatial and thermodynamic data boundaries: (A) WTB turbine layout with the schematic wake cone ($25^\circ$ half-angle) and candidate radius used in the dynamic directed wake graph. (B) ERA5 $16\times 16$ patch with training-mean sensible heat flux and local Haversine-Gaussian graph connections around the central node. (C) WTB operating regimes in the $(Wspd, Pab_{\mathrm{mean}})$ plane with fixed operating-rule boundaries; the MPPT-to-pitch boundary is the reserve-diagnostic window used in this paper. (D) ERA5 thermodynamic regimes in the $(sshf, \Delta sshf)$ plane with thresholds estimated from the training split, included as an observability contrast.}
 \label{fig:s-regime-anchors}
-\end{figure}
+\end{figure*}
 ```
 
 ## Shared constants {.unnumbered}
