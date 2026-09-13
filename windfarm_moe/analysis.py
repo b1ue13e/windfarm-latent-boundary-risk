@@ -186,22 +186,22 @@ def _load_confusion_matrix(run_dir: Path, labels: list[str]) -> tuple[np.ndarray
 
 def _load_eval_arrays(run_dir: Path, split: str) -> dict[str, np.ndarray]:
     metrics_dir = run_dir / f"{split}_metrics"
-    arrays = {
-        "pred": np.load(metrics_dir / "pred.npy"),
-        "target": np.load(metrics_dir / "target.npy"),
-        "mask": np.load(metrics_dir / "mask.npy"),
-        "regime_primary": np.load(metrics_dir / "regime_primary.npy"),
-        "regime_primary_valid": np.load(metrics_dir / "regime_primary_valid.npy"),
-        "anchor_index": np.load(metrics_dir / "anchor_index.npy"),
-        "anchor_physics": np.load(metrics_dir / "anchor_physics.npy"),
-    }
-    gate_path = metrics_dir / "gate_prob.npy"
-    if gate_path.exists():
-        arrays["gate_prob"] = np.load(gate_path)
-    aux_path = metrics_dir / "regime_aux.npy"
-    if aux_path.exists():
-        arrays["regime_aux"] = np.load(aux_path)
-        arrays["regime_aux_valid"] = np.load(metrics_dir / "regime_aux_valid.npy")
+    arrays = {}
+    for name in [
+        "pred",
+        "target",
+        "mask",
+        "regime_primary",
+        "regime_primary_valid",
+        "anchor_index",
+        "anchor_physics",
+        "gate_prob",
+        "regime_aux",
+        "regime_aux_valid",
+    ]:
+        p = metrics_dir / f"{name}.npy"
+        if p.exists():
+            arrays[name] = np.load(p)
     return arrays
 
 
@@ -1033,7 +1033,10 @@ def build_manuscript_figure5_case_studies(
     end = min(regime.shape[0], center + 36)
     x_hours = (np.arange(start, end) - center) / float(wtb_bundle.metadata["steps_per_hour"])
 
-    truth = np.asarray(corrected["target"][start:end, 0, node_idx], dtype=np.float64)
+    if "target" in corrected:
+        truth = np.asarray(corrected["target"][start:end, 0, node_idx], dtype=np.float64)
+    else:
+        truth = np.asarray(wtb_bundle.target[corrected["anchor_index"][start:end] + 1, node_idx], dtype=np.float64)
     dense_pred = np.asarray(dense["pred"][start:end, 0, node_idx], dtype=np.float64)
     unconstrained_pred = np.asarray(unconstrained["pred"][start:end, 0, node_idx], dtype=np.float64)
     corrected_pred = np.asarray(corrected["pred"][start:end, 0, node_idx], dtype=np.float64)
