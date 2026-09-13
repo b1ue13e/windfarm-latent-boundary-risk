@@ -365,10 +365,12 @@ Table A9b reports the signature-gate probe that tests whether the MPPT-to-pitch 
 \toprule
 Probe & RMSE & NMI & ARI & Reading \\
 \midrule
+Canonical full-anchor & 229.93 $\pm$ 2.50 & 0.7208 & 0.7398 & Train-only clean baseline reference \\
 \texttt{signature\_full} & 241.84 $\pm$ 7.19 & 0.5613 $\pm$ 0.0199 & 0.6347 $\pm$ 0.0239 & Boundary recoverable from consequence channels \\
 \texttt{signature\_core} & 302.10 $\pm$ 9.16 & 0.3671 $\pm$ 0.0372 (median 0.3535) & 0.4342 $\pm$ 0.0378 & Weaker non-power signature; 3/5 seeds expert-collapsed \\
 \texttt{signature\_full\_shuffled} & 241.50 $\pm$ 10.25 & 4.0e-6 $\pm$ 2.1e-6 & $-$1.3e-5 $\pm$ 5.3e-5 & Chance level under permuted labels \\
 \texttt{signature\_core\_shuffled} & 296.69 $\pm$ 16.22 & 4.7e-6 $\pm$ 3.4e-6 & $-$2.0e-4 $\pm$ 1.7e-4 & Chance level under permuted labels \\
+Unconstrained MoE & --- & 0.0140 & --- & Negative control: no declared boundary supervision \\
 \bottomrule
 \end{tabular}%
 }

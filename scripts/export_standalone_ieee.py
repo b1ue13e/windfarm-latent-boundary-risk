@@ -27,6 +27,11 @@ if os.path.exists(bib_source):
     print("Copied references.bib")
 
 # 4. Copy figures
+fig1_source = os.path.join(ROOT, "figures", "figure1_decision_boundaries.pdf")
+if os.path.exists(fig1_source):
+    shutil.copy2(fig1_source, os.path.join(PKG_DIR, "figures", "figure1_decision_boundaries.pdf"))
+    print("Copied figure1_decision_boundaries.pdf")
+
 fig_source = os.path.join(ROOT, "artifacts", "final_evidence_package", "export", "figures", "figure2_data_boundary.pdf")
 if os.path.exists(fig_source):
     shutil.copy2(fig_source, os.path.join(PKG_DIR, "figures", "figure2_data_boundary.pdf"))

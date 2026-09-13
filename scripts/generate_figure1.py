@@ -31,8 +31,8 @@ def create_figure1(output_paths):
     ax.add_patch(top_box)
     ax.text(50, 91.5, 'Incoming SCADA Telemetry Stream', ha='center', va='center',
             fontsize=7.5, fontweight='bold', color=c_slate)
-    ax.text(50, 84.5, r'Clean Data $\mid$ Buffer Delay $\tau \in [10, 60]\,$min $\mid$ Pitch Withheld ($\beta = \emptyset$)',
-            ha='center', va='center', fontsize=5.8, color='#2D3748')
+    ax.text(50, 84.5, r'Clean Telemetry $\mid$ Degraded Latency ($\tau \leq 20\,$min) $\mid$ Communication Loss ($\beta = \emptyset, \tau = 60\,$min)',
+            ha='center', va='center', fontsize=5.6, color='#2D3748')
 
     # Arrow down
     ax.annotate('', xy=(50, 71), xytext=(50, 80),

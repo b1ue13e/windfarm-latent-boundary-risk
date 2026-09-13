@@ -684,7 +684,9 @@ Fig.~1 illustrates the three-tier operational response logic across
 SCADA telemetry degradation regimes: incoming telemetry streams are
 screened by an observability detector to dynamically route decisions
 between continuous physical quantiles, state-conditional recalibration,
-and deep spatio-temporal graph representations.
+and deep spatio-temporal graph representations (spatial turbine layout
+and physical operating-regime planes are detailed in Supplementary
+Figure~A1).
 
 \begin{figure}[t]
 \centering
@@ -748,7 +750,7 @@ Regime & Evaluated Model & \shortstack{Penalized Reserve-Shortfall\\Energy (kW$\
  & STGQ-Routed & $990{,}625 \pm 104{,}487$ & $7.51\% \pm 1.22\%$ & $720{,}858 \pm 92{,}754$ & $26{,}977 \pm 5{,}183$ & $35.10 \pm 3.10$ \\
  & Missingness-Aware GBDT & $1{,}261{,}941 \pm 112{,}754$ & $4.88\% \pm 0.75\%$ & $1{,}094{,}730 \pm 120{,}612$ & $16{,}721 \pm 3{,}298$ & $46.62 \pm 3.40$ \\
 \bottomrule
-\multicolumn{7}{@{}p{\textwidth}@{}}{\tiny $^{\dagger}$Exceeds nominal 10\% violation target ($q^* = 0.90$). Bold numbers denote lowest cost. \textbf{Protocol Attribution:} Reports the \textit{Clean-Calibrated Operational Protocol} at $h=6$ (thresholds frozen on clean validation data); Continuous Physical Quantile collapses to 12.20\% violation under Delay-6. For the \textit{State-Conditional Validation-Calibrated Protocol} at immediate horizon ($h=1$), see Section~\ref{sec:physical-breakdown}, where clean-calibrated physical rules collapse to 24.0\% violation under Delay-6 while state-conditional calibration mitigates violations to 10.7\% (physical) and 10.6\% (joint model). Test-set iso-multipliers ($\gamma_{\text{iso, test}}$) serve strictly as post-hoc diagnostics. $^{\ddagger}$Frozen-Embedding Direct Quantile MLP evaluates naive uncalibrated pinball regression on frozen representations, exhibiting severe tail conservatism (>1.63M kW reserve, <1.2\% violation). In contrast, the calibrated residual architecture (STGQ-Modular, Section~\ref{sec:modular-baseline}, Table~\ref{tab:phase-scan}) and calibrated modular baselines (Cascaded Frozen MLP $15.528\text{M} \pm 1.599\text{M}$ vs STGQ-Routed 16.065M with no statistically detectable difference) resolve this pathology.}
+\multicolumn{7}{@{}p{\textwidth}@{}}{\tiny $^{\dagger}$Exceeds nominal 10\% violation target ($q^* = 0.90$). Bold numbers denote lowest surrogate screening metric. \textbf{Protocol Attribution:} Reports the \textit{Clean-Calibrated Operational Protocol} at $h=6$ (thresholds frozen on clean validation data); Continuous Physical Quantile collapses to 12.20\% violation under Delay-6. For the \textit{State-Conditional Validation-Calibrated Protocol} at immediate horizon ($h=1$), see Section~\ref{sec:physical-breakdown}, where clean-calibrated physical rules collapse to 24.0\% violation under Delay-6 while state-conditional calibration mitigates violations to 10.7\% (physical) and 10.6\% (joint model). Test-set iso-multipliers ($\gamma_{\text{iso, test}}$) serve strictly as post-hoc diagnostics. $^{\ddagger}$Frozen-Embedding Direct Quantile MLP evaluates naive uncalibrated pinball regression on frozen representations, exhibiting severe tail conservatism (>1.63M kW reserve, <1.2\% violation). In contrast, the calibrated residual architecture (STGQ-Modular, Section~\ref{sec:modular-baseline}, Table~\ref{tab:phase-scan}) and calibrated modular baselines (Cascaded Frozen MLP $15.528\text{M} \pm 1.599\text{M}$ vs STGQ-Routed 16.065M with no statistically detectable difference) resolve this pathology.}
 \end{tabular*}
 \end{table*}
 
@@ -764,7 +766,7 @@ Regime & Evaluated Model & \shortstack{Penalized Reserve-Shortfall\\Energy (kW$\
 Regime & Baseline Model & \shortstack{$\Delta\text{Screening}$\\$\text{Metric (kW}\cdot\text{h)}$} & 95\% Bootstrap CI & Sig. \& Operational Verdict \\
 \midrule
 \textbf{Clean} & Global Quantile & +39,962 & [+12,556, +67,367] & Supported reduction (95\% CI excludes zero) \\
- & \shortstack[l]{Cont. Physical\\Quantile} & $-$77,659 & [$-$106,175, $-$49,143] & Physical rule lower cost (95\% CI excludes zero) \\
+ & \shortstack[l]{Cont. Physical\\Quantile} & $-$77,659 & [$-$106,175, $-$49,143] & Physical rule lower metric (95\% CI excludes zero) \\
  & Missingness GBDT & +279,576 & [+249,539, +309,613] & Supported reduction (95\% CI excludes zero) \\
  & \shortstack[l]{Frozen-Embedding\\Direct Quantile MLP} & +690,695 & [+448,769, +932,621] & Tail-conservative Direct MLP \\
  & STGQ-Dense & +32,154 & [$-$1,148, +65,456] & Inconclusive difference (95\% CI includes zero) \\
@@ -776,13 +778,13 @@ Regime & Baseline Model & \shortstack{$\Delta\text{Screening}$\\$\text{Metric (k
  & STGQ-Dense & +16,267 & [+7,131, +25,402] & Supported reduction (95\% CI excludes zero) \\
 \midrule
 \textbf{Noise} & Global Quantile & +26,475 & [+9,121, +43,828] & Supported reduction (95\% CI excludes zero) \\
- & \shortstack[l]{Cont. Physical\\Quantile} & $-$28,804 & [$-$47,555, $-$10,053] & Physical rule lower cost (95\% CI excludes zero) \\
+ & \shortstack[l]{Cont. Physical\\Quantile} & $-$28,804 & [$-$47,555, $-$10,053] & Physical rule lower metric (95\% CI excludes zero) \\
  & Missingness GBDT & +287,563 & [+248,847, +326,279] & Supported reduction (95\% CI excludes zero) \\
  & \shortstack[l]{Frozen-Embedding\\Direct Quantile MLP} & +612,832 & [+413,733, +811,931] & Tail-conservative Direct MLP \\
  & STGQ-Dense & +21,006 & [+2,419, +39,594] & Supported reduction (95\% CI excludes zero) \\
 \midrule
 \textbf{Markov} & Global Quantile & +39,506 & [+15,961, +63,052] & Supported reduction (95\% CI excludes zero) \\
- & \shortstack[l]{Cont. Physical\\Quantile} & $-$82,754 & [$-$111,026, $-$54,482] & Physical rule lower cost (95\% CI excludes zero) \\
+ & \shortstack[l]{Cont. Physical\\Quantile} & $-$82,754 & [$-$111,026, $-$54,482] & Physical rule lower metric (95\% CI excludes zero) \\
  & Missingness GBDT & +271,316 & [+245,044, +297,588] & Supported reduction (95\% CI excludes zero) \\
  & \shortstack[l]{Frozen-Embedding\\Direct Quantile MLP} & +689,714 & [+448,689, +930,739] & Tail-conservative Direct MLP \\
  & STGQ-Dense & +29,453 & [$-$2,874, +61,779] & Inconclusive difference (95\% CI includes zero) \\
@@ -889,10 +891,10 @@ Comparing immediate 10-minute dispatch (\(h=1\)) against 1-hour ahead
 dispatch (\(h=6\)) exposes a fundamental horizon disconnect across model
 families (Supplementary Tables A11j/A11k). At \(h=1\), shallow decision
 trees (Missingness-Aware GBDT) capitalize on ultra-short wind-speed
-autocorrelation, achieving the lowest data-driven cost
+autocorrelation, achieving the lowest data-driven surrogate screening metric
 (\(574{,}822 \pm 79{,}685\text{ kW}\cdot\text{h}\) in Clean with
 \(7.6\%\) violation). Across dispatch-grade horizons (\(h=6\)), however,
-GBDT undergoes severe breakdown: operational costs inflate to
+GBDT undergoes severe breakdown: surrogate screening metrics inflate to
 \(1{,}238{,}603\text{ kW}\cdot\text{h}\) in Clean and
 \(1{,}320{,}003\text{ kW}\cdot\text{h}\) in Delay-6, trailing
 STGQ-Routed by \(+156{,}411\) to \(+287{,}563\text{ kW}\cdot\text{h}\)
@@ -908,7 +910,7 @@ adaptation.
 
 \subsection{Multidimensional Operational Boundaries and Selective
 Decision
-Abstention}\label{multidimensional-operational-boundaries-and-selective-decision-abstention}
+Abstention}\label{multidimensional-operational-boundaries-and-selective-decision-abstention}\label{sec:withheld-channel}
 
 Scanning transmission delays
 \(\tau \in \{0, 10, 20, 30, 60\}\text{ min}\), horizons
@@ -918,29 +920,29 @@ vs.~\texttt{no\_pitch}) across five seeds on WTB delineates a
 (Table~\ref{tab:phase-scan}): 1. \emph{Regime I (Simple Recalibration
 Sufficient under Full Observability):} Under fresh telemetry
 (\(\tau=0\), \texttt{all}), continuous physical quantiles achieve the
-lowest reserve cost (\(593{,}258 \pm 74{,}886\text{ kW}\cdot\text{h}\)
+lowest surrogate reserve screening metric (\(593{,}258 \pm 74{,}886\text{ kW}\cdot\text{h}\)
 at \(h=1\), within \(0.6\%\) of the primary
 \(589{,}535\text{ kW}\cdot\text{h}\) benchmark, with
 \(7.29\% \pm 1.42\%\) violation), whereas neural representations incur
-an \(11.8\%\) cost penalty (\(663{,}347\text{ kW}\cdot\text{h}\))
+an \(11.8\%\) screening penalty (\(663{,}347\text{ kW}\cdot\text{h}\))
 without reliability gain. When latency increases to
 \(\tau \in [10, 30]\text{ min}\), clean physical rules collapse
 (\(11.2\%\text{--}16.6\%\) violation), but state-conditional
 recalibration fully restores physical compliance
-(\(7.1\%\text{--}7.5\%\)) at lower cost than neural models
+(\(7.1\%\text{--}7.5\%\)) at lower surrogate screening metric than neural models
 (\(742{,}211\text{--}939{,}190\text{ kW}\cdot\text{h}\)
 vs.~\(786{,}366\text{--}987{,}760\text{ kW}\cdot\text{h}\)). 2.
 \emph{Regime II (Learned Representation Advantage under Unobservable
 Pitch):} When blade-pitch telemetry is withheld across aggregator or OEM
 boundaries (\texttt{no\_pitch}), physical aerodynamic rules lose direct
-rotor state awareness, inflating recalibrated costs
+rotor state awareness, inflating recalibrated screening penalties
 (\(824{,}393\text{ kW}\cdot\text{h}\) at \(\tau=0\) to
 \(1{,}378{,}900\text{ kW}\cdot\text{h}\) at \(\tau=60\)). In contrast,
 learned representations (STGQ-Modular) reconstruct operating states from
 electromechanical transients, achieving
 \(755{,}794\text{ kW}\cdot\text{h}\) at \(\tau=0\) (an \(8.3\%\) saving
 of \(68{,}599\text{ kW}\cdot\text{h}\) over recalibrated physics) and
-maintaining consistent cost savings
+maintaining consistent reserve screening reductions
 (\(46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}\)) across
 all latencies. 3. \emph{Regime III (Tail-Risk Bottleneck under 60-min
 Latency):} Under 60-min contingency latency, unadapted physical rules
@@ -1023,23 +1025,23 @@ three- and six-step lead shifts (0.361 and 0.405).
 \subsection{\texorpdfstring{Cross-Farm Pre-Dispatch Reserve Screening and Overfitting Boundaries
 \label{sec:cross-farm}}{Cross-Farm Pre-Dispatch Reserve Screening and Overfitting Boundaries}}\label{cross-farm-pre-dispatch-reserve-screening-and-overfitting-boundaries}
 
-To evaluate industrial boundary conditions across disparate commercial assets, Table~\ref{tab:cross-farm} benchmarks pre-dispatch reserve screening performance across four commercial wind farms under local retraining. In utility-scale arrays (WTB, 134 turbines; Penmanshiel, 14 turbines), STGQ local retraining delivers substantial reserve screening improvements ($\Delta\text{PSREI} = -38\text{k}$ and $-2.14\text{M kW}\cdot\text{h}$, both $p < 0.05$). Conversely, on micro-farms (Kelmarsh, 6 turbines; LHB, 4 turbines), spatial wake redundancy is minimal: Kelmarsh yields a neutral bootstrap difference ($-40\text{k kW}\cdot\text{h}$, 95\% CI crossing zero), while LHB exposes an \textbf{overfitting boundary} where graph representations inflate screening penalty by $+43\text{k kW}\cdot\text{h}$ ($[-28.7\text{k}, +141.2\text{k}]$) relative to simple physical recalibration. Latent regime representation probes (NMI/ARI) confirming counterfactual boundary identifiability are detailed in Supplementary Tables~A9a--A9f.
+To evaluate industrial boundary conditions across disparate commercial assets, Table~\ref{tab:cross-farm} benchmarks pre-dispatch reserve screening performance across four commercial wind farms under local retraining. In utility-scale arrays (WTB, 134 turbines; Penmanshiel, 14 turbines), STGQ local retraining delivers substantial reserve screening improvements ($\Delta\text{PSREI} = -38\text{k}$ and $-2.14\text{M kW}\cdot\text{h}$, both $p < 0.05$). Conversely, on micro-farms (Kelmarsh, 6 turbines; LHB, 4 turbines), spatial wake redundancy is minimal: Kelmarsh yields a neutral bootstrap difference ($-40\text{k kW}\cdot\text{h}$, 95\% CI crossing zero), while LHB exposes an \textbf{overfitting boundary} where graph representations inflate screening penalty by $+43\text{k kW}\cdot\text{h}$ ($[-28.7\text{k}, +141.2\text{k}]$) relative to simple physical recalibration. Latent regime representation probes (NMI/ARI) confirming counterfactual boundary identifiability are detailed in Supplementary Tables~A9--A9f.
 
 \begin{table}[!htbp]
 \centering
-\fontsize{5.5pt}{6.4pt}\selectfont
-\setlength{\tabcolsep}{1.2pt}
-\renewcommand{\arraystretch}{0.85}
+\fontsize{5.0pt}{5.9pt}\selectfont
+\setlength{\tabcolsep}{0.8pt}
+\renewcommand{\arraystretch}{0.88}
 \caption{Cross-Farm Pre-Dispatch Reserve Screening Performance across Four Commercial Wind Farms under Local Retraining (5 Seeds 201--205, $\rho=10$).}
 \label{tab:cross-farm}
-\begin{tabularx}{\columnwidth}{@{}llcccc>{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{\columnwidth}{@{}l c ccc >{\centering\arraybackslash}p{2.3cm} >{\raggedright\arraybackslash}X@{}}
 \toprule
-\shortstack[l]{Farm\\Name} & \shortstack[l]{Turbines /\\Model} & \shortstack[c]{Physical\\Recal. (kW$\cdot$h)} & \shortstack[c]{Global\\Quantile (kW$\cdot$h)} & \shortstack[c]{STGQ Local\\Retrain (kW$\cdot$h)} & \shortstack[c]{$\Delta\text{PSREI}$ vs. Global\\$[95\%$ CI$]$} & Operational Finding \\
+\shortstack[l]{Farm} & \shortstack[c]{Turbines /\\Model} & \shortstack[c]{Phys. Recal.\\(kW$\cdot$h)} & \shortstack[c]{Global\\Quantile} & \shortstack[c]{STGQ Local\\Retrain} & \shortstack[c]{$\Delta\text{PSREI}$ vs. Global\\$[95\%$ CI$]$} & \shortstack[l]{Operational\\Finding} \\
 \midrule
-\textbf{WTB} & 134 / Goldwind 1.5M & 841,734 & 893,462 & 855,462 & $-$38k [$-$67k, $-$12k] & Supported reserve reduction ($p < 0.05$) \\
-\textbf{LHB} & 4 / Senvion MM82 & 185,100 & 188,400 & 231,400 & +43k [$-$28.7k, +141.2k] & Overfitting boundary (CI includes zero) \\
-\textbf{Kelmarsh} & 6 / Senvion MM92 & 1,025,000 & 1,065,000 & 1,025,000 & $-$40k [$-$204k, +172k] & Neutral (CI crosses zero; recal. suffices) \\
-\textbf{Penmanshiel} & 14 / Senvion MM82 & 2,029,000 & 4,167,000 & 2,029,000 & $-$2.14M [$-$3.25M, $-$1.36M] & Commercial benefit ($p < 0.05$; $2.14$M saved) \\
+\textbf{WTB} & \shortstack{134 /\\GW 1.5M} & 841,734 & 893,462 & 855,462 & $-$38k [$-$67k, $-$12k] & Supported reserve reduction ($p < 0.05$) \\
+\textbf{LHB} & \shortstack{4 /\\MM82} & 185,100 & 188,400 & 231,400 & +43k [$-$28.7k, +141.2k] & Overfitting boundary (CI includes zero) \\
+\textbf{Kelmarsh} & \shortstack{6 /\\MM92} & 1,025,000 & 1,065,000 & 1,025,000 & $-$40k [$-$204k, +172k] & Neutral (CI crosses zero; recal. suffices) \\
+\textbf{Penmanshiel} & \shortstack{14 /\\MM82} & 2,029,000 & 4,167,000 & 2,029,000 & $-$2.14M [$-$3.25M, $-$1.36M] & Commercial benefit ($p < 0.05$; $2.14$M saved) \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -1071,8 +1073,8 @@ defense-in-depth.
 Comparison}\label{boundary-window-reserve-vignette-and-benchmark-comparison}
 
 At shortage penalty ratio \(\rho=10\) on the transition boundary band,
-the boundary-router gate-bin policy costs 95.13M, outperforming the
-same-model global rule (99.55M), while low-RMSE Graph WaveNet with
+the boundary-router gate-bin policy incurs 95.13M kWh penalized reserve energy,
+outperforming the same-model global rule (99.55M), while low-RMSE Graph WaveNet with
 physical-bin reference achieves 84.31M
 (\(\approx 1.28\text{M kW}\cdot\text{h}\) per single dispatch interval),
 avoiding \(\sim 637\) MWh-equivalent shortage cells.
@@ -1131,7 +1133,7 @@ decadal climatological drift.
 On compact micro-farms like ENGIE La Haute Borne (4 turbines, rolling
 terrain), spatial wake propagation offers limited physical redundancy,
 causing spatial graph convolutions to overfit localized terrain features
-during seasonal shifts (\(+1.01\text{M kWh}\) cost delta vs.~global
+during seasonal shifts (\(+1.01\text{M kWh}\) screening delta vs.~global
 quantile, 95\% CI \([+0.29\text{M}, +1.76\text{M}]\); Supplementary
 Table~A11h). Expanding calibration to 180 days compresses this gap to
 \(+43\text{k kWh}\) (CI \([-28.7\text{k}, +141.2\text{k}]\)). Complex
@@ -1167,7 +1169,7 @@ a localized newsvendor risk surrogate. This abstraction intentionally omits
 Level-2 bulk transmission power-flow physics (full AC-OPF constraints, line
 thermal congestion, voltage stability limits), dynamic unit commitment of
 thermal reserves, Locational Marginal Prices (LMPs), and two-settlement wholesale
-market cashflow balancing. Realized dispatch cost savings will necessarily
+market cashflow balancing. Realized operational balancing savings will necessarily
 depend on specific system-wide balancing market structures and penalty tariffs.
 
 \textit{3) Horizon, Sample Size, and Aerodynamic Calibration Tolerances:}
@@ -1183,11 +1185,12 @@ rated demarcation boundaries.
 
 \textit{4) Field Deployment Overhead and Cross-Farm Overfitting Boundaries:}
 Real-time substation edge deployment requires balancing neural inference
-latency against supervisory RTU polling cycles. While the modular residual head
+latency and online regime classification latency against supervisory RTU polling
+cycles for state-conditional recalibration. While the modular residual head
 requires minimal computational overhead, spatial graph convolutions overfit
 localized topography on small arrays (LHB, 4 turbines, $+43\text{k kW}\cdot\text{h}$
 penalty). Zero-shot cross-farm transfer exhibits pronounced directional
-asymmetry (NMI $0.557$ pooled; Supplementary Table~A9d), establishing that
+asymmetry (NMI $0.557$ pooled; Supplementary Tables~A8--A9d), establishing that
 reliable deployment strictly demands site-specific local retraining rather than
 uncalibrated cross-site transfer.
 
