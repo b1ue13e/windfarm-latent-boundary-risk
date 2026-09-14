@@ -216,28 +216,15 @@ where $\mathrm{Agg}_{\mathrm{in}}$ and $\mathrm{Agg}_{\mathrm{out}}$ denote norm
 In nominal operation, the boundary head ingests $\mathbf{a}_{i,t}^{\mathrm{WTB}} = [\texttt{Wspd}_{i,t}, \texttt{Pab\_mean}_{i,t}, s^{\mathrm{wake}}_{i,t}, \texttt{Patv}_{i,t}]$. Under pitch-withheld conditions, $\texttt{Pab\_mean}_{i,t}$ is strictly excluded, and the representation learns to reconstruct $Z_{i,t}$ from secondary consequences alone.
 
 
-## Boundary Posterior and Residual Quantile Consequence Model
+## Architectural Comparators, Residual Quantile Heads, and Prior-Alignment Optimization
 
 The framework maintains an explicit mathematical separation among three distinct inferential objects:
-1. \textbf{Posterior operating-regime inference}:
-   $\pi_{i,t}^{\mathrm{pitch}} = p(Z_{i,t} = 2 \mid \mathbf{X}_{\le t})$, inferring the probability of active blade-pitch regulation;
-2. \textbf{Point power trajectory forecasting}:
-   $\hat{\mathbf{y}}_{i,t+1:t+P} = \mathbb{E}[\mathbf{y}_{i,t+1:t+P} \mid \mathbf{X}_{\le t}]$, providing the scheduled dispatch profile;
-3. \textbf{Reserve-tail quantile estimation}:
-   $\hat{r}_{i,t} = Q_{q^*}(s_{i,t} \mid \mathbf{X}_{\le t})$, sizing upward reserve to cover asymmetric shortfall exposure $s_{i,t} = \max(\hat{y}_{i,t} - y_{i,t}, 0)$ at $q^* = 0.90$.
-
-In the decoupled modular architecture (STGQ-Modular), upward reserve is directly estimated by pairing frozen spatio-temporal representations $\mathbf{h}_{i,t}$ with physical anchors in a dedicated residual quantile head:
-\begin{equation}
-\hat{r}_{i,t} = \mathrm{MLP}_{\mathrm{res}}([\mathbf{h}_{i,t}; \mathbf{x}_{\mathrm{anchor}}]),
-\label{eq:modular-res-head}
-\end{equation}
-optimized via pinball loss ($q^*=0.90$). Alternatively, in posterior-binned policies, the soft posterior $\pi_{i,t}^{\mathrm{pitch}}$ defines quantile binning thresholds over validation residuals to allocate empirical reserve margins.
-
-
-## Architectural Comparators and Prior-Alignment Optimization
+1. \textbf{Posterior operating-regime inference}: $\pi_{i,t}^{\mathrm{pitch}} = p(Z_{i,t} = 2 \mid \mathbf{X}_{\le t})$, inferring the probability of active blade-pitch regulation;
+2. \textbf{Point power trajectory forecasting}: $\hat{\mathbf{y}}_{i,t+1:t+P} = \mathbb{E}[\mathbf{y}_{i,t+1:t+P} \mid \mathbf{X}_{\le t}]$, providing the scheduled dispatch profile;
+3. \textbf{Reserve-tail quantile estimation}: $\hat{r}_{i,t} = Q_{q^*}(s_{i,t} \mid \mathbf{X}_{\le t})$, sizing upward reserve to cover asymmetric shortfall exposure $s_{i,t} = \max(\hat{y}_{i,t} - y_{i,t}, 0)$ at $q^* = 0.90$.
 
 To interrogate the structural mechanism responsible for reserve-screening gains, we benchmark three architectural configurations under matched parameter capacity:
-1. \textbf{STGQ-Modular}: A decoupled architecture pairing frozen spatio-temporal backbone representations $\mathbf{h}_{i,t}$ with a dedicated residual quantile head estimating reserve margins $\hat{r}_{i,t}$ via pinball loss ($q^*=0.90$);
+1. \textbf{STGQ-Modular}: A decoupled architecture pairing frozen spatio-temporal backbone representations $\mathbf{h}_{i,t}$ with a dedicated residual quantile head $\hat{r}_{i,t} = \mathrm{MLP}_{\mathrm{res}}([\mathbf{h}_{i,t}; \mathbf{x}_{\mathrm{anchor}}])$ estimating reserve margins via pinball loss ($q^*=0.90$); alternatively, in posterior-binned policies, $\pi_{i,t}^{\mathrm{pitch}}$ defines quantile binning thresholds over validation residuals;
 2. \textbf{STGQ-Dense}: An unrouted baseline coupling spatial graph embeddings $\mathbf{h}_{i,t}$ to a shared linear projection for point forecasts $\hat{\mathbf{y}}_{i,t+1:t+P}$ and a joint dense quantile head;
 3. \textbf{STGQ-Routed}: An architectural comparator evaluating dynamic Mixture-of-Experts (MoE) routing, where gating logits $\mathbf{z}_{i,t} = \mathrm{MLP}_{\mathrm{gate}}([\mathbf{h}_{i,t}; \mathbf{a}_{i,t}])$ compute soft routing weights $\mathbf{g}_{i,t} = \mathrm{softmax}(\mathbf{z}_{i,t}/\tau_{\mathrm{gate}})$ to combine specialized expert outputs $\hat{\mathbf{y}}_{i,t+1:t+P} = \sum_{e=1}^E g_{i,t}^{(e)} f_e(\mathbf{h}_{i,t})$.
 
@@ -444,9 +431,11 @@ This operational penalty occurs because discrete classification errors in indepe
 
 Benchmarking capacity-matched neural architectures directly tests whether dynamic Mixture-of-Experts routing provides operational benefits over unrouted dense representations. Across all evaluated conditions, the hypothesis that dynamic expert routing is the source of reserve screening improvements is \textbf{falsified}:
 
-1. \textbf{Clean Telemetry}: At $h=1$, STGQ-Dense and STGQ-Routed achieve statistical parity ($690{,}614$ vs. $660{,}990\text{ kW}\cdot\text{h}$, ratio $1.045$; seed-paired difference $+29{,}624\text{ kW}\cdot\text{h}$, 95\% CI $[-53{,}774, +113{,}023]$, $p=0.380$). At $h=6$, the paired difference $+32{,}154\text{ kW}\cdot\text{h}$ likewise crosses zero ($[-1{,}148, +65{,}456]$, Table~\ref{tab:h6-paired}).
-2. \textbf{Multi-Horizon Seed Analysis}: In multi-horizon dispatch reserve-screening records across seeds 201--205 (\texttt{dense\_pricing\_by\_seed.csv}), the 5-seed mean surrogate cost for soft-gate-binning is $16.065\text{M kW}\cdot\text{h}$ compared to $16.076\text{M kW}\cdot\text{h}$ for soft-dense-binning (a difference of $< 0.07\%$). In fact, dense classification achieves lower surrogate cost than gated MoE in three out of five seeds (Seeds 203, 204, and 205).
-3. \textbf{Decoupled Modular Architecture}: STGQ-Modular (a decoupled architecture pairing frozen spatio-temporal representations with a dedicated residual quantile head) achieves $1{,}284{,}098 \pm 114{,}629\text{ kW}\cdot\text{h}$ and $9.7\% \pm 1.1\%$ violation under Delay-6 at $h=1$ (Table~\ref{tab:phase-scan}), matching or outperforming STGQ-Routed ($1{,}412{,}321\text{ kW}\cdot\text{h}$, $10.6\% \pm 1.1\%$).
+\textit{1) Clean Telemetry:} At $h=1$, STGQ-Dense and STGQ-Routed achieve statistical parity ($690{,}614$ vs. $660{,}990\text{ kW}\cdot\text{h}$, ratio $1.045$; seed-paired difference $+29{,}624\text{ kW}\cdot\text{h}$, 95\% CI $[-53{,}774, +113{,}023]$, $p=0.380$). At $h=6$, the paired difference $+32{,}154\text{ kW}\cdot\text{h}$ likewise crosses zero ($[-1{,}148, +65{,}456]$, Table~\ref{tab:h6-paired}).
+
+\textit{2) Multi-Horizon Seed Analysis:} In multi-horizon dispatch reserve-screening records across seeds 201--205 (\texttt{dense\_pricing\_by\_seed.csv}), the 5-seed mean surrogate cost for soft-gate-binning is $16.065\text{M kW}\cdot\text{h}$ compared to $16.076\text{M kW}\cdot\text{h}$ for soft-dense-binning (a difference of $< 0.07\%$). In fact, dense classification achieves lower surrogate cost than gated MoE in three out of five seeds (Seeds 203, 204, and 205).
+
+\textit{3) Decoupled Modular Architecture:} STGQ-Modular (a decoupled architecture pairing frozen spatio-temporal representations with a dedicated residual quantile head) achieves $1{,}284{,}098 \pm 114{,}629\text{ kW}\cdot\text{h}$ and $9.7\% \pm 1.1\%$ violation under Delay-6 at $h=1$ (Table~\ref{tab:phase-scan}), matching or outperforming STGQ-Routed ($1{,}412{,}321\text{ kW}\cdot\text{h}$, $10.6\% \pm 1.1\%$).
 
 \textbf{Point-Forecast Price of Operating-Regime Awareness:} In point forecasting, the boundary-aware model achieves an RMSE of $236.13 \pm 8.41$, compared with $224.34 \pm 2.23$ for iTransformer and $225.74 \pm 2.60$ for Graph WaveNet. This architecture is \textbf{deliberately non-RMSE-optimal}: it trades a $+2.5\%$ whole-sample error margin to embed operating-regime awareness and prevent catastrophic tail shortfalls. Unconstrained models trigger $78.3\text{--}82.5\text{ MWh}$ of unhedged exposure, whereas boundary-aware representations restrict exposure to $53.9\text{ MWh}$ (a $31\%\text{--}35\%$ reduction).
 
@@ -468,7 +457,7 @@ These findings confirm that the operational benefit stems from consequence-based
 \label{tab:cross-farm}
 \begin{tabularx}{\columnwidth}{@{}l c ccc >{\centering\arraybackslash}p{2.3cm} >{\raggedright\arraybackslash}X@{}}
 \toprule
-\shortstack[l]{Farm} & \shortstack[c]{Turbines /\\Model} & \shortstack[c]{Phys. Recal.\\(kW$\cdot$h)} & \shortstack[c]{Global\\Quantile} & \shortstack[c]{STGQ Local\\Retrain} & \shortstack[c]{$\Delta\text{PSREI}$ vs. Global\\[95\% CI]} & \shortstack[l]{Operational\\Finding} \\
+\shortstack[l]{Farm} & \shortstack[c]{Turbines /\\Model} & \shortstack[c]{Phys. Recal.\\(kW$\cdot$h)} & \shortstack[c]{Global\\Quantile} & \shortstack[c]{STGQ Local\\Retrain} & \shortstack[c]{$\Delta\text{PSREI}$ vs. Global\\ \relax [95\% CI]} & \shortstack[l]{Operational\\Finding} \\
 \midrule
 \textbf{WTB} & \shortstack{134 /\\GW 1.5M} & 841,734 & 893,462 & 855,462 & $-$38k [$-$67k, $-$12k] & Supported reserve reduction ($p < 0.05$) \\
 \textbf{LHB} & \shortstack{4 /\\MM82} & 185,100 & 188,400 & 231,400 & +43k [$-$28.7k, +141.2k] & Overfitting boundary (CI includes zero) \\
@@ -480,90 +469,55 @@ These findings confirm that the operational benefit stems from consequence-based
 
 In utility-scale arrays (WTB, 134 turbines; Penmanshiel, 14 turbines), spatial wake modeling delivers substantial reserve screening improvements ($\Delta\text{PSREI} = -38\text{k}$ and $-2.14\text{M kW}\cdot\text{h}$, both $p < 0.05$). Conversely, on micro-farms (Kelmarsh, 6 turbines; LHB, 4 turbines), spatial wake redundancy is absent: Kelmarsh yields a neutral bootstrap difference ($-40\text{k kW}\cdot\text{h}$, 95\% CI crossing zero), while LHB exposes an \textbf{overfitting boundary} where graph convolutions overfit localized terrain features ($+43\text{k kW}\cdot\text{h}$ penalty, $[-28.7\text{k}, +141.2\text{k}]$). Furthermore, zero-shot cross-farm transfer exhibits pronounced directional asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.77$ vs. Penmanshiel $\to$ Kelmarsh NMI $0.34$). Reliable industrial deployment strictly mandates site-specific local retraining.
 
-\textbf{Point of Common Coupling (PCC) Portfolio Smoothing:} Aggregating decentralized turbine power flows at the PCC bus ($P_{\mathrm{farm}} = \sum_{i \in \mathcal{V}_t} P_{i,t}$, $\sim 121$ active turbines) unlocks spatial portfolio diversification: high-frequency turbulence cancels across the array, leaving boundary transitions as the primary reserve risk. Diversification concentrates heavily in transitional regimes (10\%--90\% pitching), saving $-1.33\text{M kW}\cdot\text{h}$ (CI $[-1.68\text{M}, -1.07\text{M}]$) over continuous physical pitch. Longitudinal records across Kelmarsh (9 years) and Penmanshiel (8.6 years) confirm operational recalibration under climatological drift.
+\textbf{Point of Common Coupling (PCC) Portfolio Smoothing:} Aggregating turbine power flows at the PCC bus ($P_{\mathrm{farm}} = \sum_{i \in \mathcal{V}_t} P_{i,t}$, $\sim 121$ turbines) unlocks spatial diversification: turbulence cancels across the array, leaving boundary transitions as primary reserve risk. Diversification concentrates in transitional regimes (10\%--90\% pitching), saving $-1.33\text{M kW}\cdot\text{h}$ (CI $[-1.68\text{M}, -1.07\text{M}]$) over continuous physical pitch. Decadal records (Kelmarsh, 9 years; Penmanshiel, 8.6 years) confirm operational recalibration under climatological drift.
 
 
 
 # Discussion: The Principle of Minimum Sufficient Model Complexity \label{sec:discussion}
 
-The empirical findings presented in Section V dismantle the conventional dichotomy between pure physical modeling and unconstrained deep learning. By treating turbine operating regimes as partially observed latent states under degraded telemetry, this study establishes an operational principle of \textbf{Minimum Sufficient Model Complexity} governed by channel observability and telemetry freshness:
+The empirical findings dismantle the conventional dichotomy between pure physical modeling and unconstrained deep learning, establishing an operational principle of \textbf{Minimum Sufficient Model Complexity} governed by channel observability and telemetry freshness:
 
-### A. What Information Does Physics Require?
-Deterministic aerodynamic power curves rely on a foundational assumption: the immediate availability of inflow wind speed $v_t$ and blade-pitch angle $\beta_t$. Under pristine telemetry ($\tau = 0$, full observability), physical rules directly evaluate the aerodynamic operating point. Because physical curves enforce strict asymptotic power-conservation bounds ($\partial P / \partial v \propto v^2$ below rated speed and $P \equiv P_{\mathrm{rated}}$ above rated speed), they do not suffer from the out-of-distribution variance that plagues neural models. As evidenced in Table~\ref{tab:h6-benchmark} and Table~\ref{tab:phase-scan}, continuous physical quantiles consistently achieve the lowest surrogate reserve screening costs ($589.5\text{k}\text{--}881.4\text{k kW}\cdot\text{h}$, with compliant $\sim 6.8\%$ violation), outperforming complex graph architectures. When primary physical state variables are fresh and directly observable, deep representation learning is methodologically superfluous and operationally sub-optimal.
+\textit{1) What Information Does Physics Require:} Deterministic aerodynamic curves evaluate pristine telemetry ($\tau = 0$, full observability) with strict asymptotic power conservation ($\partial P / \partial v \propto v^2$ below rated speed, $P \equiv P_{\mathrm{rated}}$ above rated speed). Avoiding out-of-distribution neural variance, they achieve optimal surrogate reserve screening ($589.5\text{k}\text{--}881.4\text{k kW}\cdot\text{h}$, compliant $\sim 6.8\%$ violation; Tables~\ref{tab:h6-benchmark} and~\ref{tab:phase-scan}). Under fresh, observable aerodynamics, deep representation learning is methodologically superfluous and operationally sub-optimal.
 
-### B. When Does Recalibration Break Down?
-When transmission latency delays telemetry by 10 to 30 minutes, deterministic physical rules evaluated on stale tuples $(v_{t-\tau}, \beta_{t-\tau})$ begin to misclassify the operating state. However, as long as blade-pitch registers remain observable, the underlying information required to resolve the operating regime is preserved in the delayed channel history. Under these conditions, state-conditional recalibration absorbs $55.3\%$ of the shortage loss ($127.6 \to 57.0\text{ MWh}$) and maintains compliant violation rates ($7.1\%\text{--}7.5\%$) without updating neural weights. 
+\textit{2) When Does Recalibration Break Down:} Under observable transmission latency ($10\text{--}30\text{ min}$), stale tuples $(v_{t-\tau}, \beta_{t-\tau})$ induce misclassification, but state-conditional recalibration absorbs $55.3\%$ of shortage loss ($127.6 \to 57.0\text{ MWh}$) and maintains compliant violation rates ($7.1\%\text{--}7.5\%$) without updating neural weights. Offline recalibration breaks down only under contingency horizons ($\tau = 60\text{ min}$, Table~A11l, $13.8\%$ violation), where extrapolation across the cubic sensitivity cliff exceeds static buffer margins.
 
-Offline recalibration breaks down only when staleness reaches contingency horizons ($\tau = 60\text{ min}$, Table A11l, where violations reach $13.8\%$). In this extreme regime, the extrapolation error across the cubic sensitivity cliff exceeds the buffer capacity of static quantile adjustments, creating an operational necessity for dynamic state tracking.
+\textit{3) What Learned Representations Actually Know:} Decisive utility emerges when blade-pitch telemetry is withheld (\texttt{no\_pitch}), where physical rules inflate penalties to $1{,}378{,}900\text{ kW}\cdot\text{h}$. The spatio-temporal encoder reconstructs latent regimes from secondary SCADA consequences: (i) active power divergence reflecting aerodynamic torque shedding; (ii) electrical and reactive transients signaling control action; and (iii) spatial wake advection providing topological corroboration. Counterfactual probes confirm substantial mutual information ($0.302\text{--}0.674$ NMI vs. $< 10^{-4}$ for chance controls), reducing penalties by $46.7\text{k}\text{--}68.6\text{k kW}\cdot\text{h}$.
 
-### C. What Does the Learned Representation Actually Know?
-The decisive empirical advantage of representation learning emerges when blade-pitch telemetry is withheld (\texttt{no\_pitch}). Under pitch unobservability, physical rules and recalibration schemes lose direct awareness of whether the rotor is actively shedding lift. 
+\textit{4) Decision Relevance of the Boundary Posterior:} Regime classification accuracy is decoupled from forecast residual magnitude: an independent classifier achieves high transition recall ($1.000$) yet incurs a severe penalty ($86.54\text{M kW}\cdot\text{h}$ vs. $84.31\text{M}$ for physics) by misclassifying steep ramps where residuals peak. Reserve screening requires joint representation and residual quantile coupling. Crucially, dynamic Mixture-of-Experts routing provides no measurable advantage over unrouted dense baselines (cost ratio $1.045$, $p=0.380$; seed difference $< 0.07\%$), while decoupled modular regression (STGQ-Modular) achieves equivalent tail reliability ($9.7\%$ violation).
 
-The spatio-temporal encoder resolves this latent ambiguity by extracting consequential signatures from remaining SCADA channels:
-1. \textbf{Electromechanical Transients}: Divergence between active power output and inflow velocity reflects aerodynamic torque shedding;
-2. \textbf{Electrical and Reactive Responses}: Variations in generator torque and reactive dynamics signal transition-region control action;
-3. \textbf{Spatial Wake Context}: Upstream turbine operating regimes propagate downstream via dynamic wake advection, providing redundant topological evidence of boundary crossing.
-
-Counterfactual probe benchmarks across four commercial wind plants (WTB, LHB, Kelmarsh, Penmanshiel; Tables A9b–A9f) confirm that secondary consequence channels sustain substantial mutual information with the true physical regime ($0.302\text{--}0.674$ NMI), whereas permuted-label negative controls collapse to chance ($< 10^{-4}$).
-
-### D. Decision Relevance of the Posterior and the MoE Diagnostic
-A pivotal methodological insight of this work is that operating-regime classification accuracy is not synonymous with reserve-screening performance. An independent classifier operating on live anchors can achieve high transition recall ($1.000$) yet fail to deliver reserve savings ($86.54\text{M kW}\cdot\text{h}$ vs. $84.31\text{M kW}\cdot\text{h}$ for physical baselines) because its discrete prediction errors are decoupled from the magnitude of forecast residuals. 
-
-Reserve screening improvements require embedding latent boundary awareness into shared spatio-temporal representations and residual quantile estimation. 
-
-Crucially, dynamic Mixture-of-Experts routing provides no measurable operational benefit over unrouted dense baselines (Dense/Routed cost ratio $1.045$, $p = 0.380$; seed-by-seed cost difference $< 0.07\%$). The decoupled modular architecture (STGQ-Modular) achieves equivalent tail protection ($9.7\%$ violation in Delay-6) without routing overhead. Thus, the operational value originates from consequence-based latent state representation and calibrated residual estimation, not from dynamic expert specialization.
-
-### E. Industrial Deployment Boundaries and Scalability
-System operators must observe three firm deployment guardrails established by our empirical diagnostics:
-1. \textbf{Array Scale Sensitivity}: On large utility-scale wind arrays (WTB, Penmanshiel), spatio-temporal wake modeling delivers substantial reserve savings ($-38\text{k}$ to $-2.14\text{M kW}\cdot\text{h}$, $p < 0.05$). On compact micro-farms (LHB, 4 turbines), spatial wake redundancy is absent, causing graph convolutions to overfit local terrain ($+43\text{k kW}\cdot\text{h}$ penalty).
-2. \textbf{Local Retraining Mandate}: Zero-shot cross-farm transfer exhibits pronounced directional asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.77$ vs. reverse $0.34$), proving that models must be retrained or locally calibrated to site-specific turbine geometries.
-3. \textbf{Abstention Realism}: Heuristic selective decision abstention fails to beat random rejection under multi-step latency. Operators facing severe telemetry outages should rely on uniform reserve margin expansion rather than heuristic refusal scores.
-
-
+\textit{5) Industrial Deployment Boundaries and Scalability:} System operators must observe three firm deployment guardrails: (i) \emph{Array scale sensitivity}: utility-scale arrays (WTB, Penmanshiel) yield substantial savings ($-38\text{k}$ to $-2.14\text{M kW}\cdot\text{h}$, $p < 0.05$); compact micro-farms (LHB, 4 turbines) lack wake redundancy, causing graph convolutions to overfit local terrain ($+43\text{k kW}\cdot\text{h}$ penalty); (ii) \emph{Local retraining mandate}: directional transfer asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.77$ vs. reverse $0.34$) requires site-specific retraining; and (iii) \emph{Abstention realism}: heuristic selective abstention fails under latency ($9.44\%$ vs. $9.50\%$, $p > 0.40$). Operators should deploy uniform reserve margin expansion during severe telemetry outages.
 
 # Limitations
 
-To provide industrial practitioners and system operators with a defensible, transparent boundary of applicability, we delineate four foundational limitations of this study:
+To provide industrial practitioners with transparent boundaries of applicability, we delineate four foundational limitations of this study:
 
-*1) Synthetic Stress versus Industrial Telemetry Contingencies:*
-Telemetry impairments in our primary benchmarks are modeled via controlled synthetic processes: 10--30\,min delays represent buffer backlogs, while 60-min latency and Gilbert-Elliott Markov dropouts are evaluated as severe contingency stress bounds rather than everyday steady-state telemetry. Furthermore, ground-truth operating regimes on WTB rely on anemometer wind speed and collective pitch pseudo-labels. While counterfactual withheld-channel tests prove that aerodynamic regime boundaries are recoverable from secondary consequence signatures across four commercial plants, field-deployed turbines may experience non-stationary instrumentation drift, sensor icing, or uncoordinated individual pitch control actions not captured in our supervisory SCADA feeds.
+\textit{1) Synthetic Stress versus Industrial Telemetry Contingencies:} Telemetry impairments in primary benchmarks are modeled via controlled synthetic processes: $10\text{--}30\text{ min}$ delays represent buffer backlogs, while 60-min latency and Gilbert-Elliott Markov dropouts evaluate severe contingency stress bounds. Ground-truth operating regimes on WTB rely on anemometer wind speed and collective pitch pseudo-labels. While withheld-channel tests confirm aerodynamic regimes are recoverable across four commercial plants, field turbines may experience non-stationary instrumentation drift, sensor icing, or uncoordinated individual pitch control actions not captured in supervisory SCADA feeds.
 
-*2) Risk Metric Surrogacy and Unmodeled Grid Dynamics:*
-Our evaluation operates strictly at Level-1 pre-dispatch operating reserve screening. The penalized reserve shortfall index (PSREI at $\rho=10$) serves as a localized newsvendor risk surrogate. This abstraction intentionally omits Level-2 bulk transmission power-flow physics (full AC-OPF constraints, line thermal congestion, voltage stability limits), dynamic unit commitment of thermal reserves, Locational Marginal Prices (LMPs), and two-settlement wholesale market cashflow balancing. Realized operational balancing savings will necessarily depend on specific system-wide balancing market structures and penalty tariffs.
+\textit{2) Risk Metric Surrogacy and Unmodeled Grid Dynamics:} Evaluation operates strictly at Level-1 pre-dispatch operating reserve screening. The penalized reserve shortfall index (PSREI at $\rho=10$) serves as a localized newsvendor risk surrogate. This abstraction intentionally omits Level-2 bulk transmission power-flow physics (full AC-OPF constraints, thermal congestion, voltage limits), dynamic unit commitment of thermal reserves, Locational Marginal Prices, and two-settlement wholesale balancing cashflows. Realized operational balancing savings depend on specific system-wide market structures and penalty tariffs.
 
-*3) Horizon, Sample Size, and Aerodynamic Calibration Tolerances:*
-Empirical benchmarks are bounded to a 35-day continuous test split across five neural random seeds (201--205). While capturing diurnal transitions and winter storm fronts, this window does not encompass full multi-annual climatological cycles or seasonal air-density shifts. Moreover, aerodynamic parameters exhibit OEM-specific calibration tolerances: rated wind speeds range from $12.5\text{ m/s}$ (Senvion MM92) to $14.5\text{ m/s}$ (Senvion MM82) and cut-in transitions differ across turbine controllers. Model thresholds calibrated for one OEM cannot be directly transferred without recalibrating cut-in and rated demarcation boundaries.
+\textit{3) Horizon, Sample Size, and Aerodynamic Calibration Tolerances:} Empirical benchmarks are bounded to a 35-day continuous test split across five neural random seeds (201--205). While capturing diurnal transitions and winter storm fronts, this window does not encompass full multi-annual climatological cycles or seasonal air-density shifts. Moreover, aerodynamic parameters exhibit OEM-specific calibration tolerances: rated wind speeds range from $12.5\text{ m/s}$ (Senvion MM92) to $14.5\text{ m/s}$ (Senvion MM82) and cut-in transitions differ across turbine controllers, requiring OEM-specific threshold calibration.
 
-*4) Field Deployment Overhead and Cross-Farm Overfitting Boundaries:*
-Real-time substation edge deployment requires balancing neural inference latency and online regime classification latency against supervisory RTU polling cycles for state-conditional recalibration. While the modular residual head requires minimal computational overhead, spatial graph convolutions overfit localized topography on small arrays (LHB, 4 turbines, $+43\text{k kW}\cdot\text{h}$ penalty). Zero-shot cross-farm transfer exhibits pronounced directional asymmetry (NMI $0.557$ pooled; Supplementary Tables~A8--A9d), establishing that reliable deployment strictly demands site-specific local retraining rather than uncalibrated cross-site transfer.
-
-
+\textit{4) Field Deployment Overhead and Cross-Farm Overfitting Boundaries:} Real-time substation edge deployment requires balancing neural inference latency against supervisory RTU polling cycles. While the modular residual head requires minimal computational overhead, spatial graph convolutions overfit localized topography on small arrays (LHB, 4 turbines, $+43\text{k kW}\cdot\text{h}$ penalty). Zero-shot cross-farm transfer exhibits pronounced directional asymmetry (pooled NMI $0.557$; Tables~A8--A9d), establishing that reliable deployment strictly demands site-specific local retraining rather than uncalibrated cross-site transfer.
 
 # Conclusion
 
-This study has fundamentally repositioned machine learning in wind plant operating reserve screening from a presumed universal replacement for physical models to a targeted, conditional inference mechanism under telemetry degradation. Through rigorous 5-seed empirical evaluations across the 134-turbine WTB commercial plant and multi-year data from three European facilities, we establish three primary conclusions:
+This study fundamentally repositions machine learning in wind plant operating reserve screening from a presumed universal replacement for physical models to a targeted, conditional inference mechanism under telemetry degradation. Across five-seed evaluations on the 134-turbine WTB plant and multi-year data from three European facilities, we establish three primary conclusions:
 
 First, under fresh and fully observable SCADA telemetry, deterministic aerodynamic power curves minimize surrogate reserve screening penalties ($589{,}535\text{ kW}\cdot\text{h}$ at $h=1$, $881{,}367\text{ kW}\cdot\text{h}$ at $h=6$, $\sim 6.8\%$ violation), outperforming deep neural networks. Deterministic rules experience catastrophic reliability breakdown only when telemetry staleness forces them to extrapolate across the cubic-to-flat sensitivity cliff near rated wind speed, surging violations to $24.0\%$.
 
-Second, when telemetry channels remain observable under transmission delays, simple state-conditional recalibration absorbs $55.3\%$ of shortage exposure ($127.6 \to 57.0\text{ MWh}$) without neural representation learning. Learned representations acquire demonstrable utility only when blade-pitch registers become unobservable: by inferring latent operating states from secondary electromechanical and spatio-temporal consequence channels, learned representations outperform recalibrated physical rules by $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ across all latencies and double transition recall ($0.416$ vs. $0.196$).
+Second, when telemetry channels remain observable under transmission delays, simple state-conditional recalibration absorbs $55.3\%$ of shortage exposure ($127.6 \to 57.0\text{ MWh}$) without neural representation learning. Learned representations acquire demonstrable utility only when blade-pitch registers become unobservable: by inferring latent operating states from secondary electromechanical and spatio-temporal consequence channels, learned representations outperform recalibrated physical rules by $46.7\text{k}\text{--}68.6\text{k kW}\cdot\text{h}$ across all latencies and double transition recall ($0.416$ vs. $0.196$).
 
 Third, dynamic Mixture-of-Experts routing confers no statistically detectable advantage over unrouted dense or modular architectures ($p = 0.380$), while decoupled modular residual regression matches tail reliability ($9.7\%$ violation). Furthermore, heuristic selective decision abstention is Pareto-dominated by uniform reserve margin expansion under persistent latency.
 
-Consequently, modern wind plant dispatch systems should not seek to deploy universal deep neural networks across all operational regimes. Instead, dispatchers should implement an observability-aware division of labor: deploying deterministic aerodynamic rules under clean telemetry, lightweight recalibration under observable drift, and reserving learned latent-state representations for regimes where critical physical states are unobservable.
-
-
+Consequently, modern wind plant dispatch systems should implement an observability-aware division of labor: deploying deterministic aerodynamic rules under clean telemetry, lightweight recalibration under observable drift, and reserving learned latent-state representations for regimes where critical physical states are unobservable.
 
 # AI Use Statement
 
 The authors used OpenAI ChatGPT/Codex only for language editing, consistency checks, and submission-material drafting; all data, analyses, references, conclusions, and final text were reviewed and controlled by the authors.
 
-
-
 # Code and Data Availability
 
-The raw KDD Cup 2022, ENGIE La Haute Borne, Kelmarsh, and Penmanshiel SCADA datasets are public (raw third-party data not redistributed). Code, configurations, releasable derived tables, figure data, and checkpoints will be made available with the article. The reproduction package covers WTB routing, reserve audit, anchor-stress caches, early-warning label degradation, classifier control, class-weight sensitivity, external diagnostics, and evidence-freeze protocols across declared seeds. Results are statistically reproducible across declared seeds rather than bitwise deterministic across all GPU/CUDA environments. The analysis involves no human subjects.
-
-
+The raw KDD Cup 2022, ENGIE La Haute Borne, Kelmarsh, and Penmanshiel SCADA datasets are public (raw third-party data not redistributed). Code, configurations, releasable derived tables, figure data, and checkpoints will be made available with the article. The reproduction package covers WTB routing, reserve audit, anchor-stress caches, early-warning degradation, classifier control, class-weight sensitivity, and evidence-freeze protocols across declared seeds. The analysis involves no human subjects.
 
 # References {.unnumbered}
 
