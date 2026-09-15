@@ -338,36 +338,36 @@ Regime & Evaluated Model & \shortstack{Penalized Reserve-Shortfall\\Energy (kW$\
 \toprule
 Regime & Evaluated Contrast / Model & \shortstack{$\Delta\text{PSREI}$\\$\text{(kW}\cdot\text{h)}$} & 95\% Bootstrap CI & Operational Verdict \& Hypothesis Test \\
 \midrule
-\textbf{Clean} & \shortstack[l]{Cont. Phys. vs. STGQ-Routed\\ \scriptsize (Physical Dominance)} & $-$77,659 & [$-$106,175, $-$49,143] & Physical rule strictly superior ($p < 0.01$; 95\% CI excludes zero) \\
- & \shortstack[l]{STGQ-Dense vs. STGQ-Routed\\ \scriptsize (MoE Mechanism Ablation)} & +32,154 & [$-$1,148, +65,456] & Routing advantage falsified (95\% CI includes zero, $p=0.380$) \\
- & Global Quantile vs. STGQ-Routed & +39,962 & [+12,556, +67,367] & Regime-blind baseline penalty (95\% CI excludes zero) \\
- & Missingness GBDT vs. STGQ-Routed & +279,576 & [+249,539, +309,613] & Significant tabular model deficit (95\% CI excludes zero) \\
- & Frozen Direct MLP vs. STGQ-Routed & +690,695 & [+448,769, +932,621] & Severe tail conservatism in uncalibrated direct MLP \\
+\textbf{Clean} & Cont. Phys. (Physical Dominance) & $-$77,659 & [$-$106,175, $-$49,143] & Physical rule strictly superior ($p < 0.01$; 95\% CI excludes zero) \\
+ & STGQ-Dense vs. STGQ-Routed (MoE) & +32,154 & [$-$1,148, +65,456] & Routing advantage falsified (95\% CI includes zero, $p=0.380$) \\
+ & Global Quantile (Regime-Blind) & +39,962 & [+12,556, +67,367] & Regime-blind baseline penalty (95\% CI excludes zero) \\
+ & Missingness GBDT (Tabular) & +279,576 & [+249,539, +309,613] & Significant tabular model deficit (95\% CI excludes zero) \\
+ & Frozen Direct MLP (Direct Pinball) & +690,695 & [+448,769, +932,621] & Severe tail conservatism in uncalibrated direct MLP \\
 \midrule
-\textbf{Delay-6} & \shortstack[l]{Cont. Physical Quantile\\ \scriptsize (Boundary Breakdown)} & $-$27,126 & [$-$46,907, $-$7,346] & Unadapted physical rule breaches target ($12.20\%$ violation) \\
- & \shortstack[l]{STGQ-Dense vs. STGQ-Routed\\ \scriptsize (MoE Mechanism Ablation)} & +16,267 & [+7,131, +25,402] & Minor $1.40\%$ marginal difference; dense baseline sufficient \\
- & Global Quantile vs. STGQ-Routed & +17,010 & [+3,486, +30,535] & Boundary representation recovery (95\% CI excludes zero) \\
- & Missingness GBDT vs. STGQ-Routed & +156,411 & [+140,004, +172,817] & Significant tabular model deficit under latency \\
- & Frozen Direct MLP vs. STGQ-Routed & +518,658 & [+307,212, +730,104] & Severe tail conservatism in uncalibrated direct MLP \\
+\textbf{Delay-6} & Cont. Phys. (Boundary Breakdown) & $-$27,126 & [$-$46,907, $-$7,346] & Unadapted physical rule breaches target ($12.20\%$ violation) \\
+ & STGQ-Dense vs. STGQ-Routed (MoE) & +16,267 & [+7,131, +25,402] & Minor $1.40\%$ marginal difference; dense baseline sufficient \\
+ & Global Quantile (Regime-Blind) & +17,010 & [+3,486, +30,535] & Boundary representation recovery (95\% CI excludes zero) \\
+ & Missingness GBDT (Tabular) & +156,411 & [+140,004, +172,817] & Significant tabular model deficit under latency \\
+ & Frozen Direct MLP (Direct Pinball) & +518,658 & [+307,212, +730,104] & Severe tail conservatism in uncalibrated direct MLP \\
 \midrule
-\textbf{Noise} & \shortstack[l]{Cont. Phys. vs. STGQ-Routed\\ \scriptsize (Physical Dominance)} & $-$28,804 & [$-$47,555, $-$10,053] & Physical rule holds under zero-delay sensor noise \\
- & \shortstack[l]{STGQ-Dense vs. STGQ-Routed\\ \scriptsize (MoE Mechanism Ablation)} & +21,006 & [+2,419, +39,594] & Minor $2.05\%$ difference between dense and routed heads \\
- & Global Quantile vs. STGQ-Routed & +26,475 & [+9,121, +43,828] & Baseline penalty under noise \\
- & Missingness GBDT vs. STGQ-Routed & +287,563 & [+248,847, +326,279] & Significant tabular model deficit \\
- & Frozen Direct MLP vs. STGQ-Routed & +612,832 & [+413,733, +811,931] & Severe tail conservatism in uncalibrated direct MLP \\
+\textbf{Noise} & Cont. Phys. (Physical Robustness) & $-$28,804 & [$-$47,555, $-$10,053] & Physical rule holds under zero-delay sensor noise \\
+ & STGQ-Dense vs. STGQ-Routed (MoE) & +21,006 & [+2,419, +39,594] & Minor $2.05\%$ difference between dense and routed heads \\
+ & Global Quantile (Regime-Blind) & +26,475 & [+9,121, +43,828] & Baseline penalty under sensor noise \\
+ & Missingness GBDT (Tabular) & +287,563 & [+248,847, +326,279] & Significant tabular model deficit \\
+ & Frozen Direct MLP (Direct Pinball) & +612,832 & [+413,733, +811,931] & Severe tail conservatism in uncalibrated direct MLP \\
 \midrule
-\textbf{Markov} & \shortstack[l]{Cont. Phys. vs. STGQ-Routed\\ \scriptsize (Physical Dominance)} & $-$82,754 & [$-$111,026, $-$54,482] & Physical rule superior during packet drop if unlagged \\
- & \shortstack[l]{STGQ-Dense vs. STGQ-Routed\\ \scriptsize (MoE Mechanism Ablation)} & +29,453 & [$-$2,874, +61,779] & Routing advantage falsified (95\% CI includes zero) \\
- & Global Quantile vs. STGQ-Routed & +39,506 & [+15,961, +63,052] & Baseline penalty under burst packet drop \\
- & Missingness GBDT vs. STGQ-Routed & +271,316 & [+245,044, +297,588] & Significant tabular model deficit \\
- & Frozen Direct MLP vs. STGQ-Routed & +689,714 & [+448,689, +930,739] & Severe tail conservatism in uncalibrated direct MLP \\
+\textbf{Markov} & Cont. Phys. (Physical Dominance) & $-$82,754 & [$-$111,026, $-$54,482] & Physical rule superior during packet drop if unlagged \\
+ & STGQ-Dense vs. STGQ-Routed (MoE) & +29,453 & [$-$2,874, +61,779] & Routing advantage falsified (95\% CI includes zero) \\
+ & Global Quantile (Regime-Blind) & +39,506 & [+15,961, +63,052] & Baseline penalty under burst packet drop \\
+ & Missingness GBDT (Tabular) & +271,316 & [+245,044, +297,588] & Significant tabular model deficit \\
+ & Frozen Direct MLP (Direct Pinball) & +689,714 & [+448,689, +930,739] & Severe tail conservatism in uncalibrated direct MLP \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\raggedright\tiny Note: Statistical verdicts are based on empirical 95\% confidence intervals computed via day-block cluster bootstrap over 35 test days (1,000 resamples of complete diurnal blocks). STGQ-Routed serves strictly as an architectural mechanism-ablation comparator testing dynamic MoE gating against unrouted representations. Inconclusive difference denotes 95\% CI crossing zero.
+\raggedright\tiny Note: Statistical verdicts are based on empirical 95\% confidence intervals computed via day-block cluster bootstrap over 35 test days (1,000 resamples of complete diurnal blocks). Contrasts are framed around regime-specific hypotheses: Physical Dominance/Breakdown for physical rules, MoE Mechanism Ablation testing dynamic routing against unrouted dense representations (STGQ-Dense vs. STGQ-Routed), and representation deficits for alternative baselines. STGQ-Routed serves strictly as an architectural mechanism-ablation comparator rather than a canonical proposed method.
 \end{table}
 
-The empirical evidence directly challenges the presumption that deep neural architectures universally outperform physical models. Under pristine telemetry ($\tau = 0$), Continuous Physical Quantile achieves the lowest surrogate reserve screening cost among all evaluated methods ($589{,}535 \pm 77{,}390\text{ kW}\cdot\text{h}$ at immediate dispatch $h=1$ and $881{,}367 \pm 95{,}741\text{ kW}\cdot\text{h}$ at 1-hour dispatch $h=6$, with compliant $\sim 6.8\%$ violation). It substantially outperforms both unrouted dense networks (STGQ-Dense: $991{,}181\text{ kW}\cdot\text{h}$) and dynamically routed architectures (STGQ-Routed: $959{,}027\text{ kW}\cdot\text{h}$). As confirmed in Table~\ref{tab:h6-paired}, the seed-paired difference between Continuous Physical Quantile and STGQ-Routed is $-77{,}659\text{ kW}\cdot\text{h}$, with a 95\% block bootstrap confidence interval strictly excluding zero ($[-106{,}175, -49{,}143]$). 
+The empirical evidence directly challenges the presumption that deep neural architectures universally outperform physical models. Under pristine telemetry ($\tau = 0$), Continuous Physical Quantile achieves the lowest surrogate reserve screening cost among all evaluated methods ($589{,}535 \pm 77{,}390\text{ kW}\cdot\text{h}$ at immediate dispatch $h=1$ and $881{,}367 \pm 95{,}741\text{ kW}\cdot\text{h}$ at 1-hour dispatch $h=6$, with compliant $\sim 6.8\%$ violation). It substantially outperforms both unrouted dense networks (STGQ-Dense: $991{,}181\text{ kW}\cdot\text{h}$) and dynamically routed architectures (STGQ-Routed: $959{,}027\text{ kW}\cdot\text{h}$). As confirmed in Table~\ref{tab:h6-paired}, Continuous Physical Quantile achieves a $-77{,}659\text{ kW}\cdot\text{h}$ advantage over neural representations, with a 95\% block bootstrap confidence interval strictly excluding zero ($[-106{,}175, -49{,}143]$). 
 
 This finding establishes that when inflow wind speed and blade pitch angle are fresh and directly observable, deterministic aerodynamic equations provide optimal reserve screening. Neural networks, lacking hard physical saturation bounds, introduce unnecessary variance under nominal telemetry.
 
@@ -379,14 +379,14 @@ While deterministic physical rules excel under fresh data, Table~\ref{tab:h6-ben
 Consequently, unadapted physical quantile violation rates surge from $6.81\%$ to $24.02\% \pm 1.69\%$ at $h=1$ and $12.20\% \pm 1.25\%$ at $h=6$, breaching the nominal 10\% Newsvendor target ($q^* = 0.90$). This breakdown leaves $127.55\text{ MWh}$ of unhedged generation shortfall across the array. This delineates the exact operational reliability boundary of deterministic aerodynamic rules: when transmission latency delays state observation, physical rules cease to provide dependable reserve screening.
 
 
-## Result 3: Full Observability Drift Is Resolved by Recalibration (RQ2)
+## Result 3: Recalibration under Full Observability (RQ2)
 
 When telemetry channels remain observable under transmission delays, condition-matched state-conditional recalibration (\ref{eq:recalib}) adjusts quantile margins using held-out validation residuals undergoing the identical delay. As shown in Table~\ref{tab:phase-scan}, state-conditional recalibration absorbs $55.3\%$ of the shortage loss ($127.55 \to 57.01\text{ MWh}$), restoring fleet violation to $9.46\%$ and achieving a surrogate reserve cost of $1{,}228{,}609\text{ kW}\cdot\text{h}$ at $h=1$. In fact, recalibrated physical curves outperform all neural models under full observability (STGQ-Routed: $1{,}274{,}047\text{ kW}\cdot\text{h}$; STGQ-Modular: $1{,}283{,}855\text{ kW}\cdot\text{h}$).
 
 To establish the operational limits of recalibration under communication drift, we evaluate a mismatched calibration matrix across test latencies $\tau_{\mathrm{test}} \in [0, 60]\text{ min}$ and calibration horizons $\tau_{\mathrm{cal}} \in [0, 60]\text{ min}$ (Supplementary Table~A11l). Recalibrating at $\tau_{\mathrm{cal}} = 10\text{ min}$ withstands latency drift up to $\tau_{\mathrm{test}} = 20\text{ min}$ while maintaining compliant tail coverage ($8.2\%\text{--}9.1\%$ violation). However, recalibration breaks down when staleness surges to $\tau_{\mathrm{test}} = 60\text{ min}$ ($13.8\%$ violation). This demonstrates that under full channel observability, distribution drift alone does not justify deep representation learning: simple state-conditional recalibration captures the vast majority of recoverable value.
 
 
-## Result 4: Pitch Unobservability Demands Latent State Representation (RQ2) \label{sec:withheld-channel}
+## Result 4: Learned Recovery under Pitch Unobservability (RQ2) \label{sec:withheld-channel}
 
 The indispensable role of machine learning emerges when blade-pitch telemetry is withheld across aggregator boundaries (\texttt{no\_pitch}, Table~\ref{tab:phase-scan}). Under pitch unobservability, physical rules and recalibration schemes lose direct state awareness, inflating recalibrated screening penalties from $824{,}393\text{ kW}\cdot\text{h}$ at $\tau=0$ to $1{,}378{,}900\text{ kW}\cdot\text{h}$ at $\tau=60\text{ min}$. 
 

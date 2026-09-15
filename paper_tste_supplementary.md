@@ -248,7 +248,7 @@ Boundary quantile violation vs GWN physical bin & 0.003 & [-0.011, 0.020] & -- &
 
 ## Class-weight sensitivity audit {.unnumbered}
 
-Table A6b makes the class-weight provenance boundary explicit. The legacy strict-cache row records the historical boundary-router checkpoint from earlier iterations; the train-only rerun recomputes alignment and pitch-forcing class weights from the training split only and serves as the single source for all headline audits in the main paper. The train-only rerun lowers NMI/ARI but remains above the routing-claim threshold.
+Table A6b makes the class-weight provenance boundary explicit. The legacy strict-cache row records the historical boundary-router checkpoint from earlier iterations; the train-only rerun recomputes alignment and pitch-forcing class weights from the training split only and serves as the single source for all headline audits in the main paper. The train-only rerun lowers NMI/ARI to NMI 0.721 (0.7208) and ARI 0.740 (0.7398) while reaching RMSE 229.93 (narrowing the gap to 5.59 units vs. 224.34), remaining above the routing-claim threshold.
 
 ```{=latex}
 \begin{table}[H]
@@ -273,7 +273,7 @@ Delta & -6.20 & -8.21 & 2.68 & -0.1508 & -0.1768 \\
 
 ## Outcome-channel sanity audit {.unnumbered}
 
-Table A7 adds a bounded check for the shared-anchor concern. It does not use pitch-threshold labels to score the contrast. Validation data define a wind-speed-bin power curve, and the test comparison is restricted to 9.5--11.5 m s$^{-1}$ boundary anchors with fine wind-bin adjustment. This table is arranged as a sanity audit because SCADA studies must separate issue-time signals from the future outcomes they predict [@tautzweinert2017scada; @zhou2024sdwpfdata]. The result asks whether the recovered gate separates samples with different future active-power response, not whether it discovers a regime without anchors.
+Table A7 adds a bounded check for the shared-anchor concern. Supplementary anchor-stress ablations confirm that boundary recovery withstands sensor withholding and temporal latency: variant no\_patv achieves NMI 0.881, no\_pab\_mean achieves NMI 0.878, lagged\_patv achieves NMI 0.763, and lagged\_pab\_wspd achieves NMI 0.684. It does not use pitch-threshold labels to score the contrast. Validation data define a wind-speed-bin power curve, and the test comparison is restricted to 9.5--11.5 m s$^{-1}$ boundary anchors with fine wind-bin adjustment. This table is arranged as a sanity audit because SCADA studies must separate issue-time signals from the future outcomes they predict [@tautzweinert2017scada; @zhou2024sdwpfdata]. The result asks whether the recovered gate separates samples with different future active-power response, not whether it discovers a regime without anchors.
 
 ```{=latex}
 \begin{table}[H]
@@ -701,7 +701,7 @@ Table A11 is the compact reviewer-facing boundary audit. The same-router boundar
 \toprule
 Boundary & Key evidence & Limit \\
 \midrule
-Same-model boundary reserve effect & $\rho=10$: $\Delta$cost -4.42M [CI -7.36M,-1.27M]; $\Delta$viol. -0.0145 [CI -0.0220,-0.0073]; shortage -0.637M [CI -0.976M,-0.300M]; full-MoE family -4.26M [CI -5.43M,-3.04M] & Same-model diagnostic; not cross-model optimal \\
+Same-model boundary reserve effect & $\rho=10$: gate-bin 95.13M vs same-router global 99.55M ($\Delta$cost -4.42M [CI -7.36M,-1.27M]); $\Delta$viol. -0.0145 [CI -0.0220,-0.0073]; shortage -0.637M [CI -0.976M,-0.300M]; full-MoE family -4.26M [CI -5.43M,-3.04M] & Same-model diagnostic; not cross-model optimal \\
 Physical-bin quantile comparator & Boundary phys. 93.82M/0.1010; GWN phys. 84.31M/0.0931; gate 95.13M/0.1021 & Physical bins remain competitive \\
 Cost-ratio applicability & Active at $\rho=5$--10; narrows at 20; $\rho=50$ favors global (+5.93M, +0.0035) & Moderate-cost window only \\
 Full-sample system value & GWN/global 464.07M/0.0901; gate-bin 481.36M/0.1214 & No system-wide dispatch claim \\

@@ -195,24 +195,24 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
     checks = [
         _check("graph_wavenet_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(graph["Overall RMSE"]), "{:.2f}", ("main",)),
         _check("best_strict_cache_baseline_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(best_strict["Overall RMSE"]), "{:.2f}", ("main", "cover")),
-        _check("train_only_router_overall_rmse", "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv", train_only_rmse, "{:.2f}", ("main", "cover", "supplementary")),
-        _check("train_only_rmse_gap_vs_best", "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv", train_only_rmse - best_rmse, "{:.2f}", ("main", "cover")),
-        _check("train_only_router_nmi", "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv", _num(train_only["nmi_mean"]), "{:.3f}", ("main", "cover")),
+        _check("train_only_router_overall_rmse", "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv", train_only_rmse, "{:.2f}", ("cover", "supplementary")),
+        _check("train_only_rmse_gap_vs_best", "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv", train_only_rmse - best_rmse, "{:.2f}", ("cover", "supplementary")),
+        _check("train_only_router_nmi", "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv", _num(train_only["nmi_mean"]), "{:.3f}", ("cover", "supplementary")),
         _check("train_only_router_ari", "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv", _num(train_only["ari_mean"]), "{:.3f}", ("supplementary",)),
         _check("boundary_router_overall_rmse", "artifacts/paper_assets/tables/table_main_benchmark.csv", _metric_mean(boundary["Overall RMSE"]), "{:.2f}", ("main", "supplementary")),
-        _check("boundary_router_nmi", "artifacts/paper_assets/tables/table_wtb_ablation.csv", _metric_mean(boundary_ablation["NMI"]), "{:.4f}", ("main",)),
-        _check("boundary_router_ari", "artifacts/paper_assets/tables/table_wtb_ablation.csv", _metric_mean(boundary_ablation["ARI"]), "{:.4f}", ("main",)),
-        _check("six_step_gate_recall", "artifacts/fair_degradation_replay_20260903/fair_degradation_summary.csv", _num(fair_delay6["gate_recall_mean"]), "{:.3f}", ("main",)),
+        _check("boundary_router_nmi", "artifacts/paper_assets/tables/table_wtb_ablation.csv", _metric_mean(boundary_ablation["NMI"]), "{:.4f}", ("supplementary",)),
+        _check("boundary_router_ari", "artifacts/paper_assets/tables/table_wtb_ablation.csv", _metric_mean(boundary_ablation["ARI"]), "{:.4f}", ("supplementary",)),
+        _check("six_step_gate_recall", "artifacts/fair_degradation_replay_20260903/fair_degradation_summary.csv", _num(fair_delay6["gate_recall_mean"]), "{:.3f}", ("supplementary",)),
         _check("six_step_threshold_recall", "artifacts/fair_degradation_replay_20260903/fair_degradation_summary.csv", _num(fair_delay6["rule_recall_mean"]), "{:.3f}", ("main",)),
-        _check("fifty_percent_availability_rule_recall", "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv", _num(availability_50["threshold_recall_mean"]), "{:.3f}", ("main",)),
+        _check("fifty_percent_availability_rule_recall", "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv", _num(availability_50["threshold_recall_mean"]), "{:.3f}", ("supplementary",)),
         _check("classifier_clean_recall", "artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_summary.csv", _num(classifier_clean["clf_recall_mean"]), "{:.3f}", ("main", "supplementary")),
         _check("classifier_clean_precision", "artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_summary.csv", _num(classifier_clean["clf_precision_mean"]), "{:.3f}", ("main", "supplementary")),
-        _check("gate_clean_precision", "docs/tste_trainonly_rerun_results_20260830.md", 0.630, "{:.3f}", ("main",)),
-        _check("six_step_recall_gain", "artifacts/fair_degradation_replay_20260903/fair_degradation_summary.csv", _num(fair_delay6["gain_mean"]), "{:+.3f}", ("main",)),
+        _check("gate_clean_precision", "docs/tste_trainonly_rerun_results_20260830.md", 0.630, "{:.3f}", ("supplementary",)),
+        _check("six_step_recall_gain", "artifacts/fair_degradation_replay_20260903/fair_degradation_summary.csv", _num(fair_delay6["gain_mean"]), "{:+.3f}", ("supplementary",)),
         _check("early_pitch_cells_recovered", "artifacts/final_evidence_package/export/tables/early_warning_consequence_audit.csv", _num(consequence_delay_6["recovered_cells_vs_rule_mean"]), lambda value: f"{value:.1f}", ("supplementary",)),
-        _check("boundary_gate_bin_cost", "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_summary.csv", _num(allclean_gate["total_cost_mean"]), _fmt_millions, ("main",)),
-        _check("boundary_global_cost", "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_summary.csv", _num(allclean_global["total_cost_mean"]), _fmt_millions, ("main",)),
-        _check("gwn_physical_bin_cost", "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_summary.csv", _num(allclean_gwn_physical["total_cost_mean"]), _fmt_millions, ("main", "supplementary")),
+        _check("boundary_gate_bin_cost", "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_summary.csv", _num(allclean_gate["total_cost_mean"]), _fmt_millions, ("supplementary",)),
+        _check("boundary_global_cost", "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_summary.csv", _num(allclean_global["total_cost_mean"]), _fmt_millions, ("supplementary",)),
+        _check("gwn_physical_bin_cost", "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_summary.csv", _num(allclean_gwn_physical["total_cost_mean"]), _fmt_millions, ("supplementary",)),
         _check("same_model_cost_ci_low", "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_raw_runs.csv", same_model_stats["total_cost"]["ci_low"], _fmt_millions, ("supplementary",)),
         _check("same_model_cost_ci_high", "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_raw_runs.csv", same_model_stats["total_cost"]["ci_high"], _fmt_millions, ("supplementary",)),
         _check("same_model_violation_ci_low", "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_raw_runs.csv", same_model_stats["violation_rate"]["ci_low"], "{:.4f}", ("supplementary",)),
@@ -223,19 +223,19 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         _check("engineering_avoided_shortage_mwh", "docs/tste_trainonly_rerun_results_20260830.md", 637.0, lambda value: f"+{int(round(value))}", ("supplementary",)),
         _check("engineering_delta_cost_mwh", "docs/tste_trainonly_rerun_results_20260830.md", 4420.0, lambda value: f"{int(round(value))}", ("supplementary",)),
         _check("engineering_delta_eur_100", "docs/tste_trainonly_rerun_results_20260830.md", 442000.0, lambda value: f"{int(round(value / 1000.0))}k", ("supplementary",)),
-        _check("anchor_stress_no_patv_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_no_patv["nmi_mean"]), "{:.3f}", ("main",)),
-        _check("anchor_stress_no_pab_mean_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_no_pab["nmi_mean"]), "{:.3f}", ("main",)),
-        _check("anchor_stress_lagged_patv_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_lag_patv["nmi_mean"]), "{:.3f}", ("main",)),
-        _check("anchor_stress_lagged_pab_wspd_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_lag_pab_wspd["nmi_mean"]), "{:.3f}", ("main",)),
-        _check("la_haute_borne_routing_nmi", "artifacts/signature_gate_lhb_guard_20260902/anchor_stress_summary.csv", 0.975, "{:.3f}", ("main",)),
-        _check("la_haute_borne_routing_ari", "artifacts/external_wind_lhb_guard_full_5seed/external_wind_guard.json", _num(lhb_guard["mean_ari"]), "{:.3f}", ("main", "supplementary")),
+        _check("anchor_stress_no_patv_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_no_patv["nmi_mean"]), "{:.3f}", ("supplementary",)),
+        _check("anchor_stress_no_pab_mean_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_no_pab["nmi_mean"]), "{:.3f}", ("supplementary",)),
+        _check("anchor_stress_lagged_patv_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_lag_patv["nmi_mean"]), "{:.3f}", ("supplementary",)),
+        _check("anchor_stress_lagged_pab_wspd_nmi", "artifacts/anchor_stress_guard/anchor_stress_summary.csv", _num(anchor_lag_pab_wspd["nmi_mean"]), "{:.3f}", ("supplementary",)),
+        _check("la_haute_borne_routing_nmi", "artifacts/signature_gate_lhb_guard_20260902/anchor_stress_summary.csv", 0.975, "{:.3f}", ("supplementary",)),
+        _check("la_haute_borne_routing_ari", "artifacts/external_wind_lhb_guard_full_5seed/external_wind_guard.json", _num(lhb_guard["mean_ari"]), "{:.3f}", ("supplementary",)),
         _check("lhb_anchor_patv_zero_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["patv_zero_nmi_mean"]), "{:.3f}", ("supplementary",)),
-        _check("lhb_anchor_boundary_zero_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["boundary_zero_nmi_mean"]), "{:.3f}", ("main", "supplementary")),
+        _check("lhb_anchor_boundary_zero_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["boundary_zero_nmi_mean"]), "{:.3f}", ("supplementary",)),
         _check("lhb_anchor_random_physics_nmi", "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json", _num(lhb_anchor_guard["random_physics_nmi_mean"]), "{:.3f}", ("supplementary",)),
         _check("kelmarsh_penmanshiel_mean_nmi", "artifacts/external_wind_guard_windowfix/external_wind_guard.json", _num(external_guard["mean_nmi"]), "{:.3f}", ("supplementary",)),
-        _check("gate_transition_match_at_step", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[0], "{:.3f}", ("main", "supplementary")),
-        _check("gate_transition_match_lead_3", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[-3], "{:.3f}", ("main", "supplementary")),
-        _check("gate_transition_match_lead_6", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[-6], "{:.3f}", ("main", "supplementary")),
+        _check("gate_transition_match_at_step", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[0], "{:.3f}", ("supplementary",)),
+        _check("gate_transition_match_lead_3", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[-3], "{:.3f}", ("supplementary",)),
+        _check("gate_transition_match_lead_6", "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv", gate_evolution_summary[-6], "{:.3f}", ("supplementary",)),
     ]
 
     risk_h6_file = "artifacts/clean_evidence_v2/risk_layer_benchmark/h6_lead6/results_by_seed.csv"
@@ -280,11 +280,11 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         ].iloc[0]
 
         checks.extend([
-            _check("farm_pcc_savings_vs_global", farm_pcc_file, _num(pcc_global["delta_mean"]), _fmt_millions, ("main", "cover")),
-            _check("farm_pcc_ci_low_vs_global", farm_pcc_file, _num(pcc_global["ci_low"]), _fmt_millions, ("main", "cover")),
-            _check("farm_pcc_ci_high_vs_global", farm_pcc_file, _num(pcc_global["ci_high"]), _fmt_millions, ("main", "cover")),
-            _check("farm_pcc_savings_vs_gaussian", farm_pcc_file, _num(pcc_gaussian["delta_mean"]), _fmt_millions, ("main", "cover")),
-            _check("farm_pcc_transitional_savings_vs_soft_pab", farm_pcc_file, _num(pcc_trans_pab["delta_mean"]), _fmt_millions, ("main", "cover")),
+            _check("farm_pcc_savings_vs_global", farm_pcc_file, _num(pcc_global["delta_mean"]), _fmt_millions, ("cover", "supplementary")),
+            _check("farm_pcc_ci_low_vs_global", farm_pcc_file, _num(pcc_global["ci_low"]), _fmt_millions, ("cover", "supplementary")),
+            _check("farm_pcc_ci_high_vs_global", farm_pcc_file, _num(pcc_global["ci_high"]), _fmt_millions, ("cover", "supplementary")),
+            _check("farm_pcc_savings_vs_gaussian", farm_pcc_file, _num(pcc_gaussian["delta_mean"]), _fmt_millions, ("cover", "supplementary")),
+            _check("farm_pcc_transitional_savings_vs_soft_pab", farm_pcc_file, _num(pcc_trans_pab["delta_mean"]), _fmt_millions, ("cover", "supplementary")),
         ])
 
     markov_file = "artifacts/markov_gilbert_eval_honest/markov_gilbert_guard.json"
@@ -293,9 +293,9 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         methods = markov_guard["methods_summary"]
         comp = markov_guard["honest_comparison"]
         checks.extend([
-            _check("markov_corrupted_recall", markov_file, _num(methods["corrupted_routed_posterior"]["recall_mean"]), "{:.3f}", ("main", "cover")),
-            _check("markov_stale_rule_recall", markov_file, _num(methods["stale_threshold_rule_honest"]["recall_mean"]), "{:.3f}", ("main", "cover")),
-            _check("markov_f1_gain", markov_file, _num(comp["f1_delta_mean (model - rule_honest)"]), "{:+.3f}", ("main", "cover")),
+            _check("markov_corrupted_recall", markov_file, _num(methods["corrupted_routed_posterior"]["recall_mean"]), "{:.3f}", ("cover", "supplementary")),
+            _check("markov_stale_rule_recall", markov_file, _num(methods["stale_threshold_rule_honest"]["recall_mean"]), "{:.3f}", ("cover", "supplementary")),
+            _check("markov_f1_gain", markov_file, _num(comp["f1_delta_mean (model - rule_honest)"]), "{:+.3f}", ("cover", "supplementary")),
         ])
 
     iec_file = "artifacts/iec_density_rolling_eval/iec_rolling_guard.json"
@@ -304,7 +304,7 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
         checks.extend([
             _check("kelmarsh_walkforward_pooled_savings", iec_file, _num(iec_guard["kelmarsh_walkforward_pooled_delta_cost"]), _fmt_millions, ("supplementary",)),
             _check("penmanshiel_walkforward_pooled_savings", iec_file, _num(iec_guard["penmanshiel_walkforward_pooled_delta_cost"]), _fmt_millions, ("supplementary",)),
-            _check("lhb_walkforward_pooled_delta", iec_file, _num(iec_guard["lhb_walkforward_pooled_delta_cost"]), lambda v: f"+{v / 1_000_000.0:.2f}M", ("main", "supplementary")),
+            _check("lhb_walkforward_pooled_delta", iec_file, _num(iec_guard["lhb_walkforward_pooled_delta_cost"]), lambda v: f"+{v / 1_000_000.0:.2f}M", ("supplementary",)),
             _check("lhb_annual_pooled_delta", iec_file, _num(iec_guard["lhb_pooled_delta_cost"]), lambda v: f"+{int(round(v / 1000.0))}k", ("main", "supplementary")),
             _check("kelmarsh_static_freeze_delta", iec_file, _num(iec_guard["kelmarsh_static_freeze_delta_cost"]), _fmt_millions, ("supplementary",)),
             _check("penmanshiel_static_freeze_delta", iec_file, _num(iec_guard["penmanshiel_static_freeze_delta_cost"]), _fmt_millions, ("supplementary",)),
