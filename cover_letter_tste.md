@@ -8,7 +8,7 @@
 **Contact:** `dujuntao@aufe.edu.cn`  
 
 **Manuscript Title:**  
-*Operational Boundaries of Aerodynamic Power Rules, Recalibration, and Learned Representations under SCADA Telemetry Degradation*
+*When Aerodynamic States Become Latent: Reserve-Risk Screening under Degraded Wind-Turbine SCADA Telemetry*
 
 **Authors:**  
 Junyu Li and Juntao Du
@@ -19,7 +19,7 @@ Junyu Li and Juntao Du
 
 Dear Editor-in-Chief and Editorial Board,
 
-We submit our original research manuscript entitled **"Operational Boundaries of Aerodynamic Power Rules, Recalibration, and Learned Representations under SCADA Telemetry Degradation"** for consideration as a Regular Paper in *IEEE Transactions on Sustainable Energy* (TSTE).
+We submit our original research manuscript entitled **"When Aerodynamic States Become Latent: Reserve-Risk Screening under Degraded Wind-Turbine SCADA Telemetry"** for consideration as a Regular Paper in *IEEE Transactions on Sustainable Energy* (TSTE).
 
 The manuscript complies with the strict IEEE double-column 10-page length requirement (the main paper is exactly 10.0 pages including all text, equations, tables, figures, and 38 references). A comprehensive 16.0-page Supplementary Material is provided to support reproducible verification, extended multi-regime phase scans, and mathematical derivations without burdening the main text.
 

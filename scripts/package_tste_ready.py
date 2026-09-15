@@ -169,7 +169,7 @@ def main():
         json.dump({
             "target_journal": "IEEE Transactions on Sustainable Energy (TSTE)",
             "article_type": "Regular Paper",
-            "title": "Operational Boundaries of Aerodynamic Power Rules, Recalibration, and Learned Representations under SCADA Telemetry Degradation",
+            "title": "When Aerodynamic States Become Latent: Reserve-Risk Screening under Degraded Wind-Turbine SCADA Telemetry",
             "authors": ["Junyu Li", "Juntao Du (Corresponding Author)"],
             "main_pages": 10,
             "supplementary_pages": len(supp_reader.pages),
@@ -180,7 +180,7 @@ def main():
     readme_content = f"""# IEEE Transactions on Sustainable Energy (TSTE)
 ## Official Submission-Ready Package
 
-**Manuscript Title:** Operational Boundaries of Aerodynamic Power Rules, Recalibration, and Learned Representations under SCADA Telemetry Degradation  
+**Manuscript Title:** When Aerodynamic States Become Latent: Reserve-Risk Screening under Degraded Wind-Turbine SCADA Telemetry  
 **Authors:** Junyu Li and Juntao Du (Corresponding Author, `dujuntao@aufe.edu.cn`)  
 **Affiliation:** School of Statistics and Applied Mathematics, Anhui University of Finance and Economics  
 **Article Type:** Regular Paper (Double-column, exactly 10.0 pages)  

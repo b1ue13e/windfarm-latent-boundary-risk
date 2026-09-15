@@ -20,15 +20,15 @@ header-includes:
   - \usepackage{etoolbox}
   - \setlist[itemize]{leftmargin=1.4em,nosep}
   - \setlist[enumerate]{leftmargin=1.4em,nosep,itemsep=0.2ex}
-  - \AtBeginDocument{\renewenvironment{CSLReferences}[2]{\begin{list}{}{\scriptsize\setlength{\itemindent}{0pt}\setlength{\leftmargin}{0pt}\setlength{\parsep}{0pt}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}}{\end{list}}}
+  - \AtBeginDocument{\renewenvironment{CSLReferences}[2]{\begin{list}{}{\fontsize{5.6pt}{6.5pt}\selectfont\setlength{\itemindent}{0pt}\setlength{\leftmargin}{0pt}\setlength{\parsep}{0pt}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}}{\end{list}}}
   - \AtBeginDocument{\renewcommand{\CSLBlock}[1]{#1\par}}
   - \AtBeginDocument{\setlength{\csllabelwidth}{1.8em}}
-  - \AtBeginDocument{\renewcommand{\CSLRightInline}[1]{\parbox[t]{\dimexpr\linewidth - \csllabelwidth\relax}{\scriptsize\ignorespaces#1}}}
-  - \AtBeginDocument{\renewcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\scriptsize\strut#1}}}
+  - \AtBeginDocument{\renewcommand{\CSLRightInline}[1]{\parbox[t]{\dimexpr\linewidth - \csllabelwidth\relax}{\fontsize{5.6pt}{6.5pt}\selectfont\ignorespaces#1}}}
+  - \AtBeginDocument{\renewcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\fontsize{5.6pt}{6.5pt}\selectfont\strut#1}}}
   - \makeatletter
-  - \def\section{\@startsection{section}{1}{\z@}{0.85ex plus 0.2ex minus 0.15ex}{0.3ex plus 0.1ex}{\normalfont\footnotesize\bfseries\centering\scshape}}
-  - \def\subsection{\@startsection{subsection}{2}{\z@}{0.6ex plus 0.15ex minus 0.1ex}{0.2ex plus 0.1ex}{\normalfont\normalsize\itshape}}
-  - \def\subsubsection{\@startsection{subsubsection}{3}{\z@}{0.45ex plus 0.15ex minus 0.1ex}{0.15ex plus 0.08ex}{\normalfont\footnotesize\itshape}}
+  - \def\section{\@startsection{section}{1}{\z@}{0.75ex plus 0.15ex minus 0.1ex}{0.25ex plus 0.08ex}{\normalfont\footnotesize\bfseries\centering\scshape}}
+  - \def\subsection{\@startsection{subsection}{2}{\z@}{0.5ex plus 0.1ex minus 0.08ex}{0.18ex plus 0.06ex}{\normalfont\small\itshape}}
+  - \def\subsubsection{\@startsection{subsubsection}{3}{\z@}{0.4ex plus 0.1ex minus 0.08ex}{0.12ex plus 0.05ex}{\normalfont\footnotesize\itshape}}
   - \makeatother
   - \setcounter{topnumber}{4}
   - \setcounter{bottomnumber}{4}
@@ -107,7 +107,7 @@ Dynamic mixture-of-experts (MoE) routing has been proposed to partition complex 
 
 # Problem Formulation and Latent Operating-Boundary Framework
 
-## Level-1 Pre-Dispatch Risk Screening and Asymmetric Newsvendor Loss (PSREI)
+## Level-1 Pre-Dispatch Risk Screening and Asymmetric Decision Problem (PSREI)
 
 Operating reserve screening functions as a pre-dispatch risk assessment mechanism to mitigate costly real-time generation imbalances [@bremnes2004quantile; @nielsen2006quantile]. 
 
@@ -216,19 +216,29 @@ where $\mathrm{Agg}_{\mathrm{in}}$ and $\mathrm{Agg}_{\mathrm{out}}$ denote norm
 In nominal operation, the boundary head ingests $\mathbf{a}_{i,t}^{\mathrm{WTB}} = [\texttt{Wspd}_{i,t}, \texttt{Pab\_mean}_{i,t}, s^{\mathrm{wake}}_{i,t}, \texttt{Patv}_{i,t}]$. Under pitch-withheld conditions, $\texttt{Pab\_mean}_{i,t}$ is strictly excluded, and the representation learns to reconstruct $Z_{i,t}$ from secondary consequences alone.
 
 
-## Architectural Comparators, Residual Quantile Heads, and Prior-Alignment Optimization
+## Reserve-Tail Estimation and Residual Quantile Sizing
 
-The framework maintains an explicit mathematical separation among three distinct inferential objects:
-1. \textbf{Posterior operating-regime inference}: $\pi_{i,t}^{\mathrm{pitch}} = p(Z_{i,t} = 2 \mid \mathbf{X}_{\le t})$, inferring the probability of active blade-pitch regulation;
+To shield grid operations from unhedged balancing exposure, reserve margins must target the asymmetric shortfall distribution rather than symmetric point forecasts. The framework maintains an explicit mathematical separation among three distinct inferential objects:
+1. \textbf{Posterior operating-state inference}: $\pi_{i,t}^{\mathrm{pitch}} = p(Z_{i,t} = 2 \mid \mathbf{X}_{\le t})$, estimating the probability of active blade-pitch regulation;
 2. \textbf{Point power trajectory forecasting}: $\hat{\mathbf{y}}_{i,t+1:t+P} = \mathbb{E}[\mathbf{y}_{i,t+1:t+P} \mid \mathbf{X}_{\le t}]$, providing the scheduled dispatch profile;
-3. \textbf{Reserve-tail quantile estimation}: $\hat{r}_{i,t} = Q_{q^*}(s_{i,t} \mid \mathbf{X}_{\le t})$, sizing upward reserve to cover asymmetric shortfall exposure $s_{i,t} = \max(\hat{y}_{i,t} - y_{i,t}, 0)$ at $q^* = 0.90$.
+3. \textbf{Reserve-tail quantile estimation}: $\hat{r}_{i,t} = Q_{q^*}(s_{i,t} \mid \mathbf{X}_{\le t})$, sizing upward reserve to cover asymmetric shortfall exposure $s_{i,t} = \max(\hat{y}_{i,t} - y_{i,t}, 0)$ at Newsvendor critical fractile $q^* = 1 - 1/\rho = 0.90$.
 
-To interrogate the structural mechanism responsible for reserve-screening gains, we benchmark three architectural configurations under matched parameter capacity:
-1. \textbf{STGQ-Modular}: A decoupled architecture pairing frozen spatio-temporal backbone representations $\mathbf{h}_{i,t}$ with a dedicated residual quantile head $\hat{r}_{i,t} = \mathrm{MLP}_{\mathrm{res}}([\mathbf{h}_{i,t}; \mathbf{x}_{\mathrm{anchor}}])$ estimating reserve margins via pinball loss ($q^*=0.90$); alternatively, in posterior-binned policies, $\pi_{i,t}^{\mathrm{pitch}}$ defines quantile binning thresholds over validation residuals;
-2. \textbf{STGQ-Dense}: An unrouted baseline coupling spatial graph embeddings $\mathbf{h}_{i,t}$ to a shared linear projection for point forecasts $\hat{\mathbf{y}}_{i,t+1:t+P}$ and a joint dense quantile head;
-3. \textbf{STGQ-Routed}: An architectural comparator evaluating dynamic Mixture-of-Experts (MoE) routing, where gating logits $\mathbf{z}_{i,t} = \mathrm{MLP}_{\mathrm{gate}}([\mathbf{h}_{i,t}; \mathbf{a}_{i,t}])$ compute soft routing weights $\mathbf{g}_{i,t} = \mathrm{softmax}(\mathbf{z}_{i,t}/\tau_{\mathrm{gate}})$ to combine specialized expert outputs $\hat{\mathbf{y}}_{i,t+1:t+P} = \sum_{e=1}^E g_{i,t}^{(e)} f_e(\mathbf{h}_{i,t})$.
+Directly estimating extreme quantiles on raw power trajectories via uncalibrated neural pinball regression introduces severe tail conservatism: without hard physical saturation bounds, direct neural quantile heads over-procure reserve margins by $>1.6\text{M kW}$ (violation rate $<1.2\%$, Table~\ref{tab:h6-benchmark}), incurring prohibitive capacity holding costs. To resolve this pathology, reserve-tail estimation is decoupled: point trajectories $\hat{\mathbf{y}}$ anchor nominal expectations, while upward reserve margins $\hat{r}_{i,t}$ are estimated conditionally on forecast residuals:
+\begin{equation}
+\hat{r}_{i,t} = \mathrm{MLP}_{\mathrm{res}}([\mathbf{h}_{i,t}; \, \mathbf{x}_{\mathrm{anchor}}]), \quad \text{minimized under } \mathcal{L}_{q^*}(s_{i,t}, \hat{r}_{i,t}),
+\label{eq:residual-quantile}
+\end{equation}
+or binned empirically over held-out validation residuals conditioned on the latent state posterior $\pi_{i,t}^{\mathrm{pitch}}$. This guarantees that reserve sizing remains calibrated to actual residual dispersion across distinct operating regimes.
 
-The models are trained with a multi-task objective combining multi-step trajectory prediction loss $\mathcal{L}_{\mathrm{pred}}$ with auxiliary physical regularizers:
+
+## Architecture Variants as Mechanism Ablations
+
+To isolate the causal mechanism driving reserve-screening performance and determine whether dynamic Mixture-of-Experts (MoE) routing provides genuine operational value over unrouted dense or modular representations, we formulate three architectural variants under matched parameter capacity:
+1. \textbf{STGQ-Modular} (Decoupled Canonical Architecture): A modular architecture pairing frozen spatio-temporal representations $\mathbf{h}_{i,t}$ with a dedicated residual quantile head $\hat{r}_{i,t} = \mathrm{MLP}_{\mathrm{res}}([\mathbf{h}_{i,t}; \mathbf{x}_{\mathrm{anchor}}])$ or posterior-binned empirical quantiles. Decoupling representation learning from quantile regression prevents auxiliary decision loss from distorting spatio-temporal feature extraction;
+2. \textbf{STGQ-Dense} (Unrouted Joint Baseline): An unrouted baseline coupling spatial graph embeddings $\mathbf{h}_{i,t}$ directly to a shared linear projection for point forecasts $\hat{\mathbf{y}}_{i,t+1:t+P}$ and a joint dense quantile head, omitting dynamic routing;
+3. \textbf{STGQ-Routed} (Dynamic MoE Gating Comparator): An architectural comparator evaluating dynamic Mixture-of-Experts (MoE) routing [@shazeer2017outrageously; @fedus2022switch], where gating logits $\mathbf{z}_{i,t} = \mathrm{MLP}_{\mathrm{gate}}([\mathbf{h}_{i,t}; \mathbf{a}_{i,t}])$ compute soft routing weights $\mathbf{g}_{i,t} = \mathrm{softmax}(\mathbf{z}_{i,t}/\tau_{\mathrm{gate}})$ to combine specialized expert outputs: $\hat{\mathbf{y}}_{i,t+1:t+P} = \sum_{e=1}^E g_{i,t}^{(e)} f_e(\mathbf{h}_{i,t})$.
+
+The joint models are trained with a multi-task objective combining multi-step trajectory prediction loss $\mathcal{L}_{\mathrm{pred}}$ with auxiliary physical regularizers:
 \begin{equation}
 \mathcal{L} = \mathcal{L}_{\mathrm{pred}} + \lambda_{\mathrm{align}}\mathcal{L}_{\mathrm{align}} + \lambda_{\mathrm{aux}}\mathcal{L}_{\mathrm{aux}} + \lambda_{\mathrm{smooth}}\mathcal{L}_{\mathrm{smooth}} + \lambda_{\mathrm{bal}}\mathcal{L}_{\mathrm{bal}} + \lambda_{\mathrm{force}}\mathcal{L}_{\mathrm{force}},
 \label{eq:multi-task-loss}
@@ -270,9 +280,9 @@ We establish a dual-level resampling hierarchy: (1) \textit{Model Initialization
 
 # Empirical Findings and Hypothesis Testing
 
-## Result 1: Pristine Telemetry Favors Deterministic Physical Rules (RQ1)
+## Result 1: Physics under Fresh Telemetry (RQ1)
 
-Table~\ref{tab:h6-benchmark} summarizes the multi-day replay dispatch benchmark for 1-hour ahead operational dispatch ($h=6$) across 134 turbines over the 35-day test split under nominal clean telemetry. Table~\ref{tab:h6-paired} reports seed-paired screening metric differences $\Delta\text{Screening Metric} = \text{Screening}_{\text{Baseline}} - \text{Screening}_{\text{STGQ-Routed}}$, along with 95\% bootstrap confidence intervals.
+Table~\ref{tab:h6-benchmark} summarizes the multi-day replay dispatch benchmark for 1-hour ahead operational dispatch ($h=6$) across 134 turbines over the 35-day test split under nominal clean telemetry. Table~\ref{tab:h6-paired} reports seed-paired hypothesis tests and mechanism ablations across operational regimes, along with 95\% day-block cluster bootstrap confidence intervals.
 
 \begin{table*}[!t]
 \centering
@@ -319,42 +329,42 @@ Regime & Evaluated Model & \shortstack{Penalized Reserve-Shortfall\\Energy (kW$\
 
 \begin{table}[!htbp]
 \centering
-\fontsize{5.2pt}{6.0pt}\selectfont
+\fontsize{5.0pt}{5.8pt}\selectfont
 \setlength{\tabcolsep}{0.6pt}
 \renewcommand{\arraystretch}{0.75}
-\caption{Seed-Paired Difference in Penalized Reserve-Shortfall Energy against STGQ-Routed ($h=6$, $\Delta\text{Screening Metric} = \text{Screening}_{\text{Baseline}} - \text{Screening}_{\text{STGQ-Routed}}$, positive indicates STGQ-Routed reduces surrogate reserve screening penalty at $\rho=10$).}
+\caption{Seed-Paired Operational Hypothesis Tests and Mechanism Ablation Contrasts ($h=6$, 1-Hour Ahead Dispatch, Cost Ratio $\rho=10$).}
 \label{tab:h6-paired}
 \begin{tabularx}{\columnwidth}{@{}llcc>{\raggedright\arraybackslash}X@{}}
 \toprule
-Regime & Baseline Model & \shortstack{$\Delta\text{Screening}$\\$\text{Metric (kW}\cdot\text{h)}$} & 95\% Bootstrap CI & Sig. \& Operational Verdict \\
+Regime & Evaluated Contrast / Model & \shortstack{$\Delta\text{PSREI}$\\$\text{(kW}\cdot\text{h)}$} & 95\% Bootstrap CI & Operational Verdict \& Hypothesis Test \\
 \midrule
-\textbf{Clean} & Global Quantile & +39,962 & [+12,556, +67,367] & Supported reduction (95\% CI excludes zero) \\
- & \shortstack[l]{Cont. Physical\\Quantile} & $-$77,659 & [$-$106,175, $-$49,143] & Physical rule lower metric (95\% CI excludes zero) \\
- & Missingness GBDT & +279,576 & [+249,539, +309,613] & Supported reduction (95\% CI excludes zero) \\
- & \shortstack[l]{Frozen-Embedding\\Direct Quantile MLP} & +690,695 & [+448,769, +932,621] & Tail-conservative Direct MLP \\
- & STGQ-Dense & +32,154 & [$-$1,148, +65,456] & Inconclusive difference (95\% CI includes zero) \\
+\textbf{Clean} & \shortstack[l]{Cont. Phys. vs. STGQ-Routed\\ \scriptsize (Physical Dominance)} & $-$77,659 & [$-$106,175, $-$49,143] & Physical rule strictly superior ($p < 0.01$; 95\% CI excludes zero) \\
+ & \shortstack[l]{STGQ-Dense vs. STGQ-Routed\\ \scriptsize (MoE Mechanism Ablation)} & +32,154 & [$-$1,148, +65,456] & Routing advantage falsified (95\% CI includes zero, $p=0.380$) \\
+ & Global Quantile vs. STGQ-Routed & +39,962 & [+12,556, +67,367] & Regime-blind baseline penalty (95\% CI excludes zero) \\
+ & Missingness GBDT vs. STGQ-Routed & +279,576 & [+249,539, +309,613] & Significant tabular model deficit (95\% CI excludes zero) \\
+ & Frozen Direct MLP vs. STGQ-Routed & +690,695 & [+448,769, +932,621] & Severe tail conservatism in uncalibrated direct MLP \\
 \midrule
-\textbf{Delay-6} & Global Quantile & +17,010 & [+3,486, +30,535] & Supported reduction (95\% CI excludes zero) \\
- & \shortstack[l]{Cont. Physical\\Quantile} & $-$27,126 & [$-$46,907, $-$7,346] & Target exceeded ($12.20\%$ viol.) \\
- & Missingness GBDT & +156,411 & [+140,004, +172,817] & Supported reduction (95\% CI excludes zero) \\
- & \shortstack[l]{Frozen-Embedding\\Direct Quantile MLP} & +518,658 & [+307,212, +730,104] & Tail-conservative Direct MLP \\
- & STGQ-Dense & +16,267 & [+7,131, +25,402] & Supported reduction (95\% CI excludes zero) \\
+\textbf{Delay-6} & \shortstack[l]{Cont. Physical Quantile\\ \scriptsize (Boundary Breakdown)} & $-$27,126 & [$-$46,907, $-$7,346] & Unadapted physical rule breaches target ($12.20\%$ violation) \\
+ & \shortstack[l]{STGQ-Dense vs. STGQ-Routed\\ \scriptsize (MoE Mechanism Ablation)} & +16,267 & [+7,131, +25,402] & Minor $1.40\%$ marginal difference; dense baseline sufficient \\
+ & Global Quantile vs. STGQ-Routed & +17,010 & [+3,486, +30,535] & Boundary representation recovery (95\% CI excludes zero) \\
+ & Missingness GBDT vs. STGQ-Routed & +156,411 & [+140,004, +172,817] & Significant tabular model deficit under latency \\
+ & Frozen Direct MLP vs. STGQ-Routed & +518,658 & [+307,212, +730,104] & Severe tail conservatism in uncalibrated direct MLP \\
 \midrule
-\textbf{Noise} & Global Quantile & +26,475 & [+9,121, +43,828] & Supported reduction (95\% CI excludes zero) \\
- & \shortstack[l]{Cont. Physical\\Quantile} & $-$28,804 & [$-$47,555, $-$10,053] & Physical rule lower metric (95\% CI excludes zero) \\
- & Missingness GBDT & +287,563 & [+248,847, +326,279] & Supported reduction (95\% CI excludes zero) \\
- & \shortstack[l]{Frozen-Embedding\\Direct Quantile MLP} & +612,832 & [+413,733, +811,931] & Tail-conservative Direct MLP \\
- & STGQ-Dense & +21,006 & [+2,419, +39,594] & Supported reduction (95\% CI excludes zero) \\
+\textbf{Noise} & \shortstack[l]{Cont. Phys. vs. STGQ-Routed\\ \scriptsize (Physical Dominance)} & $-$28,804 & [$-$47,555, $-$10,053] & Physical rule holds under zero-delay sensor noise \\
+ & \shortstack[l]{STGQ-Dense vs. STGQ-Routed\\ \scriptsize (MoE Mechanism Ablation)} & +21,006 & [+2,419, +39,594] & Minor $2.05\%$ difference between dense and routed heads \\
+ & Global Quantile vs. STGQ-Routed & +26,475 & [+9,121, +43,828] & Baseline penalty under noise \\
+ & Missingness GBDT vs. STGQ-Routed & +287,563 & [+248,847, +326,279] & Significant tabular model deficit \\
+ & Frozen Direct MLP vs. STGQ-Routed & +612,832 & [+413,733, +811,931] & Severe tail conservatism in uncalibrated direct MLP \\
 \midrule
-\textbf{Markov} & Global Quantile & +39,506 & [+15,961, +63,052] & Supported reduction (95\% CI excludes zero) \\
- & \shortstack[l]{Cont. Physical\\Quantile} & $-$82,754 & [$-$111,026, $-$54,482] & Physical rule lower metric (95\% CI excludes zero) \\
- & Missingness GBDT & +271,316 & [+245,044, +297,588] & Supported reduction (95\% CI excludes zero) \\
- & \shortstack[l]{Frozen-Embedding\\Direct Quantile MLP} & +689,714 & [+448,689, +930,739] & Tail-conservative Direct MLP \\
- & STGQ-Dense & +29,453 & [$-$2,874, +61,779] & Inconclusive difference (95\% CI includes zero) \\
+\textbf{Markov} & \shortstack[l]{Cont. Phys. vs. STGQ-Routed\\ \scriptsize (Physical Dominance)} & $-$82,754 & [$-$111,026, $-$54,482] & Physical rule superior during packet drop if unlagged \\
+ & \shortstack[l]{STGQ-Dense vs. STGQ-Routed\\ \scriptsize (MoE Mechanism Ablation)} & +29,453 & [$-$2,874, +61,779] & Routing advantage falsified (95\% CI includes zero) \\
+ & Global Quantile vs. STGQ-Routed & +39,506 & [+15,961, +63,052] & Baseline penalty under burst packet drop \\
+ & Missingness GBDT vs. STGQ-Routed & +271,316 & [+245,044, +297,588] & Significant tabular model deficit \\
+ & Frozen Direct MLP vs. STGQ-Routed & +689,714 & [+448,689, +930,739] & Severe tail conservatism in uncalibrated direct MLP \\
 \bottomrule
 \end{tabularx}
 \vspace{1mm}
-\raggedright\tiny Note: Statistical verdicts are based on empirical 95\% confidence intervals computed via day-block cluster bootstrap over the 35 test days (1,000 resamples of complete diurnal blocks). Supported reduction denotes 95\% CI strictly excluding zero; Inconclusive difference denotes 95\% CI including zero (indicating insufficient evidence of an operational difference resulting from shared representation learning).
+\raggedright\tiny Note: Statistical verdicts are based on empirical 95\% confidence intervals computed via day-block cluster bootstrap over 35 test days (1,000 resamples of complete diurnal blocks). STGQ-Routed serves strictly as an architectural mechanism-ablation comparator testing dynamic MoE gating against unrouted representations. Inconclusive difference denotes 95\% CI crossing zero.
 \end{table}
 
 The empirical evidence directly challenges the presumption that deep neural architectures universally outperform physical models. Under pristine telemetry ($\tau = 0$), Continuous Physical Quantile achieves the lowest surrogate reserve screening cost among all evaluated methods ($589{,}535 \pm 77{,}390\text{ kW}\cdot\text{h}$ at immediate dispatch $h=1$ and $881{,}367 \pm 95{,}741\text{ kW}\cdot\text{h}$ at 1-hour dispatch $h=6$, with compliant $\sim 6.8\%$ violation). It substantially outperforms both unrouted dense networks (STGQ-Dense: $991{,}181\text{ kW}\cdot\text{h}$) and dynamically routed architectures (STGQ-Routed: $959{,}027\text{ kW}\cdot\text{h}$). As confirmed in Table~\ref{tab:h6-paired}, the seed-paired difference between Continuous Physical Quantile and STGQ-Routed is $-77{,}659\text{ kW}\cdot\text{h}$, with a 95\% block bootstrap confidence interval strictly excluding zero ($[-106{,}175, -49{,}143]$). 
@@ -362,7 +372,7 @@ The empirical evidence directly challenges the presumption that deep neural arch
 This finding establishes that when inflow wind speed and blade pitch angle are fresh and directly observable, deterministic aerodynamic equations provide optimal reserve screening. Neural networks, lacking hard physical saturation bounds, introduce unnecessary variance under nominal telemetry.
 
 
-## Result 2: Telemetry Staleness Triggers Boundary Breakdown (RQ1) \label{sec:physical-breakdown}
+## Result 2: Stale-State Boundary Failure (RQ1) \label{sec:physical-breakdown}
 
 While deterministic physical rules excel under fresh data, Table~\ref{tab:h6-benchmark} exposes their \textbf{catastrophic reliability breakdown} under telemetry staleness. Under a 60-minute latency contingency stress test (Delay-6), deterministic physical curves evaluate stale state tuples $(v_{t-\tau}, \beta_{t-\tau})$. Near rated wind speed, the localized slope discontinuity (\ref{eq:sensitivity-cliff}) amplifies delayed-inflow errors: turbines that have crossed into active blade-pitch regulation ($Z_t = 2$) are evaluated with obsolete fine pitch ($\beta_{t-\tau} \approx 0^\circ$), over-extrapolating power output along the steep cubic trajectory (\ref{eq:stale-phys}).
 
@@ -418,7 +428,7 @@ In contrast, learned representations (STGQ-Modular) reconstruct operating states
 As detailed in Table~\ref{tab:phase-scan}, STGQ-Modular achieves $755{,}794\text{ kW}\cdot\text{h}$ at $\tau=0$ (an $8.3\%$ saving of $68{,}599\text{ kW}\cdot\text{h}$ over recalibrated physics) and maintains consistent reserve screening reductions of $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ across all latencies. Furthermore, learned representations double transition-window recall ($0.416$ vs. $0.196$ for degraded physics). This confirms that representation learning provides essential utility when primary aerodynamic state variables are withheld.
 
 
-## Result 5: Operating-Regime Classification Accuracy Does Not Equal Decision Value (RQ3)
+## Result 5: Classification Accuracy Does Not Equal Reserve Value (RQ3)
 
 A critical question in operational machine learning is whether superior classification accuracy translates directly into superior reserve screening performance. To interrogate this hypothesis, we benchmark an independent sequence classifier (Graph WaveNet coupled to a live-anchor classifier) against joint representation models using empirical records from completed control benchmarks (\texttt{modular\_classifier\_reserve\_summary.csv}).
 
@@ -427,7 +437,7 @@ Under nominal telemetry, the independent classifier achieves perfect transition 
 This operational penalty occurs because discrete classification errors in independent models are decoupled from forecast residual magnitudes. Independent classifiers frequently misclassify regimes during steep wind-speed ramps where forecast residuals are largest, incurring disproportionately severe Newsvendor penalties. In contrast, joint representation models couple latent state awareness directly with spatio-temporal feature embeddings, ensuring that regime uncertainty is reflected in residual quantile sizing. This proves that classification accuracy is not equivalent to reserve screening value.
 
 
-## Result 6: Mechanism Falsification: Dynamic MoE Routing Confers No Statistical Advantage (RQ3) \label{sec:modular-baseline}
+## Result 6: MoE Mechanism Falsification (RQ3) \label{sec:modular-baseline}
 
 Benchmarking capacity-matched neural architectures directly tests whether dynamic Mixture-of-Experts routing provides operational benefits over unrouted dense representations. Across all evaluated conditions, the hypothesis that dynamic expert routing is the source of reserve screening improvements is \textbf{falsified}:
 
@@ -442,7 +452,7 @@ Benchmarking capacity-matched neural architectures directly tests whether dynami
 These findings confirm that the operational benefit stems from consequence-based latent state representation and calibrated residual quantile estimation, not from dynamic expert specialization.
 
 
-## Result 7: Deployment Boundaries: Failed Generic Abstention and Cross-Farm Limits \label{sec:cross-farm}
+## Result 7: Deployment, Abstention, and Cross-Farm Boundaries \label{sec:cross-farm}
 
 \textbf{Failure of Heuristic Selective Abstention:} Benchmarking selective decision abstention against random rejection and uniform reserve margin expansion (Supplementary Table~A10f) reveals that heuristic uncertainty scores ($U = \Delta r + 50 H(\pi)$) fail under multi-step latency: selective refusal at confidence threshold $c=0.90$ yields a fleet violation rate of $9.44\%$, which is statistically indistinguishable from random rejection ($9.50\%$, $p > 0.40$). In contrast, uniform reserve margin expansion achieves an $8.29\%$ violation rate while saving $37{,}823\text{ kW}\cdot\text{h}$, strictly Pareto-dominating heuristic refusal. Stale telemetry degrades both point forecasts and uncertainty estimators, proving that generic predictive uncertainty cannot identify unsafe operating states under prolonged telemetry degradation.
 
