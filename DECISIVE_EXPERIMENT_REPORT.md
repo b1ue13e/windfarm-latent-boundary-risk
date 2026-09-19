@@ -50,13 +50,13 @@ The investigation was structured into 15 rigorous, sequential phases to eliminat
   - **B0 Global Empirical Quantile**: High reserve overspending ($9.22\text{M}$ at $h=1$, $16.79\text{M}$ at $h=6$).
   - **B1 Conditional Wind-Speed Bins**: Robust steady-state performance ($7.14\text{M}$ at $h=1$, $14.55\text{M}$ at $h=6$, compliant $7.4\%$--$8.5\%$ violation).
   - **B2 Linear Quantile Regression**: Under-allocates reserves, surging violation rates to $17.0\%$--$41.5\%$.
-  - **B3 Quantile GBDT**: Excels at short horizon ($h=1$, $6.49\text{M}$ clean / $6.41\text{M}$ pitch-withheld), but **catastrophically breaks down at $h=6$ (surging to 16.23% clean and 14.98% pitch-withheld violation)** due to failure to model spatio-temporal wake advection.
+  - **B3 Quantile GBDT**: Excels at short horizon ($h=1$, $6.49\text{M}$ clean / $6.41\text{M}$ pitch-withheld), but **catastrophically breaks down at $h=6$ (surging to 16.23% clean and 14.98% pitch-withheld violation)**, breaching the nominal 10% Newsvendor violation target ($q^*=0.90$) due to failure to model spatio-temporal wake advection.
   - **B4 Direct MLP**: Matches compliance ($7.5\%$--$10.6\%$ violation).
 
 ### Phase 5: Factorial Latent-Boundary Ablation (Variants A to J)
 - **Negative Controls**:
   - Permuting regime labels (`E_Shuffled_State`) increases cost to $17.93\text{M kWh}$.
-  - Random posterior conditioning (`F_Random_Posterior`) surges violation to **$11.41\%$**, breaching the 10% grid reliability rule.
+  - Random posterior conditioning (`F_Random_Posterior`) surges violation to **$11.41\%$**, exceeding the nominal 10% Newsvendor violation target.
 - **MoE Dynamic Routing Parity**:
   - Dense multitask head (`I_STGQ_Dense`, $15,471,506 \text{ kWh}$) matches or outperforms Routed MoE (`J_STGQ_Routed`, $15,768,203 \text{ kWh}$, $p=0.380$). MoE confers no benefit.
 - **Value of Boundary Representation**:
@@ -80,7 +80,7 @@ The investigation was structured into 15 rigorous, sequential phases to eliminat
 - Paired daily cluster bootstrap over 35 observed test days (1,000 paired Monte Carlo resamples, 144 steps/cluster):
   - Overall reduction: **$+1,825,410 \text{ kWh}$** vs global quantile ($p < 10^{-4}$).
   - **$48.38\%$ of total savings ($+892,535\text{ kWh}$)** occurs within **Dynamic Transition Windows** ($\pm 3$ steps), confirming the mechanistic link to boundary crossings.
-  - In steady-state MPPT ($|v - 10.5| > 2.5\text{ m/s}$), direct wind-speed bins are sufficient ($-523\text{k kWh}$ difference).
+  - In steady-state MPPT ($|v - 10.5| > 2.5\text{ m/s}$), direct wind-speed bins are sufficient ($\Delta L = L_{\text{posterior}} - L_{\text{wspd}} = +523{,}044\text{ kW}\cdot\text{h}$ penalty for posterior).
 
 ---
 

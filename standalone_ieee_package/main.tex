@@ -227,20 +227,23 @@ contributions:
   state-conditional recalibration absorbs \(55.3\%\) of shortage loss
   (\(127.6 \to 57.0\text{ MWh}\)) without updating neural weights.
 \item
-  \textbf{Incremental Value of Recovered Latent-State Information}: We
-  test whether latent operating-state information recovered from
-  consequence SCADA channels provides incremental reserve-screening
-  value, including against strong wind-speed-conditioned quantile
-  controls. Consequence representations reduce unconditioned reserve
-  cost by \(1.83\text{M kW}\cdot\text{h}\), but show that incremental
-  value over wind-speed bins is strictly transition-localized, with
-  simple binning remaining optimal in steady state.
+  \textbf{Transition-Localized Risk Reallocation under Latent-State
+  Uncertainty}: We test recovered operating-state information against a
+  strong wind-speed-conditioned quantile baseline. The posterior does
+  not reduce plant-wide PSREI, but near operating transitions it reduces
+  shortage and violation exposure at additional reserve cost, revealing
+  a localized risk-hedging rather than cost-dominance effect. Wind-speed
+  binning remains the plant-wide minimum sufficient policy, while a
+  deployable validation-frozen hybrid policy remains statistically
+  equivalent to wind-speed binning.
 \item
   \textbf{Characterization of Multi-Site Failure Boundaries}: We
   characterize failure boundaries across telemetry conditions and
   external sites, including negative (LHB) and neutral (Kelmarsh)
-  transfer results, demonstrating that spatial representation gains
-  require exploitable wake redundancy rather than turbine count alone.
+  transfer results. Cross-site STGQ effects relative to the global
+  quantile baseline are heterogeneous; the observed pattern is
+  consistent with exploitable spatial redundancy as a possible
+  moderator, while turbine count alone does not explain the variation.
 \end{enumerate}
 
 \section{Related Work}\label{related-work}
@@ -368,10 +371,10 @@ Z_{i,t} =
 turbines: \(u_{\mathrm{idle}}=3.0\text{ m/s}\),
 \(u_{\mathrm{rated}}=10.5\text{ m/s}\), \(p_{\mathrm{th}}=2.0^\circ\)),
 Kelmarsh (6 MM92: \(3.0\text{ m/s}, 12.5\text{ m/s}, 1.0^\circ\)),
-Penmanshiel (15 MM82: \(3.0\text{ m/s}, 14.5\text{ m/s}, 1.0^\circ\)),
-and ENGIE La Haute Borne (4 MM82:
-\(3.0\text{ m/s}, 14.5\text{ m/s}, 1.0^\circ\)). Supervised alignment
-masks ambiguous transitions (\(Z_{i,t}=3\)) via
+Penmanshiel (14 operational MM82, numbered WT01--WT15 excluding WT03:
+\(3.0\text{ m/s}, 14.5\text{ m/s}, 1.0^\circ\)), and ENGIE La Haute
+Borne (4 MM82: \(3.0\text{ m/s}, 14.5\text{ m/s}, 1.0^\circ\)).
+Supervised alignment masks ambiguous transitions (\(Z_{i,t}=3\)) via
 \(M_{i,t} = \mathbf{1}[Z_{i,t} \neq 3]\).
 
 Under pristine telemetry, \(\bar{p}_{i,t}\) and \(w_{i,t}\) are known,
@@ -826,47 +829,39 @@ strictly zero-masked and withheld during validation and testing. Offline
 privileged supervision (\(\mathcal{L}_{\text{align}}\) cross-entropy on
 aerodynamic regime labels \(Z\)) forces secondary consequence channels
 to reconstruct the latent boundary space. A clean matched-backbone
-ablation of \(\lambda_{\text{align}}=5000.0\)
-vs.~\(\lambda_{\text{align}}=0.0\) on identical architectures across
-five independent random seeds (\(n=5\)) confirms that offline regime
-supervision substantially improves latent-state organization and reduces
-observed susceptibility to representation collapse within the evaluated
-architecture (NMI \(0.819 \pm 0.088\) vs.~\(0.240 \pm 0.150\), paired
-\(\Delta = +0.579 \pm 0.167\), \(t(4)=7.74, p=0.0015\), 95\% CI
-\([+0.371, +0.787]\); ARI \(0.889 \pm 0.057\) vs.~\(0.198 \pm 0.139\),
-paired \(\Delta = +0.692 \pm 0.153\), \(t(4)=10.10, p=0.0005\), 95\% CI
-\([+0.502, +0.882]\)). For posterior calibration, regime supervision
-improves average Brier score (\(0.020 \pm 0.002\)
-vs.~\(0.241 \pm 0.419\), paired \(\Delta = -0.221 \pm 0.418\)), but this
-estimate is sensitive to an observed representation collapse in a single
-unaligned seed (Seed 204, Brier \(0.981\)); excluding Seed 204, the
-remaining four seeds yield \(\Delta = -0.036 \pm 0.073\), with the
-5-seed paired confidence interval including zero (95\% CI
-\([-0.740, +0.299]\), \(p=0.303\)). Downstream decision value is
-established separately by posterior-ablation and transition-mediation
-experiments, as raw privileged supervision alone yields an unestablished
-reserve cost delta
+ablation (\(\lambda_{\text{align}}=5000.0\) vs.~\(0.0\), 5 seeds)
+confirms that regime supervision improves latent-state organization and
+reduces representation collapse (NMI \(0.819 \pm 0.088\)
+vs.~\(0.240 \pm 0.150\), paired \(\Delta = +0.579 \pm 0.167\),
+\(p=0.0015\), 95\% CI \([+0.371, +0.787]\); ARI \(0.889 \pm 0.057\)
+vs.~\(0.198 \pm 0.139\), paired \(\Delta = +0.692 \pm 0.153\),
+\(p=0.0005\), 95\% CI \([+0.502, +0.882]\)). For posterior calibration,
+supervision improves Brier score (\(0.020 \pm 0.002\)
+vs.~\(0.241 \pm 0.419\), paired \(\Delta = -0.221 \pm 0.418\)), though
+sensitive to representation collapse in Seed 204 (Brier \(0.981\);
+excluding Seed 204 yields \(\Delta = -0.036 \pm 0.073\), 5-seed 95\% CI
+\([-0.740, +0.299]\), \(p=0.303\)). Downstream reserve decision value is
+evaluated separately, as privileged supervision alone yields an
+unestablished cost delta
 (\(-311{,}957 \pm 1{,}085{,}873\text{ kW}\cdot\text{h}\) plant-wide,
-95\% CI \([-1.66\text{M}, +1.04\text{M}]\), \(p=0.556\);
-\(+15{,}261 \pm 27{,}504\text{ kW}\cdot\text{h}\) on the boundary slice,
-95\% CI \([-18.9\text{k}, +49.4\text{k}]\), \(p=0.283\); Supplementary
-Table\textasciitilde A6c). Crucially, this matched ablation isolates
-regime-label supervision conditional on privileged training inputs,
-without isolating training-time pitch access itself. Furthermore,
-empirical identifiability audits (Table\textasciitilde A7b and Registry)
-disentangle the recovery mechanism: (1) \emph{Active power signature}:
-instantaneous power \(P_{\text{atv}, t}\) provides primary state
-resolution (Condition A: \(59.7\%\) precision, \(63.1\%\) recall, F1
-\(0.613\), FPR \(0.8\%\), AUROC \(0.988\)), while historical trajectory
-\(P_{\text{atv}, <t}\) retains \(40.3\%\) recall and lag-1
-\(P_{\text{atv}, t-1}\) achieves \(58.8\%\), confirming genuine
-dynamical tracking beyond instantaneous readout; (2)
-\emph{Consequence suite without current active power}: withholding
-contemporaneous active power (Condition D) shifts the detector to an
-asymmetric, high-recall operating point (\(82.2\%\) recall, \(33.4\%\)
-precision, F1 \(0.475\), FPR \(3.2\%\), AUROC \(0.975\)), confirming
-that the remaining non-active-power consequence suite retains some
-collectively recoverable state information; and (3)
+\(p=0.556\); \(+15{,}261 \pm 27{,}504\text{ kW}\cdot\text{h}\) on the
+boundary slice, \(p=0.283\); Table\textasciitilde A6c). Crucially, this
+matched ablation isolates regime-label supervision conditional on
+privileged training inputs, without isolating training-time pitch access
+itself. Furthermore, empirical identifiability audits
+(Table\textasciitilde A7b and Registry) disentangle the recovery
+mechanism: (1) \emph{Active power signature}: instantaneous power
+\(P_{\text{atv}, t}\) provides primary state resolution (Condition A:
+\(59.7\%\) precision, \(63.1\%\) recall, F1 \(0.613\), FPR \(0.8\%\),
+AUROC \(0.988\)), while historical trajectory \(P_{\text{atv}, <t}\)
+retains \(40.3\%\) recall and lag-1 \(P_{\text{atv}, t-1}\) achieves
+\(58.8\%\), confirming genuine dynamical tracking beyond instantaneous
+readout; (2) \emph{Consequence suite without current active power}:
+withholding contemporaneous active power (Condition D) shifts the
+detector to an asymmetric, high-recall operating point (\(82.2\%\)
+recall, \(33.4\%\) precision, F1 \(0.475\), FPR \(3.2\%\), AUROC
+\(0.975\)), confirming that the remaining non-active-power consequence
+suite retains some collectively recoverable state information; and (3)
 \emph{Thermal invariance}: conditional ablation of thermal channels
 (\(E_{\text{tmp}}, I_{\text{tmp}}\)) yields negligible discrimination
 change (\(\Delta\text{AUROC} = +0.006\), \(\Delta\text{F1} = -0.010\),
@@ -887,31 +882,40 @@ Operational validation separates three distinct claims: (i)
 \textit{Operating-state discrimination} (AUROC \(> 0.94\), NMI
 \(0.461\), ARI \(0.647\)); (ii)
 \textit{Probabilistic calibration of $P(Z \mid \mathcal{I}_t^{(d)})$}
-(bulk ECE strictly \(\le 3.46\%\), satisfying the \(5\%\) screening
-gate, though high-confidence tails exhibit
-\(\text{MCE} \approx 0.75\text{--}0.85\) due to sparse extreme
-outliers); and (iii) \textit{Reserve-decision value}. Crucially, when
-evaluated against a strong observable wind-speed-conditioned quantile
-baseline (10 wind-speed bins, \(13.78\text{M kW}\cdot\text{h}\)
-plant-wide), posterior conditioning does not universally improve reserve
-screening (\(14.31\text{M kW}\cdot\text{h}\), a
-\(+523{,}044\text{ kW}\cdot\text{h}\) penalty, \(p=0.85\)); its
-incremental value is strictly transition-localized. In steady operation
-(\(63.7\%\) of test time), wind-speed binning serves as the operational
-minimum sufficient model, outperforming the posterior by
-\(+410{,}340\text{ kW}\cdot\text{h}\) (\(p=0.002\)). In dynamic
-transition windows (\(\pm 3\) steps of boundary switching, \(36.3\%\) of
-records), posterior conditioning selectively compresses violation rates
-(\(7.24\%\) vs.~\(8.36\%\)) and mitigates shortage (\(86.6\text{k}\)
-vs.~\(90.2\text{k kW}\cdot\text{h}\)), confirmed by a significant paired
-day-level cluster bootstrap heterogeneity interaction
-(\(\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296{,}123\text{ kW}\cdot\text{h}, p < 0.005\)).
-Transition windows are not merely high-loss regions; they are the regions where latent-state information contributes incremental value beyond observable wind-speed conditioning. While transition windows capture $48.4\%$ of savings relative to an unconditioned global baseline, this unconditioned fraction reflects both high baseline loss concentration ($33.0\%$) and model sensitivity; relative to wind-speed bins, the posterior operates as a risk-hedging mechanism.
-Furthermore, a deployable validation-frozen hybrid policy matches
-wind-speed binning plant-wide (\(13.79\text{M}\)
-vs.~\(13.78\text{M kW}\cdot\text{h}, p > 0.40\)), proving that machine
-learning provides conditional regime risk hedging rather than universal
-cost dominance.
+(bulk ECE \(\le 3.46\%\), satisfying the \(5\%\) screening gate; tail
+\(\text{MCE} \approx 0.75\text{--}0.85\)); and (iii)
+\textit{Reserve-decision value}. Crucially, against a strong observable
+wind-speed-conditioned quantile baseline (10 bins,
+\(13.78\text{M kW}\cdot\text{h}\) plant-wide), posterior conditioning
+does not reduce plant-wide reserve screening costs
+(\(14.31\text{M kW}\cdot\text{h}\), defined canonically as
+\(\Delta L = L_{\text{posterior}} - L_{\text{wspd}} = +523{,}044\text{ kW}\cdot\text{h}\)
+penalty, \(p=0.85\)). In steady operation (\(63.7\%\) of test time),
+wind-speed binning serves as the operational minimum sufficient model,
+outperforming the posterior by \(+410{,}340\text{ kW}\cdot\text{h}\)
+(\(p=0.002\)). The relative risk-cost trade-off becomes materially more
+favorable near operating transitions (\(\pm 3\) steps, \(36.3\%\) of
+records): posterior conditioning selectively reduces violation
+(\(7.24\%\) vs.~\(8.36\%\)) and shortage exposure (\(86.6\text{k}\)
+vs.~\(90.2\text{k kW}\cdot\text{h}\)), but this hedge remains more
+expensive under \(\rho=10\) than wind-speed-binned quantile calibration
+(\(\Delta = +112{,}704\text{ kW}\cdot\text{h}\), driven by
+\(+149{,}092\text{ kW}\cdot\text{h}\) greater reserve procurement). The
+significant paired day-level cluster bootstrap interaction
+(\(\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296{,}123\text{ kW}\cdot\text{h}, p < 0.005\))
+establishes heterogeneity of the relative cost gap rather than a
+positive posterior cost advantage. Transition windows are not merely
+high-loss regions; they are the regions where recovered latent-state
+information selectively hedges tail risk at added reserve expense. While
+transition windows capture \(48.4\%\) of savings relative to an
+unconditioned global baseline, this unconditioned fraction reflects high
+baseline loss concentration (\(33.0\%\)) alongside model sensitivity;
+relative to wind-speed bins, the posterior acts as a localized risk
+hedge. A deployable validation-frozen hybrid policy matches wind-speed
+binning plant-wide (\(13.79\text{M}\)
+vs.~\(13.78\text{M kW}\cdot\text{h}, p > 0.40\)), confirming that
+machine learning provides conditional regime risk hedging rather than
+universal cost dominance.
 
 \subsection{Result 5: Classification Accuracy Does Not Equal Reserve
 Value
@@ -1053,28 +1057,36 @@ Farm & Units & \shortstack{Phys.\\(kW$\cdot$h)} & \shortstack{Global\\(kW$\cdot$
 \bottomrule
 \end{tabular*}
 \vspace{1mm}
-\raggedright\fontsize{8.0pt}{8.8pt}\selectfont Note: $^{\ast}p < 0.05$. LHB exhibits local overfitting; Kelmarsh is neutral; WTB and Penmanshiel show significant spatial wake reductions. External sites probe transferability rather than uniform replication (see Supplementary Material Table~A8 for the complete Site $\times$ Mechanism specification).
+\raggedright\fontsize{8.0pt}{8.8pt}\selectfont Note: $^{\ast}p < 0.05$. Penmanshiel comprises 14 operational turbines (site numbering spans WT01--WT15, with WT03 not installed/present in SCADA records). LHB exhibits local overfitting; Kelmarsh is neutral; WTB and Penmanshiel show significant reductions relative to the global quantile baseline under local retraining. Table~\ref{tab:cross-farm} compares STGQ against an unconditioned global quantile rather than matched external no-graph ablations, so external gains are not causally attributed to wake modeling alone. External sites probe transferability rather than uniform replication (see Supplementary Material Table~A8 for the complete Site $\times$ Mechanism specification).
 \end{table}
 
-Spatial-representation value is site-dependent and appears related to
-exploitable spatial redundancy, not turbine count alone: in facilities
-with pronounced wake coupling (WTB, Penmanshiel), spatial wake modeling
-delivers substantial reserve-screening surrogate reduction
+Cross-site STGQ effects relative to the global quantile baseline are
+heterogeneous. The observed pattern is consistent with exploitable
+spatial redundancy as a possible moderator, while turbine count alone
+does not explain the variation: in facilities with deeper cluster
+layouts (WTB, Penmanshiel), STGQ achieves substantial reserve-screening
+surrogate reduction relative to the global quantile baseline
 (\(\Delta\text{PSREI} = -38\text{k}\) and
-\(-2.14\text{M kW}\cdot\text{h}\), both \(p < 0.05\)). Conversely, on
-micro-arrays or sparse layouts (Kelmarsh, LHB), spatial wake redundancy
-is minimal: Kelmarsh yields a neutral bootstrap difference
-(\(-40\text{k kW}\cdot\text{h}\), 95\% CI crossing zero), while LHB
-exhibits an \textbf{overfitting boundary} where graph convolutions
-overfit localized terrain features (\(+43\text{k kW}\cdot\text{h}\)
-penalty, \([-28.7\text{k}, +141.2\text{k}]\)). Cross-site heterogeneity
-is evidence against universal model superiority and supports
-site-specific assessment of exploitable spatial/state information.
-Furthermore, zero-shot cross-farm transfer exhibits pronounced
-directional asymmetry (Kelmarsh \(\to\) Penmanshiel NMI \(0.77\)
-vs.~Penmanshiel \(\to\) Kelmarsh NMI \(0.34\)). These results support
-site-specific retraining or recalibration for the evaluated farms rather
-than assuming reliable zero-shot transfer.
+\(-2.14\text{M kW}\cdot\text{h}\), both \(p < 0.05\)), although
+continuous physical quantile curves match or slightly edge STGQ
+(\(842\text{k}\) and \(2{,}029\text{k kW}\cdot\text{h}\)). Conversely,
+on micro-arrays or sparse layouts (Kelmarsh, LHB), STGQ yields a neutral
+bootstrap difference on Kelmarsh (\(-40\text{k kW}\cdot\text{h}\), 95\%
+CI crossing zero), while LHB exhibits an \textbf{overfitting boundary}
+where graph convolutions overfit localized terrain features
+(\(+43\text{k kW}\cdot\text{h}\) penalty,
+\([-28.7\text{k}, +141.2\text{k}]\)). Because
+Table\textasciitilde{}\ref{tab:cross-farm} compares STGQ against an
+unconditioned global baseline rather than a matched external no-graph
+ablation, these comparisons do not by themselves establish that spatial
+wake modeling causally drives external-site improvements. Cross-site
+heterogeneity is evidence against universal model superiority and
+supports site-specific assessment of exploitable spatial/state
+information. Furthermore, zero-shot cross-farm transfer exhibits
+pronounced directional asymmetry (Kelmarsh \(\to\) Penmanshiel NMI
+\(0.77\) vs.~Penmanshiel \(\to\) Kelmarsh NMI \(0.34\)). These results
+support site-specific retraining or recalibration for the evaluated
+farms rather than assuming reliable zero-shot transfer.
 
 \textbf{Point of Common Coupling (PCC) Portfolio Smoothing:} Aggregating
 turbine power flows at the PCC bus
@@ -1083,9 +1095,9 @@ turbine power flows at the PCC bus
 cancels across the array, leaving boundary transitions as primary
 reserve risk. Diversification concentrates in transitional regimes
 (10\%--90\% pitching), saving \(-1.33\text{M kW}\cdot\text{h}\) (CI
-\([-1.68\text{M}, -1.07\text{M}]\)) over continuous physical pitch.
-Decadal records (Kelmarsh, 9 years; Penmanshiel, 8.6 years) confirm
-operational recalibration under climatological drift.
+\([-1.68\text{M}, -1.07\text{M}]\)) over continuous physical pitch;
+longitudinal records (Kelmarsh, 9 years; Penmanshiel, 8.6 years) confirm
+operational recalibration under drift.
 
 \section{\texorpdfstring{Discussion: Minimum Sufficient Model Complexity
 \label{sec:discussion}}{Discussion: Minimum Sufficient Model Complexity }}\label{discussion-minimum-sufficient-model-complexity}
@@ -1124,37 +1136,41 @@ power divergence, electrical transients, spatial wake advection;
 \(0.302\text{--}0.674\) NMI), saving
 \(46.7\text{k}\text{--}68.6\text{k kW}\cdot\text{h}\).
 
-\textit{4) Posterior Decision Relevance and Baseline Bounds:} The
-learned posterior does not improve plant-wide reserve screening over a
-strong wind-speed-conditioned quantile baseline
-(\(-523{,}044\text{ kW}\cdot\text{h}\) difference, \(p=0.85\)); its
-detectable incremental value is strictly transition-localized. In steady
-operation, direct wind-speed binning serves as the operational minimum
-sufficient model, outperforming the posterior by
-\(+410{,}340\text{ kW}\cdot\text{h}\) (\(p=0.002\)). In dynamic
-transition windows (\(\pm 3\) steps), posterior conditioning selectively
-compresses violation rates (\(7.24\%\) vs.~\(8.36\%\)) and reduces
-shortage exposure (\(86.6\text{k}\)
-vs.~\(90.2\text{k kW}\cdot\text{h}\)), confirmed by a significant
-interaction contrast
-(\(\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296{,}123\text{ kW}\cdot\text{h}, p < 0.005\)).
-A deployable hybrid policy matches wind-speed binning plant-wide
-(\(13.79\text{M}\) vs.~\(13.78\text{M kW}\cdot\text{h}, p > 0.40\)).
-Crucially, dynamic MoE routing provides no measurable advantage over
-unrouted dense baselines (ratio \(1.045\), \(p=0.380\); seed delta
-\(< 0.07\%\)), while modular regression (STGQ-Modular) matches tail
-reliability (\(9.7\%\) violation).
+\textit{4) Posterior Decision Relevance and Baseline Bounds:} Posterior
+conditioning does not reduce plant-wide reserve procurement costs over
+strong wind-speed-binned quantiles
+(\(\Delta L = L_{\text{posterior}} - L_{\text{wspd}} = +523{,}044\text{ kW}\cdot\text{h}\)
+penalty, \(p=0.85\)). While direct wind-speed binning serves as the
+plant-wide and steady-state minimum sufficient policy
+(\(+410{,}340\text{ kW}\cdot\text{h}\) steady advantage, \(p=0.002\)),
+the relative risk-cost trade-off becomes materially more favorable near
+operating transitions (\(\pm 3\) steps): posterior conditioning
+selectively reduces violation (\(7.24\%\) vs.~\(8.36\%\)) and shortage
+exposure (\(86.6\text{k}\) vs.~\(90.2\text{k kW}\cdot\text{h}\)), but
+this hedge remains more expensive under \(\rho=10\) than wind-speed
+binning (\(\Delta = +112{,}704\text{ kW}\cdot\text{h}\)). The
+significant interaction contrast
+(\(\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296{,}123\text{ kW}\cdot\text{h}, p < 0.005\))
+establishes heterogeneity of the relative cost gap rather than a
+positive posterior cost advantage. A deployable hybrid policy remains
+statistically equivalent to wind-speed binning (\(13.79\text{M}\)
+vs.~\(13.78\text{M kW}\cdot\text{h}, p > 0.40\)) and must not be
+presented as an improvement. Crucially, dynamic MoE routing provides no
+measurable advantage over unrouted dense baselines (ratio \(1.045\),
+\(p=0.380\); seed delta \(< 0.07\%\)), while modular regression
+(STGQ-Modular) matches tail reliability (\(9.7\%\) violation).
 
 \textit{5) Industrial Deployment Guardrails:} (i) \emph{Spatial value}:
-spatial-representation value is site-dependent and appears related to
-exploitable spatial redundancy, not turbine count alone. Wake coupling
-delivers significant reserve reductions (WTB, Penmanshiel,
-\(p < 0.05\)), while sparse layouts (LHB) overfit localized terrain
-(\(+43\text{k kW}\cdot\text{h}\) penalty); (ii) \emph{Local retraining}:
-directional transfer asymmetry (Kelmarsh \(\to\) Penmanshiel NMI
-\(0.77\) vs.~\(0.34\)) requires local retraining; (iii)
-\emph{Abstention limits}: selective abstention fails under latency
-(\(p > 0.40\)), favoring uniform margin expansion.
+cross-site STGQ effects relative to global quantiles are heterogeneous;
+the pattern is consistent with exploitable spatial redundancy as a
+possible moderator, while turbine count alone does not explain
+variation. STGQ reduces surrogate cost relative to global quantiles on
+WTB and Penmanshiel (\(p < 0.05\)), while sparse layouts (LHB) overfit
+localized terrain (\(+43\text{k kW}\cdot\text{h}\) penalty); (ii)
+\emph{Local retraining}: directional transfer asymmetry (Kelmarsh
+\(\to\) Penmanshiel NMI \(0.77\) vs.~\(0.34\)) requires local
+retraining; (iii) \emph{Abstention limits}: selective refusal fails
+under latency (\(p > 0.40\)), favoring uniform margin expansion.
 
 \section{Limitations}\label{limitations}
 
@@ -1176,33 +1192,37 @@ climatological cycles. Rated wind speeds vary by model
 (\(12.5\text{ m/s}\) on MM92 vs.~\(14.5\text{ m/s}\) on MM82), requiring
 OEM calibration.
 
-\textit{4) Deployment Boundaries:} Spatial-representation value remains
-site-dependent and related to exploitable spatial redundancy rather than
+\textit{4) Deployment Boundaries:} Cross-site STGQ effects relative to
+the global quantile baseline remain heterogeneous, consistent with
+exploitable spatial redundancy as a possible moderator rather than
 turbine count alone; lacking spatial wake coupling (LHB), graph
 convolutions overfit localized topography
-(\(+43\text{k kW}\cdot\text{h}\) penalty). Directional transfer
-asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.77$ vs. Penmanshiel $\to$ Kelmarsh NMI $0.34$) supports local retraining rather than
-assuming reliable zero-shot transfer. The present study assumes
-historical blade-pitch availability during offline training, followed by
-pitch withholding at deployment. Performance in settings where pitch was
-never historically recorded remains untested.
+(\(+43\text{k kW}\cdot\text{h}\) penalty). Because
+Table\textasciitilde{}\ref{tab:cross-farm} lacks matched external
+no-graph controls, wake modeling is not causally isolated as the sole
+mechanism for external gains. Directional transfer asymmetry (Kelmarsh
+\(\to\) Penmanshiel NMI \(0.77\) vs.~Penmanshiel \(\to\) Kelmarsh NMI
+\(0.34\)) mandates local retraining rather than assuming reliable
+zero-shot transfer. The study assumes historical blade-pitch
+availability during offline training, followed by pitch withholding at
+deployment. Performance in settings where pitch was never recorded
+remains untested.
 
 \section{Conclusion}\label{conclusion}
 
 This study repositions machine learning in reserve screening to a
 targeted conditional inference mechanism under telemetry degradation.
 First, under fresh telemetry, deterministic aerodynamic power curves
-minimize surrogate reserve screening penalties within the boundary band
+minimize surrogate reserve penalties within the boundary band
 (\(|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}\), \(N=13{,}883\) events:
 \(589{,}535\text{ kW}\cdot\text{h}\) at \(h=1\),
 \(881{,}367\text{ kW}\cdot\text{h}\) at \(h=6\), \(\sim 6.8\%\)
 violation), collapsing only under unadapted latency (\(24.0\%\)
 violation). Second, under observable delays, state-conditional
 recalibration absorbs \(55.3\%\) of shortage loss
-(\(127.6 \to 57.0\text{ MWh}\)). Learned representations acquire utility
-only when blade pitch is withheld, inferring latent regimes from
-electromechanical consequences to save
-\(46.7\text{k}\text{--}68.6\text{k kW}\cdot\text{h}\) and double
+(\(127.6 \to 57.0\text{ MWh}\)). When blade pitch is withheld, learned
+representations infer latent regimes from secondary consequences, saving
+\(46.7\text{k}\text{--}68.6\text{k kW}\cdot\text{h}\) and doubling
 transition recall (\(0.416\) vs.~\(0.196\)). Third, dynamic MoE routing
 confers no statistical advantage over unrouted architectures
 (\(p=0.380\)). Dispatch systems should deploy deterministic rules under
@@ -1212,24 +1232,17 @@ representations when critical control states are unobservable.
 \section*{Declarations}\label{declarations}
 \addcontentsline{toc}{section}{Declarations}
 
-\textbf{AI Use Statement:} The authors utilized OpenAI ChatGPT and Codex
-to assist with drafting, structural formatting, and prose refinement
-across manuscript sections and supplementary materials, as well as
-developing automated audit and consistency-checking scripts. All
-scientific hypotheses, mathematical formulations, experimental designs,
-SCADA data processing, model implementations, statistical analyses,
-causal verification, interpretation of findings, and final approval of
-the text remain the sole responsibility of the authors.
+\textbf{AI Use Statement:} The authors used OpenAI ChatGPT and Codex for
+drafting, formatting, and prose refinement, and for developing audit
+scripts. All scientific hypotheses, mathematical formulations,
+experimental designs, data processing, statistical analyses, findings,
+and final approval remain the sole responsibility of the authors.
 
 \textbf{Code and Data Availability:} Raw SCADA datasets (WTB, ENGIE La
 Haute Borne, Kelmarsh, Penmanshiel) are public. Code, manifests, derived
 tables, and checkpoints are provided in the replication repository
-across declared seeds. The analysis involves no human subjects.
-
-\vfill\break
-
-\section*{References}\label{references}
-\addcontentsline{toc}{section}{References}
+across declared seeds. The analysis involves no human subjects. \#
+References \{.unnumbered\}
 
 \protect\phantomsection\label{refs}
 \begin{CSLReferences}{0}{0}

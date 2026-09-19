@@ -2,10 +2,10 @@
 
 **Date**: 2026-09-19  
 **Core Hypothesis Tested**:
-> *“Does the latent-boundary posterior provide incremental information beyond observable wind-speed conditioning specifically near operating-state transitions?”*
+> *“Does the latent-boundary posterior alter the risk-cost trade-off beyond observable wind-speed conditioning specifically near operating-state transitions?”*
 
 **Mandatory Integrity Directive**:
-The manuscript MUST NOT imply that the boundary posterior universally improves reserve sizing over conditional quantile calibration. The goal is to state exactly where latent-boundary information has incremental value and where it does not.
+The manuscript MUST NOT imply that the boundary posterior improves reserve screening over conditional quantile calibration. The goal is to state exactly where latent-boundary information provides a transition-localized risk-hedging trade-off and where it increases surrogate cost.
 
 ---
 
@@ -108,9 +108,9 @@ We formally distinguish between **loss concentration** and **incremental model b
    - Transition windows account for **$36.26\%$** of test time, but concentrate **$33.0\%$** of global quantile loss ($5.33\text{M}$ out of $16.13\text{M}$) and **$31.3\%$** of wind-speed binned loss ($4.32\text{M}$ out of $13.78\text{M}$).
    - The absolute saving of posterior conditioning versus an *unconditioned global quantile* is indeed $48.38\%$ concentrated in transition windows ($+892,535\text{ kW}\cdot\text{h}$ out of $+1,825,410\text{ kW}\cdot\text{h}$).
 2. **Against the Strong Wind-Speed Baseline**:
-   - When compared against the strong observable wind-speed conditioned baseline (Policy B), the learned posterior does **not** beat wind-speed binning plant-wide ($-523,044\text{ kW}\cdot\text{h}$ net penalty).
-   - In steady state, wind-speed binning is strictly superior ($-410,340\text{ kW}\cdot\text{h}$).
-   - In transition windows, posterior conditioning provides risk-averse coverage (compressing violations to $7.24\%$), but does not provide net surrogate cost savings.
+   - When compared against the strong observable wind-speed conditioned baseline (Policy B), the learned posterior does **not** beat wind-speed binning plant-wide ($\Delta L = L_{\text{posterior}} - L_{\text{wspd}} = +523,044\text{ kW}\cdot\text{h}$ net penalty, posterior is worse).
+   - In steady state, wind-speed binning is strictly superior ($\Delta L = +410,340\text{ kW}\cdot\text{h}$, $p=0.002$).
+   - In transition windows, posterior conditioning provides risk-averse coverage (compressing violations to $7.24\%$ and shortages to $86.6\text{k kW}\cdot\text{h}$ vs. $8.36\%$ and $90.2\text{k kW}\cdot\text{h}$), but does not provide net surrogate cost savings ($\Delta L = +112,704\text{ kW}\cdot\text{h}$, $p=0.48$).
 
 ### Safe, Non-Triumphalist Manuscript Statement:
-> “The learned latent-boundary posterior does not improve plant-wide reserve screening over a strong wind-speed-conditioned quantile baseline ($-523{,}044\text{ kW}\cdot\text{h}$ difference, $p=0.85$); its detectable incremental value is strictly transition-localized. In steady operation, direct wind-speed binning serves as the operational minimum sufficient model. In dynamic transition windows, posterior conditioning selectively compresses grid violation rates ($7.24\%$ vs. $8.36\%$) and reduces shortage exposure ($86.6\text{k}$ vs. $90.2\text{k kW}\cdot\text{h}$), but does not reduce plant-wide procurement costs. Machine learning provides conditional regime information, not universal predictive superiority.”
+> “The learned latent-boundary posterior does not improve plant-wide reserve screening over a strong wind-speed-conditioned quantile baseline ($\Delta L = +523{,}044\text{ kW}\cdot\text{h}$ difference, $p=0.85$); near operating transitions it reduces shortage and violation exposure at additional reserve cost, revealing a localized risk-hedging rather than cost-dominance effect. In steady operation, direct wind-speed binning serves as the operational minimum sufficient model. Machine learning provides conditional regime information, not universal predictive superiority.”

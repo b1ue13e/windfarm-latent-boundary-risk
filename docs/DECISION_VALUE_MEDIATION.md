@@ -22,7 +22,7 @@
 2. **Transition Window Concentration**:
    **$48.38\%$ of the total cost reduction** ($+892,535\text{ kWh}$, $p < 10^{-4}$) is concentrated within **Dynamic Transition Windows** ($\pm 3$ steps of regime change), despite transition periods accounting for only $36.26\%$ of the operating records.
 3. **Failure of Far-Field Steady-State Boundary Superiority**:
-   In steady-state far-field MPPT conditions ($|v - 10.5| > 2.5\text{ m/s}$), direct physical wind-speed binning achieves comparable or slightly superior loss to neural boundary estimation ($-523,043\text{ kWh}$ difference). Neural boundary conditioning provides **zero additional advantage** when steady-state wind speed is fresh and uncorrupted.
+   In steady-state far-field MPPT conditions ($|v - 10.5| > 2.5\text{ m/s}$), direct physical wind-speed binning achieves lower surrogate loss than neural boundary estimation ($\Delta L = L_{\text{posterior}} - L_{\text{wspd}} = +523{,}044\text{ kW}\cdot\text{h}$ penalty for posterior). Neural boundary conditioning provides **zero additional advantage** when steady-state wind speed is fresh and uncorrupted.
 4. **Conclusion for Paper Narrative**:
    The value of latent-boundary recovery is **strictly transition-mediated and degradation-bounded**. It does not replace simple physical wind-speed binning in benign, steady-state operation; rather, its independent scientific value emerges during **dynamic boundary transitions** and **severe telemetry impairment**.
 

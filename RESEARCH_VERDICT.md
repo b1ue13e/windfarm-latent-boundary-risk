@@ -35,7 +35,7 @@ The paper's central scientific claim **SURVIVES** under a strict, falsifiable fo
            │                                                         │
 3. Tail Compliance Preservation                           3. Steady-State MPPT Dominance
    (Maintains compliant violation, whereas GBDT              (Direct wind-speed bins sufficient in
-    breaks compliance at 14.98% withheld / 16.23% clean)      steady Region 2 operation)
+    breaches nominal 10% target at 14.98% / 16.23%)           steady Region 2 operation)
            │                                                         │
 4. State-Conditional Recalibration                        4. Selective Abstention Benefit
    (Absorbs 55.3% of shortage loss without                   (Abstaining on low confidence produces
@@ -50,9 +50,9 @@ The paper's central scientific claim **SURVIVES** under a strict, falsifiable fo
 | :--- | :--- | :--- |
 | **Information Symmetry** | Audited feature-lag manifest (819 entries); exact synchronous degradation $\mathcal{I}_t^{(d)}$. | `docs/INFORMATION_SET_CONTRACT.md` |
 | **Point Forecast Anchor** | Canonical frozen point forecast across 5 seeds; residuals frozen into fixed target array. | `artifacts/fixed_forecast_residuals.npz` |
-| **Direct Baseline Challenge** | B3 Quantile GBDT excels at $h=1$ ($6.49\text{M}$ clean / $6.41\text{M}$ withheld) but **surges to $16.23\%$ (clean) and $14.98\%$ (pitch-withheld) violation at $h=6$**; B1 Wspd-Bins is robust in steady state. | `artifacts/direct_quantile_baselines_summary.csv` |
+| **Direct Baseline Challenge** | B3 Quantile GBDT excels at $h=1$ ($6.49\text{M}$ clean / $6.41\text{M}$ withheld) but **surges to $16.23\%$ (clean) and $14.98\%$ (pitch-withheld) violation at $h=6$** (exceeding nominal 10% target); B1 Wspd-Bins is robust in steady state. | `artifacts/direct_quantile_baselines_summary.csv` |
 | **MoE Dynamic Routing** | STGQ-Dense ($15,471,506 \text{ kWh}$) matches or outperforms STGQ-Routed ($15,768,203 \text{ kWh}$, $p=0.380$). | `artifacts/factorial_boundary_ablation_summary.csv` |
-| **Negative Controls** | Permuted labels inflate cost to $17.93\text{M}$; random posterior breaches grid compliance at **$11.41\%$ violation**. | `artifacts/factorial_boundary_ablation_summary.csv` |
+| **Negative Controls** | Permuted labels inflate cost to $17.93\text{M}$; random posterior exceeds nominal 10% Newsvendor violation target at **$11.41\%$ violation**. | `artifacts/factorial_boundary_ablation_summary.csv` |
 | **Posterior Calibration** | Test ECE strictly $\le 3.46\%$ across all conditions (Dense: $0.89\%$ clean, $2.54\%$ withheld); passes $\le 0.05$ gate. | `artifacts/posterior_calibration.csv` |
 | **Consequence Mechanism** | Active Power ($C2$) achieves Brier $0.0112$, NMI $0.461$, recovering $62.9\%$ of transitions; thermal fails ($0.0\%$). | `artifacts/channel_consequence_ablations.csv` |
 | **Decision Mediation** | Boundary representation saves **$+1.83\text{M kWh}$** vs global quantile, with **$48.4\%$ concentrated in transition windows**. | `artifacts/mediation_analysis.csv` |

@@ -99,7 +99,7 @@ def main():
                 failures.append(f"Expected B3 GBDT to breach 10% compliance at h=6, but got {v_rate:.2f}%")
                 print(f"  [FAIL] B3 GBDT violation = {v_rate:.2f}%")
             else:
-                print(f"  [PASS] B3 GBDT breaches grid compliance at h=6 ({v_rate:.2f}% > 10.0%), confirming tree baseline failure under wake advection")
+                print(f"  [PASS] B3 GBDT breaches nominal 10% Newsvendor violation target at h=6 ({v_rate:.2f}% > 10.0%), confirming tree baseline failure under wake advection")
 
     # 5. Check Factorial Ablation: Negative Controls and MoE Parity
     print("\n[Audit Step 5: Factorial Latent-Boundary Ablation Audit]")
@@ -116,7 +116,7 @@ def main():
                 failures.append(f"Expected random posterior to breach 10% violation at h=6, but got {v_rand:.2f}%")
                 print(f"  [FAIL] Random posterior violation = {v_rand:.2f}%")
             else:
-                print(f"  [PASS] Negative control F_Random_Posterior breaches compliance ({v_rand:.2f}% > 10.0%)")
+                print(f"  [PASS] Negative control F_Random_Posterior exceeds nominal 10% Newsvendor target ({v_rand:.2f}% > 10.0%)")
 
         # Check MoE vs Dense parity
         dense_h6 = df_fact[(df_fact["variant_id"] == "I_STGQ_Dense") & (df_fact["horizon_step"] == 6) & (df_fact["condition"] == "pitch_withheld")]

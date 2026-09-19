@@ -30,7 +30,7 @@
 
 ### Risk 3: Asymmetric Directionality in Zero-Shot Cross-Farm Generalization
 - **Classification**: `Minor Robustness Risk`
-- **Description**: Direct zero-shot transfer without local recalibration exhibits significant directional asymmetry: transferring from Kelmarsh (6 MM92 turbines) to Penmanshiel (15 MM82 turbines) achieves NMI $0.752\text{--}0.770$, whereas transferring from Penmanshiel to Kelmarsh collapses to NMI $0.341\text{--}0.505$ (pooled average $0.557$).
+- **Description**: Direct zero-shot transfer without local recalibration exhibits significant directional asymmetry: transferring from Kelmarsh (6 MM92 turbines) to Penmanshiel (14 operational MM82 turbines, WT01--WT15 excluding WT03) achieves NMI $0.752\text{--}0.770$, whereas transferring from Penmanshiel to Kelmarsh collapses to NMI $0.341\text{--}0.505$ (pooled average $0.557$).
 - **Reviewer Defense / Mitigation**: Rather than concealing this discrepancy, we explicitly document it as a negative finding that defines an empirical boundary: autonomous zero-shot cross-farm transfer without site recalibration is fundamentally unreliable. We demonstrate that local chronological retraining on the target site restores regime alignment (NMI $>0.94$), confirming that site-specific aerodynamic parameters ($u_{\mathrm{rated}}, p_{\mathrm{th}}$) must be re-calibrated.
 
 ---
