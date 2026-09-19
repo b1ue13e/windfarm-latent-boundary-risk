@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-09-19T14:33:44+08:00
+Generated: 2026-09-19T15:11:33+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -84,7 +84,7 @@ Exit: 0
   [PASS] artifacts/mediation_analysis.csv (2,979 bytes)
   [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (7,217 bytes)
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,261 bytes)
-  [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,695 bytes)
+  [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,803 bytes)
   [PASS] build/paper_tste_ieee.pdf (181,317 bytes)
   [PASS] build/paper_tste_supplementary.pdf (1,012,031 bytes)
 

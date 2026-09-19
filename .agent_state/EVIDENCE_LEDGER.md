@@ -369,3 +369,15 @@ Relevant-Output:
 VERIFICATION_GATE: PASS
 ```
 
+## T39 — 2026-09-19T15:10:00+08:00
+Task-ID: T39
+Status: VERIFIED_COMMAND
+Summary: Skeptical audit and residual terminology cleanup: (1) Identified and eliminated residual "grid compliance" and "compliance threshold" phrases in docs/DECISIVE_EVIDENCE_GATE.md, docs/GBDT_METRIC_PROVENANCE.md, and UPDATED_MANUSCRIPT_CHANGELOG.md, aligning strictly to "nominal 10% Newsvendor violation target"; (2) Confirmed exact 10.0-page budget of main and standalone PDFs; (3) Verified that all 10 decisive evidence gates (verify_decisive_gate.py), submission-facing numbers (verify_tste_number_consistency.py), and PDF integrity checks (verify_final_pdf_integrity.py) exit 0; (4) Ran verify_gate.py confirming VERIFICATION_GATE: PASS.
+Command: `python .agents/scripts/verify_gate.py`
+Exit-Code: 0
+Relevant-Output:
+```
+VERIFICATION_GATE: PASS
+```
+
+

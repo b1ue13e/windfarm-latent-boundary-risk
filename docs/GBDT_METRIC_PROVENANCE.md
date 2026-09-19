@@ -23,7 +23,7 @@ A comprehensive forensic audit of all data pipelines, models, feature matrices, 
   3. `pitch_withheld` ($\tau=0$, missing blade pitch channels)
   4. `delay6_pitch_withheld` ($\tau=60\text{ min}$, stale telemetry and missing blade pitch)
 - **Where the labeling error occurred**: In early drafts of summary memos (`docs/DECISIVE_EVIDENCE_GATE.md:35`, `RESEARCH_VERDICT.md:38,53`, and `DECISIVE_EXPERIMENT_REPORT.md:53`), authors discussed the *pitch-withheld* regime but cited the *clean* scenario breach figure ($16.23\%$) rather than the condition-matched figure ($14.98\%$). Conversely, `scripts/verify_decisive_gate.py` explicitly audited the `pitch_withheld` row, verifying $14.98\% > 10.0\%$.
-- **Scientific Takeaway**: Both values comfortably exceed the $\le 10.0\%$ grid compliance failure boundary ($16.23\% > 10.0\%$ and $14.98\% > 10.0\%$). However, rigorous scientific provenance requires explicit condition labeling to prevent cross-condition conflation.
+- **Scientific Takeaway**: Both values comfortably breach the nominal 10% Newsvendor violation target ($q^* = 0.90$ induced by $\rho=10$; $16.23\% > 10.0\%$ and $14.98\% > 10.0\%$). However, rigorous scientific provenance requires explicit condition labeling to prevent cross-condition conflation.
 
 ---
 
@@ -60,7 +60,7 @@ A comprehensive forensic audit of all data pipelines, models, feature matrices, 
 ### 2.4 Complete 4-Scenario GBDT $h=6$ Metrics from Canonical Artifact
 Extracted directly from `artifacts/direct_quantile_baselines_summary.csv`:
 
-| Scenario | Condition ID | Horizon | PSREI Cost (kW·h) | Violation Rate (%) | Reserve Volume (kW·h) | Shortage Energy (kW·h) | Pinball Loss | Grid Compliance ($\le 10\%$) |
+| Scenario | Condition ID | Horizon | PSREI Cost (kW·h) | Violation Rate (%) | Reserve Volume (kW·h) | Shortage Energy (kW·h) | Pinball Loss | Newsvendor Target ($\le 10\%$) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Pristine Telemetry** | `clean` | $h=6$ (60 min) | 15,665,274.89 | **16.23%** (0.162345) | 7,553,868.14 | 811,140.67 | 18.29 | **FAIL (Surge)** |
 | **60-min Delay** | `delay6` | $h=6$ (60 min) | 15,740,668.35 | **15.14%** (0.151372) | 7,770,719.19 | 796,994.92 | 18.41 | **FAIL (Surge)** |
@@ -93,5 +93,5 @@ All references to GBDT violation rates must explicitly cite their scenario:
 3. **When comparing Multi-Horizon Tree Degradation ($h=1 \to h=6$)**:
    - Under Clean: B3 GBDT surges from $9.16\%$ at $h=1$ to $16.23\%$ at $h=6$.
    - Under Pitch-Withheld: B3 GBDT surges from $8.42\%$ at $h=1$ to $14.98\%$ at $h=6$.
-4. **General Grid Compliance Finding**:
-   - Across all four evaluated telemetry degradation scenarios at $h=6$, shallow tree-based quantile models breach the $10.0\%$ grid compliance threshold ($13.73\%\text{--}16.23\%$), confirming tree baseline failure under multi-step wake advection regardless of telemetry condition.
+4. **General Newsvendor Target Finding**:
+   - Across all four evaluated telemetry degradation scenarios at $h=6$, shallow tree-based quantile models breach the nominal 10% Newsvendor violation target ($13.73\%\text{--}16.23\%$), confirming tree baseline failure under multi-step wake advection regardless of telemetry condition.
