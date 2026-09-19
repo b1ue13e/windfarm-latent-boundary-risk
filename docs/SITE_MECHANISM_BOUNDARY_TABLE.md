@@ -1,0 +1,34 @@
+# Site × Mechanism Cross-Farm External Validity Boundary Table
+
+**Date**: 2026-09-19  
+**Framing Directive**: The 134-turbine WTB site is the primary mechanism-identification environment. Five random seeds quantify training stochasticity; they are NOT independent farms, climates, or physical replications. The three external European facilities must NOT be presented as uniform replication evidence. Their observed effects are heterogeneous:
+- **Penmanshiel**: positive;
+- **Kelmarsh**: statistically neutral;
+- **ENGIE La Haute Borne (LHB)**: negative / overfitting boundary.
+
+**Canonical Conclusion**:
+> “The primary mechanism is identified on WTB; external sites probe transferability and reveal site-dependent boundary conditions. Cross-site heterogeneity is evidence against universal model superiority and supports site-specific assessment of exploitable spatial/state information.”
+
+---
+
+## 1. Site × Mechanism Comprehensive Ledger
+
+| Site Name | Country & Facility Type | Turbine Count ($N$) | Observation Period | Available SCADA Channels | Blade Pitch Available? | Spatial Redundancy / Wake Context | Evaluated Model Comparison | Paired Effect ($\Delta\text{PSREI}$) | Uncertainty Interval (95% Bootstrap CI) | Transfer / Replication Interpretation |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **WTB** | China, Utility-scale onshore complex | 134 turbines | 245 days (8 months, 10-min SCADA, $T=35{,}280$) | 11 channels (Wspd, Wdir, Patv, Pab1..3, Ndir, Itmp, Etmp) | Yes (observed in raw; selectively withheld in experiments) | **High**: Dense multi-row array with pronounced spatial wake advection and terrain diversity | STGQ vs. Global Quantile (also vs. Continuous Physical & B1--B5) | **$-38\text{k kW}\cdot\text{h}$** (boundary band) / **$-1.83\text{M kW}\cdot\text{h}$** (full pop. vs global) | $[-67\text{k}, -12\text{k}]\text{ kW}\cdot\text{h}$ ($p < 0.05$) / $[+1.21\text{M}, +2.41\text{M}]$ | **Primary Mechanism Identification Site**: High spatial redundancy and wake coupling enable consequence-driven latent boundary recovery when pitch is withheld. |
+| **Penmanshiel** | UK, Commercial onshore wind farm | 14 active (15 MM82) | 8.6 years decadal archive (2016--2021) | Standard SCADA (Wspd, Patv, Pab, nacelle, temperatures) | Yes (99.1% available in modern continuous period) | **Moderate**: Cohesive commercial cluster with measurable inter-turbine wake coupling | STGQ vs. Global Quantile | **$-2.14\text{M kW}\cdot\text{h}$** | $[-3.25\text{M}, -1.36\text{M}]\text{ kW}\cdot\text{h}$ ($p < 0.05$) | **Positive External Boundary Probe**: Confirms that when inter-turbine wake advection and array depth exist, spatio-temporal representations deliver substantial reserve cost reductions under local retraining. |
+| **Kelmarsh** | UK, Commercial onshore micro-array | 6 MM92 turbines | 9.0 years decadal archive (2016--2021) | Standard SCADA (Wspd, Patv, Pab, gen. speed, pitch) | Yes (97.3% available in modern continuous period) | **Minimal**: Linear/sparse 6-turbine micro-array; low spatial wake redundancy | STGQ vs. Global Quantile | **$-40\text{k kW}\cdot\text{h}$** | $[-204\text{k}, +172\text{k}]\text{ kW}\cdot\text{h}$ (**crosses zero**, $p = 0.85$) | **Statistically Neutral Probe**: Minimal spatial redundancy yields no detectable benefit for graph convolutions; simple quantile baselines match neural models. |
+| **ENGIE La Haute Borne (LHB)** | France, Open-access micro-farm | 4 MM82 turbines | 4 years (2013--2016, quarterly walk-forward) | 4 core channels (Wspd, Patv, Pab, Ndir) | Yes (99.2% directly observed) | **Negligible**: 4-turbine micro-farm; high localized micro-topography heterogeneity | STGQ vs. Global Quantile / Continuous Physical | **$+43\text{k kW}\cdot\text{h}$** (annual) / **$+1.01\text{M kW}\cdot\text{h}$** (quarterly walk-forward) | $[-29\text{k}, +141\text{k}]\text{ kW}\cdot\text{h}$ (annual) / $[+0.29\text{M}, +1.76\text{M}]$ (quarterly) | **Negative / Overfitting Boundary Probe**: Micro-farms overfit complex spatio-temporal representations; simple deterministic physical rules or scalar quantiles are strictly superior. |
+
+---
+
+## 2. Key Methodological Lessons
+
+1. **No Uniform Pooling**:
+   The three European wind farms cannot and must not be pooled into a single "average transfer effect." Doing so would obscure the fundamental physical law: *the utility of spatio-temporal representations is strictly conditioned on the presence of exploitable spatial wake redundancy.*
+2. **Turbine Count vs. Wake Coupling**:
+   Array scale is not purely about turbine count, but about physical turbine density and wake interaction:
+   - WTB (134 units) and Penmanshiel (14 units) exhibit rich wake advection, enabling spatial graph learning to extract aerodynamic state signatures.
+   - Kelmarsh (6 units) and LHB (4 units) lack sufficient wake interactions to justify spatial graph modeling, causing models to either gain nothing (Kelmarsh) or overfit local micro-topographical noise (LHB).
+3. **Directional Transfer Asymmetry**:
+   Zero-shot transfer experiments between Kelmarsh and Penmanshiel demonstrate pronounced directional asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.77$ vs. Penmanshiel $\to$ Kelmarsh NMI $0.34$). This asymmetry proves that zero-shot model transfer across distinct aerodynamic terrains is fundamentally unreliable, and mandates local retraining or site-specific recalibration.

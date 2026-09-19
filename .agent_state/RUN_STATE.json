@@ -1,0 +1,15 @@
+{
+  "title": "论文核心问题的对抗性审查与第一性原理收束",
+  "created": "2026-09-18T00:00:00+08:00",
+  "updated": "2026-09-19T13:00:00+08:00",
+  "phase": "final",
+  "status": "complete",
+  "last_verified_task": "T37",
+  "notes": [
+    "Tasks T34-T37 completed: GBDT metric provenance reconciled (16.23% clean vs 14.98% pitch-withheld).",
+    "Multi-site framed as external-validity boundary probes (WTB primary identification).",
+    "Strong-baseline closure completed: Posterior is risk-hedging mechanism (Delta_trans - Delta_steady = -296k kWh, p < 0.005), Wspd-Bins is minimum sufficient model in steady state.",
+    "Positioning against Zhao et al. (IJEPES 2026) conceded and clarified, 4 contributions stated, Q1-Q8 defense playbook documented.",
+    "Main IEEE PDF exactly 10.0 pages with zero overflow. All 10 decisive evidence gates passed."
+  ]
+}

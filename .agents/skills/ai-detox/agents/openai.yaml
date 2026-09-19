@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper AI Detox"
+  short_description: "Remove AI-like academic prose and restore research judgment."
+  default_prompt: "Use $paper-ai-detox to diagnose and revise this manuscript for AI-like style, weak research sense, citation risk, and reviewer-facing credibility."

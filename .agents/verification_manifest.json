@@ -1,0 +1,28 @@
+{
+  "require_all_nonblocked_tasks_verified": true,
+  "require_evidence_for_verified_tasks": true,
+  "require_independent_review": true,
+  "require_verification_report": false,
+  "required_files": [],
+  "forbidden_patterns": [],
+  "commands": [
+    {
+      "name": "verify_final_pdf_integrity",
+      "command": "python scripts/verify_final_pdf_integrity.py",
+      "required": true,
+      "enabled": true
+    },
+    {
+      "name": "verify_decisive_gate",
+      "command": "python scripts/verify_decisive_gate.py",
+      "required": true,
+      "enabled": true
+    },
+    {
+      "name": "verify_tste_number_consistency",
+      "command": "python scripts/verify_tste_number_consistency.py",
+      "required": true,
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+% ==============================================================================
+% TopConf LaTeX Preamble & Dynamic Macro Synchronization Header
+% Compatible with: NeurIPS, ICLR, ICML, AAAI, KDD, CVPR
+% ==============================================================================
+
+% 1. Core Mathematical & Symbolic Packages (Load in strict safe order)
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{bm}            % Robust bold math: \bm{\theta}, \bm{x}
+\usepackage{microtype}     % Improved typography & margin justification
+\usepackage{booktabs}      % Professional tables: \toprule, \midrule, \bottomrule
+\usepackage{multirow}
+\usepackage{nicefrac}
+\usepackage{url}
+
+% 2. Safe Theorem Environments (Pre-checked against conference sty conflicts)
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% 3. Algorithm Configuration (Prevents algorithmicx vs algorithm2e collisions)
+% NOTE: For NeurIPS/ICLR, use the standard algorithm + algorithmic package:
+\usepackage{algorithm}
+\usepackage{algorithmic}
+% Optional custom command for comment style:
+\renewcommand{\algorithmiccomment}[1]{\hfill\textcolor{gray}{\small$\triangleright$\textit{ #1}}}
+
+% ==============================================================================
+% 4. CENTRAL METRIC MACRO DICTIONARY (Prevents Data-Claim Inconsistency Drift)
+% Update key numbers here; all occurrences across Abstract, Intro, Tables &
+% Conclusion will automatically stay 100% synchronized!
+% ==============================================================================
+
+% Methodology Names
+\newcommand{\MethodName}{\texttt{OursMethod}}
+\newcommand{\MethodFullName}{Generic Project Framework Indicator}
+
+% Central Benchmark Metric Macros
+\newcommand{\MetricLeadTimeGain}{24.7\%}
+\newcommand{\MetricLeadTimeMean}{48.2}
+\newcommand{\MetricLeadTimeStd}{2.6}
+\newcommand{\MetricFalseAlarmRate}{2.1\%}
+\newcommand{\MetricBaselineGain}{14.3\%}
+\newcommand{\MetricCorruptionRatio}{20\%}
+
+% Mathematical Notation Shortcuts
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Manifold}{\mathcal{M}}
+\newcommand{\Graph}{\mathcal{G}}
+\newcommand{\Laplacian}{\mathbf{L}}
+\newcommand{\SpecGap}{\gamma(t)}
+\newcommand{\RicciCurv}{\mathrm{Ric}}
+
+% ==============================================================================
+% End of TopConf Preamble Header
+% ==============================================================================
+

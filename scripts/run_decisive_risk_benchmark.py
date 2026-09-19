@@ -17,7 +17,7 @@ Execution Steps:
    - Single delivery moment evaluation (lead_step=0, 10-min horizon, no 24-step over-counting).
    - Iso-Reliability: Validation-calibrated reserve scaling to ensure strict violation_rate <= 10.0%.
    - Reports: Cost, Reserve MWh, Shortage MWh, Violation Rate, False Alarm Rate, Event Recall & Delay, Brier Score, ECE.
-   - Weather-event block bootstrap (block_size=144, 1000 resamples).
+   - Weather-event paired daily cluster bootstrap (35 observed days, block_size=144, 1000 resamples).
 5. External Confirmation & Route Dispatch:
    - Evaluates on WTB and external commercial farms (Kelmarsh, Penmanshiel).
    - Evaluates the 4 decision criteria and outputs Route Dispatch verdicts.
@@ -337,7 +337,7 @@ def weather_block_bootstrap(
     seed: int = 42,
     ref_model: str = "Joint Routed",
 ) -> Dict[str, Any]:
-    """Fast vectorized weather block bootstrap for 95% CIs and paired difference vs ref_model."""
+    """Fast vectorized paired daily cluster bootstrap (35 observed days, 144 steps/cluster) for 95% CIs and paired difference vs ref_model."""
     rng = np.random.default_rng(seed)
     unique_times = np.unique(time_indices)
     n_times = len(unique_times)

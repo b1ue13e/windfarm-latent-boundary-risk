@@ -1,0 +1,4 @@
+interface:
+  display_name: "ICDR1 Skill"
+  short_description: "Guide RGRC through the ICLR sprint gate"
+  default_prompt: "Use $icdr1-skill to keep RGRC aligned with the 15-week ICLR sprint, RDR decision gate, and evidence-based narrative branch."

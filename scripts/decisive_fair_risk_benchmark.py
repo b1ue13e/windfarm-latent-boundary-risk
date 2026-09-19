@@ -17,8 +17,8 @@ Execution Protocol:
    - Validation-frozen Iso multiplier (forward deployment performance).
    - Strict Test Iso-Reliability (scaled to strictly level violation rate <= 10.0% for all models).
    - Reports: Reserve MWh, Shortage MWh, Total Cost Regret, Violation Rate, False Alarm Rate, Event Recall, Brier, ECE, Pinball Loss.
-4. Weather Event Block Bootstrap:
-   - 24-hour block bootstrap (144 steps per block, 1000 resamples) for 95% CIs and paired difference vs Joint Routed.
+4. Weather Event Daily Cluster Bootstrap:
+   - Paired daily cluster bootstrap over 35 observed days (144 steps per cluster, 1000 Monte Carlo resamples) for 95% CIs and paired difference vs Joint Routed.
 5. External Farm Confirmation & 4-Route Decision Dispatch:
    - Evaluates WTB, Kelmarsh, and Penmanshiel across all 5 seeds.
    - Evaluates the 4 decision criteria and outputs Route Dispatch verdicts.
@@ -368,7 +368,7 @@ def weather_block_bootstrap(
     seed: int = 42,
     ref_model: str = "Joint Routed",
 ) -> Dict[str, Any]:
-    """Fast vectorized weather block bootstrap for 95% CIs and paired difference vs ref_model."""
+    """Fast vectorized paired daily cluster bootstrap (35 observed days, 144 steps/cluster, n_boot resamples) for 95% CIs and paired difference vs ref_model."""
     rng = np.random.default_rng(seed)
     unique_times = np.unique(time_indices)
     n_times = len(unique_times)

@@ -1,0 +1,4 @@
+interface:
+  display_name: "General Paper Skill"
+  short_description: "Reviewer-risk diagnosis and manuscript optimization for Chinese core-style, thesis, course-paper-to-journal, and general academic papers."
+  default_prompt: "Use $general-paper-skill / $一般论文-skill to diagnose reviewer risks and optimize this manuscript without inventing data, citations, or results."

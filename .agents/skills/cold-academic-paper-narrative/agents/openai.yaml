@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cold Academic Paper Narrative"
+  short_description: "Sharpen ML papers into restrained top-conference narrative."
+  default_prompt: "Use $cold-academic-paper-narrative to rewrite this paper section with a restrained, claim-bounded top-conference narrative."

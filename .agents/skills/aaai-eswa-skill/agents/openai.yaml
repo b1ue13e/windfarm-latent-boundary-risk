@@ -1,0 +1,3 @@
+display_name: AAAI ESWA Skill
+short_description: AAAI稳中与ESWA保底投稿门槛评估
+default_prompt: 用 aaai-eswa-skill 评估当前论文距离 AAAI 稳中和 ESWA 保底还差什么，并给出下一步执行清单。

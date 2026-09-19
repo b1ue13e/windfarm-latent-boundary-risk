@@ -1,0 +1,7 @@
+interface:
+  display_name: "Obsidian 课程重构"
+  short_description: "重构 Obsidian 课程路径、知识卡、作业与验收体系"
+  default_prompt: "使用 $rebuild-obsidian-course 审计并重构指定课程，先锁定范围，再按最小充分原则逐阶段执行。"
+
+policy:
+  allow_implicit_invocation: true

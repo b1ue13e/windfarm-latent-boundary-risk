@@ -1,0 +1,4 @@
+interface:
+  display_name: "Financial Stress Mechanism"
+  short_description: "Audit transfer-mechanism evidence"
+  default_prompt: "Use this skill to plan experiments, claims, reviewer-risk controls, and reproducibility work for the physics/engineering source-pretraining financial-stress mechanism mainline."

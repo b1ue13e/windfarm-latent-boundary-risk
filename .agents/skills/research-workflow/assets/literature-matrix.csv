@@ -1,0 +1,4 @@
+paper,year,task,data,method,assumption,main_result,failure,gap_role,similarity_to_us,reusable_component,evidence_strength
+SamplePaper_A,2024,Time Series Forecasting,ETTh1,Linear Decomposition,Linear trend stationarity,MSE 0.38,Fails under distribution drift,失效类,High,Backbone layer,Strong
+SamplePaper_B,2023,Representation Learning,ImageNet,Contrastive Learning,Data augmentation invariance,Acc 82.5%,Overfits spurious correlations,主流类,Medium,Augmentation pipeline,Strong
+SamplePaper_C,2021,Foundation Theory,Synthetic,PAC-Bayes Bound,Bounded loss function,Risk bound O(1/sqrt(n)),Non-asymptotic assumptions,奠基类,Low,Proof technique,Medium

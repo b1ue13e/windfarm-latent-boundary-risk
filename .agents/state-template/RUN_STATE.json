@@ -1,0 +1,9 @@
+{
+  "title": "{{TITLE}}",
+  "created": "{{CREATED}}",
+  "updated": "{{CREATED}}",
+  "phase": "planning",
+  "status": "active",
+  "last_verified_task": null,
+  "notes": []
+}

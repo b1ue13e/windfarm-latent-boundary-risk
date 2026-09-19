@@ -1,0 +1,11 @@
+{
+  "research-reliability-stop-gate": {
+    "Stop": [
+      {
+        "type": "command",
+        "command": "python .agents/scripts/stop_gate.py",
+        "timeout": 30
+      }
+    ]
+  }
+}

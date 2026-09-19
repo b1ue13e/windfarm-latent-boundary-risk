@@ -1,0 +1,4 @@
+interface:
+  display_name: "Science Skill"
+  short_description: "Science-level AI/ML experiment hardening"
+  default_prompt: "Use $science-skill to audit and harden my AI/ML experiments for a Science main-journal submission."

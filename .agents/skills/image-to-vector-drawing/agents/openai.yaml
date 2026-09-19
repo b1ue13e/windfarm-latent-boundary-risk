@@ -1,0 +1,7 @@
+interface:
+  display_name: "Image to Vector Drawing"
+  short_description: "Turn images or drawing requests into editable SVG"
+  default_prompt: "Use $image-to-vector-drawing to convert my image or drawing request into a clean editable SVG."
+
+policy:
+  allow_implicit_invocation: true

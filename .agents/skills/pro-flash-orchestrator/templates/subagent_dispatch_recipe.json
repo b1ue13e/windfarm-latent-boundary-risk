@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SubagentDispatchRecipe",
+  "description": "Standard call configurations for dispatching Flash subagents while keeping the Pro parent agent clean.",
+  "recipes": [
+    {
+      "name": "codebase_investigator",
+      "purpose": "快速在整个代码库中检索特定模式、函数调用或类定义",
+      "dispatch_call": {
+        "TypeName": "research",
+        "Role": "Codebase Investigator",
+        "Model": "flash",
+        "Workspace": "inherit",
+        "Prompt": "【目标】使用 grep_search 或 find_by_name 工具在项目中检索目标模式。\n【查询项】${QUERY_PATTERN}\n【交付约束】禁止输出大段原始代码。只提取匹配的文件名、行号及核心代码行，汇总为结构化 Markdown 列表返回。"
+      }
+    },
+    {
+      "name": "log_error_analyzer",
+      "purpose": "扫描大体积训练或测试日志，提炼报错根因与堆栈关键行",
+      "dispatch_call": {
+        "TypeName": "research",
+        "Role": "Log Error Analyzer",
+        "Model": "flash",
+        "Workspace": "inherit",
+        "Prompt": "【目标】检查日志文件 ${LOG_PATH}。\n【交付约束】提取最后的异常类型、Traceback 核心出错文件与行号，以及发生错误前最后一次 checkpoint 的 step 数。以三句话精简摘要汇报，严禁 dump 整个日志。"
+      }
+    },
+    {
+      "name": "quick_unit_test_runner",
+      "purpose": "编写或执行简单的单测用例，验证局部函数行为",
+      "dispatch_call": {
+        "TypeName": "self",
+        "Role": "Quick Test Runner",
+        "Model": "flash",
+        "Workspace": "inherit",
+        "Prompt": "【目标】针对 ${TARGET_MODULE} 编写一个轻量合成测试，并运行验证。\n【交付约束】验证是否通过。如果失败，输出具体的 AssertionError 内容；如果成功，直接回复 PASS。"
+      }
+    }
+  ]
+}

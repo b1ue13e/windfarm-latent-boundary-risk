@@ -1,0 +1,4 @@
+interface:
+  display_name: "Nature Skill"
+  short_description: "Top-journal Eco-Yangtze guide"
+  default_prompt: "Use nature-skill to align Eco-Yangtze-Env work with the final Nature Sustainability-level target."
