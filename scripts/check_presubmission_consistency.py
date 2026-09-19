@@ -12,8 +12,10 @@ patterns = {
     'p<0.01': re.compile(r'p\s*<\s*0\.01', re.I),
     'compliant / compliance': re.compile(r'\bcomplian(ce|t)\b', re.I),
     'requires local retraining': re.compile(r'requires\s+local\s+retraining', re.I),
-    'graph convolutions overfit': re.compile(r'graph\s+convolutions\s+overfit', re.I),
-    'overfit localized terrain': re.compile(r'overfit\s+localized\s+terrain', re.I),
+    'mandates local retraining': re.compile(r'mandates\s+local\s+retraining', re.I),
+    'graph convolutions overfit': re.compile(r'graph\s+convolutions?\s+overfit', re.I),
+    'overfit localized terrain': re.compile(r'overfits?\s+localized\s+terrain', re.I),
+    'overfit localized topography': re.compile(r'overfits?\s+localized\s+topography', re.I),
 }
 
 all_clean = True
@@ -45,9 +47,10 @@ for fname in files:
             else:
                 print(f'  [PASS] {name}: 0 matches')
 
-# Check required phrases across main and supplementary
+# Check required phrases across main, supplementary, and standalone package
 main_text = Path('paper_tste_ieee.md').read_text(encoding='utf-8')
 supp_text = Path('paper_tste_supplementary.md').read_text(encoding='utf-8')
+pkg_text = Path('standalone_ieee_package/main.tex').read_text(encoding='utf-8')
 
 # 1. ABSTRACT BASELINE SCOPE check
 abstract_scope_pat = re.compile(
@@ -57,7 +60,7 @@ abstract_scope_pat = re.compile(
     r'however,\s+strong\s+wind-speed-conditioned\s+quantiles\s+remain\s+lower-cost\s+plant-wide\.',
     re.I | re.DOTALL
 )
-if abstract_scope_pat.search(main_text):
+if abstract_scope_pat.search(main_text) and abstract_scope_pat.search(pkg_text):
     print('\nABSTRACT BASELINE SCOPE: PASS')
 else:
     print('\nABSTRACT BASELINE SCOPE: FAIL')
@@ -65,7 +68,9 @@ else:
 
 # 2. NEWSVENDOR TARGET WORDING check
 newsvendor_compliant_pat = re.compile(r'\bcomplian(ce|t)\b', re.I)
-if not newsvendor_compliant_pat.search(main_text) and not newsvendor_compliant_pat.search(supp_text):
+if (not newsvendor_compliant_pat.search(main_text) and
+    not newsvendor_compliant_pat.search(supp_text) and
+    not newsvendor_compliant_pat.search(pkg_text)):
     print('NEWSVENDOR TARGET WORDING: PASS')
 else:
     print('NEWSVENDOR TARGET WORDING: FAIL')
@@ -81,7 +86,9 @@ req_lhb_phrase = re.compile(
     re.I | re.DOTALL
 )
 
-if req_asym_phrase.search(main_text) and req_lhb_phrase.search(main_text):
+if (req_asym_phrase.search(main_text) and req_lhb_phrase.search(main_text) and
+    req_asym_phrase.search(pkg_text) and req_lhb_phrase.search(pkg_text) and
+    req_asym_phrase.search(supp_text) and req_lhb_phrase.search(supp_text)):
     print('CROSS-SITE CAUSAL WORDING: PASS')
 else:
     print('CROSS-SITE CAUSAL WORDING: FAIL')

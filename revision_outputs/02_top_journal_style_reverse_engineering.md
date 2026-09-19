@@ -76,14 +76,14 @@ To eliminate promotional machine learning marketing, empirical results must be s
   - *Finding*: Under fresh, intact SCADA telemetry, continuous physical quantiles achieve $589{,}535\text{ kW}\cdot\text{h}$ ($h=1$) and $881{,}367\text{ kW}\cdot\text{h}$ ($h=6$), outperforming all neural models. Physical rules represent the gold standard under pristine observations.
 - **RQ2: When and why does SCADA communication latency induce reliability collapse in physical rules?**
   - *Finding*: Under 60-min latency, the $C_p$ control cliff amplifies stale-state estimation errors, surging violation rates to $24.0\%$ ($h=1$) and $12.20\%$ ($h=6$), inducing $127.6\text{ MWh}$ of unhedged shortfall.
-- **RQ3: Can state-conditional recalibration restore tail compliance without neural network machinery?**
-  - *Finding*: Condition-matching recalibration absorbs $55.3\%$ of shortage ($127.6 \to 57.0\text{ MWh}$) and restores compliance to $10.7\%$, proving that complex neural models are redundant when pitch telemetry is fully observable.
+- **RQ3: Can state-conditional recalibration restore target-satisfying tail coverage without neural network machinery?**
+  - *Finding*: Condition-matching recalibration absorbs $55.3\%$ of shortage ($127.6 \to 57.0\text{ MWh}$) and reduces violation to $10.7\%$, proving that complex neural models are redundant when pitch telemetry is fully observable.
 - **RQ4: Under what telemetry failure modes do learned spatio-temporal representations provide indispensable value?**
   - *Finding*: When blade-pitch registers are withheld (`no_pab`), learned models reconstruct operating regimes from electromechanical transients ($\texttt{Patv}, Q, V$), saving $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ over recalibrated physics and doubling boundary recall ($0.416$ vs $0.196$).
 - **RQ5: Does dynamic Mixture-of-Experts (MoE) routing deliver genuine operational value over unrouted dense backbones?**
   - *Finding*: Dense (matched) and MoE achieve statistical parity under clean telemetry ($p=0.380$). Under Delay-6, MoE's nominal difference is non-significant after Bonferroni correction. A decoupled modular architecture (*Frozen Backbone + Residual Quantile*) matches MoE performance ($1.284\text{M kW}\cdot\text{h}$, $9.68\%$ violation), proving gains arise from representation and quantile loss, not dynamic routing.
 - **RQ6: How do these operational boundaries generalize across turbine array topologies and commercial wind farms?**
-  - *Finding*: Plant-level PCC aggregation provides net portfolio smoothing ($-2.32\text{M kW}\cdot\text{h}$). While neural architectures readily adapt via local retraining on Kelmarsh and Penmanshiel, the 4-turbine La Haute Borne site exposes a hard operational boundary: micro-farms in complex terrain lack wake spatial redundancy and suffer negative transfer ($+1.01\text{M kW}\cdot\text{h}$).
+  - *Finding*: Plant-level PCC aggregation provides net portfolio smoothing ($-2.32\text{M kW}\cdot\text{h}$). While neural architectures readily adapt via local retraining on Kelmarsh and Penmanshiel, the 4-turbine La Haute Borne site exposes a hard operational boundary: LHB exhibits a negative transfer/overfitting boundary, consistent with limited exploitable spatial redundancy and site-specific heterogeneity ($+1.01\text{M kW}\cdot\text{h}$).
 
 ---
 

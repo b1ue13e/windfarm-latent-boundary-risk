@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-09-19T15:49:30+08:00
+Generated: 2026-09-19T15:58:04+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -86,7 +86,7 @@ Exit: 0
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,261 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,803 bytes)
   [PASS] build/paper_tste_ieee.pdf (182,025 bytes)
-  [PASS] build/paper_tste_supplementary.pdf (1,012,123 bytes)
+  [PASS] build/paper_tste_supplementary.pdf (1,012,118 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
   [PASS] Information-set manifest validated (819 rows, zero forward leakage)

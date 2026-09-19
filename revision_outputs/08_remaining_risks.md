@@ -21,10 +21,10 @@
 
 ---
 
-### Risk 2: Bounded Seed Compliance under Frozen Validation Calibration (60% Rate)
+### Risk 2: Bounded Seed Target Satisfaction under Frozen Validation Calibration (60% Rate)
 - **Classification**: `Minor Robustness Risk`
 - **Description**: Under frozen validation calibration without online margin inflation, the fleet-average test violation rate under Delay-6 settles at $10.6\% \pm 1.1\%$. While this represents a dramatic improvement over unadapted physical curves ($24.0\%$), exactly 3 out of 5 random seeds achieve $\le 10.0\%$ violation, while 2 seeds settle at $11.2\%$ and $11.5\%$.
-- **Reviewer Defense / Mitigation**: We explicitly reject claims of "unconditional 100% compliance guarantee." In Section IV and V, we report the exact seed compliance breakdown ($3/5$ seeds, $60\%$) and document that achieving guaranteed $\le 10.0\%$ tail compliance across 100% of seeds requires an additional $+5\%$ conservative margin inflation, trading off surplus reserve holding cost for absolute tail security.
+- **Reviewer Defense / Mitigation**: We explicitly reject claims of "unconditional 100% target satisfaction guarantee." In Section IV and V, we report the exact seed target-satisfaction breakdown ($3/5$ seeds, $60\%$) and document that achieving guaranteed $\le 10.0\%$ target satisfaction across 100% of seeds requires an additional $+5\%$ conservative margin inflation, trading off surplus reserve holding cost for absolute tail security.
 
 ---
 
