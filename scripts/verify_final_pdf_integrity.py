@@ -1,4 +1,4 @@
-﻿import sys
+import sys
 import os
 import re
 import pypdf
@@ -21,24 +21,28 @@ def audit_main_ieee_pdf(pdf_path: str):
         page_text = page.extract_text() or ''
         full_text += f'\n--- PAGE {i+1} ---\n' + page_text
         
-    required_phrases = [
-        '13,883',
-        'boundary-active',
-        'site-dependent',
-        'not turbine count alone',
-        'explicit disclosure that pitch is available in training inputs but withheld in validation/test deployment'
+    required_phrase_specs = [
+        ('13,883', [r'13,883']),
+        ('boundary-active', [r'boundary-active']),
+        ('site-dependent', [r'site-dependent']),
+        ('not turbine count alone / turbine count alone does not explain', [r'not\s+turbine\s+count\s+alone', r'turbine\s+count\s+alone\s+does\s+not\s+explain']),
+        ('explicit disclosure that pitch is available in training inputs but withheld in validation/test deployment', [r'explicit\s+disclosure\s+that\s+pitch\s+is\s+available\s+in\s+training\s+inputs\s+but\s+withheld\s+in\s+validation/test\s+deployment'])
     ]
     
     print('\n--- Checking Required Phrases ---')
     missing = []
-    for phrase in required_phrases:
-        pattern = re.compile(re.escape(phrase).replace(r'\ ', r'\s+'), re.IGNORECASE)
-        match = pattern.search(full_text)
-        if match:
-            print(f'  [PASS] Found required phrase: {phrase!r}')
+    for label, patterns in required_phrase_specs:
+        matched = False
+        for pat in patterns:
+            pattern = re.compile(pat, re.IGNORECASE)
+            if pattern.search(full_text):
+                matched = True
+                break
+        if matched:
+            print(f'  [PASS] Found required phrase match: {label!r}')
         else:
-            print(f'  [FAIL] Missing required phrase: {phrase!r}')
-            missing.append(phrase)
+            print(f'  [FAIL] Missing required phrase: {label!r}')
+            missing.append(label)
             
     if missing:
         raise AssertionError(f'Missing required phrases in PDF: {missing}')

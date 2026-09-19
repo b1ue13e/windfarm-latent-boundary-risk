@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-09-19T13:12:11+08:00
+Generated: 2026-09-19T14:33:44+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -10,11 +10,11 @@ Exit: 0
 Total pages: 10
 
 --- Checking Required Phrases ---
-  [PASS] Found required phrase: '13,883'
-  [PASS] Found required phrase: 'boundary-active'
-  [PASS] Found required phrase: 'site-dependent'
-  [PASS] Found required phrase: 'not turbine count alone'
-  [PASS] Found required phrase: 'explicit disclosure that pitch is available in training inputs but withheld in validation/test deployment'
+  [PASS] Found required phrase match: '13,883'
+  [PASS] Found required phrase match: 'boundary-active'
+  [PASS] Found required phrase match: 'site-dependent'
+  [PASS] Found required phrase match: 'not turbine count alone / turbine count alone does not explain'
+  [PASS] Found required phrase match: 'explicit disclosure that pitch is available in training inputs but withheld in validation/test deployment'
 
 --- Checking Banned Phrases ---
   [PASS] Confirmed absent: 'Commercial benefit'
@@ -28,16 +28,16 @@ Total pages: 10
 Number 589,535 found 5 times:
   [PASS] Occurrence #1 at index 1434: qualifier present=True
   [PASS] Occurrence #2 at index 5574: qualifier present=True
-  [PASS] Occurrence #3 at index 24726: qualifier present=True
-  [PASS] Occurrence #4 at index 37150: qualifier present=True
-  [PASS] Occurrence #5 at index 53526: qualifier present=True
+  [PASS] Occurrence #3 at index 25011: qualifier present=True
+  [PASS] Occurrence #4 at index 37435: qualifier present=True
+  [PASS] Occurrence #5 at index 55461: qualifier present=True
 Number 881,367 found 6 times:
   [PASS] Occurrence #1 at index 1480: qualifier present=True
   [PASS] Occurrence #2 at index 5601: qualifier present=True
-  [PASS] Occurrence #3 at index 24781: qualifier present=True
-  [PASS] Occurrence #4 at index 30732: qualifier present=True
-  [PASS] Occurrence #5 at index 33368: qualifier present=True
-  [PASS] Occurrence #6 at index 53550: qualifier present=True
+  [PASS] Occurrence #3 at index 25066: qualifier present=True
+  [PASS] Occurrence #4 at index 31017: qualifier present=True
+  [PASS] Occurrence #5 at index 33653: qualifier present=True
+  [PASS] Occurrence #6 at index 55486: qualifier present=True
 
 [ALL IEEE PDF CHECKS PASSED]
 
@@ -67,7 +67,7 @@ Exit: 0
 ======================================================================
 
 [Audit Step 1: Checking Required Artifacts]
-  [PASS] docs/REPOSITORY_EVIDENCE_MAP.md (12,051 bytes)
+  [PASS] docs/REPOSITORY_EVIDENCE_MAP.md (12,110 bytes)
   [PASS] docs/CANONICAL_RESEARCH_QUESTION.md (5,461 bytes)
   [PASS] docs/INFORMATION_SET_CONTRACT.md (7,573 bytes)
   [PASS] artifacts/information_set_manifest.csv (133,318 bytes)
@@ -80,13 +80,13 @@ Exit: 0
   [PASS] figures/posterior_reliability.pdf (35,234 bytes)
   [PASS] docs/CONSEQUENCE_SIGNAL_MECHANISM.md (4,904 bytes)
   [PASS] artifacts/channel_consequence_ablations.csv (3,608 bytes)
-  [PASS] docs/DECISION_VALUE_MEDIATION.md (5,135 bytes)
+  [PASS] docs/DECISION_VALUE_MEDIATION.md (5,198 bytes)
   [PASS] artifacts/mediation_analysis.csv (2,979 bytes)
   [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (7,217 bytes)
-  [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (7,594 bytes)
+  [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,261 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,695 bytes)
-  [PASS] build/paper_tste_ieee.pdf (179,111 bytes)
-  [PASS] build/paper_tste_supplementary.pdf (1,011,531 bytes)
+  [PASS] build/paper_tste_ieee.pdf (181,317 bytes)
+  [PASS] build/paper_tste_supplementary.pdf (1,012,031 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
   [PASS] Information-set manifest validated (819 rows, zero forward leakage)
@@ -95,10 +95,10 @@ Exit: 0
   [PASS] Fixed residuals validated across 5 seeds and 6 horizons (keys: 28)
 
 [Audit Step 4: Direct Baselines Compliance Audit]
-  [PASS] B3 GBDT breaches grid compliance at h=6 (14.98% > 10.0%), confirming tree baseline failure under wake advection
+  [PASS] B3 GBDT breaches nominal 10% Newsvendor violation target at h=6 (14.98% > 10.0%), confirming tree baseline failure under wake advection
 
 [Audit Step 5: Factorial Latent-Boundary Ablation Audit]
-  [PASS] Negative control F_Random_Posterior breaches compliance (11.41% > 10.0%)
+  [PASS] Negative control F_Random_Posterior exceeds nominal 10% Newsvendor target (11.41% > 10.0%)
   [PASS] MoE vs Dense Parity at h=6 pitch-withheld: Dense=15,471,506 kWh vs Routed=15,768,203 kWh (Dense matches or beats Routed)
 
 [Audit Step 6: Posterior Calibration Gate]
