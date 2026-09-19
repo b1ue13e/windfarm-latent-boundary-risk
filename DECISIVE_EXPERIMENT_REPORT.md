@@ -79,7 +79,7 @@ The investigation was structured into 15 rigorous, sequential phases to eliminat
 ### Phase 8: Decision-Value Mediation Test
 - Paired daily cluster bootstrap over 35 observed test days (1,000 paired Monte Carlo resamples, 144 steps/cluster):
   - Overall reduction: **$+1,825,410 \text{ kWh}$** vs global quantile ($p < 10^{-4}$).
-  - **$48.38\%$ of total savings ($+892,535\text{ kWh}$)** occurs within **Dynamic Transition Windows** ($\pm 3$ steps), confirming the mechanistic link to boundary crossings.
+  - Against unconditioned global quantiles, **$48.38\%$ of total savings ($+892,535\text{ kWh}$)** occurs within **Dynamic Transition Windows** ($\pm 3$ steps), reflecting baseline loss concentration ($33.0\%$). Against strong wind-speed bins, the posterior acts as a localized risk hedge (reducing violation to $7.24\%$ and shortage to $86.6\text{k kW}\cdot\text{h}$ at $+112{,}704\text{ kW}\cdot\text{h}$ additional reserve cost); the bootstrap interaction ($\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296{,}123\text{ kW}\cdot\text{h}, p < 0.005$) establishes cost gap heterogeneity rather than a net cost advantage.
   - In steady-state MPPT ($|v - 10.5| > 2.5\text{ m/s}$), direct wind-speed bins are sufficient ($\Delta L = L_{\text{posterior}} - L_{\text{wspd}} = +523{,}044\text{ kW}\cdot\text{h}$ penalty for posterior).
 
 ---

@@ -32,3 +32,5 @@
    - Kelmarsh (6 units) and LHB (4 units) show neutral or negative differences, indicating that complex spatio-temporal models gain nothing (Kelmarsh) or overfit local micro-topographical noise (LHB) when spatial redundancy is minimal.
 3. **Directional Transfer Asymmetry**:
    Zero-shot transfer experiments between Kelmarsh and Penmanshiel demonstrate pronounced directional asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.77$ vs. Penmanshiel $\to$ Kelmarsh NMI $0.34$). This asymmetry proves that zero-shot model transfer across distinct aerodynamic terrains is fundamentally unreliable, and mandates local retraining or site-specific recalibration.
+4. **Absence of Matched External No-Graph Controls**:
+   Table IV benchmarks STGQ against an unconditioned global quantile baseline, not matched external no-graph models. Notably, continuous physical curves match or slightly edge STGQ across external sites (WTB: 842k vs. 855k; Kelmarsh: 1,025k vs. 1,025k; Penmanshiel: 2,029k vs. 2,029k). Because matched no-graph ablations do not exist in the repository for external sites, wake modeling is not causally isolated as the driver of external-site gains.

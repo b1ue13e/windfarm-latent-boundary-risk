@@ -55,7 +55,7 @@ The paper's central scientific claim **SURVIVES** under a strict, falsifiable fo
 | **Negative Controls** | Permuted labels inflate cost to $17.93\text{M}$; random posterior exceeds nominal 10% Newsvendor violation target at **$11.41\%$ violation**. | `artifacts/factorial_boundary_ablation_summary.csv` |
 | **Posterior Calibration** | Test ECE strictly $\le 3.46\%$ across all conditions (Dense: $0.89\%$ clean, $2.54\%$ withheld); passes $\le 0.05$ gate. | `artifacts/posterior_calibration.csv` |
 | **Consequence Mechanism** | Active Power ($C2$) achieves Brier $0.0112$, NMI $0.461$, recovering $62.9\%$ of transitions; thermal fails ($0.0\%$). | `artifacts/channel_consequence_ablations.csv` |
-| **Decision Mediation** | Boundary representation saves **$+1.83\text{M kWh}$** vs global quantile, with **$48.4\%$ concentrated in transition windows**. | `artifacts/mediation_analysis.csv` |
+| **Decision Mediation** | Boundary representation saves **$+1.83\text{M kWh}$** vs unconditioned global quantile ($48.4\%$ concentrated in transition windows); vs strong wind-speed bins, it acts as a localized risk hedge (reducing violation from $8.36\%$ to $7.24\%$ at $+112\text{k kWh}$ reserve cost; $\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296\text{k kW}\cdot\text{h}$ establishes cost gap heterogeneity). | `artifacts/mediation_analysis.csv` |
 | **Physical Dominance** | Deterministic physical rule achieves **$881,367 \text{ kWh}$** in the boundary band at $h=6$ under $\tau=0$, beating neural models by 8.1%. | `docs/FAILURE_FALLBACK_BOUNDARY.md` |
 | **Page Budget Compliance** | `build/paper_tste_ieee.pdf` compiles cleanly to **exactly 10.0 pages** in two-column IEEEtran format. | `build/paper_tste_ieee.pdf` |
 
@@ -70,4 +70,4 @@ The paper's central scientific claim **SURVIVES** under a strict, falsifiable fo
 3. **Rule 3 (Pitch Withheld $\to$ Latent-Boundary Spatio-Temporal GNN)**:
    When blade pitch registers are unobservable across commercial boundaries, the spatio-temporal boundary representation should be deployed on utility-scale wind farms to infer the latent boundary from active power and wake context.
 4. **Rule 4 (Steady MPPT $\to$ Localized Physical Bins)**:
-   In benign, steady-state Region 2 conditions, simple wind-speed bins are optimal. Latent boundary conditioning must be selectively prioritized around dynamic transition windows.
+   In benign, steady-state Region 2 conditions, simple wind-speed bins are optimal and sufficient. Latent boundary conditioning provides a localized risk hedge (lower violation/shortage at higher reserve procurement cost) near dynamic transition windows, not a plant-wide cost reduction.

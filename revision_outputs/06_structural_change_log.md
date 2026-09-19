@@ -47,7 +47,7 @@ The manuscript underwent a comprehensive structural transformation from a techno
 - **Terminology Fix**: Replaced "Automatic Generation Control (AGC)" on line 256 with "Real-Time Economic Dispatch (RTED)" to match the 10-minute dispatch timescale.
 
 ### Section III: Experimental Setup & Datasets
-- **Multi-Farm Demarcation**: Cataloged the four empirical wind plant environments (WTB 134-turbine, Penmanshiel 15-turbine, Kelmarsh 6-turbine, and LHB 4-turbine).
+- **Multi-Farm Demarcation**: Cataloged the four empirical wind plant environments (WTB 134-turbine, Penmanshiel 14-turbine [WT01--WT15 excluding WT03], Kelmarsh 6-turbine, and LHB 4-turbine).
 - **Telemetry Degradation Protocols**: Detailed controlled latency steps ($\tau \in \{10, \dots, 60\}\text{ min}$), two-state Markov-Gilbert burst dropouts ($p_{GB}=0.08, p_{BB}=0.75$), and withheld blade-pitch channels (`no_pab`).
 
 ### Section IV: Results Organized by RQ1–RQ6

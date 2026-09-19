@@ -88,7 +88,7 @@ This forensic map indexes every empirical assertion, mathematical formulation, a
   - *Evidence File*: `artifacts/farm_aggregate_reserve_20260905/farm_pcc_paired_summary.csv`.
 
 ### Claim Cluster 5: Cross-Farm Generalization & Operational Boundary
-- **Three Commercial Utility Farms**: Architecture successfully adapts via local chronological retraining on Kelmarsh (6 turbines, MM92) and Penmanshiel (15 turbines, MM82), yielding walk-forward pooled savings of **-6.19M kW·h** and **-4.34M kW·h**.
+- **Three Commercial Utility Farms**: Architecture successfully adapts via local chronological retraining on Kelmarsh (6 turbines, MM92) and Penmanshiel (14 operational turbines, MM82, WT01--WT15 excluding WT03), yielding walk-forward pooled savings of **-6.19M kW·h** and **-4.34M kW·h**.
 - **La Haute Borne (LHB) Negative Case as Operational Boundary**: On the 4-turbine LHB site, learned models add **+1.01M kW·h** (walk-forward) and **+43k kW·h** (annual). This is formally documented as an operational boundary condition: in micro-farms with severe terrain distortion and only 4 turbines, spatial wake graph learning overfits and lacks spatial cancellation.
   - *Evidence File*: `artifacts/iec_density_rolling_eval/iec_rolling_guard.json`.
 

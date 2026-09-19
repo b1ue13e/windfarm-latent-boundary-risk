@@ -93,7 +93,7 @@ def plot_gate_stability():
     ax2.plot(pm_years, p_inv_w_all_m, "s--", color=c_pm_all, lw=1.1, ms=3.0, label=r"Inv-$\bar{\mathcal{W}}_1(\mathrm{all})$")
     ax2.fill_between(pm_years, p_inv_w_all_m - p_inv_w_all_s, p_inv_w_all_m + p_inv_w_all_s, color=c_pm_all, alpha=0.15)
 
-    ax2.set_title("(b) Penmanshiel (8.6 Yrs, 15 Turbines)", fontsize=7.6, fontweight="bold", pad=4)
+    ax2.set_title("(b) Penmanshiel (8.6 Yrs, 14 Turbines)", fontsize=7.6, fontweight="bold", pad=4)
     ax2.set_xlabel("Calendar Year", fontsize=7.0, labelpad=2)
     ax2.set_ylabel(r"Inverse $\mathcal{W}_1$ Similarity $1 / (1 + \mathcal{W}_1)$", fontsize=6.8, labelpad=2)
     ax2.set_ylim(0.92, 1.005)
