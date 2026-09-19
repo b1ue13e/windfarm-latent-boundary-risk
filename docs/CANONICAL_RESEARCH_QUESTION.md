@@ -47,7 +47,7 @@ where the paired 95% daily cluster bootstrap confidence interval (1,000 resample
 
 ### Hypothesis H3: Operational Failure Boundary (Conditional Validity)
 *Statement*: The independent decision value of learned boundary recovery is strictly bounded and disappears under any of the following four operational regimes:
-1. **Full Fresh Observability ($\tau=0$, complete channels)**: Deterministic aerodynamic power curves achieve lower surrogate cost and compliant reliability without neural variance;
+1. **Full Fresh Observability ($\tau=0$, complete channels)**: Deterministic aerodynamic power curves achieve lower surrogate cost and target-satisfying reliability without neural variance;
 2. **Observable Transmission Latency ($\tau \in [10, 30]\text{ min}$, complete channels)**: Non-neural state-conditional quantile recalibration absorbs the vast majority ($>50\%$) of shortfall loss, rendering complex representation learning redundant;
-3. **Minimal Spatial Redundancy Boundary**: On micro-arrays or sparse configurations where exploitable upstream wake redundancy is absent, spatial graph convolutions overfit localized terrain features and fail to outperform local or global quantiles;
+3. **Minimal Spatial Redundancy Boundary**: On micro-arrays or sparse configurations where exploitable upstream wake redundancy is absent, LHB exhibits a negative transfer/overfitting boundary, consistent with limited exploitable spatial redundancy and site-specific heterogeneity, failing to outperform local or global quantiles;
 4. **Severe Unidentifiability / Latency Horizon ($\tau \ge 60\text{ min}$)**: Extreme information decay degrades both point forecasts and boundary classification; here, heuristic selective abstention fails, and a conservative uniform reserve margin expansion dominates.

@@ -48,10 +48,10 @@ The investigation was structured into 15 rigorous, sequential phases to eliminat
 ### Phase 4: Direct Baseline Challenge
 - Evaluated 5 direct conditional quantile baselines under strictly matched information:
   - **B0 Global Empirical Quantile**: High reserve overspending ($9.22\text{M}$ at $h=1$, $16.79\text{M}$ at $h=6$).
-  - **B1 Conditional Wind-Speed Bins**: Robust steady-state performance ($7.14\text{M}$ at $h=1$, $14.55\text{M}$ at $h=6$, compliant $7.4\%$--$8.5\%$ violation).
+  - **B1 Conditional Wind-Speed Bins**: Robust steady-state performance ($7.14\text{M}$ at $h=1$, $14.55\text{M}$ at $h=6$, target-satisfying $7.4\%$--$8.5\%$ violation).
   - **B2 Linear Quantile Regression**: Under-allocates reserves, surging violation rates to $17.0\%$--$41.5\%$.
   - **B3 Quantile GBDT**: Excels at short horizon ($h=1$, $6.49\text{M}$ clean / $6.41\text{M}$ pitch-withheld), but **catastrophically breaks down at $h=6$ (surging to 16.23% clean and 14.98% pitch-withheld violation)**, breaching the nominal 10% Newsvendor violation target ($q^*=0.90$) due to failure to model spatio-temporal wake advection.
-  - **B4 Direct MLP**: Matches compliance ($7.5\%$--$10.6\%$ violation).
+  - **B4 Direct MLP**: Matches nominal target ($7.5\%$--$10.6\%$ violation).
 
 ### Phase 5: Factorial Latent-Boundary Ablation (Variants A to J)
 - **Negative Controls**:

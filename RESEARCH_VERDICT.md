@@ -33,8 +33,8 @@ The paper's central scientific claim **SURVIVES** under a strict, falsifiable fo
    (Saves +1.83M kWh vs global quantile;                     (Clean physical rules beat ML by 8.1%
     48.4% concentrated in boundary transitions)               in boundary band when pitch is observable)
            │                                                         │
-3. Tail Compliance Preservation                           3. Steady-State MPPT Dominance
-   (Maintains compliant violation, whereas GBDT              (Direct wind-speed bins sufficient in
+3. Nominal Target Preservation                           3. Steady-State MPPT Dominance
+   (Maintains target-satisfying violation, whereas GBDT      (Direct wind-speed bins sufficient in
     breaches nominal 10% target at 14.98% / 16.23%)           steady Region 2 operation)
            │                                                         │
 4. State-Conditional Recalibration                        4. Selective Abstention Benefit

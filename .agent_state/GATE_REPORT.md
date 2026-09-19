@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-09-19T15:27:33+08:00
+Generated: 2026-09-19T15:49:30+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -68,7 +68,7 @@ Exit: 0
 
 [Audit Step 1: Checking Required Artifacts]
   [PASS] docs/REPOSITORY_EVIDENCE_MAP.md (12,110 bytes)
-  [PASS] docs/CANONICAL_RESEARCH_QUESTION.md (5,461 bytes)
+  [PASS] docs/CANONICAL_RESEARCH_QUESTION.md (5,549 bytes)
   [PASS] docs/INFORMATION_SET_CONTRACT.md (7,573 bytes)
   [PASS] artifacts/information_set_manifest.csv (133,318 bytes)
   [PASS] docs/FIXED_TARGET_CONTRACT.md (4,251 bytes)
@@ -82,10 +82,10 @@ Exit: 0
   [PASS] artifacts/channel_consequence_ablations.csv (3,608 bytes)
   [PASS] docs/DECISION_VALUE_MEDIATION.md (5,198 bytes)
   [PASS] artifacts/mediation_analysis.csv (2,979 bytes)
-  [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (7,217 bytes)
+  [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (7,309 bytes)
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,261 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,803 bytes)
-  [PASS] build/paper_tste_ieee.pdf (182,023 bytes)
+  [PASS] build/paper_tste_ieee.pdf (182,025 bytes)
   [PASS] build/paper_tste_supplementary.pdf (1,012,123 bytes)
 
 [Audit Step 2: Information-Set Symmetry]

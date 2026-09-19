@@ -51,10 +51,10 @@ Observable (τ = 0)                              Unobservable Actuator
 
 ---
 
-### Boundary 3: Micro-Farm Topographic Overfitting vs. Wake-Coupled Array Benefit
-- **Finding**: The utility of spatial graph neural networks is governed by **wake coupling density and terrain heterogeneity**, rather than an arbitrary turbine headcount threshold.
+### Boundary 3: Spatial Redundancy Boundary vs. Wake-Coupled Array Benefit
+- **Finding**: The utility of spatial neural networks is consistent with **exploitable spatial redundancy and site-specific heterogeneity**, rather than an arbitrary turbine headcount threshold.
 - **Empirical Evidence**:
-  - On compact micro-farms with isolated turbines and weak wake coupling (e.g., LHB with 4 turbines), spatial graph convolutions overfit localized topography, resulting in a $+43\text{k kW}\cdot\text{h}$ penalty (95% CI $[-28.7\text{k}, +141.2\text{k}]$), where local tabular models suffice.
+  - On compact micro-farms with isolated turbines and weak wake coupling (e.g., LHB with 4 turbines), LHB exhibits a negative transfer/overfitting boundary, consistent with limited exploitable spatial redundancy and site-specific heterogeneity, resulting in a $+43\text{k kW}\cdot\text{h}$ penalty (95% CI $[-28.7\text{k}, +141.2\text{k}]$), where local tabular models suffice.
   - On Kelmarsh (6 turbines), graph modeling is neutral ($-40\text{k kW}\cdot\text{h}$, CI crossing zero).
   - Crucially, on wake-coupled arrays (e.g., Penmanshiel with 14 turbines and WTB with 134 turbines), spatial graph modeling delivers massive, statistically significant reserve cost savings ($-2.14\text{M kW}\cdot\text{h}$ on Penmanshiel, $p < 0.05$; $-38\text{k kW}\cdot\text{h}$ on WTB).
 - **Prescribed Fallback Policy**: Spatial-representation value is site-dependent and appears related to exploitable spatial redundancy, not turbine count alone. Graph neural architectures should only be deployed on wind facilities exhibiting demonstrable wake interactions and exploitable spatial redundancy; compact micro-arrays or sparse configurations lacking spatial wake coupling should fall back to single-turbine tabular or tree-based quantile models.
