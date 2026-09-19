@@ -92,7 +92,7 @@ Corrected routing comparator & Node-level soft gate & WTB boundary-forced: $L_{b
 
 Table A2 makes the leakage and shared-anchor boundary explicit. The routing labels
 and some gate anchors deliberately share wind-speed and pitch information; the
-reported NMI/ARI therefore audits compliance with a declared SCADA boundary, not
+reported NMI/ARI therefore audits alignment with a declared SCADA boundary, not
 anchor-free discovery.
 
 ```{=latex}
@@ -423,7 +423,7 @@ Site & $N$ & Period & SCADA Channels & Pitch & Wake Context & Comparison & Paire
 \textbf{WTB} & 134 & 245 days ($T=35{,}280$) & 11 channels (Wspd, Wdir, Patv, Pab1--3, etc.) & Yes (raw) & \textbf{High}: Dense multi-row array; strong wake advection & STGQ vs. Global Quantile & $-38\text{k}$ [$-67\text{k}, -12\text{k}$]$^{\ast}$ (band) / $-1.83\text{M}$ (full) & \textbf{Primary Identification Site}: High spatial wake coupling enables consequence-driven latent boundary recovery when pitch is withheld. \\
 \textbf{Penman.} & 14 & 8.6 years (2016--2021) & Standard SCADA (Wspd, Patv, Pab, nacelle, temps) & Yes (99.1\%) & \textbf{Moderate}: Cohesive cluster (14 MM82; WT01--15 ex. WT03) & STGQ vs. Global Quantile & $-2.14\text{M}$ [$-3.25\text{M}, -1.36\text{M}$]$^{\ast}$ & \textbf{Positive Boundary Probe}: STGQ reduces surrogate cost relative to global quantile under local retraining, consistent with spatial redundancy as a moderator, though matching continuous physical rules ($2{,}029\text{k kW}\cdot\text{h}$). \\
 \textbf{Kelmarsh} & 6 & 9.0 years (2016--2021) & Standard SCADA (Wspd, Patv, Pab, gen. speed) & Yes (97.3\%) & \textbf{Minimal}: Linear 6-turbine micro-array; weak wake redundancy & STGQ vs. Global Quantile & $-40\text{k}$ [$-204\text{k}, +172\text{k}$] ($p=0.85$, crosses 0) & \textbf{Statistically Neutral Probe}: STGQ effect relative to global quantile crosses zero; simple quantile baselines match neural models. \\
-\textbf{LHB} & 4 & 4 years (2013--2016) & 4 core channels (Wspd, Patv, Pab, Ndir) & Yes (99.2\%) & \textbf{Negligible}: 4-turbine micro-farm; local topography & STGQ vs. Global Quantile & $+43\text{k}$ [$-29\text{k}, +141\text{k}$] (annual) / $+1.01\text{M}$ (rolling) & \textbf{Negative / Overfitting Boundary Probe}: Micro-farms overfit complex spatio-temporal graphs; simple deterministic physical rules are strictly superior. \\
+\textbf{LHB} & 4 & 4 years (2013--2016) & 4 core channels (Wspd, Patv, Pab, Ndir) & Yes (99.2\%) & \textbf{Negligible}: 4-turbine micro-farm; local topography & STGQ vs. Global Quantile & $+43\text{k}$ [$-29\text{k}, +141\text{k}$] (annual) / $+1.01\text{M}$ (rolling) & \textbf{Negative / Overfitting Boundary Probe}: LHB exhibits a negative transfer/overfitting boundary, consistent with limited exploitable spatial redundancy and site-specific heterogeneity; simple deterministic physical rules are strictly superior. \\
 \bottomrule
 \end{tabularx}
 \end{table*}
@@ -617,7 +617,7 @@ LHB \texttt{signature\_core\_no\_pab\_std} & 0.578 $\pm$ 0.135 & 0.617 $\pm$ 0.2
 To ensure complete methodological transparency and prevent over-generalization across disparate commercial wind farms, we explicitly disentangle three separate lines of external evidence:
 
 1. **Within-plant local retraining (ENGIE La Haute Borne, Kelmarsh, Penmanshiel):** All probe evaluations (Tables A9a--A9f) and chronological dispatch replays represent models retrained locally under site-specific rated aerodynamic wind speeds ($v_{\mathrm{rated}} = 12.5\text{ m s}^{-1}$ for Kelmarsh MM92 and $14.5\text{ m s}^{-1}$ for Penmanshiel MM82). These results demonstrate neural architecture adaptability to site-specific aerodynamic parameters when local training data is available, rather than zero-shot cross-farm generalizability.
-2. **Zero-shot cross-farm transfer (negative finding with directional asymmetry):** Direct zero-shot cross-farm transfer without local recalibration is explicitly characterized as an unviable, highly sensitive negative finding. Representation transfer between Kelmarsh and Penmanshiel exhibits severe directional asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.752$--$0.770$ vs. Penmanshiel $\to$ Kelmarsh $0.341$--$0.505$, pooled mean NMI $0.557$; `external_wind_guard.json`), proving that operational reserve policies cannot be transferred across distinct turbine makes and geometries without local sensor calibration and retraining.
+2. **Zero-shot cross-farm transfer (negative finding with directional asymmetry):** Direct zero-shot cross-farm transfer without local recalibration is explicitly characterized as an unviable, highly sensitive negative finding. Representation transfer between Kelmarsh and Penmanshiel exhibits severe directional asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.752$--$0.770$ vs. Penmanshiel $\to$ Kelmarsh $0.341$--$0.505$, pooled mean NMI $0.557$; `external_wind_guard.json`), indicating that directional transfer asymmetry supports site-specific retraining or recalibration rather than assuming reliable zero-shot transfer across distinct turbine makes and geometries.
 3. **Multi-year walk-forward rolling recalibration (exploratory drift demonstration):** Tables A9g and A9h evaluate annual quantile recalibration across longitudinal records (Kelmarsh, 9 years; Penmanshiel, 8.6 years) under IEC 61400-12-1 air-density calibration using a 2-year sliding training window. Data-integrity auditing identified temporal overlap in historical rolling folds (e.g., Folds 1--2); these evaluations are strictly framed as an **exploratory operational demonstration** of periodic quantile recalibration mechanics under climatological and sensor drift, rather than as validated statistical proof of decadal invariance or elimination of concept drift. On Kelmarsh, 6 of 7 rolling folds strictly exclude zero ($p < 0.05$), with mean annual savings of $-1.025 \text{ Million kWh/year}$. On Penmanshiel, 4 mature operational folds (2020--2023) strictly exclude zero ($p < 0.05$), with mean annual savings of $-2.029 \text{ Million kWh/year}$.
 
 ```{=latex}
@@ -1785,7 +1785,7 @@ STGQ-Modular (Learned Residual) & 663,347 (6.1\%) & 786,366 (6.7\%) & 875,838 (7
 \bottomrule
 \end{tabular}
 \vspace{1mm}
-\fontsize{8.0pt}{9.6pt}\selectfont $^\dagger$Exceeds nominal 10.0\% violation target ($q^*=0.90$). Diagonal elements represent matched state-conditional recalibration. Off-diagonal elements characterize latency drift. Under $\tau_{\mathrm{cal}}=10\,\text{min}$, tail violation remains compliant ($<10\%$) up to $\tau_{\mathrm{test}}=20\,\text{min}$ but collapses under $\tau_{\mathrm{test}}=60\,\text{min}$, establishing the empirical breakdown boundary.
+\fontsize{8.0pt}{9.6pt}\selectfont $^\dagger$Exceeds nominal 10.0\% violation target ($q^*=0.90$). Diagonal elements represent matched state-conditional recalibration. Off-diagonal elements characterize latency drift. Under $\tau_{\mathrm{cal}}=10\,\text{min}$, tail violation remains below the nominal 10\% violation target ($<10\%$) up to $\tau_{\mathrm{test}}=20\,\text{min}$ but collapses under $\tau_{\mathrm{test}}=60\,\text{min}$, establishing the empirical breakdown boundary.
 \end{table*}
 ```
 

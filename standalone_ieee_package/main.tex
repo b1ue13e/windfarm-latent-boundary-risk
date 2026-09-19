@@ -139,7 +139,7 @@ Anhui University of Finance and Economics, Bengbu 233030, China\\
 \begin{abstract}
 Operating reserve screening near the demarcation boundary between Maximum Power Point Tracking (MPPT, Region 2) and active blade-pitch regulation (Region 3) is governed by acute asymmetric shortfall risk: generation over-forecasts incur severe balancing penalties relative to surplus energy headroom. Deterministic aerodynamic power curves presume fresh, fully observable telemetry; however, commercial SCADA systems routinely encounter transmission latency, packet serialization dropouts, and aggregator-boundary pitch unobservability. Under degraded telemetry, turbine operating regimes cease to be directly observable and become latent states. Across multi-seed benchmarks on the 134-turbine WTB commercial plant and multi-year data from three European facilities, this paper investigates whether machine learning provides universal utility or conditional advantage under telemetry degradation.
 
-Under pristine telemetry, deterministic physical rules achieve the lowest reserve-screening surrogate cost in the aerodynamic boundary band ($|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}$, $N=13{,}883$ events) among all evaluated approaches ($589{,}535\text{ kW}\cdot\text{h}$ at 10-minute dispatch $h=1$ and $881{,}367\text{ kW}\cdot\text{h}$ at 1-hour dispatch $h=6$, with $\sim 6.8\%$ violation), outperforming deep neural networks by $8.1\%$. Under a 60-minute latency contingency, unadapted physical rules undergo severe reliability breakdown, surging violation rates to $24.0\% \pm 1.7\%$ at $h=1$ and leaving $127.6\text{ MWh}$ of unhedged shortfall. Crucially, when telemetry channels remain observable, simple state-conditional recalibration absorbs $55.3\%$ of this shortage loss ($127.6 \to 57.0\text{ MWh}$) without neural representation learning. Learned representations acquire demonstrable utility only under deployment-time partial observability where blade-pitch registers are withheld: trained using historically available pitch information that is withheld at deployment, representations infer latent operating states from secondary electromechanical and spatio-temporal consequences (combining contemporaneous active-power diagnosis with dynamical trajectory tracking and wake context), reducing reserve screening cost by $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ across latencies and doubling transition-window recall ($0.416$ vs. $0.196$). Dynamic Mixture-of-Experts routing confers no statistical advantage over unrouted dense baselines ($p=0.380$), while decoupled modular architectures match tail reliability ($9.7\%$ violation). Furthermore, heuristic selective decision abstention fails to outperform random rejection, being Pareto-dominated by uniform reserve margin expansion. These findings establish that machine learning is valuable not as a universal replacement for aerodynamic rules, but as a conditional latent-state inference mechanism when critical physical states become unobservable.
+Under pristine telemetry, deterministic physical rules achieve the lowest reserve-screening surrogate cost in the aerodynamic boundary band ($|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}$, $N=13{,}883$ events) among all evaluated approaches ($589{,}535\text{ kW}\cdot\text{h}$ at 10-minute dispatch $h=1$ and $881{,}367\text{ kW}\cdot\text{h}$ at 1-hour dispatch $h=6$, with $\sim 6.8\%$ violation), outperforming deep neural networks by $8.1\%$. Under a 60-minute latency contingency, unadapted physical rules undergo severe reliability breakdown, surging violation rates to $24.0\% \pm 1.7\%$ at $h=1$ and leaving $127.6\text{ MWh}$ of unhedged shortfall. Crucially, when telemetry channels remain observable, simple state-conditional recalibration absorbs $55.3\%$ of this shortage loss ($127.6 \to 57.0\text{ MWh}$) without neural representation learning. Learned representations acquire demonstrable utility only under deployment-time partial observability where blade-pitch registers are withheld: trained using historically available pitch information that is withheld at deployment, representations infer latent operating states from secondary electromechanical and spatio-temporal consequences (combining contemporaneous active-power diagnosis with dynamical trajectory tracking and wake context), doubling transition-window recall ($0.416$ vs. $0.196$). Relative to the unadapted physical comparator under pitch withholding, learned representations reduce the reserve-screening surrogate by $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ across evaluated latencies; however, strong wind-speed-conditioned quantiles remain lower-cost plant-wide. Dynamic Mixture-of-Experts routing confers no statistical advantage over unrouted dense baselines ($p=0.380$), while decoupled modular architectures match tail reliability ($9.7\%$ violation). Furthermore, heuristic selective decision abstention fails to outperform random rejection, being Pareto-dominated by uniform reserve margin expansion. These findings establish that machine learning is valuable not as a universal replacement for aerodynamic rules, but as a conditional latent-state inference mechanism when critical physical states become unobservable.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -185,7 +185,7 @@ reserve-screening surrogate cost within the active boundary band
 (\(|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}\), \(N=13{,}883\) cell
 events) among all evaluated methods
 (\(589{,}535\text{ kW}\cdot\text{h}\) at \(h=1\) and
-\(881{,}367\text{ kW}\cdot\text{h}\) at \(h=6\), with compliant
+\(881{,}367\text{ kW}\cdot\text{h}\) at \(h=6\), with target-satisfying
 \(\sim 6.8\%\) violation), saving \(8.1\%\)
 (\(-77{,}659\text{ kW}\cdot\text{h}\)) over neural architectures.
 However, deterministic rules undergo severe reliability breakdown under
@@ -242,8 +242,9 @@ contributions:
   external sites, including negative (LHB) and neutral (Kelmarsh)
   transfer results. Cross-site STGQ effects relative to the global
   quantile baseline are heterogeneous; the observed pattern is
-  consistent with exploitable spatial redundancy as a possible
-  moderator (not turbine count alone), while turbine count alone does not explain the variation.
+  consistent with exploitable spatial redundancy as a possible moderator
+  (not turbine count alone), while turbine count alone does not explain
+  the variation.
 \end{enumerate}
 
 \section{Related Work}\label{related-work}
@@ -705,7 +706,7 @@ band (\(|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}\), \(N=13{,}883\) cell
 observations) among all evaluated methods
 (\(589{,}535 \pm 77{,}390\text{ kW}\cdot\text{h}\) at immediate dispatch
 \(h=1\) and \(881{,}367 \pm 95{,}741\text{ kW}\cdot\text{h}\) at 1-hour
-dispatch \(h=6\), with compliant \(\sim 6.8\%\) violation). It
+dispatch \(h=6\), with target-satisfying \(\sim 6.8\%\) violation). It
 substantially outperforms both unrouted dense networks (STGQ-Dense:
 \(991{,}181\text{ kW}\cdot\text{h}\)) and dynamically routed
 architectures (STGQ-Routed: \(959{,}027\text{ kW}\cdot\text{h}\)). As
@@ -767,9 +768,9 @@ drift, we evaluate a mismatched calibration matrix across test latencies
 \(\tau_{\mathrm{cal}} \in [0, 60]\text{ min}\) (Supplementary
 Table\textasciitilde A11l). Recalibrating at
 \(\tau_{\mathrm{cal}} = 10\text{ min}\) withstands latency drift up to
-\(\tau_{\mathrm{test}} = 20\text{ min}\) while maintaining compliant
-tail coverage (\(8.2\%\text{--}9.1\%\) violation). However,
-recalibration breaks down when staleness surges to
+\(\tau_{\mathrm{test}} = 20\text{ min}\) while maintaining
+target-satisfying tail coverage (\(8.2\%\text{--}9.1\%\) violation).
+However, recalibration breaks down when staleness surges to
 \(\tau_{\mathrm{test}} = 60\text{ min}\) (\(13.8\%\) violation). This
 demonstrates that under full channel observability, distribution drift
 alone does not justify deep representation learning: simple
@@ -814,7 +815,7 @@ $\tau$ (min) & Pitch & \shortstack{Clean Phys.\\Metric (Viol.)} & \shortstack{Re
 60 & All & $1{,}656{,}285$ ($24.0\%^{\dagger}$) & $\mathbf{1{,}228{,}609}$ ($9.5\%$) & $1{,}283{,}855$ ($9.6\%$) & $1{,}274{,}047$ ($9.6\%$) & Regime III (Tail Risk) \\
 60 & None & $1{,}437{,}280$ ($11.8\%^{\dagger}$) & $1{,}378{,}900$ ($9.0\%$) & $\mathbf{1{,}330{,}318}$ ($8.7\%$) & $1{,}331{,}840$ ($8.8\%$) & Regime II (Repr. Adv.) \\
 \bottomrule
-\multicolumn{7}{@{}p{\textwidth}@{}}{\fontsize{8.0pt}{9.0pt}\selectfont $^{\dagger}$Exceeds nominal 10\% violation target ($q^*=0.90$). Bold indicates lowest compliant surrogate screening metric. Under $\tau=60\text{ min}$, by-seed compliance is $3/5$ seeds ($60\%$) across models.}
+\multicolumn{7}{@{}p{\textwidth}@{}}{\fontsize{8.0pt}{9.0pt}\selectfont $^{\dagger}$Exceeds nominal 10\% violation target ($q^*=0.90$). Bold indicates lowest target-satisfying surrogate screening metric. Under $\tau=60\text{ min}$, target satisfaction is $3/5$ seeds ($60\%$) across models.}
 \end{tabular*}
 \end{table*}
 
@@ -1062,19 +1063,19 @@ Farm & Units & \shortstack{Phys.\\(kW$\cdot$h)} & \shortstack{Global\\(kW$\cdot$
 
 Cross-site STGQ effects relative to the global quantile baseline are
 heterogeneous. The observed pattern is consistent with exploitable
-spatial redundancy as a possible moderator (not turbine count alone), while turbine count alone
-does not explain the variation: in facilities with deeper cluster
-layouts (WTB, Penmanshiel), STGQ achieves substantial reserve-screening
-surrogate reduction relative to the global quantile baseline
-(\(\Delta\text{PSREI} = -38\text{k}\) and
+spatial redundancy as a possible moderator (not turbine count alone),
+while turbine count alone does not explain the variation: in facilities
+with deeper cluster layouts (WTB, Penmanshiel), STGQ achieves
+substantial reserve-screening surrogate reduction relative to the global
+quantile baseline (\(\Delta\text{PSREI} = -38\text{k}\) and
 \(-2.14\text{M kW}\cdot\text{h}\), both \(p < 0.05\)), although
 continuous physical quantile curves match or slightly edge STGQ
 (\(842\text{k}\) and \(2{,}029\text{k kW}\cdot\text{h}\)). Conversely,
 on micro-arrays or sparse layouts (Kelmarsh, LHB), STGQ yields a neutral
 bootstrap difference on Kelmarsh (\(-40\text{k kW}\cdot\text{h}\), 95\%
-CI crossing zero), while LHB exhibits an \textbf{overfitting boundary}
-where graph convolutions overfit localized terrain features
-(\(+43\text{k kW}\cdot\text{h}\) penalty,
+CI crossing zero), while LHB exhibits a negative transfer/overfitting
+boundary, consistent with limited exploitable spatial redundancy and
+site-specific heterogeneity (\(+43\text{k kW}\cdot\text{h}\) penalty,
 \([-28.7\text{k}, +141.2\text{k}]\)). Because
 Table\textasciitilde{}\ref{tab:cross-farm} compares STGQ against an
 unconditioned global baseline rather than a matched external no-graph
@@ -1113,19 +1114,20 @@ conservation (\(\partial P / \partial v \propto v^2\) below rated speed,
 out-of-distribution neural variance, they achieve the lowest evaluated
 surrogate reserve screening cost within the boundary band
 (\(|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}\), \(N=13{,}883\) events:
-\(589.5\text{k}\text{--}881.4\text{k kW}\cdot\text{h}\), compliant
-\(\sim 6.8\%\) violation; Tables\textasciitilde{}\ref{tab:h6-benchmark}
+\(589.5\text{k}\text{--}881.4\text{k kW}\cdot\text{h}\),
+target-satisfying \(\sim 6.8\%\) violation;
+Tables\textasciitilde{}\ref{tab:h6-benchmark}
 and\textasciitilde{}\ref{tab:phase-scan}), where deep representations
 are superfluous.
 
 \textit{2) Recalibration under Observability:} Under observable latency
 (\(10\text{--}30\text{ min}\)), state-conditional recalibration absorbs
 \(55.3\%\) of shortage loss (\(127.6 \to 57.0\text{ MWh}\)) and
-maintains compliant violation rates (\(7.1\%\text{--}7.5\%\)) without
-updating neural weights. Static recalibration breaks down only under
-contingency horizons (\(\tau = 60\text{ min}\),
-Table\textasciitilde A11l, \(13.8\%\) violation) as cubic extrapolation
-errors exceed static margins.
+maintains violation rates below the nominal 10\% target
+(\(7.1\%\text{--}7.5\%\)) without updating neural weights. Static
+recalibration breaks down only under contingency horizons
+(\(\tau = 60\text{ min}\), Table\textasciitilde A11l, \(13.8\%\)
+violation) as cubic extrapolation errors exceed static margins.
 
 \textit{3) Learned Recovery under Pitch Withholding:} Decisive utility
 emerges when blade-pitch telemetry is withheld (\texttt{no\_pitch}),
@@ -1154,7 +1156,7 @@ significant interaction contrast
 establishes heterogeneity of the relative cost gap rather than a
 positive posterior cost advantage. A deployable hybrid policy remains
 statistically equivalent to wind-speed binning (\(13.79\text{M}\)
-vs.~\(13.78\text{M kW}\cdot\text{h}, p > 0.40\)) and must not be
+vs.~\(13.78\text{M kW}\cdot\text{h}\), \(p > 0.40\)) and must not be
 presented as an improvement. Crucially, dynamic MoE routing provides no
 measurable advantage over unrouted dense baselines (ratio \(1.045\),
 \(p=0.380\); seed delta \(< 0.07\%\)), while modular regression
@@ -1163,14 +1165,17 @@ measurable advantage over unrouted dense baselines (ratio \(1.045\),
 \textit{5) Industrial Deployment Guardrails:} (i) \emph{Spatial value}:
 cross-site STGQ effects relative to global quantiles are heterogeneous;
 the pattern is consistent with exploitable spatial redundancy as a
-possible moderator (not turbine count alone), while turbine count alone does not explain
-variation. STGQ reduces surrogate cost relative to global quantiles on
-WTB and Penmanshiel (\(p < 0.05\)), while sparse layouts (LHB) overfit
-localized terrain (\(+43\text{k kW}\cdot\text{h}\) penalty); (ii)
-\emph{Local retraining}: directional transfer asymmetry (Kelmarsh
-\(\to\) Penmanshiel NMI \(0.77\) vs.~\(0.34\)) requires local
-retraining; (iii) \emph{Abstention limits}: selective refusal fails
-under latency (\(p > 0.40\)), favoring uniform margin expansion.
+possible moderator (not turbine count alone), while turbine count alone
+does not explain variation. STGQ reduces surrogate cost relative to
+global quantiles on WTB and Penmanshiel (\(p < 0.05\)), while LHB
+exhibits a negative transfer/overfitting boundary, consistent with
+limited exploitable spatial redundancy and site-specific heterogeneity
+(\(+43\text{k kW}\cdot\text{h}\) penalty); (ii) \emph{Local retraining}:
+directional transfer asymmetry (Kelmarsh \(\to\) Penmanshiel NMI
+\(0.77\) vs.~\(0.34\)) supports site-specific retraining or
+recalibration rather than assuming reliable zero-shot transfer; (iii)
+\emph{Abstention limits}: selective refusal fails under latency
+(\(p > 0.40\)), favoring uniform margin expansion.
 
 \section{Limitations}\label{limitations}
 
@@ -1195,18 +1200,18 @@ OEM calibration.
 \textit{4) Deployment Boundaries:} Cross-site STGQ effects relative to
 the global quantile baseline remain heterogeneous, consistent with
 exploitable spatial redundancy as a possible moderator rather than
-turbine count alone; lacking spatial wake coupling (LHB), graph
-convolutions overfit localized topography
-(\(+43\text{k kW}\cdot\text{h}\) penalty). Because
-Table\textasciitilde{}\ref{tab:cross-farm} lacks matched external
-no-graph controls, wake modeling is not causally isolated as the sole
-mechanism for external gains. Directional transfer asymmetry (Kelmarsh
-\(\to\) Penmanshiel NMI \(0.77\) vs.~Penmanshiel \(\to\) Kelmarsh NMI
-\(0.34\)) mandates local retraining rather than assuming reliable
-zero-shot transfer. The study assumes historical blade-pitch
-availability during offline training, followed by pitch withholding at
-deployment. Performance in settings where pitch was never recorded
-remains untested.
+turbine count alone; LHB exhibits a negative transfer/overfitting
+boundary, consistent with limited exploitable spatial redundancy and
+site-specific heterogeneity (\(+43\text{k kW}\cdot\text{h}\) penalty).
+Because Table\textasciitilde{}\ref{tab:cross-farm} lacks matched
+external no-graph controls, wake modeling is not causally isolated as
+the sole mechanism for external gains. Directional transfer asymmetry
+(Kelmarsh \(\to\) Penmanshiel NMI \(0.77\) vs.~Penmanshiel \(\to\)
+Kelmarsh NMI \(0.34\)) supports site-specific retraining or
+recalibration rather than assuming reliable zero-shot transfer. The
+study assumes historical blade-pitch availability during offline
+training, followed by pitch withholding at deployment. Performance in
+settings where pitch was never recorded remains untested.
 
 \section{Conclusion}\label{conclusion}
 

@@ -1,10 +1,10 @@
 {
   "title": "论文核心问题的对抗性审查与第一性原理收束",
   "created": "2026-09-18T00:00:00+08:00",
-  "updated": "2026-09-19T15:11:00+08:00",
+  "updated": "2026-09-19T15:26:00+08:00",
   "phase": "final",
   "status": "complete",
-  "last_verified_task": "T39",
+  "last_verified_task": "T40",
   "notes": [
     "Tasks T34-T37 completed: GBDT metric provenance reconciled (16.23% clean vs 14.98% pitch-withheld).",
     "Multi-site framed as external-validity boundary probes (WTB primary identification).",
@@ -12,6 +12,7 @@
     "Positioning against Zhao et al. (IJEPES 2026) conceded and clarified, 4 contributions stated, Q1-Q8 defense playbook documented.",
     "Main IEEE PDF exactly 10.0 pages with zero overflow. All 10 decisive evidence gates passed.",
     "Task T38 completed: Final conceptual claim corrections verified, 'not turbine count alone' restored and verify_final_pdf_integrity.py updated to cleanly accept variants, both main and standalone PDFs compiled to exactly 10.0 pages, verify_gate.py returns PASS.",
-    "Task T39 completed: Skeptical audit purged residual 'grid compliance' language from docs, verified exact 10.0-page budget, and confirmed clean PASS across all verification gates."
+    "Task T39 completed: Skeptical audit purged residual 'grid compliance' language from docs, verified exact 10.0-page budget, and confirmed clean PASS across all verification gates.",
+    "Task T40 completed: Executed FINAL THREE-PHRASE CONSISTENCY PATCH: explicit unadapted physical comparator and strong wind-speed baseline in abstract, purge of regulatory-sounding 'compliant' language referring to Newsvendor target, and downgraded cross-site causal claims for LHB and directional asymmetry. All verification gates and PDF budget checks PASS."
   ]
 }

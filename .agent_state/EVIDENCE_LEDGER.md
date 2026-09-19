@@ -380,4 +380,16 @@ Relevant-Output:
 VERIFICATION_GATE: PASS
 ```
 
+## T40 — 2026-09-19T15:26:00+08:00
+Task-ID: T40
+Status: VERIFIED_COMMAND
+Summary: Executed FINAL THREE-PHRASE CONSISTENCY PATCH: (1) Abstract baseline scope: Explicitly stated unadapted physical comparator and strong wind-speed baseline ("Relative to the unadapted physical comparator under pitch withholding, learned representations reduce the reserve-screening surrogate by 46.7k–68.6k kWh across evaluated latencies; however, strong wind-speed-conditioned quantiles remain lower-cost plant-wide."); (2) Purged regulatory-sounding "compliant" / "compliance" across main and supplementary manuscripts where referring to the nominal Newsvendor target (verified 0 occurrences in main and supplementary text and compiled PDFs); (3) Downgraded cross-site causal claims ("supports site-specific retraining or recalibration rather than assuming reliable zero-shot transfer" and "LHB exhibits a negative transfer/overfitting boundary, consistent with limited exploitable spatial redundancy and site-specific heterogeneity"); (4) Successfully compiled main, supplementary, and standalone IEEE packages; verified exact 10.0-page budget and clean exit 0 on all gates.
+Command: `python .agents/scripts/verify_gate.py`
+Exit-Code: 0
+Relevant-Output:
+```
+VERIFICATION_GATE: PASS
+```
+
+
 
