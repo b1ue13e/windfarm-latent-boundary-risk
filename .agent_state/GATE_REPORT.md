@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-09-19T12:23:26+08:00
+Generated: 2026-09-19T13:12:11+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -28,21 +28,21 @@ Total pages: 10
 Number 589,535 found 5 times:
   [PASS] Occurrence #1 at index 1434: qualifier present=True
   [PASS] Occurrence #2 at index 5574: qualifier present=True
-  [PASS] Occurrence #3 at index 24054: qualifier present=True
-  [PASS] Occurrence #4 at index 37241: qualifier present=True
-  [PASS] Occurrence #5 at index 50888: qualifier present=True
+  [PASS] Occurrence #3 at index 24726: qualifier present=True
+  [PASS] Occurrence #4 at index 37150: qualifier present=True
+  [PASS] Occurrence #5 at index 53526: qualifier present=True
 Number 881,367 found 6 times:
   [PASS] Occurrence #1 at index 1480: qualifier present=True
   [PASS] Occurrence #2 at index 5601: qualifier present=True
-  [PASS] Occurrence #3 at index 24109: qualifier present=True
-  [PASS] Occurrence #4 at index 30905: qualifier present=True
-  [PASS] Occurrence #5 at index 33541: qualifier present=True
-  [PASS] Occurrence #6 at index 50912: qualifier present=True
+  [PASS] Occurrence #3 at index 24781: qualifier present=True
+  [PASS] Occurrence #4 at index 30732: qualifier present=True
+  [PASS] Occurrence #5 at index 33368: qualifier present=True
+  [PASS] Occurrence #6 at index 53550: qualifier present=True
 
 [ALL IEEE PDF CHECKS PASSED]
 
 === Auditing Supplementary PDF: build/paper_tste_supplementary.pdf ===
-Total pages: 43
+Total pages: 44
 
 --- Checking Banned Phrases in Supplementary ---
   [PASS] Confirmed absent: 'economic reserve benefit'
@@ -84,9 +84,9 @@ Exit: 0
   [PASS] artifacts/mediation_analysis.csv (2,979 bytes)
   [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (7,217 bytes)
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (7,594 bytes)
-  [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,584 bytes)
-  [PASS] build/paper_tste_ieee.pdf (175,839 bytes)
-  [PASS] build/paper_tste_supplementary.pdf (1,004,736 bytes)
+  [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,695 bytes)
+  [PASS] build/paper_tste_ieee.pdf (179,111 bytes)
+  [PASS] build/paper_tste_supplementary.pdf (1,011,531 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
   [PASS] Information-set manifest validated (819 rows, zero forward leakage)

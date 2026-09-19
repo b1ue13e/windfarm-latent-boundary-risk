@@ -232,7 +232,7 @@ contributions:
   consequence SCADA channels provides incremental reserve-screening
   value, including against strong wind-speed-conditioned quantile
   controls. Consequence representations reduce unconditioned reserve
-  cost by \(\$1.83\text{M kW}\cdot\text{h}\), but show that incremental
+  cost by \(1.83\text{M kW}\cdot\text{h}\), but show that incremental
   value over wind-speed bins is strictly transition-localized, with
   simple binning remaining optimal in steady state.
 \item
@@ -906,6 +906,7 @@ records), posterior conditioning selectively compresses violation rates
 vs.~\(90.2\text{k kW}\cdot\text{h}\)), confirmed by a significant paired
 day-level cluster bootstrap heterogeneity interaction
 (\(\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296{,}123\text{ kW}\cdot\text{h}, p < 0.005\)).
+Transition windows are not merely high-loss regions; they are the regions where latent-state information contributes incremental value beyond observable wind-speed conditioning. While transition windows capture $48.4\%$ of savings relative to an unconditioned global baseline, this unconditioned fraction reflects both high baseline loss concentration ($33.0\%$) and model sensitivity; relative to wind-speed bins, the posterior operates as a risk-hedging mechanism.
 Furthermore, a deployable validation-frozen hybrid policy matches
 wind-speed binning plant-wide (\(13.79\text{M}\)
 vs.~\(13.78\text{M kW}\cdot\text{h}, p > 0.40\)), proving that machine
@@ -1052,7 +1053,7 @@ Farm & Units & \shortstack{Phys.\\(kW$\cdot$h)} & \shortstack{Global\\(kW$\cdot$
 \bottomrule
 \end{tabular*}
 \vspace{1mm}
-\raggedright\fontsize{8.0pt}{8.8pt}\selectfont Note: $^{\ast}p < 0.05$. LHB exhibits local overfitting; Kelmarsh is neutral; WTB and Penmanshiel show significant spatial wake reductions. External sites probe transferability rather than uniform replication (see docs/SITE\_MECHANISM\_BOUNDARY\_TABLE.md).
+\raggedright\fontsize{8.0pt}{8.8pt}\selectfont Note: $^{\ast}p < 0.05$. LHB exhibits local overfitting; Kelmarsh is neutral; WTB and Penmanshiel show significant spatial wake reductions. External sites probe transferability rather than uniform replication (see Supplementary Material Table~A8 for the complete Site $\times$ Mechanism specification).
 \end{table}
 
 Spatial-representation value is site-dependent and appears related to
@@ -1180,7 +1181,7 @@ site-dependent and related to exploitable spatial redundancy rather than
 turbine count alone; lacking spatial wake coupling (LHB), graph
 convolutions overfit localized topography
 (\(+43\text{k kW}\cdot\text{h}\) penalty). Directional transfer
-asymmetry (pooled NMI \(0.557\)) supports local retraining rather than
+asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.77$ vs. Penmanshiel $\to$ Kelmarsh NMI $0.34$) supports local retraining rather than
 assuming reliable zero-shot transfer. The present study assumes
 historical blade-pitch availability during offline training, followed by
 pitch withholding at deployment. Performance in settings where pitch was

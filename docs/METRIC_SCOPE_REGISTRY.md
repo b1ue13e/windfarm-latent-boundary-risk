@@ -61,6 +61,36 @@ Below is the definitive, line-item provenance ledger for every headline number i
 
 ---
 
+## 2b. Canonical Headline Metric Registry (Exact Schema)
+
+Strict adherence to the required provenance contract: no headline number may exist without an explicit claim ID, model, degradation scenario, lead horizon, sample population, metric, value, artifact, and source script.
+
+| Claim ID | Model | Scenario | Horizon | Population | Metric | Value | Source Artifact | Source Script |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `CLM-PHYS-01` | Continuous Physical Quantile | `clean` ($\tau=0$) | $h=1$ (10 min) | Boundary Band ($N=13{,}883$) | PSREI Cost | **589,535 kW·h** | `artifacts/clean_evidence_v2/risk_layer_benchmark/h1_lead1/results_by_seed.csv` | `scripts/remote_risk_layer_benchmark.py` |
+| `CLM-PHYS-02` | Continuous Physical Quantile | `clean` ($\tau=0$) | $h=6$ (60 min) | Boundary Band ($N=13{,}883$) | PSREI Cost | **881,367 kW·h** | `artifacts/clean_evidence_v2/risk_layer_benchmark/h6_lead6/results_by_seed.csv` | `scripts/remote_risk_layer_benchmark.py` |
+| `CLM-PHYS-03` | Continuous Physical Quantile | `delay6` ($\tau=60$) | $h=1$ (10 min) | Boundary Band ($N=13{,}883$) | Violation Rate | **24.02%** | `artifacts/clean_evidence_v2/risk_layer_benchmark/results_all_horizons.csv` | `scripts/remote_risk_layer_benchmark.py` |
+| `CLM-PHYS-04` | Continuous Physical Quantile | `delay6` ($\tau=60$) | $h=6$ (60 min) | Boundary Band ($N=13{,}883$) | Violation Rate | **12.20%** | `artifacts/clean_evidence_v2/risk_layer_benchmark/h6_lead6/results_by_seed.csv` | `scripts/remote_risk_layer_benchmark.py` |
+| `CLM-GBDT-01` | B3 Quantile GBDT | `clean` ($\tau=0$) | $h=1$ (10 min) | Full Test Set ($N=408{,}937$) | Violation Rate | **9.16%** | `artifacts/direct_quantile_baselines_summary.csv` | `scripts/run_direct_quantile_baselines.py` |
+| `CLM-GBDT-02` | B3 Quantile GBDT | `clean` ($\tau=0$) | $h=6$ (60 min) | Full Test Set ($N=408{,}939$) | Violation Rate | **16.23%** | `artifacts/direct_quantile_baselines_summary.csv` | `scripts/run_direct_quantile_baselines.py` |
+| `CLM-GBDT-03` | B3 Quantile GBDT | `pitch_withheld` | $h=1$ (10 min) | Full Test Set ($N=408{,}937$) | Violation Rate | **8.42%** | `artifacts/direct_quantile_baselines_summary.csv` | `scripts/run_direct_quantile_baselines.py` |
+| `CLM-GBDT-04` | B3 Quantile GBDT | `pitch_withheld` | $h=6$ (60 min) | Full Test Set ($N=408{,}939$) | Violation Rate | **14.98%** | `artifacts/direct_quantile_baselines_summary.csv` | `scripts/run_direct_quantile_baselines.py` |
+| `CLM-GBDT-05` | B3 Quantile GBDT | `delay6` ($\tau=60$) | $h=6$ (60 min) | Full Test Set ($N=408{,}939$) | Violation Rate | **15.14%** | `artifacts/direct_quantile_baselines_summary.csv` | `scripts/run_direct_quantile_baselines.py` |
+| `CLM-GBDT-06` | B3 Quantile GBDT | `delay6_pitch_withheld` | $h=6$ (60 min) | Full Test Set ($N=408{,}939$) | Violation Rate | **13.73%** | `artifacts/direct_quantile_baselines_summary.csv` | `scripts/run_direct_quantile_baselines.py` |
+| `CLM-BASE-01` | Policy B (Wind-Speed Bins) | `pitch_withheld` | $h=6$ (60 min) | Full Population ($N=385{,}205$) | PSREI Cost | **13,784,320 kW·h** | `artifacts/strong_baseline_closure_summary.csv` | `scripts/test_strong_baseline_closure.py` |
+| `CLM-BASE-02` | Policy C (Posterior Quantile) | `pitch_withheld` | $h=6$ (60 min) | Full Population ($N=385{,}205$) | PSREI Cost | **14,307,364 kW·h** | `artifacts/strong_baseline_closure_summary.csv` | `scripts/test_strong_baseline_closure.py` |
+| `CLM-BASE-03` | Policy C vs Policy B ($\Delta L$) | `pitch_withheld` | $h=6$ (60 min) | Full Population ($N=385{,}205$) | Delta PSREI | **+523,044 kW·h** ($p=0.85$) | `artifacts/strong_baseline_closure_summary.csv` | `scripts/test_strong_baseline_closure.py` |
+| `CLM-BASE-04` | Policy D (Validation-Frozen Hybrid)| `pitch_withheld` | $h=6$ (60 min) | Full Population ($N=385{,}205$) | PSREI Cost | **13,789,154 kW·h** ($p>0.40$) | `artifacts/strong_baseline_closure_summary.csv` | `scripts/test_strong_baseline_closure.py` |
+| `CLM-BASE-05` | Bootstrap Interaction Contrast | `pitch_withheld` | $h=6$ (60 min) | $\Delta_{\text{trans}} - \Delta_{\text{steady}}$ | Heterogeneity Delta | **-296,123 kW·h** ($p<0.005$) | `artifacts/strong_baseline_bootstrap_contrasts.csv` | `scripts/test_strong_baseline_closure.py` |
+| `CLM-BASE-06` | Policy C vs Policy A (Global) | `pitch_withheld` | $h=6$ (60 min) | Full Population ($N=385{,}205$) | Delta PSREI | **-1,825,408 kW·h** | `artifacts/strong_baseline_closure_summary.csv` | `scripts/test_strong_baseline_closure.py` |
+| `CLM-BASE-07` | Transition Mediation Concentration | `pitch_withheld` | $h=6$ (60 min) | Transition Windows | Savings Share vs Global | **48.38%** ($p=0.0000$) | `artifacts/mediation_analysis.csv` | `scripts/run_decision_mediation_test.py` |
+| `CLM-SITE-01` | STGQ vs Global Quantile | `local_retrain` | $h=6$ (60 min) | WTB (134 turbines) | Delta PSREI | **-38,000 kW·h** ($p<0.05$) | `artifacts/clean_evidence_v2/risk_layer_benchmark/cross_farm_generalization_table.csv` | `scripts/remote_risk_layer_benchmark.py` |
+| `CLM-SITE-02` | STGQ vs Global Quantile | `local_retrain` | Multi-Year | Penmanshiel (14 turbines) | Delta PSREI | **-2,140,000 kW·h** ($p<0.05$) | `artifacts/clean_evidence_v2/risk_layer_benchmark/cross_farm_generalization_table.csv` | `scripts/remote_risk_layer_benchmark.py` |
+| `CLM-SITE-03` | STGQ vs Global Quantile | `local_retrain` | Multi-Year | Kelmarsh (6 turbines) | Delta PSREI | **-40,000 kW·h** ($p=0.85$, crosses 0) | `artifacts/clean_evidence_v2/risk_layer_benchmark/cross_farm_generalization_table.csv` | `scripts/remote_risk_layer_benchmark.py` |
+| `CLM-SITE-04` | STGQ vs Global Quantile | `local_retrain` | Multi-Year | La Haute Borne (4 turbines) | Delta PSREI | **+43,000 kW·h** (Overfitting penalty) | `artifacts/clean_evidence_v2/risk_layer_benchmark/cross_farm_generalization_table.csv` | `scripts/remote_risk_layer_benchmark.py` |
+
+---
+
 ## 3. Mathematical Commensurability Rules
 
 To maintain strict scientific integrity, all comparative statements must adhere to the following commensurability rules:

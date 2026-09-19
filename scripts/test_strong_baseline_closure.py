@@ -139,6 +139,7 @@ def main():
     print(f"Mask counts: Full={np.sum(mask_full)}, Trans={np.sum(mask_trans)} ({np.mean(mask_trans[mask_full])*100:.2f}%), Steady={np.sum(mask_steady)} ({np.mean(mask_steady[mask_full])*100:.2f}%)")
 
     all_seed_results = []
+    all_boot_results = []
 
     for seed in seeds:
         s_v = res_data[f"shortfall_val_seed{seed}"][:, h_idx, :].reshape(-1)
@@ -301,18 +302,92 @@ def main():
         boot_trans, boot_steady, boot_inter = cluster_bootstrap_contrast(
             loss_C, loss_B, time_indices, mask_trans, mask_steady, n_boot=N_BOOT, seed=seed
         )
-        print(f"Seed {seed} Bootstrap Contrasts (L_C - L_B in kWh):")
-        print(f"  Delta_trans:  {boot_trans['mean']:+,.0f} [{boot_trans['ci_low']:+,.0f}, {boot_trans['ci_high']:+,.0f}] (p={boot_trans['p_val']:.4f})")
-        print(f"  Delta_steady: {boot_steady['mean']:+,.0f} [{boot_steady['ci_low']:+,.0f}, {boot_steady['ci_high']:+,.0f}] (p={boot_steady['p_val']:.4f})")
-        print(f"  Interaction (trans - steady): {boot_inter['mean']:+,.0f} [{boot_inter['ci_low']:+,.0f}, {boot_inter['ci_high']:+,.0f}] (p={boot_inter['p_val']:.4f})")
+        print(f"Seed {seed} Bootstrap Contrasts (L_C - L_B in kWh):", flush=True)
+        print(f"  Delta_trans:  {boot_trans['mean']:+,.0f} [{boot_trans['ci_low']:+,.0f}, {boot_trans['ci_high']:+,.0f}] (p={boot_trans['p_val']:.4f})", flush=True)
+        print(f"  Delta_steady: {boot_steady['mean']:+,.0f} [{boot_steady['ci_low']:+,.0f}, {boot_steady['ci_high']:+,.0f}] (p={boot_steady['p_val']:.4f})", flush=True)
+        print(f"  Interaction (trans - steady): {boot_inter['mean']:+,.0f} [{boot_inter['ci_low']:+,.0f}, {boot_inter['ci_high']:+,.0f}] (p={boot_inter['p_val']:.4f})", flush=True)
+
+        all_boot_results.append({
+            "seed": seed,
+            "delta_trans_mean": boot_trans["mean"],
+            "delta_trans_ci_low": boot_trans["ci_low"],
+            "delta_trans_ci_high": boot_trans["ci_high"],
+            "delta_trans_pval": boot_trans["p_val"],
+            "delta_steady_mean": boot_steady["mean"],
+            "delta_steady_ci_low": boot_steady["ci_low"],
+            "delta_steady_ci_high": boot_steady["ci_high"],
+            "delta_steady_pval": boot_steady["p_val"],
+            "interaction_mean": boot_inter["mean"],
+            "interaction_ci_low": boot_inter["ci_low"],
+            "interaction_ci_high": boot_inter["ci_high"],
+            "interaction_pval": boot_inter["p_val"],
+        })
+
+    # Add mean summary row for bootstrap
+    mean_boot = {
+        "seed": "Mean",
+        "delta_trans_mean": float(np.mean([r["delta_trans_mean"] for r in all_boot_results])),
+        "delta_trans_ci_low": float(np.mean([r["delta_trans_ci_low"] for r in all_boot_results])),
+        "delta_trans_ci_high": float(np.mean([r["delta_trans_ci_high"] for r in all_boot_results])),
+        "delta_trans_pval": float(np.mean([r["delta_trans_pval"] for r in all_boot_results])),
+        "delta_steady_mean": float(np.mean([r["delta_steady_mean"] for r in all_boot_results])),
+        "delta_steady_ci_low": float(np.mean([r["delta_steady_ci_low"] for r in all_boot_results])),
+        "delta_steady_ci_high": float(np.mean([r["delta_steady_ci_high"] for r in all_boot_results])),
+        "delta_steady_pval": float(np.mean([r["delta_steady_pval"] for r in all_boot_results])),
+        "interaction_mean": float(np.mean([r["interaction_mean"] for r in all_boot_results])),
+        "interaction_ci_low": float(np.mean([r["interaction_ci_low"] for r in all_boot_results])),
+        "interaction_ci_high": float(np.mean([r["interaction_ci_high"] for r in all_boot_results])),
+        "interaction_pval": float(np.mean([r["interaction_pval"] for r in all_boot_results])),
+    }
+    all_boot_results.append(mean_boot)
 
     df_res = pd.DataFrame(all_seed_results)
-    print("\n================== 5-SEED SUMMARY TABLE ==================")
+    df_boot = pd.DataFrame(all_boot_results)
+    out_dir = REPO_ROOT / "artifacts"
+    out_dir.mkdir(exist_ok=True)
+    df_boot.to_csv(out_dir / "strong_baseline_bootstrap_contrasts.csv", index=False)
+
+    policy_meta = [
+        ("A", "Policy_A", "Global Residual Quantile"),
+        ("B", "Policy_B", "Wind-Speed Binned Quantile"),
+        ("C", "Policy_C", "Posterior-Conditioned Quantile"),
+        ("D", "Policy_D", "Validation-Frozen Deployable Hybrid"),
+        ("D10", "Policy_D10", "Pre-Specified Boundary Band Hybrid"),
+    ]
+
+    summary_rows = []
+    print("\n================== 5-SEED SUMMARY TABLE ==================", flush=True)
     for pop in ["Full", "Transition", "Steady"]:
         sub = df_res[df_res["population"] == pop]
-        print(f"\n--- Population: {pop} ---")
-        for pol in ["A", "B", "C", "D", "D10"]:
-            print(f"Policy {pol}: PSREI={sub[f'{pol}_psrei'].mean():,.0f} +- {sub[f'{pol}_psrei'].std():,.0f} kWh | Res={sub[f'{pol}_res'].mean():,.0f} | Viol={sub[f'{pol}_viol'].mean():.2f}% | Short={sub[f'{pol}_short'].mean():,.0f} kWh")
+        b_mean = float(sub["B_psrei"].mean())
+        print(f"\n--- Population: {pop} ---", flush=True)
+        for p_key, pol_id, pol_name in policy_meta:
+            psrei_mean = float(sub[f"{p_key}_psrei"].mean())
+            psrei_std = float(sub[f"{p_key}_psrei"].std())
+            res_mean = float(sub[f"{p_key}_res"].mean())
+            viol_mean = float(sub[f"{p_key}_viol"].mean())
+            short_mean = float(sub[f"{p_key}_short"].mean())
+            delta = psrei_mean - b_mean
+            delta_str = "0" if p_key == "B" else f"{delta:+,.0f}"
+
+            summary_rows.append({
+                "population": pop,
+                "policy_id": pol_id,
+                "policy_name": pol_name,
+                "psrei_mean_kwh": round(psrei_mean),
+                "psrei_std_kwh": round(psrei_std),
+                "reserve_mean_kwh": round(res_mean),
+                "violation_rate_pct": round(viol_mean, 2),
+                "shortage_mean_kwh": round(short_mean),
+                "delta_vs_wspd_kwh": delta_str,
+            })
+            print(f"Policy {p_key} ({pol_id}): PSREI={psrei_mean:,.0f} +- {psrei_std:,.0f} kWh | Res={res_mean:,.0f} | Viol={viol_mean:.2f}% | Short={short_mean:,.0f} kWh | Delta={delta_str}", flush=True)
+
+    df_summary = pd.DataFrame(summary_rows)
+    df_summary.to_csv(out_dir / "strong_baseline_closure_summary.csv", index=False)
+    print(f"\nSuccessfully wrote summary to {out_dir / 'strong_baseline_closure_summary.csv'}", flush=True)
+    print(f"Successfully wrote bootstrap contrasts to {out_dir / 'strong_baseline_bootstrap_contrasts.csv'}", flush=True)
 
 if __name__ == "__main__":
     main()
+

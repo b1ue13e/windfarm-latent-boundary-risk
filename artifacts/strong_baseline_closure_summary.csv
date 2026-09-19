@@ -1,0 +1,16 @@
+population,policy_id,policy_name,psrei_mean_kwh,psrei_std_kwh,reserve_mean_kwh,violation_rate_pct,shortage_mean_kwh,delta_vs_wspd_kwh
+Full,Policy_A,Global Residual Quantile,16132772,2362165,12484016,5.41,364876,+2348452
+Full,Policy_B,Wind-Speed Binned Quantile,13784320,1438833,10324129,8.79,346019,0
+Full,Policy_C,Posterior-Conditioned Quantile,14307364,1787258,10179077,9.08,412829,+523044
+Full,Policy_D,Validation-Frozen Deployable Hybrid,13789154,1434721,10339015,8.78,345014,+4834
+Full,Policy_D10,Pre-Specified Boundary Band Hybrid,13801696,1438458,10378012,8.76,342368,+17376
+Transition,Policy_A,Global Residual Quantile,5325549,725068,4526985,3.03,79856,+1005239
+Transition,Policy_B,Wind-Speed Binned Quantile,4320310,261611,3417998,8.36,90231,0
+Transition,Policy_C,Posterior-Conditioned Quantile,4433014,336858,3567090,7.24,86592,+112704
+Transition,Policy_D,Validation-Frozen Deployable Hybrid,4326018,258505,3429531,8.35,89649,+5708
+Transition,Policy_D10,Pre-Specified Boundary Band Hybrid,4335519,262140,3456492,8.30,87903,+15209
+Steady,Policy_A,Global Residual Quantile,10807224,1642320,7957030,6.76,285019,+1343214
+Steady,Policy_B,Wind-Speed Binned Quantile,9464010,1185662,6906130,9.03,255788,0
+Steady,Policy_C,Posterior-Conditioned Quantile,9874350,1466885,6611987,10.13,326236,+410340
+Steady,Policy_D,Validation-Frozen Deployable Hybrid,9463137,1185918,6909484,9.03,255365,-873
+Steady,Policy_D10,Pre-Specified Boundary Band Hybrid,9466177,1185505,6921521,9.02,254466,+2167

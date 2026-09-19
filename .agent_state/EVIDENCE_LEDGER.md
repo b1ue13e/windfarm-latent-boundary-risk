@@ -332,3 +332,28 @@ Relevant-Output:
 ```
 VERIFICATION SUCCESS: ALL PDF ARTIFACT INTEGRITY CHECKS PASSED
 ```
+
+## T34 — 2026-09-19T13:00:00+08:00
+Task-ID: T34
+Status: VERIFIED_COMMAND
+Summary: GBDT metric provenance reconciled at h=6: 16.234% corresponds strictly to B3 clean scenario (PSREI = 15,665,275 kWh), whereas 14.977% corresponds to B3 pitch-withheld scenario (PSREI = 14,965,626 kWh). Trace documented in docs/GBDT_METRIC_PROVENANCE.md; canonical headline metric registry updated in docs/METRIC_SCOPE_REGISTRY.md (CLM-GBDT-01 through 06).
+Source: docs/GBDT_METRIC_PROVENANCE.md, docs/METRIC_SCOPE_REGISTRY.md
+
+## T35 — 2026-09-19T13:05:00+08:00
+Task-ID: T35
+Status: VERIFIED_COMMAND
+Summary: Multi-site framing reconstructed as external-validity boundary probes: 134-turbine WTB site is primary mechanism-identification environment; 5 seeds quantify training stochasticity, not independent sites. 3 European facilities (Penmanshiel, Kelmarsh, LHB) reframed as heterogeneous boundary probes (positive, neutral, negative/overfitting). Complete 9-field Site x Mechanism table added to paper_tste_supplementary.md (Table A8) and docs/SITE_MECHANISM_BOUNDARY_TABLE.md; dev doc citations purged from manuscript.
+Source: docs/SITE_MECHANISM_BOUNDARY_TABLE.md, paper_tste_supplementary.md
+
+## T36 — 2026-09-19T13:10:00+08:00
+Task-ID: T36
+Status: VERIFIED_COMMAND
+Summary: Strong-baseline closure executed across 5 seeds: Policy B (Wind-Speed Bins, 13.78M kWh) vs Policy C (Posterior, 14.31M kWh, +523k kWh penalty, p=0.85); steady state outperformance by wspd bins (+410k kWh, p=0.002); transition window violation compression (7.24% vs 8.36%); 35-day cluster bootstrap interaction contrast Delta_trans - Delta_steady = -296,123 kWh (p < 0.005); deployable hybrid Policy D matches wspd bins (13.79M kWh, p > 0.40). Artifacts strong_baseline_closure_summary.csv and strong_baseline_bootstrap_contrasts.csv generated programmatically. Table A11m added to supplementary material.
+Command: `python scripts/test_strong_baseline_closure.py`
+Exit-Code: 0
+
+## T37 — 2026-09-19T13:12:00+08:00
+Task-ID: T37
+Status: VERIFIED_COMMAND
+Summary: Transition mediation reinterpreted distinguishing 33.0% loss concentration from incremental model benefit; Zhao et al. (IJEPES 2026) architectural neighborhood conceded in Related Work and references.bib; 4 core contributions stated without MoE novelty; Q1-Q8 Reviewer Attack & Defense playbook documented in docs/FINAL_REVIEWER_ATTACK_DEFENSE.md and revision_outputs/11_reviewer_defense_playbook.md; main IEEE PDF compiled to strictly 10.0 pages (0 overfull hboxes); all 10 decisive evidence gates verified.
+Source: docs/FINAL_REVIEWER_ATTACK_DEFENSE.md, paper_tste_ieee.md, standalone_ieee_package/main.tex
