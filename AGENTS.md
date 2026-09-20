@@ -31,6 +31,20 @@
 ## Git workflow
 - 每次完成代码修改后，都需要提交一次 git commit。
 
+
+## Scientific control plane
+
+For any task that can change scientific interpretation, experiments, claims, reviewer wording, or manuscript conclusions:
+
+1. Read `docs/SCIENTIFIC_CONTRACT.md` before substantive work.
+2. Read `docs/EXPERIMENT_REGISTRY.md` before running or proposing a decisive experiment.
+3. Treat `docs/SCIENTIFIC_CONTRACT.md` as the authoritative claim ceiling. Older verdict/report files are provenance records when they conflict with it.
+4. Do not use a favorable result as an acceptance criterion. Negative and null results must be preserved.
+5. Do not upgrade representation metrics (NMI/ARI/Brier/AUROC/recall) into decision-value claims without matched decision evidence.
+6. Any new decisive experiment must be registered before execution with a frozen primary baseline, estimand, population, metric, and uncertainty procedure.
+7. Before a scientific completion claim, invoke the `scientific-falsifier` subagent and inspect `.agent_state/FALSIFICATION_REPORT.md`.
+8. A scientific claim gate failure is a hard stop. Do not weaken the gate or edit the scientific contract merely to make an existing result pass.
+
 ---
 
 # Reliability Contract for Antigravity
