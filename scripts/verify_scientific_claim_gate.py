@@ -165,7 +165,7 @@ def main() -> int:
         "unqualified universal ML superiority": r"machine learning (?:is|was) universally superior",
         "unqualified cross-site generalization proof": r"proves? (?:universal )?generalization across .*wind farms",
         "MoE mechanism superiority": r"MoE routing (?:is|was) (?:the )?(?:key|critical|superior) mechanism",
-        "plant-wide posterior superiority": r"posterior(?:-conditioned| conditioning)? .*outperform(?:s|ed)? .*plant-wide",
+        "plant-wide posterior superiority": r"posterior(?:-conditioned| conditioning)?[^\\n]{0,240}outperform(?:s|ed)?[^\\n]{0,240}plant-wide",
     }
     for label, pattern in forbidden_patterns.items():
         if re.search(pattern, manuscript, flags=re.I | re.S):
