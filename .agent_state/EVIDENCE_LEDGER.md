@@ -393,3 +393,21 @@ VERIFICATION_GATE: PASS
 
 
 
+## T41 — 2026-09-20T22:40:37+08:00
+Task-ID: T41
+Status: VERIFIED_COMMAND
+Summary: Top-Journal Scientific Writing optimization completed across paper_tste_ieee.md: positive contribution framing, removed conversational hedges and defensive apologetics, scope condition reframing, exact 10.0-page budget maintained, all gates passed.
+Source: paper_tste_ieee.md, standalone_ieee_package/main.tex
+Command: `python scripts/verify_final_pdf_integrity.py`
+Exit-Code: 0
+Relevant-Output:
+```
+ALL IEEE PDF CHECKS PASSED, ALL SUPPLEMENTARY PDF CHECKS PASSED, ALL 10 DECISIVE EVIDENCE GATES PASSED, Page count = 10
+```
+
+## T42 — 2026-09-21T00:00:00+08:00
+Task-ID: T42
+Status: VERIFIED_REPO
+Summary: Repository-grounded adversarial review completed. The report verifies the distinction between boundary recoverability under pitch withholding (C2 active-power-only: Brier 0.0112, NMI 0.461, ARI 0.647, transition recall 62.9%), no plant-wide PSREI advantage over wind-speed bins (+523,044 kWh, p=0.85), and transition-localized risk hedging with added reserve cost. It also verifies that privileged supervision improves NMI/ARI but does not establish downstream PSREI gain, and that external-site results are validity boundary probes rather than uniform causal replication. UNKNOWN/BLOCKED claims are explicitly listed.
+Source: docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md, docs/CONSEQUENCE_SIGNAL_MECHANISM.md, docs/DECISION_VALUE_MEDIATION.md, docs/PRIVILEGED_SUPERVISION_ABLATION.md, docs/SITE_MECHANISM_BOUNDARY_TABLE.md
+

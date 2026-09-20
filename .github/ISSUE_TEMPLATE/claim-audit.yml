@@ -1,0 +1,37 @@
+name: Claim or evidence audit
+description: Register a manuscript claim that needs provenance, falsification, or scope review.
+title: "[Claim audit] "
+labels: ["evidence", "manuscript"]
+body:
+  - type: textarea
+    id: claim
+    attributes:
+      label: Claim
+      description: Quote the exact claim and identify the manuscript section.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Current evidence
+      description: Link the artifact, script, table, or source that currently supports or contradicts it.
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Epistemic status
+      options:
+        - VERIFIED
+        - INFERRED
+        - UNKNOWN
+        - BLOCKED
+    validations:
+      required: true
+  - type: textarea
+    id: attack
+    attributes:
+      label: Strongest reviewer attack
+      description: State the strongest counterexample or alternative explanation.
+    validations:
+      required: true

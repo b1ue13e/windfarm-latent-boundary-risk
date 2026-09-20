@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-09-19T15:58:04+08:00
+Generated: 2026-09-21T04:02:29+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -26,17 +26,17 @@ Total pages: 10
 
 --- Checking Headline Number Proximity Qualifiers ---
 Number 589,535 found 5 times:
-  [PASS] Occurrence #1 at index 1434: qualifier present=True
-  [PASS] Occurrence #2 at index 5758: qualifier present=True
-  [PASS] Occurrence #3 at index 25202: qualifier present=True
-  [PASS] Occurrence #4 at index 37086: qualifier present=True
+  [PASS] Occurrence #1 at index 1480: qualifier present=True
+  [PASS] Occurrence #2 at index 5777: qualifier present=True
+  [PASS] Occurrence #3 at index 25268: qualifier present=True
+  [PASS] Occurrence #4 at index 37133: qualifier present=True
   [PASS] Occurrence #5 at index 56027: qualifier present=True
 Number 881,367 found 6 times:
-  [PASS] Occurrence #1 at index 1480: qualifier present=True
-  [PASS] Occurrence #2 at index 5785: qualifier present=True
-  [PASS] Occurrence #3 at index 25257: qualifier present=True
-  [PASS] Occurrence #4 at index 30633: qualifier present=True
-  [PASS] Occurrence #5 at index 33269: qualifier present=True
+  [PASS] Occurrence #1 at index 1526: qualifier present=True
+  [PASS] Occurrence #2 at index 5804: qualifier present=True
+  [PASS] Occurrence #3 at index 25323: qualifier present=True
+  [PASS] Occurrence #4 at index 30694: qualifier present=True
+  [PASS] Occurrence #5 at index 33330: qualifier present=True
   [PASS] Occurrence #6 at index 56052: qualifier present=True
 
 [ALL IEEE PDF CHECKS PASSED]
@@ -85,8 +85,8 @@ Exit: 0
   [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (7,309 bytes)
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,261 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,803 bytes)
-  [PASS] build/paper_tste_ieee.pdf (182,025 bytes)
-  [PASS] build/paper_tste_supplementary.pdf (1,012,118 bytes)
+  [PASS] build/paper_tste_ieee.pdf (181,871 bytes)
+  [PASS] build/paper_tste_supplementary.pdf (1,012,123 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
   [PASS] Information-set manifest validated (819 rows, zero forward leakage)

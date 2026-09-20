@@ -1,5 +1,11 @@
 # Regime-Aware Physics-Aligned MoE 风电预测框架
 
+> GitHub research package: the active scientific question is whether consequence signals recover a hidden MPPT-to-pitch boundary under matched arrival-time information, and whether that recovery changes tail-risk allocation during transitions. The project treats physics, recalibration, direct quantiles, and learned representations as competing information-boundary policies rather than as a universal neural leaderboard.
+
+## GitHub collaboration
+
+The repository is organized for evidence-first collaboration. Start with `docs/CANONICAL_RESEARCH_QUESTION.md`, `docs/REPOSITORY_EVIDENCE_MAP.md`, and `docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md`. Pull requests run the lightweight contract checks in `.github/workflows/verify.yml`; the artifact-backed full gate is a separate manual workflow because raw data, local caches, and generated PDFs are excluded from a clean source clone. Use the issue templates for claim audits and atomic experiments.
+
 这个工程围绕风电场多风机时序预测与机制证据构建展开：从原始风机坐标和 10 分钟粒度时序数据出发，构造动态有向尾流图、物理 regime 标签、时空编码器、MoE gate/expert 模型，并配套了 reviewer-facing 的证据导出、负控制、跨域验证、运行复现和论文构建脚本。
 
 当前唯一活跃投稿主线是 **IEEE Transactions on Sustainable Energy (TSTE)**。根目录中的 `paper_tste_ieee.md`、`paper_tste_supplementary.md`、`cover_letter_tste.md` 和 `scripts/prepare_tste_submission.ps1` 组成当前投稿工程；`paper_draft.*` 与 Applied Energy 相关脚本保留为源稿/历史 failsafe，不再作为默认投稿目标。

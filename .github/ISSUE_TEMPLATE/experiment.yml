@@ -1,0 +1,33 @@
+name: Experiment or reproduction request
+description: Propose a controlled experiment with an explicit information set and acceptance criterion.
+title: "[Experiment] "
+labels: ["experiment", "reproducibility"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Atomic question
+      description: Describe one falsifiable question. Avoid bundling multiple model changes.
+    validations:
+      required: true
+  - type: textarea
+    id: information
+    attributes:
+      label: Deployable information set
+      description: State exactly what has arrived by issue time and what is withheld.
+    validations:
+      required: true
+  - type: textarea
+    id: baseline
+    attributes:
+      label: Matched baseline
+      description: Name the direct or physical baseline receiving the same information.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance and failure criteria
+      description: Define the metric, uncertainty unit, and what result would falsify the claim.
+    validations:
+      required: true
