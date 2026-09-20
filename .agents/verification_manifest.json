@@ -3,7 +3,12 @@
   "require_evidence_for_verified_tasks": true,
   "require_independent_review": true,
   "require_verification_report": false,
-  "required_files": [],
+  "required_files": [
+    "docs/SCIENTIFIC_CONTRACT.md",
+    "docs/EXPERIMENT_REGISTRY.md",
+    ".agents/agents/scientific-falsifier/agent.md",
+    "scripts/verify_scientific_claim_gate.py"
+  ],
   "forbidden_patterns": [],
   "commands": [
     {
@@ -21,6 +26,12 @@
     {
       "name": "verify_tste_number_consistency",
       "command": "python scripts/verify_tste_number_consistency.py",
+      "required": true,
+      "enabled": true
+    },
+    {
+      "name": "verify_scientific_claim_gate",
+      "command": "python scripts/verify_scientific_claim_gate.py",
       "required": true,
       "enabled": true
     }
