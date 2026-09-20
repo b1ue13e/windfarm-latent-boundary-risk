@@ -1,10 +1,10 @@
 {
   "title": "论文核心问题的对抗性审查与第一性原理收束",
   "created": "2026-09-18T00:00:00+08:00",
-  "updated": "2026-09-21T00:00:00+08:00",
+  "updated": "2026-09-21T05:44:00+08:00",
   "phase": "final",
   "status": "complete",
-  "last_verified_task": "T42",
+  "last_verified_task": "TF2",
   "notes": [
     "Tasks T34-T37 completed: GBDT metric provenance reconciled (16.23% clean vs 14.98% pitch-withheld).",
     "Multi-site framed as external-validity boundary probes (WTB primary identification).",
@@ -15,6 +15,8 @@
     "Task T39 completed: Skeptical audit purged residual 'grid compliance' language from docs, verified exact 10.0-page budget, and confirmed clean PASS across all verification gates.",
     "Task T40 completed: Executed FINAL THREE-PHRASE CONSISTENCY PATCH: explicit unadapted physical comparator and strong wind-speed baseline in abstract, purge of regulatory-sounding 'compliant' language referring to Newsvendor target, and downgraded cross-site causal claims for LHB and directional asymmetry. All verification gates and PDF budget checks PASS.",
     "Task T41 completed: Top-Journal Scientific Writing optimization completed across paper_tste_ieee.md and standalone_ieee_package/main.tex: positive contribution framing, removed conversational hedges and apologetics, scope condition reframing, exact 10.0-page budget maintained, all verification gates PASS.",
-    "Task T42 completed: Repository-grounded first-principles and adversarial audit compressed the paper into three questions, separated verified boundary recoverability from unsupported universal decision superiority, identified active-power signature as the dominant mediator, and recorded ideal-case, UNKNOWN, and BLOCKED boundaries in docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md."
+    "Task T42 completed: Repository-grounded first-principles and adversarial audit compressed the paper into three questions, separated verified boundary recoverability from unsupported universal decision superiority, identified active-power signature as the dominant mediator, and recorded ideal-case, UNKNOWN, and BLOCKED boundaries in docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md.",
+    "Task T43 completed: Synchronized private GitHub repository b1ue13e/windfarm-latent-boundary-risk, pushed .github/workflows/verify.yml and reproducibility documentation, verified remote tracking via git ls-remote and github_smoke_check.py.",
+    "Task T44 completed: Merged origin/scientific-control-architecture, audited scientific contract and experiment registry, invoked scientific-falsifier (PASS), executed all 4 manifest commands (Exit 0), completed independent evidence review (PASS), and verified meta-verification gate (Exit 0)."
   ]
 }

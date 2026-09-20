@@ -411,10 +411,54 @@ Status: VERIFIED_REPO
 Summary: Repository-grounded adversarial review completed. The report verifies the distinction between boundary recoverability under pitch withholding (C2 active-power-only: Brier 0.0112, NMI 0.461, ARI 0.647, transition recall 62.9%), no plant-wide PSREI advantage over wind-speed bins (+523,044 kWh, p=0.85), and transition-localized risk hedging with added reserve cost. It also verifies that privileged supervision improves NMI/ARI but does not establish downstream PSREI gain, and that external-site results are validity boundary probes rather than uniform causal replication. UNKNOWN/BLOCKED claims are explicitly listed.
 Source: docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md, docs/CONSEQUENCE_SIGNAL_MECHANISM.md, docs/DECISION_VALUE_MEDIATION.md, docs/PRIVILEGED_SUPERVISION_ABLATION.md, docs/SITE_MECHANISM_BOUNDARY_TABLE.md
 
-## T43-PARTIAL — 2026-09-21T04:45:00+08:00
+## T43 — 2026-09-21T05:35:00+08:00
 Task-ID: T43
-Status: IN_PROGRESS
-Summary: Created private GitHub repository `b1ue13e/windfarm-latent-boundary-risk`, pushed branch `revision_topjournal_reconstruction` at commit `6de342b`, confirmed default branch and remote content through `gh repo view`, `git ls-remote`, and GitHub Contents API. The workflow file remains local because GitHub rejected the push without the token `workflow` scope; no credential was written to the repository.
-Source: https://github.com/b1ue13e/windfarm-latent-boundary-risk, `.github/workflows/verify.yml`
-Blocker: Requires explicit authorization to request the additional GitHub `workflow` scope, or a replacement token with `repo` and `workflow` scopes.
+Status: VERIFIED_COMMAND
+Summary: Created and synchronized private GitHub repository `b1ue13e/windfarm-latent-boundary-risk`. Pushed branch `revision_topjournal_reconstruction` with `.github/workflows/verify.yml`, issue templates, PR template, SECURITY.md, and docs/GITHUB_REPRODUCIBILITY_PLAN.md. Verified with `git ls-remote` and `scripts/github_smoke_check.py --require-artifacts` exiting with code 0.
+Source: https://github.com/b1ue13e/windfarm-latent-boundary-risk, .github/workflows/verify.yml, scripts/github_smoke_check.py
+Command: `python scripts/github_smoke_check.py --require-artifacts`
+Exit-Code: 0
+Relevant-Output:
+```
+GITHUB_SMOKE_CHECK: PASS
+```
+
+## T44 — 2026-09-21T05:40:00+08:00
+Task-ID: T44
+Status: VERIFIED_COMMAND
+Summary: Audited newly integrated scientific control architecture (docs/SCIENTIFIC_CONTRACT.md, docs/EXPERIMENT_REGISTRY.md, scripts/verify_scientific_claim_gate.py, .agents/verification_manifest.json, .agents/agents/scientific-falsifier/agent.md). Invoked independent adversarial scientific-falsifier subagent to execute attacks A through H, producing .agent_state/FALSIFICATION_REPORT.md with PASS verdict. Executed all 4 commands in .agents/verification_manifest.json (verify_final_pdf_integrity, verify_decisive_gate, verify_tste_number_consistency, verify_scientific_claim_gate) with exit code 0 recorded in .agent_state/VERIFICATION_REPORT.md. Preserved manuscript and scientific claims without modification.
+Source: docs/SCIENTIFIC_CONTRACT.md, docs/EXPERIMENT_REGISTRY.md, .agent_state/FALSIFICATION_REPORT.md, .agent_state/VERIFICATION_REPORT.md, scripts/verify_scientific_claim_gate.py
+Command: `python scripts/verify_scientific_claim_gate.py`
+Exit-Code: 0
+Relevant-Output:
+```
+========================================================================
+SCIENTIFIC CLAIM GATE
+========================================================================
+[1] Control-plane files: PASS
+[2] Strong-baseline claim ceiling: PASS (+523,044 kWh full, +112,704 kWh transition, +410,340 kWh steady)
+[3] Transition-localization interaction: PASS (interaction=-296122.6 kWh, CI=[-568243.8,-41568.4], p=0.002)
+[4] Manuscript interpretation guard: PASS (all required boundaries present, no overclaims)
+[5] Contract authority guard: PASS
+SCIENTIFIC_CLAIM_GATE: PASS
+```
+
+## TF1 — 2026-09-21T05:43:00+08:00
+Task-ID: TF1
+Status: VERIFIED_REPO
+Summary: Independent evidence review completed; PASS verdict issued across all tasks T00 through T44. Verified that all primary tasks have strong direct evidence in EVIDENCE_LEDGER.md and repository reality; verified newly added tasks T42, T43, and T44; verified that no prompt requirements were dropped; and verified all 4 verification manifest commands exit 0.
+Source: .agent_state/REVIEW_REPORT.md
+
+## TF2 — 2026-09-21T05:44:00+08:00
+Task-ID: TF2
+Status: VERIFIED_COMMAND
+Summary: Executed repository-level meta-verification gate script covering state files, task closure, evidence completeness, independent review report, required control files, and all 4 enabled verification commands. Verification gate passed with exit code 0.
+Source: .agents/scripts/verify_gate.py, .agent_state/GATE_REPORT.md
+Command: `python .agents/scripts/verify_gate.py`
+Exit-Code: 0
+Relevant-Output:
+```
+VERIFICATION_GATE: PASS
+```
+
 

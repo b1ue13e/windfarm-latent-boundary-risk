@@ -1,158 +1,99 @@
-# Independent Evidence Review & Pre-Submission Audit Report
+# Independent Evidence Review & Scientific Audit Report
 
-**Date**: 2026-09-19T03:57:00+08:00  
+**Date**: 2026-09-21T05:43:00+08:00  
 **Auditor**: Independent Adversarial Evidence Reviewer  
 **Audit Target**: [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md), [`.agent_state/EVIDENCE_LEDGER.md`](file:///e:/论文3/.agent_state/EVIDENCE_LEDGER.md), and repository reality in `e:\论文3`  
+**Scope**: All tasks **T00 through T44**  
 **Final Audit Verdict**: **PASS**
 
 ---
 
 ## 1. Executive Summary & Verdict Overview
 
-An exhaustive, independent adversarial audit was conducted across all 34 primary tasks (**T00 through T33**) and finalization milestones (**TF1, TF2**) recorded in [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md) against [`.agent_state/EVIDENCE_LEDGER.md`](file:///e:/论文3/.agent_state/EVIDENCE_LEDGER.md), source code implementations, raw experimental artifacts (CSV and NPZ formats), and compiled camera-ready PDF deliverables ([`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf), [`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf), and [`standalone_ieee_package/main.pdf`](file:///e:/论文3/standalone_ieee_package/main.pdf)).
+An exhaustive, independent adversarial audit was conducted across all 45 primary tasks (**T00 through T44**) and finalization milestones recorded in [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md) against [`.agent_state/EVIDENCE_LEDGER.md`](file:///e:/论文3/.agent_state/EVIDENCE_LEDGER.md), source code implementations, raw experimental artifacts (CSV, NPZ, logs), and compiled camera-ready PDF deliverables ([`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf), [`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf), and [`standalone_ieee_package/main.pdf`](file:///e:/论文3/standalone_ieee_package/main.pdf)).
 
-Special adversarial scrutiny was focused on the five pre-submission consistency patch tasks (**T29 through T33**) mandated by the audit protocol:
-1. **Supplementary Table A11f Inference Separation**: Verification that bootstrap CI zero exclusion and exact seed-level tests are explicitly separated, and zero occurrences of `p<0.05` paired with `p=0.062` remain.
-2. **Result 5 & Table A10c Provenance & Alignment**: Verification of the exact provenance of $p<0.01$ for Independent Classifier ($86{,}536{,}321\text{ kWh}$) vs. Physical-bin ($84{,}314{,}353\text{ kWh}$, $\Delta = +2.22\text{M}$, 95% CI $[+1.66\text{M}, +2.63\text{M}]$, $p=0.0013 < 0.01$), verification that the comparison vs. Joint Router ($84{,}577{,}217\text{ kWh}$, $\Delta = +1.96\text{M}$, 95% CI $[-8.18\text{M}, +12.71\text{M}]$, $p=0.757$) is properly disclosed as crossing zero, and verification of matching rows in Table A10c and main paper Result 5.
-3. **Universal Overclaims Purge**: Verification of complete removal of `"strictly mandates site-specific local retraining"` and `"proving that generic predictive uncertainty cannot identify..."` across main paper, supplementary, and standalone package.
-4. **IEEE AI Disclosure Compliance**: Verification of full compliance with IEEE AI-generated-text policy (identifying OpenAI ChatGPT and Codex, describing sections and assistance level, and asserting sole author responsibility).
-5. **Zero Layout Overflows & Strict Page Budget**: Verification that [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) is strictly $\le 10.0$ pages with 0 overfull hboxes (0.00 pt) and [`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf) has 0 overfull hboxes (0.00 pt).
-6. **Automated Verification Script Suite**: Programmatic execution and verification that [`scripts/check_presubmission_consistency.py`](file:///e:/论文3/scripts/check_presubmission_consistency.py), [`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py), [`scripts/verify_decisive_gate.py`](file:///e:/论文3/scripts/verify_decisive_gate.py), and [`scripts/verify_tste_number_consistency.py`](file:///e:/论文3/scripts/verify_tste_number_consistency.py) all pass with exit code 0.
-
-Every task marked `[x] VERIFIED` in [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md) is substantiated by direct physical evidence (exact files, verified code lines, executed command exit codes, and raw numeric tables). No user requirements from the initial prompt were quietly dropped, and zero claims rely on speculative inference or model confidence alone.
+Every single task marked `[x] VERIFIED` in [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md) has an explicit, corresponding, auditable entry in [`.agent_state/EVIDENCE_LEDGER.md`](file:///e:/论文3/.agent_state/EVIDENCE_LEDGER.md) and is verified against physical repository reality:
+1. **Direct Evidence Rigor**: Every task is backed by verifiable files, exact numerical measurements, or executable commands with recorded exit code 0 and non-empty output logs. No claims rely on speculative inference, ungrounded extrapolation, or model self-confidence.
+2. **Newly Added Control Tasks (T42, T43, T44)**:
+   - **T42** is verified by [`docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md`](file:///e:/论文3/docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md), which establishes the tripartite distinction between boundary recoverability, absence of plant-wide decision advantage over wind-speed bins, and transition-localized risk hedging.
+   - **T43** is verified by [`docs/GITHUB_REPRODUCIBILITY_PLAN.md`](file:///e:/论文3/docs/GITHUB_REPRODUCIBILITY_PLAN.md), [`.github/workflows/verify.yml`](file:///e:/论文3/.github/workflows/verify.yml), successful remote communication with `origin` (`https://github.com/b1ue13e/windfarm-latent-boundary-risk.git`) verified via `git ls-remote`, and programmatic verification via [`scripts/github_smoke_check.py --require-artifacts`](file:///e:/论文3/scripts/github_smoke_check.py) (Exit Code 0).
+   - **T44** is verified by the execution of the scientific control-plane audit, the independent falsifier report [`.agent_state/FALSIFICATION_REPORT.md`](file:///e:/论文3/.agent_state/FALSIFICATION_REPORT.md) (**PASS** across Attacks A through H), the manifest verification audit [`.agent_state/VERIFICATION_REPORT.md`](file:///e:/论文3/.agent_state/VERIFICATION_REPORT.md) (**PASS** across all 4 enabled commands), and direct execution of [`scripts/verify_scientific_claim_gate.py`](file:///e:/论文3/scripts/verify_scientific_claim_gate.py) (Exit Code 0).
+3. **Preservation of Core Requirements**: Zero user requirements or immutable constraints from the initial prompt were dropped or weakened. Negative results (MoE routing non-essentiality, absence of plant-wide cost dominance over wind-speed bins, privileged supervision downstream decision delta crossing zero, and external site transfer heterogeneity) are prominently preserved in the manuscript, verification gates, and control files.
+4. **Verification Test Suite**: All four manifest commands ([`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py), [`scripts/verify_decisive_gate.py`](file:///e:/论文3/scripts/verify_decisive_gate.py), [`scripts/verify_tste_number_consistency.py`](file:///e:/论文3/scripts/verify_tste_number_consistency.py), and [`scripts/verify_scientific_claim_gate.py`](file:///e:/论文3/scripts/verify_scientific_claim_gate.py)) pass with **Exit Code 0**.
 
 **Final Verdict**: **PASS**
 
 ---
 
-## 2. In-Depth Audit of Pre-Submission Tasks (T29 – T33)
+## 2. In-Depth Audit of Newly Added Control Tasks (T42 – T44)
 
-### 2.1 Item 1 (T29): Supplementary Table A11f Inference Separation & $p$-Value Integrity
-- **File Inspected**: [`paper_tste_supplementary.md:1030-1055`](file:///e:/论文3/paper_tste_supplementary.md#L1030-L1055).
-- **Structure**: Table A11f evaluates wind farm Point of Common Coupling (PCC) aggregated reserve allocation under 134-turbine spatial portfolio smoothing ($\rho=10$, 5 seeds, WTB test split).
-- **Column Separation**:
-  - Column 5: `95\% Bootstrap CI`
-  - Column 6: `\shortstack{Bootstrap CI\\Excludes Zero}` (reports categorical zero-exclusion: `yes` vs. `no`)
-  - Column 7: `\shortstack{Exact Seed\\$p$-value}` (reports exact non-parametric Wilcoxon signed-rank $p$-values across $n=5$ model seeds: `0.062`, `0.312`, `0.812`, `1.000`)
-- **Explanatory Table Note**:
-  `\fontsize{8.0pt}{9.6pt}\selectfont Evaluated on aggregated wind plant active power at the PCC bus summing over turbines online at anchor time $t=0$ ($P_{\mathrm{farm}} = \sum_{i \in \mathcal{V}_0} P_i$). Two distinct inferential procedures are explicitly reported: (i) operational sampling uncertainty via 95\% paired bootstrap confidence intervals (where 'yes' denotes zero exclusion); and (ii) exact seed-level significance across $n=5$ initialization seeds via Wilcoxon signed-rank test ($p=2^{-4}=0.062$ exact permutation floor). Script: \texttt{scripts/eval\_farm\_aggregate\_reserve.py}, artifacts in \texttt{artifacts/farm\_aggregate\_reserve\_20260905/}.`
-- **Zero Inconsistent Pairings**:
-  - Repository-wide regex audit using `p\s*<\s*0\.05.*0\.062|0\.062.*p\s*<\s*0\.05` confirms **zero occurrences** across the entire repository.
-  - In Table A11f, rows with bootstrap CI excluding zero report `yes` under Column 6 and `0.062` under Column 7, with zero claims of `p<0.05` for seed-level Wilcoxon tests.
-- **Layout Compliance**: Column separation formatted with `\setlength{\tabcolsep}{2.5pt}`, compiling with **0.00 pt overfull hbox** in XeLaTeX.
-- **Verdict**: **PASS**
+### 2.1 Task T42: Repository-Grounded First-Principles & Adversarial Review
+- **File Inspected**: [`docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md`](file:///e:/论文3/docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md) (15,225 bytes).
+- **Core Findings Verified**:
+  1. *Boundary Recoverability vs Decision Value Separation*: Identifies that under blade-pitch withholding, secondary SCADA consequences (predominantly contemporaneous and dynamic active power, Condition C2) reliably identify the operating boundary ($\text{Brier} = 0.0112, \text{NMI} = 0.461, \text{ARI} = 0.647$, transition recall $62.9\%$).
+  2. *Refutation of Universal Decision Superiority*: Confirms that plant-wide posterior conditioning incurs a $+523{,}044\text{ kWh}$ penalty ($p = 0.85$) against the simple matched wind-speed-binned quantile baseline (Policy B, $13.78\text{M kWh}$), and in steady-state operation ($63.7\%$ of time) wind-speed binning dominates by $+410{,}340\text{ kWh}$ ($p = 0.002$).
+  3. *Transition-Localized Risk Hedging*: Re-evaluates transition windows ($36.3\%$ of time), showing that posterior conditioning acts as a risk hedge (contracting violations from $8.36\%$ to $7.24\%$ and shortages from $90.2\text{k}$ to $86.6\text{k kWh}$ at the cost of $+149\text{k kWh}$ additional reserve capacity and $+112{,}704\text{ kWh}$ higher PSREI; cluster bootstrap interaction contrast $\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296{,}123\text{ kWh}$, $p = 0.002$).
+  4. *Privileged Supervision Boundary*: Distinguishes representation clustering ($\text{NMI } +0.579, p = 0.0015$) from downstream decision value (paired delta $-311{,}957\text{ kWh}$, $95\%$ CI $[-1.66\text{M}, +1.04\text{M}]$, $p = 0.556$, crossing zero).
+  5. *Preservation of UNKNOWN / BLOCKED Scope*: Explicitly logs pitch-never-recorded deployment as untested/unknown and wholesale market settlement / AC-OPF cashflows as out of scope.
+- **Evidence Status**: **VERIFIED**
 
 ---
 
-### 2.2 Item 2 (T30): Result 5 & Table A10c Provenance & Alignment
-- **Evaluated Policy**: Independent sequence classifier (Graph WaveNet coupled to live-anchor classifier) vs. physical-bin baseline and joint boundary router on the WTB boundary slice at $\rho=10$ across 5 seeds (201--205).
-- **Raw Numerical Artifacts**:
-  - [`artifacts/modular_classifier_reserve_control/modular_classifier_reserve_summary.csv`](file:///e:/论文3/artifacts/modular_classifier_reserve_control/modular_classifier_reserve_summary.csv):
-    - Independent Classifier: $86{,}536{,}320.58\text{ kWh}$ ($86{,}536{,}321\text{ kWh}$, $9.54\%$ violation, reserve $50{,}694{,}434\text{ kWh}$, shortage $3{,}584{,}189\text{ kWh}$).
-    - Physical-bin Baseline: $84{,}314{,}352.54\text{ kWh}$ ($84{,}314{,}353\text{ kWh}$, $9.31\%$ violation, reserve $50{,}347{,}427\text{ kWh}$, shortage $3{,}396{,}693\text{ kWh}$).
-    - Joint Boundary Router (gate-bin): $84{,}577{,}216.80\text{ kWh}$ ($84{,}577{,}217\text{ kWh}$, $9.00\%$ violation, reserve $52{,}666{,}639\text{ kWh}$, shortage $3{,}191{,}058\text{ kWh}$).
-    - Global Quantile: $88{,}797{,}862.32\text{ kWh}$ ($88{,}797{,}862\text{ kWh}$, $10.22\%$ violation).
-  - [`artifacts/modular_classifier_reserve_control/modular_classifier_reserve_paired.csv`](file:///e:/论文3/artifacts/modular_classifier_reserve_control/modular_classifier_reserve_paired.csv):
-    - Independent Classifier minus Physical-bin: $\text{mean\_delta} = +2{,}221{,}968.04\text{ kWh}$ ($+2.22\text{M}$), 95% Bootstrap CI $[+1{,}662{,}670.01, +2{,}632{,}978.86]$ ($[+1.66\text{M}, +2.63\text{M}]$, strictly excludes zero).
-    - Independent Classifier minus Joint Router: $\text{mean\_delta} = +1{,}959{,}103.78\text{ kWh}$ ($+1.96\text{M}$), 95% Bootstrap CI $[-8{,}178{,}423.89, +12{,}707{,}359.46]$ ($[-8.18\text{M}, +12.71\text{M}]$, strictly crosses zero).
-- **Statistical Test Provenance**:
-  - Independent vs. Physical-bin: Paired seed differences: $+2.66\text{M}$, $+2.57\text{M}$, $+2.64\text{M}$, $+2.04\text{M}$, $+1.20\text{M}$ (all 5 positive). Paired Student-$t$ test ($df=4$): $t=7.9712$, $p=0.00134 < 0.01$. Exact Wilcoxon signed-rank floor: $W=0, p=0.0625$. Headline $p<0.01$ is mathematically validated for the physical-bin contrast.
-  - Independent vs. Joint Router: Paired seed differences: $+1.39\text{M}$, $-5.37\text{M}$, $-14.56\text{M}$, $+8.05\text{M}$, $+20.29\text{M}$. Paired Student-$t$ test ($df=4$): $t=0.3312$, $p=0.757$. Exact Wilcoxon: $W=6, p=0.8125$.
-- **Alignment between Main Paper Result 5 and Supplementary Table A10c**:
-  - [`paper_tste_ieee.md:420`](file:///e:/论文3/paper_tste_ieee.md#L420):
-    `"However, when evaluated on pre-dispatch reserve screening, the independent classifier incurs a surrogate reserve cost of $86{,}536{,}321\text{ kW}\cdot\text{h}$ ($9.54\%$ violation), trailing the physical-bin baseline ($84{,}314{,}353\text{ kW}\cdot\text{h}$, $9.31\%$ violation) by $2{,}221{,}968\text{ kW}\cdot\text{h}$ ($95\%$ bootstrap CI $[+1.66\text{M}, +2.63\text{M}]$, paired $p = 0.0013 < 0.01$, Supplementary Table~A10c). Against the joint boundary-forced router ($84{,}577{,}217\text{ kW}\cdot\text{h}$, $9.00\%$ violation), the independent classifier exhibits higher mean cost ($+1.96\text{M kW}\cdot\text{h}$), though its paired seed-level difference crosses zero across seeds ($[-8.18\text{M}, +12.71\text{M}]$, $p=0.757$)."`
-  - [`paper_tste_supplementary.md:795-807`](file:///e:/论文3/paper_tste_supplementary.md#L795-L807) (Table A10c):
-    - Row 800: `Graph WaveNet + live-anchor clf & 86,536,321 & 9.54\% & 50,694,434 & 3,584,189 & Baseline modular comparator \\`
-    - Row 801: `Graph WaveNet physical-bin & 84,314,353 & 9.31\% & 50,347,427 & 3,396,693 & $\Delta = -2.22\text{M}$ [$-2.63\text{M}, -1.66\text{M}$] ($p=0.0013 < 0.01$) \\`
-    - Row 802: `Boundary-forced router (gate-bin) & 84,577,217 & 9.00\% & 52,666,639 & 3,191,058 & $\Delta = -1.96\text{M}$ [$-12.71\text{M}, +8.18\text{M}$] ($p=0.757$, crosses zero) \\`
-    - Note: Note explicitly distinguishes the $+2.22\text{M}$ penalty ($p=0.0013 < 0.01$) vs. physical-bin from the $+1.96\text{M}$ delta ($p=0.757$, CI crossing zero) vs. joint router.
-- **Verdict**: **PASS**
+### 2.2 Task T43: GitHub Reproducibility Hub & Contract Synchronization
+- **Files Inspected**:
+  - [`docs/GITHUB_REPRODUCIBILITY_PLAN.md`](file:///e:/论文3/docs/GITHUB_REPRODUCIBILITY_PLAN.md) (3,204 bytes)
+  - [`.github/workflows/verify.yml`](file:///e:/论文3/.github/workflows/verify.yml) (1,743 bytes)
+  - [`scripts/github_smoke_check.py`](file:///e:/论文3/scripts/github_smoke_check.py) (5,510 bytes)
+  - [`.github/ISSUE_TEMPLATE/evidence_audit.yml`](file:///e:/论文3/.github/ISSUE_TEMPLATE/evidence_audit.yml)
+  - [`.github/ISSUE_TEMPLATE/experiment_request.yml`](file:///e:/论文3/.github/ISSUE_TEMPLATE/experiment_request.yml)
+  - [`.github/pull_request_template.md`](file:///e:/论文3/.github/pull_request_template.md)
+  - [`SECURITY.md`](file:///e:/论文3/SECURITY.md)
+- **Repository Remote & Branch Verification**:
+  - Remote URL: `https://github.com/b1ue13e/windfarm-latent-boundary-risk.git`
+  - Current Branch: `revision_topjournal_reconstruction`
+  - Command: `git ls-remote origin` executed successfully, confirming remote tracking branches `HEAD`, `refs/heads/revision_topjournal_reconstruction`, and `refs/heads/scientific-control-architecture`.
+- **Smoke Check Programmatic Execution**:
+  - Command: `python scripts/github_smoke_check.py --require-artifacts`
+  - Exit Code: `0`
+  - Output: `GITHUB_SMOKE_CHECK: PASS`
+- **Data Governance & Secret Sanitization**:
+  - Confirmed raw SCADA datasets, local caches, and build binaries are strictly gitignored.
+  - Confirmed zero hardcoded tokens or API credentials in repository tracking files or workflow YAMLs.
+- **Evidence Status**: **VERIFIED**
 
 ---
 
-### 2.3 Item 3 (T31): Universal Overclaims Removal
-- **Target Phrase 1**: `"strictly mandates site-specific local retraining"`
-  - Status: Completely purged repository-wide.
-  - Replacement Phrasing:
-    - [`paper_tste_ieee.md:467`](file:///e:/论文3/paper_tste_ieee.md#L467): `"These results support site-specific retraining or recalibration for the evaluated farms rather than assuming reliable zero-shot transfer."`
-    - [`standalone_ieee_package/main.tex:1132, 1265`](file:///e:/论文3/standalone_ieee_package/main.tex#L1132): Fully synchronized.
-- **Target Phrase 2**: `"proving that generic predictive uncertainty cannot identify..."`
-  - Status: Completely purged repository-wide.
-  - Replacement Phrasing:
-    - [`paper_tste_ieee.md:442`](file:///e:/论文3/paper_tste_ieee.md#L442): `"showing that the tested heuristic uncertainty score does not reliably identify unsafe operating states under the evaluated prolonged-latency setting."`
-    - [`standalone_ieee_package/main.tex:1094`](file:///e:/论文3/standalone_ieee_package/main.tex#L1094): Fully synchronized.
-- **Automated Verification**:
-  - [`scripts/check_presubmission_consistency.py`](file:///e:/论文3/scripts/check_presubmission_consistency.py) scans all three files (`paper_tste_ieee.md`, `paper_tste_supplementary.md`, `standalone_ieee_package/main.tex`) and reports **0 matches** for both phrases.
-- **Verdict**: **PASS**
+### 2.3 Task T44: Scientific-Control Validation & Falsification Run
+- **Files Inspected**:
+  - [`docs/SCIENTIFIC_CONTRACT.md`](file:///e:/论文3/docs/SCIENTIFIC_CONTRACT.md) (10,566 bytes)
+  - [`docs/EXPERIMENT_REGISTRY.md`](file:///e:/论文3/docs/EXPERIMENT_REGISTRY.md) (12,013 bytes)
+  - [`.agents/agents/scientific-falsifier/agent.md`](file:///e:/论文3/.agents/agents/scientific-falsifier/agent.md) (5,861 bytes)
+  - [`scripts/verify_scientific_claim_gate.py`](file:///e:/论文3/scripts/verify_scientific_claim_gate.py) (7,945 bytes)
+  - [`.agents/verification_manifest.json`](file:///e:/论文3/.agents/verification_manifest.json) (1,131 bytes)
+  - [`.agent_state/FALSIFICATION_REPORT.md`](file:///e:/论文3/.agent_state/FALSIFICATION_REPORT.md) (29,662 bytes)
+  - [`.agent_state/VERIFICATION_REPORT.md`](file:///e:/论文3/.agent_state/VERIFICATION_REPORT.md) (9,975 bytes)
+- **Adversarial Falsification Audit**:
+  - Independent Scientific Falsifier evaluated Attacks A through H:
+    * *Attack A (Active Power Readout)*: Verified active power is dominant mediator; manuscript bounds claims accordingly.
+    * *Attack B (Matched Direct Quantile)*: Verified Policy B beats Policy C plant-wide (+523k penalty); negative result faithfully reported.
+    * *Attack C (Decision Sufficiency)*: Verified high NMI does not imply reserve cost win; tripartite separation maintained.
+    * *Attack D (Slice Selection)*: Verified full-population, steady, and transition windows presented side-by-side.
+    * *Attack E (Privileged Supervision)*: Verified training-time historical pitch availability disclosed; never-recorded pitch bounded as untested.
+    * *Attack F (Architecture Necessity)*: Verified MoE routing falsified ($p = 0.380$).
+    * *Attack G (External Validity)*: Verified external sites framed as heterogeneous boundary probes, not uniform proof.
+    * *Attack H (Synthetic Stress)*: Verified 60-min latency framed as contingency stress test, not operational normal.
+  - Falsification Verdict: **PASS**.
+- **Manifest Verification Command Execution**:
+  All 4 commands in `.agents/verification_manifest.json` executed independently:
+  1. `python scripts/verify_final_pdf_integrity.py` -> Exit Code **0**
+  2. `python scripts/verify_decisive_gate.py` -> Exit Code **0**
+  3. `python scripts/verify_tste_number_consistency.py` -> Exit Code **0**
+  4. `python scripts/verify_scientific_claim_gate.py` -> Exit Code **0**
+- **Evidence Status**: **VERIFIED**
 
 ---
 
-### 2.4 Item 4 (T32): IEEE AI Disclosure Policy Compliance
-- **Policy Standard**: IEEE requires authors to disclose the use of AI tools in text/acknowledgments, specify the AI tool name and version, outline sections and nature of assistance, and affirm sole responsibility of authors for content integrity.
-- **Manuscript Text Inspected**:
-  - [`paper_tste_ieee.md:505`](file:///e:/论文3/paper_tste_ieee.md#L505):
-    `\textbf{AI Use Statement:} The authors utilized OpenAI ChatGPT and Codex to assist with drafting, structural formatting, and prose refinement across manuscript sections and supplementary materials, as well as developing automated audit and consistency-checking scripts. All scientific hypotheses, mathematical formulations, experimental designs, SCADA data processing, model implementations, statistical analyses, causal verification, interpretation of findings, and final approval of the text remain the sole responsibility of the authors.`
-  - [`standalone_ieee_package/main.tex:1313-1320`](file:///e:/论文3/standalone_ieee_package/main.tex#L1313-L1320): Identical IEEE-compliant declaration.
-- **Compliance Checklist**:
-  - Specific AI systems named: OpenAI ChatGPT and Codex (Confirmed).
-  - Scope and nature of assistance detailed: Drafting, structural formatting, prose refinement across manuscript sections and supplementary materials, automated audit and consistency scripts (Confirmed).
-  - Authors' sole responsibility asserted: Hypotheses, mathematical formulation, experimental design, SCADA processing, modeling, statistical analysis, causal verification, interpretation, and final approval (Confirmed).
-  - Old deprecated phrasing (`"only for language editing"`) completely eliminated (Confirmed).
-- **Verdict**: **PASS**
-
----
-
-### 2.5 Item 5 (T33): Zero Layout Overflows & Strict Page Limit
-- **Main Manuscript PDF ([`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf))**:
-  - Page Budget: Exactly **10.0 pages** (verified via `pypdf.PdfReader` and XeLaTeX log [`build/paper_tste_ieee.log:1521`](file:///e:/论文3/build/paper_tste_ieee.log#L1521): `Output written on E:\论文3\build\paper_tste_ieee.pdf (10 pages).`).
-  - Overfull Horizontal Boxes (`Overfull \hbox`): **0 occurrences** (0.00 pt).
-  - Overfull Vertical Boxes (`Overfull \vbox`): **0 occurrences** (0.00 pt).
-  - Package `tabularx` Warnings: **0 occurrences**.
-- **Supplementary Material PDF ([`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf))**:
-  - Page Count: Exactly **43 pages** (verified via XeLaTeX log [`build/paper_tste_supplementary.log:1655`](file:///e:/论文3/build/paper_tste_supplementary.log#L1655): `Output written on E:\论文3\build\paper_tste_supplementary.pdf (43 pages).`).
-  - Overfull Horizontal Boxes (`Overfull \hbox`): **0 occurrences** (0.00 pt).
-  - Overfull Vertical Boxes (`Overfull \vbox`): **0 occurrences** (0.00 pt).
-  - Package `tabularx` Warnings: **0 occurrences**.
-- **Standalone Package Deliverable ([`standalone_ieee_package/main.pdf`](file:///e:/论文3/standalone_ieee_package/main.pdf))**:
-  - Page Budget: Exactly **10 pages** (verified via XeLaTeX log [`standalone_ieee_package/main.log:1638`](file:///e:/论文3/standalone_ieee_package/main.log#L1638): `Output written on main.pdf (10 pages).`).
-  - Overfull Horizontal Boxes: **0 occurrences** (0.00 pt).
-- **Verdict**: **PASS**
-
----
-
-### 2.6 Item 6 (T33): Automated Verification Script Suite
-All four verification test suites were audited for source logic and execution integrity:
-1. **[`scripts/check_presubmission_consistency.py`](file:///e:/论文3/scripts/check_presubmission_consistency.py)**:
-   - Scans `paper_tste_ieee.md`, `paper_tste_supplementary.md`, and `standalone_ieee_package/main.tex`.
-   - Confirms 0 occurrences of `strictly mandates`, `proving that generic`, `only for language editing`, and `p<0.05 paired with 0.062`.
-   - Provenance of all `p<0.01` instances reported and audited.
-   - Result: `OVERALL CONSISTENCY CHECK: PASS` (**Exit Code: 0**).
-2. **[`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py)**:
-   - Verifies main IEEE PDF page count ($\le 10$).
-   - Verifies 5 required phrases present: `'13,883'`, `'boundary-active'`, `'site-dependent'`, `'not turbine count alone'`, `'explicit disclosure that pitch is available in training inputs but withheld in validation/test deployment'`.
-   - Verifies 6 banned phrases absent: `'Commercial benefit'`, `'N < 20'`, `'N >= 50'`, `'N <= 6'`, `'N >= 14'`, `'decision value is maximized'`.
-   - Verifies proximity qualifiers for all occurrences of `589,535` and `881,367`.
-   - Verifies supplementary banned phrases absent: `'economic reserve benefit'`, `'economic value'`, `'reserve pricing'`, `'Commercial benefit'`.
-   - Result: `VERIFICATION SUCCESS: ALL PDF ARTIFACT INTEGRITY CHECKS PASSED` (**Exit Code: 0**).
-3. **[`scripts/verify_decisive_gate.py`](file:///e:/论文3/scripts/verify_decisive_gate.py)**:
-   - Verifies existence and non-emptiness of 20 required artifacts across documentation, CSVs, NPZ, and PDFs.
-   - Checks information-set manifest (819 rows, zero forward leakage).
-   - Checks fixed forecast residuals (28 keys across 5 seeds and 6 horizons).
-   - Checks direct baseline compliance breach (GBDT breaches at $h=6$: $14.98\% > 10.0\%$).
-   - Checks factorial negative control (`F_Random_Posterior` breaches at $11.41\%$) and MoE parity ($15.47\text{M}$ vs. $15.77\text{M kWh}$).
-   - Checks posterior calibration ($\text{uncalibrated ECE} \le 3.46\% \le 5.00\%$).
-   - Checks consequence mechanism (C2 active power dominant: Brier $0.0112$, NMI $0.461$; C4 thermal recall $0.0\%$).
-   - Checks mediation analysis ($48.4\% \ge 40.0\%$ in dynamic transition windows).
-   - Checks IEEE paper page count ($\le 10.0$ pages).
-   - Result: `ALL 10 DECISIVE EVIDENCE GATES PASSED (STATUS: VERIFIED)` (**Exit Code: 0**).
-4. **[`scripts/verify_tste_number_consistency.py`](file:///e:/论文3/scripts/verify_tste_number_consistency.py)**:
-   - Audits 73 numerical claims across manuscript, supplementary, and cover letter against underlying source CSVs/NPZs.
-   - Result: `status: complete_tste_number_consistency` (73 checks, 0 failed, **Exit Code: 0**).
-- **Verdict**: **PASS**
-
----
-
-## 3. Comprehensive Master Verification Matrix (T00 – T33, TF1, TF2)
+## 3. Comprehensive Master Verification Matrix (T00 – T44)
 
 | Task ID | Task Description | Direct Evidence Source | Measured Reality / Empirical Finding | Verdict |
 | :--- | :--- | :--- | :--- | :--- |
@@ -189,27 +130,82 @@ All four verification test suites were audited for source logic and execution in
 | **T30** | Verify Result-5 p<0.01 provenance | [`artifacts/modular_classifier_reserve_control/modular_classifier_reserve_paired.csv`](file:///e:/论文3/artifacts/modular_classifier_reserve_control/modular_classifier_reserve_paired.csv)<br>[`paper_tste_ieee.md:420`](file:///e:/论文3/paper_tste_ieee.md#L420) | Provenance of p=0.0013<0.01 vs physical-bin confirmed (+2.22M, [+1.66M, +2.63M]); joint router delta crosses zero (+1.96M, p=0.757); matching rows in Table A10c and main paper. | **PASS** |
 | **T31** | Remove two universal overclaims | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md)<br>[`standalone_ieee_package/main.tex`](file:///e:/论文3/standalone_ieee_package/main.tex) | "strictly mandates site-specific local retraining" and "proving that generic predictive uncertainty cannot identify..." replaced repository-wide with rigorously bounded phrasing. | **PASS** |
 | **T32** | Correct AI disclosure | [`paper_tste_ieee.md:505`](file:///e:/论文3/paper_tste_ieee.md#L505)<br>[`standalone_ieee_package/main.tex:1313`](file:///e:/论文3/standalone_ieee_package/main.tex#L1313) | OpenAI ChatGPT and Codex identified, sections/assistance described, authors sole responsibility asserted. Fully IEEE compliant. | **PASS** |
-| **T33** | Final consistency gate & clean PDF build | [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf)<br>[`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf)<br>[`scripts/check_presubmission_consistency.py`](file:///e:/论文3/scripts/check_presubmission_consistency.py) | Main PDF strictly 10.0 pages with 0 overfull hboxes (0.00 pt); supplementary 43 pages with 0 overfull hboxes (0.00 pt); consistency script exits 0. | **PASS** |
-| **T34-T40** | Forensic closure, strong baseline & claim consistency patches | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md)<br>[`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py) | GBDT provenance reconciled, strong baseline closure evaluated, Q1-Q8 defense playbook added, regulatory language purged, PDF budget maintained at 10.0 pages. | **PASS** |
-| **T41** | Top-Journal Scientific Writing Language Optimization | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md)<br>[`standalone_ieee_package/main.tex`](file:///e:/论文3/standalone_ieee_package/main.tex) | Positive contribution framing, removed conversational hedges ("Crucially,", "In fact,", "substantially") and apologetics, scope condition reframing, exact 10.0-page budget verified, all gates pass. | **PASS** |
-| **TF1** | Independent evidence review completed | [`.agent_state/REVIEW_REPORT.md`](file:///e:/论文3/.agent_state/REVIEW_REPORT.md)<br>[`.agent_state/AUDIT_REPORT.md`](file:///e:/论文3/.agent_state/AUDIT_REPORT.md) | Independent adversarial audit of tasks T00 through T41 against repository reality completed with formal PASS verdict. | **PASS** |
-| **TF2** | Final verification gate executed | `.agents/scripts/verify_gate.py`<br>[`.agent_state/GATE_REPORT.md`](file:///e:/论文3/.agent_state/GATE_REPORT.md) | Meta-gate executed and all checks passed with exit code 0. | **PASS** |
+| **T33** | Final consistency gate & clean PDF build | [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf)<br>[`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf)<br>[`scripts/check_presubmission_consistency.py`](file:///e:/论文3/scripts/check_presubmission_consistency.py) | Main PDF strictly 10.0 pages with 0 overfull hboxes (0.00 pt); supplementary 44 pages with 0 overfull hboxes (0.00 pt); consistency script exits 0. | **PASS** |
+| **T34** | GBDT Metric Provenance Reconciliation | [`docs/GBDT_METRIC_PROVENANCE.md`](file:///e:/论文3/docs/GBDT_METRIC_PROVENANCE.md)<br>[`docs/METRIC_SCOPE_REGISTRY.md`](file:///e:/论文3/docs/METRIC_SCOPE_REGISTRY.md) | Confirmed 16.234% is B3 clean and 14.977% is B3 pitch-withheld at $h=6$. | **PASS** |
+| **T35** | Multi-Site External Validity Probes | [`docs/SITE_MECHANISM_BOUNDARY_TABLE.md`](file:///e:/论文3/docs/SITE_MECHANISM_BOUNDARY_TABLE.md)<br>[`paper_tste_supplementary.md:Table A8`](file:///e:/论文3/paper_tste_supplementary.md) | WTB 134-turbine site framed as primary mechanism environment; 3 European sites framed as heterogeneous boundary probes. | **PASS** |
+| **T36** | Strong-Baseline Closure & Policy A-D | [`scripts/test_strong_baseline_closure.py`](file:///e:/论文3/scripts/test_strong_baseline_closure.py)<br>[`artifacts/strong_baseline_closure_summary.csv`](file:///e:/论文3/artifacts/strong_baseline_closure_summary.csv)<br>[`docs/STRONG_BASELINE_CLOSURE.md`](file:///e:/论文3/docs/STRONG_BASELINE_CLOSURE.md) | Policy B wspd-bin is lowest cost plant-wide ($13.78\text{M}$) and steady state ($9.46\text{M}$); Policy C posterior incurs $+523\text{k}$ penalty plant-wide; interaction contrast $-296{,}123\text{ kWh}$ ($p < 0.005$). | **PASS** |
+| **T37** | Transition Mediation Reinterpretation | [`docs/FINAL_REVIEWER_ATTACK_DEFENSE.md`](file:///e:/论文3/docs/FINAL_REVIEWER_ATTACK_DEFENSE.md)<br>[`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md)<br>[`references.bib`](file:///e:/论文3/references.bib) | 48.4% mediation vs global quantile reinterpreted; Zhao et al. (IJEPES 2026) conceded in Related Work; 4 core contributions stated without MoE novelty; Q1-Q8 defense added. | **PASS** |
+| **T38** | Final Claim Correction & PDF Gate | [`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py)<br>[`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) | Reconciled 'not turbine count alone' in Contribution 4 and Result 7; canonical $+523{,}044\text{ kWh}$ penalty; nominal 10% Newsvendor target enforced; 10.0 pages exact. | **PASS** |
+| **T39** | Skeptical Audit of Grid Phrasing | [`docs/DECISIVE_EVIDENCE_GATE.md`](file:///e:/论文3/docs/DECISIVE_EVIDENCE_GATE.md)<br>[`UPDATED_MANUSCRIPT_CHANGELOG.md`](file:///e:/论文3/UPDATED_MANUSCRIPT_CHANGELOG.md) | Purged residual "grid compliance" and "compliance threshold" across docs; aligned to nominal 10% Newsvendor violation target. | **PASS** |
+| **T40** | Final Three-Phrase Consistency Patch | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md)<br>[`paper_tste_supplementary.md`](file:///e:/论文3/paper_tste_supplementary.md) | Explicit unadapted physical comparator in abstract; regulatory "compliant" purged; cross-site claims downgraded to site-specific retraining / LHB overfitting boundary. | **PASS** |
+| **T41** | Top-Journal Scientific Writing Optimization | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md)<br>[`standalone_ieee_package/main.tex`](file:///e:/论文3/standalone_ieee_package/main.tex) | Positive contribution framing, removed conversational hedges ("Crucially,", "In fact,", "substantially") and apologetics, scope condition reframing, exact 10.0-page budget verified, all gates pass. | **PASS** |
+| **T42** | First-Principles Adversarial Audit | [`docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md`](file:///e:/论文3/docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md) | Evaluated recoverability under pitch withholding vs direct quantiles; identified active power as dominant mediator; defined ideal-case claims and UNKNOWN/BLOCKED boundaries. | **PASS** |
+| **T43** | GitHub Reproducibility Hub | [`https://github.com/b1ue13e/windfarm-latent-boundary-risk`](https://github.com/b1ue13e/windfarm-latent-boundary-risk)<br>[`.github/workflows/verify.yml`](file:///e:/论文3/.github/workflows/verify.yml)<br>[`docs/GITHUB_REPRODUCIBILITY_PLAN.md`](file:///e:/论文3/docs/GITHUB_REPRODUCIBILITY_PLAN.md)<br>[`scripts/github_smoke_check.py`](file:///e:/论文3/scripts/github_smoke_check.py) | Private GitHub repository synchronized; branch `revision_topjournal_reconstruction` verified via `git ls-remote`; smoke check passes with exit code 0; zero credentials or raw datasets pushed. | **PASS** |
+| **T44** | Scientific-Control Validation & Falsification Run | [`docs/SCIENTIFIC_CONTRACT.md`](file:///e:/论文3/docs/SCIENTIFIC_CONTRACT.md)<br>[`docs/EXPERIMENT_REGISTRY.md`](file:///e:/论文3/docs/EXPERIMENT_REGISTRY.md)<br>[`.agent_state/FALSIFICATION_REPORT.md`](file:///e:/论文3/.agent_state/FALSIFICATION_REPORT.md)<br>[`.agent_state/VERIFICATION_REPORT.md`](file:///e:/论文3/.agent_state/VERIFICATION_REPORT.md)<br>[`scripts/verify_scientific_claim_gate.py`](file:///e:/论文3/scripts/verify_scientific_claim_gate.py) | Scientific control plane audited; scientific-falsifier executed Attacks A-H with PASS verdict; all 4 manifest verification commands executed with exit code 0; verify_scientific_claim_gate.py passed with exit code 0. | **PASS** |
 
 ---
 
-## 4. Final Audit Certification & Verdict
+## 4. Verification of Immutable Prompt Requirements
+
+The independent reviewer audited the repository against the ten foundational constraints set forth in the initial task specification:
+
+1. **Central Scientific Question Falsification**:
+   - *Requirement*: Under matched arrival-time information constraints, when blade pitch becomes unobservable, can secondary SCADA consequences recover the hidden operating boundary, and does it provide independent decision value for reserve quantile estimation over a direct conditional quantile model?
+   - *Audit Status*: **FULLY FALSIFIED & RESOLVED**. Telemetry recoverability is verified (active power alone recovers Brier $0.0112$, NMI $0.461$, transition recall $62.9\%$), but independent decision value is decisively bounded: plant-wide, posterior conditioning does NOT outperform direct wind-speed-conditioned quantiles ($\Delta L = +523{,}044\text{ kWh}$, $p = 0.85$ penalty). Instead, posterior conditioning provides localized risk-hedging during dynamic transition windows at higher reserve procurement cost.
+2. **MoE Architectural Framing**:
+   - *Requirement*: Do NOT frame as "MoE improves wind power forecasting". MoE is only an ablation/implementation choice.
+   - *Audit Status*: **HONORED & VERIFIED**. Dynamic MoE routing is explicitly falsified in Section IV-F ($p = 0.380$ vs unrouted dense models), excluded from the abstract, and omitted from core contributions.
+3. **Empirical Honesty & Negative Results**:
+   - *Requirement*: Never fabricate experimental results or modify numbers merely for narrative.
+   - *Audit Status*: **HONORED & VERIFIED**. All headline numbers match raw CSV/NPZ tables exactly. All negative results are explicitly highlighted and defended.
+4. **Strict Information-Set Symmetry**:
+   - *Requirement*: Enforce strict arrival-time information symmetry across all competing models.
+   - *Audit Status*: **HONORED & VERIFIED**. Contract formalized in [`docs/INFORMATION_SET_CONTRACT.md`](file:///e:/论文3/docs/INFORMATION_SET_CONTRACT.md); 819 rows in [`artifacts/information_set_manifest.csv`](file:///e:/论文3/artifacts/information_set_manifest.csv) verified for zero look-ahead.
+5. **Frozen Point Forecast & Decision Target**:
+   - *Requirement*: Freeze canonical point forecast and residual target across all methods.
+   - *Audit Status*: **HONORED & VERIFIED**. Contract in [`docs/FIXED_TARGET_CONTRACT.md`](file:///e:/论文3/docs/FIXED_TARGET_CONTRACT.md); 173.4 MB NPZ file in [`artifacts/fixed_forecast_residuals.npz`](file:///e:/论文3/artifacts/fixed_forecast_residuals.npz) verified with 28 keys across 5 seeds and 6 horizons.
+6. **Direct Baseline Challenge (B0 – B5)**:
+   - *Requirement*: Implement strong direct conditional quantile baselines under identical information.
+   - *Audit Status*: **HONORED & VERIFIED**. Evaluated in [`artifacts/direct_quantile_baselines_summary.csv`](file:///e:/论文3/artifacts/direct_quantile_baselines_summary.csv) and [`artifacts/strong_baseline_closure_summary.csv`](file:///e:/论文3/artifacts/strong_baseline_closure_summary.csv).
+7. **Factorial (A–J) & Channel Consequence (C1–C10) Ablations**:
+   - *Requirement*: Execute full multi-seed factorial ablations and channel consequence ablations.
+   - *Audit Status*: **HONORED & VERIFIED**. Fully executed and logged in [`artifacts/factorial_boundary_ablation_summary.csv`](file:///e:/论文3/artifacts/factorial_boundary_ablation_summary.csv) and [`artifacts/channel_consequence_ablations.csv`](file:///e:/论文3/artifacts/channel_consequence_ablations.csv).
+8. **HPC Workload Execution**:
+   - *Requirement*: Dispatch heavy compute workloads to Metis HPC cluster via PBS Pro.
+   - *Audit Status*: **HONORED & VERIFIED**. PBS job scripts in `scripts/` and logs in `artifacts/` confirm execution on Metis cluster.
+9. **Documentation & Verification Manifest**:
+   - *Requirement*: Produce all required documentation, manifests, calibration audits, language audits, and verification gate.
+   - *Audit Status*: **HONORED & VERIFIED**. All documents present, audited, and verified.
+10. **IEEE TSTE 10.0-Page Constraint & Layout Integrity**:
+    - *Requirement*: Maintain IEEE Transactions on Sustainable Energy 10.0-page limit and compile paper cleanly.
+    - *Audit Status*: **HONORED & VERIFIED**. [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) compiles to exactly 10.0 pages with 0 overfull hboxes (0.00 pt) and 0 tabularx warnings.
+
+---
+
+## 5. Audit of Epistemic Status & Grounding
+
+Every claim marked `VERIFIED` in the ledgers was evaluated to ensure it is not based merely on model confidence, subjective inference, or ungrounded claims:
+- Telemetry recoverability is grounded in direct statistical computations (Brier score, NMI, ARI, recall) in [`artifacts/channel_consequence_ablations.csv`](file:///e:/论文3/artifacts/channel_consequence_ablations.csv).
+- Decision surrogate costs are grounded in exact kWh tallies and paired bootstrap confidence intervals in [`artifacts/strong_baseline_closure_summary.csv`](file:///e:/论文3/artifacts/strong_baseline_closure_summary.csv) and [`artifacts/strong_baseline_bootstrap_contrasts.csv`](file:///e:/论文3/artifacts/strong_baseline_bootstrap_contrasts.csv).
+- Font sizes and page geometry are grounded in direct PDF object inspections using PyMuPDF (`fitz`) and XeLaTeX compilation logs.
+- GitHub synchronization is grounded in live network checks via `git ls-remote` and programmatic validation via `scripts/github_smoke_check.py`.
+- Scientific claims are bounded by the authoritative contract [`docs/SCIENTIFIC_CONTRACT.md`](file:///e:/论文3/docs/SCIENTIFIC_CONTRACT.md) and programmatically verified by [`scripts/verify_scientific_claim_gate.py`](file:///e:/论文3/scripts/verify_scientific_claim_gate.py).
+
+Zero claims are marked `VERIFIED` based on plausible inference alone.
+
+---
+
+## 6. Final Audit Certification & Verdict
 
 ### **FINAL AUDIT VERDICT: PASS**
 
 **Auditor Certification Statements**:
-1. All primary tasks (**T00 through T41**) and finalization milestones (**TF1, TF2**) in [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md) have direct, auditable empirical evidence recorded in [`.agent_state/EVIDENCE_LEDGER.md`](file:///e:/论文3/.agent_state/EVIDENCE_LEDGER.md) and verified against repository reality.
-2. In Supplementary Table A11f, operational bootstrap CI zero-exclusion and exact seed-level non-parametric Wilcoxon tests are explicitly separated into distinct columns, and zero occurrences of `p<0.05` paired with `p=0.062` remain across the entire repository.
-3. The exact statistical provenance of $p<0.01$ in Result 5 is verified against raw artifacts (`modular_classifier_reserve_paired.csv`: $\Delta = +2{,}221{,}968\text{ kWh}$, 95% CI $[+1.66\text{M}, +2.63\text{M}]$, paired $t=7.9712, p=0.0013 < 0.01$), and the contrast vs. Joint Router is accurately disclosed as crossing zero ($\Delta = +1.96\text{M}$, 95% CI $[-8.18\text{M}, +12.71\text{M}]$, $p=0.757$), with matching rows in Table A10c and main paper text.
-4. Universal overclaims and defensive apologetics have been completely purged repository-wide and replaced with empirically bounded formulations and positive contribution framing.
-5. The AI disclosure complies with IEEE AI-generated-text policy: naming OpenAI ChatGPT and Codex, describing specific assistance tasks, and affirming sole author responsibility.
-6. Layout geometry is strictly compliant: [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) compiles to exactly **10.0 pages** with **0 overfull hboxes (0.00 pt)**, [`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf) compiles to 44 pages with **0 overfull hboxes (0.00 pt)**, and [`standalone_ieee_package/main.pdf`](file:///e:/论文3/standalone_ieee_package/main.pdf) compiles to exactly 10 pages with **0 overfull hboxes (0.00 pt)**.
-7. All four automated verification test suites ([`scripts/check_presubmission_consistency.py`](file:///e:/论文3/scripts/check_presubmission_consistency.py), [`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py), [`scripts/verify_decisive_gate.py`](file:///e:/论文3/scripts/verify_decisive_gate.py), and [`scripts/verify_tste_number_consistency.py`](file:///e:/论文3/scripts/verify_tste_number_consistency.py)) pass with exit code 0.
-8. Zero user requirements from the prompt were dropped, weakened, or compromised.
+1. All 45 primary tasks (**T00 through T44**) in [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md) have direct, auditable empirical evidence recorded in [`.agent_state/EVIDENCE_LEDGER.md`](file:///e:/论文3/.agent_state/EVIDENCE_LEDGER.md) and verified against repository reality.
+2. Newly added control tasks **T43** (GitHub Reproducibility Hub) and **T44** (Scientific-Control Validation & Falsification Run) have complete, direct evidence in [`.agent_state/EVIDENCE_LEDGER.md`](file:///e:/论文3/.agent_state/EVIDENCE_LEDGER.md) and match repository reality without discrepancies.
+3. Independent adversarial scientific falsification ([`.agent_state/FALSIFICATION_REPORT.md`](file:///e:/论文3/.agent_state/FALSIFICATION_REPORT.md)) passed with **PASS** across Attacks A through H.
+4. Independent verification manifest audit ([`.agent_state/VERIFICATION_REPORT.md`](file:///e:/论文3/.agent_state/VERIFICATION_REPORT.md)) confirmed all 4 enabled verification commands passed with **Exit Code 0**.
+5. All underlying domain verification test suites ([`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py), [`scripts/verify_decisive_gate.py`](file:///e:/论文3/scripts/verify_decisive_gate.py), [`scripts/verify_tste_number_consistency.py`](file:///e:/论文3/scripts/verify_tste_number_consistency.py), and [`scripts/verify_scientific_claim_gate.py`](file:///e:/论文3/scripts/verify_scientific_claim_gate.py)) pass with **Exit Code 0**.
+6. Main IEEE manuscript [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) compiles to exactly **10.0 pages** with **0 overfull hboxes (0.00 pt)**.
+7. Zero user requirements from the initial prompt were dropped, weakened, or compromised.
 
-*Audit closed and certified at 2026-09-20T22:42:00+08:00.*
-
+*Audit closed and certified at 2026-09-21T05:44:00+08:00.*

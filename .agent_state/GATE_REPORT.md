@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-09-21T04:02:29+08:00
+Generated: 2026-09-21T05:44:27+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -126,6 +126,51 @@ Exit: 0
 ```
 TSTE number consistency audit: complete_tste_number_consistency
 Wrote E:\论文3\artifacts\tste_number_consistency_audit\tste_number_consistency_audit.csv
+
+```
+
+## Command: verify_scientific_claim_gate
+`python scripts/verify_scientific_claim_gate.py`
+Exit: 0
+```
+========================================================================
+SCIENTIFIC CLAIM GATE
+========================================================================
+
+[1] Control-plane files
+  [PASS] docs\SCIENTIFIC_CONTRACT.md
+  [PASS] docs\EXPERIMENT_REGISTRY.md
+  [PASS] .agents\agents\scientific-falsifier\agent.md
+  [PASS] artifacts\strong_baseline_closure_summary.csv
+  [PASS] artifacts\strong_baseline_bootstrap_contrasts.csv
+  [PASS] paper_tste_ieee.md
+
+[2] Strong-baseline claim ceiling
+  [PASS] plant-wide posterior cost superiority is not supported (+523,044 kWh)
+  [PASS] transition result is a risk hedge, not a cost win (PSREI delta +112704 kWh)
+  [PASS] steady-state simple baseline remains lower-cost (+410340 kWh posterior penalty)
+
+[3] Transition-localization interaction
+  [PASS] heterogeneity retained: interaction=-296122.6 kWh, CI=[-568243.8,-41568.4], p=0.002
+
+[4] Manuscript interpretation guard
+  [PASS] claim boundary present: strong wind-speed-conditioned quantiles remain lower-cost plant-wide
+  [PASS] claim boundary present: no statistical advantage over unrouted dense baselines
+  [PASS] claim boundary present: localized risk-hedging mechanism
+  [PASS] claim boundary present: trained using historically available pitch information that is withheld at deployment
+  [PASS] no unqualified universal ML superiority
+  [PASS] no unqualified cross-site generalization proof
+  [PASS] no MoE mechanism superiority
+  [PASS] no plant-wide posterior superiority
+
+[5] Contract authority guard
+  [PASS] contract marker present: Observability → Recoverability → Decision Sufficiency
+  [PASS] contract marker present: REFUTED by current closure
+  [PASS] contract marker present: Negative-result preservation rule
+  [PASS] contract marker present: Older reports remain provenance records
+
+========================================================================
+SCIENTIFIC_CLAIM_GATE: PASS
 
 ```
 
