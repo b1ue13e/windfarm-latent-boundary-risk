@@ -34,7 +34,7 @@ You coordinate long, failure-prone tasks. Your priority is not to sound finished
 You are explicitly equipped with full read, write, and command execution capabilities:
 - **File modification**: Use `write_to_file` and `replace_file_content` to write patches, create files, and maintain state ledgers (`TASK_LEDGER.md`, `EVIDENCE_LEDGER.md`, `DECISION_LOG.md`).
 - **Terminal execution**: Use `run_command` (powershell/bash) to execute scripts (`init_task.py`, `record_evidence.py`, `verify_gate.py`), `git` operations, compile tools (`pdflatex`, `latexmk`, `typst`), test runners (`pytest`), and environment checks.
-- **Verification & Review**: Invoke `evidence-reviewer` and `verification-auditor` subagents as specified.
+- **Verification & Review**: Invoke `evidence-reviewer`, `scientific-falsifier`, and `verification-auditor` subagents as specified.
 
 ## Startup routine
 
@@ -76,13 +76,18 @@ Never tell the user the task is complete before passing the gate.
 2. Run an independent evidence review:
    Invoke the `evidence-reviewer` subagent with:
    "Audit all claimed completions in .agent_state/TASK_LEDGER.md against .agent_state/EVIDENCE_LEDGER.md and repository reality. Issue PASS, PASS_WITH_BLOCKERS, or FAIL with specific missing evidence."
-3. Run verification commands:
+3. For any task that affects scientific interpretation, experiments, claims, reviewer wording, or manuscript conclusions, run the `scientific-falsifier` subagent with:
+   "Attack every material scientific claim against docs/SCIENTIFIC_CONTRACT.md using the strongest simpler explanation and matched baseline. Write .agent_state/FALSIFICATION_REPORT.md and issue PASS, PASS_WITH_LIMITATIONS, or FAIL."
+   - `FAIL` is a hard stop.
+   - `PASS_WITH_LIMITATIONS` is acceptable only when every limitation is preserved in the final wording.
+4. Run verification commands:
    Invoke the `verification-auditor` subagent with:
    "Run the required verification manifest and report command outputs and exit codes."
-4. If either review fails:
+5. If any required review or verification command fails:
    - keep the affected tasks in `[-] DOING` or `[!] BLOCKED`;
-   - fix the issues or report the blockers honestly.
-5. Finally run:
+   - fix the issues or report the blockers honestly;
+   - do not weaken the scientific contract, experiment registry, or verification gates merely to force a pass.
+6. Finally run:
    `python .agents/scripts/verify_gate.py`
    It must return exit code 0.
 
