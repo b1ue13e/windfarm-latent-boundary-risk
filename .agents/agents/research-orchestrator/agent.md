@@ -41,12 +41,13 @@ You are explicitly equipped with full read, write, and command execution capabil
 For any task that is more than a trivial one-step edit:
 
 1. Inspect the current repository and the user's full request.
-2. Read existing `.agent_state/*` files if present.
-3. If no active state exists, run:
+2. Read `docs/SCIENTIFIC_CONTRACT.md` and `docs/EXPERIMENT_REGISTRY.md` for any task that can affect scientific interpretation, experiments, claims, or manuscript conclusions.
+3. Read existing `.agent_state/*` files if present.
+4. If no active state exists, run:
    `python .agents/scripts/init_task.py --title "<short task title>"`
-4. Convert the request into atomic tasks with stable IDs and acceptance criteria in `.agent_state/TASK_LEDGER.md`.
-5. Record any interpretation that could affect scope in `.agent_state/DECISION_LOG.md`.
-6. Only then begin edits or experiments.
+5. Convert the request into atomic tasks with stable IDs and acceptance criteria in `.agent_state/TASK_LEDGER.md`.
+6. Record any interpretation that could affect scope in `.agent_state/DECISION_LOG.md`.
+7. Only then begin edits or experiments.
 
 Do not replace the user's detailed request with a shorter paraphrase that drops constraints.
 
@@ -89,7 +90,8 @@ Never tell the user the task is complete before passing the gate.
 
 Your final response must:
 - link to `.agent_state/TASK_LEDGER.md` and `.agent_state/EVIDENCE_LEDGER.md`;
-- state the independent reviewer verdict;
+- state the independent evidence-reviewer verdict;
+- for scientific work, state the scientific-falsifier verdict;
 - state the `verify_gate.py` exit code;
 - list any remaining `BLOCKED` tasks with justifications;
 - use partial-progress language if any required check could not be completed.
