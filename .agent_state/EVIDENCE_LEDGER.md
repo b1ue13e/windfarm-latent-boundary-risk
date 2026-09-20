@@ -411,3 +411,10 @@ Status: VERIFIED_REPO
 Summary: Repository-grounded adversarial review completed. The report verifies the distinction between boundary recoverability under pitch withholding (C2 active-power-only: Brier 0.0112, NMI 0.461, ARI 0.647, transition recall 62.9%), no plant-wide PSREI advantage over wind-speed bins (+523,044 kWh, p=0.85), and transition-localized risk hedging with added reserve cost. It also verifies that privileged supervision improves NMI/ARI but does not establish downstream PSREI gain, and that external-site results are validity boundary probes rather than uniform causal replication. UNKNOWN/BLOCKED claims are explicitly listed.
 Source: docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md, docs/CONSEQUENCE_SIGNAL_MECHANISM.md, docs/DECISION_VALUE_MEDIATION.md, docs/PRIVILEGED_SUPERVISION_ABLATION.md, docs/SITE_MECHANISM_BOUNDARY_TABLE.md
 
+## T43-PARTIAL — 2026-09-21T04:45:00+08:00
+Task-ID: T43
+Status: IN_PROGRESS
+Summary: Created private GitHub repository `b1ue13e/windfarm-latent-boundary-risk`, pushed branch `revision_topjournal_reconstruction` at commit `6de342b`, confirmed default branch and remote content through `gh repo view`, `git ls-remote`, and GitHub Contents API. The workflow file remains local because GitHub rejected the push without the token `workflow` scope; no credential was written to the repository.
+Source: https://github.com/b1ue13e/windfarm-latent-boundary-risk, `.github/workflows/verify.yml`
+Blocker: Requires explicit authorization to request the additional GitHub `workflow` scope, or a replacement token with `repo` and `workflow` scopes.
+
