@@ -468,6 +468,7 @@ Status: VERIFIED_COMMAND
 Summary: Git remote clean with no embedded credentials; credential security protocol verified
 Command: `git remote -v`
 Exit-Code: 0
+
 Relevant-Output:
 ```
 origin https://github.com/b1ue13e/windfarm-latent-boundary-risk.git (fetch)
@@ -483,6 +484,7 @@ Source: docs/TSTE_SUBMISSION_DESK_REJECT_AUDIT_20260921.md
 Task-ID: T47
 Status: VERIFIED_COMMAND
 Summary: Manuscript & Supplementary verification gates passed with exit 0 and exact 10.0-page budget
+Provenance-Note: Initial invocation was interrupted by an upstream 502 service error; the command was subsequently re-executed successfully and independently reproduced with Exit 0 in .agent_state/GATE_REPORT.md.
 Command: `python scripts/verify_final_pdf_integrity.py`
 Exit-Code: 0
 Relevant-Output:
@@ -501,4 +503,3 @@ Task-ID: T49
 Status: VERIFIED_REPO
 Summary: Scientific Contract locked as authoritative ceiling; all submission freeze artifacts committed
 Source: docs/SCIENTIFIC_CONTRACT.md
-

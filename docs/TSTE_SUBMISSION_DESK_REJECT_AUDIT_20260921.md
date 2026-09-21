@@ -76,3 +76,15 @@ The manuscript and supplementary material withstand rigorous adversarial peer-re
 4. **Machine Verification Gates:** All verification scripts return exit code 0.
 
 **STATUS: READY FOR SUBMISSION PACKAGING.**
+
+---
+
+### 6. Authoritative Meta-Gate and Verification Artifact Mapping
+
+- **Historical Auditor Snapshot:** `.agent_state/VERIFICATION_REPORT.md` preserves the intermediate audit-pass state before final ledger closure.
+- **Final Authoritative Meta-Gate State:**
+  ```text
+  .agent_state/GATE_REPORT.md → VERIFICATION_GATE: PASS (Exit Code: 0)
+  ```
+- **Claim Authority Hierarchy:** Controlled strictly by `docs/SCIENTIFIC_CONTRACT.md`.
+
