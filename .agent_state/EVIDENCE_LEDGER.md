@@ -462,3 +462,43 @@ VERIFICATION_GATE: PASS
 ```
 
 
+## T45 — 2026-09-21T13:09:36+08:00
+Task-ID: T45
+Status: VERIFIED_COMMAND
+Summary: Git remote clean with no embedded credentials; credential security protocol verified
+Command: `git remote -v`
+Exit-Code: 0
+Relevant-Output:
+```
+origin https://github.com/b1ue13e/windfarm-latent-boundary-risk.git (fetch)
+```
+
+## T46 — 2026-09-21T13:13:02+08:00
+Task-ID: T46
+Status: VERIFIED_REPO
+Summary: TSTE Desk-Reject and Major-Revision Panel Audit completed; zero desk-reject risks and all boundaries verified
+Source: docs/TSTE_SUBMISSION_DESK_REJECT_AUDIT_20260921.md
+
+## T47 — 2026-09-21T13:14:33+08:00
+Task-ID: T47
+Status: VERIFIED_COMMAND
+Summary: Manuscript & Supplementary verification gates passed with exit 0 and exact 10.0-page budget
+Command: `python scripts/verify_final_pdf_integrity.py`
+Exit-Code: 0
+Relevant-Output:
+```
+VERIFICATION SUCCESS: ALL PDF ARTIFACT INTEGRITY CHECKS PASSED
+```
+
+## T48 — 2026-09-21T13:15:06+08:00
+Task-ID: T48
+Status: VERIFIED_REPO
+Summary: ScholarOne-ready submission package created in artifacts/tste_submission_freeze_20260921/ with ZIP and checksum manifest
+Source: artifacts/tste_submission_freeze_20260921/CHECKSUMS_AND_FILE_MANIFEST.txt
+
+## T49 — 2026-09-21T13:15:26+08:00
+Task-ID: T49
+Status: VERIFIED_REPO
+Summary: Scientific Contract locked as authoritative ceiling; all submission freeze artifacts committed
+Source: docs/SCIENTIFIC_CONTRACT.md
+
