@@ -1,6 +1,6 @@
 # Verification Report
 
-Generated: 2026-09-21T05:40:00+08:00
+Generated: 2026-09-21T21:14:00+08:00
 Auditor: Independent Verification Auditor
 Manifest: `.agents/verification_manifest.json`
 
@@ -9,6 +9,7 @@ Manifest: `.agents/verification_manifest.json`
 - **Required Files**: All 4 required files exist and are verified.
 - **Forbidden Patterns**: None defined in manifest (`[]`).
 - **Enabled Verification Commands**: All 4 enabled commands in `.agents/verification_manifest.json` executed successfully with **Exit Code 0 (PASS)**.
+- **Pre-completion Verification Gate (`.agents/scripts/verify_gate.py`)**: Executed successfully with **Exit Code 0 (PASS)**.
 - **Overall Manifest Verdict**: **PASS**
 
 ---
@@ -26,7 +27,14 @@ Manifest: `.agents/verification_manifest.json`
 
 ---
 
-## Executed Manifest Commands & Detailed Execution Logs
+## Forbidden Patterns Audit
+
+- **Configured Patterns**: `[]`
+- **Result**: **PASS** (zero forbidden pattern violations).
+
+---
+
+## Executed Manifest Commands & Output Logs
 
 ### 1. `verify_final_pdf_integrity`
 - **Command**: `python scripts/verify_final_pdf_integrity.py`
@@ -35,7 +43,7 @@ Manifest: `.agents/verification_manifest.json`
 - **Output**:
 ```text
 === Auditing Main IEEE PDF: build/paper_tste_ieee.pdf ===
-Total pages: 10
+Total pages: 9
 
 --- Checking Required Phrases ---
   [PASS] Found required phrase match: '13,883'
@@ -53,19 +61,21 @@ Total pages: 10
   [PASS] Confirmed absent: 'decision value is maximized'
 
 --- Checking Headline Number Proximity Qualifiers ---
-Number 589,535 found 5 times:
-  [PASS] Occurrence #1 at index 1480: qualifier present=True
-  [PASS] Occurrence #2 at index 5777: qualifier present=True
-  [PASS] Occurrence #3 at index 25268: qualifier present=True
-  [PASS] Occurrence #4 at index 37133: qualifier present=True
-  [PASS] Occurrence #5 at index 56027: qualifier present=True
-Number 881,367 found 6 times:
-  [PASS] Occurrence #1 at index 1526: qualifier present=True
-  [PASS] Occurrence #2 at index 5804: qualifier present=True
-  [PASS] Occurrence #3 at index 25323: qualifier present=True
-  [PASS] Occurrence #4 at index 30694: qualifier present=True
-  [PASS] Occurrence #5 at index 33330: qualifier present=True
-  [PASS] Occurrence #6 at index 56052: qualifier present=True
+Number 589,535 found 6 times:
+  [PASS] Occurrence #1 at index 1639: qualifier present=True
+  [PASS] Occurrence #2 at index 6214: qualifier present=True
+  [PASS] Occurrence #3 at index 8400: qualifier present=True
+  [PASS] Occurrence #4 at index 26619: qualifier present=True
+  [PASS] Occurrence #5 at index 36788: qualifier present=True
+  [PASS] Occurrence #6 at index 49314: qualifier present=True
+Number 881,367 found 7 times:
+  [PASS] Occurrence #1 at index 1685: qualifier present=True
+  [PASS] Occurrence #2 at index 6241: qualifier present=True
+  [PASS] Occurrence #3 at index 8425: qualifier present=True
+  [PASS] Occurrence #4 at index 26674: qualifier present=True
+  [PASS] Occurrence #5 at index 30402: qualifier present=True
+  [PASS] Occurrence #6 at index 33038: qualifier present=True
+  [PASS] Occurrence #7 at index 49338: qualifier present=True
 
 [ALL IEEE PDF CHECKS PASSED]
 
@@ -117,8 +127,8 @@ VERIFICATION SUCCESS: ALL PDF ARTIFACT INTEGRITY CHECKS PASSED
   [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (7,309 bytes)
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,261 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,803 bytes)
-  [PASS] build/paper_tste_ieee.pdf (181,871 bytes)
-  [PASS] build/paper_tste_supplementary.pdf (1,012,123 bytes)
+  [PASS] build/paper_tste_ieee.pdf (174,117 bytes)
+  [PASS] build/paper_tste_supplementary.pdf (1,013,510 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
   [PASS] Information-set manifest validated (819 rows, zero forward leakage)
@@ -144,7 +154,7 @@ VERIFICATION SUCCESS: ALL PDF ARTIFACT INTEGRITY CHECKS PASSED
   [PASS] Mediation confirmed: Dynamic Transition Windows account for 48.4% of total savings (p=0.0000)
 
 [Audit Step 9: IEEE Paper Page Budget Constraint]
-  [PASS] IEEE paper page count = 10 <= 10.0 pages (COMPLIANT)
+  [PASS] IEEE paper page count = 9 <= 10.0 pages (COMPLIANT)
 
 ======================================================================
 ALL 10 DECISIVE EVIDENCE GATES PASSED (STATUS: VERIFIED)
@@ -216,23 +226,20 @@ SCIENTIFIC_CLAIM_GATE: PASS
 
 ---
 
-## Meta-Verification Gate Note (`python .agents/scripts/verify_gate.py`)
+## Meta-Verification Gate (`python .agents/scripts/verify_gate.py`)
 
-- **Execution Command**: `python .agents/scripts/verify_gate.py`
+- **Command**: `python .agents/scripts/verify_gate.py`
 - **Working Directory**: `e:\论文3`
-- **Exit Code**: `1`
+- **Exit Code**: `0`
 - **Output**:
 ```text
-VERIFICATION_GATE: FAIL
-- open task: T44 is DOING
-- open task: TF1 is DOING
-- open task: TF2 is DOING
+VERIFICATION_GATE: PASS
 ```
-- **Auditor Note**: All substantive verification command suites configured in the manifest passed with exit code 0. The meta-gate failure is purely due to open task states `T44`, `TF1`, `TF2` in `.agent_state/TASK_LEDGER.md`. Per the Verification Auditor protocol, the auditor does not alter task ledger states. Once the research orchestrator verifies these tasks upon receiving the audit reports, `verify_gate.py` will pass exit code 0.
+- **Verdict**: **PASS**
 
 ---
 
 ## Overall Verification Verdict
 
 # **PASS**
-(All 4 manifest commands exit 0; all 4 required files present; zero forbidden pattern violations)
+(All 4 manifest verification commands exit 0; all 4 required files present; zero forbidden pattern violations; meta-verification gate passes cleanly)

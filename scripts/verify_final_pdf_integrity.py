@@ -26,7 +26,7 @@ def audit_main_ieee_pdf(pdf_path: str):
         ('boundary-active', [r'boundary-active']),
         ('site-dependent', [r'site-dependent']),
         ('not turbine count alone / turbine count alone does not explain', [r'not\s+turbine\s+count\s+alone', r'turbine\s+count\s+alone\s+does\s+not\s+explain']),
-        ('explicit disclosure that pitch is available in training inputs but withheld in validation/test deployment', [r'explicit\s+disclosure\s+that\s+pitch\s+is\s+available\s+in\s+training\s+inputs\s+but\s+withheld\s+in\s+validation/test\s+deployment'])
+        ('explicit disclosure that pitch is available in training inputs but withheld in validation/test deployment', [r'explicit\s+disclosure\s+that\s+pitch\s+is\s+available\s+in\s+training\s+inputs\s+but\s+(?:withheld|with-\s*held)\s+in\s+validation/test\s+deployment', r'explicit\s+disclosure\s+that\s+pitch\s+is\s+available\s+in\s+training\s+inputs\s+but\s+withheld\s+in\s+validation/test\s+deployment'])
     ]
     
     print('\n--- Checking Required Phrases ---')

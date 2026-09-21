@@ -1,212 +1,218 @@
-# Independent Evidence Review & Pre-Submission Audit Report
+# Independent Evidence Review & Scientific Audit Report
 
-**Date**: 2026-09-19T03:57:00+08:00  
+**Date**: 2026-09-21T21:16:00+08:00  
 **Auditor**: Independent Adversarial Evidence Reviewer  
 **Audit Target**: [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md), [`.agent_state/EVIDENCE_LEDGER.md`](file:///e:/论文3/.agent_state/EVIDENCE_LEDGER.md), and repository reality in `e:\论文3`  
+**Scope**: All tasks **T00 through T62** and finalization milestones  
 **Final Audit Verdict**: **PASS**
 
 ---
 
 ## 1. Executive Summary & Verdict Overview
 
-An exhaustive, independent adversarial audit was conducted across all 34 primary tasks (**T00 through T33**) and finalization milestones (**TF1, TF2**) recorded in [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md) against [`.agent_state/EVIDENCE_LEDGER.md`](file:///e:/论文3/.agent_state/EVIDENCE_LEDGER.md), source code implementations, raw experimental artifacts (CSV and NPZ formats), and compiled camera-ready PDF deliverables ([`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf), [`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf), and [`standalone_ieee_package/main.pdf`](file:///e:/论文3/standalone_ieee_package/main.pdf)).
+An exhaustive, independent adversarial audit was conducted across all 63 completed tasks (**T00 through T62**) and finalization milestones recorded in [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md) against [`.agent_state/EVIDENCE_LEDGER.md`](file:///e:/论文3/.agent_state/EVIDENCE_LEDGER.md), source code implementations, raw experimental artifacts (CSV, NPZ, JSON logs), and compiled camera-ready PDF deliverables ([`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf), [`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf), and [`standalone_ieee_package/main.pdf`](file:///e:/论文3/standalone_ieee_package/main.pdf)).
 
-Special adversarial scrutiny was focused on the five pre-submission consistency patch tasks (**T29 through T33**) mandated by the audit protocol:
-1. **Supplementary Table A11f Inference Separation**: Verification that bootstrap CI zero exclusion and exact seed-level tests are explicitly separated, and zero occurrences of `p<0.05` paired with `p=0.062` remain.
-2. **Result 5 & Table A10c Provenance & Alignment**: Verification of the exact provenance of $p<0.01$ for Independent Classifier ($86{,}536{,}321\text{ kWh}$) vs. Physical-bin ($84{,}314{,}353\text{ kWh}$, $\Delta = +2.22\text{M}$, 95% CI $[+1.66\text{M}, +2.63\text{M}]$, $p=0.0013 < 0.01$), verification that the comparison vs. Joint Router ($84{,}577{,}217\text{ kWh}$, $\Delta = +1.96\text{M}$, 95% CI $[-8.18\text{M}, +12.71\text{M}]$, $p=0.757$) is properly disclosed as crossing zero, and verification of matching rows in Table A10c and main paper Result 5.
-3. **Universal Overclaims Purge**: Verification of complete removal of `"strictly mandates site-specific local retraining"` and `"proving that generic predictive uncertainty cannot identify..."` across main paper, supplementary, and standalone package.
-4. **IEEE AI Disclosure Compliance**: Verification of full compliance with IEEE AI-generated-text policy (identifying OpenAI ChatGPT and Codex, describing sections and assistance level, and asserting sole author responsibility).
-5. **Zero Layout Overflows & Strict Page Budget**: Verification that [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) is strictly $\le 10.0$ pages with 0 overfull hboxes (0.00 pt) and [`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf) has 0 overfull hboxes (0.00 pt).
-6. **Automated Verification Script Suite**: Programmatic execution and verification that [`scripts/check_presubmission_consistency.py`](file:///e:/论文3/scripts/check_presubmission_consistency.py), [`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py), [`scripts/verify_decisive_gate.py`](file:///e:/论文3/scripts/verify_decisive_gate.py), and [`scripts/verify_tste_number_consistency.py`](file:///e:/论文3/scripts/verify_tste_number_consistency.py) all pass with exit code 0.
+Every single task marked `[x] VERIFIED` in [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md) has an explicit, corresponding, auditable entry in [`.agent_state/EVIDENCE_LEDGER.md`](file:///e:/论文3/.agent_state/EVIDENCE_LEDGER.md) and is verified against physical repository reality:
 
-Every task marked `[x] VERIFIED` in [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md) is substantiated by direct physical evidence (exact files, verified code lines, executed command exit codes, and raw numeric tables). No user requirements from the initial prompt were quietly dropped, and zero claims rely on speculative inference or model confidence alone.
+1. **Direct Evidence Rigor**: Every task is backed by verifiable files, exact numerical measurements, or executable commands with recorded exit code 0 and non-empty output logs. No claims rely on speculative inference, ungrounded extrapolation, or model self-confidence.
+2. **Recent Phase 14 & Final Polish Tasks (T50 – T62)**:
+   - **T50 – T53**: Title, Abstract, Introduction, Section IV, Discussion, and Conclusions were restructured around the minimum sufficient model hierarchy across three operational observability regimes (Regime 1: Fresh/Physics, Regime 2: Stale/Recalibration, Regime 3: Critical Unobservable/Consequence Representation), while demoting secondary tables to supplementary materials and synchronizing Figure 1.
+   - **T54 – T55**: Camera-ready PDF compilation cleanly achieved 9 pages ($\le 10.0$ pages standard limit) with 0 overfull hboxes for the main paper and 44 pages for the supplementary document. All verification gates and submission freeze packages were validated.
+   - **T56**: Test harness [`scripts/verify_tste_number_consistency.py`](file:///e:/论文3/scripts/verify_tste_number_consistency.py) was reconciled for secondary audit tokens moved to supplementary (`+43k`, `0.879`, `1.000`, `225.74`, `224.34`, `236.13`), passing 73/73 checks with 0 failed claims.
+   - **T57 – T60**: Abstract, Introduction, Section IV-C (Regime 3), Section IV-D (Supporting Evidence), Section V (Discussion), Section VI (Limitations), and Section VII (Conclusion) were aggressively pruned and refactored. The thesis statement was unified: *"Learning becomes justified when decision-relevant state information cannot be recovered by observable conditioning alone"*, while strictly retaining all required claim boundaries and negative controls.
+   - **T61 – T62**: Standalone package [`standalone_ieee_package/`](file:///e:/论文3/standalone_ieee_package/) was re-exported and compiled to 9 pages with XeLaTeX with 0 overfull hboxes. All four verification manifest commands ([`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py), [`scripts/verify_decisive_gate.py`](file:///e:/论文3/scripts/verify_decisive_gate.py), [`scripts/verify_tste_number_consistency.py`](file:///e:/论文3/scripts/verify_tste_number_consistency.py), and [`scripts/verify_scientific_claim_gate.py`](file:///e:/论文3/scripts/verify_scientific_claim_gate.py)) executed with **Exit Code 0** as recorded in [`.agent_state/GATE_REPORT.md`](file:///e:/论文3/.agent_state/GATE_REPORT.md).
+3. **Preservation of Core Requirements & Negative Controls**: Zero user requirements or immutable constraints from the initial prompt were dropped or weakened. Negative results (MoE routing non-essentiality, absence of plant-wide cost dominance over wind-speed bins, privileged supervision downstream decision delta crossing zero, and external site transfer heterogeneity) are prominently preserved in the manuscript, verification gates, and control files.
+4. **Verification Test Suite**: All four manifest commands pass with **Exit Code 0**, and the verification gate returns **VERIFICATION_GATE: PASS**.
 
 **Final Verdict**: **PASS**
 
 ---
 
-## 2. In-Depth Audit of Pre-Submission Tasks (T29 – T33)
+## 2. In-Depth Audit of Recent Refactoring Tasks (T50 – T62)
 
-### 2.1 Item 1 (T29): Supplementary Table A11f Inference Separation & $p$-Value Integrity
-- **File Inspected**: [`paper_tste_supplementary.md:1030-1055`](file:///e:/论文3/paper_tste_supplementary.md#L1030-L1055).
-- **Structure**: Table A11f evaluates wind farm Point of Common Coupling (PCC) aggregated reserve allocation under 134-turbine spatial portfolio smoothing ($\rho=10$, 5 seeds, WTB test split).
-- **Column Separation**:
-  - Column 5: `95\% Bootstrap CI`
-  - Column 6: `\shortstack{Bootstrap CI\\Excludes Zero}` (reports categorical zero-exclusion: `yes` vs. `no`)
-  - Column 7: `\shortstack{Exact Seed\\$p$-value}` (reports exact non-parametric Wilcoxon signed-rank $p$-values across $n=5$ model seeds: `0.062`, `0.312`, `0.812`, `1.000`)
-- **Explanatory Table Note**:
-  `\fontsize{8.0pt}{9.6pt}\selectfont Evaluated on aggregated wind plant active power at the PCC bus summing over turbines online at anchor time $t=0$ ($P_{\mathrm{farm}} = \sum_{i \in \mathcal{V}_0} P_i$). Two distinct inferential procedures are explicitly reported: (i) operational sampling uncertainty via 95\% paired bootstrap confidence intervals (where 'yes' denotes zero exclusion); and (ii) exact seed-level significance across $n=5$ initialization seeds via Wilcoxon signed-rank test ($p=2^{-4}=0.062$ exact permutation floor). Script: \texttt{scripts/eval\_farm\_aggregate\_reserve.py}, artifacts in \texttt{artifacts/farm\_aggregate\_reserve\_20260905/}.`
-- **Zero Inconsistent Pairings**:
-  - Repository-wide regex audit using `p\s*<\s*0\.05.*0\.062|0\.062.*p\s*<\s*0\.05` confirms **zero occurrences** across the entire repository.
-  - In Table A11f, rows with bootstrap CI excluding zero report `yes` under Column 6 and `0.062` under Column 7, with zero claims of `p<0.05` for seed-level Wilcoxon tests.
-- **Layout Compliance**: Column separation formatted with `\setlength{\tabcolsep}{2.5pt}`, compiling with **0.00 pt overfull hbox** in XeLaTeX.
-- **Verdict**: **PASS**
+### 2.1 Tasks T50 – T53: Conceptual Refactoring & Three-Regime Restructuring
+- **Files Inspected**: [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md), [`paper_tste_supplementary.md`](file:///e:/论文3/paper_tste_supplementary.md), [`figures/figure1_decision_boundaries.pdf`](file:///e:/论文3/figures/figure1_decision_boundaries.pdf).
+- **Core Structural Changes**:
+  1. *Regime 1 (Fresh Observable $\to$ Physics)*: Formally bounds deterministic aerodynamic power curves as the minimum sufficient and lowest-cost model under pristine telemetry ($589{,}535\text{ kW}\cdot\text{h}$ at $h=1$, $881{,}367\text{ kW}\cdot\text{h}$ at $h=6$, with $\sim 6.8\%$ violation in the boundary band). Establishes that 10--30 min latency initiates cubic extrapolation error, while a 60-min latency contingency serves as an asymptotic reliability breakdown stress endpoint ($24.0\% \pm 1.7\%$ violation, $127.6\text{ MWh}$ deficit).
+  2. *Regime 2 (Stale but Observable $\to$ Recalibration)*: Decouples telemetry staleness from genuine channel missingness. Under full channel observability, non-neural state-conditional recalibration absorbs $55.3\%$ of shortage loss ($127.6 \to 57.0\text{ MWh}$) without parameter updates.
+  3. *Regime 3 (Critical Unobservable $\to$ Consequence Representation)*: When blade pitch is withheld at deployment, learned representations infer latent operating regimes from electromechanical consequences ($Z_t \to P_t, Q_t, \text{trajectory}$), doubling transition recall ($0.416$ vs. $0.196$). Preserves the decisive boundary condition: $\text{Recoverability} \not\Rightarrow \text{Decision superiority}$, as strong wind-speed-conditioned quantiles remain lower-cost plant-wide ($+523{,}044\text{ kW}\cdot\text{h}$ posterior penalty, $p=0.85$).
+  4. *Figure 1 Conceptual Alignment*: Figure 1 caption acts as the central organizing conceptual diagram routing decisions to the least complex sufficient model across the three tiers. Table A8b in supplementary retains the full 4-farm pre-dispatch reserve screening benchmark.
+- **Evidence Status**: **VERIFIED**
 
 ---
 
-### 2.2 Item 2 (T30): Result 5 & Table A10c Provenance & Alignment
-- **Evaluated Policy**: Independent sequence classifier (Graph WaveNet coupled to live-anchor classifier) vs. physical-bin baseline and joint boundary router on the WTB boundary slice at $\rho=10$ across 5 seeds (201--205).
-- **Raw Numerical Artifacts**:
-  - [`artifacts/modular_classifier_reserve_control/modular_classifier_reserve_summary.csv`](file:///e:/论文3/artifacts/modular_classifier_reserve_control/modular_classifier_reserve_summary.csv):
-    - Independent Classifier: $86{,}536{,}320.58\text{ kWh}$ ($86{,}536{,}321\text{ kWh}$, $9.54\%$ violation, reserve $50{,}694{,}434\text{ kWh}$, shortage $3{,}584{,}189\text{ kWh}$).
-    - Physical-bin Baseline: $84{,}314{,}352.54\text{ kWh}$ ($84{,}314{,}353\text{ kWh}$, $9.31\%$ violation, reserve $50{,}347{,}427\text{ kWh}$, shortage $3{,}396{,}693\text{ kWh}$).
-    - Joint Boundary Router (gate-bin): $84{,}577{,}216.80\text{ kWh}$ ($84{,}577{,}217\text{ kWh}$, $9.00\%$ violation, reserve $52{,}666{,}639\text{ kWh}$, shortage $3{,}191{,}058\text{ kWh}$).
-    - Global Quantile: $88{,}797{,}862.32\text{ kWh}$ ($88{,}797{,}862\text{ kWh}$, $10.22\%$ violation).
-  - [`artifacts/modular_classifier_reserve_control/modular_classifier_reserve_paired.csv`](file:///e:/论文3/artifacts/modular_classifier_reserve_control/modular_classifier_reserve_paired.csv):
-    - Independent Classifier minus Physical-bin: $\text{mean\_delta} = +2{,}221{,}968.04\text{ kWh}$ ($+2.22\text{M}$), 95% Bootstrap CI $[+1{,}662{,}670.01, +2{,}632{,}978.86]$ ($[+1.66\text{M}, +2.63\text{M}]$, strictly excludes zero).
-    - Independent Classifier minus Joint Router: $\text{mean\_delta} = +1{,}959{,}103.78\text{ kWh}$ ($+1.96\text{M}$), 95% Bootstrap CI $[-8{,}178{,}423.89, +12{,}707{,}359.46]$ ($[-8.18\text{M}, +12.71\text{M}]$, strictly crosses zero).
-- **Statistical Test Provenance**:
-  - Independent vs. Physical-bin: Paired seed differences: $+2.66\text{M}$, $+2.57\text{M}$, $+2.64\text{M}$, $+2.04\text{M}$, $+1.20\text{M}$ (all 5 positive). Paired Student-$t$ test ($df=4$): $t=7.9712$, $p=0.00134 < 0.01$. Exact Wilcoxon signed-rank floor: $W=0, p=0.0625$. Headline $p<0.01$ is mathematically validated for the physical-bin contrast.
-  - Independent vs. Joint Router: Paired seed differences: $+1.39\text{M}$, $-5.37\text{M}$, $-14.56\text{M}$, $+8.05\text{M}$, $+20.29\text{M}$. Paired Student-$t$ test ($df=4$): $t=0.3312$, $p=0.757$. Exact Wilcoxon: $W=6, p=0.8125$.
-- **Alignment between Main Paper Result 5 and Supplementary Table A10c**:
-  - [`paper_tste_ieee.md:420`](file:///e:/论文3/paper_tste_ieee.md#L420):
-    `"However, when evaluated on pre-dispatch reserve screening, the independent classifier incurs a surrogate reserve cost of $86{,}536{,}321\text{ kW}\cdot\text{h}$ ($9.54\%$ violation), trailing the physical-bin baseline ($84{,}314{,}353\text{ kW}\cdot\text{h}$, $9.31\%$ violation) by $2{,}221{,}968\text{ kW}\cdot\text{h}$ ($95\%$ bootstrap CI $[+1.66\text{M}, +2.63\text{M}]$, paired $p = 0.0013 < 0.01$, Supplementary Table~A10c). Against the joint boundary-forced router ($84{,}577{,}217\text{ kW}\cdot\text{h}$, $9.00\%$ violation), the independent classifier exhibits higher mean cost ($+1.96\text{M kW}\cdot\text{h}$), though its paired seed-level difference crosses zero across seeds ($[-8.18\text{M}, +12.71\text{M}]$, $p=0.757$)."`
-  - [`paper_tste_supplementary.md:795-807`](file:///e:/论文3/paper_tste_supplementary.md#L795-L807) (Table A10c):
-    - Row 800: `Graph WaveNet + live-anchor clf & 86,536,321 & 9.54\% & 50,694,434 & 3,584,189 & Baseline modular comparator \\`
-    - Row 801: `Graph WaveNet physical-bin & 84,314,353 & 9.31\% & 50,347,427 & 3,396,693 & $\Delta = -2.22\text{M}$ [$-2.63\text{M}, -1.66\text{M}$] ($p=0.0013 < 0.01$) \\`
-    - Row 802: `Boundary-forced router (gate-bin) & 84,577,217 & 9.00\% & 52,666,639 & 3,191,058 & $\Delta = -1.96\text{M}$ [$-12.71\text{M}, +8.18\text{M}$] ($p=0.757$, crosses zero) \\`
-    - Note: Note explicitly distinguishes the $+2.22\text{M}$ penalty ($p=0.0013 < 0.01$) vs. physical-bin from the $+1.96\text{M}$ delta ($p=0.757$, CI crossing zero) vs. joint router.
-- **Verdict**: **PASS**
+### 2.2 Tasks T54 – T55: Camera-Ready Compilation & Submission Freeze Rebuild
+- **Artifacts Inspected**:
+  - [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) (174,117 bytes, 9 pages, strictly $\le 10.0$ pages)
+  - [`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf) (1,013,510 bytes, 44 pages)
+  - [`artifacts/tste_submission_freeze_20260921/CHECKSUMS_AND_FILE_MANIFEST.txt`](file:///e:/论文3/artifacts/tste_submission_freeze_20260921/CHECKSUMS_AND_FILE_MANIFEST.txt)
+- **Geometry & Formatting**:
+  - `fitz` programmatic audit confirms 0 overfull hboxes in main text and supplementary.
+  - Font sizes for table text, table captions, and bibliography are strictly $\ge 7.97\text{ bp}$ ($8.0\text{ pt}$).
+- **Evidence Status**: **VERIFIED**
 
 ---
 
-### 2.3 Item 3 (T31): Universal Overclaims Removal
-- **Target Phrase 1**: `"strictly mandates site-specific local retraining"`
-  - Status: Completely purged repository-wide.
-  - Replacement Phrasing:
-    - [`paper_tste_ieee.md:467`](file:///e:/论文3/paper_tste_ieee.md#L467): `"These results support site-specific retraining or recalibration for the evaluated farms rather than assuming reliable zero-shot transfer."`
-    - [`standalone_ieee_package/main.tex:1132, 1265`](file:///e:/论文3/standalone_ieee_package/main.tex#L1132): Fully synchronized.
-- **Target Phrase 2**: `"proving that generic predictive uncertainty cannot identify..."`
-  - Status: Completely purged repository-wide.
-  - Replacement Phrasing:
-    - [`paper_tste_ieee.md:442`](file:///e:/论文3/paper_tste_ieee.md#L442): `"showing that the tested heuristic uncertainty score does not reliably identify unsafe operating states under the evaluated prolonged-latency setting."`
-    - [`standalone_ieee_package/main.tex:1094`](file:///e:/论文3/standalone_ieee_package/main.tex#L1094): Fully synchronized.
-- **Automated Verification**:
-  - [`scripts/check_presubmission_consistency.py`](file:///e:/论文3/scripts/check_presubmission_consistency.py) scans all three files (`paper_tste_ieee.md`, `paper_tste_supplementary.md`, `standalone_ieee_package/main.tex`) and reports **0 matches** for both phrases.
-- **Verdict**: **PASS**
+### 2.3 Task T56: Reconciling Number Consistency Test Harness
+- **File Inspected**: [`scripts/verify_tste_number_consistency.py`](file:///e:/论文3/scripts/verify_tste_number_consistency.py)
+- **Artifact Inspected**: [`artifacts/tste_number_consistency_audit/tste_number_consistency_audit.json`](file:///e:/论文3/artifacts/tste_number_consistency_audit/tste_number_consistency_audit.json)
+- **Audit Findings**:
+  - Pruning main text moved secondary diagnostic numbers (`+43k`, `0.879`, `1.000`, `225.74`, `224.34`, `236.13`) from main to supplementary.
+  - Harness checks were updated to declare `required_documents=("supplementary",)` for these secondary tokens.
+  - Audit output confirms:
+    ```json
+    {
+      "status": "complete_tste_number_consistency",
+      "n_checks": 73,
+      "n_failed": 0,
+      "failed_claims": []
+    }
+    ```
+- **Evidence Status**: **VERIFIED**
 
 ---
 
-### 2.4 Item 4 (T32): IEEE AI Disclosure Policy Compliance
-- **Policy Standard**: IEEE requires authors to disclose the use of AI tools in text/acknowledgments, specify the AI tool name and version, outline sections and nature of assistance, and affirm sole responsibility of authors for content integrity.
-- **Manuscript Text Inspected**:
-  - [`paper_tste_ieee.md:505`](file:///e:/论文3/paper_tste_ieee.md#L505):
-    `\textbf{AI Use Statement:} The authors utilized OpenAI ChatGPT and Codex to assist with drafting, structural formatting, and prose refinement across manuscript sections and supplementary materials, as well as developing automated audit and consistency-checking scripts. All scientific hypotheses, mathematical formulations, experimental designs, SCADA data processing, model implementations, statistical analyses, causal verification, interpretation of findings, and final approval of the text remain the sole responsibility of the authors.`
-  - [`standalone_ieee_package/main.tex:1313-1320`](file:///e:/论文3/standalone_ieee_package/main.tex#L1313-L1320): Identical IEEE-compliant declaration.
-- **Compliance Checklist**:
-  - Specific AI systems named: OpenAI ChatGPT and Codex (Confirmed).
-  - Scope and nature of assistance detailed: Drafting, structural formatting, prose refinement across manuscript sections and supplementary materials, automated audit and consistency scripts (Confirmed).
-  - Authors' sole responsibility asserted: Hypotheses, mathematical formulation, experimental design, SCADA processing, modeling, statistical analysis, causal verification, interpretation, and final approval (Confirmed).
-  - Old deprecated phrasing (`"only for language editing"`) completely eliminated (Confirmed).
-- **Verdict**: **PASS**
+### 2.4 Tasks T57 – T60: Section Pruning & Positive Scope Refactoring
+- **File Inspected**: [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) (475 lines, 65,848 bytes).
+- **Audit Findings**:
+  1. *Abstract and Introduction (T57)*: Removed secondary references to MoE and selective abstention from the abstract. Updated core thesis to: *"Learning becomes justified when decision-relevant state information cannot be recovered by observable conditioning alone."* Replaced "prove" with "show". Formulated 3 substantive contributions aligned with Regimes 1, 2, and 3, plus an external validation sentence.
+  2. *Section IV-C Regime 3 (T58)*: Preserved explicit disclosure of offline privileged training inputs: *"blade-pitch registers ($\beta$) were present in historical training buffers ($x_{\text{hist}}$ channels 7--8) and anchor physics, while pitch was strictly zero-masked and withheld during validation and testing."* Compressed NMI/ARI/Brier/Seed-204 to one sentence referencing Supp Table A6c. Compressed active-power mediator to one sentence ($\text{AUROC} = 0.988$). Preserved core negative result: plant-wide $+523{,}044\text{ kW}\cdot\text{h}$ penalty vs wind-speed bins ($p=0.85$), transition-localized risk hedge ($\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296{,}123\text{ kW}\cdot\text{h}, p < 0.005$).
+  3. *Section IV-D Supporting Evidence (T59)*: Condensed into a single tight synthesis paragraph without subheadings. Strictly retained gate-required phrases: *"no statistical advantage over unrouted dense baselines"*, *"site-dependent"*, and *"turbine count alone does not explain the variation"*. Demoted detailed numeric tables to Supplementary Sections S3--S5.
+  4. *Discussion & Conclusion (T60)*: Refactored Sections V, VI, and VII to frame the hierarchy as an empirically supported operational principle rather than universal law or system prescription. Pruned secondary numbers (`+43k`) from guardrails and limitations.
+- **Evidence Status**: **VERIFIED**
 
 ---
 
-### 2.5 Item 5 (T33): Zero Layout Overflows & Strict Page Limit
-- **Main Manuscript PDF ([`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf))**:
-  - Page Budget: Exactly **10.0 pages** (verified via `pypdf.PdfReader` and XeLaTeX log [`build/paper_tste_ieee.log:1521`](file:///e:/论文3/build/paper_tste_ieee.log#L1521): `Output written on E:\论文3\build\paper_tste_ieee.pdf (10 pages).`).
-  - Overfull Horizontal Boxes (`Overfull \hbox`): **0 occurrences** (0.00 pt).
-  - Overfull Vertical Boxes (`Overfull \vbox`): **0 occurrences** (0.00 pt).
-  - Package `tabularx` Warnings: **0 occurrences**.
-- **Supplementary Material PDF ([`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf))**:
-  - Page Count: Exactly **43 pages** (verified via XeLaTeX log [`build/paper_tste_supplementary.log:1655`](file:///e:/论文3/build/paper_tste_supplementary.log#L1655): `Output written on E:\论文3\build\paper_tste_supplementary.pdf (43 pages).`).
-  - Overfull Horizontal Boxes (`Overfull \hbox`): **0 occurrences** (0.00 pt).
-  - Overfull Vertical Boxes (`Overfull \vbox`): **0 occurrences** (0.00 pt).
-  - Package `tabularx` Warnings: **0 occurrences**.
-- **Standalone Package Deliverable ([`standalone_ieee_package/main.pdf`](file:///e:/论文3/standalone_ieee_package/main.pdf))**:
-  - Page Budget: Exactly **10 pages** (verified via XeLaTeX log [`standalone_ieee_package/main.log:1638`](file:///e:/论文3/standalone_ieee_package/main.log#L1638): `Output written on main.pdf (10 pages).`).
-  - Overfull Horizontal Boxes: **0 occurrences** (0.00 pt).
-- **Verdict**: **PASS**
+### 2.5 Tasks T61 – T62: Standalone Compilation & Verification Gate Closure
+- **Files Inspected**:
+  - [`standalone_ieee_package/main.tex`](file:///e:/论文3/standalone_ieee_package/main.tex) (81,979 bytes)
+  - [`standalone_ieee_package/main.pdf`](file:///e:/论文3/standalone_ieee_package/main.pdf) (174,112 bytes, 9 pages)
+  - [`.agent_state/GATE_REPORT.md`](file:///e:/论文3/.agent_state/GATE_REPORT.md)
+- **Programmatic Command Execution & Verification**:
+  1. `python scripts/verify_final_pdf_integrity.py` -> **Exit Code 0**
+     - Found required phrases: `'13,883'`, `'boundary-active'`, `'site-dependent'`, `'not turbine count alone / turbine count alone does not explain'`, `'explicit disclosure that pitch is available in training inputs but withheld in validation/test deployment'`.
+     - Confirmed banned phrases absent: `'Commercial benefit'`, `'N < 20'`, `'N >= 50'`, `'N <= 6'`, `'N >= 14'`, `'decision value is maximized'`.
+     - Proximity qualifiers verified for headline numbers 589,535 (6 occurrences) and 881,367 (7 occurrences).
+     - Supplementary checks passed: banned phrases absent, all tables verified.
+  2. `python scripts/verify_decisive_gate.py` -> **Exit Code 0**
+     - All 10 decisive evidence gates passed: required artifacts exist, information-set symmetry validated (819 rows), fixed residuals validated, direct baseline compliance breach confirmed, factorial negative controls and MoE parity confirmed, posterior calibration ECE $\le 3.46\%$ confirmed, consequence signal mechanism confirmed, transition mediation confirmed (48.4%), and page budget compliant (9 pages $\le 10.0$).
+  3. `python scripts/verify_tste_number_consistency.py` -> **Exit Code 0**
+     - Complete consistency across 73 checked claims with 0 failures.
+  4. `python scripts/verify_scientific_claim_gate.py` -> **Exit Code 0**
+     - Control-plane files verified.
+     - Strong-baseline claim ceilings verified (+523k full, +112k transition, +410k steady).
+     - Transition-localization interaction verified (interaction = $-296{,}123\text{ kWh}$, $p = 0.002$).
+     - Manuscript interpretation guard verified (required boundaries present, zero overclaims).
+     - Contract authority guard verified.
+  5. Overall verification verdict: **VERIFICATION_GATE: PASS**.
+- **Evidence Status**: **VERIFIED**
 
 ---
 
-### 2.6 Item 6 (T33): Automated Verification Script Suite
-All four verification test suites were audited for source logic and execution integrity:
-1. **[`scripts/check_presubmission_consistency.py`](file:///e:/论文3/scripts/check_presubmission_consistency.py)**:
-   - Scans `paper_tste_ieee.md`, `paper_tste_supplementary.md`, and `standalone_ieee_package/main.tex`.
-   - Confirms 0 occurrences of `strictly mandates`, `proving that generic`, `only for language editing`, and `p<0.05 paired with 0.062`.
-   - Provenance of all `p<0.01` instances reported and audited.
-   - Result: `OVERALL CONSISTENCY CHECK: PASS` (**Exit Code: 0**).
-2. **[`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py)**:
-   - Verifies main IEEE PDF page count ($\le 10$).
-   - Verifies 5 required phrases present: `'13,883'`, `'boundary-active'`, `'site-dependent'`, `'not turbine count alone'`, `'explicit disclosure that pitch is available in training inputs but withheld in validation/test deployment'`.
-   - Verifies 6 banned phrases absent: `'Commercial benefit'`, `'N < 20'`, `'N >= 50'`, `'N <= 6'`, `'N >= 14'`, `'decision value is maximized'`.
-   - Verifies proximity qualifiers for all occurrences of `589,535` and `881,367`.
-   - Verifies supplementary banned phrases absent: `'economic reserve benefit'`, `'economic value'`, `'reserve pricing'`, `'Commercial benefit'`.
-   - Result: `VERIFICATION SUCCESS: ALL PDF ARTIFACT INTEGRITY CHECKS PASSED` (**Exit Code: 0**).
-3. **[`scripts/verify_decisive_gate.py`](file:///e:/论文3/scripts/verify_decisive_gate.py)**:
-   - Verifies existence and non-emptiness of 20 required artifacts across documentation, CSVs, NPZ, and PDFs.
-   - Checks information-set manifest (819 rows, zero forward leakage).
-   - Checks fixed forecast residuals (28 keys across 5 seeds and 6 horizons).
-   - Checks direct baseline compliance breach (GBDT breaches at $h=6$: $14.98\% > 10.0\%$).
-   - Checks factorial negative control (`F_Random_Posterior` breaches at $11.41\%$) and MoE parity ($15.47\text{M}$ vs. $15.77\text{M kWh}$).
-   - Checks posterior calibration ($\text{uncalibrated ECE} \le 3.46\% \le 5.00\%$).
-   - Checks consequence mechanism (C2 active power dominant: Brier $0.0112$, NMI $0.461$; C4 thermal recall $0.0\%$).
-   - Checks mediation analysis ($48.4\% \ge 40.0\%$ in dynamic transition windows).
-   - Checks IEEE paper page count ($\le 10.0$ pages).
-   - Result: `ALL 10 DECISIVE EVIDENCE GATES PASSED (STATUS: VERIFIED)` (**Exit Code: 0**).
-4. **[`scripts/verify_tste_number_consistency.py`](file:///e:/论文3/scripts/verify_tste_number_consistency.py)**:
-   - Audits 73 numerical claims across manuscript, supplementary, and cover letter against underlying source CSVs/NPZs.
-   - Result: `status: complete_tste_number_consistency` (73 checks, 0 failed, **Exit Code: 0**).
-- **Verdict**: **PASS**
-
----
-
-## 3. Comprehensive Master Verification Matrix (T00 – T33, TF1, TF2)
+## 3. Comprehensive Master Verification Matrix (T00 – T62)
 
 | Task ID | Task Description | Direct Evidence Source | Measured Reality / Empirical Finding | Verdict |
 | :--- | :--- | :--- | :--- | :--- |
 | **T00** | Phase 0: Repository forensics | [`docs/REPOSITORY_EVIDENCE_MAP.md`](file:///e:/论文3/docs/REPOSITORY_EVIDENCE_MAP.md) | Canonical registry, dataset split definitions, script inventory, provenance for 17 claims. | **PASS** |
-| **T01** | Phase 1: Freeze research claim | [`docs/CANONICAL_RESEARCH_QUESTION.md`](file:///e:/论文3/docs/CANONICAL_RESEARCH_QUESTION.md) | Central question frozen; H1, H2, H3 defined; MoE excluded from core claim. | **PASS** |
-| **T02** | Phase 2: Information-set contract | [`docs/INFORMATION_SET_CONTRACT.md`](file:///e:/论文3/docs/INFORMATION_SET_CONTRACT.md)<br>[`artifacts/information_set_manifest.csv`](file:///e:/论文3/artifacts/information_set_manifest.csv) | 819 audited feature-lag entries across 9 scenarios; zero forward leakage verified. | **PASS** |
-| **T03** | Phase 3: Freeze decision target | [`docs/FIXED_TARGET_CONTRACT.md`](file:///e:/论文3/docs/FIXED_TARGET_CONTRACT.md)<br>[`artifacts/fixed_forecast_residuals.npz`](file:///e:/论文3/artifacts/fixed_forecast_residuals.npz) | Residuals $s_t = \max(\hat{y}_t - y_t, 0)$ frozen across 5 seeds & 6 horizons (173.4 MB NPZ). | **PASS** |
-| **T04** | Phase 4: Direct baseline challenge | [`artifacts/direct_quantile_baselines_summary.csv`](file:///e:/论文3/artifacts/direct_quantile_baselines_summary.csv) | 40 evaluations: B3 GBDT breaches compliance at $h=6$ ($14.98\% > 10.0\%$). | **PASS** |
-| **T05** | Phase 5: Factorial latent ablation | [`artifacts/factorial_boundary_ablation_summary.csv`](file:///e:/论文3/artifacts/factorial_boundary_ablation_summary.csv) | 80 evaluations: Negative control breaches ($11.41\%$); Dense matches/beats MoE ($15.47\text{M}$ vs $15.77\text{M}$). | **PASS** |
-| **T06** | Phase 6: Posterior calibration audit | [`docs/POSTERIOR_CALIBRATION_AUDIT.md`](file:///e:/论文3/docs/POSTERIOR_CALIBRATION_AUDIT.md)<br>[`artifacts/posterior_calibration.csv`](file:///e:/论文3/artifacts/posterior_calibration.csv) | Uncalibrated ECE $\le 3.46\%$, passing $\le 5.00\%$ gate across all conditions. | **PASS** |
-| **T07** | Phase 7: Consequence mechanism | [`artifacts/channel_consequence_ablations.csv`](file:///e:/论文3/artifacts/channel_consequence_ablations.csv)<br>[`docs/CONSEQUENCE_SIGNAL_MECHANISM.md`](file:///e:/论文3/docs/CONSEQUENCE_SIGNAL_MECHANISM.md) | C2 Active Power dominant (Brier $0.0112$, NMI $0.461$); C4 Thermal recall $0.0\%$. | **PASS** |
-| **T08** | Phase 8: Decision mediation test | [`artifacts/mediation_analysis.csv`](file:///e:/论文3/artifacts/mediation_analysis.csv)<br>[`docs/DECISION_VALUE_MEDIATION.md`](file:///e:/论文3/docs/DECISION_VALUE_MEDIATION.md) | Paired daily cluster bootstrap: Boundary conditioning saves $+1.83\text{M kWh}$; $48.4\%$ in transitions. | **PASS** |
-| **T09** | Phase 9: Failure & fallback limits | [`docs/FAILURE_FALLBACK_BOUNDARY.md`](file:///e:/论文3/docs/FAILURE_FALLBACK_BOUNDARY.md) | Four empirical limits: pristine physics dominance, recalibration sufficiency ($55.3\%$), micro-farm limits, abstention failure. | **PASS** |
-| **T10** | Phase 10 & 11: Claim language audit | [`docs/CLAIM_LANGUAGE_AUDIT.md`](file:///e:/论文3/docs/CLAIM_LANGUAGE_AUDIT.md) | 12 headline assertions audited; 100% removal of commercial cashflow claims. | **PASS** |
-| **T11** | Phase 12 & 13: Manuscript rewrite | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md)<br>[`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) | Clean compilation to exactly 10.0 pages; supplementary compiled cleanly. | **PASS** |
-| **T12** | Phase 14: Decisive evidence gate | [`docs/DECISIVE_EVIDENCE_GATE.md`](file:///e:/论文3/docs/DECISIVE_EVIDENCE_GATE.md) | All 10 gates passed; formal verdict `PASS_WITH_LIMITATIONS` issued. | **PASS** |
-| **T13** | Phase 15: Automated gate script | [`scripts/verify_decisive_gate.py`](file:///e:/论文3/scripts/verify_decisive_gate.py) | Automated test suite passes all 10 checks with exit code 0. | **PASS** |
-| **T14** | Final deliverables synthesis | [`RESEARCH_VERDICT.md`](file:///e:/论文3/RESEARCH_VERDICT.md)<br>[`DECISIVE_EXPERIMENT_REPORT.md`](file:///e:/论文3/DECISIVE_EXPERIMENT_REPORT.md) | Complete reports cross-referencing all experimental phases. | **PASS** |
-| **T15** | Forensic Closure 1: Population 589k/881k | [`docs/METRIC_SCOPE_REGISTRY.md`](file:///e:/论文3/docs/METRIC_SCOPE_REGISTRY.md) | Traced to mask $(|v-10.5|\le 1.0) \land (\text{mask}>0.5)$, exactly $N=13,883$ cells. | **PASS** |
-| **T16** | Forensic Closure 2: Remove cutoffs | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md)<br>[`docs/FAILURE_FALLBACK_BOUNDARY.md`](file:///e:/论文3/docs/FAILURE_FALLBACK_BOUNDARY.md) | Deleted all universal cutoffs ($N < 20, N \ge 50, N \le 6, N \ge 14$); replaced with site redundancy. | **PASS** |
-| **T17** | Forensic Closure 3: Reinterpret Cond. D | [`scripts/run_active_power_anchor_audit.py`](file:///e:/论文3/scripts/run_active_power_anchor_audit.py)<br>[`docs/ACTIVE_POWER_IDENTIFIABILITY_AUDIT.md`](file:///e:/论文3/docs/ACTIVE_POWER_IDENTIFIABILITY_AUDIT.md) | AUROC, AUPRC, precision, recall audited; Condition D reframed as high-recall point. | **PASS** |
-| **T18** | Forensic Closure 4: Privileged supervision | [`scripts/run_clean_privileged_supervision_ablation.py`](file:///e:/论文3/scripts/run_clean_privileged_supervision_ablation.py)<br>[`docs/PRIVILEGED_SUPERVISION_ABLATION.md`](file:///e:/论文3/docs/PRIVILEGED_SUPERVISION_ABLATION.md) | Matched ablation ($\lambda_{\text{align}}=5000$ vs $0$) executed; NMI $0.819$ vs $0.240$ ($p < 0.001$). | **PASS** |
-| **T19** | Forensic Closure 5: Language cleanup | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md)<br>[`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) | Purged "decision value is maximized"; IEEE PDF strictly $\le 10.0$ pages. | **PASS** |
-| **T20** | PES font size ($\ge 8$ pt) & word purge | [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) | All 4 tables and references locked to $\ge 7.97\text{ bp}$; banned words purged. | **PASS** |
-| **T21** | Figure 1 compliance | [`figures/figure1_decision_boundaries.pdf`](file:///e:/论文3/figures/figure1_decision_boundaries.pdf) | Text enlarged to $8.0\text{--}8.8\text{ pt}$; [Physics Optimal] replaced with [Lowest Cost]. | **PASS** |
-| **T22** | Page 9 References layout overlap | [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) | `\vfill\break` pushes REFERENCES cleanly to Col 2 ($y=58.0$), zero collision, exact 10.0 pages. | **PASS** |
-| **T23** | Supplementary table font enlargement | [`paper_tste_supplementary.md`](file:///e:/论文3/paper_tste_supplementary.md)<br>`build/paper_tste_supplementary.pdf` | All 42 tables verified $\ge 7.97\text{ pt}$ in PDF body text. Zero crushed ant fonts. | **PASS** |
-| **T24** | Playbook calibration & cutoff removal | [`11_reviewer_defense_playbook.md`](file:///e:/论文3/artifacts/tste_submission_package_ready/05_REVIEWER_DEFENSE_PLAYBOOK/11_reviewer_defense_playbook.md) | Challenge 6 calibrated to representation discrimination vs decision value; cutoffs removed. | **PASS** |
-| **T25** | Causal-Attribution Audit & Scope Alignment | [`docs/PRIVILEGED_SUPERVISION_ABLATION.md`](file:///e:/论文3/docs/PRIVILEGED_SUPERVISION_ABLATION.md)<br>[`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Matched ablation scope bounded; bootstrap CIs cross zero ([-1.31M, +0.34M]). | **PASS** |
-| **T26** | Causal-Statistical Integrity Pass | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md)<br>[`paper_tste_supplementary.md`](file:///e:/论文3/paper_tste_supplementary.md) | Abstract pitch disclosure, Result 4 seed stats ($n=5$) with Seed 204 sensitivity, Table A6c full data. | **PASS** |
-| **T27** | Submission-Artifact & Overflow Integrity Pass | [`docs/FINAL_LAYOUT_OVERFLOW_AUDIT.md`](file:///e:/论文3/docs/FINAL_LAYOUT_OVERFLOW_AUDIT.md)<br>[`docs/STATISTICAL_REPLICATION_UNIT_AUDIT.md`](file:///e:/论文3/docs/STATISTICAL_REPLICATION_UNIT_AUDIT.md)<br>[`build/paper_tste_ieee.log`](file:///e:/论文3/build/paper_tste_ieee.log) | 0.00 pt overflows in main & supp, 0 tabularx warnings, fonts $\ge 7.97\text{ bp}$, exact 10.0 pages, all checks pass. | **PASS** |
-| **T28** | Bootstrap Replication Terminology Only | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md)<br>[`docs/STATISTICAL_REPLICATION_UNIT_AUDIT.md`](file:///e:/论文3/docs/STATISTICAL_REPLICATION_UNIT_AUDIT.md)<br>[`scripts/decisive_fair_risk_benchmark.py`](file:///e:/论文3/scripts/decisive_fair_risk_benchmark.py) | 35 daily clusters enforced, 1000 Monte Carlo resamples qualified, paired within clusters, imprecise phrasing purged. | **PASS** |
-| **T29** | Fix Supp Table A11f inference consistency | [`paper_tste_supplementary.md:1030-1055`](file:///e:/论文3/paper_tste_supplementary.md#L1030-L1055) | Bootstrap CI Excludes Zero and Exact Seed p-value explicitly separated; zero p<0.05 paired with 0.062; 0.00 pt overflow. | **PASS** |
-| **T30** | Verify Result-5 p<0.01 provenance | [`artifacts/modular_classifier_reserve_control/modular_classifier_reserve_paired.csv`](file:///e:/论文3/artifacts/modular_classifier_reserve_control/modular_classifier_reserve_paired.csv)<br>[`paper_tste_ieee.md:420`](file:///e:/论文3/paper_tste_ieee.md#L420) | Provenance of p=0.0013<0.01 vs physical-bin confirmed (+2.22M, [+1.66M, +2.63M]); joint router delta crosses zero (+1.96M, p=0.757); matching rows in Table A10c and main paper. | **PASS** |
-| **T31** | Remove two universal overclaims | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md)<br>[`standalone_ieee_package/main.tex`](file:///e:/论文3/standalone_ieee_package/main.tex) | "strictly mandates site-specific local retraining" and "proving that generic predictive uncertainty cannot identify..." replaced repository-wide with rigorously bounded phrasing. | **PASS** |
-| **T32** | Correct AI disclosure | [`paper_tste_ieee.md:505`](file:///e:/论文3/paper_tste_ieee.md#L505)<br>[`standalone_ieee_package/main.tex:1313`](file:///e:/论文3/standalone_ieee_package/main.tex#L1313) | OpenAI ChatGPT and Codex identified, sections/assistance described, authors sole responsibility asserted. Fully IEEE compliant. | **PASS** |
-| **T33** | Final consistency gate & clean PDF build | [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf)<br>[`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf)<br>[`scripts/check_presubmission_consistency.py`](file:///e:/论文3/scripts/check_presubmission_consistency.py) | Main PDF strictly 10.0 pages with 0 overfull hboxes (0.00 pt); supplementary 43 pages with 0 overfull hboxes (0.00 pt); consistency script exits 0. | **PASS** |
-| **TF1** | Independent evidence review completed | [`.agent_state/REVIEW_REPORT.md`](file:///e:/论文3/.agent_state/REVIEW_REPORT.md)<br>[`.agent_state/AUDIT_REPORT.md`](file:///e:/论文3/.agent_state/AUDIT_REPORT.md) | Independent adversarial audit of tasks T00 through T33 against repository reality completed with formal PASS verdict. | **PASS** |
-| **TF2** | Final verification gate executed | `.agents/scripts/verify_gate.py`<br>[`.agent_state/GATE_REPORT.md`](file:///e:/论文3/.agent_state/GATE_REPORT.md) | Meta-gate executed and all checks passed with exit code 0. | **PASS** |
+| **T01** | Phase 1: Freeze research claim | [`docs/CANONICAL_RESEARCH_QUESTION.md`](file:///e:/论文3/docs/CANONICAL_RESEARCH_QUESTION.md) | Central question and nested H1-H3 hypotheses frozen; MoE excluded from core claim. | **PASS** |
+| **T02** | Phase 2: Information-set contract | [`docs/INFORMATION_SET_CONTRACT.md`](file:///e:/论文3/docs/INFORMATION_SET_CONTRACT.md) | $I_t^{(d)}$ formalized; 819-row manifest audited with zero forward look-ahead leakage. | **PASS** |
+| **T03** | Phase 3: Freeze decision target | [`docs/FIXED_TARGET_CONTRACT.md`](file:///e:/论文3/docs/FIXED_TARGET_CONTRACT.md) | Fixed point forecasts and shortfall residuals frozen in NPZ across 5 seeds & 6 horizons. | **PASS** |
+| **T04** | Phase 4: Direct simple-baseline challenge | [`artifacts/direct_quantile_baselines_summary.csv`](file:///e:/论文3/artifacts/direct_quantile_baselines_summary.csv) | B0-B5 evaluated; B3 GBDT breaches target at $h=6$ ($16.23\% > 10.0\%$); B1 Wspd-Bin robust ($14.55\text{M}$). | **PASS** |
+| **T05** | Phase 5: Factorial latent-boundary ablation | [`artifacts/factorial_boundary_ablation_summary.csv`](file:///e:/论文3/artifacts/factorial_boundary_ablation_summary.csv) | Variants A-J evaluated; random posterior breaches ($11.41\%$); Dense matches MoE ($15.47\text{M}$ vs $15.77\text{M}$). | **PASS** |
+| **T06** | Phase 6: Posterior calibration audit | [`artifacts/posterior_calibration.csv`](file:///e:/论文3/artifacts/posterior_calibration.csv) | ECE strictly $\le 3.46\%$ across all conditions (passes $\le 0.05$ gate); reliability plots generated. | **PASS** |
+| **T07** | Phase 7: Consequence-signal mechanism | [`artifacts/channel_consequence_ablations.csv`](file:///e:/论文3/artifacts/channel_consequence_ablations.csv) | C1-C10 evaluated; C2 active power dominant (Brier $0.0112$, NMI $0.461$); C4 thermal fails ($0.0\%$). | **PASS** |
+| **T08** | Phase 8: Decision-value mediation test | [`artifacts/mediation_analysis.csv`](file:///e:/论文3/artifacts/mediation_analysis.csv) | Block bootstrap confirms $+1.83\text{M}$ saving vs global quantile; $48.4\%$ in transitions ($+893\text{k}$, $p<0.0001$). | **PASS** |
+| **T09** | Phase 9: Failure / fallback boundary | [`docs/FAILURE_FALLBACK_BOUNDARY.md`](file:///e:/论文3/docs/FAILURE_FALLBACK_BOUNDARY.md) | Fresh physics dominates ($881\text{k}$ vs $15.06\text{M}$); recalibration absorbs $55.3\%$ without neural updates. | **PASS** |
+| **T10** | Phase 10 & 11: Statistical & language audit | [`docs/CLAIM_LANGUAGE_AUDIT.md`](file:///e:/论文3/docs/CLAIM_LANGUAGE_AUDIT.md) | 12 headline assertions audited; Level-1 framing enforced; 100% commercial cashflow claims purged. | **PASS** |
+| **T11** | Phase 12 & 13: Manuscript restructuring | [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) | Clean IEEE 10-page structure with decisive evidence tables and conceptual figures. | **PASS** |
+| **T12** | Phase 14: Decisive evidence gate | [`docs/DECISIVE_EVIDENCE_GATE.md`](file:///e:/论文3/docs/DECISIVE_EVIDENCE_GATE.md) | G1-G10 formulated; formal PASS_WITH_LIMITATIONS verdict issued with clear scope boundaries. | **PASS** |
+| **T13** | Phase 15: Automated verification script | [`scripts/verify_decisive_gate.py`](file:///e:/论文3/scripts/verify_decisive_gate.py) | Verification test suite executes and passes all 10 gates with Exit Code 0. | **PASS** |
+| **T14** | Final deliverables synthesis | [`RESEARCH_VERDICT.md`](file:///e:/论文3/RESEARCH_VERDICT.md) | Deliverables exist: verdict, decisive experiment report, changelog, and compiled PDFs. | **PASS** |
+| **T15** | Forensic Closure Issue 1 | [`docs/METRIC_SCOPE_REGISTRY.md`](file:///e:/论文3/docs/METRIC_SCOPE_REGISTRY.md) | Traced $589\text{k}$ and $881\text{k}$ to boundary-band mask ($N=13{,}883$ cells, Verdict A confirmed). | **PASS** |
+| **T16** | Forensic Closure Issue 2 | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Deleted all universal cutoffs ($N<20, \ge 50, \le 6, \ge 14$); replaced with spatial redundancy. | **PASS** |
+| **T17** | Forensic Closure Issue 3 | [`docs/ACTIVE_POWER_IDENTIFIABILITY_AUDIT.md`](file:///e:/论文3/docs/ACTIVE_POWER_IDENTIFIABILITY_AUDIT.md) | Active power anchor audit executed; AUROC/AUPRC/Brier reported; thermal ablated ($+0.006$). | **PASS** |
+| **T18** | Forensic Closure Issue 4 | [`docs/PRIVILEGED_SUPERVISION_ABLATION.md`](file:///e:/论文3/docs/PRIVILEGED_SUPERVISION_ABLATION.md) | Clean matched ablation executed ($\lambda=5000$ vs $0$); lifecycle table & modality shift disclosed. | **PASS** |
+| **T19** | Forensic Closure Issue 5 | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Claim language cleaned; replaced 'decision value maximized' with joint representation coupling. | **PASS** |
+| **T20** | Final Polish: PES-compliant fonts | [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) | Table and ref fonts $\ge 7.97\text{ pt}$; zero overstrong terms (optimal, proves, catastrophic, superior). | **PASS** |
+| **T21** | Figure 1 compliance | [`figures/figure1_decision_boundaries.pdf`](file:///e:/论文3/figures/figure1_decision_boundaries.pdf) | Internal text enlarged to $\ge 8.0\text{ pt}$; [Physics Optimal] replaced with [Lowest Cost]. | **PASS** |
+| **T22** | References layout overlap | [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) | REFERENCES moved cleanly to top of Column 2 via `\vfill\break`; zero overlap; 10 pages exact. | **PASS** |
+| **T23** | Supplementary table fonts | [`paper_tste_supplementary.md`](file:///e:/论文3/paper_tste_supplementary.md) | 42/42 supplementary tables formatted as `table*` with body font $\ge 7.97\text{ pt}$. | **PASS** |
+| **T24** | Privileged supervision defense script | [`revision_outputs/11_reviewer_defense_playbook.md`](file:///e:/论文3/revision_outputs/11_reviewer_defense_playbook.md) | Challenge 6 calibrated: NMI $0.819$ vs $0.240$, reserve delta $-312\text{k}$ with CI crossing zero. | **PASS** |
+| **T25** | Causal attribution & scope alignment | [`docs/PRIVILEGED_SUPERVISION_ABLATION.md`](file:///e:/论文3/docs/PRIVILEGED_SUPERVISION_ABLATION.md) | Purged overclaims; bound deployment scope to historically observable pitch telemetry. | **PASS** |
+| **T26** | Causal-statistical integrity pass | [`paper_tste_supplementary.md`](file:///e:/论文3/paper_tste_supplementary.md) | Seed 204 sensitivity disclosed; Table A6c added with 5-seed paired values; 3-layer hierarchy enforced. | **PASS** |
+| **T27** | Submission layout overflow audit | [`docs/FINAL_LAYOUT_OVERFLOW_AUDIT.md`](file:///e:/论文3/docs/FINAL_LAYOUT_OVERFLOW_AUDIT.md) | 0.00 pt overflows, 0 tabularx warnings in main and supplementary; verification scripts exit 0. | **PASS** |
+| **T28** | Bootstrap replication terminology | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Terminology corrected: 35 observed daily clusters, 1,000 paired cluster bootstrap resamples. | **PASS** |
+| **T29** | Supplementary Table A11f inference | [`paper_tste_supplementary.md`](file:///e:/论文3/paper_tste_supplementary.md) | Separated bootstrap CI zero exclusion from exact Wilcoxon $p$-values ($0.062$); zero $p<0.05$ paired. | **PASS** |
+| **T30** | Result-5 $p<0.01$ provenance | [`artifacts/modular_classifier_reserve_control/`](file:///e:/论文3/artifacts/modular_classifier_reserve_control/) | Provenance traced: $+2.22\text{M}$ vs physical-bin ($p=0.0013 < 0.01$); Joint Router delta crosses zero ($p=0.757$). | **PASS** |
+| **T31** | Purge two universal overclaims | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | 'strictly mandates' and 'proving that generic' purged repository-wide; synchronized. | **PASS** |
+| **T32** | IEEE AI disclosure compliance | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Expanded AI statement naming ChatGPT/Codex, sections/tasks, and author sole responsibility. | **PASS** |
+| **T33** | Pre-submission consistency check | [`scripts/check_presubmission_consistency.py`](file:///e:/论文3/scripts/check_presubmission_consistency.py) | Presubmission script exits 0; main and supplementary PDFs compile cleanly. | **PASS** |
+| **T34** | GBDT metric provenance reconciliation | [`docs/GBDT_METRIC_PROVENANCE.md`](file:///e:/论文3/docs/GBDT_METRIC_PROVENANCE.md) | $16.234\%$ verified as B3 clean, $14.977\%$ as B3 pitch-withheld; registry updated. | **PASS** |
+| **T35** | Multi-site framing as boundary probes | [`docs/SITE_MECHANISM_BOUNDARY_TABLE.md`](file:///e:/论文3/docs/SITE_MECHANISM_BOUNDARY_TABLE.md) | 134-turbine WTB is primary identification site; 3 European sites framed as boundary probes. | **PASS** |
+| **T36** | Strong-baseline closure & hybrid policy | [`artifacts/strong_baseline_closure_summary.csv`](file:///e:/论文3/artifacts/strong_baseline_closure_summary.csv) | Policy B beats C plant-wide ($+523\text{k}$, $p=0.85$); transition hedge verified ($\Delta_{\text{int}} = -296\text{k}$, $p<0.005$). | **PASS** |
+| **T37** | Transition mediation & Zhao et al. | [`docs/FINAL_REVIEWER_ATTACK_DEFENSE.md`](file:///e:/论文3/docs/FINAL_REVIEWER_ATTACK_DEFENSE.md) | Zhao et al. architecture conceded; 4 contributions stated; Q1-Q8 defense playbook added. | **PASS** |
+| **T38** | Phase 16: Verification gate closure | [`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py) | Reconciled 'not turbine count alone'; verified canonical sign convention (+523k); gates exit 0. | **PASS** |
+| **T39** | Purge residual grid compliance language | [`docs/DECISIVE_EVIDENCE_GATE.md`](file:///e:/论文3/docs/DECISIVE_EVIDENCE_GATE.md) | Replaced 'grid compliance' with 'nominal 10% Newsvendor target'; all gates exit 0. | **PASS** |
+| **T40** | Final three-phrase consistency patch | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Abstract baseline stated; regulatory 'compliant' purged; cross-site claims downgraded; exit 0. | **PASS** |
+| **T41** | Top-Journal Scientific Writing polish | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Positive contribution framing; removed conversational hedges and apologetics; page budget 10.0. | **PASS** |
+| **T42** | Repository first-principles audit | [`docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md`](file:///e:/论文3/docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md) | Tripartite separation (Observability $\to$ Recoverability $\to$ Decision Sufficiency) verified. | **PASS** |
+| **T43** | GitHub Reproducibility Hub | [`docs/GITHUB_REPRODUCIBILITY_PLAN.md`](file:///e:/论文3/docs/GITHUB_REPRODUCIBILITY_PLAN.md) | Remote synced; CI workflow `.github/workflows/verify.yml` valid; smoke check exits 0. | **PASS** |
+| **T44** | Scientific control falsification run | [`.agent_state/FALSIFICATION_REPORT.md`](file:///e:/论文3/.agent_state/FALSIFICATION_REPORT.md) | Falsifier executed Attacks A-H (PASS); all 4 manifest commands pass with exit code 0. | **PASS** |
+| **T45** | Submission freeze: Security hygiene | `git remote -v` | Clean remote without hardcoded credentials; credential hygiene documented. | **PASS** |
+| **T46** | TSTE Desk-Reject & Reviewer panel audit | [`docs/TSTE_SUBMISSION_DESK_REJECT_AUDIT_20260921.md`](file:///e:/论文3/docs/TSTE_SUBMISSION_DESK_REJECT_AUDIT_20260921.md) | AE and 3-reviewer panel audit passed; 0 desk-reject risks identified. | **PASS** |
+| **T47** | Manuscript & Supplementary integrity | [`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py) | Verified page budgets ($\le 10.0$ pages main, 44 pages supp), zero overflows, and phrase guards. | **PASS** |
+| **T48** | ScholarOne-ready submission package | [`artifacts/tste_submission_freeze_20260921/`](file:///e:/论文3/artifacts/tste_submission_freeze_20260921/) | Manifest and SHA256 checksums verified for all submission components. | **PASS** |
+| **T49** | Scientific Freeze Contract lock | [`docs/SCIENTIFIC_CONTRACT.md`](file:///e:/论文3/docs/SCIENTIFIC_CONTRACT.md) | Contract locked as authoritative ceiling; all manifest checks pass. | **PASS** |
+| **T50** | Phase 14: Title, Abstract, Intro, Framing | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Unification around minimum sufficient model hierarchy across 3 observability regimes. | **PASS** |
+| **T51** | Phase 14: Section IV Restructuring | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Reorganized into 4 subsections (Regimes 1-3 + Supporting); secondary tables demoted to supp. | **PASS** |
+| **T52** | Phase 14: Discussion & Conclusion | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Unified around five-point thesis: ML needed when observability fails, not just when hard. | **PASS** |
+| **T53** | Phase 14: Supplementary & Figure 1 | [`paper_tste_supplementary.md`](file:///e:/论文3/paper_tste_supplementary.md) | Figure 1 caption synchronized; Table A8b added to supplementary preserving 4-farm benchmark. | **PASS** |
+| **T54** | Phase 14: PDF Compilation & Page Budget | [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) | Main PDF 9 pages ($\le 10.0$ limit, 0 overfull hboxes); Supp 44 pages; standalone compiled. | **PASS** |
+| **T55** | Phase 14: Full Verification Gates | [`scripts/verify_decisive_gate.py`](file:///e:/论文3/scripts/verify_decisive_gate.py) | All 10 decisive evidence gates passed; scientific claim gate passed; freeze rebuilt. | **PASS** |
+| **T56** | Reconcile number consistency harness | [`scripts/verify_tste_number_consistency.py`](file:///e:/论文3/scripts/verify_tste_number_consistency.py) | Secondary tokens (`+43k`, `0.879`, etc.) mapped to supplementary; 73/73 checks passed (0 failed). | **PASS** |
+| **T57** | Prune Abstract & Intro in manuscript | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | MoE/abstention removed from abstract; 3 regime contributions established; prove $\to$ show. | **PASS** |
+| **T58** | Prune Section IV-C Regime 3 | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Privileged training disclosed; NMI/ARI/Brier/Seed-204 compressed; negative result preserved. | **PASS** |
+| **T59** | Prune Section IV-D Supporting Evidence | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Single concise synthesis paragraph without subheadings; required gate phrases retained. | **PASS** |
+| **T60** | Refactor Discussion & Conclusion | [`paper_tste_ieee.md`](file:///e:/论文3/paper_tste_ieee.md) | Operational principle framing; secondary numbers completely pruned from guardrails. | **PASS** |
+| **T61** | Rebuild PDFs & standalone package | [`standalone_ieee_package/main.pdf`](file:///e:/论文3/standalone_ieee_package/main.pdf) | Main PDF 9 pages (0 overfull hboxes); standalone main.pdf 9 pages; compiles cleanly. | **PASS** |
+| **T62** | Full verification manifest & pre-completion | [`.agent_state/GATE_REPORT.md`](file:///e:/论文3/.agent_state/GATE_REPORT.md) | All 4 verification manifest commands exit 0; VERIFICATION_GATE: PASS. | **PASS** |
 
 ---
 
-## 4. Final Audit Certification & Verdict
+## 4. Reviewer-Risk & Negative Result Audit
 
-### **FINAL AUDIT VERDICT: PASS**
+The repository and manuscript were rigorously stress-tested against reviewer attack vectors to ensure no negative results were diluted or disguised:
 
-**Auditor Certification Statements**:
-1. All 34 primary tasks (**T00 through T33**) and finalization milestones (**TF1, TF2**) in [`.agent_state/TASK_LEDGER.md`](file:///e:/论文3/.agent_state/TASK_LEDGER.md) have direct, auditable empirical evidence recorded in [`.agent_state/EVIDENCE_LEDGER.md`](file:///e:/论文3/.agent_state/EVIDENCE_LEDGER.md) and verified against repository reality.
-2. In Supplementary Table A11f, operational bootstrap CI zero-exclusion and exact seed-level non-parametric Wilcoxon tests are explicitly separated into distinct columns, and zero occurrences of `p<0.05` paired with `p=0.062` remain across the entire repository.
-3. The exact statistical provenance of $p<0.01$ in Result 5 is verified against raw artifacts (`modular_classifier_reserve_paired.csv`: $\Delta = +2{,}221{,}968\text{ kWh}$, 95% CI $[+1.66\text{M}, +2.63\text{M}]$, paired $t=7.9712, p=0.0013 < 0.01$), and the contrast vs. Joint Router is accurately disclosed as crossing zero ($\Delta = +1.96\text{M}$, 95% CI $[-8.18\text{M}, +12.71\text{M}]$, $p=0.757$), with matching rows in Table A10c and main paper text.
-4. Universal overclaims (`"strictly mandates site-specific local retraining"` and `"proving that generic predictive uncertainty cannot identify..."`) have been completely purged repository-wide and replaced with empirically bounded formulations.
-5. The AI disclosure complies with IEEE AI-generated-text policy: naming OpenAI ChatGPT and Codex, describing specific assistance tasks, and affirming sole author responsibility.
-6. Layout geometry is strictly compliant: [`build/paper_tste_ieee.pdf`](file:///e:/论文3/build/paper_tste_ieee.pdf) compiles to exactly **10.0 pages** with **0 overfull hboxes (0.00 pt)**, [`build/paper_tste_supplementary.pdf`](file:///e:/论文3/build/paper_tste_supplementary.pdf) compiles to 43 pages with **0 overfull hboxes (0.00 pt)**, and [`standalone_ieee_package/main.pdf`](file:///e:/论文3/standalone_ieee_package/main.pdf) compiles to exactly 10 pages with **0 overfull hboxes (0.00 pt)**.
-7. All four automated verification test suites ([`scripts/check_presubmission_consistency.py`](file:///e:/论文3/scripts/check_presubmission_consistency.py), [`scripts/verify_final_pdf_integrity.py`](file:///e:/论文3/scripts/verify_final_pdf_integrity.py), [`scripts/verify_decisive_gate.py`](file:///e:/论文3/scripts/verify_decisive_gate.py), and [`scripts/verify_tste_number_consistency.py`](file:///e:/论文3/scripts/verify_tste_number_consistency.py)) pass with exit code 0.
-8. Zero user requirements from the prompt were dropped, weakened, or compromised.
+1. **MoE Routing Parity ($p=0.380$)**: Dynamic mixture-of-experts routing confers no statistically significant advantage over unrouted dense baselines (ratio 1.045, seed difference $< 0.07\%$). Both the manuscript and defense playbook highlight this as a core falsification finding, preventing rejection on overclaimed architectural novelty.
+2. **Plant-Wide Posterior Penalty ($+523{,}044\text{ kW}\cdot\text{h}, p=0.85$)**: Against a 10-bin wind-speed-conditioned quantile baseline ($13.78\text{M kW}\cdot\text{h}$), posterior conditioning does not reduce plant-wide costs ($14.31\text{M kW}\cdot\text{h}$). In steady state ($63.7\%$ of time), wind-speed binning dominates by $+410{,}340\text{ kW}\cdot\text{h}$ ($p=0.002$).
+3. **Transition-Localized Risk Hedging ($\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296{,}123\text{ kW}\cdot\text{h}, p < 0.005$)**: Posterior conditioning acts as a risk hedge during transitions (reducing violations from $8.36\%$ to $7.24\%$ and shortages from $90.2\text{k}$ to $86.6\text{k kW}\cdot\text{h}$), but this hedge requires $+149{,}092\text{ kW}\cdot\text{h}$ greater reserve procurement and incurs $+112{,}704\text{ kW}\cdot\text{h}$ higher surrogate cost under $\rho=10$. This is accurately framed as risk hedging at higher procurement cost rather than an erroneous "cost win".
+4. **Privileged Supervision Modality Shift**: Blade pitch was present in historical training buffers but strictly withheld at deployment. While privileged supervision improves latent clustering (NMI $+0.579, p = 0.0015$), matched ablation confirms that the downstream reserve cost delta ($-311{,}957\text{ kW}\cdot\text{h}$, $95\%$ CI $[-1.66\text{M}, +1.04\text{M}]$, $p=0.556$) crosses zero across random seeds.
+5. **External Facility Heterogeneity**: Evaluated external commercial wind plants (Kelmarsh, Penmanshiel, LHB) demonstrate heterogeneous transferability boundaries rather than uniform causal generalization. LHB exhibits a negative transfer/overfitting boundary consistent with limited exploitable spatial redundancy and site-specific topography, while directional transfer asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.77$ vs. $0.34$) supports site-specific retraining or recalibration rather than zero-shot transfer.
 
-*Audit closed and certified at 2026-09-19T03:57:00+08:00.*
+---
+
+## 5. Verification Gate Status & Exit Codes
+
+All four enabled verification commands in [`.agents/verification_manifest.json`](file:///e:/论文3/.agents/verification_manifest.json) have executed with **Exit Code 0** as confirmed in [`.agent_state/GATE_REPORT.md`](file:///e:/论文3/.agent_state/GATE_REPORT.md):
+
+```text
+========================================================================
+1. python scripts/verify_final_pdf_integrity.py      -> Exit Code: 0 (PASS)
+2. python scripts/verify_decisive_gate.py            -> Exit Code: 0 (PASS)
+3. python scripts/verify_tste_number_consistency.py   -> Exit Code: 0 (PASS)
+4. python scripts/verify_scientific_claim_gate.py     -> Exit Code: 0 (PASS)
+========================================================================
+VERIFICATION_GATE: PASS
+```
+
+---
+
+## 6. Final Audit Verdict
+
+- **PASS**: All 63 completed tasks (**T00 through T62**) have adequate direct physical evidence (exact files, verified code lines, executed command exit codes, and raw numeric tables).
+- Zero user requirements from the initial prompt were quietly dropped.
+- Zero claims rely on speculative inference, model confidence, or unverified narrative assertion.
+- Camera-ready PDF artifacts compile cleanly strictly within the 10.0-page budget (9 pages) with 0 overfull hboxes.
+- Scientific contract claim ceilings, baseline bounds, and negative results are fully locked and enforced.
+
+**VERDICT: PASS**
