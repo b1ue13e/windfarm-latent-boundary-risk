@@ -67,8 +67,15 @@ Created: 2026-09-18T05:01:00+08:00
 - [x] T47 VERIFIED Manuscript & Supplementary Integrity Verification — Ensure exact 10.0-page budget, verify zero overflows, and verify all automated gates pass cleanly. Acceptance: `python scripts/verify_final_pdf_integrity.py` and `python scripts/verify_decisive_gate.py` exit 0.
 - [x] T48 VERIFIED ScholarOne-Ready Submission Package Assembly — Generate `artifacts/tste_submission_freeze_20260921/` containing compiled 10-page main PDF, 44-page supplementary PDF, IEEE TSTE Cover Letter, Highlights & Keywords, Data & Code Availability Statement, SHA256 checksums, and a zip archive. Acceptance: Directory and zip package exist with complete verified components.
 - [x] T49 VERIFIED Scientific Freeze Contract Lock & Manifest Final Verification — Ensure `docs/SCIENTIFIC_CONTRACT.md` is locked, run verification manifest, and pass `verify_gate.py` with exit code 0. Acceptance: `python .agents/scripts/verify_gate.py` exits 0.
+- [x] T50 VERIFIED Phase 14: Title, Abstract, Intro, Framing — Sharpen Abstract, Introduction, Section II, Section III to unify around minimum sufficient model hierarchy across observability regimes, consequence-based latent state definition, and 10-30 min vs 60 min latency framing.
+- [x] T51 VERIFIED Phase 14: Section IV Restructuring — Reorganize Results into 4 subsections (Regimes 1, 2, 3, and Supporting Evidence), demoting Table IV to Supplementary, condensing secondary ablations (MoE, classifier, abstention, calibration, PCC), and preserving all number consistency tokens and required phrases.
+- [x] T52 VERIFIED Phase 14: Discussion & Conclusion Alignment — Unify Discussion, Limitations, and Conclusion around the five-point thesis: "ML is needed when observability fails, not whenever prediction is difficult", maintaining exact negative result boundaries.
+- [x] T53 VERIFIED Phase 14: Supplementary & Figure 1 Updates — Update Figure 1 caption to be the central organizing conceptual diagram; update paper_tste_supplementary.md to incorporate full 4-farm benchmark and ensure clean synchrony.
+- [x] T54 VERIFIED Phase 14: PDF Compilation & Page Budget Verification — Compile main and supplementary PDFs, verify exact 10.0-page limit with zero layout overflow, and export standalone IEEE package.
+- [x] T55 VERIFIED Phase 14: Full Verification Gates & Falsification Audit — Execute all verification scripts (verify_scientific_claim_gate, verify_final_pdf_integrity, verify_decisive_gate, verify_tste_number_consistency), run verify_gate.py to exit code 0, and refresh submission freeze artifacts.
 
 ## Finalization
 - [x] TF1 VERIFIED Independent evidence review completed. Acceptance: `.agent_state/REVIEW_REPORT.md` records PASS verdict.
 - [x] TF2 VERIFIED Final verification gate executed. Acceptance: `python .agents/scripts/verify_gate.py` passes with exit code 0.
+
 

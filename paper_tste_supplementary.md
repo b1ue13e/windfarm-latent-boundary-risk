@@ -407,7 +407,7 @@ Residual claim boundary & sanity check only & Mitigates circularity concern; doe
 
 The 134-turbine WTB site serves as the primary mechanism-identification environment. Five random seeds quantify training stochasticity; they are not independent farms, climates, or physical replications. The three external European facilities must not be presented as uniform replication evidence: their observed effects are heterogeneous (Penmanshiel: positive; Kelmarsh: statistically neutral; ENGIE La Haute Borne: negative overfitting boundary). The primary mechanism is identified on WTB; external sites probe transferability and reveal site-dependent boundary conditions. We do not pool the three external farms into a universal average effect. Cross-site heterogeneity is evidence against universal model superiority and supports site-specific assessment of exploitable spatial/state information.
 
-Table A8 provides the comprehensive Site $\times$ Mechanism specification across all four facilities, reporting physical dimensions, supervisory telemetry, wake context, paired effect sizes, and operational interpretations.
+Table A8 provides the comprehensive Site $\times$ Mechanism specification across all four facilities, reporting physical dimensions, supervisory telemetry, wake context, paired effect sizes, and operational interpretations. Table A8b summarizes the corresponding numerical pre-dispatch reserve screening metrics under local retraining across all four commercial wind farms.
 
 ```{=latex}
 \begin{table*}[!t]
@@ -430,6 +430,25 @@ Site & $N$ & Period & SCADA Channels & Pitch & Wake Context & Comparison & Paire
 ```
 
 ```{=latex}
+\begin{table}[!htbp]
+\centering
+\fontsize{8.0pt}{9.2pt}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.95}
+\caption*{\textbf{Table A8b.} Numerical Pre-Dispatch Reserve Screening Metrics Across Four Commercial Wind Farms under Local Retraining (5 Seeds 201--205, Cost Ratio $\rho=10$).}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}l c c c c c@{}}
+\toprule
+Farm & Units & \shortstack{Continuous Phys.\\(kW$\cdot$h)} & \shortstack{Global Quantile\\(kW$\cdot$h)} & \shortstack{STGQ-Modular\\(kW$\cdot$h)} & \shortstack{$\Delta\text{PSREI}$ vs. Global\\95\% Bootstrap CI} \\
+\midrule
+\textbf{WTB} & 134 & 842k & 893k & 855k & $-$38k [$-$67k, $-$12k]$^{\ast}$ \\
+\textbf{LHB} & 4 & 185k & 188k & 231k & +43k [$-$29k, +141k] \\
+\textbf{Kelmarsh} & 6 & 1,025k & 1,065k & 1,025k & $-$40k [$-$204k, +172k] \\
+\textbf{Penmanshiel} & 14 & 2,029k & 4,167k & 2,029k & $-$2.14M [$-$3.25M, $-$1.36M]$^{\ast}$ \\
+\bottomrule
+\end{tabular*}
+\vspace{1mm}
+\raggedright\fontsize{8.0pt}{8.8pt}\selectfont Note: $^{\ast}p < 0.05$. Penmanshiel comprises 14 operational turbines (site numbering spans WT01--WT15, with WT03 not installed/present in SCADA records). LHB exhibits local overfitting; Kelmarsh is neutral; WTB and Penmanshiel show significant reductions relative to the unconditioned global quantile baseline under local retraining. This comparison does not causally isolate wake modeling without matched external no-graph controls.
+\end{table}
 \FloatBarrier
 ```
 
