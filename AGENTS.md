@@ -28,8 +28,12 @@
 - 不要把摘要复述当作论文分析
 - 不要把表面同义替换当作降 AI 重写
 
-## Git workflow
+## Git workflow & Authentication Guardrail
 - 每次完成代码修改后，都需要提交一次 git commit。
+- **Authentication**: 本地环境已全局配置 Git Credential Manager (GCM) 与 Windows Keyring (`wincredman`)。
+- **Standard Commands**: 推送或拉取代码时，**必须直接使用标准命令 `git push origin <branch>` 或 `git pull`**，底层静默安全认证。
+- **NEVER INLINE TOKENS**: **严禁**在命令行、URL 或临时脚本中拼接任何个人 Token（如 `https://x-access-token:<TOKEN>@...`），杜绝凭据进入命令历史与运行日志。
+- **Environment Variable**: 若外部脚本或 API 需要 `$env:GITHUB_TOKEN`，PowerShell Profile 已自动动态注入，禁止硬编码或打印。
 
 
 ## Scientific control plane
