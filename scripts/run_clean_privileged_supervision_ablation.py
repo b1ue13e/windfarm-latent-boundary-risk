@@ -42,10 +42,10 @@ N_BINS = 5
 def compute_transition_recall(y_true: np.ndarray, y_pred_binary: np.ndarray, window_radius: int = 3) -> float:
     W, N = y_true.shape
     diff = np.diff(y_true, axis=0, prepend=y_true[:1, :]) != 0
-    in_window = np.zeros_like(y_true, dtype=bool)
-    for offset in range(-window_radius, window_radius + 1):
-        shifted = np.roll(diff, offset, axis=0)
-        in_window |= shifted
+    in_window = diff.copy()
+    for offset in range(1, window_radius + 1):
+        in_window[offset:, :] |= diff[:-offset, :]
+        in_window[:-offset, :] |= diff[offset:, :]
     target_mask = in_window & (y_true == 1)
     if np.sum(target_mask) == 0:
         return 0.0

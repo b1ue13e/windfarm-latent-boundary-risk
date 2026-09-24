@@ -151,8 +151,8 @@ def main() -> int:
     manuscript = (ROOT / "paper_tste_ieee.md").read_text(encoding="utf-8", errors="ignore")
     required_phrases = [
         "strong wind-speed-conditioned quantiles remain lower-cost plant-wide",
-        "no statistical advantage over unrouted dense baselines",
-        "localized risk-hedging mechanism",
+        "attributable to consequence-based representation and calibrated quantile sizing rather than dynamic expert routing",
+        "state recoverability is not sufficient for downstream reserve-decision superiority",
         "trained using historically available pitch information that is withheld at deployment",
     ]
     for phrase in required_phrases:

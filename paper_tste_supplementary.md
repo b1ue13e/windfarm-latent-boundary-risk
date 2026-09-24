@@ -403,300 +403,7 @@ Residual claim boundary & sanity check only & Mitigates circularity concern; doe
 \FloatBarrier
 ```
 
-## Site × Mechanism External Validity Boundary Probes (Table A8) {.unnumbered}
-
-The 134-turbine WTB site serves as the primary mechanism-identification environment. Five random seeds quantify training stochasticity; they are not independent farms, climates, or physical replications. The three external European facilities must not be presented as uniform replication evidence: their observed effects are heterogeneous (Penmanshiel: positive; Kelmarsh: statistically neutral; ENGIE La Haute Borne: negative overfitting boundary). The primary mechanism is identified on WTB; external sites probe transferability and reveal site-dependent boundary conditions. We do not pool the three external farms into a universal average effect. Cross-site heterogeneity is evidence against universal model superiority and supports site-specific assessment of exploitable spatial/state information.
-
-Table A8 provides the comprehensive Site $\times$ Mechanism specification across all four facilities, reporting physical dimensions, supervisory telemetry, wake context, paired effect sizes, and operational interpretations. Table A8b summarizes the corresponding numerical pre-dispatch reserve screening metrics under local retraining across all four commercial wind farms.
-
-```{=latex}
-\begin{table*}[!t]
-\centering
-\fontsize{8.0pt}{9.4pt}\selectfont
-\setlength{\tabcolsep}{2.0pt}
-\renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A8.} Site $\times$ Mechanism comprehensive external-validity boundary probe ledger across four commercial wind facilities.}
-\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.08\columnwidth} >{\centering\arraybackslash}p{0.04\columnwidth} >{\raggedright\arraybackslash}p{0.12\columnwidth} >{\raggedright\arraybackslash}p{0.14\columnwidth} >{\centering\arraybackslash}p{0.06\columnwidth} >{\raggedright\arraybackslash}p{0.13\columnwidth} >{\raggedright\arraybackslash}p{0.12\columnwidth} >{\raggedright\arraybackslash}p{0.13\columnwidth} >{\raggedright\arraybackslash}X}
-\toprule
-Site & $N$ & Period & SCADA Channels & Pitch & Wake Context & Comparison & Paired Effect & Transfer / Replication Interpretation \\
-\midrule
-\textbf{WTB} & 134 & 245 days ($T=35{,}280$) & 11 channels (Wspd, Wdir, Patv, Pab1--3, etc.) & Yes (raw) & \textbf{High}: Dense multi-row array; strong wake advection & STGQ vs. Global Quantile & $-38\text{k}$ [$-67\text{k}, -12\text{k}$]$^{\ast}$ (band) / $-1.83\text{M}$ (full) & \textbf{Primary Identification Site}: High spatial wake coupling enables consequence-driven latent boundary recovery when pitch is withheld. \\
-\textbf{Penman.} & 14 & 8.6 years (2016--2021) & Standard SCADA (Wspd, Patv, Pab, nacelle, temps) & Yes (99.1\%) & \textbf{Moderate}: Cohesive cluster (14 MM82; WT01--15 ex. WT03) & STGQ vs. Global Quantile & $-2.14\text{M}$ [$-3.25\text{M}, -1.36\text{M}$]$^{\ast}$ & \textbf{Positive Boundary Probe}: STGQ reduces surrogate cost relative to global quantile under local retraining, consistent with spatial redundancy as a moderator, though matching continuous physical rules ($2{,}029\text{k kW}\cdot\text{h}$). \\
-\textbf{Kelmarsh} & 6 & 9.0 years (2016--2021) & Standard SCADA (Wspd, Patv, Pab, gen. speed) & Yes (97.3\%) & \textbf{Minimal}: Linear 6-turbine micro-array; weak wake redundancy & STGQ vs. Global Quantile & $-40\text{k}$ [$-204\text{k}, +172\text{k}$] ($p=0.85$, crosses 0) & \textbf{Statistically Neutral Probe}: STGQ effect relative to global quantile crosses zero; simple quantile baselines match neural models. \\
-\textbf{LHB} & 4 & 4 years (2013--2016) & 4 core channels (Wspd, Patv, Pab, Ndir) & Yes (99.2\%) & \textbf{Negligible}: 4-turbine micro-farm; local topography & STGQ vs. Global Quantile & $+43\text{k}$ [$-29\text{k}, +141\text{k}$] (annual) / $+1.01\text{M}$ (rolling) & \textbf{Negative / Overfitting Boundary Probe}: LHB exhibits a negative transfer/overfitting boundary, consistent with limited exploitable spatial redundancy and site-specific heterogeneity; simple deterministic physical rules are strictly superior. \\
-\bottomrule
-\end{tabularx}
-\end{table*}
-```
-
-```{=latex}
-\begin{table}[!htbp]
-\centering
-\fontsize{8.0pt}{9.2pt}\selectfont
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{0.95}
-\caption*{\textbf{Table A8b.} Numerical Pre-Dispatch Reserve Screening Metrics Across Four Commercial Wind Farms under Local Retraining (5 Seeds 201--205, Cost Ratio $\rho=10$).}
-\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}l c c c c c@{}}
-\toprule
-Farm & Units & \shortstack{Continuous Phys.\\(kW$\cdot$h)} & \shortstack{Global Quantile\\(kW$\cdot$h)} & \shortstack{STGQ-Modular\\(kW$\cdot$h)} & \shortstack{$\Delta\text{PSREI}$ vs. Global\\95\% Bootstrap CI} \\
-\midrule
-\textbf{WTB} & 134 & 842k & 893k & 855k & $-$38k [$-$67k, $-$12k]$^{\ast}$ \\
-\textbf{LHB} & 4 & 185k & 188k & 231k & +43k [$-$29k, +141k] \\
-\textbf{Kelmarsh} & 6 & 1,025k & 1,065k & 1,025k & $-$40k [$-$204k, +172k] \\
-\textbf{Penmanshiel} & 14 & 2,029k & 4,167k & 2,029k & $-$2.14M [$-$3.25M, $-$1.36M]$^{\ast}$ \\
-\bottomrule
-\end{tabular*}
-\vspace{1mm}
-\raggedright\fontsize{8.0pt}{8.8pt}\selectfont Note: $^{\ast}p < 0.05$. Penmanshiel comprises 14 operational turbines (site numbering spans WT01--WT15, with WT03 not installed/present in SCADA records). LHB exhibits local overfitting; Kelmarsh is neutral; WTB and Penmanshiel show significant reductions relative to the unconditioned global quantile baseline under local retraining. This comparison does not causally isolate wake modeling without matched external no-graph controls.
-\end{table}
-\FloatBarrier
-```
-
-## La Haute Borne anchor-observability replay audit {.unnumbered}
-
-Table A9 audits the load-bearing channels behind the La Haute Borne cross-site anchor-observability probe. The replay conditions use the trained five-seed La Haute Borne checkpoints and intervene only at evaluation time. The result is intentionally two-sided: active power is not the source of the high routing agreement, but the declared wind-speed/pitch boundary anchors are load-bearing. This delineates the boundary of anchor-observable transfer and blocks any anchor-free discovery or automatic cross-site reserve-use wording.
-
-```{=latex}
-\begin{table*}[!t]
-\centering
-\fontsize{8.0pt}{9.6pt}\selectfont
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A9.} La Haute Borne anchor-observability replay audit.}
-\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.31\columnwidth} >{\centering\arraybackslash}p{0.12\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth} >{\raggedright\arraybackslash}X}
-\toprule
-Replay condition & NMI & $\Delta$NMI & Interpretation \\
-\midrule
-Actual replay & 0.941 & 0.000 & reference five-seed route \\
-Zero pitch anchor & 0.696 & 0.245 & partial alignment remains \\
-Zero wind-speed anchor & 0.752 & 0.189 & partial alignment remains \\
-Zero active-power anchor & 0.953 & -0.013 & active power is not load-bearing \\
-Zero wind+pitch anchors & 0.001 & 0.940 & boundary alignment collapses \\
-Randomize anchor physics & 0.028 & 0.913 & physical anchor mapping collapses \\
-Wind-speed only & 0.752 & 0.189 & single-anchor partial control \\
-Pitch only & 0.670 & 0.271 & single-anchor partial control \\
-\bottomrule
-\end{tabularx}
-\end{table*}
-```
-
-```{=latex}
-\FloatBarrier
-```
-
-## Signature-gate identifiability probe {.unnumbered}
-
-Table A9b reports the signature-gate probe that tests whether the MPPT-to-pitch boundary is recoverable when the label-defining channels are withheld from the model. The variants re-train five seeds from a frozen strict cache: `signature_full` removes \texttt{Wspd} and \texttt{Pab\_mean} from both encoder features and the gate anchor while retaining \texttt{Patv}; `signature_core` additionally removes \texttt{Patv}; the shuffled variants apply the same channel masks but permute valid regime labels so the input-label relationship is destroyed. Raw physics arrays are kept intact for evaluation only. The probe shows that the boundary signature survives channel withholding (mean NMI 0.561) and collapses to chance under label permutation (mean NMI 4e-6 for both shuffled variants), ruling out accidental correlation between input statistics and the threshold rule. Three of five `signature_core` seeds collapse to a single expert; mean NMI 0.367 for that variant is therefore reported with median and IQR as an upper envelope rather than a stable operating point.
-
-```{=latex}
-\begin{table*}[!t]
-\centering
-\fontsize{8.0pt}{9.2pt}\selectfont
-\setlength{\tabcolsep}{3.5pt}
-\renewcommand{\arraystretch}{1.03}
-\caption*{\textbf{Table A9b.} Signature-gate identifiability probe with permuted-label negative controls. Mean $\pm$ SD over five seeds.}
-%
-\begin{tabularx}{\textwidth}{@{}l c c c >{\raggedright\arraybackslash}X@{}}
-\toprule
-Probe & RMSE & NMI & ARI & Reading \\
-\midrule
-Canonical full-anchor & 229.93 $\pm$ 2.50 & 0.7208 & 0.7398 & Train-only clean baseline reference \\
-\texttt{signature\_full} & 241.84 $\pm$ 7.19 & 0.5613 $\pm$ 0.0199 & 0.6347 $\pm$ 0.0239 & Boundary recoverable from consequence channels \\
-\texttt{signature\_core} & 302.10 $\pm$ 9.16 & 0.3671 $\pm$ 0.0372 (med.\ 0.354) & 0.4342 $\pm$ 0.0378 & Weaker non-power signature; 3/5 seeds expert-collapsed \\
-\texttt{signature\_full\_shuffled} & 241.50 $\pm$ 10.25 & 4.0e-6 $\pm$ 2.1e-6 & $-$1.3e-5 $\pm$ 5.3e-5 & Chance level under permuted labels \\
-\texttt{signature\_core\_shuffled} & 296.69 $\pm$ 16.22 & 4.7e-6 $\pm$ 3.4e-6 & $-$2.0e-4 $\pm$ 1.7e-4 & Chance level under permuted labels \\
-Unconstrained MoE & --- & 0.0140 & --- & Negative control: no declared boundary supervision \\
-\bottomrule
-\end{tabularx}
-\vspace{1mm}
-\raggedright\fontsize{8.0pt}{9.0pt}\selectfont Expert-usage entropy per seed is archived with the run artifacts; seeds with single-expert usage are flagged before any mean-based wording.
-\end{table*}
-```
-
-Table A9c reports the same probe on ENGIE La Haute Borne under the identical threshold definition. The full-anchor canonical baseline reaches NMI 0.975 under the same training protocol; `signature_full` retains mean NMI 0.674 (min-seed 0.499) and `signature_core` mean NMI 0.575 with no expert collapse in any seed. Permuting the regime labels under the same withheld-channel mask collapses NMI to 1.92e-04. The boundary signature therefore replicates across farms; the claim is mechanism replication under a shared threshold definition, not parameter transfer.
-
-```{=latex}
-\begin{table*}[!t]
-\centering
-\fontsize{8.0pt}{9.2pt}\selectfont
-\setlength{\tabcolsep}{3.5pt}
-\renewcommand{\arraystretch}{1.03}
-\caption*{\textbf{Table A9c.} Cross-farm signature-gate replication, ENGIE La Haute Borne. Mean $\pm$ SD over five seeds; per-seed values archived.}
-%
-\begin{tabularx}{\textwidth}{@{}l c c c >{\raggedright\arraybackslash}X@{}}
-\toprule
-Probe & RMSE & NMI & ARI & Reading \\
-\midrule
-\texttt{canonical} & 185.0 $\pm$ 1.9 & 0.9752 $\pm$ 0.0088 & 0.9904 $\pm$ 0.0044 & Full-anchor reference \\
-\texttt{signature\_full} & 185.1 $\pm$ 1.4 & 0.6743 $\pm$ 0.1209 & 0.7401 $\pm$ 0.1604 & Signature transfers; min-seed 0.499 \\
-\texttt{signature\_core} & 188.0 $\pm$ 1.0 & 0.5750 $\pm$ 0.0423 & 0.6270 $\pm$ 0.0638 & Non-power signature transfers; 0/5 collapsed \\
-\texttt{signature\_full\_shuffled} & 185.4 $\pm$ 1.2 & 1.92e-04 $\pm$ 8.90e-05 & 5.19e-04 $\pm$ 2.86e-03 & Chance level under permuted labels \\
-\bottomrule
-\end{tabularx}
-\vspace{1mm}
-\raggedright\fontsize{8.0pt}{9.0pt}\selectfont LHB is a four-turbine Senvion MM82 farm with directly observed pitch (99.2\% coverage) and no wake graph support (wake score identically zero). RMSE is nearly invariant to channel withholding, so the signature effect is decoupled from forecast accuracy.
-\end{table*}
-```
-
-Table A9d reports the same probe on two farms with partial pitch observability. Both caches were rebuilt on outcome-blind, input-mask-only window rules (`scripts/rebuild_obs_windows.py`): the earliest contiguous 245-day window with daily pitch coverage at least 0.70 and daily regime-valid at least 0.70 for Penmanshiel (day 720; Senvion MM82), and the earliest window with daily regime-valid at least 0.70 for Kelmarsh (day 120; Senvion MM92). Permuted-label controls collapse to chance at both farms, and the withheld-channel variants stay above chance across both commercial wind farms, so the deployment decision is a graded signature-strength check rather than a binary observability gate.
-
-```{=latex}
-\begin{table*}[!t]
-\centering
-\fontsize{8.0pt}{9.6pt}\selectfont
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A9d.} Signature-gate probe on partial-pitch-observability farms. Mean$\pm$sd over five seeds; per-seed values archived.}
-%
-\begin{tabular}{llll}
-\toprule
-Probe & NMI & ARI & Reading \\
-\midrule
-Penmanshiel canonical & 0.6987 $\pm$ 0.4004 & 0.6342 $\pm$ 0.4961 & Large seed variance: noisy partial-pitch labels \\
-Penmanshiel \texttt{signature\_full} & 0.3024 $\pm$ 0.0343 & 0.1613 $\pm$ 0.1150 & Above 0.20 criterion \\
-Penmanshiel \texttt{signature\_core} & 0.1954 $\pm$ 0.0961 & 0.1302 $\pm$ 0.1816 & Below 0.20; 4400x above shuffled chance \\
-Penmanshiel \texttt{signature\_full\_shuffled} & 4.4e-05 $\pm$ 2.3e-05 & 1.6e-03 $\pm$ 1.7e-03 & Chance level \\
-\midrule
-Kelmarsh canonical & 0.4441 $\pm$ 0.2413 & 0.4499 $\pm$ 0.3300 & Large seed variance: noisy partial-pitch labels \\
-Kelmarsh \texttt{signature\_full} & 0.3402 $\pm$ 0.0736 & 0.3461 $\pm$ 0.1399 & Above 0.20 criterion \\
-Kelmarsh \texttt{signature\_core} & 0.3775 $\pm$ 0.0783 & 0.4763 $\pm$ 0.0758 & Above 0.20 criterion; strongest non-power signal \\
-Kelmarsh \texttt{signature\_full\_shuffled} & 9.2e-05 $\pm$ 2.5e-05 & 1.6e-03 $\pm$ 2.0e-03 & Chance level \\
-\bottomrule
-\end{tabular}
-\vspace{1mm}
-\fontsize{8.0pt}{9.6pt}\selectfont Signature strength is evaluated on reconstructed operating windows across both commercial wind farms. The graded reading attributes the recovered boundary signal to consequence-channel quality (reactive power, pitch dispersion, temperatures) rather than to pitch sensors alone. Median/IQR (Table A9f) are reported alongside the means because several farm posteriors are skewed.
-\end{table*}
-```
-
-Table A9f reports median/IQR for every farm probe: the Penmanshiel and Kelmarsh canonical posteriors are strongly skewed (Penmanshiel canonical median 0.985 versus mean 0.699), so median-based readings are the honest summary for those cells.
-
-```{=latex}
-\begin{table*}[!t]
-\centering
-\fontsize{8.0pt}{9.6pt}\selectfont
-\setlength{\tabcolsep}{2.2pt}
-\renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A9f.} Farm signature probes: median and IQR (five seeds unless noted).}
-\begin{tabular}{llrrrrr}
-\toprule
-Farm & Variant & $n$ & Median & Q25 & Q75 & Mean $\pm$ SD \\
-\midrule
-WTB & signature\_full & 5 & 0.563 & 0.554 & 0.565 & 0.561 $\pm$ 0.018 \\
-WTB & signature\_core & 5 & 0.354 & 0.348 & 0.363 & 0.367 $\pm$ 0.033 \\
-LHB & canonical & 5 & 0.978 & 0.977 & 0.979 & 0.975 $\pm$ 0.008 \\
-LHB & signature\_full & 5 & 0.733 & 0.603 & 0.742 & 0.674 $\pm$ 0.108 \\
-LHB & signature\_core & 5 & 0.598 & 0.540 & 0.607 & 0.575 $\pm$ 0.038 \\
-Penmanshiel & canonical & 5 & 0.985 & 0.279 & 0.994 & 0.699 $\pm$ 0.358 \\
-Penmanshiel & signature\_full & 5 & 0.299 & 0.270 & 0.332 & 0.302 $\pm$ 0.031 \\
-Penmanshiel & signature\_core & 5 & 0.207 & 0.133 & 0.213 & 0.195 $\pm$ 0.086 \\
-Kelmarsh & canonical & 5 & 0.292 & 0.275 & 0.683 & 0.444 $\pm$ 0.216 \\
-Kelmarsh & signature\_full & 5 & 0.313 & 0.295 & 0.388 & 0.340 $\pm$ 0.066 \\
-Kelmarsh & signature\_core & 5 & 0.328 & 0.323 & 0.421 & 0.378 $\pm$ 0.070 \\
-\bottomrule
-\end{tabular}
-\vspace{1mm}
-\fontsize{8.0pt}{9.6pt}\selectfont The window scan (Table A9e) passes at 4/4 windows with per-seed pass-rate 1.0 (3/3 seeds above the 0.20 criterion in every window).
-\end{table*}
-```
-
-Table A9e reports two robustness additions. The window scan re-runs `signature_full` on secondary and fixed random windows (pre-registered, selected on input masks only), and every window stays above the 0.20 criterion. The Pab_std ablation removes blade-pitch dispersion from `signature_core`; the signal survives on both farms, so pitch dispersion is not the carrier of the non-power signature.
-
-```{=latex}
-\begin{table*}[!t]
-\centering
-\fontsize{8.0pt}{9.6pt}\selectfont
-\setlength{\tabcolsep}{2.4pt}
-\renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A9e.} Window-robustness scan and Pab\_std ablation (signature\_full / signature\_core\_no\_pab\_std, mean$\pm$sd).}
-%
-\begin{tabular}{llll}
-\toprule
-Probe & NMI & ARI & Reading \\
-\midrule
-Penmanshiel secondary window (day 965, pitch 77.5\%) & 0.458 $\pm$ 0.099 & 0.405 $\pm$ 0.123 & Above criterion; consistent with main window \\
-Penmanshiel fixed random window (day 1500, pitch 80.5\%) & 0.294 $\pm$ 0.007 & 0.128 $\pm$ 0.004 & Above criterion \\
-Kelmarsh secondary window (day 365, pitch 54.9\%) & 0.359 $\pm$ 0.188 & 0.328 $\pm$ 0.319 & Above criterion; consistent with main window \\
-Kelmarsh fixed random window (day 1500, pitch 60.1\%) & 0.277 $\pm$ 0.106 & 0.218 $\pm$ 0.175 & Above criterion \\
-\midrule
-WTB \texttt{signature\_core\_no\_pab\_std} & 0.309 $\pm$ 0.066 & 0.356 $\pm$ 0.075 & Signal survives without pitch dispersion (vs core 0.367) \\
-LHB \texttt{signature\_core\_no\_pab\_std} & 0.578 $\pm$ 0.135 & 0.617 $\pm$ 0.200 & Signal unchanged without pitch dispersion (vs core 0.575) \\
-\bottomrule
-\end{tabular}
-\vspace{1mm}
-\fontsize{8.0pt}{9.6pt}\selectfont Window rules: secondary = the first contiguous 245-day window after the main window satisfying the same input-mask rule; random = a fixed pre-registered start day (1500). All runs are five seeds except the scan rows, which are three seeds. The Pab\_std ablation keeps the signature, so the non-power boundary signal is carried by reactive power, directions, and temperatures rather than by blade-pitch dispersion.
-\end{table*}
-```
-
-```{=latex}
-\FloatBarrier
-```
-
-## External validation and cross-farm evidence demarcation {.unnumbered}
-
-To ensure complete methodological transparency and prevent over-generalization across disparate commercial wind farms, we explicitly disentangle three separate lines of external evidence:
-
-1. **Within-plant local retraining (ENGIE La Haute Borne, Kelmarsh, Penmanshiel):** All probe evaluations (Tables A9a--A9f) and chronological dispatch replays represent models retrained locally under site-specific rated aerodynamic wind speeds ($v_{\mathrm{rated}} = 12.5\text{ m s}^{-1}$ for Kelmarsh MM92 and $14.5\text{ m s}^{-1}$ for Penmanshiel MM82). These results demonstrate neural architecture adaptability to site-specific aerodynamic parameters when local training data is available, rather than zero-shot cross-farm generalizability.
-2. **Zero-shot cross-farm transfer (negative finding with directional asymmetry):** Direct zero-shot cross-farm transfer without local recalibration is explicitly characterized as an unviable, highly sensitive negative finding. Representation transfer between Kelmarsh and Penmanshiel exhibits severe directional asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.752$--$0.770$ vs. Penmanshiel $\to$ Kelmarsh $0.341$--$0.505$, pooled mean NMI $0.557$; `external_wind_guard.json`), indicating that directional transfer asymmetry supports site-specific retraining or recalibration rather than assuming reliable zero-shot transfer across distinct turbine makes and geometries.
-3. **Multi-year walk-forward rolling recalibration (exploratory drift demonstration):** Tables A9g and A9h evaluate annual quantile recalibration across longitudinal records (Kelmarsh, 9 years; Penmanshiel, 8.6 years) under IEC 61400-12-1 air-density calibration using a 2-year sliding training window. Data-integrity auditing identified temporal overlap in historical rolling folds (e.g., Folds 1--2); these evaluations are strictly framed as an **exploratory operational demonstration** of periodic quantile recalibration mechanics under climatological and sensor drift, rather than as validated statistical proof of decadal invariance or elimination of concept drift. On Kelmarsh, 6 of 7 rolling folds strictly exclude zero ($p < 0.05$), with mean annual savings of $-1.025 \text{ Million kWh/year}$. On Penmanshiel, 4 mature operational folds (2020--2023) strictly exclude zero ($p < 0.05$), with mean annual savings of $-2.029 \text{ Million kWh/year}$.
-
-```{=latex}
-\begin{table*}[!t]
-\centering
-\fontsize{8.0pt}{9.6pt}\selectfont
-\setlength{\tabcolsep}{2.5pt}
-\renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A9g.} Kelmarsh 9-year walk-forward rolling recalibration audit under IEC 61400-12-1 density calibration ($\rho=10$, 5 seeds).}
-%
-\begin{tabular}{lrrrrr}
-\toprule
-Evaluation Window & Train Period & Test Period & $\Delta\text{Cost}$ (kWh) & 95\% Bootstrap CI & Excludes Zero \\
-\midrule
-Rolling Fold 1 & 2016--2017 & 2018 & -38k & [-204k, +172k] & no \\
-Rolling Fold 2 & 2017--2018 & 2019 & -334k & [-473k, -196k] & \textbf{yes} ($p<0.05$) \\
-Rolling Fold 3 & 2018--2019 & 2020 & -952k & [-1293k, -393k] & \textbf{yes} ($p<0.05$) \\
-Rolling Fold 4 & 2019--2020 & 2021 & -1685k & [-1977k, -1294k] & \textbf{yes} ($p<0.05$) \\
-Rolling Fold 5 & 2020--2021 & 2022 & -656k & [-764k, -526k] & \textbf{yes} ($p<0.05$) \\
-Rolling Fold 6 & 2021--2022 & 2023 & -1542k & [-2034k, -1049k] & \textbf{yes} ($p<0.05$) \\
-Rolling Fold 7 & 2022--2023 & 2024 & -981k & [-1220k, -790k] & \textbf{yes} ($p<0.05$) \\
-\midrule
-Mature Mean (Folds 2--7) & -- & 2019--2024 & -1025k & [-1344k, -708k] & \textbf{yes} (6/7 Folds) \\
-\bottomrule
-\end{tabular}
-\vspace{1mm}
-\fontsize{8.0pt}{9.6pt}\selectfont Walk-forward protocol uses a 2-year sliding training window to recalibrate reserve quantiles for the subsequent operational test year under local air density calibration (IEC 61400-12-1). Six of seven consecutive rolling folds strictly exclude zero. Script: \texttt{scripts/eval\_external\_rolling\_reserve.py}.
-\end{table*}
-```
-
-```{=latex}
-\begin{table*}[!t]
-\centering
-\fontsize{8.0pt}{9.6pt}\selectfont
-\setlength{\tabcolsep}{2.5pt}
-\renewcommand{\arraystretch}{1.05}
-\caption*{\textbf{Table A9h.} Penmanshiel 8.6-year walk-forward rolling recalibration audit under IEC 61400-12-1 density calibration ($\rho=10$, 5 seeds).}
-%
-\begin{tabular}{lrrrrr}
-\toprule
-Evaluation Window & Train Period & Test Period & $\Delta\text{Cost}$ (kWh) & 95\% Bootstrap CI & Excludes Zero \\
-\midrule
-Rolling Fold 1 & 2016--2017 & 2018 & +3802k & [+648k, +6956k] & no (commissioning) \\
-Rolling Fold 2 & 2017--2018 & 2019 & -25k & [-695k, +1134k] & no (stabilization) \\
-Rolling Fold 3 & 2018--2019 & 2020 & -1204k & [-1946k, -565k] & \textbf{yes} ($p<0.05$) \\
-Rolling Fold 4 & 2019--2020 & 2021 & -2138k & [-3247k, -1362k] & \textbf{yes} ($p<0.05$) \\
-Rolling Fold 5 & 2020--2021 & 2022 & -2052k & [-3503k, -1017k] & \textbf{yes} ($p<0.05$) \\
-Rolling Fold 6 & 2021--2022 & 2023 & -2723k & [-4178k, -1701k] & \textbf{yes} ($p<0.05$) \\
-\midrule
-Mature Mean (Folds 3--6) & -- & 2020--2023 & -2029k & [-3219k, -1161k] & \textbf{yes} (4/4 Folds) \\
-\bottomrule
-\end{tabular}
-\vspace{1mm}
-\fontsize{8.0pt}{9.6pt}\selectfont Following post-commissioning turbine defect resolution (2016--2019), all four consecutive mature operational folds (2020--2023) strictly exclude zero, saving an average of 2.029 Million kWh/year. Script: \texttt{scripts/eval\_penmanshiel\_rolling\_reserve.py}.
-\end{table*}
-```
-
-```{=latex}
-\FloatBarrier
-```
+## S3. Mechanism and Representation Diagnostics {.unnumbered}
 
 ## Early-warning detection consequence {.unnumbered}
 
@@ -1046,7 +753,7 @@ Soft-physical vs global (sparse farm) & -0.03M & [-0.09M, +0.05M] & no & Kelmars
 
 To address reviewer concerns regarding baseline competitiveness, Table A11m evaluates the relative risk-cost trade-off of the learned latent-boundary posterior compared to a strong observable wind-speed-conditioned quantile baseline (10 uniform bins over $[0, 25\text{ m/s}]$) under matched arrival-time constraints and identical forecast residuals ($s_t = \max(\hat{y}_t - y_t, 0)$ across 5 seeds).
 
-The empirical results demonstrate that posterior conditioning does not reduce plant-wide reserve procurement costs ($14.31\text{M}$ vs. $13.78\text{M kW}\cdot\text{h}$, canonically defined as $\Delta L = L_{\text{posterior}} - L_{\text{wspd}} = +523{,}044\text{ kW}\cdot\text{h}$ penalty, $p=0.85$). In steady operation ($63.7\%$ of test time), wind-speed binning serves as the operational minimum sufficient policy, outperforming the posterior by $+410{,}340\text{ kW}\cdot\text{h}$ ($p=0.002$). The relative risk-cost trade-off becomes materially more favorable near operating transitions ($\pm 3$ steps of boundary switching, $36.3\%$ of records): posterior conditioning selectively reduces violation ($7.24\%$ vs. $8.36\%$) and shortage exposure ($86.6\text{k}$ vs. $90.2\text{k kW}\cdot\text{h}$), but this hedge remains more expensive under $\rho=10$ than wind-speed-binned quantile calibration ($\Delta = +112{,}704\text{ kW}\cdot\text{h}$, due to $+149{,}092\text{ kW}\cdot\text{h}$ higher reserve procurement). The significant paired day-level cluster bootstrap interaction ($\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296{,}123\text{ kW}\cdot\text{h}, p < 0.005$) establishes heterogeneity of the relative cost gap rather than a positive posterior cost advantage. Transition windows are not merely high-loss regions; they are the regions where recovered latent-state information selectively hedges tail risk at increased reserve cost. While transition windows capture $48.4\%$ of savings relative to an unconditioned global baseline, this unconditioned fraction reflects both high baseline loss concentration ($33.0\%$) and model sensitivity; relative to wind-speed bins, the posterior operates as a risk-hedging mechanism rather than a cost-reducing mechanism. Furthermore, a deployable validation-frozen hybrid policy matches wind-speed binning plant-wide ($13.79\text{M}$ vs. $13.78\text{M kW}\cdot\text{h}, p > 0.40$), confirming that machine learning provides conditional regime risk hedging rather than universal cost dominance.
+The empirical results demonstrate that posterior conditioning does not reduce plant-wide reserve procurement costs ($14.31\text{M}$ vs. $13.78\text{M kW}\cdot\text{h}$, canonically defined as $\Delta L = L_{\text{posterior}} - L_{\text{wspd}} = +523{,}044\text{ kW}\cdot\text{h}$ penalty, $p=0.85$). In steady operation ($63.75\%$ of test time, $N=245{,}552$), wind-speed binning serves as the operational minimum sufficient policy, outperforming the posterior by $+410{,}304\text{ kW}\cdot\text{h}$ ($p=0.002$). Near operating transitions ($\pm 3$ steps of bounded non-circular temporal dilation, $36.25\%$ of records, $N=139{,}653$), unscaled posterior conditioning shifts the operating point toward lower violation ($7.24\%$ vs. $8.36\%$) and lower raw shortage ($86.6\text{k}$ vs. $90.2\text{k kW}\cdot\text{h}$), but requires $+149{,}241\text{ kW}\cdot\text{h}$ greater reserve procurement ($\Delta = +112{,}739\text{ kW}\cdot\text{h}$ net surrogate penalty under $\rho=10$). The raw reduction in transition violation rate is partly associated with greater reserve procurement. Crucially, matched-budget frontier analysis across $\mathcal{B}_{\text{common}} = [1.95\text{M}, 4.77\text{M}]\text{ kW}\cdot\text{h}$ demonstrates that at identical reserve budgets ($\Delta R \equiv 0$), posterior conditioning does not improve shortage-energy efficiency: lower violation frequency is offset by deeper residual uncovered shortfalls ($+5{,}234\text{ kW}\cdot\text{h}$ higher shortage on average across 5 seeds; strictly higher in 4 of 5 seeds, with bootstrap probability $P(\Delta U \ge 0) = 0.81$, establishing that matched-budget superiority is not established). The significant paired day-level cluster bootstrap interaction ($\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296{,}053\text{ kW}\cdot\text{h}, p = 0.002$) establishes structural heterogeneity of the relative cost gap across regimes, rather than an allocation advantage for posterior conditioning. Furthermore, a deployable validation-frozen hybrid policy matches wind-speed binning plant-wide ($13.79\text{M}$ vs. $13.78\text{M kW}\cdot\text{h}, p > 0.40$), confirming that while latent operating regimes remain recoverable from consequence signals, reserve decision sufficiency remains governed by direct observable conditioning.
 
 ```{=latex}
 \begin{table*}[!t]
@@ -1065,17 +772,17 @@ Population Slice & Policy ID \& Name & PSREI Cost ($\text{kW}\cdot\text{h}$) & R
  & Policy D: Validation Hybrid & $13{,}789{,}154 \pm 1{,}434{,}721$ & $10{,}339{,}015$ & 8.78\% & $345{,}014$ & $+4{,}834$ (Neutral) \\
  & Policy D10: Pre-Specified Band & $13{,}801{,}696 \pm 1{,}438{,}458$ & $10{,}378{,}012$ & 8.76\% & $342{,}368$ & $+17{,}376$ (Neutral) \\
 \midrule
-\textbf{Transition Windows} & Policy A: Global Quantile & $5{,}325{,}549 \pm 725{,}068$ & $4{,}526{,}985$ & 3.03\% & $79{,}856$ & $+1{,}005{,}239$ (Worse) \\
-($N=139{,}684$, 36.3\%) & Policy B: Wind-Speed Bins & $\mathbf{4{,}320{,}310 \pm 261{,}611}$ & $3{,}417{,}998$ & 8.36\% & $90{,}231$ & \textbf{0 (Reference)} \\
- & Policy C: Posterior Quantile & $4{,}433{,}014 \pm 336{,}858$ & $3{,}567{,}090$ & \textbf{7.24\%} & $\mathbf{86{,}592}$ & $+112{,}704$ ($p=0.48$) \\
- & Policy D: Validation Hybrid & $4{,}326{,}018 \pm 258{,}505$ & $3{,}429{,}531$ & 8.35\% & $89{,}649$ & $+5{,}708$ (Neutral) \\
- & Policy D10: Pre-Specified Band & $4{,}335{,}519 \pm 262{,}140$ & $3{,}456{,}492$ & 8.30\% & $87{,}903$ & $+15{,}209$ (Neutral) \\
+\textbf{Transition Windows} & Policy A: Global Quantile & $5{,}324{,}518 \pm 724{,}901$ & $4{,}525{,}981$ & 3.03\% & $79{,}854$ & $+1{,}005{,}199$ (Worse) \\
+($N=139{,}653$, 36.3\%) & Policy B: Wind-Speed Bins & $\mathbf{4{,}319{,}319 \pm 261{,}432}$ & $3{,}417{,}020$ & 8.36\% & $90{,}230$ & \textbf{0 (Reference)} \\
+ & Policy C: Posterior Quantile & $4{,}432{,}058 \pm 336{,}724$ & $3{,}566{,}261$ & \textbf{7.24\%} & $\mathbf{86{,}580}$ & $+112{,}739$ ($p=0.48$) \\
+ & Policy D: Validation Hybrid & $4{,}325{,}025 \pm 258{,}328$ & $3{,}428{,}552$ & 8.35\% & $89{,}647$ & $+5{,}706$ (Neutral) \\
+ & Policy D10: Pre-Specified Band & $4{,}334{,}528 \pm 261{,}962$ & $3{,}455{,}514$ & 8.30\% & $87{,}901$ & $+15{,}209$ (Neutral) \\
 \midrule
-\textbf{Steady Windows} & Policy A: Global Quantile & $10{,}807{,}224 \pm 1{,}642{,}320$ & $7{,}957{,}030$ & 6.76\% & $285{,}019$ & $+1{,}343{,}214$ (Worse) \\
-($N=245{,}521$, 63.7\%) & Policy B: Wind-Speed Bins & $\mathbf{9{,}464{,}010 \pm 1{,}185{,}662}$ & $6{,}906{,}130$ & 9.03\% & $\mathbf{255{,}788}$ & \textbf{0 (Reference)} \\
- & Policy C: Posterior Quantile & $9{,}874{,}350 \pm 1{,}466{,}885$ & $6{,}611{,}987$ & 10.13\% & $326{,}236$ & $+410{,}340$ ($p=0.002$) \\
- & Policy D: Validation Hybrid & $9{,}463{,}137 \pm 1{,}185{,}918$ & $6{,}909{,}484$ & 9.03\% & $255{,}365$ & $-873$ (Neutral) \\
- & Policy D10: Pre-Specified Band & $9{,}466{,}177 \pm 1{,}185{,}505$ & $6{,}921{,}521$ & 9.02\% & $254{,}466$ & $+2{,}167$ (Neutral) \\
+\textbf{Steady Windows} & Policy A: Global Quantile & $10{,}808{,}254 \pm 1{,}642{,}488$ & $7{,}958{,}035$ & 6.76\% & $285{,}022$ & $+1{,}343{,}253$ (Worse) \\
+($N=245{,}552$, 63.8\%) & Policy B: Wind-Speed Bins & $\mathbf{9{,}465{,}001 \pm 1{,}185{,}854}$ & $6{,}907{,}108$ & 9.03\% & $\mathbf{255{,}789}$ & \textbf{0 (Reference)} \\
+ & Policy C: Posterior Quantile & $9{,}875{,}306 \pm 1{,}467{,}032$ & $6{,}612{,}816$ & 10.13\% & $326{,}249$ & $+410{,}304$ ($p=0.002$) \\
+ & Policy D: Validation Hybrid & $9{,}464{,}130 \pm 1{,}186{,}110$ & $6{,}910{,}464$ & 9.03\% & $255{,}367$ & $-871$ (Neutral) \\
+ & Policy D10: Pre-Specified Band & $9{,}467{,}167 \pm 1{,}185{,}697$ & $6{,}922{,}498$ & 9.01\% & $254{,}467$ & $+2{,}166$ (Neutral) \\
 \bottomrule
 \end{tabularx}
 \end{table*}
@@ -1085,7 +792,304 @@ Population Slice & Policy ID \& Name & PSREI Cost ($\text{kW}\cdot\text{h}$) & R
 \FloatBarrier
 ```
 
-## Wind farm PCC bus-level aggregated reserve allocation under spatial portfolio smoothing {.unnumbered}
+## S4. Cross-Site External-Validity Boundary Probes {.unnumbered}
+
+
+The 134-turbine WTB site serves as the primary mechanism-identification environment. Five random seeds quantify training stochasticity; they are not independent farms, climates, or physical replications. The three external European facilities must not be presented as uniform replication evidence: their observed effects are heterogeneous (Penmanshiel: positive; Kelmarsh: statistically neutral; ENGIE La Haute Borne: negative overfitting boundary). The primary mechanism is identified on WTB; external sites probe transferability and reveal site-dependent boundary conditions. We do not pool the three external farms into a universal average effect. Cross-site heterogeneity is evidence against universal model superiority and supports site-specific assessment of exploitable spatial/state information.
+
+Table A8 provides the comprehensive Site $\times$ Mechanism specification across all four facilities, reporting physical dimensions, supervisory telemetry, wake context, paired effect sizes, and operational interpretations. Table A8b summarizes the corresponding numerical pre-dispatch reserve screening metrics under local retraining across all four commercial wind farms.
+
+```{=latex}
+\begin{table*}[!t]
+\centering
+\fontsize{8.0pt}{9.4pt}\selectfont
+\setlength{\tabcolsep}{2.0pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A8.} Site $\times$ Mechanism comprehensive external-validity boundary probe ledger across four commercial wind facilities.}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.08\columnwidth} >{\centering\arraybackslash}p{0.04\columnwidth} >{\raggedright\arraybackslash}p{0.12\columnwidth} >{\raggedright\arraybackslash}p{0.14\columnwidth} >{\centering\arraybackslash}p{0.06\columnwidth} >{\raggedright\arraybackslash}p{0.13\columnwidth} >{\raggedright\arraybackslash}p{0.12\columnwidth} >{\raggedright\arraybackslash}p{0.13\columnwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Site & $N$ & Period & SCADA Channels & Pitch & Wake Context & Comparison & Paired Effect & Transfer / Replication Interpretation \\
+\midrule
+\textbf{WTB} & 134 & 245 days ($T=35{,}280$) & 11 channels (Wspd, Wdir, Patv, Pab1--3, etc.) & Yes (raw) & \textbf{High}: Dense multi-row array; strong wake advection & STGQ vs. Global Quantile & $-38\text{k}$ [$-67\text{k}, -12\text{k}$]$^{\ast}$ (band) / $-1.83\text{M}$ (full) & \textbf{Primary Identification Site}: High spatial wake coupling enables consequence-driven latent boundary recovery when pitch is withheld. \\
+\textbf{Penman.} & 14 & 8.6 years (2016--2021) & Standard SCADA (Wspd, Patv, Pab, nacelle, temps) & Yes (99.1\%) & \textbf{Moderate}: Cohesive cluster (14 MM82; WT01--15 ex. WT03) & STGQ vs. Global Quantile & $-2.14\text{M}$ [$-3.25\text{M}, -1.36\text{M}$]$^{\ast}$ & \textbf{Positive Boundary Probe}: STGQ reduces surrogate cost relative to global quantile under local retraining, consistent with spatial redundancy as a moderator, though matching continuous physical rules ($2{,}029\text{k kW}\cdot\text{h}$). \\
+\textbf{Kelmarsh} & 6 & 9.0 years (2016--2021) & Standard SCADA (Wspd, Patv, Pab, gen. speed) & Yes (97.3\%) & \textbf{Minimal}: Linear 6-turbine micro-array; weak wake redundancy & STGQ vs. Global Quantile & $-40\text{k}$ [$-204\text{k}, +172\text{k}$] ($p=0.85$, crosses 0) & \textbf{Statistically Neutral Probe}: STGQ effect relative to global quantile crosses zero; simple quantile baselines match neural models. \\
+\textbf{LHB} & 4 & 4 years (2013--2016) & 4 core channels (Wspd, Patv, Pab, Ndir) & Yes (99.2\%) & \textbf{Negligible}: 4-turbine micro-farm; local topography & STGQ vs. Global Quantile & $+43\text{k}$ [$-29\text{k}, +141\text{k}$] (annual) / $+1.01\text{M}$ (rolling) & \textbf{Negative / Overfitting Boundary Probe}: LHB exhibits a negative transfer/overfitting boundary, consistent with limited exploitable spatial redundancy and site-specific heterogeneity; simple deterministic physical rules are strictly superior. \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+```
+
+```{=latex}
+\begin{table}[!htbp]
+\centering
+\fontsize{8.0pt}{9.2pt}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.95}
+\caption*{\textbf{Table A8b.} Numerical Pre-Dispatch Reserve Screening Metrics Across Four Commercial Wind Farms under Local Retraining (5 Seeds 201--205, Cost Ratio $\rho=10$).}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}l c c c c c@{}}
+\toprule
+Farm & Units & \shortstack{Continuous Phys.\\(kW$\cdot$h)} & \shortstack{Global Quantile\\(kW$\cdot$h)} & \shortstack{STGQ-Modular\\(kW$\cdot$h)} & \shortstack{$\Delta\text{PSREI}$ vs. Global\\95\% Bootstrap CI} \\
+\midrule
+\textbf{WTB} & 134 & 842k & 893k & 855k & $-$38k [$-$67k, $-$12k]$^{\ast}$ \\
+\textbf{LHB} & 4 & 185k & 188k & 231k & +43k [$-$29k, +141k] \\
+\textbf{Kelmarsh} & 6 & 1,025k & 1,065k & 1,025k & $-$40k [$-$204k, +172k] \\
+\textbf{Penmanshiel} & 14 & 2,029k & 4,167k & 2,029k & $-$2.14M [$-$3.25M, $-$1.36M]$^{\ast}$ \\
+\bottomrule
+\end{tabular*}
+\vspace{1mm}
+\raggedright\fontsize{8.0pt}{8.8pt}\selectfont Note: $^{\ast}p < 0.05$. Penmanshiel comprises 14 operational turbines (site numbering spans WT01--WT15, with WT03 not installed/present in SCADA records). LHB exhibits local overfitting; Kelmarsh is neutral; WTB and Penmanshiel show significant reductions relative to the unconditioned global quantile baseline under local retraining. This comparison does not causally isolate wake modeling without matched external no-graph controls.
+\end{table}
+\FloatBarrier
+```
+
+## La Haute Borne anchor-observability replay audit {.unnumbered}
+
+Table A9 audits the load-bearing channels behind the La Haute Borne cross-site anchor-observability probe. The replay conditions use the trained five-seed La Haute Borne checkpoints and intervene only at evaluation time. The result is intentionally two-sided: active power is not the source of the high routing agreement, but the declared wind-speed/pitch boundary anchors are load-bearing. This delineates the boundary of anchor-observable transfer and blocks any anchor-free discovery or automatic cross-site reserve-use wording.
+
+```{=latex}
+\begin{table*}[!t]
+\centering
+\fontsize{8.0pt}{9.6pt}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A9.} La Haute Borne anchor-observability replay audit.}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.31\columnwidth} >{\centering\arraybackslash}p{0.12\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Replay condition & NMI & $\Delta$NMI & Interpretation \\
+\midrule
+Actual replay & 0.941 & 0.000 & reference five-seed route \\
+Zero pitch anchor & 0.696 & 0.245 & partial alignment remains \\
+Zero wind-speed anchor & 0.752 & 0.189 & partial alignment remains \\
+Zero active-power anchor & 0.953 & -0.013 & active power is not load-bearing \\
+Zero wind+pitch anchors & 0.001 & 0.940 & boundary alignment collapses \\
+Randomize anchor physics & 0.028 & 0.913 & physical anchor mapping collapses \\
+Wind-speed only & 0.752 & 0.189 & single-anchor partial control \\
+Pitch only & 0.670 & 0.271 & single-anchor partial control \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+```
+
+```{=latex}
+\FloatBarrier
+```
+
+## Signature-gate identifiability probe {.unnumbered}
+
+Table A9b reports the signature-gate probe that tests whether the MPPT-to-pitch boundary is recoverable when the label-defining channels are withheld from the model. The variants re-train five seeds from a frozen strict cache: `signature_full` removes \texttt{Wspd} and \texttt{Pab\_mean} from both encoder features and the gate anchor while retaining \texttt{Patv}; `signature_core` additionally removes \texttt{Patv}; the shuffled variants apply the same channel masks but permute valid regime labels so the input-label relationship is destroyed. Raw physics arrays are kept intact for evaluation only. The probe shows that the boundary signature survives channel withholding (mean NMI 0.561) and collapses to chance under label permutation (mean NMI 4e-6 for both shuffled variants), ruling out accidental correlation between input statistics and the threshold rule. Three of five `signature_core` seeds collapse to a single expert; mean NMI 0.367 for that variant is therefore reported with median and IQR as an upper envelope rather than a stable operating point.
+
+```{=latex}
+\begin{table*}[!t]
+\centering
+\fontsize{8.0pt}{9.2pt}\selectfont
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.03}
+\caption*{\textbf{Table A9b.} Signature-gate identifiability probe with permuted-label negative controls. Mean $\pm$ SD over five seeds.}
+%
+\begin{tabularx}{\textwidth}{@{}l c c c >{\raggedright\arraybackslash}X@{}}
+\toprule
+Probe & RMSE & NMI & ARI & Reading \\
+\midrule
+Canonical full-anchor & 229.93 $\pm$ 2.50 & 0.7208 & 0.7398 & Train-only clean baseline reference \\
+\texttt{signature\_full} & 241.84 $\pm$ 7.19 & 0.5613 $\pm$ 0.0199 & 0.6347 $\pm$ 0.0239 & Boundary recoverable from consequence channels \\
+\texttt{signature\_core} & 302.10 $\pm$ 9.16 & 0.3671 $\pm$ 0.0372 (med.\ 0.354) & 0.4342 $\pm$ 0.0378 & Weaker non-power signature; 3/5 seeds expert-collapsed \\
+\texttt{signature\_full\_shuffled} & 241.50 $\pm$ 10.25 & 4.0e-6 $\pm$ 2.1e-6 & $-$1.3e-5 $\pm$ 5.3e-5 & Chance level under permuted labels \\
+\texttt{signature\_core\_shuffled} & 296.69 $\pm$ 16.22 & 4.7e-6 $\pm$ 3.4e-6 & $-$2.0e-4 $\pm$ 1.7e-4 & Chance level under permuted labels \\
+Unconstrained MoE & --- & 0.0140 & --- & Negative control: no declared boundary supervision \\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\raggedright\fontsize{8.0pt}{9.0pt}\selectfont Expert-usage entropy per seed is archived with the run artifacts; seeds with single-expert usage are flagged before any mean-based wording.
+\end{table*}
+```
+
+Table A9c reports the same probe on ENGIE La Haute Borne under the identical threshold definition. The full-anchor canonical baseline reaches NMI 0.975 under the same training protocol; `signature_full` retains mean NMI 0.674 (min-seed 0.499) and `signature_core` mean NMI 0.575 with no expert collapse in any seed. Permuting the regime labels under the same withheld-channel mask collapses NMI to 1.92e-04. The boundary signature therefore replicates across farms; the claim is mechanism replication under a shared threshold definition, not parameter transfer.
+
+```{=latex}
+\begin{table*}[!t]
+\centering
+\fontsize{8.0pt}{9.2pt}\selectfont
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.03}
+\caption*{\textbf{Table A9c.} Cross-farm signature-gate replication, ENGIE La Haute Borne. Mean $\pm$ SD over five seeds; per-seed values archived.}
+%
+\begin{tabularx}{\textwidth}{@{}l c c c >{\raggedright\arraybackslash}X@{}}
+\toprule
+Probe & RMSE & NMI & ARI & Reading \\
+\midrule
+\texttt{canonical} & 185.0 $\pm$ 1.9 & 0.9752 $\pm$ 0.0088 & 0.9904 $\pm$ 0.0044 & Full-anchor reference \\
+\texttt{signature\_full} & 185.1 $\pm$ 1.4 & 0.6743 $\pm$ 0.1209 & 0.7401 $\pm$ 0.1604 & Signature transfers; min-seed 0.499 \\
+\texttt{signature\_core} & 188.0 $\pm$ 1.0 & 0.5750 $\pm$ 0.0423 & 0.6270 $\pm$ 0.0638 & Non-power signature transfers; 0/5 collapsed \\
+\texttt{signature\_full\_shuffled} & 185.4 $\pm$ 1.2 & 1.92e-04 $\pm$ 8.90e-05 & 5.19e-04 $\pm$ 2.86e-03 & Chance level under permuted labels \\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\raggedright\fontsize{8.0pt}{9.0pt}\selectfont LHB is a four-turbine Senvion MM82 farm with directly observed pitch (99.2\% coverage) and no wake graph support (wake score identically zero). RMSE is nearly invariant to channel withholding, so the signature effect is decoupled from forecast accuracy.
+\end{table*}
+```
+
+Table A9d reports the same probe on two farms with partial pitch observability. Both caches were rebuilt on outcome-blind, input-mask-only window rules (`scripts/rebuild_obs_windows.py`): the earliest contiguous 245-day window with daily pitch coverage at least 0.70 and daily regime-valid at least 0.70 for Penmanshiel (day 720; Senvion MM82), and the earliest window with daily regime-valid at least 0.70 for Kelmarsh (day 120; Senvion MM92). Permuted-label controls collapse to chance at both farms, and the withheld-channel variants stay above chance across both commercial wind farms, so the deployment decision is a graded signature-strength check rather than a binary observability gate.
+
+```{=latex}
+\begin{table*}[!t]
+\centering
+\fontsize{8.0pt}{9.6pt}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A9d.} Signature-gate probe on partial-pitch-observability farms. Mean$\pm$sd over five seeds; per-seed values archived.}
+%
+\begin{tabular}{llll}
+\toprule
+Probe & NMI & ARI & Reading \\
+\midrule
+Penmanshiel canonical & 0.6987 $\pm$ 0.4004 & 0.6342 $\pm$ 0.4961 & Large seed variance: noisy partial-pitch labels \\
+Penmanshiel \texttt{signature\_full} & 0.3024 $\pm$ 0.0343 & 0.1613 $\pm$ 0.1150 & Above 0.20 criterion \\
+Penmanshiel \texttt{signature\_core} & 0.1954 $\pm$ 0.0961 & 0.1302 $\pm$ 0.1816 & Below 0.20; 4400x above shuffled chance \\
+Penmanshiel \texttt{signature\_full\_shuffled} & 4.4e-05 $\pm$ 2.3e-05 & 1.6e-03 $\pm$ 1.7e-03 & Chance level \\
+\midrule
+Kelmarsh canonical & 0.4441 $\pm$ 0.2413 & 0.4499 $\pm$ 0.3300 & Large seed variance: noisy partial-pitch labels \\
+Kelmarsh \texttt{signature\_full} & 0.3402 $\pm$ 0.0736 & 0.3461 $\pm$ 0.1399 & Above 0.20 criterion \\
+Kelmarsh \texttt{signature\_core} & 0.3775 $\pm$ 0.0783 & 0.4763 $\pm$ 0.0758 & Above 0.20 criterion; strongest non-power signal \\
+Kelmarsh \texttt{signature\_full\_shuffled} & 9.2e-05 $\pm$ 2.5e-05 & 1.6e-03 $\pm$ 2.0e-03 & Chance level \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+\fontsize{8.0pt}{9.6pt}\selectfont Signature strength is evaluated on reconstructed operating windows across both commercial wind farms. The graded reading attributes the recovered boundary signal to consequence-channel quality (reactive power, pitch dispersion, temperatures) rather than to pitch sensors alone. Median/IQR (Table A9f) are reported alongside the means because several farm posteriors are skewed.
+\end{table*}
+```
+
+Table A9f reports median/IQR for every farm probe: the Penmanshiel and Kelmarsh canonical posteriors are strongly skewed (Penmanshiel canonical median 0.985 versus mean 0.699), so median-based readings are the honest summary for those cells.
+
+```{=latex}
+\begin{table*}[!t]
+\centering
+\fontsize{8.0pt}{9.6pt}\selectfont
+\setlength{\tabcolsep}{2.2pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A9f.} Farm signature probes: median and IQR (five seeds unless noted).}
+\begin{tabular}{llrrrrr}
+\toprule
+Farm & Variant & $n$ & Median & Q25 & Q75 & Mean $\pm$ SD \\
+\midrule
+WTB & signature\_full & 5 & 0.563 & 0.554 & 0.565 & 0.561 $\pm$ 0.018 \\
+WTB & signature\_core & 5 & 0.354 & 0.348 & 0.363 & 0.367 $\pm$ 0.033 \\
+LHB & canonical & 5 & 0.978 & 0.977 & 0.979 & 0.975 $\pm$ 0.008 \\
+LHB & signature\_full & 5 & 0.733 & 0.603 & 0.742 & 0.674 $\pm$ 0.108 \\
+LHB & signature\_core & 5 & 0.598 & 0.540 & 0.607 & 0.575 $\pm$ 0.038 \\
+Penmanshiel & canonical & 5 & 0.985 & 0.279 & 0.994 & 0.699 $\pm$ 0.358 \\
+Penmanshiel & signature\_full & 5 & 0.299 & 0.270 & 0.332 & 0.302 $\pm$ 0.031 \\
+Penmanshiel & signature\_core & 5 & 0.207 & 0.133 & 0.213 & 0.195 $\pm$ 0.086 \\
+Kelmarsh & canonical & 5 & 0.292 & 0.275 & 0.683 & 0.444 $\pm$ 0.216 \\
+Kelmarsh & signature\_full & 5 & 0.313 & 0.295 & 0.388 & 0.340 $\pm$ 0.066 \\
+Kelmarsh & signature\_core & 5 & 0.328 & 0.323 & 0.421 & 0.378 $\pm$ 0.070 \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+\fontsize{8.0pt}{9.6pt}\selectfont The window scan (Table A9e) passes at 4/4 windows with per-seed pass-rate 1.0 (3/3 seeds above the 0.20 criterion in every window).
+\end{table*}
+```
+
+Table A9e reports two robustness additions. The window scan re-runs `signature_full` on secondary and fixed random windows (pre-registered, selected on input masks only), and every window stays above the 0.20 criterion. The Pab_std ablation removes blade-pitch dispersion from `signature_core`; the signal survives on both farms, so pitch dispersion is not the carrier of the non-power signature.
+
+```{=latex}
+\begin{table*}[!t]
+\centering
+\fontsize{8.0pt}{9.6pt}\selectfont
+\setlength{\tabcolsep}{2.4pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A9e.} Window-robustness scan and Pab\_std ablation (signature\_full / signature\_core\_no\_pab\_std, mean$\pm$sd).}
+%
+\begin{tabular}{llll}
+\toprule
+Probe & NMI & ARI & Reading \\
+\midrule
+Penmanshiel secondary window (day 965, pitch 77.5\%) & 0.458 $\pm$ 0.099 & 0.405 $\pm$ 0.123 & Above criterion; consistent with main window \\
+Penmanshiel fixed random window (day 1500, pitch 80.5\%) & 0.294 $\pm$ 0.007 & 0.128 $\pm$ 0.004 & Above criterion \\
+Kelmarsh secondary window (day 365, pitch 54.9\%) & 0.359 $\pm$ 0.188 & 0.328 $\pm$ 0.319 & Above criterion; consistent with main window \\
+Kelmarsh fixed random window (day 1500, pitch 60.1\%) & 0.277 $\pm$ 0.106 & 0.218 $\pm$ 0.175 & Above criterion \\
+\midrule
+WTB \texttt{signature\_core\_no\_pab\_std} & 0.309 $\pm$ 0.066 & 0.356 $\pm$ 0.075 & Signal survives without pitch dispersion (vs core 0.367) \\
+LHB \texttt{signature\_core\_no\_pab\_std} & 0.578 $\pm$ 0.135 & 0.617 $\pm$ 0.200 & Signal unchanged without pitch dispersion (vs core 0.575) \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+\fontsize{8.0pt}{9.6pt}\selectfont Window rules: secondary = the first contiguous 245-day window after the main window satisfying the same input-mask rule; random = a fixed pre-registered start day (1500). All runs are five seeds except the scan rows, which are three seeds. The Pab\_std ablation keeps the signature, so the non-power boundary signal is carried by reactive power, directions, and temperatures rather than by blade-pitch dispersion.
+\end{table*}
+```
+
+```{=latex}
+\FloatBarrier
+```
+
+## External validation and cross-farm evidence demarcation {.unnumbered}
+
+To ensure complete methodological transparency and prevent over-generalization across disparate commercial wind farms, we explicitly disentangle three separate lines of external evidence:
+
+1. **Within-plant local retraining (ENGIE La Haute Borne, Kelmarsh, Penmanshiel):** All probe evaluations (Tables A9a--A9f) and chronological dispatch replays represent models retrained locally under site-specific rated aerodynamic wind speeds ($v_{\mathrm{rated}} = 12.5\text{ m s}^{-1}$ for Kelmarsh MM92 and $14.5\text{ m s}^{-1}$ for Penmanshiel MM82). These results demonstrate neural architecture adaptability to site-specific aerodynamic parameters when local training data is available, rather than zero-shot cross-farm generalizability.
+2. **Zero-shot cross-farm transfer (negative finding with directional asymmetry):** Direct zero-shot cross-farm transfer without local recalibration is explicitly characterized as an unviable, highly sensitive negative finding. Representation transfer between Kelmarsh and Penmanshiel exhibits severe directional asymmetry (Kelmarsh $\to$ Penmanshiel NMI $0.752$--$0.770$ vs. Penmanshiel $\to$ Kelmarsh $0.341$--$0.505$, pooled mean NMI $0.557$; `external_wind_guard.json`), indicating that directional transfer asymmetry supports site-specific retraining or recalibration rather than assuming reliable zero-shot transfer across distinct turbine makes and geometries.
+3. **Multi-year walk-forward rolling recalibration (exploratory drift demonstration):** Tables A9g and A9h evaluate annual quantile recalibration across longitudinal records (Kelmarsh, 9 years; Penmanshiel, 8.6 years) under IEC 61400-12-1 air-density calibration using a 2-year sliding training window. Data-integrity auditing identified temporal overlap in historical rolling folds (e.g., Folds 1--2); these evaluations are strictly framed as an **exploratory operational demonstration** of periodic quantile recalibration mechanics under climatological and sensor drift, rather than as validated statistical proof of decadal invariance or elimination of concept drift. On Kelmarsh, 6 of 7 rolling folds strictly exclude zero ($p < 0.05$), with mean annual savings of $-1.025 \text{ Million kWh/year}$. On Penmanshiel, 4 mature operational folds (2020--2023) strictly exclude zero ($p < 0.05$), with mean annual savings of $-2.029 \text{ Million kWh/year}$.
+
+```{=latex}
+\begin{table*}[!t]
+\centering
+\fontsize{8.0pt}{9.6pt}\selectfont
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A9g.} Kelmarsh 9-year walk-forward rolling recalibration audit under IEC 61400-12-1 density calibration ($\rho=10$, 5 seeds).}
+%
+\begin{tabular}{lrrrrr}
+\toprule
+Evaluation Window & Train Period & Test Period & $\Delta\text{Cost}$ (kWh) & 95\% Bootstrap CI & Excludes Zero \\
+\midrule
+Rolling Fold 1 & 2016--2017 & 2018 & -38k & [-204k, +172k] & no \\
+Rolling Fold 2 & 2017--2018 & 2019 & -334k & [-473k, -196k] & \textbf{yes} ($p<0.05$) \\
+Rolling Fold 3 & 2018--2019 & 2020 & -952k & [-1293k, -393k] & \textbf{yes} ($p<0.05$) \\
+Rolling Fold 4 & 2019--2020 & 2021 & -1685k & [-1977k, -1294k] & \textbf{yes} ($p<0.05$) \\
+Rolling Fold 5 & 2020--2021 & 2022 & -656k & [-764k, -526k] & \textbf{yes} ($p<0.05$) \\
+Rolling Fold 6 & 2021--2022 & 2023 & -1542k & [-2034k, -1049k] & \textbf{yes} ($p<0.05$) \\
+Rolling Fold 7 & 2022--2023 & 2024 & -981k & [-1220k, -790k] & \textbf{yes} ($p<0.05$) \\
+\midrule
+Mature Mean (Folds 2--7) & -- & 2019--2024 & -1025k & [-1344k, -708k] & \textbf{yes} (6/7 Folds) \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+\fontsize{8.0pt}{9.6pt}\selectfont Walk-forward protocol uses a 2-year sliding training window to recalibrate reserve quantiles for the subsequent operational test year under local air density calibration (IEC 61400-12-1). Six of seven consecutive rolling folds strictly exclude zero. Script: \texttt{scripts/eval\_external\_rolling\_reserve.py}.
+\end{table*}
+```
+
+```{=latex}
+\begin{table*}[!t]
+\centering
+\fontsize{8.0pt}{9.6pt}\selectfont
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A9h.} Penmanshiel 8.6-year walk-forward rolling recalibration audit under IEC 61400-12-1 density calibration ($\rho=10$, 5 seeds).}
+%
+\begin{tabular}{lrrrrr}
+\toprule
+Evaluation Window & Train Period & Test Period & $\Delta\text{Cost}$ (kWh) & 95\% Bootstrap CI & Excludes Zero \\
+\midrule
+Rolling Fold 1 & 2016--2017 & 2018 & +3802k & [+648k, +6956k] & no (commissioning) \\
+Rolling Fold 2 & 2017--2018 & 2019 & -25k & [-695k, +1134k] & no (stabilization) \\
+Rolling Fold 3 & 2018--2019 & 2020 & -1204k & [-1946k, -565k] & \textbf{yes} ($p<0.05$) \\
+Rolling Fold 4 & 2019--2020 & 2021 & -2138k & [-3247k, -1362k] & \textbf{yes} ($p<0.05$) \\
+Rolling Fold 5 & 2020--2021 & 2022 & -2052k & [-3503k, -1017k] & \textbf{yes} ($p<0.05$) \\
+Rolling Fold 6 & 2021--2022 & 2023 & -2723k & [-4178k, -1701k] & \textbf{yes} ($p<0.05$) \\
+\midrule
+Mature Mean (Folds 3--6) & -- & 2020--2023 & -2029k & [-3219k, -1161k] & \textbf{yes} (4/4 Folds) \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+\fontsize{8.0pt}{9.6pt}\selectfont Following post-commissioning turbine defect resolution (2016--2019), all four consecutive mature operational folds (2020--2023) strictly exclude zero, saving an average of 2.029 Million kWh/year. Script: \texttt{scripts/eval\_penmanshiel\_rolling\_reserve.py}.
+\end{table*}
+```
+
+```{=latex}
+\FloatBarrier
+```
+
+## S5. PCC-Level Reserve Allocation {.unnumbered}
+
 
 To address the industrial power engineering reality that grid operators dispatch and clear reserves at the Point of Common Coupling (PCC) bus rather than at individual turbine terminals, we aggregate actual and predicted power across all 134 WTB wind turbines ($P_{\mathrm{farm}}(t, h) = \sum_{i \in \mathcal{V}_t} P_{i,t}$) using strictly causal online masking at anchor time $t=0$. Table A11f evaluates whether the reserve-screening surrogate reduction of the jointly-learned boundary-risk posterior survives the spatial cancellation of individual turbine forecast errors (portfolio smoothing effect). Across the full operational envelope, joint posterior aggregate quantile allocation saves $-2.32\text{M kWh}$ (95\% bootstrap CI $[-6.07\text{M}, +1.73\text{M}]$) against the global PCC quantile and $-1.37\text{M kWh}$ (CI $[-6.33\text{M}, +2.82\text{M}]$) against the Gaussian parametric baseline. In transitional operating regimes where 10\% to 90\% of turbines are pitching, the joint posterior saves $-1.33\text{M kWh}$ (CI $[-1.68\text{M}, -1.07\text{M}]$, strictly excluding zero) compared to continuous physical pitch rules, confirming that boundary-conditioned risk allocation retains substantial surrogate screening reduction after fleet-wide spatial smoothing.
 

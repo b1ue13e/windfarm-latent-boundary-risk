@@ -141,11 +141,11 @@ def compute_transition_recall(y_true: np.ndarray, y_pred_binary: np.ndarray, win
     # Detect transitions along time axis
     diff = np.diff(y_true, axis=0, prepend=y_true[:1, :]) != 0  # (W, N)
     
-    # Expand transition windows +- window_radius
-    in_window = np.zeros_like(y_true, dtype=bool)
-    for offset in range(-window_radius, window_radius + 1):
-        shifted = np.roll(diff, offset, axis=0)
-        in_window |= shifted
+    # Expand transition windows +- window_radius (bounded non-circular dilation)
+    in_window = diff.copy()
+    for offset in range(1, window_radius + 1):
+        in_window[offset:, :] |= diff[:-offset, :]
+        in_window[:-offset, :] |= diff[offset:, :]
 
     # Target points: true pitch points inside transition windows
     target_mask = in_window & (y_true == 1)

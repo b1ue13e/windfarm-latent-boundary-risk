@@ -1,11 +1,12 @@
 {
   "title": "论文核心问题的对抗性审查与第一性原理收束",
   "created": "2026-09-18T00:00:00+08:00",
-  "updated": "2026-09-21T21:16:00+08:00",
-  "phase": "final",
-  "status": "complete",
-  "last_verified_task": "TF1",
+  "updated": "2026-09-22T00:25:00+08:00",
+  "phase": "completed",
+  "status": "completed",
+  "last_verified_task": "MB13",
   "notes": [
+    "Decisive Matched-Reserve-Budget Falsification Campaign (MB00-MB13) successfully completed: falsified reserve allocation advantage in transition windows (Case C/D verdict). At matched budget (Delta R = 0), posterior yields +5,241 kWh higher shortage on average; 4 of 5 seeds fail. Dynamic re-optimization shows no economic crossover for any rho >= 5.",
     "Tasks T34-T37 completed: GBDT metric provenance reconciled (16.23% clean vs 14.98% pitch-withheld).",
     "Multi-site framed as external-validity boundary probes (WTB primary identification).",
     "Strong-baseline closure completed: Posterior is risk-hedging mechanism (Delta_trans - Delta_steady = -296k kWh, p < 0.005), Wspd-Bins is minimum sufficient model in steady state.",
@@ -20,7 +21,9 @@
     "Task T44 completed: Merged origin/scientific-control-architecture, audited scientific contract and experiment registry, invoked scientific-falsifier (PASS), executed all 4 manifest commands (Exit 0), completed independent evidence review (PASS), and verified meta-verification gate (Exit 0).",
     "Tasks T45-T49 completed: Submission Freeze finalized: PAT security protocol audited, TSTE Desk-Reject/Reviewer Panel Audit passed, PDF integrity verified, ScholarOne-ready submission package compiled in artifacts/tste_submission_freeze_20260921/ with SHA256 checksums and zip bundle, all verification gates exit 0.",
     "Tasks T50-T62 completed: Three-regime restructure, Abstract/Intro pruning, Regime 3 & Supporting Evidence compression, Discussion/Conclusion operational refactoring, number consistency test harness reconciliation (73/73 pass), XeLaTeX standalone re-compilation (9 pages, 0 overfull hboxes), all 4 verification manifest gates passed with exit 0.",
-    "Task TF1 completed: Independent evidence review completed across all tasks T00 through T62 and issued formal PASS verdict recorded in .agent_state/REVIEW_REPORT.md and .agent_state/AUDIT_REPORT.md."
+    "Tasks T63-T66 completed: Mechanism localization refactored across Sections III, IV-C, IV-D, V, VII; scripts/verify_scientific_claim_gate.py updated; PDFs recompiled cleanly (9 pages, 0 overfull hboxes); all 4 verification manifest gates pass with exit code 0.",
+    "Task TF1 completed: Independent evidence review completed across all tasks T00 through T66 and issued formal PASS verdict recorded in .agent_state/REVIEW_REPORT.md and .agent_state/AUDIT_REPORT.md.",
+    "Task MB13 completed: Final independent audit and 8-question adversarial review completed in docs/MATCHED_BUDGET_FINAL_AUDIT.md with formal PASS verdict; pre-completion gate verify_gate.py passes cleanly with exit code 0."
   ]
 }
 

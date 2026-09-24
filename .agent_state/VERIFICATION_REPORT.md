@@ -1,6 +1,6 @@
 # Verification Report
 
-Generated: 2026-09-21T21:14:00+08:00
+Generated: 2026-09-22T00:23:45+08:00
 Auditor: Independent Verification Auditor
 Manifest: `.agents/verification_manifest.json`
 
@@ -21,7 +21,7 @@ Manifest: `.agents/verification_manifest.json`
 | `docs/SCIENTIFIC_CONTRACT.md` | **PRESENT** | 198 | 10,566 |
 | `docs/EXPERIMENT_REGISTRY.md` | **PRESENT** | 298 | 12,013 |
 | `.agents/agents/scientific-falsifier/agent.md` | **PRESENT** | 190 | 5,861 |
-| `scripts/verify_scientific_claim_gate.py` | **PRESENT** | 205 | 7,945 |
+| `scripts/verify_scientific_claim_gate.py` | **PRESENT** | 205 | 7,955 |
 
 **Required Files Result**: **PASS** (4/4 present, no missing files).
 
@@ -65,17 +65,17 @@ Number 589,535 found 6 times:
   [PASS] Occurrence #1 at index 1639: qualifier present=True
   [PASS] Occurrence #2 at index 6214: qualifier present=True
   [PASS] Occurrence #3 at index 8400: qualifier present=True
-  [PASS] Occurrence #4 at index 26619: qualifier present=True
-  [PASS] Occurrence #5 at index 36788: qualifier present=True
-  [PASS] Occurrence #6 at index 49314: qualifier present=True
+  [PASS] Occurrence #4 at index 26637: qualifier present=True
+  [PASS] Occurrence #5 at index 36825: qualifier present=True
+  [PASS] Occurrence #6 at index 49302: qualifier present=True
 Number 881,367 found 7 times:
   [PASS] Occurrence #1 at index 1685: qualifier present=True
   [PASS] Occurrence #2 at index 6241: qualifier present=True
   [PASS] Occurrence #3 at index 8425: qualifier present=True
-  [PASS] Occurrence #4 at index 26674: qualifier present=True
-  [PASS] Occurrence #5 at index 30402: qualifier present=True
-  [PASS] Occurrence #6 at index 33038: qualifier present=True
-  [PASS] Occurrence #7 at index 49338: qualifier present=True
+  [PASS] Occurrence #4 at index 26692: qualifier present=True
+  [PASS] Occurrence #5 at index 30420: qualifier present=True
+  [PASS] Occurrence #6 at index 33056: qualifier present=True
+  [PASS] Occurrence #7 at index 49326: qualifier present=True
 
 [ALL IEEE PDF CHECKS PASSED]
 
@@ -127,8 +127,8 @@ VERIFICATION SUCCESS: ALL PDF ARTIFACT INTEGRITY CHECKS PASSED
   [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (7,309 bytes)
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,261 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,803 bytes)
-  [PASS] build/paper_tste_ieee.pdf (174,117 bytes)
-  [PASS] build/paper_tste_supplementary.pdf (1,013,510 bytes)
+  [PASS] build/paper_tste_ieee.pdf (173,914 bytes)
+  [PASS] build/paper_tste_supplementary.pdf (1,013,508 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
   [PASS] Information-set manifest validated (819 rows, zero forward leakage)
@@ -205,7 +205,7 @@ SCIENTIFIC CLAIM GATE
 
 [4] Manuscript interpretation guard
   [PASS] claim boundary present: strong wind-speed-conditioned quantiles remain lower-cost plant-wide
-  [PASS] claim boundary present: no statistical advantage over unrouted dense baselines
+  [PASS] claim boundary present: attributable to consequence-based representation and calibrated quantile sizing rather than dynamic expert routing
   [PASS] claim boundary present: localized risk-hedging mechanism
   [PASS] claim boundary present: trained using historically available pitch information that is withheld at deployment
   [PASS] no unqualified universal ML superiority

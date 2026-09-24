@@ -123,9 +123,11 @@ def main():
 
     reg_mat = bundle.regime_primary[test_anchors, :]
     diff = np.diff(reg_mat, axis=0, prepend=reg_mat[:1, :]) != 0
-    trans_mat = np.zeros_like(reg_mat, dtype=bool)
-    for off in range(-3, 4):
-        trans_mat |= np.roll(diff, off, axis=0)
+    # Bounded non-circular temporal dilation for +/- 3 steps (no circular wrap-around)
+    trans_mat = diff.copy()
+    for off in range(1, 4):
+        trans_mat[off:, :] |= diff[:-off, :]
+        trans_mat[:-off, :] |= diff[off:, :]
     is_transition = trans_mat.reshape(-1)
 
     h_idx = 5  # h=6

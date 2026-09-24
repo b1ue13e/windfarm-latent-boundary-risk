@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-09-21T21:26:46+08:00
+Generated: 2026-09-25T07:39:32+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -26,20 +26,20 @@ Total pages: 9
 
 --- Checking Headline Number Proximity Qualifiers ---
 Number 589,535 found 6 times:
-  [PASS] Occurrence #1 at index 1639: qualifier present=True
-  [PASS] Occurrence #2 at index 6214: qualifier present=True
-  [PASS] Occurrence #3 at index 8400: qualifier present=True
-  [PASS] Occurrence #4 at index 26619: qualifier present=True
-  [PASS] Occurrence #5 at index 36788: qualifier present=True
-  [PASS] Occurrence #6 at index 49314: qualifier present=True
+  [PASS] Occurrence #1 at index 1000: qualifier present=True
+  [PASS] Occurrence #2 at index 4865: qualifier present=True
+  [PASS] Occurrence #3 at index 7245: qualifier present=True
+  [PASS] Occurrence #4 at index 25503: qualifier present=True
+  [PASS] Occurrence #5 at index 36251: qualifier present=True
+  [PASS] Occurrence #6 at index 48574: qualifier present=True
 Number 881,367 found 7 times:
-  [PASS] Occurrence #1 at index 1685: qualifier present=True
-  [PASS] Occurrence #2 at index 6241: qualifier present=True
-  [PASS] Occurrence #3 at index 8425: qualifier present=True
-  [PASS] Occurrence #4 at index 26674: qualifier present=True
-  [PASS] Occurrence #5 at index 30402: qualifier present=True
-  [PASS] Occurrence #6 at index 33038: qualifier present=True
-  [PASS] Occurrence #7 at index 49338: qualifier present=True
+  [PASS] Occurrence #1 at index 1026: qualifier present=True
+  [PASS] Occurrence #2 at index 4893: qualifier present=True
+  [PASS] Occurrence #3 at index 7271: qualifier present=True
+  [PASS] Occurrence #4 at index 25559: qualifier present=True
+  [PASS] Occurrence #5 at index 30062: qualifier present=True
+  [PASS] Occurrence #6 at index 32688: qualifier present=True
+  [PASS] Occurrence #7 at index 48598: qualifier present=True
 
 [ALL IEEE PDF CHECKS PASSED]
 
@@ -87,8 +87,8 @@ Exit: 0
   [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (7,309 bytes)
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,261 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,803 bytes)
-  [PASS] build/paper_tste_ieee.pdf (174,117 bytes)
-  [PASS] build/paper_tste_supplementary.pdf (1,013,510 bytes)
+  [PASS] build/paper_tste_ieee.pdf (174,226 bytes)
+  [PASS] build/paper_tste_supplementary.pdf (1,013,790 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
   [PASS] Information-set manifest validated (819 rows, zero forward leakage)
@@ -149,16 +149,16 @@ SCIENTIFIC CLAIM GATE
 
 [2] Strong-baseline claim ceiling
   [PASS] plant-wide posterior cost superiority is not supported (+523,044 kWh)
-  [PASS] transition result is a risk hedge, not a cost win (PSREI delta +112704 kWh)
-  [PASS] steady-state simple baseline remains lower-cost (+410340 kWh posterior penalty)
+  [PASS] transition result is a risk hedge, not a cost win (PSREI delta +112739 kWh)
+  [PASS] steady-state simple baseline remains lower-cost (+410305 kWh posterior penalty)
 
 [3] Transition-localization interaction
-  [PASS] heterogeneity retained: interaction=-296122.6 kWh, CI=[-568243.8,-41568.4], p=0.002
+  [PASS] heterogeneity retained: interaction=-296052.9 kWh, CI=[-568265.1,-39428.8], p=0.002
 
 [4] Manuscript interpretation guard
   [PASS] claim boundary present: strong wind-speed-conditioned quantiles remain lower-cost plant-wide
-  [PASS] claim boundary present: no statistical advantage over unrouted dense baselines
-  [PASS] claim boundary present: localized risk-hedging mechanism
+  [PASS] claim boundary present: attributable to consequence-based representation and calibrated quantile sizing rather than dynamic expert routing
+  [PASS] claim boundary present: state recoverability is not sufficient for downstream reserve-decision superiority
   [PASS] claim boundary present: trained using historically available pitch information that is withheld at deployment
   [PASS] no unqualified universal ML superiority
   [PASS] no unqualified cross-site generalization proof
