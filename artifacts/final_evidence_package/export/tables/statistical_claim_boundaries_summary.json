@@ -1,0 +1,12 @@
+{
+  "inputs": {
+    "paired_effects_summary": "E:\\\u8bba\u65873\\artifacts\\strictmask_combined_reviewer_stats\\paired_effects_summary.csv",
+    "paired_multiplicity_table": "E:\\\u8bba\u65873\\artifacts\\strictmask_combined_reviewer_stats\\paired_multiplicity_table.csv",
+    "reserve_quantile_bootstrap": "E:\\\u8bba\u65873\\artifacts\\reserve_quantile_baseline\\reserve_quantile_baseline_bootstrap.csv"
+  },
+  "outputs": {
+    "csv": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\statistical_claim_boundaries.csv",
+    "tex": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\table_statistical_claim_boundaries.tex"
+  },
+  "claim_use": "Reviewer-facing statistical boundary table. It documents the train-only RMSE guardrail, legacy full-audit RMSE prices, non-significant gate-alignment superiority versus the full MoE comparator, and reserve bootstrap intervals that cross zero."
+}

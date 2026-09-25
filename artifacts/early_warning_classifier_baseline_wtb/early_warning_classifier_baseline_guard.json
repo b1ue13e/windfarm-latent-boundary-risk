@@ -1,0 +1,24 @@
+{
+  "status": "complete_classifier_baseline_matches_or_beats_gate",
+  "suite_root": "E:\\\u8bba\u65873\\artifacts\\strictmask_validation_wtb_full",
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "split": "test",
+  "clean_early_pitch": {
+    "gate_recall_mean": 0.9602702702702702,
+    "gate_precision_mean": 0.7586417890154358,
+    "clf_recall_mean": 1.0,
+    "clf_precision_mean": 0.8788598574821853
+  },
+  "classifier_matches_or_beats_gate": true,
+  "claim_use": "Reviewer-facing control for the label-degradation audit. On clean issue-time anchors a multinomial logistic regression fit on the validation split recovers the early MPPT-to-pitch pitch window as well as or better than the MoE gate, so the operational detection value reflects anchor availability at issue time, not the routing mechanism. The routing contribution is the auditable, boundary-aligned attribution integrated into the forecaster, not a superior standalone detector.",
+  "paths": {
+    "raw_csv": "E:\\\u8bba\u65873\\artifacts\\early_warning_classifier_baseline_wtb\\early_warning_classifier_baseline_raw.csv",
+    "summary_csv": "E:\\\u8bba\u65873\\artifacts\\early_warning_classifier_baseline_wtb\\early_warning_classifier_baseline_summary.csv"
+  }
+}

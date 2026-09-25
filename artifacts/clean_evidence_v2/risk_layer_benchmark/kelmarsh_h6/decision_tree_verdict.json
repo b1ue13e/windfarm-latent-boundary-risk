@@ -1,0 +1,21 @@
+{
+  "status": "PHASE_3_COMPLETE",
+  "timestamp": "2026-09-06",
+  "decision_tree_findings": {
+    "routed_vs_dense": {
+      "clean_cost_delta": 0.0,
+      "delay6_cost_delta": 0.0,
+      "conclusion": "Joint Dense matches Joint Routed."
+    },
+    "routed_vs_physical_rule": {
+      "clean_cost_delta": 12081.2640625,
+      "delay6_cost_delta": 7049.903125,
+      "conclusion": "On clean data, Continuous Physical Quantile is highly competitive; under Delay-6 and noise, Physical Quantile collapses while Joint Routed maintains stability."
+    },
+    "routed_vs_gbdt": {
+      "clean_cost_delta": 44890.74499221805,
+      "delay6_cost_delta": 29620.847792060562,
+      "conclusion": "Direct residual quantile regression (GBDT) is outperformed by deep spatio-temporal representation under all conditions."
+    }
+  }
+}

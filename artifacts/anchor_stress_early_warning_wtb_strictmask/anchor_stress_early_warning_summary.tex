@@ -1,0 +1,23 @@
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\caption{Anchor-stress label-degradation audit for MPPT-to-pitch transition detection.}
+\begin{tabular}{lllrrrr}
+\toprule
+Variant & Scenario & Degradation & Runs & Gate recall & Rule recall & Gain \\
+\midrule
+canonical & label\_delay & delay\_steps=1 & 5 & 0.960 $\pm$ 0.028 & 0.655 $\pm$ 0.000 & 0.305 $\pm$ 0.028 \\
+canonical & label\_delay & delay\_steps=3 & 5 & 0.960 $\pm$ 0.028 & 0.381 $\pm$ 0.000 & 0.579 $\pm$ 0.028 \\
+canonical & label\_delay & delay\_steps=6 & 5 & 0.960 $\pm$ 0.028 & 0.196 $\pm$ 0.000 & 0.764 $\pm$ 0.028 \\
+canonical & label\_availability & available\_rate=1.00 & 5 & 0.960 $\pm$ 0.028 & 1.000 $\pm$ 0.000 & -0.040 $\pm$ 0.028 \\
+canonical & label\_availability & available\_rate=0.75 & 5 & 0.960 $\pm$ 0.028 & 0.744 $\pm$ 0.012 & 0.216 $\pm$ 0.021 \\
+canonical & label\_availability & available\_rate=0.50 & 5 & 0.960 $\pm$ 0.028 & 0.508 $\pm$ 0.014 & 0.452 $\pm$ 0.038 \\
+canonical & label\_availability & available\_rate=0.25 & 5 & 0.960 $\pm$ 0.028 & 0.242 $\pm$ 0.011 & 0.718 $\pm$ 0.031 \\
+canonical & threshold\_sensor\_noise & wspd\_sd=0.25;pab\_sd=0.50 & 5 & 0.960 $\pm$ 0.028 & 0.896 $\pm$ 0.007 & 0.064 $\pm$ 0.026 \\
+canonical & threshold\_sensor\_noise & wspd\_sd=0.50;pab\_sd=1.00 & 5 & 0.960 $\pm$ 0.028 & 0.808 $\pm$ 0.008 & 0.152 $\pm$ 0.023 \\
+canonical & threshold\_sensor\_noise & wspd\_sd=1.00;pab\_sd=2.00 & 5 & 0.960 $\pm$ 0.028 & 0.652 $\pm$ 0.015 & 0.308 $\pm$ 0.028 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,16 @@
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\caption{Accountability value versus forecasting RMSE price.}
+\begin{tabular}{lrrrrl}
+\toprule
+Model & RMSE & RMSE price & NMI & Delay gain & Status \\
+\midrule
+iTransformer & 224.34 & 0.00 & -- & 0.000 & no audited operating-state gate \\
+Unconstrained MoE & 235.40 & 11.06 & 0.014 & 0.000 & fails physical-route audit \\
+Boundary-forced router & 229.93 & 5.59 & 0.721 & 0.764 & passes physical-route audit \\
+\bottomrule
+\end{tabular}
+\end{table}

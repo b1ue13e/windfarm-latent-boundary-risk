@@ -1,0 +1,18 @@
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Class-weight sensitivity audit.} Boundary-router rerun after recomputing alignment and pitch-forcing loss weights from the training split only.}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+Condition & Overall RMSE & Switch RMSE & Pitch RMSE & NMI & ARI \\
+\midrule
+Legacy strict-cache weights & 236.13 & 239.86 & 286.95 & 0.8716 & 0.9166 \\
+Train-only weight rerun & 229.93 & 231.65 & 289.63 & 0.7208 & 0.7398 \\
+Delta & -6.20 & -8.21 & 2.68 & -0.1508 & -0.1768 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

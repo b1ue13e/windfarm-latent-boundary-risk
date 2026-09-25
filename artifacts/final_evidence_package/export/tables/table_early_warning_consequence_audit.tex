@@ -1,0 +1,21 @@
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{Table A10.} Early-warning detector control under degraded threshold labels.}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrrrr}
+\toprule
+Condition & Gate R & Gate P & Classifier R & Classifier P & Rule R & Rule P & Recovered cells \\
+\midrule
+Clean live anchors & 0.960 & 0.759 & 1.000 & 0.879 & 1.000 & 0.879 & -- \\
+Delay, 6 steps & 0.960 & 0.759 & 1.000 & 0.879 & 0.196 & 0.342 & 565.6 $\pm$ 20.6 \\
+50\% label availability & 0.960 & 0.759 & 1.000 & 0.879 & 0.508 & 0.877 & 334.6 $\pm$ 28.1 \\
+Sensor noise, strongest & 0.960 & 0.759 & 0.885 & 0.758 & 0.652 & 0.804 & 227.8 $\pm$ 20.9 \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{1mm}
+\footnotesize R/P denote recall and precision on early pitch-window cells. The simple classifier is a validation-fit logistic model on the same issue-time anchors; it is a detector control, not a routed forecaster. In sensor-noise rows, gate values are the saved clean-route audit; classifier/rule values are recomputed from noisy anchors.
+\end{table}

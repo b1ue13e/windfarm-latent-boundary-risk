@@ -1,0 +1,10 @@
+candidate,baseline,status,n_days,n_seeds,n_seed_day_pairs,observed_delta,ci_low,ci_high,prob_candidate_lower
+Graph WaveNet/physical-bin,Graph WaveNet/global,ok,35,5,175,10146.925238050622,-154322.0846654546,167325.3022916832,0.467
+PatchTST/global,Graph WaveNet/global,ok,35,5,175,932611.3601179597,448169.1918822664,1468763.664042353,0.0
+PatchTST/physical-bin,Graph WaveNet/global,ok,35,5,175,940912.212742138,433441.361243934,1509767.3529974592,0.001
+Physics-Aligned MoE/global,Graph WaveNet/global,ok,35,5,175,1336105.8109054514,886970.9028643443,1838121.7105249304,0.0
+Physics-Aligned MoE/physical-bin,Graph WaveNet/global,ok,35,5,175,1182239.119209366,658420.9570462739,1791165.9800994536,0.0
+Physics-Aligned MoE/gate-bin,Graph WaveNet/global,ok,35,5,175,667679.089553104,161498.46422589573,1209707.6916351716,0.007
+Boundary-forced router/global,Graph WaveNet/global,ok,35,5,175,1317838.5194162084,795283.9529651394,1880966.561846538,0.0
+Boundary-forced router/physical-bin,Graph WaveNet/global,ok,35,5,175,1174639.5936316315,548689.3474900946,1832587.0046067408,0.0
+Boundary-forced router/gate-bin,Graph WaveNet/global,ok,35,5,175,677710.5522098995,56593.874191122275,1294028.7976697308,0.018

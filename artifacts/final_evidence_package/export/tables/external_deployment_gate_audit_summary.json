@@ -1,0 +1,11 @@
+{
+  "inputs": {
+    "failure_table": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\external_site_transfer_failure_table.csv",
+    "checklist_table": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\new_wind_farm_deployment_checklist.csv"
+  },
+  "outputs": {
+    "csv": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\external_deployment_gate_audit.csv",
+    "tex": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\table_external_deployment_gate_audit.tex"
+  },
+  "claim_use": "La Haute Borne is the anchor-observable cross-site mechanism replication. Kelmarsh/Penmanshiel are deployment-screening no-go evidence: they block automatic cross-farm portability and reserve use until sensor coverage, local boundary calibration, frozen held-out routing, and reserve-audit gates all pass."
+}

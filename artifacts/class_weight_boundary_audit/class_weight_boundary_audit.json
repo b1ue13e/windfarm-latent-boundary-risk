@@ -1,0 +1,59 @@
+{
+  "status": "complete_train_only_source_with_legacy_cache_boundary",
+  "claim_use": "Class-weight boundary audit. Current preprocessing source computes regime and pitch-forcing weights from the training split only. Rows marked as metadata_matches_full_period identify frozen legacy caches used by older reported checkpoints; train-only caches support current reruns, and the separate sensitivity audit checks whether the boundary-router claim survives that loss-weight provenance correction.",
+  "csv": "E:\\\u8bba\u65873\\artifacts\\class_weight_boundary_audit\\class_weight_boundary_audit.csv",
+  "rows": [
+    {
+      "cache_dir": "artifacts\\cache_strictmask\\wtb_245d",
+      "train_end": 25920,
+      "metadata_source_split": "legacy_unspecified",
+      "metadata_matches_train_only": false,
+      "metadata_matches_full_period": true,
+      "primary_metadata": "0.46981269;0.35657734;2.17360997",
+      "primary_train_only": "0.57106125;0.37231719;2.05662155",
+      "primary_full_period": "0.46981269;0.35657734;2.17360997",
+      "pitch_metadata": "0.28185847;1.71814156",
+      "pitch_train_only": "0.30656779;1.69343221",
+      "pitch_full_period": "0.28185847;1.71814156"
+    },
+    {
+      "cache_dir": "artifacts\\cache_strictmask_trainweights\\wtb_245d",
+      "train_end": 25920,
+      "metadata_source_split": "train",
+      "metadata_matches_train_only": true,
+      "metadata_matches_full_period": false,
+      "primary_metadata": "0.57106123;0.37231720;2.05662156",
+      "primary_train_only": "0.57106125;0.37231719;2.05662155",
+      "primary_full_period": "0.46981269;0.35657734;2.17360997",
+      "pitch_metadata": "0.30656780;1.69343220",
+      "pitch_train_only": "0.30656779;1.69343221",
+      "pitch_full_period": "0.28185847;1.71814156"
+    },
+    {
+      "cache_dir": "artifacts\\cache\\wtb_245d",
+      "train_end": 25920,
+      "metadata_source_split": "legacy_unspecified",
+      "metadata_matches_train_only": false,
+      "metadata_matches_full_period": false,
+      "primary_metadata": "0.51627362;0.39184013;2.09188628",
+      "primary_train_only": "0.62840635;0.40970474;1.96188891",
+      "primary_full_period": "0.51627362;0.39184013;2.09188628",
+      "pitch_metadata": "",
+      "pitch_train_only": "0.34551007;1.65448999",
+      "pitch_full_period": "0.31552601;1.68447399"
+    },
+    {
+      "cache_dir": "artifacts\\cache_external_wind\\external_wind_la_haute_borne_chronological",
+      "train_end": 25920,
+      "metadata_source_split": "legacy_unspecified",
+      "metadata_matches_train_only": false,
+      "metadata_matches_full_period": true,
+      "primary_metadata": "0.27702525;0.07321075;2.64976406",
+      "primary_train_only": "0.21891911;0.05888136;2.72219944",
+      "primary_full_period": "0.27702525;0.07321075;2.64976406",
+      "pitch_metadata": "0.05377262;1.94622743",
+      "pitch_train_only": "0.04234423;1.95765579",
+      "pitch_full_period": "0.05377262;1.94622743"
+    }
+  ]
+}

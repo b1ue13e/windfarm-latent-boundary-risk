@@ -3,13 +3,19 @@ import os
 import sys
 import pypdf
 
-root = os.path.abspath('.')
-pandoc = os.path.join(root, 'tools', 'pandoc-3.9.0.2', 'pandoc.exe')
-xelatex = r'E:\MiKTeX\miktex\bin\x64\xelatex.exe'
-if not os.path.exists(xelatex):
-    xelatex = r'C:\texlive\2025\bin\windows\xelatex.exe'
+import shutil
 
-os.environ['PATH'] = os.path.dirname(xelatex) + os.pathsep + os.environ.get('PATH', '')
+root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+pandoc = os.environ.get("PANDOC_PATH") or shutil.which("pandoc") or os.path.join(root, 'tools', 'pandoc-3.9.0.2', 'pandoc.exe')
+xelatex = os.environ.get("XELATEX_PATH") or shutil.which("xelatex")
+if not xelatex:
+    for candidate in [r'E:\MiKTeX\miktex\bin\x64\xelatex.exe', r'C:\texlive\2025\bin\windows\xelatex.exe']:
+        if os.path.exists(candidate):
+            xelatex = candidate
+            break
+
+if xelatex and os.path.exists(xelatex):
+    os.environ['PATH'] = os.path.dirname(xelatex) + os.pathsep + os.environ.get('PATH', '')
 
 os.makedirs('build', exist_ok=True)
 if os.path.exists('TUptm.fd'):

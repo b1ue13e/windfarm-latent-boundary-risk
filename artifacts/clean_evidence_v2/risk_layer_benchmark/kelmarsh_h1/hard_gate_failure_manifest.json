@@ -1,0 +1,69 @@
+{
+  "timestamp": "2026-09-06T19:45:59.444695",
+  "input_root": "artifacts\\clean_evidence_v2\\risk_layer_benchmark\\kelmarsh_h1",
+  "output_dir": "artifacts\\clean_evidence_v2\\risk_layer_benchmark\\kelmarsh_h1",
+  "required_seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "required_regimes": [
+    "clean",
+    "delay6",
+    "sensor_noise",
+    "markov_burst"
+  ],
+  "gates_status": {
+    "gate1_dir_completeness": false,
+    "gate2_file_validity": false,
+    "gate3_cgroup_oom_clean": true
+  },
+  "seed_diagnostics": {
+    "201": {
+      "seed": 201,
+      "passed": false,
+      "errors": [
+        "Missing or empty results file: artifacts\\clean_evidence_v2\\risk_layer_benchmark\\kelmarsh_h1\\run_seed_201\\results_by_seed.csv"
+      ]
+    },
+    "202": {
+      "seed": 202,
+      "passed": false,
+      "errors": [
+        "Missing or empty results file: artifacts\\clean_evidence_v2\\risk_layer_benchmark\\kelmarsh_h1\\run_seed_202\\results_by_seed.csv"
+      ]
+    },
+    "203": {
+      "seed": 203,
+      "passed": false,
+      "errors": [
+        "Missing or empty results file: artifacts\\clean_evidence_v2\\risk_layer_benchmark\\kelmarsh_h1\\run_seed_203\\results_by_seed.csv"
+      ]
+    },
+    "204": {
+      "seed": 204,
+      "passed": false,
+      "errors": [
+        "Missing or empty results file: artifacts\\clean_evidence_v2\\risk_layer_benchmark\\kelmarsh_h1\\run_seed_204\\results_by_seed.csv"
+      ]
+    },
+    "205": {
+      "seed": 205,
+      "passed": false,
+      "errors": [
+        "Missing or empty results file: artifacts\\clean_evidence_v2\\risk_layer_benchmark\\kelmarsh_h1\\run_seed_205\\results_by_seed.csv"
+      ]
+    }
+  },
+  "passed_all_gates": false,
+  "failures": [
+    "Gate 1 Failed: Missing run directories for seeds: [201, 202, 203, 204, 205]",
+    "Gate 2 Failed (Seed 201): Missing or empty results file: artifacts\\clean_evidence_v2\\risk_layer_benchmark\\kelmarsh_h1\\run_seed_201\\results_by_seed.csv",
+    "Gate 2 Failed (Seed 202): Missing or empty results file: artifacts\\clean_evidence_v2\\risk_layer_benchmark\\kelmarsh_h1\\run_seed_202\\results_by_seed.csv",
+    "Gate 2 Failed (Seed 203): Missing or empty results file: artifacts\\clean_evidence_v2\\risk_layer_benchmark\\kelmarsh_h1\\run_seed_203\\results_by_seed.csv",
+    "Gate 2 Failed (Seed 204): Missing or empty results file: artifacts\\clean_evidence_v2\\risk_layer_benchmark\\kelmarsh_h1\\run_seed_204\\results_by_seed.csv",
+    "Gate 2 Failed (Seed 205): Missing or empty results file: artifacts\\clean_evidence_v2\\risk_layer_benchmark\\kelmarsh_h1\\run_seed_205\\results_by_seed.csv"
+  ]
+}

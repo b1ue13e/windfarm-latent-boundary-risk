@@ -10,6 +10,46 @@ The repository is organized for evidence-first collaboration. Start with `docs/C
 
 当前唯一活跃投稿主线是 **IEEE Transactions on Sustainable Energy (TSTE)**。根目录中的 `paper_tste_ieee.md`、`paper_tste_supplementary.md`、`cover_letter_tste.md` 和 `scripts/prepare_tste_submission.ps1` 组成当前投稿工程；`paper_draft.*` 与 Applied Energy 相关脚本保留为源稿/历史 failsafe，不再作为默认投稿目标。
 
+## External Reproducibility & Replication Guide
+
+This repository adheres to an evidence-first, strict zero-drift scientific contract. Every quantitative claim in the manuscript is backed by cryptographic SHA256 provenance in [`artifacts/ARTIFACT_MANIFEST.json`](artifacts/ARTIFACT_MANIFEST.json).
+
+### Three Replication Tiers
+
+| Tier | Scope | Hardware | Time | Command |
+| :--- | :--- | :--- | :--- | :--- |
+| **Tier 1: Fast Replication** | Full manuscript claim verification & SHA256 cryptographic audit across all 18 headline claims | Any Laptop / CPU | **< 1 min** | `python scripts/verify_replication.py` |
+| **Tier 2: Full Re-Evaluation** | Re-evaluate matched-budget frontiers, rho sensitivities, and bootstrap contrasts from cached predictions | Standard Workstation | **~ 30 min** | `python scripts/run_matched_budget_frontier.py && python scripts/run_rho_sensitivity.py` |
+| **Tier 3: End-to-End Retraining** | Retrain all 5 seeds of Spatio-Temporal MoE, baselines, and cross-site transfers from raw SCADA | HPC Cluster (A100 / Blackwell) | **~ 48 hrs** | See [`docs/DATA_AVAILABILITY_AND_PREPROCESSING.md`](docs/DATA_AVAILABILITY_AND_PREPROCESSING.md) |
+
+### 5-Step Clean Clone Reproduction
+
+```powershell
+# Step 1: Clone the public repository
+git clone https://github.com/b1ue13e/windfarm-latent-boundary-risk.git
+cd windfarm-latent-boundary-risk
+
+# Step 2: Create isolated Python virtual environment & install dependencies
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+# Step 3: Fetch release artifacts (Category B evaluation arrays, ~186 MB)
+# Option A: From public release URL (default when published)
+python scripts/fetch_artifacts.py
+# Option B: From local archive bundle (e.g. Zenodo download or release zip)
+python scripts/fetch_artifacts.py --local-archive <path-to-windfarm_derived_artifacts_v1.0.zip>
+
+# Step 4: Run the one-command replication auditor
+python scripts/verify_replication.py
+
+# Step 5: Verify manuscript numerical consistency & scientific gates
+python scripts/verify_scientific_claim_gate.py
+python scripts/verify_tste_number_consistency.py
+```
+
+For full details on public data availability, download URLs (Zenodo, ENGIE), preprocessing pipeline, and hash registry, see [`docs/DATA_AVAILABILITY_AND_PREPROCESSING.md`](docs/DATA_AVAILABILITY_AND_PREPROCESSING.md) and [`docs/CLEAN_CLONE_REPRODUCIBILITY_AUDIT.md`](docs/CLEAN_CLONE_REPRODUCIBILITY_AUDIT.md).
+
 ## 快速开始
 
 先构建缓存：

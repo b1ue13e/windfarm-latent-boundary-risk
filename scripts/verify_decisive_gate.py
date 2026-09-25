@@ -46,9 +46,16 @@ def main():
         "docs/FAILURE_FALLBACK_BOUNDARY.md",
         "docs/CLAIM_LANGUAGE_AUDIT.md",
         "docs/DECISIVE_EVIDENCE_GATE.md",
-        "build/paper_tste_ieee.pdf",
-        "build/paper_tste_supplementary.pdf",
     ]
+
+    # Resolve PDF locations (build/ or repo root)
+    main_pdf_candidates = ["build/paper_tste_ieee.pdf", "paper_tste_ieee.pdf", "standalone_ieee_package/main.pdf"]
+    main_pdf_rel = next((c for c in main_pdf_candidates if (REPO_ROOT / c).exists()), "build/paper_tste_ieee.pdf")
+    required_files.append(main_pdf_rel)
+
+    supp_pdf_candidates = ["build/paper_tste_supplementary.pdf", "paper_tste_supplementary.pdf"]
+    supp_pdf_rel = next((c for c in supp_pdf_candidates if (REPO_ROOT / c).exists()), "build/paper_tste_supplementary.pdf")
+    required_files.append(supp_pdf_rel)
 
     print("\n[Audit Step 1: Checking Required Artifacts]")
     for rel_path in required_files:
@@ -174,7 +181,7 @@ def main():
 
     # 9. Check IEEE Paper Page Budget
     print("\n[Audit Step 9: IEEE Paper Page Budget Constraint]")
-    pdf_path = REPO_ROOT / "build/paper_tste_ieee.pdf"
+    pdf_path = REPO_ROOT / main_pdf_rel
     if pdf_path.exists():
         reader = pypdf.PdfReader(str(pdf_path))
         n_pages = len(reader.pages)

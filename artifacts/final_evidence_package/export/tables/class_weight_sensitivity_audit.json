@@ -1,0 +1,62 @@
+{
+  "status": "complete_train_only_class_weight_rerun_supports_boundary_claim",
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "legacy_suite": "E:\\\u8bba\u65873\\artifacts\\strictmask_validation_wtb_full",
+  "train_weight_suite": "E:\\\u8bba\u65873\\artifacts\\trainweight_class_weight_rerun_20260702",
+  "claim_use": "Sensitivity audit for alignment/forcing class-weight provenance. The train-only rerun isolates the loss-weight boundary while keeping the strict-cache arrays and protocol fixed.",
+  "csv": "E:\\\u8bba\u65873\\artifacts\\class_weight_boundary_audit\\class_weight_sensitivity_audit.csv",
+  "tex": "E:\\\u8bba\u65873\\artifacts\\class_weight_boundary_audit\\table_class_weight_sensitivity_audit.tex",
+  "summary": [
+    {
+      "suite": "legacy_strict_cache",
+      "weight_source": "full-period metadata",
+      "complete_runs": 5,
+      "overall_rmse_mean": 236.13049092783208,
+      "overall_rmse_std": 8.409568803104408,
+      "switch_rmse_mean": 239.85521443124975,
+      "switch_rmse_std": 8.850789948391899,
+      "pitch_control_rmse_mean": 286.94803025200883,
+      "pitch_control_rmse_std": 22.06524115197901,
+      "nmi_mean": 0.8716182144536886,
+      "nmi_std": 0.04179812974385398,
+      "ari_mean": 0.9165681956882811,
+      "ari_std": 0.03712151010103774
+    },
+    {
+      "suite": "train_only_weight_rerun",
+      "weight_source": "train split",
+      "complete_runs": 5,
+      "overall_rmse_mean": 229.92868328396418,
+      "overall_rmse_std": 2.5045626067474793,
+      "switch_rmse_mean": 231.6461912635522,
+      "switch_rmse_std": 1.5512696764436957,
+      "pitch_control_rmse_mean": 289.6304426708765,
+      "pitch_control_rmse_std": 23.137298160620855,
+      "nmi_mean": 0.720770120625879,
+      "nmi_std": 0.17067228012534053,
+      "ari_mean": 0.7397591504524268,
+      "ari_std": 0.21964498273184546
+    },
+    {
+      "suite": "train_only_minus_legacy",
+      "weight_source": "delta",
+      "complete_runs": 5,
+      "overall_rmse_mean": -6.201807643867909,
+      "overall_rmse_std": NaN,
+      "switch_rmse_mean": -8.209023167697552,
+      "switch_rmse_std": NaN,
+      "pitch_control_rmse_mean": 2.6824124188676706,
+      "pitch_control_rmse_std": NaN,
+      "nmi_mean": -0.15084809382780962,
+      "nmi_std": NaN,
+      "ari_mean": -0.17680904523585428,
+      "ari_std": NaN
+    }
+  ]
+}

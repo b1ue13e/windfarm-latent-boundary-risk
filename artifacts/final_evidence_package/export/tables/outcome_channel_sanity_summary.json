@@ -1,0 +1,19 @@
+{
+  "inputs": {
+    "run_table": "E:\\\u8bba\u65873\\artifacts\\strictmask_combined_reviewer_stats\\reviewer_stat_pack_run_table.csv",
+    "model": "MoE + L_bal + L_align + L_force",
+    "seeds": [
+      201,
+      202,
+      203,
+      204,
+      205
+    ]
+  },
+  "outputs": {
+    "by_seed": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\outcome_channel_sanity_by_seed.csv",
+    "summary": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\outcome_channel_sanity_summary.csv",
+    "tex": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\table_outcome_channel_sanity.tex"
+  },
+  "claim_use": "Outcome-channel sanity audit. Within the WTB boundary wind-speed window and after fine wind-bin adjustment, pitch-gate cells show a higher future-power response than MPPT-gate cells. This mitigates but does not eliminate the shared-anchor/label concern."
+}

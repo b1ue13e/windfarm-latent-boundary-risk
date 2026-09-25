@@ -1,0 +1,10 @@
+claim,statistic,estimate,ci_low,ci_high,p_value,n,result,interpretation
+Train-only RMSE guardrail vs iTransformer,Delta RMSE,5.588683283964144,,,,5,descriptive,Displayed guardrail gap for the provenance-corrected rerun; legacy full-audit checkpoint is separate
+Legacy full-audit RMSE price vs Graph WaveNet,Delta RMSE,9.028892034242094,,,0.0009990009990009,10,FDR significant,"Applies to the archived full-audit checkpoint, not the train-only RMSE guardrail"
+Legacy boundary-band RMSE price,Delta RMSE,17.757989558910072,,,0.0014985014985014,10,FDR significant,Boundary-window price for the archived full-audit checkpoint
+Gate NMI vs full physics-aligned MoE (train-only),Delta NMI,-0.1088,-0.28,0.084,0.352,5,not significant,No significant alignment difference; do not claim boundary forcing is required for alignment
+Gate ARI vs full physics-aligned MoE (train-only),Delta ARI,-0.138,-0.356,0.088,0.379,5,not significant,No significant alignment difference; do not claim boundary forcing is required for alignment
+Legacy full-audit Gate NMI vs full physics-aligned MoE,Delta NMI,0.0404264164219476,0.0078377341407989,0.0714449199982649,0.0659340659340659,10,not significant,Applies to legacy checkpoint; train-only single-source audit is separate
+Legacy full-audit Gate ARI vs full physics-aligned MoE,Delta ARI,0.034597464804638,-0.0002304986204923,0.0783080074118711,0.1258741258741259,10,not significant,Applies to legacy checkpoint; train-only single-source audit is separate
+Boundary quantile cost vs GWN physical bin,Delta total cost,-262864.2566763431,-10703763.283353375,9781852.845544994,,5,CI crosses zero,CI crosses zero; reserve cost should remain a diagnostic claim
+Boundary quantile violation vs GWN physical bin,Delta violation rate,0.003010752688172,-0.0113884992987377,0.019654043945769,,5,CI crosses zero,CI crosses zero; no universal reserve-policy optimality claim

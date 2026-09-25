@@ -1,0 +1,18 @@
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.0pt}
+\renewcommand{\arraystretch}{1.03}
+\caption*{\textbf{Table A12.} Engineering-unit reserve-value translation at $\rho=10$.}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{0.15\columnwidth} >{\centering\arraybackslash}p{0.16\columnwidth} >{\centering\arraybackslash}p{0.14\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth}}
+\toprule
+Comparison & $\Delta$ reserve & Avoided shortage & $\Delta$ cost & Cost-scale@100 \\
+\midrule
+Boundary gate-bin vs same-router global & +1846.9 & +539.8 & -3551.4 & -355k \\
+Boundary gate-bin vs GWN physical-bin & +2319.2 & +205.6 & +262.9 & +26k \\
+Boundary gate-bin vs GWN global full sample & +3148.2 & -1413.5 & +17283.2 & +1728k \\
+\bottomrule
+\end{tabularx}
+\vspace{1mm}
+\footnotesize Values are MWh-equivalent forecast-cell accounting with $\Delta t=1/6$ h. Cost-scale@100 is an illustrative reserve-cost scale marker at 100 EUR/MWh, not market revenue, settlement value, OPF, or unit-commitment output. Use same-router/global as the bounded boundary-window diagnostic; physical-bin and full-sample rows block reserve superiority.
+\end{table}

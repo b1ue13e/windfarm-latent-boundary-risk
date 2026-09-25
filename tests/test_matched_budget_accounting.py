@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-REPO_ROOT = Path("e:/论文3")
+REPO_ROOT = Path(os.environ.get("WINDFARM_REPO_ROOT", Path(__file__).resolve().parents[1]))
 ARTIFACTS_DIR = REPO_ROOT / "artifacts/matched_budget"
 
 def test_accounting_closure_baseline_reproduction():

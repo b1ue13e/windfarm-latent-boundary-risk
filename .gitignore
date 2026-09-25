@@ -15,9 +15,47 @@ sdwpf_baidukddcup2022_turb_location.CSV
 
 # Generated experiment outputs and visual checks
 data/
-artifacts/
 pagecheck/
 tmp/
+
+# Artifacts release classification:
+# Category A essential tables, manifests, and guards are tracked in Git:
+artifacts/*
+!artifacts/ARTIFACT_MANIFEST.json
+!artifacts/information_set_manifest.csv
+!artifacts/direct_quantile_baselines_summary.csv
+!artifacts/factorial_boundary_ablation_summary.csv
+!artifacts/posterior_calibration.csv
+!artifacts/channel_consequence_ablations.csv
+!artifacts/mediation_analysis.csv
+!artifacts/active_power_anchor_audit.csv
+!artifacts/clean_privileged_supervision_ablation.csv
+!artifacts/strong_baseline_closure_summary.csv
+!artifacts/strong_baseline_bootstrap_contrasts.csv
+!artifacts/single_task_dense_vs_multitask_moe_ablation.csv
+!artifacts/matched_budget/
+artifacts/matched_budget/*.npz
+!artifacts/clean_evidence_v2/
+!artifacts/fair_degradation_replay_20260903/
+!artifacts/paper_assets/
+!artifacts/anchor_stress_early_warning_wtb_strictmask/
+!artifacts/early_warning_classifier_baseline_wtb/
+!artifacts/final_evidence_package/
+!artifacts/class_weight_boundary_audit/
+!artifacts/decision_reserve_trainweight_allclean_20260830/
+!artifacts/mechanism_behavior_pack_wtb/
+!artifacts/anchor_stress_guard/
+!artifacts/external_wind_guard_windowfix/
+!artifacts/external_wind_lhb_guard_full_5seed/
+!artifacts/external_wind_lhb_anchor_intervention_full/
+!artifacts/tste_number_consistency_audit/
+artifacts/*.npz
+artifacts/*.npy
+artifacts/*.pt
+artifacts/*.pth
+artifacts/checkpoints/
+artifacts/cache/
+artifacts/cache_signature_*/
 
 # Local bundled tools and generated build/log/archive folders
 tools/

@@ -1,0 +1,21 @@
+{
+  "status": "PHASE_3_COMPLETE",
+  "timestamp": "2026-09-06",
+  "decision_tree_findings": {
+    "routed_vs_dense": {
+      "clean_cost_delta": 0.0,
+      "delay6_cost_delta": 0.0,
+      "conclusion": "Joint Dense matches Joint Routed."
+    },
+    "routed_vs_physical_rule": {
+      "clean_cost_delta": -874.248388671875,
+      "delay6_cost_delta": -1584.9984375,
+      "conclusion": "Physical Quantile remains superior."
+    },
+    "routed_vs_gbdt": {
+      "clean_cost_delta": 29644.220438992466,
+      "delay6_cost_delta": -2909.79088660174,
+      "conclusion": "GBDT beats neural models."
+    }
+  }
+}

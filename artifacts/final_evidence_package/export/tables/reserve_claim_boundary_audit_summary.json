@@ -1,0 +1,13 @@
+{
+  "inputs": {
+    "reserve_decision_summary": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\reserve_decision_summary.csv",
+    "system_value_envelope": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\system_value_envelope.csv",
+    "reserve_paired_statistics": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\reserve_paired_statistics.csv",
+    "reserve_decision_raw_runs": "E:\\\u8bba\u65873\\artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_raw_runs.csv"
+  },
+  "outputs": {
+    "csv": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\reserve_claim_boundary_audit.csv",
+    "tex": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\table_reserve_claim_boundary_audit.tex"
+  },
+  "claim_use": "Reserve-policy claim-boundary audit. It separates same-model boundary-window diagnostic evidence from unsupported reserve-policy, backbone-superiority, full-sample dispatch, and market-price claims."
+}

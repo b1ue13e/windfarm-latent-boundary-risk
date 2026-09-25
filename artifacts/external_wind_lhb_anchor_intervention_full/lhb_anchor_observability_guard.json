@@ -1,0 +1,22 @@
+{
+  "status": "complete_anchor_observability_audited",
+  "claim_gate": "anchor_observable_cross_site_replication_not_anchor_free_discovery",
+  "n_runs": 5,
+  "actual_nmi_mean": 0.9408064155015372,
+  "pab_zero_nmi_mean": 0.6957615082671094,
+  "wspd_zero_nmi_mean": 0.7521460062684164,
+  "patv_zero_nmi_mean": 0.9534102848932712,
+  "boundary_zero_nmi_mean": 0.0012638106209592,
+  "random_physics_nmi_mean": 0.027933293780014,
+  "drop_nmi_boundary_zero_mean": 0.9395426048805782,
+  "drop_nmi_random_physics_mean": 0.9128731217215232,
+  "checks": {
+    "actual_replays_reference": true,
+    "patv_not_load_bearing": true,
+    "pab_or_wspd_alone_retains_partial_alignment": true,
+    "joint_boundary_anchor_is_load_bearing": true,
+    "randomized_anchor_collapses_alignment": true,
+    "all_checks_pass": true
+  },
+  "claim_use": "La Haute Borne should be described as an anchor-observable cross-site mechanism replication. The replay audit rules out active-power feedback as the driver and shows that Wspd/Pab boundary anchors, jointly, are load-bearing; it does not support anchor-free discovery or automatic cross-site reserve-use wording."
+}

@@ -1,0 +1,10 @@
+{
+  "inputs": {
+    "raw_csv": "E:\\\u8bba\u65873\\artifacts\\anchor_stress_early_warning_wtb_strictmask\\anchor_stress_early_warning_raw.csv"
+  },
+  "outputs": {
+    "csv": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\early_warning_consequence_audit.csv",
+    "tex": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\table_early_warning_consequence_audit.tex"
+  },
+  "claim_use": "Detection-control audit for the label-degradation result. The table compares the audited gate, a simple issue-time anchor classifier, and the degraded threshold-label rule. Counts are test-set turbine-time cells per seed inside the six-step MPPT-to-pitch window; they are not MWh, currency, or dispatch-cost estimates. In sensor-noise rows, gate values are the saved clean-route audit while classifier/rule values are recomputed from noisy issue-time anchors."
+}

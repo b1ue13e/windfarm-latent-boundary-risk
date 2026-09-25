@@ -1,0 +1,8 @@
+# Core dependencies for windfarm-latent-boundary-risk replication and verification
+numpy>=1.26.0,<3
+pandas>=2.0.0,<3
+scipy>=1.12.0
+pypdf>=5.0.0,<7
+matplotlib>=3.8.0
+torch>=2.0.0
+pytest>=8.0.0

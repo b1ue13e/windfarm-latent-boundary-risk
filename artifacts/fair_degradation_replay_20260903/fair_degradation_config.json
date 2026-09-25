@@ -1,0 +1,21 @@
+{
+  "cache_dir": "artifacts/cache_strictmask_trainweights/wtb_245d",
+  "suite_root": "artifacts/trainweight_class_weight_rerun_20260702",
+  "seeds": "201,202,203,204,205",
+  "delays": [
+    1,
+    3,
+    6
+  ],
+  "noise_levels": [
+    [
+      0.5,
+      1.0
+    ],
+    [
+      1.0,
+      2.0
+    ]
+  ],
+  "policy": "Fair degradation (Unified Arrival Layer): gate and rule see the same degraded Wspd/Pab readings across both anchor and history channels. Early-window targets are defined by clean-regime transitions."
+}

@@ -1,0 +1,68 @@
+{
+  "status": "anchor_observable_replication_ready",
+  "claim_gate": "anchor_observable_replication_passed_not_portability_not_reserve_transfer",
+  "checks": {
+    "all_cache_dirs_exist": true,
+    "cache_dataset_is_external_wind": true,
+    "cache_license_is_cc_by_4": true,
+    "required_farms_cached": true,
+    "all_expected_runs_complete": true,
+    "cross_farm_both_directions_complete": true,
+    "chronological_sanity_complete": true,
+    "all_required_metric_files_exist": true,
+    "forecast_metric_values_present": true,
+    "routing_metric_values_present": true,
+    "all_required_metric_values_present": true,
+    "routing_nmi_meets_minimum": true,
+    "routing_ari_meets_minimum": true,
+    "no_wtb_or_sdwpf_source": true
+  },
+  "expected_runs": 5,
+  "complete_runs": 5,
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "required_models": [
+    "Physics-Aligned MoE"
+  ],
+  "guard_farms": [
+    "la_haute_borne"
+  ],
+  "required_protocols": [
+    {
+      "split_id": "chronological",
+      "farm": "la_haute_borne",
+      "target_farm": ""
+    }
+  ],
+  "routing_required_models": [
+    "Physics-Aligned MoE"
+  ],
+  "expected_routing_runs": 5,
+  "complete_routing_runs": 5,
+  "mean_nmi": 0.9408064155015372,
+  "mean_ari": 0.9711510497105152,
+  "mean_overall_rmse": 185.9745589274255,
+  "mean_switch_rmse": 166.39933447547065,
+  "mean_boundary_rmse": null,
+  "mean_gate_entropy": 0.6075508236885071,
+  "min_nmi": 0.5,
+  "min_ari": 0.3,
+  "required_cross_farm_pairs": [],
+  "license": "CC-BY-4.0",
+  "source_urls": {
+    "kelmarsh": "https://zenodo.org/records/16807551",
+    "penmanshiel": "https://zenodo.org/records/16807304",
+    "la_haute_borne": "https://opendata-renewables.engie.com/explore/dataset/la-haute-borne-data-2013-2016/"
+  },
+  "static_notes": {
+    "kelmarsh": "6 Senvion MM92 turbines; 10-minute SCADA/static data from 2016 to end-2024.",
+    "penmanshiel": "14 Senvion MM82 turbines; 10-minute SCADA/static data from 2016 to end-2024.",
+    "la_haute_borne": "4 Senvion MM82 turbines (ENGIE open data); 10-minute SCADA with blade pitch (Ba_avg), wind speed (Ws_avg), and active power (P_avg)."
+  },
+  "claim_use": "La Haute Borne is citable as anchor-observable cross-site mechanism replication after local training and held-out routing checks. This guard does not authorize anchor-free discovery, automatic cross-site portability, or reserve transfer."
+}

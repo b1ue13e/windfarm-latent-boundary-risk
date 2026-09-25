@@ -1,0 +1,74 @@
+{
+  "status": "complete_anchor_stress_supports_label_degradation_value",
+  "variants": [
+    "canonical"
+  ],
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "split": "test",
+  "early_window_steps": 6,
+  "pretrigger_steps": [
+    1,
+    3,
+    6,
+    12
+  ],
+  "delay_steps": [
+    1,
+    3,
+    6
+  ],
+  "availability_rates": [
+    1.0,
+    0.75,
+    0.5,
+    0.25
+  ],
+  "noise_levels": [
+    [
+      0.25,
+      0.5
+    ],
+    [
+      0.5,
+      1.0
+    ],
+    [
+      1.0,
+      2.0
+    ]
+  ],
+  "thresholds": {
+    "cut_in_wind": 3.0,
+    "rated_wind": 10.5,
+    "pitch_threshold": 2.0,
+    "min_delay_recall_gain": 0.15,
+    "min_low_availability_recall_gain": 0.2,
+    "max_availability_for_gain": 0.5,
+    "min_pretrigger_auc": 0.8
+  },
+  "expected_runs": 5,
+  "complete_runs": 5,
+  "checks": {
+    "all_requested_runs_complete": true,
+    "delay_degradation_curve_nonempty": true,
+    "label_availability_curve_nonempty": true,
+    "gate_beats_delayed_threshold_labels": true,
+    "gate_beats_low_availability_threshold_labels": true,
+    "pretrigger_ranking_auc_passes": true,
+    "threshold_sensor_noise_curve_present": true
+  },
+  "claim_use": "Post-hoc label-degradation audit for MPPT-to-pitch transition value. The citable claim is operational detection under delayed, missing, or noisy threshold labels, not a future-label predictor unless the pre-trigger ranking slice is cited separately.",
+  "paths": {
+    "run_status_csv": "artifacts\\anchor_stress_early_warning_wtb_strictmask\\anchor_stress_early_warning_run_status.csv",
+    "raw_csv": "artifacts\\anchor_stress_early_warning_wtb_strictmask\\anchor_stress_early_warning_raw.csv",
+    "summary_csv": "artifacts\\anchor_stress_early_warning_wtb_strictmask\\anchor_stress_early_warning_summary.csv",
+    "tex": "artifacts\\anchor_stress_early_warning_wtb_strictmask\\anchor_stress_early_warning_summary.tex",
+    "guard_json": "artifacts\\anchor_stress_early_warning_wtb_strictmask\\anchor_stress_early_warning_guard.json"
+  }
+}

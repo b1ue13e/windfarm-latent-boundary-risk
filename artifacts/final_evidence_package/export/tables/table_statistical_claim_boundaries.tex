@@ -1,0 +1,22 @@
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\caption*{\textbf{Table A6.} Statistical claim boundaries used for reviewer-facing wording.}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{0.25\columnwidth} >{\centering\arraybackslash}p{0.13\columnwidth} >{\centering\arraybackslash}p{0.15\columnwidth} >{\centering\arraybackslash}p{0.11\columnwidth} >{\raggedright\arraybackslash}X}
+\toprule
+Claim & Estimate & 95\% CI & $p_{\mathrm{BH}}$ & Wording consequence \\
+\midrule
+Train-only RMSE guardrail vs iTransformer & 5.589 & -- & -- & Displayed guardrail gap for the provenance-corrected rerun; legacy full-audit checkpoint is separate \\
+Legacy full-audit RMSE price vs Graph WaveNet & 9.029 & -- & <0.001 & Applies to the archived full-audit checkpoint, not the train-only RMSE guardrail \\
+Legacy boundary-band RMSE price & 17.758 & -- & 0.001 & Boundary-window price for the archived full-audit checkpoint \\
+Gate NMI vs full physics-aligned MoE (train-only) & -0.109 & [-0.280, 0.084] & 0.352 & No significant alignment difference; do not claim boundary forcing is required for alignment \\
+Gate ARI vs full physics-aligned MoE (train-only) & -0.138 & [-0.356, 0.088] & 0.379 & No significant alignment difference; do not claim boundary forcing is required for alignment \\
+Legacy full-audit Gate NMI vs full physics-aligned MoE & 0.040 & [0.008, 0.071] & 0.066 & Applies to legacy checkpoint; train-only single-source audit is separate \\
+Legacy full-audit Gate ARI vs full physics-aligned MoE & 0.035 & [-0.000, 0.078] & 0.126 & Applies to legacy checkpoint; train-only single-source audit is separate \\
+Boundary quantile cost vs GWN physical bin & -0.263M & [-10.704M, 9.782M] & -- & CI crosses zero; reserve cost should remain a diagnostic claim \\
+Boundary quantile violation vs GWN physical bin & 0.003 & [-0.011, 0.020] & -- & CI crosses zero; no universal reserve-policy optimality claim \\
+\bottomrule
+\end{tabularx}
+\end{table}

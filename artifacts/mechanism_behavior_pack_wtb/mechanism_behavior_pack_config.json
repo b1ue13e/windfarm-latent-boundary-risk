@@ -1,0 +1,21 @@
+{
+  "status": "complete_ready_for_mechanism_behavior_evidence",
+  "split": "test",
+  "rated_wind": 10.5,
+  "boundary_band": 1.0,
+  "top_k_failures": 20,
+  "outputs": {
+    "expert_power_curve.csv": 180,
+    "boundary_error_decomposition.csv": 30,
+    "gate_transition_lead_lag.csv": 75,
+    "regime_residual_distribution.csv": 45,
+    "gate_correct_high_error_cases.csv": 300
+  },
+  "checks": {
+    "expert_power_curve_nonempty": true,
+    "boundary_error_decomposition_nonempty": true,
+    "gate_transition_lead_lag_nonempty": true,
+    "regime_residual_distribution_nonempty": true,
+    "gate_correct_high_error_cases_nonempty": true
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-09-09T04:25:30.537584",
+  "input_root": "artifacts\\clean_evidence_v2\\risk_layer_benchmark\\h6_lead6",
+  "output_dir": "artifacts\\clean_evidence_v2\\risk_layer_benchmark\\h6_lead6",
+  "required_seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "required_regimes": [
+    "clean",
+    "delay6",
+    "sensor_noise",
+    "markov_burst"
+  ],
+  "gates_status": {
+    "gate1_dir_completeness": true,
+    "gate2_file_validity": true,
+    "gate3_cgroup_oom_clean": true,
+    "gate4_regime_completeness": true,
+    "gate5_numeric_integrity": true,
+    "gate6_cardinality": true
+  },
+  "seed_diagnostics": {
+    "201": {
+      "seed": 201,
+      "passed": true,
+      "errors": []
+    },
+    "202": {
+      "seed": 202,
+      "passed": true,
+      "errors": []
+    },
+    "203": {
+      "seed": 203,
+      "passed": true,
+      "errors": []
+    },
+    "204": {
+      "seed": 204,
+      "passed": true,
+      "errors": []
+    },
+    "205": {
+      "seed": 205,
+      "passed": true,
+      "errors": []
+    }
+  },
+  "passed_all_gates": true
+}

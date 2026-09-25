@@ -1,0 +1,527 @@
+{
+  "checkpoints": {
+    "Kelmarsh": {
+      "farm": "Kelmarsh",
+      "ckpt_path": "artifacts\\signature_gate_farms_runs_20260903\\kelmarsh\\canonical\\wtb_bal_align_force_seed201\\best_model.pt",
+      "offset_days": 120.0,
+      "offset_step": 17280,
+      "train_steps_local": [
+        0,
+        25920
+      ],
+      "val_steps_local": [
+        25920,
+        30240
+      ],
+      "test_steps_local": [
+        30240,
+        35280
+      ],
+      "abs_train_range": [
+        17280,
+        43200
+      ],
+      "abs_val_range": [
+        43200,
+        47520
+      ],
+      "abs_test_range": [
+        47520,
+        52560
+      ],
+      "selection_end_step": 47520,
+      "abs_train_days": [
+        120.0,
+        300.0
+      ],
+      "abs_val_days": [
+        300.0,
+        330.0
+      ],
+      "abs_test_days": [
+        330.0,
+        365.0
+      ],
+      "selection_end_day": 330.0
+    },
+    "Penmanshiel": {
+      "farm": "Penmanshiel",
+      "ckpt_path": "artifacts\\signature_gate_farms_runs_20260903\\penmanshiel\\canonical\\wtb_bal_align_force_seed201\\best_model.pt",
+      "offset_days": 720.0,
+      "offset_step": 103680,
+      "train_steps_local": [
+        0,
+        25920
+      ],
+      "val_steps_local": [
+        25920,
+        30240
+      ],
+      "test_steps_local": [
+        30240,
+        35280
+      ],
+      "abs_train_range": [
+        103680,
+        129600
+      ],
+      "abs_val_range": [
+        129600,
+        133920
+      ],
+      "abs_test_range": [
+        133920,
+        138960
+      ],
+      "selection_end_step": 133920,
+      "abs_train_days": [
+        720.0,
+        900.0
+      ],
+      "abs_val_days": [
+        900.0,
+        930.0
+      ],
+      "abs_test_days": [
+        930.0,
+        965.0
+      ],
+      "selection_end_day": 930.0
+    },
+    "LHB": {
+      "farm": "LHB",
+      "ckpt_path": "artifacts\\signature_gate_lhb_runs_20260902\\canonical\\wtb_bal_align_force_seed201\\best_model.pt",
+      "offset_days": 0.0,
+      "offset_step": 0,
+      "train_steps_local": [
+        0,
+        25920
+      ],
+      "val_steps_local": [
+        25920,
+        30240
+      ],
+      "test_steps_local": [
+        30240,
+        35280
+      ],
+      "abs_train_range": [
+        0,
+        25920
+      ],
+      "abs_val_range": [
+        25920,
+        30240
+      ],
+      "abs_test_range": [
+        30240,
+        35280
+      ],
+      "selection_end_step": 30240,
+      "abs_train_days": [
+        0.0,
+        180.0
+      ],
+      "abs_val_days": [
+        180.0,
+        210.0
+      ],
+      "abs_test_days": [
+        210.0,
+        245.0
+      ],
+      "selection_end_day": 210.0
+    }
+  },
+  "rolling_folds": [
+    {
+      "farm": "Kelmarsh",
+      "fold_name": "rolling_fold_1",
+      "cal_range_steps": [
+        0,
+        105120
+      ],
+      "test_range_steps": [
+        105120,
+        157680
+      ],
+      "cal_range_days": [
+        0.0,
+        730.0
+      ],
+      "test_range_days": [
+        730.0,
+        1095.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    },
+    {
+      "farm": "Kelmarsh",
+      "fold_name": "rolling_fold_2",
+      "cal_range_steps": [
+        52560,
+        157680
+      ],
+      "test_range_steps": [
+        157680,
+        210240
+      ],
+      "cal_range_days": [
+        365.0,
+        1095.0
+      ],
+      "test_range_days": [
+        1095.0,
+        1460.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    },
+    {
+      "farm": "Kelmarsh",
+      "fold_name": "rolling_fold_3",
+      "cal_range_steps": [
+        105120,
+        210240
+      ],
+      "test_range_steps": [
+        210240,
+        262800
+      ],
+      "cal_range_days": [
+        730.0,
+        1460.0
+      ],
+      "test_range_days": [
+        1460.0,
+        1825.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    },
+    {
+      "farm": "Kelmarsh",
+      "fold_name": "rolling_fold_4",
+      "cal_range_steps": [
+        157680,
+        262800
+      ],
+      "test_range_steps": [
+        262800,
+        315360
+      ],
+      "cal_range_days": [
+        1095.0,
+        1825.0
+      ],
+      "test_range_days": [
+        1825.0,
+        2190.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    },
+    {
+      "farm": "Kelmarsh",
+      "fold_name": "rolling_fold_5",
+      "cal_range_steps": [
+        210240,
+        315360
+      ],
+      "test_range_steps": [
+        315360,
+        367920
+      ],
+      "cal_range_days": [
+        1460.0,
+        2190.0
+      ],
+      "test_range_days": [
+        2190.0,
+        2555.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    },
+    {
+      "farm": "Kelmarsh",
+      "fold_name": "rolling_fold_6",
+      "cal_range_steps": [
+        262800,
+        367920
+      ],
+      "test_range_steps": [
+        367920,
+        420480
+      ],
+      "cal_range_days": [
+        1825.0,
+        2555.0
+      ],
+      "test_range_days": [
+        2555.0,
+        2920.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    },
+    {
+      "farm": "Kelmarsh",
+      "fold_name": "rolling_fold_7",
+      "cal_range_steps": [
+        315360,
+        420480
+      ],
+      "test_range_steps": [
+        420480,
+        473040
+      ],
+      "cal_range_days": [
+        2190.0,
+        2920.0
+      ],
+      "test_range_days": [
+        2920.0,
+        3285.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    },
+    {
+      "farm": "Penmanshiel",
+      "fold_name": "rolling_fold_1",
+      "cal_range_steps": [
+        0,
+        105120
+      ],
+      "test_range_steps": [
+        105120,
+        157680
+      ],
+      "cal_range_days": [
+        0.0,
+        730.0
+      ],
+      "test_range_days": [
+        730.0,
+        1095.0
+      ],
+      "overlaps_train": true,
+      "overlaps_selection_val": true,
+      "strictly_post_selection_walk_forward": false,
+      "verdict": "CONTAMINATED_OVERLAP"
+    },
+    {
+      "farm": "Penmanshiel",
+      "fold_name": "rolling_fold_2",
+      "cal_range_steps": [
+        52560,
+        157680
+      ],
+      "test_range_steps": [
+        157680,
+        210240
+      ],
+      "cal_range_days": [
+        365.0,
+        1095.0
+      ],
+      "test_range_days": [
+        1095.0,
+        1460.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    },
+    {
+      "farm": "Penmanshiel",
+      "fold_name": "rolling_fold_3",
+      "cal_range_steps": [
+        105120,
+        210240
+      ],
+      "test_range_steps": [
+        210240,
+        262800
+      ],
+      "cal_range_days": [
+        730.0,
+        1460.0
+      ],
+      "test_range_days": [
+        1460.0,
+        1825.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    },
+    {
+      "farm": "Penmanshiel",
+      "fold_name": "rolling_fold_4",
+      "cal_range_steps": [
+        157680,
+        262800
+      ],
+      "test_range_steps": [
+        262800,
+        315360
+      ],
+      "cal_range_days": [
+        1095.0,
+        1825.0
+      ],
+      "test_range_days": [
+        1825.0,
+        2190.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    },
+    {
+      "farm": "Penmanshiel",
+      "fold_name": "rolling_fold_5",
+      "cal_range_steps": [
+        210240,
+        315360
+      ],
+      "test_range_steps": [
+        315360,
+        367920
+      ],
+      "cal_range_days": [
+        1460.0,
+        2190.0
+      ],
+      "test_range_days": [
+        2190.0,
+        2555.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    },
+    {
+      "farm": "Penmanshiel",
+      "fold_name": "rolling_fold_6",
+      "cal_range_steps": [
+        262800,
+        367920
+      ],
+      "test_range_steps": [
+        367920,
+        420480
+      ],
+      "cal_range_days": [
+        1825.0,
+        2555.0
+      ],
+      "test_range_days": [
+        2555.0,
+        2920.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    },
+    {
+      "farm": "LHB",
+      "fold_name": "rolling_quarter_1",
+      "cal_range_steps": [
+        0,
+        13500
+      ],
+      "test_range_steps": [
+        13500,
+        27000
+      ],
+      "cal_range_days": [
+        0.0,
+        93.75
+      ],
+      "test_range_days": [
+        93.75,
+        187.5
+      ],
+      "overlaps_train": true,
+      "overlaps_selection_val": true,
+      "strictly_post_selection_walk_forward": false,
+      "verdict": "CONTAMINATED_OVERLAP"
+    },
+    {
+      "farm": "LHB",
+      "fold_name": "rolling_quarter_2",
+      "cal_range_steps": [
+        13500,
+        27000
+      ],
+      "test_range_steps": [
+        27000,
+        40500
+      ],
+      "cal_range_days": [
+        93.75,
+        187.5
+      ],
+      "test_range_days": [
+        187.5,
+        281.25
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": true,
+      "strictly_post_selection_walk_forward": false,
+      "verdict": "CONTAMINATED_OVERLAP"
+    },
+    {
+      "farm": "LHB",
+      "fold_name": "rolling_quarter_3",
+      "cal_range_steps": [
+        27000,
+        40500
+      ],
+      "test_range_steps": [
+        40500,
+        54000
+      ],
+      "cal_range_days": [
+        187.5,
+        281.25
+      ],
+      "test_range_days": [
+        281.25,
+        375.0
+      ],
+      "overlaps_train": false,
+      "overlaps_selection_val": false,
+      "strictly_post_selection_walk_forward": true,
+      "verdict": "VALID_WALK_FORWARD"
+    }
+  ],
+  "rules_enforced": [
+    "assert first_test_target >= max(selection_end, calibration_end)",
+    "assert cal_anchor + pred_len < cal_end (no future horizon leakage into test)",
+    "bar any fold where test period intersects train or val bounds"
+  ]
+}

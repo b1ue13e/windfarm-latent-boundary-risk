@@ -1,0 +1,820 @@
+scenario,model,feature,description,category,source_timestamp,arrival_timestamp,transformation,observable_at_dispatch,used_for_training,used_for_calibration,used_for_test_inference,leakage_status
+Clean (Nominal),Deterministic Physical Rule,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Deterministic Physical Rule,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Deterministic Physical Rule,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Deterministic Physical Rule,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Deterministic Physical Rule,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Deterministic Physical Rule,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Deterministic Physical Rule,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Deterministic Physical Rule,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Deterministic Physical Rule,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Deterministic Physical Rule,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Deterministic Physical Rule,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Deterministic Physical Rule,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Clean (Nominal),Deterministic Physical Rule,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Clean (Nominal),State-Conditional Recalibration,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),State-Conditional Recalibration,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),State-Conditional Recalibration,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),State-Conditional Recalibration,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),State-Conditional Recalibration,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),State-Conditional Recalibration,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),State-Conditional Recalibration,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),State-Conditional Recalibration,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),State-Conditional Recalibration,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),State-Conditional Recalibration,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),State-Conditional Recalibration,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),State-Conditional Recalibration,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Clean (Nominal),State-Conditional Recalibration,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,True,False,SECURE_OFFLINE_ONLY
+Clean (Nominal),Missingness-Aware GBDT,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Missingness-Aware GBDT,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Missingness-Aware GBDT,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Missingness-Aware GBDT,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Missingness-Aware GBDT,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Missingness-Aware GBDT,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Missingness-Aware GBDT,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Missingness-Aware GBDT,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Missingness-Aware GBDT,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Missingness-Aware GBDT,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Missingness-Aware GBDT,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Missingness-Aware GBDT,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Clean (Nominal),Missingness-Aware GBDT,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Clean (Nominal),Sequence GRU Classifier,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Sequence GRU Classifier,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Sequence GRU Classifier,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Sequence GRU Classifier,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Sequence GRU Classifier,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Sequence GRU Classifier,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Sequence GRU Classifier,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Sequence GRU Classifier,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Sequence GRU Classifier,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Sequence GRU Classifier,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Sequence GRU Classifier,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),Sequence GRU Classifier,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Clean (Nominal),Sequence GRU Classifier,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Clean (Nominal),STGQ-Dense,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Dense,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Dense,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Dense,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Dense,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Dense,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Dense,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Dense,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Dense,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Dense,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Dense,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Dense,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Dense,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Clean (Nominal),STGQ-Modular,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Modular,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Modular,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Modular,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Modular,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Modular,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Modular,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Modular,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Modular,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Modular,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Modular,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Modular,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Modular,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Clean (Nominal),STGQ-Routed (MoE),Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Routed (MoE),Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Routed (MoE),Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Routed (MoE),Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Routed (MoE),Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Routed (MoE),Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Routed (MoE),Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Routed (MoE),Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Routed (MoE),Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Routed (MoE),Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Routed (MoE),Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Routed (MoE),wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,True,True,False,True,CAUSALLY_SYMMETRIC
+Clean (Nominal),STGQ-Routed (MoE),Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-1 (tau=10m),Deterministic Physical Rule,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Deterministic Physical Rule,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Deterministic Physical Rule,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Deterministic Physical Rule,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Deterministic Physical Rule,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Deterministic Physical Rule,Etmp,External Temperature,Weather Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Deterministic Physical Rule,Itmp,Internal Temperature,Nacelle Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Deterministic Physical Rule,Prtv,Reactive Power,Inverter Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Deterministic Physical Rule,Patv,Active Power,Generator Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Deterministic Physical Rule,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Deterministic Physical Rule,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Deterministic Physical Rule,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-10m,Wake graph stalled by 10m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Deterministic Physical Rule,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Delay-1 (tau=10m),State-Conditional Recalibration,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),State-Conditional Recalibration,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),State-Conditional Recalibration,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),State-Conditional Recalibration,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),State-Conditional Recalibration,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),State-Conditional Recalibration,Etmp,External Temperature,Weather Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),State-Conditional Recalibration,Itmp,Internal Temperature,Nacelle Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),State-Conditional Recalibration,Prtv,Reactive Power,Inverter Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),State-Conditional Recalibration,Patv,Active Power,Generator Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),State-Conditional Recalibration,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),State-Conditional Recalibration,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),State-Conditional Recalibration,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-10m,Wake graph stalled by 10m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),State-Conditional Recalibration,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,True,False,SECURE_OFFLINE_ONLY
+Delay-1 (tau=10m),Missingness-Aware GBDT,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Missingness-Aware GBDT,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Missingness-Aware GBDT,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Missingness-Aware GBDT,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Missingness-Aware GBDT,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Missingness-Aware GBDT,Etmp,External Temperature,Weather Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Missingness-Aware GBDT,Itmp,Internal Temperature,Nacelle Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Missingness-Aware GBDT,Prtv,Reactive Power,Inverter Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Missingness-Aware GBDT,Patv,Active Power,Generator Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Missingness-Aware GBDT,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Missingness-Aware GBDT,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Missingness-Aware GBDT,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-10m,Wake graph stalled by 10m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Missingness-Aware GBDT,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Delay-1 (tau=10m),Sequence GRU Classifier,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Sequence GRU Classifier,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Sequence GRU Classifier,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Sequence GRU Classifier,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Sequence GRU Classifier,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Sequence GRU Classifier,Etmp,External Temperature,Weather Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Sequence GRU Classifier,Itmp,Internal Temperature,Nacelle Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Sequence GRU Classifier,Prtv,Reactive Power,Inverter Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Sequence GRU Classifier,Patv,Active Power,Generator Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Sequence GRU Classifier,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Sequence GRU Classifier,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Sequence GRU Classifier,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-10m,Wake graph stalled by 10m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),Sequence GRU Classifier,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-1 (tau=10m),STGQ-Dense,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Dense,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Dense,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Dense,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Dense,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Dense,Etmp,External Temperature,Weather Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Dense,Itmp,Internal Temperature,Nacelle Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Dense,Prtv,Reactive Power,Inverter Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Dense,Patv,Active Power,Generator Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Dense,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Dense,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Dense,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-10m,Wake graph stalled by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Dense,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-1 (tau=10m),STGQ-Modular,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Modular,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Modular,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Modular,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Modular,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Modular,Etmp,External Temperature,Weather Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Modular,Itmp,Internal Temperature,Nacelle Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Modular,Prtv,Reactive Power,Inverter Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Modular,Patv,Active Power,Generator Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Modular,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Modular,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Modular,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-10m,Wake graph stalled by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Modular,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-1 (tau=10m),STGQ-Routed (MoE),Wspd,Continuous Wind Speed,Raw Anemometer,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Routed (MoE),Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Routed (MoE),Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Routed (MoE),Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Routed (MoE),Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Routed (MoE),Etmp,External Temperature,Weather Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Routed (MoE),Itmp,Internal Temperature,Nacelle Sensor,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Routed (MoE),Prtv,Reactive Power,Inverter Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Routed (MoE),Patv,Active Power,Generator Telemetry,t,t-10m,Stalled/lagged by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Routed (MoE),Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Routed (MoE),Pab_std,Pitch Std Dev,Actuator Sensor,t,t-10m,Stalled/lagged by 10m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Routed (MoE),wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-10m,Wake graph stalled by 10m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-1 (tau=10m),STGQ-Routed (MoE),Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-2 (tau=20m),Deterministic Physical Rule,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Deterministic Physical Rule,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Deterministic Physical Rule,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Deterministic Physical Rule,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Deterministic Physical Rule,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Deterministic Physical Rule,Etmp,External Temperature,Weather Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Deterministic Physical Rule,Itmp,Internal Temperature,Nacelle Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Deterministic Physical Rule,Prtv,Reactive Power,Inverter Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Deterministic Physical Rule,Patv,Active Power,Generator Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Deterministic Physical Rule,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Deterministic Physical Rule,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Deterministic Physical Rule,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-20m,Wake graph stalled by 20m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Deterministic Physical Rule,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Delay-2 (tau=20m),State-Conditional Recalibration,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),State-Conditional Recalibration,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),State-Conditional Recalibration,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),State-Conditional Recalibration,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),State-Conditional Recalibration,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),State-Conditional Recalibration,Etmp,External Temperature,Weather Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),State-Conditional Recalibration,Itmp,Internal Temperature,Nacelle Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),State-Conditional Recalibration,Prtv,Reactive Power,Inverter Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),State-Conditional Recalibration,Patv,Active Power,Generator Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),State-Conditional Recalibration,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),State-Conditional Recalibration,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),State-Conditional Recalibration,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-20m,Wake graph stalled by 20m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),State-Conditional Recalibration,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,True,False,SECURE_OFFLINE_ONLY
+Delay-2 (tau=20m),Missingness-Aware GBDT,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Missingness-Aware GBDT,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Missingness-Aware GBDT,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Missingness-Aware GBDT,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Missingness-Aware GBDT,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Missingness-Aware GBDT,Etmp,External Temperature,Weather Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Missingness-Aware GBDT,Itmp,Internal Temperature,Nacelle Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Missingness-Aware GBDT,Prtv,Reactive Power,Inverter Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Missingness-Aware GBDT,Patv,Active Power,Generator Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Missingness-Aware GBDT,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Missingness-Aware GBDT,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Missingness-Aware GBDT,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-20m,Wake graph stalled by 20m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Missingness-Aware GBDT,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Delay-2 (tau=20m),Sequence GRU Classifier,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Sequence GRU Classifier,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Sequence GRU Classifier,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Sequence GRU Classifier,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Sequence GRU Classifier,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Sequence GRU Classifier,Etmp,External Temperature,Weather Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Sequence GRU Classifier,Itmp,Internal Temperature,Nacelle Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Sequence GRU Classifier,Prtv,Reactive Power,Inverter Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Sequence GRU Classifier,Patv,Active Power,Generator Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Sequence GRU Classifier,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Sequence GRU Classifier,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Sequence GRU Classifier,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-20m,Wake graph stalled by 20m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),Sequence GRU Classifier,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-2 (tau=20m),STGQ-Dense,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Dense,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Dense,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Dense,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Dense,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Dense,Etmp,External Temperature,Weather Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Dense,Itmp,Internal Temperature,Nacelle Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Dense,Prtv,Reactive Power,Inverter Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Dense,Patv,Active Power,Generator Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Dense,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Dense,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Dense,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-20m,Wake graph stalled by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Dense,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-2 (tau=20m),STGQ-Modular,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Modular,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Modular,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Modular,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Modular,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Modular,Etmp,External Temperature,Weather Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Modular,Itmp,Internal Temperature,Nacelle Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Modular,Prtv,Reactive Power,Inverter Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Modular,Patv,Active Power,Generator Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Modular,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Modular,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Modular,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-20m,Wake graph stalled by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Modular,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-2 (tau=20m),STGQ-Routed (MoE),Wspd,Continuous Wind Speed,Raw Anemometer,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Routed (MoE),Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Routed (MoE),Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Routed (MoE),Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Routed (MoE),Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Routed (MoE),Etmp,External Temperature,Weather Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Routed (MoE),Itmp,Internal Temperature,Nacelle Sensor,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Routed (MoE),Prtv,Reactive Power,Inverter Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Routed (MoE),Patv,Active Power,Generator Telemetry,t,t-20m,Stalled/lagged by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Routed (MoE),Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Routed (MoE),Pab_std,Pitch Std Dev,Actuator Sensor,t,t-20m,Stalled/lagged by 20m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Routed (MoE),wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-20m,Wake graph stalled by 20m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-2 (tau=20m),STGQ-Routed (MoE),Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-3 (tau=30m),Deterministic Physical Rule,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Deterministic Physical Rule,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Deterministic Physical Rule,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Deterministic Physical Rule,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Deterministic Physical Rule,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Deterministic Physical Rule,Etmp,External Temperature,Weather Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Deterministic Physical Rule,Itmp,Internal Temperature,Nacelle Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Deterministic Physical Rule,Prtv,Reactive Power,Inverter Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Deterministic Physical Rule,Patv,Active Power,Generator Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Deterministic Physical Rule,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Deterministic Physical Rule,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Deterministic Physical Rule,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-30m,Wake graph stalled by 30m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Deterministic Physical Rule,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Delay-3 (tau=30m),State-Conditional Recalibration,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),State-Conditional Recalibration,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),State-Conditional Recalibration,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),State-Conditional Recalibration,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),State-Conditional Recalibration,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),State-Conditional Recalibration,Etmp,External Temperature,Weather Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),State-Conditional Recalibration,Itmp,Internal Temperature,Nacelle Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),State-Conditional Recalibration,Prtv,Reactive Power,Inverter Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),State-Conditional Recalibration,Patv,Active Power,Generator Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),State-Conditional Recalibration,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),State-Conditional Recalibration,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),State-Conditional Recalibration,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-30m,Wake graph stalled by 30m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),State-Conditional Recalibration,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,True,False,SECURE_OFFLINE_ONLY
+Delay-3 (tau=30m),Missingness-Aware GBDT,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Missingness-Aware GBDT,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Missingness-Aware GBDT,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Missingness-Aware GBDT,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Missingness-Aware GBDT,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Missingness-Aware GBDT,Etmp,External Temperature,Weather Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Missingness-Aware GBDT,Itmp,Internal Temperature,Nacelle Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Missingness-Aware GBDT,Prtv,Reactive Power,Inverter Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Missingness-Aware GBDT,Patv,Active Power,Generator Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Missingness-Aware GBDT,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Missingness-Aware GBDT,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Missingness-Aware GBDT,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-30m,Wake graph stalled by 30m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Missingness-Aware GBDT,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Delay-3 (tau=30m),Sequence GRU Classifier,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Sequence GRU Classifier,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Sequence GRU Classifier,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Sequence GRU Classifier,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Sequence GRU Classifier,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Sequence GRU Classifier,Etmp,External Temperature,Weather Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Sequence GRU Classifier,Itmp,Internal Temperature,Nacelle Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Sequence GRU Classifier,Prtv,Reactive Power,Inverter Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Sequence GRU Classifier,Patv,Active Power,Generator Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Sequence GRU Classifier,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Sequence GRU Classifier,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Sequence GRU Classifier,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-30m,Wake graph stalled by 30m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),Sequence GRU Classifier,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-3 (tau=30m),STGQ-Dense,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Dense,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Dense,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Dense,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Dense,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Dense,Etmp,External Temperature,Weather Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Dense,Itmp,Internal Temperature,Nacelle Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Dense,Prtv,Reactive Power,Inverter Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Dense,Patv,Active Power,Generator Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Dense,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Dense,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Dense,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-30m,Wake graph stalled by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Dense,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-3 (tau=30m),STGQ-Modular,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Modular,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Modular,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Modular,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Modular,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Modular,Etmp,External Temperature,Weather Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Modular,Itmp,Internal Temperature,Nacelle Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Modular,Prtv,Reactive Power,Inverter Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Modular,Patv,Active Power,Generator Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Modular,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Modular,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Modular,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-30m,Wake graph stalled by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Modular,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-3 (tau=30m),STGQ-Routed (MoE),Wspd,Continuous Wind Speed,Raw Anemometer,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Routed (MoE),Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Routed (MoE),Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Routed (MoE),Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Routed (MoE),Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Routed (MoE),Etmp,External Temperature,Weather Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Routed (MoE),Itmp,Internal Temperature,Nacelle Sensor,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Routed (MoE),Prtv,Reactive Power,Inverter Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Routed (MoE),Patv,Active Power,Generator Telemetry,t,t-30m,Stalled/lagged by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Routed (MoE),Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Routed (MoE),Pab_std,Pitch Std Dev,Actuator Sensor,t,t-30m,Stalled/lagged by 30m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Routed (MoE),wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-30m,Wake graph stalled by 30m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-3 (tau=30m),STGQ-Routed (MoE),Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-6 (tau=60m),Deterministic Physical Rule,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Deterministic Physical Rule,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Deterministic Physical Rule,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Deterministic Physical Rule,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Deterministic Physical Rule,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Deterministic Physical Rule,Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Deterministic Physical Rule,Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Deterministic Physical Rule,Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Deterministic Physical Rule,Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Deterministic Physical Rule,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Deterministic Physical Rule,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Deterministic Physical Rule,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Deterministic Physical Rule,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Delay-6 (tau=60m),State-Conditional Recalibration,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),State-Conditional Recalibration,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),State-Conditional Recalibration,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),State-Conditional Recalibration,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),State-Conditional Recalibration,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),State-Conditional Recalibration,Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),State-Conditional Recalibration,Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),State-Conditional Recalibration,Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),State-Conditional Recalibration,Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),State-Conditional Recalibration,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),State-Conditional Recalibration,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),State-Conditional Recalibration,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),State-Conditional Recalibration,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,True,False,SECURE_OFFLINE_ONLY
+Delay-6 (tau=60m),Missingness-Aware GBDT,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Missingness-Aware GBDT,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Missingness-Aware GBDT,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Missingness-Aware GBDT,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Missingness-Aware GBDT,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Missingness-Aware GBDT,Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Missingness-Aware GBDT,Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Missingness-Aware GBDT,Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Missingness-Aware GBDT,Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Missingness-Aware GBDT,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Missingness-Aware GBDT,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Missingness-Aware GBDT,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Missingness-Aware GBDT,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Delay-6 (tau=60m),Sequence GRU Classifier,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Sequence GRU Classifier,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Sequence GRU Classifier,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Sequence GRU Classifier,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Sequence GRU Classifier,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Sequence GRU Classifier,Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Sequence GRU Classifier,Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Sequence GRU Classifier,Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Sequence GRU Classifier,Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Sequence GRU Classifier,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Sequence GRU Classifier,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Sequence GRU Classifier,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),Sequence GRU Classifier,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-6 (tau=60m),STGQ-Dense,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Dense,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Dense,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Dense,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Dense,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Dense,Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Dense,Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Dense,Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Dense,Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Dense,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Dense,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Dense,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Dense,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-6 (tau=60m),STGQ-Modular,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Modular,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Modular,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Modular,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Modular,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Modular,Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Modular,Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Modular,Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Modular,Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Modular,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Modular,Pab_std,Pitch Std Dev,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Modular,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Modular,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-6 (tau=60m),STGQ-Routed (MoE),Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Routed (MoE),Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Routed (MoE),Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Routed (MoE),Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Routed (MoE),Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Routed (MoE),Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Routed (MoE),Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Routed (MoE),Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Routed (MoE),Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Routed (MoE),Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Routed (MoE),Pab_std,Pitch Std Dev,Actuator Sensor,t,t-60m,Stalled/lagged by 60m,True,True,True,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Routed (MoE),wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 (tau=60m),STGQ-Routed (MoE),Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Deterministic Physical Rule,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),State-Conditional Recalibration,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,True,False,SECURE_OFFLINE_ONLY
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Missingness-Aware GBDT,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),Sequence GRU Classifier,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Pitch-Withheld (tau=0m),STGQ-Dense,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Dense,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Dense,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Dense,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Dense,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Dense,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Dense,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Dense,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Dense,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Dense,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),STGQ-Dense,Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),STGQ-Dense,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Dense,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Pitch-Withheld (tau=0m),STGQ-Modular,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Modular,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Modular,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Modular,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Modular,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Modular,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Modular,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Modular,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Modular,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Modular,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),STGQ-Modular,Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),STGQ-Modular,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Modular,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,True,True,False,True,CAUSALLY_SYMMETRIC
+Pitch-Withheld (tau=0m),STGQ-Routed (MoE),Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Deterministic Physical Rule,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),State-Conditional Recalibration,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,True,False,SECURE_OFFLINE_ONLY
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Missingness-Aware GBDT,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,False,False,False,False,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),Sequence GRU Classifier,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Dense,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Modular,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),Wspd,Continuous Wind Speed,Raw Anemometer,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),Etmp,External Temperature,Weather Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),Itmp,Internal Temperature,Nacelle Sensor,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),Prtv,Reactive Power,Inverter Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),Patv,Active Power,Generator Telemetry,t,t-60m,Stalled/lagged by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),Pab_mean,Collective Pitch Angle,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),Pab_std,Pitch Std Dev,Actuator Sensor,t,UNAVAILABLE,Zeroed and masked out completely,False,True,False,False,SECURE_MASKED_ZEROED
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t-60m,Wake graph stalled by 60m,True,True,False,True,CAUSALLY_SYMMETRIC
+Delay-6 + Pitch-Withheld (tau=60m),STGQ-Routed (MoE),Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Sensor-Noise (tau=0m),Deterministic Physical Rule,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Deterministic Physical Rule,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Deterministic Physical Rule,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Deterministic Physical Rule,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Deterministic Physical Rule,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Deterministic Physical Rule,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Deterministic Physical Rule,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Deterministic Physical Rule,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Deterministic Physical Rule,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Deterministic Physical Rule,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Deterministic Physical Rule,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Deterministic Physical Rule,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Deterministic Physical Rule,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Sensor-Noise (tau=0m),State-Conditional Recalibration,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),State-Conditional Recalibration,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),State-Conditional Recalibration,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),State-Conditional Recalibration,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),State-Conditional Recalibration,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),State-Conditional Recalibration,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),State-Conditional Recalibration,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),State-Conditional Recalibration,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),State-Conditional Recalibration,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),State-Conditional Recalibration,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),State-Conditional Recalibration,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),State-Conditional Recalibration,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),State-Conditional Recalibration,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,True,False,SECURE_OFFLINE_ONLY
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Missingness-Aware GBDT,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Sensor-Noise (tau=0m),Sequence GRU Classifier,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Sequence GRU Classifier,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Sequence GRU Classifier,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Sequence GRU Classifier,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Sequence GRU Classifier,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Sequence GRU Classifier,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Sequence GRU Classifier,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Sequence GRU Classifier,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Sequence GRU Classifier,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Sequence GRU Classifier,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Sequence GRU Classifier,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Sequence GRU Classifier,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),Sequence GRU Classifier,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Sensor-Noise (tau=0m),STGQ-Dense,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Dense,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Dense,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Dense,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Dense,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Dense,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Dense,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Dense,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Dense,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Dense,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Dense,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Dense,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Dense,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Sensor-Noise (tau=0m),STGQ-Modular,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Modular,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Modular,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Modular,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Modular,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Modular,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Modular,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Modular,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Modular,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Modular,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Modular,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Modular,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Modular,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,True,True,False,True,CAUSALLY_SYMMETRIC
+Sensor-Noise (tau=0m),STGQ-Routed (MoE),Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Deterministic Physical Rule,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),State-Conditional Recalibration,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,True,False,SECURE_OFFLINE_ONLY
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Missingness-Aware GBDT,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,False,False,False,SECURE_OFFLINE_ONLY
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,False,False,False,False,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),Sequence GRU Classifier,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Dense,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Modular,Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),Wspd,Continuous Wind Speed,Raw Anemometer,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),Wdir_sin,Sin Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),Wdir_cos,Cos Wind Direction,Anemometer Angle,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),Ndir_sin,Sin Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),Ndir_cos,Cos Nacelle Direction,Nacelle Gyro,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),Etmp,External Temperature,Weather Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),Itmp,Internal Temperature,Nacelle Sensor,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),Prtv,Reactive Power,Inverter Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),Patv,Active Power,Generator Telemetry,t,t,Standardized with train stats,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),Pab_mean,Collective Pitch Angle,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),Pab_std,Pitch Std Dev,Actuator Sensor,t,t,Standardized with train stats,True,True,True,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),wake_score,Spatial Wake Context,Dynamic Adjacency Graph,t,t,Dynamic advection cone,True,True,False,True,CAUSALLY_SYMMETRIC
+Markov-Burst-Drop (tau<=60m),STGQ-Routed (MoE),Z_label,Ground-Truth Regime,Supervisory State Label,t,OFFLINE_EVAL_ONLY,Discretized 3-regime definition,False,True,False,False,SECURE_OFFLINE_ONLY

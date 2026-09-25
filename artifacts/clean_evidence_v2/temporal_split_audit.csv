@@ -1,0 +1,17 @@
+farm,fold_name,cal_range_steps,test_range_steps,cal_range_days,test_range_days,overlaps_train,overlaps_selection_val,strictly_post_selection_walk_forward,verdict
+Kelmarsh,rolling_fold_1,"[0, 105120]","[105120, 157680]","[0.0, 730.0]","[730.0, 1095.0]",False,False,True,VALID_WALK_FORWARD
+Kelmarsh,rolling_fold_2,"[52560, 157680]","[157680, 210240]","[365.0, 1095.0]","[1095.0, 1460.0]",False,False,True,VALID_WALK_FORWARD
+Kelmarsh,rolling_fold_3,"[105120, 210240]","[210240, 262800]","[730.0, 1460.0]","[1460.0, 1825.0]",False,False,True,VALID_WALK_FORWARD
+Kelmarsh,rolling_fold_4,"[157680, 262800]","[262800, 315360]","[1095.0, 1825.0]","[1825.0, 2190.0]",False,False,True,VALID_WALK_FORWARD
+Kelmarsh,rolling_fold_5,"[210240, 315360]","[315360, 367920]","[1460.0, 2190.0]","[2190.0, 2555.0]",False,False,True,VALID_WALK_FORWARD
+Kelmarsh,rolling_fold_6,"[262800, 367920]","[367920, 420480]","[1825.0, 2555.0]","[2555.0, 2920.0]",False,False,True,VALID_WALK_FORWARD
+Kelmarsh,rolling_fold_7,"[315360, 420480]","[420480, 473040]","[2190.0, 2920.0]","[2920.0, 3285.0]",False,False,True,VALID_WALK_FORWARD
+Penmanshiel,rolling_fold_1,"[0, 105120]","[105120, 157680]","[0.0, 730.0]","[730.0, 1095.0]",True,True,False,CONTAMINATED_OVERLAP
+Penmanshiel,rolling_fold_2,"[52560, 157680]","[157680, 210240]","[365.0, 1095.0]","[1095.0, 1460.0]",False,False,True,VALID_WALK_FORWARD
+Penmanshiel,rolling_fold_3,"[105120, 210240]","[210240, 262800]","[730.0, 1460.0]","[1460.0, 1825.0]",False,False,True,VALID_WALK_FORWARD
+Penmanshiel,rolling_fold_4,"[157680, 262800]","[262800, 315360]","[1095.0, 1825.0]","[1825.0, 2190.0]",False,False,True,VALID_WALK_FORWARD
+Penmanshiel,rolling_fold_5,"[210240, 315360]","[315360, 367920]","[1460.0, 2190.0]","[2190.0, 2555.0]",False,False,True,VALID_WALK_FORWARD
+Penmanshiel,rolling_fold_6,"[262800, 367920]","[367920, 420480]","[1825.0, 2555.0]","[2555.0, 2920.0]",False,False,True,VALID_WALK_FORWARD
+LHB,rolling_quarter_1,"[0, 13500]","[13500, 27000]","[0.0, 93.75]","[93.75, 187.5]",True,True,False,CONTAMINATED_OVERLAP
+LHB,rolling_quarter_2,"[13500, 27000]","[27000, 40500]","[93.75, 187.5]","[187.5, 281.25]",False,True,False,CONTAMINATED_OVERLAP
+LHB,rolling_quarter_3,"[27000, 40500]","[40500, 54000]","[187.5, 281.25]","[281.25, 375.0]",False,False,True,VALID_WALK_FORWARD

@@ -1,0 +1,22 @@
+{
+  "inputs": {
+    "reserve_toy_operational_cost_raw": "E:\\\u8bba\u65873\\artifacts\\reserve_toy_operational_cost\\reserve_toy_operational_cost_raw.csv",
+    "reserve_decision_config": "E:\\\u8bba\u65873\\artifacts\\decision_reserve_wtb_operational_windows\\reserve_decision_config.json"
+  },
+  "outputs": {
+    "csv": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\engineering_unit_value_translation.csv",
+    "tex": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\table_engineering_unit_value_translation.tex"
+  },
+  "assumptions": {
+    "target_power_unit": "kW for WTB Patv",
+    "step_hours": 0.16666666666666666,
+    "conversion": "reserve_energy and shortage_energy are kWh-equivalent totals; divide by 1000 for MWh-equivalent",
+    "monetary_translation": "Illustrative cost-scale marker = delta reserve-cost-equivalent MWh * assumed reserve carrying cost; not settlement value",
+    "reserve_prices_eur_per_mwh": [
+      50.0,
+      100.0,
+      200.0
+    ],
+    "claim_boundary": "Rolling 24-step forecast-cell accounting only; not delivered MWh, market clearing, unit commitment, OPF, or security-constrained dispatch."
+  }
+}

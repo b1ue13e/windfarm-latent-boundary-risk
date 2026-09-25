@@ -1,0 +1,21 @@
+{
+  "status": "PHASE_3_COMPLETE",
+  "timestamp": "2026-09-06",
+  "decision_tree_findings": {
+    "routed_vs_dense": {
+      "clean_cost_delta": 28118.2875,
+      "delay6_cost_delta": 40282.1,
+      "conclusion": "Joint Routed outperforms Joint Dense Head under both clean and degraded conditions. MoE routing provides distinct reserve pricing value beyond shared representation."
+    },
+    "routed_vs_physical_rule": {
+      "clean_cost_delta": -68902.0625,
+      "delay6_cost_delta": -8686.0125,
+      "conclusion": "Physical Quantile remains superior."
+    },
+    "routed_vs_gbdt": {
+      "clean_cost_delta": -49521.01487360334,
+      "delay6_cost_delta": -62003.40541823534,
+      "conclusion": "GBDT beats neural models."
+    }
+  }
+}

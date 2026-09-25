@@ -1,0 +1,9 @@
+subset,cost_ratio,baseline,model,policy,n_runs,total_cost_mean,violation_rate_mean,reserve_energy_mean,shortage_energy_mean,regret,overall_rmse_mean
+full,10.0,Graph WaveNet/global-quantile reserve,Graph WaveNet,global,5,464072749.19116163,0.09010568513119534,288013475.08878195,17605927.410237983,0.0,
+full,10.0,Graph WaveNet/physical-bin reserve,Graph WaveNet,physical-bin,5,464427891.5744935,0.1056648850016197,278147441.53227186,18628045.004222155,355142.3833318949,
+full,10.0,Boundary-forced router/global,Boundary-forced router,global,5,510197097.3707291,0.08711329770003237,330536778.84101033,17966031.852971863,46124348.179567456,
+full,10.0,Boundary-forced router/gate-bin,Boundary-forced router,gate-bin,5,487792618.51850814,0.12128887269193392,298320793.5491959,18947182.49693123,23719869.327346504,
+boundary,10.0,Graph WaveNet/global-quantile reserve,Graph WaveNet,global,5,88797862.32470188,0.10215988779803646,50316974.99097633,3848088.733372554,4483509.785582155,
+boundary,10.0,Graph WaveNet/physical-bin reserve,Graph WaveNet,physical-bin,5,84314352.53911972,0.09305282842449744,50347427.22062167,3396692.5318498043,0.0,
+boundary,10.0,Boundary-forced router/global,Boundary-forced router,global,5,99547570.53229944,0.1166713417484806,55507781.639841795,4403978.889245766,15233217.993179724,
+boundary,10.0,Boundary-forced router/gate-bin,Boundary-forced router,gate-bin,5,95125616.39138404,0.10214118747078076,57453893.49459863,3767172.289678541,10811263.852264315,

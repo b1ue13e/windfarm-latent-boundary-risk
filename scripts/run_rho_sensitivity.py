@@ -16,7 +16,7 @@ os.environ["LOKY_MAX_CPU_COUNT"] = "4"
 os.environ["PYTHONUNBUFFERED"] = "1"
 os.environ["OMP_NUM_THREADS"] = "4"
 
-REPO_ROOT = Path("e:/论文3")
+REPO_ROOT = Path(os.environ.get("WINDFARM_REPO_ROOT", Path(__file__).resolve().parents[1]))
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 

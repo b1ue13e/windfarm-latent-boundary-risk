@@ -1,0 +1,21 @@
+{
+  "status": "PHASE_3_COMPLETE",
+  "timestamp": "2026-09-06",
+  "decision_tree_findings": {
+    "routed_vs_dense": {
+      "clean_cost_delta": 32154.2125,
+      "delay6_cost_delta": 16266.7875,
+      "conclusion": "Joint Routed outperforms Joint Dense Head under both clean and degraded conditions. MoE routing provides distinct reserve pricing value beyond shared representation."
+    },
+    "routed_vs_physical_rule": {
+      "clean_cost_delta": -77659.2625,
+      "delay6_cost_delta": -27126.4375,
+      "conclusion": "Physical Quantile remains superior."
+    },
+    "routed_vs_gbdt": {
+      "clean_cost_delta": 279575.95042372297,
+      "delay6_cost_delta": 156410.7746544873,
+      "conclusion": "Direct residual quantile regression (GBDT) is outperformed by deep spatio-temporal representation under all conditions."
+    }
+  }
+}

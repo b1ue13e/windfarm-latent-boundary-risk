@@ -1,0 +1,76 @@
+model,seed,run_dir,split,lag_steps,n_transitions,gate_matches_new_regime_rate
+MoE + L_bal + L_align + L_force,201,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed201,test,-6,27863,0.4068119010874637
+MoE + L_bal + L_align + L_force,201,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed201,test,-3,27914,0.3581715268324138
+MoE + L_bal + L_align + L_force,201,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed201,test,0,27942,0.809032996922196
+MoE + L_bal + L_align + L_force,201,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed201,test,3,27942,0.6351370696442631
+MoE + L_bal + L_align + L_force,201,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed201,test,6,27942,0.6115882900293464
+MoE + L_bal + L_align + L_force,202,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed202,test,-6,27863,0.4017873165129383
+MoE + L_bal + L_align + L_force,202,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed202,test,-3,27914,0.35082754173532993
+MoE + L_bal + L_align + L_force,202,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed202,test,0,27942,0.9102068570610551
+MoE + L_bal + L_align + L_force,202,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed202,test,3,27942,0.6347791854555865
+MoE + L_bal + L_align + L_force,202,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed202,test,6,27942,0.6119103857991554
+MoE + L_bal + L_align + L_force,203,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed203,test,-6,27863,0.41165703621289884
+MoE + L_bal + L_align + L_force,203,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed203,test,-3,27914,0.3749373074442932
+MoE + L_bal + L_align + L_force,203,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed203,test,0,27942,0.7492663374132131
+MoE + L_bal + L_align + L_force,203,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed203,test,3,27942,0.6308782477990122
+MoE + L_bal + L_align + L_force,203,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed203,test,6,27942,0.6090831007086107
+MoE + L_bal + L_align + L_force,204,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed204,test,-6,27863,0.4067401213078276
+MoE + L_bal + L_align + L_force,204,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed204,test,-3,27914,0.36537221465931075
+MoE + L_bal + L_align + L_force,204,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed204,test,0,27942,0.7999427385298118
+MoE + L_bal + L_align + L_force,204,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed204,test,3,27942,0.6333118602820127
+MoE + L_bal + L_align + L_force,204,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed204,test,6,27942,0.6104788490444493
+MoE + L_bal + L_align + L_force,205,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed205,test,-6,27863,0.3997057029034921
+MoE + L_bal + L_align + L_force,205,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed205,test,-3,27914,0.3536218385039765
+MoE + L_bal + L_align + L_force,205,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed205,test,0,27942,0.8066351728580631
+MoE + L_bal + L_align + L_force,205,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed205,test,3,27942,0.6325960919046597
+MoE + L_bal + L_align + L_force,205,artifacts\strictmask_validation_wtb_full\wtb_bal_align_force_seed205,test,6,27942,0.6080094481425811
+MoE + L_bal + L_align + L_force,201,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed201,test,-6,27863,0.4068119010874637
+MoE + L_bal + L_align + L_force,201,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed201,test,-3,27914,0.3581715268324138
+MoE + L_bal + L_align + L_force,201,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed201,test,0,27942,0.809032996922196
+MoE + L_bal + L_align + L_force,201,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed201,test,3,27942,0.6351370696442631
+MoE + L_bal + L_align + L_force,201,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed201,test,6,27942,0.6115882900293464
+MoE + L_bal + L_align + L_force,202,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed202,test,-6,27863,0.4017873165129383
+MoE + L_bal + L_align + L_force,202,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed202,test,-3,27914,0.35082754173532993
+MoE + L_bal + L_align + L_force,202,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed202,test,0,27942,0.9102068570610551
+MoE + L_bal + L_align + L_force,202,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed202,test,3,27942,0.6347791854555865
+MoE + L_bal + L_align + L_force,202,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed202,test,6,27942,0.6119103857991554
+MoE + L_bal + L_align + L_force,203,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed203,test,-6,27863,0.41165703621289884
+MoE + L_bal + L_align + L_force,203,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed203,test,-3,27914,0.3749373074442932
+MoE + L_bal + L_align + L_force,203,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed203,test,0,27942,0.7492663374132131
+MoE + L_bal + L_align + L_force,203,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed203,test,3,27942,0.6308782477990122
+MoE + L_bal + L_align + L_force,203,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed203,test,6,27942,0.6090831007086107
+MoE + L_bal + L_align + L_force,204,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed204,test,-6,27863,0.4067401213078276
+MoE + L_bal + L_align + L_force,204,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed204,test,-3,27914,0.36537221465931075
+MoE + L_bal + L_align + L_force,204,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed204,test,0,27942,0.7999427385298118
+MoE + L_bal + L_align + L_force,204,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed204,test,3,27942,0.6333118602820127
+MoE + L_bal + L_align + L_force,204,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed204,test,6,27942,0.6104788490444493
+MoE + L_bal + L_align + L_force,205,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed205,test,-6,27863,0.3997057029034921
+MoE + L_bal + L_align + L_force,205,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed205,test,-3,27914,0.3536218385039765
+MoE + L_bal + L_align + L_force,205,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed205,test,0,27942,0.8066351728580631
+MoE + L_bal + L_align + L_force,205,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed205,test,3,27942,0.6325960919046597
+MoE + L_bal + L_align + L_force,205,artifacts\strictmask_ablation_rerun_wtb_full\wtb_bal_align_force_seed205,test,6,27942,0.6080094481425811
+Physics-Aligned MoE,201,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed201,test,-6,27863,0.4144564476187058
+Physics-Aligned MoE,201,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed201,test,-3,27914,0.3800243605359318
+Physics-Aligned MoE,201,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed201,test,0,27942,0.7143726290172501
+Physics-Aligned MoE,201,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed201,test,3,27942,0.623971082957555
+Physics-Aligned MoE,201,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed201,test,6,27942,0.6075084102784339
+Physics-Aligned MoE,202,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed202,test,-6,27863,0.4035818110038402
+Physics-Aligned MoE,202,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed202,test,-3,27914,0.35627283800243603
+Physics-Aligned MoE,202,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed202,test,0,27942,0.858635745472765
+Physics-Aligned MoE,202,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed202,test,3,27942,0.6371770095197195
+Physics-Aligned MoE,202,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed202,test,6,27942,0.6139145372557441
+Physics-Aligned MoE,203,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed203,test,-6,27863,0.40465850769838135
+Physics-Aligned MoE,203,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed203,test,-3,27914,0.3555205273339543
+Physics-Aligned MoE,203,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed203,test,0,27942,0.8015890057977239
+Physics-Aligned MoE,203,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed203,test,3,27942,0.6257962923198053
+Physics-Aligned MoE,203,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed203,test,6,27942,0.6055400472407129
+Physics-Aligned MoE,204,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed204,test,-6,27863,0.4194451423034131
+Physics-Aligned MoE,204,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed204,test,-3,27914,0.39589453320914236
+Physics-Aligned MoE,204,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed204,test,0,27942,0.6485577267196335
+Physics-Aligned MoE,204,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed204,test,3,27942,0.6180302054255243
+Physics-Aligned MoE,204,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed204,test,6,27942,0.6016748980030062
+Physics-Aligned MoE,205,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed205,test,-6,27863,0.40379715034274843
+Physics-Aligned MoE,205,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed205,test,-3,27914,0.3597477968044709
+Physics-Aligned MoE,205,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed205,test,0,27942,0.8388805382578197
+Physics-Aligned MoE,205,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed205,test,3,27942,0.6317371698518359
+Physics-Aligned MoE,205,artifacts\strictmask_ablation_rerun_wtb_full\wtb_full_seed205,test,6,27942,0.6095125617350226

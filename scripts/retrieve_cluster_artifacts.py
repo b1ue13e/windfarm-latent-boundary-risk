@@ -48,7 +48,7 @@ def download_remote_dir(sftp, remote_dir, local_dir):
                 print(f"  Failed downloading {r_path}: {e}")
 
 def retrieve_all():
-    local_root = Path("e:/论文3")
+    local_root = Path(os.environ.get("WINDFARM_REPO_ROOT", Path(__file__).resolve().parents[1]))
     for cluster in CLUSTERS:
         port = cluster["port"]
         print(f"\n==================== RETRIEVING FROM NODE {port} ====================")

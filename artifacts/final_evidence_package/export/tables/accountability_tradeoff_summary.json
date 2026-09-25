@@ -1,0 +1,36 @@
+{
+  "inputs": {
+    "main_benchmark": "E:\\\u8bba\u65873\\artifacts\\paper_assets\\tables\\table_main_benchmark.csv",
+    "wtb_ablation": "E:\\\u8bba\u65873\\artifacts\\paper_assets\\tables\\table_wtb_ablation.csv",
+    "early_warning": "E:\\\u8bba\u65873\\artifacts\\anchor_stress_early_warning_wtb_strictmask\\anchor_stress_early_warning_summary.csv",
+    "class_weight_summary": "E:\\\u8bba\u65873\\artifacts\\class_weight_boundary_audit\\class_weight_sensitivity_summary.csv",
+    "toy_cost": "E:\\\u8bba\u65873\\artifacts\\reserve_toy_operational_cost\\reserve_toy_operational_cost.csv"
+  },
+  "routing_nmi_pass": 0.65,
+  "six_step_label_delay": {
+    "gate_recall": 0.9602702702702702,
+    "threshold_rule_recall": 0.1959459459459459,
+    "recall_gain": 0.7643243243243243,
+    "target_cells_mean": 740.0,
+    "gate_missed_cells_mean": 29.400000000000027,
+    "rule_missed_cells_mean": 595.0000000000001,
+    "early_pitch_cells_recovered_vs_delay_rule_mean": 565.6000000000001
+  },
+  "boundary_gate_bin_cost_proxy": {
+    "delta_toy_total_cost_vs_same_model_global": -3551436.698095337,
+    "delta_shortage_penalty_vs_same_model_global": -5398354.934455268,
+    "delta_violation_rate_vs_same_model_global": -0.013763440860215,
+    "scope": "normalized reserve-energy cost units, not currency"
+  },
+  "accuracy_anchor": {
+    "model": "iTransformer",
+    "overall_rmse": 224.34,
+    "scope": "lowest mean WTB RMSE among completed strict-cache forecasting baselines"
+  },
+  "outputs": {
+    "csv": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\accountability_tradeoff.csv",
+    "tex": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\tables\\table_accountability_tradeoff.tex",
+    "pdf": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\figures\\accountability_tradeoff_curve.pdf",
+    "png": "E:\\\u8bba\u65873\\artifacts\\final_evidence_package\\export\\figures\\accountability_tradeoff_curve.png"
+  }
+}

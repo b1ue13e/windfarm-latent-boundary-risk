@@ -1,20 +1,17 @@
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
+$cPandoc = Get-Command pandoc -ErrorAction SilentlyContinue
 $localPandoc = Join-Path $root "tools\pandoc-3.9.0.2\pandoc.exe"
-$pandoc = if (Test-Path $localPandoc) { $localPandoc } else {
-    $c = Get-Command pandoc -ErrorAction SilentlyContinue
-    if (-not $c) { throw "Pandoc not found." }
-    $c.Source
+$pandoc = if ($env:PANDOC_PATH -and (Test-Path $env:PANDOC_PATH)) { $env:PANDOC_PATH } elseif ($cPandoc) { $cPandoc.Source } elseif (Test-Path $localPandoc) { $localPandoc } else {
+    throw "Pandoc not found in PATH or tools/. Please install pandoc or set `$env:PANDOC_PATH."
 }
+
+$cXelatex = Get-Command xelatex -ErrorAction SilentlyContinue
 $localMiKTeX = "E:\MiKTeX\miktex\bin\x64\xelatex.exe"
-$xelatex = if (Test-Path $localMiKTeX) { $localMiKTeX } elseif (
-    Test-Path "C:\texlive\2025\bin\windows\xelatex.exe") {
-    "C:\texlive\2025\bin\windows\xelatex.exe"
-} else {
-    $c = Get-Command xelatex -ErrorAction SilentlyContinue
-    if (-not $c) { throw "XeLaTeX not found." }
-    $c.Source
+$localTexlive = "C:\texlive\2025\bin\windows\xelatex.exe"
+$xelatex = if ($env:XELATEX_PATH -and (Test-Path $env:XELATEX_PATH)) { $env:XELATEX_PATH } elseif ($cXelatex) { $cXelatex.Source } elseif (Test-Path $localMiKTeX) { $localMiKTeX } elseif (Test-Path $localTexlive) { $localTexlive } else {
+    throw "XeLaTeX not found in PATH. Please install XeLaTeX (TeX Live or MiKTeX) or set `$env:XELATEX_PATH."
 }
 $env:PATH = (Split-Path -Parent $xelatex) + ";$env:PATH"
 

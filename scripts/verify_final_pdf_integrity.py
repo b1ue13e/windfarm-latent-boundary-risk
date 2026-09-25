@@ -125,8 +125,21 @@ def audit_supplementary_pdf(pdf_path: str):
     print('\n[ALL SUPPLEMENTARY PDF CHECKS PASSED]')
 
 if __name__ == '__main__':
-    main_pdf = 'build/paper_tste_ieee.pdf'
-    supp_pdf = 'build/paper_tste_supplementary.pdf'
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    
+    # Check build/ first, then fall back to tracked repository root PDFs
+    candidate_main = [
+        os.path.join(repo_root, 'build', 'paper_tste_ieee.pdf'),
+        os.path.join(repo_root, 'paper_tste_ieee.pdf'),
+        os.path.join(repo_root, 'standalone_ieee_package', 'main.pdf'),
+    ]
+    main_pdf = next((p for p in candidate_main if os.path.exists(p)), candidate_main[0])
+    
+    candidate_supp = [
+        os.path.join(repo_root, 'build', 'paper_tste_supplementary.pdf'),
+        os.path.join(repo_root, 'paper_tste_supplementary.pdf'),
+    ]
+    supp_pdf = next((p for p in candidate_supp if os.path.exists(p)), candidate_supp[0])
     
     try:
         audit_main_ieee_pdf(main_pdf)

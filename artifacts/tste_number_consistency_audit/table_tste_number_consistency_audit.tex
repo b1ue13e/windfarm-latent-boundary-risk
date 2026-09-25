@@ -1,0 +1,86 @@
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\caption*{\textbf{TSTE number consistency audit.}}
+\begin{tabular}{lll}
+\toprule
+Claim & Display token & Required documents \\
+\midrule
+graph\_wavenet\_overall\_rmse & 225.74 & supplementary (pass) \\
+best\_strict\_cache\_baseline\_overall\_rmse & 224.34 & cover;supplementary (pass) \\
+train\_only\_router\_overall\_rmse & 229.93 & cover;supplementary (pass) \\
+train\_only\_rmse\_gap\_vs\_best & 5.59 & cover;supplementary (pass) \\
+train\_only\_router\_nmi & 0.721 & cover;supplementary (pass) \\
+train\_only\_router\_ari & 0.740 & supplementary (pass) \\
+boundary\_router\_overall\_rmse & 236.13 & supplementary (pass) \\
+boundary\_router\_nmi & 0.8716 & supplementary (pass) \\
+boundary\_router\_ari & 0.9166 & supplementary (pass) \\
+six\_step\_gate\_recall & 0.417 & supplementary (pass) \\
+six\_step\_threshold\_recall & 0.196 & main (pass) \\
+fifty\_percent\_availability\_rule\_recall & 0.508 & supplementary (pass) \\
+classifier\_clean\_recall & 1.000 & supplementary (pass) \\
+classifier\_clean\_precision & 0.879 & supplementary (pass) \\
+gate\_clean\_precision & 0.630 & supplementary (pass) \\
+six\_step\_recall\_gain & +0.221 & supplementary (pass) \\
+early\_pitch\_cells\_recovered & 565.6 & supplementary (pass) \\
+boundary\_gate\_bin\_cost & 95.13M & supplementary (pass) \\
+boundary\_global\_cost & 99.55M & supplementary (pass) \\
+gwn\_physical\_bin\_cost & 84.31M & supplementary (pass) \\
+same\_model\_cost\_ci\_low & -7.36M & supplementary (pass) \\
+same\_model\_cost\_ci\_high & -1.27M & supplementary (pass) \\
+same\_model\_violation\_ci\_low & -0.0220 & supplementary (pass) \\
+same\_model\_violation\_ci\_high & -0.0073 & supplementary (pass) \\
+same\_model\_shortage\_ci\_low & -0.976M & supplementary (pass) \\
+same\_model\_shortage\_ci\_high & -0.300M & supplementary (pass) \\
+engineering\_delta\_reserve\_mwh & +1950 & supplementary (pass) \\
+engineering\_avoided\_shortage\_mwh & +637 & supplementary (pass) \\
+engineering\_delta\_cost\_mwh & 4420 & supplementary (pass) \\
+engineering\_delta\_eur\_100 & 442k & supplementary (pass) \\
+anchor\_stress\_no\_patv\_nmi & 0.881 & supplementary (pass) \\
+anchor\_stress\_no\_pab\_mean\_nmi & 0.878 & supplementary (pass) \\
+anchor\_stress\_lagged\_patv\_nmi & 0.763 & supplementary (pass) \\
+anchor\_stress\_lagged\_pab\_wspd\_nmi & 0.684 & supplementary (pass) \\
+la\_haute\_borne\_routing\_nmi & 0.975 & supplementary (pass) \\
+la\_haute\_borne\_routing\_ari & 0.971 & supplementary (pass) \\
+lhb\_anchor\_patv\_zero\_nmi & 0.953 & supplementary (pass) \\
+lhb\_anchor\_boundary\_zero\_nmi & 0.001 & supplementary (pass) \\
+lhb\_anchor\_random\_physics\_nmi & 0.028 & supplementary (pass) \\
+kelmarsh\_penmanshiel\_mean\_nmi & 0.557 & supplementary (pass) \\
+gate\_transition\_match\_at\_step & 0.815 & supplementary (pass) \\
+gate\_transition\_match\_lead\_3 & 0.361 & supplementary (pass) \\
+gate\_transition\_match\_lead\_6 & 0.405 & supplementary (pass) \\
+h6\_clean\_continuous\_physical\_quantile & 881{,}367 & main (pass) \\
+h6\_delay6\_continuous\_physical\_quantile & 1{,}136{,}466 & main (pass) \\
+h1\_clean\_continuous\_physical\_quantile & 589{,}535 & main (pass) \\
+h1\_delay6\_recal\_physical\_quantile & 1{,}228{,}609 & main (pass) \\
+farm\_pcc\_savings\_vs\_global & -2.32M & cover;supplementary (pass) \\
+farm\_pcc\_ci\_low\_vs\_global & -6.07M & cover;supplementary (pass) \\
+farm\_pcc\_ci\_high\_vs\_global & 1.73M & cover;supplementary (pass) \\
+farm\_pcc\_savings\_vs\_gaussian & -1.37M & cover;supplementary (pass) \\
+farm\_pcc\_transitional\_savings\_vs\_soft\_pab & -1.33M & cover;supplementary (pass) \\
+markov\_corrupted\_recall & 0.962 & cover;supplementary (pass) \\
+markov\_stale\_rule\_recall & 0.840 & cover;supplementary (pass) \\
+markov\_f1\_gain & +0.021 & cover;supplementary (pass) \\
+kelmarsh\_walkforward\_pooled\_savings & -6.19M & supplementary (pass) \\
+penmanshiel\_walkforward\_pooled\_savings & -4.34M & supplementary (pass) \\
+lhb\_walkforward\_pooled\_delta & +1.01M & supplementary (pass) \\
+lhb\_annual\_pooled\_delta & +43k & supplementary (pass) \\
+kelmarsh\_static\_freeze\_delta & -2.24M & supplementary (pass) \\
+penmanshiel\_static\_freeze\_delta & -13.83M & supplementary (pass) \\
+kelmarsh\_year2\_inv\_w\_pitch & 0.9973 & supplementary (pass) \\
+penmanshiel\_year2\_inv\_w\_pitch & 0.9904 & supplementary (pass) \\
+dynamic\_price\_kelmarsh\_savings\_rho10 & +£134.0k & supplementary (pass) \\
+dynamic\_price\_penmanshiel\_savings\_rho10 & +£187.1k & supplementary (pass) \\
+dynamic\_price\_combined\_savings\_rho10 & +£321.2k & supplementary (pass) \\
+bess\_delay6\_unbuffered\_cost & 487,746 & supplementary (pass) \\
+bess\_delay6\_mpc\_cost & 331,257 & supplementary (pass) \\
+bess\_delay6\_cost\_savings & 156,489 & supplementary (pass) \\
+bess\_delay6\_cost\_reduction\_pct & 32.1\textbackslash{}\% & supplementary (pass) \\
+bess\_delay6\_unbuffered\_shortage & 2,514.9 & supplementary (pass) \\
+bess\_delay6\_mpc\_shortage & 1,401.2 & supplementary (pass) \\
+bess\_delay6\_shortage\_mitigation\_pct & 45.7\textbackslash{}\% & supplementary (pass) \\
+\bottomrule
+\end{tabular}
+\end{table}

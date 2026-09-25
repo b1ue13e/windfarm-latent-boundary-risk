@@ -8,7 +8,7 @@ import hashlib
 import zipfile
 from pathlib import Path
 
-ROOT = Path("e:/论文3")
+ROOT = Path(os.environ.get("WINDFARM_REPO_ROOT", Path(__file__).resolve().parents[1]))
 PKG_DIR = ROOT / "artifacts" / "tste_submission_freeze_20260923"
 
 def sha256_file(filepath: Path) -> str:

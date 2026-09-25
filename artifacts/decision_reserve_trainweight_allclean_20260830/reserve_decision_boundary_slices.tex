@@ -1,0 +1,26 @@
+\begin{tabular}{llrrrrr}
+\toprule
+Slice & Policy & Cost & Violation & Reserve & Shortage & Valid cells \\
+\midrule
+mppt\_to\_pitch & Graph WaveNet/physical-bin & 17.43M & 0.0981 & 10.83M & 0.66M & 1968 \\
+mppt\_to\_pitch & Graph WaveNet/global & 17.55M & 0.1109 & 9.33M & 0.82M & 1968 \\
+mppt\_to\_pitch & Boundary-forced router/physical-bin & 19.12M & 0.1049 & 12.11M & 0.70M & 1968 \\
+mppt\_to\_pitch & Boundary-forced router/global & 19.62M & 0.1271 & 10.23M & 0.94M & 1968 \\
+mppt\_to\_pitch & Boundary-forced router/gate-bin & 20.34M & 0.1133 & 12.02M & 0.83M & 1968 \\
+pitch\_to\_mppt & Graph WaveNet/global & 21.26M & 0.0982 & 15.49M & 0.58M & 1992 \\
+pitch\_to\_mppt & Graph WaveNet/physical-bin & 21.59M & 0.1047 & 15.21M & 0.64M & 1992 \\
+pitch\_to\_mppt & Boundary-forced router/global & 22.65M & 0.0860 & 17.67M & 0.50M & 1992 \\
+pitch\_to\_mppt & Boundary-forced router/gate-bin & 23.09M & 0.0936 & 17.75M & 0.53M & 1992 \\
+pitch\_to\_mppt & Boundary-forced router/physical-bin & 23.21M & 0.1017 & 17.59M & 0.56M & 1992 \\
+high\_ramp & Graph WaveNet/physical-bin & 65.83M & 0.1224 & 45.76M & 2.01M & 6212 \\
+high\_ramp & Graph WaveNet/global & 67.15M & 0.0965 & 51.67M & 1.55M & 6212 \\
+high\_ramp & Boundary-forced router/gate-bin & 69.82M & 0.1324 & 41.89M & 2.79M & 6212 \\
+high\_ramp & Boundary-forced router/physical-bin & 71.25M & 0.1238 & 49.24M & 2.20M & 6212 \\
+high\_ramp & Boundary-forced router/global & 72.15M & 0.0952 & 56.45M & 1.57M & 6212 \\
+low\_ramp & Graph WaveNet/physical-bin & 10.84M & 0.0822 & 6.85M & 0.40M & 5594 \\
+low\_ramp & Graph WaveNet/global & 10.88M & 0.0817 & 6.95M & 0.39M & 5594 \\
+low\_ramp & Boundary-forced router/gate-bin & 11.67M & 0.0832 & 7.48M & 0.42M & 5594 \\
+low\_ramp & Boundary-forced router/physical-bin & 11.96M & 0.0892 & 7.26M & 0.47M & 5594 \\
+low\_ramp & Boundary-forced router/global & 12.00M & 0.0881 & 7.36M & 0.46M & 5594 \\
+\bottomrule
+\end{tabular}

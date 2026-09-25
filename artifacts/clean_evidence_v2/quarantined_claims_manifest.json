@@ -1,0 +1,92 @@
+{
+  "version": "2.0_clean_audit_quarantine",
+  "date": "2026-09-06",
+  "audit_reference": "docs/strict_journal_gap_audit_20260906.md",
+  "quarantined_items": [
+    {
+      "claim_id": "Q-01_UNINSTANTIATED_MLP_MODELS",
+      "target_artifacts": [
+        "artifacts/matched_modular_comparison/matched_modular_results.csv (rows 3 & 4)",
+        "paper_tste_ieee.md (Table 5 Cascaded & Independent MLP rows)",
+        "paper_tste_supplementary.md (Table A11d Cascaded & Independent MLP rows)"
+      ],
+      "claimed_values": {
+        "Cascaded_Frozen_MLP_cost": "16.412M",
+        "Cascaded_Frozen_MLP_delay6_recall": 0.785,
+        "Independent_Consequence_MLP_cost": "17.340M",
+        "Independent_Consequence_MLP_delay6_recall": 0.854
+      },
+      "quarantine_reason": "scripts/remote_matched_modular_baseline.py defined classes ConsequenceMLP and compute_ece, but main() never instantiated, trained, or evaluated them. No per-seed checkpoints or raw prediction arrays exist in the repository or remote servers. The numbers cannot be reproduced from the provided script.",
+      "action": "Quarantine immediately from primary evidence. Re-implement cleanly in Phase 2/3 matched benchmark."
+    },
+    {
+      "claim_id": "Q-02_UNPROFILED_HARDWARE_METRICS",
+      "target_artifacts": [
+        "paper_tste_supplementary.md (Table A12c)",
+        "paper_tste_ieee.md (substation latency text)"
+      ],
+      "claimed_values": {
+        "GPU_inference_latency": "4.12 ms",
+        "CPU_inference_latency": "21.8 ms",
+        "RAM_runtime_footprint": "< 1.5 MB"
+      },
+      "quarantine_reason": "Not generated from a genuine hardware profiler run with input batch tensors, graph structures, and memory allocation tracking. Memory estimation ignored feature input tensors (~424 KB for batch=1).",
+      "action": "Demote to illustrative engineering estimate. Require genuine profiler logs before treating as verified."
+    },
+    {
+      "claim_id": "Q-03_GBP_CASHFLOW_MISALIGNMENT_AND_MULTIHORIZON_OVERCOUNT",
+      "target_artifacts": [
+        "paper_tste_supplementary.md (Table A12 Panel B, Table A12b)",
+        "artifacts/dynamic_price_settlement_audit/"
+      ],
+      "claimed_values": {
+        "Kelmarsh_net_cash_savings": "+\u00a3134.0k (+\u00a33.19k/turb-yr)",
+        "Penmanshiel_net_cash_savings": "+\u00a3465.6k (+\u00a35.54k/turb-yr)",
+        "Annual_ROI": "> 1900x / > 3400x"
+      },
+      "quarantine_reason": "1. Date alignment systematically misaligned: fixed start 2016-01-01 deviates from Kelmarsh (Jan 3) and Penmanshiel (June), shifting price matches by up to five months.\n2. 24 forecast horizons per anchor were summed and multiplied by 1/6 h, resulting in redundant multi-count billing of the same physical delivery moments across overlapping issue windows.",
+      "action": "Demote from financial settlement cashflow to exploratory price-weighted forecast loss. Require unique execution per delivery moment."
+    },
+    {
+      "claim_id": "Q-04_DISTORTED_SENSOR_MISSINGNESS_NARRATIVE",
+      "target_artifacts": [
+        "paper_tste_ieee.md (Abstract, Introduction, Section IV-B)",
+        "paper_tste_supplementary.md (Table A9d, Table A11d)"
+      ],
+      "claimed_values": {
+        "Kelmarsh_pitch_coverage": "55%",
+        "Penmanshiel_pitch_coverage": "78%",
+        "Turbine_unavailability_claim": "Over 40% of turbines lack usable pitch sensors"
+      },
+      "quarantine_reason": "Legacy rebuild script calculated (physics[..., 1] != 0).mean() and misnamed it 'window_pitch_coverage'. This is the Region 3 pitching rate. True feature_mask coverage is 97.32% (Kelmarsh) and 99.13% (Penmanshiel). Pitch = 0 deg is valid normal Region 2 MPPT operation, not sensor missingness.",
+      "action": "Withdraw the claim that commercial wind farms have 55%/78% sensor coverage or that 40% of turbines lack sensors. Refocus solely on controlled communication/sensor stress-testing."
+    },
+    {
+      "claim_id": "Q-05_ASYMMETRIC_DEGRADATION_EVALUATION",
+      "target_artifacts": [
+        "paper_tste_ieee.md (Abstract, Section IV-B)",
+        "scripts/fair_degradation_replay.py",
+        "scripts/eval_markov_gilbert_telemetry.py"
+      ],
+      "claimed_values": {
+        "delay6_recall": 0.933,
+        "burst_recall": 0.994,
+        "burst_f1": 0.967
+      },
+      "quarantine_reason": "When delaying or corrupting anchor_physics, history_delay was left False, so the model encoder's x_hist input still contained the uncorrupted, contemporary sensor readings at issue time t. Baseline rules only saw the delayed values. The high recall reflects information asymmetry, not genuine robustness to sensor dropouts.",
+      "action": "Quarantine headline numbers. Re-evaluate under unified ArrivalDataFeed where x_hist and anchor are synchronously degraded."
+    },
+    {
+      "claim_id": "Q-06_NEWSVENDOR_OPTIMAL_QUANTILE_ANALYTICAL_ERROR",
+      "target_artifacts": [
+        "paper_tste_ieee.md (Reserve formulation section)",
+        "scripts/eval_farm_aggregate_reserve.py (q_target formula)"
+      ],
+      "claimed_values": {
+        "theoretical_optimal_quantile": "rho / (rho + 1) = 10/11 = 0.909"
+      },
+      "quarantine_reason": "For cost C(r) = r + rho * E[(s - r)+], the first-order condition dC/dr = 1 - rho * P(s > r) = 0 yields F_s(r*) = 1 - 1/rho (which is 0.90 for rho=10), NOT rho / (rho + 1).",
+      "action": "Correct analytical text to 1 - 1/rho. Verify numerical optimization scripts use the exact cost function directly."
+    }
+  ]
+}

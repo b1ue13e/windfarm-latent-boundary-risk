@@ -1,0 +1,28 @@
+{
+  "run_table": "artifacts/external_wind_runs/la_haute_borne/chronological/lhb_full_run_table.csv",
+  "cache_dir": "artifacts/cache_external_wind/external_wind_la_haute_borne_chronological",
+  "root_dir": ".",
+  "split": "test",
+  "models": [
+    "Physics-Aligned MoE"
+  ],
+  "interventions": [
+    "actual",
+    "anchor_pab_zero",
+    "anchor_wspd_zero",
+    "anchor_patv_zero",
+    "anchor_boundary_zero",
+    "anchor_random_physics",
+    "anchor_wspd_only",
+    "anchor_pab_only",
+    "anchor_boundary_node_shuffle",
+    "anchor_boundary_global_shuffle",
+    "anchor_wake_zero",
+    "anchor_all_zero"
+  ],
+  "batch_size": 512,
+  "seed": 42,
+  "bootstrap_samples": 1000,
+  "device": "cuda",
+  "n_raw_rows": 60
+}

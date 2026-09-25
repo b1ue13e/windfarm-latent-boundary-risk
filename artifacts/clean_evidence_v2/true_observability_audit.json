@@ -1,0 +1,988 @@
+[
+  {
+    "cache_name": "WTB_245d",
+    "cache_dir": "artifacts\\cache_strictmask\\wtb_245d",
+    "steps": 35280,
+    "n_turbines": 134,
+    "n_features": 11,
+    "feature_names": [
+      "Wspd",
+      "Wdir_sin",
+      "Wdir_cos",
+      "Ndir_sin",
+      "Ndir_cos",
+      "Etmp",
+      "Itmp",
+      "Pab_mean",
+      "Pab_std",
+      "Prtv",
+      "Patv_hist"
+    ],
+    "feature_observability": {
+      "Wspd": {
+        "overall_obs_rate": 0.9895,
+        "min_turbine_obs_rate": 0.91,
+        "max_turbine_obs_rate": 0.9918,
+        "mean_turbine_obs_rate": 0.9895
+      },
+      "Wdir_sin": {
+        "overall_obs_rate": 0.9895,
+        "min_turbine_obs_rate": 0.91,
+        "max_turbine_obs_rate": 0.9918,
+        "mean_turbine_obs_rate": 0.9895
+      },
+      "Wdir_cos": {
+        "overall_obs_rate": 0.9895,
+        "min_turbine_obs_rate": 0.91,
+        "max_turbine_obs_rate": 0.9918,
+        "mean_turbine_obs_rate": 0.9895
+      },
+      "Ndir_sin": {
+        "overall_obs_rate": 0.9895,
+        "min_turbine_obs_rate": 0.91,
+        "max_turbine_obs_rate": 0.9918,
+        "mean_turbine_obs_rate": 0.9895
+      },
+      "Ndir_cos": {
+        "overall_obs_rate": 0.9895,
+        "min_turbine_obs_rate": 0.91,
+        "max_turbine_obs_rate": 0.9918,
+        "mean_turbine_obs_rate": 0.9895
+      },
+      "Etmp": {
+        "overall_obs_rate": 0.9895,
+        "min_turbine_obs_rate": 0.91,
+        "max_turbine_obs_rate": 0.9918,
+        "mean_turbine_obs_rate": 0.9895
+      },
+      "Itmp": {
+        "overall_obs_rate": 0.9895,
+        "min_turbine_obs_rate": 0.91,
+        "max_turbine_obs_rate": 0.9918,
+        "mean_turbine_obs_rate": 0.9895
+      },
+      "Pab_mean": {
+        "overall_obs_rate": 0.9895,
+        "min_turbine_obs_rate": 0.91,
+        "max_turbine_obs_rate": 0.9918,
+        "mean_turbine_obs_rate": 0.9895
+      },
+      "Pab_std": {
+        "overall_obs_rate": 0.9895,
+        "min_turbine_obs_rate": 0.91,
+        "max_turbine_obs_rate": 0.9918,
+        "mean_turbine_obs_rate": 0.9895
+      },
+      "Prtv": {
+        "overall_obs_rate": 0.9895,
+        "min_turbine_obs_rate": 0.91,
+        "max_turbine_obs_rate": 0.9918,
+        "mean_turbine_obs_rate": 0.9895
+      },
+      "Patv_hist": {
+        "overall_obs_rate": 0.6977,
+        "min_turbine_obs_rate": 0.6134,
+        "max_turbine_obs_rate": 0.7462,
+        "mean_turbine_obs_rate": 0.6977
+      }
+    },
+    "pitch_observability_audit": {
+      "actual_sensor_obs_rate": 0.9895,
+      "legacy_reported_pitch_coverage_non_zero": 0.9965,
+      "normal_mppt_zero_pitch_rate": 0.0035,
+      "per_turbine_actual_obs": [
+        0.9897,
+        0.9887,
+        0.99,
+        0.9899,
+        0.9904,
+        0.9896,
+        0.99,
+        0.9896,
+        0.99,
+        0.9897,
+        0.9918,
+        0.9903,
+        0.9882,
+        0.9898,
+        0.9917,
+        0.9908,
+        0.9903,
+        0.9895,
+        0.9895,
+        0.9901,
+        0.9899,
+        0.9903,
+        0.9897,
+        0.9902,
+        0.99,
+        0.9875,
+        0.9899,
+        0.9902,
+        0.9892,
+        0.9818,
+        0.9903,
+        0.9904,
+        0.9903,
+        0.9903,
+        0.9905,
+        0.986,
+        0.9898,
+        0.9895,
+        0.9904,
+        0.9899,
+        0.9901,
+        0.9907,
+        0.9899,
+        0.9905,
+        0.9901,
+        0.9899,
+        0.9911,
+        0.9901,
+        0.9898,
+        0.9878,
+        0.9902,
+        0.9902,
+        0.9901,
+        0.9889,
+        0.9902,
+        0.9904,
+        0.9898,
+        0.9897,
+        0.99,
+        0.9884,
+        0.9896,
+        0.9906,
+        0.9897,
+        0.9903,
+        0.9864,
+        0.9898,
+        0.9904,
+        0.9897,
+        0.9914,
+        0.9911,
+        0.9912,
+        0.9904,
+        0.991,
+        0.9915,
+        0.9916,
+        0.9907,
+        0.9913,
+        0.9911,
+        0.9896,
+        0.9816,
+        0.9902,
+        0.9891,
+        0.9904,
+        0.9908,
+        0.9906,
+        0.9901,
+        0.9905,
+        0.9913,
+        0.9897,
+        0.9913,
+        0.991,
+        0.9911,
+        0.9904,
+        0.9913,
+        0.991,
+        0.9907,
+        0.991,
+        0.9914,
+        0.9909,
+        0.9911,
+        0.9914,
+        0.9896,
+        0.9903,
+        0.99,
+        0.989,
+        0.99,
+        0.9901,
+        0.9894,
+        0.9899,
+        0.9893,
+        0.9895,
+        0.9896,
+        0.9906,
+        0.9909,
+        0.9913,
+        0.9916,
+        0.991,
+        0.9911,
+        0.9913,
+        0.9915,
+        0.9914,
+        0.9899,
+        0.991,
+        0.9912,
+        0.9912,
+        0.91,
+        0.9914,
+        0.9914,
+        0.9898,
+        0.9901,
+        0.991,
+        0.9915,
+        0.9917,
+        0.991
+      ],
+      "per_turbine_non_zero": [
+        0.9999,
+        0.986,
+        0.9964,
+        0.9967,
+        0.9982,
+        0.9979,
+        0.9925,
+        0.9899,
+        0.9955,
+        0.997,
+        0.9982,
+        0.9979,
+        0.9911,
+        0.9978,
+        0.9975,
+        0.9983,
+        0.9966,
+        0.9978,
+        0.9964,
+        0.997,
+        0.9932,
+        0.9959,
+        0.9965,
+        0.9964,
+        0.9979,
+        0.9885,
+        0.9993,
+        0.9991,
+        0.9918,
+        0.99,
+        0.9971,
+        0.9984,
+        0.9954,
+        0.9982,
+        0.9938,
+        0.9943,
+        0.9972,
+        0.9971,
+        0.9985,
+        0.9989,
+        0.9983,
+        0.9969,
+        0.9965,
+        0.9978,
+        0.9979,
+        0.9974,
+        0.9985,
+        0.9977,
+        0.9969,
+        0.9888,
+        0.999,
+        0.9977,
+        0.9935,
+        0.9979,
+        0.9966,
+        0.9971,
+        0.9973,
+        0.9885,
+        0.9976,
+        0.9882,
+        0.9971,
+        0.9976,
+        0.9991,
+        0.9972,
+        0.9824,
+        0.9949,
+        0.9978,
+        0.9973,
+        0.9972,
+        0.9992,
+        0.9976,
+        0.9965,
+        0.998,
+        0.9936,
+        0.9974,
+        0.997,
+        0.9971,
+        0.999,
+        0.988,
+        0.9923,
+        0.9978,
+        0.9885,
+        0.9955,
+        0.9965,
+        0.9979,
+        0.9983,
+        0.9972,
+        0.9938,
+        0.9986,
+        0.999,
+        0.9985,
+        0.9985,
+        0.9971,
+        0.9976,
+        0.9981,
+        0.9978,
+        0.9993,
+        0.9982,
+        0.9973,
+        0.9976,
+        0.9984,
+        0.9961,
+        0.9972,
+        0.9975,
+        0.9929,
+        0.9986,
+        0.9972,
+        0.9973,
+        0.9974,
+        0.9949,
+        0.9979,
+        0.9983,
+        0.9943,
+        0.9972,
+        0.9982,
+        0.9987,
+        0.9989,
+        0.9954,
+        0.9991,
+        0.9963,
+        0.9987,
+        0.9937,
+        0.9986,
+        0.9978,
+        0.9987,
+        0.9991,
+        0.9973,
+        0.9989,
+        0.9951,
+        0.9988,
+        0.9991,
+        0.9974,
+        0.9983,
+        0.9981
+      ],
+      "confirmed_error": "The legacy 'pitch coverage' of 55%/78% is actually the Region 3 pitching rate (physics != 0). Real sensor observability is >97% across all turbines.",
+      "missing_run_stats": {
+        "missing_episodes": 10548,
+        "max_consecutive_steps": 30430,
+        "mean_consecutive_steps": 4.694539249146757,
+        "median_consecutive_steps": 1.0,
+        "p95_consecutive_steps": 2.0
+      }
+    }
+  },
+  {
+    "cache_name": "Kelmarsh_obs_window",
+    "cache_dir": "artifacts\\cache_external_wind\\external_wind_kelmarsh_obs_window",
+    "steps": 35280,
+    "n_turbines": 6,
+    "n_features": 11,
+    "feature_names": [
+      "Wspd",
+      "Wdir_sin",
+      "Wdir_cos",
+      "Ndir_sin",
+      "Ndir_cos",
+      "Etmp",
+      "Itmp",
+      "Pab_mean",
+      "Pab_std",
+      "Prtv",
+      "Patv_hist"
+    ],
+    "feature_observability": {
+      "Wspd": {
+        "overall_obs_rate": 0.979,
+        "min_turbine_obs_rate": 0.9741,
+        "max_turbine_obs_rate": 0.9823,
+        "mean_turbine_obs_rate": 0.979
+      },
+      "Wdir_sin": {
+        "overall_obs_rate": 0.9732,
+        "min_turbine_obs_rate": 0.9684,
+        "max_turbine_obs_rate": 0.9766,
+        "mean_turbine_obs_rate": 0.9732
+      },
+      "Wdir_cos": {
+        "overall_obs_rate": 0.9732,
+        "min_turbine_obs_rate": 0.9684,
+        "max_turbine_obs_rate": 0.9766,
+        "mean_turbine_obs_rate": 0.9732
+      },
+      "Ndir_sin": {
+        "overall_obs_rate": 0.9732,
+        "min_turbine_obs_rate": 0.9684,
+        "max_turbine_obs_rate": 0.9766,
+        "mean_turbine_obs_rate": 0.9732
+      },
+      "Ndir_cos": {
+        "overall_obs_rate": 0.9732,
+        "min_turbine_obs_rate": 0.9684,
+        "max_turbine_obs_rate": 0.9766,
+        "mean_turbine_obs_rate": 0.9732
+      },
+      "Etmp": {
+        "overall_obs_rate": 0.9732,
+        "min_turbine_obs_rate": 0.9684,
+        "max_turbine_obs_rate": 0.9766,
+        "mean_turbine_obs_rate": 0.9732
+      },
+      "Itmp": {
+        "overall_obs_rate": 0.9732,
+        "min_turbine_obs_rate": 0.9684,
+        "max_turbine_obs_rate": 0.9766,
+        "mean_turbine_obs_rate": 0.9732
+      },
+      "Pab_mean": {
+        "overall_obs_rate": 0.9732,
+        "min_turbine_obs_rate": 0.9684,
+        "max_turbine_obs_rate": 0.9766,
+        "mean_turbine_obs_rate": 0.9732
+      },
+      "Pab_std": {
+        "overall_obs_rate": 1.0,
+        "min_turbine_obs_rate": 1.0,
+        "max_turbine_obs_rate": 1.0,
+        "mean_turbine_obs_rate": 1.0
+      },
+      "Prtv": {
+        "overall_obs_rate": 0.979,
+        "min_turbine_obs_rate": 0.9741,
+        "max_turbine_obs_rate": 0.9823,
+        "mean_turbine_obs_rate": 0.979
+      },
+      "Patv_hist": {
+        "overall_obs_rate": 0.8756,
+        "min_turbine_obs_rate": 0.8479,
+        "max_turbine_obs_rate": 0.8887,
+        "mean_turbine_obs_rate": 0.8756
+      }
+    },
+    "pitch_observability_audit": {
+      "actual_sensor_obs_rate": 0.9732,
+      "legacy_reported_pitch_coverage_non_zero": 0.5513,
+      "normal_mppt_zero_pitch_rate": 0.4487,
+      "per_turbine_actual_obs": [
+        0.9766,
+        0.9684,
+        0.9729,
+        0.9766,
+        0.973,
+        0.9719
+      ],
+      "per_turbine_non_zero": [
+        0.5178,
+        0.4977,
+        0.5956,
+        0.5064,
+        0.526,
+        0.6646
+      ],
+      "confirmed_error": "The legacy 'pitch coverage' of 55%/78% is actually the Region 3 pitching rate (physics != 0). Real sensor observability is >97% across all turbines.",
+      "missing_run_stats": {
+        "missing_episodes": 679,
+        "max_consecutive_steps": 1212,
+        "mean_consecutive_steps": 8.341678939617085,
+        "median_consecutive_steps": 1.0,
+        "p95_consecutive_steps": 3.0
+      }
+    }
+  },
+  {
+    "cache_name": "Kelmarsh_chronological",
+    "cache_dir": "artifacts\\cache_external_wind\\external_wind_kelmarsh_chronological",
+    "steps": 473184,
+    "n_turbines": 6,
+    "n_features": 11,
+    "feature_names": [
+      "Wspd",
+      "Wdir_sin",
+      "Wdir_cos",
+      "Ndir_sin",
+      "Ndir_cos",
+      "Etmp",
+      "Itmp",
+      "Pab_mean",
+      "Pab_std",
+      "Prtv",
+      "Patv_hist"
+    ],
+    "feature_observability": {
+      "Wspd": {
+        "overall_obs_rate": 0.9796,
+        "min_turbine_obs_rate": 0.9753,
+        "max_turbine_obs_rate": 0.984,
+        "mean_turbine_obs_rate": 0.9796
+      },
+      "Wdir_sin": {
+        "overall_obs_rate": 0.9523,
+        "min_turbine_obs_rate": 0.9503,
+        "max_turbine_obs_rate": 0.9538,
+        "mean_turbine_obs_rate": 0.9523
+      },
+      "Wdir_cos": {
+        "overall_obs_rate": 0.9523,
+        "min_turbine_obs_rate": 0.9503,
+        "max_turbine_obs_rate": 0.9538,
+        "mean_turbine_obs_rate": 0.9523
+      },
+      "Ndir_sin": {
+        "overall_obs_rate": 0.9523,
+        "min_turbine_obs_rate": 0.9503,
+        "max_turbine_obs_rate": 0.9538,
+        "mean_turbine_obs_rate": 0.9523
+      },
+      "Ndir_cos": {
+        "overall_obs_rate": 0.9523,
+        "min_turbine_obs_rate": 0.9503,
+        "max_turbine_obs_rate": 0.9538,
+        "mean_turbine_obs_rate": 0.9523
+      },
+      "Etmp": {
+        "overall_obs_rate": 0.9446,
+        "min_turbine_obs_rate": 0.9409,
+        "max_turbine_obs_rate": 0.9469,
+        "mean_turbine_obs_rate": 0.9446
+      },
+      "Itmp": {
+        "overall_obs_rate": 0.9446,
+        "min_turbine_obs_rate": 0.9409,
+        "max_turbine_obs_rate": 0.9469,
+        "mean_turbine_obs_rate": 0.9446
+      },
+      "Pab_mean": {
+        "overall_obs_rate": 0.9446,
+        "min_turbine_obs_rate": 0.9409,
+        "max_turbine_obs_rate": 0.9469,
+        "mean_turbine_obs_rate": 0.9446
+      },
+      "Pab_std": {
+        "overall_obs_rate": 1.0,
+        "min_turbine_obs_rate": 1.0,
+        "max_turbine_obs_rate": 1.0,
+        "mean_turbine_obs_rate": 1.0
+      },
+      "Prtv": {
+        "overall_obs_rate": 0.9806,
+        "min_turbine_obs_rate": 0.9766,
+        "max_turbine_obs_rate": 0.9844,
+        "mean_turbine_obs_rate": 0.9806
+      },
+      "Patv_hist": {
+        "overall_obs_rate": 0.8623,
+        "min_turbine_obs_rate": 0.8293,
+        "max_turbine_obs_rate": 0.8869,
+        "mean_turbine_obs_rate": 0.8623
+      }
+    },
+    "pitch_observability_audit": {
+      "actual_sensor_obs_rate": 0.9446,
+      "legacy_reported_pitch_coverage_non_zero": 0.6098,
+      "normal_mppt_zero_pitch_rate": 0.3902,
+      "per_turbine_actual_obs": [
+        0.9409,
+        0.9469,
+        0.9449,
+        0.9458,
+        0.9454,
+        0.9434
+      ],
+      "per_turbine_non_zero": [
+        0.5903,
+        0.5431,
+        0.6446,
+        0.5615,
+        0.6107,
+        0.7089
+      ],
+      "confirmed_error": "The legacy 'pitch coverage' of 55%/78% is actually the Region 3 pitching rate (physics != 0). Real sensor observability is >97% across all turbines.",
+      "missing_run_stats": {
+        "missing_episodes": 8653,
+        "max_consecutive_steps": 104892,
+        "mean_consecutive_steps": 18.19114757887438,
+        "median_consecutive_steps": 1.0,
+        "p95_consecutive_steps": 2.0
+      }
+    }
+  },
+  {
+    "cache_name": "Penmanshiel_obs_window",
+    "cache_dir": "artifacts\\cache_external_wind\\external_wind_penmanshiel_obs_window",
+    "steps": 35280,
+    "n_turbines": 14,
+    "n_features": 11,
+    "feature_names": [
+      "Wspd",
+      "Wdir_sin",
+      "Wdir_cos",
+      "Ndir_sin",
+      "Ndir_cos",
+      "Etmp",
+      "Itmp",
+      "Pab_mean",
+      "Pab_std",
+      "Prtv",
+      "Patv_hist"
+    ],
+    "feature_observability": {
+      "Wspd": {
+        "overall_obs_rate": 0.9937,
+        "min_turbine_obs_rate": 0.9772,
+        "max_turbine_obs_rate": 0.9973,
+        "mean_turbine_obs_rate": 0.9937
+      },
+      "Wdir_sin": {
+        "overall_obs_rate": 0.9937,
+        "min_turbine_obs_rate": 0.9772,
+        "max_turbine_obs_rate": 0.9973,
+        "mean_turbine_obs_rate": 0.9937
+      },
+      "Wdir_cos": {
+        "overall_obs_rate": 0.9937,
+        "min_turbine_obs_rate": 0.9772,
+        "max_turbine_obs_rate": 0.9973,
+        "mean_turbine_obs_rate": 0.9937
+      },
+      "Ndir_sin": {
+        "overall_obs_rate": 0.9937,
+        "min_turbine_obs_rate": 0.9772,
+        "max_turbine_obs_rate": 0.9973,
+        "mean_turbine_obs_rate": 0.9937
+      },
+      "Ndir_cos": {
+        "overall_obs_rate": 0.9937,
+        "min_turbine_obs_rate": 0.9772,
+        "max_turbine_obs_rate": 0.9973,
+        "mean_turbine_obs_rate": 0.9937
+      },
+      "Etmp": {
+        "overall_obs_rate": 0.9913,
+        "min_turbine_obs_rate": 0.9639,
+        "max_turbine_obs_rate": 0.9972,
+        "mean_turbine_obs_rate": 0.9913
+      },
+      "Itmp": {
+        "overall_obs_rate": 0.9913,
+        "min_turbine_obs_rate": 0.9639,
+        "max_turbine_obs_rate": 0.9972,
+        "mean_turbine_obs_rate": 0.9913
+      },
+      "Pab_mean": {
+        "overall_obs_rate": 0.9913,
+        "min_turbine_obs_rate": 0.9639,
+        "max_turbine_obs_rate": 0.9972,
+        "mean_turbine_obs_rate": 0.9913
+      },
+      "Pab_std": {
+        "overall_obs_rate": 0.9937,
+        "min_turbine_obs_rate": 0.9772,
+        "max_turbine_obs_rate": 0.9973,
+        "mean_turbine_obs_rate": 0.9937
+      },
+      "Prtv": {
+        "overall_obs_rate": 0.9937,
+        "min_turbine_obs_rate": 0.9772,
+        "max_turbine_obs_rate": 0.9973,
+        "mean_turbine_obs_rate": 0.9937
+      },
+      "Patv_hist": {
+        "overall_obs_rate": 0.8112,
+        "min_turbine_obs_rate": 0.764,
+        "max_turbine_obs_rate": 0.8439,
+        "mean_turbine_obs_rate": 0.8112
+      }
+    },
+    "pitch_observability_audit": {
+      "actual_sensor_obs_rate": 0.9913,
+      "legacy_reported_pitch_coverage_non_zero": 0.7809,
+      "normal_mppt_zero_pitch_rate": 0.2191,
+      "per_turbine_actual_obs": [
+        0.9639,
+        0.9972,
+        0.9971,
+        0.9922,
+        0.9887,
+        0.9971,
+        0.9962,
+        0.991,
+        0.9771,
+        0.9954,
+        0.9956,
+        0.9956,
+        0.9955,
+        0.9956
+      ],
+      "per_turbine_non_zero": [
+        0.7678,
+        0.7785,
+        0.7611,
+        0.7836,
+        0.7827,
+        0.8016,
+        0.7729,
+        0.8225,
+        0.8238,
+        0.7703,
+        0.7707,
+        0.7673,
+        0.7717,
+        0.7583
+      ],
+      "confirmed_error": "The legacy 'pitch coverage' of 55%/78% is actually the Region 3 pitching rate (physics != 0). Real sensor observability is >97% across all turbines.",
+      "missing_run_stats": {
+        "missing_episodes": 2759,
+        "max_consecutive_steps": 736,
+        "mean_consecutive_steps": 1.555636100036245,
+        "median_consecutive_steps": 1.0,
+        "p95_consecutive_steps": 1.0
+      }
+    }
+  },
+  {
+    "cache_name": "Penmanshiel_chronological",
+    "cache_dir": "artifacts\\cache_external_wind\\external_wind_penmanshiel_chronological",
+    "steps": 451334,
+    "n_turbines": 14,
+    "n_features": 11,
+    "feature_names": [
+      "Wspd",
+      "Wdir_sin",
+      "Wdir_cos",
+      "Ndir_sin",
+      "Ndir_cos",
+      "Etmp",
+      "Itmp",
+      "Pab_mean",
+      "Pab_std",
+      "Prtv",
+      "Patv_hist"
+    ],
+    "feature_observability": {
+      "Wspd": {
+        "overall_obs_rate": 0.8904,
+        "min_turbine_obs_rate": 0.827,
+        "max_turbine_obs_rate": 0.9638,
+        "mean_turbine_obs_rate": 0.8904
+      },
+      "Wdir_sin": {
+        "overall_obs_rate": 0.8915,
+        "min_turbine_obs_rate": 0.8365,
+        "max_turbine_obs_rate": 0.9653,
+        "mean_turbine_obs_rate": 0.8915
+      },
+      "Wdir_cos": {
+        "overall_obs_rate": 0.8915,
+        "min_turbine_obs_rate": 0.8365,
+        "max_turbine_obs_rate": 0.9653,
+        "mean_turbine_obs_rate": 0.8915
+      },
+      "Ndir_sin": {
+        "overall_obs_rate": 0.8915,
+        "min_turbine_obs_rate": 0.8365,
+        "max_turbine_obs_rate": 0.9653,
+        "mean_turbine_obs_rate": 0.8915
+      },
+      "Ndir_cos": {
+        "overall_obs_rate": 0.8915,
+        "min_turbine_obs_rate": 0.8365,
+        "max_turbine_obs_rate": 0.9653,
+        "mean_turbine_obs_rate": 0.8915
+      },
+      "Etmp": {
+        "overall_obs_rate": 0.8679,
+        "min_turbine_obs_rate": 0.8087,
+        "max_turbine_obs_rate": 0.9424,
+        "mean_turbine_obs_rate": 0.8679
+      },
+      "Itmp": {
+        "overall_obs_rate": 0.8679,
+        "min_turbine_obs_rate": 0.8087,
+        "max_turbine_obs_rate": 0.9424,
+        "mean_turbine_obs_rate": 0.8679
+      },
+      "Pab_mean": {
+        "overall_obs_rate": 0.6823,
+        "min_turbine_obs_rate": 0.6317,
+        "max_turbine_obs_rate": 0.7652,
+        "mean_turbine_obs_rate": 0.6823
+      },
+      "Pab_std": {
+        "overall_obs_rate": 0.8915,
+        "min_turbine_obs_rate": 0.8365,
+        "max_turbine_obs_rate": 0.9653,
+        "mean_turbine_obs_rate": 0.8915
+      },
+      "Prtv": {
+        "overall_obs_rate": 0.8915,
+        "min_turbine_obs_rate": 0.8365,
+        "max_turbine_obs_rate": 0.9653,
+        "mean_turbine_obs_rate": 0.8915
+      },
+      "Patv_hist": {
+        "overall_obs_rate": 0.7366,
+        "min_turbine_obs_rate": 0.6525,
+        "max_turbine_obs_rate": 0.8265,
+        "mean_turbine_obs_rate": 0.7366
+      }
+    },
+    "pitch_observability_audit": {
+      "actual_sensor_obs_rate": 0.6823,
+      "legacy_reported_pitch_coverage_non_zero": 0.6385,
+      "normal_mppt_zero_pitch_rate": 0.3615,
+      "per_turbine_actual_obs": [
+        0.6347,
+        0.6398,
+        0.6387,
+        0.6392,
+        0.6389,
+        0.6352,
+        0.6404,
+        0.6402,
+        0.6317,
+        0.7554,
+        0.7637,
+        0.7652,
+        0.7642,
+        0.7649
+      ],
+      "per_turbine_non_zero": [
+        0.6395,
+        0.6478,
+        0.6419,
+        0.653,
+        0.6534,
+        0.6581,
+        0.6501,
+        0.666,
+        0.6734,
+        0.6134,
+        0.6101,
+        0.6095,
+        0.6113,
+        0.6113
+      ],
+      "confirmed_error": "The legacy 'pitch coverage' of 55%/78% is actually the Region 3 pitching rate (physics != 0). Real sensor observability is >97% across all turbines.",
+      "missing_run_stats": {
+        "missing_episodes": 75209,
+        "max_consecutive_steps": 1354430,
+        "mean_consecutive_steps": 26.690781688361763,
+        "median_consecutive_steps": 9.0,
+        "p95_consecutive_steps": 9.0
+      }
+    }
+  },
+  {
+    "cache_name": "LHB_chronological",
+    "cache_dir": "artifacts\\cache_external_wind\\external_wind_la_haute_borne_chronological",
+    "steps": 54289,
+    "n_turbines": 4,
+    "n_features": 11,
+    "feature_names": [
+      "Wspd",
+      "Wdir_sin",
+      "Wdir_cos",
+      "Ndir_sin",
+      "Ndir_cos",
+      "Etmp",
+      "Itmp",
+      "Pab_mean",
+      "Pab_std",
+      "Prtv",
+      "Patv_hist"
+    ],
+    "feature_observability": {
+      "Wspd": {
+        "overall_obs_rate": 0.9936,
+        "min_turbine_obs_rate": 0.9908,
+        "max_turbine_obs_rate": 0.996,
+        "mean_turbine_obs_rate": 0.9936
+      },
+      "Wdir_sin": {
+        "overall_obs_rate": 0.9936,
+        "min_turbine_obs_rate": 0.9908,
+        "max_turbine_obs_rate": 0.996,
+        "mean_turbine_obs_rate": 0.9936
+      },
+      "Wdir_cos": {
+        "overall_obs_rate": 0.9936,
+        "min_turbine_obs_rate": 0.9908,
+        "max_turbine_obs_rate": 0.996,
+        "mean_turbine_obs_rate": 0.9936
+      },
+      "Ndir_sin": {
+        "overall_obs_rate": 0.9936,
+        "min_turbine_obs_rate": 0.9908,
+        "max_turbine_obs_rate": 0.996,
+        "mean_turbine_obs_rate": 0.9936
+      },
+      "Ndir_cos": {
+        "overall_obs_rate": 0.9936,
+        "min_turbine_obs_rate": 0.9908,
+        "max_turbine_obs_rate": 0.996,
+        "mean_turbine_obs_rate": 0.9936
+      },
+      "Etmp": {
+        "overall_obs_rate": 0.9922,
+        "min_turbine_obs_rate": 0.9893,
+        "max_turbine_obs_rate": 0.9959,
+        "mean_turbine_obs_rate": 0.9922
+      },
+      "Itmp": {
+        "overall_obs_rate": 0.9999,
+        "min_turbine_obs_rate": 0.9999,
+        "max_turbine_obs_rate": 0.9999,
+        "mean_turbine_obs_rate": 0.9999
+      },
+      "Pab_mean": {
+        "overall_obs_rate": 0.9922,
+        "min_turbine_obs_rate": 0.9893,
+        "max_turbine_obs_rate": 0.9959,
+        "mean_turbine_obs_rate": 0.9922
+      },
+      "Pab_std": {
+        "overall_obs_rate": 0.9999,
+        "min_turbine_obs_rate": 0.9999,
+        "max_turbine_obs_rate": 0.9999,
+        "mean_turbine_obs_rate": 0.9999
+      },
+      "Prtv": {
+        "overall_obs_rate": 0.9777,
+        "min_turbine_obs_rate": 0.9698,
+        "max_turbine_obs_rate": 0.9858,
+        "mean_turbine_obs_rate": 0.9777
+      },
+      "Patv_hist": {
+        "overall_obs_rate": 0.917,
+        "min_turbine_obs_rate": 0.9091,
+        "max_turbine_obs_rate": 0.9282,
+        "mean_turbine_obs_rate": 0.917
+      }
+    },
+    "pitch_observability_audit": {
+      "actual_sensor_obs_rate": 0.9922,
+      "legacy_reported_pitch_coverage_non_zero": 0.9971,
+      "normal_mppt_zero_pitch_rate": 0.0029,
+      "per_turbine_actual_obs": [
+        0.9893,
+        0.9942,
+        0.9896,
+        0.9959
+      ],
+      "per_turbine_non_zero": [
+        0.9971,
+        0.9978,
+        0.9962,
+        0.9971
+      ],
+      "confirmed_error": "The legacy 'pitch coverage' of 55%/78% is actually the Region 3 pitching rate (physics != 0). Real sensor observability is >97% across all turbines.",
+      "missing_run_stats": {
+        "missing_episodes": 910,
+        "max_consecutive_steps": 235,
+        "mean_consecutive_steps": 1.8527472527472528,
+        "median_consecutive_steps": 1.0,
+        "p95_consecutive_steps": 3.0
+      }
+    }
+  }
+]

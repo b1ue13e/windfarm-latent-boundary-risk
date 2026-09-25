@@ -5,7 +5,7 @@ import pypdf
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-root = r'E:\论文3'
+root = str(os.environ.get("WINDFARM_REPO_ROOT", os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 source_path = os.path.join(root, 'paper_tste_ieee.md')
 pdf_paths = [
     os.path.join(root, 'build', 'paper_tste_ieee.pdf'),
