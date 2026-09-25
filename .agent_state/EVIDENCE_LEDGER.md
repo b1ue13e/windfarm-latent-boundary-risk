@@ -894,3 +894,61 @@ Status: VERIFIED_REPO
 Summary: TSTE 2026 external-compliance refactor complete: 0 supplement references, 192-word abstract, AI disclosure in Acknowledgment, Cover Letter to EiC Hua Geng, PES-compliant package generated
 Source: docs/TSTE_2026_EXTERNAL_COMPLIANCE_REPORT.md
 
+## T72 — 2026-09-25T03:30:00+08:00
+Task-ID: T72
+Status: VERIFIED_COMMAND
+Summary: Fresh clone audit executed at E:\windfarm_clean_clone_test; identified 6 categories of failure blockers (missing evaluation arrays, .gitignore over-exclusion, hardcoded drive letters E:/, undocumented environments, unanchored raw datasets, implicit cached objects); root causes and audit findings documented in docs/CLEAN_CLONE_REPRODUCIBILITY_AUDIT.md.
+Source: docs/CLEAN_CLONE_REPRODUCIBILITY_AUDIT.md
+
+## T73 — 2026-09-25T04:15:00+08:00
+Task-ID: T73
+Status: VERIFIED_COMMAND
+Summary: Implemented scripts/generate_artifact_manifest.py and generated artifacts/ARTIFACT_MANIFEST.json registering 38 derived artifacts across 8 experimental domains with SHA256 hashes, generating scripts, upstream dependencies, and claim linkages.
+Source: artifacts/ARTIFACT_MANIFEST.json
+Command: `python scripts/generate_artifact_manifest.py`
+Exit-Code: 0
+
+## T74 — 2026-09-25T05:00:00+08:00
+Task-ID: T74
+Status: VERIFIED_REPO
+Summary: Machine-specific absolute paths (e:/, E:\, C:\, Users/lidong) completely purged from scripts/, tests/, and windfarm_moe/. Implemented WINDFARM_REPO_ROOT environment variable and dynamic Path(__file__).resolve() parent navigation.
+Source: scripts/, tests/, windfarm_moe/
+
+## T75 — 2026-09-25T05:45:00+08:00
+Task-ID: T75
+Status: VERIFIED_COMMAND
+Summary: Release strategy executed: created Category B bundle archives/windfarm_derived_artifacts_v1.0.zip (186.55 MB) via scripts/package_release_artifacts.py; implemented scripts/fetch_artifacts.py with dual public URL and local archive fallback; created root requirements.txt and docs/DATA_AVAILABILITY_AND_PREPROCESSING.md.
+Source: scripts/package_release_artifacts.py, scripts/fetch_artifacts.py, docs/DATA_AVAILABILITY_AND_PREPROCESSING.md, requirements.txt
+Command: `python scripts/package_release_artifacts.py`
+Exit-Code: 0
+
+## T76 — 2026-09-25T06:30:00+08:00
+Task-ID: T76
+Status: VERIFIED_COMMAND
+Summary: Implemented one-command replication verifier scripts/verify_replication.py with cross-platform CRLF/LF hash invariance; verified 38/38 artifact checksums and 18/18 quantitative headline claims against manuscript values with exit code 0.
+Source: scripts/verify_replication.py
+Command: `python scripts/verify_replication.py`
+Exit-Code: 0
+Relevant-Output:
+```
+REPLICATION VERIFICATION: FULLY_REPRODUCIBLE (18/18 claims passed)
+```
+
+## T77 — 2026-09-25T07:15:00+08:00
+Task-ID: T77
+Status: VERIFIED_REPO
+Summary: README.md updated with 3-tier replication guide (Tier 1 <1 min verification, Tier 2 ~30 min lightweight audit, Tier 3 HPC pipeline) and 5-step clean-clone workflow.
+Source: README.md
+
+## T78 — 2026-09-25T08:30:00+08:00
+Task-ID: T78
+Status: VERIFIED_COMMAND
+Summary: Clean clone tested in isolated directory E:\windfarm_clean_clone_test without accessing E:\论文3; fetch_artifacts.py, verify_replication.py, verify_final_pdf_integrity.py, verify_decisive_gate.py, verify_tste_number_consistency.py (73/73 checks), verify_scientific_claim_gate.py, and verify_gate.py all passed with exit code 0; final verdict published in docs/FINAL_REPRODUCIBILITY_VERDICT.md certifying FULLY_REPRODUCIBLE.
+Source: docs/FINAL_REPRODUCIBILITY_VERDICT.md
+Command: `python .agents/scripts/verify_gate.py`
+Exit-Code: 0
+Relevant-Output:
+```
+VERIFICATION_GATE: PASS
+```
+
