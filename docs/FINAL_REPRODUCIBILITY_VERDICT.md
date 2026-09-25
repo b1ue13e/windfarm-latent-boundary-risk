@@ -16,13 +16,14 @@ This reproducibility audit certifies that a clean clone of the public repository
 ### Key Metrics
 - **Initial Clean-Clone Blockers Identified (Phase 1)**: 6 categories (missing evaluation arrays, `.gitignore` over-exclusion, hardcoded drive letters `E:/论文3`, undocumented environments, unanchored raw datasets, implicit cached objects).
 - **All Blockers Resolved**: 100% resolved via Category A/B classification, path decoupling, release bundler, and dual public/local fetcher.
+- **Skeptical Review & Bug Remediation**: Fixed missing `import os` in `tests/test_matched_budget_accounting.py` and `scripts/plot_matched_budget_figures.py`; fixed hardcoded compiler paths in `scripts/export_standalone_ieee.py` and `scripts/build_pdf_direct.ps1`; eliminated absolute path leakage in `scripts/verify_tste_number_consistency.py`; corrected test target in `tests/test_tste_number_consistency.py`; added lightweight table regeneration and full 73-token audit (Claim C19) to `scripts/verify_replication.py`.
 - **Artifact Manifest**: 38 registered artifacts across 8 experimental domains with exact SHA256 hashes (`artifacts/ARTIFACT_MANIFEST.json`).
-- **Claim Provenance & Replication Audit**: 18 of 18 quantitative headline claims verified with programmatic exact match (`scripts/verify_replication.py`).
-- **Clean-Clone Verification Gates**: 100% PASS (Exit Code 0) across all 6 repository verification suites in an isolated directory.
+- **Claim Provenance & Replication Audit**: 19 of 19 quantitative headline claims verified with programmatic exact match (`scripts/verify_replication.py`).
+- **Clean-Clone Verification Gates**: 100% PASS (Exit Code 0) across all verification gates and unit tests in an isolated directory.
 
 ---
 
-## 2. Quantitative Headline Claim Replication Matrix (18/18 PASS)
+## 2. Quantitative Headline Claim Replication Matrix (19/19 PASS)
 
 All claims evaluated by `scripts/verify_replication.py` in the fresh clone directory `E:\windfarm_clean_clone_test`:
 
@@ -31,7 +32,7 @@ All claims evaluated by `scripts/verify_replication.py` in the fresh clone direc
 | **C01** | Regime 1 | Clean Physics $h=1$ PSREI (5-seed mean) | 589,535 kWh | **589,535 kWh** | **PASS** | `risk_layer_benchmark/h1_lead1/results_by_seed.csv` |
 | **C02** | Regime 1 | Clean Physics $h=6$ PSREI (5-seed mean) | 881,367 kWh | **881,367 kWh** | **PASS** | `risk_layer_benchmark/h6_lead6/results_by_seed.csv` |
 | **C03** | Regime 1 | Clean Physics $h=6$ Violation Rate | 6.81% | **6.81%** | **PASS** | `risk_layer_benchmark/h6_lead6/results_by_seed.csv` |
-| **C04** | Regime 1 | Missingness-Aware GBDT $h=6$ Nominal Target Breach | $> 10.0\%$ | **16.23%** | **PASS** | `direct_quantile_baselines_summary.csv` |
+| **C04** | Regime 1 | Missingness-Aware GBDT $h=6$ Nominal Target Breach | 16.23% ($> 10.0\%$) | **16.23%** | **PASS** | `direct_quantile_baselines_summary.csv` |
 | **C05** | Regime 2 | Recalibration Shortage Absorption Under Delay-6 | 55.3% | **55.3%** | **PASS** | `single_task_dense_vs_multitask_moe_ablation.csv` |
 | **C06** | Regime 2 | Recalibrated Physics $\tau=60$ Cost | 1,228,609 kWh | **1,228,609 kWh** | **PASS** | `single_task_dense_vs_multitask_moe_ablation.csv` |
 | **C07** | Regime 2 | Uncalibrated Posterior Max ECE Compliance | $\le 5.0\%$ | **3.46%** | **PASS** | `posterior_calibration.csv` |
@@ -46,6 +47,7 @@ All claims evaluated by `scripts/verify_replication.py` in the fresh clone direc
 | **C16** | Rho Sensitivity | Absence of Economic Crossover for $\rho \in [5, 100]$ | $\Delta \text{PSREI} > 0$ for all $\rho \ge 5$ | **$\Delta \text{PSREI} > 0$ (9 conditions)** | **PASS** | `matched_budget/reoptimized_rho_sensitivity.csv` |
 | **C17** | External Sites | Directional Asymmetry (Kelmarsh $\to$ Penm vs reverse) | 0.770 vs 0.341 | **0.770 vs 0.341** | **PASS** | `external_wind_guard_windowfix/external_wind_run_status.csv` |
 | **C18** | External Sites | LHB Micro-Farm Overfitting Boundary Guard | NMI 0.941, ARI 0.971 | **NMI 0.941, ARI 0.971** | **PASS** | `external_wind_lhb_guard_full_5seed/external_wind_guard.json` |
+| **C19** | Submission Audit | Full 73-Token Submission Number Consistency | 73/73 checks passed | **73/73 passed (0 failed)** | **PASS** | `tste_number_consistency_audit/tste_number_consistency_audit.csv` |
 
 ---
 
@@ -117,5 +119,5 @@ The external reproducibility gap is formally closed. A researcher downloading th
 
 **Signed**:  
 *Antigravity Autonomous Research Worker*  
-*Verified on commit `5b35ca0`*  
+*Verified on commit `1e36d82`*  
 *Status: FULLY_REPRODUCIBLE*
