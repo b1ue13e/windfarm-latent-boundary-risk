@@ -49,6 +49,13 @@ artifacts/matched_budget/*.npz
 !artifacts/external_wind_lhb_guard_full_5seed/
 !artifacts/external_wind_lhb_anchor_intervention_full/
 !artifacts/tste_number_consistency_audit/
+!artifacts/signature_gate_lhb_guard_20260902/
+!artifacts/farm_aggregate_reserve_20260905/
+!artifacts/markov_gilbert_eval_honest/
+!artifacts/iec_density_rolling_eval/
+!artifacts/multiyear_gate_representation_audit/
+!artifacts/dynamic_price_settlement_audit/
+!artifacts/wind_bess_simulation/
 artifacts/*.npz
 artifacts/*.npy
 artifacts/*.pt

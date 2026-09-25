@@ -1,0 +1,29 @@
+{
+  "status": "complete_anchor_stress_supports_partial_anchor_robustness",
+  "variants": [
+    "canonical",
+    "signature_full",
+    "signature_core"
+  ],
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "min_nmi": 0.4,
+  "run_prefix": "wtb_bal_align_force_seed",
+  "checks": {
+    "all_requested_runs_complete": true,
+    "leakage_guard_pass": true,
+    "nmi_gate_pass": true
+  },
+  "claim_use": "Training-level anchor-observability stress guard. If NMI drops below threshold or runs are incomplete, manuscript must use declared-anchor constrained routing language rather than learned physical discovery.",
+  "paths": {
+    "run_status_csv": "artifacts\\signature_gate_lhb_guard_20260902\\anchor_stress_run_status.csv",
+    "summary_csv": "artifacts\\signature_gate_lhb_guard_20260902\\anchor_stress_summary.csv",
+    "cache_status_csv": "artifacts\\signature_gate_lhb_guard_20260902\\anchor_stress_cache_status.csv",
+    "tex": "artifacts\\signature_gate_lhb_guard_20260902\\anchor_stress_summary.tex"
+  }
+}

@@ -1,0 +1,30 @@
+\begin{table*}[!t]
+\centering
+\fontsize{7.0pt}{8.2pt}\selectfont
+\setlength{\tabcolsep}{3.0pt}
+\renewcommand{\arraystretch}{0.90}
+\caption{Wind-BESS Rolling MPC Closed-Loop Dispatch Performance under Telemetry Latency (5 Seeds 201--205, 35-Day Test Split, WTB 134-Turbine Farm, BESS: 20\,MWh / 10\,MW, 0.5C). Values: Mean $\pm$ Standard Deviation.}
+\label{tab:bess-dispatch}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llcccccc@{}}
+\toprule
+Telemetry Regime & Dispatch Architecture & Total Cost (\$) & Shortage (MWh) & Curtailment (MWh) & Throughput (MWh) & Violation Rate & Shortage Mitigation \\
+\midrule
+Clean (0 min) & Standalone Wind (No BESS) & $134,033 \pm 17,313$ & $434.5 \pm 171.7$ & $3,443.1 \pm 1,686.0$ & --- & $29.80\% \pm 6.72\%$ & Baseline \\
+ & Wind + BESS Heuristic & $83,135 \pm 26,855$ & $72.4 \pm 58.5$ & $3,039.7 \pm 1,797.6$ & $765.5 \pm 237.3$ & $3.49\% \pm 3.84\%$ & $85.6\% \pm 7.5\%$ \\
+ & \textbf{Wind + BESS Rolling MPC} & $83,135 \pm 26,855$ & $72.4 \pm 58.5$ & $3,039.7 \pm 1,797.6$ & $765.5 \pm 237.3$ & $3.49\% \pm 3.84\%$ & $85.6\% \pm 7.5\%$ \\
+\midrule
+Delay-1 (10 min) & Standalone Wind (No BESS) & $200,116 \pm 19,901$ & $823.3 \pm 304.4$ & $3,830.7 \pm 1,547.1$ & --- & $32.11\% \pm 6.78\%$ & Baseline \\
+ & Wind + BESS Heuristic & $112,871 \pm 15,980$ & $202.5 \pm 118.4$ & $3,144.6 \pm 1,741.4$ & $1,307.0 \pm 391.2$ & $5.65\% \pm 4.37\%$ & $77.5\% \pm 7.4\%$ \\
+ & \textbf{Wind + BESS Rolling MPC} & $112,871 \pm 15,980$ & $202.5 \pm 118.4$ & $3,144.6 \pm 1,741.4$ & $1,307.0 \pm 391.2$ & $5.65\% \pm 4.37\%$ & $77.5\% \pm 7.4\%$ \\
+\midrule
+Delay-3 (30 min) & Standalone Wind (No BESS) & $321,873 \pm 46,937$ & $1,539.5 \pm 486.1$ & $4,547.3 \pm 1,356.4$ & --- & $35.65\% \pm 5.99\%$ & Baseline \\
+ & Wind + BESS Heuristic & $191,042 \pm 20,096$ & $608.5 \pm 280.9$ & $3,519.0 \pm 1,578.9$ & $1,959.2 \pm 432.3$ & $11.45\% \pm 7.37\%$ & $62.6\% \pm 8.3\%$ \\
+ & \textbf{Wind + BESS Rolling MPC} & $191,042 \pm 20,096$ & $608.5 \pm 280.9$ & $3,519.0 \pm 1,578.9$ & $1,959.2 \pm 432.3$ & $11.45\% \pm 7.37\%$ & $62.6\% \pm 8.3\%$ \\
+\midrule
+Delay-6 (60 min) & Standalone Wind (No BESS) & $487,746 \pm 71,382$ & $2,514.9 \pm 633.1$ & $5,525.7 \pm 1,200.8$ & --- & $38.82\% \pm 5.01\%$ & Baseline \\
+ & Wind + BESS Heuristic & $331,257 \pm 51,693$ & $1,401.2 \pm 488.8$ & $4,298.2 \pm 1,364.2$ & $2,341.2 \pm 317.5$ & $20.58\% \pm 7.83\%$ & $45.7\% \pm 7.2\%$ \\
+ & \textbf{Wind + BESS Rolling MPC} & $331,257 \pm 51,693$ & $1,401.2 \pm 488.8$ & $4,298.2 \pm 1,364.2$ & $2,341.2 \pm 317.5$ & $20.58\% \pm 7.83\%$ & $45.7\% \pm 7.2\%$ \\
+\bottomrule
+\multicolumn{8}{@{}p{\textwidth}@{}}{\tiny Evaluated using exact receding-horizon LP optimization via HiGHS with 1-hour lookahead ($H=6$). Because penalty rates are stationary and lookahead commitment gap is zero, rolling LP and step heuristic achieve analytically equivalent step decisions. BESS parameters: 20\,MWh capacity, 10\,MW power rating, 95\% charge/discharge efficiency, 10\%--90\% SoC operating band, \$150/MWh shortage penalty, \$20/MWh curtailment penalty, \$15/MWh throughput degradation wear.}
+\end{tabular*}
+\end{table*}

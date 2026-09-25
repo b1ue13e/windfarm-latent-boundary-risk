@@ -1,0 +1,42 @@
+{
+  "status": "iec_density_multiyear_rolling_completed",
+  "kelmarsh_completed": true,
+  "penmanshiel_completed": true,
+  "lhb_completed": true,
+  "kelmarsh_static_freeze_delta_cost": -2235283.783849788,
+  "kelmarsh_static_freeze_ci_95": [
+    -7117968.956128704,
+    1489010.9179400087
+  ],
+  "kelmarsh_static_freeze_ci_excludes_zero": false,
+  "kelmarsh_walkforward_pooled_delta_cost": -6187492.906148469,
+  "kelmarsh_walkforward_pooled_ci_95": [
+    -7518144.713570547,
+    -4765045.781336451
+  ],
+  "kelmarsh_walkforward_pooled_ci_excludes_zero": true,
+  "penmanshiel_static_freeze_delta_cost": -13832784.787108278,
+  "penmanshiel_static_freeze_ci_95": [
+    -112367664.83666968,
+    91939656.20266762
+  ],
+  "penmanshiel_static_freeze_ci_excludes_zero": false,
+  "penmanshiel_walkforward_pooled_delta_cost": -4339714.631343102,
+  "penmanshiel_walkforward_pooled_ci_95": [
+    -8241400.115668559,
+    -438029.1470176458
+  ],
+  "penmanshiel_walkforward_pooled_ci_excludes_zero": true,
+  "lhb_pooled_delta_cost": 42927.18496052995,
+  "lhb_pooled_ci_95": [
+    -28744.626080729813,
+    141198.1617877189
+  ],
+  "lhb_pooled_ci_excludes_zero": false,
+  "lhb_walkforward_pooled_delta_cost": 1006532.1329521689,
+  "lhb_walkforward_pooled_ci_95": [
+    285337.5597424306,
+    1755204.8447985854
+  ],
+  "lhb_walkforward_pooled_ci_excludes_zero": true
+}

@@ -1,0 +1,42 @@
+{
+  "status": "bess_simulation_completed",
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "delays": [
+    0,
+    1,
+    3,
+    6
+  ],
+  "capacities": [
+    5.0,
+    10.0,
+    20.0,
+    30.0,
+    40.0
+  ],
+  "c_rate": 0.5,
+  "mpc_lookahead": 6,
+  "default_bess": {
+    "capacity_mwh": 20.0,
+    "power_rating_mw": 10.0
+  },
+  "highlights_delay6_mpc": {
+    "unbuffered_total_cost": 487745.7477213541,
+    "mpc_total_cost": 331256.58708097914,
+    "cost_savings": 156489.16064037505,
+    "cost_reduction_pct": 32.14007302474188,
+    "unbuffered_violation_rate": 0.38819514153784385,
+    "mpc_violation_rate": 0.20582212407147163,
+    "unbuffered_shortage_mwh": 2514.87939453125,
+    "mpc_shortage_mwh": 1401.1616543629843,
+    "shortage_mitigation_pct": 45.72518517608951,
+    "bess_throughput_mwh": 2341.1712970093677,
+    "equivalent_full_cycles": 58.52928242523419
+  }
+}

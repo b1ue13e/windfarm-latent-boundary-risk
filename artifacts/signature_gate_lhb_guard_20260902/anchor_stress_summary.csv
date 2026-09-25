@@ -1,0 +1,4 @@
+variant,n_requested_runs,n_complete_runs,all_requested_runs_complete,leakage_guard_pass,nmi_mean,nmi_std,ari_mean,ari_std,nmi_gate_pass,claim_boundary
+canonical,5,5,True,True,0.9752334390937824,0.008826254617841551,0.9904476455385842,0.004385103012583659,True,partial_anchor_robustness_supported
+signature_core,5,5,True,True,0.5749875270741378,0.04233693172940235,0.6269737267754353,0.06381330649070732,True,downgrade_to_declared_anchor_constrained_routing
+signature_full,5,5,True,True,0.6743138817685657,0.12090065214064556,0.7400975953849995,0.1604014629854116,True,partial_anchor_robustness_supported

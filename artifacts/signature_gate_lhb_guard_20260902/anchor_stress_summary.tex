@@ -1,0 +1,16 @@
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.08}
+\caption{Training-level anchor-observability stress summary.}
+\begin{tabular}{lrrrrl}
+\toprule
+Variant & Runs & NMI & ARI & Pass & Claim boundary \\
+\midrule
+canonical & 5/5 & 0.975 $\pm$ 0.009 & 0.990 $\pm$ 0.004 & yes & partial\_anchor\_robustness\_supported \\
+signature\_core & 5/5 & 0.575 $\pm$ 0.042 & 0.627 $\pm$ 0.064 & yes & downgrade\_to\_declared\_anchor\_constrained\_routing \\
+signature\_full & 5/5 & 0.674 $\pm$ 0.121 & 0.740 $\pm$ 0.160 & yes & partial\_anchor\_robustness\_supported \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,81 @@
+{
+  "status": "farm_aggregate_reserve_completed",
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "rhos": [
+    10.0,
+    5.0,
+    20.0
+  ],
+  "n_bootstraps": 20000,
+  "transitional_total_cost_deltas": {
+    "joint-posterior-aggregate_vs_global-pcc-quantile": {
+      "delta_mean": 99629.38815104142,
+      "ci_95": [
+        -306189.7438802086,
+        505448.5201822914
+      ],
+      "ci_excludes_zero": false,
+      "wilcoxon_p": 1.0
+    },
+    "joint-posterior-aggregate_vs_gaussian-pcc-param": {
+      "delta_mean": 114096.44292263724,
+      "ci_95": [
+        -425408.04600218125,
+        705309.4460411959
+      ],
+      "ci_excludes_zero": false,
+      "wilcoxon_p": 1.0
+    },
+    "joint-posterior-aggregate_vs_soft-pab-aggregate": {
+      "delta_mean": -1328976.0020182296,
+      "ci_95": [
+        -1681826.927408854,
+        -1074158.5932291672
+      ],
+      "ci_excludes_zero": true,
+      "wilcoxon_p": 0.0625
+    },
+    "soft-pab-aggregate_vs_global-pcc-quantile": {
+      "delta_mean": 1428605.390169271,
+      "ci_95": [
+        1022866.2351562515,
+        1784467.9438802078
+      ],
+      "ci_excludes_zero": true,
+      "wilcoxon_p": 0.0625
+    },
+    "soft-pab-aggregate_vs_gaussian-pcc-param": {
+      "delta_mean": 1443072.444940867,
+      "ci_95": [
+        871440.190357377,
+        1899452.536285732
+      ],
+      "ci_excludes_zero": true,
+      "wilcoxon_p": 0.0625
+    },
+    "gaussian-pcc-param_vs_global-pcc-quantile": {
+      "delta_mean": -14467.05477159582,
+      "ci_95": [
+        -165261.58731620573,
+        136327.47777301408
+      ],
+      "ci_excludes_zero": false,
+      "wilcoxon_p": 1.0
+    },
+    "gaussian-pcc-param_vs_soft-pab-aggregate": {
+      "delta_mean": -1443072.444940867,
+      "ci_95": [
+        -1899452.536285732,
+        -871440.190357377
+      ],
+      "ci_excludes_zero": true,
+      "wilcoxon_p": 0.0625
+    }
+  }
+}
