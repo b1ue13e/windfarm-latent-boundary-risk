@@ -42,6 +42,12 @@ REPO_ROOT = Path(os.environ.get("WINDFARM_REPO_ROOT", Path(__file__).resolve().p
 
 
 def compute_sha256(path: Path) -> str:
+    # Normalize CRLF to LF for text artifacts to ensure cross-platform hash reproducibility (Windows vs Linux)
+    suffix = path.suffix.lower()
+    if suffix in {".csv", ".json", ".txt", ".md", ".tex"}:
+        data = path.read_bytes().replace(b"\r\n", b"\n")
+        return hashlib.sha256(data).hexdigest()
+
     h = hashlib.sha256()
     with path.open("rb") as f:
         while chunk := f.read(65536):

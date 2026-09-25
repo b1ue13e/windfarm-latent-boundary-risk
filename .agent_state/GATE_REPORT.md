@@ -1,12 +1,12 @@
 # Verification Gate Report
 
-Generated: 2026-09-25T07:39:32+08:00
+Generated: 2026-09-25T08:37:28+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
 Exit: 0
 ```
-=== Auditing Main IEEE PDF: build/paper_tste_ieee.pdf ===
+=== Auditing Main IEEE PDF: E:\璁烘枃3\build\paper_tste_ieee.pdf ===
 Total pages: 9
 
 --- Checking Required Phrases ---
@@ -43,7 +43,7 @@ Number 881,367 found 7 times:
 
 [ALL IEEE PDF CHECKS PASSED]
 
-=== Auditing Supplementary PDF: build/paper_tste_supplementary.pdf ===
+=== Auditing Supplementary PDF: E:\璁烘枃3\build\paper_tste_supplementary.pdf ===
 Total pages: 44
 
 --- Checking Banned Phrases in Supplementary ---
