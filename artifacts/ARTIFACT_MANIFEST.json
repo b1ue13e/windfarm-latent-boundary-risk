@@ -38,7 +38,7 @@
   },
   {
     "filename": "artifacts/direct_quantile_baselines_summary.csv",
-    "sha256": "be74766467dcf21656b372e89e269ae02e0ee6c52371fe0afab8196e0fedec8b",
+    "sha256": "da2a0738288c17ec97d1cb06b4fc2093d40393c13d94f989eb6c8186a7a2c7dc",
     "size_bytes": 5922,
     "category": "A",
     "generating_script": "scripts/decisive_fair_risk_benchmark.py",
@@ -57,7 +57,7 @@
   },
   {
     "filename": "artifacts/single_task_dense_vs_multitask_moe_ablation.csv",
-    "sha256": "dfbdd3d7884337ba8d0a1ed5fbc760463cd95752e984d60e2edb0c43533b50d2",
+    "sha256": "0a0b86e5c9e61b277382ca96dacdeee0bafe2792c0675fe7b836cb52414f976d",
     "size_bytes": 20798,
     "category": "A",
     "generating_script": "scripts/eval_single_task_dense_phase_scan.py",
@@ -79,7 +79,7 @@
   },
   {
     "filename": "artifacts/posterior_calibration.csv",
-    "sha256": "7c0ae323842a0973a8687cd403fad3384c9e7fd1c61d14282ad0cd41f90376d0",
+    "sha256": "5fc6420591e572d7f8f857159e1203a662d924561e9478debebc2ca0149a8acb",
     "size_bytes": 2985,
     "category": "A",
     "generating_script": "scripts/audit_posterior_calibration.py",
@@ -96,7 +96,7 @@
   },
   {
     "filename": "artifacts/active_power_anchor_audit.csv",
-    "sha256": "6cf0e3a2ea30f37e28bedb070e51a74ed25a90024e5119fcbbe2e2b11300de30",
+    "sha256": "d2ea9977a03a61ed67c9b39caab62f9f42c59d9ec276041940565927c416f4bb",
     "size_bytes": 13026,
     "category": "A",
     "generating_script": "scripts/run_active_power_anchor_audit.py",
@@ -131,7 +131,7 @@
   },
   {
     "filename": "artifacts/factorial_boundary_ablation_summary.csv",
-    "sha256": "21206306425bf54ed2cfd090bede1ff8bb9781b6e5157eecd163d5741cb9ae92",
+    "sha256": "cdbe1a5526c7101fc990411a244bfff99d6056ba4cefdc47930784280c513ff4",
     "size_bytes": 12819,
     "category": "A",
     "generating_script": "scripts/run_factorial_boundary_ablation.py",
@@ -148,7 +148,7 @@
   },
   {
     "filename": "artifacts/clean_privileged_supervision_ablation.csv",
-    "sha256": "07d1d159f03ce52f77bfba29c9f29c9ff6cabd8ff5f7911764fbdc97e8bb10c1",
+    "sha256": "40248e26480d06aab40512096eb4688062d96be657e35339bd6ab8cab57b8cb4",
     "size_bytes": 2692,
     "category": "A",
     "generating_script": "scripts/run_clean_privileged_supervision_ablation.py",
@@ -165,7 +165,7 @@
   },
   {
     "filename": "artifacts/channel_consequence_ablations.csv",
-    "sha256": "df398623b52a243c129ed48b8909cb9e3d64d2725b9e5b7622a3b44be166a02c",
+    "sha256": "3fb172c8cafe2bd953b322808a90a7e789dd42094121afba164052bee1dd6d02",
     "size_bytes": 3608,
     "category": "A",
     "generating_script": "scripts/run_channel_consequence_ablations.py",
@@ -182,7 +182,7 @@
   },
   {
     "filename": "artifacts/anchor_stress_guard/anchor_stress_summary.csv",
-    "sha256": "38f69f2795244d226575a01d52ef6564d523f0c511fbdf9c1057aeff63269230",
+    "sha256": "7f138057a42750dbd457a28a998fecdad6da627f4676d75805939b0c6692fc68",
     "size_bytes": 733,
     "category": "A",
     "generating_script": "scripts/run_anchor_stress_guard.py",
@@ -198,7 +198,7 @@
   },
   {
     "filename": "artifacts/strong_baseline_closure_summary.csv",
-    "sha256": "2596eb5fbd4c16ac92edbc57a9e57f21764135864f597761d33ee4096bf59953",
+    "sha256": "151213277619547e023d387d51b9726e5cba99220d5ae2b4cae1260a716e8d33",
     "size_bytes": 1539,
     "category": "A",
     "generating_script": "scripts/test_strong_baseline_closure.py",
@@ -217,7 +217,7 @@
   },
   {
     "filename": "artifacts/strong_baseline_bootstrap_contrasts.csv",
-    "sha256": "c26fd8ad56402fba0047223faf59159001857f2fbe773a299471b929adf379c4",
+    "sha256": "31eda5ca76ed2cb78114ea47f52fb30a684363f19a84c2bb99183e263ee76214",
     "size_bytes": 1364,
     "category": "A",
     "generating_script": "scripts/test_strong_baseline_closure.py",
@@ -234,7 +234,7 @@
   },
   {
     "filename": "artifacts/matched_budget/baseline_reproduction.csv",
-    "sha256": "a2faa1493b48fa2aba53f050b6400adedcbb9d69dbd3d7c626448c15bf768aaf",
+    "sha256": "74aca0ae4c83d77cf192548a802b5c56132527c50f9bc254bb1724c22c09d2d6",
     "size_bytes": 4684,
     "category": "A",
     "generating_script": "scripts/run_matched_budget_frontier.py",
@@ -250,7 +250,7 @@
   },
   {
     "filename": "artifacts/matched_budget/exact_matched_budget_frontier.csv",
-    "sha256": "fa3b00203741a2f0672ac329c22fa4f4e1ffe67248f4b53189d69d68b1bf7668",
+    "sha256": "e0ac2ae7af3b4dc5b10a073467931b419d9bc1ec83ee5d1be087a554fd56900a",
     "size_bytes": 132792,
     "category": "A",
     "generating_script": "scripts/run_matched_budget_frontier.py",
@@ -267,7 +267,7 @@
   },
   {
     "filename": "artifacts/matched_budget/validation_calibrated_frontier.csv",
-    "sha256": "b0d5e8b3c79432166846d26a266de30ce069f0c140758737dedbee2f0bdcde59",
+    "sha256": "a958c3136bae556edc1ac6469b2f48a791d1963b1b012f627fa7f20ff14bfc23",
     "size_bytes": 132920,
     "category": "A",
     "generating_script": "scripts/run_matched_budget_frontier.py",
@@ -283,7 +283,7 @@
   },
   {
     "filename": "artifacts/matched_budget/bootstrap_frontier_statistics.csv",
-    "sha256": "af7d4e50f118fc50c295dbc7da174592b5620184bc36c8e50ddd6e7cfeb976de",
+    "sha256": "cd539613b3962ab08aac324cd8bf23529c76dea85c49b72cbbb4ca843f0051ba",
     "size_bytes": 83638,
     "category": "A",
     "generating_script": "scripts/run_matched_budget_frontier.py",
@@ -300,7 +300,7 @@
   },
   {
     "filename": "artifacts/matched_budget/frontier_auc_summary.csv",
-    "sha256": "b807e7dfcc0e376507b2ec5f20d17c9ae727f92e9e0b90dc95c59b298384cde8",
+    "sha256": "1001b3acbdeb53f7db1edcbc42763dc3753de7d6feee047a7f1b4e6e3d2999e7",
     "size_bytes": 1316,
     "category": "A",
     "generating_script": "scripts/run_matched_budget_frontier.py",
@@ -316,7 +316,7 @@
   },
   {
     "filename": "artifacts/matched_budget/mechanism_reallocation_diagnostic.csv",
-    "sha256": "b983915b0b1fdd9f5a9fb9fb9f6fcd36ab6ad0ac86e862e146563ed837fe3f03",
+    "sha256": "aef87eb866683bfa08e81c6fc0b4a9e6a2e3f99673970319c90bc901c31a6637",
     "size_bytes": 545,
     "category": "A",
     "generating_script": "scripts/run_matched_budget_frontier.py",
@@ -332,7 +332,7 @@
   },
   {
     "filename": "artifacts/matched_budget/provenance.json",
-    "sha256": "22624366b20c5790c74e661c670b27895d0ca9b19fcec1e9d4e6b022f7b364b3",
+    "sha256": "6ebdb3e1300f91c37d101914c2f4b53c510407fa706e854044d24d996a0c6fd9",
     "size_bytes": 633,
     "category": "A",
     "generating_script": "scripts/run_matched_budget_frontier.py",
@@ -348,7 +348,7 @@
   },
   {
     "filename": "artifacts/matched_budget/frozen_policy_rho_sensitivity.csv",
-    "sha256": "c63c82fb8436fc01ab5ab46e9d03b215b38650c32cf0e74fa507b8a5de391d34",
+    "sha256": "9b2dc714ca2da585becab172d22c2cd595f43487b9f2acd5c19d05f9f3369fa1",
     "size_bytes": 1652,
     "category": "A",
     "generating_script": "scripts/run_rho_sensitivity.py",
@@ -364,7 +364,7 @@
   },
   {
     "filename": "artifacts/matched_budget/reoptimized_rho_sensitivity.csv",
-    "sha256": "af8cec02ae018be445873124172643f8a0e74ec5d0014a9f4fce14c0a6cd4de0",
+    "sha256": "6d2f16bf25a08bf2d45acc11d097f9ffa8779a706de8083a15ff2c0665316be0",
     "size_bytes": 37002,
     "category": "A",
     "generating_script": "scripts/run_rho_sensitivity.py",
@@ -380,7 +380,7 @@
   },
   {
     "filename": "artifacts/paper_assets/tables/table_main_benchmark.csv",
-    "sha256": "41f079300f6e6e17c7e475027e5dc95ec89040bfcb32d7369569d63416fee537",
+    "sha256": "e1b63a8ca26c46ff732880acf5544799f0acd1cd6093ed2c0c0517c4d5da0bea",
     "size_bytes": 1659,
     "category": "A",
     "generating_script": "scripts/rebuild_applied_energy_diagnostics.py",
@@ -397,7 +397,7 @@
   },
   {
     "filename": "artifacts/paper_assets/tables/table_wtb_ablation.csv",
-    "sha256": "666f65e5769a02cf8b7ecad6d090e7d3640de792759669f2b58bdc41074952dc",
+    "sha256": "89a9ea7311ec748edd3bd3fbb85553463d15495f799422822416d48252f3f7ff",
     "size_bytes": 1340,
     "category": "A",
     "generating_script": "scripts/rebuild_applied_energy_diagnostics.py",
@@ -413,7 +413,7 @@
   },
   {
     "filename": "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv",
-    "sha256": "128a66251cfe21625f9c879d3b68956646c4fb004fa801fd779b4ed3f7d2436e",
+    "sha256": "7d82807484437c1d5a21f633f37ad66fa05957a4e42c71ab5bc4963660736170",
     "size_bytes": 6543,
     "category": "A",
     "generating_script": "scripts/run_anchor_stress_early_warning.py",
@@ -429,7 +429,7 @@
   },
   {
     "filename": "artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_summary.csv",
-    "sha256": "eb283165a7daa2b3ab4358e2716383196618b6b5f540abc202967c954f8d0ebe",
+    "sha256": "fcfb29d0a6a43efac23dd765d65814334a0ceb0ff9f71e65b9a44a8419043531",
     "size_bytes": 3054,
     "category": "A",
     "generating_script": "scripts/run_early_warning_classifier_baseline.py",
@@ -445,7 +445,7 @@
   },
   {
     "filename": "artifacts/final_evidence_package/export/tables/early_warning_consequence_audit.csv",
-    "sha256": "4442e3e5465f752c517e79b187e93cdb4281cca3f7e680c545cb1d8e87640b8c",
+    "sha256": "780b5ff2aeaaff02958af0da3139566638a5cb714fb8da9b91e2212020d7382a",
     "size_bytes": 2084,
     "category": "A",
     "generating_script": "scripts/build_final_evidence_package.py",
@@ -461,7 +461,7 @@
   },
   {
     "filename": "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv",
-    "sha256": "5d89bb0f0ab08916435c90b1f58e90d7019170ad342978509372e599527dcc7c",
+    "sha256": "e905c09b564815fadc8b7e5bf89fc01c9d8868cc9235b7b94b6a70817f867995",
     "size_bytes": 782,
     "category": "A",
     "generating_script": "scripts/run_class_weight_sensitivity.py",
@@ -509,7 +509,7 @@
   },
   {
     "filename": "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv",
-    "sha256": "dead11446dc02604761bb4685204233cf591b201633c4572bf42159c4b2492f9",
+    "sha256": "00fb94f9f2a55ee6e9d7f9ce0437e45a56d87020207436db5087fe24bcd94ef1",
     "size_bytes": 10090,
     "category": "A",
     "generating_script": "scripts/build_mechanism_behavior_pack.py",
@@ -560,7 +560,7 @@
   },
   {
     "filename": "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json",
-    "sha256": "fe33f4886468bd18100bb069576fcbc22230fe2323ab9ad4c8e79ac20d283271",
+    "sha256": "8acdf76415b411abe3bfec9e4d35d04cbfe8afef92aea29329fdd440511bf89b",
     "size_bytes": 1161,
     "category": "A",
     "generating_script": "scripts/build_cross_farm_generalization.py",
@@ -576,7 +576,7 @@
   },
   {
     "filename": "artifacts/mediation_analysis.csv",
-    "sha256": "9a0be5a2f93a2a5df91a5a1a8a7ccc35d451e2cf2e4d1f1a190e5221f28bddf3",
+    "sha256": "34d54f49bb22645009e74b6cb4cc1693edb956b6ba92e4929d227a5f80bc2ef2",
     "size_bytes": 2979,
     "category": "A",
     "generating_script": "scripts/run_decision_mediation_test.py",
@@ -592,7 +592,7 @@
   },
   {
     "filename": "artifacts/information_set_manifest.csv",
-    "sha256": "820f5f8ea7cb360c513f2184a081d4e67d20f2304d644f2ca157bbdcafde3930",
+    "sha256": "bc55600b0e8cec794a1b39a67730e8c9867a0381334d9c21be6f21d2d6adb513",
     "size_bytes": 133318,
     "category": "A",
     "generating_script": "scripts/verify_decisive_gate.py",
