@@ -9,10 +9,19 @@ os.makedirs(PKG_DIR, exist_ok=True)
 os.makedirs(os.path.join(PKG_DIR, "figures"), exist_ok=True)
 
 # 1. Copy IEEEtran.cls
-cls_source = "E:/MiKTeX/tex/latex/ieeetran/IEEEtran.cls"
-if os.path.exists(cls_source):
-    shutil.copy2(cls_source, os.path.join(PKG_DIR, "IEEEtran.cls"))
-    print("Copied IEEEtran.cls")
+pkg_cls = os.path.join(PKG_DIR, "IEEEtran.cls")
+cls_candidates = [
+    os.environ.get("IEEETRAN_CLS"),
+    pkg_cls,
+    os.path.join(ROOT, "IEEEtran.cls"),
+    os.path.join(ROOT, "artifacts", "tste_submission_freeze_20260923", "03_STANDALONE_LATEX_PACKAGE", "IEEEtran.cls"),
+    "E:/MiKTeX/tex/latex/ieeetran/IEEEtran.cls",
+]
+for cand in cls_candidates:
+    if cand and os.path.exists(cand) and cand != pkg_cls:
+        shutil.copy2(cand, pkg_cls)
+        print("Copied IEEEtran.cls")
+        break
 
 # 2. Copy TUptm.fd
 tuptm_source = os.path.join(ROOT, "TUptm.fd")
@@ -51,9 +60,14 @@ if os.path.exists(tex_source):
     print(f"Generated {main_tex_path}")
 
 # 6. Test compilation of standalone package
-xelatex_cmd = "E:/MiKTeX/miktex/bin/x64/xelatex.exe"
-if os.path.exists(xelatex_cmd):
-    print("Testing standalone compilation with xelatex...")
+xelatex_cmd = os.environ.get("XELATEX_PATH") or shutil.which("xelatex")
+if not xelatex_cmd:
+    for cand in [r"E:\MiKTeX\miktex\bin\x64\xelatex.exe", r"C:\texlive\2025\bin\windows\xelatex.exe"]:
+        if os.path.exists(cand):
+            xelatex_cmd = cand
+            break
+if xelatex_cmd and (os.path.isabs(xelatex_cmd) and os.path.exists(xelatex_cmd) or not os.path.isabs(xelatex_cmd)):
+    print(f"Testing standalone compilation with xelatex ({xelatex_cmd})...")
     res = subprocess.run(
         [xelatex_cmd, "-interaction=nonstopmode", "-halt-on-error", "main.tex"],
         cwd=PKG_DIR,

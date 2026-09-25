@@ -4,14 +4,14 @@
   "n_failed": 0,
   "failed_claims": [],
   "documents": {
-    "main": "E:\\\u8bba\u65873\\paper_tste_ieee.md",
-    "supplementary": "E:\\\u8bba\u65873\\paper_tste_supplementary.md",
-    "cover": "E:\\\u8bba\u65873\\cover_letter_tste.md"
+    "main": "paper_tste_ieee.md",
+    "supplementary": "paper_tste_supplementary.md",
+    "cover": "cover_letter_tste.md"
   },
   "outputs": {
-    "csv": "E:\\\u8bba\u65873\\artifacts\\tste_number_consistency_audit\\tste_number_consistency_audit.csv",
-    "tex": "E:\\\u8bba\u65873\\artifacts\\tste_number_consistency_audit\\table_tste_number_consistency_audit.tex",
-    "json": "E:\\\u8bba\u65873\\artifacts\\tste_number_consistency_audit\\tste_number_consistency_audit.json"
+    "csv": "artifacts/tste_number_consistency_audit/tste_number_consistency_audit.csv",
+    "tex": "artifacts/tste_number_consistency_audit/table_tste_number_consistency_audit.tex",
+    "json": "artifacts/tste_number_consistency_audit/tste_number_consistency_audit.json"
   },
   "claim_use": "Submission-facing number consistency audit. Each display token is derived from a source artifact and required to appear in declared final-facing documents."
 }

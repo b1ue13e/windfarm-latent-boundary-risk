@@ -14,6 +14,9 @@ from pathlib import Path
 
 REPO_ROOT = Path(os.environ.get("WINDFARM_REPO_ROOT", Path(__file__).resolve().parents[1]))
 DEFAULT_RELEASE_URL = (
+    "https://github.com/b1ue13e/windfarm-latent-boundary-risk/releases/download/v1.0/windfarm_derived_artifacts_v1.0.zip"
+)
+ALT_RELEASE_URL = (
     "https://github.com/b1ue13e/windfarm-latent-boundary-risk/releases/download/v1.0.0/windfarm_derived_artifacts_v1.0.zip"
 )
 DEFAULT_ARCHIVE_NAME = "windfarm_derived_artifacts_v1.0.zip"
@@ -78,9 +81,15 @@ def download_with_progress(url: str, dest_path: Path):
 def main():
     parser = argparse.ArgumentParser(description="Fetch and verify released Category B derived artifacts.")
     parser.add_argument(
+        "--root",
+        type=Path,
+        default=REPO_ROOT,
+        help="Repository root directory",
+    )
+    parser.add_argument(
         "--manifest",
         type=Path,
-        default=REPO_ROOT / "artifacts" / "ARTIFACT_MANIFEST.json",
+        default=None,
         help="Path to ARTIFACT_MANIFEST.json",
     )
     parser.add_argument(
@@ -98,7 +107,7 @@ def main():
     parser.add_argument(
         "--cache-dir",
         type=Path,
-        default=Path(os.environ.get("WINDFARM_CACHE_DIR", REPO_ROOT / "archives")),
+        default=None,
         help="Directory to store downloaded archive",
     )
     parser.add_argument(
@@ -108,18 +117,21 @@ def main():
     )
     args = parser.parse_args()
 
-    if not args.manifest.exists():
-        print(f"Error: Manifest not found: {args.manifest}")
+    manifest_path = args.manifest or (args.root / "artifacts" / "ARTIFACT_MANIFEST.json")
+    cache_dir = args.cache_dir or Path(os.environ.get("WINDFARM_CACHE_DIR", args.root / "archives"))
+
+    if not manifest_path.exists():
+        print(f"Error: Manifest not found: {manifest_path}")
         return 1
 
-    manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     category_b = [item for item in manifest if item.get("category") == "B"]
     manifest_by_rel = {item["filename"]: item for item in category_b}
 
     print(f"=== Category B Artifact Fetcher ({len(category_b)} release artifacts) ===")
 
     # Check if already present and valid
-    valid, issues = check_existing_category_b(category_b, REPO_ROOT)
+    valid, issues = check_existing_category_b(category_b, args.root)
     if valid:
         print("[PASS] All Category B artifacts already exist with valid SHA256 checksums:")
         for item in category_b:
@@ -145,7 +157,7 @@ def main():
         candidates.append(args.local_archive)
     if env_local:
         candidates.append(Path(env_local))
-    candidates.append(args.cache_dir / DEFAULT_ARCHIVE_NAME)
+    candidates.append(cache_dir / DEFAULT_ARCHIVE_NAME)
 
     for cand in candidates:
         if cand.is_file() and cand.exists():
@@ -158,24 +170,37 @@ def main():
     if archive_file:
         print(f"Using local release archive: {archive_file}")
     else:
-        args.cache_dir.mkdir(parents=True, exist_ok=True)
-        target_dl = args.cache_dir / DEFAULT_ARCHIVE_NAME
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        target_dl = cache_dir / DEFAULT_ARCHIVE_NAME
         print(f"No local archive found. Attempting download from public URL:")
         print(f"  URL: {args.archive_url}")
         print(f"  Destination: {target_dl}")
-        try:
-            download_with_progress(args.archive_url, target_dl)
-            archive_file = target_dl
-        except Exception as e:
+        download_success = False
+        urls_to_try = [args.archive_url]
+        if args.archive_url == DEFAULT_RELEASE_URL and ALT_RELEASE_URL not in urls_to_try:
+            urls_to_try.append(ALT_RELEASE_URL)
+
+        last_err = None
+        for u in urls_to_try:
+            try:
+                download_with_progress(u, target_dl)
+                archive_file = target_dl
+                download_success = True
+                break
+            except Exception as e:
+                last_err = e
+                print(f"  Attempt with {u} failed: {e}")
+
+        if not download_success:
             print(f"\n[ERROR] Unable to download release archive automatically:")
-            print(f"  {e}\n")
+            print(f"  {last_err}\n")
             print("For isolated / offline / clean-clone testing, provide the release bundle via either:")
             print(f"  1. python scripts/fetch_artifacts.py --local-archive <path-to-{DEFAULT_ARCHIVE_NAME}>")
             print(f"  2. set WINDFARM_ARTIFACTS_ARCHIVE=<path-to-{DEFAULT_ARCHIVE_NAME}>")
-            print(f"  3. place {DEFAULT_ARCHIVE_NAME} in {args.cache_dir}\n")
+            print(f"  3. place {DEFAULT_ARCHIVE_NAME} in {cache_dir}\n")
             return 1
 
-    # Unpack archive into REPO_ROOT
+    # Unpack archive into args.root
     print(f"\nUnpacking release archive: {archive_file}")
     with zipfile.ZipFile(archive_file, "r") as zf:
         namelist = zf.namelist()
@@ -188,7 +213,7 @@ def main():
                 return 1
 
             arc_member = matching_names[0]
-            dest_file = REPO_ROOT / rel
+            dest_file = args.root / rel
             dest_file.parent.mkdir(parents=True, exist_ok=True)
             print(f"  Extracting {rel} ...")
             with zf.open(arc_member) as src, dest_file.open("wb") as dst:

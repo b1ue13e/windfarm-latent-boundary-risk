@@ -17,12 +17,14 @@ $pandoc = if (Test-Path $localPandoc) {
 $xelatexCommand = Get-Command xelatex -ErrorAction SilentlyContinue
 $localMiKTeXBin = "E:\MiKTeX\miktex\bin\x64"
 $localMiKTeX = Join-Path $localMiKTeXBin "xelatex.exe"
-$xelatex = if (Test-Path $localMiKTeX) {
+$xelatex = if ($env:XELATEX_PATH -and (Test-Path $env:XELATEX_PATH)) {
+    $env:XELATEX_PATH
+} elseif ($xelatexCommand) {
+    $xelatexCommand.Source
+} elseif (Test-Path $localMiKTeX) {
     $localMiKTeX
 } elseif (Test-Path "C:\texlive\2025\bin\windows\xelatex.exe") {
     "C:\texlive\2025\bin\windows\xelatex.exe"
-} elseif ($xelatexCommand) {
-    $xelatexCommand.Source
 } else {
     throw "XeLaTeX was not found. Install TeX Live or MiKTeX, then rerun this script."
 }

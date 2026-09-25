@@ -61,9 +61,9 @@ class TsteNumberConsistencyTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             self._copy_fixture(root)
-            main = root / "paper_tste_ieee.md"
-            main.write_text(
-                main.read_text(encoding="utf-8").replace("224.34", "224.33"),
+            cover = root / "cover_letter_tste.md"
+            cover.write_text(
+                cover.read_text(encoding="utf-8").replace("224.34", "224.33"),
                 encoding="utf-8",
             )
 

@@ -74,16 +74,22 @@ def run_number_consistency_audit(
 
     failed = frame[~frame["passed"].astype(bool)].copy()
     status = "complete_tste_number_consistency" if failed.empty else "blocked_tste_number_mismatch"
+    def _rel(p: Path) -> str:
+        try:
+            return str(p.relative_to(root)).replace("\\", "/")
+        except ValueError:
+            return str(p).replace("\\", "/")
+
     summary = {
         "status": status,
         "n_checks": int(len(frame)),
         "n_failed": int(len(failed)),
         "failed_claims": failed["claim_id"].astype(str).tolist(),
-        "documents": {name: str(path) for name, path in documents.items()},
+        "documents": {name: _rel(path) for name, path in documents.items()},
         "outputs": {
-            "csv": str(output_dir / "tste_number_consistency_audit.csv"),
-            "tex": str(output_dir / "table_tste_number_consistency_audit.tex"),
-            "json": str(output_dir / "tste_number_consistency_audit.json"),
+            "csv": _rel(output_dir / "tste_number_consistency_audit.csv"),
+            "tex": _rel(output_dir / "table_tste_number_consistency_audit.tex"),
+            "json": _rel(output_dir / "tste_number_consistency_audit.json"),
         },
         "claim_use": (
             "Submission-facing number consistency audit. Each display token is derived "

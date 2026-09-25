@@ -1,8 +1,16 @@
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
-$pandoc = Join-Path $root "tools\pandoc-3.9.0.2\pandoc.exe"
-$xelatex = "E:\MiKTeX\miktex\bin\x64\xelatex.exe"
-$env:PATH = "E:\MiKTeX\miktex\bin\x64;$env:PATH"
+$cPandoc = Get-Command pandoc -ErrorAction SilentlyContinue
+$localPandoc = Join-Path $root "tools\pandoc-3.9.0.2\pandoc.exe"
+$pandoc = if ($env:PANDOC_PATH -and (Test-Path $env:PANDOC_PATH)) { $env:PANDOC_PATH } elseif ($cPandoc) { $cPandoc.Source } elseif (Test-Path $localPandoc) { $localPandoc } else { "pandoc" }
+
+$cXelatex = Get-Command xelatex -ErrorAction SilentlyContinue
+$localMiKTeX = "E:\MiKTeX\miktex\bin\x64\xelatex.exe"
+$localTexlive = "C:\texlive\2025\bin\windows\xelatex.exe"
+$xelatex = if ($env:XELATEX_PATH -and (Test-Path $env:XELATEX_PATH)) { $env:XELATEX_PATH } elseif ($cXelatex) { $cXelatex.Source } elseif (Test-Path $localMiKTeX) { $localMiKTeX } elseif (Test-Path $localTexlive) { $localTexlive } else { "xelatex" }
+if (Test-Path (Split-Path -Parent $xelatex)) {
+    $env:PATH = (Split-Path -Parent $xelatex) + ";$env:PATH"
+}
 
 function Build-PDF {
     param($md, $label)

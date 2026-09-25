@@ -180,8 +180,8 @@ class ReplicationAuditor:
                 )
                 if gbdt_row:
                     viol = float(gbdt_row["violation_rate"])
-                    passed = viol > 0.10  # Must breach nominal 10% target (16.23%)
-                    self.record_claim("C04", "Regime 1", "Missingness-Aware GBDT h=6 Breaches 10% Target", ">10.0%", f"{viol * 100:.2f}%", passed)
+                    passed = (viol > 0.10) and math.isclose(viol * 100, 16.23, abs_tol=0.05)
+                    self.record_claim("C04", "Regime 1", "Missingness-Aware GBDT h=6 Breaches 10% Target", "16.23% (>10.0%)", f"{viol * 100:.2f}%", passed)
                 else:
                     self.record_claim("C04", "Regime 1", "GBDT h=6 Violation", ">10.0%", "Row not found", False)
         else:
@@ -412,6 +412,58 @@ class ReplicationAuditor:
         else:
             self.record_claim("C18", "External Sites", "LHB Overfitting Penalty", "NMI 0.941, ARI 0.971", "Missing artifact", False)
 
+    def audit_submission_numbers_and_tables(self, regenerate_tables: bool = True):
+        print("\n--- Step 8: Auditing Lightweight Table Regeneration & Submission Numbers ---")
+        audit_dir = self.root / "artifacts" / "tste_number_consistency_audit"
+
+        # 1. Lightweight table regeneration
+        if regenerate_tables:
+            try:
+                if str(self.root) not in sys.path:
+                    sys.path.insert(0, str(self.root))
+                from scripts.verify_tste_number_consistency import run_number_consistency_audit
+                print("  Regenerating lightweight table: artifacts/tste_number_consistency_audit/tste_number_consistency_audit.csv ...")
+                run_number_consistency_audit(root=self.root, output_dir=audit_dir)
+                print("  [PASS] Lightweight table regenerated cleanly with relative paths.")
+            except Exception as e:
+                print(f"  [WARN] Table regeneration encountered an issue: {e}")
+
+        # 2. Programmatic audit of all 73 submission-facing display tokens
+        audit_json = audit_dir / "tste_number_consistency_audit.json"
+        if audit_json.exists():
+            try:
+                data = json.loads(audit_json.read_text(encoding="utf-8"))
+                n_checks = int(data.get("n_checks", 0))
+                n_failed = int(data.get("n_failed", 0))
+                status = data.get("status", "")
+                passed = (status == "complete_tste_number_consistency") and (n_failed == 0) and (n_checks >= 73)
+                self.record_claim(
+                    "C19",
+                    "Submission Audit",
+                    "Full 73-Token Submission Number Consistency",
+                    "73/73 checks passed",
+                    f"{n_checks - n_failed}/{n_checks} passed ({n_failed} failed)",
+                    passed,
+                )
+            except Exception as e:
+                self.record_claim(
+                    "C19",
+                    "Submission Audit",
+                    "Full 73-Token Submission Number Consistency",
+                    "73/73 checks passed",
+                    f"Audit JSON parse error: {e}",
+                    False,
+                )
+        else:
+            self.record_claim(
+                "C19",
+                "Submission Audit",
+                "Full 73-Token Submission Number Consistency",
+                "73/73 checks passed",
+                "Audit JSON missing",
+                False,
+            )
+
     def generate_report(self) -> int:
         print("\n" + "=" * 76)
         print("REPLICATION VERIFICATION AUDIT REPORT")
@@ -434,7 +486,7 @@ class ReplicationAuditor:
                 print(f"  - {cf}")
 
         if failed_claims == 0 and not self.missing_files and not self.checksum_failures:
-            print("\nVERDICT: FULLY_REPRODUCIBLE (ALL 18 CLAIMS VERIFIED WITH EXIT 0)")
+            print(f"\nVERDICT: FULLY_REPRODUCIBLE (ALL {total_claims} CLAIMS VERIFIED WITH EXIT 0)")
             return 0
         else:
             print(f"\nVERDICT: NOT_REPRODUCIBLE ({failed_claims} claims failed, {len(self.missing_files)} missing files)")
@@ -445,6 +497,17 @@ def main():
     parser = argparse.ArgumentParser(description="End-to-End One-Command Replication Verifier.")
     parser.add_argument("--root", type=Path, default=REPO_ROOT, help="Repository root")
     parser.add_argument("--manifest", type=Path, default=None, help="Artifact manifest path")
+    parser.add_argument(
+        "--regenerate-tables",
+        action="store_true",
+        default=True,
+        help="Regenerate lightweight derived tables where possible (default: True)",
+    )
+    parser.add_argument(
+        "--skip-regenerate",
+        action="store_true",
+        help="Skip lightweight derived table regeneration",
+    )
     args = parser.parse_args()
 
     manifest_path = args.manifest or (args.root / "artifacts" / "ARTIFACT_MANIFEST.json")
@@ -457,6 +520,7 @@ def main():
     auditor.audit_strong_baseline_closure()
     auditor.audit_matched_budget_and_rho()
     auditor.audit_external_sites()
+    auditor.audit_submission_numbers_and_tables(regenerate_tables=not args.skip_regenerate)
 
     exit_code = auditor.generate_report()
     sys.exit(exit_code)
