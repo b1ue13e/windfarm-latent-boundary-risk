@@ -96,6 +96,13 @@ Created: 2026-09-18T05:01:00+08:00
 - [x] T76 VERIFIED Phase 5: One-Command Replication Verification Script — Implement scripts/verify_replication.py validating 38 artifact checksums (with CRLF/LF invariance) and 18 quantitative headline claims against paper sections. Acceptance: python scripts/verify_replication.py exits with code 0.
 - [x] T77 VERIFIED Phase 6: README 3-Tier Replication Guide — Update README.md with 3-tier replication guide (Tier 1 <1 min verification, Tier 2 ~30 min lightweight audit, Tier 3 HPC pipeline) and 5-step clean-clone workflow. Acceptance: README.md updated with clear verification instructions.
 - [x] T78 VERIFIED Phase 7: Isolated Clean-Clone Re-Test & Final Reproducibility Verdict — Test clean clone in E:\windfarm_clean_clone_test with zero access to E:\论文3, verify all 7 verification gates pass with exit code 0, and issue docs/FINAL_REPRODUCIBILITY_VERDICT.md. Acceptance: All gates exit 0 and docs/FINAL_REPRODUCIBILITY_VERDICT.md certifies FULLY_REPRODUCIBLE.
+- [x] T79 VERIFIED Final Release Gap: Public repository switch & Category B metadata registry — Switch GitHub repo visibility to public, record permanent release URL, archive SHA256, byte size, and tag compatibility in docs/EXTERNAL_RELEASE_METADATA.md. Acceptance: Repo is public and docs/EXTERNAL_RELEASE_METADATA.md exists.
+- [x] T80 VERIFIED Automated public release fetcher hardening — Update scripts/fetch_artifacts.py to automatically download from GitHub Releases tag tste-submission-v1.0 with archive SHA256 integrity verification. Acceptance: python scripts/fetch_artifacts.py downloads and verifies archive.
+- [ ] T81 DOING Immutable Git tag creation & remote push — Commit all changes, create annotated tag tste-submission-v1.0, and push branch and tag to GitHub origin. Acceptance: git tag tste-submission-v1.0 exists on remote origin.
+
+- [ ] T82 TODO GitHub Release asset publication — Publish GitHub Release for tag tste-submission-v1.0 with attached windfarm_derived_artifacts_v1.0.zip (186.55 MB). Acceptance: gh release view tste-submission-v1.0 confirms asset attached.
+- [ ] T83 TODO Remote GitHub reproduction test & claim-level certification — Perform fresh clone strictly from remote GitHub repository at tag tste-submission-v1.0 in isolated directory without local caches, fetch artifacts via public URL, run verify_replication.py, and report EXTERNALLY_REPRODUCIBLE_AT_CLAIM_LEVEL. Acceptance: 19/19 claims pass from remote clone and docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md published.
+
 
 
 

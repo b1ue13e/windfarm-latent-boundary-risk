@@ -79,3 +79,11 @@ python main.py external_cache --root-dir . --site lhb
 
 ### Note on Replication Shortcuts
 For standard manuscript replication, running raw data preprocessing is **not required**. The released Category B archive (`scripts/fetch_artifacts.py`) contains the precomputed residual tensors and posterior probabilities necessary to verify every quantitative claim in the paper in under 60 seconds without multi-hour data parsing.
+
+### Category B Release Bundle Metadata
+- **Permanent URL**: [https://github.com/b1ue13e/windfarm-latent-boundary-risk/releases/download/tste-submission-v1.0/windfarm_derived_artifacts_v1.0.zip](https://github.com/b1ue13e/windfarm-latent-boundary-risk/releases/download/tste-submission-v1.0/windfarm_derived_artifacts_v1.0.zip)
+- **Git Tag**: `tste-submission-v1.0`
+- **Archive Size**: `195,613,174` bytes (186.55 MB)
+- **SHA256**: `cf90924b1fead36317addabfcbee6aa6236bebc29889f8ce5dfd57466fc7fc22`
+- **Complete Details**: See [`docs/EXTERNAL_RELEASE_METADATA.md`](EXTERNAL_RELEASE_METADATA.md)
+

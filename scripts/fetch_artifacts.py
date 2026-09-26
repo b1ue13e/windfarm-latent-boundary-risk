@@ -14,12 +14,14 @@ from pathlib import Path
 
 REPO_ROOT = Path(os.environ.get("WINDFARM_REPO_ROOT", Path(__file__).resolve().parents[1]))
 DEFAULT_RELEASE_URL = (
-    "https://github.com/b1ue13e/windfarm-latent-boundary-risk/releases/download/v1.0/windfarm_derived_artifacts_v1.0.zip"
+    "https://github.com/b1ue13e/windfarm-latent-boundary-risk/releases/download/tste-submission-v1.0/windfarm_derived_artifacts_v1.0.zip"
 )
 ALT_RELEASE_URL = (
-    "https://github.com/b1ue13e/windfarm-latent-boundary-risk/releases/download/v1.0.0/windfarm_derived_artifacts_v1.0.zip"
+    "https://github.com/b1ue13e/windfarm-latent-boundary-risk/releases/download/v1.0/windfarm_derived_artifacts_v1.0.zip"
 )
 DEFAULT_ARCHIVE_NAME = "windfarm_derived_artifacts_v1.0.zip"
+EXPECTED_ARCHIVE_SHA256 = "cf90924b1fead36317addabfcbee6aa6236bebc29889f8ce5dfd57466fc7fc22"
+EXPECTED_ARCHIVE_SIZE = 195613174
 
 
 def compute_sha256(path: Path) -> str:
@@ -50,12 +52,17 @@ def check_existing_category_b(manifest_entries: list[dict], root: Path) -> tuple
 
 
 def download_with_progress(url: str, dest_path: Path):
-    print(f"Downloading from {url} ...")
+    print(f"Downloading release archive from {url} ...")
     try:
-        req = urllib.request.Request(
-            url,
-            headers={"User-Agent": "windfarm-reproducibility-fetcher/1.0"},
-        )
+        headers = {
+            "User-Agent": "windfarm-reproducibility-fetcher/1.0",
+            "Accept": "application/octet-stream, application/zip, */*",
+        }
+        gh_token = os.environ.get("GITHUB_TOKEN")
+        if gh_token:
+            headers["Authorization"] = f"Bearer {gh_token}"
+
+        req = urllib.request.Request(url, headers=headers)
         with urllib.request.urlopen(req) as resp, dest_path.open("wb") as out_file:
             total_size = int(resp.getheader("Content-Length", 0))
             downloaded = 0
@@ -76,6 +83,15 @@ def download_with_progress(url: str, dest_path: Path):
         if dest_path.exists():
             dest_path.unlink()
         raise RuntimeError(f"Download failed from {url}: {e}") from e
+
+    # Verify SHA256 of downloaded archive
+    actual_archive_sha = compute_sha256(dest_path)
+    if actual_archive_sha != EXPECTED_ARCHIVE_SHA256:
+        dest_path.unlink()
+        raise ValueError(
+            f"Downloaded archive SHA256 mismatch!\nExpected: {EXPECTED_ARCHIVE_SHA256}\nGot:      {actual_archive_sha}"
+        )
+    print(f"  [PASS] Downloaded archive integrity verified (SHA256: {actual_archive_sha[:12]}...)")
 
 
 def main():

@@ -25,8 +25,8 @@ This repository adheres to an evidence-first, strict zero-drift scientific contr
 ### 5-Step Clean Clone Reproduction
 
 ```powershell
-# Step 1: Clone the public repository
-git clone https://github.com/b1ue13e/windfarm-latent-boundary-risk.git
+# Step 1: Clone the public repository at the release tag
+git clone --branch tste-submission-v1.0 https://github.com/b1ue13e/windfarm-latent-boundary-risk.git
 cd windfarm-latent-boundary-risk
 
 # Step 2: Create isolated Python virtual environment & install dependencies
@@ -34,11 +34,11 @@ python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
-# Step 3: Fetch release artifacts (Category B evaluation arrays, ~186 MB)
-# Option A: From public release URL (default when published)
+# Step 3: Fetch release artifacts (Category B evaluation arrays, ~186.5 MB automatically downloaded from GitHub Releases)
 python scripts/fetch_artifacts.py
-# Option B: From local archive bundle (e.g. Zenodo download or release zip)
-python scripts/fetch_artifacts.py --local-archive <path-to-windfarm_derived_artifacts_v1.0.zip>
+
+# Optional: developer override with local archive
+# python scripts/fetch_artifacts.py --local-archive <path-to-windfarm_derived_artifacts_v1.0.zip>
 
 # Step 4: Run the one-command replication auditor
 python scripts/verify_replication.py
