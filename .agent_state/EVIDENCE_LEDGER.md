@@ -952,3 +952,43 @@ Relevant-Output:
 VERIFICATION_GATE: PASS
 ```
 
+
+
+## T79 — 2026-09-26T08:25:00+08:00
+Task-ID: T79
+Status: VERIFIED_COMMAND
+Summary: Repository b1ue13e/windfarm-latent-boundary-risk visibility switched to public via GitHub API; Category B release metadata (URL, SHA256, byte size, commit/tag compatibility) recorded in docs/EXTERNAL_RELEASE_METADATA.md and docs/DATA_AVAILABILITY_AND_PREPROCESSING.md.
+Source: docs/EXTERNAL_RELEASE_METADATA.md, docs/DATA_AVAILABILITY_AND_PREPROCESSING.md
+Command: \gh repo edit --visibility publicExit-Code: 0
+
+## T80 — 2026-09-26T08:30:00+08:00
+Task-ID: T80
+Status: VERIFIED_REPO
+Summary: Hardened scripts/fetch_artifacts.py to automatically download released bundle windfarm_derived_artifacts_v1.0.zip from GitHub Releases tag tste-submission-v1.0, verify archive SHA256 cf90924b1fead36317addabfcbee6aa6236bebc29889f8ce5dfd57466fc7fc22, and unpack and verify both Category B artifacts.
+Source: scripts/fetch_artifacts.py
+
+## T81 — 2026-09-26T08:35:00+08:00
+Task-ID: T81
+Status: VERIFIED_COMMAND
+Summary: Created annotated git tag tste-submission-v1.0 pointing to commit 1085f23c925b7b9bfc312608cbaaecc50cba676e and pushed branch revision_topjournal_reconstruction and tag to GitHub origin.
+Source: git tag tste-submission-v1.0
+Command: \git push origin tste-submission-v1.0Exit-Code: 0
+
+## T82 — 2026-09-26T08:42:00+08:00
+Task-ID: T82
+Status: VERIFIED_COMMAND
+Summary: Published GitHub Release tste-submission-v1.0 with attached release asset windfarm_derived_artifacts_v1.0.zip (195,613,174 bytes, asset ID 589566909, state: uploaded, digest sha256:cf90924b1fead36317addabfcbee6aa6236bebc29889f8ce5dfd57466fc7fc22).
+Source: gh api repos/b1ue13e/windfarm-latent-boundary-risk/releases/397001244/assets
+Command: \python scripts/upload_release_asset.pyExit-Code: 0
+
+## T83 — 2026-09-26T08:47:00+08:00
+Task-ID: T83
+Status: VERIFIED_COMMAND
+Summary: Fresh clone executed strictly from remote GitHub repository at tag tste-submission-v1.0 in E:\\windfarm_reproduction_final with zero access to local staging files; fetch_artifacts.py downloaded and verified the release archive from public URL; verify_replication.py passed 19/19 claims with exit code 0; docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md issued certifying EXTERNALLY_REPRODUCIBLE_AT_CLAIM_LEVEL.
+Source: docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md
+Command: \python scripts/verify_replication.pyExit-Code: 0
+Relevant-Output:
+\Total Headline Claims Evaluated: 19
+Passed: 19 | Failed: 0
+VERDICT: FULLY_REPRODUCIBLE (ALL 19 CLAIMS VERIFIED WITH EXIT 0)
+\
