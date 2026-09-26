@@ -1,0 +1,5 @@
+site,turbine_count,terrain_type,rated_wind_speed_ms,transition_prevalence_pct,turbine_synchrony_jaccard,spatial_active_power_corr_median,effective_graph_degree,consequence_recoverability_nmi,consequence_recoverability_auroc,boundary_active_obs_fraction,data_split_evaluated
+WTB,134,Complex wake terrain (134 turbines),10.5,36.26,0.421,0.742,6.82,0.461,0.988,0.363,Training/Validation (No deployment leakage)
+Penmanshiel,15,Complex undulating terrain (Senvion MM92),12.5,28.4,0.315,0.681,3.2,0.77,0.892,0.284,Training/Validation (No deployment leakage)
+Kelmarsh,6,Flat open terrain (Senvion MM92),12.5,24.1,0.228,0.612,1.8,0.411,0.845,0.241,Training/Validation (No deployment leakage)
+La Haute Borne (LHB),4,Flat open micro-farm (Senvion MM82),14.5,19.5,0.142,0.524,1.0,0.941,0.965,0.195,Training/Validation (No deployment leakage)

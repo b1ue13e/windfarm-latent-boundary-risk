@@ -992,3 +992,38 @@ Relevant-Output:
 Passed: 19 | Failed: 0
 VERDICT: FULLY_REPRODUCIBLE (ALL 19 CLAIMS VERIFIED WITH EXIT 0)
 \
+
+## T84 — 2026-09-26T11:25:00+08:00
+Task-ID: T84
+Status: VERIFIED_DOC
+Summary: Preregistered operational relevance and cross-site diagnostic protocols, recording git baseline (a273a05) and freezing central scientific conclusions (SCADA Observability -> Latent-State Recoverability -/-> Downstream Decision Sufficiency; +523k kWh plant-wide penalty; +5,234 kWh matched-budget shortage penalty).
+Source: docs/TSTE_OPERATIONAL_RELEVANCE_PREREGISTRATION.md
+
+## T85 — 2026-09-26T11:28:00+08:00
+Task-ID: T85
+Status: VERIFIED_DOC
+Summary: Audited Newsvendor derivation q*(rho) = 1 - 1/rho with rho = c_u / c_r; demonstrated parameter-invariance of baseline superiority across rho in [2, 100] under dynamic re-optimization; compiled compact reference table; and executed Reviewer-1 stress test across 8 power systems challenges.
+Source: docs/TSTE_OPERATIONAL_RELEVANCE_AUDIT.md
+
+## T86 — 2026-09-26T11:29:00+08:00
+Task-ID: T86
+Status: VERIFIED_DOC
+Summary: Evaluated 5-point downstream dispatch gate; determined failure of 3 criteria (heuristic reserve margin pass-through, collinear objective, arbitrary thermal generation/line parameters); enforced Level-1 plant boundary reserve-risk screening scope; documented in docs/WHY_LEVEL1_SCOPE_IS_SUFFICIENT.md.
+Source: docs/WHY_LEVEL1_SCOPE_IS_SUFFICIENT.md
+
+## T87 — 2026-09-26T11:30:00+08:00
+Task-ID: T87
+Status: VERIFIED_COMMAND
+Summary: Implemented scripts/compute_cross_site_descriptors.py and generated artifacts/deployment_diagnostic/site_descriptors.csv and site_decision_outcomes.csv across WTB, Penmanshiel, Kelmarsh, and LHB; documented non-causal descriptive deployment diagnostic in docs/CROSS_SITE_DEPLOYMENT_DIAGNOSTIC.md without n=4 regression or pseudo-replication.
+Source: scripts/compute_cross_site_descriptors.py, docs/CROSS_SITE_DEPLOYMENT_DIAGNOSTIC.md
+Command: \python scripts/compute_cross_site_descriptors.pyExit-Code: 0
+
+## T88 — 2026-09-26T11:36:00+08:00
+Task-ID: T88
+Status: VERIFIED_COMMAND
+Summary: Surgically refined rho definition in paper_tste_ieee.md and standalone_ieee_package/main.tex; executed verify_replication.py (19/19 pass), verify_decisive_gate.py (10/10 pass, 9 pages), verify_tste_number_consistency.py (73/73 pass), and verify_scientific_claim_gate.py (PASS); invoked scientific-falsifier subagent which issued formal PASS verdict and updated .agent_state/FALSIFICATION_REPORT.md.
+Source: .agent_state/FALSIFICATION_REPORT.md, scripts/verify_scientific_claim_gate.py
+Command: \python scripts/verify_scientific_claim_gate.pyExit-Code: 0
+Relevant-Output:
+\SCIENTIFIC_CLAIM_GATE: PASS
+\

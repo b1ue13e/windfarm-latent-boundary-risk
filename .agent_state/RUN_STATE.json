@@ -1,10 +1,10 @@
 {
   "title": "论文核心问题的对抗性审查与第一性原理收束",
   "created": "2026-09-18T00:00:00+08:00",
-  "updated": "2026-09-26T08:50:00+08:00",
+  "updated": "2026-09-26T11:38:00+08:00",
   "phase": "completed",
   "status": "completed",
-  "last_verified_task": "T83",
+  "last_verified_task": "T88",
   "notes": [
     "Decisive Matched-Reserve-Budget Falsification Campaign (MB00-MB13) successfully completed: falsified reserve allocation advantage in transition windows (Case C/D verdict). At matched budget (Delta R = 0), posterior yields +5,241 kWh higher shortage on average; 4 of 5 seeds fail. Dynamic re-optimization shows no economic crossover for any rho >= 5.",
     "Tasks T34-T37 completed: GBDT metric provenance reconciled (16.23% clean vs 14.98% pitch-withheld).",
@@ -26,7 +26,8 @@
     "Task MB13 completed: Final independent audit and 8-question adversarial review completed in docs/MATCHED_BUDGET_FINAL_AUDIT.md with formal PASS verdict; pre-completion gate verify_gate.py passes cleanly with exit code 0.",
     "Tasks T67-T71 completed: Final semantic closure, claim precision patch, TSTE peer review attack simulation, ScholarOne submission freeze, and PES-compliant external refactor; all gates pass exit code 0.",
     "Tasks T72-T78 completed: External reproducibility gap closed under scientific freeze. Fresh-clone audit documented; 38-artifact SHA256 manifest generated; absolute paths purged; Category A/B release architecture and fetcher deployed; one-command verify_replication.py implemented (18/18 claims pass); README updated with 3-tier replication guide; isolated clean clone in E:\\windfarm_clean_clone_test re-tested with 100% PASS across all 7 verification gates; docs/FINAL_REPRODUCIBILITY_VERDICT.md certifies FULLY_REPRODUCIBLE.",
-    "Tasks T79-T83 completed: Final release gap closed. Public repository switch executed; Category B release metadata registered (docs/EXTERNAL_RELEASE_METADATA.md); scripts/fetch_artifacts.py hardened with automated URL download and SHA256 verification; immutable Git tag tste-submission-v1.0 created and pushed; GitHub Release asset windfarm_derived_artifacts_v1.0.zip (186.55 MB, SHA256 cf90924b1fea...) published; fresh clone from remote GitHub at tag tste-submission-v1.0 executed in E:\\windfarm_reproduction_final with zero access to local staging files; verify_replication.py passed 19/19 headline claims; docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md issued certifying EXTERNALLY_REPRODUCIBLE_AT_CLAIM_LEVEL."
+    "Tasks T79-T83 completed: Final release gap closed. Public repository switch executed; Category B release metadata registered (docs/EXTERNAL_RELEASE_METADATA.md); scripts/fetch_artifacts.py hardened with automated URL download and SHA256 verification; immutable Git tag tste-submission-v1.0 created and pushed; GitHub Release asset windfarm_derived_artifacts_v1.0.zip (186.55 MB, SHA256 cf90924b1fea...) published; fresh clone from remote GitHub at tag tste-submission-v1.0 executed in E:\\windfarm_reproduction_final with zero access to local staging files; verify_replication.py passed 19/19 headline claims; docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md issued certifying EXTERNALLY_REPRODUCIBLE_AT_CLAIM_LEVEL.",
+    "Tasks T84-T88 completed: Final scientific optimization pass completed. Preregistered operational relevance and cross-site diagnostic protocols (docs/TSTE_OPERATIONAL_RELEVANCE_PREREGISTRATION.md); audited grid operational realism and economic rho interpretation as dimensionless marginal ratio (docs/TSTE_OPERATIONAL_RELEVANCE_AUDIT.md); evaluated downstream dispatch gate, enforced Level-1 scope boundary, and created docs/WHY_LEVEL1_SCOPE_IS_SUFFICIENT.md; implemented scripts/compute_cross_site_descriptors.py generating non-leaking descriptors across 4 commercial farms and documented descriptive non-causal map in docs/CROSS_SITE_DEPLOYMENT_DIAGNOSTIC.md; surgically refined rho definition in paper_tste_ieee.md and standalone_ieee_package/main.tex; executed all verification gates (19/19 claims, 10/10 decisive gates, 73/73 number consistency, scientific claim gate, verify_gate.py PASS); independent scientific-falsifier subagent verified all criteria and issued formal PASS verdict."
   ]
 }
 

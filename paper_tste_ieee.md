@@ -127,7 +127,7 @@ Operating reserve screening functions as a pre-dispatch risk assessment mechanis
 
 \textbf{Hierarchical grid dispatch interface:} Our formulation is strictly bounded to Level 1 pre-dispatch operating reserve screening proxies at the plant EMS or aggregator terminal, abstracting Level 2 bulk transmission AC-OPF and wholesale balancing settlements.
 
-\textbf{Penalized Reserve-Shortfall Energy Index (PSREI):} For scheduled forecast $\hat{y}_{i,t}$ and realized generation $y_{i,t}$, shortfall is $s_{i,t} = \max(\hat{y}_{i,t} - y_{i,t}, 0)$. For upward reserve $r_b$ and penalty ratio $\rho$, the \textbf{Penalized Reserve-Shortfall Energy Index (PSREI)} in $\text{kW}\cdot\text{h}$ is:
+\textbf{Penalized Reserve-Shortfall Energy Index (PSREI):} For scheduled forecast $\hat{y}_{i,t}$ and realized generation $y_{i,t}$, shortfall is $s_{i,t} = \max(\hat{y}_{i,t} - y_{i,t}, 0)$. For upward reserve $r_b$ and dimensionless penalty-to-procurement ratio $\rho \equiv c_u / c_r$ (balancing marginal unserved shortage penalty $c_u$ against marginal reserve capacity cost $c_r$), the \textbf{Penalized Reserve-Shortfall Energy Index (PSREI)} in $\text{kW}\cdot\text{h}$ is:
 \begin{equation}
 C(r_b; \rho) = \sum_{(i,t)} \left[ r_b(i,t) + \rho \max\left(\hat{y}_{i,t} - y_{i,t} - r_b(i,t), \, 0\right) \right]\Delta t.
 \label{eq:psrei}

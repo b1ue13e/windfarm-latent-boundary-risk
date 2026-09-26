@@ -101,9 +101,11 @@ Created: 2026-09-18T05:01:00+08:00
 - [x] T81 VERIFIED Immutable Git tag creation & remote push — Commit all changes, create annotated tag tste-submission-v1.0, and push branch and tag to GitHub origin. Acceptance: git tag tste-submission-v1.0 exists on remote origin.
 - [x] T82 VERIFIED GitHub Release asset publication — Publish GitHub Release for tag tste-submission-v1.0 with attached windfarm_derived_artifacts_v1.0.zip (186.55 MB). Acceptance: gh release view tste-submission-v1.0 confirms asset attached.
 - [x] T83 VERIFIED Remote GitHub reproduction test & claim-level certification — Perform fresh clone strictly from remote GitHub repository at tag tste-submission-v1.0 in isolated directory without local caches, fetch artifacts via public URL, run verify_replication.py, and report EXTERNALLY_REPRODUCIBLE_AT_CLAIM_LEVEL. Acceptance: 19/19 claims pass from remote clone and docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md published.
-
-
-
+- [x] T84 VERIFIED Preregistration & baseline freeze audit — Freeze scientific core, record git baseline, and preregister operational relevance and cross-site diagnostic protocols in docs/TSTE_OPERATIONAL_RELEVANCE_PREREGISTRATION.md. Acceptance: File exists and sets locked benchmarks.
+- [x] T85 VERIFIED Grid operational realism audit & economic rho interpretation — Audit Newsvendor derivation, evaluate reoptimized rho sensitivity (rho in [2, 100]), formulate compact reference table, and conduct Reviewer-1 stress test across 8 power systems challenges in docs/TSTE_OPERATIONAL_RELEVANCE_AUDIT.md. Acceptance: File exists and documents parameter invariance.
+- [x] T86 VERIFIED Downstream dispatch gate evaluation & Level-1 scope boundary — Audit 5-point dispatch gate criteria, determine failure of non-heuristic pass-through/arbitrary grid parameters, enforce Level-1 screening scope, and create docs/WHY_LEVEL1_SCOPE_IS_SUFFICIENT.md. Acceptance: File exists and justifies Level-1 scope.
+- [x] T87 VERIFIED Cross-site heterogeneity audit & descriptive deployment diagnostic — Implement scripts/compute_cross_site_descriptors.py, generate artifacts/deployment_diagnostic/site_descriptors.csv and site_decision_outcomes.csv across 4 commercial wind farms, and document non-causal observability x spatial-redundancy map in docs/CROSS_SITE_DEPLOYMENT_DIAGNOSTIC.md. Acceptance: Artifacts exist and conform to non-inferential rules.
+- [x] T88 VERIFIED Manuscript surgical refinement, gate verification & falsification closure — Refine rho definition in paper_tste_ieee.md and standalone_ieee_package/main.tex, verify all gates exit 0, obtain PASS from scientific-falsifier subagent, and update .agent_state/FALSIFICATION_REPORT.md. Acceptance: All gates exit 0 and subagent reports PASS.
 
 ## Finalization
 - [x] TF1 VERIFIED Independent evidence review completed. Acceptance: `.agent_state/REVIEW_REPORT.md` records PASS verdict.
