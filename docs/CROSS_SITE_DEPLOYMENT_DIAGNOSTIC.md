@@ -103,7 +103,7 @@ Based on the empirical findings, we synthesize a 3-tier operational deployment p
          |                                     +-----------------+-----------------+
          v                                     |                                   |
 [ Deterministic Aerodynamic Physics ]     [ Observable Stale Telemetry ]   [ Pitch Sensor Withheld ]
-- Error < 6.8% at h=1, h=6                (Known delay tau=10-60 min)      (Missing pitch telemetry)
+- Approximately 6.8% reserve-shortfall violation rate at h=1, h=6 (Known delay tau=10-60 min)      (Missing pitch telemetry)
 - Strictly lower cost than neural ML                   |                                   |
 - No training overhead                                v                                   v
                                         [ Non-Neural Recalibration ]     [ Consequence Latent Recovery ]

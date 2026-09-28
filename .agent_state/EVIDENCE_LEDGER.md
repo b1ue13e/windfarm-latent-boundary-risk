@@ -1002,7 +1002,7 @@ Source: docs/TSTE_OPERATIONAL_RELEVANCE_PREREGISTRATION.md
 ## T85 — 2026-09-26T11:28:00+08:00
 Task-ID: T85
 Status: VERIFIED_DOC
-Summary: Audited Newsvendor derivation q*(rho) = 1 - 1/rho with rho = c_u / c_r; demonstrated parameter-invariance of baseline superiority across rho in [2, 100] under dynamic re-optimization; compiled compact reference table; and executed Reviewer-1 stress test across 8 power systems challenges.
+Summary: Audited Newsvendor derivation q*(rho) = 1 - 1/rho with rho = c_u / c_r; demonstrated baseline superiority across rho in [2, 100] plant-wide and rho >= 5 in transition slices (posterior preferred at rho=2) under dynamic re-optimization; compiled compact reference table; and executed Reviewer-1 stress test across 8 power systems challenges.
 Source: docs/TSTE_OPERATIONAL_RELEVANCE_AUDIT.md
 
 ## T86 — 2026-09-26T11:29:00+08:00

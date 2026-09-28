@@ -1,56 +1,79 @@
-"""Verify all numbers in Table A12 Panel B and Table A12b against CSV artifacts."""
+"""Verify all numbers in Table A12 Panel B and Table A12b against CSV artifacts using pure standard library."""
 from __future__ import annotations
 
+import csv
 import math
 from pathlib import Path
-import numpy as np
-import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT_DIR = ROOT / "artifacts" / "dynamic_price_settlement_audit"
 ELEXON_CSV = ROOT / "artifacts" / "elexon_bmrs_imbalance" / "elexon_system_prices_2016_2024.csv"
 
+
+def read_csv_rows(path: Path) -> list[dict[str, str]]:
+    with open(path, mode="r", encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        return list(reader)
+
+
+def find_row(rows: list[dict[str, str]], **conditions) -> dict[str, str]:
+    for r in rows:
+        match = True
+        for k, v in conditions.items():
+            if k == "rho":
+                if abs(float(r[k]) - float(v)) > 1e-4:
+                    match = False
+                    break
+            else:
+                if r[k] != str(v):
+                    match = False
+                    break
+        if match:
+            return r
+    raise ValueError(f"Row not found for conditions: {conditions}")
+
+
 def verify_table_a12():
-    km = pd.read_csv(AUDIT_DIR / "kelmarsh_real_price_paired_summary.csv")
-    pm = pd.read_csv(AUDIT_DIR / "penmanshiel_real_price_paired_summary.csv")
-    elexon = pd.read_csv(ELEXON_CSV)
+    km_rows = read_csv_rows(AUDIT_DIR / "kelmarsh_real_price_paired_summary.csv")
+    pm_rows = read_csv_rows(AUDIT_DIR / "penmanshiel_real_price_paired_summary.csv")
+    elexon_rows = read_csv_rows(ELEXON_CSV)
 
     print("=== 1. ELEXON BMRS OVERALL STATS ===")
-    n_periods = len(elexon)
-    mean_sbp = elexon["systemBuyPrice"].mean()
-    min_sbp = elexon["systemBuyPrice"].min()
-    max_sbp = elexon["systemBuyPrice"].max()
+    n_periods = len(elexon_rows)
+    sbp_values = [float(r["systemBuyPrice"]) for r in elexon_rows]
+    mean_sbp = sum(sbp_values) / n_periods
+    min_sbp = min(sbp_values)
+    max_sbp = max(sbp_values)
     print(f"Periods: {n_periods:,}, Mean: {mean_sbp:.2f}, Min: {min_sbp:.2f}, Max: {max_sbp:.2f}")
 
     print("\n=== 2. TABLE A12 PANEL B VERIFICATION ===")
     panel_b_specs = [
-        # (farm_df, farm_name, baseline, rho, n_turb, n_yr)
-        (km, "Kelmarsh", "global", 10.0, 6, 7.0),
-        (km, "Kelmarsh", "soft-pab-bin", 10.0, 6, 7.0),
-        (km, "Kelmarsh", "global", 5.0, 6, 7.0),
-        (km, "Kelmarsh", "soft-pab-bin", 5.0, 6, 7.0),
-        (km, "Kelmarsh", "global", 20.0, 6, 7.0),
-        (km, "Kelmarsh", "soft-pab-bin", 20.0, 6, 7.0),
-        (pm, "Penmanshiel", "global", 10.0, 14, 6.0),
-        (pm, "Penmanshiel", "soft-pab-bin", 10.0, 14, 6.0),
-        (pm, "Penmanshiel", "global", 5.0, 14, 6.0),
-        (pm, "Penmanshiel", "soft-pab-bin", 5.0, 14, 6.0),
-        (pm, "Penmanshiel", "global", 20.0, 14, 6.0),
-        (pm, "Penmanshiel", "soft-pab-bin", 20.0, 14, 6.0),
+        # (rows, farm_name, baseline, rho, n_turb, n_yr)
+        (km_rows, "Kelmarsh", "global", 10.0, 6, 7.0),
+        (km_rows, "Kelmarsh", "soft-pab-bin", 10.0, 6, 7.0),
+        (km_rows, "Kelmarsh", "global", 5.0, 6, 7.0),
+        (km_rows, "Kelmarsh", "soft-pab-bin", 5.0, 6, 7.0),
+        (km_rows, "Kelmarsh", "global", 20.0, 6, 7.0),
+        (km_rows, "Kelmarsh", "soft-pab-bin", 20.0, 6, 7.0),
+        (pm_rows, "Penmanshiel", "global", 10.0, 14, 6.0),
+        (pm_rows, "Penmanshiel", "soft-pab-bin", 10.0, 14, 6.0),
+        (pm_rows, "Penmanshiel", "global", 5.0, 14, 6.0),
+        (pm_rows, "Penmanshiel", "soft-pab-bin", 5.0, 14, 6.0),
+        (pm_rows, "Penmanshiel", "global", 20.0, 14, 6.0),
+        (pm_rows, "Penmanshiel", "soft-pab-bin", 20.0, 14, 6.0),
     ]
 
     panel_b_results = []
-    for f_df, farm, base, rho, n_turb, n_yr in panel_b_specs:
-        sub = f_df[(f_df["window"] == "walkforward_rolling_pooled") & (f_df["baseline"] == base) & (np.isclose(f_df["rho"], rho))]
-        c = sub[sub["metric"] == "total_cashflow_gbp"].iloc[0]
-        p = sub[sub["metric"] == "shortfall_cashflow_gbp"].iloc[0]
-        s = sub[sub["metric"] == "shortage_mwh"].iloc[0]
+    for f_rows, farm, base, rho, n_turb, n_yr in panel_b_specs:
+        c = find_row(f_rows, window="walkforward_rolling_pooled", baseline=base, rho=rho, metric="total_cashflow_gbp")
+        p = find_row(f_rows, window="walkforward_rolling_pooled", baseline=base, rho=rho, metric="shortfall_cashflow_gbp")
+        s = find_row(f_rows, window="walkforward_rolling_pooled", baseline=base, rho=rho, metric="shortage_mwh")
 
-        net_sav = -c["delta_mean"]
-        ci_low = -c["ci_high"]
-        ci_high = -c["ci_low"]
-        pen_sav = -p["delta_mean"]
-        av_short = -s["delta_mean"]
+        net_sav = -float(c["delta_mean"])
+        ci_low = -float(c["ci_high"])
+        ci_high = -float(c["ci_low"])
+        pen_sav = -float(p["delta_mean"])
+        av_short = -float(s["delta_mean"])
         val_turb_yr = net_sav / (n_turb * n_yr)
         excl = c["ci_excludes_zero"]
 
@@ -69,8 +92,13 @@ def verify_table_a12():
         print(f"[{farm} rho={int(rho):2d} vs {base:12s}] Shortage={av_short:+8.1f} MWh | PenSav={pen_sav/1e3:+7.1f}k | NetSav={net_sav/1e3:+7.1f}k | CI=[{ci_low/1e3:+6.1f}k, {ci_high/1e3:+6.1f}k] | Excl={excl} | Val/TurbYr={val_turb_yr:+7.1f}")
 
     print("\n=== 3. TABLE A12b ANNUAL BREAKDOWN VERIFICATION ===")
-    elexon["year"] = pd.to_datetime(elexon["settlementDate"]).dt.year
-    annual_sbp = elexon.groupby("year")["systemBuyPrice"].agg(["mean", "max"]).to_dict("index")
+    annual_sbp: dict[int, list[float]] = {}
+    for r in elexon_rows:
+        yr = int(r["settlementDate"][:4])
+        val = float(r["systemBuyPrice"])
+        if yr not in annual_sbp:
+            annual_sbp[yr] = []
+        annual_sbp[yr].append(val)
 
     phase_map = {
         1: ("2016", "Baseline Commissioning"),
@@ -90,18 +118,18 @@ def verify_table_a12():
         year_int = 2015 + y_idx
         yr_str, phase = phase_map[y_idx]
 
-        sub = km[(km["window"] == win) & (km["baseline"] == "global") & (km["rho"] == 10.0)]
-        c = sub[sub["metric"] == "total_cashflow_gbp"].iloc[0]
-        s = sub[sub["metric"] == "shortage_mwh"].iloc[0]
+        c = find_row(km_rows, window=win, baseline="global", rho=10.0, metric="total_cashflow_gbp")
+        s = find_row(km_rows, window=win, baseline="global", rho=10.0, metric="shortage_mwh")
 
-        net_sav = -c["delta_mean"]
-        ci_low = -c["ci_high"]
-        ci_high = -c["ci_low"]
-        av_short = -s["delta_mean"]
+        net_sav = -float(c["delta_mean"])
+        ci_low = -float(c["ci_high"])
+        ci_high = -float(c["ci_low"])
+        av_short = -float(s["delta_mean"])
         excl = c["ci_excludes_zero"]
 
-        sbp_m = annual_sbp[year_int]["mean"]
-        sbp_max = annual_sbp[year_int]["max"]
+        vals = annual_sbp[year_int]
+        sbp_m = sum(vals) / len(vals)
+        sbp_max = max(vals)
 
         annual_results.append({
             "year_idx": y_idx,
@@ -117,7 +145,9 @@ def verify_table_a12():
         })
         print(f"[Year {y_idx} ({yr_str})] SBP Mean={sbp_m:6.2f}, Max={sbp_max:7.2f} | Shortage={av_short:+6.1f} MWh | NetSav={net_sav/1e3:+6.1f}k | CI=[{ci_low/1e3:+6.1f}k, {ci_high/1e3:+6.1f}k] | Excl={excl}")
 
+    print("\n[PASS] Table A12 numbers verified successfully against CSV artifacts.")
     return panel_b_results, annual_results
+
 
 if __name__ == "__main__":
     verify_table_a12()

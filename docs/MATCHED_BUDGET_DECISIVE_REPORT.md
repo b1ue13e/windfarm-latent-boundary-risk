@@ -196,7 +196,7 @@ When each policy is re-calibrated on validation data for $q^*(\rho) = 1 - 1/\rho
 | 100.0 | 0.9900 | +1,102,589 | -1,046 | -0.32% | **+997,985** | **Baseline (Wspd-Bins)** |
 
 ### Critical Econometric Insight:
-- The frozen-policy crossover at $\rho \approx 41$ was an artifact of keeping procurement constant while scaling the penalty.
+- The frozen-policy crossover is valid conditional on holding both policies fixed at their $\rho=10$ operating points. The crossover disappears under $\rho$-specific policy re-optimization.
 - When policies re-optimize, the posterior's high conditional variance in transition regimes forces extreme tail procurement ($+1.10\text{M kWh}$ at $\rho=100$) for negligible shortage reduction ($-1{,}046\text{ kWh}$).
 - Consequently, **$\Delta \text{PSREI}$ diverges positively**: the posterior becomes progressively **more expensive** as $\rho$ increases.
 

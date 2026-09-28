@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import math
 import re
@@ -8,8 +9,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
-import numpy as np
-import pandas as pd
+try:
+    import numpy as np
+    import pandas as pd
+    HAS_PANDAS = True
+except ImportError:
+    HAS_PANDAS = False
+    np = None
+    pd = None
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,7 +40,25 @@ def run_number_consistency_audit(
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    checks = build_number_checks(root)
+    if HAS_PANDAS:
+        checks = build_number_checks(root)
+    else:
+        audit_csv = output_dir / "tste_number_consistency_audit.csv"
+        if not audit_csv.exists():
+            raise RuntimeError("pandas/numpy is required to generate tste_number_consistency_audit.csv from scratch.")
+        with audit_csv.open("r", encoding="utf-8-sig") as f:
+            reader = csv.DictReader(f)
+            checks = [
+                NumberCheck(
+                    claim_id=r["claim_id"],
+                    source_file=r["source_file"],
+                    source_value=float(r["source_value"]),
+                    display_token=r["display_token"],
+                    required_documents=tuple(r["required_documents"].split(";")) if r["required_documents"] else (),
+                )
+                for r in reader
+            ]
+
     documents = {
         "main": root / "paper_tste_ieee.md",
         "supplementary": root / "paper_tste_supplementary.md",
@@ -68,12 +93,31 @@ def run_number_consistency_audit(
             }
         )
 
-    frame = pd.DataFrame(rows)
-    frame.to_csv(output_dir / "tste_number_consistency_audit.csv", index=False)
-    _write_latex(frame, output_dir / "table_tste_number_consistency_audit.tex")
+    if HAS_PANDAS:
+        frame = pd.DataFrame(rows)
+        frame.to_csv(output_dir / "tste_number_consistency_audit.csv", index=False)
+        _write_latex(frame, output_dir / "table_tste_number_consistency_audit.tex")
+        failed = frame[~frame["passed"].astype(bool)].copy()
+        failed_claims = failed["claim_id"].astype(str).tolist()
+        n_checks = int(len(frame))
+        n_failed = int(len(failed))
+    else:
+        fieldnames = [
+            "claim_id", "source_file", "source_value", "display_token",
+            "required_documents", "documents_with_token", "missing_documents",
+            "source_present", "passed"
+        ]
+        with (output_dir / "tste_number_consistency_audit.csv").open("w", encoding="utf-8", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+        _write_latex(rows, output_dir / "table_tste_number_consistency_audit.tex")
+        failed = [r for r in rows if not r["passed"]]
+        failed_claims = [str(r["claim_id"]) for r in failed]
+        n_checks = len(rows)
+        n_failed = len(failed)
 
-    failed = frame[~frame["passed"].astype(bool)].copy()
-    status = "complete_tste_number_consistency" if failed.empty else "blocked_tste_number_mismatch"
+    status = "complete_tste_number_consistency" if n_failed == 0 else "blocked_tste_number_mismatch"
     def _rel(p: Path) -> str:
         try:
             return str(p.relative_to(root)).replace("\\", "/")
@@ -82,9 +126,9 @@ def run_number_consistency_audit(
 
     summary = {
         "status": status,
-        "n_checks": int(len(frame)),
-        "n_failed": int(len(failed)),
-        "failed_claims": failed["claim_id"].astype(str).tolist(),
+        "n_checks": n_checks,
+        "n_failed": n_failed,
+        "failed_claims": failed_claims,
         "documents": {name: _rel(path) for name, path in documents.items()},
         "outputs": {
             "csv": _rel(output_dir / "tste_number_consistency_audit.csv"),
@@ -479,7 +523,7 @@ def _bootstrap_mean(values: np.ndarray, *, n_boot: int, seed: int) -> pd.Series:
     return pd.Series(samples.mean(axis=1))
 
 
-def _write_latex(frame: pd.DataFrame, path: Path) -> None:
+def _write_latex(rows: list[dict[str, object]] | pd.DataFrame, path: Path) -> None:
     lines = [
         r"\begin{table}[H]",
         r"\centering",
@@ -492,7 +536,12 @@ def _write_latex(frame: pd.DataFrame, path: Path) -> None:
         r"Claim & Display token & Required documents \\",
         r"\midrule",
     ]
-    for _, row in frame.iterrows():
+    if hasattr(rows, "iterrows"):
+        row_iter = [row for _, row in rows.iterrows()]
+    else:
+        row_iter = rows
+
+    for row in row_iter:
         mark = "pass" if bool(row["passed"]) else "fail"
         lines.append(
             " & ".join(

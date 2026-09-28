@@ -64,17 +64,17 @@ Thus, **PSREI is the exact single-period objective of the wind plant operator un
 
 ---
 
-## 4. Multi-Year Empirical Validation via UK Balancing Market (Elexon BMRS)
+## 4. Market-Price-Weighted Economic Sensitivity via Historical Elexon Imbalance Prices
 
-To ensure that Level-1 screening does not rely solely on theoretical Newsvendor assumptions, the manuscript validated reserve decisions against **157,804 real settlement periods** from the UK electricity market (Elexon BMRS, 2016–2024, Table A12).
+To evaluate whether Level-1 screening findings are sensitive to historical electricity price variation, the manuscript evaluated reserve policies under market-price-weighted economic sensitivity using historical Elexon imbalance prices across **157,804 real settlement periods** from the UK electricity market (Elexon BMRS, 2016–2024, Table A12).
 
-Evaluating actual half-hourly System Buy Prices (SBP) and System Sell Prices (SSP):
-- Over 9 continuous years, across both flat (Kelmarsh) and complex (Penmanshiel) terrains;
+Evaluating historical half-hourly System Buy Prices (SBP) and System Sell Prices (SSP):
+- Over 9 continuous years (2016–2024), across both flat (Kelmarsh) and complex (Penmanshiel) facilities;
 - At realistic balancing market penalty ratios ($\rho \in [5, 20]$);
-- The qualitative conclusions remained **100% directionally consistent**:
-  - The direct observable baseline remains the cost-effective reserve policy across commercial operations;
+- Historical price variation **supports robustness of the finding without claiming physical balancing dispatch or market clearing replay**:
+  - The direct observable baseline remains preferred across commercial operations;
   - State recoverability remains distinct from decision superiority;
-  - Real market volatility does not overturn the Level-1 screening conclusion.
+  - Historical price variation does not overturn the Level-1 screening conclusion.
 
 ---
 
@@ -84,4 +84,4 @@ The manuscript's deliberate limitation to Level-1 reserve screening is not an em
 1. It localizes the impact of degraded SCADA observability to its native physical domain.
 2. It establishes that latent-boundary representation learning lacks incremental decision sufficiency against strong observable baselines.
 3. It avoids confounding wind turbine aerodynamic telemetry with arbitrary transmission network assumptions.
-4. It is empirically verified by multi-year commercial market data.
+4. It is supported by market-price-weighted economic sensitivity under historical price variation.

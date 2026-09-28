@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-09-26T11:37:32+08:00
+Generated: 2026-09-28T21:30:17+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -26,20 +26,20 @@ Total pages: 9
 
 --- Checking Headline Number Proximity Qualifiers ---
 Number 589,535 found 6 times:
-  [PASS] Occurrence #1 at index 1000: qualifier present=True
-  [PASS] Occurrence #2 at index 4865: qualifier present=True
-  [PASS] Occurrence #3 at index 7245: qualifier present=True
-  [PASS] Occurrence #4 at index 25503: qualifier present=True
-  [PASS] Occurrence #5 at index 36251: qualifier present=True
-  [PASS] Occurrence #6 at index 48574: qualifier present=True
+  [PASS] Occurrence #1 at index 1002: qualifier present=True
+  [PASS] Occurrence #2 at index 4879: qualifier present=True
+  [PASS] Occurrence #3 at index 7281: qualifier present=True
+  [PASS] Occurrence #4 at index 25672: qualifier present=True
+  [PASS] Occurrence #5 at index 36596: qualifier present=True
+  [PASS] Occurrence #6 at index 49034: qualifier present=True
 Number 881,367 found 7 times:
-  [PASS] Occurrence #1 at index 1026: qualifier present=True
-  [PASS] Occurrence #2 at index 4893: qualifier present=True
-  [PASS] Occurrence #3 at index 7271: qualifier present=True
-  [PASS] Occurrence #4 at index 25559: qualifier present=True
-  [PASS] Occurrence #5 at index 30062: qualifier present=True
-  [PASS] Occurrence #6 at index 32688: qualifier present=True
-  [PASS] Occurrence #7 at index 48598: qualifier present=True
+  [PASS] Occurrence #1 at index 1027: qualifier present=True
+  [PASS] Occurrence #2 at index 4906: qualifier present=True
+  [PASS] Occurrence #3 at index 7306: qualifier present=True
+  [PASS] Occurrence #4 at index 25727: qualifier present=True
+  [PASS] Occurrence #5 at index 30335: qualifier present=True
+  [PASS] Occurrence #6 at index 32971: qualifier present=True
+  [PASS] Occurrence #7 at index 49058: qualifier present=True
 
 [ALL IEEE PDF CHECKS PASSED]
 
