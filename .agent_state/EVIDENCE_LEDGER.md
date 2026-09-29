@@ -1027,3 +1027,18 @@ Command: \python scripts/verify_scientific_claim_gate.pyExit-Code: 0
 Relevant-Output:
 \SCIENTIFIC_CLAIM_GATE: PASS
 \
+
+## T89 — 2026-09-29T21:30:00+08:00
+Task-ID: T89
+Status: VERIFIED_COMMAND
+Summary: Completed full-text audit of the current main and supplementary manuscript sources; corrected comparator and scope wording; repaired standalone figure collection; rebuilt main (10 pages), supplementary (44 pages), and standalone (10 pages); reran 19/19 replication, 10/10 decisive gates, 73/73 number consistency, scientific claim gate, 283 pytest tests, and verify_gate. Canonical steady-state delta conflict and stale 2026-09-23 submission freeze remain explicitly open.
+Source: docs/FINAL_FULL_TEXT_AUDIT_20260929.md, scripts/export_standalone_ieee.py, build/paper_tste_ieee.pdf, build/paper_tste_supplementary.pdf, standalone_ieee_package/main.pdf
+Command: python scripts/verify_replication.py; python scripts/verify_decisive_gate.py; python scripts/verify_tste_number_consistency.py; python scripts/verify_scientific_claim_gate.py; python .agents/scripts/verify_gate.py; pytest -q
+Exit-Code: 0
+Relevant-Output:
+Total Headline Claims Evaluated: 19
+Passed: 19 | Failed: 0
+ALL 10 DECISIVE EVIDENCE GATES PASSED (STATUS: VERIFIED)
+SCIENTIFIC_CLAIM_GATE: PASS
+VERIFICATION_GATE: PASS
+283 passed, 1 warning

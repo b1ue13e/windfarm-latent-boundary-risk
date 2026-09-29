@@ -107,6 +107,10 @@ Created: 2026-09-18T05:01:00+08:00
 - [x] T87 VERIFIED Cross-site heterogeneity audit & descriptive deployment diagnostic — Implement scripts/compute_cross_site_descriptors.py, generate artifacts/deployment_diagnostic/site_descriptors.csv and site_decision_outcomes.csv across 4 commercial wind farms, and document non-causal observability x spatial-redundancy map in docs/CROSS_SITE_DEPLOYMENT_DIAGNOSTIC.md. Acceptance: Artifacts exist and conform to non-inferential rules.
 - [x] T88 VERIFIED Manuscript surgical refinement, gate verification & falsification closure — Refine rho definition in paper_tste_ieee.md and standalone_ieee_package/main.tex, verify all gates exit 0, obtain PASS from scientific-falsifier subagent, and update .agent_state/FALSIFICATION_REPORT.md. Acceptance: All gates exit 0 and subagent reports PASS.
 
+## Full-Text Audit Closure
+
+- [x] T89 VERIFIED Full-Text Manuscript Audit & Standalone Rebuild — Read the current main and supplementary manuscript sources, corrected comparator/scope wording, repaired standalone figure collection, rebuilt main/supplementary/standalone PDFs, and reran all verification gates. Acceptance: docs/FINAL_FULL_TEXT_AUDIT_20260929.md records the review, all three PDF builds pass, standalone package compiles independently, and unresolved canonical-number/submission-freeze findings are explicitly retained.
+
 ## Finalization
 - [x] TF1 VERIFIED Independent evidence review completed. Acceptance: `.agent_state/REVIEW_REPORT.md` records PASS verdict.
 - [x] TF2 VERIFIED Final verification gate executed. Acceptance: `python .agents/scripts/verify_gate.py` passes with exit code 0.
@@ -126,5 +130,4 @@ Created: 2026-09-18T05:01:00+08:00
 - [x] MB11 Phase 11 & 12: Claim Gate & Decisive Report — Classify scientific outcome (A/B/C/D), produce publication-quality figures, and compile complete audit in `docs/MATCHED_BUDGET_DECISIVE_REPORT.md`. Acceptance: Report and all required figures exist.
 - [x] MB12 Phase 13: Manuscript Update Gate — Formulate minimal surgical diff for `paper_tste_ieee.md` and `standalone_ieee_package/main.tex`, update numbers/figures, ensure 10.0-page budget and 0 overfull hboxes. Acceptance: Manuscript builds cleanly and matches artifacts.
 - [x] MB13 VERIFIED Phase 14: Final Independent Review & Manifest Verification — Execute verification manifest commands, run independent reviewer audit, and pass `verify_gate.py` with exit code 0. Acceptance: `docs/MATCHED_BUDGET_FINAL_AUDIT.md` PASS and `verify_gate.py` exit 0.
-
 

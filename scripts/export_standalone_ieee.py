@@ -35,16 +35,19 @@ if os.path.exists(bib_source):
     shutil.copy2(bib_source, os.path.join(PKG_DIR, "references.bib"))
     print("Copied references.bib")
 
-# 4. Copy figures
-fig1_source = os.path.join(ROOT, "figures", "figure1_decision_boundaries.pdf")
-if os.path.exists(fig1_source):
-    shutil.copy2(fig1_source, os.path.join(PKG_DIR, "figures", "figure1_decision_boundaries.pdf"))
-    print("Copied figure1_decision_boundaries.pdf")
-
-fig_source = os.path.join(ROOT, "artifacts", "final_evidence_package", "export", "figures", "figure2_data_boundary.pdf")
-if os.path.exists(fig_source):
-    shutil.copy2(fig_source, os.path.join(PKG_DIR, "figures", "figure2_data_boundary.pdf"))
-    print("Copied figure2_data_boundary.pdf")
+# 4. Copy every figure referenced by the generated standalone TeX.
+figure_sources = {
+    "figure1_decision_boundaries.pdf": os.path.join(ROOT, "figures", "figure1_decision_boundaries.pdf"),
+    "figure2_data_boundary.pdf": os.path.join(ROOT, "artifacts", "final_evidence_package", "export", "figures", "figure2_data_boundary.pdf"),
+    "matched_budget_transition_frontier.pdf": os.path.join(ROOT, "figures", "matched_budget_transition_frontier.pdf"),
+    "matched_budget_control_slices.pdf": os.path.join(ROOT, "figures", "matched_budget_control_slices.pdf"),
+    "figure5_case_studies.pdf": os.path.join(ROOT, "figures", "figure5_case_studies.pdf"),
+}
+for figure_name, figure_source in figure_sources.items():
+    if not os.path.exists(figure_source):
+        raise FileNotFoundError(f"Missing standalone figure source: {figure_source}")
+    shutil.copy2(figure_source, os.path.join(PKG_DIR, "figures", figure_name))
+    print(f"Copied {figure_name}")
 
 # 5. Generate main.tex
 tex_source = os.path.join(ROOT, "build", "paper_tste_ieee.tex")

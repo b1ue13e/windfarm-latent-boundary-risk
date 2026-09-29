@@ -1,13 +1,13 @@
 # Verification Gate Report
 
-Generated: 2026-09-28T21:30:17+08:00
+Generated: 2026-09-29T21:49:32+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
 Exit: 0
 ```
 === Auditing Main IEEE PDF: E:\璁烘枃3\build\paper_tste_ieee.pdf ===
-Total pages: 9
+Total pages: 10
 
 --- Checking Required Phrases ---
   [PASS] Found required phrase match: '13,883'
@@ -26,20 +26,20 @@ Total pages: 9
 
 --- Checking Headline Number Proximity Qualifiers ---
 Number 589,535 found 6 times:
-  [PASS] Occurrence #1 at index 1002: qualifier present=True
-  [PASS] Occurrence #2 at index 4879: qualifier present=True
-  [PASS] Occurrence #3 at index 7281: qualifier present=True
-  [PASS] Occurrence #4 at index 25672: qualifier present=True
-  [PASS] Occurrence #5 at index 36596: qualifier present=True
-  [PASS] Occurrence #6 at index 49034: qualifier present=True
+  [PASS] Occurrence #1 at index 996: qualifier present=True
+  [PASS] Occurrence #2 at index 4902: qualifier present=True
+  [PASS] Occurrence #3 at index 7304: qualifier present=True
+  [PASS] Occurrence #4 at index 25828: qualifier present=True
+  [PASS] Occurrence #5 at index 36543: qualifier present=True
+  [PASS] Occurrence #6 at index 55877: qualifier present=True
 Number 881,367 found 7 times:
-  [PASS] Occurrence #1 at index 1027: qualifier present=True
-  [PASS] Occurrence #2 at index 4906: qualifier present=True
-  [PASS] Occurrence #3 at index 7306: qualifier present=True
-  [PASS] Occurrence #4 at index 25727: qualifier present=True
-  [PASS] Occurrence #5 at index 30335: qualifier present=True
-  [PASS] Occurrence #6 at index 32971: qualifier present=True
-  [PASS] Occurrence #7 at index 49058: qualifier present=True
+  [PASS] Occurrence #1 at index 1021: qualifier present=True
+  [PASS] Occurrence #2 at index 4929: qualifier present=True
+  [PASS] Occurrence #3 at index 7329: qualifier present=True
+  [PASS] Occurrence #4 at index 25883: qualifier present=True
+  [PASS] Occurrence #5 at index 30278: qualifier present=True
+  [PASS] Occurrence #6 at index 32914: qualifier present=True
+  [PASS] Occurrence #7 at index 55901: qualifier present=True
 
 [ALL IEEE PDF CHECKS PASSED]
 
@@ -87,8 +87,8 @@ Exit: 0
   [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (7,309 bytes)
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,261 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,803 bytes)
-  [PASS] build/paper_tste_ieee.pdf (174,226 bytes)
-  [PASS] build/paper_tste_supplementary.pdf (1,013,790 bytes)
+  [PASS] build/paper_tste_ieee.pdf (265,002 bytes)
+  [PASS] build/paper_tste_supplementary.pdf (1,013,897 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
   [PASS] Information-set manifest validated (819 rows, zero forward leakage)
@@ -114,7 +114,7 @@ Exit: 0
   [PASS] Mediation confirmed: Dynamic Transition Windows account for 48.4% of total savings (p=0.0000)
 
 [Audit Step 9: IEEE Paper Page Budget Constraint]
-  [PASS] IEEE paper page count = 9 <= 10.0 pages (COMPLIANT)
+  [PASS] IEEE paper page count = 10 <= 10.0 pages (COMPLIANT)
 
 ======================================================================
 ALL 10 DECISIVE EVIDENCE GATES PASSED (STATUS: VERIFIED)
