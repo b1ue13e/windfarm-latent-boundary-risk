@@ -1042,3 +1042,19 @@ ALL 10 DECISIVE EVIDENCE GATES PASSED (STATUS: VERIFIED)
 SCIENTIFIC_CLAIM_GATE: PASS
 VERIFICATION_GATE: PASS
 283 passed, 1 warning
+
+## T90 — 2026-10-12T01:00:00+08:00
+Task-ID: T90
+Status: VERIFIED_COMMAND
+Summary: Executed EXP-01 (External-Farm Matched Direct-Quantile & No-Graph Control) benchmark across Penmanshiel (14 turbines) and Kelmarsh (6 turbines) under matched arrival-time SCADA information (local wind speed, active power, ambient temperature; blade pitch strictly withheld at test time). Wind-speed data missingness verified (Penmanshiel 0.63%, Kelmarsh 2.10% <= 20% hard stop). Evaluated 4 models (Site-Local Wspd-Bins 10-bin, No-Graph MLP, Transferred STGQ-Modular, Fine-tuned STGQ-Modular) across 5 random seeds (201-205) and 2 horizons (h=1, h=6) with B=2000 daily cluster Block Bootstrap. Confirmed reverse interpretation: Site-Local Wspd-Bins achieves minimum sufficient decision performance; Transferred STGQ provides no statistically significant decision gain (Penmanshiel h=6 Delta PSREI = +448,046 kWh, p=0.185; Kelmarsh h=6 Delta PSREI = +48,494 kWh, p=0.272); Fine-tuned STGQ (+1.09M kWh on Penmanshiel h=6, p<0.001) and No-Graph MLP (+2.15M kWh on Penmanshiel h=6, p<0.001) exhibit severe penalties. Target artifact artifacts/external_matched_control_benchmark.csv produced and archived via artifact_save as external-matched-control-benchmark v1.
+Source: artifacts/external_matched_control_benchmark.csv, scripts/run_exp01_matched_control_benchmark.py, docs/EXPERIMENT_REGISTRY.md
+Command: D:\anaconda3\anaconda3\python.exe scripts/run_exp01_matched_control_benchmark.py --device cuda:0
+Exit-Code: 0
+Relevant-Output:
+Benchmark results successfully written to: artifacts\external_matched_control_benchmark.csv
+Total rows: 80
+Penmanshiel h=1: Wspd-Bins 4,102,550 kWh (8.74%) | Transferred Delta -9,925 kWh (p=0.600) | Fine-tuned Delta +800,377 kWh (p=0.000) | No-Graph Delta +1,050,726 kWh (p=0.001)
+Penmanshiel h=6: Wspd-Bins 5,506,034 kWh (9.62%) | Transferred Delta +448,046 kWh (p=0.185) | Fine-tuned Delta +1,094,091 kWh (p=0.000) | No-Graph Delta +2,154,351 kWh (p=0.000)
+Kelmarsh h=1: Wspd-Bins 1,274,739 kWh (9.81%) | Transferred Delta +11,304 kWh (p=0.448) | Fine-tuned Delta +114,541 kWh (p=0.019) | No-Graph Delta +888,024 kWh (p=0.000)
+Kelmarsh h=6: Wspd-Bins 1,909,238 kWh (10.22%) | Transferred Delta +48,494 kWh (p=0.272) | Fine-tuned Delta +215,241 kWh (p=0.000) | No-Graph Delta +1,501,027 kWh (p=0.000)
+VERDICT: REVERSE RESULT CONFIRMED. Site-Local Wspd-Bins is minimum sufficient model.

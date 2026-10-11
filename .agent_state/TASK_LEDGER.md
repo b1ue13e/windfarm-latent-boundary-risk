@@ -111,6 +111,10 @@ Created: 2026-09-18T05:01:00+08:00
 
 - [x] T89 VERIFIED Full-Text Manuscript Audit & Standalone Rebuild — Read the current main and supplementary manuscript sources, corrected comparator/scope wording, repaired standalone figure collection, rebuilt main/supplementary/standalone PDFs, and reran all verification gates. Acceptance: docs/FINAL_FULL_TEXT_AUDIT_20260929.md records the review, all three PDF builds pass, standalone package compiles independently, and unresolved canonical-number/submission-freeze findings are explicitly retained.
 
+## Metis / External Control Closure (EXP-01)
+
+- [x] T90 VERIFIED EXP-01: External-Farm Matched Direct-Quantile & No-Graph Control — Executed matched-information benchmark across Penmanshiel (14 turbines) and Kelmarsh (6 turbines) under complete pitch withholding at test time. Verified wind-speed missingness rate hard stop (Penmanshiel 0.63%, Kelmarsh 2.10% <= 20%). Evaluated Site-Local Wspd-Bins (10-bin), No-Graph MLP, Transferred STGQ-Modular, and Fine-tuned STGQ-Modular across 5 seeds (201-205) and two horizons (h=1, h=6) with B=2000 daily cluster Block Bootstrap. Confirmed reverse interpretation: Site-Local Wspd-Bins is minimum sufficient model; Transferred STGQ yields no statistically significant decision gain (Penmanshiel h=6 Delta PSREI = +448k kWh, p=0.185; Kelmarsh h=6 Delta PSREI = +48.5k kWh, p=0.272); Fine-tuned and No-Graph models exhibit severe overfitting/underfitting penalties. Target artifact artifacts/external_matched_control_benchmark.csv produced and archived as external-matched-control-benchmark v1. Acceptance: Artifact exists, registered in EXPERIMENT_REGISTRY.md, and all paired statistics verified.
+
 ## Finalization
 - [x] TF1 VERIFIED Independent evidence review completed. Acceptance: `.agent_state/REVIEW_REPORT.md` records PASS verdict.
 - [x] TF2 VERIFIED Final verification gate executed. Acceptance: `python .agents/scripts/verify_gate.py` passes with exit code 0.
