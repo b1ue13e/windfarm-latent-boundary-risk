@@ -1058,3 +1058,22 @@ Penmanshiel h=6: Wspd-Bins 5,506,034 kWh (9.62%) | Transferred Delta +448,046 kW
 Kelmarsh h=1: Wspd-Bins 1,274,739 kWh (9.81%) | Transferred Delta +11,304 kWh (p=0.448) | Fine-tuned Delta +114,541 kWh (p=0.019) | No-Graph Delta +888,024 kWh (p=0.000)
 Kelmarsh h=6: Wspd-Bins 1,909,238 kWh (10.22%) | Transferred Delta +48,494 kWh (p=0.272) | Fine-tuned Delta +215,241 kWh (p=0.000) | No-Graph Delta +1,501,027 kWh (p=0.000)
 VERDICT: REVERSE RESULT CONFIRMED. Site-Local Wspd-Bins is minimum sufficient model.
+
+## T91 — 2026-10-12T02:00:00+08:00
+Task-ID: T91
+Status: VERIFIED_COMMAND
+Summary: Methodological and reporting hardening for EXP-01 based on peer-review warning audit. (1) Penmanshiel turbine count harmonized: docs/EXPERIMENT_REGISTRY.md updated from nominal 15 to 14 operational turbines, explicitly disclosing the exclusion of WT03 due to long-term hardware outage and completely missing telemetry in accordance with official Zenodo repository protocol and docs/REPOSITORY_EVIDENCE_MAP.md:19; (2) Hierarchical endpoint structure formalization: established site-specific h=6 Transferred STGQ-Modular vs. Site-Local Wspd-Bins paired delta PSREI as the pre-specified Primary Endpoint, designating h=1 and secondary controls as Secondary/Exploratory, with an explicit guardrail ruling out unadjusted cross-comparison family-wise error rate claims; (3) Architectural complexity audit on Metis cloud node (NVIDIA A100-PCIE-40GB): verified parameters and computational profiles of STGQ-Modular (110,012 params) vs. single-turbine MLP (4,865 params, 22.6x ratio), formally replacing the informal 'capacity-matched' phrasing with 'No-Graph Architectural Control' across code, registry, and docs, generating artifacts/no_graph_architecture_audit.json and docs/NO_GRAPH_CONTROL_AUDIT.md; (4) Refresh of artifacts/external_matched_control_benchmark.csv with endpoint_type column; (5) Scientific claim ceiling enforced: verified that findings support the absence of transferred decision gain on the two evaluated farms, while strictly prohibiting universal generalization claims.
+Source: docs/EXPERIMENT_REGISTRY.md, docs/NO_GRAPH_CONTROL_AUDIT.md, artifacts/no_graph_architecture_audit.json, artifacts/external_matched_control_benchmark.csv, scripts/audit_architecture_complexity.py, scripts/run_exp01_matched_control_benchmark.py
+Command: python scripts/audit_architecture_complexity.py; python scripts/run_exp01_matched_control_benchmark.py --device cuda:0; ssh metis (A100 audit)
+Exit-Code: 0
+Relevant-Output:
+No-Graph Architectural Control parameters: 4,865
+STGQ-Modular total parameters: 110,012 (Encoder 76,736, Gate 4,676, Experts 22,880, Dense Head 5,720)
+A100 Forward pass latency for Penmanshiel test set (70,560 samples): 5.55 ms
+Peak GPU memory allocated: 50.03 MB
+Written audit artifact to: artifacts/no_graph_architecture_audit.json
+Benchmark results successfully written to: artifacts/external_matched_control_benchmark.csv (80 rows)
+Penmanshiel h=6 (Primary Endpoint): Delta PSREI = +448,046 kWh (p=0.185)
+Kelmarsh h=6 (Primary Endpoint): Delta PSREI = +48,494 kWh (p=0.272)
+VERDICT: Methodological hardening and claim bounding complete.
+

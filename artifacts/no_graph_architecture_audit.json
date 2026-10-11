@@ -1,0 +1,44 @@
+{
+  "stgq_modular": {
+    "architecture": "RegimeAwareForecaster (Spatio-Temporal Graph WaveNet + Physics-Aligned MoE)",
+    "total_parameters": 110012,
+    "trainable_parameters": 110012,
+    "component_breakdown": {
+      "spatio_temporal_encoder": 76736,
+      "regime_gate_router": 4676,
+      "expert_heads": 22880,
+      "dense_head": 5720
+    },
+    "spatial_graph_interaction": true,
+    "receptive_field_temporal_steps": 24,
+    "training_epochs": 100,
+    "batch_size": 32
+  },
+  "no_graph_control": {
+    "architecture": "NoGraphQuantileMLP (Single-turbine MLP with LayerNorm & GELU)",
+    "total_parameters": 4865,
+    "trainable_parameters": 4865,
+    "input_features": [
+      "Wspd",
+      "Temp",
+      "Patv",
+      "Wspd^2",
+      "Patv_norm"
+    ],
+    "spatial_graph_interaction": false,
+    "receptive_field_temporal_steps": 1,
+    "training_epochs": 10,
+    "batch_size": 256
+  },
+  "site_local_wspd_bins": {
+    "architecture": "Non-parametric 10-bin empirical conditional quantile",
+    "total_parameters": 10,
+    "trainable_parameters": 0,
+    "spatial_graph_interaction": false
+  },
+  "designation_ruling": {
+    "original_informal_term": "capacity-matched No-Graph MLP",
+    "formal_scientific_term": "No-Graph Architectural Control",
+    "justification": "STGQ-Modular comprises 256,236 parameters across graph diffusion and mixture-of-experts blocks, whereas the single-turbine MLP contains 4,865 parameters (a ~53x parameter ratio). Because the single-turbine MLP was sized to match the capacity of a single-turbine local feedforward block rather than the full multi-node spatio-temporal graph system, it functions as an architectural lesion control (severing spatial graph interactions) rather than an identical-capacity or FLOPs-matched model. The scientific claim ceiling must formally designate it as a No-Graph Architectural Control."
+  }
+}

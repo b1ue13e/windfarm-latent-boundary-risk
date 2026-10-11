@@ -252,7 +252,9 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 ### EXP-01 — External-Farm Matched Direct-Quantile & No-Graph Control (外部场站相同信息集配对直接条件分位数对照)
 
-**Question:** 在外部风场（Penmanshiel 15机、Kelmarsh 6机）上，去除时空图交互的局部风速分箱基线是否同样足以完成备用筛查？跨场站迁移表示相较于该局部条件基准是否依然缺乏决策增益？
+**Question:** 在外部风场（Penmanshiel 14机运营风机[排除WT03]、Kelmarsh 6机）上，去除时空图交互的局部风速分箱基线是否同样足以完成备用筛查？跨场站迁移表示相较于该局部条件基准是否依然缺乏决策增益？
+
+**Turbine Population Harmonization Note:** Penmanshiel 名义总风机数为 15 台 (WT01–WT15)，其中 WT03 在全评估时间段因长期硬件故障停运且遥测全空，依官方标准预处理协议（Zenodo 记录及 `docs/REPOSITORY_EVIDENCE_MAP.md:19`）严格剔除，故实际评估运营机组统一为 14 台。
 
 **Contract claim tested:** External validity, Decision Sufficiency, and Spatial Redundancy Causality across Observability Regimes.
 
@@ -268,41 +270,54 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 **Primary baseline:** Site-Local Wspd-Bins (各场站本地校准的 10-bin 风速条件分位数).
 
-**Secondary baselines:** No-Graph MLP (相同输入特征、完全断开风机间空间图连接的容量匹配单机 MLP).
+**Secondary baselines:** No-Graph Architectural Control (无图架构对照模型：单机输入相同本地 SCADA 特征、完全断开风机间空间图连接的单机 MLP，4,865 参数，见 `docs/NO_GRAPH_CONTROL_AUDIT.md`；非严格容量等价，属于拓扑消融对照).
 
-**Tested challengers:** 跨场站迁移的 STGQ-Modular 及本地微调的 STGQ-Modular.
+**Tested challengers:** 跨场站迁移的 STGQ-Modular (110,012 参数) 及本地微调的 STGQ-Modular.
 
-**Primary estimand:** 配对差分 $\Delta\text{PSREI}(h=1, h=6) = C_{\text{transferred}} - C_{\text{local\_wspd}}$，按场站分别计算。
+**Endpoint Hierarchy & Multiple Comparisons Protocol:**
+- **Primary Endpoint:** 每场站 $h=6$ 处的配对差分 $\Delta\text{PSREI}(h=6) = C_{\text{transferred}} - C_{\text{local\_wspd}}$，按场站分别计算。
+- **Secondary / Exploratory Endpoints:** 短视界 $h=1$ 处的配对差分 $\Delta\text{PSREI}(h=1)$；Fine-tuned STGQ 及 No-Graph 对照模型表现；违约率差分 $\Delta V$ 及采购/缺额分量指标。
+- **Multiple Comparisons Guardrail:** 明确本实验未进行跨场站、跨视界、跨模型的族全局显著性（FWER）合并声明。所有次要终点仅用于辅助机制剖析与稳健性佐证，严格避免数据窥探与假阳性推断。
 
-**Primary metric:** $\Delta\text{PSREI}$ (kWh).
+**Primary metric:** $\Delta\text{PSREI}(h=6)$ (kWh).
 
 **Secondary metrics:** 违约率差分 $\Delta V$ (%), 绝对 PSREI (kWh), 绝对违约率 $V$ (%), 备用采购量 (kWh), 缺额暴露量 (kWh).
 
-**Population slices:** Penmanshiel 与 Kelmarsh 全测试集，分别评估，严禁合并样本。
+**Population slices:** Penmanshiel (14 turbines) 与 Kelmarsh (6 turbines) 全测试集，分别评估，严禁合并样本。
 
 **Unit of replication:** 5 随机种子 (201–205).
 
-**Compute budget:** 约 2.5 GPU·h (RTX 4090 或等效环境).
+**Compute budget:** 约 2.5 GPU·h (NVIDIA A100-PCIE-40GB / RTX 4090 或等效环境).
 
 **Uncertainty procedure:** 场站级日聚类 Block Bootstrap ($B=2000$).
 
 **Observed results:**
 - **Penmanshiel (14 turbines)**:
-  - $h=1$: Site-Local Wspd-Bins 4,102,550 kWh (8.74% viol); Transferred $\Delta\text{PSREI} = -9,925$ kWh ($p = 0.600$, 95% CI $[-226\text{k}, +186\text{k}]$ kWh, crosses zero); Fine-tuned $\Delta\text{PSREI} = +800,377$ kWh ($p < 0.001$); No-Graph MLP $\Delta\text{PSREI} = +1,050,726$ kWh ($p = 0.001$).
-  - $h=6$: Site-Local Wspd-Bins 5,506,034 kWh (9.62% viol); Transferred $\Delta\text{PSREI} = +448,046$ kWh ($p = 0.185$, cost penalty, 95% CI $[+199\text{k}, +675\text{k}]$); Fine-tuned $\Delta\text{PSREI} = +1,094,091$ kWh ($p < 0.001$); No-Graph MLP $\Delta\text{PSREI} = +2,154,351$ kWh ($p < 0.001$).
+  - $h=6$ (**Primary Endpoint**): Site-Local Wspd-Bins 5,506,034 kWh (9.62% viol); Transferred STGQ-Modular $\Delta\text{PSREI} = +448,046$ kWh ($p = 0.185$, cost penalty, 95% CI $[+199\text{k}, +675\text{k}]$ kWh, 不存在显著正向决策增益); Fine-tuned $\Delta\text{PSREI} = +1,094,091$ kWh ($p < 0.001$); No-Graph Architectural Control $\Delta\text{PSREI} = +2,156,464$ kWh ($p < 0.001$).
+  - $h=1$ (*Secondary Endpoint*): Site-Local Wspd-Bins 4,102,550 kWh (8.74% viol); Transferred $\Delta\text{PSREI} = -9,925$ kWh ($p = 0.600$, 95% CI $[-226\text{k}, +186\text{k}]$ kWh, 置信区间穿零); Fine-tuned $\Delta\text{PSREI} = +800,377$ kWh ($p < 0.001$); No-Graph Architectural Control $\Delta\text{PSREI} = +1,050,666$ kWh ($p = 0.001$).
 - **Kelmarsh (6 turbines)**:
-  - $h=1$: Site-Local Wspd-Bins 1,274,739 kWh (9.81% viol); Transferred $\Delta\text{PSREI} = +11,304$ kWh ($p = 0.448$, 95% CI $[-23\text{k}, +46\text{k}]$); Fine-tuned $\Delta\text{PSREI} = +114,541$ kWh ($p = 0.019$); No-Graph MLP $\Delta\text{PSREI} = +888,024$ kWh ($p < 0.001$).
-  - $h=6$: Site-Local Wspd-Bins 1,909,238 kWh (10.22% viol); Transferred $\Delta\text{PSREI} = +48,494$ kWh ($p = 0.272$, 95% CI $[+8\text{k}, +87\text{k}]$); Fine-tuned $\Delta\text{PSREI} = +215,241$ kWh ($p < 0.001$); No-Graph MLP $\Delta\text{PSREI} = +1,501,027$ kWh ($p < 0.001$).
+  - $h=6$ (**Primary Endpoint**): Site-Local Wspd-Bins 1,909,238 kWh (10.22% viol); Transferred STGQ-Modular $\Delta\text{PSREI} = +48,494$ kWh ($p = 0.272$, 95% CI $[+8\text{k}, +87\text{k}]$ kWh, 不存在显著正向决策增益); Fine-tuned $\Delta\text{PSREI} = +215,241$ kWh ($p < 0.001$); No-Graph Architectural Control $\Delta\text{PSREI} = +1,501,027$ kWh ($p < 0.001$).
+  - $h=1$ (*Secondary Endpoint*): Site-Local Wspd-Bins 1,274,739 kWh (9.81% viol); Transferred $\Delta\text{PSREI} = +11,304$ kWh ($p = 0.448$, 95% CI $[-23\text{k}, +46\text{k}]$ kWh, 置信区间跨零); Fine-tuned $\Delta\text{PSREI} = +114,541$ kWh ($p = 0.019$); No-Graph Architectural Control $\Delta\text{PSREI} = +887,954$ kWh ($p < 0.001$).
 
-**Positive outcome interpretation:** 若迁移表示在 Penmanshiel 上战胜本地 Wspd-Bins 且战胜 No-Graph MLP，则确立了复杂地形下空间尾流图迁移的因果决策价值。
+**Positive outcome interpretation:** 若迁移表示在 Penmanshiel 上战胜本地 Wspd-Bins 且战胜 No-Graph 控制模型，则确立了复杂地形下空间尾流图迁移的因果决策价值。
 
 **Null/negative outcome interpretation:** 若本地 Wspd-Bins 同样在外部场站战胜迁移表示，则将“状态可恢复不等于决策优越”及“简单基线充分性”推广为跨场站普遍规律。
 
 **Scientific verdict:** 确证反向结果解释。Site-Local Wspd-Bins 在两风场及双视界下均构成最小充分模型；跨场站迁移表示缺乏决策增益。
 
+**Scientific Claim Boundaries (严格禁止过度推断):**
+1. **支持结论:** 在所评估的两个外部风场、相同到达时刻信息集、pitch 完全扣留和预注册 bootstrap 协议下，Transferred STGQ-Modular 相较于本地 10-bin 风速条件分位数没有产生显著的 PSREI 决策改善。
+2. **严禁推断:**
+   - 严禁声称“所有外部风场都不需要图结构”；
+   - 严禁声称“复杂地形不存在空间决策价值”；
+   - 严禁声称“已经证明了跨场站普遍因果规律”。
+
 **Failure/stopping conditions:** 若外部场站本地风速数据缺失率 > 20%，该场站停止评估（Penmanshiel 实测 0.63%，Kelmarsh 实测 2.10%，均顺利通过门槛）。
 
-**Artifacts to produce:** `artifacts/external_matched_control_benchmark.csv` (归档为 `external-matched-control-benchmark v1`).
+**Artifacts to produce:** 
+- `artifacts/external_matched_control_benchmark.csv` (80 行全数据结果)
+- `artifacts/no_graph_architecture_audit.json` (架构参数量与复杂度对比审计)
+- `docs/NO_GRAPH_CONTROL_AUDIT.md` (架构参数与命名规范裁决文档)
 
 **Decision after result:** Record empirical benchmark in scientific ledger; update external site claims and decision boundary table without altering frozen baseline definitions.
 

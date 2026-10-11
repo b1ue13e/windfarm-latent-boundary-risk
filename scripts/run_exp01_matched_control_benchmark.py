@@ -11,17 +11,19 @@ Matched Information Set:
     ambient temperature). Blade pitch is completely withheld at test time.
 
 Baselines:
-    1. Site-Local Wspd-Bins (10-bin local wind-speed conditional quantile)
-    2. No-Graph MLP (capacity-matched single-turbine MLP with spatial graph completely severed)
+    1. Site-Local Wspd-Bins (10-bin local wind-speed conditional quantile; Primary Baseline)
+    2. No-Graph Architectural Control (single-turbine MLP with spatial graph completely severed)
 
 Challengers:
-    3. Transferred STGQ-Modular (from WTB)
+    3. Transferred STGQ-Modular (from WTB; Primary Challenger at h=6)
     4. Fine-tuned STGQ-Modular (locally fine-tuned on external farm)
 
-Estimands:
-    Paired difference Delta PSREI(h=1, h=6) = C_transferred - C_local_wspd
-    Paired difference Delta V(h=1, h=6) = V_transferred - V_local_wspd
-    Evaluated on Penmanshiel and Kelmarsh separately. Never pool samples.
+Estimands & Multiple Comparisons Protocol:
+    Primary Endpoint:
+        Paired difference Delta PSREI(h=6) = C_transferred - C_local_wspd on each farm separately.
+    Secondary / Exploratory Endpoints:
+        Delta PSREI at h=1; Fine-tuned and No-Graph controls; Delta V(h=1, h=6).
+        No family-wise error rate pooling across sites or horizons.
 
 Uncertainty:
     Site-level daily cluster Block Bootstrap (B=2000).
@@ -58,9 +60,9 @@ BLOCK_SIZE = 144       # 144 steps = 1 day
 SEEDS = [201, 202, 203, 204, 205]
 HORIZONS = [(0, "h=1"), (5, "h=6")]
 
-# Capacity-matched No-Graph MLP
+# No-Graph Architectural Control
 class NoGraphQuantileMLP(nn.Module):
-    """Single-turbine capacity-matched MLP predicting residual quantile directly.
+    """Single-turbine architectural control predicting residual quantile directly.
     
     Severed from spatial graph interactions: each turbine is processed independently.
     Input features: [Wspd, Patv, Etmp, Itmp, Prtv] (pitch Pab completely withheld).
@@ -523,7 +525,7 @@ def run_farm_evaluation(
 
             reserves_map = {
                 "Site-Local Wspd-Bins": r_wspd_bins,
-                "No-Graph MLP": r_nograph_mlp,
+                "No-Graph Architectural Control": r_nograph_mlp,
                 "Transferred STGQ-Modular": r_trans_stgq,
                 "Fine-tuned STGQ-Modular": r_fine_stgq,
             }
@@ -551,7 +553,7 @@ def run_farm_evaluation(
                 f"Seed {seed} ({h_label}) [{elapsed:.1f}s]: "
                 f"Wspd-Bins PSREI={metrics['Site-Local Wspd-Bins']['psrei_kwh']:,.0f} kWh | "
                 f"Transferred Delta={boot_res['Transferred STGQ-Modular']['delta_psrei_mean']:+,.0f} kWh (p={boot_res['Transferred STGQ-Modular']['p_val_delta_psrei']:.3f}) | "
-                f"No-Graph Delta={boot_res['No-Graph MLP']['delta_psrei_mean']:+,.0f} kWh",
+                f"No-Graph Delta={boot_res['No-Graph Architectural Control']['delta_psrei_mean']:+,.0f} kWh",
                 flush=True,
             )
 
@@ -559,6 +561,14 @@ def run_farm_evaluation(
             for m_name in reserves_map.keys():
                 m_eval = metrics[m_name]
                 b_eval = boot_res[m_name]
+
+                # Endpoint hierarchy: Primary endpoint is strictly h=6 Transferred vs Wspd-Bins
+                if m_name == "Site-Local Wspd-Bins":
+                    ep_type = "reference_baseline"
+                elif h_label == "h=6" and m_name == "Transferred STGQ-Modular":
+                    ep_type = "primary_endpoint"
+                else:
+                    ep_type = "secondary_endpoint"
 
                 record = {
                     "farm": farm_name,
@@ -568,7 +578,8 @@ def run_farm_evaluation(
                     "horizon": h_label,
                     "lead_step": lead_step,
                     "model": m_name,
-                    "model_category": "primary_baseline" if m_name == "Site-Local Wspd-Bins" else ("secondary_baseline" if m_name == "No-Graph MLP" else "tested_challenger"),
+                    "endpoint_type": ep_type,
+                    "model_category": "primary_baseline" if m_name == "Site-Local Wspd-Bins" else ("secondary_baseline" if "No-Graph" in m_name else "tested_challenger"),
                     "psrei_kwh": m_eval["psrei_kwh"],
                     "psrei_ci_lower": b_eval["psrei_ci_95"][0],
                     "psrei_ci_upper": b_eval["psrei_ci_95"][1],
@@ -661,20 +672,21 @@ def main():
     for farm in ["Penmanshiel", "Kelmarsh"]:
         pm_trans = agg[(agg["farm"] == farm) & (agg["model"] == "Transferred STGQ-Modular")]
         pm_wspd = agg[(agg["farm"] == farm) & (agg["model"] == "Site-Local Wspd-Bins")]
-        pm_nograph = agg[(agg["farm"] == farm) & (agg["model"] == "No-Graph MLP")]
+        pm_nograph = agg[(agg["farm"] == farm) & (agg["model"] == "No-Graph Architectural Control")]
 
         mean_delta_h1 = pm_trans[pm_trans["horizon"] == "h=1"]["delta_psrei_mean_kwh"].values[0]
         mean_delta_h6 = pm_trans[pm_trans["horizon"] == "h=6"]["delta_psrei_mean_kwh"].values[0]
 
         print(f"\n[{farm}] Transferred vs Site-Local Wspd-Bins:")
-        print(f"  h=1 Delta PSREI: {mean_delta_h1:+,.0f} kWh")
-        print(f"  h=6 Delta PSREI: {mean_delta_h6:+,.0f} kWh")
+        print(f"  Primary Endpoint (h=6) Delta PSREI: {mean_delta_h6:+,.0f} kWh")
+        print(f"  Secondary Endpoint (h=1) Delta PSREI: {mean_delta_h1:+,.0f} kWh")
 
-        if mean_delta_h1 > 0 and mean_delta_h6 > 0:
+        if mean_delta_h1 >= 0 and mean_delta_h6 >= 0:
             print(f"  --> VERDICT: REVERSE RESULT CONFIRMED.")
-            print(f"      Site-Local Wspd-Bins achieves lower or comparable surrogate cost across both horizons.")
-            print(f"      'State recoverability != Decision superiority' and 'simple baseline sufficiency'")
-            print(f"      generalize as universal cross-farm principles on {farm}.")
+            print(f"      Transferred STGQ does not yield significant decision gain over Site-Local Wspd-Bins on {farm}.")
+            print(f"      Site-Local Wspd-Bins achieves lower or comparable surrogate cost across both evaluated horizons.")
+            print(f"      BOUNDED SCIENTIFIC SCOPE: Confirms simple local baseline sufficiency on the two evaluated sites.")
+            print(f"      (Does NOT claim universal absence of spatial value across all arbitrary wind farms).")
         else:
             print(f"  --> VERDICT: Positive decision gain observed on {farm}.")
 

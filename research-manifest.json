@@ -9,14 +9,14 @@
   },
   "question": {
     "text": "在外部风场上，去除时空图交互的局部风速分箱基线是否同样足以完成备用筛查？跨场站迁移表示相较于该局部条件基准是否依然缺乏决策增益？",
-    "updatedAt": "2026-10-11T08:56:49.698Z"
+    "updatedAt": "2026-10-11T23:46:13.703Z"
   },
   "gap": {
-    "failure": "现有风电备用筛查方法在外部风场上仅对比未受条件约束的全局分位数，未在严格匹配的相同观测信息集下检验空间尾流图对局部风速条件基线的因果决策增益。",
-    "cause": "跨场站时空图模型通常假定空间交互与状态可恢复性能自动转化为经济决策优势，未考虑风机级局部风速分箱等强简单基线在备用风险对冲中的充分性。",
-    "plan": "在严格扣留测试期pitch且仅使用本地到达时刻SCADA的相同信息集下，以本地10-bin风速分位数和无图MLP为主要基线，通过日聚类Block Bootstrap配对差分检验跨场站迁移及微调STGQ的决策增益。",
+    "failure": "跨场站迁移的时空图分位数模型在外部风场相同到达时刻SCADA信息约束与pitch完全扣留条件下，无法在下行备用筛查中战胜各场站本地校准的简易10-bin风速条件分位数基线。",
+    "cause": "传统预测模型依赖复杂的风机间图交互或假定跨场站零样本空间迁移有效，但在实际外部风场部署中，时空图结构容易发生拓扑不匹配与路由欠收敛，且未与同信息集下的简单局部条件分位数基准进行配对决策收益对照。",
+    "plan": "构建外部场站相同信息集配对直接条件分位数对照基准（EXP-01），评估跨场站迁移STGQ、本地微调STGQ、No-Graph架构对照模型与Site-Local Wspd-Bins在全测试集与5随机种子下的配对PSREI与违约率，确立最小充分模型边界。",
     "category": "method",
-    "updatedAt": "2026-10-11T08:56:49.698Z"
+    "updatedAt": "2026-10-11T23:46:13.703Z"
   },
   "subquestions": [],
   "literature": {
@@ -66,6 +66,13 @@
         "action": "findings",
         "detail": "E01：在外部风场Penmanshiel（14机）与Kelmarsh（6机）全测试集上，在严格匹配信息集（测试期pitch完全扣留，仅使用到达时刻本地风速、功率、气温）及5种子(201-205)、B=2000日聚类Block Bootstrap下：1) 在Penmanshiel复杂地形下，h=1时Transferred STGQ相对Site-Local Wspd-Bins配对差分Delta PSREI=-9.9k kWh (p=0.600，CI跨零无显著增益)；h=6时Delta PSREI=+448.0k kWh (p=0.185，均值增加且无统计优势)；Fine-tuned STGQ显著劣于Wspd-Bins (+1.09M kWh, p<0.001)；No-Graph MLP因单机容量欠拟合而增加+2.15M kWh (p<0.001)。2) 在Kelmarsh平坦微风场下，h=1时",
         "at": "2026-10-11T16:56:02.682Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "analysis",
+        "action": "gap",
+        "detail": "failure=跨场站迁移的时空图分位数模型在外部风场相同到达时刻SCADA信息约束与pitch完全扣留条件下，无法在下行备用筛查中战胜（三句话齐全）",
+        "at": "2026-10-11T23:46:13.703Z"
       }
     ]
   },
@@ -87,9 +94,21 @@
       "latestVersion": 1,
       "updatedAt": "2026-10-11T16:55:43.105Z",
       "description": "EXP-01 外部场站相同信息集配对直接条件分位数对照基准结果 (Penmanshiel & Kelmarsh)"
+    },
+    {
+      "name": "supplementary-experiments-self-audit",
+      "latestVersion": 1,
+      "updatedAt": "2026-10-11T23:28:56.098Z",
+      "description": "三项补做实验的执行状态、协议完整性、泄漏风险、基线公平性与可支持主张自查"
+    },
+    {
+      "name": "no-graph-architecture-audit-v1",
+      "latestVersion": 1,
+      "updatedAt": "2026-10-11T23:46:21.844Z",
+      "description": "EXP-01 No-Graph Architectural Control audit and benchmark dataset with hierarchical endpoint hierarchy"
     }
   ],
   "reviews": [],
   "audit": [],
-  "updatedAt": "2026-10-11T16:56:02.683Z"
+  "updatedAt": "2026-10-11T23:46:21.844Z"
 }
