@@ -77,6 +77,25 @@ class CausalPacketBuffer:
                 values[channel] = packet.value
         return values, mask
 
+    def latest_view(self, now: int) -> Tuple[Dict[str, float], Dict[str, bool], Dict[str, int]]:
+        """Return the most recent unexpired packet received by dispatch time now."""
+        values: Dict[str, float] = {}
+        mask: Dict[str, bool] = {}
+        event_times: Dict[str, int] = {}
+        for channel in self.channels:
+            best_packet = None
+            for (e_time, ch), packet in self._packets.items():
+                if ch == channel and packet.arrival_time <= now and now - e_time <= self.policy.max_lateness:
+                    if best_packet is None or packet.event_time > best_packet.event_time:
+                        best_packet = packet
+            if best_packet is not None:
+                values[channel] = best_packet.value
+                mask[channel] = True
+                event_times[channel] = best_packet.event_time
+            else:
+                mask[channel] = False
+        return values, mask, event_times
+
     def snapshot(self, now: int, event_time: int) -> Dict[str, object]:
         values, mask = self.view(now, event_time)
         return {"now": now, "event_time": event_time, "values": values, "mask": mask}

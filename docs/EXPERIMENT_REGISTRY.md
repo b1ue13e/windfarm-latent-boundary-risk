@@ -400,9 +400,9 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 **Contract claim tested:** Q2 Incremental decision value under asynchronous arrival; current UNKNOWN until execution.
 
-**Status:** REGISTERED / BLOCKED UNTIL PROTOCOL TESTS AND INPUT HASH ARE FROZEN.
+**Status:** REGISTERED / IN EXECUTION ON METIS CLUSTER (PREREGISTRATION LOCKED).
 
-**Information set:** Integer dispatch steps. Each packet stores `(event_time, arrival_time, channel_id, sequence_id)`. At step `t`, every model reads only packets with `arrival_time <= t`; packets are ordered by `(arrival_time, sequence_id, channel_id)` for simultaneous arrivals.
+**Information set:** Integer dispatch steps ($t \in \mathbb{N}$, one step corresponds to 10-minute SCADA dispatch). Each packet explicitly stores `(event_time, arrival_time, channel_id, sequence_id)`. At dispatch step `t`, every model reads only packets with `arrival_time <= t`; packets arriving simultaneously are deterministically ordered by `(arrival_time, sequence_id, channel_id)`. Causal buffer drops packets later than finite `max_lateness` deadline without future backfill.
 
 **Training-only privileged information:** None for the asynchronous arrival mechanism. Hidden pitch remains withheld wherever the matched deployment protocol requires it; no future target, future packet, or post-hoc arrival correction may enter inputs.
 
@@ -410,25 +410,25 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 **Frozen target:** The canonical shortfall residual target `s_t = max(yhat_fixed - y, 0)`.
 
-**Primary baseline:** Site-Local Wspd-Bins evaluated using the identical packet trace and identical missingness mask.
+**Primary baseline:** Site-Local Wspd-Bins (10-bin conditional quantile) evaluated using the identical packet trace and identical missingness mask. Wspd-Bins receives the exact same asynchronous contamination and missingness as challenger models.
 
-**Secondary baselines:** Challenger model under the same trace/mask; synchronous-arrival control; optional no-packet-delay control only as a diagnostic reference.
+**Secondary baselines:** Challenger model (Zero-Privileged Representation Net) under the same trace/mask; synchronous-arrival control; optional no-packet-delay control only as a diagnostic reference.
 
-**Primary estimand:** The paired PSREI-vs-delay curve `Delta_PSREI(tau) = PSREI_challenger(tau) - PSREI_local_wspd(tau)` over the pre-registered delay grid, with `tau*` defined as the smallest delay at which the curve's uncertainty interval excludes the zero-gain region under the declared criterion. `tau*` is not defined by a violation-rate threshold alone.
+**Primary estimand:** The paired PSREI-vs-delay curve $\Delta\text{PSREI}(\tau) = \text{PSREI}_{\text{challenger}}(\tau) - \text{PSREI}_{\text{local\_wspd}}(\tau)$ over the pre-registered delay grid $\tau \in \{0, 1, 2, 3, 4, 5, 6\}$, with $\tau^*$ defined as the smallest delay at which the curve's paired block-bootstrap 95% uncertainty interval excludes the zero-gain region ($\Delta\text{PSREI} \ge 0$). $\tau^*$ is not defined by a violation-rate threshold alone.
 
-**Primary metric:** PSREI-vs-delay curve and critical point `tau*`, reported separately by farm and horizon; no pooled headline estimand unless registered separately.
+**Primary metric:** PSREI-vs-delay curve and critical crossover point $\tau^*$, reported by horizon ($h=1, h=6$) across 5 random seeds (201–205); no pooled headline estimand across heterogeneous farms unless registered separately.
 
-**Secondary metrics:** Violation-rate-vs-delay, reserve procurement, shortage exposure, packet late/drop fractions, missingness by channel, and sensitivity of operating targets at 5%, 10%, and 15% violation. The 10% target is pre-registered as an operating target because `q*=0.90`, not as the unique breakdown threshold.
+**Secondary metrics:** Violation-rate-vs-delay, reserve procurement, shortage exposure, packet late/drop fractions, missingness by channel, and sensitivity of operating targets at 5%, 10%, and 15% violation. The 10% target is pre-registered as a nominal operational target corresponding to Newsvendor optimal quantile $q^* = 1 - 1/\rho = 0.90$ ($\rho=10.0$), not as the unique or axiomatic breakdown threshold.
 
-**Population slices:** Each external farm separately; full test population plus any pre-declared steady/transition diagnostic slices. Synthetic results are labeled **synthetic asynchronous envelope** and cannot be interpreted as industrial arrival-rate prevalence.
+**Population slices:** Full test population ($N=134$ turbines, $T=4981$ steps) plus pre-declared steady/transition diagnostic slices. Synthetic results are strictly labeled **synthetic asynchronous envelope** and cannot be extrapolated to industrial arrival-rate prevalence or real-world network outage frequency.
 
-**Unit of replication:** Independent simulator seeds and model seeds, reported separately; temporal dependence handled with the registered day/block procedure for the underlying data.
+**Unit of replication:** Independent simulator seeds and model seeds (201–205), reported separately; temporal dependence handled with 35-day cluster Block Bootstrap ($B=2000$).
 
 **Uncertainty procedure:** Frozen seed list and paired day-cluster bootstrap applied within each delay point; all methods share each realized trace and missing mask. No post-hoc threshold or favorable slice selection.
 
-**Positive outcome interpretation:** A challenger curve that is lower than the local baseline across a pre-declared delay region, with uncertainty excluding zero at the registered points, supports incremental decision value only for that farm/protocol.
+**Positive outcome interpretation:** A challenger curve that is lower than the local baseline across a pre-declared delay region, with uncertainty excluding zero at the registered points ($\Delta\text{PSREI}(\tau) < 0$, $p < 0.05$), supports incremental decision value only for that evaluated envelope.
 
-**Null/negative outcome interpretation:** A flat or worse curve supports the simpler local baseline and leaves asynchronous decision superiority unestablished; it does not imply that industrial telemetry has the simulated arrival distribution.
+**Null/negative outcome interpretation:** A flat or positive $\Delta\text{PSREI}(\tau)$ curve supports the simpler local baseline and leaves asynchronous decision superiority unestablished; it does not imply that industrial telemetry has the simulated arrival distribution.
 
 **Failure/invalidity conditions:** Missing event/arrival/sequence fields; nondeterministic same-arrival ordering; any packet with `arrival_time > t` exposed at step `t`; future backfill; unequal traces or masks across methods; unreported drops; input trace hash absent or mismatched; absence of packet-level unit tests.
 

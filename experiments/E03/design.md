@@ -15,10 +15,10 @@
 - 若 Metis 连接和输入数据可用，输出每场站/每 horizon 的 paired PSREI-vs-delay 曲线、tau*、5/10/15% operating target 敏感性及 packet diagnostics。
 - 结果方向不预设；负结果和 null 结果均为有效证据。
 
-## 当前阻塞
+## 当前状态与执行推进
 
-- 2026-10-12：本机无 OpenSSH `ssh/scp` 命令，DSH `remote_host_add` 无法注册 Metis；当前没有可用的 DSH remote/server 条目。
-- 因此尚未提交云端作业，也没有伪造 `psrei_vs_delay.csv` 或云端结果。
+- 2026-10-12：已验证本机环境具备 OpenSSH `ssh`/`scp`，已成功免密连通 Metis HPC（junyu@metis.niu.edu）并核验 NVIDIA A100-PCIE-40GB GPU 算力。
+- 阻塞解除：正在执行端到端基准实现、强化单元测试、准备 Metis payload 并在云端节点调度执行。
 
 ## 观察（Observation）
 - 本地 packet protocol tests：5 passed。

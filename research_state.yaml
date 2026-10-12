@@ -1,0 +1,169 @@
+project:
+  name: "跨风电场备用筛查的时空图迁移与局部条件基线决策增益评估"
+  research_question: "在外部风场相同到达时刻SCADA信息约束与pitch完全扣留条件下，去除时空图交互的局部风速分箱基线是否足以完成备用筛查？跨场站迁移表示相较于该局部条件基准是否依然缺乏决策增益？"
+  source_repository: "https://github.com/b1ue13e/windfarm-latent-boundary-risk.git (Local: E:\\论文3)"
+  source_commit: "9e61215e76a6cfc4f2bb75ce492c6861da6d4ea9"
+  imported_at: "2026-10-12T09:55:00+08:00"
+
+research:
+  baseline: "Site-Local Wspd-Bins (10-bin local conditional quantile), GBDT (B3 LightGBM), No-Graph MLP, Transferred STGQ"
+  hypothesis: "H1: 外部风场稳态下局部风速分箱基线为最小充分模型且跨场时空图缺乏决策增益 (SUPPORTED); H2: 零特权协议下弱监督代理标签可恢复优于局部基准的决策函数 (FALSIFIED); H3: 潜伏状态后验为局部风险对冲机制而非全场成本最优 (SUPPORTED)"
+  current_stage: "paper-writing"
+  verified_contributions:
+    - title: "最小充分模型分界原则 (Minimum Sufficient Model Hierarchy)"
+      evidence: "paper_tste_ieee.md: Section IV, docs/STRONG_BASELINE_CLOSURE.md"
+      finding: "证明物理规则在可观测带最强；稳态分布漂移优先采用非神经网络状态重校准；稳态及稀疏外部场站下本地风速分箱为最小充分决策函数 (+523k kWh 全场差异，p < 0.005)"
+    - title: "潜伏控制状态表征恢复的单一主要中介机制 (Active Power Mediation)"
+      evidence: "artifacts/channel_consequence_ablations.csv, docs/ACTIVE_POWER_IDENTIFIABILITY_AUDIT.md"
+      finding: "主动功率遥测是潜伏状态恢复的核心中介 (Brier=0.0112, NMI=0.461, 切换召回率 62.9%)，尾流和热信道无增量收益，MoE动态路由无统计增益 (p=0.380)"
+    - title: "切换期风险对冲与成本非等价性 (Risk Hedging vs Cost Non-equivalence)"
+      evidence: "artifacts/matched_budget/exact_matched_budget_frontier.csv, docs/MATCHED_BUDGET_DECISIVE_REPORT.md"
+      finding: "在切换窗口后验条件降低违约率 (8.36%->7.24%) 与短缺风险 (-296k kWh, p<0.005)，但以更高备用采购和全场 PSREI 成本为代价，属于风险对冲而非成本优势"
+    - title: "跨场站与零特权监督边界检验 (Boundary Falsification Probes)"
+      evidence: "artifacts/external_matched_control_benchmark.csv, artifacts/zero_privileged_supervision_benchmark.csv"
+      finding: "外部场站 (Penmanshiel, Kelmarsh) 迁移无决策优势；零特权协议下后验模型未能战胜本地基线 (h=1 Delta=-365.9k, p=0.880; h=6 Delta=+3435.5k, p=0.484)"
+  open_questions:
+    - "EXP-03 异步网络到达包络在工业级 HPC / 集群环境的物理实测与延迟上限测量"
+    - "从 Level-1 备用筛查风险指标向电网 Level-2 交流最优潮流 (AC-OPF) 调度经济收益的传导可行性验证"
+
+progress:
+  stages:
+    - key: "literature-review"
+      name: "Literature Review / 文献调研"
+      status: "completed"
+      gate: "go"
+      evidence_count: 5
+    - key: "baseline-selection"
+      name: "Baseline Selection / 基线选择"
+      status: "completed"
+      gate: "go"
+      evidence_count: 4
+    - key: "baseline-reproduction"
+      name: "Baseline Reproduction / 基线复现"
+      status: "completed"
+      gate: "go"
+      evidence_count: 4
+    - key: "idea-exploration"
+      name: "Idea Exploration / 研究假设探索"
+      status: "completed"
+      gate: "go"
+      evidence_count: 4
+    - key: "research-contract"
+      name: "Research Contract / 研究契约"
+      status: "completed"
+      gate: "go"
+      evidence_count: 4
+    - key: "implementation-experiments"
+      name: "Implementation & Experiments / 实现与实验"
+      status: "completed"
+      gate: "go"
+      evidence_count: 8
+    - key: "results-analysis"
+      name: "Results Analysis / 结果分析"
+      status: "completed"
+      gate: "go"
+      evidence_count: 7
+    - key: "paper-writing"
+      name: "Paper Writing / 论文写作"
+      status: "completed"
+      gate: "go"
+      evidence_count: 8
+  passed_gates:
+    - "literature-review"
+    - "baseline-selection"
+    - "baseline-reproduction"
+    - "idea-exploration"
+    - "research-contract"
+    - "implementation-experiments"
+    - "results-analysis"
+    - "paper-writing"
+  incomplete_criteria: []
+  blockers:
+    - "EXP-03 云端 Metis A100 HPC 异步网络执行暂因本地运行时无 SSH 依赖挂起 (主线不受影响)"
+
+evidence:
+  papers:
+    - title: "Zhao et al. (IJEPES 2026) Spatial-temporal wind power probabilistic forecasting"
+      role: "mainstream"
+      citation: "zhao2026ijepes"
+    - title: "SDWPF: Baidu KDD Cup 2022 Wind Power Dataset"
+      role: "foundational"
+      citation: "kddcup2022sdwpf"
+    - title: "IEEE Transactions on Sustainable Energy Target Manuscript"
+      role: "target"
+      path: "standalone_ieee_package/main.pdf"
+  code_references:
+    - path: "windfarm_moe/core.py"
+      type: "model_architecture"
+    - path: "windfarm_moe/baselines.py"
+      type: "baseline_implementations"
+    - path: "scripts/run_exp01_external_matched_control.py"
+      type: "exp01_runner"
+    - path: "scripts/run_exp02_zero_privileged_supervision.py"
+      type: "exp02_runner"
+    - path: "scripts/verify_replication.py"
+      type: "replication_verifier"
+  experiment_runs:
+    - id: "EXP-Q1-001"
+      name: "Active-power minimal recoverability (C1-C10)"
+      status: "completed"
+      artifact: "artifacts/channel_consequence_ablations.csv"
+    - id: "EXP-Q2-001"
+      name: "Strong-baseline closure & Factorial ablations (A-J)"
+      status: "completed"
+      artifact: "artifacts/factorial_boundary_ablation_summary.csv"
+    - id: "MB00-MB13"
+      name: "Decisive Matched-Reserve-Budget Falsification Campaign"
+      status: "completed"
+      artifact: "artifacts/matched_budget/exact_matched_budget_frontier.csv"
+    - id: "EXP-01"
+      name: "External-Farm Matched Direct-Quantile & No-Graph Control"
+      status: "completed"
+      artifact: "artifacts/external_matched_control_benchmark.csv"
+    - id: "EXP-02"
+      name: "Zero-Privileged Supervision Boundary Benchmark"
+      status: "completed"
+      artifact: "artifacts/zero_privileged_supervision_benchmark.csv"
+    - id: "EXP-03"
+      name: "Asynchronous Packet Arrival Protocol & Trace"
+      status: "planned_locally_verified"
+      artifact: "artifacts/exp03_async_packet_trace.csv"
+  figures:
+    - name: "Figure 1: Decision Boundaries & Observability Regimes"
+      path: "figures/figure1_decision_boundaries.pdf"
+    - name: "Figure 2: Data Boundary & Transition Dynamics"
+      path: "figures/figure2_data_boundary.pdf"
+    - name: "Figure 3: Summary Results & Baseline Comparison"
+      path: "figures/figure3_summary_results.pdf"
+    - name: "Figure 4: Routing Evidence & Channel Contribution"
+      path: "figures/figure4_routing_evidence.pdf"
+    - name: "Figure 5: Case Studies in High-Turbulence Events"
+      path: "figures/figure5_case_studies.pdf"
+    - name: "Figure 6: Ablation Trade-offs across Latency Horizons"
+      path: "figures/figure6_ablation_tradeoff.pdf"
+  reports:
+    - path: "docs/SCIENTIFIC_CONTRACT.md"
+      type: "scientific_claim_ceiling"
+    - path: "docs/EXPERIMENT_REGISTRY.md"
+      type: "experiment_registry"
+    - path: "docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md"
+      type: "adversarial_audit"
+    - path: "docs/FINAL_REPRODUCIBILITY_VERDICT.md"
+      type: "reproducibility_certification"
+
+decisions:
+  supported_hypotheses:
+    - "H1: 外部场站稳态下本地风速分箱基线为最小充分模型"
+    - "H3: 潜伏状态后验在切换期具备风险对冲效应而非全场成本领先"
+    - "主动功率遥测为潜伏状态恢复的主要有效中介"
+    - "MoE 路由与 Dense 多任务头呈现统计等价性"
+  falsified_hypotheses:
+    - "H2: 零特权协议下基于后验表征的弱监督代理标签可恢复优于局部基准的决策函数 (被EXP-02严格否定)"
+    - "时空图神经网络跨场站零样本迁移具有普遍决策增益 (被EXP-01否定)"
+    - "MoE 动态路由具有独立机制增益 (被 Factorial Ablation 否定)"
+  pending_reviews: []
+
+next_actions:
+  - "在配置好 SSH 凭据的远程 HPC 环境下，重新调度并运行 EXP-03 云端实测作业"
+  - "结合 IEEE TSTE ScholarOne 投稿要求，进行最终预检并跟踪审稿意见"
+  - "探索从 Level-1 备用筛查向电网实际两阶段机组组合/调度模型的接口集成"

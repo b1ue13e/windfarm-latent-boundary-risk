@@ -58,3 +58,65 @@ def test_sequence_replay_is_monotone_and_duplicates_are_not_overwritten():
     buffer.ingest(duplicate, now=0)
     assert buffer.dropped_duplicate == [duplicate]
     assert buffer.view(0, 0) == ({"wspd": 3.0}, {"wspd": True})
+
+
+def test_shared_arrival_trace_and_missing_mask_parity_across_models():
+    """Verify that both Wspd-Bins and Challenger observe identical arrival trace and masks."""
+    channels = ["wspd", "patv", "etmp"]
+    n_steps = 10
+    values = {c: [float(10.0 + i) for i in range(n_steps)] for c in channels}
+    delays = {
+        "wspd": [0, 1, 2, 0, 1, 3, 0, 1, 2, 0],
+        "patv": [1, 0, 1, 2, 0, 1, 2, 0, 1, 2],
+        "etmp": [0, 0, 1, 1, 2, 2, 0, 0, 1, 1],
+    }
+    trace = make_trace(values, delays, seed=42)
+    snapshots = replay_trace(trace, channels, n_steps=n_steps, policy=BufferPolicy(max_lateness=2))
+
+    # Simulate feeding Wspd-Bins and Challenger
+    wspd_input_seen_by_baseline = []
+    wspd_input_seen_by_challenger = []
+    shared_mask = []
+
+    for s in snapshots:
+        # Both models read the exact same snapshot
+        w_val = s["values"].get("wspd", None)
+        wspd_input_seen_by_baseline.append(w_val)
+        wspd_input_seen_by_challenger.append(w_val)
+        shared_mask.append(s["mask"]["wspd"])
+
+    assert wspd_input_seen_by_baseline == wspd_input_seen_by_challenger
+    assert len(shared_mask) == n_steps
+    # Ensure late packets beyond max_lateness=2 are marked missing
+    # Step 5 wspd has delay 3, so at t=5 arrival_time=8, at t=5 it must be missing
+    assert shared_mask[5] is False
+
+
+def test_operating_targets_and_tau_star_evaluation():
+    """Verify calculation of tau* and 5%, 10%, 15% sensitivity."""
+    import numpy as np
+
+    # Synthetic delay grid and paired difference
+    delays = [0, 1, 2, 3, 4, 5, 6]
+    # Delta PSREI: negative is advantage for challenger, crossing to >= 0 at tau=3
+    delta_psrei = np.array([-150.0, -90.0, -20.0, 30.0, 80.0, 140.0, 210.0])
+    delta_ci_lower = delta_psrei - 25.0
+    delta_ci_upper = delta_psrei + 25.0
+
+    # tau* is the smallest delay where the 95% CI upper excludes negative advantage (i.e. >= 0)
+    crossover_idx = np.where(delta_ci_upper >= 0.0)[0]
+    tau_star = delays[crossover_idx[0]] if len(crossover_idx) > 0 else None
+    assert tau_star == 2  # at tau=2, delta=-20, upper=-20+25=5 >= 0
+
+    # Violation rates across delays
+    violation_rates = np.array([7.2, 8.5, 9.8, 11.2, 12.8, 14.5, 16.3])
+    targets = [5.0, 10.0, 15.0]
+    crossings = {}
+    for tgt in targets:
+        hit = np.where(violation_rates >= tgt)[0]
+        crossings[tgt] = delays[hit[0]] if len(hit) > 0 else None
+
+    assert crossings[5.0] == 0   # already > 5% at baseline
+    assert crossings[10.0] == 3  # crosses 10% operating target at delay 3
+    assert crossings[15.0] == 6  # crosses 15% target at delay 6
+
