@@ -1231,4 +1231,14 @@ Commands: `python -m pytest tests/test_exp02_protocol.py tests/test_exp03_async_
 Final-Gate: `python .agents/scripts/verify_gate.py` -> exit code 0, `VERIFICATION_GATE: PASS`. This is a procedural audit-completion gate and does not override the scientific falsifier's FAIL verdict.
 Epistemic-Status: VERIFIED for audit integrity and test/gate outputs; scientific blockers remain OPEN.
 
+## F3 — 2026-10-12T23:59:00+08:00
+Task-ID: F3
+Status: VERIFIED
+Summary: EXP-03 marked INVALID due to four critical protocol defects confirmed via forensic audit and read-only recomputation. F1: Information asymmetry—`Patv_hist` was not delayed by the simulator although it was used by the challenger (dominant mediator), while baseline only read delayed `Wspd`. F2: Proxy label collapse—physical thresholds (10.5 m/s, 1450 kW) applied to standardized features (ranges approximately [-1.55, 4.96], [-0.91, 2.84]) produced 0/570,974 validation positives. F3: Population collapse—valid coverage fell from 1.0000 (tau=0) to 0.0247 (tau=6); h=6 baseline PSREI collapsed from approximately 14.80M to 0.37M kWh; the curve does not represent a fixed-population latency response. F4: Incomplete provenance—archived `arrival_trace.jsonl` covers only node 0, first 144 steps, tau=0; `missing_mask.json` is a `t % 5 != 0` placeholder; the 70-row grid lacks verifiable packet-level audit. EXP-03 results must not be cited; all asynchronous robustness claims withdrawn. Corrective protocol EXP-03-R is specified in `docs/EXP03_INVALIDATION_NOTICE.md`. Registry entry updated to INVALID with forensic notice pointer. Original artifacts preserved as defect evidence.
+Source: `scripts/run_exp03_async_benchmark.py:132-145,310,340-348,371,402-445,474-493`; `artifacts/exp03_async/psrei_vs_delay.csv`; `artifacts/exp03_async/missing_mask.json`; `artifacts/exp03_async/input_trace_hash.txt`; `artifacts/cache_strictmask_trainweights/wtb_245d/metadata.json`; `docs/REVERSE_SCIENTIFIC_AUDIT_20261012.md:66-73`; `docs/EXPERIMENT_REGISTRY.md:397-451`
+Command: Read-only code inspection and recomputation of valid fractions [1.0000, 0.9998, 0.9812, 0.8135, 0.4344, 0.1326, 0.0247] and proxy positives (0 / 570974); `python -m pytest tests/test_exp03_async_arrival.py tests/test_arrival_feed.py -q`
+Exit-Code: 0 (14 toy tests passed; they do not cover runner-level defects)
+Relevant-Output: h=6 baseline PSREI by delay [14482310, 14501709, 14263174, 11837455, 6330555, 1947355, 361924]; archived trace is 144 packets, node 0, tau=0 only; missing mask is 48 placeholder entries.
+Epistemic-Status: VERIFIED.
+
 
