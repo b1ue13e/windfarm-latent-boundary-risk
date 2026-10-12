@@ -104,6 +104,13 @@
         "action": "findings",
         "detail": "E02：在严格零特权监督协议下（输入特征、监督目标与模型选择指标经硬断言核验严格扣留桨距角）：1) 在h=1时，主挑战者Zero-Privileged Challenger (eps=50kW)的Full PSREI为6.66M kWh，相对Site-Local Wspd-Bins的差分Delta PSREI=-365.9k kWh (p=0.880)，95%日聚类Bootstrap CI包含零且p远大于0.05；eps=20kW差分为-354.4k kWh (p=0.884)；eps=100kW因违约率失控(12.35%)导致成本升高+516.9k kWh (p=0.702)。2) 在h=6时，eps=50kW差分为+3435.5k kWh (p=0.484)，违约率恶化至16.73%；eps=20kW差分为+6.9k kWh (p=0.489)；eps=100kW差分为+105.8k ",
         "at": "2026-10-12T00:45:00.582Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "experiment",
+        "action": "experiment",
+        "detail": "E03：EXP-03: 整数步异步 packet 到达 envelope",
+        "at": "2026-10-12T01:17:28.851Z"
       }
     ]
   },
@@ -127,6 +134,15 @@
       "updatedAt": "2026-10-12T00:44:51.536Z",
       "reviews": [],
       "concludedAt": "2026-10-12T00:45:00.579Z"
+    },
+    {
+      "id": "E03",
+      "title": "EXP-03: 整数步异步 packet 到达 envelope",
+      "hypothesis": null,
+      "status": "planned",
+      "created": "2026-10-12T01:17:28.851Z",
+      "updatedAt": "2026-10-12T01:17:28.851Z",
+      "reviews": []
     }
   ],
   "artifacts": [
@@ -153,9 +169,15 @@
       "latestVersion": 1,
       "updatedAt": "2026-10-12T00:44:34.678Z",
       "description": "EXP-02 zero-privileged supervision benchmark results and audit report evaluating consequence-only recovery of latent control boundaries without blade pitch telemetry."
+    },
+    {
+      "name": "exp03-async-protocol",
+      "latestVersion": 1,
+      "updatedAt": "2026-10-12T01:17:28.982Z",
+      "description": "EXP-03 frozen integer-step asynchronous packet protocol, causal buffer tests, and materialized input trace"
     }
   ],
   "reviews": [],
   "audit": [],
-  "updatedAt": "2026-10-12T00:45:29.520Z"
+  "updatedAt": "2026-10-12T01:17:28.982Z"
 }

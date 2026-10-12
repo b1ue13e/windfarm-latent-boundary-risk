@@ -394,6 +394,50 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 ---
 
+### EXP-03 — Integer-step asynchronous packet arrival envelope
+
+**Question:** Under an explicit out-of-order telemetry protocol, how does causal packet arrival and missingness alter PSREI relative to delay, and does the challenger remain comparable to Site-Local Wspd-Bins under the same arrival trace and missing mask?
+
+**Contract claim tested:** Q2 Incremental decision value under asynchronous arrival; current UNKNOWN until execution.
+
+**Status:** REGISTERED / BLOCKED UNTIL PROTOCOL TESTS AND INPUT HASH ARE FROZEN.
+
+**Information set:** Integer dispatch steps. Each packet stores `(event_time, arrival_time, channel_id, sequence_id)`. At step `t`, every model reads only packets with `arrival_time <= t`; packets are ordered by `(arrival_time, sequence_id, channel_id)` for simultaneous arrivals.
+
+**Training-only privileged information:** None for the asynchronous arrival mechanism. Hidden pitch remains withheld wherever the matched deployment protocol requires it; no future target, future packet, or post-hoc arrival correction may enter inputs.
+
+**Frozen point forecast:** The canonical frozen point forecast from `docs/FIXED_TARGET_CONTRACT.md`.
+
+**Frozen target:** The canonical shortfall residual target `s_t = max(yhat_fixed - y, 0)`.
+
+**Primary baseline:** Site-Local Wspd-Bins evaluated using the identical packet trace and identical missingness mask.
+
+**Secondary baselines:** Challenger model under the same trace/mask; synchronous-arrival control; optional no-packet-delay control only as a diagnostic reference.
+
+**Primary estimand:** The paired PSREI-vs-delay curve `Delta_PSREI(tau) = PSREI_challenger(tau) - PSREI_local_wspd(tau)` over the pre-registered delay grid, with `tau*` defined as the smallest delay at which the curve's uncertainty interval excludes the zero-gain region under the declared criterion. `tau*` is not defined by a violation-rate threshold alone.
+
+**Primary metric:** PSREI-vs-delay curve and critical point `tau*`, reported separately by farm and horizon; no pooled headline estimand unless registered separately.
+
+**Secondary metrics:** Violation-rate-vs-delay, reserve procurement, shortage exposure, packet late/drop fractions, missingness by channel, and sensitivity of operating targets at 5%, 10%, and 15% violation. The 10% target is pre-registered as an operating target because `q*=0.90`, not as the unique breakdown threshold.
+
+**Population slices:** Each external farm separately; full test population plus any pre-declared steady/transition diagnostic slices. Synthetic results are labeled **synthetic asynchronous envelope** and cannot be interpreted as industrial arrival-rate prevalence.
+
+**Unit of replication:** Independent simulator seeds and model seeds, reported separately; temporal dependence handled with the registered day/block procedure for the underlying data.
+
+**Uncertainty procedure:** Frozen seed list and paired day-cluster bootstrap applied within each delay point; all methods share each realized trace and missing mask. No post-hoc threshold or favorable slice selection.
+
+**Positive outcome interpretation:** A challenger curve that is lower than the local baseline across a pre-declared delay region, with uncertainty excluding zero at the registered points, supports incremental decision value only for that farm/protocol.
+
+**Null/negative outcome interpretation:** A flat or worse curve supports the simpler local baseline and leaves asynchronous decision superiority unestablished; it does not imply that industrial telemetry has the simulated arrival distribution.
+
+**Failure/invalidity conditions:** Missing event/arrival/sequence fields; nondeterministic same-arrival ordering; any packet with `arrival_time > t` exposed at step `t`; future backfill; unequal traces or masks across methods; unreported drops; input trace hash absent or mismatched; absence of packet-level unit tests.
+
+**Artifacts to produce:** `scripts/exp03_async_packet_protocol.py`, `tests/test_exp03_async_arrival.py`, `artifacts/exp03_async/arrival_trace.jsonl`, `artifacts/exp03_async/missing_mask.json`, `artifacts/exp03_async/protocol.json`, `artifacts/exp03_async/input_trace_hash.txt`, `artifacts/exp03_async/psrei_vs_delay.csv`, and `docs/EXP03_ASYNCHRONOUS_REPORT.md`.
+
+**Decision after result:** Preserve negative/null results, label all synthetic outputs as an asynchronous envelope, and update the scientific contract only through a separately reviewed change.
+
+---
+
 ## 4. Agent execution rules
 
 For every new experiment:

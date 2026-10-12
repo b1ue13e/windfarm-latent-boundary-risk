@@ -1,0 +1,1 @@
+E03 code is implemented in scripts/exp03_async_packet_protocol.py and scripts/run_exp03_async_envelope.py. The canonical files remain in scripts/ so existing project entry points and artifact provenance stay stable.

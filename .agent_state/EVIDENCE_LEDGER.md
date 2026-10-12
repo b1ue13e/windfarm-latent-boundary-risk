@@ -1120,6 +1120,27 @@ Held-out Pitch NMI: h=1: 0.257 | h=6: 0.128
 VERDICT: ZERO-PRIVILEGED LEARNING PROTOCOL DEFICIT ESTABLISHED.
 ```
 
+## T96 — 2026-10-12
+Task-ID: T96
+Status: VERIFIED_REPO
+Summary: EXP-03 was formally registered before execution with explicit packet fields, causal buffer policy, same-arrival ordering, late-drop semantics, shared trace/mask, PSREI-vs-delay curve plus tau* primary estimand, and 5/10/15% operating-target sensitivity. The registry explicitly labels synthetic outputs as a synthetic asynchronous envelope and prohibits industrial prevalence inference.
+Source: docs/EXPERIMENT_REGISTRY.md, experiments/E03/design.md
+
+## T97 — 2026-10-12
+Task-ID: T97
+Status: VERIFIED_COMMAND
+Summary: Implemented and tested integer-step packet simulator and causal buffer. `python -m pytest tests/test_exp03_async_arrival.py tests/test_arrival_feed.py -q` returned 10 passed. Materialized 144 packets over 48 steps and 3 channels; input trace SHA256 is `247bd671d86b62d7ca19633e11af5aa79253c38b56558033861b0af2884bf944`.
+Source: scripts/exp03_async_packet_protocol.py, scripts/run_exp03_async_envelope.py, tests/test_exp03_async_arrival.py, artifacts/exp03_async/input_trace_hash.txt
+Command: `python scripts/run_exp03_async_envelope.py --output-dir artifacts/exp03_async --steps 48 --max-lateness 2; python -m pytest tests/test_exp03_async_arrival.py tests/test_arrival_feed.py -q`
+Exit-Code: 0
+Relevant-Output: `10 passed`; trace materialization printed the recorded SHA256.
+
+## T98 — 2026-10-12
+Task-ID: T98
+Status: BLOCKED
+Summary: Metis cloud execution was not started because DSH `remote_host_add` reported that the local runtime lacks `ssh/scp`. No remote job, PSREI-vs-delay result, or favorable scientific conclusion is claimed. The blocking condition is recorded in experiments/E03/design.md.
+Source: experiments/E03/design.md, tool output from remote_host_add
+
 ## T95 — 2026-10-12T04:15:00+08:00
 Task-ID: T95
 Status: VERIFIED_COMMAND
