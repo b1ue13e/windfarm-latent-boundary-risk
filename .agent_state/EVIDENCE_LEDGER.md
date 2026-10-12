@@ -1,6 +1,10 @@
+# Evidence Ledger
+
+Evidence describes what was inspected or executed, not what was intended.
+
 - Task-ID: F1-EXP03
   - Status: VERIFIED
-  - Summary: Confirmed the EXP-03 simulator did not delay the canonical active-power cache field `Patv_hist`; the old `Patv` channel lookup left the dominant mediator fresh. Marked the EXP-03 registry/report/design status INVALIDATED and withdrew its scientific verdict. Patched alias resolution (`Patv_hist` preferred, `Patv` fallback) and added two regression tests; `python -m pytest tests/test_exp03_async_arrival.py -q` returned 8 passed.
+  - Summary: Confirmed the EXP-03 simulator did not delay the canonical active-power cache field `Patv_hist`; the old `Patv` channel lookup left the dominant mediator fresh. Marked the EXP-03 registry/report/design status INVALIDATED and withdrew its scientific verdict. Patched alias resolution (`Patv_hist` preferred, `Patv` fallback) and added two regression tests; `python -m pytest tests/test_exp03_async_arrival.py -q` returned 9 passed.
   - Evidence: `scripts/run_exp03_async_benchmark.py`, `tests/test_exp03_async_arrival.py`, `artifacts/cache_strictmask_trainweights/wtb_245d/metadata.json`, `docs/REVERSE_SCIENTIFIC_AUDIT_20261012.md:50-56`, `docs/EXPERIMENT_REGISTRY.md`, `docs/EXP03_ASYNCHRONOUS_REPORT.md`, `experiments/E03/design.md`.
   - Epistemic status: VERIFIED for the implementation defect, invalidation decision, and regression test; no corrected EXP-03 scientific result has been executed.
 
