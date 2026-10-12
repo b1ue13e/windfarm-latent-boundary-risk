@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-12",
+  "auditor": "local-evidence-audit; external-cross-model-review-timeout",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "checks": {
+    "gt_provenance": {
+      "status": "warn",
+      "details": "Dataset target is real, but shortfall uses transferred model prediction at scripts/run_exp01_matched_control_benchmark.py:464-475 rather than a verified independent frozen point forecast."
+    },
+    "score_normalization": {
+      "status": "pass",
+      "details": "Direct PSREI and paired bootstrap calculations; no self-output normalization detected."
+    },
+    "result_existence": {
+      "status": "warn",
+      "details": "Current CSV is structurally complete, but its current SHA256 differs from archived artifact v1, so re-archive is required."
+    },
+    "dead_code": {
+      "status": "warn",
+      "details": "Train-split preparation is unused; No-Graph training uses the validation split only."
+    },
+    "scope": {
+      "status": "pass",
+      "details": "Two farms, five seeds, two horizons, four models; adequate for a bounded boundary probe only."
+    },
+    "eval_type": "real_gt_with_model_derived_proxy_target"
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "impact": "supported",
+      "details": "Execution coverage and artifact structure are verified."
+    },
+    {
+      "id": "C2",
+      "impact": "supported_with_protocol_warning",
+      "details": "Two-site descriptive deltas are present and reproducible from the current script snapshot."
+    },
+    {
+      "id": "C3",
+      "impact": "pending",
+      "details": "Frozen-target decision claim remains pending until an independent point forecast is verified or the estimand is reclassified."
+    },
+    {
+      "id": "C4",
+      "impact": "unsupported",
+      "details": "Universal spatial redundancy is prohibited by the scientific contract and is not supported by this experiment."
+    }
+  ]
+}
