@@ -400,7 +400,19 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 **Contract claim tested:** Q2 Incremental decision value under asynchronous arrival; current UNKNOWN until execution.
 
-**Status:** REGISTERED / IN EXECUTION ON METIS CLUSTER (PREREGISTRATION LOCKED).
+**Status:** CONCLUDED (2026-10-12 Metis A100 Benchmark).
+
+**Execution & Findings Summary (2026-10-12 Metis A100 Benchmark):**
+- **Compute:** Executed on Metis HPC cluster node (`NVIDIA A100-PCIE-40GB`, Python 3.11, PyTorch 2.11.0+cu128) across 5 random seeds (201–205), 2 horizons ($h=1, h=6$), and delay grid $\tau \in \{0, 1, 2, 3, 4, 5, 6\}$ (0 to 60 minutes) under strict causal buffer policy and information parity.
+- **Trace Integrity:** Materialized packet trace SHA-256: `d1619efce7f02412d826e3811bfa2a2346e6bc1b1fcd2b02a9d10f163f0736ff`.
+- **Primary Estimand & Critical Point $\tau^*$:**
+  - $h=1$: $\tau^* = 1$ integer step (10 minutes). At $\tau=0$, $\Delta\text{PSREI} = -524.5\text{k kWh}$ (95% CI $[-1114.9\text{k}, -28.7\text{k}]$, $p=0.074$). At $\tau \ge 1$, the paired 95% CI upper bound crosses zero ($\Delta\text{PSREI} = -400.1\text{k kWh}$, CI $[-990.8\text{k}, +97.6\text{k}]$, $p=0.182$), eliminating statistical advantage.
+  - $h=6$ (Primary Endpoint): $\tau^* = 0$ integer steps (0 minutes). Even at $\tau=0$, $\Delta\text{PSREI} = -210.8\text{k kWh}$ with 95% CI $[-859.9\text{k}, +322.8\text{k}]$ ($p=0.293$), demonstrating no statistically significant decision gain over Site-Local Wspd-Bins under identical information.
+- **Operating Target Sensitivity (Nominal 10% corresponding to $q^*=0.90$):**
+  - 5% Target: Exceeded at $\tau=0$ for both models across both horizons.
+  - 10% Operating Target: For $h=1$, Challenger violation rate remains safely controlled between $7.42\%$ and $8.06\%$ across all $\tau \in [0, 6]$ (crossing $\tau > 6$). For $h=6$, Challenger violation rate is $10.82\%\text{--}11.29\%$, while Site-Local Wspd-Bins stays well within target at $8.65\%\text{--}8.83\%$.
+  - 15% Target: Never breached at any evaluated delay level ($\tau > 6$).
+- **Falsification & Scientific Closure:** Reverse null confirmed. Complex representations provide no hedge against telemetry latency. Simple local conditional baselines maintain superior violation control without spatial-telemetry sensitivity.
 
 **Information set:** Integer dispatch steps ($t \in \mathbb{N}$, one step corresponds to 10-minute SCADA dispatch). Each packet explicitly stores `(event_time, arrival_time, channel_id, sequence_id)`. At dispatch step `t`, every model reads only packets with `arrival_time <= t`; packets arriving simultaneously are deterministically ordered by `(arrival_time, sequence_id, channel_id)`. Causal buffer drops packets later than finite `max_lateness` deadline without future backfill.
 

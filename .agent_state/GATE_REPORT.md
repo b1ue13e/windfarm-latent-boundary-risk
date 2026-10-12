@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-10-10T03:05:06+00:00
+Generated: 2026-10-12T10:40:02+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`

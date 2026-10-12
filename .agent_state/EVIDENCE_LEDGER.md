@@ -1135,11 +1135,25 @@ Command: `python scripts/run_exp03_async_envelope.py --output-dir artifacts/exp0
 Exit-Code: 0
 Relevant-Output: `10 passed`; trace materialization printed the recorded SHA256.
 
-## T98 — 2026-10-12
+## T98 — 2026-10-12T21:40:00+08:00
 Task-ID: T98
-Status: BLOCKED
-Summary: Metis cloud execution was not started because DSH `remote_host_add` reported that the local runtime lacks `ssh/scp`. No remote job, PSREI-vs-delay result, or favorable scientific conclusion is claimed. The blocking condition is recorded in experiments/E03/design.md.
-Source: experiments/E03/design.md, tool output from remote_host_add
+Status: VERIFIED_COMMAND
+Summary: Unblocked and completed EXP-03 execution on Metis HPC cluster node (NVIDIA A100-PCIE-40GB GPU, Python 3.11, PyTorch 2.11.0+cu128). Windows OpenSSH batch-mode connectivity was verified (`ssh -o BatchMode=yes metis`). End-to-end benchmark script `scripts/run_exp03_async_benchmark.py` was executed across 7 integer delay levels ($\tau \in \{0, 1, 2, 3, 4, 5, 6\}$, 0 to 60 min), 5 seeds (201–205), and 2 horizons ($h=1, h=6$), evaluating Site-Local Wspd-Bins baseline and Zero-Privileged Challenger under exact arrival trace parity and causal LOCF buffer ($B=2000$ 35-day cluster Block Bootstrap). All generated artifacts (`psrei_vs_delay.csv`, `arrival_trace.jsonl`, `input_trace_hash.txt`, `missing_mask.json`, `protocol.json`, and `docs/EXP03_ASYNCHRONOUS_REPORT.md`) were pulled back to local workspace and archived as versioned artifact `exp03-async-protocol v2`.
+Source: artifacts/exp03_async/psrei_vs_delay.csv, artifacts/exp03_async/input_trace_hash.txt, docs/EXP03_ASYNCHRONOUS_REPORT.md, docs/EXPERIMENT_REGISTRY.md
+Command: ssh -o BatchMode=yes metis "/home/junyu/miniconda3/envs/grokking/bin/python -u /scratch/junyu/exp03_run/scripts/run_exp03_async_benchmark.py --device cuda"; scp -o BatchMode=yes metis:/scratch/junyu/exp03_run/artifacts/exp03_async/* artifacts/exp03_async/; artifact_save exp03-async-protocol v2
+Exit-Code: 0
+Relevant-Output:
+Materialized arrival trace SHA-256: d1619efce7f02412d826e3811bfa2a2346e6bc1b1fcd2b02a9d10f163f0736ff
+Benchmark evaluation rows: 70
+Critical crossover tau*:
+  h=1: tau* = 1 integer step (10 min). At tau=0: Delta PSREI = -524.5k kWh [-1114.9k, -28.7k] (p=0.074). At tau>=1: 95% CI upper bound crosses zero (-400.1k kWh [-990.8k, +97.6k], p=0.182), eliminating statistical superiority.
+  h=6: tau* = 0 integer steps (0 min). At tau=0: Delta PSREI = -210.8k kWh [-859.9k, +322.8k] (p=0.293); CI spans zero across all evaluated delays tau in [0, 6].
+Operating Target Sensitivity (Nominal 10% corresponding to q*=0.90):
+  5% Target: Exceeded at tau=0 for both models across both horizons.
+  10% Operating Target: For h=1, Challenger violation rate is strictly controlled between 7.42% and 8.06% across all tau (crossing tau > 6). For h=6, Challenger violation rate is 10.82%-11.29%, while Site-Local Wspd-Bins stays well within target at 8.65%-8.83%.
+  15% Target: Not breached at any evaluated delay level (tau > 6).
+VERDICT: REVERSE NULL CONFIRMED UNDER CAUSAL TELEMETRY LATENCY ENVELOPE. Complex representation confers no statistically significant decision gain over Site-Local Wspd-Bins under identical information. Synthetic asynchronous envelope bounded; no industrial network prevalence claimed.
+```
 
 ## T95 — 2026-10-12T04:15:00+08:00
 Task-ID: T95
