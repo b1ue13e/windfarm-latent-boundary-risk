@@ -33,6 +33,16 @@
       ],
       "reviews": [],
       "updatedAt": "2026-10-11T16:56:02.679Z"
+    },
+    {
+      "id": "H2",
+      "text": "在桨距角完全未被观测且未作为监督信号的零特权协议下，仅凭功率-风速后验表征的弱监督代理标签可恢复出在下行备用筛查中显著优于局部风速条件分位数的决策函数（Delta PSREI < 0）。",
+      "status": "refuted",
+      "experiments": [
+        "E02"
+      ],
+      "reviews": [],
+      "updatedAt": "2026-10-12T00:45:00.579Z"
     }
   ],
   "loop": {
@@ -73,6 +83,27 @@
         "action": "gap",
         "detail": "failure=跨场站迁移的时空图分位数模型在外部风场相同到达时刻SCADA信息约束与pitch完全扣留条件下，无法在下行备用筛查中战胜（三句话齐全）",
         "at": "2026-10-11T23:46:13.703Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "analysis",
+        "action": "hypothesis",
+        "detail": "H2：在桨距角完全未被观测且未作为监督信号的零特权协议下，仅凭功率-风速后验表征的弱监督代理标签可恢复出在下行备用筛查中显著优于局部风速条件分位数的决策函数（Delta PSREI < 0）。",
+        "at": "2026-10-12T00:44:45.753Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "experiment",
+        "action": "experiment",
+        "detail": "E02：EXP-02: 零特权桨距角监督边界基准评测",
+        "at": "2026-10-12T00:44:51.536Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "analysis",
+        "action": "findings",
+        "detail": "E02：在严格零特权监督协议下（输入特征、监督目标与模型选择指标经硬断言核验严格扣留桨距角）：1) 在h=1时，主挑战者Zero-Privileged Challenger (eps=50kW)的Full PSREI为6.66M kWh，相对Site-Local Wspd-Bins的差分Delta PSREI=-365.9k kWh (p=0.880)，95%日聚类Bootstrap CI包含零且p远大于0.05；eps=20kW差分为-354.4k kWh (p=0.884)；eps=100kW因违约率失控(12.35%)导致成本升高+516.9k kWh (p=0.702)。2) 在h=6时，eps=50kW差分为+3435.5k kWh (p=0.484)，违约率恶化至16.73%；eps=20kW差分为+6.9k kWh (p=0.489)；eps=100kW差分为+105.8k ",
+        "at": "2026-10-12T00:45:00.582Z"
       }
     ]
   },
@@ -86,14 +117,24 @@
       "updatedAt": "2026-10-11T08:56:57.763Z",
       "reviews": [],
       "concludedAt": "2026-10-11T16:56:02.679Z"
+    },
+    {
+      "id": "E02",
+      "title": "EXP-02: 零特权桨距角监督边界基准评测",
+      "hypothesis": "H2",
+      "status": "concluded",
+      "created": "2026-10-12T00:44:51.536Z",
+      "updatedAt": "2026-10-12T00:44:51.536Z",
+      "reviews": [],
+      "concludedAt": "2026-10-12T00:45:00.579Z"
     }
   ],
   "artifacts": [
     {
       "name": "external-matched-control-benchmark",
-      "latestVersion": 1,
-      "updatedAt": "2026-10-11T16:55:43.105Z",
-      "description": "EXP-01 外部场站相同信息集配对直接条件分位数对照基准结果 (Penmanshiel & Kelmarsh)"
+      "latestVersion": 2,
+      "updatedAt": "2026-10-12T00:45:29.520Z",
+      "description": "EXP-01 corrected external-farm matched control benchmark using independent site-specific frozen point forecasts and canonical cache targets"
     },
     {
       "name": "supplementary-experiments-self-audit",
@@ -106,9 +147,15 @@
       "latestVersion": 1,
       "updatedAt": "2026-10-11T23:46:21.844Z",
       "description": "EXP-01 No-Graph Architectural Control audit and benchmark dataset with hierarchical endpoint hierarchy"
+    },
+    {
+      "name": "exp02-zero-privileged-supervision",
+      "latestVersion": 1,
+      "updatedAt": "2026-10-12T00:44:34.678Z",
+      "description": "EXP-02 zero-privileged supervision benchmark results and audit report evaluating consequence-only recovery of latent control boundaries without blade pitch telemetry."
     }
   ],
   "reviews": [],
   "audit": [],
-  "updatedAt": "2026-10-11T23:46:21.844Z"
+  "updatedAt": "2026-10-12T00:45:29.520Z"
 }

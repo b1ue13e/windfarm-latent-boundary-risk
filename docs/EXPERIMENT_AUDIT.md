@@ -5,11 +5,11 @@
 **Experiment:** EXP-01 / E01
 **Auditor:** Local evidence audit; external cross-model reviewer unavailable (request timeout)
 
-## Overall Verdict: WARN
+## Overall Verdict: WARN -> corrected v2 executed
 
-## Integrity Status: warn
+## Integrity Status: corrected execution verified; independent cross-model review unavailable
 
-The benchmark execution itself is present and structurally complete, but the current script does not demonstrate compliance with the repository's frozen-point-forecast rule. The artifact provenance record is also stale relative to the regenerated CSV. Results should be treated as an executable benchmark snapshot requiring protocol repair and re-archiving before a final scientific completion claim.
+The original v1 benchmark violated the frozen-point-forecast separation in its implementation: shortfall was derived from the transferred challenger prediction. The protocol was repaired and EXP-01 was rerun. The corrected v2 uses independent external-site `external_wind_full_seed{201..205}` point forecasts and reconstructs realized targets/masks from the canonical external cache by anchor index. The corrected CSV was archived as artifact v2 and verified. The independent cross-model reviewer request still timed out, so the audit is not an independent PASS.
 
 ## Checks
 

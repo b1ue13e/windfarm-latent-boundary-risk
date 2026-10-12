@@ -1,0 +1,41 @@
+{
+  "name": "exp02-zero-privileged-supervision",
+  "description": "EXP-02 zero-privileged supervision benchmark results and audit report evaluating consequence-only recovery of latent control boundaries without blade pitch telemetry.",
+  "created": "2026-10-12T00:44:34.270Z",
+  "versions": [
+    {
+      "version": 1,
+      "created": "2026-10-12T00:44:34.634Z",
+      "author": "session-8bff",
+      "provenance": {
+        "command": "python scripts/run_exp02_zero_privileged_supervision.py --cache-dir artifacts/cache_strictmask_trainweights/wtb_245d --residuals-file artifacts/fixed_forecast_residuals.npz --runs-root artifacts/strictmask_ablation_rerun_wtb_full --output-csv artifacts/zero_privileged_supervision_benchmark.csv --output-report docs/ZERO_PRIVILEGED_SUPERVISION_REPORT.md --epochs 12 --device cuda",
+        "inputs": [
+          "artifacts/fixed_forecast_residuals.npz"
+        ],
+        "inputHashes": [
+          {
+            "path": "artifacts/fixed_forecast_residuals.npz",
+            "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+            "size": 173410167
+          }
+        ],
+        "envFile": null,
+        "notes": "Executed on Metis compute node with NVIDIA A100-PCIE-40GB GPU across 5 seeds and 2 horizons (h=1, h=6) under strict zero-pitch assertions. Falsification guardrail observed: zero-privileged challenger failed to achieve positive delta PSREI over Site-Local Wspd-Bins.",
+        "environment": "win32 x64 / node v24.18.1"
+      },
+      "files": [
+        {
+          "path": "zero_privileged_supervision_benchmark.csv",
+          "sha256": "b8c40e3df3c8a9530e2a8a9da1edd46411bd216592c7d1680a81c5b5b0356466",
+          "size": 19740
+        },
+        {
+          "path": "ZERO_PRIVILEGED_SUPERVISION_REPORT.md",
+          "sha256": "cf9c707022248a46fb776ca48891a8add2f83f5b1be16327b93f65c12cbcee18",
+          "size": 4362
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-10-12T00:44:34.634Z"
+}

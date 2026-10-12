@@ -21,6 +21,10 @@ tmp/
 # Artifacts release classification:
 # Category A essential tables, manifests, and guards are tracked in Git:
 artifacts/*
+!artifacts/zero_privileged_supervision_benchmark.csv
+!artifacts/exp02-zero-privileged-supervision/
+!artifacts/external_matched_control_benchmark.csv
+!artifacts/no_graph_architecture_audit.json
 !artifacts/ARTIFACT_MANIFEST.json
 !artifacts/information_set_manifest.csv
 !artifacts/direct_quantile_baselines_summary.csv
@@ -72,6 +76,8 @@ archives/
 cloud_revision_bundle/
 .workbuddy/
 $root/
+Microsoft/
+scratch/
 
 # LaTeX build side products
 *.aux

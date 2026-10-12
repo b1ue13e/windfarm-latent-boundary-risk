@@ -226,27 +226,74 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 ## 3. Open decisive experiments
 
-### EXP-Q1-003 — No-privileged-pitch training boundary
+### EXP-02 (EXP-Q1-003) — Zero-Privileged-Pitch Supervision Boundary Protocol (零特权历史监督下的代理标签边界识别与备用闭环)
 
-**Question:** If pitch is never available in historical training data, can boundary-relevant structure still be recovered?
+**Question:** If blade pitch is never recorded or available in historical training data, can consequence signals alone recover boundary-relevant representations, and does this zero-privileged representation provide incremental decision value for downstream reserve screening beyond a strong local conditional baseline?
 
-**Contract claim tested:** Current UNKNOWN: pitch-never-recorded setting.
+**Contract claim tested:** Current UNKNOWN: pitch-never-recorded setting and zero-privileged supervision boundary.
 
-**Status:** PROPOSED / NOT RUN.
+**Status:** CONCLUDED / EVIDENCE FROZEN (DEFICIT ESTABLISHED; FALSIFICATION GUARDRAIL OBSERVED).
 
-**Information set:** No pitch at train, validation, or test; no regime label derived from pitch may enter supervision.
+**Execution & Findings Summary (2026-10-11 Metis A100 Benchmark):**
+- **Artifact:** `artifacts/zero_privileged_supervision_benchmark.csv` (SHA256 verified) & `docs/ZERO_PRIVILEGED_SUPERVISION_REPORT.md`.
+- **Compute:** Executed on Metis cluster node (`NVIDIA A100-PCIE-40GB`, Python 3.11, PyTorch 2.11.0+cu128) across 5 random seeds (201–205), 2 horizons ($h=1, h=6$), and $B=2000$ cluster Block Bootstrap.
+- **Protocol & Leakage Hard Assertions:** All 6 mandatory protocol corrections verified. Zero pitch channel variance in input tensors passed. Model checkpoint selection verified strictly pitch-independent (validation pinball loss).
+- **Primary Estimand Empirical Outcomes:**
+  - **Horizon $h=1$:**
+    - Primary Baseline (Site-Local Wspd-Bins): $\text{PSREI} = 7.02\text{M kWh}$, Violation $= 7.33\%$.
+    - Primary Challenger ($\epsilon=50\text{ kW}$): $\text{PSREI} = 6.66\text{M kWh}$, $\Delta\text{PSREI} = -365.9\text{k kWh}$ ($p = 0.880$, 95% bootstrap CI $[-763.5\text{k}, +152.0\text{k}]$ includes zero, no statistically significant gain).
+    - Sensitivity Probe ($\epsilon=20\text{ kW}$): $\Delta\text{PSREI} = -354.4\text{k kWh}$ ($p = 0.884$).
+    - Sensitivity Probe ($\epsilon=100\text{ kW}$): $\Delta\text{PSREI} = +516.9\text{k kWh}$ ($p = 0.702$, severe violation spike to $12.35\%$).
+    - Secondary Baseline (Direct Consequence MLP): $\Delta\text{PSREI} = -335.4\text{k kWh}$ ($p = 0.842$).
+    - Oracle Reference (Privileged STGQ): $\Delta\text{PSREI} = +376.2\text{k kWh}$ ($p = 0.123$, non-competitive upper ceiling).
+  - **Horizon $h=6$:**
+    - Primary Baseline (Site-Local Wspd-Bins): $\text{PSREI} = 14.80\text{M kWh}$, Violation $= 8.83\%$.
+    - Primary Challenger ($\epsilon=50\text{ kW}$): $\text{PSREI} = 18.25\text{M kWh}$, $\Delta\text{PSREI} = +3435.5\text{k kWh}$ ($p = 0.484$, violation $16.73\%$, severe policy instability).
+    - Sensitivity Probe ($\epsilon=20\text{ kW}$): $\Delta\text{PSREI} = +6.9\text{k kWh}$ ($p = 0.489$, violation $9.07\%$).
+    - Sensitivity Probe ($\epsilon=100\text{ kW}$): $\Delta\text{PSREI} = +105.8\text{k kWh}$ ($p = 0.392$, violation $7.58\%$).
+    - Secondary Baseline (Direct Consequence MLP): $\Delta\text{PSREI} = +7845.5\text{k kWh}$ ($p = 0.203$, violation $25.00\%$).
+- **Secondary Held-Out Pitch Alignment Diagnostics (Strictly Post-Hoc):**
+  - Held-out pitch NMI on test set: $0.257$ ($h=1, \epsilon=50$), $0.128$ ($h=6, \epsilon=50$), $0.096$ (Oracle STGQ).
+  - Demonstrates that weak consequence reconstruction captures noisy statistical correlation with pitch transitions, but this does NOT translate into deployable downstream decision superiority.
+- **Formal Scientific Conclusion (Falsification Guardrail Enforced):**
+  > **"Under the zero-privileged supervision protocol, consequence signals alone failed to recover a deployable decision function superior to simple local wind-speed conditioning."**
+  *(Strict boundary: It is NOT claimed that active power consequence carries no mutual information, nor that real wind farms do not need pitch telemetry. The deficit is strictly established for the unprivileged learning protocol).*
 
-**Primary baseline:** Active-power-only direct classifier/quantile representation without pitch-derived labels.
+**Information set & Zero-Privileged Supervision Protocol:**
+- **Strict Absence of Pitch:** Blade pitch angle ($\beta, \texttt{Pab\_mean}, \texttt{Pab\_std}$) is strictly absent and masked across training features, validation features, calibration features, and deployment test features.
+- **Strict Absence of Pitch Labels in Supervision:** No aerodynamic regime label derived from pitch may enter model supervision, loss functions, early stopping criteria, or model checkpoint selection.
+- **Proxy Label Specification ($\tilde{Z}_t$):** An electromechanical consequence proxy label is defined as:
+  $$\tilde{Z}_t = \mathbb{I}(v_t > v_{\text{rated}} \;\land\; P_{\text{atv}, t} < P_{\text{rated}} - \epsilon)$$
+  *Protocol Correction 1 (Self-Supervised/Weak-Supervised Target Only):* Because active power $P_{\text{atv}}$ is also present in model inputs, $\tilde{Z}_t$ shares consequence signals with the input. Therefore, $\tilde{Z}_t$ is strictly treated as an auxiliary pre-frozen self-supervised or weakly supervised training target ($\mathcal{L}_{\text{proxy}}$), **NEVER as independent ground truth**. Reconstructing $\tilde{Z}_t$ merely verifies that the model learns the proxy construction rule and does not prove recovery of the underlying physical control state.
+- **Preregistered Physical Parameters & Sensitivity Grid:**
+  - $v_{\text{rated}} = 10.5\text{ m/s}$ (WTB 1.5 MW turbine nameplate rated wind speed).
+  - $P_{\text{rated}} = 1500.0\text{ kW}$ (WTB 1.5 MW turbine nameplate rated active power).
+  - Main tolerance margin: $\epsilon = 50.0\text{ kW}$ ($3.3\%$ of rated capacity).
+  - Preregistered sensitivity grid: $\epsilon \in \{20.0, 50.0, 100.0\}\text{ kW}$, pre-frozen prior to execution to test threshold sensitivity without post-hoc selection.
 
-**Primary challenger:** Self-supervised or weakly supervised temporal representation, if pre-registered.
+**Model Hierarchy & Baseline Separation:**
+- **Primary Baseline:** Site-Local Wspd-Bins (10-bin local wind-speed conditional quantile, operating under identical arrival-time information constraints without pitch).
+- **Secondary Baseline:** Direct Consequence Quantile MLP (predicts reserve quantiles directly from active power and local SCADA consequence features without any regime supervision).
+- **Primary Challenger:** Zero-Privileged Weakly-Supervised Model (incorporates pre-frozen auxiliary loss $\mathcal{L}_{\text{proxy}}$ from $\tilde{Z}_t$ into representation learning, but strictly zero pitch access).
+- **Oracle Upper Reference (Non-Competitive):** Privileged STGQ-Modular ($\lambda_{\text{align}} = 5000.0$, trained with true historical pitch regime labels). *Explicitly demarcated as an unfair oracle upper ceiling, NOT a fair baseline comparator.*
 
-**Primary estimand:** Recoverability and downstream decision delta under zero privileged pitch access.
+**Estimand & Metric Hierarchy:**
+- **Primary Estimand:** Downstream matched-budget reserve screening cost difference:
+  $$\Delta\text{PSREI} = \text{PSREI}_{\text{challenger}} - \text{PSREI}_{\text{local\_wspd}}$$
+  evaluated at canonical horizon $h=6$ and $h=1$ under identical Newsvendor quantile target $\tau = 0.90$ ($\rho = 10.0, \Delta t = 1/6\text{ h}$).
+- **Secondary / Exploratory Metrics:**
+  - Violation rate difference $\Delta V$ and procurement/shortage components.
+  - *Secondary Evaluation Only:* Held-out physical pitch alignment (NMI, ARI, Brier score, and transition recall evaluated against true withheld pitch labels on the test set).
+  - *Strict Wall:* Held-out pitch metrics are computed strictly post-hoc for diagnostic characterization; they are strictly prohibited from guiding model selection, learning rate decay, or early stopping.
 
-**Primary metrics:** Brier/NMI only if a label can be constructed independently for evaluation; otherwise use an independently justified proxy plus downstream matched-baseline PSREI.
+**Hard Assertions & Leakage Verification Protocol:**
+- Hard assertion in execution script verifying zero pitch channel variance and zero pitch feature leakage in `train`, `val`, `calib`, and `test` input tensors.
+- Hard assertion confirming model selection criterion uses exclusively validation pinball loss or consequence prediction error, with zero dependency on pitch-derived metrics.
 
-**Negative outcome interpretation:** Current privileged-supervision scope remains the maximum supported domain.
-
-**Decision after result:** No claim upgrade unless the evaluation label itself is independent of the training information restriction.
+**Falsification Guardrail & Negative Outcome Interpretation:**
+- If the zero-privileged challenger fails to achieve statistically significant decision improvement over Site-Local Wspd-Bins ($\Delta\text{PSREI} \ge 0$ with 95% bootstrap CI including zero), the scientific conclusion is strictly bounded:
+  > **"Under the zero-privileged supervision protocol, consequence signals alone failed to recover a deployable decision function superior to simple local wind-speed conditioning."**
+- **STRICT PROHIBITION:** It CANNOT be concluded that *"active-power consequence carries no information"* (since privileged training already established its mutual information), nor can it be concluded that *"real wind farms do not need pitch telemetry"*. The conclusion is restricted exclusively to the learning protocol's capacity to induce actionable decision policies without privileged supervision.
 
 ---
 

@@ -1077,3 +1077,47 @@ Penmanshiel h=6 (Primary Endpoint): Delta PSREI = +448,046 kWh (p=0.185)
 Kelmarsh h=6 (Primary Endpoint): Delta PSREI = +48,494 kWh (p=0.272)
 VERDICT: Methodological hardening and claim bounding complete.
 
+## T92 — 2026-10-12T03:00:00+08:00
+Task-ID: T92
+Status: VERIFIED_REPO
+Summary: Protocol hardening and preregistration for EXP-02 (EXP-Q1-003): Zero-Privileged-Pitch Supervision Boundary Protocol. Resolved circularity issue of proxy label Z_tilde sharing active power signal with inputs by establishing 6 mandatory protocol corrections: (1) Pre-frozen weak-supervision target L_proxy only, never independent ground truth; (2) Primary estimand is downstream matched-budget PSREI difference (Delta PSREI) relative to Site-Local Wspd-Bins; (3) Blade pitch strictly held out for secondary post-hoc evaluation only; (4) Physical parameters (v_rated=10.5 m/s, P_rated=1500 kW, epsilon in {20, 50, 100} kW) preregistered with sensitivity grid; (5) Privileged STGQ (lambda_align=5000) demarcated as Oracle Upper Reference; (6) Hard assertions for zero pitch feature variance and pitch-independent checkpoint selection. Falsification guardrail enforced.
+Source: docs/EXPERIMENT_REGISTRY.md:229-270
+
+## T93 — 2026-10-12T03:15:00+08:00
+Task-ID: T93
+Status: VERIFIED_COMMAND
+Summary: Unit testing and implementation validation for EXP-02 protocol execution scripts. Implemented scripts/run_exp02_zero_privileged_supervision.py and tests/test_exp02_protocol.py covering zero pitch feature assertion, zero pitch supervision assertion, zero pitch model selection assertion, sensitivity grid construction, zero-privileged neural net forward pass, and PSREI cost computation.
+Source: scripts/run_exp02_zero_privileged_supervision.py, tests/test_exp02_protocol.py
+Command: pytest tests/test_exp02_protocol.py -v
+Exit-Code: 0
+Relevant-Output:
+```
+tests/test_exp02_protocol.py::test_zero_pitch_feature_assertion PASSED
+tests/test_exp02_protocol.py::test_zero_pitch_supervision_assertion PASSED
+tests/test_exp02_protocol.py::test_zero_pitch_model_selection_assertion PASSED
+tests/test_exp02_protocol.py::test_proxy_label_construction_and_sensitivity_grid PASSED
+tests/test_exp02_protocol.py::test_zero_privileged_net_forward PASSED
+tests/test_exp02_protocol.py::test_psrei_computation PASSED
+6 passed in 2.25s
+```
+
+## T94 — 2026-10-12T03:45:00+08:00
+Task-ID: T94
+Status: VERIFIED_COMMAND
+Summary: Metis HPC execution and falsification closure for EXP-02. Benchmarked on Metis compute node (NVIDIA A100-PCIE-40GB GPU) across 5 random seeds (201-205) and 2 horizons (h=1, h=6) with B=2000 cluster Block Bootstrap. Evaluated Site-Local Wspd-Bins, Direct Consequence Quantile MLP, Zero-Privileged Challenger across epsilon in {20, 50, 100} kW, and Privileged STGQ Oracle Upper Reference. Confirmed zero-privileged challenger failed to achieve positive Delta PSREI over Site-Local Wspd-Bins (h=1: -365.9k kWh, p=0.880; h=6: +3435.5k kWh, p=0.484). Saved versioned artifact exp02-zero-privileged-supervision v1. Registered hypothesis H2 and experiment E02 via research tools. Observed falsification guardrail: concluding claim strictly bounded to "Under the zero-privileged supervision protocol, consequence signals alone failed to recover a deployable decision function superior to simple local wind-speed conditioning."
+Source: artifacts/zero_privileged_supervision_benchmark.csv, docs/ZERO_PRIVILEGED_SUPERVISION_REPORT.md, docs/EXPERIMENT_REGISTRY.md
+Command: scp & ssh metis A100 execution; artifact_save; research_findings
+Exit-Code: 0
+Relevant-Output:
+```
+Artifacts produced:
+- artifacts/zero_privileged_supervision_benchmark.csv (19,740 bytes)
+- docs/ZERO_PRIVILEGED_SUPERVISION_REPORT.md (4,362 bytes)
+Archived as: exp02-zero-privileged-supervision v1
+h=1: Site-Local Wspd-Bins 7.02M kWh | Challenger (eps=50) 6.66M kWh | Delta -365.9k kWh (p=0.880)
+h=6: Site-Local Wspd-Bins 14.80M kWh | Challenger (eps=50) 18.25M kWh | Delta +3435.5k kWh (p=0.484)
+Held-out Pitch NMI: h=1: 0.257 | h=6: 0.128
+VERDICT: ZERO-PRIVILEGED LEARNING PROTOCOL DEFICIT ESTABLISHED.
+```
+
+

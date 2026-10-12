@@ -91,7 +91,7 @@ def pinball_loss_tensor(pred_r: torch.Tensor, target_s: torch.Tensor, tau: float
 
 
 def load_split_data(cache_dir: Path, run_dir: Path, split: str) -> Dict[str, np.ndarray]:
-    """Loads prediction and ground-truth bundle for a split."""
+    """Loads a model prediction bundle and local arrival-time covariates."""
     d = run_dir / f"{split}_metrics"
     pred = np.load(d / "pred.npy")          # (T, 24, N)
     target = np.load(d / "target.npy")      # (T, 24, N)
@@ -99,9 +99,8 @@ def load_split_data(cache_dir: Path, run_dir: Path, split: str) -> Dict[str, np.
     anc = np.load(d / "anchor_physics.npy") # (T, N, 4): [Wspd, Pab, Etmp/Itmp, Patv]
     gate = np.load(d / "gate_prob.npy") if (d / "gate_prob.npy").exists() else None
     t_idx = np.load(d / "anchor_index.npy") if (d / "anchor_index.npy").exists() else np.arange(pred.shape[0])
-    
-    # Strictly withhold pitch at test time
-    # Zero-out Pab channel (channel 1) in anchor
+
+    # Strictly withhold pitch at test time.
     anc_withheld = anc.copy()
     anc_withheld[..., 1] = 0.0
 
@@ -113,6 +112,30 @@ def load_split_data(cache_dir: Path, run_dir: Path, split: str) -> Dict[str, np.
         "gate": gate,
         "time": t_idx,
     }
+
+
+def load_frozen_site_forecast(cache_dir: Path, run_dir: Path, split: str) -> Dict[str, np.ndarray]:
+    """Load independent site forecast and reconstruct target from canonical cache.
+
+    The point forecast comes from an external-wind ``external_wind_full_seed*``
+    run, never the transferred challenger directory. Realized targets and
+    validity masks are reconstructed from the canonical site cache using the
+    run's anchor indices, avoiding incompatible run-directory target files.
+    """
+    d = run_dir / f"{split}_metrics"
+    pred = np.load(d / "pred.npy")
+    anchors = np.load(d / "anchor_index.npy") if (d / "anchor_index.npy").exists() else None
+    if anchors is None:
+        start, end = json.loads((cache_dir / "metadata.json").read_text(encoding="utf-8"))["split_bounds"][split]
+        hist_len, pred_len = 36, pred.shape[1]
+        anchors = np.arange(start + hist_len - 1, end - pred_len - 1, dtype=np.int64)
+    cache_target = np.load(cache_dir / "target.npy", mmap_mode="r")
+    cache_mask = np.load(cache_dir / "target_mask.npy", mmap_mode="r") > 0.5
+    target = np.stack([np.asarray(cache_target[a + 1:a + 1 + pred.shape[1]]) for a in anchors], axis=0)
+    mask = np.stack([np.asarray(cache_mask[a + 1:a + 1 + pred.shape[1]]) for a in anchors], axis=0)
+    if target.shape != pred.shape:
+        raise ValueError(f"Frozen forecast/cache target shape mismatch: {pred.shape} vs {target.shape}")
+    return {"pred": pred, "target": target, "mask": mask, "time": anchors}
 
 
 def fit_wspd_bins(wspd_val: np.ndarray, s_val: np.ndarray, mask_val: np.ndarray, n_bins: int = 10, tau: float = 0.90) -> Tuple[np.ndarray, np.ndarray]:
@@ -396,6 +419,7 @@ def run_farm_evaluation(
     cache_dir: Path,
     transferred_pattern: str,
     finetuned_pattern: str,
+    frozen_pattern: str,
     device: torch.device,
     seeds: List[int] = SEEDS,
     horizons: List[Tuple[int, str]] = HORIZONS,
@@ -450,9 +474,10 @@ def run_farm_evaluation(
             t0 = time.time()
             trans_dir = Path(transferred_pattern.format(seed=seed))
             fine_dir = Path(finetuned_pattern.format(seed=seed))
+            frozen_run_dir = Path(frozen_pattern.format(seed=seed))
 
-            if not trans_dir.exists() or not fine_dir.exists():
-                print(f"Warning: Directory missing for seed {seed}, skipping: {trans_dir} or {fine_dir}")
+            if not trans_dir.exists() or not fine_dir.exists() or not frozen_run_dir.exists():
+                print(f"Warning: Directory missing for seed {seed}, skipping: {trans_dir}, {fine_dir}, or frozen {frozen_run_dir}")
                 continue
 
             # Load validation and test bundles for transferred and fine-tuned models
@@ -461,18 +486,28 @@ def run_farm_evaluation(
             fine_val = load_split_data(cache_dir, fine_dir, "val")
             fine_test = load_split_data(cache_dir, fine_dir, "test")
 
-            # Canonical point forecast & shortfall on test
-            # Under matched target protocol, canonical frozen point forecast matches the primary evaluation
-            pred_test_h = trans_test["pred"][:, lead_step, :]
-            target_test_h = trans_test["target"][:, lead_step, :]
-            mask_test_h = trans_test["mask"][:, lead_step, :]
-            s_test_h = np.maximum(pred_test_h - target_test_h, 0.0)
+            # Shared frozen site-specific point forecast and shortfall target.
+            # This MUST come from the independent external_wind_full run, never
+            # from the transferred challenger prediction.
+            frozen_val = load_frozen_site_forecast(cache_dir, frozen_run_dir, "val")
+            frozen_test = load_frozen_site_forecast(cache_dir, frozen_run_dir, "test")
+            if frozen_val["pred"].shape != trans_val["pred"].shape:
+                raise ValueError(f"Frozen/Transferred val shape mismatch: {frozen_val['pred'].shape} vs {trans_val['pred'].shape}")
+            if frozen_test["pred"].shape != trans_test["pred"].shape:
+                raise ValueError(f"Frozen/Transferred test shape mismatch: {frozen_test['pred'].shape} vs {trans_test['pred'].shape}")
+            if not np.array_equal(frozen_val["time"], trans_val["time"]):
+                raise ValueError("Frozen and transferred validation anchor indices differ")
+            if not np.array_equal(frozen_test["time"], trans_test["time"]):
+                raise ValueError("Frozen and transferred test anchor indices differ")
 
-            # Validation shortfall
-            pred_val_h = trans_val["pred"][:, lead_step, :]
-            target_val_h = trans_val["target"][:, lead_step, :]
-            mask_val_h = trans_val["mask"][:, lead_step, :]
-            s_val_h = np.maximum(pred_val_h - target_val_h, 0.0)
+            frozen_pred_val_h = frozen_val["pred"][:, lead_step, :]
+            frozen_pred_test_h = frozen_test["pred"][:, lead_step, :]
+            target_val_h = frozen_val["target"][:, lead_step, :]
+            target_test_h = frozen_test["target"][:, lead_step, :]
+            mask_val_h = frozen_val["mask"][:, lead_step, :]
+            mask_test_h = frozen_test["mask"][:, lead_step, :]
+            s_val_h = np.maximum(frozen_pred_val_h - target_val_h, 0.0)
+            s_test_h = np.maximum(frozen_pred_test_h - target_test_h, 0.0)
 
             # Local wind speed (Wspd) in anchor physics [channel 0]
             wspd_val = trans_val["anchor"][..., 0]
@@ -580,6 +615,8 @@ def run_farm_evaluation(
                     "model": m_name,
                     "endpoint_type": ep_type,
                     "model_category": "primary_baseline" if m_name == "Site-Local Wspd-Bins" else ("secondary_baseline" if "No-Graph" in m_name else "tested_challenger"),
+                    "target_source": "external_site_frozen_point_forecast_external_wind_full", 
+                    "target_source_seed": seed,
                     "psrei_kwh": m_eval["psrei_kwh"],
                     "psrei_ci_lower": b_eval["psrei_ci_95"][0],
                     "psrei_ci_upper": b_eval["psrei_ci_95"][1],
@@ -616,6 +653,7 @@ def main():
             "cache_dir": Path("artifacts/cache_signature_penmanshiel/external_wind_penmanshiel_obs_window_canonical"),
             "transferred_pattern": "artifacts/signature_gate_farms_runs_20260903/penmanshiel/canonical/wtb_bal_align_force_seed{seed}",
             "finetuned_pattern": "artifacts/external_wind_runs/penmanshiel/chronological/external_wind_bal_align_force_seed{seed}",
+            "frozen_pattern": "artifacts/external_wind_runs/penmanshiel/chronological/external_wind_full_seed{seed}",
         },
         {
             "farm_name": "Kelmarsh",
@@ -623,6 +661,7 @@ def main():
             "cache_dir": Path("artifacts/cache_signature_kelmarsh/external_wind_kelmarsh_obs_window_canonical"),
             "transferred_pattern": "artifacts/signature_gate_farms_runs_20260903/kelmarsh/canonical/wtb_bal_align_force_seed{seed}",
             "finetuned_pattern": "artifacts/external_wind_runs/kelmarsh/chronological/external_wind_bal_align_force_seed{seed}",
+            "frozen_pattern": "artifacts/external_wind_runs/kelmarsh/chronological/external_wind_full_seed{seed}",
         },
     ]
 
@@ -634,6 +673,7 @@ def main():
             cache_dir=fcfg["cache_dir"],
             transferred_pattern=fcfg["transferred_pattern"],
             finetuned_pattern=fcfg["finetuned_pattern"],
+            frozen_pattern=fcfg["frozen_pattern"],
             device=device,
             seeds=SEEDS,
             horizons=HORIZONS,
