@@ -14,7 +14,10 @@ from scripts.exp03_async_packet_protocol import (  # noqa: E402
     make_trace,
     replay_trace,
 )
-from scripts.run_exp03_async_benchmark import simulate_asynchronous_scada_stream  # noqa: E402
+from scripts.run_exp03_async_benchmark import (  # noqa: E402
+    build_proxy_labels,
+    simulate_asynchronous_scada_stream,
+)
 
 
 def test_event_and_arrival_time_are_distinct_and_future_is_hidden():
@@ -102,7 +105,7 @@ def test_async_simulator_delays_canonical_patv_hist_channel():
     raw[:, 0, names.index("Wspd")] = [1.0, 2.0, 3.0, 4.0]
     raw[:, 0, names.index("Patv_hist")] = [10.0, 20.0, 30.0, 40.0]
 
-    delayed, _, packets = simulate_asynchronous_scada_stream(
+    delayed, _, _, packets = simulate_asynchronous_scada_stream(
         raw, names, mean_delay=1, max_lateness=4, seed=7
     )
 
@@ -120,11 +123,31 @@ def test_async_simulator_supports_legacy_patv_alias():
 
     names = ["Wspd", "Patv", "Etmp", "Itmp", "Prtv"]
     raw = np.ones((2, 1, len(names)), dtype=np.float32)
-    delayed, _, packets = simulate_asynchronous_scada_stream(
+    delayed, _, _, packets = simulate_asynchronous_scada_stream(
         raw, names, mean_delay=1, max_lateness=4, seed=11
     )
     assert any(p.channel_id == "Patv" for p in packets)
     assert delayed.shape == raw.shape
+
+
+def test_proxy_labels_are_built_on_physical_units():
+    """Verify F2 fix: proxy thresholds must be applied after unstandardizing."""
+    import numpy as np
+
+    wspd_std = np.array([[-1.5, 0.0, 1.5, 3.0]])
+    patv_std = np.array([[-0.5, 0.2, 0.8, 2.0]])
+    feature_stats = {
+        "Wspd": {"mean": 5.30646, "std": 3.42599},
+        "Patv_hist": {"mean": 379.87787, "std": 416.43860},
+    }
+
+    z = build_proxy_labels(wspd_std, patv_std, feature_stats, epsilon=50.0)
+
+    assert z.shape == wspd_std.shape
+    assert z.dtype == np.int64
+    assert np.sum(z == 1) > 0, "Proxy labels collapsed to all zeros (F2 regression)"
+    assert np.sum(z == 0) > 0, "Proxy labels collapsed to all ones"
+    assert z[0, 3] == 1, "High wind + low power should yield proxy=1"
 
 
 def test_operating_targets_and_tau_star_evaluation():

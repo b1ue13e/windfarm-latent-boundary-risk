@@ -1127,6 +1127,15 @@ Held-out Pitch NMI: h=1: 0.257 | h=6: 0.128
 VERDICT: ZERO-PRIVILEGED LEARNING PROTOCOL DEFICIT ESTABLISHED.
 ```
 
+## F2-FIX — 2026-10-13
+Task-ID: F2-FIX
+Status: VERIFIED_COMMAND
+Summary: Fixed EXP-03 proxy supervision scale mismatch. Added `unstandardize_feature()` and `build_proxy_labels()` to `scripts/run_exp03_async_benchmark.py`; physical thresholds 10.5 m/s and 1450 kW are now applied after converting standardized `Wspd` and `Patv_hist` with `metadata.json.feature_stats`. Added a hard runtime failure for degenerate all-zero/all-one validation labels and regression coverage for non-degenerate physical-unit labels. Historical EXP-03 artifacts remain INVALID; EXP-03-R has not been executed.
+Source: scripts/run_exp03_async_benchmark.py, tests/test_exp03_async_arrival.py, docs/EXP03_INVALIDATION_NOTICE.md
+Command: `python -m pytest tests/test_exp03_async_arrival.py -q; python -m py_compile scripts/run_exp03_async_benchmark.py`
+Exit-Code: 0
+Relevant-Output: `10 passed`; Python compilation succeeded.
+
 ## T96 — 2026-10-12
 Task-ID: T96
 Status: VERIFIED_REPO

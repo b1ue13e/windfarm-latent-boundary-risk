@@ -159,3 +159,7 @@ Created: 2026-09-18T05:01:00+08:00
 - [x] RA05 VERIFIED Scientific falsification review — Invoke the repository `scientific-falsifier` after the audit draft and inspect `.agent_state/FALSIFICATION_REPORT.md`. Acceptance: independent verdict is PASS, PASS_WITH_LIMITATIONS, or FAIL and all required weaknesses are incorporated without weakening the contract.
 - [x] RA06 VERIFIED Independent evidence review and verification gate — Obtain an independent evidence review of RA00–RA05 and run `python .agents/scripts/verify_gate.py`. Acceptance: `.agent_state/REVIEW_REPORT.md` records PASS or PASS_WITH_BLOCKERS for this audit and the verification gate exits 0.
 
+## F2 Correction — 2026-10-13
+
+- [x] F2-FIX VERIFIED Proxy-label scale correction — Apply physical thresholds only after unstandardizing cached `Wspd` and `Patv_hist` with `metadata.json.feature_stats`; add non-degenerate-label runtime guard and regression tests. Acceptance: targeted EXP-03 tests pass and historical EXP-03 remains explicitly invalid until EXP-03-R reruns.
+

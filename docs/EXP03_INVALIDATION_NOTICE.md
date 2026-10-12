@@ -155,6 +155,8 @@ A valid replacement experiment (EXP-03-R) must satisfy:
 
 ### Hard Requirements
 
+**Implementation status (2026-10-13):** The F2 code defect is fixed in `scripts/run_exp03_async_benchmark.py`: proxy construction now reads `feature_stats` from `metadata.json`, converts `Wspd` and `Patv_hist` back to physical units, and hard-fails on degenerate labels. Regression coverage is in `tests/test_exp03_async_arrival.py`. This fixes the implementation defect only; the historical EXP-03 artifacts remain invalid and EXP-03-R has not been executed.
+
 1. **Strict Information Parity:**
    - Identify all features actually used by both baseline and challenger.
    - Delay **every channel** in that set, including `Patv_hist` (or whatever active-power proxy is used).
