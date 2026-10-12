@@ -400,7 +400,7 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 **Contract claim tested:** Q2 Incremental decision value under asynchronous arrival; current UNKNOWN until execution.
 
-**Status:** CONCLUDED (2026-10-12 Metis A100 Benchmark).
+**Status:** INVALIDATED (2026-10-12; F1 information-set violation confirmed). The prior conclusion is withdrawn for scientific inference; a corrected rerun requires a new experiment ID.
 
 **Execution & Findings Summary (2026-10-12 Metis A100 Benchmark):**
 - **Compute:** Executed on Metis HPC cluster node (`NVIDIA A100-PCIE-40GB`, Python 3.11, PyTorch 2.11.0+cu128) across 5 random seeds (201–205), 2 horizons ($h=1, h=6$), and delay grid $\tau \in \{0, 1, 2, 3, 4, 5, 6\}$ (0 to 60 minutes) under strict causal buffer policy and information parity.

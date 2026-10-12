@@ -1,6 +1,6 @@
 # EXP-03 Asynchronous Telemetry Envelope Benchmark Report
 
-**Status:** CONCLUDED ON METIS CLUSTER
+**Status:** INVALIDATED — prior benchmark conclusion withdrawn after F1 audit (Patv_hist was not delayed). This report is retained as provenance only; no scientific inference may use its results.
 **Execution Environment:** NVIDIA A100-PCIE-40GB GPU (Metis Cloud Node, Python 3.11, PyTorch 2.11.0+cu128)
 **Scientific Scope:** Synthetic Asynchronous Envelope (Non-Extrapolatable to Industrial Prevalence)
 

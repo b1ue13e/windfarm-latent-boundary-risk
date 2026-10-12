@@ -14,6 +14,7 @@ from scripts.exp03_async_packet_protocol import (  # noqa: E402
     make_trace,
     replay_trace,
 )
+from scripts.run_exp03_async_benchmark import simulate_asynchronous_scada_stream  # noqa: E402
 
 
 def test_event_and_arrival_time_are_distinct_and_future_is_hidden():
@@ -90,6 +91,40 @@ def test_shared_arrival_trace_and_missing_mask_parity_across_models():
     # Ensure late packets beyond max_lateness=2 are marked missing
     # Step 5 wspd has delay 3, so at t=5 arrival_time=8, at t=5 it must be missing
     assert shared_mask[5] is False
+
+
+def test_async_simulator_delays_canonical_patv_hist_channel():
+    """The simulator must delay the same active-power field used by the model."""
+    import numpy as np
+
+    names = ["Wspd", "Etmp", "Itmp", "Prtv", "Patv_hist"]
+    raw = np.zeros((4, 1, len(names)), dtype=np.float32)
+    raw[:, 0, names.index("Wspd")] = [1.0, 2.0, 3.0, 4.0]
+    raw[:, 0, names.index("Patv_hist")] = [10.0, 20.0, 30.0, 40.0]
+
+    delayed, _, packets = simulate_asynchronous_scada_stream(
+        raw, names, mean_delay=1, max_lateness=4, seed=7
+    )
+
+    patv_packets = [p for p in packets if p.channel_id == "Patv_hist"]
+    assert patv_packets, "Patv_hist must be present in the packet trace"
+    assert any(p.arrival_time > p.event_time for p in patv_packets)
+    # At least one delayed packet must prevent the simulator from exposing the
+    # current active-power value immediately.
+    assert any(delayed[t, 0, names.index("Patv_hist")] != raw[t, 0, names.index("Patv_hist")]
+               for t in range(raw.shape[0]))
+
+
+def test_async_simulator_supports_legacy_patv_alias():
+    import numpy as np
+
+    names = ["Wspd", "Patv", "Etmp", "Itmp", "Prtv"]
+    raw = np.ones((2, 1, len(names)), dtype=np.float32)
+    delayed, _, packets = simulate_asynchronous_scada_stream(
+        raw, names, mean_delay=1, max_lateness=4, seed=11
+    )
+    assert any(p.channel_id == "Patv" for p in packets)
+    assert delayed.shape == raw.shape
 
 
 def test_operating_targets_and_tau_star_evaluation():

@@ -53,7 +53,7 @@
 
 - 证据：`scripts/run_exp03_async_benchmark.py:132-145,310,340-348,406-445`
 - 证据：`artifacts/cache_strictmask_trainweights/wtb_245d/metadata.json:5-16`
-- 结论：`VERIFIED`，EXP-03 当前 verdict 必须撤回或标记 INVALID。
+- 结论：`VERIFIED`，已撤回 EXP-03 当前 verdict 并标记为 `INVALIDATED`；历史结果仅保留为 provenance，不得用于科学推断。修复后的模拟器回归测试覆盖 `Patv_hist`，但不使旧运行结果恢复有效。
 
 ### F2 — EXP-03 proxy supervision 在标准化尺度上使用物理阈值，代理标签全为零
 

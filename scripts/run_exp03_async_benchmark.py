@@ -129,8 +129,25 @@ def simulate_asynchronous_scada_stream(
     T, N, F = raw_features.shape
     policy = BufferPolicy(max_lateness=max_lateness, drop_late=True, allow_future_backfill=False)
 
-    channels = ["Wspd", "Patv", "Etmp", "Itmp", "Prtv"]
-    ch_indices = [feature_names.index(c) for c in channels if c in feature_names]
+    # Use the canonical cache field name for active power.  The cache stores the
+    # consequence channel as ``Patv_hist`` (not ``Patv``); keeping the alias
+    # resolution here is required for simulator/model information-set parity.
+    channel_aliases = {
+        "Wspd": ("Wspd",),
+        "Patv_hist": ("Patv_hist", "Patv"),
+        "Etmp": ("Etmp",),
+        "Itmp": ("Itmp",),
+        "Prtv": ("Prtv",),
+    }
+    resolved_channels = []
+    ch_indices = []
+    for canonical, aliases in channel_aliases.items():
+        for alias in aliases:
+            if alias in feature_names:
+                resolved_channels.append(alias)
+                ch_indices.append(feature_names.index(alias))
+                break
+    channels = resolved_channels
 
     contaminated_features = raw_features.copy()
     valid_mask = np.ones((T, N), dtype=bool)
