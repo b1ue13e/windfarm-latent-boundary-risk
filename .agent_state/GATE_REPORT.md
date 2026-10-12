@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-10-12T13:51:01+00:00
+Generated: 2026-10-12T15:31:51+00:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -170,6 +170,15 @@ SCIENTIFIC CLAIM GATE
   [PASS] contract marker present: REFUTED by current closure
   [PASS] contract marker present: Negative-result preservation rule
   [PASS] contract marker present: Older reports remain provenance records
+  [PASS] contract marker present: Architectural-control non-equivalence rule
+  [PASS] contract marker present: Transition-slice diagnostic boundary rule
+  [PASS] contract marker present: Synthetic telemetry envelope rule
+
+[6] EXP-01, EXP-02, EXP-03 Control & Evidence Integrity
+  [PASS] EXP-01 v2 benchmark verified (80 rows, 5 seeds, 2 farms)
+  [PASS] EXP-02 verified with corrected Primary Challenger role classification
+  [PASS] EXP-03 fixed population verified (408937 cells constant across delay grid)
+  [PASS] Joint hierarchical uncertainty summary verified
 
 ========================================================================
 SCIENTIFIC_CLAIM_GATE: PASS

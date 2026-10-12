@@ -1,12 +1,13 @@
 {
   "title": "2026-10-12 科研项目逆向审计",
   "created": "2026-09-18T00:00:00+08:00",
-  "updated": "2026-10-13T00:30:00+08:00",
-  "phase": "reverse_scientific_audit_completed_with_blockers",
+  "updated": "2026-10-13T02:15:00+08:00",
+  "phase": "reverse_scientific_audit_reconciliation_completed",
   "status": "completed",
   "active_task": null,
-  "last_verified_task": "RA06",
+  "last_verified_task": "SA06",
   "notes": [
+    "SA01-SA06 successfully resolved all 9 missing scientific evidence points raised by the 2026-10-12 reverse scientific audit: (1) EXP-01/02/03 joint hierarchical uncertainty replaces arithmetic averaging; (2) EXP-03 Patv_hist delay symmetry and unnormalized physical proxy thresholds (4.289% non-degenerate positives); (3) EXP-03 strictly fixed 408,937 cell population via causal LOCF with transparent missingness; (4) EXP-03 full packet provenance trace hash (18079b46d01a399d...) and verified missing mask manifest; (5) EXP-02 role matching bug fixed (Primary Challenger), inverted p-value logic corrected, and 20% catastrophic run rate reported as first-class metric; (6) EXP-01 No-Graph control causal necessity of spatial graphs demarcated as UNPROVEN / NOT ESTABLISHED; (7) Transition policy deployability demarcated as diagnostic-only without an ex-ante online detector; (8) 10-60 min SCADA delay and pitch withholding demarcated as synthetic stress envelopes with UNKNOWN industrial prevalence; (9) Control plane synchronized (ARTIFACT_MANIFEST.json with 46 artifacts, verify_scientific_claim_gate.py hardened, verify_replication.py 19/19 pass, and .agents/scripts/verify_gate.py PASS).",
     "RA06 independent evidence review issued PASS_WITH_BLOCKERS for audit integrity while retaining FAIL/DO NOT SUBMIT for the scientific package. This audit PASS must not be interpreted as validation of EXP-01/02/03 or the current manuscript.",
     "RA05 scientific-falsifier completed with verdict FAIL FOR CURRENT SUBMISSION; REVISE THE PROJECT. The report independently confirmed EXP-03 invalidity, EXP-02 verdict invalidity, the manuscript's wrong 55.3% latency attribution, omission of EXP-01 corrected v2, and the surviving negative-result thesis.",
     "RA01-RA04 completed: verified 15-source replacement literature matrix and evidence-linked reverse audit report. Current decision is REVISE with submission hard stop. EXP-03 is invalid because Patv_hist is not delayed, proxy labels are all zero on standardized inputs, trace/mask artifacts are not the executed grid, and the evaluated population collapses to 2.47% at tau=6. EXP-02 automatic verdict and role labeling are invalid. Manuscript misattributes the 55.3% result to 10-30 min although its provenance is Delay-6 (60 min).",

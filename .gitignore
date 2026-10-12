@@ -25,6 +25,8 @@ artifacts/*
 !artifacts/exp02-zero-privileged-supervision/
 !artifacts/external_matched_control_benchmark.csv
 !artifacts/no_graph_architecture_audit.json
+!artifacts/exp03_async/
+!artifacts/joint_uncertainty_summary.json
 !artifacts/ARTIFACT_MANIFEST.json
 !artifacts/information_set_manifest.csv
 !artifacts/direct_quantile_baselines_summary.csv
@@ -78,6 +80,8 @@ cloud_revision_bundle/
 $root/
 Microsoft/
 scratch/
+.dsh/
+backups/
 
 # LaTeX build side products
 *.aux

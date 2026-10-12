@@ -111,6 +111,9 @@ The target is the **minimum sufficient decision function**, not maximum model co
 | MoE routing is a key mechanism | NOT SUPPORTED | Dense/routed parity; p = 0.380 in current manuscript evidence |
 | External farms prove universal generalization | NOT ESTABLISHED | Treat as heterogeneous boundary probes |
 | Synthetic 60-min latency represents observed industrial latency distribution | NOT ESTABLISHED | Treat as a stress envelope |
+| Field prevalence of 10–60 min SCADA delay / pitch withholding | UNKNOWN / NOT ESTABLISHED | Evaluated strictly as synthetic stress envelope; cannot extrapolate to commercial field rates |
+| Causal necessity of external spatial graph structure in EXP-01 | UNPROVEN / NOT ESTABLISHED | Parameter capacity (4,865 vs 110,012) and training asymmetries preclude causal attribution |
+| Ex-ante deployability of transition policy | DIAGNOSTIC ONLY / UNPROVEN | Transition slice requires ex-post oracle knowledge of future state changes; online selector without an ex-ante detector is unsupported |
 | Pitch-never-recorded training scenario is solved | UNKNOWN | Current privileged-supervision setting does not establish it |
 | End-to-end market/AC-OPF economic value is established | OUT OF SCOPE / BLOCKED | Current Level-1 PSREI does not establish this |
 
@@ -151,6 +154,15 @@ The target is the **minimum sufficient decision function**, not maximum model co
 10. **External-validity rule**  
     Penmanshiel/Kelmarsh/LHB are heterogeneous transfer probes. Do not pool them into a universal superiority claim without a pre-registered pooled estimand and matched controls.
 
+11. **Architectural-control non-equivalence rule**  
+    The 4,865-parameter No-Graph MLP trained on validation data is an architectural probe, not a capacity-matched control for the 110,012-parameter STGQ model. The performance gap must not be causally attributed to graph structure alone.
+
+12. **Transition-slice diagnostic boundary rule**  
+    The transition window slice ($\pm 3$ steps of operating switch) is strictly a post-hoc diagnostic partition conditioned on realized future transitions. It must not be presented as an ex-ante deployable operating policy without a causal online transition detector.
+
+13. **Synthetic telemetry envelope rule**  
+    Simulated 10–60 min SCADA latencies, packet drops, and pitch withholding represent synthetic stress bounds. Their industrial frequency and commercial field prevalence are UNKNOWN and must not be asserted as factual fleet-wide reality.
+
 ---
 
 ## 5. Forbidden claim transformations
@@ -165,6 +177,9 @@ Agents and manuscript edits must not make any of the following transformations:
 - “three external farms were tested” → “generalizes across farms”
 - “synthetic 60-min stress test” → “real industrial 60-min latency is common”
 - “historical pitch available in training” → “works when pitch has never been recorded”
+- “No-Graph MLP underperforms” → “spatial graph connectivity is causally necessary”
+- “post-hoc transition slice hedges risk” → “deployable online policy selector is established”
+- “evaluated under pitch withholding” → “commercial wind operators routinely withhold pitch telemetry”
 
 ---
 

@@ -45,14 +45,15 @@ To preserve strict scientific honesty and prevent over-claiming, this audit esta
 
 ---
 
-## 3. Formal Scientific Ruling on Nomenclature
+## 4. Causal Necessity Boundary: UNPROVEN / NOT ESTABLISHED
 
-1. **Mandatory Formal Name:** **No-Graph Architectural Control**  
-   The baseline must be described as an *architectural control* that severs inter-turbine spatial graph connectivity and isolates single-turbine SCADA feature processing.
-2. **Forbidden Phrasing:**
-   - *“Strictly capacity-matched MLP”* (Prohibited: STGQ has ~53x more parameters).
-   - *“Compute-equivalent control”* (Prohibited: STGQ requires spatial graph convolution over $N$ turbines).
-3. **Scientific Value of the Baseline:**
-   Even as a smaller, streamlined single-turbine network, the No-Graph Architectural Control achieves higher surrogate PSREI cost than the simple non-parametric **Site-Local Wspd-Bins** (+1,050k to +2,154k kWh on Penmanshiel, +888k to +1,501k kWh on Kelmarsh). This confirms that:
-   - Increasing neural parametrization without spatio-temporal structure yields inferior calibration relative to simple local empirical quantiles.
-   - The non-parametric empirical quantile table is the true **minimum-sufficient decision model** under deployment-time pitch withholding.
+A critical finding from the 2026-10-12 Scientific Audit is that the performance deficit of the No-Graph Architectural Control relative to STGQ-Modular cannot be causally attributed to the absence of the spatial graph alone:
+
+1. **Confounded Asymmetries:**
+   - **Parameter Asymmetry:** The No-Graph MLP has 4,865 parameters, whereas STGQ-Modular has 110,012 parameters (a 22.6x capacity difference).
+   - **Training Protocol Asymmetry:** In `scripts/run_exp01_matched_control_benchmark.py`, the No-Graph MLP was trained solely on the target farm's validation split (with an internal 70/30 split), whereas STGQ-Modular received full source-domain pretraining across 134 turbines followed by transfer/fine-tuning.
+   - **Architectural Modality:** Single-turbine feedforward vs. multi-turbine spatio-temporal convolutions.
+2. **Authoritative Claim Ceiling:**
+   - **UNPROVEN / NOT ESTABLISHED:** It **MUST NOT BE CLAIMED** that *"external spatial graph structure is causally necessary for downstream reserve decision quality"* or that *"spatial graph convolution is the causal mechanism preventing catastrophic shortfall"*.
+   - **Supported Claim:** Increasing neural parametrization via an isolated single-turbine MLP trained on local validation data fails to achieve competitive calibration and is decisively outperformed by the non-parametric **Site-Local Wspd-Bins** baseline.
+   - **Status in Scientific Contract:** Formally locked as `UNPROVEN / NOT ESTABLISHED`.

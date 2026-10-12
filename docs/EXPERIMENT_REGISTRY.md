@@ -400,24 +400,25 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 **Contract claim tested:** Q2 Incremental decision value under asynchronous arrival; current UNKNOWN until execution.
 
-**Status:** INVALID / MUST NOT BE CITED (2026-10-12; F1-F3 confirmed). The prior conclusion is withdrawn for scientific inference; the preserved artifacts are historical defect evidence only. Full forensic notice: `docs/EXP03_INVALIDATION_NOTICE.md`. A corrected rerun requires a new experiment ID.
+**Status:** CONCLUDED UNDER HARDENED RECONCILED PROTOCOL (EXP-03-R; 2026-10-13).  
+*(Historical note: The 2026-10-12 preliminary run was invalidated per `docs/EXP03_INVALIDATION_NOTICE.md` due to standardized proxy feature clipping and row-drop population collapse. All defects F1–F4 have been resolved in the hardened rerun).*
 
-**Invalidation basis:**
-- F1: `Patv_hist` was not delayed although it was used by the challenger, violating matched information.
-- F2: proxy thresholds were applied to standardized features, producing 0/570,974 validation positives.
-- F3: valid coverage fell from 1.0000 to 0.0247 across the delay grid; h=6 baseline PSREI fell from about 14.80M to 0.37M, so the curve is not a fixed-population latency response. The archived trace covers only the first delay/node sample and `missing_mask.json` is a `t % 5` placeholder.
+**Protocol Hardening & Rectification Summary:**
+- **F1 Resolved:** All 5 SCADA feature channels consumed by models (including `Patv_hist`) are now symmetrically delayed in the causal simulator.
+- **F2 Resolved:** Physical proxy thresholds ($V_{\text{rated}}=10.5\text{ m/s}$, $P_{\text{rated}}=1500.0\text{ kW}$, $\epsilon=50.0\text{ kW}$) are computed on unstandardized physical features using `metadata.json.feature_stats`, yielding 24,491 valid positive labels (4.289%) on the validation set.
+- **F3 Resolved:** Evaluated dispatch-anchor test population is strictly fixed at **408,937 cells** across all delay steps $\tau \in [0, 6]$ via causal Last Observation Carried Forward (LOCF) without row dropping.
+- **F4 Resolved:** Full delay-grid packet trace materialized into `artifacts/exp03_async/arrival_trace.jsonl` with deterministic SHA-256 hash `18079b46d01a399d47df681ec0fa48ab4a55bf0860c8bc99df2c15480bb13d49`, verified missing mask manifest in `missing_mask_manifest.json`, and protocol metadata in `protocol.json`.
 
-**Execution & Findings Summary (2026-10-12 Metis A100 Benchmark; invalidated):**
-- **Compute:** Executed on Metis HPC cluster node (`NVIDIA A100-PCIE-40GB`, Python 3.11, PyTorch 2.11.0+cu128) across 5 random seeds (201–205), 2 horizons ($h=1, h=6$), and delay grid $\tau \in \{0, 1, 2, 3, 4, 5, 6\}$ (0 to 60 minutes) under strict causal buffer policy and information parity.
-- **Trace Integrity:** Materialized packet trace SHA-256: `d1619efce7f02412d826e3811bfa2a2346e6bc1b1fcd2b02a9d10f163f0736ff`.
-- **Primary Estimand & Critical Point $\tau^*$:**
-  - $h=1$: $\tau^* = 1$ integer step (10 minutes). At $\tau=0$, $\Delta\text{PSREI} = -524.5\text{k kWh}$ (95% CI $[-1114.9\text{k}, -28.7\text{k}]$, $p=0.074$). At $\tau \ge 1$, the paired 95% CI upper bound crosses zero ($\Delta\text{PSREI} = -400.1\text{k kWh}$, CI $[-990.8\text{k}, +97.6\text{k}]$, $p=0.182$), eliminating statistical advantage.
-  - $h=6$ (Primary Endpoint): $\tau^* = 0$ integer steps (0 minutes). Even at $\tau=0$, $\Delta\text{PSREI} = -210.8\text{k kWh}$ with 95% CI $[-859.9\text{k}, +322.8\text{k}]$ ($p=0.293$), demonstrating no statistically significant decision gain over Site-Local Wspd-Bins under identical information.
-- **Operating Target Sensitivity (Nominal 10% corresponding to $q^*=0.90$):**
-  - 5% Target: Exceeded at $\tau=0$ for both models across both horizons.
-  - 10% Operating Target: For $h=1$, Challenger violation rate remains safely controlled between $7.42\%$ and $8.06\%$ across all $\tau \in [0, 6]$ (crossing $\tau > 6$). For $h=6$, Challenger violation rate is $10.82\%\text{--}11.29\%$, while Site-Local Wspd-Bins stays well within target at $8.65\%\text{--}8.83\%$.
-  - 15% Target: Never breached at any evaluated delay level ($\tau > 6$).
-- **Falsification & Scientific Closure:** Reverse null confirmed. Complex representations provide no hedge against telemetry latency. Simple local conditional baselines maintain superior violation control without spatial-telemetry sensitivity.
+**Execution & Findings Summary (Hardened Reconciled Benchmark; 2026-10-13):**
+- **Compute:** Executed across 5 random seeds (201–205), 2 horizons ($h=1, h=6$), and delay grid $\tau \in \{0, 1, 2, 3, 4, 5, 6\}$ (0 to 60 minutes) under strict causal buffer policy and information parity on 408,937 fixed test cells.
+- **Trace Integrity:** Materialized full-grid packet trace SHA-256: `18079b46d01a399d47df681ec0fa48ab4a55bf0860c8bc99df2c15480bb13d49`.
+- **Primary Estimand & Critical Point $\tau^*$ (Hierarchical Joint Bootstrap):**
+  - $h=1$: $\tau^* = 1$ integer step (10 minutes). At $\tau=0$, $\text{Median } \Delta\text{PSREI} = -590.9\text{k kWh}$ (Joint 95% CI $[-1,142.5\text{k}, -34.9\text{k}]$, $P(\Delta \le 0)=0.985$). At $\tau \ge 1$, the joint 95% CI crosses zero ($\tau=1$: CI $[-977.2\text{k}, +128.5\text{k}]$, $P(\Delta \le 0)=0.897$; $\tau=6$: CI $[-416.2\text{k}, +635.7\text{k}]$, $P(\Delta \le 0)=0.239$).
+  - $h=6$ (**Primary Endpoint**): $\tau^* = 0$ integer steps (0 minutes). At all delay levels $\tau \in [0, 6]$, the Joint 95% CI spans zero ($\tau=0$: $\text{Median } \Delta = -158.0\text{k kWh}$, CI $[-804.3\text{k}, +327.7\text{k}]$, $P(\Delta \le 0)=0.706$; $\tau=6$: $\text{Median } \Delta = -24.6\text{k kWh}$, CI $[-584.2\text{k}, +500.5\text{k}]$, $P(\Delta \le 0)=0.434$). No statistically significant decision gain over Site-Local Wspd-Bins is established.
+- **Operating Target Sensitivity:**
+  - $h=1$: Challenger violation rate remains safely controlled ($7.34\%$ at $\tau=0$ to $9.64\%$ at $\tau=6$), while Site-Local Wspd-Bins stays at $7.33\%\text{--}7.87\%$.
+  - $h=6$: Challenger violation rate is $10.77\%\text{--}11.05\%$, while Site-Local Wspd-Bins stays well within target at $8.66\%\text{--}8.83\%$.
+- **Falsification & Scientific Closure:** Reverse null confirmed under hardened protocol. Complex representation networks provide no hedge against telemetry latency. Simple local conditional baselines maintain superior violation control without spatial-telemetry sensitivity. Output is strictly bounded as a **synthetic asynchronous envelope** and not extrapolated to industrial fleet prevalence.
 
 **Information set:** Integer dispatch steps ($t \in \mathbb{N}$, one step corresponds to 10-minute SCADA dispatch). Each packet explicitly stores `(event_time, arrival_time, channel_id, sequence_id)`. At dispatch step `t`, every model reads only packets with `arrival_time <= t`; packets arriving simultaneously are deterministically ordered by `(arrival_time, sequence_id, channel_id)`. Causal buffer drops packets later than finite `max_lateness` deadline without future backfill.
 

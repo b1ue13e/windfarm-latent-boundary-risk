@@ -688,23 +688,28 @@ def main():
     print(f"Benchmark results successfully written to: {out_path}", flush=True)
     print(f"Total rows: {len(df)}", flush=True)
 
-    # Print Synthesis Table per Farm and Horizon
+    # Print Synthesis Table per Farm and Horizon with Seed Disaggregation and Robust Statistics
     print("\n==================== SYNTHESIS BENCHMARK TABLE ====================", flush=True)
-    agg = df.groupby(["farm", "horizon", "model"])[
-        ["psrei_kwh", "violation_rate_pct", "delta_psrei_mean_kwh", "delta_viol_pct", "p_val_delta_psrei"]
-    ].mean().reset_index()
+    print("NOTE: Per-seed bootstrap probabilities and CIs are NOT arithmetically averaged.")
+    print("Reporting mean, robust median, seed-level dispersion, and individual seed outcomes.")
 
     for farm in ["Penmanshiel", "Kelmarsh"]:
         print(f"\n--- Wind Farm: {farm} ---")
-        f_df = agg[agg["farm"] == farm]
-        print(f"{'Horizon':<8} {'Model':<28} {'PSREI (kWh)':<15} {'Viol (%)':<10} {'Delta PSREI (kWh)':<20} {'p-val':<8}")
-        print("-" * 88)
-        for _, row in f_df.iterrows():
-            d_str = f"{row['delta_psrei_mean_kwh']:+,.0f}" if row['model'] != "Site-Local Wspd-Bins" else "0 (ref)"
-            p_str = f"{row['p_val_delta_psrei']:.3f}" if row['model'] != "Site-Local Wspd-Bins" else "-"
+        f_df = df[df["farm"] == farm]
+        print(f"{'Horizon':<8} {'Model':<28} {'Mean PSREI':<15} {'Mean Viol':<10} {'Mean Delta':<18} {'Median Delta':<18} {'Seed Deltas (kWh)'}")
+        print("-" * 120)
+        for (h_label, m_name), grp in f_df.groupby(["horizon", "model"]):
+            mean_psrei = grp["psrei_kwh"].mean()
+            mean_viol = grp["violation_rate_pct"].mean()
+            mean_delta = grp["delta_psrei_mean_kwh"].mean()
+            median_delta = grp["delta_psrei_mean_kwh"].median()
+            seed_deltas = [f"{round(x/1e3):+d}k" for x in grp["delta_psrei_mean_kwh"].tolist()]
+            d_str = f"{mean_delta:+,.0f}" if m_name != "Site-Local Wspd-Bins" else "0 (ref)"
+            med_str = f"{median_delta:+,.0f}" if m_name != "Site-Local Wspd-Bins" else "0 (ref)"
+            seed_str = ", ".join(seed_deltas) if m_name != "Site-Local Wspd-Bins" else "all 0"
             print(
-                f"{row['horizon']:<8} {row['model']:<28} {row['psrei_kwh']:<15,.0f} "
-                f"{row['violation_rate_pct']:<10.2f} {d_str:<20} {p_str:<8}"
+                f"{h_label:<8} {m_name:<28} {mean_psrei:<15,.0f} "
+                f"{mean_viol:<10.2f}% {d_str:<18} {med_str:<18} [{seed_str}]"
             )
 
     # Formal Scientific Interpretation Check

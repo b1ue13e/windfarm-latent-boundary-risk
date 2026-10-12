@@ -1,0 +1,42 @@
+{
+  "experiment": "EXP-03",
+  "label": "synthetic asynchronous envelope",
+  "population_condition": "fixed dispatch-anchor population (100% cells, no drop collapse)",
+  "delays_evaluated_steps": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "delays_evaluated_minutes": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60
+  ],
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "horizons": [
+    "h=1",
+    "h=6"
+  ],
+  "operating_target_nominal": 10.0,
+  "operating_target_sensitivities": [
+    5.0,
+    10.0,
+    15.0
+  ],
+  "primary_estimand": "paired PSREI-vs-delay curve Delta PSREI(tau) and hierarchical tau*",
+  "trace_sha256": "18079b46d01a399d47df681ec0fa48ab4a55bf0860c8bc99df2c15480bb13d49"
+}

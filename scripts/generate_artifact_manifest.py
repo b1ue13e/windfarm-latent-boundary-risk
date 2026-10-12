@@ -523,6 +523,116 @@ ARTIFACT_DEFINITIONS = [
         "externally_hosted": True,
         "regenerable": False,
     },
+    # 9. EXP-01 v2 External Control Benchmark
+    {
+        "filename": "artifacts/external_matched_control_benchmark.csv",
+        "category": "A",
+        "generating_script": "scripts/run_exp01_matched_control_benchmark.py",
+        "upstream_inputs": ["artifacts/external_wind_runs/", "artifacts/cache_strictmask_trainweights/"],
+        "manuscript_claims_supported": [
+            "EXP-01 v2: Penmanshiel h=6 Transferred STGQ +5.322M kWh penalty (p=0.0025)",
+            "EXP-01 v2: Kelmarsh h=6 Transferred STGQ +435.7k kWh difference (p=0.196)",
+            "EXP-01 v2: Site-Local Wspd-Bins confirmed as minimum-sufficient model",
+        ],
+        "tracked_in_git": True,
+        "externally_hosted": False,
+        "regenerable": True,
+    },
+    {
+        "filename": "artifacts/no_graph_architecture_audit.json",
+        "category": "A",
+        "generating_script": "scripts/run_exp01_matched_control_benchmark.py",
+        "upstream_inputs": ["scripts/run_exp01_matched_control_benchmark.py"],
+        "manuscript_claims_supported": [
+            "EXP-01 No-Graph architectural control parameter audit: 4,865 vs STGQ 110,012 parameters",
+            "Causal necessity of external spatial graph structure: UNPROVEN / NOT ESTABLISHED",
+        ],
+        "tracked_in_git": True,
+        "externally_hosted": False,
+        "regenerable": True,
+    },
+    # 10. EXP-02 Zero-Privileged Supervision Benchmark
+    {
+        "filename": "artifacts/zero_privileged_supervision_benchmark.csv",
+        "category": "A",
+        "generating_script": "scripts/run_exp02_zero_privileged_supervision.py",
+        "upstream_inputs": ["artifacts/fixed_forecast_residuals.npz", "artifacts/cache_strictmask_trainweights/wtb_245d"],
+        "manuscript_claims_supported": [
+            "EXP-02: Zero-privileged challenger fails to achieve decision superiority over Site-Local Wspd-Bins",
+            "EXP-02 h=6: 20% catastrophic run rate (Seed 201 policy collapse +17.41M kWh, 48.6% viol)",
+            "EXP-02: Zero-privileged weak-supervision insufficient for reliable deployment",
+        ],
+        "tracked_in_git": True,
+        "externally_hosted": False,
+        "regenerable": True,
+    },
+    # 11. EXP-03 Asynchronous Arrival Telemetry Benchmark
+    {
+        "filename": "artifacts/exp03_async/psrei_vs_delay.csv",
+        "category": "A",
+        "generating_script": "scripts/run_exp03_async_benchmark.py",
+        "upstream_inputs": ["artifacts/fixed_forecast_residuals.npz", "artifacts/cache_strictmask_trainweights/wtb_245d"],
+        "manuscript_claims_supported": [
+            "EXP-03: Integer-step asynchronous telemetry PSREI-vs-delay curve",
+            "EXP-03: Critical threshold tau* = 10 min for h=1 and tau* = 0 min for h=6",
+            "EXP-03: Fixed dispatch-anchor population (408,937 cells constant across tau in [0, 6])",
+            "EXP-03: Synthetic asynchronous telemetry envelope (not extrapolated to industrial prevalence)",
+        ],
+        "tracked_in_git": True,
+        "externally_hosted": False,
+        "regenerable": True,
+    },
+    {
+        "filename": "artifacts/exp03_async/protocol.json",
+        "category": "A",
+        "generating_script": "scripts/run_exp03_async_benchmark.py",
+        "upstream_inputs": ["scripts/exp03_async_packet_protocol.py"],
+        "manuscript_claims_supported": [
+            "EXP-03: Preregistered integer-step causal packet buffer protocol",
+        ],
+        "tracked_in_git": True,
+        "externally_hosted": False,
+        "regenerable": True,
+    },
+    {
+        "filename": "artifacts/exp03_async/missing_mask_manifest.json",
+        "category": "A",
+        "generating_script": "scripts/run_exp03_async_benchmark.py",
+        "upstream_inputs": ["scripts/run_exp03_async_benchmark.py"],
+        "manuscript_claims_supported": [
+            "EXP-03: Verified missingness manifest across full delay grid tau in [0, 6]",
+        ],
+        "tracked_in_git": True,
+        "externally_hosted": False,
+        "regenerable": True,
+    },
+    {
+        "filename": "artifacts/exp03_async/input_trace_hash.txt",
+        "category": "A",
+        "generating_script": "scripts/run_exp03_async_benchmark.py",
+        "upstream_inputs": ["scripts/run_exp03_async_benchmark.py"],
+        "manuscript_claims_supported": [
+            "EXP-03: Cryptographic SHA256 provenance hash of the full-grid arrival stream",
+        ],
+        "tracked_in_git": True,
+        "externally_hosted": False,
+        "regenerable": True,
+    },
+    # 12. Cross-Experiment Joint Uncertainty Summary
+    {
+        "filename": "artifacts/joint_uncertainty_summary.json",
+        "category": "A",
+        "generating_script": "scripts/generate_joint_uncertainty_report.py",
+        "upstream_inputs": ["artifacts/external_matched_control_benchmark.csv", "artifacts/zero_privileged_supervision_benchmark.csv"],
+        "manuscript_claims_supported": [
+            "Joint two-level hierarchical uncertainty across seeds and day-clusters for EXP-01 and EXP-02",
+            "Elimination of arithmetic averaging for bootstrap CIs and p-values",
+            "First-class reporting of catastrophic failure rates and median deltas",
+        ],
+        "tracked_in_git": True,
+        "externally_hosted": False,
+        "regenerable": True,
+    },
 ]
 
 

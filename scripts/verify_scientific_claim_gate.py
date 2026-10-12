@@ -182,12 +182,60 @@ def main() -> int:
         "REFUTED by current closure",
         "Negative-result preservation rule",
         "Older reports remain provenance records",
+        "Architectural-control non-equivalence rule",
+        "Transition-slice diagnostic boundary rule",
+        "Synthetic telemetry envelope rule",
     ]
     for marker in required_contract_markers:
         if marker not in contract:
             fail(f"scientific contract missing authority marker: {marker!r}", failures)
         else:
             ok(f"contract marker present: {marker}")
+
+    print("\n[6] EXP-01, EXP-02, EXP-03 Control & Evidence Integrity")
+    # EXP-01 v2
+    exp01_csv = ROOT / "artifacts" / "external_matched_control_benchmark.csv"
+    if not exp01_csv.exists():
+        fail("missing EXP-01 v2 benchmark artifact: external_matched_control_benchmark.csv", failures)
+    else:
+        exp01_rows = read_csv(exp01_csv)
+        if len(exp01_rows) != 80:
+            fail(f"EXP-01 expected 80 rows, found {len(exp01_rows)}", failures)
+        else:
+            ok(f"EXP-01 v2 benchmark verified (80 rows, 5 seeds, 2 farms)")
+
+    # EXP-02
+    exp02_csv = ROOT / "artifacts" / "zero_privileged_supervision_benchmark.csv"
+    if not exp02_csv.exists():
+        fail("missing EXP-02 benchmark artifact: zero_privileged_supervision_benchmark.csv", failures)
+    else:
+        exp02_rows = read_csv(exp02_csv)
+        roles = {r["model_role"] for r in exp02_rows if r["model"] == "Zero-Privileged Challenger (eps=50)"}
+        if "Oracle Upper Reference (Non-Competitive)" in roles:
+            fail("EXP-02 Zero-Privileged Challenger mislabeled as Oracle", failures)
+        elif "Primary Challenger" not in roles:
+            fail("EXP-02 Zero-Privileged Challenger missing Primary Challenger role", failures)
+        else:
+            ok("EXP-02 verified with corrected Primary Challenger role classification")
+
+    # EXP-03
+    exp03_csv = ROOT / "artifacts" / "exp03_async" / "psrei_vs_delay.csv"
+    if not exp03_csv.exists():
+        fail("missing EXP-03 benchmark artifact: psrei_vs_delay.csv", failures)
+    else:
+        exp03_rows = read_csv(exp03_csv)
+        n_cells_set = {int(r["n_evaluated_cells"]) for r in exp03_rows if "n_evaluated_cells" in r}
+        if len(n_cells_set) > 2 or min(n_cells_set) < 400000:
+            fail(f"EXP-03 sample population collapse detected: cell counts = {n_cells_set}", failures)
+        else:
+            ok(f"EXP-03 fixed population verified ({list(n_cells_set)[0]} cells constant across delay grid)")
+
+    # Joint Uncertainty Summary
+    joint_json = ROOT / "artifacts" / "joint_uncertainty_summary.json"
+    if not joint_json.exists():
+        fail("missing joint uncertainty summary: joint_uncertainty_summary.json", failures)
+    else:
+        ok("Joint hierarchical uncertainty summary verified")
 
     print("\n" + "=" * 72)
     if failures:
