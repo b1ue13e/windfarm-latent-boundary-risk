@@ -400,9 +400,14 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 **Contract claim tested:** Q2 Incremental decision value under asynchronous arrival; current UNKNOWN until execution.
 
-**Status:** INVALIDATED (2026-10-12; F1 information-set violation confirmed). The prior conclusion is withdrawn for scientific inference; a corrected rerun requires a new experiment ID.
+**Status:** INVALID / MUST NOT BE CITED (2026-10-12; F1-F3 confirmed). The prior conclusion is withdrawn for scientific inference; the preserved artifacts are historical defect evidence only. Full forensic notice: `docs/EXP03_INVALIDATION_NOTICE.md`. A corrected rerun requires a new experiment ID.
 
-**Execution & Findings Summary (2026-10-12 Metis A100 Benchmark):**
+**Invalidation basis:**
+- F1: `Patv_hist` was not delayed although it was used by the challenger, violating matched information.
+- F2: proxy thresholds were applied to standardized features, producing 0/570,974 validation positives.
+- F3: valid coverage fell from 1.0000 to 0.0247 across the delay grid; h=6 baseline PSREI fell from about 14.80M to 0.37M, so the curve is not a fixed-population latency response. The archived trace covers only the first delay/node sample and `missing_mask.json` is a `t % 5` placeholder.
+
+**Execution & Findings Summary (2026-10-12 Metis A100 Benchmark; invalidated):**
 - **Compute:** Executed on Metis HPC cluster node (`NVIDIA A100-PCIE-40GB`, Python 3.11, PyTorch 2.11.0+cu128) across 5 random seeds (201–205), 2 horizons ($h=1, h=6$), and delay grid $\tau \in \{0, 1, 2, 3, 4, 5, 6\}$ (0 to 60 minutes) under strict causal buffer policy and information parity.
 - **Trace Integrity:** Materialized packet trace SHA-256: `d1619efce7f02412d826e3811bfa2a2346e6bc1b1fcd2b02a9d10f163f0736ff`.
 - **Primary Estimand & Critical Point $\tau^*$:**
