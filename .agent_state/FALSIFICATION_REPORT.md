@@ -1,198 +1,211 @@
 # FALSIFICATION_REPORT.md
 
-**Date:** 2026-09-26T11:35:00+08:00  
-**Auditor:** Scientific Falsifier Subagent (Independent Adversarial Audit)  
-**Target Scope:** Completed Operational Relevance Pass (Reviewer Risk A) & Cross-Site Heterogeneity Diagnostic (Reviewer Risk B)  
-**Governing Standard:** `docs/SCIENTIFIC_CONTRACT.md`  
-**Preregistration Reference:** `docs/TSTE_OPERATIONAL_RELEVANCE_PREREGISTRATION.md`  
-**Audit Precedents:** `docs/TSTE_OPERATIONAL_RELEVANCE_AUDIT.md`, `docs/WHY_LEVEL1_SCOPE_IS_SUFFICIENT.md`, `docs/CROSS_SITE_DEPLOYMENT_DIAGNOSTIC.md`, `docs/FIRST_PRINCIPLES_ADVERSARIAL_AUDIT_20260921.md`  
-**Artifacts Inspected:** `artifacts/deployment_diagnostic/site_descriptors.csv`, `artifacts/deployment_diagnostic/site_decision_outcomes.csv`, `artifacts/strong_baseline_closure_summary.csv`, `artifacts/strong_baseline_bootstrap_contrasts.csv`  
-**Claim Gate Status:** `scripts/verify_scientific_claim_gate.py` -> **EXIT 0 (PASS)**  
+**Date:** 2026-10-12T23:30:00+08:00
+**Auditor:** Scientific Falsifier Subagent
+**Target Scope:** Current main manuscript and supplement; authoritative scientific contract; corrected EXP-01 v2; EXP-02; EXP-03; reverse scientific audit RA00--RA04
+**Governing Standard:** `docs/SCIENTIFIC_CONTRACT.md`
+**Primary Audit Draft:** `docs/REVERSE_SCIENTIFIC_AUDIT_20261012.md`
+**Write Boundary:** This report only. No manuscript, scientific-contract, experiment-output, or raw-artifact modification was authorized or performed.
 
 ---
 
-## 1. Formal Audit Verdict & Executive Summary
+## 1. Verdict
 
-### Formal Verdict: PASS
+# **VERDICT: FAIL**
 
-The adversarial audit confirms that the operational relevance pass (Reviewer Risk A: Grid Operational Realism) and the cross-site heterogeneity diagnostic (Reviewer Risk B) strictly adhere to the authoritative claim ceiling in `docs/SCIENTIFIC_CONTRACT.md`, faithfully preserve all negative results, uphold the central scientific thesis, maintain a rigorous Level-1 scope boundary, and enforce a non-inferential, descriptive diagnostic across the four commercial wind farms.
+**Current submission status: FAIL / DO NOT SUBMIT.**
 
-### Key Audit Findings:
-1. **Preservation of Core Negative Results (No Rescue Attempts)**:
-   - Plant-wide posterior conditioning remains **refuted** for cost superiority against strong wind-speed-conditioned quantiles ($\Delta \text{PSREI} = +523{,}044\text{ kW}\cdot\text{h}$ penalty, $p = 0.85$).
-   - Dynamic Newsvendor re-optimization ($\rho \in [2, 100]$, $q^*(\rho) = 1 - 1/\rho$) proves baseline dominance is **structurally invariant across the entire penalty spectrum**: plant-wide baseline dominance holds for all $\rho \ge 2.0$ ($+20.8\text{k}$ to $+2.43\text{M kW}\cdot\text{h}$ penalty), while in transition slices, baseline dominance holds for all $\rho \ge 5.0$ (widening to $+998.2\text{k kW}\cdot\text{h}$ at $\rho=100$). The earlier frozen-policy algebraic crossover ($\rho_{\text{break}} \approx 40.89$) has been decisively falsified as an artifact of fixing the baseline fractile at $q=0.90$.
-   - Under matched reserve budgets ($\Delta R \equiv 0$), posterior conditioning yields $+5{,}234\text{ kW}\cdot\text{h}$ higher uncovered shortage ($p(\text{fail}) = 0.80$, with 4 of 5 random seeds failing across the entire common budget support).
-   - Dynamic MoE routing provides no statistically significant gain over unrouted dense baselines ($p = 0.380$).
-2. **Central Inferential Thesis Strictly Upheld**:
-   - The inferential chain $\text{SCADA Observability} \implies \text{Latent-State Recoverability} \centernot\implies \text{Downstream Decision Sufficiency}$ remains uncompromised across all documents and manuscript prose. Latent boundary recoverability (AUROC $= 0.988$, NMI $= 0.461$) is never conflated with downstream reserve-decision superiority.
-3. **Rigorous Level-1 Reserve Screening Scope Boundary**:
-   - The 5-point downstream dispatch gate evaluation (`docs/WHY_LEVEL1_SCOPE_IS_SUFFICIENT.md`) properly triggered the preregistered stop rule (3 of 5 criteria failed: non-heuristic pass-through, non-collinear objective, and transparent network/generator assumptions).
-   - The manuscript refrains from making unsupported Level-2 AC-OPF or unit-commitment claims, defending Level-1 plant-boundary reserve-risk screening as the natural, physically grounded, and self-contained operational boundary, backed by empirical validation across 157,804 UK balancing market settlement periods (Elexon BMRS).
-4. **Descriptive, Hypothesis-Generating 4-Site Diagnostic**:
-   - In `docs/CROSS_SITE_DEPLOYMENT_DIAGNOSTIC.md` and associated artifacts, the 4-site matrix (WTB, Penmanshiel, Kelmarsh, LHB) is audited without $N=4$ regressions, without hierarchical linear modeling, and without turbine-level pseudo-replication.
-   - All diagnostic metrics are evaluated on historical training/validation partitions (zero deployment leakage).
-   - Language is strictly guarded: observed heterogeneity is described as "consistent with variations in exploitable spatial coupling and consequence-channel redundancy," explicitly rejecting causal claims.
-5. **Programmatic Claim Gate Verification**:
-   - `scripts/verify_scientific_claim_gate.py` executed cleanly with exit code 0, verifying all required and forbidden phrasing guards, numerical deltas, interaction contrasts, and authority markers.
+**Project disposition: REVISE, not STOP.** The central negative-result research program remains scientifically viable, but the current manuscript and the October experiment closures do not satisfy the repository's own scientific contract. The manuscript contains a headline latency-condition error and omits a stronger corrected external baseline result. EXP-02's automatic verdict is generated by reversed probability logic and a model-role labeling error. EXP-03 violates same-arrival information symmetry, misconstructs its proxy target, evaluates a collapsing population, and archives trace/mask files that do not represent the executed delay grid. Therefore the current manuscript plus EXP-01/02/03 evidence package cannot receive PASS or PASS_WITH_LIMITATIONS.
+
+This FAIL does **not** erase the verified negative results already supported by matched evidence:
+
+- fresh-telemetry deterministic physics is lowest-cost within the evaluated WTB boundary band;
+- active power is the dominant recoverability mediator in the privileged-training deployment setting;
+- posterior conditioning does not beat the strong wind-speed-conditioned quantile plant-wide;
+- matched-budget analysis does not establish posterior allocation efficiency;
+- MoE routing is not a necessary mechanism.
+
+The publishable surviving thesis is narrower than the current submission:
+
+> Under the evaluated WTB protocol, an active-power consequence signature can retain boundary information when deployment-time pitch is withheld, but state recoverability does not establish incremental reserve-decision value over strong matched direct conditional quantiles. Complex routing, graph structure, and zero-shot transfer remain unnecessary or unproven in the evaluated regimes.
 
 ---
 
-## 2. Evaluation of Mandatory Attacks (A through H)
+## 2. Claim-by-Claim Falsification Table
 
-### Attack A: Active-Power Direct-Readout Attack
-- **Adversarial Hypothesis:** Latent-boundary recovery is merely an electromechanical readout of contemporaneous active power ($P_{\text{atv}, t}$), rather than an anchor-free discovery of complex spatio-temporal dynamics.
-- **Evidence Inspected:**
-  - `artifacts/channel_consequence_ablations.csv`
-  - `artifacts/active_power_anchor_audit.csv`
-  - `docs/CONSEQUENCE_SIGNAL_MECHANISM.md`
-  - `docs/TSTE_OPERATIONAL_RELEVANCE_AUDIT.md` (Section 4, Q7)
-- **Findings:** Condition C2 (Active Power Only, 4 features) achieves Brier $= 0.0112$, NMI $= 0.461$, ARI $= 0.647$, and transition recall $= 62.9\%$. Adding wake context (C9) yields negligible increment (NMI $= 0.463$, ARI $= 0.648$). Full consequence suite (C1) degrades NMI to $0.226$. Non-power channels alone fail completely (thermal C4 recall $= 0.0\%$, wake C6 recall $= 0.0\%$). Contemporaneous power achieves AUROC $= 0.988$.
-- **Adversarial Verdict:** **SURVIVES WITH SCOPE CEILING.** Active power is confirmed as the dominant mediator. The manuscript explicitly attributes recovery to the electromechanical active-power signature, acknowledges the direct-readout capability of contemporaneous power, notes that dynamical history tracks transitions ($40.3\%\text{--}58.8\%$), and explicitly rejects any claim that complex spatio-temporal architectures are necessary to uncover this boundary.
-
-### Attack B: Matched-Direct-Quantile Attack
-- **Adversarial Hypothesis:** Posterior conditioning is merely a complicated conditional binning scheme that loses to a direct, observable wind-speed-conditioned quantile baseline evaluated under the same information set.
-- **Evidence Inspected:**
-  - `artifacts/strong_baseline_closure_summary.csv`
-  - `artifacts/strong_baseline_bootstrap_contrasts.csv`
-  - `docs/TSTE_OPERATIONAL_RELEVANCE_AUDIT.md` (Section 3, Reoptimized $\rho$-Sensitivity)
-- **Findings:** Under the standard setup ($h=6, \rho=10$), Policy B (10-bin wind-speed quantiles) achieves $13{,}784{,}320\text{ kW}\cdot\text{h}$ PSREI vs. Policy C (Posterior) $14{,}307{,}364\text{ kW}\cdot\text{h}$ ($\Delta \text{PSREI} = +523{,}044\text{ kW}\cdot\text{h}$, $p = 0.85$). In steady-state ($63.7\%$ of time), baseline dominance is $+410{,}340\text{ kW}\cdot\text{h}$ ($p = 0.002$). Crucially, sweeping $\rho \in [2, 100]$ under dynamic re-optimization proves that the baseline remains superior plant-wide for all $\rho \ge 2.0$ ($+20.8\text{k}$ to $+2.43\text{M kW}\cdot\text{h}$), and superior in transition windows for all $\rho \ge 5.0$ (up to $+998.2\text{k kW}\cdot\text{h}$ penalty at $\rho=100$).
-- **Adversarial Verdict:** **SURVIVES WITH NEGATIVE-RESULT DISCLOSURE.** Plant-wide superiority is definitively refuted. The earlier frozen-policy crossover at $\rho=40.88$ has been unmasked and reported as an artifact of frozen baseline sizing. Posterior conditioning is properly framed as localized tail-risk hedging at higher procurement cost.
-
-### Attack C: Decision-Sufficiency Attack
-- **Adversarial Hypothesis:** High representation metrics (NMI, ARI, AUROC) do not produce operational reserve decision value.
-- **Evidence Inspected:**
-  - `artifacts/matched_budget/`
-  - `artifacts/clean_privileged_supervision_ablation.csv`
-  - `docs/TSTE_OPERATIONAL_RELEVANCE_AUDIT.md` (Section 4, Q4 & Q8)
-- **Findings:** Privileged supervision ($\lambda_{\text{align}} = 5000$) boosts NMI ($0.240 \to 0.819$, $p = 0.0015$) and ARI ($0.198 \to 0.889$, $p = 0.0005$), but yields an unestablished downstream delta ($-311{,}957 \pm 1{,}085{,}873\text{ kW}\cdot\text{h}$, $p = 0.556$, CI crosses zero). Under matched reserve budget ($\Delta R \equiv 0$), posterior yields $+5{,}234\text{ kW}\cdot\text{h}$ higher uncovered shortage ($p = 0.80$, 4/5 seeds worse across the entire common support).
-- **Adversarial Verdict:** **SURVIVES WITH STRICT SEPARATION.** The manuscript dedicates Section IV-E and Section IV-D to establishing the non-equivalence between state recoverability and decision sufficiency, preventing false inferences from representation quality to decision value.
-
-### Attack D: Slice-Selection Attack
-- **Adversarial Hypothesis:** Positive claims for posterior conditioning depend on cherry-picking transition windows while concealing adverse plant-wide or steady-state performance.
-- **Evidence Inspected:**
-  - `artifacts/strong_baseline_closure_summary.csv`
-  - `artifacts/strong_baseline_bootstrap_contrasts.csv`
-  - `paper_tste_ieee.md` Section IV-D
-- **Findings:** Full-population ($100\%$), steady-state ($63.7\%$), and transition-window ($36.3\%$) metrics are reported side-by-side. The $+523\text{k kW}\cdot\text{h}$ full penalty and $+410\text{k kW}\cdot\text{h}$ steady penalty are prominently featured. In transitions, violation drops from $8.36\%$ to $7.24\%$ and shortage from $90.2\text{k}$ to $86.6\text{k kW}\cdot\text{h}$, but reserve increases by $+149\text{k kW}\cdot\text{h}$ and PSREI increases by $+112\text{k kW}\cdot\text{h}$. The interaction contrast ($-296{,}053\text{ kW}\cdot\text{h}$, $p = 0.002$) establishes heterogeneity of the relative cost gap, not a positive cost advantage.
-- **Adversarial Verdict:** **SURVIVES WITH HONEST SLICE PRESENTATION.** No selective slice concealment occurs.
-
-### Attack E: Privileged-Supervision Attack
-- **Adversarial Hypothesis:** The model uses privileged pitch supervision during training, masking an unaddressed modality shift where claims might imply applicability where pitch was never logged.
-- **Evidence Inspected:**
-  - `docs/PRIVILEGED_SUPERVISION_ABLATION.md`
-  - `paper_tste_ieee.md` Abstract, Section IV-D, Limitations
-- **Findings:** Historical pitch registers ($\beta$) are present during training ($x_{\text{hist}}$ channels 7--8) and used for offline alignment supervision, but are strictly zero-masked and withheld during validation and deployment. Explicit disclosures are present in the Abstract, Section IV-D, and Limitations. Pitch-never-recorded settings are formally classified as untested.
-- **Adversarial Verdict:** **SURVIVES WITH COMPLETE MODALITY DISCLOSURE.**
-
-### Attack F: Architecture-Necessity Attack
-- **Adversarial Hypothesis:** The claimed benefits require dynamic MoE routing, continuous wake diffusion graphs, or end-to-end neural decision learning.
-- **Evidence Inspected:**
-  - `artifacts/single_task_dense_vs_multitask_moe_ablation.csv`
-  - `paper_tste_ieee.md` Section IV-F, Table II
-- **Findings:** STGQ-Dense vs. STGQ-Routed exhibits statistical parity ($p = 0.380$). STGQ-Modular matches tail reliability ($9.7\%$ violation). Training uses validation RMSE checkpointing with no quantile/pinball decision loss in the representation trunk.
-- **Adversarial Verdict:** **SURVIVES BY FALSIFYING ROUTING.** MoE routing is explicitly reported as providing no statistical advantage over unrouted baselines.
-
-### Attack G: External-Validity Attack
-- **Adversarial Hypothesis:** Multi-farm evaluations are claimed as universal proof of cross-site generalization, masking negative transfer, lack of matched controls, and directional asymmetry.
-- **Evidence Inspected:**
-  - `docs/CROSS_SITE_DEPLOYMENT_DIAGNOSTIC.md`
-  - `artifacts/deployment_diagnostic/site_descriptors.csv`
-  - `artifacts/deployment_diagnostic/site_decision_outcomes.csv`
-  - `paper_tste_ieee.md` Section IV-G, Limitations
-- **Findings:** The 4-site diagnostic strictly avoids $N=4$ regressions, hierarchical models, or turbine-level pseudo-replication. Evaluation descriptors are computed strictly on historical training/validation splits. Transfer is reported honestly as heterogeneous: Penmanshiel positive vs. unconditioned global ($p < 0.05$); Kelmarsh neutral ($p > 0.10$); LHB negative transfer / overfitting boundary ($+43\text{k kW}\cdot\text{h}$ annual penalty). Directional transfer asymmetry is explicitly highlighted (Kelmarsh $\to$ Penmanshiel NMI $0.770$ vs. Penmanshiel $\to$ Kelmarsh NMI $0.341$).
-- **Adversarial Verdict:** **SURVIVES WITH NON-INFERENTIAL BOUNDING.** The 4 external sites are strictly treated as descriptive, hypothesis-generating boundary probes.
-
-### Attack H: Synthetic-Stress Attack
-- **Adversarial Hypothesis:** Synthetic 60-minute latency and Gilbert-Elliott dropouts are mischaracterized as empirical field frequencies of commercial SCADA networks.
-- **Evidence Inspected:**
-  - `paper_tste_ieee.md` Section IV-B, Section V, Limitations
-  - `docs/TSTE_OPERATIONAL_RELEVANCE_PREREGISTRATION.md`
-- **Findings:** Latencies of 10--30 minutes are labeled as plausible operational delays, while 60-minute latency (Delay-6) is explicitly designated as an asymptotic reliability breakdown stress endpoint rather than an industrial prevalence claim.
-- **Adversarial Verdict:** **SURVIVES AS REGISTERED STRESS ENVELOPE.**
+| Claim | Contract status | Strongest falsifier | Evidence inspected | Result | Allowed wording |
+|---|---|---|---|---|---|
+| Commercial SCADA commonly exhibits 10--60 minute latency and aggregator firewalls frequently suppress pitch | UNKNOWN / NOT ESTABLISHED | Available repository evidence motivates communication risk and reporting asynchrony but does not establish the field prevalence of the simulated delays or frequent pitch-register suppression | `paper_tste_ieee.md:81,263`; `paper_tste_supplementary.md:1695-1697`; `docs/TSTE_PEER_REVIEW_ATTACK_SIMULATION.md:44`; `docs/REVERSE_AUDIT_LITERATURE_MATRIX_20261012.csv` | **FAIL as written** | “Synthetic communication-stress scenarios and potential pitch-register unavailability motivate the evaluation.” |
+| Fresh telemetry: deterministic physical rule is strongest | VERIFIED, bounded | The comparison is restricted to the WTB boundary band: 13,883 turbine-time cells, approximately 2.4% of the test split | `paper_tste_ieee.md:285-370`; `docs/SCIENTIFIC_CONTRACT.md:101-105`; `docs/METRIC_SCOPE_REGISTRY.md` | **SURVIVES within scope** | “Within the evaluated WTB boundary band and frozen protocol, the physical rule achieved the lowest evaluated PSREI.” |
+| Under 10--30 minute delays, recalibration absorbs 55.3% of shortage loss | VERIFIED evidence, but REFUTED AS WRITTEN | The 127.6 to 57.0 MWh and 55.3% result comes from the 60-minute Delay-6 stress endpoint, not the 10--30 minute range | `paper_tste_ieee.md:68,97,377-409`; `artifacts/ARTIFACT_MANIFEST.json:69-71` | **FAIL** | “At the 60-minute synthetic Delay-6 endpoint, matched recalibration absorbs 55.3% of the observed shortage loss.” |
+| Pitch-withheld consequence signals recover the boundary | VERIFIED, bounded | Active-power-only is sufficient; active power plus wake is essentially unchanged; the full consequence suite is not better. The evidence is in the privileged-training setting | `docs/SCIENTIFIC_CONTRACT.md:43-55`; `artifacts/channel_consequence_ablations.csv`; `docs/ACTIVE_POWER_IDENTIFIABILITY_AUDIT.md:21-49` | **SURVIVES after mechanism reduction** | “A contemporaneous active-power consequence signature retains substantial boundary information when deployment-time pitch is withheld after historically pitch-informed training.” |
+| Complex spatio-temporal structure is necessary for recoverability | NOT SUPPORTED | C2 active-power-only explains the result; C9 active power plus wake adds negligible NMI/ARI; thermal/wake-only channels fail to establish necessity | `docs/SCIENTIFIC_CONTRACT.md:49-55,106`; `artifacts/channel_consequence_ablations.csv` | **REFUTED** | Delete the necessity claim; describe active-power direct readout as the minimum surviving explanation. |
+| The learned representation reduces PSREI relative to condition-matched recalibrated physics | PARTIALLY SUPPORTED | The comparator is weaker than the strongest same-information wind-speed-conditioned quantile; improvement over recalibrated physics does not establish incremental decision value | `paper_tste_ieee.md:414-424`; `docs/SCIENTIFIC_CONTRACT.md:57-82,127-140` | **SURVIVES only as comparator-specific observation** | “Relative to condition-matched recalibrated physics, the representation lowers the evaluated surrogate; it does not beat the strongest matched wind-speed baseline.” |
+| The boundary posterior is calibrated | PARTIALLY SUPPORTED | Bulk ECE is below 3.46%, but extreme-bin MCE reaches approximately 0.75--0.85 | `docs/POSTERIOR_CALIBRATION_AUDIT.md:12-24,28-41,56-59`; `paper_tste_ieee.md:424` | **SURVIVES with mandatory qualification** | “Bulk-calibrated boundary score/posterior with substantial extreme-bin dispersion.” |
+| Posterior conditioning improves plant-wide decision value | REFUTED | Wind-speed bins achieve lower plant-wide PSREI; posterior penalty is +523,044 kWh | `docs/SCIENTIFIC_CONTRACT.md:61-82,107`; `artifacts/strong_baseline_closure_summary.csv`; `paper_tste_ieee.md:424` | **REFUTED** | Preserve the negative result explicitly. |
+| Posterior conditioning is cheaper near transitions | NOT ESTABLISHED / REFUTED for cost | Transition violation and shortage are lower only with more reserve; PSREI is +112,704 kWh higher, and the transition slice is defined post hoc with future true regimes | `docs/SCIENTIFIC_CONTRACT.md:71-80,108`; `scripts/test_strong_baseline_closure.py:121-139`; `scripts/run_decision_mediation_test.py:130-146` | **FAIL as deployable cost claim** | “In a post-hoc oracle transition slice, posterior conditioning changes the risk shape at higher reserve and PSREI cost.” |
+| Matched-budget posterior allocation is more efficient | REFUTED | At identical reserve budgets, posterior produces about +5.24k kWh higher uncovered shortage on average; 4/5 seeds are worse across common support | `docs/MATCHED_BUDGET_FINAL_AUDIT.md:20-30`; `artifacts/matched_budget/exact_matched_budget_frontier.csv`; `paper_tste_ieee.md:428-443` | **REFUTED** | “No matched-budget allocation advantage was established.” |
+| MoE routing is a key mechanism | NOT SUPPORTED | Dense/routed parity; current manuscript reports p=0.380 | `docs/SCIENTIFIC_CONTRACT.md:111`; `paper_tste_ieee.md:341-367,447-473` | **REFUTED** | “Routing complexity is not the operative source of value under the evaluated protocol.” |
+| Penmanshiel demonstrates external STGQ decision gain | SUPERSEDED for the strong comparator | Corrected EXP-01 v2 uses an independent site-specific frozen point forecast and finds transferred STGQ +5.322M kWh worse than Site-Local Wspd-Bins at h=6; all five seed-specific differences are positive | `docs/EXPERIMENT_AUDIT.md:8-32,50-75`; `artifacts/external_matched_control_benchmark.csv`; `docs/EXPERIMENT_REGISTRY.md:341-360`; `paper_tste_ieee.md:451-456` | **FAIL in current manuscript** | “The earlier advantage was relative to a weak global quantile. Against local wind-speed bins, transferred STGQ is worse on Penmanshiel and not significantly better on Kelmarsh.” |
+| External heterogeneity is caused by wake/spatial redundancy or turbine count | UNKNOWN | Only two corrected matched external farms are evaluated; No-Graph has 4,865 parameters versus 110,012 for STGQ and is not capacity/optimization matched | `docs/NO_GRAPH_CONTROL_AUDIT.md:21-58`; `docs/EXPERIMENT_AUDIT.md:33-48`; `paper_tste_ieee.md:475,487` | **NOT ESTABLISHED** | “External effects are heterogeneous; the moderators remain unresolved, and turbine count alone is insufficient.” |
+| Zero-privileged learning protocol deficit is established | INVALID CURRENT VERDICT | `p_val_delta_psrei` is defined as empirical `P(delta <= 0)`, but the automatic winner rule requires favorable `delta < 0` with `p < .05`; `"Privileged" in model_name` also classifies every Zero-Privileged challenger as an oracle. The h=6 mean is dominated by one catastrophic seed | `scripts/run_exp02_zero_privileged_supervision.py:303-312,717-729,773-792`; `artifacts/zero_privileged_supervision_benchmark.csv`; `docs/ZERO_PRIVILEGED_SUPERVISION_REPORT.md:24-39` | **FAIL** | “The tested zero-privileged implementation shows no consistent stable advantage and severe seed instability; a formal deficit verdict is pending corrected inference.” |
+| EXP-03 proves complex representations provide no hedge against asynchronous latency | INVALID | The runner does not delay `Patv_hist`, uses all-zero proxy labels because standardized inputs are compared with physical thresholds, evaluates a population collapsing to 2.47% at tau=6, averages seed-level CI endpoints, and archives only a partial tau=0 trace plus a synthetic mask sample | `scripts/run_exp03_async_benchmark.py:132-177,310,335-371,402-445,474-493,511-523`; `artifacts/cache_strictmask_trainweights/wtb_245d/metadata.json`; `artifacts/exp03_async/psrei_vs_delay.csv`; `artifacts/exp03_async/missing_mask.json` | **FAIL / INVALID EXPERIMENT** | No scientific conclusion is allowed from the current EXP-03 result. |
+| The minimum-sufficient hierarchy is a universal deployment law | PARTIALLY SUPPORTED / CONDITIONAL | WTB evidence supports a conditional map; external, zero-privileged, asynchronous, and ex-ante transition deployment remain unresolved or invalid | `docs/SCIENTIFIC_CONTRACT.md:84-95`; `paper_tste_ieee.md:463-491`; `docs/REVERSE_SCIENTIFIC_AUDIT_20261012.md` | **FAIL as universal claim** | “A conditional deployment map within the evaluated sites, populations, and observability protocols.” |
 
 ---
 
-## 3. Claim-by-Claim Audit Table
+## 3. Mandatory Adversarial Attacks
 
-| Claim | Contract Status | Strongest Falsifier | Evidence Inspected | Result | Allowed Wording in Manuscript |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **1. Fresh Telemetry:** Deterministic physical rule achieves lowest boundary surrogate cost. | **VERIFIED** | Deep STGNNs with full spatial wake modeling beat physical curves. | `artifacts/single_task_dense_vs_multitask_moe_ablation.csv`, Table I & III | Continuous Physical Quantile achieves lowest cost ($589.5\text{k}$ at $h=1$, $881.4\text{k kW}\cdot\text{h}$ at $h=6$, $\sim 6.8\%$ violation), beating neural nets by $8.1\%\text{--}11.1\%$ ($-77.7\text{k kW}\cdot\text{h}$, 95% CI strictly $<0$). | Allowed strictly within the evaluated boundary band ($|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}$) under fresh telemetry ($\tau=0$). |
-| **2. Observable Latency:** Non-neural state-conditional recalibration absorbs shortage loss. | **VERIFIED** | Complex neural representation learning is required to handle latency drift. | Table III, `artifacts/single_task_dense_vs_multitask_moe_ablation.csv` | Under 60-min latency with observable channels, recalibration absorbs $55.3\%$ of shortage ($127.6 \to 57.0\text{ MWh}$), restoring violation to $9.46\%$ without updating network weights. | Allowed as an information-preserving non-neural statistical correction under full channel observability. |
-| **3. Pitch Withheld:** Consequence signals retain boundary information. | **VERIFIED, bounded** | Unobservable pitch eliminates all boundary recoverability; signals have zero mutual information. | `artifacts/channel_consequence_ablations.csv`, `docs/CONSEQUENCE_SIGNAL_MECHANISM.md` | Active-power consequence (C2) recovers Brier $= 0.0112$, NMI $= 0.461$, ARI $= 0.647$, transition recall $= 62.9\%$. | Allowed with explicit note that active power signature dominates and setting relies on privileged training history. |
-| **4. Active Power Dominance:** Active power is the primary mediator of recoverability. | **VERIFIED** | Dynamic wake diffusion or thermal inertia is necessary for recovery. | `artifacts/channel_consequence_ablations.csv`, `artifacts/active_power_anchor_audit.csv` | C2 alone achieves NMI $= 0.461$; C9 (wake) adds $+0.002$; C4 (thermal) has NMI $= 0.000$; contemporaneous power has AUROC $= 0.988$. | Allowed. Complex spatio-temporal structure must not be claimed as necessary for boundary recovery. |
-| **5. Plant-wide PSREI Superiority:** Posterior conditioning beats wind-speed bins plant-wide. | **REFUTED by current closure** | Strong matched direct quantile baseline (Policy B, wind-speed bins) across $\rho \in [2, 100]$. | `artifacts/strong_baseline_closure_summary.csv`, `docs/TSTE_OPERATIONAL_RELEVANCE_AUDIT.md` | Posterior incurs $+523{,}044\text{ kW}\cdot\text{h}$ penalty plant-wide ($p = 0.85$) at $\rho=10$, and penalties of $+20.8\text{k}$ to $+2.43\text{M kW}\cdot\text{h}$ across all $\rho \ge 2.0$. | **FORBIDDEN TO CLAIM.** Manuscript correctly reports this refutation. |
-| **6. Dynamic $\rho$ Robustness:** Reoptimized baselines eliminate algebraic crossover. | **VERIFIED** | Posterior achieves lower cost at high penalties ($\rho > 40.88$). | `docs/TSTE_OPERATIONAL_RELEVANCE_AUDIT.md`, `reoptimized_rho_sensitivity.csv` | Under dynamic reoptimization ($q^*(\rho) = 1 - 1/\rho$), baseline dominance holds in transition windows across all $\rho \ge 5.0$, widening to $+998.2\text{k kW}\cdot\text{h}$ penalty at $\rho=100$. | Allowed. Crossover at $\rho=40.88$ must be characterized as an artifact of frozen baseline sizing. |
-| **7. Matched-Budget Performance:** Posterior reduces shortage energy under matched reserve budget. | **REFUTED** | Fixed reserve budget comparison ($\Delta R \equiv 0$). | `artifacts/matched_budget/`, `docs/TSTE_OPERATIONAL_RELEVANCE_PREREGISTRATION.md` | Under $\Delta R \equiv 0$, posterior yields $+5,234\text{ kW}\cdot\text{h}$ higher shortage ($p=0.80$, 4/5 seeds worse across common support). | Allowed strictly as a negative result: lower violation frequency is offset by deeper residual shortfalls. |
-| **8. Transition-Localized Risk Hedging:** Posterior alters risk trade-off in transitions. | **PARTIALLY SUPPORTED** | Interaction contrast crosses zero; transition savings are mere loss concentration. | `artifacts/strong_baseline_bootstrap_contrasts.csv` | Mean interaction contrast is $-296{,}053\text{ kW}\cdot\text{h}$ ($p = 0.002$). In transitions, violation drops ($8.36\% \to 7.24\%$) and shortage drops ($90.2\text{k} \to 86.6\text{k kW}\cdot\text{h}$), but reserve rises ($+149\text{k kW}\cdot\text{h}$) and PSREI rises ($+112\text{k kW}\cdot\text{h}$). | Allowed strictly as localized risk hedging at higher procurement cost, not cost optimality. |
-| **9. Level-1 Reserve Screening Scope:** PSREI is sufficient without Level-2 AC-OPF dispatch. | **VERIFIED as scope boundary** | Reviewer demanding full transmission grid AC-OPF simulation. | `docs/WHY_LEVEL1_SCOPE_IS_SUFFICIENT.md`, Elexon BMRS empirical pricing | 5-point dispatch gate failed 3/5 criteria. Level-1 isolates native physical SCADA shortfall without ungrounded line congestion assumptions; verified across 157,804 UK balancing market periods. | Allowed strictly as Level-1 pre-dispatch screening; Level-2 AC-OPF is intentionally excluded and declared out of scope. |
-| **10. 4-Site Heterogeneity Diagnostic:** Cross-farm differences can be diagnosed non-causally. | **VERIFIED as descriptive diagnostic** | Inferential $N=4$ regressions or pseudo-replication across turbines. | `docs/CROSS_SITE_DEPLOYMENT_DIAGNOSTIC.md`, `site_descriptors.csv`, `site_decision_outcomes.csv` | Matrix of 4 sites evaluated on train/val data without deployment leakage. Consistent with spatial coupling and consequence redundancy; zero causal claims. | Allowed strictly as descriptive, hypothesis-generating boundary probes. No $N=4$ regression or pseudo-replication permitted. |
-| **11. PCC Portfolio Aggregation:** Joint aggregation preserves policy ordering. | **VERIFIED** | Spatial cancellation rescues posterior conditioning at substation bus. | `artifacts/farm_aggregate_reserve_20260905/`, `docs/TSTE_OPERATIONAL_RELEVANCE_AUDIT.md` | Joint aggregation over 134 turbines confers no statistically significant cost benefit over empirical PCC baselines ($\Delta \text{mean} = +99.6\text{k kW}\cdot\text{h}$, 95% CI $[-306\text{k}, +505\text{k}]$, $p=1.0$). | Allowed as evidence that spatial portfolio smoothing does not rescue posterior conditioning. |
-| **12. MoE Routing Necessity:** Dynamic MoE routing is mechanistically necessary. | **NOT SUPPORTED (Falsified)** | Capacity-matched dense baseline and decoupled modular baseline. | `artifacts/single_task_dense_vs_multitask_moe_ablation.csv`, Table II | MoE vs. Dense: ratio $1.045$, $p = 0.380$; Dense beats MoE in 3 of 5 seeds; Modular matches tail reliability ($9.7\%$ violation). | Allowed strictly as a negative result: dynamic MoE routing provides no statistical advantage. |
-| **13. Pitch-Never-Recorded Setting:** System works where pitch was never logged. | **UNKNOWN** | Historical training buffer composition. | `docs/PRIVILEGED_SUPERVISION_ABLATION.md` | Models were trained with historical pitch registers present in training sets. | Allowed strictly as an untested/unknown limitation. |
+### A. Active-Power Direct-Readout Attack — **CLAIM REDUCED**
+
+The strongest simpler explanation survives: contemporaneous active power is a direct electromechanical readout of pitch-regulated operation. Active-power-only produces Brier 0.0112, NMI 0.461, ARI 0.647, and transition recall 62.9%; adding wake context changes NMI only from 0.461 to 0.463. The paper may claim recoverable active-power signature, not discovery of a complex hidden spatio-temporal mechanism.
+
+### B. Matched-Direct-Quantile Attack — **COMPLEX DECISION VALUE FAILS**
+
+The strong wind-speed-conditioned direct quantile beats posterior conditioning plant-wide and in steady operation. Corrected external EXP-01 v2 also removes the Penmanshiel decision-gain story once a local wind-speed baseline and independent frozen point forecast are used. Any statement based only on global quantiles fails the contract's strong-baseline rule.
+
+### C. Decision-Sufficiency Attack — **FAILED BY THE POSTERIOR**
+
+NMI, ARI, Brier, AUROC, and recall do not translate to lower PSREI. Posterior conditioning lowers some transition violation and shortage measures by procuring more reserve, while plant-wide PSREI, transition PSREI, steady PSREI, and matched-budget shortage are worse. The evidence supports recoverability without decision sufficiency.
+
+### D. Slice-Selection Attack — **LOCALIZED AND POST-HOC**
+
+The fresh-physics result is restricted to a boundary band. The transition result is restricted to a slice constructed using true regime changes and symmetric dilation into future and past steps. These findings may remain diagnostic, but neither supports a plant-wide or ex-ante deployable transition policy.
+
+### E. Privileged-Supervision Attack — **UNRESOLVED FOR PITCH-NEVER-RECORDED SETTINGS**
+
+The defensible recoverability result uses historical pitch/regime information during training and withholds pitch only at deployment. EXP-02 was intended to close the pitch-never-recorded setting, but its verdict logic and aggregation are invalid. The pitch-never-recorded claim remains UNKNOWN.
+
+### F. Architecture-Necessity Attack — **FAILED**
+
+MoE routing is unnecessary, active power alone explains the recoverability signal, and the external No-Graph control is not capacity matched. Current evidence cannot establish graph, wake, MoE, or multiple consequence channels as necessary mechanisms.
+
+### G. External-Validity Attack — **FAILED FOR UNIVERSAL GENERALIZATION**
+
+Corrected EXP-01 v2 shows heterogeneous and generally unfavorable transfer against local wind-speed bins. Penmanshiel shows a robust transferred-model penalty; Kelmarsh is mixed across seeds. The tested sites remain boundary probes, not independent proof of universal transfer or graph value.
+
+### H. Synthetic-Stress Attack — **MAIN MANUSCRIPT REQUIRES CORRECTION; EXP-03 INVALID**
+
+The original fixed-delay experiments can be described only as synthetic stress tests. The manuscript incorrectly attaches a 60-minute result to the 10--30 minute range. EXP-03 cannot repair realism because its same-information, proxy-label, population, and provenance conditions fail.
 
 ---
 
 ## 4. Simplest Surviving Explanation
 
-The simplest sufficient scientific explanation accounting for all experimental artifacts across the operational relevance and cross-site diagnostic passes is:
+The simplest explanation consistent with all currently valid evidence is:
 
-1. **Aerodynamic Saturation Ceiling:** Wind turbine power extraction is an electromechanical process characterized by a cubic trajectory below rated wind speed and a hard saturation clamp ($P_{\text{rated}}$) above rated wind speed. Under fresh observable SCADA telemetry, evaluating the deterministic physical power curve directly enforces this physical boundary, achieving the lowest surrogate reserve screening cost and minimal variance without parameter estimation.
-2. **Telemetry Staleness as Observable Distribution Drift:** When telemetry encounters communication delays but channels remain present, staleness acts as an observable distribution shift. Updating reserve offsets via non-neural state-conditional recalibration absorbs $55.3\%$ of delay-induced shortfall loss without modifying neural weights.
-3. **Electromechanical Lock-in as Boundary Signature:** When blade-pitch telemetry is withheld across aggregator boundaries, a turbine in Region 3 is electromechanically clamped at rated active power. Consequently, contemporaneous active power ($P_{\text{atv}, t}$) provides a direct readout of the pitch boundary ($\text{AUROC} = 0.988$), while dynamical trajectory history tracks transitions ($40.3\%\text{--}58.8\%$). Thermal channels, yaw angles, and wake context contribute negligible incremental high-frequency boundary information.
-4. **Observable Wind-Speed Quantiles as Minimum Sufficient Decision Policy:** In asymmetric reserve allocation, conditional residual variance across the farm is predominantly driven by inflow wind speed. Direct empirical quantiles conditioned on observable wind speed capture this variance structure directly, achieving lowest cost plant-wide ($13.78\text{M kW}\cdot\text{h}$) and in steady-state ($9.46\text{M kW}\cdot\text{h}$) across all penalty ratios $\rho \ge 2.0$.
-5. **Posterior Conditioning as Localized Tail-Risk Hedging:** Latent boundary recoverability does not imply downstream reserve decision superiority. Near transitions, posterior conditioning increases reserve procurement by $+149\text{k kW}\cdot\text{h}$, contracting violation rates from $8.36\%$ to $7.24\%$ and shortages from $90.2\text{k}$ to $86.6\text{k kW}\cdot\text{h}$ at the cost of $+112\text{k kW}\cdot\text{h}$ higher PSREI. Under matched reserve budgets ($\Delta R \equiv 0$), posterior conditioning yields $+5,234\text{ kW}\cdot\text{h}$ higher shortage energy, proving that lower violation frequency is offset by deeper residual shortfalls. Under dynamic Newsvendor reoptimization, observable baselines scale tail quantiles more efficiently without inflating unnecessary reserve volume, maintaining lower cost across all $\rho \ge 5.0$.
-6. **Cross-Site Heterogeneity as Topological Redundancy:** Commercial wind farms exhibit heterogeneous transferability driven by physical scale, turbine spacing, and terrain-induced wake coupling. Spatio-temporal representations yield neutral outcomes in open flat terrain with weak wake interaction (Kelmarsh) and catastrophic negative transfer on micro-farms ($N=4$, LHB). Directional transfer asymmetry reflects topological wake complexity.
+1. When wind and pitch/state telemetry are fresh, deterministic aerodynamic rules are sufficient within the evaluated WTB boundary band.
+2. When state remains observable but the error distribution shifts, validation-based non-neural recalibration absorbs part of the drift.
+3. When deployment-time pitch is withheld after historically pitch-informed training, contemporaneous active power retains a strong, largely direct signature of pitch-regulated operation.
+4. That signature can organize a latent-state representation, but it is not needed for plant-wide reserve sizing because local wind-speed-conditioned residual quantiles are already sufficient and cheaper.
+5. Apparent transition benefits are changes in violation/shortage geometry purchased with additional reserve, not cost or matched-budget allocation superiority.
+6. MoE routing, wake graphs, extra channels, and zero-shot cross-site transfer are not established as necessary. The asynchronous and zero-privileged closures remain scientifically unresolved because the current implementations and inference procedures are invalid.
 
----
-
-## 5. Claims Weakened, Deleted, or Preserved
-
-1. **Plant-wide cost dominance deleted and preserved as negative result:** Confirmed. The manuscript explicitly states that strong wind-speed-conditioned quantiles remain lower-cost plant-wide ($\Delta L = +523{,}044\text{ kW}\cdot\text{h}$, $p = 0.85$).
-2. **Frozen-policy crossover falsified and updated:** The earlier algebraic crossover at $\rho=40.88$ has been unmasked as an artifact of frozen baseline sizing; dynamic reoptimization across $\rho \in [2, 100]$ confirms that baseline dominance is parameter-invariant across all $\rho \ge 5.0$.
-3. **MoE routing superiority deleted:** Dynamic routing provides no advantage over unrouted dense or modular architectures ($p = 0.380$).
-4. **Level-2 AC-OPF dispatch claims blocked and defended at Level-1:** Level-2 AC-OPF claims were deliberately prevented by the preregistered 5-point dispatch gate stop rule. The scope is strictly bounded to Level-1 plant boundary reserve-risk screening.
-5. **Universal cross-site generalization deleted:** Replaced with a descriptive 4-site diagnostic without $N=4$ regressions or pseudo-replication.
+This explanation preserves the project's core scientific value while removing unsupported architecture and deployment claims.
 
 ---
 
-## 6. Decisive Experiments That Settle the Scientific Questions
+## 5. Claims That Must Be Weakened or Deleted
 
-1. **EXP-Q1-001 (Active-Power Minimal Recoverability):** `artifacts/channel_consequence_ablations.csv` establishes Condition C2 as the dominant mediator of state recoverability.
-2. **EXP-Q1-002 (Wake Incremental Necessity):** Comparison of C9 vs. C2 establishes wake context adds negligible incremental recoverability ($\text{NMI } 0.463 \text{ vs. } 0.461$).
-3. **EXP-Q2-001 (Strong Matched-Baseline Closure):** `artifacts/strong_baseline_closure_summary.csv` falsifies plant-wide posterior cost superiority over wind-speed bins ($+523{,}044\text{ kW}\cdot\text{h}$, $p = 0.85$).
-4. **EXP-Q2-002 (Transition-vs-Steady Heterogeneity Contrast):** `artifacts/strong_baseline_bootstrap_contrasts.csv` confirms significant interaction contrast ($\text{mean } -296{,}053\text{ kW}\cdot\text{h}$, $p = 0.002$).
-5. **EXP-Q2-004 (Matched-Budget Reserve Frontier):** `artifacts/matched_budget/` confirms that at $\Delta R \equiv 0$, posterior conditioning incurs $+5{,}234\text{ kW}\cdot\text{h}$ higher shortage energy ($p = 0.80$).
-6. **EXP-Q2-005 (Dynamic $\rho$-Reoptimization Sensitivity):** `docs/TSTE_OPERATIONAL_RELEVANCE_AUDIT.md` confirms baseline dominance is invariant across $\rho \in [5, 100]$.
-7. **EXP-Q3-001 (Minimum-Sufficient Observability Scan):** Table III establishes the 3-tier hierarchy: fresh physics ($589.5\text{k}$), recalibrated physics ($1{,}228.6\text{k}$, $55.3\%$ shortage absorption), and consequence recovery under pitch withholding ($755.8\text{k kW}\cdot\text{h}$).
-8. **EXP-Q3-002 (Descriptive 4-Site Diagnostic):** `artifacts/deployment_diagnostic/site_descriptors.csv` and `site_decision_outcomes.csv` map cross-site heterogeneity without pseudo-replication.
+### Delete until new valid evidence exists
 
----
+1. Any claim that EXP-03 establishes a latency crossover `tau*` or proves that complex representations provide no latency hedge.
+2. “Zero-privileged learning protocol deficit established” as a formal inferential verdict.
+3. Any implication that graph structure, wake context, MoE routing, or the full consequence suite is necessary for boundary recovery.
+4. Any claim that external farms establish universal transfer, causal wake value, or a turbine-count rule.
+5. Any deployable transition-policy claim based on the post-hoc oracle transition slice.
 
-## 7. UNKNOWN and BLOCKED Items Ledger
+### Correct before submission
 
-1. **Pitch-Never-Recorded Training Boundary (EXP-Q1-003):**  
-   - *Status:* **PROPOSED / NOT RUN / UNKNOWN.**  
-   - *Scope:* Boundary recovery when blade pitch has never been recorded in historical data remains untested.
-2. **External-Site Matched Direct-Quantile Closure (EXP-Q2-003):**  
-   - *Status:* **PROPOSED / BLOCKED.**  
-   - *Scope:* External wind farm benchmarks evaluate against unconditioned global quantiles without site-local wind-speed-binned controls and matched no-graph ablations.
-3. **Field Distribution of Commercial SCADA Latency:**  
-   - *Status:* **UNKNOWN.**  
-   - *Scope:* Empirical field distributions of packet queuing and clock drift in live utilities remain uncharacterized; 60-min latency remains a synthetic stress endpoint.
-4. **Bulk Transmission Grid AC-OPF and Wholesale Balancing Settlements (Level 2):**  
-   - *Status:* **OUT OF SCOPE / BLOCKED BY GATE.**  
-   - *Scope:* Multi-generator transmission congestion and nodal balancing settlements are abstracted by the Level-1 PSREI screening framework.
+1. Replace the manuscript's “10--30 minute, 55.3%” wording with the correct 60-minute synthetic Delay-6 condition.
+2. Replace the Penmanshiel global-quantile benefit narrative with corrected EXP-01 v2 against Site-Local Wspd-Bins.
+3. State that 13,883 observations are turbine-time cells and that the physical-rule result is boundary-band-specific.
+4. Qualify posterior calibration with the extreme-bin MCE limitation.
+5. State explicitly that historical pitch was used for the surviving recoverability result and that the pitch-never-recorded setting remains UNKNOWN.
+6. Rename bootstrap support probabilities or provide a statistically valid joint seed/day inference; do not report averaged seed-level probabilities as conventional p-values.
+
+### Preserve as negative results
+
+1. No plant-wide posterior PSREI superiority over wind-speed bins.
+2. No matched-budget allocation advantage.
+3. No demonstrated MoE routing necessity.
+4. Corrected Penmanshiel transferred-model failure against the local baseline.
 
 ---
 
-## 8. Final Audit Certification
+## 6. Experiments That Remain Genuinely Decisive
 
-The adversarial scientific falsification audit confirms:
-- All material claims remain strictly within the boundaries established by `docs/SCIENTIFIC_CONTRACT.md`.
-- Negative results are fully preserved, with zero rescue attempts for posterior conditioning or MoE routing.
-- The non-equivalence between state recoverability and decision sufficiency is upheld.
-- The Level-1 reserve screening scope boundary is rigorous and does not make unsupported Level-2 AC-OPF claims.
-- The 4-site diagnostic is strictly descriptive and hypothesis-generating without $N=4$ regressions or pseudo-replication.
-- `scripts/verify_scientific_claim_gate.py` passed unconditionally with exit code 0.
+### E1 — EXP-03-R: Fixed-Population, Full-Field Asynchronous Replay
 
-**Official Audit Verdict:** **PASS**
+- Register a new Experiment ID; do not overwrite EXP-03.
+- Delay every field actually consumed by the models, including `Patv_hist`.
+- Construct proxy labels in physical units or with explicitly transformed thresholds.
+- Save full per-delay, per-channel, per-simulator-seed trace and mask artifacts with hashes.
+- Evaluate a fixed dispatch-anchor population, with missingness-aware inputs rather than silently deleting rows.
+- Report coverage, drop/late fractions, per-cell PSREI, total PSREI, and a joint day × model-seed × simulator-seed uncertainty procedure.
+- **Decisive failure condition:** if the challenger does not beat Site-Local Wspd-Bins under identical information and fixed population, delete the asynchronous representation-value narrative and preserve the negative result.
+
+### E2 — Confirmatory External Graph-vs-Local-Baseline Test
+
+- Register a new Experiment ID and frozen h=6 site-specific estimands.
+- Use independent site-specific point forecasts and the same shortfall target across methods.
+- Compare a site-local graph model against Site-Local Wspd-Bins and a training-data-, parameter-, and optimization-budget-matched no-graph control.
+- Report sites separately, including median seed effect, seed failure rate, calibration, compute, and matched-budget performance.
+- **Decisive failure condition:** if graph models do not stably beat both matched no-graph and local bins, delete graph/wake external decision-value claims.
+
+### E3 — Ex-Ante Transition Decision Test
+
+- Define an online transition alarm using only arrival-time information.
+- Freeze its threshold on validation data; prohibit future true-regime labels in policy selection.
+- Compare alarm-gated posterior sizing against Site-Local Wspd-Bins using the same forecast, shortfall target, population, and reserve budget.
+- Report WTB, Penmanshiel, and Kelmarsh separately.
+- **Decisive failure condition:** if benefit exists only in the oracle transition slice, demote transition localization to a post-hoc mechanism diagnostic.
+
+EXP-02-R is required only if the paper retains a substantive pitch-never-recorded claim. Otherwise the current EXP-02 verdict should be withdrawn and that setting left UNKNOWN.
+
+---
+
+## 7. UNKNOWN / BLOCKED Items
+
+| Item | Status | Reason |
+|---|---|---|
+| Field prevalence of 10--60 minute SCADA delays | UNKNOWN | Current evidence is synthetic or reports asynchronous status events, not a delay distribution |
+| Frequency of aggregator/VPP pitch-register suppression | UNKNOWN | No verified fleet survey or operational register audit in the evidence package |
+| Pitch-never-recorded recoverability and decision value | UNKNOWN | EXP-02 verdict and aggregation are invalid |
+| Asynchronous telemetry decision value and `tau*` | BLOCKED by invalid experiment | `Patv_hist` remains fresh, proxy is degenerate, population collapses, and trace/mask provenance is incomplete |
+| Ex-ante deployable transition policy | UNKNOWN | Current transition slice uses future true regimes |
+| Causal necessity of wake/graph structure | NOT ESTABLISHED | Active power is sufficient; external no-graph comparison is not capacity/training matched |
+| Universal cross-site generalization | NOT ESTABLISHED | Corrected results are heterogeneous and cover too few sites |
+| End-to-end market, AC-OPF, or settlement value | OUT OF SCOPE / BLOCKED | Current Level-1 PSREI cannot establish system-level economic value |
+| Conventional p-values for EXP-01/02/03 aggregate claims | UNKNOWN | Existing reports average seed-specific bootstrap probabilities/CI endpoints |
+| Updated independent verification covering T90--T98 and RA00--RA05 | BLOCKED pending RA06 | Previous falsification/review reports and manifests predate the October experiments |
+
+---
+
+## 8. Submission and Project Decision
+
+### Submission decision: **FAIL / HARD STOP**
+
+The current manuscript and evidence package must not be submitted because at least five material claims fail the scientific contract or rely on invalid evidence:
+
+1. the 55.3% result is assigned to the wrong latency regime;
+2. the manuscript omits corrected EXP-01 v2 while retaining the weaker global-quantile external narrative;
+3. EXP-02's formal verdict is generated by reversed probability logic and role mislabeling;
+4. EXP-03 violates same-information and fixed-population requirements;
+5. the current verification/falsification controls do not cover the October evidence.
+
+### Project decision: **REVISE**
+
+The project remains worth continuing because the negative-result core is coherent and evidence-backed. Revision should reposition the paper as a falsification and minimum-sufficiency study:
+
+> Active-power signatures can make a withheld operating boundary recoverable, but recoverability does not imply decision sufficiency; strong local conditional quantiles frequently make complex architectures unnecessary.
+
+If corrected E1 and E3 fail, delete deployable latent-transition claims and submit only the observability/recoverability/decision-separation study. If E2 also fails, delete graph/wake external-value claims and retain the external failures as negative validation. If the novelty audit cannot distinguish the work from recent regime-aware quantile and graph-quantile papers, stop the architecture-paper route and reframe as a methods audit/negative-results paper.
+
+---
+
+## 9. Formal Falsifier Certification
+
+The strongest simpler explanations were applied against the same-information, frozen-target, strong-baseline, slice-separation, privileged-supervision, architecture-necessity, external-validity, and synthetic-stress requirements. Material violations remain. Negative and null results were preserved; no contract gate was weakened to admit a favorable result.
+
+**FINAL SCIENTIFIC FALSIFIER VERDICT: FAIL FOR CURRENT SUBMISSION; REVISE THE PROJECT.**

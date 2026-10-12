@@ -1171,4 +1171,57 @@ Artifact external-matched-control-benchmark v2 verification: status=ok
 VERDICT: Original v1 null result superseded. Corrected v2 shows a significant Penmanshiel cost penalty and a non-significant positive Kelmarsh delta; universal graph-redundancy claims remain unsupported.
 ```
 
+## RA00 — 2026-10-12
+Task-ID: RA00
+Status: VERIFIED
+Summary: Reverse-audit scope frozen after reading the authoritative scientific contract, experiment registry, run/task/evidence ledgers, git branch status, repository inventory, and current verification controls. The audit is restricted to read-only inspection of formal scientific results and will treat corrected/current artifacts as authoritative over historical summaries.
+Source: `docs/SCIENTIFIC_CONTRACT.md`, `docs/EXPERIMENT_REGISTRY.md`, `.agent_state/RUN_STATE.json`, `.agent_state/TASK_LEDGER.md`, `.agent_state/EVIDENCE_LEDGER.md`, `.agents/scripts/verify_gate.py`, `git status --short --branch`, `git log -5 --oneline`
+Additional-Evidence: Current branch is `revision_topjournal_reconstruction`, 12 commits ahead of origin, with EXP-01 corrected v2 (`5ab39ae3`), EXP-02 (`2e06c5c5`), and EXP-03 (`a7363c13`) newer than the manuscript audit commit (`9581a131`). `.agent_state/REVIEW_REPORT.md` covers only T72–T78; `.agent_state/FALSIFICATION_REPORT.md` is dated 2026-09-26; `.agents/verification_manifest.json` and `artifacts/ARTIFACT_MANIFEST.json` do not include the new experiments.
+Epistemic-Status: VERIFIED for audit scope and repository state; substantive scientific verdict remains pending RA01–RA05.
+
+## RA01 — 2026-10-12
+Task-ID: RA01
+Status: VERIFIED
+Summary: Rebuilt a 15-source literature matrix from publisher/DOI/authoritative records and actively searched innovation-negating work. Identified direct 2026 threats to broad state-recovery, graph-quantile, and regime-reserve novelty. Audited the legacy matrix and found at least 15 DOI-title mismatches; 40 of 51 `literature/top_journal_papers/*.pdf` files are one-page repository-generated Literature Benchmark Briefs rather than article originals.
+Source: `docs/REVERSE_AUDIT_LITERATURE_MATRIX_20261012.csv`, `literature/literature_matrix.csv`, `docs/MIMIR_INGESTION_AND_AUDIT_REPORT.md`, publisher/DOI URLs recorded in the matrix.
+Epistemic-Status: VERIFIED for listed sources and mismatches; unverified legacy entries remain UNKNOWN.
+
+## RA02 — 2026-10-12
+Task-ID: RA02
+Status: VERIFIED
+Summary: Baseline/provenance audit traced the frozen WTB target, EXP-01 v1-to-v2 correction, EXP-02/03 implementations, comparison information sets, registry history, and verification coverage. EXP-03 violates information symmetry because `Patv_hist` is never delayed; its proxy labels are all zero on standardized features; its effective population falls from 100% to 2.4709%; and archived trace/mask files do not represent the executed grid. EXP-02 uses a bootstrap support probability as if it were a conventional p-value and mislabels Zero-Privileged models as Oracle.
+Source: `scripts/run_exp01_matched_control_benchmark.py`, `scripts/run_exp02_zero_privileged_supervision.py`, `scripts/run_exp03_async_benchmark.py`, `artifacts/external_matched_control_benchmark.csv`, `artifacts/zero_privileged_supervision_benchmark.csv`, `artifacts/exp03_async/psrei_vs_delay.csv`, `docs/EXPERIMENT_AUDIT.md`, Git history (`b732a81f`, `1f8edd99`, `5ab39ae3`, `2e06c5c5`, `9e61215e`, `a7363c13`).
+Command-Evidence: Read-only recomputation of EXP-03 valid fractions returned `[1.0, 0.9998037, 0.9811777, 0.8134913, 0.4343820, 0.1326009, 0.0247088]`; proxy positives returned `0 / 570974`.
+Epistemic-Status: VERIFIED.
+
+## RA03 — 2026-10-12
+Task-ID: RA03
+Status: VERIFIED
+Summary: Claim-artifact audit mapped 15 material manuscript claims to current evidence and found the current manuscript unfit for submission: the 55.3% shortage-absorption figure is attributed to 10-30 min although its source is Delay-6 (60 min); corrected EXP-01 v2 is omitted in favor of the weaker global-quantile narrative; transition claims rely on a post-hoc oracle slice; October experiments are not covered by current independent review, falsifier, artifact manifest, or verification manifest.
+Source: `paper_tste_ieee.md`, `docs/SCIENTIFIC_CONTRACT.md`, `docs/EXPERIMENT_REGISTRY.md`, `.agent_state/REVIEW_REPORT.md`, `.agent_state/FALSIFICATION_REPORT.md`, `.agents/verification_manifest.json`, `artifacts/ARTIFACT_MANIFEST.json`.
+Epistemic-Status: VERIFIED.
+
+## RA04 — 2026-10-12
+Task-ID: RA04
+Status: VERIFIED
+Summary: Synthesized the reverse scientific audit with reusable assets, missing evidence, fatal/major findings, a claim-evidence table, three highest-information experiments, kill/pivot conditions, REVISE decision, and ten adversarial reviewer questions. Formal scientific results and the scientific contract were not modified.
+Source: `docs/REVERSE_SCIENTIFIC_AUDIT_20261012.md`.
+Epistemic-Status: VERIFIED as an evidence-grounded audit synthesis; independent falsification pending RA05.
+
+## RA05 — 2026-10-12
+Task-ID: RA05
+Status: VERIFIED
+Summary: Repository scientific-falsifier independently applied the mandatory active-power, matched-direct-quantile, decision-sufficiency, slice-selection, privileged-supervision, architecture-necessity, external-validity, and synthetic-stress attacks to the current manuscript, October experiments, and reverse-audit draft. Formal verdict: FAIL for current submission; REVISE the project. The central negative-result thesis survives, but EXP-03 is invalid, EXP-02's formal verdict is invalid, the 55.3% latency condition is misstated, and EXP-01 corrected v2 is omitted from the manuscript.
+Source: `.agent_state/FALSIFICATION_REPORT.md` (2026-10-12T23:30:00+08:00).
+Epistemic-Status: VERIFIED independent adversarial review.
+
+## RA06 — 2026-10-12
+Task-ID: RA06
+Status: VERIFIED
+Summary: Independent evidence reviewer inspected RA00-RA05 deliverables and highest-severity code/artifact claims and issued PASS_WITH_BLOCKERS for audit integrity while preserving FAIL / DO NOT SUBMIT for the manuscript and scientific package. Targeted protocol tests passed 13/13, demonstrating that the existing toy tests do not cover the runner-level defects; the legacy scientific claim gate also passed, confirming its October-experiment coverage gap. Repository verification gate is executed after ledger closure and recorded below.
+Source: `.agent_state/REVIEW_REPORT.md`, `docs/REVERSE_SCIENTIFIC_AUDIT_20261012.md`, `docs/REVERSE_AUDIT_LITERATURE_MATRIX_20261012.csv`, `.agent_state/FALSIFICATION_REPORT.md`.
+Commands: `python -m pytest tests/test_exp02_protocol.py tests/test_exp03_async_arrival.py -q` -> 13 passed; `python scripts/verify_scientific_claim_gate.py` -> PASS; `git diff --check` -> exit 0 with line-ending warnings only.
+Final-Gate: `python .agents/scripts/verify_gate.py` -> exit code 0, `VERIFICATION_GATE: PASS`. This is a procedural audit-completion gate and does not override the scientific falsifier's FAIL verdict.
+Epistemic-Status: VERIFIED for audit integrity and test/gate outputs; scientific blockers remain OPEN.
+
 
