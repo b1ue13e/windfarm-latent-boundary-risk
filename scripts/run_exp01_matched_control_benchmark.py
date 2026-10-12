@@ -219,7 +219,7 @@ def train_no_graph_mlp(
     lr: float = 1e-3,
     batch_size: int = 256,
 ) -> np.ndarray:
-    """Trains a capacity-matched No-Graph MLP on local turbine features and predicts test reserves."""
+    """Trains the No-Graph Architectural Control on local turbine features."""
     torch.manual_seed(seed)
     np.random.seed(seed)
 
@@ -442,7 +442,7 @@ def run_farm_evaluation(
     n_turbines = feat_mask.shape[1]
     print(f"Number of turbines: {n_turbines}", flush=True)
 
-    # Load full cache for training No-Graph MLP on train split
+    # Load canonical cache metadata; the control's fitted quantile model uses the validation split below.
     split_bounds = meta.get("split_bounds", {"train": [0, 25920], "val": [25920, 30240], "test": [30240, 35280]})
     tr_lo, tr_hi = split_bounds["train"]
     va_lo, va_hi = split_bounds["val"]
@@ -520,7 +520,7 @@ def run_farm_evaluation(
             r_wspd_bins = apply_wspd_bins(wspd_test, w_edges, w_reserves)
 
             # -------------------------------------------------------------
-            # Baseline 2: No-Graph MLP (Secondary Baseline)
+            # Baseline 2: No-Graph Architectural Control (Secondary Baseline)
             # -------------------------------------------------------------
             r_nograph_mlp = train_no_graph_mlp(
                 anc_val=trans_val["anchor"],

@@ -1120,4 +1120,20 @@ Held-out Pitch NMI: h=1: 0.257 | h=6: 0.128
 VERDICT: ZERO-PRIVILEGED LEARNING PROTOCOL DEFICIT ESTABLISHED.
 ```
 
+## T95 — 2026-10-12T04:15:00+08:00
+Task-ID: T95
+Status: VERIFIED_COMMAND
+Summary: Corrected EXP-01 frozen-target protocol and reran the complete benchmark. `docs/FIXED_TARGET_CONTRACT.md` identifies the WTB-only `artifacts/fixed_forecast_residuals.npz` with shape (4981, 6, 134), so it cannot be reused for the 14/6-turbine external farms. Independent external site point-forecast runs were identified at `artifacts/external_wind_runs/{penmanshiel,kelmarsh}/chronological/external_wind_full_seed{201..205}`. Their prediction arrays were used as site-specific frozen point forecasts, while realized targets and masks were reconstructed from each canonical external cache by anchor index. An initial mixed-directory run was stopped by target/mask mismatch assertions (exit 1); no result was accepted. The corrected run completed with exit 0, 80 rows, 25 columns, five seeds, two horizons, two farms, four models, and B=2000 daily block bootstrap per configuration. Corrected v2 was archived and verified.
+Source: docs/FIXED_TARGET_CONTRACT.md, scripts/run_exp01_matched_control_benchmark.py, artifacts/external_matched_control_benchmark.csv, docs/EXPERIMENT_AUDIT.md
+Command: python scripts/run_exp01_matched_control_benchmark.py --device cuda:0 --output-csv artifacts/external_matched_control_benchmark_frozen_v2.csv; artifact_save external-matched-control-benchmark v2; artifact_verify external-matched-control-benchmark v2
+Exit-Code: 0
+Relevant-Output:
+Corrected CSV rows: 80; duplicate keys: 0; missing cells: 0
+SHA256: 596f46e0be8d71ab7a9965dbe4c481cc717b31c083fe288441a9ca9a39c3966e
+Penmanshiel h=6: Delta PSREI +5,321,914.71 kWh; mean bootstrap probability 0.0025; mean Delta V +3.7613 percentage points
+Kelmarsh h=6: Delta PSREI +435,683.79 kWh; mean bootstrap probability 0.1961; mean Delta V +0.8922 percentage points
+Artifact external-matched-control-benchmark v2 verification: status=ok
+VERDICT: Original v1 null result superseded. Corrected v2 shows a significant Penmanshiel cost penalty and a non-significant positive Kelmarsh delta; universal graph-redundancy claims remain unsupported.
+```
+
 

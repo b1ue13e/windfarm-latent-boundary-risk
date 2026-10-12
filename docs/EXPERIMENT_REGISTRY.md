@@ -305,7 +305,7 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 **Contract claim tested:** External validity, Decision Sufficiency, and Spatial Redundancy Causality across Observability Regimes.
 
-**Status:** COMPLETED / EVIDENCE FROZEN (HYPOTHESIS H1 SUPPORTED).
+**Status:** COMPLETED / EVIDENCE FROZEN (corrected v2; original v1 superseded).
 
 **Information set:** 严格限制于到达时刻各场站本地观测到的 SCADA 特征（本地风速、功率、气温），pitch 在测试期完全扣留。
 
@@ -338,22 +338,22 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 **Uncertainty procedure:** 场站级日聚类 Block Bootstrap ($B=2000$).
 
-**Observed results:**
+**Observed results (corrected v2; independent site-frozen point forecasts):**
 - **Penmanshiel (14 turbines)**:
-  - $h=6$ (**Primary Endpoint**): Site-Local Wspd-Bins 5,506,034 kWh (9.62% viol); Transferred STGQ-Modular $\Delta\text{PSREI} = +448,046$ kWh ($p = 0.185$, cost penalty, 95% CI $[+199\text{k}, +675\text{k}]$ kWh, 不存在显著正向决策增益); Fine-tuned $\Delta\text{PSREI} = +1,094,091$ kWh ($p < 0.001$); No-Graph Architectural Control $\Delta\text{PSREI} = +2,156,464$ kWh ($p < 0.001$).
-  - $h=1$ (*Secondary Endpoint*): Site-Local Wspd-Bins 4,102,550 kWh (8.74% viol); Transferred $\Delta\text{PSREI} = -9,925$ kWh ($p = 0.600$, 95% CI $[-226\text{k}, +186\text{k}]$ kWh, 置信区间穿零); Fine-tuned $\Delta\text{PSREI} = +800,377$ kWh ($p < 0.001$); No-Graph Architectural Control $\Delta\text{PSREI} = +1,050,666$ kWh ($p = 0.001$).
+  - $h=6$ (**Primary Endpoint**): Site-Local Wspd-Bins 13,742,849 kWh (16.59% viol); Transferred STGQ-Modular $\Delta\text{PSREI} = +5,321,915$ kWh ($p = 0.003$, significant cost penalty); Fine-tuned $\Delta\text{PSREI} = -3,527,228$ kWh (exploratory); No-Graph Architectural Control $\Delta\text{PSREI} = +16,880,326$ kWh ($p < 0.001$).
+  - $h=1$ (*Secondary Endpoint*): Site-Local Wspd-Bins 13,330,750 kWh (14.61% viol); Transferred $\Delta\text{PSREI} = +6,571,777$ kWh ($p < 0.001$); Fine-tuned $\Delta\text{PSREI} = -2,642,687$ kWh (exploratory); No-Graph Architectural Control $\Delta\text{PSREI} = +19,591,859$ kWh ($p < 0.001$).
 - **Kelmarsh (6 turbines)**:
-  - $h=6$ (**Primary Endpoint**): Site-Local Wspd-Bins 1,909,238 kWh (10.22% viol); Transferred STGQ-Modular $\Delta\text{PSREI} = +48,494$ kWh ($p = 0.272$, 95% CI $[+8\text{k}, +87\text{k}]$ kWh, 不存在显著正向决策增益); Fine-tuned $\Delta\text{PSREI} = +215,241$ kWh ($p < 0.001$); No-Graph Architectural Control $\Delta\text{PSREI} = +1,501,027$ kWh ($p < 0.001$).
-  - $h=1$ (*Secondary Endpoint*): Site-Local Wspd-Bins 1,274,739 kWh (9.81% viol); Transferred $\Delta\text{PSREI} = +11,304$ kWh ($p = 0.448$, 95% CI $[-23\text{k}, +46\text{k}]$ kWh, 置信区间跨零); Fine-tuned $\Delta\text{PSREI} = +114,541$ kWh ($p = 0.019$); No-Graph Architectural Control $\Delta\text{PSREI} = +887,954$ kWh ($p < 0.001$).
+  - $h=6$ (**Primary Endpoint**): Site-Local Wspd-Bins 3,131,041 kWh (11.80% viol); Transferred STGQ-Modular $\Delta\text{PSREI} = +435,684$ kWh ($p = 0.196$, no significant improvement); Fine-tuned $\Delta\text{PSREI} = -2,001$ kWh (exploratory); No-Graph Architectural Control $\Delta\text{PSREI} = +3,403,611$ kWh ($p < 0.001$).
+  - $h=1$ (*Secondary Endpoint*): Site-Local Wspd-Bins 3,107,821 kWh (11.07% viol); Transferred $\Delta\text{PSREI} = +515,318$ kWh ($p = 0.181$); Fine-tuned $\Delta\text{PSREI} = +174,455$ kWh (exploratory); No-Graph Architectural Control $\Delta\text{PSREI} = +3,667,533$ kWh ($p < 0.001$).
 
 **Positive outcome interpretation:** 若迁移表示在 Penmanshiel 上战胜本地 Wspd-Bins 且战胜 No-Graph 控制模型，则确立了复杂地形下空间尾流图迁移的因果决策价值。
 
 **Null/negative outcome interpretation:** 若本地 Wspd-Bins 同样在外部场站战胜迁移表示，则将“状态可恢复不等于决策优越”及“简单基线充分性”推广为跨场站普遍规律。
 
-**Scientific verdict:** 确证反向结果解释。Site-Local Wspd-Bins 在两风场及双视界下均构成最小充分模型；跨场站迁移表示缺乏决策增益。
+**Scientific verdict (corrected v2):** 结果具有场站异质性。Penmanshiel 的 Transferred STGQ 在主终点显著劣于 Site-Local Wspd-Bins；Kelmarsh 的差异为正但未达显著。因而不能继续使用原 v1 的“两个场站均无显著差异”结论，也不能将结果升级为普遍因果规律。
 
 **Scientific Claim Boundaries (严格禁止过度推断):**
-1. **支持结论:** 在所评估的两个外部风场、相同到达时刻信息集、pitch 完全扣留和预注册 bootstrap 协议下，Transferred STGQ-Modular 相较于本地 10-bin 风速条件分位数没有产生显著的 PSREI 决策改善。
+1. **支持结论:** 在独立 site-specific frozen point forecast、相同到达时刻信息集、pitch 完全扣留和预注册 bootstrap 协议下，Penmanshiel 的 Transferred STGQ-Modular 在 h=6 主终点显著增加 PSREI；Kelmarsh 的正向差异未达显著。两个场站均未显示 Transferred STGQ 相对本地 10-bin 基线的显著正向决策改善。
 2. **严禁推断:**
    - 严禁声称“所有外部风场都不需要图结构”；
    - 严禁声称“复杂地形不存在空间决策价值”；
@@ -362,7 +362,7 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 **Failure/stopping conditions:** 若外部场站本地风速数据缺失率 > 20%，该场站停止评估（Penmanshiel 实测 0.63%，Kelmarsh 实测 2.10%，均顺利通过门槛）。
 
 **Artifacts to produce:** 
-- `artifacts/external_matched_control_benchmark.csv` (80 行全数据结果)
+- `artifacts/external_matched_control_benchmark.csv` (corrected v2, 80 行全数据结果; artifact `external-matched-control-benchmark v2`, SHA256 `596f46e0be8d71ab7a9965dbe4c481cc717b31c083fe288441a9ca9a39c3966e`; v1 superseded)
 - `artifacts/no_graph_architecture_audit.json` (架构参数量与复杂度对比审计)
 - `docs/NO_GRAPH_CONTROL_AUDIT.md` (架构参数与命名规范裁决文档)
 
