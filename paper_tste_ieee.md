@@ -454,7 +454,7 @@ External evaluations across four commercial facilities reveal heterogeneous, sit
 \centering
 \includegraphics[width=\columnwidth,keepaspectratio]{figures/figure5_case_studies.pdf}
 \caption{Case-study view of the WTB local control-boundary switch window and the ERA5 weekly thermodynamic positive control. Panel A shows a WTB MPPT-to-pitch transition window (ground-truth active power, dense and boundary-forced router predictions, driving wind speed and pitch, and dominant-expert assignment); Panel B shows ERA5 mean surface sensible heat flux against weekly expert gate weights. This figure illustrates mechanism behavior on the primary site and does not compare cross-site reserve costs; the external-site comparisons are reported numerically in the text and in the supplementary site ledger.}
-\label{fig:cross-site}
+\label{fig:case-studies}
 \end{figure}
 
 

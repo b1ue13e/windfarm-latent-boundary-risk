@@ -137,7 +137,7 @@ Anhui University of Finance and Economics, Bengbu 233030, China\\
 \maketitle
 
 \begin{abstract}
-Operating reserve screening near the wind turbine MPPT-to-pitch boundary is governed by acute asymmetric shortfall penalties. While deterministic power curves presume pristine telemetry, commercial SCADA feeds can encounter communication latency and aggregator-boundary pitch unobservability. Across 134-turbine commercial benchmarks, this paper addresses a single governing question: \textit{what is the minimum sufficient model under changing SCADA observability regimes?} We resolve three operational regimes: (1) \textbf{Fresh telemetry}: In the boundary band ($|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}$, $N=13{,}883$ events), deterministic aerodynamic rules achieve the lowest reserve-screening surrogate cost ($589{,}535\text{ kW}\cdot\text{h}$ at $h=1$, $881{,}367\text{ kW}\cdot\text{h}$ at $h=6$), outperforming neural networks by $8.1\%$. (2) \textbf{Stale telemetry}: Under 10--30 minute delays, non-neural state-conditional recalibration absorbs $55.3\%$ of shortage losses ($127.6 \to 57.0\text{ MWh}$) without parameter updates. (3) \textbf{Pitch unobservable}: Observable consequence signals (active power $\text{AUROC} = 0.988$) preserve boundary information; learned representations (trained using historically available pitch information that is withheld at deployment) double transition recall ($0.416$ vs. $0.196$) and reduce screening surrogate costs by $46.7\text{k}\text{--}68.6\text{k kW}\cdot\text{h}$ relative to condition-matched recalibrated physics. However, state recoverability is not sufficient for downstream reserve-decision superiority: strong wind-speed-conditioned quantiles remain lower-cost plant-wide, and matched-budget evaluations confirm that lower transition violation frequency is offset by deeper residual shortfalls.
+Operating reserve screening near the wind turbine MPPT-to-pitch boundary is governed by acute asymmetric shortfall penalties. While deterministic power curves presume pristine telemetry, commercial SCADA feeds can encounter communication latency and aggregator-boundary pitch unobservability. Across 134-turbine commercial benchmarks, this paper addresses a single governing question: \textit{what is the minimum sufficient model under changing SCADA observability regimes?} We resolve three operational regimes: (1) \textbf{Fresh telemetry}: In the boundary band ($|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}$, $N=13{,}883$ events), deterministic aerodynamic rules achieve the lowest reserve-screening surrogate cost ($589{,}535\text{ kW}\cdot\text{h}$ at $h=1$, $881{,}367\text{ kW}\cdot\text{h}$ at $h=6$), outperforming neural networks by $8.1\%$. (2) \textbf{Stale telemetry}: Under 10--30 minute delays, non-neural state-conditional recalibration absorbs $36.3\%$--$61.7\%$ of the delay-induced shortage loss while holding violation below the nominal $10\%$ target ($7.1\%$--$7.5\%$); at the 60-minute contingency endpoint absorption reaches $66.5\%$ ($127.6 \to 42.8\text{ MWh}$) at $9.5\%$ violation, without parameter updates. (3) \textbf{Pitch unobservable}: Observable consequence signals (active power $\text{AUROC} = 0.988$) preserve boundary information; learned representations (trained using historically available pitch information that is withheld at deployment) double transition recall ($0.416$ vs. $0.196$) and reduce screening surrogate costs by $46.7\text{k}\text{--}68.6\text{k kW}\cdot\text{h}$ relative to condition-matched recalibrated physics. However, state recoverability is not sufficient for downstream reserve-decision superiority: strong wind-speed-conditioned quantiles remain lower-cost plant-wide, and matched-budget evaluations confirm that lower transition violation frequency is offset by deeper residual shortfalls.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -199,7 +199,7 @@ principle:
 
 \begin{itemize}
 \item \textbf{Fresh and observable $\to$ Physics}: Under pristine SCADA telemetry, deterministic aerodynamic quantile curves achieve the lowest reserve-screening surrogate cost within the active boundary band ($|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}$, $N=13{,}883$ cell events) among all evaluated methods ($589{,}535\text{ kW}\cdot\text{h}$ at $h=1$ and $881{,}367\text{ kW}\cdot\text{h}$ at $h=6$, with target-satisfying $\sim 6.8\%$ violation), saving $8.1\%$ ($-77{,}659\text{ kW}\cdot\text{h}$) over neural architectures.
-\item \textbf{Stale but observable $\to$ Recalibration}: Operational delays of 10--30 minutes exhibit distribution drift where non-neural state-conditional recalibration absorbs $55.3\%$ of shortage loss ($127.6 \to 57.0\text{ MWh}$) without updating network weights. A 60-minute latency contingency serves strictly as an asymptotic reliability breakdown stress endpoint ($24.0\% \pm 1.7\%$ violation at $h=1$) rather than a claim of normal industrial prevalence.
+\item \textbf{Stale but observable $\to$ Recalibration}: Operational delays of 10--30 minutes exhibit distribution drift where non-neural state-conditional recalibration absorbs $36.3\%$--$61.7\%$ of the delay-induced shortage loss ($\tau=10$: $37.7 \to 24.0\text{ MWh}$; $\tau=30$: $69.1 \to 26.4\text{ MWh}$) and restores tail coverage to $7.1\%$--$7.5\%$ violation without updating network weights. A 60-minute latency contingency serves strictly as an asymptotic reliability breakdown stress endpoint ($24.0\% \pm 1.7\%$ violation at $h=1$) rather than a claim of normal industrial prevalence.
 \item \textbf{Critical state unobservable $\to$ Consequence recovery}: When blade pitch is withheld, observable electromechanical consequence signals ($Z_t \to P_t, Q_t, \text{trajectory}$) retain latent boundary information, allowing learned representations to double transition recall ($0.416$ vs. $0.196$) and reduce reserve screening penalties by $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ relative to condition-matched recalibrated physics.
 \item \textbf{Boundary Conditions ($\text{Recoverability} \not\Rightarrow \text{Decision Superiority}$, $\text{Lower Violation Frequency} \not\Rightarrow \text{Lower Shortage Severity}$)}: Reconstructing the hidden boundary does not establish downstream reserve-decision superiority: strong wind-speed-conditioned quantiles remain lower-cost plant-wide ($+523{,}044\text{ kW}\cdot\text{h}$ posterior penalty). The raw violation-rate reduction ($7.24\%$ vs. $8.36\%$) is partly associated with greater reserve procurement ($+149{,}241\text{ kW}\cdot\text{h}$); under matched reserve budgets ($\Delta R \equiv 0$), posterior conditioning does not improve shortage-energy efficiency, as lower violation frequency is offset by deeper residual uncovered shortfalls.
 \end{itemize}
@@ -232,8 +232,10 @@ SCADA observability regimes:
   Observable Drift}: We decouple telemetry staleness from genuine
   channel missingness, demonstrating that under full channel
   observability, non-neural state-conditional recalibration absorbs
-  \(55.3\%\) of shortage loss (\(127.6 \to 57.0\text{ MWh}\)) without
-  parameter updates.
+  \(36.3\%\)--\(61.7\%\) of the delay-induced shortage loss across the
+  \(10\)--\(30\) min operational latency grid and \(66.5\%\) at the
+  \(60\)-min contingency endpoint (\(127.6 \to 42.8\text{ MWh}\)),
+  without parameter updates.
 \item
   \textbf{Regime 3 --- Consequence-Based State Recovery and Decision
   Boundary}: When blade pitch is withheld at deployment, observable
@@ -590,7 +592,7 @@ degradation regimes.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth,keepaspectratio]{figures/figure1_decision_boundaries.pdf}
-\caption{Conceptual architecture of the minimum sufficient modeling principle across three telemetry observability regimes. Incoming SCADA feeds enter an Observability \& Staleness Gate that routes decisions to the least complex sufficient model: Tier 1 routes fresh observable telemetry ($\tau=0, \exists\beta$) to deterministic aerodynamic rules ([Lowest Cost], $6.8\%$ violation); Tier 2 routes observable operational delays ($\tau \le 20\text{ min}, \exists\beta$) to state-conditional recalibration, absorbing $55.3\%$ of shortage loss without neural retraining; Tier 3 routes pitch-withheld or contingency telemetry ($\beta=\emptyset$ or $\tau \ge 60\text{ min}$) to learned consequence representations (STGQ-Modular), recovering latent regimes while preserving the central boundary condition that recoverability does not imply plant-wide decision superiority.}
+\caption{Conceptual architecture of the minimum sufficient modeling principle across three telemetry observability regimes. Incoming SCADA feeds enter an Observability \& Staleness Gate that routes decisions to the least complex sufficient model: Tier 1 routes fresh observable telemetry ($\tau=0, \exists\beta$) to deterministic aerodynamic rules ([Lowest Cost], $6.8\%$ violation); Tier 2 routes observable operational delays ($\tau \le 20\text{ min}, \exists\beta$) to state-conditional recalibration, absorbing $53.9\%$ of shortage loss without neural retraining; Tier 3 routes pitch-withheld or contingency telemetry ($\beta=\emptyset$ or $\tau \ge 60\text{ min}$) to learned consequence representations (STGQ-Modular), recovering latent regimes while preserving the central boundary condition that recoverability does not imply plant-wide decision superiority.}
 \label{fig:decision-boundaries}
 \end{figure}
 
@@ -764,12 +766,15 @@ condition-matched state-conditional recalibration (\ref{eq:recalib})
 adjusts quantile margins using held-out validation residuals undergoing
 the identical delay. As shown in
 Table\textasciitilde{}\ref{tab:phase-scan}, state-conditional
-recalibration absorbs \(55.3\%\) of the shortage loss
-(\(127.55 \to 57.01\text{ MWh}\)), restoring fleet violation to
-\(9.46\%\) and achieving a surrogate reserve cost of
-\(1{,}228{,}609\text{ kW}\cdot\text{h}\) at \(h=1\). Under full channel
-observability, recalibrated physical curves outperform all neural models
-(STGQ-Routed: \(1{,}274{,}047\text{ kW}\cdot\text{h}\); STGQ-Modular:
+recalibration absorbs \(36.3\%\) of the delay-induced shortage loss at
+\(\tau = 10\text{ min}\) (\(37.7 \to 24.0\text{ MWh}\)), \(53.9\%\) at
+\(\tau = 20\text{ min}\) (\(51.8 \to 23.9\text{ MWh}\)), and \(61.7\%\)
+at \(\tau = 30\text{ min}\) (\(69.1 \to 26.4\text{ MWh}\)), holding
+fleet violation at \(7.1\%\)--\(7.5\%\) and a surrogate reserve cost of
+\(1{,}228{,}609\text{ kW}\cdot\text{h}\) at the \(h=1\) contingency
+endpoint. Under full channel observability, recalibrated physical curves
+outperform all neural models (STGQ-Routed:
+\(1{,}274{,}047\text{ kW}\cdot\text{h}\); STGQ-Modular:
 \(1{,}283{,}855\text{ kW}\cdot\text{h}\)).
 
 \begin{table*}[!t]
@@ -813,7 +818,9 @@ violation), but breaks down when staleness surges to
 \(\tau_{\mathrm{test}} = 60\text{ min}\) (\(13.8\%\) violation). Under
 full channel observability, distribution drift does not require neural
 representation learning: state-conditional recalibration recovers
-\(55.3\%\) of the observed shortage loss (\(127.6 \to 57.0\text{ MWh}\))
+\(36.3\%\)--\(66.5\%\) of the observed shortage loss across the
+evaluated latency grid (\(127.6 \to 42.8\text{ MWh}\) at the \(60\)-min
+contingency endpoint, a \(66.5\%\) absorption at \(9.5\%\) violation)
 without updating network weights.
 
 \subsection{\texorpdfstring{Regime 3: Critical State Unobservable
@@ -942,22 +949,30 @@ governed by uniform reserve-margin expansion rather than heuristic
 abstention scoring (\(p > 0.40\)).
 
 External evaluations across four commercial facilities reveal
-heterogeneous, site-dependent information regimes
-(Fig.\textasciitilde{}\ref{fig:cross-site}): STGQ reduces surrogate cost
-relative to global quantiles on WTB and Penmanshiel by
-\(-2.14\text{M kW}\cdot\text{h}\) (\(p < 0.05\)), matches the Kelmarsh
-6-turbine array at \(-40\text{k kW}\cdot\text{h}\) (\(p=0.85\)), and
-incurs a \(+43\text{k kW}\cdot\text{h}\) overfitting penalty on La Haute
-Borne. Turbine count alone does not explain cross-site variation.
-Portfolio aggregation at the Point of Common Coupling confirms that
-spatial smoothing cancels high-frequency turbulence while preserving
-coherent boundary transition risks.
+heterogeneous, site-dependent information regimes. Under the corrected
+v2 protocol (independent site-frozen point forecasts, pitch fully
+withheld, identical arrival-time information set, pre-registered
+site-level day-cluster bootstrap), transferred STGQ-Modular is
+significantly \emph{worse} than the strong site-local wind-speed-binned
+quantile baseline on Penmanshiel at the \(h=6\) primary endpoint
+(\(\Delta\text{PSREI} = +5{,}322{,}000\text{ kW}\cdot\text{h}\),
+\(p = 0.003\)) and at \(h=1\)
+(\(+6{,}572{,}000\text{ kW}\cdot\text{h}\), \(p < 0.001\)), while
+Kelmarsh shows a positive but non-significant difference
+(\(+436{,}000\text{ kW}\cdot\text{h}\), \(p = 0.196\)). Neither site
+establishes a significant positive decision gain for transferred
+representations over a site-local 10-bin wind-speed baseline; the
+corrected benchmark therefore does not support the earlier reading in
+which STGQ reduces surrogate cost on Penmanshiel. Portfolio aggregation
+at the Point of Common Coupling confirms that spatial smoothing cancels
+high-frequency turbulence while preserving coherent boundary transition
+risks.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth,keepaspectratio]{figures/figure5_case_studies.pdf}
-\caption{Cross-site heterogeneity across four commercial wind farms (WTB: 134 turbines, Penmanshiel: 14 operational, Kelmarsh: 6, La Haute Borne: 4). STGQ cost advantage varies from $-2.14$M kWh (WTB/Penmanshiel) to $+43$k kWh penalty (LHB). Spatial redundancy and consequence-channel recoverability differ across sites; turbine count is insufficient to explain variation.}
-\label{fig:cross-site}
+\caption{Case-study view of the WTB local control-boundary switch window and the ERA5 weekly thermodynamic positive control. Panel A shows a WTB MPPT-to-pitch transition window (ground-truth active power, dense and boundary-forced router predictions, driving wind speed and pitch, and dominant-expert assignment); Panel B shows ERA5 mean surface sensible heat flux against weekly expert gate weights. This figure illustrates mechanism behavior on the primary site and does not compare cross-site reserve costs; the external-site comparisons are reported numerically in the text and in the supplementary site ledger.}
+\label{fig:case-studies}
 \end{figure}
 
 \section{\texorpdfstring{Discussion: Minimum Sufficient Model Complexity
@@ -987,13 +1002,13 @@ representations superfluous.
 
 \textit{2) Stale but Observable $\to$ Recalibration:} Under observable
 operational latency (\(10\text{--}30\text{ min}\)), state-conditional
-recalibration absorbs \(55.3\%\) of shortage loss
-(\(127.6 \to 57.0\text{ MWh}\)) and maintains violation rates below the
-nominal 10\% target (\(7.1\%\text{--}7.5\%\)) without updating neural
-weights. In the evaluated latency grid, static recalibration breaks down
-at the contingency horizon (\(\tau = 60\text{ min}\), \(13.8\%\)
-violation), which acts as a synthetic reliability breakdown stress
-endpoint rather than an industrial prevalence claim.
+recalibration absorbs \(36.3\%\)--\(61.7\%\) of the delay-induced
+shortage loss and maintains violation rates below the nominal 10\%
+target (\(7.1\%\text{--}7.5\%\)) without updating neural weights. In the
+evaluated latency grid, static recalibration breaks down at the
+contingency horizon (\(\tau = 60\text{ min}\), \(13.8\%\) violation),
+which acts as a synthetic reliability breakdown stress endpoint rather
+than an industrial prevalence claim.
 
 \textit{3) Critical State Unobservable $\to$ Consequence Recovery:} When
 blade-pitch telemetry is withheld (\texttt{no\_pitch}), physical rules
@@ -1033,17 +1048,19 @@ observability regimes, with modular regression (STGQ-Modular) matching
 tail reliability (\(9.7\%\) violation) without dynamic routing overhead.
 
 \textit{5) Industrial Deployment Guardrails:} (i)
-\emph{External heterogeneity}: external evaluations across four
-commercial wind farms reveal heterogeneous information regimes rather
-than uniform transfer superiority. STGQ reduces surrogate cost relative
-to global quantiles on WTB and Penmanshiel (\(p < 0.05\)), while
-Kelmarsh is neutral and LHB exhibits a negative transfer/overfitting
-boundary, consistent with limited exploitable spatial redundancy as a
-possible moderator (not turbine count alone), while turbine count alone
-does not explain the variation; (ii) \emph{Local retraining}:
-directional transfer asymmetry (Kelmarsh \(\to\) Penmanshiel NMI
-\(0.77\) vs.~\(0.34\)) supports site-specific retraining or
-recalibration rather than assuming reliable zero-shot transfer; (iii)
+\emph{External heterogeneity}: under the corrected v2 protocol,
+transferred representations do not establish incremental decision value
+over strong site-local baselines. On Penmanshiel, transferred
+STGQ-Modular is significantly worse than the site-local 10-bin
+wind-speed quantile at both endpoints (+5.32M kWh at \(h=6\),
+\(p=0.003\); +6.57M kWh at \(h=1\), \(p<0.001\)); on Kelmarsh the
+difference is positive but non-significant (+436k kWh, \(p=0.196\)).
+Earlier external comparisons against an unconditioned global quantile
+are superseded, since global quantiles are not a sufficient
+incremental-value comparator; (ii) \emph{Local retraining}: directional
+transfer asymmetry (Kelmarsh \(\to\) Penmanshiel NMI \(0.77\)
+vs.~\(0.34\)) supports site-specific retraining or recalibration rather
+than assuming reliable zero-shot transfer; (iii)
 \emph{Reserve protection}: tail risk mitigation under latency is
 effectively governed by uniform reserve margin expansion rather than
 heuristic rejection scoring (\(p > 0.40\)).
@@ -1069,21 +1086,21 @@ climatological cycles. Rated wind speeds vary by model
 (\(12.5\text{ m/s}\) on MM92 vs.~\(14.5\text{ m/s}\) on MM82), requiring
 OEM calibration.
 
-\textit{4) Deployment Boundaries:} Cross-site STGQ effects relative to
-the global quantile baseline remain heterogeneous, consistent with
-exploitable spatial redundancy as a possible moderator rather than
-turbine count alone; LHB exhibits a negative transfer/overfitting
-boundary, consistent with limited exploitable spatial redundancy and
-site-specific heterogeneity. Because external benchmarks evaluate
-unconditioned global quantiles without matched external no-graph
-controls, wake modeling is not causally isolated as the sole mechanism
-for external gains. Directional transfer asymmetry (Kelmarsh \(\to\)
-Penmanshiel NMI \(0.77\) vs.~Penmanshiel \(\to\) Kelmarsh NMI \(0.34\))
-supports site-specific retraining or recalibration rather than assuming
-reliable zero-shot transfer. The study assumes historical blade-pitch
-availability during offline training, followed by pitch withholding at
-deployment. Performance in settings where pitch was never recorded
-remains untested.
+\textit{4) Deployment Boundaries:} Under the corrected v2 external
+protocol, transferred representations do not beat strong site-local
+baselines: Penmanshiel shows a significant cost penalty relative to the
+site-local 10-bin wind-speed quantile (+5.32M kWh at \(h=6\),
+\(p=0.003\)) and Kelmarsh a non-significant positive difference (+436k
+kWh, \(p=0.196\)). Because external benchmarks evaluate against
+site-local wind-speed-binned quantiles, no external positive decision
+value is established, and wake modeling is not causally isolated as a
+mechanism for any external gain. Directional transfer asymmetry
+(Kelmarsh \(\to\) Penmanshiel NMI \(0.77\) vs.~Penmanshiel \(\to\)
+Kelmarsh NMI \(0.34\)) supports site-specific retraining or
+recalibration rather than assuming reliable zero-shot transfer. The
+study assumes historical blade-pitch availability during offline
+training, followed by pitch withholding at deployment. Performance in
+settings where pitch was never recorded remains untested.
 
 \section{Conclusion}\label{conclusion}
 
@@ -1099,8 +1116,10 @@ minimize surrogate reserve penalties within the boundary band
 \(881{,}367\text{ kW}\cdot\text{h}\) at \(h=6\), \(\sim 6.8\%\)
 violation), collapsing only under unadapted latency (\(24.0\%\)
 violation). Second, under observable delays, state-conditional
-recalibration absorbs \(55.3\%\) of shortage loss
-(\(127.6 \to 57.0\text{ MWh}\)) without updating neural weights. Third,
+recalibration absorbs \(36.3\%\)--\(61.7\%\) of the delay-induced
+shortage loss across the 10--30 min operational grid, rising to
+\(66.5\%\) at the 60-min contingency endpoint
+(\(127.6 \to 42.8\text{ MWh}\)), without updating neural weights. Third,
 when blade pitch is withheld, observable consequences retain operating
 regime information, saving
 \(46.7\text{k}\text{--}68.6\text{k kW}\cdot\text{h}\) relative to
