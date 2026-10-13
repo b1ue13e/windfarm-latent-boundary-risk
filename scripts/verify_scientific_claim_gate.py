@@ -412,6 +412,125 @@ def main() -> int:
                     f"max drop={worst_drop:.4f})"
                 )
 
+    print("\n[8] EXP-02 Verdict Integrity Guard (F4)")
+    # F4 defect: the EXP-02 verdict was hardcoded ("DEFICIT ESTABLISHED"),
+    # P(delta <= 0) was mislabeled a two-sided p-value, and the Zero-Privileged
+    # Challenger could be misclassified as Oracle. These checks fail closed if any
+    # of that returns.
+
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+
+    from scripts.exp02_verdict import (  # noqa: PLC0415
+        assign_model_role,
+        is_oracle_role,
+        derive_verdict,
+        VerdictInputs,
+        VERDICT_SUPPORTED,
+        VERDICT_DIRECTIONAL,
+        VERDICT_NULL,
+    )
+
+    # (a) Role assignment must never promote the unprivileged challenger to Oracle.
+    challenger_names = [
+        "Zero-Privileged Challenger (eps=50)",
+        "Zero-Privileged Challenger (eps=20)",
+        "Zero-Privileged Challenger (eps=100)",
+    ]
+    misassigned = [n for n in challenger_names if is_oracle_role(n)]
+    if misassigned:
+        fail(f"Zero-Privileged Challenger misclassified as Oracle: {misassigned}", failures)
+    elif assign_model_role("Zero-Privileged Challenger (eps=50)") != "Primary Challenger":
+        fail("Zero-Privileged Challenger is not assigned the Primary Challenger role", failures)
+    elif not is_oracle_role("Privileged STGQ (Oracle Reference)"):
+        fail("Privileged STGQ is no longer recognised as the Oracle Reference", failures)
+    else:
+        ok("role assignment: challenger is Primary Challenger, Oracle restricted to Privileged STGQ")
+
+    # (b) Gate conditions must be C1 (mean <= 0) and C2 (P >= 0.95) only.
+    c1_c2_cases = [
+        (VerdictInputs("h=1", -100.0, 0.96, 0.0, 0.0), VERDICT_SUPPORTED),
+        (VerdictInputs("h=1", -100.0, 0.94, 0.0, 0.0), VERDICT_DIRECTIONAL),
+        (VerdictInputs("h=6", +100.0, 0.99, 0.0, 0.0), VERDICT_NULL),
+    ]
+    bad = [
+        f"{vi.horizon}: expected {exp}, got {derive_verdict(vi).code}"
+        for vi, exp in c1_c2_cases
+        if derive_verdict(vi).code != exp
+    ]
+    if bad:
+        fail("EXP-02 verdict rule no longer implements C1/C2 gating: " + "; ".join(bad), failures)
+    else:
+        ok("verdict gates on C1 (mean <= 0) and C2 (P >= 0.95), with diagnostics non-gating")
+
+    # (c) The registry must not resurrect the stale hardcoded deficit verdict.
+    reg_txt = (ROOT / "docs" / "EXPERIMENT_REGISTRY.md").read_text(encoding="utf-8", errors="replace")
+    live_deficit = []
+    heading = ""
+    for i, line in enumerate(reg_txt.splitlines(), 1):
+        if line.lstrip().startswith("#"):
+            heading = line
+        if "DEFICIT ESTABLISHED" in line and not _line_is_voided(line, heading):
+            live_deficit.append(f"docs/EXPERIMENT_REGISTRY.md:{i}")
+    if live_deficit:
+        fail(
+            "registry states a bare 'DEFICIT ESTABLISHED' verdict as live text "
+            f"(F4 regression): {live_deficit}",
+            failures,
+        )
+    else:
+        ok("registry does not present a stale 'DEFICIT ESTABLISHED' EXP-02 verdict")
+
+    # (d) The superseded p-value naming must not return to the EXP-02 pipeline.
+    exp02_py = ROOT / "scripts" / "run_exp02_zero_privileged_supervision.py"
+    if exp02_py.exists():
+        src = exp02_py.read_text(encoding="utf-8", errors="replace")
+        # Legacy names may appear ONLY in docstrings/comments or in the single
+        # schema-migration function whose job is to map them onto corrected names.
+        lines = src.splitlines()
+        schema_start = next((i for i, ln in enumerate(lines) if ln.startswith("def normalize_exp02_schema")), None)
+        schema_end = None
+        if schema_start is not None:
+            for j in range(schema_start + 1, len(lines)):
+                if lines[j].startswith("def ") or lines[j].startswith("class "):
+                    schema_end = j
+                    break
+            if schema_end is None:
+                schema_end = len(lines)
+
+        legacy_fields = ("full_delta_psrei_pval", "bnd_delta_psrei_pval", "p_val_delta_psrei")
+        live_legacy = []
+        in_docstring = False
+        for i, ln in enumerate(lines, 1):
+            if '"""' in ln:
+                in_docstring = not in_docstring
+            if in_docstring or ln.lstrip().startswith("#"):
+                continue
+            if schema_start is not None and schema_start + 1 <= i <= (schema_end or len(lines)):
+                continue
+            if any(field in ln for field in legacy_fields):
+                live_legacy.append(i)
+        
+        if live_legacy:
+            fail(
+                "EXP-02 pipeline reintroduces the mislabelled p-value field outside the "
+                f"migration mapping: lines {live_legacy}",
+                failures,
+            )
+        else:
+            ok("EXP-02 emits P(delta <= 0) under the non-inferiority name; legacy name only in migration map")
+
+    # (e) The joint-uncertainty report must not claim two-level hierarchy it does not perform.
+    gen = ROOT / "scripts" / "generate_joint_uncertainty_report.py"
+    if gen.exists():
+        gsrc = gen.read_text(encoding="utf-8", errors="replace")
+        if "unified two-level hierarchical" in gsrc or "Two-Level Hierarchical Block Bootstrap across training seeds" in gsrc:
+            fail("joint report generator re-claims an unimplemented two-level hierarchical bootstrap", failures)
+        elif "seed_level_bootstrap_from_records" not in gsrc:
+            ok("joint report generator: seed-level bootstrap (naming not asserted)")
+        else:
+            ok("joint report generator is labelled seed-level, not two-level hierarchical")
+
     print("\n" + "=" * 72)
     if failures:
         print(f"SCIENTIFIC_CLAIM_GATE: FAIL ({len(failures)} issue(s))")

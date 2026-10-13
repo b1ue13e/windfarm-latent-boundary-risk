@@ -43,7 +43,11 @@ def compute_hierarchical_joint_bootstrap(
             - joint_mean: Point estimate of average difference across seeds and time.
             - joint_median: Median difference across seeds.
             - joint_ci_95: [lower, upper] 95% confidence interval covering joint uncertainty.
-            - joint_p_val_superiority: Empirical probability P(Joint Delta <= 0).
+            - joint_p_non_inferior: Empirical probability P(Joint Delta <= 0). Because the
+              compared metrics (PSREI, shortage cost) are COSTS, this is a non-inferiority
+              probability, NOT a two-sided p-value: a HIGHER value means the challenger was
+              cheaper or equal in that resample. The legacy key
+              ``joint_p_val_superiority`` is retained as an alias for callers/tests.
             - seed_estimates: Dict mapping seed -> individual mean difference.
             - catastrophic_run_rate: Fraction of seeds classified as catastrophic runs.
     """
@@ -87,14 +91,17 @@ def compute_hierarchical_joint_bootstrap(
 
     ci_low = float(np.quantile(joint_boot_dist, 0.025))
     ci_high = float(np.quantile(joint_boot_dist, 0.975))
-    p_superiority = float(np.mean(joint_boot_dist <= 0.0))
+    # P(delta <= 0) for a COST metric: higher => challenger non-inferior (cheaper/equal).
+    p_non_inferior = float(np.mean(joint_boot_dist <= 0.0))
 
     return {
         "joint_mean": overall_mean,
         "joint_median": overall_median,
         "joint_std": float(np.std(seed_means, ddof=1)) if n_seeds > 1 else 0.0,
         "joint_ci_95": [ci_low, ci_high],
-        "joint_p_val_superiority": p_superiority,
+        "joint_p_non_inferior": p_non_inferior,
+        # Legacy alias (superseded naming; kept so existing callers keep working).
+        "joint_p_val_superiority": p_non_inferior,
         "seed_estimates": seed_estimates,
         "n_seeds": n_seeds,
         "n_blocks": n_blocks,

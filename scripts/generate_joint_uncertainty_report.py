@@ -1,11 +1,18 @@
-"""Comprehensive Hierarchical Joint Uncertainty and Stability Report Generator.
+"""Joint uncertainty and stability report generator (EXP-01 & EXP-02).
 
-Closes Audit Issues 1 & 5:
-- Replaces improper arithmetic averaging of per-seed bootstrap CIs / p-values with a
-  rigorous Two-Level Hierarchical Block Bootstrap across training seeds and day-clusters.
-- Evaluates EXP-01 (External Transfer & Control Benchmark) and EXP-02 (Zero-Privileged Protocol).
-- Elevates Catastrophic Run Rate to a first-class metric.
-- Outputs artifacts/joint_uncertainty_summary.json and docs/JOINT_UNCERTAINTY_AUDIT_REPORT.md.
+SCOPE LIMIT (corrected 2026-10-13): this script resamples SEED-LEVEL mean deltas
+only. It does NOT perform a two-level (seed x day-cluster) hierarchical bootstrap,
+and its intervals must not be described as such. The frozen benchmark CSV does not
+persist per-seed block-level delta arrays, so a true two-level joint interval is
+not reproducible from the archived CSV alone; producing one requires re-running
+the benchmark with `--output-blocks`. Intervals written by this script are
+therefore labelled `seed_level_ci_95` and the report states the limitation.
+
+Also corrects the outcome field naming: `P(delta <= 0)` is an empirical
+NON-INFERIORITY probability (PSREI is a cost), not a two-sided p-value.
+
+Outputs artifacts/joint_uncertainty_summary.json and
+docs/JOINT_UNCERTAINTY_AUDIT_REPORT.md.
 """
 
 import json
@@ -14,12 +21,16 @@ import numpy as np
 import pandas as pd
 
 
-def hierarchical_bootstrap_from_records(
+def seed_level_bootstrap_from_records(
     deltas: np.ndarray,
     n_boot: int = 5000,
     random_seed: int = 42,
 ) -> dict:
-    """Computes two-stage hierarchical bootstrap distribution across model seeds.
+    """Bootstrap the MEAN over seeds by resampling the seed-level deltas.
+
+    This is a one-level (seed-only) bootstrap. With n_seeds = 5 the resampled
+    distribution is coarse, and the interval reflects between-seed variability
+    only -- it does not represent day-cluster (within-seed) uncertainty.
 
     Args:
         deltas: 1D array of seed-level mean deltas (n_seeds,)
@@ -34,16 +45,23 @@ def hierarchical_bootstrap_from_records(
 
     ci_low = float(np.quantile(seed_boot, 0.025))
     ci_high = float(np.quantile(seed_boot, 0.975))
-    p_superiority = float(np.mean(seed_boot <= 0.0))
+    # P(delta <= 0): for a COST metric, higher = challenger non-inferior.
+    p_non_inferior = float(np.mean(seed_boot <= 0.0))
 
     return {
         "mean_delta_kwh": float(np.mean(deltas)),
         "median_delta_kwh": float(np.median(deltas)),
         "seed_std_kwh": float(np.std(deltas, ddof=1)) if n_seeds > 1 else 0.0,
-        "joint_ci_95": [ci_low, ci_high],
-        "joint_p_val_superiority": p_superiority,
+        "seed_level_ci_95": [ci_low, ci_high],
+        "p_non_inferior": p_non_inferior,
         "seed_values": [float(x) for x in deltas],
+        "uncertainty_scope": "seed_level_only",
+        "n_seeds": int(n_seeds),
     }
+
+
+# Backwards-compatible alias: external callers/tests may import the old name.
+hierarchical_bootstrap_from_records = seed_level_bootstrap_from_records
 
 
 def main():
@@ -126,13 +144,23 @@ def main():
     # =========================================================================
     md = f"""# Joint Uncertainty & Stability Audit Report (EXP-01 & EXP-02)
 
-**Audit Date:** 2026-10-12  
-**Purpose:** Formally resolves Issue 1 and Issue 5 of the Scientific Evidence Audit.  
-**Governing Standard:** `docs/SCIENTIFIC_CONTRACT.md`  
-**Core Methodological Correction:**  
-- **Eliminated Arithmetic Averaging:** Replaced improper averaging of per-seed bootstrap CIs and p-values with a unified two-level hierarchical uncertainty analysis.  
-- **Elevated Stability & Catastrophic Runs:** Catastrophic failure rate and robust median deltas are now reported as first-class results.  
-- **Corrected Role Assignment:** Zero-Privileged Challenger is verified as `Primary Challenger` (not Oracle).  
+**Audit Date:** 2026-10-13
+**Purpose:** Records joint stability analysis for EXP-01 and EXP-02.
+**Governing Standard:** `docs/SCIENTIFIC_CONTRACT.md`
+
+**Method and scope (corrected 2026-10-13):**
+- **Uncertainty procedure:** one-level **seed-resampling** bootstrap over the 5
+  model seeds. With n = 5 this is coarse and captures between-seed variability
+  only. It is **not** a two-level (seed x day-cluster) hierarchical bootstrap, and
+  the intervals below are labelled `seed-level` accordingly.
+- **Reproducibility limit:** the archived benchmark CSV stores only seed-level
+  summaries, so a true two-level joint interval cannot be reconstructed from it.
+  `scripts/hierarchical_bootstrap.py` implements the two-level procedure and must
+  be re-run against block-level deltas (`--output-blocks`) to produce one.
+- **`P(Delta <= 0)` is a non-inferiority probability, not a two-sided p-value.**
+  PSREI is a cost, so a HIGHER value indicates the challenger was cheaper or equal.
+- **Stability and catastrophic runs:** catastrophic failure rate and robust
+  medians are reported as first-class results alongside the mean.
 
 ---
 
@@ -140,60 +168,103 @@ def main():
 
 *Primary Endpoint:* $h=6$ Transferred STGQ-Modular vs. Site-Local Wspd-Bins on Penmanshiel and Kelmarsh.
 
-| Farm | Horizon | Model | Median Delta (kWh) | Mean Delta (kWh) | Seed Std (kWh) | Joint 95% CI (kWh) | P(Delta <= 0) | Catastrophic Rate |
+| Farm | Horizon | Model | Median Delta (kWh) | Mean Delta (kWh) | Seed Std (kWh) | Seed-level 95% CI (kWh) | P(Delta <= 0) | Catastrophic Rate |
 | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 """
     if "EXP-01" in results_all:
         for r in results_all["EXP-01"]:
-            ci_str = f"[{r['joint_ci_95'][0]/1e3:+8.1f}k, {r['joint_ci_95'][1]/1e3:+8.1f}k]"
+            ci_str = f"[{r['seed_level_ci_95'][0]/1e3:+8.1f}k, {r['seed_level_ci_95'][1]/1e3:+8.1f}k]"
             md += (
                 f"| {r['farm']} | {r['horizon']} | {r['model']} | "
                 f"{r['median_delta_kwh']/1e3:+8.1f}k | {r['mean_delta_kwh']/1e3:+8.1f}k | "
                 f"{r['seed_std_kwh']/1e3:8.1f}k | {ci_str} | "
-                f"{r['joint_p_val_superiority']:.3f} | {r['catastrophic_rate']*100:.1f}% ({r['catastrophic_count']}/{r['n_seeds']}) |\n"
+                f"{r['p_non_inferior']:.3f} | {r['catastrophic_rate']*100:.1f}% ({r['catastrophic_count']}/{r['n_seeds']}) |\n"
             )
 
-    md += """
-### Key Scientific Findings for EXP-01:
-1. **Penmanshiel h=6 (Primary Endpoint):**
-   - Transferred STGQ exhibits a statistically significant cost penalty: Median Delta = **+7,496.7k kWh**, Mean Delta = **+5,321.9k kWh**, Joint 95% CI = **[+2,895.3k, +7,794.7k] kWh**.
-   - $P(\\Delta \\le 0) = 0.000$: Across all 5 seeds, Transferred STGQ strictly underperforms Site-Local Wspd-Bins.
-2. **Kelmarsh h=6 (Primary Endpoint):**
-   - Transferred STGQ exhibits no significant advantage: Median Delta = **+561.6k kWh**, Mean Delta = **+435.7k kWh**, Joint 95% CI = **[+57.1k, +725.2k] kWh**, $P(\\Delta \\le 0) = 0.021$.
-3. **No-Graph Architectural Control:**
-   - Suffers extreme cost penalties across both farms (>+3.4M kWh on Kelmarsh, >+16.8M kWh on Penmanshiel). As established in `docs/NO_GRAPH_CONTROL_AUDIT.md`, this is an unmatched 4,865-parameter control and does not prove causal necessity of spatial graphs.
+    def _ci(r):
+        lo, hi = r["seed_level_ci_95"]
+        return f"[{lo/1e3:+,.1f}k, {hi/1e3:+,.1f}k]"
 
+    def _crosses_zero(r):
+        lo, hi = r["seed_level_ci_95"]
+        return lo <= 0.0 <= hi
+
+    md += "\n### Key Scientific Findings for EXP-01 (derived from the table above):\n"
+    if "EXP-01" in results_all:
+        for r in results_all["EXP-01"]:
+            read = (
+                "no advantage established (interval crosses zero)"
+                if _crosses_zero(r)
+                else ("cost penalty" if r["mean_delta_kwh"] > 0 else "cost advantage")
+            )
+            md += (
+                f"- **{r['farm']} {r['horizon']} ({r['model']}):** median "
+                f"{r['median_delta_kwh']/1e3:+,.1f}k kWh, mean {r['mean_delta_kwh']/1e3:+,.1f}k kWh, "
+                f"seed-level 95% CI {_ci(r)} kWh, P(Delta <= 0) = {r['p_non_inferior']:.3f} "
+                f"-> {read}; catastrophic rate {r['catastrophic_rate']*100:.1f}% "
+                f"({r['catastrophic_count']}/{r['n_seeds']}).\n"
+            )
+    md += (
+        "\n*Note:* No-Graph Architectural Control is an unmatched 4,865-parameter control; "
+        "its cost penalties do not establish causal necessity of spatial graph structure "
+        "(see `docs/NO_GRAPH_CONTROL_AUDIT.md`).\n"
+    )
+
+    md += r"""
 ---
 
 ## 2. EXP-02: Zero-Privileged Supervision Benchmark Joint Uncertainty
 
 *Primary Endpoint:* $h=6$ Zero-Privileged Challenger ($\epsilon=50$ kW) vs. Site-Local Wspd-Bins under strict pitch withholding.
 
-| Horizon | Model | Role | Median Delta (kWh) | Mean Delta (kWh) | Seed Std (kWh) | Joint 95% CI (kWh) | P(Delta <= 0) | Catastrophic Rate |
+| Horizon | Model | Role | Median Delta (kWh) | Mean Delta (kWh) | Seed Std (kWh) | Seed-level 95% CI (kWh) | P(Delta <= 0) | Catastrophic Rate |
 | :---: | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 """
     if "EXP-02" in results_all:
         for r in results_all["EXP-02"]:
-            ci_str = f"[{r['joint_ci_95'][0]/1e3:+8.1f}k, {r['joint_ci_95'][1]/1e3:+8.1f}k]"
+            ci_str = f"[{r['seed_level_ci_95'][0]/1e3:+8.1f}k, {r['seed_level_ci_95'][1]/1e3:+8.1f}k]"
             md += (
                 f"| {r['horizon']} | {r['model']} | {r['role']} | "
                 f"{r['median_delta_kwh']/1e3:+8.1f}k | {r['mean_delta_kwh']/1e3:+8.1f}k | "
                 f"{r['seed_std_kwh']/1e3:8.1f}k | {ci_str} | "
-                f"{r['joint_p_val_superiority']:.3f} | {r['catastrophic_rate']*100:.1f}% ({r['catastrophic_count']}/{r['n_seeds']}) |\n"
+                f"{r['p_non_inferior']:.3f} | {r['catastrophic_rate']*100:.1f}% ({r['catastrophic_count']}/{r['n_seeds']}) |\n"
             )
 
-    md += """
-### Key Scientific Findings for EXP-02:
-1. **Horizon h=1:**
-   - Challenger median delta = **-167.0k kWh**, mean delta = **-365.9k kWh**, with 0% catastrophic runs.
-   - However, the Joint 95% CI spans zero (**[-549.2k, -164.7k]** with individual seed bootstrap CIs crossing positive), meaning no statistically significant decision gain is established over Site-Local Wspd-Bins.
-2. **Horizon h=6 (Primary Endpoint):**
-   - Headline mean delta of **+3,435.5k kWh** is heavily distorted by Seed 201's catastrophic failure (+17,411.3k kWh, 48.60% violation rate).
-   - Catastrophic run rate is **20.0%** (1 out of 5 seeds collapses).
-   - In the surviving 4 seeds, median delta is **-178.3k kWh** with Joint 95% CI spanning from **[-164.8k to +9,985.4k] kWh**, confirming severe policy instability.
-3. **Formal Epistemic Verdict:**
-   - Zero-privileged weak-supervision fails to reliably outperform simple local wind-speed conditioning, and introduces severe catastrophic failure risk at longer horizons.
+    md += "\n### Key Scientific Findings for EXP-02 (derived from the table above):\n"
+    if "EXP-02" in results_all:
+        for r in results_all["EXP-02"]:
+            md += (
+                f"- **Horizon {r['horizon']} ({r['model']}):** median "
+                f"{r['median_delta_kwh']/1e3:+,.1f}k kWh, mean {r['mean_delta_kwh']/1e3:+,.1f}k kWh, "
+                f"seed-level 95% CI {_ci(r)} kWh, P(Delta <= 0) = {r['p_non_inferior']:.3f}, "
+                f"catastrophic rate {r['catastrophic_rate']*100:.1f}% "
+                f"({r['catastrophic_count']}/{r['n_seeds']}).\n"
+            )
+        h6 = None
+        for r in results_all["EXP-02"]:
+            if str(r.get("horizon")) == "6" and "eps=50" in str(r.get("model")):
+                h6 = r
+                break
+        if h6:
+            worst = max(h6["seed_values"])
+            widx = h6["seed_values"].index(worst)
+            md += (
+                f"\n**Stability reading.** The h=6 mean ({h6['mean_delta_kwh']/1e3:+,.1f}k kWh) is not a "
+                f"central tendency: the seed-level median is {h6['median_delta_kwh']/1e3:+,.1f}k kWh, and "
+                f"the mean is dominated by the worst seed (Seed {201 + widx}: {worst:+,.0f} kWh). "
+                f"With only {h6['n_seeds']} seeds the seed-only interval is coarse, so the median is the "
+                f"more robust summary.\n"
+            )
+    md += (
+        "\n**Bounded conclusion.** Under the zero-privileged protocol, no stable decision "
+        "advantage over simple local wind-speed conditioning is established. The h=1 point "
+        "estimate is favourable but statistically inconclusive; h=6 shows a mean driven by one "
+        "catastrophic seed rather than a consistent deficit. This is not evidence that "
+        "consequence signals carry no mutual information.\n"
+    )
 
+
+    md += """
 ---
 
 ## 3. Disaggregated Seed Data Matrix
@@ -215,7 +286,7 @@ def main():
 
     md += """
 ---
-*Certified by Scientific Control Plane on 2026-10-12.*
+*Generated by scripts/generate_joint_uncertainty_report.py (seed-level bootstrap).*
 """
     out_md.write_text(md, encoding="utf-8")
     print(f"[OK] Generated {out_md}")

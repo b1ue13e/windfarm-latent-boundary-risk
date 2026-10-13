@@ -4,11 +4,11 @@
       "mean_delta_kwh": 174455.0342835437,
       "median_delta_kwh": -182340.62982366083,
       "seed_std_kwh": 1032518.627353466,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         -635085.8407500016,
         983995.9093170889
       ],
-      "joint_p_val_superiority": 0.3236,
+      "p_non_inferior": 0.3236,
       "seed_values": [
         1336158.2376033105,
         -717185.0185201935,
@@ -16,24 +16,25 @@
         -182340.62982366083,
         1215001.8506012422
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "farm": "Kelmarsh",
       "horizon": "h=1",
       "model": "Fine-tuned STGQ-Modular",
       "mean_viol_pct": 12.26216571679088,
       "median_viol_pct": 11.690778898144089,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": 3667532.8367290525,
       "median_delta_kwh": 3443695.846902402,
       "seed_std_kwh": 552008.5192786418,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         3268153.3169274065,
         4139656.4559739544
       ],
-      "joint_p_val_superiority": 0.0,
+      "p_non_inferior": 0.0,
       "seed_values": [
         3244357.424743796,
         4504245.943625217,
@@ -41,24 +42,25 @@
         3204177.944123519,
         3443695.846902402
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "farm": "Kelmarsh",
       "horizon": "h=1",
       "model": "No-Graph Architectural Control",
       "mean_viol_pct": 30.244775683179892,
       "median_viol_pct": 29.486336402162795,
       "catastrophic_rate": 1.0,
-      "catastrophic_count": 5,
-      "n_seeds": 5
+      "catastrophic_count": 5
     },
     {
       "mean_delta_kwh": 515317.631860607,
       "median_delta_kwh": 684566.7376863335,
       "seed_std_kwh": 399103.62632445665,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         186944.34185100807,
         783591.6160110815
       ],
-      "joint_p_val_superiority": 0.0016,
+      "p_non_inferior": 0.0016,
       "seed_values": [
         684566.7376863335,
         901823.8276697488,
@@ -66,24 +68,25 @@
         -121213.9344234366,
         714871.8435147882
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "farm": "Kelmarsh",
       "horizon": "h=1",
       "model": "Transferred STGQ-Modular",
       "mean_viol_pct": 12.538360368259537,
       "median_viol_pct": 13.11193920794973,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": -2000.50949851342,
       "median_delta_kwh": -331613.6907361592,
       "seed_std_kwh": 950437.7897826316,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         -742032.8046930495,
         738031.7856960226
       ],
-      "joint_p_val_superiority": 0.5434,
+      "p_non_inferior": 0.5434,
       "seed_values": [
         1166628.133693054,
         -807475.939491451,
@@ -91,24 +94,25 @@
         -331613.6907361592,
         844258.1759150821
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "farm": "Kelmarsh",
       "horizon": "h=6",
       "model": "Fine-tuned STGQ-Modular",
       "mean_viol_pct": 12.294315358760779,
       "median_viol_pct": 12.224170685371911,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": 3403610.7173068807,
       "median_delta_kwh": 3074847.6210279064,
       "seed_std_kwh": 507021.9606427274,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         3042096.007607008,
         3840763.090819446
       ],
-      "joint_p_val_superiority": 0.0,
+      "p_non_inferior": 0.0,
       "seed_values": [
         2999401.1625044253,
         4130005.3255475806,
@@ -116,24 +120,25 @@
         3068415.045999141,
         3074847.6210279064
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "farm": "Kelmarsh",
       "horizon": "h=6",
       "model": "No-Graph Architectural Control",
       "mean_viol_pct": 31.348823615373373,
       "median_viol_pct": 30.878269764723075,
       "catastrophic_rate": 1.0,
-      "catastrophic_count": 5,
-      "n_seeds": 5
+      "catastrophic_count": 5
     },
     {
       "mean_delta_kwh": 435683.7855677533,
       "median_delta_kwh": 561559.0712067583,
       "seed_std_kwh": 393363.88515159715,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         124461.51197185306,
         713497.8832407927
       ],
-      "joint_p_val_superiority": 0.0052,
+      "p_non_inferior": 0.0052,
       "seed_values": [
         566296.7713950624,
         894215.1994544211,
@@ -141,24 +146,25 @@
         -166936.86085141706,
         561559.0712067583
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "farm": "Kelmarsh",
       "horizon": "h=6",
       "model": "Transferred STGQ-Modular",
       "mean_viol_pct": 12.682303083442935,
       "median_viol_pct": 12.742948998977058,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": -2642686.750354027,
       "median_delta_kwh": -4058291.807197109,
       "seed_std_kwh": 3937029.5357772196,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         -4655979.32433575,
         890390.306899401
       ],
-      "joint_p_val_superiority": 0.9356,
+      "p_non_inferior": 0.9356,
       "seed_values": [
         -4880805.291713804,
         -3939453.759196973,
@@ -166,24 +172,25 @@
         4363144.093678114,
         -4058291.807197109
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "farm": "Penmanshiel",
       "horizon": "h=1",
       "model": "Fine-tuned STGQ-Modular",
       "mean_viol_pct": 17.611940298507463,
       "median_viol_pct": 17.437953091684435,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": 19591859.410210207,
       "median_delta_kwh": 19462293.936986964,
       "seed_std_kwh": 2518379.7671434456,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         17527774.059551857,
         21760262.9303943
       ],
-      "joint_p_val_superiority": 0.0,
+      "p_non_inferior": 0.0,
       "seed_values": [
         16196015.301765963,
         23250163.419836704,
@@ -191,24 +198,25 @@
         19462293.936986964,
         19062603.653644096
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "farm": "Penmanshiel",
       "horizon": "h=1",
       "model": "No-Graph Architectural Control",
       "mean_viol_pct": 41.804349680170574,
       "median_viol_pct": 42.220895522388055,
       "catastrophic_rate": 1.0,
-      "catastrophic_count": 5,
-      "n_seeds": 5
+      "catastrophic_count": 5
     },
     {
       "mean_delta_kwh": 6571776.521726189,
       "median_delta_kwh": 8939252.936519153,
       "seed_std_kwh": 4279387.419625368,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         3321035.079917869,
         9822013.871182369
       ],
-      "joint_p_val_superiority": 0.0,
+      "p_non_inferior": 0.0,
       "seed_values": [
         1595191.185986496,
         9959295.562720248,
@@ -216,24 +224,25 @@
         10126112.646976097,
         8939252.936519153
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "farm": "Penmanshiel",
       "horizon": "h=1",
       "model": "Transferred STGQ-Modular",
       "mean_viol_pct": 19.91164179104478,
       "median_viol_pct": 21.611940298507463,
       "catastrophic_rate": 0.6,
-      "catastrophic_count": 3,
-      "n_seeds": 5
+      "catastrophic_count": 3
     },
     {
       "mean_delta_kwh": -3527227.732100199,
       "median_delta_kwh": -4945750.004969198,
       "seed_std_kwh": 3830388.3858112963,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         -5476919.557692554,
         -80815.9113519432
       ],
-      "joint_p_val_superiority": 0.9802,
+      "p_non_inferior": 0.9802,
       "seed_values": [
         -5479165.759587395,
         -4803322.861785501,
@@ -241,24 +250,25 @@
         3292803.0215377267,
         -4945750.004969198
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "farm": "Penmanshiel",
       "horizon": "h=6",
       "model": "Fine-tuned STGQ-Modular",
       "mean_viol_pct": 17.452962267372374,
       "median_viol_pct": 17.32627625064026,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": 16880325.855153374,
       "median_delta_kwh": 16739848.949129231,
       "seed_std_kwh": 2304293.266079933,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         15027932.185193073,
         18872267.71113981
       ],
-      "joint_p_val_superiority": 0.0,
+      "p_non_inferior": 0.0,
       "seed_values": [
         13742110.604855517,
         20220834.416958462,
@@ -266,24 +276,25 @@
         16525355.142554076,
         16739848.949129231
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "farm": "Penmanshiel",
       "horizon": "h=6",
       "model": "No-Graph Architectural Control",
       "mean_viol_pct": 41.456035513061295,
       "median_viol_pct": 41.97541403448864,
       "catastrophic_rate": 1.0,
-      "catastrophic_count": 5,
-      "n_seeds": 5
+      "catastrophic_count": 5
     },
     {
       "mean_delta_kwh": 5321914.708780061,
       "median_delta_kwh": 7496721.470429848,
       "seed_std_kwh": 3927959.6296902457,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         2333944.349372346,
         8309885.068187776
       ],
-      "joint_p_val_superiority": 0.0,
+      "p_non_inferior": 0.0,
       "seed_values": [
         1074853.113897664,
         8486283.473236293,
@@ -291,14 +302,15 @@
         8540068.462018225,
         7496721.470429848
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "farm": "Penmanshiel",
       "horizon": "h=6",
       "model": "Transferred STGQ-Modular",
       "mean_viol_pct": 20.3247396277958,
       "median_viol_pct": 21.50930510500256,
       "catastrophic_rate": 0.6,
-      "catastrophic_count": 3,
-      "n_seeds": 5
+      "catastrophic_count": 3
     }
   ],
   "EXP-02": [
@@ -306,11 +318,11 @@
       "mean_delta_kwh": -335413.8498703877,
       "median_delta_kwh": -318381.1122955589,
       "seed_std_kwh": 235510.566747213,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         -520527.04614364944,
         -142861.89249695904
       ],
-      "joint_p_val_superiority": 0.9994,
+      "p_non_inferior": 0.9994,
       "seed_values": [
         1963.893747572446,
         -303540.9973296218,
@@ -318,24 +330,25 @@
         -318381.1122955589,
         -401820.03143195366
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "horizon": "h=1",
       "model": "Direct Consequence Quantile MLP",
       "role": "Secondary Baseline / Sensitivity Probe",
       "mean_viol_pct": 7.571973189024227,
       "median_viol_pct": 7.056099105730223,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": 376153.4524089248,
       "median_delta_kwh": 301691.1023709984,
       "seed_std_kwh": 373833.29783397337,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         96287.2474868799,
         669829.8052237987
       ],
-      "joint_p_val_superiority": 0.0,
+      "p_non_inferior": 0.0,
       "seed_values": [
         896925.175962305,
         606384.2817040256,
@@ -343,24 +356,25 @@
         301691.1023709984,
         23777.4854792421
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "horizon": "h=1",
       "model": "Privileged STGQ (Oracle Reference)",
       "role": "Oracle Upper Reference (Non-Competitive)",
       "mean_viol_pct": 6.936325155219508,
       "median_viol_pct": 7.021619467057273,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": 516899.8843967271,
       "median_delta_kwh": -423393.3920952773,
       "seed_std_kwh": 2060618.8713064247,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         -531385.438548011,
         2384568.5016990025
       ],
-      "joint_p_val_superiority": 0.3314,
+      "p_non_inferior": 0.3314,
       "seed_values": [
         4184936.607582537,
         -571690.4210713638,
@@ -368,24 +382,25 @@
         -60276.89318123538,
         -545076.4792510248
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "horizon": "h=1",
       "model": "Zero-Privileged Challenger (eps=100)",
       "role": "Secondary Baseline / Sensitivity Probe",
       "mean_viol_pct": 12.348650281094644,
       "median_viol_pct": 8.015660113905076,
       "catastrophic_rate": 0.2,
-      "catastrophic_count": 1,
-      "n_seeds": 5
+      "catastrophic_count": 1
     },
     {
       "mean_delta_kwh": -354398.01052633766,
       "median_delta_kwh": -393240.4118363405,
       "seed_std_kwh": 208244.93433595606,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         -515649.96518918325,
         -193146.05586349213
       ],
-      "joint_p_val_superiority": 1.0,
+      "p_non_inferior": 1.0,
       "seed_values": [
         -208118.90498559043,
         -528715.0207711667,
@@ -393,24 +408,25 @@
         -78126.02875496967,
         -563789.6862836211
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "horizon": "h=1",
       "model": "Zero-Privileged Challenger (eps=20)",
       "role": "Secondary Baseline / Sensitivity Probe",
       "mean_viol_pct": 7.887327387837246,
       "median_viol_pct": 7.923958947221699,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": -365903.9853667909,
       "median_delta_kwh": -448996.63666695287,
       "seed_std_kwh": 224230.3519111461,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         -539957.4113035876,
         -191850.55942999417
       ],
-      "joint_p_val_superiority": 1.0,
+      "p_non_inferior": 1.0,
       "seed_values": [
         -166987.3873466353,
         -566992.7843878786,
@@ -418,24 +434,25 @@
         -88140.69289487369,
         -558402.4255376142
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "horizon": "h=1",
       "model": "Zero-Privileged Challenger (eps=50)",
       "role": "Primary Challenger",
       "mean_viol_pct": 7.954232559049439,
       "median_viol_pct": 7.879697850769189,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": 7845518.41978644,
       "median_delta_kwh": 895915.044248604,
       "seed_std_kwh": 10837946.250999808,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         252413.72323356415,
         17293846.659626696
       ],
-      "joint_p_val_superiority": 0.001,
+      "p_non_inferior": 0.001,
       "seed_values": [
         895915.044248604,
         14121163.089464027,
@@ -443,24 +460,25 @@
         265758.6708895713,
         -82681.88492996297
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "horizon": "h=6",
       "model": "Direct Consequence Quantile MLP",
       "role": "Secondary Baseline / Sensitivity Probe",
       "mean_viol_pct": 24.998789550519756,
       "median_viol_pct": 13.376322630025506,
       "catastrophic_rate": 0.4,
-      "catastrophic_count": 2,
-      "n_seeds": 5
+      "catastrophic_count": 2
     },
     {
       "mean_delta_kwh": 326841.5280736358,
       "median_delta_kwh": 178338.47438817954,
       "seed_std_kwh": 464102.268752009,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         -16079.009927612617,
         708811.9466134245
       ],
-      "joint_p_val_superiority": 0.0346,
+      "p_non_inferior": 0.0346,
       "seed_values": [
         1015042.221327472,
         570193.7066656491,
@@ -468,24 +486,25 @@
         -71260.63758094296,
         -58106.12443217836
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "horizon": "h=6",
       "model": "Privileged STGQ (Oracle Reference)",
       "role": "Oracle Upper Reference (Non-Competitive)",
       "mean_viol_pct": 7.718999655205299,
       "median_viol_pct": 7.941037660873626,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": 105814.08881215034,
       "median_delta_kwh": 71885.9367930943,
       "seed_std_kwh": 261453.7069529871,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         -74998.2425682374,
         333353.0806376037
       ],
-      "joint_p_val_superiority": 0.1624,
+      "p_non_inferior": 0.1624,
       "seed_values": [
         528995.3572439594,
         71885.9367930943,
@@ -493,24 +512,25 @@
         -151590.18143244248,
         -55634.259570155
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "horizon": "h=6",
       "model": "Zero-Privileged Challenger (eps=100)",
       "role": "Secondary Baseline / Sensitivity Probe",
       "mean_viol_pct": 7.584162919163982,
       "median_viol_pct": 6.686082765400219,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": 6890.437447941545,
       "median_delta_kwh": -73320.50042062698,
       "seed_std_kwh": 138241.70542565043,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         -96518.2796804067,
         112230.2085311551
       ],
-      "joint_p_val_superiority": 0.4254,
+      "p_non_inferior": 0.4254,
       "seed_values": [
         150590.45525162082,
         -73320.50042062698,
@@ -518,24 +538,25 @@
         -129742.99219660649,
         -74892.4567940968
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "horizon": "h=6",
       "model": "Zero-Privileged Challenger (eps=20)",
       "role": "Secondary Baseline / Sensitivity Probe",
       "mean_viol_pct": 9.06937220465644,
       "median_viol_pct": 9.46180237150284,
       "catastrophic_rate": 0.0,
-      "catastrophic_count": 0,
-      "n_seeds": 5
+      "catastrophic_count": 0
     },
     {
       "mean_delta_kwh": 3435465.39934045,
       "median_delta_kwh": -63422.12723097024,
       "seed_std_kwh": 7813847.4265725985,
-      "joint_ci_95": [
+      "seed_level_ci_95": [
         -144858.4921526957,
         10443080.541086014
       ],
-      "joint_p_val_superiority": 0.2766,
+      "p_non_inferior": 0.2766,
       "seed_values": [
         17411273.00178246,
         -178327.5888343214,
@@ -543,14 +564,15 @@
         -152107.57793193276,
         -63422.12723097024
       ],
+      "uncertainty_scope": "seed_level_only",
+      "n_seeds": 5,
       "horizon": "h=6",
       "model": "Zero-Privileged Challenger (eps=50)",
       "role": "Primary Challenger",
       "mean_viol_pct": 16.72533067278983,
       "median_viol_pct": 9.48112065613698,
       "catastrophic_rate": 0.2,
-      "catastrophic_count": 1,
-      "n_seeds": 5
+      "catastrophic_count": 1
     }
   ]
 }

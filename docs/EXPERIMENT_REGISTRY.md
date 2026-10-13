@@ -232,7 +232,11 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 **Contract claim tested:** Current UNKNOWN: pitch-never-recorded setting and zero-privileged supervision boundary.
 
-**Status:** CONCLUDED / EVIDENCE FROZEN (DEFICIT ESTABLISHED; FALSIFICATION GUARDRAIL OBSERVED).
+**Status:** CONCLUDED / EVIDENCE FROZEN (NO STABLE ZERO-PRIVILEGED ADVANTAGE ESTABLISHED; DEFICIT NOT ESTABLISHED; h=6 INSTABILITY OBSERVED; FALSIFICATION GUARDRAIL OBSERVED).
+
+**Verdict provenance (F4 correction, 2026-10-13):** the earlier status text read "DEFICIT ESTABLISHED". That verdict was hardcoded and not derived from the frozen statistics, and it overstated the evidence: h=1 shows a favourable point estimate that is statistically inconclusive, while h=6 shows an unstable policy dominated by one catastrophic seed rather than a uniform deficit. The verdict is now computed from the frozen CSV by `scripts/exp02_verdict.py` and rendered by `scripts/run_exp02_zero_privileged_supervision.py`.
+
+**Statistical semantics (F4 correction):** the bootstrap field `P(delta <= 0)` (formerly mislabelled `p_val_delta_psrei`) is an **empirical non-inferiority probability**, not a two-sided p-value. Because PSREI is a *cost*, a HIGHER value means the challenger was non-inferior (cheaper or equal) in that resample. The superseded reading — requiring `delta < 0` *and* `p < 0.05` — was directionally self-contradictory.
 
 **Execution & Findings Summary (2026-10-11 Metis A100 Benchmark):**
 - **Artifact:** `artifacts/zero_privileged_supervision_benchmark.csv` (SHA256 verified) & `docs/ZERO_PRIVILEGED_SUPERVISION_REPORT.md`.
@@ -256,8 +260,8 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
   - Held-out pitch NMI on test set: $0.257$ ($h=1, \epsilon=50$), $0.128$ ($h=6, \epsilon=50$), $0.096$ (Oracle STGQ).
   - Demonstrates that weak consequence reconstruction captures noisy statistical correlation with pitch transitions, but this does NOT translate into deployable downstream decision superiority.
 - **Formal Scientific Conclusion (Falsification Guardrail Enforced):**
-  > **"Under the zero-privileged supervision protocol, consequence signals alone failed to recover a deployable decision function superior to simple local wind-speed conditioning."**
-  *(Strict boundary: It is NOT claimed that active power consequence carries no mutual information, nor that real wind farms do not need pitch telemetry. The deficit is strictly established for the unprivileged learning protocol).*
+  > **"Under the zero-privileged supervision protocol, no stable decision advantage over simple local wind-speed conditioning was established. At h=1 the point estimate is favourable but statistically inconclusive; at h=6 the policy is unstable and dominated by a single catastrophic seed."**
+  *(Strict boundary: It is NOT claimed that active power consequence carries no mutual information, nor that real wind farms do not need pitch telemetry. A uniform "deficit" is NOT established — the h=1 point estimate is favourable, and the h=6 mean is driven by one seed rather than by a consistent sign. The empirical `P(delta <= 0)` values are non-inferiority probabilities, not two-sided p-values.)*
 
 **Information set & Zero-Privileged Supervision Protocol:**
 - **Strict Absence of Pitch:** Blade pitch angle ($\beta, \texttt{Pab\_mean}, \texttt{Pab\_std}$) is strictly absent and masked across training features, validation features, calibration features, and deployment test features.

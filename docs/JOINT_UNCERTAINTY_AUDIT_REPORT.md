@@ -1,12 +1,22 @@
 # Joint Uncertainty & Stability Audit Report (EXP-01 & EXP-02)
 
-**Audit Date:** 2026-10-12  
-**Purpose:** Formally resolves Issue 1 and Issue 5 of the Scientific Evidence Audit.  
-**Governing Standard:** `docs/SCIENTIFIC_CONTRACT.md`  
-**Core Methodological Correction:**  
-- **Eliminated Arithmetic Averaging:** Replaced improper averaging of per-seed bootstrap CIs and p-values with a unified two-level hierarchical uncertainty analysis.  
-- **Elevated Stability & Catastrophic Runs:** Catastrophic failure rate and robust median deltas are now reported as first-class results.  
-- **Corrected Role Assignment:** Zero-Privileged Challenger is verified as `Primary Challenger` (not Oracle).  
+**Audit Date:** 2026-10-13
+**Purpose:** Records joint stability analysis for EXP-01 and EXP-02.
+**Governing Standard:** `docs/SCIENTIFIC_CONTRACT.md`
+
+**Method and scope (corrected 2026-10-13):**
+- **Uncertainty procedure:** one-level **seed-resampling** bootstrap over the 5
+  model seeds. With n = 5 this is coarse and captures between-seed variability
+  only. It is **not** a two-level (seed x day-cluster) hierarchical bootstrap, and
+  the intervals below are labelled `seed-level` accordingly.
+- **Reproducibility limit:** the archived benchmark CSV stores only seed-level
+  summaries, so a true two-level joint interval cannot be reconstructed from it.
+  `scripts/hierarchical_bootstrap.py` implements the two-level procedure and must
+  be re-run against block-level deltas (`--output-blocks`) to produce one.
+- **`P(Delta <= 0)` is a non-inferiority probability, not a two-sided p-value.**
+  PSREI is a cost, so a HIGHER value indicates the challenger was cheaper or equal.
+- **Stability and catastrophic runs:** catastrophic failure rate and robust
+  medians are reported as first-class results alongside the mean.
 
 ---
 
@@ -14,7 +24,7 @@
 
 *Primary Endpoint:* $h=6$ Transferred STGQ-Modular vs. Site-Local Wspd-Bins on Penmanshiel and Kelmarsh.
 
-| Farm | Horizon | Model | Median Delta (kWh) | Mean Delta (kWh) | Seed Std (kWh) | Joint 95% CI (kWh) | P(Delta <= 0) | Catastrophic Rate |
+| Farm | Horizon | Model | Median Delta (kWh) | Mean Delta (kWh) | Seed Std (kWh) | Seed-level 95% CI (kWh) | P(Delta <= 0) | Catastrophic Rate |
 | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | Kelmarsh | h=1 | Fine-tuned STGQ-Modular |   -182.3k |   +174.5k |   1032.5k | [  -635.1k,   +984.0k] | 0.324 | 0.0% (0/5) |
 | Kelmarsh | h=1 | No-Graph Architectural Control |  +3443.7k |  +3667.5k |    552.0k | [ +3268.2k,  +4139.7k] | 0.000 | 100.0% (5/5) |
@@ -29,14 +39,21 @@
 | Penmanshiel | h=6 | No-Graph Architectural Control | +16739.8k | +16880.3k |   2304.3k | [+15027.9k, +18872.3k] | 0.000 | 100.0% (5/5) |
 | Penmanshiel | h=6 | Transferred STGQ-Modular |  +7496.7k |  +5321.9k |   3928.0k | [ +2333.9k,  +8309.9k] | 0.000 | 60.0% (3/5) |
 
-### Key Scientific Findings for EXP-01:
-1. **Penmanshiel h=6 (Primary Endpoint):**
-   - Transferred STGQ exhibits a statistically significant cost penalty: Median Delta = **+7,496.7k kWh**, Mean Delta = **+5,321.9k kWh**, Joint 95% CI = **[+2,895.3k, +7,794.7k] kWh**.
-   - $P(\Delta \le 0) = 0.000$: Across all 5 seeds, Transferred STGQ strictly underperforms Site-Local Wspd-Bins.
-2. **Kelmarsh h=6 (Primary Endpoint):**
-   - Transferred STGQ exhibits no significant advantage: Median Delta = **+561.6k kWh**, Mean Delta = **+435.7k kWh**, Joint 95% CI = **[+57.1k, +725.2k] kWh**, $P(\Delta \le 0) = 0.021$.
-3. **No-Graph Architectural Control:**
-   - Suffers extreme cost penalties across both farms (>+3.4M kWh on Kelmarsh, >+16.8M kWh on Penmanshiel). As established in `docs/NO_GRAPH_CONTROL_AUDIT.md`, this is an unmatched 4,865-parameter control and does not prove causal necessity of spatial graphs.
+### Key Scientific Findings for EXP-01 (derived from the table above):
+- **Kelmarsh h=1 (Fine-tuned STGQ-Modular):** median -182.3k kWh, mean +174.5k kWh, seed-level 95% CI [-635.1k, +984.0k] kWh, P(Delta <= 0) = 0.324 -> no advantage established (interval crosses zero); catastrophic rate 0.0% (0/5).
+- **Kelmarsh h=1 (No-Graph Architectural Control):** median +3,443.7k kWh, mean +3,667.5k kWh, seed-level 95% CI [+3,268.2k, +4,139.7k] kWh, P(Delta <= 0) = 0.000 -> cost penalty; catastrophic rate 100.0% (5/5).
+- **Kelmarsh h=1 (Transferred STGQ-Modular):** median +684.6k kWh, mean +515.3k kWh, seed-level 95% CI [+186.9k, +783.6k] kWh, P(Delta <= 0) = 0.002 -> cost penalty; catastrophic rate 0.0% (0/5).
+- **Kelmarsh h=6 (Fine-tuned STGQ-Modular):** median -331.6k kWh, mean -2.0k kWh, seed-level 95% CI [-742.0k, +738.0k] kWh, P(Delta <= 0) = 0.543 -> no advantage established (interval crosses zero); catastrophic rate 0.0% (0/5).
+- **Kelmarsh h=6 (No-Graph Architectural Control):** median +3,074.8k kWh, mean +3,403.6k kWh, seed-level 95% CI [+3,042.1k, +3,840.8k] kWh, P(Delta <= 0) = 0.000 -> cost penalty; catastrophic rate 100.0% (5/5).
+- **Kelmarsh h=6 (Transferred STGQ-Modular):** median +561.6k kWh, mean +435.7k kWh, seed-level 95% CI [+124.5k, +713.5k] kWh, P(Delta <= 0) = 0.005 -> cost penalty; catastrophic rate 0.0% (0/5).
+- **Penmanshiel h=1 (Fine-tuned STGQ-Modular):** median -4,058.3k kWh, mean -2,642.7k kWh, seed-level 95% CI [-4,656.0k, +890.4k] kWh, P(Delta <= 0) = 0.936 -> no advantage established (interval crosses zero); catastrophic rate 0.0% (0/5).
+- **Penmanshiel h=1 (No-Graph Architectural Control):** median +19,462.3k kWh, mean +19,591.9k kWh, seed-level 95% CI [+17,527.8k, +21,760.3k] kWh, P(Delta <= 0) = 0.000 -> cost penalty; catastrophic rate 100.0% (5/5).
+- **Penmanshiel h=1 (Transferred STGQ-Modular):** median +8,939.3k kWh, mean +6,571.8k kWh, seed-level 95% CI [+3,321.0k, +9,822.0k] kWh, P(Delta <= 0) = 0.000 -> cost penalty; catastrophic rate 60.0% (3/5).
+- **Penmanshiel h=6 (Fine-tuned STGQ-Modular):** median -4,945.8k kWh, mean -3,527.2k kWh, seed-level 95% CI [-5,476.9k, -80.8k] kWh, P(Delta <= 0) = 0.980 -> cost advantage; catastrophic rate 0.0% (0/5).
+- **Penmanshiel h=6 (No-Graph Architectural Control):** median +16,739.8k kWh, mean +16,880.3k kWh, seed-level 95% CI [+15,027.9k, +18,872.3k] kWh, P(Delta <= 0) = 0.000 -> cost penalty; catastrophic rate 100.0% (5/5).
+- **Penmanshiel h=6 (Transferred STGQ-Modular):** median +7,496.7k kWh, mean +5,321.9k kWh, seed-level 95% CI [+2,333.9k, +8,309.9k] kWh, P(Delta <= 0) = 0.000 -> cost penalty; catastrophic rate 60.0% (3/5).
+
+*Note:* No-Graph Architectural Control is an unmatched 4,865-parameter control; its cost penalties do not establish causal necessity of spatial graph structure (see `docs/NO_GRAPH_CONTROL_AUDIT.md`).
 
 ---
 
@@ -44,7 +61,7 @@
 
 *Primary Endpoint:* $h=6$ Zero-Privileged Challenger ($\epsilon=50$ kW) vs. Site-Local Wspd-Bins under strict pitch withholding.
 
-| Horizon | Model | Role | Median Delta (kWh) | Mean Delta (kWh) | Seed Std (kWh) | Joint 95% CI (kWh) | P(Delta <= 0) | Catastrophic Rate |
+| Horizon | Model | Role | Median Delta (kWh) | Mean Delta (kWh) | Seed Std (kWh) | Seed-level 95% CI (kWh) | P(Delta <= 0) | Catastrophic Rate |
 | :---: | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | h=1 | Direct Consequence Quantile MLP | Secondary Baseline / Sensitivity Probe |   -318.4k |   -335.4k |    235.5k | [  -520.5k,   -142.9k] | 0.999 | 0.0% (0/5) |
 | h=1 | Privileged STGQ (Oracle Reference) | Oracle Upper Reference (Non-Competitive) |   +301.7k |   +376.2k |    373.8k | [   +96.3k,   +669.8k] | 0.000 | 0.0% (0/5) |
@@ -57,16 +74,19 @@
 | h=6 | Zero-Privileged Challenger (eps=20) | Secondary Baseline / Sensitivity Probe |    -73.3k |     +6.9k |    138.2k | [   -96.5k,   +112.2k] | 0.425 | 0.0% (0/5) |
 | h=6 | Zero-Privileged Challenger (eps=50) | Primary Challenger |    -63.4k |  +3435.5k |   7813.8k | [  -144.9k, +10443.1k] | 0.277 | 20.0% (1/5) |
 
-### Key Scientific Findings for EXP-02:
-1. **Horizon h=1:**
-   - Challenger median delta = **-167.0k kWh**, mean delta = **-365.9k kWh**, with 0% catastrophic runs.
-   - However, the Joint 95% CI spans zero (**[-549.2k, -164.7k]** with individual seed bootstrap CIs crossing positive), meaning no statistically significant decision gain is established over Site-Local Wspd-Bins.
-2. **Horizon h=6 (Primary Endpoint):**
-   - Headline mean delta of **+3,435.5k kWh** is heavily distorted by Seed 201's catastrophic failure (+17,411.3k kWh, 48.60% violation rate).
-   - Catastrophic run rate is **20.0%** (1 out of 5 seeds collapses).
-   - In the surviving 4 seeds, median delta is **-178.3k kWh** with Joint 95% CI spanning from **[-164.8k to +9,985.4k] kWh**, confirming severe policy instability.
-3. **Formal Epistemic Verdict:**
-   - Zero-privileged weak-supervision fails to reliably outperform simple local wind-speed conditioning, and introduces severe catastrophic failure risk at longer horizons.
+### Key Scientific Findings for EXP-02 (derived from the table above):
+- **Horizon h=1 (Direct Consequence Quantile MLP):** median -318.4k kWh, mean -335.4k kWh, seed-level 95% CI [-520.5k, -142.9k] kWh, P(Delta <= 0) = 0.999, catastrophic rate 0.0% (0/5).
+- **Horizon h=1 (Privileged STGQ (Oracle Reference)):** median +301.7k kWh, mean +376.2k kWh, seed-level 95% CI [+96.3k, +669.8k] kWh, P(Delta <= 0) = 0.000, catastrophic rate 0.0% (0/5).
+- **Horizon h=1 (Zero-Privileged Challenger (eps=100)):** median -423.4k kWh, mean +516.9k kWh, seed-level 95% CI [-531.4k, +2,384.6k] kWh, P(Delta <= 0) = 0.331, catastrophic rate 20.0% (1/5).
+- **Horizon h=1 (Zero-Privileged Challenger (eps=20)):** median -393.2k kWh, mean -354.4k kWh, seed-level 95% CI [-515.6k, -193.1k] kWh, P(Delta <= 0) = 1.000, catastrophic rate 0.0% (0/5).
+- **Horizon h=1 (Zero-Privileged Challenger (eps=50)):** median -449.0k kWh, mean -365.9k kWh, seed-level 95% CI [-540.0k, -191.9k] kWh, P(Delta <= 0) = 1.000, catastrophic rate 0.0% (0/5).
+- **Horizon h=6 (Direct Consequence Quantile MLP):** median +895.9k kWh, mean +7,845.5k kWh, seed-level 95% CI [+252.4k, +17,293.8k] kWh, P(Delta <= 0) = 0.001, catastrophic rate 40.0% (2/5).
+- **Horizon h=6 (Privileged STGQ (Oracle Reference)):** median +178.3k kWh, mean +326.8k kWh, seed-level 95% CI [-16.1k, +708.8k] kWh, P(Delta <= 0) = 0.035, catastrophic rate 0.0% (0/5).
+- **Horizon h=6 (Zero-Privileged Challenger (eps=100)):** median +71.9k kWh, mean +105.8k kWh, seed-level 95% CI [-75.0k, +333.4k] kWh, P(Delta <= 0) = 0.162, catastrophic rate 0.0% (0/5).
+- **Horizon h=6 (Zero-Privileged Challenger (eps=20)):** median -73.3k kWh, mean +6.9k kWh, seed-level 95% CI [-96.5k, +112.2k] kWh, P(Delta <= 0) = 0.425, catastrophic rate 0.0% (0/5).
+- **Horizon h=6 (Zero-Privileged Challenger (eps=50)):** median -63.4k kWh, mean +3,435.5k kWh, seed-level 95% CI [-144.9k, +10,443.1k] kWh, P(Delta <= 0) = 0.277, catastrophic rate 20.0% (1/5).
+
+**Bounded conclusion.** Under the zero-privileged protocol, no stable decision advantage over simple local wind-speed conditioning is established. The h=1 point estimate is favourable but statistically inconclusive; h=6 shows a mean driven by one catastrophic seed rather than a consistent deficit. This is not evidence that consequence signals carry no mutual information.
 
 ---
 
@@ -99,4 +119,4 @@
 - **h=6 (Zero-Privileged Challenger (eps=50)):** Seed 201: +17411273, Seed 202: -178328, Seed 203: +159911, Seed 204: -152108, Seed 205: -63422
 
 ---
-*Certified by Scientific Control Plane on 2026-10-12.*
+*Generated by scripts/generate_joint_uncertainty_report.py (seed-level bootstrap).*
