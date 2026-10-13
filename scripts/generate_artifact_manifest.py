@@ -625,9 +625,10 @@ ARTIFACT_DEFINITIONS = [
         "generating_script": "scripts/generate_joint_uncertainty_report.py",
         "upstream_inputs": ["artifacts/external_matched_control_benchmark.csv", "artifacts/zero_privileged_supervision_benchmark.csv"],
         "manuscript_claims_supported": [
-            "Joint two-level hierarchical uncertainty across seeds and day-clusters for EXP-01 and EXP-02",
-            "Elimination of arithmetic averaging for bootstrap CIs and p-values",
+            "Seed-level bootstrap uncertainty for EXP-01 and EXP-02 (NOT a two-level seed x day-cluster hierarchical bootstrap; the archived CSV persists seed-level summaries only, so re-run scripts/hierarchical_bootstrap.py --output-blocks for a true joint interval)",
+            "Replacement of arithmetic averaging of per-seed CIs and p-values with a single resampling procedure over seeds",
             "First-class reporting of catastrophic failure rates and median deltas",
+            "P(delta <= 0) recorded as an empirical non-inferiority probability, not a two-sided p-value",
         ],
         "tracked_in_git": True,
         "externally_hosted": False,

@@ -67,7 +67,7 @@
     ],
     "manuscript_claims_supported": [
       "Delay-6 Physics breakdown at h=1: 24.02% viol, 127.55 MWh deficit",
-      "State-conditional recalibration absorbs 36.3%/53.9%/61.7% of shortage loss at tau=10/20/30 min (channel_mode=all) and 66.5% at tau=60 (127.552 -> 42.787 MWh)",
+      "State-conditional recalibration absorbs 55.3% shortage loss (127.6 -> 57.0 MWh)",
       "Recalibrated physics at tau=60: 1,228,609 kWh (9.46% viol)",
       "Pitch-withheld recalibration degradation: 824,393 -> 1,378,900 kWh",
       "Learned recovery tau=0 no-pitch: 755,794 kWh (-68.6k vs recal)",
@@ -664,7 +664,7 @@
   {
     "filename": "artifacts/no_graph_architecture_audit.json",
     "sha256": "e263f7598dd939eb10641c276a74df24063ea987d3374df7edb828f35a8c86bb",
-    "size_bytes": 1919,
+    "size_bytes": 2041,
     "category": "A",
     "generating_script": "scripts/run_exp01_matched_control_benchmark.py",
     "upstream_inputs": [
@@ -759,16 +759,16 @@
       "scripts/run_exp03_async_benchmark.py"
     ],
     "manuscript_claims_supported": [
-      "EXP-03: Cryptographic SHA256 provenance hash of the full-grid arrival stream"
+      "EXP-03: Internal execution digest over node 0 / first 144 steps only \u2014 NOT a full-grid arrival-stream hash and not recomputable from archived artifacts (see docs/EXPERIMENT_REGISTRY.md EXP-03 F4 boundary)"
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": false
   },
   {
     "filename": "artifacts/joint_uncertainty_summary.json",
-    "sha256": "f71806277fb122b371b32f866caa2d4f6369c2e81b1d2084146ed6a4c97939bc",
-    "size_bytes": 16396,
+    "sha256": "c941a1812ab0533c6397aa7fe2b1d4709baa2322fbeb6d41b3a10cca904f0a97",
+    "size_bytes": 17342,
     "category": "A",
     "generating_script": "scripts/generate_joint_uncertainty_report.py",
     "upstream_inputs": [
@@ -776,9 +776,10 @@
       "artifacts/zero_privileged_supervision_benchmark.csv"
     ],
     "manuscript_claims_supported": [
-      "Joint two-level hierarchical uncertainty across seeds and day-clusters for EXP-01 and EXP-02",
-      "Elimination of arithmetic averaging for bootstrap CIs and p-values",
-      "First-class reporting of catastrophic failure rates and median deltas"
+      "Seed-level bootstrap uncertainty for EXP-01 and EXP-02 (NOT a two-level seed x day-cluster hierarchical bootstrap; the archived CSV persists seed-level summaries only, so re-run scripts/hierarchical_bootstrap.py --output-blocks for a true joint interval)",
+      "Replacement of arithmetic averaging of per-seed CIs and p-values with a single resampling procedure over seeds",
+      "First-class reporting of catastrophic failure rates and median deltas",
+      "P(delta <= 0) recorded as an empirical non-inferiority probability, not a two-sided p-value"
     ],
     "tracked_in_git": true,
     "externally_hosted": false,

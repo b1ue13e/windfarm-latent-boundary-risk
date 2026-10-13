@@ -482,43 +482,51 @@ def main() -> int:
         ok("registry does not present a stale 'DEFICIT ESTABLISHED' EXP-02 verdict")
 
     # (d) The superseded p-value naming must not return to the EXP-02 pipeline.
+    #     Uses the AST so that live code references are distinguished from
+    #     docstrings/comments and from the schema-migration mapping, whose entire
+    #     purpose is to translate the legacy names.
     exp02_py = ROOT / "scripts" / "run_exp02_zero_privileged_supervision.py"
     if exp02_py.exists():
-        src = exp02_py.read_text(encoding="utf-8", errors="replace")
-        # Legacy names may appear ONLY in docstrings/comments or in the single
-        # schema-migration function whose job is to map them onto corrected names.
-        lines = src.splitlines()
-        schema_start = next((i for i, ln in enumerate(lines) if ln.startswith("def normalize_exp02_schema")), None)
-        schema_end = None
-        if schema_start is not None:
-            for j in range(schema_start + 1, len(lines)):
-                if lines[j].startswith("def ") or lines[j].startswith("class "):
-                    schema_end = j
-                    break
-            if schema_end is None:
-                schema_end = len(lines)
+        import ast as _ast
 
-        legacy_fields = ("full_delta_psrei_pval", "bnd_delta_psrei_pval", "p_val_delta_psrei")
-        live_legacy = []
-        in_docstring = False
-        for i, ln in enumerate(lines, 1):
-            if '"""' in ln:
-                in_docstring = not in_docstring
-            if in_docstring or ln.lstrip().startswith("#"):
-                continue
-            if schema_start is not None and schema_start + 1 <= i <= (schema_end or len(lines)):
-                continue
-            if any(field in ln for field in legacy_fields):
-                live_legacy.append(i)
-        
-        if live_legacy:
-            fail(
-                "EXP-02 pipeline reintroduces the mislabelled p-value field outside the "
-                f"migration mapping: lines {live_legacy}",
-                failures,
-            )
-        else:
-            ok("EXP-02 emits P(delta <= 0) under the non-inferiority name; legacy name only in migration map")
+        legacy_fields = {"full_delta_psrei_pval", "bnd_delta_psrei_pval", "p_val_delta_psrei"}
+        try:
+            tree = _ast.parse(exp02_py.read_text(encoding="utf-8", errors="replace"))
+        except SyntaxError as exc:
+            fail(f"EXP-02 runner does not parse: {exc}", failures)
+            tree = None
+
+        if tree is not None:
+            # Lines inside the schema-migration function are the sanctioned exception.
+            sanctioned: set[int] = set()
+            for node in _ast.walk(tree):
+                if isinstance(node, (_ast.FunctionDef, _ast.AsyncFunctionDef)) and node.name == "normalize_exp02_schema":
+                    for sub in _ast.walk(node):
+                        if hasattr(sub, "lineno"):
+                            sanctioned.add(sub.lineno)
+
+            live: list[int] = []
+            for node in _ast.walk(tree):
+                if isinstance(node, _ast.Constant) and isinstance(node.value, str):
+                    if node.value in legacy_fields and node.lineno not in sanctioned:
+                        live.append(node.lineno)
+                elif isinstance(node, _ast.Name) and node.id in legacy_fields and node.lineno not in sanctioned:
+                    live.append(node.lineno)
+                elif isinstance(node, _ast.Attribute) and node.attr in legacy_fields and node.lineno not in sanctioned:
+                    live.append(node.lineno)
+
+            live = sorted(set(live))
+            if live:
+                fail(
+                    "EXP-02 pipeline reintroduces the mislabelled p-value field as live code "
+                    f"outside the migration mapping: lines {live}",
+                    failures,
+                )
+            else:
+                ok(
+                    "EXP-02 emits P(delta <= 0) under the non-inferiority name; "
+                    "legacy name appears only in the schema-migration mapping"
+                )
 
     # (e) The joint-uncertainty report must not claim two-level hierarchy it does not perform.
     gen = ROOT / "scripts" / "generate_joint_uncertainty_report.py"

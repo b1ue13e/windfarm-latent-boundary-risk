@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-10-13T09:42:24+08:00
+Generated: 2026-10-13T15:10:09+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -268,6 +268,13 @@ SCIENTIFIC CLAIM GATE
   [PASS] docs/EXP03_ASYNCHRONOUS_REPORT.md: EXP-03 trace provenance not overstated
   [PASS] docs/EXPERIMENT_REGISTRY.md: EXP-03 trace provenance not overstated
   [PASS] EXP-03 staleness disclosed (max stale=0.9979, max drop=0.6025)
+
+[8] EXP-02 Verdict Integrity Guard (F4)
+  [PASS] role assignment: challenger is Primary Challenger, Oracle restricted to Privileged STGQ
+  [PASS] verdict gates on C1 (mean <= 0) and C2 (P >= 0.95), with diagnostics non-gating
+  [PASS] registry does not present a stale 'DEFICIT ESTABLISHED' EXP-02 verdict
+  [PASS] EXP-02 emits P(delta <= 0) under the non-inferiority name; legacy name appears only in the schema-migration mapping
+  [PASS] joint report generator is labelled seed-level, not two-level hierarchical
 
 ========================================================================
 SCIENTIFIC_CLAIM_GATE: PASS

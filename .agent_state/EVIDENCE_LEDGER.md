@@ -1,4 +1,4 @@
-# Evidence Ledger
+﻿# Evidence Ledger
 
 Evidence describes what was inspected or executed, not what was intended.
 
@@ -1337,6 +1337,13 @@ Command: `python scripts/audit_literature_f7.py`
 Exit-Code: 0
 Relevant-Output: Total PDFs: 51, PDFs with Brief first page: 40; Audited target rows: 19, Mismatched/problematic: 18; arXiv:2405.01234 confirmed as Hermite rings.
 Epistemic-Status: VERIFIED.
-
-
-
+## F4 — EXP-02 Verdict & Model-Role Logic Repair — 2026-10-13
+Task-ID: F4-FIX
+Status: VERIFIED_COMMAND
+Summary: Repaired the F4 defect (EXP-02 automatic verdict and model-role logic). (1) Removed the stale hardcoded "DEFICIT ESTABLISHED" verdict from the EXP-02 registry entry and documented that it was not data-derived. (2) Corrected p-value semantics: the bootstrap field is P(delta <= 0), an empirical non-inferiority probability for a COST metric (higher = challenger cheaper/equal), not a two-sided p-value; the superseded `delta < 0 AND p < 0.05` rule was directionally self-contradictory. Verdict now computed by scripts/exp02_verdict.py from the frozen CSV via C1 (mean <= 0) and C2 (P >= 0.95), with under-procurement reported as non-gating diagnostics D1/D2. (3) Role assignment: Zero-Privileged Challenger (eps=20/50/100) => Primary Challenger; is_oracle_role False for all; Oracle restricted to Privileged STGQ. (4) scripts/generate_joint_uncertainty_report.py claimed a two-level hierarchical bootstrap it never performed; renamed to seed_level_bootstrap_from_records, renamed joint_ci_95 -> seed_level_ci_95 and joint_p_val_superiority -> p_non_inferior, relabelled all report columns seed-level, and recorded the reproducibility limit (a true two-level interval needs block-level deltas via --output-blocks). (5) Removed hardcoded EXP-01/EXP-02 findings prose that contradicted the frozen CSV; findings are now computed from artifacts/joint_uncertainty_summary.json. (6) REPAIRED BYTE CORRUPTION: experiments/E01/log.md was invalid UTF-8 with 81 damaged sites from a lossy UTF-8->cp936 round trip; no clean F6-era revision exists in history (only corrupted HEAD and a shorter v1-only parent), so the file was reconstructed from the recoverable v1 numbers plus the authoritative registry EXP-01 v2 block. (7) Added gate section [8] "EXP-02 Verdict Integrity Guard (F4)" using an AST-based scan, and tests tests/test_f4_verdict_regression.py + tests/test_f4_hierarchical_bootstrap.py.
+Command: `python -W ignore scripts/verify_scientific_claim_gate.py` -> SCIENTIFIC_CLAIM_GATE: PASS
+Command: `python -W ignore -m pytest tests/test_f4_verdict_regression.py tests/test_f4_hierarchical_bootstrap.py tests/test_exp02_protocol.py -q` -> 15 passed
+Command: `python -W ignore scripts/reconcile_exp02_statistics.py` -> CONSISTENCY_CHECK: PASS (h=1 mean -365.9k, P(non-inferior) 0.8805; h=6 mean +3,435.5k, P(non-inferior) 0.4837)
+Command: `python tmp/f4_guard_proof2.py` -> 4/4 injected F4 defects caught by the gate (D1 stale verdict, D2 mislabelled p-value live code, D3 false two-level claim, D4 challenger promoted to Oracle); all reverted, gate returns PASS
+Source: scripts/exp02_verdict.py, scripts/hierarchical_bootstrap.py, scripts/generate_joint_uncertainty_report.py, scripts/verify_scientific_claim_gate.py, docs/EXPERIMENT_REGISTRY.md, experiments/E01/log.md, docs/JOINT_UNCERTAINTY_AUDIT_REPORT.md, artifacts/joint_uncertainty_summary.json
+Epistemic status: VERIFIED for the verdict-logic correction, role assignment, report regeneration, E01 reconstruction, and guard load-bearing proof. The E01 log is a RECONSTRUCTION (constrained by surviving bytes and the authoritative registry), not a byte-exact recovery of the lost revision; the underlying EXP-01 v2 numbers were already frozen artifacts and are unchanged.
