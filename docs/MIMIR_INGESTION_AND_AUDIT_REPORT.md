@@ -39,10 +39,8 @@
   - **角色**：Foundational 数据集基准
   - **关联度打分**：`10 / 10`
   - **论述理由**：提供了 134 台风机 245 天的 SCADA 遥测数据与空间拓扑，为本研究核心场站 (WTB) 的基准实验载体。
-- **`2405.01234`** (*Spatial-temporal wind power probabilistic forecasting via physics-guided graph neural networks*)
-  - **角色**：Mainstream 核心主流基线
-  - **关联度打分**：`9 / 10`
-  - **论述理由**：主流时空图基线，本论文在相同到达时刻信息集与控制边界约束下与其展开实证对比。
+- **`2405.01234` [已撤销 / INVALIDATED VIA F7 AUDIT]** (*Matrix invertible extensions over commutative rings. Part III: Hermite rings*)
+  - **审计判定**：经 Issue F7 专项审计核查，该编号实际为 Ivan D. Chipchakov 关于交换环上 Hermite 环的纯代数数学论文，原报告将其误录为风电预测基线系严重模型幻觉产物。该条目已从知识库彻底清洗剔除，不可作为证据。真正主流基线参照为 Zhao et al. (IJEPES 2026, DOI: `10.1016/j.ijepes.2026.111769`)。
 - **`1904.09278`** (*Physics-induced graph neural network: An application to wind-farm power estimation*)
   - **角色**：Foundational 奠基文献
   - **关联度打分**：`8 / 10`
@@ -102,7 +100,7 @@
 
 | 阶段序号 | 阶段名称 | 交付任务 ID | 验收准则通过率 | 关联证据验证 | 门控结论 |
 | :---: | :--- | :--- | :---: | :---: | :---: |
-| **0** | **Literature Review / 文献调研** | `DELIVERY-LIT-01` | **5 / 5** (100%) | `2405.01234` [Verified] | **GO** |
+| **0** | **Literature Review / 文献调研** | `DELIVERY-LIT-01` | **0 / 5** (FAILED) | `2405.01234` [Invalidated via F7 Audit] | **INVALIDATED / RE-AUDIT** |
 | **1** | **Baseline Selection / 基线选择** | `DELIVERY-BASE-01` | **5 / 5** (100%) | `2208.04360`, `1904.09278` [Verified] | **GO** |
 | **2** | **Baseline Reproduction / 基线复现** | `DELIVERY-REPRO-01` | **5 / 5** (100%) | EXP-Q2-001 (`4b7b0ba5...`) [Verified] | **GO** |
 | **3** | **Idea Exploration / 研究假设探索** | `DELIVERY-IDEA-01` | **5 / 5** (100%) | Claim 1 (`8c04af15...`) [Verified] | **GO** |

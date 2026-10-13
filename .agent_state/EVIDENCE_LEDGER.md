@@ -1299,4 +1299,15 @@ Command: `python scripts/generate_artifact_manifest.py; python scripts/verify_re
 Exit-Code: 0
 Epistemic-Status: VERIFIED.
 
+## F7-AUDIT — 2026-10-13T02:30:00+08:00
+Task-ID: F7-AUDIT
+Status: VERIFIED_COMMAND
+Summary: Forensically audited, verified, and resolved all three Issue F7 defects: (1) Replicated 18/19 DOI mismatches/404 errors in `literature/literature_matrix.csv` against official CrossRef API metadata (confirming absurd pairings like nematode genome assembly, bioethanol fermentation, evacuated solar collectors, wide-area damping); (2) Verified that 40 of 51 PDFs in `literature/top_journal_papers/` contain `Literature Benchmark Brief` on page 1, proving they are repository-generated derivative briefs rather than original journal papers; (3) Verified via official arXiv API that `arXiv:2405.01234` is a pure mathematics paper on Hermite rings over commutative rings by Chipchakov, exposing the Mimir report's claim that it was a wind power baseline as pure model hallucination; (4) Produced `docs/F7_LITERATURE_ASSET_AUDIT_REPORT.md` and added formal deprecation notice to `literature/README.md`; (5) Cleaned `research_wiki.json`, purged `2405.01234`, invalidated corrupted Mimir DELIVERY-LIT-01 stage delivery and updated `docs/MIMIR_INGESTION_AND_AUDIT_REPORT.md`; (6) Established a 4-role complete literature matrix in `research-manifest.json` (P01: Bremnes 2004 foundational, P02: Zhao 2026 mainstream, P03: Wang & Wang 2026 failing, P04: Bel-Hadj 2026 adjacent) with zero role gaps diagnosed by `literature_matrix`; (7) Encoded Rule 14 in `docs/SCIENTIFIC_CONTRACT.md`.
+Source: `scripts/audit_literature_f7.py`, `docs/F7_LITERATURE_ASSET_AUDIT_REPORT.md`, `literature/README.md`, `docs/MIMIR_INGESTION_AND_AUDIT_REPORT.md`, `research-manifest.json`, `docs/SCIENTIFIC_CONTRACT.md`.
+Command: `python scripts/audit_literature_f7.py`
+Exit-Code: 0
+Relevant-Output: Total PDFs: 51, PDFs with Brief first page: 40; Audited target rows: 19, Mismatched/problematic: 18; arXiv:2405.01234 confirmed as Hermite rings.
+Epistemic-Status: VERIFIED.
+
+
 

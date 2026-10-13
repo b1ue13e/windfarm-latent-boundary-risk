@@ -163,6 +163,9 @@ The target is the **minimum sufficient decision function**, not maximum model co
 13. **Synthetic telemetry envelope rule**  
     Simulated 10–60 min SCADA latencies, packet drops, and pitch withholding represent synthetic stress bounds. Their industrial frequency and commercial field prevalence are UNKNOWN and must not be asserted as factual fleet-wide reality.
 
+14. **Literature evidence layer integrity rule (Issue F7)**  
+    Historical `literature/literature_matrix.csv` (at least 18 rows with DOI-title mismatches or 404 errors) and 40 repository-synthesized `Literature Benchmark Brief` PDFs in `literature/top_journal_papers/` are DEPRECATED and strictly prohibited as scientific evidence. The authoritative literature evidence layer consists exclusively of verified peer-reviewed records in `docs/REVERSE_AUDIT_LITERATURE_MATRIX_20261012.csv` and the 4-role complete literature matrix in `research-manifest.json`. Hallucinated/fabricated literature identifiers (such as falsely attributing pure algebra paper arXiv:2405.01234 to wind power) are strictly barred.
+
 ---
 
 ## 5. Forbidden claim transformations

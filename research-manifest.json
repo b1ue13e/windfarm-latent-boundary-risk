@@ -20,7 +20,72 @@
   },
   "subquestions": [],
   "literature": {
-    "matrix": []
+    "matrix": [
+      {
+        "id": "P01",
+        "paper": "Bremnes (2004), Probabilistic wind power forecasts using local quantile regression, Wind Energy, DOI: 10.1002/we.107",
+        "year": 2004,
+        "task": "风电概率分位数预测与条件分布建模",
+        "data": "丹麦风电场实测调度运行数据",
+        "method": "局部线性分位数回归（Local quantile regression）与 Pinball loss 优化",
+        "assumption": "在相似的历史风速工况下直接进行局部条件分位数估计，能够提供稳健的非对称概率决策信息，无需复杂的时空网络。",
+        "mainResult": "开创了风电非参数条件分位数估计，证明无需预设正态分布即可直接估计任意置信水平分位数。",
+        "failure": "仅评估孤立单机，未考虑多风机阵列间的空间尾流图耦合及通信延迟，且未扩展至全场决策优化。",
+        "role": "foundational",
+        "similarity": "高（直接定义了本课题强基线 Site-Local Wspd-Bins 的分位数理论渊源）",
+        "reusable": "局部风速条件分位数估计框架与 Pinball 损失函数评分准则",
+        "evidence": "strong",
+        "updatedAt": "2026-10-12T23:58:56.281Z"
+      },
+      {
+        "id": "P02",
+        "paper": "Zhao et al. (2026), A physics-aware dynamic graph and mixture-of-experts framework for wind power forecasting, IJEPES, DOI: 10.1016/j.ijepes.2026.111769",
+        "year": 2026,
+        "task": "多步风电功率预测与时空图建模",
+        "data": "真实风电场多机组连续运行 SCADA 数据（涵盖 1-5h 及 10d 设定）",
+        "method": "CNN-Transformer + 动态有向尾流图交互 + 门控物理/数据混合专家（MoE）路由网络",
+        "assumption": "假定完整、即时到达的 SCADA 遥测与时空拓扑，动态尾流图与多任务物理/数据 MoE 路由能够在多步预测中同时捕获气象演化与阵列尾流损失。",
+        "mainResult": "提出融合动态尾流图与物理/数据 MoE 的多步风电预测模型，在点预测 MSE 上较基线取得 21.2% - 25.7% 改善，是当前最先进的时空图+物理MoE代表作。",
+        "failure": "假定遥测完美无延迟；未评估变桨角完全扣留下根据次生后果信号恢复控制状态的能力；未与相同信息约束下的简易风速分箱基线进行下游备用决策成本（PSREI）配对对照。",
+        "role": "mainstream",
+        "similarity": "极高（最直接的主流竞争强基线，覆盖了动态图+物理先验+MoE路由的架构组合）",
+        "reusable": "物理感知动态尾流图与物理/数据双分支混合专家（MoE）对比架构",
+        "evidence": "strong",
+        "updatedAt": "2026-10-12T23:59:06.238Z"
+      },
+      {
+        "id": "P03",
+        "paper": "Wang & Wang (2026), Reserve-risk-oriented regime-calibrated interval forecasting for wind farms under extreme fluctuations, Sustainable Energy Technologies and Assessments, DOI: 10.1016/j.seta.2026.105438",
+        "year": 2026,
+        "task": "风电场备用风险定向区间校准与跨场站零样本迁移评估",
+        "data": "99 MW 与 200 MW 源风电场数据 + 240 MW 未见外部风电场 SCADA 数据",
+        "method": "Frozen iTransformer 骨干 + 工况感知分位数学习 + 步进共形分位数回归（CQR）校准",
+        "assumption": "在源场站预训练的工况感知复杂特征表示能够跨风电场零样本迁移，直接适用于外部风场的备用风险预测与区间校准。",
+        "mainResult": "在源风场上实现了较优的区间宽度和覆盖率，但在外部未见风场上出现显著的性能退化与备用风险短缺，证实零样本跨场迁移存在明显的边界失效。",
+        "failure": "复杂神经网络跨场站零样本迁移在外部风场控制切换边界处发生显著的工况误判与区间失准（失效率显著高于标称水平）；且未与本地简单分位数基线进行配对决策收益对照。直接暴露了跨场站迁移的脆弱性，是本项目 gap 的核心实证。",
+        "role": "failing",
+        "similarity": "极高（最直接的失效类文献，直接暴露工况感知跨场站零样本迁移的失败与泛化瓶颈）",
+        "reusable": "极端波动工况划分逻辑与跨场站分位数区间校准基线",
+        "evidence": "strong",
+        "updatedAt": "2026-10-12T23:59:14.745Z"
+      },
+      {
+        "id": "P04",
+        "paper": "Bel-Hadj et al. (2026), Inferring wind turbine operational state and fatigue from high-frequency acceleration, Wind Energy Science, DOI: 10.5194/wes-11-1363-2026",
+        "year": 2026,
+        "task": "无直接传感器下的风机潜伏运行状态恢复与结构疲劳评估",
+        "data": "44 台海上风电机组，31.25 Hz 高频结构加速度振动数据与对应 SCADA 记录",
+        "method": "降噪自编码器 + 领域对抗学习 + 深度嵌入聚类（DEC）恢复潜伏运行工况",
+        "assumption": "物理系统的机械振动等次生后果动力学信号中隐含了底层控制状态与气动状态信息，无需直接变桨角观测亦能通过表征学习恢复潜伏工况。",
+        "mainResult": "在零 SCADA 训练监督下，基于振动后果信号学习到的潜伏表征与真实变桨角高度对齐（变桨回归 R²=0.882），证实次生后果信号具备工况可辨识性。",
+        "failure": "依赖额外的高频加速度计硬件；下游任务仅为结构疲劳寿命评估，未在电网标准 SCADA 信息集与到达时刻约束下评估电力市场下行备用决策价值（PSREI）。",
+        "role": "adjacent",
+        "similarity": "极高（证明“由后果信号恢复控制工况”在风机邻域存在坚实物理先例，方法非凭空发明）",
+        "reusable": "后果信号状态恢复无监督/弱监督对齐评估方法与控制状态可辨识性先例",
+        "evidence": "strong",
+        "updatedAt": "2026-10-12T23:59:25.984Z"
+      }
+    ]
   },
   "methods": [],
   "hypotheses": [
@@ -118,6 +183,34 @@
         "action": "findings",
         "detail": "E03：E03：在 Metis HPC（NVIDIA A100-PCIE-40GB GPU）上完成整数步异步 telemetry envelope 基准评测（5种子 201-205，2时域 h=1与h=6，延迟网格 tau in {0,1,2,3,4,5,6} 对应 0-60 分钟，B=2000 Block Bootstrap）。在严格因果缓冲区（只能读 arrival_time <= t，迟于 max_lateness 丢弃，无未来回填）与完全对称到达轨迹/缺失掩码（Trace SHA256=d1619efce7f02412d826e3811bfa2a2346e6bc1b1fcd2b02a9d10f163f0736ff）下：1) 在 h=1 时，临界点 tau*=1 步（10分钟），tau=0 时 Delta PSREI=-524.5k kWh，但在 tau>=1 时 95% CI 上界",
         "at": "2026-10-12T02:38:11.384Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "analysis",
+        "action": "literature",
+        "detail": "P01：Bremnes (2004), Probabilistic wind power forecasts using local quantile regression, Wind Energy, DOI: 10.1002/we.107（奠基类）",
+        "at": "2026-10-12T23:58:56.282Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "analysis",
+        "action": "literature",
+        "detail": "P02：Zhao et al. (2026), A physics-aware dynamic graph and mixture-of-experts framework for wind power forecasting, IJEPES, DOI: 10.1016/j.ijepes.2026.111769（主流类）",
+        "at": "2026-10-12T23:59:06.238Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "analysis",
+        "action": "literature",
+        "detail": "P03：Wang & Wang (2026), Reserve-risk-oriented regime-calibrated interval forecasting for wind farms under extreme fluctuations, Sustainable Energy Technologies and Assessments, DOI: 10.1016/j.seta.2026.105438（失效类）",
+        "at": "2026-10-12T23:59:14.745Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "analysis",
+        "action": "literature",
+        "detail": "P04：Bel-Hadj et al. (2026), Inferring wind turbine operational state and fatigue from high-frequency acceleration, Wind Energy Science, DOI: 10.5194/wes-11-1363-2026（邻域类）",
+        "at": "2026-10-12T23:59:25.984Z"
       }
     ]
   },
@@ -187,5 +280,5 @@
   ],
   "reviews": [],
   "audit": [],
-  "updatedAt": "2026-10-12T02:38:11.384Z"
+  "updatedAt": "2026-10-12T23:59:25.984Z"
 }
