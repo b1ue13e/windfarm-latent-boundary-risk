@@ -89,6 +89,14 @@ bootstrap 字段 `p_val_delta_psrei` 实际定义为 $P(\Delta \le 0)$，是“�
 - 证据：`docs/EXPERIMENT_REGISTRY.md:341-360`
 - 结论：`VERIFIED`，当前 PDF 不应投稿。
 
+> **F5 关闭记录（2026-10-13）。** 上述原文保留为审计发现的历史记录。修复时做了逆向取证，发现本条的诊断本身**不完整**：55.3% 不只是时间归因错误，而是**指标定义错误**。旧 C05 计算 `1 - phys_clean_shortage(no_pitch)/phys_clean_shortage(all)`（lag=6），分子分母**都是未校准物理**，分母取 `all` 通道、分子取**扣留 pitch** 通道——比值跨了 `channel_mode`，量的是 Regime 3 的扣留效应，重校准从未参与运算。因此 `127.6→57.0 MWh` 也不是"60 分钟的真实重校准值"，而是 60 分钟 `no_pitch` **未校准**短缺；该令牌在任何 τ 下都没有有效解释。
+>
+> 真实 Regime-2 量应在 `channel_mode='all'` 内部、同 lag 配对：τ=10/20/30 min 吸收 **36.28%/53.89%/61.72%**，τ=60 端点为 **66.46%**（`127.552 → 42.787 MWh`，违约 9.46%）。工件 `artifacts/regime2-recalibration-absorption`（v1），由 `scripts/regenerate_regime2_absorption.py` 生成并带断言；`verify_replication.py` 的 C05/C05b/C06/C06b 已重定义，C19 令牌数由 73 扩至 77。
+>
+> 第二个缺陷（选择性弱比较器）已按 corrected v2 换为强基线：主稿、图 5 标题、Discussion 第 5 条、Limitations 第 4 条一律采用 **Site-Local Wspd-Bins** 为参照（Penmanshiel h=6 +5,321,915 kWh，p=0.003；Kelmarsh h=6 +435,684 kWh，p=0.196），结论为**外场不存在正向决策价值**。global quantile 旧行按负结果保留原则不删除，在补充材料 Table A8/A8b 标注 `superseded`，并新增权威 Table A8c。
+>
+> 验证：`verify_replication.py` = FULLY_REPRODUCIBLE（21/21，exit 0）；数字一致性 77/77；`verify_gate.py` PASS；`verify_final_pdf_integrity.py` PASS；主稿 10.0 页、补充材料 46 页。提交 `c7e008b8`、`054872aa`、`2077db8c`。**F5 已关闭。**
+
 ### F6 — 旧日志、旧审计与控制面可重新污染结论
 
 `experiments/E01/log.md` 仍把 v1 +448k/+48.5k 写成“跨场站普遍规律”；`docs/NO_GRAPH_CONTROL_AUDIT.md` 仍使用 v1 数值；registry 同时保留 `EXP-01 completed` 和语义重复的 `EXP-Q2-003 proposed/blocked`。旧 gate 只检查旧 19 个 claim，不检查 EXP-01 v2、EXP-02、EXP-03。
