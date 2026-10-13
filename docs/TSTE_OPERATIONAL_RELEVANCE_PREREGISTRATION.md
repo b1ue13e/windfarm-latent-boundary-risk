@@ -21,7 +21,7 @@ Latent operating-boundary transitions remain partly recoverable from already-arr
 
 ### Locked Empirical Benchmarks (Must NOT be Altered)
 1. **Regime 1 (Clean SCADA)**: Deterministic aerodynamic physics dominates at $h=1$ ($589,535$ kWh) and $h=6$ ($881,367$ kWh) with low violation rate ($6.81\%$). GBDT breaches nominal $10\%$ Newsvendor target at $h=6$ ($16.23\%$).
-2. **Regime 2 (Observable Latency)**: Non-neural state-conditional recalibration absorbs $55.3\%$ of delay-induced shortage loss at $\tau=60$ min ($1,228,609$ kWh). Uncalibrated posterior ECE passes gate ($\le 3.46\% \le 5.0\%$).
+2. **Regime 2 (Observable Latency)**: Non-neural state-conditional recalibration absorbs $36.3\%$ / $53.9\%$ / $61.7\%$ of delay-induced shortage loss at $\tau=10/20/30$ min ($\text{channel\_mode}=\text{all}$) and $66.5\%$ at the $\tau=60$ min endpoint ($127.552 \to 42.787$ MWh; recalibrated surrogate cost $1{,}228,609$ kWh at $9.46\%$ violation). *Correction (Issue F5): the former token "$55.3\%$ at $\tau=60$" was a cross-`channel_mode` pitch-withholding contrast and is void; see `artifacts/regime2_recalibration_absorption.csv`.* Uncalibrated posterior ECE passes gate ($\le 3.46\% \le 5.0\%$).
 3. **Regime 3 (Withheld Pitch / Boundary Recovery)**: Active power AUROC achieves $0.988$. Transition recall improves from $0.196$ (heuristic rule) to $0.417$ (model). Active-power channel C2 dominates the mechanism (Brier $= 0.0112$, NMI $= 0.461$). Thermal channel C4 fails to detect fast transitions (recall $= 0.0\%$).
 4. **Strong-Baseline Closure & Negative Results**:
    - Plant-wide posterior PSREI incurs a net cost penalty of **$+523,044$ kWh** ($p=0.85$) against 10-bin wind-speed quantiles.

@@ -33,7 +33,8 @@ All claims evaluated by `scripts/verify_replication.py` in the fresh clone direc
 | **C02** | Regime 1 | Clean Physics $h=6$ PSREI (5-seed mean) | 881,367 kWh | **881,367 kWh** | **PASS** | `risk_layer_benchmark/h6_lead6/results_by_seed.csv` |
 | **C03** | Regime 1 | Clean Physics $h=6$ Violation Rate | 6.81% | **6.81%** | **PASS** | `risk_layer_benchmark/h6_lead6/results_by_seed.csv` |
 | **C04** | Regime 1 | Missingness-Aware GBDT $h=6$ Nominal Target Breach | 16.23% ($> 10.0\%$) | **16.23%** | **PASS** | `direct_quantile_baselines_summary.csv` |
-| **C05** | Regime 2 | Recalibration Shortage Absorption Under Delay-6 | 55.3% | **55.3%** | **PASS** | `single_task_dense_vs_multitask_moe_ablation.csv` |
+| **C05** | Regime 2 | Recalibration Shortage Absorption at $\tau=60$ min (channel_mode=all) | 66.5% | **66.46%** | **PASS** | `regime2_recalibration_absorption.csv` |
+| **C05b** | Regime 2 | Recalibration Absorption across the 10–30 min Operational Grid | 36.3/53.9/61.7% | **36.28/53.89/61.72%** | **PASS** | `regime2_recalibration_absorption.csv` |
 | **C06** | Regime 2 | Recalibrated Physics $\tau=60$ Cost | 1,228,609 kWh | **1,228,609 kWh** | **PASS** | `single_task_dense_vs_multitask_moe_ablation.csv` |
 | **C07** | Regime 2 | Uncalibrated Posterior Max ECE Compliance | $\le 5.0\%$ | **3.46%** | **PASS** | `posterior_calibration.csv` |
 | **C08** | Regime 3 | Contemporaneous Active Power AUROC | 0.988 | **0.988** | **PASS** | `active_power_anchor_audit.csv` |

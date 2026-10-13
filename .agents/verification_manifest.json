@@ -30,6 +30,12 @@
       "enabled": true
     },
     {
+      "name": "verify_replication",
+      "command": "python scripts/verify_replication.py",
+      "required": true,
+      "enabled": true
+    },
+    {
       "name": "verify_scientific_claim_gate",
       "command": "python scripts/verify_scientific_claim_gate.py",
       "required": true,

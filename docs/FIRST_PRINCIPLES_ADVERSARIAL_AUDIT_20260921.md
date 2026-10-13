@@ -127,7 +127,7 @@ s_t=\max(\hat y_{\mathrm{fixed},t}-y_t,0),
 | 主张 | 评级 | 原因 |
 |---|---|---|
 | 新鲜 telemetry 下物理规则在边界带最好 | VERIFIED | 五 seed、固定目标、证据表和 gate 均有来源。 |
-| 可观测延迟可由非神经重校准吸收一部分风险 | VERIFIED | 55.3% shortage absorption，且有明确条件。 |
+| 可观测延迟可由非神经重校准吸收一部分风险 | VERIFIED | 10--30 分钟网格吸收 36.3%--61.7%，60 分钟端点吸收 66.5%（127.552→42.787 MWh，9.5% 违约），有明确条件。原 55.3% 令牌系跨 channel_mode 的 pitch-withholding 对比，非重校准吸收率（Issue F5 更正）。 |
 | pitch withholding 下 consequence signals 保留边界信息 | VERIFIED（限定域） | C2 ablation、transition recall、active-power audit 支持；但主要信息来自 active power。 |
 | latent posterior 在全厂降低 PSREI | REFUTED / 不成立 | 相对 wind-speed bins 为 +523,044 kWh，p=0.85。 |
 | latent posterior 在跃迁期间提供独立风险价值 | PARTIALLY SUPPORTED | 违约和短缺暴露下降，但额外 reserve cost；交互项显著说明异质性，不说明总成本优越。 |

@@ -45,8 +45,8 @@ Observable (τ = 0)                              Unobservable Actuator
 ---
 
 ### Boundary 2: Telemetry Observable Recalibration Sufficiency
-- **Finding**: When SCADA telemetry channels are observable but experience moderate communication lag ($\tau \le 3$), simple state-conditional empirical recalibration absorbs **$55.3\%$** of the shortage loss without training any deep neural network or Mixture-of-Experts architecture.
-- **Empirical Evidence**: State-conditional quantile adjustment reduces shortage loss from $127.6\text{ MWh}$ to $57.0\text{ MWh}$ without backpropagation.
+- **Finding**: When SCADA telemetry channels are observable but experience communication lag, simple state-conditional empirical recalibration absorbs **$36.3\%$–$61.7\%$** of the delay-induced shortage loss across the $10$–$30$ min operational grid, and up to **$66.5\%$** at the $60$-minute contingency endpoint, without training any deep neural network or Mixture-of-Experts architecture.
+- **Empirical Evidence**: State-conditional quantile adjustment reduces shortage loss from $127.552\text{ MWh}$ to $42.787\text{ MWh}$ at $\tau=60$ min, and from $69.069$ to $26.443\text{ MWh}$ at $\tau=30$ min, without backpropagation. *Correction (Issue F5): the previously quoted $55.3\%$ ($127.6 \to 57.0$ MWh) was a cross-`channel_mode` pitch-withholding contrast (Regime 3), not a recalibration absorption rate.*
 - **Prescribed Fallback Policy**: For utilities with low computational budgets, state-conditioned empirical lookup tables provide an 80/20 cost-effective alternative to deep learning.
 
 ---
@@ -56,7 +56,7 @@ Observable (τ = 0)                              Unobservable Actuator
 - **Empirical Evidence**:
   - On compact micro-farms with isolated turbines and weak wake coupling (e.g., LHB with 4 turbines), LHB exhibits a negative transfer/overfitting boundary, consistent with limited exploitable spatial redundancy and site-specific heterogeneity, resulting in a $+43\text{k kW}\cdot\text{h}$ penalty (95% CI $[-28.7\text{k}, +141.2\text{k}]$), where local tabular models suffice.
   - On Kelmarsh (6 turbines), graph modeling is neutral ($-40\text{k kW}\cdot\text{h}$, CI crossing zero).
-  - Crucially, on wake-coupled arrays (e.g., Penmanshiel with 14 turbines and WTB with 134 turbines), spatial graph modeling delivers massive, statistically significant reserve cost savings ($-2.14\text{M kW}\cdot\text{h}$ on Penmanshiel, $p < 0.05$; $-38\text{k kW}\cdot\text{h}$ on WTB).
+  - On Penmanshiel (14 turbines) and WTB (134 turbines), the global-quantile comparison reported apparent savings ($-2.14\text{M kW}\cdot\text{h}$ on Penmanshiel, $p<0.05$; $-38\text{k kW}\cdot\text{h}$ on WTB). **Superseded (Issue F5):** these compare against an unconditioned global quantile, which the scientific contract rules out as sufficient incremental-value evidence. Against the strong Site-Local Wspd-Bins comparator under the corrected v2 protocol, transferred STGQ-Modular incurs $+5{,}321{,}915\text{ kW}\cdot\text{h}$ on Penmanshiel ($p=0.003$) and $+435{,}684\text{ kW}\cdot\text{h}$ on Kelmarsh ($p=0.196$); no external site establishes a positive decision gain, and spatial graph structure must not be cited as delivering external savings.
 - **Prescribed Fallback Policy**: Spatial-representation value is site-dependent and appears related to exploitable spatial redundancy, not turbine count alone. Graph neural architectures should only be deployed on wind facilities exhibiting demonstrable wake interactions and exploitable spatial redundancy; compact micro-arrays or sparse configurations lacking spatial wake coupling should fall back to single-turbine tabular or tree-based quantile models.
 
 ---

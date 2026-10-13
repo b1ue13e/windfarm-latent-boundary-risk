@@ -22,7 +22,7 @@
 - **Pre-Revision Score**: 6 / 10  
   *Critique*: Manuscript read like an incremental machine learning paper attempting to market "Mixture-of-Experts" (MoE) routing for wind forecasting, without clear power systems necessity.
 - **Post-Reconstruction Score**: 9.5 / 10  
-  *Evaluation*: Outstanding conceptual turnaround. By abandoning promotional MoE claims and pivoting to an *Empirical Operational Boundary and Value-of-Information Framework under Information Freshness Constraints*, the paper makes a profound scientific contribution. It delineates exactly where simple recalibration suffices ($55.3\%$ shortage absorption) and where neural models deliver decisive value (withheld-channel telemetry).
+  *Evaluation*: Outstanding conceptual turnaround. By abandoning promotional MoE claims and pivoting to an *Empirical Operational Boundary and Value-of-Information Framework under Information Freshness Constraints*, the paper makes a profound scientific contribution. It delineates exactly where simple recalibration suffices ($36.3\%$--$61.7\%$ delay-induced shortage absorption across the $10$--$30$ min grid; $66.5\%$ at $\tau=60$) and where neural models are evaluated under withheld-channel telemetry. *(Issue F5 correction: the original $55.3\%$ figure was a cross-`channel_mode` pitch-withholding contrast, not a recalibration absorption rate. Subsequent correct v2 external evidence also does not establish that neural models deliver decisive decision value when pitch is withheld; see `docs/SCIENTIFIC_CONTRACT.md`.)*
 
 ---
 

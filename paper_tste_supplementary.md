@@ -795,9 +795,31 @@ Population Slice & Policy ID \& Name & PSREI Cost ($\text{kW}\cdot\text{h}$) & R
 ## S4. Cross-Site External-Validity Boundary Probes {.unnumbered}
 
 
-The 134-turbine WTB site serves as the primary mechanism-identification environment. Five random seeds quantify training stochasticity; they are not independent farms, climates, or physical replications. The three external European facilities must not be presented as uniform replication evidence: their observed effects are heterogeneous (Penmanshiel: positive; Kelmarsh: statistically neutral; ENGIE La Haute Borne: negative overfitting boundary). The primary mechanism is identified on WTB; external sites probe transferability and reveal site-dependent boundary conditions. We do not pool the three external farms into a universal average effect. Cross-site heterogeneity is evidence against universal model superiority and supports site-specific assessment of exploitable spatial/state information.
+The 134-turbine WTB site serves as the primary mechanism-identification environment. Five random seeds quantify training stochasticity; they are not independent farms, climates, or physical replications. The three external European facilities must not be presented as uniform replication evidence: their observed effects are heterogeneous. Under the corrected EXP-01 v2 protocol (independent site-frozen point forecasts, pitch withheld at deployment, identical arrival-time information set, paired site-level day-cluster bootstrap, pre-registered $h=6$ primary endpoint), \emph{neither} site yields a significant positive decision gain, and Penmanshiel is significantly worse than the strong site-local baseline. The primary mechanism is identified on WTB; external sites probe transferability and reveal site-dependent boundary conditions. We do not pool the three external farms into a universal average effect. Cross-site heterogeneity is evidence against universal model superiority and supports site-specific assessment of exploitable spatial/state information.
 
-Table A8 provides the comprehensive Site $\times$ Mechanism specification across all four facilities, reporting physical dimensions, supervisory telemetry, wake context, paired effect sizes, and operational interpretations. Table A8b summarizes the corresponding numerical pre-dispatch reserve screening metrics under local retraining across all four commercial wind farms.
+Table A8c is the authoritative external benchmark on the corrected v2 protocol and supersedes the global-quantile comparisons in Tables A8 and A8b, which are retained only as historical records of a weaker comparator. Table A8 provides the comprehensive Site $\times$ Mechanism specification across all four facilities, reporting physical dimensions, supervisory telemetry, wake context, paired effect sizes, and operational interpretations. Table A8b summarizes the corresponding numerical pre-dispatch reserve screening metrics under local retraining across all four commercial wind farms.
+
+```{=latex}
+\begin{table}[!htbp]
+\centering
+\fontsize{8.0pt}{9.2pt}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.95}
+\caption*{\textbf{Table A8c.} Authoritative external benchmark under the corrected EXP-01 v2 protocol. Transferred STGQ-Modular (pitch withheld at deployment) against the strong non-parametric \textbf{Site-Local Wspd-Bins} baseline, on the identical arrival-time information set. Paired site-level day-cluster bootstrap, seeds 201--205. Positive $\Delta$PSREI denotes a cost \emph{penalty} for the transferred representation. Source: \texttt{artifacts/external-matched-control-benchmark/v2/external\_matched\_control\_benchmark.csv}.}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}l l r r r@{}}
+\toprule
+Farm & Horizon & Site-Local Baseline (kWh) & $\Delta$PSREI vs. Site-Local (kWh) & $p$ \\
+\midrule
+\textbf{Penmanshiel} & $h=6$ (primary) & 13,742,849 & $+5{,}321{,}915$ & $0.003$ \\
+Penmanshiel & $h=1$ (secondary) & --- & $+6{,}571{,}777$ & $<0.001$ \\
+\textbf{Kelmarsh} & $h=6$ (primary) & --- & $+435{,}684$ & $0.196$ \\
+\bottomrule
+\end{tabular*}
+\vspace{1mm}
+\raggedright\fontsize{8.0pt}{8.8pt}\selectfont Note: all five seeds are positive on Penmanshiel $h=6$. No site shows a significant positive decision gain for transferred representations over the site-local 10-bin wind-speed baseline. Fine-tuned STGQ-Modular is $-3{,}527{,}228$ kWh on Penmanshiel $h=6$ (exploratory, not the primary transferred-protocol estimand), and the No-Graph Architectural Control is $+16{,}880{,}326$ kWh ($p<0.001$), which does not by itself establish causal necessity of spatial graph structure (4,865 vs. 110,012 parameters).
+\end{table}
+\FloatBarrier
+```
 
 ```{=latex}
 \begin{table*}[!t]
@@ -811,7 +833,7 @@ Table A8 provides the comprehensive Site $\times$ Mechanism specification across
 Site & $N$ & Period & SCADA Channels & Pitch & Wake Context & Comparison & Paired Effect & Transfer / Replication Interpretation \\
 \midrule
 \textbf{WTB} & 134 & 245 days ($T=35{,}280$) & 11 channels (Wspd, Wdir, Patv, Pab1--3, etc.) & Yes (raw) & \textbf{High}: Dense multi-row array; strong wake advection & STGQ vs. Global Quantile & $-38\text{k}$ [$-67\text{k}, -12\text{k}$]$^{\ast}$ (band) / $-1.83\text{M}$ (full) & \textbf{Primary Identification Site}: High spatial wake coupling enables consequence-driven latent boundary recovery when pitch is withheld. \\
-\textbf{Penman.} & 14 & 8.6 years (2016--2021) & Standard SCADA (Wspd, Patv, Pab, nacelle, temps) & Yes (99.1\%) & \textbf{Moderate}: Cohesive cluster (14 MM82; WT01--15 ex. WT03) & STGQ vs. Global Quantile & $-2.14\text{M}$ [$-3.25\text{M}, -1.36\text{M}$]$^{\ast}$ & \textbf{Positive Boundary Probe}: STGQ reduces surrogate cost relative to global quantile under local retraining, consistent with spatial redundancy as a moderator, though matching continuous physical rules ($2{,}029\text{k kW}\cdot\text{h}$). \\
+\textbf{Penman.} & 14 & 8.6 years (2016--2021) & Standard SCADA (Wspd, Patv, Pab, nacelle, temps) & Yes (99.1\%) & \textbf{Moderate}: Cohesive cluster (14 MM82; WT01--15 ex. WT03) & STGQ vs. Global Quantile \emph{(superseded)} & $-2.14\text{M}$ [$-3.25\text{M}, -1.36\text{M}$]$^{\ast}$ & \textbf{Superseded comparator.} This row compares against an unconditioned global quantile, which is not a sufficient incremental-value comparator. Under the corrected v2 protocol against Site-Local Wspd-Bins, transferred STGQ-Modular incurs $+5{,}321{,}915$ kWh ($p=0.003$, $h=6$); see Table A8c. \\
 \textbf{Kelmarsh} & 6 & 9.0 years (2016--2021) & Standard SCADA (Wspd, Patv, Pab, gen. speed) & Yes (97.3\%) & \textbf{Minimal}: Linear 6-turbine micro-array; weak wake redundancy & STGQ vs. Global Quantile & $-40\text{k}$ [$-204\text{k}, +172\text{k}$] ($p=0.85$, crosses 0) & \textbf{Statistically Neutral Probe}: STGQ effect relative to global quantile crosses zero; simple quantile baselines match neural models. \\
 \textbf{LHB} & 4 & 4 years (2013--2016) & 4 core channels (Wspd, Patv, Pab, Ndir) & Yes (99.2\%) & \textbf{Negligible}: 4-turbine micro-farm; local topography & STGQ vs. Global Quantile & $+43\text{k}$ [$-29\text{k}, +141\text{k}$] (annual) / $+1.01\text{M}$ (rolling) & \textbf{Negative / Overfitting Boundary Probe}: LHB exhibits a negative transfer/overfitting boundary, consistent with limited exploitable spatial redundancy and site-specific heterogeneity; simple deterministic physical rules are strictly superior. \\
 \bottomrule
@@ -833,11 +855,11 @@ Farm & Units & \shortstack{Continuous Phys.\\(kW$\cdot$h)} & \shortstack{Global 
 \textbf{WTB} & 134 & 842k & 893k & 855k & $-$38k [$-$67k, $-$12k]$^{\ast}$ \\
 \textbf{LHB} & 4 & 185k & 188k & 231k & +43k [$-$29k, +141k] \\
 \textbf{Kelmarsh} & 6 & 1,025k & 1,065k & 1,025k & $-$40k [$-$204k, +172k] \\
-\textbf{Penmanshiel} & 14 & 2,029k & 4,167k & 2,029k & $-$2.14M [$-$3.25M, $-$1.36M]$^{\ast}$ \\
+\textbf{Penmanshiel} & 14 & 2,029k & 4,167k & 2,029k & $-$2.14M [$-$3.25M, $-$1.36M]$^{\ast}$ \emph{(superseded; see Table A8c)} \\
 \bottomrule
 \end{tabular*}
 \vspace{1mm}
-\raggedright\fontsize{8.0pt}{8.8pt}\selectfont Note: $^{\ast}p < 0.05$. Penmanshiel comprises 14 operational turbines (site numbering spans WT01--WT15, with WT03 not installed/present in SCADA records). LHB exhibits local overfitting; Kelmarsh is neutral; WTB and Penmanshiel show significant reductions relative to the unconditioned global quantile baseline under local retraining. This comparison does not causally isolate wake modeling without matched external no-graph controls.
+\raggedright\fontsize{8.0pt}{8.8pt}\selectfont Note: $^{\ast}p < 0.05$. \textbf{Superseded comparator warning:} this table compares against an unconditioned global quantile baseline, which the scientific contract rules out as sufficient evidence of incremental value. Its Penmanshiel advantage does not survive replacement with the strong Site-Local Wspd-Bins comparator (corrected v2: $+5{,}321{,}915$ kWh penalty, $p=0.003$); see Table A8c. Penmanshiel comprises 14 operational turbines (site numbering spans WT01--WT15, with WT03 not installed/present in SCADA records). LHB exhibits local overfitting; Kelmarsh is neutral.
 \end{table}
 \FloatBarrier
 ```

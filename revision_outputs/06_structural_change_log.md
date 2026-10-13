@@ -27,7 +27,7 @@ The manuscript underwent a comprehensive structural transformation from a techno
 
 ### Abstract & Keywords
 - **Word Count**: Reduced and tightly budgeted to exactly ~220 words.
-- **De-marketing**: Replaced all promotional terms ("fundamentally superior", "revolutionary gating") with quantitative performance metrics ($589{,}535\text{ kW}\cdot\text{h}$ clean, $24.0\%$ collapse, $55.3\%$ recalibration absorption, $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ withheld-channel gain).
+- **De-marketing**: Replaced all promotional terms ("fundamentally superior", "revolutionary gating") with quantitative performance metrics ($589{,}535\text{ kW}\cdot\text{h}$ clean, $24.0\%$ collapse, $36.3\%$--$61.7\%$ recalibration absorption across the $10$--$30$ min grid ($66.5\%$ at $\tau=60$), $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ withheld-channel gain). *Issue F5 correction: the original $55.3\%$ token was a cross-`channel_mode` pitch-withholding contrast, not a recalibration absorption rate.*
 - **Keywords**: Updated to standard IEEE PES indexing terms.
 
 ### Section I: Introduction
@@ -53,7 +53,7 @@ The manuscript underwent a comprehensive structural transformation from a techno
 ### Section IV: Results Organized by RQ1–RQ6
 - **RQ1 (Physical Primacy)**: Clean telemetry performance established ($589{,}535\text{ kW}\cdot\text{h}$ at $h=1$; $881{,}367\text{ kW}\cdot\text{h}$ at $h=6$, $6.8\%$ violation).
 - **RQ2 (Physical Collapse)**: 60-min latency breakdown documented ($24.0\%$ at $h=1$, $12.20\%$ at $h=6$, $127.6\text{ MWh}$ shortage).
-- **RQ3 (Recalibration Role)**: Recalibration absorbs $55.3\%$ of shortage ($57.0\text{ MWh}$, $10.7\%$ violation), proving sufficiency under full observability.
+- **RQ3 (Recalibration Role)**: Recalibration absorbs $36.3\%$--$61.7\%$ of the delay-induced shortage across the $10$--$30$ min grid ($66.5\%$ at the $60$-min endpoint), proving sufficiency under full observability. *Issue F5 correction: the former "$55.3\%$, $57.0$ MWh, $10.7\%$ violation" triple belonged to a cross-`channel_mode` contrast; the correct $\tau=60$ endpoint is $42.787\text{ MWh}$ at $9.5\%$ violation.*
 - **RQ4 (Learned Value under Withheld Pitch)**: STGQ delivers $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ savings and doubles recall ($0.416$ vs $0.196$).
 - **RQ5 (MoE Demystification)**: Proved statistical parity between Dense and MoE ($p=0.380$); validated decoupled modular pipeline ($1.284\text{M kW}\cdot\text{h}$, $9.68\%$ violation).
 - **RQ6 (Multi-Farm & PCC Aggregation)**: PCC portfolio smoothing saves $-2.32\text{M kW}\cdot\text{h}$; LHB negative case framed as operational boundary.

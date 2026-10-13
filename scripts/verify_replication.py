@@ -10,8 +10,10 @@ Validates:
    - C02: Clean Physics h=6 PSREI (881,367 kWh)
    - C03: Clean Physics h=6 Violation Rate (6.81%)
    - C04: Missingness-Aware GBDT h=6 Breaches 10% Target (16.23% > 10.0%)
-   - C05: Recalibration Shortage Absorption (55.3%)
-   - C06: Recalibrated Physics tau=60 Cost (1,228,609 kWh)
+   - C05: Recalibration Shortage Absorption at tau=60 (66.5%, channel_mode=all)
+   - C05b: Recalibration Shortage Absorption across the 10-30 min grid (36.3/53.9/61.7%)
+   - C06: Recalibrated shortage at tau=60 (42.787 MWh)
+   - C06b: Recalibrated Physics tau=60 Cost (1,228,609 kWh)
    - C07: Uncalibrated Posterior Max ECE <= 5.0% (3.46%)
    - C08: Active Power AUROC (0.988)
    - C09: Transition Recall Gain (0.417 vs 0.196)
@@ -189,26 +191,51 @@ class ReplicationAuditor:
 
     def audit_recalibration(self):
         print("\n--- Step 3: Auditing Regime 2 Recalibration (Table III & IV) ---")
-        ablation_path = self.root / "artifacts/single_task_dense_vs_multitask_moe_ablation.csv"
+        ablation_path = self.root / "artifacts/regime2_recalibration_absorption.csv"
         if ablation_path.exists():
             with ablation_path.open("r", encoding="utf-8-sig") as f:
                 rows = list(csv.DictReader(f))
-                # Delay-6 h=1 physics breakdown: 127.55 MWh clean shortage, 57.07 MWh no-pitch shortage
-                d6_all = next((r for r in rows if str(r.get("lag_steps")) == "6" and r.get("channel_mode") == "all"), None)
-                d6_nopitch = next((r for r in rows if str(r.get("lag_steps")) == "6" and r.get("channel_mode") == "no_pitch"), None)
-                if d6_all and d6_nopitch:
-                    phys_clean_shortage = float(d6_all["phys_clean_shortage_mean"])
-                    phys_nopitch_shortage = float(d6_nopitch["phys_clean_shortage_mean"])
-                    recal_cost = float(d6_all["phys_recal_cost_mean"])
-                    absorption = (1.0 - (phys_nopitch_shortage / phys_clean_shortage)) * 100
-                    passed_abs = math.isclose(absorption, 55.3, abs_tol=0.5)
-                    self.record_claim("C05", "Regime 2", "Recalibration Shortage Absorption", "55.3%", f"{absorption:.1f}%", passed_abs)
+                # Regime 2 is a WITHIN-channel_mode contrast at channel_mode='all':
+                # recalibration vs uncalibrated physics on the same observable channels.
+                # The earlier implementation crossed channel_mode (all_clean vs
+                # no_pitch_clean) and therefore measured the pitch-withholding effect
+                # of Regime 3, not recalibration absorption (Issue F5).
+                h60 = next((r for r in rows if str(r.get("tau_min")) == "60"), None)
+                if h60:
+                    absorption_60 = float(h60["shortage_absorption_pct"])
+                    passed_60 = math.isclose(absorption_60, 66.46, abs_tol=0.05)
+                    self.record_claim(
+                        "C05", "Regime 2",
+                        "Recalibration shortage absorption at tau=60 min (channel_mode=all)",
+                        "66.5% of 127.552 -> 42.787 MWh", f"{absorption_60:.2f}%", passed_60)
+
+                    op = {int(r["tau_min"]): float(r["shortage_absorption_pct"]) for r in rows}
+                    op_ok = (math.isclose(op[10], 36.28, abs_tol=0.05)
+                             and math.isclose(op[20], 53.89, abs_tol=0.05)
+                             and math.isclose(op[30], 61.72, abs_tol=0.05))
+                    self.record_claim(
+                        "C05b", "Regime 2",
+                        "Recalibration shortage absorption across the 10-30 min operational grid",
+                        "36.3% / 53.9% / 61.7% at tau=10/20/30",
+                        f"{op[10]:.2f}% / {op[20]:.2f}% / {op[30]:.2f}%", op_ok)
+
+                    recal_short = float(h60["phys_recal_shortage_mwh"])
+                    passed_short = math.isclose(recal_short, 42.787, abs_tol=0.01)
+                    self.record_claim(
+                        "C06", "Regime 2", "Recalibrated shortage at tau=60 min",
+                        "42.787 MWh", f"{recal_short:.3f} MWh", passed_short)
+
+                    recal_cost = float(h60["phys_recal_cost_kwh"])
                     passed_cost = math.isclose(recal_cost, 1228609.0, abs_tol=10.0)
-                    self.record_claim("C06", "Regime 2", "Recalibrated Physics tau=60 Cost", "1,228,609 kWh", f"{recal_cost:,.0f} kWh", passed_cost)
+                    self.record_claim(
+                        "C06b", "Regime 2", "Recalibrated Physics tau=60 Cost",
+                        "1,228,609 kWh", f"{recal_cost:,.0f} kWh", passed_cost)
                 else:
-                    self.record_claim("C05", "Regime 2", "Recalibration absorption", "55.3%", "Missing row in ablation", False)
+                    self.record_claim("C05", "Regime 2", "Recalibration absorption", "66.5%",
+                                      "Missing tau=60 row", False)
         else:
-            self.record_claim("C05", "Regime 2", "Recalibration absorption", "55.3%", "Missing artifact", False)
+            self.record_claim("C05", "Regime 2", "Recalibration absorption", "66.5%",
+                              "Missing artifact artifacts/regime2_recalibration_absorption.csv", False)
 
         cal_path = self.root / "artifacts/posterior_calibration.csv"
         if cal_path.exists():
@@ -428,7 +455,7 @@ class ReplicationAuditor:
             except Exception as e:
                 print(f"  [WARN] Table regeneration encountered an issue: {e}")
 
-        # 2. Programmatic audit of all 73 submission-facing display tokens
+        # 2. Programmatic audit of all submission-facing display tokens
         audit_json = audit_dir / "tste_number_consistency_audit.json"
         if audit_json.exists():
             try:
@@ -436,12 +463,12 @@ class ReplicationAuditor:
                 n_checks = int(data.get("n_checks", 0))
                 n_failed = int(data.get("n_failed", 0))
                 status = data.get("status", "")
-                passed = (status == "complete_tste_number_consistency") and (n_failed == 0) and (n_checks >= 73)
+                passed = (status == "complete_tste_number_consistency") and (n_failed == 0) and (n_checks >= 77)
                 self.record_claim(
                     "C19",
                     "Submission Audit",
-                    "Full 73-Token Submission Number Consistency",
-                    "73/73 checks passed",
+                    "Full Submission Number Consistency (all registered display tokens)",
+                    f"all {n_checks} checks passed",
                     f"{n_checks - n_failed}/{n_checks} passed ({n_failed} failed)",
                     passed,
                 )
@@ -449,8 +476,8 @@ class ReplicationAuditor:
                 self.record_claim(
                     "C19",
                     "Submission Audit",
-                    "Full 73-Token Submission Number Consistency",
-                    "73/73 checks passed",
+                    "Full Submission Number Consistency (all registered display tokens)",
+                    "all registered checks passed",
                     f"Audit JSON parse error: {e}",
                     False,
                 )
@@ -458,8 +485,8 @@ class ReplicationAuditor:
             self.record_claim(
                 "C19",
                 "Submission Audit",
-                "Full 73-Token Submission Number Consistency",
-                "73/73 checks passed",
+                "Full Submission Number Consistency (all registered display tokens)",
+                "all registered checks passed",
                 "Audit JSON missing",
                 False,
             )

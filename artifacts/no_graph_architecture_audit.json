@@ -39,6 +39,8 @@
   "designation_ruling": {
     "original_informal_term": "capacity-matched No-Graph MLP",
     "formal_scientific_term": "No-Graph Architectural Control",
-    "justification": "STGQ-Modular comprises 256,236 parameters across graph diffusion and mixture-of-experts blocks, whereas the single-turbine MLP contains 4,865 parameters (a ~53x parameter ratio). Because the single-turbine MLP was sized to match the capacity of a single-turbine local feedforward block rather than the full multi-node spatio-temporal graph system, it functions as an architectural lesion control (severing spatial graph interactions) rather than an identical-capacity or FLOPs-matched model. The scientific claim ceiling must formally designate it as a No-Graph Architectural Control."
+    "justification": "STGQ-Modular comprises 110,012 parameters across graph diffusion and mixture-of-experts blocks, whereas the single-turbine MLP contains 4,865 parameters (a 22.6x parameter ratio). Because the single-turbine MLP was sized to match the capacity of a single-turbine local feedforward block rather than the full multi-node spatio-temporal graph system, it functions as an architectural lesion control (severing spatial graph interactions) rather than an identical-capacity or FLOPs-matched model. The scientific claim ceiling must formally designate it as a No-Graph Architectural Control.",
+    "parameter_ratio_stgq_over_nograph": 22.61,
+    "causal_necessity_of_spatial_graph": "UNPROVEN / NOT ESTABLISHED"
   }
 }

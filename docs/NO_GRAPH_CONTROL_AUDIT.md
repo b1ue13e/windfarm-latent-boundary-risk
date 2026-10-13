@@ -1,9 +1,16 @@
 # No-Graph Architectural Control: Complexity & Parameter Equivalence Audit
 
 **Audit Status:** AUTHORITATIVE AUDIT & TERMINOLOGY RULING  
-**Effective Date:** 2026-10-11  
-**Associated Experiment:** EXP-01 (`artifacts/external_matched_control_benchmark.csv`)  
+**Effective Date:** 2026-10-11 (parameter breakdown) / 2026-10-13 (claim-ceiling and v2-magnitude revision)  
+**Associated Experiment:** EXP-01 corrected v2 (`artifacts/external_matched_control_benchmark.csv`)  
 **Computing Environment:** NVIDIA A100-PCIE-40GB (Metis Cloud Node) & Local Verification  
+
+> **Revision notice.** The parameter breakdown and nomenclature ruling below date from 2026-10-11 and remain in force.
+> The performance magnitudes and the causal-necessity ceiling were revised on 2026-10-13 after EXP-01 was
+> corrected to v2. The 2026-10-11 draft quoted v1 magnitudes (+1,050k to +2,154k kWh on Penmanshiel,
+> +888k to +1,501k kWh on Kelmarsh); those belong to the superseded v1 protocol, in which shortfall was
+> derived from the transferred challenger's own prediction. They MUST NOT be cited. See
+> `docs/EXPERIMENT_REGISTRY.md` (EXP-01) and `docs/F6_CONTROL_PLANE_REPOLLUTION_AUDIT.md`.
 
 ---
 
@@ -42,6 +49,24 @@ To preserve strict scientific honesty and prevent over-claiming, this audit esta
 - `Linear(64, 64)` + `LayerNorm(64)`: 4,160 + 128 = 4,288 parameters
 - `Linear(64, 1)` + `ReLU`: 65 parameters
 - **Total**: 4,865 parameters
+
+---
+
+## 3. Formal Scientific Ruling on Nomenclature
+
+1. **Mandatory Formal Name:** **No-Graph Architectural Control**  
+   The baseline must be described as an *architectural control* that severs inter-turbine spatial graph connectivity and isolates single-turbine SCADA feature processing.
+2. **Forbidden Phrasing:**
+   - *“Strictly capacity-matched MLP”* (Prohibited: STGQ has ~23x more parameters).
+   - *“Compute-equivalent control”* (Prohibited: STGQ requires spatial graph convolution over $N$ turbines).
+3. **Scientific Value of the Baseline (corrected v2 magnitudes):**
+   On the corrected v2 protocol, the No-Graph Architectural Control incurs a PSREI cost penalty versus the
+   non-parametric **Site-Local Wspd-Bins** of approximately +16.88M to +19.59M kWh on Penmanshiel and
+   +3.40M to +3.67M kWh on Kelmarsh (per-site $h=1$/$h=6$ range). This supports only the following bounded statement:
+   - Increasing neural parametrization without spatio-temporal structure does not by itself restore
+     competitive calibration relative to a simple local empirical quantile table.
+   - The non-parametric empirical quantile table is a **minimum-sufficient decision model** under
+     deployment-time pitch withholding.
 
 ---
 

@@ -107,7 +107,8 @@ Based on the empirical findings, we synthesize a 3-tier operational deployment p
 - Strictly lower cost than neural ML                   |                                   |
 - No training overhead                                v                                   v
                                         [ Non-Neural Recalibration ]     [ Consequence Latent Recovery ]
-                                        - Absorbs 55.3% of loss          (Active power signature C2)
+                                        - Absorbs 36.3-61.7% of loss     (Active power signature C2)
+                                          (tau=10-30 min); 66.5% at tau=60
                                         - Zero weight updating                            |
                                                                                           v
                                                                           [ Independent Decision Gate ]

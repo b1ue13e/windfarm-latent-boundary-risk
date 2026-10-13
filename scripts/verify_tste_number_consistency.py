@@ -410,6 +410,21 @@ def build_number_checks(root: Path) -> list[NumberCheck]:
             _check("bess_delay6_shortage_mitigation_pct", bess_file, _num(hl["shortage_mitigation_pct"]), lambda v: f"{v:.1f}\\%", ("supplementary",)),
         ])
 
+    regime2_file = "artifacts/regime2_recalibration_absorption.csv"
+    if (root / regime2_file).exists():
+        r2 = pd.read_csv(root / regime2_file)
+        r2_by_tau = {int(row["tau_min"]): row for _, row in r2.iterrows()}
+        checks.extend([
+            _check("regime2_absorption_tau10", regime2_file, _num(r2_by_tau[10]["shortage_absorption_pct"]),
+                   lambda v: f"{v:.1f}\\%", ("main", "supplementary")),
+            _check("regime2_absorption_tau30", regime2_file, _num(r2_by_tau[30]["shortage_absorption_pct"]),
+                   lambda v: f"{v:.1f}\\%", ("main",)),
+            _check("regime2_absorption_tau60", regime2_file, _num(r2_by_tau[60]["shortage_absorption_pct"]),
+                   lambda v: f"{v:.1f}\\%", ("main",)),
+            _check("regime2_recal_shortage_tau60", regime2_file, _num(r2_by_tau[60]["phys_recal_shortage_mwh"]),
+                   lambda v: f"{v:.1f}", ("main",)),
+        ])
+
     return checks
 
 

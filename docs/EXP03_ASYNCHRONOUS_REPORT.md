@@ -4,7 +4,17 @@
 **Execution Environment:** NVIDIA A100-PCIE-40GB GPU (Metis Cloud Node)  
 **Scientific Scope:** Synthetic Asynchronous Envelope (Non-Extrapolatable to Industrial Prevalence)  
 **Target Artifact:** `artifacts/exp03_async/psrei_vs_delay.csv`  
-**Provenance Hash (Full-Grid SHA-256):** `18079b46d01a399d47df681ec0fa48ab4a55bf0860c8bc99df2c15480bb13d49`  
+**Internal Trace Digest (`input_trace_hash.txt`):** `18079b46d01a399d47df681ec0fa48ab4a55bf0860c8bc99df2c15480bb13d49`  
+
+> **Provenance boundary (2026-10-13, F6 correction).** `18079b46…` is an *internal* Python `hashlib`
+> accumulator digest, **not** a file SHA-256 and **not** a full-grid arrival-stream hash. It is computed
+> during execution over `async_feat[:144, 0, :]` and `dropped_mask[:144, 0, :]` only — node 0, first 144
+> steps (`scripts/run_exp03_async_benchmark.py:498,515-516,597`). It does not cover the evaluated grid
+> (all turbines × 5 seeds × 7 delays × 2 horizons) and cannot be recomputed from any archived artifact.
+> The materialized `arrival_trace.jsonl` covers nodes 0–1 × first 144 steps at $\tau=0$ and contains
+> **zero delayed packets**; its own SHA-256 (`fcc119806e6bccad0f458a9cd6188c3150ece307ca0c63acd6b395d7904b3d9c`)
+> differs from the digest above, and `missing_mask.json` is a 48-element all-`false` placeholder.
+> Packet-level provenance for the evaluated grid remains **OUTSTANDING**.
 
 ---
 
@@ -18,10 +28,11 @@ and on a **strictly fixed dispatch-anchor population** (evaluated cells: 408937 
 1. **Critical Latency Threshold (Hierarchical $\tau^*$):**
    - For Horizon $h=1$: $\tau^* = 1 \times 10$ minutes.
    - For Horizon $h=6$: $\tau^* = 0 \times 10$ minutes.
-2. **Fixed Population Integrity:**
-   - Evaluated cells remain 100% constant (408937 cells) across all $\tau \in [0, 6]$.
-   - Telemetry drop fraction increases from 0.0% at $\tau=0$ to 60.3% at $\tau=6$, handled transparently via causal LOCF.
-   - Total PSREI does NOT collapse with delay; normalized per-cell cost accurately reflects latency penalties.
+2. **Fixed Population Integrity (LOCF-imputed, bounded):**
+   - Evaluated cells remain constant (408,937 cells) across all $\tau \in [0, 6]$ by *imputing* stale values rather than dropping rows.
+   - Telemetry drop fraction rises from 0.0% at $\tau=0$ to 60.3% at $\tau=6$, handled via causal LOCF.
+   - **Boundary:** the LOCF stale fraction rises to **99.79%** at $\tau=6$; at $\tau=3$ it is already 95.75%. Late-delay points therefore measure degradation under near-total staleness, not a partially-refreshed stream. "Fixed population" means a fixed *evaluated* population, not fresh observations.
+   - Total PSREI does NOT collapse with delay; normalized per-cell cost reflects latency penalties.
 
 ---
 
@@ -49,6 +60,7 @@ and on a **strictly fixed dispatch-anchor population** (evaluated cells: 408937 
 ## 3. Scientific Falsification & Interpretive Guardrails
 
 1. **Information Parity Enforcement:** Both Site-Local Wspd-Bins and Challenger observe identical delayed telemetry; active power history (`Patv_hist`) is subjected to identical discrete delay buffers.
-2. **Fixed Population Guardrail:** The previous artifact where population collapsed to 2.47% at $\tau=6$ is eliminated. Causal LOCF maintains valid input tensors without retrospective backfill or row dropping.
+2. **Fixed Population Guardrail (bounded):** The previous artifact where population collapsed to 2.47% at $\tau=6$ is eliminated: causal LOCF keeps the *evaluated* population constant without retrospective backfill or row dropping. It does so by imputing stale values, so at $\tau=6$ the stale fraction reaches 99.79%. Fixed-population *evaluation* must not be reported as a fully-refreshed telemetry stream.
 3. **Synthetic Envelope Limitation:** These findings represent a controlled boundary envelope under synthetic Poisson/jitter arrivals; they do not establish empirical SCADA failure distributions in commercial wind fleets.
 4. **Reverse Null Protection Confirmed:** Complex representations do not buffer against telemetry delay; local conditional baselines maintain comparable or superior resilience across the delay spectrum.
+5. **Provenance Limitation:** The archived packet trace covers only nodes 0–1 and the first 144 steps at $\tau=0$; the recorded trace digest is an internal accumulator over node 0 / first 144 steps, not a full-grid arrival-stream hash. Full-grid packet-level provenance remains OUTSTANDING.

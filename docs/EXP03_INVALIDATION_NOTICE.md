@@ -8,6 +8,29 @@
 
 ---
 
+## Reconciliation Addendum (2026-10-13, F6)
+
+> **This notice remains a historical provenance record of the 2026-10-12 invalidation. It is superseded
+> in part, and the reader must not treat it as a current statement of EXP-03's status.**
+>
+> `docs/EXPERIMENT_REGISTRY.md` (EXP-03) now records the **EXP-03-R hardened reconciled rerun** as
+> CONCLUDED. The rerun artifact `artifacts/exp03_async/psrei_vs_delay.csv` was written in commit
+> `f583c572` and did not exist at the time this notice was authored. Per-defect current state:
+>
+> | Defect | 2026-10-12 notice | Current state (2026-10-13) |
+> |---|---|---|
+> | **F3.1** Information asymmetry | `Patv` delayed, actual cache feature `Patv_hist` read fresh | **FIXED** — `(Patv_hist, Patv)` alias resolution delays all 5 consumed channels symmetrically (`run_exp03_async_benchmark.py:164-183`) |
+> | **F3.2** Proxy label collapse | 0 positives; thresholds on standardized features | **FIXED** — physical thresholds applied after unstandardizing via `metadata.json.feature_stats` (`:67-88`) |
+> | **F3.3** Population collapse | 100% → 2.47% at $\tau=6$ | **CHANGED, NOT ELIMINATED** — evaluated cells now constant at 408,937/408,939 via causal LOCF, but LOCF *imputes* values: `drop_fraction` still reaches **60.25%** and `stale_fraction` **99.79%** at $\tau=6$. The curve is now locally non-collapsing but late-delay points measure near-total staleness. |
+> | **F3.4** Incomplete provenance | trace `d1619e…` covers node 0 / first 144 steps / $\tau=0$ | **NOT FIXED — RE-LABELLED.** The new digest `18079b46…` is likewise an internal accumulator over node 0 / first 144 steps (`:498,515-516,597`), not a hash of the archived trace, and is not recomputable from any artifact. `arrival_trace.jsonl` still contains zero delayed packets; `missing_mask.json` is now an all-`false` placeholder. Full-grid packet provenance remains OUTSTANDING. |
+>
+> **Consequence:** F3.1 and F3.2 were genuinely repaired. F3.3 was mitigated, not eliminated. F3.4 was
+> **re-badged rather than fixed**, and the earlier claim that it was "Resolved" was inaccurate — corrected
+> in `docs/EXPERIMENT_REGISTRY.md` (EXP-03, F4) and `docs/EXP03_ASYNCHRONOUS_REPORT.md`. No manuscript
+> claim should rest on EXP-03 packet-level provenance.
+
+---
+
 ## Executive Summary
 
 EXP-03 (Integer-Step Asynchronous Packet Arrival Envelope Benchmark) is **scientifically invalid** and must not be cited or used in manuscript claims. While the experiment was executed in good faith with preregistration and extensive protocol documentation, post-execution forensic audit revealed four critical defects that jointly render the current results uninterpretable:

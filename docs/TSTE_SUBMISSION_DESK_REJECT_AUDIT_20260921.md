@@ -62,7 +62,7 @@
 
 #### 4.1 Aerodynamic Mechanism & Latency Stress
 - **Physics Superiority under Fresh Telemetry:** In the aerodynamic boundary band ($|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}$, $N=13{,}883$ events), deterministic physical curves outperform neural networks ($589,535\text{ kWh}$ at $h=1$, $881,367\text{ kWh}$ at $h=6$, saving 8.1%).
-- **Degradation Tiers:** Evaluates realistic 10–30 min buffer backlogs alongside a 60-min contingency stress test, noting where non-neural recalibration is sufficient (absorbing 55.3% of shortage loss) vs. where latent-state representation is needed (pitch withholding).
+- **Degradation Tiers:** Evaluates realistic 10–30 min buffer backlogs alongside a 60-min contingency stress test, noting where non-neural recalibration is sufficient (absorbing 36.3%–61.7% of the delay-induced shortage loss, rising to 66.5% at the 60-min endpoint) vs. where latent-state representation is needed (pitch withholding).
 - **Multi-Site Boundary Probes:** Four commercial farms (WTB 134 turbines, Penmanshiel 14, Kelmarsh 6, LHB 4) are evaluated. The paper explicitly warns against universal generalization, identifying LHB as a negative transfer/overfitting boundary and Kelmarsh as neutral.
 
 ---

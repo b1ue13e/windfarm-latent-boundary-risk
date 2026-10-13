@@ -38,8 +38,8 @@ The paper's central scientific claim **SURVIVES** under a strict, falsifiable fo
     breaches nominal 10% target at 14.98% / 16.23%)           steady Region 2 operation)
            │                                                         │
 4. State-Conditional Recalibration                        4. Selective Abstention Benefit
-   (Absorbs 55.3% of shortage loss without                   (Abstaining on low confidence produces
-    neural backpropagation)                                   negative value; +1.77M kWh waste)
+   (Absorbs 36.3-61.7% (tau=10-30 min);                   (Abstaining on low confidence produces
+    66.5% at tau=60 endpoint)                                 negative value; +1.77M kWh waste)
 ```
 
 ---
@@ -66,7 +66,7 @@ The paper's central scientific claim **SURVIVES** under a strict, falsifiable fo
 1. **Rule 1 (Pristine Telemetry $\to$ Deterministic Physics)**:
    Whenever blade pitch telemetry is available and fresh ($\tau < 10\text{ min}$), operators must deploy physical aerodynamic quantile curves. Machine learning is strictly inferior under full observability.
 2. **Rule 2 (Telemetry Latency $\to$ Empirical Recalibration First)**:
-   When communication latency occurs but channels are observable, state-conditional recalibration absorbs $55.3\%$ of shortage risk without training neural networks.
+   When communication latency occurs but channels are observable, state-conditional recalibration absorbs $36.3\%$–$61.7\%$ of the delay-induced shortage risk across the $10$–$30$ min operational grid ($66.5\%$ at the $60$-min endpoint) without training neural networks.
 3. **Rule 3 (Pitch Withheld $\to$ Latent-Boundary Spatio-Temporal GNN)**:
    When blade pitch registers are unobservable across commercial boundaries, the spatio-temporal boundary representation should be deployed on utility-scale wind farms to infer the latent boundary from active power and wake context.
 4. **Rule 4 (Steady MPPT $\to$ Localized Physical Bins)**:

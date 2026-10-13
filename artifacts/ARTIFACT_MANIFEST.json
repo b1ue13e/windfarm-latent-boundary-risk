@@ -67,7 +67,7 @@
     ],
     "manuscript_claims_supported": [
       "Delay-6 Physics breakdown at h=1: 24.02% viol, 127.55 MWh deficit",
-      "State-conditional recalibration absorbs 55.3% shortage loss (127.6 -> 57.0 MWh)",
+      "State-conditional recalibration absorbs 36.3%/53.9%/61.7% of shortage loss at tau=10/20/30 min (channel_mode=all) and 66.5% at tau=60 (127.552 -> 42.787 MWh)",
       "Recalibrated physics at tau=60: 1,228,609 kWh (9.46% viol)",
       "Pitch-withheld recalibration degradation: 824,393 -> 1,378,900 kWh",
       "Learned recovery tau=0 no-pitch: 755,794 kWh (-68.6k vs recal)",
@@ -663,7 +663,7 @@
   },
   {
     "filename": "artifacts/no_graph_architecture_audit.json",
-    "sha256": "e3418679acd305de0f47a914ee6b46466467727a4ad514e7c2bc58f9a237686f",
+    "sha256": "e263f7598dd939eb10641c276a74df24063ea987d3374df7edb828f35a8c86bb",
     "size_bytes": 1919,
     "category": "A",
     "generating_script": "scripts/run_exp01_matched_control_benchmark.py",

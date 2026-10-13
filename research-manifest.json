@@ -276,9 +276,15 @@
       "latestVersion": 2,
       "updatedAt": "2026-10-12T02:37:59.363Z",
       "description": "EXP-03 integer-step asynchronous telemetry envelope benchmark results executed on Metis HPC (NVIDIA A100-PCIE-40GB GPU) across 7 delays (0 to 60 min), 5 seeds (201-205), and 2 horizons (h=1, h=6) with B=2000 cluster Block Bootstrap."
+    },
+    {
+      "name": "regime2-recalibration-absorption",
+      "latestVersion": 1,
+      "updatedAt": "2026-10-13T01:16:33.916Z",
+      "description": "Corrected Regime-2 recalibration absorption table (Issue F5 metric-definition repair), computed as the within-channel_mode='all' contrast between matched uncalibrated physics and state-conditional recalibration across the lead_step=0 latency grid."
     }
   ],
   "reviews": [],
   "audit": [],
-  "updatedAt": "2026-10-12T23:59:25.984Z"
+  "updatedAt": "2026-10-13T01:16:33.916Z"
 }

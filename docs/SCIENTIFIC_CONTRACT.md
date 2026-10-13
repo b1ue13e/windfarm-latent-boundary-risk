@@ -101,7 +101,7 @@ The target is the **minimum sufficient decision function**, not maximum model co
 | Claim | Status | Allowed interpretation |
 |---|---|---|
 | Fresh telemetry: physical rule is strongest in the evaluated boundary band | VERIFIED | Conditional to the evaluated boundary band and protocol |
-| Observable latency can be partly absorbed by non-neural recalibration | VERIFIED | 55.3% shortage-loss absorption under the evaluated matched-delay setting |
+| Observable latency can be partly absorbed by non-neural recalibration | VERIFIED | Shortage-loss absorption rises monotonically with delay: 36.3% / 53.9% / 61.7% at $\tau=10/20/30$ min and 66.5% at the $\tau=60$ min contingency endpoint ($127.552 \to 42.787$ MWh, channel_mode=all, matched delay). The deprecated 55.3% token was a cross-channel_mode pitch-withholding contrast (Regime 3), not a recalibration absorption rate; it must not be used. |
 | Pitch-withheld consequence signals retain boundary information | VERIFIED, bounded | Dominated by active-power signature; privileged training setting |
 | Active power is a major mediator of recoverability | VERIFIED | Do not upgrade to “complex STGNN discovers mechanism” |
 | Posterior conditioning reduces plant-wide PSREI vs wind-speed bins | REFUTED by current closure | Must not be claimed |

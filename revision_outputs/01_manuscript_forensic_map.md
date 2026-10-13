@@ -27,7 +27,7 @@ This forensic map indexes every empirical assertion, mathematical formulation, a
                   │                                         ┌───────────────────────┴───────────────────────┐
                   │                                         ▼                                               ▼
                   │                            【State-Conditional Recalibration】             【Learned Representations (STGQ)】
-                  │                            • Absorbs 55.3% shortage                       • Reconstructs aerodynamic state from
+                  │                            • Absorbs 36.3-61.7% shortage                 • Reconstructs aerodynamic state from
                   │                            • 127.6 -> 57.0 MWh shortage                     electromechanical transients (Patv, Q, V)
                   │                            • Violation: 10.7%                              • Withheld pitch advantage: 46.7k-68.6k kW·h
                   │                            • Zero neural parameter overhead                • Recall doubles: 0.416 vs 0.196
@@ -73,7 +73,7 @@ This forensic map indexes every empirical assertion, mathematical formulation, a
   - *Evidence File*: `artifacts/clean_evidence_v2/risk_layer_benchmark/h6_lead6/results_by_seed.csv`.
 
 ### Claim Cluster 2: Disentangling Recalibration from Neural Representation
-- **Recalibration Dominance under Full Observability**: Condition-matching state-conditional recalibration absorbs **55.3%** of shortage ($127.6 \to 57.0\text{ MWh}$, violation $10.7\%$, delivery cost **1,228,609 kW·h**). Learned neural posteriors achieve **10.6% ± 1.1%** violation and **53.9 MWh** shortage (incremental gain only 5.4%).
+- **Recalibration Dominance under Full Observability**: Condition-matching state-conditional recalibration absorbs **36.3%–61.7%** of the delay-induced shortage across the $10$–$30$ min grid ($37.7 \to 24.0\text{ MWh}$ at $\tau=10$; $69.1 \to 26.4\text{ MWh}$ at $\tau=30$) and **66.5%** at the $60$-min endpoint ($127.552 \to 42.787\text{ MWh}$, $9.5\%$ violation; delivery cost **1,228,609 kW·h**). Learned neural posteriors achieve **10.6% ± 1.1%** violation and **53.9 MWh** shortage (incremental gain only 5.4%). *Issue F5 correction: the $55.3\%$ / $127.6 \to 57.0$ MWh pair quoted in the original revision map was a cross-`channel_mode` pitch-withholding contrast (Regime 3), not a recalibration absorption rate. This document is a historical revision log; see `docs/SCIENTIFIC_CONTRACT.md` for the authoritative ceiling.*
   - *Empirical Takeaway*: Under full observability, complex neural networks are not cost-effective.
 - **Learned Representation Primacy under Withheld Pitch**: When blade pitch is concealed across OEM boundaries (`no_pab`), learned representations reconstruct operating regimes from electromechanical transients ($\texttt{Patv}, Q, V$), saving **46.7k–68.6k kW·h** over recalibrated physics across all latencies and doubling boundary recall (**0.416 vs. 0.196**).
   - *Evidence File*: `artifacts/fair_degradation_replay_20260903/fair_degradation_summary.csv`.

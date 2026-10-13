@@ -36,7 +36,7 @@ anchor_stress_lagged_pab_wspd_nmi,artifacts/anchor_stress_guard/anchor_stress_su
 la_haute_borne_routing_nmi,artifacts/signature_gate_lhb_guard_20260902/anchor_stress_summary.csv,0.975,0.975,supplementary,supplementary,,True,True
 la_haute_borne_routing_ari,artifacts/external_wind_lhb_guard_full_5seed/external_wind_guard.json,0.9711510497105152,0.971,supplementary,supplementary,,True,True
 lhb_anchor_patv_zero_nmi,artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json,0.9534102848932712,0.953,supplementary,supplementary,,True,True
-lhb_anchor_boundary_zero_nmi,artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json,0.0012638106209592,0.001,supplementary,supplementary,,True,True
+lhb_anchor_boundary_zero_nmi,artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json,0.0012638106209592,0.001,supplementary,main;supplementary,,True,True
 lhb_anchor_random_physics_nmi,artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json,0.027933293780014,0.028,supplementary,supplementary,,True,True
 kelmarsh_penmanshiel_mean_nmi,artifacts/external_wind_guard_windowfix/external_wind_guard.json,0.5574091570572378,0.557,supplementary,supplementary,,True,True
 gate_transition_match_at_step,artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv,0.815016820556868,0.815,supplementary,supplementary,,True,True
@@ -57,7 +57,7 @@ markov_f1_gain,artifacts/markov_gilbert_eval_honest/markov_gilbert_guard.json,0.
 kelmarsh_walkforward_pooled_savings,artifacts/iec_density_rolling_eval/iec_rolling_guard.json,-6187492.906148469,-6.19M,supplementary,supplementary,,True,True
 penmanshiel_walkforward_pooled_savings,artifacts/iec_density_rolling_eval/iec_rolling_guard.json,-4339714.631343102,-4.34M,supplementary,supplementary,,True,True
 lhb_walkforward_pooled_delta,artifacts/iec_density_rolling_eval/iec_rolling_guard.json,1006532.1329521689,+1.01M,supplementary,supplementary,,True,True
-lhb_annual_pooled_delta,artifacts/iec_density_rolling_eval/iec_rolling_guard.json,42927.18496052995,+43k,supplementary,main;supplementary,,True,True
+lhb_annual_pooled_delta,artifacts/iec_density_rolling_eval/iec_rolling_guard.json,42927.18496052995,+43k,supplementary,supplementary,,True,True
 kelmarsh_static_freeze_delta,artifacts/iec_density_rolling_eval/iec_rolling_guard.json,-2235283.783849788,-2.24M,supplementary,supplementary,,True,True
 penmanshiel_static_freeze_delta,artifacts/iec_density_rolling_eval/iec_rolling_guard.json,-13832784.787108278,-13.83M,supplementary,supplementary,,True,True
 kelmarsh_year2_inv_w_pitch,artifacts/multiyear_gate_representation_audit/gate_representation_decay_summary.csv,0.997330365506794,0.9973,supplementary,supplementary,,True,True
@@ -72,3 +72,7 @@ bess_delay6_cost_reduction_pct,artifacts/wind_bess_simulation/bess_dispatch_guar
 bess_delay6_unbuffered_shortage,artifacts/wind_bess_simulation/bess_dispatch_guard.json,2514.87939453125,"2,514.9",supplementary,supplementary,,True,True
 bess_delay6_mpc_shortage,artifacts/wind_bess_simulation/bess_dispatch_guard.json,1401.1616543629843,"1,401.2",supplementary,supplementary,,True,True
 bess_delay6_shortage_mitigation_pct,artifacts/wind_bess_simulation/bess_dispatch_guard.json,45.72518517608951,45.7\%,supplementary,supplementary,,True,True
+regime2_absorption_tau10,artifacts/regime2_recalibration_absorption.csv,36.28,36.3\%,main;supplementary,cover;main;supplementary,,True,True
+regime2_absorption_tau30,artifacts/regime2_recalibration_absorption.csv,61.72,61.7\%,main,cover;main,,True,True
+regime2_absorption_tau60,artifacts/regime2_recalibration_absorption.csv,66.46,66.5\%,main,cover;main,,True,True
+regime2_recal_shortage_tau60,artifacts/regime2_recalibration_absorption.csv,42.7873,42.8,main,main,,True,True

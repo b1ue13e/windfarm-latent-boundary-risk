@@ -61,7 +61,7 @@ An automated diff across all numeric tokens confirmed **100% numerical invarianc
 
 - Boundary sample size: $N=13{,}883$ (exact)
 - Pristine aerodynamic reserve cost: $589{,}535\text{ kW}\cdot\text{h}$ ($h=1$), $881{,}367\text{ kW}\cdot\text{h}$ ($h=6$)
-- Latency staleness mitigation: $55.3\%$ ($127.6 \to 57.0\text{ MWh}$)
+- Latency staleness mitigation: $36.3\%$ / $53.9\%$ / $61.7\%$ at $\tau=10/20/30$ min; $66.5\%$ at $\tau=60$ min ($127.552 \to 42.787\text{ MWh}$). *(Superseded token: the former $55.3\%$/$127.6 \to 57.0$ MWh entry was a cross-`channel_mode` pitch-withholding contrast, not a recalibration absorption rate; corrected under Issue F5.)*
 - Pitch withholding savings over unadapted physics: $46.7\text{k}\text{--}68.6\text{k kW}\cdot\text{h}$
 - Transition recall: $0.416$ (representation) vs. $0.196$ (collapsed physics)
 - Plant-wide posterior penalty vs. wind-speed binning: $+523{,}044\text{ kW}\cdot\text{h}$ ($p=0.85$)

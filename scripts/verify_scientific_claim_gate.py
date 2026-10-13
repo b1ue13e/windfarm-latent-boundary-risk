@@ -227,8 +227,25 @@ def main() -> int:
         n_cells_set = {int(r["n_evaluated_cells"]) for r in exp03_rows if "n_evaluated_cells" in r}
         if len(n_cells_set) > 2 or min(n_cells_set) < 400000:
             fail(f"EXP-03 sample population collapse detected: cell counts = {n_cells_set}", failures)
+        elif "drop_fraction" not in exp03_rows[0] or "stale_fraction" not in exp03_rows[0]:
+            # Cell counts alone cannot detect imputation-driven staleness (F6 gate weakness).
+            fail("EXP-03 artifact lacks drop_fraction/stale_fraction; fixed-population claim unverifiable", failures)
         else:
-            ok(f"EXP-03 fixed population verified ({list(n_cells_set)[0]} cells constant across delay grid)")
+            worst_drop = max(float(r["drop_fraction"]) for r in exp03_rows)
+            worst_stale = max(float(r["stale_fraction"]) for r in exp03_rows)
+            if worst_drop > 0.5 and "LOCF" not in (
+                ROOT / "docs" / "EXPERIMENT_REGISTRY.md"
+            ).read_text(encoding="utf-8", errors="replace"):
+                fail(
+                    f"EXP-03 drop_fraction reaches {worst_drop:.2%} but the registry does not disclose the "
+                    "LOCF imputation boundary (cell counts alone are not a fixed-population proof)",
+                    failures,
+                )
+            else:
+                ok(
+                    f"EXP-03 evaluated population fixed ({sorted(n_cells_set)}) with disclosed "
+                    f"imputation boundary (max drop={worst_drop:.2%}, max stale={worst_stale:.2%})"
+                )
 
     # Joint Uncertainty Summary
     joint_json = ROOT / "artifacts" / "joint_uncertainty_summary.json"
@@ -236,6 +253,164 @@ def main() -> int:
         fail("missing joint uncertainty summary: joint_uncertainty_summary.json", failures)
     else:
         ok("Joint hierarchical uncertainty summary verified")
+
+    print("\n[7] Stale-Content Re-Pollution Guard (F6)")
+    # This section fails closed if superseded v1 material, duplicate experiment
+    # registrations, or overstated provenance claims are re-introduced anywhere in
+    # the control plane. Historical provenance records may QUOTE v1 numbers only in a
+    # line that also marks them superseded/void.
+
+    SUPERSEDED_MARKERS = (
+        "superseded", "supersede", "作废", "已作废", "invalid", "INVALID",
+        "MUST NOT", "must not", "not be cited", "不得再被引用", "不得引用",
+        "provenance", "溯源", "historical", "FORBIDDEN", "forbidden", "Prohibited",
+        "禁止",
+    )
+
+    def _line_is_voided(line: str, enclosing_heading: str) -> bool:
+        """A stale number is acceptable only inside an explicitly voided region."""
+        text = line.lstrip()
+        if text.startswith(">") or text.startswith("#"):
+            return True  # blockquote / heading: explanatory annotation, not a live claim
+        hay = line + " " + enclosing_heading
+        return any(m in hay for m in SUPERSEDED_MARKERS)
+
+    def check_no_stale_numbers(rel: str, tokens: list[str]) -> None:
+        """Each occurrence of a superseded v1 number must sit inside a voided region."""
+        path = ROOT / rel
+        if not path.exists():
+            fail(f"stale-guard target missing: {rel}", failures)
+            return
+        offenders: list[str] = []
+        heading = ""
+        for i, line in enumerate(path.read_text(encoding="utf-8", errors="replace").splitlines(), 1):
+            if line.lstrip().startswith("#"):
+                heading = line
+            if any(tok in line for tok in tokens):
+                if not _line_is_voided(line, heading):
+                    offenders.append(f"{rel}:{i}")
+        if offenders:
+            fail(
+                f"superseded v1 material re-appears as a live statement in {rel}: "
+                + ", ".join(offenders[:6]),
+                failures,
+            )
+        else:
+            ok(f"{rel}: no live (unmarked) superseded v1 numbers")
+
+    # v1 EXP-01 magnitudes that must never be stated as current results.
+    V1_EXP01 = ["+448.0k", "448,046", "+48.5k", "48,494", "+2.15M", "+1.50M", "+1.09M", "+215k"]
+    check_no_stale_numbers("experiments/E01/log.md", V1_EXP01)
+
+    # v1 No-Graph magnitudes in the architecture audit (allowed only in the revision notice).
+    V1_NOGRAPH = ["+1,050k", "+2,154k", "+888k", "+1,501k"]
+    check_no_stale_numbers("docs/NO_GRAPH_CONTROL_AUDIT.md", V1_NOGRAPH)
+
+    # v1 EXP-01 magnitudes must not re-enter the authoritative registry as live text.
+    check_no_stale_numbers("docs/EXPERIMENT_REGISTRY.md", ["+448.0k", "+48.5k", "448,046", "48,494"])
+
+    # The architecture audit must keep an explicit, non-equivalence-consistent parameter count.
+    ng_json = ROOT / "artifacts" / "no_graph_architecture_audit.json"
+    if not ng_json.exists():
+        fail("missing architecture audit artifact: no_graph_architecture_audit.json", failures)
+    else:
+        import json as _json
+
+        with ng_json.open("r", encoding="utf-8") as fh:
+            ng = _json.load(fh)
+        total = int(ng["stgq_modular"]["total_parameters"])
+        ruling = ng.get("designation_ruling", {})
+        blob = " ".join(str(v) for v in ruling.values())
+        # Any explicit parameter count asserted in the prose must equal the computed count.
+        prose_numbers = {int(m.replace(",", "")) for m in re.findall(r"\b\d{3},\d{3}\b", blob)}
+        prose_numbers.discard(total)
+        wrong = {n for n in prose_numbers if n not in (4865, 10)}
+        if wrong:
+            fail(
+                f"architecture audit prose asserts parameter counts inconsistent with the computed "
+                f"total {total}: {sorted(wrong)}",
+                failures,
+            )
+        elif ruling.get("causal_necessity_of_spatial_graph") != "UNPROVEN / NOT ESTABLISHED":
+            fail("architecture audit lost the spatial-graph causal-necessity claim ceiling", failures)
+        else:
+            ok(f"architecture audit parameter count self-consistent ({total:,}) and claim ceiling intact")
+
+    # The No-Graph audit must retain its causal-necessity ceiling section.
+    ng_doc = ROOT / "docs" / "NO_GRAPH_CONTROL_AUDIT.md"
+    if ng_doc.exists():
+        doc_txt = ng_doc.read_text(encoding="utf-8", errors="replace")
+        if "UNPROVEN / NOT ESTABLISHED" not in doc_txt:
+            fail("NO_GRAPH_CONTROL_AUDIT.md dropped the UNPROVEN / NOT ESTABLISHED claim ceiling", failures)
+        elif "容量匹配" in doc_txt and "Prohibited" not in doc_txt:
+            fail("NO_GRAPH_CONTROL_AUDIT.md re-introduces capacity-matched wording without prohibition", failures)
+        else:
+            ok("NO_GRAPH_CONTROL_AUDIT.md retains nomenclature + causal-necessity ceilings")
+
+    # Duplicate experiment registration must not return: EXP-Q2-003 is answered by EXP-01.
+    # An *open* duplicate is a registry line that declares the status as PROPOSED/BLOCKED
+    # outside of a voided annotation (blockquote/heading).
+    reg = ROOT / "docs" / "EXPERIMENT_REGISTRY.md"
+    if reg.exists():
+        offenders = []
+        heading = ""
+        for i, line in enumerate(reg.read_text(encoding="utf-8", errors="replace").splitlines(), 1):
+            if line.lstrip().startswith("#"):
+                heading = line
+            if "PROPOSED / BLOCKED" in line:
+                if not _line_is_voided(line, heading):
+                    offenders.append(f"docs/EXPERIMENT_REGISTRY.md:{i}")
+        if offenders:
+            fail(
+                "EXPERIMENT_REGISTRY.md re-introduces an open PROPOSED/BLOCKED duplicate "
+                f"registration alongside a completed experiment (F6 defect): {offenders}",
+                failures,
+            )
+        else:
+            ok("experiment registry has no open duplicate PROPOSED/BLOCKED registration")
+
+    # EXP-03 provenance must not be overstated as a full-grid hash. Only the *live*
+    # assertion counts; blockquotes/headings that quote-and-correct the bad phrasing are fine.
+    overstated = [
+        "Full-Grid SHA-256",
+        "full-grid arrival trace hash",
+        "Cryptographic SHA256 provenance hash of the full-grid arrival stream",
+    ]
+    for rel in ("docs/EXP03_ASYNCHRONOUS_REPORT.md", "docs/EXPERIMENT_REGISTRY.md"):
+        p = ROOT / rel
+        if not p.exists():
+            continue
+        offenders = []
+        heading = ""
+        for i, line in enumerate(p.read_text(encoding="utf-8", errors="replace").splitlines(), 1):
+            if line.lstrip().startswith("#"):
+                heading = line
+            if any(s in line for s in overstated):
+                if not _line_is_voided(line, heading):
+                    offenders.append(f"{rel}:{i}")
+        if offenders:
+            fail(f"{rel} overstates EXP-03 trace provenance as full-grid: {offenders}", failures)
+        else:
+            ok(f"{rel}: EXP-03 trace provenance not overstated")
+
+    # EXP-03 must disclose the LOCF staleness boundary rather than claim fresh fixed population.
+    exp03_csv_path = ROOT / "artifacts" / "exp03_async" / "psrei_vs_delay.csv"
+    if exp03_csv_path.exists():
+        rows03 = read_csv(exp03_csv_path)
+        if "stale_fraction" not in rows03[0]:
+            fail("EXP-03 artifact omits stale_fraction; LOCF staleness is not disclosed", failures)
+        else:
+            worst_stale = max(float(r["stale_fraction"]) for r in rows03)
+            worst_drop = max(float(r["drop_fraction"]) for r in rows03)
+            if worst_stale >= 0.99 and "stale_fraction" not in (ROOT / "docs" / "EXPERIMENT_REGISTRY.md").read_text(
+                encoding="utf-8", errors="replace"
+            ):
+                fail("EXP-03 reaches ~100% stale fraction but the registry does not disclose it", failures)
+            else:
+                ok(
+                    f"EXP-03 staleness disclosed (max stale={worst_stale:.4f}, "
+                    f"max drop={worst_drop:.4f})"
+                )
 
     print("\n" + "=" * 72)
     if failures:

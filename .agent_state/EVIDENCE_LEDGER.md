@@ -1066,6 +1066,16 @@ Kelmarsh h=1: Wspd-Bins 1,274,739 kWh (9.81%) | Transferred Delta +11,304 kWh (p
 Kelmarsh h=6: Wspd-Bins 1,909,238 kWh (10.22%) | Transferred Delta +48,494 kWh (p=0.272) | Fine-tuned Delta +215,241 kWh (p=0.000) | No-Graph Delta +1,501,027 kWh (p=0.000)
 VERDICT: REVERSE RESULT CONFIRMED. Site-Local Wspd-Bins is minimum sufficient model.
 
+> **[SUPERSEDED — v1 protocol. Provenance record only.]** The T90 numbers above belong to EXP-01 **v1**,
+> whose shortfall target was derived from the transferred challenger's own prediction and therefore
+> violated the frozen-point-forecast separation. They MUST NOT be cited as current results. The corrected
+> v2 rerun (T92/EXP-01 v2, artifact `external-matched-control-benchmark v2`,
+> SHA256 `596f46e0be8d71ab7a9965dbe4c481cc717b31c083fe288441a9ca9a39c3966e`) gives Penmanshiel h=6
+> Transferred ΔPSREI = **+5,321,915 kWh** (p=0.003, significant penalty) and Kelmarsh h=6 = **+435,684 kWh**
+> (p=0.196). The uncorrected v1 conclusion likewise must not be restated as a "cross-site universal law";
+> the contract forbids that generalization. See `experiments/E01/log.md` and
+> `docs/EXPERIMENT_REGISTRY.md` (EXP-01).
+
 ## T91 — 2026-10-12T02:00:00+08:00
 Task-ID: T91
 Status: VERIFIED_COMMAND
@@ -1083,6 +1093,10 @@ Benchmark results successfully written to: artifacts/external_matched_control_be
 Penmanshiel h=6 (Primary Endpoint): Delta PSREI = +448,046 kWh (p=0.185)
 Kelmarsh h=6 (Primary Endpoint): Delta PSREI = +48,494 kWh (p=0.272)
 VERDICT: Methodological hardening and claim bounding complete.
+
+> **[SUPERSEDED — v1 protocol. Provenance record only.]** The two primary-endpoint deltas quoted above are
+> v1 values and must not be cited. Corrected v2: Penmanshiel h=6 **+5,321,915 kWh**, Kelmarsh h=6
+> **+435,684 kWh**. See the T90 supersession note above.
 
 ## T92 — 2026-10-12T03:00:00+08:00
 Task-ID: T92
@@ -1268,6 +1282,21 @@ Command: `python scripts/run_exp03_async_benchmark.py --device cuda`
 Exit-Code: 0
 Relevant-Output: All 7 delay steps tau in [0, 6] evaluated across 5 seeds and 2 horizons on 408,937 fixed cells; full-grid trace hash generated.
 Epistemic-Status: VERIFIED.
+
+> **[PARTIALLY SUPERSEDED — F6 correction, 2026-10-13.]** Two claims in the SA02 summary above are
+> corrected and must not be relied on:
+> (a) **"full packet provenance trace hash" / "full-grid trace hash generated" is inaccurate.**
+> `18079b46…` is an internal `hashlib` accumulator over `async_feat[:144,0,:]` and `dropped_mask[:144,0,:]`
+> only (node 0, first 144 steps); it is not a SHA-256 of `arrival_trace.jsonl` (which hashes to
+> `fcc11980…`) and is not recomputable from any archived artifact. `arrival_trace.jsonl` covers nodes 0–1 ×
+> first 144 steps at tau=0 with **zero delayed packets**; `missing_mask.json` is an all-`false` placeholder.
+> Full-grid packet-level provenance remains **OUTSTANDING**.
+> (b) **"408,937 cells constant across all delays" is a LOCF-imputed population, not fresher evidence.**
+> `drop_fraction` reaches 60.25% and `stale_fraction` 99.79% at tau=6, so late-delay points measure
+> near-total staleness. F3.3 was mitigated, not eliminated.
+> F3.1 (Patv_hist delay symmetry) and F3.2 (physical unstandardized proxy thresholds) were genuinely
+> repaired and remain VERIFIED. See `docs/EXP03_INVALIDATION_NOTICE.md` (Reconciliation Addendum) and
+> `docs/EXPERIMENT_REGISTRY.md` (EXP-03 F4).
 
 ## SA03 — 2026-10-13T01:45:00+08:00
 Task-ID: SA03

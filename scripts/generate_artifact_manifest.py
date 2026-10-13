@@ -612,11 +612,11 @@ ARTIFACT_DEFINITIONS = [
         "generating_script": "scripts/run_exp03_async_benchmark.py",
         "upstream_inputs": ["scripts/run_exp03_async_benchmark.py"],
         "manuscript_claims_supported": [
-            "EXP-03: Cryptographic SHA256 provenance hash of the full-grid arrival stream",
+            "EXP-03: Internal execution digest over node 0 / first 144 steps only — NOT a full-grid arrival-stream hash and not recomputable from archived artifacts (see docs/EXPERIMENT_REGISTRY.md EXP-03 F4 boundary)",
         ],
         "tracked_in_git": True,
         "externally_hosted": False,
-        "regenerable": True,
+        "regenerable": False,
     },
     # 12. Cross-Experiment Joint Uncertainty Summary
     {

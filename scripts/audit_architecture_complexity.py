@@ -161,13 +161,17 @@ def main():
             "original_informal_term": "capacity-matched No-Graph MLP",
             "formal_scientific_term": "No-Graph Architectural Control",
             "justification": (
-                "STGQ-Modular comprises 256,236 parameters across graph diffusion and mixture-of-experts blocks, "
-                "whereas the single-turbine MLP contains 4,865 parameters (a ~53x parameter ratio). "
+                f"STGQ-Modular comprises {stgq_stats['total_parameters']:,} parameters across graph diffusion "
+                f"and mixture-of-experts blocks, whereas the single-turbine MLP contains "
+                f"{nograph_stats['total_parameters']:,} parameters "
+                f"(a {ratio:.1f}x parameter ratio). "
                 "Because the single-turbine MLP was sized to match the capacity of a single-turbine local feedforward block "
                 "rather than the full multi-node spatio-temporal graph system, it functions as an architectural lesion control "
                 "(severing spatial graph interactions) rather than an identical-capacity or FLOPs-matched model. "
                 "The scientific claim ceiling must formally designate it as a No-Graph Architectural Control."
             ),
+            "parameter_ratio_stgq_over_nograph": round(ratio, 2),
+            "causal_necessity_of_spatial_graph": "UNPROVEN / NOT ESTABLISHED",
         },
     }
 
@@ -179,12 +183,48 @@ def main():
 
     # Generate Markdown documentation
     doc_path = REPO_ROOT / "docs" / "NO_GRAPH_CONTROL_AUDIT.md"
+
+    # v2 (superseding) No-Graph deltas vs Site-Local Wspd-Bins, read from the frozen
+    # corrected-v2 benchmark. v1 magnitudes must never be re-emitted by this generator.
+    # The reported magnitude is the 5-seed mean, matching the registry's EXP-01 entry.
+    def _nograph_delta(farm: str, horizon: str) -> float:
+        import csv as _csv
+
+        vals: list[float] = []
+        with (REPO_ROOT / "artifacts" / "external_matched_control_benchmark.csv").open(
+            "r", encoding="utf-8-sig", newline=""
+        ) as fh:
+            for r in _csv.DictReader(fh):
+                if (
+                    r.get("farm") == farm
+                    and r.get("horizon") == horizon
+                    and r.get("model") == "No-Graph Architectural Control"
+                ):
+                    vals.append(float(r["delta_psrei_mean_kwh"]))
+        if not vals:
+            raise KeyError(f"missing No-Graph rows for {farm} {horizon}")
+        return sum(vals) / len(vals)
+
+    def _range_m(farm: str) -> str:
+        vals = [_nograph_delta(farm, h) for h in ("h=1", "h=6")]
+        return f"+{min(vals)/1e6:.2f}M to +{max(vals)/1e6:.2f}M kWh"
+
+    nograph_pen = _range_m("Penmanshiel")
+    nograph_kel = _range_m("Kelmarsh")
+
     doc_content = f"""# No-Graph Architectural Control: Complexity & Parameter Equivalence Audit
 
 **Audit Status:** AUTHORITATIVE AUDIT & TERMINOLOGY RULING  
-**Effective Date:** 2026-10-11  
-**Associated Experiment:** EXP-01 (`artifacts/external_matched_control_benchmark.csv`)  
+**Effective Date:** 2026-10-11 (parameter breakdown) / 2026-10-13 (claim-ceiling and v2-magnitude revision)  
+**Associated Experiment:** EXP-01 corrected v2 (`artifacts/external_matched_control_benchmark.csv`)  
 **Computing Environment:** NVIDIA A100-PCIE-40GB (Metis Cloud Node) & Local Verification  
+
+> **Revision notice.** The parameter breakdown and nomenclature ruling below date from 2026-10-11 and remain in force.
+> The performance magnitudes and the causal-necessity ceiling were revised on 2026-10-13 after EXP-01 was
+> corrected to v2. The 2026-10-11 draft quoted v1 magnitudes (+1,050k to +2,154k kWh on Penmanshiel,
+> +888k to +1,501k kWh on Kelmarsh); those belong to the superseded v1 protocol, in which shortfall was
+> derived from the transferred challenger's own prediction. They MUST NOT be cited. See
+> `docs/EXPERIMENT_REGISTRY.md` (EXP-01) and `docs/F6_CONTROL_PLANE_REPOLLUTION_AUDIT.md`.
 
 ---
 
@@ -231,12 +271,31 @@ To preserve strict scientific honesty and prevent over-claiming, this audit esta
 1. **Mandatory Formal Name:** **No-Graph Architectural Control**  
    The baseline must be described as an *architectural control* that severs inter-turbine spatial graph connectivity and isolates single-turbine SCADA feature processing.
 2. **Forbidden Phrasing:**
-   - *“Strictly capacity-matched MLP”* (Prohibited: STGQ has ~53x more parameters).
+   - *“Strictly capacity-matched MLP”* (Prohibited: STGQ has ~{ratio:.0f}x more parameters).
    - *“Compute-equivalent control”* (Prohibited: STGQ requires spatial graph convolution over $N$ turbines).
-3. **Scientific Value of the Baseline:**
-   Even as a smaller, streamlined single-turbine network, the No-Graph Architectural Control achieves higher surrogate PSREI cost than the simple non-parametric **Site-Local Wspd-Bins** (+1,050k to +2,154k kWh on Penmanshiel, +888k to +1,501k kWh on Kelmarsh). This confirms that:
-   - Increasing neural parametrization without spatio-temporal structure yields inferior calibration relative to simple local empirical quantiles.
-   - The non-parametric empirical quantile table is the true **minimum-sufficient decision model** under deployment-time pitch withholding.
+3. **Scientific Value of the Baseline (corrected v2 magnitudes):**
+   On the corrected v2 protocol, the No-Graph Architectural Control incurs a PSREI cost penalty versus the
+   non-parametric **Site-Local Wspd-Bins** of approximately {nograph_pen} on Penmanshiel and
+   {nograph_kel} on Kelmarsh (per-site $h=1$/$h=6$ range). This supports only the following bounded statement:
+   - Increasing neural parametrization without spatio-temporal structure does not by itself restore
+     competitive calibration relative to a simple local empirical quantile table.
+   - The non-parametric empirical quantile table is a **minimum-sufficient decision model** under
+     deployment-time pitch withholding.
+
+---
+
+## 4. Causal Necessity Boundary: UNPROVEN / NOT ESTABLISHED
+
+A critical finding from the 2026-10-12 Scientific Audit is that the performance deficit of the No-Graph Architectural Control relative to STGQ-Modular cannot be causally attributed to the absence of the spatial graph alone:
+
+1. **Confounded Asymmetries:**
+   - **Parameter Asymmetry:** The No-Graph MLP has {nograph_stats['total_parameters']:,} parameters, whereas STGQ-Modular has {stgq_stats['total_parameters']:,} parameters (a {ratio:.1f}x capacity difference).
+   - **Training Protocol Asymmetry:** In `scripts/run_exp01_matched_control_benchmark.py`, the No-Graph MLP was trained solely on the target farm's validation split (with an internal 70/30 split), whereas STGQ-Modular received full source-domain pretraining across 134 turbines followed by transfer/fine-tuning.
+   - **Architectural Modality:** Single-turbine feedforward vs. multi-turbine spatio-temporal convolutions.
+2. **Authoritative Claim Ceiling:**
+   - **UNPROVEN / NOT ESTABLISHED:** It **MUST NOT BE CLAIMED** that *"external spatial graph structure is causally necessary for downstream reserve decision quality"* or that *"spatial graph convolution is the causal mechanism preventing catastrophic shortfall"*.
+   - **Supported Claim:** Increasing neural parametrization via an isolated single-turbine MLP trained on local validation data fails to achieve competitive calibration and is decisively outperformed by the non-parametric **Site-Local Wspd-Bins** baseline.
+   - **Status in Scientific Contract:** Formally locked as `UNPROVEN / NOT ESTABLISHED`.
 """
     with open(doc_path, "w", encoding="utf-8") as f:
         f.write(doc_content)

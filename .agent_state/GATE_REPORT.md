@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-10-13T08:01:46+08:00
+Generated: 2026-10-13T09:16:13+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -69,7 +69,7 @@ Exit: 0
 ======================================================================
 
 [Audit Step 1: Checking Required Artifacts]
-  [PASS] docs/REPOSITORY_EVIDENCE_MAP.md (12,110 bytes)
+  [PASS] docs/REPOSITORY_EVIDENCE_MAP.md (12,327 bytes)
   [PASS] docs/CANONICAL_RESEARCH_QUESTION.md (5,549 bytes)
   [PASS] docs/INFORMATION_SET_CONTRACT.md (7,573 bytes)
   [PASS] artifacts/information_set_manifest.csv (133,318 bytes)
@@ -84,9 +84,9 @@ Exit: 0
   [PASS] artifacts/channel_consequence_ablations.csv (3,608 bytes)
   [PASS] docs/DECISION_VALUE_MEDIATION.md (5,198 bytes)
   [PASS] artifacts/mediation_analysis.csv (2,979 bytes)
-  [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (7,309 bytes)
-  [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,261 bytes)
-  [PASS] docs/DECISIVE_EVIDENCE_GATE.md (6,803 bytes)
+  [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (8,150 bytes)
+  [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,571 bytes)
+  [PASS] docs/DECISIVE_EVIDENCE_GATE.md (7,010 bytes)
   [PASS] build/paper_tste_ieee.pdf (265,002 bytes)
   [PASS] build/paper_tste_supplementary.pdf (1,013,897 bytes)
 
@@ -128,6 +128,84 @@ Exit: 0
 ```
 TSTE number consistency audit: complete_tste_number_consistency
 Wrote E:\论文3\artifacts\tste_number_consistency_audit\tste_number_consistency_audit.csv
+
+```
+
+## Command: verify_replication
+`python scripts/verify_replication.py`
+Exit: 0
+```
+
+--- Step 1: Validating Artifact Manifest & Cryptographic Hashes ---
+Loaded manifest with 46 registered artifacts.
+  [ALL 46 ARTIFACTS VERIFIED WITH VALID SHA256]
+
+--- Step 2: Auditing Regime 1 Physics Baselines (Table I & II) ---
+  [PASS] C01 [Regime 1]: Clean Physics h=1 PSREI (5-seed mean)
+         Target: 589,535 kWh | Replicated: 589,535 kWh 
+  [PASS] C02 [Regime 1]: Clean Physics h=6 PSREI (5-seed mean)
+         Target: 881,367 kWh | Replicated: 881,367 kWh 
+  [PASS] C03 [Regime 1]: Clean Physics h=6 Violation Rate
+         Target: 6.81% | Replicated: 6.81% 
+  [PASS] C04 [Regime 1]: Missingness-Aware GBDT h=6 Breaches 10% Target
+         Target: 16.23% (>10.0%) | Replicated: 16.23% 
+
+--- Step 3: Auditing Regime 2 Recalibration (Table III & IV) ---
+  [PASS] C05 [Regime 2]: Recalibration shortage absorption at tau=60 min (channel_mode=all)
+         Target: 66.5% of 127.552 -> 42.787 MWh | Replicated: 66.46% 
+  [PASS] C05b [Regime 2]: Recalibration shortage absorption across the 10-30 min operational grid
+         Target: 36.3% / 53.9% / 61.7% at tau=10/20/30 | Replicated: 36.28% / 53.89% / 61.72% 
+  [PASS] C06 [Regime 2]: Recalibrated shortage at tau=60 min
+         Target: 42.787 MWh | Replicated: 42.787 MWh 
+  [PASS] C06b [Regime 2]: Recalibrated Physics tau=60 Cost
+         Target: 1,228,609 kWh | Replicated: 1,228,609 kWh 
+  [PASS] C07 [Regime 2]: Uncalibrated Posterior Max ECE <= 5.0%
+         Target: <= 5.0% | Replicated: 3.46% 
+
+--- Step 4: Auditing Latent Boundary Recovery & Channel Ablations ---
+  [PASS] C08 [Regime 3]: Active Power AUROC (5-seed mean)
+         Target: 0.988 | Replicated: 0.988 
+  [PASS] C09 [Regime 3]: Transition Recall Gain (Model vs Rule)
+         Target: 0.417 vs 0.196 | Replicated: 0.417 vs 0.196 
+  [PASS] C10 [Ablations]: C2 Active Power Dominant Mechanism (Brier)
+         Target: < 0.05 | Replicated: 0.0112 
+  [PASS] C11 [Ablations]: C4 Thermal Unable to Detect Fast Transitions (Recall)
+         Target: 0.0% | Replicated: 0.0% 
+
+--- Step 5: Auditing Strong Baseline Closure & Statistical Interaction ---
+  [PASS] C12 [Strong Baseline]: Plant-Wide Posterior PSREI Penalty (+523,044 kWh)
+         Target: +523,044 kWh | Replicated: +523,044 kWh 
+  [PASS] C13 [Strong Baseline]: Transition Interaction Delta (p < 0.01)
+         Target: -296,053 kWh (p<0.01) | Replicated: -296,053 kWh (p=0.002) 
+
+--- Step 6: Auditing Matched-Budget Frontier & Rho Sensitivity ---
+  [PASS] C14 [Matched Budget]: Accounting Identity C = R + 10 U Closes Numerically
+         Target: Max Err < 0.05 kWh | Replicated: Max Err = 0.0000 kWh 
+  [PASS] C15 [Matched Budget]: Shortage Increases at Matched Budget (Delta U > 0)
+         Target: > 0 kWh (4/5 seeds fail) | Replicated: +5,234.0 kWh (4/5 seeds) 
+  [PASS] C16 [Rho Sensitivity]: Absence of Economic Crossover for rho >= 5 (Transition Mean)
+         Target: Delta PSREI > 0 for all rho in [5, 100] | Replicated: 9 conditions positive (rho=10: +112,739 kWh, rho=100: +998,216 kWh) 
+
+--- Step 7: Auditing External-Site Transferability & Directional Asymmetry ---
+  [PASS] C17 [External Sites]: Directional Asymmetry (Kelmarsh->Penm vs reverse)
+         Target: 0.770 vs 0.341 | Replicated: 0.770 vs 0.341 
+  [PASS] C18 [External Sites]: LHB Micro-Farm Overfitting Boundary Guard
+         Target: NMI 0.941, ARI 0.971 | Replicated: NMI 0.941, ARI 0.971 (anchor_observable_replication_passed_not_portability_not_reserve_transfer) 
+
+--- Step 8: Auditing Lightweight Table Regeneration & Submission Numbers ---
+  Regenerating lightweight table: artifacts/tste_number_consistency_audit/tste_number_consistency_audit.csv ...
+  [PASS] Lightweight table regenerated cleanly with relative paths.
+  [PASS] C19 [Submission Audit]: Full Submission Number Consistency (all registered display tokens)
+         Target: all 77 checks passed | Replicated: 77/77 passed (0 failed) 
+
+============================================================================
+REPLICATION VERIFICATION AUDIT REPORT
+============================================================================
+
+Total Headline Claims Evaluated: 21
+Passed: 21 | Failed: 0
+
+VERDICT: FULLY_REPRODUCIBLE (ALL 21 CLAIMS VERIFIED WITH EXIT 0)
 
 ```
 
@@ -177,8 +255,19 @@ SCIENTIFIC CLAIM GATE
 [6] EXP-01, EXP-02, EXP-03 Control & Evidence Integrity
   [PASS] EXP-01 v2 benchmark verified (80 rows, 5 seeds, 2 farms)
   [PASS] EXP-02 verified with corrected Primary Challenger role classification
-  [PASS] EXP-03 fixed population verified (408937 cells constant across delay grid)
+  [PASS] EXP-03 evaluated population fixed ([408937, 408939]) with disclosed imputation boundary (max drop=60.25%, max stale=99.79%)
   [PASS] Joint hierarchical uncertainty summary verified
+
+[7] Stale-Content Re-Pollution Guard (F6)
+  [PASS] experiments/E01/log.md: no live (unmarked) superseded v1 numbers
+  [PASS] docs/NO_GRAPH_CONTROL_AUDIT.md: no live (unmarked) superseded v1 numbers
+  [PASS] docs/EXPERIMENT_REGISTRY.md: no live (unmarked) superseded v1 numbers
+  [PASS] architecture audit parameter count self-consistent (110,012) and claim ceiling intact
+  [PASS] NO_GRAPH_CONTROL_AUDIT.md retains nomenclature + causal-necessity ceilings
+  [PASS] experiment registry has no open duplicate PROPOSED/BLOCKED registration
+  [PASS] docs/EXP03_ASYNCHRONOUS_REPORT.md: EXP-03 trace provenance not overstated
+  [PASS] docs/EXPERIMENT_REGISTRY.md: EXP-03 trace provenance not overstated
+  [PASS] EXP-03 staleness disclosed (max stale=0.9979, max drop=0.6025)
 
 ========================================================================
 SCIENTIFIC_CLAIM_GATE: PASS

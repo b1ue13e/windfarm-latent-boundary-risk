@@ -61,7 +61,7 @@ Top-tier TSTE manuscripts adhere to a tightly wound 5-paragraph argumentative st
 │ Paragraph 5: Four Bounded, Verifiable Contributions                         │
 │ • Contribution 1: Quantification of physical rule collapse under latency    │
 │ • Contribution 2: Multi-horizon benchmarking and MoE demystification        │
-│ • Contribution 3: Disentangled Value-of-Information (55.3% vs 5.4%)         │
+│ • Contribution 3: Disentangled Value-of-Information (36.3-61.7% vs 5.4%)    │
 │ • Contribution 4: Multi-farm deployment boundaries and Level-1 risk scope    │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -77,7 +77,7 @@ To eliminate promotional machine learning marketing, empirical results must be s
 - **RQ2: When and why does SCADA communication latency induce reliability collapse in physical rules?**
   - *Finding*: Under 60-min latency, the $C_p$ control cliff amplifies stale-state estimation errors, surging violation rates to $24.0\%$ ($h=1$) and $12.20\%$ ($h=6$), inducing $127.6\text{ MWh}$ of unhedged shortfall.
 - **RQ3: Can state-conditional recalibration restore target-satisfying tail coverage without neural network machinery?**
-  - *Finding*: Condition-matching recalibration absorbs $55.3\%$ of shortage ($127.6 \to 57.0\text{ MWh}$) and reduces violation to $10.7\%$, proving that complex neural models are redundant when pitch telemetry is fully observable.
+  - *Finding*: Condition-matching recalibration absorbs $36.3\%$--$61.7\%$ of the delay-induced shortage across the $10$--$30$ min grid ($66.5\%$ at the $60$-min endpoint, $127.552 \to 42.787\text{ MWh}$), proving that complex neural models are redundant when pitch telemetry is fully observable. *(Issue F5 correction: the original $55.3\%$ / $127.6 \to 57.0$ MWh / $10.7\%$ figures came from a cross-`channel_mode` pitch-withholding contrast, not a recalibration measurement.)*
 - **RQ4: Under what telemetry failure modes do learned spatio-temporal representations provide indispensable value?**
   - *Finding*: When blade-pitch registers are withheld (`no_pab`), learned models reconstruct operating regimes from electromechanical transients ($\texttt{Patv}, Q, V$), saving $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ over recalibrated physics and doubling boundary recall ($0.416$ vs $0.196$).
 - **RQ5: Does dynamic Mixture-of-Experts (MoE) routing deliver genuine operational value over unrouted dense backbones?**

@@ -596,7 +596,7 @@ def main() -> None:
     
     trace_digest = global_hasher.hexdigest()
     (out_dir / "input_trace_hash.txt").write_text(trace_digest + "\n", encoding="ascii")
-    print(f"[OK] Materialized full-grid arrival trace hash: {trace_digest}")
+    print(f"[OK] Internal execution digest (node 0, first 144 steps; NOT a full-grid hash): {trace_digest}")
 
     # 6. Save Verified Missing Mask Manifest
     (out_dir / "missing_mask_manifest.json").write_text(
@@ -639,6 +639,7 @@ def main() -> None:
             viol_b = float(sub["baseline_viol_pct"].mean())
             n_cells_val = int(sub["n_evaluated_cells"].iloc[0])
             drop_f = float(sub["drop_fraction"].iloc[0])
+            stale_f = float(sub["stale_fraction"].iloc[0]) if "stale_fraction" in sub else float("nan")
 
             j_low = j_res["joint_ci_95"][0]
             j_high = j_res["joint_ci_95"][1]
@@ -653,6 +654,7 @@ def main() -> None:
                 "delay_minutes": delay * 10,
                 "n_cells": n_cells_val,
                 "drop_fraction": drop_f,
+                "stale_fraction": stale_f,
                 "mean_delta_kwh": mean_delta,
                 "median_delta_kwh": med_delta,
                 "joint_ci_95_low": j_low,
@@ -674,7 +676,17 @@ def main() -> None:
 **Execution Environment:** NVIDIA A100-PCIE-40GB GPU (Metis Cloud Node)  
 **Scientific Scope:** Synthetic Asynchronous Envelope (Non-Extrapolatable to Industrial Prevalence)  
 **Target Artifact:** `artifacts/exp03_async/psrei_vs_delay.csv`  
-**Provenance Hash (Full-Grid SHA-256):** `{trace_digest}`  
+**Internal Trace Digest (`input_trace_hash.txt`):** `{trace_digest}`  
+
+> **Provenance boundary (2026-10-13, F6 correction).** `{trace_digest}` is an *internal* Python
+> `hashlib` accumulator digest, not a file SHA-256. It is computed during execution over
+> `async_feat[:144, 0, :]` and `dropped_mask[:144, 0, :]` only — i.e. **node 0, the first 144 steps**.
+> It does not cover the evaluated full grid (all turbines × 5 seeds × 7 delays × 2 horizons), and it
+> cannot be recomputed from any archived artifact. The materialized `arrival_trace.jsonl` covers
+> nodes 0–1 × the first 144 steps at τ=0 and therefore contains **zero delayed packets**; its own
+> SHA-256 (`fcc119806e6bccad0f458a9cd6188c3150ece307ca0c63acd6b395d7904b3d9c`) differs from the digest above.
+> Packet-level provenance for the evaluated grid remains **OUTSTANDING**. Do not describe this digest
+> as a "full-grid" provenance hash.
 
 ---
 
@@ -688,10 +700,11 @@ and on a **strictly fixed dispatch-anchor population** (evaluated cells: {joint_
 1. **Critical Latency Threshold (Hierarchical $\\tau^*$):**
    - For Horizon $h=1$: $\\tau^* = {tau_star_hierarchical.get('h=1', 'N/A')} \\times 10$ minutes.
    - For Horizon $h=6$: $\\tau^* = {tau_star_hierarchical.get('h=6', 'N/A')} \\times 10$ minutes.
-2. **Fixed Population Integrity:**
-   - Evaluated cells remain 100% constant ({joint_delay_summary[0]['n_cells']} cells) across all $\\tau \\in [0, 6]$.
-   - Telemetry drop fraction increases from 0.0% at $\\tau=0$ to {joint_delay_summary[-1]['drop_fraction']*100:.1f}% at $\\tau=6$, handled transparently via causal LOCF.
-   - Total PSREI does NOT collapse with delay; normalized per-cell cost accurately reflects latency penalties.
+2. **Fixed Population Integrity (LOCF-imputed):**
+   - Evaluated cells remain constant ({joint_delay_summary[0]['n_cells']} cells) across all $\\tau \\in [0, 6]$ by *imputing* stale values rather than dropping rows.
+   - Telemetry drop fraction rises from 0.0% at $\\tau=0$ to {joint_delay_summary[-1]['drop_fraction']*100:.1f}% at $\\tau=6$, handled via causal LOCF.
+   - **Boundary:** the LOCF stale fraction rises to ~{joint_delay_summary[-1].get('stale_fraction', float('nan'))*100:.1f}% at $\\tau=6$, so late-delay points measure degradation under near-total staleness rather than a partially-refreshed stream. "Fixed population" here means a fixed *evaluated* population, not fresh observations.
+   - Total PSREI does NOT collapse with delay; normalized per-cell cost reflects latency penalties.
 
 ---
 
@@ -716,9 +729,10 @@ and on a **strictly fixed dispatch-anchor population** (evaluated cells: {joint_
 ## 3. Scientific Falsification & Interpretive Guardrails
 
 1. **Information Parity Enforcement:** Both Site-Local Wspd-Bins and Challenger observe identical delayed telemetry; active power history (`Patv_hist`) is subjected to identical discrete delay buffers.
-2. **Fixed Population Guardrail:** The previous artifact where population collapsed to 2.47% at $\\tau=6$ is eliminated. Causal LOCF maintains valid input tensors without retrospective backfill or row dropping.
+2. **Fixed Population Guardrail (bounded):** The previous artifact where the population collapsed to 2.47% at $\\tau=6$ is eliminated: causal LOCF keeps the *evaluated* population constant without retrospective backfill or row dropping. However, LOCF does so by imputing stale values, so at $\\tau=6$ the stale fraction reaches ~{joint_delay_summary[-1].get('stale_fraction', float('nan'))*100:.1f}%. Fixed-population *evaluation* must not be reported as a fully-refreshed telemetry stream.
 3. **Synthetic Envelope Limitation:** These findings represent a controlled boundary envelope under synthetic Poisson/jitter arrivals; they do not establish empirical SCADA failure distributions in commercial wind fleets.
 4. **Reverse Null Protection Confirmed:** Complex representations do not buffer against telemetry delay; local conditional baselines maintain comparable or superior resilience across the delay spectrum.
+5. **Provenance Limitation:** The archived packet trace covers only node 0/1 and the first 144 steps at $\\tau=0$; the recorded trace digest is an internal accumulator over node 0 / first 144 steps, not a full-grid arrival-stream hash. Full-grid packet-level provenance remains OUTSTANDING.
 """
     args.output_report.write_text(report_md, encoding="utf-8")
     print(f"[OK] Generated hardened audit report: {args.output_report}")
