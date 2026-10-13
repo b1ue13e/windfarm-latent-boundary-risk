@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-10-13T09:16:13+08:00
+Generated: 2026-10-13T09:23:02+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -27,24 +27,24 @@ Total pages: 10
 --- Checking Headline Number Proximity Qualifiers ---
 Number 589,535 found 6 times:
   [PASS] Occurrence #1 at index 996: qualifier present=True
-  [PASS] Occurrence #2 at index 4902: qualifier present=True
-  [PASS] Occurrence #3 at index 7304: qualifier present=True
-  [PASS] Occurrence #4 at index 25828: qualifier present=True
-  [PASS] Occurrence #5 at index 36543: qualifier present=True
-  [PASS] Occurrence #6 at index 55877: qualifier present=True
+  [PASS] Occurrence #2 at index 5074: qualifier present=True
+  [PASS] Occurrence #3 at index 7601: qualifier present=True
+  [PASS] Occurrence #4 at index 26240: qualifier present=True
+  [PASS] Occurrence #5 at index 36732: qualifier present=True
+  [PASS] Occurrence #6 at index 57355: qualifier present=True
 Number 881,367 found 7 times:
   [PASS] Occurrence #1 at index 1021: qualifier present=True
-  [PASS] Occurrence #2 at index 4929: qualifier present=True
-  [PASS] Occurrence #3 at index 7329: qualifier present=True
-  [PASS] Occurrence #4 at index 25883: qualifier present=True
-  [PASS] Occurrence #5 at index 30278: qualifier present=True
-  [PASS] Occurrence #6 at index 32914: qualifier present=True
-  [PASS] Occurrence #7 at index 55901: qualifier present=True
+  [PASS] Occurrence #2 at index 5101: qualifier present=True
+  [PASS] Occurrence #3 at index 7626: qualifier present=True
+  [PASS] Occurrence #4 at index 26295: qualifier present=True
+  [PASS] Occurrence #5 at index 30425: qualifier present=True
+  [PASS] Occurrence #6 at index 33061: qualifier present=True
+  [PASS] Occurrence #7 at index 57379: qualifier present=True
 
 [ALL IEEE PDF CHECKS PASSED]
 
 === Auditing Supplementary PDF: E:\璁烘枃3\build\paper_tste_supplementary.pdf ===
-Total pages: 44
+Total pages: 46
 
 --- Checking Banned Phrases in Supplementary ---
   [PASS] Confirmed absent: 'economic reserve benefit'
@@ -87,8 +87,8 @@ Exit: 0
   [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (8,150 bytes)
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,571 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (7,010 bytes)
-  [PASS] build/paper_tste_ieee.pdf (265,002 bytes)
-  [PASS] build/paper_tste_supplementary.pdf (1,013,897 bytes)
+  [PASS] build/paper_tste_ieee.pdf (267,007 bytes)
+  [PASS] build/paper_tste_supplementary.pdf (1,017,110 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
   [PASS] Information-set manifest validated (819 rows, zero forward leakage)

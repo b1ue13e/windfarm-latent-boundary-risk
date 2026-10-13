@@ -282,9 +282,15 @@
       "latestVersion": 1,
       "updatedAt": "2026-10-13T01:16:33.916Z",
       "description": "Corrected Regime-2 recalibration absorption table (Issue F5 metric-definition repair), computed as the within-channel_mode='all' contrast between matched uncalibrated physics and state-conditional recalibration across the lead_step=0 latency grid."
+    },
+    {
+      "name": "f6-control-plane-repollution-audit",
+      "latestVersion": 1,
+      "updatedAt": "2026-10-13T01:24:15.927Z",
+      "description": "F6 专项审计：旧日志/旧审计/控制面再污染闭环，含门禁 §[7] 新增与回归证明"
     }
   ],
   "reviews": [],
   "audit": [],
-  "updatedAt": "2026-10-13T01:16:33.916Z"
+  "updatedAt": "2026-10-13T01:24:15.927Z"
 }
