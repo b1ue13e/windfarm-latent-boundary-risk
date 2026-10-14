@@ -111,7 +111,7 @@
     }
   ],
   "loop": {
-    "phase": "analysis",
+    "phase": "manuscript",
     "iteration": 0,
     "history": [
       {
@@ -211,6 +211,13 @@
         "action": "literature",
         "detail": "P04：Bel-Hadj et al. (2026), Inferring wind turbine operational state and fatigue from high-frequency acceleration, Wind Energy Science, DOI: 10.5194/wes-11-1363-2026（邻域类）",
         "at": "2026-10-12T23:59:25.984Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "manuscript",
+        "action": "phase",
+        "detail": "结果分析 → 论文撰写",
+        "at": "2026-10-14T14:51:14.233Z"
       }
     ]
   },
@@ -316,5 +323,5 @@
   ],
   "reviews": [],
   "audit": [],
-  "updatedAt": "2026-10-14T11:46:13.513Z"
+  "updatedAt": "2026-10-14T14:51:14.233Z"
 }
