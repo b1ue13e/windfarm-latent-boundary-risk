@@ -1363,3 +1363,14 @@ Source: paper_tste_ieee.md, standalone_ieee_package/main.tex, cover_letter_tste.
 Command: `python scripts/verify_scientific_claim_gate.py; python scripts/verify_final_pdf_integrity.py; python .agents/scripts/verify_gate.py`
 Exit-Code: 0
 Epistemic-Status: VERIFIED.
+
+## P2-01--P2-05 — EXP-01 Protocol Repair and Joint Statistics — 2026-10-14
+Task-ID: P2-01--P2-05
+Status: PARTIAL / INDEPENDENT-AUDIT-BLOCKED
+Summary: Recomputed EXP-01 from verified WTB-source checkpoints using complete pre-forward masking of Pab_mean and Pab_std in anchor physics, history features, and feature masks. Frozen external forecast anchor indices and target/mask populations were checked. New artifact `exp01-pitchmasked-retrospective-v3` v2 is integrity-verified (23 files). v4 joint stats: Penmanshiel h=6 mean delta -315,399 kWh, CI [-1,590,024, +970,006], P(delta<=0)=0.7084; Kelmarsh h=6 mean +352,434 kWh, CI [+59,970, +736,901], P(delta<=0)=0.0074. These are retrospective empirical bootstrap quantities, not classical p-values, and do not establish universal transfer failure/success.
+Strong baseline was rerun through the original evaluation path with native paired day-block output. New artifact `strong-baseline-joint-block-reanalysis-v2` v1 is integrity-verified. Joint interaction: mean -297,565 kWh, CI [-651,680, -18,021], P(interaction<=0)=0.9824; seed 202 is positive, so seed heterogeneity remains.
+Evidence: `scripts/repair_exp01_pitch_withheld_v3.py`; `scripts/test_strong_baseline_closure.py`; `scripts/summarize_strong_baseline_joint_v2.py`; `artifacts/exp01_pitchmasked_v4`; `artifacts/strong_baseline_joint_v2`; `artifacts/exp01-pitchmasked-retrospective-v3/v2`; `artifacts/strong-baseline-joint-block-reanalysis-v2/v1`.
+Commands: `python scripts/repair_exp01_pitch_withheld_v3.py --device cpu --bootstrap 5000 --output-dir artifacts/exp01_pitchmasked_v4`; `$env:STRONG_BASELINE_OUTPUT_DIR='artifacts/strong_baseline_joint_v2'; python scripts/test_strong_baseline_closure.py`; `python scripts/summarize_strong_baseline_joint_v2.py --bootstrap 5000`; `python scripts/verify_replication.py`; `python scripts/verify_scientific_claim_gate.py`; `python .agents/scripts/verify_gate.py`.
+Verification: replication 21/21 PASS; scientific claim gate PASS; repository gate PASS; artifact verification PASS for both new artifacts; targeted structure and syntax checks PASS.
+Limitations: the existing claim gate still validates the historical v2 manuscript/manifest and does not incorporate v4 or the new joint JSON; two independent subagent audit attempts failed before returning reports. No scientific contract, pre-registration, or main branch push was changed.
+Epistemic-Status: VERIFIED for execution, provenance, artifact hashes, and direct code/data checks; independent scientific audit UNKNOWN/BLOCKED.

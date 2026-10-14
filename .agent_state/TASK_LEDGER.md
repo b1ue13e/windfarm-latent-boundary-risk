@@ -199,6 +199,14 @@ Created: 2026-09-18T05:01:00+08:00
 - [x] SC-EXPC VERIFIED Stop Condition Resolution: Live anchor classifier is 100% perfect under withheld pitch — Proved empirically that under complete pitch withholding (`pab = 0`), the live wind-speed anchor classifies valid operating regimes with 100.00% precision, recall, and F1 across all 639,378 test cells (due to valid dataset definition: wspd < 3.0 is idle, 3.0--10.5 is MPPT, >10.5 is pitch control). Confirmed that label degradation lacks an independent classification problem; completely reframed paper contributions around minimum sufficient modeling and empirical falsification.
 - [x] ALL-VERIFY VERIFIED Compilation and Gate Verification — Main IEEE paper and standalone package compiled cleanly to exactly 10.0 pages (0 overfull hboxes); `python scripts/verify_scientific_claim_gate.py` PASSED; `python scripts/verify_final_pdf_integrity.py` PASSED; `python .agents/scripts/verify_gate.py` PASSED with exit code 0.
 
+## Phase 2 — EXP-01 Protocol Repair and Joint Statistics (2026-10-14)
+
+- [x] P2-01 VERIFIED retrospective EXP-01 source repair — Recomputed gate outputs from WTB checkpoints whose embedded metadata reports `dataset=wtb`, `num_nodes=134`; external-site inference used frozen external point forecasts and anchor-index equality checks. Outputs are in `artifacts/exp01_pitchmasked_v4/` and artifact `exp01-pitchmasked-retrospective-v3` v2.
+- [x] P2-02 VERIFIED complete pitch withholding — Before each model forward, `Pab_mean` and `Pab_std` were zeroed in anchor physics, history features, and corresponding feature masks. v4 has 20 seed/site/horizon rows and 4 joint-stat rows; artifact integrity verified.
+- [x] P2-03 VERIFIED native strong-baseline block export — Original strong-baseline evaluation path rerun into `artifacts/strong_baseline_joint_v2/`; native paired transition/steady daily-block contrasts saved for 5 seeds and 35 blocks per seed.
+- [x] P2-04 VERIFIED retrospective joint bootstrap — `strong_baseline_joint_interaction_v2.json` uses two-stage seed × daily-block resampling: mean interaction `-297,565 kWh`, CI `[-651,680, -18,021]`, empirical `P(interaction <= 0)=0.9824`; this is not a classical p-value and seed 202 has positive interaction.
+- [ ] P2-05 BLOCKED independent scientific audit — Two attempted independent subagent audits failed before producing reports; no independent PASS is claimed. Direct artifact/code checks and repository gates pass, but reviewer independence remains unresolved.
+
 
 
 

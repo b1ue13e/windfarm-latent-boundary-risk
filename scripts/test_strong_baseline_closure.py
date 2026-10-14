@@ -142,6 +142,7 @@ def main():
 
     all_seed_results = []
     all_boot_results = []
+    joint_block_records = []
 
     for seed in seeds:
         s_v = res_data[f"shortfall_val_seed{seed}"][:, h_idx, :].reshape(-1)
@@ -300,6 +301,18 @@ def main():
                 "best_rule": best_name,
             })
 
+        # Persist native day-block contrasts for retrospective joint seed x time analysis.
+        unique_time = np.unique(time_indices)
+        time_to_block = {int(t): i // BLOCK_SIZE for i, t in enumerate(unique_time)}
+        block_ids = np.array([time_to_block[int(t)] for t in time_indices], dtype=np.int64)
+        n_blocks = int(block_ids.max()) + 1
+        d_point = loss_C - loss_B
+        joint_block_records.append({
+            "seed": int(seed),
+            "trans": np.bincount(block_ids, weights=np.where(mask_trans, d_point, 0.0), minlength=n_blocks),
+            "steady": np.bincount(block_ids, weights=np.where(mask_steady, d_point, 0.0), minlength=n_blocks),
+        })
+
         # Run day-level cluster bootstrap contrast for this seed
         boot_trans, boot_steady, boot_inter = cluster_bootstrap_contrast(
             loss_C, loss_B, time_indices, mask_trans, mask_steady, n_boot=N_BOOT, seed=seed
@@ -345,9 +358,14 @@ def main():
 
     df_res = pd.DataFrame(all_seed_results)
     df_boot = pd.DataFrame(all_boot_results)
-    out_dir = REPO_ROOT / "artifacts"
+    out_dir = REPO_ROOT / os.environ.get("STRONG_BASELINE_OUTPUT_DIR", "artifacts")
     out_dir.mkdir(exist_ok=True)
     df_boot.to_csv(out_dir / "strong_baseline_bootstrap_contrasts.csv", index=False)
+    np.savez_compressed(
+        out_dir / "strong_baseline_native_day_blocks_v2.npz",
+        **{f"seed{r['seed']}_trans": r["trans"] for r in joint_block_records},
+        **{f"seed{r['seed']}_steady": r["steady"] for r in joint_block_records},
+    )
 
     policy_meta = [
         ("A", "Policy_A", "Global Residual Quantile"),
