@@ -982,10 +982,14 @@ def generate_audit_report(
         joint_heading = "3. Joint Hierarchical Uncertainty & Stability Summary (Two-Level Bootstrap)"
         joint_note = "*Note: Resamples simultaneously across day-clusters and model training seeds, so CIs and probabilities are not computed by improperly averaging per-seed bounds.*"
         joint_ci_col = "Joint 95% CI (Delta)"
+        protocol_estimand_note = "Primary ranking evaluated by paired downstream PSREI difference with hierarchical cluster Block Bootstrap ($B=2000$)."
+        reproducibility_note = "The joint two-level confidence intervals in Section 3 require per-seed block-level paired differences; re-running the benchmark with block-level outputs produces them."
     else:
         joint_heading = "3. Seed-Level Uncertainty & Stability Summary"
         joint_note = "*Note: Confidence intervals not computed (block-level delta arrays not available). Mean/median/std are seed-level statistics; P(Delta <= 0) is the empirical seed-level non-inferiority probability.*"
         joint_ci_col = "95% CI (not computed)"
+        protocol_estimand_note = "Primary ranking evaluated by paired downstream PSREI difference across 5 training seeds. Confidence intervals omitted because block-level paired delta arrays are not archived."
+        reproducibility_note = "The frozen benchmark CSV persists seed-level summaries only. Two-level day-cluster confidence intervals are omitted because block-level delta arrays (`artifacts/exp02_zero_privileged_block_deltas.npz`) are absent. Seed-level statistics, catastrophic rates, and Sections 1-2 verdicts are reproducible from the frozen CSV."
 
     # ------------------------------------------------------------------
     # Data-derived verdict for the Primary Challenger at each horizon.
@@ -1145,15 +1149,15 @@ than an established gain.
             f"{row['held_out_pitch_nmi'] if pd.notnull(row['held_out_pitch_nmi']) else 'N/A'} |\n"
         )
 
-    md += """
+    md += f"""
 ---
 
 ## 5. Protocol Compliance & Hard Assertions Verification
 
-1. **Proxy Label Separation (Correction 1):** Proxy label $\\tilde{Z}_t = \\mathbb{I}(v_t > 10.5 \\land P_{\\text{atv}} < 1500 - \\epsilon)$ used strictly as an auxiliary weak-supervision loss, not treated as independent ground truth.
-2. **Primary Estimand (Correction 2):** Primary ranking evaluated by paired downstream PSREI difference with hierarchical cluster Block Bootstrap ($B=2000$).
+1. **Proxy Label Separation (Correction 1):** Proxy label $\\tilde{{Z}}_t = \\mathbb{{I}}(v_t > 10.5 \\land P_{{\\text{{atv}}}} < 1500 - \\epsilon)$ used strictly as an auxiliary weak-supervision loss, not treated as independent ground truth.
+2. **Primary Estimand (Correction 2):** {protocol_estimand_note}
 3. **Held-Out Secondary Diagnostic (Correction 3):** Blade pitch registers strictly held-out; secondary NMI/Brier reported for diagnostic characterization only and strictly isolated from model selection.
-4. **Preregistered Sensitivity (Correction 4):** Evaluated across preregistered grid $\\epsilon \\in \\{20.0, 50.0, 100.0\\}\\text{ kW}$.
+4. **Preregistered Sensitivity (Correction 4):** Evaluated across preregistered grid $\\epsilon \\in \\{{20.0, 50.0, 100.0\\}}\\text{{ kW}}$.
 5. **Decoupled Oracle Reference (Correction 5):** Privileged STGQ-Modular demarcated explicitly as Oracle Upper Reference, not a competitive baseline.
 6. **Hard Assertions (Correction 6):** Pre-flight checks passed verifying zero pitch channel variance in input tensors and pitch-independent checkpoint selection.
 
@@ -1179,11 +1183,7 @@ than an established gain.
    a negative delta pushes $P(\\Delta \\le 0)$ toward 1.0, never below 0.05, so the
    conjunction was effectively unsatisfiable and the report emitted a fixed
    negative verdict irrespective of the data.
-4. **Reproducibility boundary.** The joint two-level confidence intervals in
-   Section 3 require per-seed block-level paired differences, which the frozen
-   benchmark CSV does not persist; they are reproducible only by re-running the
-   benchmark. Section 3's median/mean/std columns and the Sections 1-2 verdict
-   are reproducible from the frozen CSV alone.
+4. **Reproducibility boundary.** {reproducibility_note}
 """
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(md, encoding="utf-8")

@@ -1,6 +1,6 @@
 # EXP-02 (EXP-Q1-003): Zero-Privileged-Pitch Supervision Boundary Audit Report
 
-**Date:** 2026-10-13 15:55:50  
+**Date:** 2026-10-14 09:39:38  
 **Target Artifact:** `artifacts/zero_privileged_supervision_benchmark.csv`  
 **Registry Reference:** `docs/EXPERIMENT_REGISTRY.md:229-292`  
 **Scientific Contract Anchor:** `docs/SCIENTIFIC_CONTRACT.md:47-55`  
@@ -189,7 +189,7 @@ than an established gain.
 ## 5. Protocol Compliance & Hard Assertions Verification
 
 1. **Proxy Label Separation (Correction 1):** Proxy label $\tilde{Z}_t = \mathbb{I}(v_t > 10.5 \land P_{\text{atv}} < 1500 - \epsilon)$ used strictly as an auxiliary weak-supervision loss, not treated as independent ground truth.
-2. **Primary Estimand (Correction 2):** Primary ranking evaluated by paired downstream PSREI difference with hierarchical cluster Block Bootstrap ($B=2000$).
+2. **Primary Estimand (Correction 2):** Primary ranking evaluated by paired downstream PSREI difference across 5 training seeds. Confidence intervals omitted because block-level paired delta arrays are not archived.
 3. **Held-Out Secondary Diagnostic (Correction 3):** Blade pitch registers strictly held-out; secondary NMI/Brier reported for diagnostic characterization only and strictly isolated from model selection.
 4. **Preregistered Sensitivity (Correction 4):** Evaluated across preregistered grid $\epsilon \in \{20.0, 50.0, 100.0\}\text{ kW}$.
 5. **Decoupled Oracle Reference (Correction 5):** Privileged STGQ-Modular demarcated explicitly as Oracle Upper Reference, not a competitive baseline.
@@ -217,8 +217,4 @@ than an established gain.
    a negative delta pushes $P(\Delta \le 0)$ toward 1.0, never below 0.05, so the
    conjunction was effectively unsatisfiable and the report emitted a fixed
    negative verdict irrespective of the data.
-4. **Reproducibility boundary.** The joint two-level confidence intervals in
-   Section 3 require per-seed block-level paired differences, which the frozen
-   benchmark CSV does not persist; they are reproducible only by re-running the
-   benchmark. Section 3's median/mean/std columns and the Sections 1-2 verdict
-   are reproducible from the frozen CSV alone.
+4. **Reproducibility boundary.** The frozen benchmark CSV persists seed-level summaries only. Two-level day-cluster confidence intervals are omitted because block-level delta arrays (`artifacts/exp02_zero_privileged_block_deltas.npz`) are absent. Seed-level statistics, catastrophic rates, and Sections 1-2 verdicts are reproducible from the frozen CSV.
