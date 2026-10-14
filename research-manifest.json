@@ -306,9 +306,15 @@
       "latestVersion": 1,
       "updatedAt": "2026-10-14T05:19:49.959Z",
       "description": "Automated Phase 2 scientific audit report and checks covering EXP-01 checkpoint lineage, dual-channel pitch withholding, and strong-baseline native joint bootstrap."
+    },
+    {
+      "name": "chinese-manuscript-tste-full",
+      "latestVersion": 1,
+      "updatedAt": "2026-10-14T11:46:13.513Z",
+      "description": "基于顶刊黄金四段式因果框架撰写的风电备用决策最小充分模型完整中文学术长文手稿"
     }
   ],
   "reviews": [],
   "audit": [],
-  "updatedAt": "2026-10-14T05:19:49.959Z"
+  "updatedAt": "2026-10-14T11:46:13.513Z"
 }

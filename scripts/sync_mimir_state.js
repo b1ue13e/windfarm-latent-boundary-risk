@@ -28,7 +28,8 @@ const updatedArtifacts = [
     'standalone_ieee_package/figures/figure3_summary_results.pdf',
     'standalone_ieee_package/figures/figure4_routing_evidence.pdf',
     'standalone_ieee_package/figures/figure5_case_studies.pdf',
-    'standalone_ieee_package/figures/figure6_ablation_tradeoff.pdf'
+    'standalone_ieee_package/figures/figure6_ablation_tradeoff.pdf',
+    'paper_tste_chinese.md'
   ])
 ];
 
@@ -96,7 +97,7 @@ wiki.tables.projects[projectId] = {
         stageKey: 'paper-writing',
         stageName: 'Paper Writing / 论文写作',
         score: 20,
-        evidence: ['standalone_ieee_package/main.tex', 'standalone_ieee_package/main.pdf', 'paper_tste_ieee.pdf']
+        evidence: ['standalone_ieee_package/main.tex', 'standalone_ieee_package/main.pdf', 'paper_tste_ieee.pdf', 'paper_tste_chinese.md']
       }
     ],
     fileCount: 420,
