@@ -604,6 +604,103 @@ def main() -> int:
             else:
                 ok("EXP-02 report runner derives the Section 3 heading from block-delta availability")
 
+    print("\n[9] Phase 2 Retrospective Analysis & Native Blocks Guard")
+    import json as _json2
+    import numpy as _np
+
+    # (a) Strong baseline native day blocks
+    sb_npz = ROOT / "artifacts" / "strong_baseline_joint_v2" / "strong_baseline_native_day_blocks_v2.npz"
+    if not sb_npz.exists():
+        fail("missing strong baseline native day blocks: strong_baseline_native_day_blocks_v2.npz", failures)
+    else:
+        z_sb = _np.load(sb_npz)
+        if len(z_sb.files) != 10 or not all(len(z_sb[k]) == 35 for k in z_sb.files):
+            fail(f"strong baseline native npz corrupt or invalid shape: {len(z_sb.files)} arrays", failures)
+        else:
+            ok("strong baseline native day blocks verified (10 arrays x 35 blocks)")
+
+    # (b) Strong baseline joint interaction JSON and zero arithmetic mean CI/p guard
+    sb_json = ROOT / "artifacts" / "strong_baseline_joint_v2" / "strong_baseline_joint_interaction_v2.json"
+    sb_csv = ROOT / "artifacts" / "strong_baseline_joint_v2" / "strong_baseline_bootstrap_contrasts.csv"
+    if not sb_json.exists() or not sb_csv.exists():
+        fail("missing strong baseline joint v2 artifacts (json or csv)", failures)
+    else:
+        with sb_json.open("r", encoding="utf-8") as f_sb:
+            j_data = _json2.load(f_sb)
+        if abs(j_data.get("mean_interaction_kwh", 0) - (-297565.35)) > 1.0:
+            fail(f"unexpected joint interaction mean: {j_data.get('mean_interaction_kwh')}", failures)
+        elif j_data.get("P_interaction_le_0") != 0.9824:
+            fail(f"unexpected P(interaction <= 0): {j_data.get('P_interaction_le_0')}", failures)
+        elif j_data.get("seed_interactions_kwh", {}).get("202", 0) <= 0:
+            fail("seed 202 positive interaction heterogeneity must be preserved", failures)
+        else:
+            ok(f"strong baseline hierarchical joint interaction verified: {j_data.get('mean_interaction_kwh'):.1f} kWh, P={j_data.get('P_interaction_le_0')}")
+
+        # Ensure no arithmetic mean p-value in active contrasts CSV
+        contrasts_v2 = read_csv(sb_csv)
+        seeds_v2 = {r.get("seed") for r in contrasts_v2}
+        if "Mean" in seeds_v2:
+            fail("strong_baseline_bootstrap_contrasts.csv must NOT contain arithmetic Mean row", failures)
+        elif "Hierarchical_Joint" not in seeds_v2:
+            fail("strong_baseline_bootstrap_contrasts.csv must contain Hierarchical_Joint row", failures)
+        else:
+            ok("strong_baseline_bootstrap_contrasts.csv verified free of arithmetic Mean CI/p-values")
+
+    # (c) EXP-01 v4 native day-block arrays
+    exp01_npz = ROOT / "artifacts" / "exp01_pitchmasked_v4" / "exp01_native_day_blocks_v4.npz"
+    if not exp01_npz.exists():
+        fail("missing EXP-01 v4 native day blocks: exp01_native_day_blocks_v4.npz", failures)
+    else:
+        z_exp = _np.load(exp01_npz)
+        if len(z_exp.files) != 80:
+            fail(f"EXP-01 v4 native npz expected 80 arrays, found {len(z_exp.files)}", failures)
+        else:
+            ok("EXP-01 v4 native day blocks verified (80 arrays x 35 blocks)")
+
+    # (d) EXP-01 v4 joint statistics
+    exp01_joint_csv = ROOT / "artifacts" / "exp01_pitchmasked_v4" / "exp01_pitchmasked_v3_joint_statistics.csv"
+    if not exp01_joint_csv.exists():
+        fail("missing EXP-01 v4 joint statistics CSV", failures)
+    else:
+        exp01_stats = read_csv(exp01_joint_csv)
+        penm_h6 = row(exp01_stats, farm_id="penmanshiel", horizon="h=6")
+        kelm_h6 = row(exp01_stats, farm_id="kelmarsh", horizon="h=6")
+        if float(penm_h6["mean_delta_psrei_kwh"]) > 0 or float(penm_h6["joint_ci95_high_kwh"]) <= 0:
+            fail("Penmanshiel h=6 must reflect negative point estimate with CI spanning zero", failures)
+        elif float(kelm_h6["mean_delta_psrei_kwh"]) <= 0 or float(kelm_h6["joint_ci95_low_kwh"]) <= 0:
+            fail("Kelmarsh h=6 must reflect statistically significant positive cost penalty", failures)
+        else:
+            ok(f"EXP-01 v4 statistics verified: Penmanshiel h=6 delta={float(penm_h6['mean_delta_psrei_kwh']):.0f} kWh (CI spans zero), Kelmarsh h=6 delta=+{float(kelm_h6['mean_delta_psrei_kwh']):.0f} kWh (penalty)")
+
+    # (e) Phase 2 Retrospective Audit report
+    audit_rep_file = ROOT / "artifacts" / "phase2_retrospective_audit_report.json"
+    if not audit_rep_file.exists():
+        fail("missing phase2_retrospective_audit_report.json", failures)
+    else:
+        with audit_rep_file.open("r", encoding="utf-8") as f_aud:
+            aud = _json2.load(f_aud)
+        if aud.get("verdict") != "PASS":
+            fail(f"Phase 2 audit report verdict is not PASS: {aud.get('verdict')}", failures)
+        else:
+            ok("Phase 2 retrospective scientific audit report verified: PASS")
+
+    # (f) Manuscript consistency for retrospective numbers
+    has_297 = ("-297.6" in manuscript) or ("-297,565" in manuscript) or ("-297{,}565" in manuscript)
+    if not has_297:
+        fail("manuscript missing updated hierarchical interaction estimate (-297.6k / -297,565 kWh)", failures)
+    elif "0.9824" not in manuscript:
+        fail("manuscript missing updated hierarchical interaction probability (0.9824)", failures)
+    else:
+        # check if bare legacy -296k number appears in manuscript
+        stray_296k = [
+            ln.strip() for ln in manuscript.splitlines()
+            if ("-296k" in ln or "-296{,}053" in ln) and not any(m in ln.lower() for m in ("superseded", "legacy", "historical"))
+        ]
+        if stray_296k:
+            fail(f"manuscript retains unmarked legacy -296k numbers: {stray_296k[:2]}", failures)
+        else:
+            ok("manuscript updated with retrospective hierarchical numbers")
+
     print("\n" + "=" * 72)
     if failures:
         print(f"SCIENTIFIC_CLAIM_GATE: FAIL ({len(failures)} issue(s))")

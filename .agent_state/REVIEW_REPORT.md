@@ -57,3 +57,27 @@ The reverse audit itself is sufficiently complete and internally consistent to g
 
 **FINAL INDEPENDENT REVIEW VERDICT: PASS_WITH_BLOCKERS FOR RA00–RA05 AUDIT INTEGRITY.**
 **SCIENTIFIC/SUBMISSION VERDICT RETAINED: FAIL / DO NOT SUBMIT; REVISE THE PROJECT.**
+
+---
+
+## Phase 2 Retrospective Independent Review (2026-10-14)
+
+**Auditor:** Independent Evidence Reviewer  
+**Target Scope:** Phase 2 retrospective protocol repairs (EXP-01 v4 native blocks, strong baseline two-stage hierarchical bootstrap, elimination of active arithmetic mean CI/p-values, manuscript & claim-gate synchronization).  
+**Verification Verdict:** **PASS_WITH_BLOCKERS (Integrity Verified / Submission NO GO Retained)**.
+
+### Verified Forensic Facts
+1. **EXP-01 Lineage & Masking:** PyTorch checkpoints for seeds 201–205 confirmed WTB source (`dataset='wtb'`, `num_nodes=134`). Python AST and tensor guards confirm dual-channel pitch withholding (`Pab_mean` and `Pab_std` masked in history, masks, and anchor physics before model forward).
+2. **Native Day Blocks Exported:** `artifacts/exp01_pitchmasked_v4/exp01_native_day_blocks_v4.npz` stores all 80 native day-block arrays ($5\text{ seeds} \times 2\text{ farms} \times 2\text{ horizons} \times [\Delta, N, L_C, L_B]$), exactly replicating aggregate seed summaries with zero error.
+3. **Elimination of Arithmetic Averaging of P-values/CIs:** `scripts/test_strong_baseline_closure.py` and active CSV `artifacts/strong_baseline_joint_v2/strong_baseline_bootstrap_contrasts.csv` have eliminated arithmetic averaging across seeds. Active tables now strictly display `Hierarchical_Joint` computed via two-stage hierarchical resampling (sampling seeds with replacement, then 35 daily blocks with replacement).
+4. **Interaction Sum vs. Rate Reality:** The joint interaction is $-297,565\text{ kWh}$ ($95\%\text{ CI } [-651,680, -18,021\text{ kWh}]$, empirical $P=0.9824$). However, on a per-cell basis, posterior conditioning is more costly than wind-speed binning across both regimes ($+0.807\text{ kWh/cell}$ in transition, $+1.671\text{ kWh/cell}$ in steady state). Both populations carry positive cost penalties; the negative interaction reflects relative penalty attenuation, not cost superiority.
+5. **External Heterogeneity Confirmed:** Penmanshiel $h=6$ $\Delta \approx -315.4\text{k}$ (CI spans zero $[-1,590\text{k}, +970\text{k}]$, $P=0.7084$); Kelmarsh $h=6$ $\Delta \approx +352.4\text{k}$ (statistically significant cost penalty, $P=0.0074$). Zero-shot cross-site transfer superiority is refuted.
+6. **Control-Plane & Negative Result Preservation:** Historical v2 benchmark CSV matches SHA256 `596f46e0...` byte-identical; `docs/SCIENTIFIC_CONTRACT.md` matches HEAD and origin/main with 0 modifications. Branch is `revision_topjournal_reconstruction`, zero push to `main`.
+
+### Unresolved Submission Blockers (Mandating Continued REVISE / NO GO)
+1. EXP-01 v4 is a post-hoc retrospective repair, not an ex-ante pre-registered trial.
+2. Transition slice remains an oracle post-hoc diagnostic filter, not an online deployable policy.
+3. Aerodynamic moderators of cross-site transferability remain unresolved and cannot be causally attributed to wake graphs or turbine count.
+
+**AUDIT INTEGRITY VERDICT: PASS.**  
+**MANUSCRIPT DISPOSITION: REVISE / NO GO.**

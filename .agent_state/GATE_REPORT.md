@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-10-14T13:20:33+08:00
+Generated: 2026-10-14T16:56:05+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -277,6 +277,15 @@ SCIENTIFIC CLAIM GATE
   [PASS] joint report generator is labelled seed-level, not two-level hierarchical
   [PASS] EXP-02 report Section 3 does not claim an uncomputed two-level interval
   [PASS] EXP-02 report runner derives the Section 3 heading from block-delta availability
+
+[9] Phase 2 Retrospective Analysis & Native Blocks Guard
+  [PASS] strong baseline native day blocks verified (10 arrays x 35 blocks)
+  [PASS] strong baseline hierarchical joint interaction verified: -297565.4 kWh, P=0.9824
+  [PASS] strong_baseline_bootstrap_contrasts.csv verified free of arithmetic Mean CI/p-values
+  [PASS] EXP-01 v4 native day blocks verified (80 arrays x 35 blocks)
+  [PASS] EXP-01 v4 statistics verified: Penmanshiel h=6 delta=-315400 kWh (CI spans zero), Kelmarsh h=6 delta=+352434 kWh (penalty)
+  [PASS] Phase 2 retrospective scientific audit report verified: PASS
+  [PASS] manuscript updated with retrospective hierarchical numbers
 
 ========================================================================
 SCIENTIFIC_CLAIM_GATE: PASS

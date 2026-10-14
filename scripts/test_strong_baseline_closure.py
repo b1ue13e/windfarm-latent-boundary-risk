@@ -29,6 +29,7 @@ Q_STAR = 0.90
 N_BINS = 5
 BLOCK_SIZE = 144
 N_BOOT = 1000
+RANDOM_SEED = 20261015
 
 def compute_metrics_slice(r_pred, s_target, mask, rho=RHO, dt=DT):
     r = r_pred[mask]
@@ -338,23 +339,34 @@ def main():
             "interaction_pval": boot_inter["p_val"],
         })
 
-    # Add mean summary row for bootstrap
-    mean_boot = {
-        "seed": "Mean",
-        "delta_trans_mean": float(np.mean([r["delta_trans_mean"] for r in all_boot_results])),
-        "delta_trans_ci_low": float(np.mean([r["delta_trans_ci_low"] for r in all_boot_results])),
-        "delta_trans_ci_high": float(np.mean([r["delta_trans_ci_high"] for r in all_boot_results])),
-        "delta_trans_pval": float(np.mean([r["delta_trans_pval"] for r in all_boot_results])),
-        "delta_steady_mean": float(np.mean([r["delta_steady_mean"] for r in all_boot_results])),
-        "delta_steady_ci_low": float(np.mean([r["delta_steady_ci_low"] for r in all_boot_results])),
-        "delta_steady_ci_high": float(np.mean([r["delta_steady_ci_high"] for r in all_boot_results])),
-        "delta_steady_pval": float(np.mean([r["delta_steady_pval"] for r in all_boot_results])),
-        "interaction_mean": float(np.mean([r["interaction_mean"] for r in all_boot_results])),
-        "interaction_ci_low": float(np.mean([r["interaction_ci_low"] for r in all_boot_results])),
-        "interaction_ci_high": float(np.mean([r["interaction_ci_high"] for r in all_boot_results])),
-        "interaction_pval": float(np.mean([r["interaction_pval"] for r in all_boot_results])),
+    # Hierarchical two-stage joint bootstrap across seeds and daily blocks
+    # Rigorous scientific requirement: NEVER arithmetically average seed-level CIs or p-values.
+    from scripts.hierarchical_bootstrap import compute_hierarchical_joint_bootstrap
+
+    trans_blocks = {int(r["seed"]): r["trans"] for r in joint_block_records}
+    steady_blocks = {int(r["seed"]): r["steady"] for r in joint_block_records}
+    inter_blocks = {int(r["seed"]): r["trans"] - r["steady"] for r in joint_block_records}
+
+    j_trans = compute_hierarchical_joint_bootstrap(trans_blocks, n_boot=N_BOOT, two_stage_resample=True, random_seed=RANDOM_SEED)
+    j_steady = compute_hierarchical_joint_bootstrap(steady_blocks, n_boot=N_BOOT, two_stage_resample=True, random_seed=RANDOM_SEED)
+    j_inter = compute_hierarchical_joint_bootstrap(inter_blocks, n_boot=N_BOOT, two_stage_resample=True, random_seed=RANDOM_SEED)
+
+    hierarchical_boot = {
+        "seed": "Hierarchical_Joint",
+        "delta_trans_mean": float(j_trans["joint_mean"]),
+        "delta_trans_ci_low": float(j_trans["joint_ci_95"][0]),
+        "delta_trans_ci_high": float(j_trans["joint_ci_95"][1]),
+        "delta_trans_pval": float(j_trans["joint_p_non_inferior"]),
+        "delta_steady_mean": float(j_steady["joint_mean"]),
+        "delta_steady_ci_low": float(j_steady["joint_ci_95"][0]),
+        "delta_steady_ci_high": float(j_steady["joint_ci_95"][1]),
+        "delta_steady_pval": float(j_steady["joint_p_non_inferior"]),
+        "interaction_mean": float(j_inter["joint_mean"]),
+        "interaction_ci_low": float(j_inter["joint_ci_95"][0]),
+        "interaction_ci_high": float(j_inter["joint_ci_95"][1]),
+        "interaction_pval": float(j_inter["joint_p_non_inferior"]),
     }
-    all_boot_results.append(mean_boot)
+    all_boot_results.append(hierarchical_boot)
 
     df_res = pd.DataFrame(all_seed_results)
     df_boot = pd.DataFrame(all_boot_results)
@@ -365,6 +377,23 @@ def main():
         out_dir / "strong_baseline_native_day_blocks_v2.npz",
         **{f"seed{r['seed']}_trans": r["trans"] for r in joint_block_records},
         **{f"seed{r['seed']}_steady": r["steady"] for r in joint_block_records},
+    )
+    # Also write canonical joint interaction json
+    joint_json_out = {
+        "analysis": "native original strong-baseline path; two-stage seed x daily-block bootstrap",
+        "n_seeds": j_inter["n_seeds"],
+        "n_time_blocks": j_inter["n_blocks"],
+        "mean_interaction_kwh": j_inter["joint_mean"],
+        "median_seed_interaction_kwh": j_inter["joint_median"],
+        "seed_sd_kwh": j_inter["joint_std"],
+        "ci95_low_kwh": j_inter["joint_ci_95"][0],
+        "ci95_high_kwh": j_inter["joint_ci_95"][1],
+        "P_interaction_le_0": j_inter["joint_p_non_inferior"],
+        "seed_interactions_kwh": j_inter["seed_estimates"],
+        "note": "P(interaction<=0) is an empirical directional probability, not a classical p-value; no arithmetic mean of seed p-values or CI endpoints."
+    }
+    (out_dir / "strong_baseline_joint_interaction_v2.json").write_text(
+        json.dumps(joint_json_out, indent=2), encoding="utf-8"
     )
 
     policy_meta = [

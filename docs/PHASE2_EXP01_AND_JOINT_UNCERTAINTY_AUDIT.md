@@ -33,11 +33,11 @@ The primary findings of this audit are:
 | ID | Audit Item | Verification Method | Epistemic Status | Result |
 |---|---|---|---|---|
 | **C01** | EXP-01 Checkpoint Provenance | Inspect embedded PyTorch metadata in `best_model.pt` across all 5 seeds | Direct Inspection & PyTorch unpickling | **PASS** (WTB confirmed: 134 nodes) |
-| **C02** | Complete Pitch Withholding | Static code AST + runtime zero assertions on `ap` and `x_hist` | Automated Test & Tensor Assertion | **PASS** (`Pab_mean` & `Pab_std` masked) |
-| **C03** | Anchor Index & Target Symmetry | Array comparison against `external_wind_full_seed{seed}` | Cryptographic Hash & Array Equality | **PASS** (100% matched cells) |
+| **C02** | Complete Pitch Withholding | Python AST inspection of `WithheldDataset` assignments + runtime nonzero assertion on `ap` | Python AST parse & tensor guard | **PASS** (`Pab_mean` & `Pab_std` masked) |
+| **C03** | Anchor Index & Target Symmetry | Array comparison against `external_wind_full_seed{seed}` & valid target mask shapes | Array Equality & Cell Count Audit | **PASS** (58,570 Penmanshiel / 27,372 Kelmarsh) |
 | **C04** | EXP-01 v4 Metrics & Directional Stats | Verify 20 seed rows, 4 joint rows, two-level hierarchical bootstrap | Dataframe Audit & Schema Assertion | **PASS** ($P(\Delta \le 0)$ empirical) |
-| **C05** | Strong Baseline Native Blocks | Extract 10 arrays ($5\text{ seeds} \times 35\text{ blocks}$) from original evaluation path | Block count & Hierarchical Resample | **PASS** (Joint CI $[-652\text{k}, -18\text{k}]$) |
-| **C06** | Historical & Contract Preservation | SHA256 check on v2 CSV; Git diff on `SCIENTIFIC_CONTRACT.md` | Git Status & SHA256 Verification | **PASS** (Zero mutation of history) |
+| **C05** | Strong Baseline Native Blocks | Direct recomputation of two-stage hierarchical bootstrap from native arrays; zero averaged p-values | Block Array Recomputation | **PASS** (Joint CI $[-652\text{k}, -18\text{k}]$; no mean p-values) |
+| **C06** | Historical & Contract Preservation | SHA256 check on v2 CSV; Git diff on `SCIENTIFIC_CONTRACT.md` vs origin/main & HEAD; branch check | Git Status & SHA256 Verification | **PASS** (Zero mutation of history or contract) |
 
 ---
 
@@ -80,7 +80,7 @@ In deployment under pitch withholding, models must not receive leaked pitch tele
   if torch.count_nonzero(ap[..., pitch_idx]).item() != 0:
       raise AssertionError("Nonzero pitch reached model forward")
   ```
-- **Finding:** Information symmetry between the gate model and the frozen point forecast is strictly maintained. The evaluation evaluates exactly 41,208 turbine-step cells on Penmanshiel and 17,670 cells on Kelmarsh.
+- **Finding:** Information symmetry between the gate model and the frozen point forecast is strictly maintained. The evaluation evaluates exactly 58,570 turbine-step cells at $h=6$ (58,625 at $h=1$) on Penmanshiel and 27,372 cells on Kelmarsh. Also, the complete native day-block arrays ($80$ arrays across $5\text{ seeds} \times 2\text{ farms} \times 2\text{ horizons}$) are exported to `artifacts/exp01_pitchmasked_v4/exp01_native_day_blocks_v4.npz` to support independent block-level reanalysis.
 
 ### 3.3 Quantitative Summary of EXP-01 v4 Retrospective Evaluation (C04)
 The retrospective re-inference with verified WTB checkpoints and dual-channel pitch withholding yields the following primary results:
@@ -112,14 +112,22 @@ To repair the previous practice of arithmetically averaging per-seed bootstrap c
     - Seed 204: $-487,769\text{ kWh}$
     - Seed 205: $-396,434\text{ kWh}$
 - **Finding:** While the joint resample distribution yields $P(\text{Interaction} \le 0) = 0.9824$, seed 202 exhibits a distinctly positive interaction ($+158,749\text{ kWh}$), demonstrating pronounced training-run stochasticity. It is methodologically impermissible to describe this finding as a classical two-sided $p < 0.01$ test or to suppress seed 202's divergent behavior.
+- **Sum vs. Rate Nuance on Transition Interaction:**
+  The joint interaction of $-297,565\text{ kWh}$ ($95\%\text{ CI } [-651,680, -18,021\text{ kWh}]$) is an aggregate surrogate cost difference across the evaluated test blocks. When normalized to a per-cell basis:
+  - Transition window: posterior is approx $+0.807\text{ kWh/cell}$ higher cost than wind-speed binning;
+  - Steady-state window: posterior is approx $+1.671\text{ kWh/cell}$ higher cost than wind-speed binning;
+  - Marginal interaction per cell: approx $-0.864\text{ kWh/cell}$.
+  Crucially, **both populations exhibit a positive cost penalty** for posterior conditioning relative to the direct conditional baseline. The negative interaction indicates a relative attenuation of penalty in transition windows rather than absolute cost superiority. The total-kWh CI cannot be directly cited as a per-cell decision gain.
 
 ---
 
 ## 4. Preservation of Repositories & Scientific Contract (C06)
 
-1. **Negative Results Preservation:**
+1. **Negative Results Preservation & Active Output Cleaning:**
    - The historical EXP-01 v2 results in `artifacts/external_matched_control_benchmark.csv` (SHA256 `596f46e0be8d71ab7a9965dbe4c481cc717b31c083fe288441a9ca9a39c3966e`) were not overwritten or modified.
    - The original `strong_baseline_closure_summary.csv` and `strong_baseline_bootstrap_contrasts.csv` in `artifacts/` remain intact as historical audit records.
+   - The active output `artifacts/strong_baseline_joint_v2/strong_baseline_bootstrap_contrasts.csv` was cleaned to replace the legacy arithmetic-mean row with the true two-stage hierarchical joint bootstrap values (`Hierarchical_Joint`), ensuring zero active arithmetic averaging of p-values or CIs in active directories.
+   - EXP-01 native day-block evaluation data ($80$ arrays across $5\text{ seeds} \times 2\text{ farms} \times 2\text{ horizons}$) are archived in `artifacts/exp01_pitchmasked_v4/exp01_native_day_blocks_v4.npz`.
 2. **Contract Immutability:**
    - `docs/SCIENTIFIC_CONTRACT.md` was inspected and confirmed byte-identical to HEAD with zero modifications.
 3. **Branch & Remote Protection:**

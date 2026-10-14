@@ -128,7 +128,7 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     device = torch.device(args.device)
     seeds = [int(x) for x in args.seeds.split(",")]
-    rows, provenance, block_records = [], [], {}
+    rows, provenance, block_records, native_blocks_dict = [], [], {}, {}
 
     for farm, (display, cache_rel) in FARMS.items():
         bundle = load_cache_bundle(ROOT / cache_rel, mmap_mode="r")
@@ -185,9 +185,14 @@ def main():
                 violation_c = float(np.mean(st[valid] > g_reserve[valid]) * 100)
                 delta, counts = block_delta(st, g_reserve, w_reserve, valid, test_anchor)
                 block_records.setdefault((farm, horizon), {})[seed] = (delta, counts)
+                prefix = f"{farm}_{horizon}_seed{seed}"
+                # Keep native daily-block dict
+                native_blocks_dict[f"{prefix}_delta"] = delta
+                native_blocks_dict[f"{prefix}_count"] = counts
                 rows.append({"farm":display,"farm_id":farm,"seed":seed,"horizon":horizon,"model":"WTB-source STGQ-Modular, pitch-masked inference","checkpoint":str(src_checkpoint.relative_to(ROOT)),"training_domain":"WTB (metadata cache_dir verified)","pitch_withheld_before_inference":True,"target_source":"external_site_frozen_point_forecast_external_wind_full","psrei_kwh":cost_c,"baseline_psrei_kwh":cost_b,"delta_psrei_kwh":cost_c-cost_b,"violation_rate_pct":violation_c,"baseline_violation_rate_pct":violation_b,"n_evaluated_cells":int(valid.sum()),"checkpoint_sha256":sha256(src_checkpoint),"training_summary_sha256":sha256(src/"training_summary.json"),"pitch_feature_name":"Pab_mean","pitch_feature_index":pitch_idx})
             provenance.append({"farm":farm,"seed":seed,"source_run":str(src.relative_to(ROOT)),"source_cache_dir":checkpoint.get("metadata", {}).get("cache_dir", "embedded metadata omits cache_dir; dataset=wtb, num_nodes=134"),"checkpoint_sha256":sha256(src_checkpoint),"summary_sha256":sha256(src/"training_summary.json"),"target_cache_metadata_sha256":sha256(ROOT/cache_rel/"metadata.json"),"pitch_feature":"Pab_mean","pitch_index":pitch_idx,"pitch_mask":"anchor_physics[Pab_mean] set to exactly 0 before model forward; both history features Pab_mean and Pab_std and their feature masks are set to zero before model forward","gate_hashes":hashes,"retrospective_reanalysis":True})
 
+    np.savez_compressed(out/"exp01_native_day_blocks_v4.npz", **native_blocks_dict)
     stats=[]
     for (farm,horizon), seeds_map in block_records.items():
         lengths={len(v[0]) for v in seeds_map.values()}

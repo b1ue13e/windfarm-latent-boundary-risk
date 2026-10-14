@@ -240,3 +240,53 @@ UNKNOWN/BLOCKED:
 - UNKNOWN: whether every uninspected derived EXP-02 export outside the reviewed report/template carries the same stale method heading.
 - Secondary finding outside F4’s stated EXP-02 scope: `scripts/run_exp01_matched_control_benchmark.py:408,590,629` still emits the legacy `p_val_delta_psrei` field for a cost comparison, and the frozen EXP-02 CSV itself retains `full_delta_psrei_pval`/`bnd_delta_psrei_pval` as stored column names (tolerated by the rename in `scripts/reconcile_exp02_statistics.py:167-171` and sanctioned for the EXP-02 runner as a schema-migration exception). The F4 gate guards the EXP-02 runner’s AST but not the EXP-01 runner, so the same misnomer survives in live EXP-01 code. This is a naming/consistency residue, not a re-introduction of the reversed decision rule.
 
+---
+
+## 10. Phase 2 Retrospective Scientific Adversarial Audit (2026-10-14)
+
+**Auditor:** Independent Scientific Adversarial Reviewer  
+**Scope:** EXP-01 v4 retrospective repair, native block exports, strong baseline hierarchical joint uncertainty, active generation/artifact cleanup, manuscript and gate synchronization.  
+**Verdict:** **REVISE / NO GO FOR CURRENT SUBMISSION** (Audit Check: **PASS_WITH_LIMITATIONS**).
+
+### A. Adversarial Audit Findings
+
+1. **Checkpoint Provenance (C01):**
+   - Direct PyTorch inspection of all 5 seed checkpoints in `artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_align_force_seed{s}/best_model.pt` verifies internal metadata: `dataset == 'wtb'`, `num_nodes == 134`. This eliminates directory naming ambiguity and proves checkpoints originate from the 134-turbine WTB source wind farm.
+
+2. **Dual-Channel Pitch Withholding (C02):**
+   - AST analysis of `scripts/repair_exp01_pitch_withheld_v3.py` confirms that both `Pab_mean` and `Pab_std` are zeroed in `x_hist`, `feature_mask_hist`, and `anchor_physics` before model forward pass.
+   - A runtime guard `torch.count_nonzero(ap[..., pitch_idx]).item() != 0` enforces that non-zero pitch triggers an immediate `AssertionError`.
+
+3. **Array-Level Information Symmetry (C03):**
+   - Direct array checks confirm evaluated target cells: Penmanshiel $h=6$: 58,570 cells (58,625 at $h=1$); Kelmarsh: 27,372 cells. Both evaluate strictly against frozen external point forecasts with identical test masks.
+   - Complete native daily blocks ($80$ arrays across $5\text{ seeds} \times 2\text{ farms} \times 2\text{ horizons}$) are exported to `artifacts/exp01_pitchmasked_v4/exp01_native_day_blocks_v4.npz` with 0.00 kWh discrepancy against summary CSVs.
+
+4. **EXP-01 v4 Retrospective Statistics & External Validity Attack (C04):**
+   - On **Penmanshiel** ($h=6$): $\Delta\text{PSREI} \approx -315,400\text{ kWh}$, but the two-stage 95% bootstrap CI spans zero ($[-1,590,024, +970,006\text{ kWh}]$), and empirical non-inferiority is $P(\Delta \le 0) = 0.7084$ (far below decision threshold $\ge 0.95$).
+   - On **Kelmarsh** ($h=6$): $\Delta\text{PSREI} \approx +352,434\text{ kWh}$ ($95\%\text{ CI } [+59,970, +736,901\text{ kWh}]$, $P(\Delta \le 0) = 0.0074$). Transferred STGQ incurs a statistically significant cost penalty.
+   - **Adversarial Strike:** Universal cross-site zero-shot transfer is decisively refuted. Model transfer across wind plants exhibits acute site-level heterogeneity. Dispatchers must rely on site-local conditional baselines.
+
+5. **Strong-Baseline Joint Uncertainty & Sum vs. Rate Distinction (C05):**
+   - Native day blocks ($N=35$ blocks $\times$ 5 seeds) in `artifacts/strong_baseline_joint_v2/strong_baseline_native_day_blocks_v2.npz` yield a joint two-stage hierarchical bootstrap interaction of $-297,565\text{ kWh}$ ($95\%\text{ CI } [-651,680, -18,021\text{ kWh}]$, empirical $P(\text{interaction} \le 0) = 0.9824$).
+   - Active generation code (`scripts/test_strong_baseline_closure.py`) and active artifact (`artifacts/strong_baseline_joint_v2/strong_baseline_bootstrap_contrasts.csv`) have eliminated all arithmetic averaging of p-values or CIs (`seed="Mean"` removed; replaced with `Hierarchical_Joint`).
+   - **Critical Sum vs. Rate Nuance:**
+     - The negative interaction ($-297.6\text{k kWh}$) represents aggregate surrogate cost difference across the test split.
+     - On a per-cell basis: posterior conditioning incurs $+0.807\text{ kWh/cell}$ higher cost in transition slices and $+1.671\text{ kWh/cell}$ higher cost in steady slices over site-local wind-speed binning (marginal interaction $-0.864\text{ kWh/cell}$).
+     - In both slices, posterior conditioning is strictly more expensive than direct wind-speed binning. The negative interaction indicates a relative attenuation of penalty in transition slices, NOT cost superiority.
+     - Furthermore, seed 202 directionally diverges ($+158,749\text{ kWh}$ positive interaction), demonstrating substantial training stochasticity.
+
+6. **Repository & Contract Preservation (C06):**
+   - Historical corrected v2 artifact `artifacts/external_matched_control_benchmark.csv` matches SHA-256 `596f46e0be8d71ab7a9965dbe4c481cc717b31c083fe288441a9ca9a39c3966e` byte-for-byte.
+   - `docs/SCIENTIFIC_CONTRACT.md` remains identical to origin/main and HEAD with 0 uncommitted modifications.
+   - Git worktree is on branch `revision_topjournal_reconstruction`; no commits pushed to `origin/main`.
+
+### B. Remaining Unresolved Scientific Blockers (Why NO GO Holds)
+
+1. **Retrospective Reanalysis Status:** EXP-01 v4 is a post-hoc retrospective repair, not a pre-registered confirmatory trial. Confirmatory claims of external transfer require independent ex-ante registered protocols.
+2. **Transition Slicing Diagnostic Limitation:** The transition window ($\pm 3$ timesteps around ground-truth regime changes) is an oracle diagnostic filter, not an ex-ante deployable real-time dispatch policy.
+3. **Cross-Site Heterogeneity Unresolved:** While Penmanshiel and Kelmarsh exhibit opposite directional point estimates, the causal aerodynamic moderators (e.g., turbulence intensity, topographic complexity, array geometry) remain unproven.
+4. **Active Subagent Environment Limitation:** Forking background child agents remains constrained in the current harness environment; all adversarial evaluations are grounded in deterministic script audits and verifiable files.
+
+**OVERALL SUBMISSION DISPOSITION:** **REVISE / NO GO FOR CURRENT MANUSCRIPT.**
+
+
