@@ -367,9 +367,19 @@ In transition windows, posterior violation is 7.24% vs 8.36% and shortage is 86,
 
 **Artifacts to produce:** 
 - `artifacts/external_matched_control_benchmark.csv` (corrected v2, 80 行全数据结果; artifact `external-matched-control-benchmark v2`, SHA256 `596f46e0be8d71ab7a9965dbe4c481cc717b31c083fe288441a9ca9a39c3966e`; v1 superseded)
-- `artifacts/no_graph_architecture_audit.json` (架构参数量与复杂度对比审计
-- `docs/NO_GRAPH_CONTROL_AUDIT.md` (架构参数与命名规范裁决文案
+- `artifacts/no_graph_architecture_audit.json` (架构参数量与复杂度对比审计)
+- `docs/NO_GRAPH_CONTROL_AUDIT.md` (架构参数与命名规范裁决文案)
+- `artifacts/exp01_pitchmasked_v4/` (Retrospective repair v3/v4: verified WTB checkpoints, full Pab_mean & Pab_std withholding; artifact `exp01-pitchmasked-retrospective-v3 v2`; strictly retrospective, historical v2 retained byte-intact)
+- `docs/PHASE2_EXP01_AND_JOINT_UNCERTAINTY_AUDIT.md` (Phase 2 retrospective protocol audit and joint uncertainty verification)
 
+**Retrospective Repair Note (2026-10-14, Phase 2):**
+为彻底消除 source checkpoint 仅靠目录名推断以及推理前 pitch 扣留不够彻底（仅屏蔽 Pab_mean 未显式屏蔽 Pab_std）的方法学隐患，Phase 2 进行了追溯性重计算（Retrospective Reanalysis）：
+1. 强制断言 checkpoint metadata 内 `dataset == 'wtb'` 且 `num_nodes == 134`；
+2. 在模型 forward 前，对历史特征 `x_hist`、特征掩码 `feature_mask_hist` 以及 `anchor_physics` 中的 `Pab_mean` 与 `Pab_std` 进行双重置零并增加非零断言；
+3. 产物独立存放于 `artifacts/exp01_pitchmasked_v4/`（工件 `exp01-pitchmasked-retrospective-v3` v2），不覆盖历史 v2 CSV；
+4. 追溯结果：Penmanshiel h=6 处 $\Delta\text{PSREI} = -315,400$ kWh (95% CI $[-1,590,024, +970,006]$, $P(\Delta \le 0) = 0.7084$)；Kelmarsh h=6 处 $\Delta\text{PSREI} = +352,434$ kWh (95% CI $[+59,970, +736,901]$, $P(\Delta \le 0) = 0.0074$)。场站间显著异质性依然保持，未证实跨场站正向决策迁移。
+
+**Decision after result:** Record empirical benchmark in scientific ledger; update external site claims and decision boundary table without altering frozen baseline definitions.
 **Decision after result:** Record empirical benchmark in scientific ledger; update external site claims and decision boundary table without altering frozen baseline definitions.
 
 ---

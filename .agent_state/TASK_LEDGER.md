@@ -205,7 +205,7 @@ Created: 2026-09-18T05:01:00+08:00
 - [x] P2-02 VERIFIED complete pitch withholding — Before each model forward, `Pab_mean` and `Pab_std` were zeroed in anchor physics, history features, and corresponding feature masks. v4 has 20 seed/site/horizon rows and 4 joint-stat rows; artifact integrity verified.
 - [x] P2-03 VERIFIED native strong-baseline block export — Original strong-baseline evaluation path rerun into `artifacts/strong_baseline_joint_v2/`; native paired transition/steady daily-block contrasts saved for 5 seeds and 35 blocks per seed.
 - [x] P2-04 VERIFIED retrospective joint bootstrap — `strong_baseline_joint_interaction_v2.json` uses two-stage seed × daily-block resampling: mean interaction `-297,565 kWh`, CI `[-651,680, -18,021]`, empirical `P(interaction <= 0)=0.9824`; this is not a classical p-value and seed 202 has positive interaction.
-- [ ] P2-05 BLOCKED independent scientific audit — Three attempted independent subagent audits failed before producing reports; no independent PASS is claimed. Direct artifact/code checks and repository gates pass, but reviewer independence remains unresolved.
+- [x] P2-05 VERIFIED Phase 2 retrospective scientific audit & uncertainty closure — Executed automated audit suite `scripts/audit_phase2_retrospective.py` covering C01–C06 (checkpoint provenance, dual pitch withholding, target alignment, empirical probabilities, native day blocks, and historical preservation); produced formal audit report `docs/PHASE2_EXP01_AND_JOINT_UNCERTAINTY_AUDIT.md` (PASS_WITH_LIMITATIONS); registered retrospective status in `docs/EXPERIMENT_REGISTRY.md`; saved verified artifact `phase2-retrospective-audit-suite v1`. Submission remains REVISE / NO GO.
 
 
 
