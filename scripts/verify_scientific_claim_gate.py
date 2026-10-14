@@ -539,6 +539,71 @@ def main() -> int:
         else:
             ok("joint report generator is labelled seed-level, not two-level hierarchical")
 
+    # (f) No EXP-02 report may claim a two-level/joint interval when it carries no
+    #     block-level data. The reporting runner is a SECOND writer of that claim,
+    #     separate from generate_joint_uncertainty_report.py, so it needs its own guard.
+    exp02_report = ROOT / "docs" / "ZERO_PRIVILEGED_SUPERVISION_REPORT.md"
+    exp02_runner = ROOT / "scripts" / "run_exp02_zero_privileged_supervision.py"
+    if exp02_report.exists():
+        rtxt = exp02_report.read_text(encoding="utf-8", errors="replace")
+        section3 = re.search(r"^## 3\.(.*)$", rtxt, re.M)
+        claims_two_level = bool(section3) and bool(
+            re.search(r"Two-Level|Joint Hierarchical", section3.group(1))
+        )
+        # A claimed joint/two-level CI column must actually be populated.
+        has_real_ci = bool(re.search(r"\|\s*\[\s*[+-]?\d", rtxt))
+        if claims_two_level and not has_real_ci:
+            fail(
+                "EXP-02 report claims a two-level/joint interval (Section 3) but every CI cell is "
+                "empty; the frozen CSV does not persist block-level deltas",
+                failures,
+            )
+        elif claims_two_level:
+            ok("EXP-02 report claims two-level intervals and populates them from block deltas")
+        else:
+            ok("EXP-02 report Section 3 does not claim an uncomputed two-level interval")
+
+    if exp02_runner.exists():
+        rsrc = exp02_runner.read_text(encoding="utf-8", errors="replace")
+        rlines = rsrc.splitlines()
+        # The heading must be selected from data presence, not hardcoded.
+        if "joint_heading" not in rsrc or "has_joint_ci" not in rsrc:
+            fail(
+                "EXP-02 report runner hardcodes the Section 3 two-level heading instead of "
+                "deriving it from the presence of block-level deltas",
+                failures,
+            )
+        else:
+            # The two-level literal must live inside the has_joint_ci-guarded branch, so that
+            # the block-delta-absent path cannot emit a two-level claim.
+            guard = next((i for i, ln in enumerate(rlines) if "if has_joint_ci:" in ln), None)
+            two_level = [
+                i for i, ln in enumerate(rlines)
+                if re.search(r"Two-Level Bootstrap|Joint Hierarchical", ln)
+                and not ln.lstrip().startswith("#")
+            ]
+            # The paired else at the same indentation closes the guarded branch.
+            else_idx = None
+            if guard is not None:
+                indent = len(rlines[guard]) - len(rlines[guard].lstrip())
+                for j in range(guard + 1, len(rlines)):
+                    if rlines[j].strip() == "else:" and (len(rlines[j]) - len(rlines[j].lstrip())) == indent:
+                        else_idx = j
+                        break
+
+            stray = [
+                i for i in two_level
+                if guard is None or else_idx is None or not (guard < i < else_idx)
+            ]
+            if stray:
+                fail(
+                    "EXP-02 report runner places a two-level heading literal outside the "
+                    f"has_joint_ci-guarded branch: lines {[i + 1 for i in stray]}",
+                    failures,
+                )
+            else:
+                ok("EXP-02 report runner derives the Section 3 heading from block-delta availability")
+
     print("\n" + "=" * 72)
     if failures:
         print(f"SCIENTIFIC_CLAIM_GATE: FAIL ({len(failures)} issue(s))")

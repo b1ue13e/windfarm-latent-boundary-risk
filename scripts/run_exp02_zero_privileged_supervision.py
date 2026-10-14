@@ -974,6 +974,19 @@ def generate_audit_report(
         })
     df_joint = pd.DataFrame(joint_stats_table)
 
+    # Determine Section 3 heading and column labels based on actual data presence
+    has_joint_ci = any(
+        row['joint_ci_95_low'] != "-" for _, row in df_joint.iterrows()
+    )
+    if has_joint_ci:
+        joint_heading = "3. Joint Hierarchical Uncertainty & Stability Summary (Two-Level Bootstrap)"
+        joint_note = "*Note: Resamples simultaneously across day-clusters and model training seeds, so CIs and probabilities are not computed by improperly averaging per-seed bounds.*"
+        joint_ci_col = "Joint 95% CI (Delta)"
+    else:
+        joint_heading = "3. Seed-Level Uncertainty & Stability Summary"
+        joint_note = "*Note: Confidence intervals not computed (block-level delta arrays not available). Mean/median/std are seed-level statistics; P(Delta <= 0) is the empirical seed-level non-inferiority probability.*"
+        joint_ci_col = "95% CI (not computed)"
+
     # ------------------------------------------------------------------
     # Data-derived verdict for the Primary Challenger at each horizon.
     # ------------------------------------------------------------------
@@ -1098,12 +1111,11 @@ than an established gain.
 
 ---
 
-## 3. Joint Hierarchical Uncertainty & Stability Summary (Two-Level Bootstrap)
+## {joint_heading}
 
-*Note: Resamples simultaneously across day-clusters and model training seeds, so
-CIs and probabilities are not computed by improperly averaging per-seed bounds.*
+{joint_note}
 
-| Horizon | Model | Role | Median Delta (kWh) | Mean Delta (kWh) | Seed Std (kWh) | Joint 95% CI (Delta) | P(Delta <= 0) | Catastrophic Rate |
+| Horizon | Model | Role | Median Delta (kWh) | Mean Delta (kWh) | Seed Std (kWh) | {joint_ci_col} | P(Delta <= 0) | Catastrophic Rate |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 """
     for _, row in df_joint.iterrows():

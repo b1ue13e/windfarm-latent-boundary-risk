@@ -1,6 +1,6 @@
 # EXP-02 (EXP-Q1-003): Zero-Privileged-Pitch Supervision Boundary Audit Report
 
-**Date:** 2026-10-13 09:00:52  
+**Date:** 2026-10-13 15:55:50  
 **Target Artifact:** `artifacts/zero_privileged_supervision_benchmark.csv`  
 **Registry Reference:** `docs/EXPERIMENT_REGISTRY.md:229-292`  
 **Scientific Contract Anchor:** `docs/SCIENTIFIC_CONTRACT.md:47-55`  
@@ -98,12 +98,11 @@ than an established gain.
 
 ---
 
-## 3. Joint Hierarchical Uncertainty & Stability Summary (Two-Level Bootstrap)
+## 3. Seed-Level Uncertainty & Stability Summary
 
-*Note: Resamples simultaneously across day-clusters and model training seeds, so
-CIs and probabilities are not computed by improperly averaging per-seed bounds.*
+*Note: Confidence intervals not computed (block-level delta arrays not available). Mean/median/std are seed-level statistics; P(Delta <= 0) is the empirical seed-level non-inferiority probability.*
 
-| Horizon | Model | Role | Median Delta (kWh) | Mean Delta (kWh) | Seed Std (kWh) | Joint 95% CI (Delta) | P(Delta <= 0) | Catastrophic Rate |
+| Horizon | Model | Role | Median Delta (kWh) | Mean Delta (kWh) | Seed Std (kWh) | 95% CI (not computed) | P(Delta <= 0) | Catastrophic Rate |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | h=1 | Direct Consequence Quantile MLP | Secondary Baseline / Sensitivity Probe |   -318.4k |   -335.4k |    235.5k | - | - | 0.0% (0/5) |
 | h=1 | Privileged STGQ (Oracle Reference) | Oracle Upper Reference (Non-Competitive) |   +301.7k |   +376.2k |    373.8k | - | - | 0.0% (0/5) |
