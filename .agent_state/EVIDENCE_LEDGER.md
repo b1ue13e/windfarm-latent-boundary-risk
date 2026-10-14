@@ -1374,3 +1374,11 @@ Commands: `python scripts/repair_exp01_pitch_withheld_v3.py --device cpu --boots
 Verification: replication 21/21 PASS; scientific claim gate PASS; repository gate PASS; artifact verification PASS for both new artifacts; targeted structure and syntax checks PASS.
 Limitations: the existing claim gate still validates the historical v2 manuscript/manifest and does not incorporate v4 or the new joint JSON; two independent subagent audit attempts failed before returning reports. No scientific contract, pre-registration, or main branch push was changed.
 Epistemic-Status: VERIFIED for execution, provenance, artifact hashes, and direct code/data checks; independent scientific audit UNKNOWN/BLOCKED.
+
+## P2-05-R1 — Independent audit retry and local evidence reconciliation — 2026-10-14
+Task-ID: P2-05-R1
+Status: BLOCKED
+Summary: A third narrow read-only subagent audit attempt failed before returning a report. This does not constitute a scientific verdict. Direct local reconciliation passed: EXP-01 v4 contains 20 result rows, 10 provenance runs, 4 joint-stat rows; all provenance entries state both Pab_mean and Pab_std are masked before forward inference. Native strong-baseline output contains 10 arrays (5 seeds x transition/steady), each with 35 daily blocks, and joint JSON reports n_seeds=5, n_time_blocks=35, P(interaction<=0)=0.9824. Grep review confirms source checkpoint metadata guard (`dataset=wtb`, `num_nodes=134`), anchor-index equality checks, and native block export in the original evaluation path.
+Evidence: `artifacts/exp01_pitchmasked_v4`, `artifacts/strong_baseline_joint_v2`, `scripts/repair_exp01_pitch_withheld_v3.py:56-95,136-189`, `scripts/test_strong_baseline_closure.py:121-139,301-367`, `scripts/summarize_strong_baseline_joint_v2.py`.
+Command: `python -c "...local consistency assertions..."` -> PASS; `grep` checks -> PASS. Three independent subagent attempts failed before producing reports; no independent PASS is claimed.
+Epistemic-Status: VERIFIED for local reconciliation; independent scientific audit UNKNOWN/BLOCKED.
