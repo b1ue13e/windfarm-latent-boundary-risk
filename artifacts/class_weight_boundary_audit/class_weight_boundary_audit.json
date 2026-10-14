@@ -30,19 +30,6 @@
       "pitch_full_period": "0.28185847;1.71814156"
     },
     {
-      "cache_dir": "artifacts\\cache\\wtb_245d",
-      "train_end": 25920,
-      "metadata_source_split": "legacy_unspecified",
-      "metadata_matches_train_only": false,
-      "metadata_matches_full_period": false,
-      "primary_metadata": "0.51627362;0.39184013;2.09188628",
-      "primary_train_only": "0.62840635;0.40970474;1.96188891",
-      "primary_full_period": "0.51627362;0.39184013;2.09188628",
-      "pitch_metadata": "",
-      "pitch_train_only": "0.34551007;1.65448999",
-      "pitch_full_period": "0.31552601;1.68447399"
-    },
-    {
       "cache_dir": "artifacts\\cache_external_wind\\external_wind_la_haute_borne_chronological",
       "train_end": 25920,
       "metadata_source_split": "legacy_unspecified",

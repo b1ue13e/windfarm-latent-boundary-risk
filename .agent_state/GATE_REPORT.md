@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-10-13T15:10:09+08:00
+Generated: 2026-10-14T09:57:44+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -27,19 +27,19 @@ Total pages: 10
 --- Checking Headline Number Proximity Qualifiers ---
 Number 589,535 found 6 times:
   [PASS] Occurrence #1 at index 996: qualifier present=True
-  [PASS] Occurrence #2 at index 5074: qualifier present=True
-  [PASS] Occurrence #3 at index 7601: qualifier present=True
-  [PASS] Occurrence #4 at index 26240: qualifier present=True
-  [PASS] Occurrence #5 at index 36732: qualifier present=True
-  [PASS] Occurrence #6 at index 57355: qualifier present=True
+  [PASS] Occurrence #2 at index 5219: qualifier present=True
+  [PASS] Occurrence #3 at index 8493: qualifier present=True
+  [PASS] Occurrence #4 at index 27696: qualifier present=True
+  [PASS] Occurrence #5 at index 36646: qualifier present=True
+  [PASS] Occurrence #6 at index 59267: qualifier present=True
 Number 881,367 found 7 times:
   [PASS] Occurrence #1 at index 1021: qualifier present=True
-  [PASS] Occurrence #2 at index 5101: qualifier present=True
-  [PASS] Occurrence #3 at index 7626: qualifier present=True
-  [PASS] Occurrence #4 at index 26295: qualifier present=True
-  [PASS] Occurrence #5 at index 30425: qualifier present=True
-  [PASS] Occurrence #6 at index 33061: qualifier present=True
-  [PASS] Occurrence #7 at index 57379: qualifier present=True
+  [PASS] Occurrence #2 at index 5246: qualifier present=True
+  [PASS] Occurrence #3 at index 8518: qualifier present=True
+  [PASS] Occurrence #4 at index 27751: qualifier present=True
+  [PASS] Occurrence #5 at index 30248: qualifier present=True
+  [PASS] Occurrence #6 at index 32884: qualifier present=True
+  [PASS] Occurrence #7 at index 59291: qualifier present=True
 
 [ALL IEEE PDF CHECKS PASSED]
 
@@ -70,7 +70,7 @@ Exit: 0
 
 [Audit Step 1: Checking Required Artifacts]
   [PASS] docs/REPOSITORY_EVIDENCE_MAP.md (12,327 bytes)
-  [PASS] docs/CANONICAL_RESEARCH_QUESTION.md (5,549 bytes)
+  [PASS] docs/CANONICAL_RESEARCH_QUESTION.md (5,825 bytes)
   [PASS] docs/INFORMATION_SET_CONTRACT.md (7,573 bytes)
   [PASS] artifacts/information_set_manifest.csv (133,318 bytes)
   [PASS] docs/FIXED_TARGET_CONTRACT.md (4,251 bytes)
@@ -87,7 +87,7 @@ Exit: 0
   [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (8,150 bytes)
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,571 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (7,010 bytes)
-  [PASS] build/paper_tste_ieee.pdf (267,007 bytes)
+  [PASS] build/paper_tste_ieee.pdf (269,582 bytes)
   [PASS] build/paper_tste_supplementary.pdf (1,017,110 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
@@ -275,6 +275,8 @@ SCIENTIFIC CLAIM GATE
   [PASS] registry does not present a stale 'DEFICIT ESTABLISHED' EXP-02 verdict
   [PASS] EXP-02 emits P(delta <= 0) under the non-inferiority name; legacy name appears only in the schema-migration mapping
   [PASS] joint report generator is labelled seed-level, not two-level hierarchical
+  [PASS] EXP-02 report Section 3 does not claim an uncomputed two-level interval
+  [PASS] EXP-02 report runner derives the Section 3 heading from block-delta availability
 
 ========================================================================
 SCIENTIFIC_CLAIM_GATE: PASS

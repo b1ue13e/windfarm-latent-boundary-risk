@@ -39,15 +39,13 @@ The core scientific inquiry governing this investigation is strictly formulated 
 *Formal Criterion*:
 $$\mathrm{NMI}\left(Z_t, \, \hat{Z}(I_t^{\text{no\_pitch}})\right) \gg \mathrm{NMI}\left(Z_t, \, \hat{Z}_{\text{permuted}}\right), \quad \text{with } p < 0.001.$$
 
-### Hypothesis H2: Incremental Decision Value (Tail Risk Mitigation)
-*Statement*: Embedding boundary-aware information (either via a calibrated latent-state posterior or boundary-aligned representation) into residual quantile estimation yields a statistically significant reduction in the asymmetric shortfall screening metric (PSREI at $\rho=10$) relative to direct conditional quantile models that observe the identical information set $\mathcal{I}_t^{(d)}$ and anchor on the identical fixed point forecast $\hat{y}_{\text{fixed}, t}$.
-*Formal Criterion*:
-$$\Delta\text{PSREI} = \text{PSREI}(\text{Direct Baseline} \mid \mathcal{I}_t) - \text{PSREI}(\text{Boundary-Aware} \mid \mathcal{I}_t) > 0,$$
-where the paired 95% daily cluster bootstrap confidence interval (1,000 resamples over 35 observed days) strictly excludes zero.
+### Hypothesis H2: Transition-Window Localized Risk Hedge (Formerly Incremental Decision Value)
+*Statement*: Embedding boundary-aware information (either via a calibrated latent-state posterior or boundary-aligned representation) into residual quantile estimation yields a statistically significant localized tail-risk hedge for reserve shortfalls concentrated within dynamic operating transition windows ($\Delta_{\text{trans}} - \Delta_{\text{steady}} = -296{,}053\text{ kW}\cdot\text{h}$, $p=0.002$, with $48.4\%$ of surrogate savings concentrated in transition slices), even though it does NOT reduce plant-wide reserve screening costs relative to strong observable wind-speed-binned quantiles ($+523{,}044\text{ kW}\cdot\text{h}$ posterior penalty plant-wide, $p=0.85$; $+410{,}304\text{ kW}\cdot\text{h}$ baseline advantage in steady state).
+*Formal Status*: Refuted for plant-wide cost superiority; **SUPPORTED strictly as a transition-window localized tail-risk hedge**.
 
 ### Hypothesis H3: Operational Failure Boundary (Conditional Validity)
-*Statement*: The independent decision value of learned boundary recovery is strictly bounded and disappears under any of the following four operational regimes:
+*Statement*: The decision benefit of learned boundary recovery is strictly bounded and disappears under any of the following four operational regimes:
 1. **Full Fresh Observability ($\tau=0$, complete channels)**: Deterministic aerodynamic power curves achieve lower surrogate cost and target-satisfying reliability without neural variance;
-2. **Observable Transmission Latency ($\tau \in [10, 30]\text{ min}$, complete channels)**: Non-neural state-conditional quantile recalibration absorbs the vast majority ($>50\%$) of shortfall loss, rendering complex representation learning redundant;
-3. **Minimal Spatial Redundancy Boundary**: On micro-arrays or sparse configurations where exploitable upstream wake redundancy is absent, LHB exhibits a negative transfer/overfitting boundary, consistent with limited exploitable spatial redundancy and site-specific heterogeneity, failing to outperform local or global quantiles;
+2. **Observable Transmission Latency ($\tau \in [10, 30]\text{ min}$, complete channels)**: Non-neural state-conditional quantile recalibration absorbs the vast majority ($>50\%$) of shortfall loss ($36.3\%$--$61.7\%$ across 10--30 min), rendering complex representation learning redundant;
+3. **External Transfer Boundary (Within Evaluated Sites Only)**: Across external commercial wind plants, transferred representations fail to outperform strong site-local 10-bin wind-speed quantiles (Penmanshiel exhibits a $+5.32\text{M kW}\cdot\text{h}$ penalty at $h=6$, $p=0.003$; Kelmarsh $+436\text{k kW}\cdot\text{h}$, $p=0.196$), refuting any universal cross-site transferability law and requiring site-local conditioning;
 4. **Severe Unidentifiability / Latency Horizon ($\tau \ge 60\text{ min}$)**: Extreme information decay degrades both point forecasts and boundary classification; here, heuristic selective abstention fails, and a conservative uniform reserve margin expansion dominates.

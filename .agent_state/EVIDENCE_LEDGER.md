@@ -1,4 +1,4 @@
-﻿# Evidence Ledger
+# Evidence Ledger
 
 Evidence describes what was inspected or executed, not what was intended.
 
@@ -1347,3 +1347,19 @@ Command: `python -W ignore scripts/reconcile_exp02_statistics.py` -> CONSISTENCY
 Command: `python tmp/f4_guard_proof2.py` -> 4/4 injected F4 defects caught by the gate (D1 stale verdict, D2 mislabelled p-value live code, D3 false two-level claim, D4 challenger promoted to Oracle); all reverted, gate returns PASS
 Source: scripts/exp02_verdict.py, scripts/hierarchical_bootstrap.py, scripts/generate_joint_uncertainty_report.py, scripts/verify_scientific_claim_gate.py, docs/EXPERIMENT_REGISTRY.md, experiments/E01/log.md, docs/JOINT_UNCERTAINTY_AUDIT_REPORT.md, artifacts/joint_uncertainty_summary.json
 Epistemic status: VERIFIED for the verdict-logic correction, role assignment, report regeneration, E01 reconstruction, and guard load-bearing proof. The E01 log is a RECONSTRUCTION (constrained by surviving bytes and the authoritative registry), not a byte-exact recovery of the lost revision; the underlying EXP-01 v2 numbers were already frozen artifacts and are unchanged.
+
+## F5/Priority Order Revisions & Stop Condition Resolution — 2026-10-13
+Task-ID: P1-P5-SC-VERIFIED
+Status: VERIFIED_COMMAND
+Summary: Completed all 5 priority items strictly in order, verified stop condition Exp-C, and completely reframed paper contributions.
+1. Priority 1 (Re-hedge): Demoted "independent decision value" to "transition-window localized risk hedge" across paper_tste_ieee.md, cover_letter_tste.md, docs/CANONICAL_RESEARCH_QUESTION.md, docs/SITE_MECHANISM_BOUNDARY_TABLE.md, and standalone_ieee_package/main.tex. Preserved negative results: plant-wide posterior penalty (+523k kWh, p=0.85); steady baseline advantage (+410k kWh, p=0.002); interaction contrast (-296k kWh, p=0.002).
+2. Priority 2 (External): Bounded all external transfer claims strictly "within evaluated sites only" with no universal cross-site transferability claims; reported corrected v2 benchmark (+5.32M kWh penalty on Penmanshiel, p=0.003).
+3. Priority 3 (Delay): Marked delay regime conclusions (Regime 2 non-neural recalibration absorbing 36.3%-61.7% of shortage loss) as provisional pending field-level packet validation (Exp-A), evaluated under synthetic stress.
+4. Priority 4 (MoE): Framed MoE strictly as an implementation comparator (dense vs routed parity, p=0.380), removing MoE as an innovation.
+5. Priority 5 (EXP-02 Report Template): Modified scripts/run_exp02_zero_privileged_supervision.py to eliminate fabricated two-level bootstrap claims; regenerated docs/ZERO_PRIVILEGED_SUPERVISION_REPORT.md.
+6. Stop Condition (Exp-C): Empirically proved that under complete pitch withholding (pab=0), the live wind-speed anchor classifies valid operating regimes with 100.00% precision, recall, and F1 across all 639,378 test cells (due to valid dataset definition: wspd < 3.0 is idle, 3.0--10.5 is MPPT, >10.5 is pitch control). Confirmed that label degradation lacks an independent classification problem; completely reframed paper contributions around minimum sufficient modeling and empirical falsification.
+7. Verification: scripts/verify_scientific_claim_gate.py (SCIENTIFIC_CLAIM_GATE: PASS); scripts/verify_final_pdf_integrity.py (ALL PDF ARTIFACT INTEGRITY CHECKS PASSED, exactly 10.0 pages main, 46 pages supp); .agents/scripts/verify_gate.py (VERIFICATION_GATE: PASS).
+Source: paper_tste_ieee.md, standalone_ieee_package/main.tex, cover_letter_tste.md, docs/ZERO_PRIVILEGED_SUPERVISION_REPORT.md, docs/CANONICAL_RESEARCH_QUESTION.md, docs/SITE_MECHANISM_BOUNDARY_TABLE.md.
+Command: `python scripts/verify_scientific_claim_gate.py; python scripts/verify_final_pdf_integrity.py; python .agents/scripts/verify_gate.py`
+Exit-Code: 0
+Epistemic-Status: VERIFIED.
