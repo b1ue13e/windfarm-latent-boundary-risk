@@ -7,6 +7,7 @@ import argparse
 from datetime import datetime,timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import time
@@ -53,6 +54,9 @@ def main():
         pending,failed=availability();print(json.dumps({'status':'PROBE_ONLY','pending_receipts':len(pending),'failed_receipts':failed,'scientific_completion':False}));return
     journal=root/'metis_execution/pbs_jobs_factorial_readiness.json'
     if journal.exists():raise FileExistsError('Existing audit/release attempt; preserve and inspect before retry')
+    with (root/'metis_execution/factorial_readiness_control.lock').open('x') as lock:
+        lock.write(json.dumps({'pid':os.getpid(),'started_utc':datetime.now(timezone.utc).isoformat(),
+            'source_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}))
     deadline=time.monotonic()+24*3600
     try:
         while True:
