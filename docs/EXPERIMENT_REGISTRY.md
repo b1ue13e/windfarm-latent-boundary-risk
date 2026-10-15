@@ -680,3 +680,9 @@ GPU audit must reconstruct all20 gates/rows/native blocks/four joint statistics
 under the SAME explicit profile and exact equality gate. Any failure is retained
 and stops corresponding certification; no tolerance tuning. New outcomes cannot
 retroactively certify old non-exact outputs or any full-paper/raw-training claim.
+Before accepting the repair's unchanged-scientific-specification statement, a
+separate PBS CPU comparison requires identical20 row keys, evaluated counts,
+checkpoint/summary identities and exact non-neural wind-baseline costs/violations
+between old and new versions. Archive all posterior/CI differences and raw-gate
+differences as observations; unchanged argmax is not a decision-value gate. The
+old version remains uncertified even if derived metrics happen to agree.
