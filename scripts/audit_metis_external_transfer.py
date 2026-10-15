@@ -21,9 +21,17 @@ def main():
     parser.add_argument('--workspace', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--frozen-input-manifest-sha256', required=True)
+    parser.add_argument('--transfer-name', choices=['matched_transfer', 'deterministic_matched_transfer_v1'], default='matched_transfer')
+    parser.add_argument('--deterministic', action='store_true')
     args = parser.parse_args()
     if not os.environ.get('PBS_JOBID'):
         raise RuntimeError('Audit only inside PBS allocation')
+    if args.deterministic != (args.transfer_name == 'deterministic_matched_transfer_v1'):
+        raise ValueError('Execution profile must match the explicitly selected new transfer version')
+    profile = None
+    if args.deterministic:
+        from metis_numeric_profile import configure
+        profile = configure()
     root = args.workspace.resolve()
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -45,7 +53,7 @@ def main():
     if not torch.cuda.is_available():
         raise RuntimeError('Allocated GPU required for original inference replay')
     base = root / 'artifacts/raw_replay_external_models_20261015'
-    transfer = base / 'matched_transfer'
+    transfer = base / args.transfer_name
     source = root / 'artifacts/raw_replay_20261015_v2/models/aligned_force'
     def successful(path):
         record = json.loads(path.read_text())
@@ -54,7 +62,13 @@ def main():
             raise ValueError('Incomplete successful execution: ' + str(path))
         verify_run_receipt(path)
         return record
-    successful(base / 'execution/matched_transfer/record.json')
+    successful(base / f'execution/{args.transfer_name}/record.json')
+    if profile is not None:
+        producer_profile = json.loads((transfer / 'numeric_execution_profile.json').read_text())
+        for key in ('profile', 'deterministic_algorithms', 'cudnn_deterministic', 'cudnn_benchmark',
+                    'cudnn_tf32', 'matmul_tf32', 'cublas_workspace_config', 'torch_threads', 'torch', 'cuda', 'python', 'gpu'):
+            if producer_profile[key] != profile[key]:
+                raise ValueError('Production/audit execution profile differs: ' + key)
     cache_map = json.loads((base / 'cache_map.json').read_text())
     seeds = pd.read_csv(transfer / 'exp01_pitchmasked_v3_seed_results.csv', float_precision='round_trip')
     joint = pd.read_csv(transfer / 'exp01_pitchmasked_v3_joint_statistics.csv', float_precision='round_trip')
@@ -64,12 +78,13 @@ def main():
         raise ValueError('Incomplete/duplicate external rows')
     native = np.load(transfer / 'exp01_native_day_blocks_v4.npz')
     provenance(output, [frozen, base / 'cache_map.json',
-        base / 'execution/matched_transfer/record.json',
+        base / f'execution/{args.transfer_name}/record.json',
         transfer / 'exp01_pitchmasked_v3_seed_results.csv',
         transfer / 'exp01_pitchmasked_v3_joint_statistics.csv',
         transfer / 'exp01_native_day_blocks_v4.npz'],
         {'scope': 'exact inference/actions/blocks/statistics audit; no scientific certificate',
-         'pbs_job_id': os.environ['PBS_JOBID'], 'bootstrap': 5000, 'bootstrap_seed': 20261014})
+         'pbs_job_id': os.environ['PBS_JOBID'], 'bootstrap': 5000, 'bootstrap_seed': 20261014,
+         'numeric_execution_profile': profile})
     results = []
     blocks = {}
     operation_order = []
@@ -211,6 +226,7 @@ def main():
         np.save(output / f'{farm}_{horizon}_joint_resampling.npy', statistic['boot_samples'])
         statistics.append({'farm': farm, 'horizon': horizon, 'values': mapping})
     report = {'pbs_job_id': os.environ['PBS_JOBID'], 'status': 'EXACT_EXTERNAL_EVIDENCE_VERIFIED',
+        'transfer_version': args.transfer_name, 'numeric_execution_profile': profile,
         'source_sha256': sha(__file__), 'results': results, 'statistics': statistics,
         'operation_order_observations': operation_order, 'scientific_completion': False,
         'scope': 'current raw-window external inference/actions/statistics only; no legacy reinstatement or whole-paper certificate'}

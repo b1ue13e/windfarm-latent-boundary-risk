@@ -654,3 +654,26 @@ uncertainty or exact-equality gate is weakened. No original gate/CSV is overwrit
 Only observed repeatability may motivate a separately registered execution repair;
 old non-exact claims/results remain uncertified and retained. Do not attribute a
 specific kernel or original unlogged backend setting without evidence.
+
+### EXTERNAL-DETERMINISTIC-EXECUTION-REPAIR-V1 (before new production)
+Actual PBS diagnosis242739 observed non-exact default repeated forwards on the
+same Kelmarsh201/val inputs (49156 changed float32 values, max7.152557373046875e-7),
+while the predeclared deterministic profile gave exact repeated forwards. This
+does not certify other inputs or identify a particular kernel/original backend.
+Keep failed242736 and the original matched_transfer tree permanently unchanged.
+
+Create deterministic_matched_transfer_v1 in a new directory using the same
+complete WTB/source and local forecast weights, raw windows, validation/test
+populations, masks, posterior5/wind10 quantile bins, q0.90,rho10,dt1/6,
+201–205 seeds and5000/RNG20261014 hierarchical procedure. Explicitly apply the
+diagnosed deterministic execution profile before torch/CUDA initialization;
+record all flags and code/input/environment hashes. This is an execution repair,
+not a favorable-result trial. No retraining/resume or scientific gate relaxation.
+
+The producer retains the original mathematical code; allowed source adaptations
+are startup profile configuration, explicit workspace for out-of-tree deployment,
+accurate preregistration provenance and final manifests. A separately allocated
+GPU audit must reconstruct all20 gates/rows/native blocks/four joint statistics
+under the SAME explicit profile and exact equality gate. Any failure is retained
+and stops corresponding certification; no tolerance tuning. New outcomes cannot
+retroactively certify old non-exact outputs or any full-paper/raw-training claim.
