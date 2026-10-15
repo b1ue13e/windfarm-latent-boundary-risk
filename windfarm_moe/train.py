@@ -293,6 +293,7 @@ def train_model(
                 "epoch_seconds": time.time() - epoch_start,
             }
         )
+        save_json(Path(output_root) / 'training_history.json', history)
         _safe_print(
             f"[epoch {epoch + 1}] train_loss={train_loss:.4f} "
             f"val_loss={val_metrics['loss']:.4f} val_rmse={val_metrics['rmse']:.4f}"

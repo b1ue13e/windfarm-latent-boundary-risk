@@ -65,20 +65,20 @@ Preprocessing converts raw CSVs into memory-mapped NumPy arrays with chronologic
 ```powershell
 python main.py preprocess --root-dir . --dataset wtb
 ```
-Outputs memory-mapped cache to `artifacts/cache_signature_trainweight/wtb_245d_canonical/`:
+Outputs the default cache to `artifacts/cache/wtb_245d/`. Signature variants and train-only weights require explicit additional transformations:
 - `features.npy`: Shape `(35280, 134, 11)`
 - `target.npy`: Active power realization `(35280, 134)`
-- `mask.npy`: Operational validity flags `(35280, 134)`
+- `target_mask.npy`: Target validity flags `(35280, 134)`
 
 ### Step 2: Preprocess External Facilities
 ```powershell
-python main.py external_cache --root-dir . --site kelmarsh
-python main.py external_cache --root-dir . --site penmanshiel
-python main.py external_cache --root-dir . --site lhb
+python main.py external-wind-preprocess --root-dir . --farm kelmarsh
+python main.py external-wind-preprocess --root-dir . --farm penmanshiel
+python main.py external-wind-preprocess --root-dir . --farm la_haute_borne
 ```
 
 ### Note on Replication Shortcuts
-For standard manuscript replication, running raw data preprocessing is **not required**. The released Category B archive (`scripts/fetch_artifacts.py`) contains the precomputed residual tensors and posterior probabilities necessary to verify every quantitative claim in the paper in under 60 seconds without multi-hour data parsing.
+Cached Category B arrays permit only bounded re-evaluation of archived claims. They do not verify raw-data preprocessing or neural training. Complete reproduction remains unverified until the registered raw replay succeeds; see `RAW_REPLAY_PROTOCOL_20261015.md`. No runtime guarantee is made.
 
 ### Category B Release Bundle Metadata
 - **Permanent URL**: [https://github.com/b1ue13e/windfarm-latent-boundary-risk/releases/download/tste-submission-v1.0/windfarm_derived_artifacts_v1.0.zip](https://github.com/b1ue13e/windfarm-latent-boundary-risk/releases/download/tste-submission-v1.0/windfarm_derived_artifacts_v1.0.zip)

@@ -1,0 +1,6000 @@
+{
+  "extracted_from": "verified archived checkpoint metadata before replay; weights are not initialization",
+  "configs": [
+    {
+      "family": "forecast",
+      "seed": 201,
+      "source_config_checkpoint": {
+        "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed201/best_model.pt",
+        "bytes": 459618,
+        "sha256": "cc7744970b8f254eeb296d6814125969f5695e40527bca2e41948439b7bfd74a"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_phys_full",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 201,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 250.0,
+        "smooth_weight": 0.05,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "Physics-Aligned MoE"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split."
+      }
+    },
+    {
+      "family": "forecast",
+      "seed": 202,
+      "source_config_checkpoint": {
+        "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed202/best_model.pt",
+        "bytes": 459618,
+        "sha256": "833afaa97940ba20304c45836d726d24a05de97f6fe1354edbd225bda50033e6"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_phys_full",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 202,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 250.0,
+        "smooth_weight": 0.05,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "Physics-Aligned MoE"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split."
+      }
+    },
+    {
+      "family": "forecast",
+      "seed": 203,
+      "source_config_checkpoint": {
+        "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed203/best_model.pt",
+        "bytes": 459618,
+        "sha256": "6f1d4a32de81de0f11cbd4222be84f2bd1fa141e841f563050dcd973f2443787"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_phys_full",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 203,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 250.0,
+        "smooth_weight": 0.05,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "Physics-Aligned MoE"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split."
+      }
+    },
+    {
+      "family": "forecast",
+      "seed": 204,
+      "source_config_checkpoint": {
+        "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed204/best_model.pt",
+        "bytes": 459618,
+        "sha256": "c5f1e73b238b5580c1bcc70fb5c27b21ec27a57a61abcdea110b8c845ac2c934"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_phys_full",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 204,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 250.0,
+        "smooth_weight": 0.05,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "Physics-Aligned MoE"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split."
+      }
+    },
+    {
+      "family": "forecast",
+      "seed": 205,
+      "source_config_checkpoint": {
+        "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed205/best_model.pt",
+        "bytes": 459618,
+        "sha256": "2cbdf3bde8d0a1f952f5efb2efa01a284f583ceefddd2a535a5d82a564975388"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_phys_full",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 205,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 250.0,
+        "smooth_weight": 0.05,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "Physics-Aligned MoE"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split."
+      }
+    },
+    {
+      "family": "aligned_force",
+      "seed": 201,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_align_force_seed201/best_model.pt",
+        "bytes": 459765,
+        "sha256": "bb4883aa58b93a5059d5d694c113120c04f79198d0fc4aa6307e74da11410195"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_full_no_aux",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 201,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align + L_force"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "aligned_force",
+      "seed": 202,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_align_force_seed202/best_model.pt",
+        "bytes": 459765,
+        "sha256": "07372a3823ed17d76f9eea7d90c85742b5d0b16e30194827748966d02273ffa7"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_full_no_aux",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 202,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align + L_force"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "aligned_force",
+      "seed": 203,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_align_force_seed203/best_model.pt",
+        "bytes": 459765,
+        "sha256": "4469b977a1454b09eda210619ae831a1649e2c50117e450deee38da2a799fc88"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_full_no_aux",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 203,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align + L_force"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "aligned_force",
+      "seed": 204,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_align_force_seed204/best_model.pt",
+        "bytes": 459765,
+        "sha256": "eb9282226bf1a54b2530099dcd7042e929b27aea4046ffc50b772afa418e28df"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_full_no_aux",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 204,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align + L_force"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "aligned_force",
+      "seed": 205,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_align_force_seed205/best_model.pt",
+        "bytes": 459765,
+        "sha256": "4abed0ef7194f5ffabb20f981a4942a9f1b43202c5854d7f9540d4c60e9150ff"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_full_no_aux",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 205,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align + L_force"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "unaligned",
+      "seed": 201,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_seed201/best_model.pt",
+        "bytes": 459701,
+        "sha256": "21ec1cacfc60186ad905add331c98a2c7dddfcf33a42de3a3421fc989f0adf34"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_balance_only",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 201,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 250.0,
+        "smooth_weight": 0.05,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "unaligned",
+      "seed": 202,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_seed202/best_model.pt",
+        "bytes": 459701,
+        "sha256": "47e8904f3bd15ec0fdb6bdd100845f2bc2a1e5a04d19aa11c21071e80f2369e2"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_balance_only",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 202,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 250.0,
+        "smooth_weight": 0.05,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "unaligned",
+      "seed": 203,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_seed203/best_model.pt",
+        "bytes": 459701,
+        "sha256": "7a3a2f456346e638c03d47e30d3c64a66d2c299ac4fc006bc3a9352aa22dd827"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_balance_only",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 203,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 250.0,
+        "smooth_weight": 0.05,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "unaligned",
+      "seed": 204,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_seed204/best_model.pt",
+        "bytes": 459701,
+        "sha256": "91eb2a221ac6fe5a0c5b1b06c2b1822f5a8ade7f2a696e64c15530a13fd57157"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_balance_only",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 204,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 250.0,
+        "smooth_weight": 0.05,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "unaligned",
+      "seed": 205,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_seed205/best_model.pt",
+        "bytes": 459701,
+        "sha256": "de72b5ad7f7b7d4361e4cd8a92bb1f9c0cb3b9ccfdcc16621cb876832623412d"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_balance_only",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 205,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 250.0,
+        "smooth_weight": 0.05,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "aligned",
+      "seed": 201,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_align_seed201/best_model.pt",
+        "bytes": 459765,
+        "sha256": "84f4a401134c5cf6e21c90a41195daf68cbc942658da76c017e3008b8714338f"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_balance_align",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 201,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 0.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "aligned",
+      "seed": 202,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_align_seed202/best_model.pt",
+        "bytes": 459765,
+        "sha256": "de73790741cf861cc7c691bfd5b1bb92aca889ccdbf6d24684dc3977b5c178c6"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_balance_align",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 202,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 0.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "aligned",
+      "seed": 203,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_align_seed203/best_model.pt",
+        "bytes": 459765,
+        "sha256": "507bff82d8db50a5903cbb2f1d3a3ab76f3565be8a0af3c0348ac884f6263ec5"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_balance_align",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 203,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 0.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "aligned",
+      "seed": 204,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_align_seed204/best_model.pt",
+        "bytes": 459765,
+        "sha256": "c93aca9b9d9ca4fc56d32c57e61123b56fda5aea9b102c60e46c25069e993a9f"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_balance_align",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 204,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 0.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "aligned",
+      "seed": 205,
+      "source_config_checkpoint": {
+        "path": "artifacts/strictmask_ablation_rerun_wtb_full/wtb_bal_align_seed205/best_model.pt",
+        "bytes": 459765,
+        "sha256": "ecc9a75d68064090d5531bb42c9723c407bbbc85ee1fd48d4019cc78e53cdb1f"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "moe_balance_align",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 205,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 0.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.46981269121170044,
+          0.3565773367881775,
+          2.173609972000122
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.2818584740161896,
+          1.7181415557861328
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        }
+      }
+    },
+    {
+      "family": "dense_classifier",
+      "seed": 201,
+      "source_config_checkpoint": {
+        "path": "artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed201/best_model.pt",
+        "bytes": 363490,
+        "sha256": "455d9b9af29ea9211ae218d8411eccc948f6b4ce6d3f1ea935e61e53da7abe65"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "dense_classifier",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 201,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align + L_force"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split.",
+        "anchor_stress_variant": "canonical",
+        "anchor_stress_policy": "Full-anchor reference: identical training protocol with no channel modification."
+      }
+    },
+    {
+      "family": "dense_classifier",
+      "seed": 202,
+      "source_config_checkpoint": {
+        "path": "artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed202/best_model.pt",
+        "bytes": 363490,
+        "sha256": "a64499ccaa150eeed3f4d8e283583156505b788b1e5017eaa37acb7f61c4815f"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "dense_classifier",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 202,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align + L_force"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split.",
+        "anchor_stress_variant": "canonical",
+        "anchor_stress_policy": "Full-anchor reference: identical training protocol with no channel modification."
+      }
+    },
+    {
+      "family": "dense_classifier",
+      "seed": 203,
+      "source_config_checkpoint": {
+        "path": "artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed203/best_model.pt",
+        "bytes": 363490,
+        "sha256": "2569e4192a84fbbb22c325578e408dd4dde3706238a3665f549765744d66b921"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "dense_classifier",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 203,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align + L_force"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split.",
+        "anchor_stress_variant": "canonical",
+        "anchor_stress_policy": "Full-anchor reference: identical training protocol with no channel modification."
+      }
+    },
+    {
+      "family": "dense_classifier",
+      "seed": 204,
+      "source_config_checkpoint": {
+        "path": "artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed204/best_model.pt",
+        "bytes": 363490,
+        "sha256": "1a6b54c543e90eb9ba4723d60969bc88caa53ce2eafe90e2da3af7ead57a7ea8"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "dense_classifier",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 204,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align + L_force"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split.",
+        "anchor_stress_variant": "canonical",
+        "anchor_stress_policy": "Full-anchor reference: identical training protocol with no channel modification."
+      }
+    },
+    {
+      "family": "dense_classifier",
+      "seed": 205,
+      "source_config_checkpoint": {
+        "path": "artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed205/best_model.pt",
+        "bytes": 363490,
+        "sha256": "844a5437a4e6fc1017356464219f937c01e26aa06720dc502ae3d3a1ff7eef2c"
+      },
+      "model_config": {
+        "hidden_dim": 64,
+        "num_experts": 4,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "dense_classifier",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 0,
+        "seed": 205,
+        "log_every": 50,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 5000.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 1000.0,
+        "physics_force_weight": 10000.0,
+        "balance_top_k": 1,
+        "label": "MoE + L_bal + L_align + L_force"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split.",
+        "anchor_stress_variant": "canonical",
+        "anchor_stress_policy": "Full-anchor reference: identical training protocol with no channel modification."
+      }
+    },
+    {
+      "family": "dense",
+      "seed": 201,
+      "source_config_checkpoint": {
+        "path": "artifacts/capacity_matched_dense_wtb/wtb_dense_seed201/best_model.pt",
+        "bytes": 474018,
+        "sha256": "3c4da20f8e1a1b29d8be884914d9e68b9e0cd9a18e62254f0c527bd5856c1c8e"
+      },
+      "model_config": {
+        "hidden_dim": 76,
+        "num_experts": 1,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "baseline_dense",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 4,
+        "seed": 201,
+        "log_every": 200,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 0.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 0.0,
+        "physics_force_weight": 0.0,
+        "balance_top_k": 1,
+        "label": "Capacity-Matched Dense Diffusion-GRU"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split."
+      }
+    },
+    {
+      "family": "dense",
+      "seed": 202,
+      "source_config_checkpoint": {
+        "path": "artifacts/capacity_matched_dense_wtb/wtb_dense_seed202/best_model.pt",
+        "bytes": 474018,
+        "sha256": "b16e9c38a59b02d3bb851bf9effe537a423f87510fcc72899c593182330d17ce"
+      },
+      "model_config": {
+        "hidden_dim": 76,
+        "num_experts": 1,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "baseline_dense",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 4,
+        "seed": 202,
+        "log_every": 200,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 0.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 0.0,
+        "physics_force_weight": 0.0,
+        "balance_top_k": 1,
+        "label": "Capacity-Matched Dense Diffusion-GRU"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split."
+      }
+    },
+    {
+      "family": "dense",
+      "seed": 203,
+      "source_config_checkpoint": {
+        "path": "artifacts/capacity_matched_dense_wtb/wtb_dense_seed203/best_model.pt",
+        "bytes": 474018,
+        "sha256": "614cfe075892988e558658658602023bbee983cf17ccbfe3c0a696b6b8a5cd8e"
+      },
+      "model_config": {
+        "hidden_dim": 76,
+        "num_experts": 1,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "baseline_dense",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 4,
+        "seed": 203,
+        "log_every": 200,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 0.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 0.0,
+        "physics_force_weight": 0.0,
+        "balance_top_k": 1,
+        "label": "Capacity-Matched Dense Diffusion-GRU"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split."
+      }
+    },
+    {
+      "family": "dense",
+      "seed": 204,
+      "source_config_checkpoint": {
+        "path": "artifacts/capacity_matched_dense_wtb/wtb_dense_seed204/best_model.pt",
+        "bytes": 474018,
+        "sha256": "4ce845482f094b368ab6410480002af6b9ab2b40aeff76879d0cf265770f507b"
+      },
+      "model_config": {
+        "hidden_dim": 76,
+        "num_experts": 1,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "baseline_dense",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 4,
+        "seed": 204,
+        "log_every": 200,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 0.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 0.0,
+        "physics_force_weight": 0.0,
+        "balance_top_k": 1,
+        "label": "Capacity-Matched Dense Diffusion-GRU"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split."
+      }
+    },
+    {
+      "family": "dense",
+      "seed": 205,
+      "source_config_checkpoint": {
+        "path": "artifacts/capacity_matched_dense_wtb/wtb_dense_seed205/best_model.pt",
+        "bytes": 474018,
+        "sha256": "b24bdd3f8e408a6e9aeb3822b11a1e9178cec86b97e3ffcfb15efba12c334958"
+      },
+      "model_config": {
+        "hidden_dim": 76,
+        "num_experts": 1,
+        "dropout": 0.1,
+        "tau": 0.7,
+        "gate_hidden_dim": 64,
+        "primary_num_classes": 3,
+        "gate_physics_dim": 4
+      },
+      "train_config": {
+        "mode": "baseline_dense",
+        "batch_size": 16,
+        "epochs": 20,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 1.0,
+        "patience": 5,
+        "num_workers": 4,
+        "seed": 205,
+        "log_every": 200,
+        "limit_train_batches": null,
+        "limit_val_batches": null,
+        "align_weight": 0.0,
+        "aux_weight": 0.0,
+        "smooth_weight": 0.0,
+        "balance_weight": 0.0,
+        "physics_force_weight": 0.0,
+        "balance_top_k": 1,
+        "label": "Capacity-Matched Dense Diffusion-GRU"
+      },
+      "source_metadata": {
+        "dataset": "wtb",
+        "num_steps": 35280,
+        "num_nodes": 134,
+        "feature_names": [
+          "Wspd",
+          "Wdir_sin",
+          "Wdir_cos",
+          "Ndir_sin",
+          "Ndir_cos",
+          "Etmp",
+          "Itmp",
+          "Pab_mean",
+          "Pab_std",
+          "Prtv",
+          "Patv_hist"
+        ],
+        "physics_names": [
+          "Wspd",
+          "Pab_mean",
+          "wake_score",
+          "Patv"
+        ],
+        "primary_regime_names": [
+          "idle",
+          "mppt",
+          "pitch_control",
+          "transition"
+        ],
+        "aux_regime_names": [
+          "non_wake",
+          "wake"
+        ],
+        "primary_num_classes": 3,
+        "wake_expert_index": 3,
+        "steps_per_hour": 6,
+        "split_bounds": {
+          "train": [
+            0,
+            25920
+          ],
+          "val": [
+            25920,
+            30240
+          ],
+          "test": [
+            30240,
+            35280
+          ]
+        },
+        "train_days": 180,
+        "val_days": 30,
+        "test_days": 35,
+        "hist_len": 36,
+        "pred_len": 24,
+        "feature_stats": {
+          "Wspd": {
+            "fill_mean": 5.30646276473999,
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "Wdir_sin": {
+            "fill_mean": 0.0007168088341131806,
+            "mean": 0.0007168092997744679,
+            "std": 0.3108249008655548
+          },
+          "Wdir_cos": {
+            "fill_mean": 0.9048363566398621,
+            "mean": 0.9048363566398621,
+            "std": 0.2909504771232605
+          },
+          "Ndir_sin": {
+            "fill_mean": -0.03054691106081009,
+            "mean": -0.03054691106081009,
+            "std": 0.6348450183868408
+          },
+          "Ndir_cos": {
+            "fill_mean": 0.13530103862285614,
+            "mean": 0.13530103862285614,
+            "std": 0.7600619792938232
+          },
+          "Etmp": {
+            "fill_mean": 47.18556213378906,
+            "mean": 47.18556213378906,
+            "std": 84.5347671508789
+          },
+          "Itmp": {
+            "fill_mean": 32.439720153808594,
+            "mean": 32.43971633911133,
+            "std": 18.437074661254883
+          },
+          "Pab_mean": {
+            "fill_mean": 25.0340576171875,
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "Pab_std": {
+            "fill_mean": 0.04807467758655548,
+            "mean": 0.04807468131184578,
+            "std": 1.2217413187026978
+          },
+          "Prtv": {
+            "fill_mean": -12.832855224609375,
+            "mean": -12.832855224609375,
+            "std": 69.00983428955078
+          },
+          "Patv_hist": {
+            "fill_mean": 379.87786865234375,
+            "mean": 379.87786865234375,
+            "std": 416.4385986328125
+          }
+        },
+        "physics_model_stats": {
+          "0": {
+            "mean": 5.306463241577148,
+            "std": 3.425992250442505
+          },
+          "1": {
+            "mean": 25.034055709838867,
+            "std": 37.68857192993164
+          },
+          "2": {
+            "mean": 0.8220961093902588,
+            "std": 0.44325244426727295
+          },
+          "3": {
+            "mean": 359.93310546875,
+            "std": 426.30133056640625
+          }
+        },
+        "primary_class_weights": [
+          0.5710612317525016,
+          0.3723172039546066,
+          2.056621564292892
+        ],
+        "wake_pos_weight": 2.9999957856230743,
+        "wake_threshold": 1.0654468536376953,
+        "graph_config": {
+          "candidate_k": 8,
+          "max_distance": 1500.0,
+          "max_in_edges": 5,
+          "cone_half_angle_deg": 25.0,
+          "parallel_scale": 1200.0,
+          "cross_scale": 400.0,
+          "direction_is_from": true
+        },
+        "pitch_force_weights": [
+          0.3065677972798275,
+          1.6934322027201725
+        ],
+        "strict_anchor_mask_patch": {
+          "source_cache": "artifacts\\cache\\wtb_245d",
+          "rule": "regime_primary_valid &= feature_mask[..., Wspd] & feature_mask[..., Pab_mean]; missing-anchor labels set to transition/invalid",
+          "old_regime_valid": 4142408,
+          "new_regime_valid": 4092890,
+          "removed_regime_valid": 49518,
+          "removed_rate": 0.011953916659102629
+        },
+        "class_weight_source_split": "train",
+        "class_weight_source_cache": "artifacts\\cache_strictmask\\wtb_245d",
+        "class_weight_boundary_note": "Arrays are copied from the source strict cache; only alignment and pitch-force loss class weights are recomputed from the training split."
+      }
+    }
+  ]
+}

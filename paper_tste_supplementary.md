@@ -805,7 +805,7 @@ Table A8c is the authoritative external benchmark on the corrected v2 protocol a
 \fontsize{8.0pt}{9.2pt}\selectfont
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{0.95}
-\caption*{\textbf{Table A8c.} Authoritative external benchmark under the corrected EXP-01 v2 protocol. Transferred STGQ-Modular (pitch withheld at deployment) against the strong non-parametric \textbf{Site-Local Wspd-Bins} baseline, on the identical arrival-time information set. Paired site-level day-cluster bootstrap, seeds 201--205. Positive $\Delta$PSREI denotes a cost \emph{penalty} for the transferred representation. Source: \texttt{artifacts/external-matched-control-benchmark/v2/external\_matched\_control\_benchmark.csv}.}
+\caption*{\textbf{Table A8c.} Historical EXP-01 v2 benchmark (superseded by the retrospective v4 pitch-masking and source-checkpoint repair). These rows are retained as provenance and are not current transfer evidence. Transferred STGQ-Modular (pitch withheld at deployment) against the strong non-parametric \textbf{Site-Local Wspd-Bins} baseline, on the identical arrival-time information set. Paired site-level day-cluster bootstrap, seeds 201--205. Positive $\Delta$PSREI denotes a cost \emph{penalty} for the transferred representation. Source: \texttt{artifacts/external-matched-control-benchmark/v2/external\_matched\_control\_benchmark.csv}.}
 \begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}l l r r r@{}}
 \toprule
 Farm & Horizon & Site-Local Baseline (kWh) & $\Delta$PSREI vs. Site-Local (kWh) & $p$ \\
@@ -1834,3 +1834,14 @@ STGQ-Modular (Learned Residual) & 663,347 (6.1\%) & 786,366 (6.7\%) & 875,838 (7
 \end{table*}
 ```
 
+
+
+# Audit correction and withdrawal notice (2026-10-15)
+
+The channel MLP decision output historically labelled h=6 actually indexed h=2 residuals; that h=6 decision result is withdrawn. Its historical direct-cost references were fixed constants, not matched wind-speed baselines, so their incremental-value interpretation is withdrawn. The earlier 62.9% transition recall included boundaries induced by invalid adjacent labels; it is withdrawn as a valid-regime transition recall and retained only as a historical unmasked diagnostic. Corrected runs archive both denominator definitions. These defects do not by themselves invalidate separately masked NMI/ARI metrics.
+
+EXP03 historical results do not have full-grid arrival provenance and used a potentially unarrived first observation for LOCF initialization. The historical asynchronous decision curve is withdrawn as causal arrival-time evidence. Corrected execution starts at standardized zero before any arrival, archives full traces, and reports one simulator trace per delay shared by model seeds. A first upper CI bound reaching zero denotes loss of demonstrated advantage, not demonstrated inferiority.
+
+The current retrospective EXP01 v4 evidence is recorded in artifacts/exp01_pitchmasked_v4/exp01_pitchmasked_v3_joint_statistics.csv. At h=6, Penmanshiel has Delta=-315399.62 kWh, 95% CI [-1590023.53,970006.32]; Kelmarsh has Delta=352433.95 kWh, 95% CI [59969.70,736901.18]. Neither establishes positive transferred decision value. Earlier v2 rows remain historical only.
+
+Full raw-data reproduction is in progress and is not certified. Withdrawn claims do not count as successfully reproduced experiments. See docs/RAW_REPLAY_PROTOCOL_20261015.md and the versioned execution receipts.

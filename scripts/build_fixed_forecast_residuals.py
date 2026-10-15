@@ -28,10 +28,17 @@ from windfarm_moe.mechanism_intervention import _load_model_from_checkpoint
 
 
 def main():
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--cache-dir', default='artifacts/cache_strictmask_trainweights/wtb_245d')
+    parser.add_argument('--runs-pattern', default='artifacts/trainweight_full_rerun_20260830/wtb_full_seed{seed}')
+    parser.add_argument('--output-file', default='artifacts/fixed_forecast_residuals.npz')
+    parser.add_argument('--device', default='cuda:0' if torch.cuda.is_available() else 'cpu')
+    args = parser.parse_args()
+    device = torch.device(args.device)
     print(f"[Fixed Target Isolation] Using device: {device}")
 
-    cache_path = Path("artifacts/cache_strictmask_trainweights/wtb_245d")
+    cache_path = Path(args.cache_dir)
     bundle = load_cache_bundle(cache_path, mmap_mode="r")
     seeds = [201, 202, 203, 204, 205]
     horizons = [0, 1, 2, 3, 4, 5]  # h = 1 to 6 (10m to 60m)
@@ -49,7 +56,7 @@ def main():
     metrics_summary: List[Dict[str, object]] = []
 
     for seed in seeds:
-        ckpt_path = Path(f"artifacts/trainweight_full_rerun_20260830/wtb_full_seed{seed}")
+        ckpt_path = Path(args.runs_pattern.format(seed=seed))
         print(f"\n--- Loading Seed {seed} from {ckpt_path} ---")
         model = _load_model_from_checkpoint(ckpt_path, bundle, device)
         model.eval()
@@ -125,12 +132,12 @@ def main():
             print(f"[{split_name.upper()} Seed {seed}] Processed {len(yhat_arr)} windows in {time.time()-t0:.2f}s. "
                   f"h=1 RMSE: {metrics_summary[-6]['rmse']:.2f}, h=6 RMSE: {metrics_summary[-1]['rmse']:.2f}")
 
-    out_file = Path("artifacts/fixed_forecast_residuals.npz")
+    out_file = Path(args.output_file)
     out_file.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(out_file, **out_arrays)
     print(f"\n[Saved] Compressed residuals to {out_file} (Size: {out_file.stat().st_size / (1024*1024):.2f} MB)")
 
-    meta_file = Path("artifacts/fixed_forecast_residuals_meta.json")
+    meta_file = out_file.with_suffix('.meta.json')
     meta = {
         "seeds": seeds,
         "horizons_steps": [1, 2, 3, 4, 5, 6],

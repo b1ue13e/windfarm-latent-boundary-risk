@@ -1,3 +1,5 @@
+> AUDIT HOLD (2026-10-15): Not submission-ready. Historical claims below are subject to the current correction/withdrawal register and full raw-data replay.
+
 # IEEE Transactions on Sustainable Energy
 ## Submission Cover Letter & Executive Summary
 

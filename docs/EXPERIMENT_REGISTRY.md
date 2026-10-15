@@ -505,3 +505,7 @@ For every new experiment:
 - no using a weaker comparator because the stronger comparator loses;
 - no changing significance procedures after inspecting p-values;
 - no renaming a failed hypothesis into a “new contribution— without a new registered question.
+
+## RERUN-20261015 — Registered raw-data replication and protocol correction
+
+Status: REGISTERED / NOT YET EXECUTED at entry creation. Full frozen scope, information set, primary baseline, estimand, population, seeds, uncertainty procedures, failure conditions, artifact requirements and withdrawal rules are specified in docs/RAW_REPLAY_PROTOCOL_20261015.md. This campaign replays existing experiments and separates retrospective corrections from confirmatory evidence; no scientific claim ceiling or success threshold is changed. Newly detected corrections: channel h6 used residual index1 rather than5; hardcoded channel decision references were unmatched; asynchronous initial LOCF exposed a potentially unarrived value. Corrected outputs must be versioned and cannot overwrite historical arrays or inherit their scientific validity.

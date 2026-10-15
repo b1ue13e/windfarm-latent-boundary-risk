@@ -149,6 +149,7 @@ def simulate_asynchronous_scada_stream(
     mean_delay: int,
     max_lateness: int = 4,
     seed: int = 20261012,
+    archive_path: Path | None = None,
 ) -> Tuple[np.ndarray, np.ndarray, Dict[str, Any], List[Packet]]:
     """Replay SCADA channel telemetry through causal packet buffer with transparent LOCF.
 
@@ -185,6 +186,7 @@ def simulate_asynchronous_scada_stream(
     contaminated_features = raw_features.copy()
     dropped_mask = np.zeros((T, N, len(ch_indices)), dtype=bool)
     stale_mask = np.zeros((T, N, len(ch_indices)), dtype=bool)
+    selected_source = np.full((T, N, len(ch_indices)), -1, dtype=np.int32)
     sample_packets: List[Packet] = []
 
     rng = np.random.default_rng(seed)
@@ -218,7 +220,9 @@ def simulate_asynchronous_scada_stream(
         arr_ch = np.arange(T)[:, None] + d_ch
 
         for n in range(N):
-            last_causal_val = float(v_ch[0, n])
+            # Predetermined standardized mean until a packet actually arrives.
+            last_causal_val = 0.0
+            last_source = -1
             for t in range(T):
                 s_min = max(0, t - max_lateness)
                 found = False
@@ -226,10 +230,12 @@ def simulate_asynchronous_scada_stream(
                 for s in range(t, s_min - 1, -1):
                     if arr_ch[s, n] <= t:
                         last_causal_val = float(v_ch[s, n])
+                        last_source = s
                         found = True
                         matched_s = s
                         break
                 contaminated_features[t, n, ch] = last_causal_val
+                selected_source[t, n, c_idx] = last_source
                 if not found:
                     dropped_mask[t, n, c_idx] = True
                     stale_mask[t, n, c_idx] = True
@@ -237,6 +243,10 @@ def simulate_asynchronous_scada_stream(
                     stale_mask[t, n, c_idx] = (matched_s != t)
 
     trace_stats = {
+        "protocol_version": "async-causal-init-full-trace-v2",
+        "simulator_seed": seed,
+        "max_lateness": max_lateness,
+        "initial_value_standardized": 0.0,
         "mean_delay_steps": mean_delay,
         "mean_delay_minutes": mean_delay * 10,
         "channels_delayed": resolved_channels,
@@ -246,6 +256,19 @@ def simulate_asynchronous_scada_stream(
             resolved_channels[i]: float(np.mean(dropped_mask[..., i])) for i in range(len(resolved_channels))
         },
     }
+    if archive_path is not None:
+        archive_path = Path(archive_path)
+        archive_path.parent.mkdir(parents=True, exist_ok=True)
+        if archive_path.exists():
+            raise FileExistsError(f'Refusing to overwrite packet archive: {archive_path}')
+        np.savez_compressed(archive_path, raw_features=raw_features,
+                            channel_indices=np.asarray(ch_indices), delays=delays,
+                            selected_source=selected_source, dropped_mask=dropped_mask,
+                            stale_mask=stale_mask, contaminated_features=contaminated_features,
+                            feature_names=np.asarray(feature_names),
+                            metadata_json=np.asarray(json.dumps(trace_stats)))
+        trace_stats['archive_sha256'] = hashlib.sha256(archive_path.read_bytes()).hexdigest()
+        trace_stats['archive_path'] = str(archive_path)
 
     return contaminated_features, dropped_mask, trace_stats, sample_packets
 
@@ -362,8 +385,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="EXP-03 Asynchronous Envelope Benchmark")
     parser.add_argument("--cache-dir", type=Path, default=REPO_ROOT / "artifacts/cache_strictmask_trainweights/wtb_245d")
     parser.add_argument("--residuals-file", type=Path, default=REPO_ROOT / "artifacts/fixed_forecast_residuals.npz")
-    parser.add_argument("--output-dir", type=Path, default=REPO_ROOT / "artifacts/exp03_async")
-    parser.add_argument("--output-report", type=Path, default=REPO_ROOT / "docs/EXP03_ASYNCHRONOUS_REPORT.md")
+    parser.add_argument("--output-dir", type=Path, default=REPO_ROOT / "artifacts/exp03_async_replay_v2")
+    parser.add_argument("--output-report", type=Path, default=REPO_ROOT / "artifacts/exp03_async_replay_v2/report.md")
     parser.add_argument("--device", type=str, default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--smoke", action="store_true", help="Quick smoke test mode")
     args = parser.parse_args()
@@ -450,6 +473,8 @@ def main() -> None:
         m_val = res_data["mask_val"]
 
         for h_idx, h_name in horizons_to_eval:
+            torch.manual_seed(seed)
+            np.random.seed(seed)
             s_val_h = s_val[:, h_idx, :]
             mask_val_h = m_val[:, h_idx, :] > 0.5
 
@@ -473,14 +498,26 @@ def main() -> None:
             dataset = TensorDataset(x_train_flat, s_train_flat, z_train_flat)
             loader = DataLoader(dataset, batch_size=2048, shuffle=True)
             n_epochs = 3 if args.smoke else 8
-            for _ in range(n_epochs):
+            history = []
+            for epoch in range(n_epochs):
+                loss_sum, count = 0.0, 0
                 for bx, bs, bz in loader:
                     optimizer.zero_grad()
                     pred_r, pred_proxy = challenger_model(bx)
                     loss = criterion_pinball(pred_r, bs) + 0.1 * criterion_ce(pred_proxy, bz)
                     loss.backward()
                     optimizer.step()
+                    loss_sum += float(loss.item()) * len(bx)
+                    count += len(bx)
+                history.append({'epoch': epoch+1, 'loss': loss_sum/count})
             challenger_model.eval()
+            model_dir = out_dir / 'models' / f'seed{seed}_h{h_idx+1}'
+            model_dir.mkdir(parents=True, exist_ok=False)
+            torch.save({'model_state': challenger_model.state_dict(), 'seed': seed,
+                        'history': history, 'epochs': n_epochs,
+                        'baseline_edges': edges, 'baseline_reserves': bin_reserves},
+                       model_dir / 'model.pt')
+            (model_dir / 'training_history.json').write_text(json.dumps(history, indent=2), encoding='utf-8')
 
             calibrated_models[(seed, h_idx)] = ((edges, bin_reserves), challenger_model)
             print(f"  [Calibrated] Seed {seed} | Horizon {h_name}")
@@ -507,13 +544,13 @@ def main() -> None:
             mean_delay=delay,
             max_lateness=4,
             seed=20261012 + delay * 100,
+            archive_path=out_dir / 'packet_grid' / f'delay{delay}.npz',
         )
         if len(saved_packets) == 0:
             saved_packets = packets
 
-        # Update global provenance hash with deterministic slice of contaminated features
-        global_hasher.update(async_feat[:144, 0, :].tobytes())
-        global_hasher.update(dropped_mask[:144, 0, :].tobytes())
+        # Hash manifest of every full-grid archive; all model seeds share this trace.
+        global_hasher.update(f"{delay}:{trace_stats['archive_sha256']}\n".encode('ascii'))
 
         missing_manifest_records.append({
             "delay_tau": delay,
@@ -555,6 +592,12 @@ def main() -> None:
                 if (h_name, delay) not in block_deltas_tracker:
                     block_deltas_tracker[(h_name, delay)] = {}
                 block_deltas_tracker[(h_name, delay)][seed] = boot_stat["block_delta_cost"]
+                pred_dir = out_dir / 'predictions'
+                pred_dir.mkdir(exist_ok=True)
+                np.savez_compressed(pred_dir / f'delay{delay}_seed{seed}_h{h_idx+1}.npz',
+                                    reserve_challenger=r_challenger, reserve_baseline=r_baseline,
+                                    shortfall=s_test_h, mask=mask_test_h, anchor_indices=anchors_test,
+                                    block_delta_cost=boot_stat['block_delta_cost'])
 
                 all_results.append({
                     "delay_tau": delay,
@@ -596,14 +639,14 @@ def main() -> None:
     
     trace_digest = global_hasher.hexdigest()
     (out_dir / "input_trace_hash.txt").write_text(trace_digest + "\n", encoding="ascii")
-    print(f"[OK] Internal execution digest (node 0, first 144 steps; NOT a full-grid hash): {trace_digest}")
+    print(f"[OK] Full-grid archive hash manifest digest: {trace_digest}")
 
     # 6. Save Verified Missing Mask Manifest
     (out_dir / "missing_mask_manifest.json").write_text(
         json.dumps(missing_manifest_records, indent=2) + "\n", encoding="utf-8"
     )
     (out_dir / "missing_mask.json").write_text(
-        json.dumps(missing_manifest_records[0]["sample_first_48_steps_wspd_dropped"], indent=2) + "\n", encoding="utf-8"
+        json.dumps({"schema": "full-grid-mask-locations-v2", "archives": [r["trace_stats"]["archive_path"] for r in missing_manifest_records]}, indent=2) + "\n", encoding="utf-8"
     )
 
     # 7. Protocol Summary JSON
@@ -613,7 +656,10 @@ def main() -> None:
         "population_condition": "fixed dispatch-anchor population (100% cells, no drop collapse)",
         "delays_evaluated_steps": delays_to_eval,
         "delays_evaluated_minutes": [d * 10 for d in delays_to_eval],
-        "seeds": seeds_to_eval,
+        "model_seeds": seeds_to_eval,
+        "simulator_seeds_by_delay": {str(d): 20261012 + d * 100 for d in delays_to_eval},
+        "trace_replication": "one realized trace per delay, shared by all model seeds",
+        "tau_star_definition": "first delay whose joint CI upper bound >= 0 (loss of demonstrated advantage)",
         "horizons": [h[1] for h in horizons_to_eval],
         "operating_target_nominal": 10.0,
         "operating_target_sensitivities": [5.0, 10.0, 15.0],
@@ -670,70 +716,24 @@ def main() -> None:
     df_joint_delay = pd.DataFrame(joint_delay_summary)
 
     # 9. Generate Comprehensive Markdown Audit Report
-    report_md = f"""# EXP-03 Asynchronous Telemetry Envelope Benchmark Report
+    joint_path = out_dir / 'joint_statistics.json'
+    joint_path.write_text(json.dumps(joint_delay_summary, indent=2), encoding='utf-8')
+    report_md = f"""# EXP03 causal replay v2
 
-**Status:** RECONCILED HARDENED PROTOCOL (Strict Parity & Fixed Population)  
-**Execution Environment:** NVIDIA A100-PCIE-40GB GPU (Metis Cloud Node)  
-**Scientific Scope:** Synthetic Asynchronous Envelope (Non-Extrapolatable to Industrial Prevalence)  
-**Target Artifact:** `artifacts/exp03_async/psrei_vs_delay.csv`  
-**Internal Trace Digest (`input_trace_hash.txt`):** `{trace_digest}`  
-
-> **Provenance boundary (2026-10-13, F6 correction).** `{trace_digest}` is an *internal* Python
-> `hashlib` accumulator digest, not a file SHA-256. It is computed during execution over
-> `async_feat[:144, 0, :]` and `dropped_mask[:144, 0, :]` only — i.e. **node 0, the first 144 steps**.
-> It does not cover the evaluated full grid (all turbines × 5 seeds × 7 delays × 2 horizons), and it
-> cannot be recomputed from any archived artifact. The materialized `arrival_trace.jsonl` covers
-> nodes 0–1 × the first 144 steps at τ=0 and therefore contains **zero delayed packets**; its own
-> SHA-256 (`fcc119806e6bccad0f458a9cd6188c3150ece307ca0c63acd6b395d7904b3d9c`) differs from the digest above.
-> Packet-level provenance for the evaluated grid remains **OUTSTANDING**. Do not describe this digest
-> as a "full-grid" provenance hash.
-
----
-
-## 1. Executive Summary & Epistemic Boundaries
-
-This benchmark evaluates reserve screening under discrete integer-step out-of-order telemetry arrival
-under **strict arrival-time information parity** (all consumed channels including `Patv_hist` delayed symmetrically)
-and on a **strictly fixed dispatch-anchor population** (evaluated cells: {joint_delay_summary[0]['n_cells']} cells constant across all delays; no sample collapse).
-
-### Key Empirical Estimands:
-1. **Critical Latency Threshold (Hierarchical $\\tau^*$):**
-   - For Horizon $h=1$: $\\tau^* = {tau_star_hierarchical.get('h=1', 'N/A')} \\times 10$ minutes.
-   - For Horizon $h=6$: $\\tau^* = {tau_star_hierarchical.get('h=6', 'N/A')} \\times 10$ minutes.
-2. **Fixed Population Integrity (LOCF-imputed):**
-   - Evaluated cells remain constant ({joint_delay_summary[0]['n_cells']} cells) across all $\\tau \\in [0, 6]$ by *imputing* stale values rather than dropping rows.
-   - Telemetry drop fraction rises from 0.0% at $\\tau=0$ to {joint_delay_summary[-1]['drop_fraction']*100:.1f}% at $\\tau=6$, handled via causal LOCF.
-   - **Boundary:** the LOCF stale fraction rises to ~{joint_delay_summary[-1].get('stale_fraction', float('nan'))*100:.1f}% at $\\tau=6$, so late-delay points measure degradation under near-total staleness rather than a partially-refreshed stream. "Fixed population" here means a fixed *evaluated* population, not fresh observations.
-   - Total PSREI does NOT collapse with delay; normalized per-cell cost reflects latency penalties.
-
----
-
-## 2. Benchmark Summary Table by Horizon and Delay Level
-
-| Horizon | Delay $\\tau$ | Latency | Evaluated Cells | Drop Rate | Median $\\Delta$ (kWh) | Mean $\\Delta$ (kWh) | Joint 95% CI (kWh) | $P(\\Delta \\le 0)$ | Chal Viol (%) | Base Viol (%) |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+Synthetic asynchronous envelope only. Execution device: {device}.
+Result CSV: {csv_path}. Joint seed/day statistics: {joint_path}.
+Full packet-grid archives: packet_grid/delay*.npz. They contain raw values,
+all packet delays (event time is the time-axis index; arrival=event+delay),
+node/channel indices, selected source event, missing/stale masks and consumed features.
+Manifest digest: {trace_digest}. arrival_trace.jsonl is a sample only.
+One simulator realization per delay is shared by all model seeds; uncertainty
+is conditional on these traces and is not uncertainty across simulator seeds.
+Initial state is standardized zero until a causal packet is available.
+Tau loss-of-advantage: {tau_star_hierarchical}; this is the first upper CI bound
+reaching zero, NOT the first demonstrated disadvantage. No directional scientific
+verdict is hardcoded. Inspect every joint interval and preserve negative/null results.
 """
-    for _, row in df_joint_delay.iterrows():
-        ci_str = f"[{row['joint_ci_95_low']/1e3:+8.1f}k, {row['joint_ci_95_high']/1e3:+8.1f}k]"
-        report_md += (
-            f"| {row['horizon']} | {row['delay_tau']} | {row['delay_minutes']} min | "
-            f"{row['n_cells']} | {row['drop_fraction']*100:4.1f}% | "
-            f"{row['median_delta_kwh']/1e3:+8.1f}k | {row['mean_delta_kwh']/1e3:+8.1f}k | "
-            f"{ci_str} | {row['joint_p_superiority']:.3f} | "
-            f"{row['challenger_viol_pct']:5.2f}% | {row['baseline_viol_pct']:5.2f}% |\n"
-        )
-
-    report_md += """
----
-
-## 3. Scientific Falsification & Interpretive Guardrails
-
-1. **Information Parity Enforcement:** Both Site-Local Wspd-Bins and Challenger observe identical delayed telemetry; active power history (`Patv_hist`) is subjected to identical discrete delay buffers.
-2. **Fixed Population Guardrail (bounded):** The previous artifact where the population collapsed to 2.47% at $\\tau=6$ is eliminated: causal LOCF keeps the *evaluated* population constant without retrospective backfill or row dropping. However, LOCF does so by imputing stale values, so at $\\tau=6$ the stale fraction reaches ~{joint_delay_summary[-1].get('stale_fraction', float('nan'))*100:.1f}%. Fixed-population *evaluation* must not be reported as a fully-refreshed telemetry stream.
-3. **Synthetic Envelope Limitation:** These findings represent a controlled boundary envelope under synthetic Poisson/jitter arrivals; they do not establish empirical SCADA failure distributions in commercial wind fleets.
-4. **Reverse Null Protection Confirmed:** Complex representations do not buffer against telemetry delay; local conditional baselines maintain comparable or superior resilience across the delay spectrum.
-5. **Provenance Limitation:** The archived packet trace covers only node 0/1 and the first 144 steps at $\\tau=0$; the recorded trace digest is an internal accumulator over node 0 / first 144 steps, not a full-grid arrival-stream hash. Full-grid packet-level provenance remains OUTSTANDING.
-"""
+    args.output_report.parent.mkdir(parents=True, exist_ok=True)
     args.output_report.write_text(report_md, encoding="utf-8")
     print(f"[OK] Generated hardened audit report: {args.output_report}")
     print("==================================================================")

@@ -12,7 +12,7 @@ The repository is organized for evidence-first collaboration. Start with `docs/C
 
 ## External Reproducibility & Replication Guide
 
-This repository adheres to an evidence-first, strict zero-drift scientific contract. Every quantitative claim in the manuscript is backed by cryptographic SHA256 provenance in [`artifacts/ARTIFACT_MANIFEST.json`](artifacts/ARTIFACT_MANIFEST.json).
+This repository adheres to an evidence-first, strict zero-drift scientific contract. Archived claims have artifact hashes; hashes alone do not establish historical training authenticity or end-to-end reproduction. Coverage is recorded in [`artifacts/ARTIFACT_MANIFEST.json`](artifacts/ARTIFACT_MANIFEST.json).
 
 ### Three Replication Tiers
 
@@ -20,7 +20,7 @@ This repository adheres to an evidence-first, strict zero-drift scientific contr
 | :--- | :--- | :--- | :--- | :--- |
 | **Tier 1: Fast Replication** | Full manuscript claim verification & SHA256 cryptographic audit across all 18 headline claims | Any Laptop / CPU | **< 1 min** | `python scripts/verify_replication.py` |
 | **Tier 2: Full Re-Evaluation** | Re-evaluate matched-budget frontiers, rho sensitivities, and bootstrap contrasts from cached predictions | Standard Workstation | **~ 30 min** | `python scripts/run_matched_budget_frontier.py && python scripts/run_rho_sensitivity.py` |
-| **Tier 3: End-to-End Retraining** | Retrain all 5 seeds of Spatio-Temporal MoE, baselines, and cross-site transfers from raw SCADA | HPC Cluster (A100 / Blackwell) | **~ 48 hrs** | See [`docs/DATA_AVAILABILITY_AND_PREPROCESSING.md`](docs/DATA_AVAILABILITY_AND_PREPROCESSING.md) |
+| **Tier 3: End-to-End Retraining** | Retrain all 5 seeds of Spatio-Temporal MoE, baselines, and cross-site transfers from raw SCADA | HPC Cluster (A100 / Blackwell) | **Not verified** | See [`docs/DATA_AVAILABILITY_AND_PREPROCESSING.md`](docs/DATA_AVAILABILITY_AND_PREPROCESSING.md) |
 
 ### 5-Step Clean Clone Reproduction
 
@@ -105,3 +105,7 @@ python -m pytest tests/test_smoke.py tests/test_paper.py
 - `Wdir` 默认按“来流方向”解释，尾流方向使用反向流向向量。
 - 缺失或负功率目标不会参与监督，但其掩码会保留给模型使用。
 - 当前版本主要依赖已有环境中的 `PyTorch + pandas + sklearn + matplotlib + seaborn`。
+
+## Current reproducibility status (2026-10-15)
+
+Full raw-data reproduction is NOT YET VERIFIED. Cached checks are not a training certificate. Run `python scripts/raw_replay.py freeze`, then `python scripts/raw_replay.py run-wtb` for the explicit WTB campaign; these commands refuse to overwrite failed runs or old evidence. External and ancillary families are separately tracked in coverage.json and must not be counted as reproduced. Read docs/RAW_REPLAY_PROTOCOL_20261015.md before execution.

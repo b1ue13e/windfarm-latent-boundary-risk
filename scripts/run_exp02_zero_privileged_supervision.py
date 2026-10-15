@@ -386,6 +386,7 @@ def train_and_eval_challenger(
     lr: float = 1e-3,
     batch_size: int = 512,
     use_proxy: bool = True,
+    archive_dir: Path | None = None,
 ) -> Tuple[np.ndarray, np.ndarray | None]:
     """Trains zero-privileged representation model with optional proxy head."""
     torch.manual_seed(seed)
@@ -428,9 +429,14 @@ def train_and_eval_challenger(
 
     best_val_loss = float("inf")
     best_weights = None
+    history = []
+    if archive_dir is not None:
+        archive_dir = Path(archive_dir)
+        archive_dir.mkdir(parents=True, exist_ok=False)
 
     for epoch in range(epochs):
         model.train()
+        loss_sum, count = 0.0, 0
         for bx, by, bz in loader_tr:
             bx, by, bz = bx.to(device), by.to(device), bz.to(device)
             pred_r, pred_z = model(bx)
@@ -444,6 +450,8 @@ def train_and_eval_challenger(
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+            loss_sum += float(loss.item()) * len(bx)
+            count += len(bx)
 
         # Validation loss for early stopping (strictly using Pinball loss!)
         # Rule 6 Assertion: Checkpoint selection is strictly independent of pitch
@@ -458,6 +466,10 @@ def train_and_eval_challenger(
             if val_loss < best_val_loss:
                 best_val_loss = val_loss
                 best_weights = {k: v.cpu().clone() for k, v in model.state_dict().items()}
+        history.append({'epoch': epoch+1, 'train_loss': loss_sum/count,
+                        'validation_pinball_loss': val_loss})
+        if archive_dir is not None:
+            (archive_dir / 'history.json').write_text(json.dumps(history, indent=2), encoding='utf-8')
 
     if best_weights is not None:
         model.load_state_dict(best_weights)
@@ -477,6 +489,16 @@ def train_and_eval_challenger(
         else:
             pred_proxy_probs = None
 
+    if archive_dir is not None:
+        torch.save({'model_state': best_weights, 'mean': mean, 'std': std,
+                    'seed': seed, 'epochs': epochs, 'lambda_proxy': lambda_proxy,
+                    'use_proxy': use_proxy, 'selection_metric': 'validation_pinball_loss',
+                    'best_val_loss': best_val_loss}, archive_dir / 'model.pt')
+        arrays = dict(reserve=pred_reserves, input_test=x_test, shortfall_val=s_val,
+                      mask_val=mask_val, chronological_train_steps=split_t)
+        if pred_proxy_probs is not None:
+            arrays['proxy_probability'] = pred_proxy_probs
+        np.savez_compressed(archive_dir / 'predictions.npz', **arrays)
     return pred_reserves, pred_proxy_probs
 
 
@@ -489,8 +511,11 @@ def main():
     parser.add_argument("--cache-dir", default="artifacts/cache_strictmask_trainweights/wtb_245d")
     parser.add_argument("--residuals-file", default="artifacts/fixed_forecast_residuals.npz")
     parser.add_argument("--runs-root", default="artifacts/strictmask_ablation_rerun_wtb_full")
-    parser.add_argument("--output-csv", default="artifacts/zero_privileged_supervision_benchmark.csv")
-    parser.add_argument("--output-report", default="docs/ZERO_PRIVILEGED_SUPERVISION_REPORT.md")
+    parser.add_argument('--oracle-pattern', default=None,
+                        help='Explicit privileged aligned-model directory pattern containing {seed}')
+    parser.add_argument("--output-csv", default="artifacts/exp02_replay_v2/results.csv")
+    parser.add_argument("--output-report", default="artifacts/exp02_replay_v2/report.md")
+    parser.add_argument('--archive-dir', type=Path, default=Path('artifacts/exp02_replay_v2/runs'))
     parser.add_argument(
         "--output-blocks",
         default="artifacts/exp02_zero_privileged_block_deltas.npz",
@@ -663,6 +688,7 @@ def main():
                 seed=seed,
                 epochs=args.epochs,
                 use_proxy=False,
+                archive_dir=args.archive_dir / f'seed{seed}_{h_name}_direct'.replace('=', ''),
             )
             reserves_dict["Direct Consequence Quantile MLP"] = r_direct
 
@@ -681,6 +707,7 @@ def main():
                 lambda_proxy=0.5,
                 epochs=args.epochs,
                 use_proxy=True,
+                archive_dir=args.archive_dir / f'seed{seed}_{h_name}_eps50'.replace('=', ''),
             )
             reserves_dict["Zero-Privileged Challenger (eps=50)"] = r_challenger
             proxy_prob_dict["Zero-Privileged Challenger (eps=50)"] = p_challenger
@@ -701,6 +728,7 @@ def main():
                     lambda_proxy=0.5,
                     epochs=args.epochs,
                     use_proxy=True,
+                    archive_dir=args.archive_dir / f'seed{seed}_{h_name}_eps{int(eps)}'.replace('=', ''),
                 )
                 reserves_dict[f"Zero-Privileged Challenger (eps={int(eps)})"] = r_sens
                 proxy_prob_dict[f"Zero-Privileged Challenger (eps={int(eps)})"] = p_sens
@@ -708,7 +736,7 @@ def main():
             # ------------------------------------------------------------------
             # Model 4: Privileged STGQ-Modular (Oracle Upper Reference, Non-Competitive)
             # ------------------------------------------------------------------
-            oracle_dir = runs_root / f"wtb_bal_align_seed{seed}"
+            oracle_dir = Path(args.oracle_pattern.format(seed=seed)) if args.oracle_pattern else runs_root / f"wtb_bal_align_seed{seed}"
             if oracle_dir.exists():
                 val_gate = np.load(oracle_dir / "val_metrics" / "gate_prob.npy")[:min_val_T, :, 2]
                 test_gate = np.load(oracle_dir / "test_metrics" / "gate_prob.npy")[:min_test_T, :, 2]

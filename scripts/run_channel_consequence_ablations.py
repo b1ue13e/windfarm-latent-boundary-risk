@@ -51,6 +51,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from windfarm_moe.data import CacheBundle, RegimeWindowDataset, load_cache_bundle
+from replay_provenance import provenance, finalize, write_json
 
 DT = 1.0 / 6.0
 RHO = 10.0
@@ -135,11 +136,16 @@ def extract_channel_features(bundle: CacheBundle, split: str, channels: List[str
     return X, y, m
 
 
-def compute_transition_recall(y_true: np.ndarray, y_pred_binary: np.ndarray, window_radius: int = 3) -> float:
+def compute_transition_recall(y_true: np.ndarray, y_pred_binary: np.ndarray, window_radius: int = 3,
+                              valid: np.ndarray | None = None, return_count: bool = False):
     """Compute recovery recall within +-3 time steps of operating boundary transitions."""
     W, N = y_true.shape
     # Detect transitions along time axis
     diff = np.diff(y_true, axis=0, prepend=y_true[:1, :]) != 0  # (W, N)
+    if valid is not None:
+        valid = np.asarray(valid, dtype=bool)
+        diff[1:] &= valid[1:] & valid[:-1]
+        diff[0] = False
     
     # Expand transition windows +- window_radius (bounded non-circular dilation)
     in_window = diff.copy()
@@ -149,16 +155,24 @@ def compute_transition_recall(y_true: np.ndarray, y_pred_binary: np.ndarray, win
 
     # Target points: true pitch points inside transition windows
     target_mask = in_window & (y_true == 1)
-    if np.sum(target_mask) == 0:
-        return 0.0
-    return float(np.mean(y_pred_binary[target_mask]))
+    if valid is not None:
+        target_mask &= valid
+    n = int(target_mask.sum())
+    recall = float(np.mean(y_pred_binary[target_mask])) if n else 0.0
+    return (recall, n) if return_count else recall
+
+
+def residual_at_horizon(data, split, seed, horizon):
+    if horizon not in (1, 6):
+        raise ValueError('Registered horizons are 1 and 6')
+    return data[f'shortfall_{split}_seed{seed}'][:, horizon - 1, :]
 
 
 def main():
     parser = argparse.ArgumentParser(description="Consequence-Signal Mechanism Ablation (Phase 7)")
     parser.add_argument("--cache-dir", default="artifacts/cache_strictmask_trainweights/wtb_245d")
     parser.add_argument("--residuals-file", default="artifacts/fixed_forecast_residuals.npz")
-    parser.add_argument("--output-csv", default="artifacts/channel_consequence_ablations.csv")
+    parser.add_argument("--output-csv", default="artifacts/channel_consequence_replay_v2/summary.csv")
     parser.add_argument("--device", default="cuda:0" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--seeds", default="201,202,203,204,205")
     parser.add_argument("--epochs", type=int, default=10)
@@ -177,9 +191,15 @@ def main():
     out_csv.parent.mkdir(parents=True, exist_ok=True)
     results = []
 
-    # Direct baseline reference cost from Phase 4/5 (Pitch Withheld)
-    direct_ref_h1 = 8009040.0   # 8.01M kWh at h=1
-    direct_ref_h6 = 16469328.0  # 16.47M kWh at h=6
+    archive = out_csv.parent / (out_csv.stem + '_runs')
+    if archive.exists():
+        raise FileExistsError(f'Refusing to overwrite run evidence: {archive}')
+    provenance(archive, [args.residuals_file, Path(args.cache_dir) / 'metadata.json'], vars(args))
+    for split in ('val', 'test'):
+        expected = RegimeWindowDataset(bundle, split, 36, 24).anchor_indices
+        if not np.array_equal(expected, res_data[f'anchor_indices_{split}']):
+            raise ValueError(f'{split}: residual/feature anchor mismatch')
+    seed_rows = []
 
     for c_id, channels in ALL_CHANNELS.items():
         print(f"\n==================== CHANNEL GROUP: {c_id} ====================", flush=True)
@@ -213,6 +233,7 @@ def main():
         # Metrics accumulators
         brier_list, nmi_list, ari_list, trans_recall_list = [], [], [], []
         cost_h1_list, cost_h6_list, viol_h1_list, viol_h6_list = [], [], [], []
+        base_h1_list, base_h6_list = [], []
 
         for seed in seeds:
             torch.manual_seed(seed)
@@ -225,8 +246,12 @@ def main():
             train_ds = TensorDataset(tx_tr, ty_tr)
             loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True)
 
+            run_dir = archive / c_id / f'seed{seed}'
+            run_dir.mkdir(parents=True)
+            history = []
             mlp.train()
-            for _ in range(args.epochs):
+            for epoch in range(args.epochs):
+                loss_sum, count = 0.0, 0
                 for bx, by in loader:
                     bx, by = bx.to(device), by.to(device)
                     out = mlp(bx)
@@ -234,6 +259,15 @@ def main():
                     optimizer.zero_grad()
                     loss.backward()
                     optimizer.step()
+                    loss_sum += loss.item() * len(bx)
+                    count += len(bx)
+                history.append({'epoch': epoch + 1, 'train_cross_entropy': loss_sum / count})
+                write_json(run_dir / 'training_history.json', history)
+            torch.save({'model_state': mlp.cpu().state_dict(), 'seed': seed,
+                        'channels': channels, 'in_dim': in_dim, 'epochs': args.epochs,
+                        'scaler_mean': scaler.mean_, 'scaler_scale': scaler.scale_},
+                       run_dir / 'model.pt')
+            mlp.to(device)
 
             # Predict probabilities
             mlp.eval()
@@ -258,7 +292,11 @@ def main():
             brier = float(np.mean((p_te_flat[te_mask_flat] - y_te_flat[te_mask_flat]) ** 2))
             nmi = float(normalized_mutual_info_score(y_te_flat[te_mask_flat], (p_te_flat[te_mask_flat] >= 0.5).astype(int)))
             ari = float(adjusted_rand_score(y_te_flat[te_mask_flat], (p_te_flat[te_mask_flat] >= 0.5).astype(int)))
-            t_recall = compute_transition_recall(y_te, pred_binary)
+            legacy_recall, legacy_count = compute_transition_recall(y_te, pred_binary, return_count=True)
+            t_recall, valid_count = compute_transition_recall(y_te, pred_binary, valid=m_te, return_count=True)
+            write_json(run_dir / 'transition_denominators.json',
+                       dict(legacy_recall=legacy_recall, legacy_denominator=legacy_count,
+                            valid_adjacent_recall=t_recall, valid_adjacent_denominator=valid_count))
 
             brier_list.append(brier)
             nmi_list.append(nmi)
@@ -266,11 +304,13 @@ def main():
             trans_recall_list.append(t_recall)
 
             # 2. Decision Value Metrics (at h=1 and h=6)
-            for h_idx, (h_step, cost_acc, viol_acc) in enumerate([(0, cost_h1_list, viol_h1_list), (5, cost_h6_list, viol_h6_list)]):
+            np.savez_compressed(run_dir / 'representation.npz', p_val=p_va, p_test=p_te,
+                                y_test=y_te, valid_test=m_te)
+            for h_idx, cost_acc, viol_acc, base_acc in [(0, cost_h1_list, viol_h1_list, base_h1_list), (5, cost_h6_list, viol_h6_list, base_h6_list)]:
                 m_val = res_data["mask_val"][:, h_idx, :].reshape(-1) > 0.5
                 m_test = res_data["mask_test"][:, h_idx, :].reshape(-1) > 0.5
-                s_v = res_data[f"shortfall_val_seed{seed}"][:, h_idx, :].reshape(-1)
-                s_t = res_data[f"shortfall_test_seed{seed}"][:, h_idx, :].reshape(-1)
+                s_v = residual_at_horizon(res_data, 'val', seed, h_idx+1).reshape(-1)
+                s_t = residual_at_horizon(res_data, 'test', seed, h_idx+1).reshape(-1)
 
                 p_v_flat = p_va.reshape(-1)
                 p_t_flat = p_te.reshape(-1)
@@ -301,6 +341,30 @@ def main():
 
                 cost_acc.append(cost)
                 viol_acc.append(viol)
+                # Matched direct baseline, same frozen target and same population.
+                vi = res_data['anchor_indices_val']
+                ti = res_data['anchor_indices_test']
+                wi = bundle.metadata['physics_names'].index('Wspd')
+                wv = np.asarray(bundle.physics[vi, :, wi]).reshape(-1)
+                wt = np.asarray(bundle.physics[ti, :, wi]).reshape(-1)
+                edges = np.linspace(0., 25., 11)
+                edges[0], edges[-1] = -np.inf, np.inf
+                rb = np.zeros_like(s_t)
+                for b in range(10):
+                    mv = m_val & (wv >= edges[b]) & (wv < edges[b + 1])
+                    q = np.quantile(s_v[mv], Q_STAR) if mv.sum() > 20 else q_glob
+                    rb[(wt >= edges[b]) & (wt < edges[b + 1])] = q
+                bc = float(np.sum(rb[m_test] + RHO * np.maximum(s - rb[m_test], 0.)) * DT)
+                base_acc.append(bc)
+                np.savez_compressed(run_dir / f'decision_h{h_idx+1}.npz',
+                                    reserve=r_c, baseline=rb, shortfall=s_t, mask=m_test,
+                                    anchor_indices=ti)
+                seed_rows.append(dict(channel_group=c_id, seed=seed, horizon=h_idx+1,
+                                      brier=brier, nmi=nmi, ari=ari, transition_recall=t_recall,
+                                      psrei=cost, baseline_psrei=bc, delta_psrei=cost-bc,
+                                      violation_pct=viol, n_cells=int(m_test.sum())))
+                pd.DataFrame(seed_rows).to_csv(archive / 'seed_results.csv', index=False)
+            finalize(run_dir)
 
         # Cross-seed averages
         mean_brier = float(np.mean(brier_list))
@@ -309,8 +373,8 @@ def main():
         mean_trecall = float(np.mean(trans_recall_list))
         mean_cost_h1 = float(np.mean(cost_h1_list))
         mean_cost_h6 = float(np.mean(cost_h6_list))
-        delta_h1 = float(direct_ref_h1 - mean_cost_h1)
-        delta_h6 = float(direct_ref_h6 - mean_cost_h6)
+        delta_h1 = float(mean_cost_h1 - np.mean(base_h1_list))
+        delta_h6 = float(mean_cost_h6 - np.mean(base_h6_list))
 
         row = {
             "channel_group": c_id,
@@ -337,6 +401,7 @@ def main():
         print(f"[{c_id:<28}] Brier: {mean_brier:.4f} | NMI: {mean_nmi:.3f} | Trans Recall: {mean_trecall*100:.1f}% | Δh1: {delta_h1:+,.0f} kWh | Δh6: {delta_h6:+,.0f} kWh", flush=True)
 
         pd.DataFrame(results).to_csv(out_csv, index=False)
+    finalize(archive)
 
     print(f"\n[Saved] Channel consequence ablations summary to {out_csv} ({len(results)} rows)", flush=True)
 

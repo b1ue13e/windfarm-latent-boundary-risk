@@ -513,7 +513,7 @@ class ReplicationAuditor:
                 print(f"  - {cf}")
 
         if failed_claims == 0 and not self.missing_files and not self.checksum_failures:
-            print(f"\nVERDICT: FULLY_REPRODUCIBLE (ALL {total_claims} CLAIMS VERIFIED WITH EXIT 0)")
+            print(f"\nVERDICT: CACHED_ARTIFACT_CHECKS_PASS (ALL {total_claims} CLAIMS VERIFIED WITH EXIT 0)")
             return 0
         else:
             print(f"\nVERDICT: NOT_REPRODUCIBLE ({failed_claims} claims failed, {len(self.missing_files)} missing files)")

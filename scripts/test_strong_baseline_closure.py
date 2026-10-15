@@ -88,10 +88,17 @@ def cluster_bootstrap_contrast(
     return get_stats(boot_trans), get_stats(boot_steady), get_stats(boot_inter)
 
 def main():
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--cache-dir', default=str(REPO_ROOT / 'artifacts/cache_strictmask_trainweights/wtb_245d'))
+    parser.add_argument('--residuals-file', default=str(REPO_ROOT / 'artifacts/fixed_forecast_residuals.npz'))
+    parser.add_argument('--runs-pattern', default=str(REPO_ROOT / 'artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed{seed}'))
+    parser.add_argument('--device', default='cuda:0' if torch.cuda.is_available() else 'cpu')
+    args = parser.parse_args()
+    device = torch.device(args.device)
     print(f"Using device: {device}")
-    bundle = load_cache_bundle(REPO_ROOT / "artifacts/cache_strictmask_trainweights/wtb_245d", mmap_mode="r")
-    res_data = np.load(REPO_ROOT / "artifacts/fixed_forecast_residuals.npz")
+    bundle = load_cache_bundle(args.cache_dir, mmap_mode="r")
+    res_data = np.load(args.residuals_file)
     seeds = [201, 202, 203, 204, 205]
 
     spec = DegradationSpec(delay_steps=0, withheld_channels=("Pab_mean", "Pab_std"))
@@ -103,6 +110,9 @@ def main():
 
     test_anchors = test_ds.anchor_indices
     val_anchors = val_ds.anchor_indices
+    for split, anchors in [('val', val_anchors), ('test', test_anchors)]:
+        if not np.array_equal(anchors, res_data[f'anchor_indices_{split}']):
+            raise ValueError(f'{split}: mismatched frozen-forecast anchors')
     W = len(test_anchors)
     N = 134
     time_indices = np.repeat(test_anchors[:, None], N, axis=1).reshape(-1)
@@ -149,7 +159,7 @@ def main():
         s_v = res_data[f"shortfall_val_seed{seed}"][:, h_idx, :].reshape(-1)
         s_t = res_data[f"shortfall_test_seed{seed}"][:, h_idx, :].reshape(-1)
 
-        dense_ckpt = REPO_ROOT / f"artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed{seed}"
+        dense_ckpt = Path(args.runs_pattern.format(seed=seed))
         model = _load_model_from_checkpoint(dense_ckpt, bundle, device)
         model.eval()
 
