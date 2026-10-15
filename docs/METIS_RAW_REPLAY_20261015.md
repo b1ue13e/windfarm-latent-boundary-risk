@@ -363,3 +363,30 @@ The actual final verification gate remains exit1 for unfinished raw coverage
 and TRR02-TRR11. Model artifact verification is not decision-experiment or
 whole-paper reproduction; final statistics, claims and independent reviews
 remain pending. All previous failures and negative-result requirements remain.
+
+## 20:53 follow-up: all external model fits artifact-verified
+
+Actual CPU audit242608.cm exited0; pinned hashes passed and three software guard
+tests passed in1.54s. It verified31 completed model artifacts: forecast201-205,
+aligned_force201-205, unaligned201-205, aligned204, and all15 external fits across
+Kelmarsh, Penmanshiel and LHB. Fourteen fits remained pending at audit time;
+no completed-model artifact failure was found. This verifies exact configurations,
+finite weights, complete epoch histories, source/input/output/raw/cache provenance
+and full validation/test anchor/target/mask/time/node/window identity. It does not
+certify external transfer decisions or whole-paper reproduction: NOT_CERTIFIED,
+scientific_completion=false.
+
+External array242599 reached F/exit0. With WTB13running/1queued and four eligible
+free GPU nodes, only WTB concurrency was raised13->14; actual subsequent qstat
+showed14running/0queued. All per-fit resources, settings, seeds and scientific
+gates remain unchanged. The factorial controller still waits10 required receipts
+at12:55:32UTC, so all four conditions remain held.
+
+Evidence: artifacts/metis_heartbeat_20261015_2053/report.json and
+completed_20261015T1253.stdout; immutable snapshot20261015T125528Z_bbf9850e.
+Independent verification rehashed342 files and19 full PBS command output/error
+pairs and matched the report bytes and pinned auditor hash. Running logs remain
+available-byte snapshots; later exit0 receipts outside this audit are recorded
+separately as awaiting verification. Final verification gate still exits1 for
+unfinished tasks/raw coverage. Paper conclusions, decision statistics and final
+independent reviews remain open; no reproduction success is claimed.
