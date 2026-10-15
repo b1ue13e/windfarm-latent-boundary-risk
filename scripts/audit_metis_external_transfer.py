@@ -125,6 +125,10 @@ def main():
                 mask[split] = np.stack([np.asarray(bundle.target_mask[a + 1:a + 25]) for a in indices]).astype(bool)
                 assert_forecast_alignment(metrics, bundle, indices, target[split], mask[split])
                 pred[split] = np.load(metrics / 'pred.npy')
+                if (pred[split].shape != target[split].shape or
+                    not np.isfinite(pred[split][mask[split]]).all() or
+                    not np.isfinite(target[split][mask[split]]).all()):
+                    raise ValueError('Nonfinite/misaligned original valid forecast population')
             wind_index = bundle.metadata['physics_names'].index('Wspd')
             wind = {split: np.asarray(bundle.physics_model[anchors[split], :, wind_index]) for split in ('val', 'test')}
             for lead in (0, 5):
@@ -137,6 +141,9 @@ def main():
                 ge, gq = fit_bins(gates['val'][..., 2], sv, mv, 5)
                 rc = gq[np.clip(np.digitize(gates['test'][..., 2], ge), 0, len(gq) - 1)]
                 valid = mt & np.isfinite(st)
+                if (not np.array_equal(valid, mt) or not np.isfinite(sv[mv]).all() or
+                    not np.isfinite(rb[valid]).all() or not np.isfinite(rc[valid]).all()):
+                    raise ValueError('Nonfinite decisions or silently reduced valid population')
                 cost_b = float(np.sum((rb + 10 * np.maximum(st - rb, 0))[valid]) * (1.0 / 6.0))
                 cost_c = float(np.sum((rc + 10 * np.maximum(st - rc, 0))[valid]) * (1.0 / 6.0))
                 values = {'psrei_kwh': cost_c, 'baseline_psrei_kwh': cost_b, 'delta_psrei_kwh': cost_c - cost_b,
