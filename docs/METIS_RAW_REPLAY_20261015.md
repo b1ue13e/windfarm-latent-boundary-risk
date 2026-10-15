@@ -304,3 +304,35 @@ Returned logs/report and independently verified227-file/16-PBS-command snapshot:
 artifacts/metis_heartbeat_20261015_1951. The four-condition controller still awaited
 16requiredreceipts and made no dependency change. Whole experiment, decision
 statistics and paper claim reconciliation remain unfinished; no threshold changed.
+
+## 20:03–20:15 follow-up: seventeen model artifacts verified
+
+The external array had only five remaining fits. After checking actual free GPU,
+CPU and memory resources, WTB array concurrency was increased from 8 to 9 using
+`qalter -W max_run_subjobs=9 '242594[].cm'`. Subsequent PBS evidence showed nine
+WTB and five external fits running. Per-fit resources, configurations, seeds and
+scientific thresholds were unchanged; other projects were not modified.
+
+Fresh CPU audit 242606.cm exited 0, with pinned tool hashes passing and three
+software guard tests passing in 1.50 seconds. Its report verified 17 model
+artifacts: forecast201–205, aligned_force203/205, Kelmarsh201–205 and LHB201–205.
+It left 28 pending and found no failures among the inspected completed models.
+The checks cover input/source/output hashes, raw/cache provenance, exact model
+and training configurations, finite weights, complete epoch histories and full
+validation/test anchor, target, mask, physical time, node and prediction identity.
+This is completed-model artifact verification, not decision-experiment or paper
+reproduction. The report remains NOT_CERTIFIED / scientific_completion=false.
+
+Evidence: `artifacts/metis_followup_20261015_2003/report.json`,
+`completed_20261015T1203.stdout`, `concurrency_change.stdout`, and immutable
+snapshot `20261015T121447Z_2c1a8337`. Independent verification checked 259 copied
+files and 17 full PBS command stdout/stderr pairs against their SHA256 records;
+the returned report bytes and pinned audit source matched the snapshot.
+Running-file copies represent only bytes visible when collected, not final logs.
+
+At 12:12:31 UTC the factorial controller still awaited 16 required execution
+receipts. All four conditions remain held; no readiness audit or dependency
+release is inferred from this completed-mode audit. The actual final verification
+gate returned exit 1 for unfinished TRR02–TRR11 and raw replay coverage. All
+experiment coverage, manuscript reconciliation and final independent reviews
+remain open. No scientific gate or negative-result retention rule was changed.

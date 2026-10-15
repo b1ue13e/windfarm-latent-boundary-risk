@@ -246,3 +246,6 @@ Created: 2026-09-18T05:01:00+08:00
 
 ## Parallel execution refinement —2026-10-15
 - [ ] TRR11 DOING Increase only independent fit concurrency within actual idle GPU/quota limits; replace factorial's unnecessary whole-core wait only after all actual model/residual inputs pass a dedicated PBS audit; preserve original/revised dependency records and all failure logs. No source/data/seed/endpoint change, no partial completion claim.
+
+
+Checkpoint 2026-10-15T12:14:47Z: TRR05/TRR09/TRR11 remain DOING. CPU audit242606 verified17 model artifacts only (28 pending); snapshot259 files/17 PBS stream pairs independently hashed. WTB cap9 with5 remaining external fits; four-condition controller waits16 required receipts. No scientific completion or threshold change. Evidence: EVIDENCE_LEDGER Metis follow-up20:03-20:15 and artifacts/metis_followup_20261015_2003/.
