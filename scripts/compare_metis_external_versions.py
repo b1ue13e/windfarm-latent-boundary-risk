@@ -29,6 +29,11 @@ def main():
     output.mkdir(parents=True, exist_ok=False)
     base = root / 'artifacts/raw_replay_external_models_20261015'
     old, new = base / 'matched_transfer', base / 'deterministic_matched_transfer_v1'
+    failed_provenance = json.loads((root / 'metis_execution/external_numeric_audit/attempt1/results/provenance.json').read_text())
+    expected_old_csv = [item for item in failed_provenance['inputs']
+        if Path(item['path']) == old / 'exp01_pitchmasked_v3_seed_results.csv']
+    if len(expected_old_csv) != 1 or sha(expected_old_csv[0]['path']) != expected_old_csv[0]['sha256']:
+        raise ValueError('Old seed table differs from preserved failed-audit input')
     for name in ('matched_transfer', 'deterministic_matched_transfer_v1'):
         record = json.loads((base / f'execution/{name}/record.json').read_text())
         if record.get('status') != 'EXECUTED' or record.get('exit_code') != 0 or not record.get('outputs'):
@@ -39,7 +44,10 @@ def main():
     key = ['farm_id', 'seed', 'horizon']
     frames = [pd.read_csv(path / 'exp01_pitchmasked_v3_seed_results.csv',
         float_precision='round_trip').set_index(key).sort_index() for path in (old, new)]
-    if len(frames[0]) != 20 or not frames[0].index.equals(frames[1].index) or not frames[0].index.is_unique:
+    expected_keys = {(f, s, h) for f in ('kelmarsh', 'penmanshiel')
+                     for s in range(201, 206) for h in ('h=1', 'h=6')}
+    if (len(frames[0]) != 20 or set(frames[0].index) != expected_keys or
+        not frames[0].index.equals(frames[1].index) or not frames[0].index.is_unique):
         raise ValueError('Twenty matched seed/site/horizon keys required')
     for field in ('checkpoint_sha256', 'training_summary_sha256', 'pitch_withheld_before_inference',
                   'n_evaluated_cells', 'baseline_psrei_kwh', 'baseline_violation_rate_pct'):
@@ -67,7 +75,8 @@ def main():
                     'changed_argmax_cells': int(np.count_nonzero(a.argmax(-1) != b.argmax(-1)))})
     statistics = [pd.read_csv(path / 'exp01_pitchmasked_v3_joint_statistics.csv',
         float_precision='round_trip').set_index(['farm_id', 'horizon']).sort_index() for path in (old, new)]
-    if len(statistics[0]) != 4 or not statistics[0].index.equals(statistics[1].index):
+    if (len(statistics[0]) != 4 or set(statistics[0].index) != {(f, h) for f in ('kelmarsh', 'penmanshiel') for h in ('h=1', 'h=6')} or
+        not statistics[0].index.equals(statistics[1].index)):
         raise ValueError('Four matched joint-statistic rows required')
     for label, frame in zip(('old', 'new'), statistics):
         frame.to_csv(output / f'{label}_joint_statistics.csv')
