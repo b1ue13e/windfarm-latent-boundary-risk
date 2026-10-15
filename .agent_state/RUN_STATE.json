@@ -1,10 +1,10 @@
 {
   "title": "2026-10-15 审计修复与原始数据重跑",
   "created": "2026-09-18T00:00:00+08:00",
-  "updated": "2026-10-15T13:27:41.014949+00:00",
-  "phase": "metis_training_running",
+  "updated": "2026-10-15T13:59:29.319536+00:00",
+  "phase": "metis_failure_recovery",
   "status": "in_progress",
-  "active_task": "TRR02-TRR11;43 model artifacts verified;dense204/205 running;factorial waits canonical residual receipt and dedicated audit",
+  "active_task": "TRR02-TRR12;45 model receipts exit0;core missing-json serialization failure;4 clean runs exit0;16 unexecuted factorial indices pending recovery",
   "last_verified_task": "TRR01",
   "notes": [
     "Priority revisions (P1-P5) and Exp-C stop condition verified: (1) P1: 'Independent decision value' demoted to 'transition-window localized risk hedge' across main manuscript, cover letter, and canonical docs, strictly preserving negative results (posterior +523k penalty, wspd baseline +410k advantage in steady state, -296k transition interaction); (2) P2: All external transfer statements bounded with 'within evaluated sites only', eliminating universal cross-site transfer claims; (3) P3: Delay regime conclusions in Regime 2 marked provisional pending field validation (Exp-A), evaluated under synthetic stress; (4) P4: MoE framed strictly as an implementation comparator (dense vs routed parity, p=0.380); (5) P5: EXP-02 report template fixed in scripts/run_exp02_zero_privileged_supervision.py to eliminate fabricated two-level bootstrap claims; (6) Stop condition Exp-C confirmed: under withheld pitch (pab=0), incoming wind speed alone deterministically classifies valid operating regimes with 100% precision/recall across all 639,378 test cells, confirming label degradation lacks an independent classification problem and reframing contributions around minimum sufficient modeling and empirical falsification; (7) Verification: main and standalone PDFs compile cleanly to exactly 10.0 pages (0 overfull hboxes), verify_scientific_claim_gate.py PASS, verify_final_pdf_integrity.py PASS, and .agents/scripts/verify_gate.py PASS.",
@@ -62,7 +62,8 @@
     "2026-10-15T12:14:47Z snapshot: independently verified 259 files and 17 complete PBS command stream pairs. Fresh CPU audit242606 exit0 verifies17 model artifacts only,28pending,0failures; NOT_CERTIFIED/scientific_completion=false. WTB cap8->9 after external remaining count fell to5; observed9+5 running. Four-condition controller still waiting16 required receipts; no release. Actual final verify_gate exit1 for open TRR02-TRR11/raw replay. Full claims/coverage/reviews remain pending; no scientific threshold changed.",
     "2026-10-15T12:26:08Z immutable snapshot independently verified297 files/18 PBS command stream pairs. CPU audit242607 actual exit0,3 guard tests passed2.20s;25 completed model artifacts verified,20 pending,0failures; NOT_CERTIFIED/scientific_completion=false. Actual WTB13+external1 running after only WTB cap9->13 to replace released external slots;7 compatible idle nodes observed before change. Factorial still waits15 required receipts, no release. Final verification gate exit1 for open raw replay/tasks. No thresholds/config/seed/baseline changes.",
     "2026-10-15T12:55:28Z snapshot:342 files/19 full PBS command stream pairs independently SHA verified. Actual CPU audit242608 exit0;3 guard tests1.54s;31 completed model artifacts verified (all15 external),14pending,0failures;NOT_CERTIFIED/scientific_completionfalse. External array F/exit0;actual WTB14running/0queued observed after cap13->14 using compatible idle node. Latest snapshot fit receipt counts={'RUNNING': 13, 'EXECUTED': 32};new exit0 models not yet audited=['train_aligned_202']. Four-condition controller still waits10required receipts;no release. Gate exit1 for unfinished raw scope/tasks;thresholds unchanged.",
-    "2026-10-15T13:26:39Z snapshot independently verified370 files/20 full PBS command stream pairs. CPU audit242610 actual exit0,3 guard tests1.57s,43 model artifacts verified,2pending(dense204/205),0failures;NOT_CERTIFIED/scientific_completionfalse. All20 factorial model receipts available but canonical residual receipt absent;watcher waits1,no release. No scheduling/source/scientific threshold changes this turn. Read-only46-artifact generator inventory saved for follow-on planning,not coverage certification. Gate actual exit1 for unfinished raw/tasks;all claims/final reviews pending."
+    "2026-10-15T13:26:39Z snapshot independently verified370 files/20 full PBS command stream pairs. CPU audit242610 actual exit0,3 guard tests1.57s,43 model artifacts verified,2pending(dense204/205),0failures;NOT_CERTIFIED/scientific_completionfalse. All20 factorial model receipts available but canonical residual receipt absent;watcher waits1,no release. No scheduling/source/scientific threshold changes this turn. Read-only46-artifact generator inventory saved for follow-on planning,not coverage certification. Gate actual exit1 for unfinished raw/tasks;all claims/final reviews pending.",
+    "21:53: initial immutable snapshot409 files/21PBS streams verified. All45 model receipts exit0;fresh full audit242626 submitted. Actual readiness audit242623 exit0/INPUTS_VERIFIED20+canonical and controller released factorial. Core242595 FAILED NameError json missing at serialization;failed output/log untouched. Four clean201-204 receipts EXECUTED0;array terminal PBS Exit_status absent and16indices never started;causeUNKNOWN. Registered import-only repair outside frozen runtime and sparse continuation before execution;no numeric threshold change."
   ],
   "metis_followup": {
     "automation_id": "metis",
@@ -131,9 +132,9 @@
       "external": 6
     },
     "completed_fit_audit_job": "242610.cm",
-    "factorial_readiness_status": "WAITING_FOR_REQUIRED_EXECUTION_RECEIPTS",
+    "factorial_readiness_status": "DEPENDENCY_UPDATE_ACCEPTED_NOT_EXECUTION",
     "latest_model_audit_report": "artifacts\\metis_heartbeat_20261015_2123\\report.json",
-    "factorial_pending_required_receipts": 1,
+    "factorial_pending_required_receipts": 0,
     "factorial_readiness_observed_utc": "2026-10-15T13:26:32.583566+00:00",
     "fit_receipt_status_counts": {
       "EXECUTED": 43,

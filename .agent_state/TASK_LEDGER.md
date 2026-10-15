@@ -247,6 +247,9 @@ Created: 2026-09-18T05:01:00+08:00
 ## Parallel execution refinement —2026-10-15
 - [ ] TRR11 DOING Increase only independent fit concurrency within actual idle GPU/quota limits; replace factorial's unnecessary whole-core wait only after all actual model/residual inputs pass a dedicated PBS audit; preserve original/revised dependency records and all failure logs. No source/data/seed/endpoint change, no partial completion claim.
 
+## Core serialization failure and factorial scheduling recovery —2026-10-15
+- [ ] TRR12 DOING Preserve core242595 failure and all array242602 history; repair the missing json import using a separately hashed script outside frozen source. Require real PBS software check before retry; reuse only independently verified complete weights/canonical inputs, never partial optimizer state. Rerun strong baseline in a new output/log directory, then execute untouched channel/EXP02/EXP03 stages. Audit the four existing clean receipts/outputs; resubmit only the sixteen unexecuted factorial indices under the already verified exact-input prerequisites, retaining all original records. Verify actual retry exits and all20 condition/seed outputs; unknown scheduler accounting remains disclosed. No method, baseline, seed, population, metric, uncertainty or gate changes.
+
 
 Checkpoint 2026-10-15T12:14:47Z: TRR05/TRR09/TRR11 remain DOING. CPU audit242606 verified17 model artifacts only (28 pending); snapshot259 files/17 PBS stream pairs independently hashed. WTB cap9 with5 remaining external fits; four-condition controller waits16 required receipts. No scientific completion or threshold change. Evidence: EVIDENCE_LEDGER Metis follow-up20:03-20:15 and artifacts/metis_followup_20261015_2003/.
 

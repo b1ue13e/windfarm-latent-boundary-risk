@@ -573,3 +573,25 @@ the versioned extension source/protocol/config/receipt must be independently has
 
 ### Factorial input-readiness scheduling addendum (before any condition run)
 The numerical protocol is unchanged. docs/FACTORIAL_READINESS_SCHEDULING_20261015.md registers a dedicated PBS audit of all20 actual required model outputs and the one shared canonical residual/cache before replacing the blanket afterok(core) wait. Preserve software-test afterok and add audit afterok; do not release on file existence or favorable values. This removes unrelated channel/EXP02/EXP03 scheduling waits only, and does not waive any scientific claim gate, four-condition result, five-seed requirement or final review. Original dependency/metadata and the hashed addendum/audit/release records remain provenance.
+
+### RAW-CORE-RETRY-IMPORT-V1 / FACTORIAL-UNEXECUTED-REQUEUE (before retry)
+Core242595 failed at JSON serialization with NameError: json is not defined after
+five-seed calculations; its output/log directory is retained as failed, never
+certified. Correct only the missing standard-library import. Deploy the repaired
+script and retry orchestration under metis_execution, leaving the frozen runtime
+untouched. New strong-baseline output/log paths are required. Keep the original
+command arguments, comparator, population, seeds, metrics and uncertainty. After
+real PBS software checks, retry from verified completed weights/canonical data;
+do not retrain, regenerate a second canonical target or claim optimizer resume.
+Untouched channel/EXP02/EXP03 stages follow under PBS; failure blocks their chain.
+
+Array242602 has four clean201-204 execution receipts with exit0, while the other
+sixteen indices have no execution receipt. Full PBS terminal accounting is
+incomplete (Exit_status absent); preserve it and do not infer successful completion
+of the array. Keep the four completed artifacts and audit their hashes and row
+coverage. Only the sixteen unexecuted indices may be resubmitted unchanged after
+verifying original extension/dependency hashes and the actual242623 INPUTS_VERIFIED
+report/exit0. Bind the new aggregate to the new array and all20 real per-run receipts.
+Do not rerun or overwrite completed rows, weaken gates or infer a full-condition
+result from the first four runs. Scheduler termination cause remains UNKNOWN until
+adequate accounting supports it. This is execution recovery, not a new hypothesis.
