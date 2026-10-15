@@ -44,3 +44,10 @@ describe this as rounding noise, a particular CUDA kernel defect, harmlessness,
 scientific-direction agreement or acceptable tolerance without direct evidence.
 The exact gate remains unchanged; any execution repair must be registered and
 run as a new version while preserving this failed attempt.
+
+
+## 新版本限定核对（不覆盖旧失败）—2026-10-15
+
+注册诊断242739显示该固定输入的默认重复推理不精确相等，而显式确定性配置重复相等；具体核函数及原进程后台配置仍UNKNOWN。新deterministic_matched_transfer_v1经242741生产、242742全20行/4统计精确审计和242745来源/样本数/风速基线比较，实际均F/exit0。旧242736仍FAILED/UNCERTIFIED，旧精确复现结论不恢复。
+
+新h=6结果：Kelmarsh Δ=+6322.69757537842kWh，95%区间[-31417.261400960288,46732.590610427855]；Penmanshiel Δ=+356014.397852834kWh，区间[162798.52059760567,566245.7208653128]。Δ=后验成本减风速基线；前者未建立成本改善，后者当前协议下成本惩罚。限定既有完整权重、当地固定预测、当地验证校准和当前窗口，不认证完整零样本或全论文。来源和全部h=1/h=6值见[限定证据报告](EXTERNAL_DETERMINISTIC_EVIDENCE_20261015.md)。

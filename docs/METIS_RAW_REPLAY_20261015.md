@@ -459,3 +459,10 @@ See [bounded evidence report](FACTORIAL_V2_EVIDENCE_20261015.md),
 artifacts/metis_heartbeat_20261015_2153/numeric_verification.json and
 artifacts/metis_factorial_numeric_audit_20261015_attempt2/report.json.
 All negative/zero outcomes and the original failed attempts remain retained.
+
+
+## 外部精确失败后的独立新版本核对 —2026-10-15
+
+旧242736实际F/exit1，完整10文件归档及非相等gate保留；旧通过精确复现的表述撤回。诊断242739记录默认重复49156个值变化、确定性重复0变化，仅证明该固定输入的重复性差异。新注册独立版本242740预检/242741生产/242742精确GPU审计/242745来源与wind基线比较均F0，20行/4联合统计复核，未改门槛或重训权重。最新版快照20261015T154812Z_bdce736a独立验829文件/34PBS流；额外生产profile按收据hash匹配。
+
+h6：Kelmarsh未建立成本改善，Penmanshiel成本惩罚；四组场站×步长结果全部保留。旧新比较直接验证的是样本数而非逐cell集合，新版逐cell身份另由GPU审计核对。详见[报告](EXTERNAL_DETERMINISTIC_EVIDENCE_20261015.md)。core242628仍R/通道C6部分，242629H；全部46覆盖/论文/最终门控仍未完成，自动跟进继续。
