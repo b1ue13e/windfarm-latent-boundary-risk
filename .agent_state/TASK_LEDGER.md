@@ -240,3 +240,6 @@ Created: 2026-09-18T05:01:00+08:00
 
 ## Persistent Metis follow-up —2026-10-15
 - [ ] TRR09 DOING Schedule continuing thread follow-up, preserve immutable full PBS/stdout/stderr/receipt snapshots, diagnose and version every failed retry, and reconcile all experiment/claim coverage before final scientific verification. No queued/partial run counts as reproduced.
+
+## Four-condition factorial closure —registered before execution,2026-10-15
+- [ ] TRR10 DOING Register all4 original factorial arrival conditions and unchanged diagnostic endpoints; implement a separately hashed extension without editing running frozen sources; verify shared targets/arrived wind/full populations, archive weights/predictions/day blocks; run software checks on Metis PBS, obtain falsification review and submit after actual WTB core dependency. Keep all20 condition×seed results pending until real execution.

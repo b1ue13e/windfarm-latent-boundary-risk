@@ -551,3 +551,22 @@ local attempts remain archived as interrupted/completed-local, never mixed into 
 homogeneous cloud five-seed result. No optimizer-resume claim: interrupted fits restart
 from scratch. PBS jobs, environments, code/data hashes and receipts are evidence;
 submission/queuing does not count as experiment execution or scientific completion.
+
+### RAW-FACTORIAL-FOUR-CONDITIONS-V2 (2026-10-15, before execution)
+
+Extends the still-unfinished factorial replay to its four original conditions:
+clean, delay6, pitch_withheld, delay6_pitch_withheld; five seeds201–205 in each.
+See docs/FACTORIAL_FOUR_CONDITIONS_PROTOCOL_20261015.md. Keep primary h6,
+secondary h1, rho10, dt1/6h, validation q0.90 and the existing diagnostic wind-bin
+comparator K. The information set of K is the physical wind read from the SAME
+degraded anchor_physics batch seen by all three checkpoint families, never fresh
+issue-time wind in a delayed arm. Both pitch features/masks and physical pitch
+are withheld where specified; delays stall all features/masks/graph symmetrically.
+Canonical shortfalls/masks/time/node and fixed ex-post boundary slice are shared
+across all arms/conditions. This is a factorial diagnostic, not a claim that K
+exploits fresh pitch or is the strongest baseline when pitch is available.
+No architecture necessity/decision superiority follows merely from these controls.
+Report all20 runs, descriptive seed mean/SD, reserve/shortage/cost/violations and
+paired day-block arrays; no invented p-values or significance gate. Preserve old
+single-condition output separately. Frozen running source tree remains unchanged;
+the versioned extension source/protocol/config/receipt must be independently hashed.
