@@ -1,10 +1,10 @@
 {
   "title": "2026-10-15 审计修复与原始数据重跑",
   "created": "2026-09-18T00:00:00+08:00",
-  "updated": "2026-10-15T10:44:47.132056+00:00",
+  "updated": "2026-10-15T11:21:55.987286+00:00",
   "phase": "metis_training_running",
   "status": "in_progress",
-  "active_task": "TRR02-TRR09; qllm scheduling error fixed; 4WTB+4external actual RUNNING on general nodes;0 certified completed fits",
+  "active_task": "TRR02-TRR10; LHB202 singlefit hashes/population VERIFIED6epochs;8fitsactive inlastsnapshot; factorialtests11PASS,20diagnostics held242602/core242595; fullreplay NOT_COMPLETE",
   "last_verified_task": "TRR01",
   "notes": [
     "Priority revisions (P1-P5) and Exp-C stop condition verified: (1) P1: 'Independent decision value' demoted to 'transition-window localized risk hedge' across main manuscript, cover letter, and canonical docs, strictly preserving negative results (posterior +523k penalty, wspd baseline +410k advantage in steady state, -296k transition interaction); (2) P2: All external transfer statements bounded with 'within evaluated sites only', eliminating universal cross-site transfer claims; (3) P3: Delay regime conclusions in Regime 2 marked provisional pending field validation (Exp-A), evaluated under synthetic stress; (4) P4: MoE framed strictly as an implementation comparator (dense vs routed parity, p=0.380); (5) P5: EXP-02 report template fixed in scripts/run_exp02_zero_privileged_supervision.py to eliminate fabricated two-level bootstrap claims; (6) Stop condition Exp-C confirmed: under withheld pitch (pab=0), incoming wind speed alone deterministically classifies valid operating regimes with 100% precision/recall across all 639,378 test cells, confirming label degradation lacks an independent classification problem and reframing contributions around minimum sufficient modeling and empirical falsification; (7) Verification: main and standalone PDFs compile cleanly to exactly 10.0 pages (0 overfull hboxes), verify_scientific_claim_gate.py PASS, verify_final_pdf_integrity.py PASS, and .agents/scripts/verify_gate.py PASS.",
@@ -51,16 +51,27 @@
     "Retry prep actual PBS stdout+history verifies exit0,79 tests, raw preprocess/train-only weights0 and TARGET_MASK_LABEL_EXACT. GPUarray242594 queued, core242595/diagnostics242596 dependency-held. External verified staging/15fits/transfer still pending. Overall verify_gate re-run exit1; scientific scope remains incomplete.",
     "Continuing monitor authorized by user; heartbeat metis created/updated ACTIVE30min. All34 external raw SHA checks and external preprocess242598 exit0 now verified. Immutable snapshot44files+11PBS commands independently hash checked; corrected fit classifier excludes train_only_weights, actual0 model-fit receipts. Old snapshot with misclassification retained/disclaimed. Frozen scientific contract/registry/WTB+externalconfigs hash-identical to deployment. Final gate exit1 for open TRR02-09 + raw replay incomplete.",
     "User correctly challenged GPU shortage: observed18 idle general-node GPUs; qllm is restricted to llm1. qmove242594/242599/242595/242596/242600 to rqdf succeeded, arrays routed qmed16cpus; qalter concurrency4 perarray succeeded. IDs/dependencies/source/configs/scientificgates unchanged. Local PBS default fixed for future, existing frozen source untouched. Waiting scheduler confirmation of training start, not claiming executed.",
-    "qstat10:42:49UTC confirms8 R subjobs(242594[0..3],242599[0..3]); later8 runtime JSONs and8 fit receipts exist. qllm restrictedllm1 was our mistaken queue choice. rqdf routesgeneralnodes;qmed16cpus selected; arraycap4each. No scientific gate/config changes or restart. Actualfitsrunning, no success/completion certification."
+    "qstat10:42:49UTC confirms8 R subjobs(242594[0..3],242599[0..3]); later8 runtime JSONs and8 fit receipts exist. qllm restrictedllm1 was our mistaken queue choice. rqdf routesgeneralnodes;qmed16cpus selected; arraycap4each. No scientific gate/config changes or restart. Actualfitsrunning, no success/completion certification.",
+    "Heartbeat snapshot20261015T105607Z_729fc1ad:76 files and11 scheduler-command stdout/stderr hashes verified;8 histories each2epochs, no completed model/no new failure. Newfourconditionfactorial registered and code committed381ee85, deployed outsidefrozen tree with manifest checking88basefiles+9extensionfiles, sourcefalsifierboundedPASS_WITH_LIMITATIONS only. Strictscaler/canonicalresidualreceipt/formula/finiteness checks;20conditionseed runs dependafterok tests242601+WTBcore242595. Softwaretests stillrunning atcheck; no claimPASS/experimentcompletion.",
+    "Four-condition software242601 actualExit0/11passed48.84s with9extension+88frozendependencyhashesPASS. Jobs242602[].cm(20conditions,seeds,cap4)afteroktests+core;aggregate242603 afterokarray. Snapshot20261015T111611Z_3bafacfe83files+14fullPBSstreamsindependentlyhashverified. One modelLHB202 EXECUTED0 observed, not yet countedfullfamily; auditinput/output/sourceandphysicalpopulation underway. Collectorrecursesnestedexecutiondirs outsidefrozencodetree. Scientificgateexit1forDOINGTRR02-10+rawscopeincomplete.",
+    "Firstclosedcloudfit LHBseed202 actualEXECUTED0,6epochs; independentverify_run_receipt+deepoutputmanifest+provenanceinputs+rawsourcehashes, fullval/test anchor,target/mask/time/node/windowidentity+finitevalidprediction checks pass. ReportLHB_seed202_20261015T111934Z.json explicitly scientific_completionFalse. Only a singlefit artifact/lineage verification, not5seedexperiment ordecisionvalue/reproductioncertificate. Allunfinishedrequirements/gatesremainopen."
   ],
   "metis_followup": {
     "automation_id": "metis",
     "cadence_minutes": 30,
     "status": "ACTIVE",
-    "last_snapshot": "20261015T103157Z_b302320b",
+    "last_snapshot": "20261015T111611Z_3bafacfe",
     "cloud_collector": "metis_execution/collect_metis_evidence.py",
-    "local_snapshot": "artifacts/metis_followup_20261015/20261015T103157Z_b302320b",
-    "model_fit_receipts": 0,
-    "scientific_completion": false
+    "local_snapshot": "artifacts/metis_factorial_extension_20261015_v2_attempt1/20261015T111611Z_3bafacfe",
+    "model_fit_receipts": 9,
+    "scientific_completion": false,
+    "single_fit_hash_population_verified": [
+      "la_haute_borne_seed202"
+    ],
+    "factorial_jobs": {
+      "tests": "242601.cm",
+      "array": "242602[].cm",
+      "aggregate": "242603.cm"
+    }
   }
 }

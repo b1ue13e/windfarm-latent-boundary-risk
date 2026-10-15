@@ -198,3 +198,53 @@ submission queue and is not the authoritative current queue after qmove; qstat i
 Evidence: artifacts/metis_queue_fix_20261015 contains full before/after queue/node
 metadata, successful command receipt and the subsequent immutable monitor snapshot.
 The normal30-minute evidence follow-up remains active. No experiment threshold changed.
+
+## Four-condition factorial closure scheduled —2026-10-15
+
+Protocol RAW-FACTORIAL-FOUR-CONDITIONS-V2 was registered before execution in
+EXPERIMENT_REGISTRY and FACTORIAL_FOUR_CONDITIONS_PROTOCOL_20261015.md.
+Source/tests are committed at381ee85b. The isolated extension is deployed under
+metis_execution/extensions/factorial_four_conditions_v2_attempt1, outside frozen
+scripts/windfarm_moe. Its archive SHA256 is
+8faa118f48cc40627c997d848de37f373629cba7fc9a5e6bf93b2e644c6c3fa7.
+Manifest contains9 extension files and88 frozen base dependencies; actual tests
+checked both sets. Current source/protocol snapshot includes the new registration;
+the base runtime's old frozen registry/source files remain untouched.
+
+Falsifier§17 gave bounded source PASS_WITH_LIMITATIONS after closing strict physical
+wind scaling, successful canonical residual receipt/hash, exact residual formula,
+and nonfinite forecast/target/shortfall guards. No source-review verdict is treated
+as an experiment result. All variants use the same canonical targets/populations,
+K reads actual arrived physical wind, and diagnostic fresh wind never enters its
+late-arrival decisions. Five-seed descriptive summaries cannot imply significance
+or superiority over a fresh-pitch strongest comparator.
+
+Actual Metis PBS CPU test242601.cm ran on cn32, exited0 and printed:
+EXTENSION_AND_FROZEN_DEPENDENCY_HASHES_PASS;11 passed in48.84s.
+Software fixtures are not research data. Raw stdout is preserved in the extension
+folder and returned to artifacts/metis_factorial_extension_20261015_v2_attempt1.
+Array242602[].cm covers4conditions×5seeds, cap4, with afterok dependencies on
+242601 and actual WTB core242595. Aggregate242603.cm waits for that complete array,
+requires20 successful receipts,44 unique cells per seed and fixed cross-condition
+populations, then emits only descriptive means/SD and its own output receipt.
+These20 diagnostics have NOT_RUN at submission; dependency hold is not completion.
+
+New predictions include actual shuffle permutations, head weights/losses/sample IDs,
+arrived input/source indices, targets/masks/time/node and paired issue-day
+cost/reserve/shortage/cell-count arrays. Every sign and failure must be retained.
+The collector now recursively archives nested execution directories so future
+factorial/aggregate failures are covered along with primary training logs.
+All pending coverage and final manuscript/falsification/evidence gates remain in force.
+
+## First completed cloud fit — bounded check only
+
+LHBseed202 completed actual training/evaluation with exit0 and6epochs. Independent
+read-only audit verified receipt/source/input/output hashes, deep output manifest,
+raw source/cache provenance and full evaluation anchors/physical target/mask/time/
+node/window identity. Predictions have shapes4261×24×4(val) and4981×24×4(test),
+with all valid forecasts finite. Audit report is
+artifacts/metis_heartbeat_20261015/LHB_seed202_20261015T111934Z.json.
+This is a single-fit artifact/population verification, never a five-seed experiment,
+matched decision-value result, historical numerical replication or whole-paper PASS.
+The11 software tests and20 pending factorial diagnostics likewise do not certify
+scientific completion. All open task/coverage/final gates remain unchanged.

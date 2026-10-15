@@ -93,14 +93,19 @@ def snapshot(root,qstat):
     records=[]
     for base in sorted((root/'artifacts').glob('raw_replay*')):
         if not base.is_dir():continue
-        for path in sorted(base.glob('execution/*/*')):
-            if path.is_file() and path.suffix in ('.json','.log'):save(path)
+        # Supplemental experiment families have nested execution directories.
+        # Preserve those receipts/logs as well as the original top-level queues.
+        execution_dirs=sorted(p for p in base.rglob('execution') if p.is_dir())
+        for directory in execution_dirs:
+            for path in sorted(directory.glob('*/*')):
+                if path.is_file() and path.suffix in ('.json','.log'):save(path)
         for pattern in ('models/*/seed*/training_history.json','models/*/seed*/training_summary.json',
                         '*/seed*/training_history.json','*/seed*/training_summary.json'):
             for path in sorted(base.glob(pattern)):save(path)
-        for path in sorted(base.glob('execution/*/record.json')):
-            try:records.append(dict(path=str(path),**json.loads(path.read_text(encoding='utf-8'))))
-            except (ValueError,OSError) as e:events.append({'status':'RUN_RECEIPT_INVALID','path':str(path),'error':str(e)})
+        for directory in execution_dirs:
+            for path in sorted(directory.glob('*/record.json')):
+                try:records.append(dict(path=str(path),**json.loads(path.read_text(encoding='utf-8'))))
+                except (ValueError,OSError) as e:events.append({'status':'RUN_RECEIPT_INVALID','path':str(path),'error':str(e)})
         for name in ('coverage.json','cache_manifest.json','preprocessing_comparison.json',
                      'downstream_status.json','transfer_status.json','frozen_protocol.json','runtime.json'):
             if (base/name).is_file():save(base/name)

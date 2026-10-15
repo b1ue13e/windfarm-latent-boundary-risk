@@ -1533,3 +1533,22 @@ Evidence: qstat -t -u junyu at10:42:49UTC returned8 RUNNING subjobs:242594[0..3]
 Task-ID: TRR08 / TRR09
 Status: VERIFIED_SCHEDULING_ONLY
 Evidence: artifacts/metis_queue_fix_20261015/post_move_verification.json independently rehashes all68 archived files and full PBS command output/error hashes from snapshot20261015T104344Z_ca0a9dd6. Eight actual fit receipts RUNNING;8 runtime records show CUDA available and NVIDIA A100-PCIE-40GB on cn01/cn03/cn04/cn08(WTB) and cn15/cn16/cn19/cn20(LHB). No completed-fit/reproduction certificate. .agents/scripts/verify_gate.py remains exit1 for open tasks and raw-replay evidence; no scientific threshold was modified.
+
+## Heartbeat10:55UTC / four-condition extension pre-execution checkpoint
+Task-ID: TRR05 / TRR09 / TRR10
+Status: PARTIAL_VERIFIED_RUNNING
+Evidence: snapshot20261015T105607Z_729fc1ad returned and all76 copied files plus11 scheduler-command streams independently SHA-verified.8 actual WTB/LHB histories each had2completed epochs, all8fits RUNNING, no complete fit or new failure.
+New registered RAW-FACTORIAL-FOUR-CONDITIONS-V2 source commit381ee85, four originalconditions×5seeds, sameh1/h6/rho10/q0.9/population. Program goes under metis_execution/extensions/factorial_four_conditions_v2_attempt1, not frozen scripts/windfarm. Inputmanifest binds9extension files+88frozen dependencies. Sourcefalsifier§17 boundedPASS_WITH_LIMITATIONS after closing invalid-scaler fallback and canonicalresidual source/formula/nonfinite guards. No softwaretest or scientificPASS inferred from review.
+Actualcloud archiveSHAcheck OK; PBS242601.cm running CPU4/8GB tests.11softwarefixtures planned, result notyetknown atentry. Realarray/aggregate submission follows actualafterok tests+core; no conditionseed experiment currentlyexecuted. New negativefixtures do not count as scientificdata.
+
+## Factorial software validation and guarded submission
+Task-ID: TRR09 / TRR10
+Status: PARTIAL_VERIFIED_NOT_EXPERIMENT_COMPLETION
+Evidence: artifacts/metis_factorial_extension_20261015_v2_attempt1/{extension_manifest.json,archive_manifest.json,tests_attempt1.stdout,pbs_jobs_factorial_v2.json,snapshot_verification.json}. Actual tests242601 cn32 Exit_status0: extension/frozen hashesPASS and11passed48.84s.9extensionfiles/88basefiles checked; source archiveSHA8faa118f48cc40627c997d848de37f373629cba7fc9a5e6bf93b2e644c6c3fa7. Array242602 has20pendingconditionseedjobs,afterok242601+242595;aggregate242603afterok242602. No four-condition result exists or is declared reproduced.
+Evidence: snapshot20261015T111611Z_3bafacfe actual83copiedfilehashes and14fullPBS command stdout/stderr pairs independentlyverified. MainRUNNING8,preprocessingEXECUTED5 plus LHB202fitEXECUTED0 observed. Singlefit hash/population verificationunderway; not a complete experiment family. Collector enhanced to recursivelyarchive nestedexecution logs/receipts (deploymentonlymetis_execution), without changingfrozen experiment source.
+Verificationgate actualexit1foropenTRR02–TRR10andverify_raw_replay incomplete. No threshold,primarybaseline,seedcountor population weakened.
+
+## First closed cloud fit: bounded artifact/lineage verification only
+Task-ID: TRR05 / TRR09
+Status: VERIFIED_SINGLE_FIT_NOT_EXPERIMENT_REPRODUCTION
+Evidence: actual verify_closed_fit_20261015.py remoteauditexit0; report metis_execution/closed_fit_verification/LHB_seed202_20261015T111934Z.json and returned artifacts/metis_heartbeat_20261015/LHB_seed202_20261015T111934Z.json. LHBseed202 executionreceiptEXECUTED/exit0,6epochs. Verified receiptinputs/requiredoutputs/sourcehashes and deepoutput_manifest, modelprovenanceinputhashes, freshrawcacheoutputmanifest and originalrawsourcehashes. Reconstructed expected fullchronologicalval/test anchors and target/mask from rawcache, checked savedphysicaltime/node/windowidentity, prediction shapes and allvalidpredictionsfinite. Shapesval4261x24x4(valid409056);test4981x24x4(valid477966). No tolerancefit, no changedthreshold. This verifies a singlecompletedfit's artifacts/population; all5seeds, transfer/decisions/statistics, rawcoverage and paperconclusions remainpending. No scientific/reproductionPASS.
