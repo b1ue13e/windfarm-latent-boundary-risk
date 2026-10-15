@@ -1,10 +1,10 @@
 {
   "title": "2026-10-15 审计修复与原始数据重跑",
   "created": "2026-09-18T00:00:00+08:00",
-  "updated": "2026-10-15T12:56:43.818109+00:00",
+  "updated": "2026-10-15T13:27:41.014949+00:00",
   "phase": "metis_training_running",
   "status": "in_progress",
-  "active_task": "TRR02-TRR11;31 model artifacts verified;external15 verified;WTB cap14/remaining running;factorial required receipts pending10",
+  "active_task": "TRR02-TRR11;43 model artifacts verified;dense204/205 running;factorial waits canonical residual receipt and dedicated audit",
   "last_verified_task": "TRR01",
   "notes": [
     "Priority revisions (P1-P5) and Exp-C stop condition verified: (1) P1: 'Independent decision value' demoted to 'transition-window localized risk hedge' across main manuscript, cover letter, and canonical docs, strictly preserving negative results (posterior +523k penalty, wspd baseline +410k advantage in steady state, -296k transition interaction); (2) P2: All external transfer statements bounded with 'within evaluated sites only', eliminating universal cross-site transfer claims; (3) P3: Delay regime conclusions in Regime 2 marked provisional pending field validation (Exp-A), evaluated under synthetic stress; (4) P4: MoE framed strictly as an implementation comparator (dense vs routed parity, p=0.380); (5) P5: EXP-02 report template fixed in scripts/run_exp02_zero_privileged_supervision.py to eliminate fabricated two-level bootstrap claims; (6) Stop condition Exp-C confirmed: under withheld pitch (pab=0), incoming wind speed alone deterministically classifies valid operating regimes with 100% precision/recall across all 639,378 test cells, confirming label degradation lacks an independent classification problem and reframing contributions around minimum sufficient modeling and empirical falsification; (7) Verification: main and standalone PDFs compile cleanly to exactly 10.0 pages (0 overfull hboxes), verify_scientific_claim_gate.py PASS, verify_final_pdf_integrity.py PASS, and .agents/scripts/verify_gate.py PASS.",
@@ -61,15 +61,16 @@
     "Usercontinuedparallelrequest: actualnodesnapshot4freeGPU+>=4CPU+>=64GB generalnodes; externalarray10expired/5remaining so cap6cannotstart6. RaisedWTB8→9 qalterexit0 toreplacefreeexternal slot, allperfitconfigs/resources/seedsgatesunchanged. Snapshot12:02:59UTC230files16streamsverified;15exit0modelreceipts(13auditedprior), nonewfitfailure. LaterqstatWTBexpired7reflectsfurtherclosuresnotyetcertified. NewuniqueCPUauditbatch1203submittedunchangedpinnedsource, awaitingactualexit/report. Originalfactorialdependencyretained,readonlyreadycontrollerwaitingnecessaryinputs.",
     "2026-10-15T12:14:47Z snapshot: independently verified 259 files and 17 complete PBS command stream pairs. Fresh CPU audit242606 exit0 verifies17 model artifacts only,28pending,0failures; NOT_CERTIFIED/scientific_completion=false. WTB cap8->9 after external remaining count fell to5; observed9+5 running. Four-condition controller still waiting16 required receipts; no release. Actual final verify_gate exit1 for open TRR02-TRR11/raw replay. Full claims/coverage/reviews remain pending; no scientific threshold changed.",
     "2026-10-15T12:26:08Z immutable snapshot independently verified297 files/18 PBS command stream pairs. CPU audit242607 actual exit0,3 guard tests passed2.20s;25 completed model artifacts verified,20 pending,0failures; NOT_CERTIFIED/scientific_completion=false. Actual WTB13+external1 running after only WTB cap9->13 to replace released external slots;7 compatible idle nodes observed before change. Factorial still waits15 required receipts, no release. Final verification gate exit1 for open raw replay/tasks. No thresholds/config/seed/baseline changes.",
-    "2026-10-15T12:55:28Z snapshot:342 files/19 full PBS command stream pairs independently SHA verified. Actual CPU audit242608 exit0;3 guard tests1.54s;31 completed model artifacts verified (all15 external),14pending,0failures;NOT_CERTIFIED/scientific_completionfalse. External array F/exit0;actual WTB14running/0queued observed after cap13->14 using compatible idle node. Latest snapshot fit receipt counts={'RUNNING': 13, 'EXECUTED': 32};new exit0 models not yet audited=['train_aligned_202']. Four-condition controller still waits10required receipts;no release. Gate exit1 for unfinished raw scope/tasks;thresholds unchanged."
+    "2026-10-15T12:55:28Z snapshot:342 files/19 full PBS command stream pairs independently SHA verified. Actual CPU audit242608 exit0;3 guard tests1.54s;31 completed model artifacts verified (all15 external),14pending,0failures;NOT_CERTIFIED/scientific_completionfalse. External array F/exit0;actual WTB14running/0queued observed after cap13->14 using compatible idle node. Latest snapshot fit receipt counts={'RUNNING': 13, 'EXECUTED': 32};new exit0 models not yet audited=['train_aligned_202']. Four-condition controller still waits10required receipts;no release. Gate exit1 for unfinished raw scope/tasks;thresholds unchanged.",
+    "2026-10-15T13:26:39Z snapshot independently verified370 files/20 full PBS command stream pairs. CPU audit242610 actual exit0,3 guard tests1.57s,43 model artifacts verified,2pending(dense204/205),0failures;NOT_CERTIFIED/scientific_completionfalse. All20 factorial model receipts available but canonical residual receipt absent;watcher waits1,no release. No scheduling/source/scientific threshold changes this turn. Read-only46-artifact generator inventory saved for follow-on planning,not coverage certification. Gate actual exit1 for unfinished raw/tasks;all claims/final reviews pending."
   ],
   "metis_followup": {
     "automation_id": "metis",
     "cadence_minutes": 30,
     "status": "ACTIVE",
-    "last_snapshot": "20261015T125528Z_bbf9850e",
+    "last_snapshot": "20261015T132639Z_65519edd",
     "cloud_collector": "metis_execution/collect_metis_evidence.py",
-    "local_snapshot": "artifacts\\metis_heartbeat_20261015_2053\\20261015T125528Z_bbf9850e",
+    "local_snapshot": "artifacts\\metis_heartbeat_20261015_2123\\20261015T132639Z_65519edd",
     "model_fit_receipts": 45,
     "scientific_completion": false,
     "single_fit_hash_population_verified": [
@@ -96,7 +97,19 @@
       "train_unaligned_203",
       "train_unaligned_204",
       "train_unaligned_205",
+      "train_aligned_201",
+      "train_aligned_202",
+      "train_aligned_203",
       "train_aligned_204",
+      "train_aligned_205",
+      "train_dense_classifier_201",
+      "train_dense_classifier_202",
+      "train_dense_classifier_203",
+      "train_dense_classifier_204",
+      "train_dense_classifier_205",
+      "train_dense_201",
+      "train_dense_202",
+      "train_dense_203",
       "kelmarsh_201",
       "kelmarsh_202",
       "kelmarsh_203",
@@ -117,17 +130,16 @@
       "wtb": 14,
       "external": 6
     },
-    "completed_fit_audit_job": "242608.cm",
+    "completed_fit_audit_job": "242610.cm",
     "factorial_readiness_status": "WAITING_FOR_REQUIRED_EXECUTION_RECEIPTS",
-    "latest_model_audit_report": "artifacts\\metis_heartbeat_20261015_2053\\report.json",
-    "factorial_pending_required_receipts": 10,
-    "factorial_readiness_observed_utc": "2026-10-15T12:55:32.137178+00:00",
+    "latest_model_audit_report": "artifacts\\metis_heartbeat_20261015_2123\\report.json",
+    "factorial_pending_required_receipts": 1,
+    "factorial_readiness_observed_utc": "2026-10-15T13:26:32.583566+00:00",
     "fit_receipt_status_counts": {
-      "RUNNING": 13,
-      "EXECUTED": 32
+      "EXECUTED": 43,
+      "RUNNING": 2
     },
-    "executed_models_awaiting_artifact_audit": [
-      "train_aligned_202"
-    ]
+    "executed_models_awaiting_artifact_audit": [],
+    "coverage_planning_inventory": "artifacts\\metis_heartbeat_20261015_2123\\coverage_planning_inventory.json"
   }
 }

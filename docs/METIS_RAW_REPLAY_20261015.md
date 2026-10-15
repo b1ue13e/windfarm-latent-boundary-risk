@@ -390,3 +390,28 @@ available-byte snapshots; later exit0 receipts outside this audit are recorded
 separately as awaiting verification. Final verification gate still exits1 for
 unfinished tasks/raw coverage. Paper conclusions, decision statistics and final
 independent reviews remain open; no reproduction success is claimed.
+
+## 21:23 follow-up: forty-three model artifacts verified
+
+Actual CPU audit242610.cm exited0. Pinned tool hashes passed and three software
+guard tests passed in1.57s. Forty-three model artifacts passed the completed-mode
+config/checkpoint/history/hash/provenance/full val-test identity checks; dense204
+and dense205 were still running, with no completed-model artifact failures.
+Readiness remains NOT_CERTIFIED/scientific_completion=false. Model artifact
+verification does not certify reserve/statistical experiments or paper claims.
+
+All20 model execution receipts needed by the four-condition extension were
+available. The shared canonical residual execution receipt was still absent;
+the controller remained WAITING_FOR_REQUIRED_EXECUTION_RECEIPTS with pending1
+at13:26:32UTC. Core242595 remains dependent on allWTB fits. No factorial release,
+new canonical generation, source change or numerical threshold change occurred.
+
+Evidence: artifacts/metis_heartbeat_20261015_2123/report.json and
+completed_20261015T1323.stdout; immutable snapshot20261015T132639Z_65519edd.
+Independent verification rehashed370files and20 full PBS stdout/stderr pairs,
+matched returned audit report bytes and checked the pinned auditor source hash.
+Running-file copies remain snapshots of visible bytes, not complete final logs.
+A read-only planning inventory groups all46 original coverage entries by source;
+source existence alone does not establish replay coverage. Actual final gate
+still exits1 for unfinished tasks/raw replay. All20 factorial runs, decision
+statistics, manuscript claims and final independent reviews remain pending.
