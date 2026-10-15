@@ -106,6 +106,12 @@ def snapshot(root,qstat):
         for pattern in ('models/*/seed*/training_history.json','models/*/seed*/training_summary.json',
                         '*/seed*/training_history.json','*/seed*/training_summary.json'):
             for path in sorted(base.glob(pattern)):save(path)
+        # Channel/auxiliary heads live deeper than the original forecast layout.
+        # Capture their actual visible histories/manifests without copying tensors
+        # or interpreting a partial history as completed training.
+        for filename in ('training_history.json','training_summary.json',
+                         'transition_denominators.json','output_manifest.json','provenance.json'):
+            for path in sorted(base.rglob(filename)):save(path)
         for directory in execution_dirs:
             for path in sorted(directory.glob('*/record.json')):
                 try:records.append(dict(path=str(path),**json.loads(path.read_text(encoding='utf-8'))))
