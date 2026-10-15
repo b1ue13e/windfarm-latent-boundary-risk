@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #PBS -N paper3_replay
-#PBS -q qllm
+#PBS -q rqdf
 #PBS -l select=1:ncpus=4:ngpus=1:mem=64gb
 #PBS -l walltime=12:00:00
 #PBS -j oe

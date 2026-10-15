@@ -160,3 +160,41 @@ Existing disclosed v2 pytest raw-log loss remains a historical preservation gap;
 is not repaired by claiming a reconstructed original. The new immutable snapshot policy
 applies going forward. Full46-artifact/claim coverage, pending factorial conditions,
 all fits/decisions and final paper checks remain DOING, and final verification remains FAIL.
+
+## Queue selection error corrected —2026-10-15
+
+The user correctly identified idle GPUs. Earlier wording that treated qllm's GPU
+shortage as a cluster-wide shortage is withdrawn. Actual PBS node/queue snapshots
+showed18 unassigned GPUs on general cn nodes (17 nodes also had >=4 free CPUs),
+whereas qllm binds only llm1 and its single GPU was assigned to another project.
+Our explicit qllm submission unnecessarily excluded those general GPUs.
+
+Before moving any job, monitor snapshot20261015T104014Z_b7bb7adc preserved its
+original state. Actual successful queue changes, with the same IDs/dependencies:
+```bash
+qmove rqdf '242594[].cm'
+qmove rqdf '242599[].cm'
+qmove rqdf 242595.cm
+qmove rqdf 242596.cm
+qmove rqdf 242600.cm
+qalter -W max_run_subjobs=4 '242594[].cm'
+qalter -W max_run_subjobs=4 '242599[].cm'
+```
+All commands exited0. The router selected qmed16cpus for the fit arrays; downstream
+held jobs remain in rqdf pending their unchanged afterok dependencies. Array concurrency
+was originally1 each and is now4 each, allowing8 independent fits in parallel. Per-fit
+1GPU/4CPU/64GB/12h requests, seeds, training parameters, data, metric thresholds and
+uncertainty procedures are unchanged. No checkpoint was restarted or overwritten.
+
+At10:42:49UTC qstat showed242594[0..3].cm and242599[0..3].cm RUNNING. Subsequent
+inspection found all8 actual runtime JSONs and RUNNING fit receipts. This is actual
+job execution, not scientific completion; finished test results remain pending.
+Source changes are limited to the LOCAL PBS template default qllm→rqdf for future
+deployments. Existing deployed source archives and frozen input hashes were not edited.
+For a new submission using the older frozen template, explicitly pass qsub -q rqdf;
+do not repeat its qllm default. Scheduler environment PBS_O_QUEUE records the original
+submission queue and is not the authoritative current queue after qmove; qstat is.
+
+Evidence: artifacts/metis_queue_fix_20261015 contains full before/after queue/node
+metadata, successful command receipt and the subsequent immutable monitor snapshot.
+The normal30-minute evidence follow-up remains active. No experiment threshold changed.

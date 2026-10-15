@@ -1518,3 +1518,18 @@ Evidence: automation_update created and updated heartbeat metis ACTIVE every30mi
 Evidence: scripts/collect_metis_evidence.py runs read-only outside frozen source tree. New immutable snapshots preserve full PBS JSON/stdout/stderr and visible receipts/logs with source-stability metadata and hashes. artifacts/metis_followup_20261015/20261015T103157Z_b302320b plus snapshot_verification_20261015T103157Z_b302320b.json verify44 archived files and11 full command output/error pairs; actual0 model-fit receipts. Collector SHA256111393fc21e68c790c76f382c0c4d8645b80367561ba08390dc9fce2fb252df8 matches deployed/executed source. Scientific contract,registry and both frozen configuration files match deployed SHA exactly. This is evidence collection, not scientific completion.
 Correction: first collector snapshot20261015T102903Z_3bbcd9a1 misclassified preprocessing train_only_weights as a fit due to prefix matching. That classification is withdrawn; snapshot retained. Corrected collector requires model-family+registered seed names. No numerical scientific data, threshold or experimental outcome changed.
 Verification: python -m py_compile scripts/collect_metis_evidence.py exit0; actual remote collector exits0 and independent local verification succeeds. .agents/scripts/verify_gate.py actual exit1 for DOING TRR02-09 and incomplete verify_raw_replay; full experiment/claim reconciliation remains unfinished.
+
+## Queue diagnosis and correction —2026-10-15
+Task-ID: TRR08 / TRR09
+Status: PARTIAL_VERIFIED
+Evidence: artifacts/metis_queue_fix_20261015/{pbs_nodes_before.json,queues_before.json,jobs_after_move.txt,queue_change_receipt.json}. Actual PBS qllm has one assigned llm1 node/GPU, occupied by unrelated242580. General cn nodes had18 unassigned GPUs,17 with >=4 freeCPUs; prior all-cluster shortage inference is withdrawn. The blocking queue choice was our submission error. Before-change immutable snapshot20261015T104014Z_b7bb7adc preserves old state. All5 qmove rqdf commands exit0 and both qalter max_run_subjobs4 exit0. Arrays242594/242599 routeqmed16cpus, IDs/dependencies unchanged; downstreamH remain dependency-held. New allocation still requires actual verification, never infer R from accepted qmove. Only scheduling/concurrency changed; scientific contract/config/seeds/thresholds unchanged.
+
+## Actual training starts after queue correction
+Task-ID: TRR05 / TRR08 / TRR09
+Status: RUNNING_NOT_COMPLETE
+Evidence: qstat -t -u junyu at10:42:49UTC returned8 RUNNING subjobs:242594[0..3].cm and242599[0..3].cm. qstat242594[0] assigned cn01. Subsequent direct ls/find confirms8 real wtb-fit/external-fit runtime JSONs and8 model fit record.json paths (forecast201–204 and LHB201–204). Complete post-move snapshot path is in artifacts/metis_queue_fix_20261015/post_move_snapshot_summary.json. No fit has been certified completed or reproduced. Preserve qllm→rqdf movement and cap1→4 each as scheduler corrections only, not scientific-method changes.
+
+## Queue-fix evidence verified locally
+Task-ID: TRR08 / TRR09
+Status: VERIFIED_SCHEDULING_ONLY
+Evidence: artifacts/metis_queue_fix_20261015/post_move_verification.json independently rehashes all68 archived files and full PBS command output/error hashes from snapshot20261015T104344Z_ca0a9dd6. Eight actual fit receipts RUNNING;8 runtime records show CUDA available and NVIDIA A100-PCIE-40GB on cn01/cn03/cn04/cn08(WTB) and cn15/cn16/cn19/cn20(LHB). No completed-fit/reproduction certificate. .agents/scripts/verify_gate.py remains exit1 for open tasks and raw-replay evidence; no scientific threshold was modified.
