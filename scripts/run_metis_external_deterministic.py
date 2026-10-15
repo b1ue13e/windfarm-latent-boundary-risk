@@ -40,6 +40,7 @@ def main():
     for token in ('import json\n', 'ROOT = Path(__file__).resolve().parents[1]',
                   '    out.mkdir(parents=True, exist_ok=True)',
                   'retrospective reanalysis; no preregistration created or backfilled',
+                  'WTB-only source checkpoint paths, and training_summary cache_dir must identify wtb_245d',
                   '\nif __name__=="__main__":'):
         if original.count(token) != 1:
             raise ValueError('Unexpected producer source adapter target')
@@ -48,11 +49,13 @@ def main():
                                 'ROOT = Path(os.environ["WINDFARM_REPO_ROOT"]).resolve()', 1)
     modified = modified.replace('    out.mkdir(parents=True, exist_ok=True)',
         '    out.mkdir(parents=True, exist_ok=False)\n'
-        '    from replay_provenance import provenance, finalize\n'
+        '    from scripts.replay_provenance import provenance, finalize\n'
         '    provenance(out, [Path(__file__), Path(__file__).parent / "metis_numeric_profile.py", Path(__file__).parent / "manifest.json"], vars(args))\n'
         '    (out / "numeric_execution_profile.json").write_text(json.dumps(NUMERIC_PROFILE, indent=2), encoding="utf-8")', 1)
     modified = modified.replace('retrospective reanalysis; no preregistration created or backfilled',
         'registered deterministic execution repair; original non-exact results retained', 1)
+    modified = modified.replace('WTB-only source checkpoint paths, and training_summary cache_dir must identify wtb_245d',
+        'WTB checkpoint metadata dataset=wtb,num_nodes=134; complete receipts and manifests verified by registered launcher', 1)
     modified = modified.replace('\nif __name__=="__main__":', '\n    finalize(out)\n\nif __name__=="__main__":', 1)
     if modified != (tool / 'produce_external_transfer.py').read_text():
         raise ValueError('Producer differs beyond declared profile/workspace/provenance adapters')
@@ -88,8 +91,26 @@ def main():
         path = tool / 'preflight_report.json'
         if path.exists():
             raise FileExistsError(path)
+        import subprocess
+        smoke = ('import importlib.util,json,os,sys;'
+            f'os.environ["WINDFARM_REPO_ROOT"]={str(root)!r};'
+            f'sys.path=[{str(tool)!r},{str(root)!r}]+[p for p in sys.path if p!={str(root / "scripts")!r}];'
+            f's=importlib.util.spec_from_file_location("det_producer_import_check",{str(tool / "produce_external_transfer.py")!r});'
+            'm=importlib.util.module_from_spec(s);s.loader.exec_module(m);'
+            'from scripts.replay_provenance import provenance,finalize;'
+            'assert m.NUMERIC_PROFILE["deterministic_algorithms"] is True;'
+            'assert m.NUMERIC_PROFILE["cudnn_tf32"] is False;'
+            'print(json.dumps(m.NUMERIC_PROFILE))')
+        check = subprocess.run([sys.executable, '-c', smoke], cwd=root, capture_output=True)
+        for suffix, data in [('stdout', check.stdout), ('stderr', check.stderr)]:
+            with (tool / f'preflight_import.{suffix}').open('xb') as stream:
+                stream.write(data)
+        if check.returncode:
+            raise RuntimeError('Real isolated producer import/profile check failed')
+        import_profile = json.loads(check.stdout)
         write_json(path, {'status': 'SOURCE_AND_INPUTS_VERIFIED', 'pbs_job_id': os.environ['PBS_JOBID'],
             'manifest': file_record(args.manifest), 'receipts': [file_record(p) for p in required],
+            'isolated_producer_import_profile': import_profile,
             'scientific_completion': False})
         print('DECLARED_ADAPTERS_AND_SUCCESSFUL_INPUTS_PASS', flush=True)
         return

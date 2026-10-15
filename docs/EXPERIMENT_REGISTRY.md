@@ -672,7 +672,10 @@ not a favorable-result trial. No retraining/resume or scientific gate relaxation
 
 The producer retains the original mathematical code; allowed source adaptations
 are startup profile configuration, explicit workspace for out-of-tree deployment,
-accurate preregistration provenance and final manifests. A separately allocated
+accurate preregistration/source-policy provenance and final manifests. Preflight
+uses a PBS GPU allocation to execute an isolated real producer import/profile
+smoke check without running its main experiment, in addition to input checks.
+A separately allocated
 GPU audit must reconstruct all20 gates/rows/native blocks/four joint statistics
 under the SAME explicit profile and exact equality gate. Any failure is retained
 and stops corresponding certification; no tolerance tuning. New outcomes cannot

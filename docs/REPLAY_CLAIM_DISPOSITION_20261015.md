@@ -44,4 +44,3 @@ describe this as rounding noise, a particular CUDA kernel defect, harmlessness,
 scientific-direction agreement or acceptable tolerance without direct evidence.
 The exact gate remains unchanged; any execution repair must be registered and
 run as a new version while preserving this failed attempt.
-
