@@ -336,3 +336,30 @@ release is inferred from this completed-mode audit. The actual final verificatio
 gate returned exit 1 for unfinished TRR02–TRR11 and raw replay coverage. All
 experiment coverage, manuscript reconciliation and final independent reviews
 remain open. No scientific gate or negative-result retention rule was changed.
+
+## 20:23 follow-up: twenty-five model artifacts verified
+
+Fresh CPU audit242607.cm exited0; pinned tool hashes passed, and three software
+guard tests passed in2.20s. Its completed-mode report verified25 model artifacts:
+forecast201-205, aligned_force201-205, unaligned201, Kelmarsh201-205,
+Penmanshiel201-204 and LHB201-205. Twenty fits remained pending in that audit;
+no completed-model artifact failure was found. Exact checkpoint configurations,
+finite tensors, complete histories, source/input/output/raw/cache hashes and full
+validation/test target/mask/anchor/time/node/window identity were checked.
+Readiness remains NOT_CERTIFIED and scientific_completion=false.
+
+With external14expired/1running and seven compatible general GPU nodes free,
+only WTB concurrency was raised9->13. Subsequent actual PBS state was13WTB plus
+1external running. Scientific settings, seeds, thresholds and per-fit resources
+were unchanged. Four-condition controller still awaited15 required execution
+receipts at12:25:31UTC; its existing hold was not released.
+
+Evidence: artifacts/metis_heartbeat_20261015_2023/report.json and
+completed_20261015T1223.stdout; immutable snapshot20261015T122608Z_fd54cc64.
+Independent verification rehashed297 copied files and18 full PBS command
+stdout/stderr pairs; returned report bytes and pinned audit program hash match
+the snapshot. Running-file copies are available-byte snapshots, not final logs.
+The actual final verification gate remains exit1 for unfinished raw coverage
+and TRR02-TRR11. Model artifact verification is not decision-experiment or
+whole-paper reproduction; final statistics, claims and independent reviews
+remain pending. All previous failures and negative-result requirements remain.
