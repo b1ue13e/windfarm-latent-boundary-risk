@@ -391,9 +391,16 @@ def build_docx(md_path, docx_path):
         # Handle Title (# ...)
         if line.startswith('# '):
             title_text = line[2:].strip()
-            p = add_styled_paragraph(doc, space_before=14, space_after=12, line_spacing=1.25, align=WD_ALIGN_PARAGRAPH.CENTER)
-            run = p.add_run(title_text)
-            set_run_font(run, font_name_ascii="SimHei", font_name_ea="黑体", size_pt=20, bold=True)
+            # Distinguish English title vs Chinese title
+            is_english = not bool(re.search(r'[\u4e00-\u9fa5]', title_text))
+            if is_english:
+                p = add_styled_paragraph(doc, space_before=16, space_after=8, line_spacing=1.2, align=WD_ALIGN_PARAGRAPH.CENTER)
+                run = p.add_run(title_text)
+                set_run_font(run, font_name_ascii="Times New Roman", font_name_ea="Times New Roman", size_pt=15, bold=True)
+            else:
+                p = add_styled_paragraph(doc, space_before=14, space_after=12, line_spacing=1.25, align=WD_ALIGN_PARAGRAPH.CENTER)
+                run = p.add_run(title_text)
+                set_run_font(run, font_name_ascii="SimHei", font_name_ea="黑体", size_pt=20, bold=True)
             idx += 1
             continue
 
@@ -415,6 +422,11 @@ def build_docx(md_path, docx_path):
                 p.paragraph_format.keep_with_next = True
                 run = p.add_run("摘  要")
                 set_run_font(run, font_name_ascii="SimHei", font_name_ea="黑体", size_pt=13, bold=True)
+            elif h_text == 'Abstract':
+                p = add_styled_paragraph(doc, space_before=10, space_after=4, line_spacing=1.25, align=WD_ALIGN_PARAGRAPH.CENTER)
+                p.paragraph_format.keep_with_next = True
+                run = p.add_run("Abstract")
+                set_run_font(run, font_name_ascii="Times New Roman", font_name_ea="Times New Roman", size_pt=12, bold=True)
             else:
                 p = add_styled_paragraph(doc, space_before=10, space_after=4, line_spacing=1.25, align=WD_ALIGN_PARAGRAPH.LEFT)
                 p.paragraph_format.keep_with_next = True
@@ -423,15 +435,18 @@ def build_docx(md_path, docx_path):
             idx += 1
             continue
 
-        # Handle Author block
-        if line.startswith('**作者信息**') or line.startswith('**作者单位**') or line.startswith('**通讯作者**'):
+        # Handle Author block (Chinese & English)
+        if (line.startswith('**作者署名**') or line.startswith('**作者信息**') or 
+            line.startswith('**作者单位**') or line.startswith('**通讯作者**') or
+            line.startswith('**Authors**') or line.startswith('**Affiliation**') or 
+            line.startswith('**Corresponding Author**')):
             p = add_styled_paragraph(doc, space_before=2, space_after=4, line_spacing=1.2, align=WD_ALIGN_PARAGRAPH.CENTER)
-            format_mixed_text(p, line, default_size=11, default_ea='楷体', default_ascii='Times New Roman')
+            format_mixed_text(p, line, default_size=10.5, default_ea='楷体', default_ascii='Times New Roman')
             idx += 1
             continue
 
-        # Handle Keywords
-        if line.startswith('**关键词**'):
+        # Handle Keywords (Chinese & English)
+        if line.startswith('**关键词**') or line.startswith('**Keywords**'):
             p = add_styled_paragraph(doc, space_before=6, space_after=14, line_spacing=1.25, indent=0, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
             p.paragraph_format.left_indent = Pt(24)
             p.paragraph_format.right_indent = Pt(24)

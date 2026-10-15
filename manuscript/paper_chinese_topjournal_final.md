@@ -18,6 +18,24 @@
 
 ---
 
+# Operating Reserve Decision-Making for Wind Power Under Latent Control Phase Transitions and Telemetry Degradation: A Minimal Sufficient Model Criterion
+
+**Authors**: Junyu Li, Juntao Du*  
+**Affiliation**: School of Statistics and Applied Mathematics, Anhui University of Finance and Economics, Bengbu 233030, China  
+**Corresponding Author**: Juntao Du (dujuntao@aufe.edu.cn)  
+
+### Abstract
+
+The high-penetration integration of wind power imposes rigorous requirements on the day-ahead operating reserve allocation of power systems. Under highly asymmetric penalty schemes, the unit shortage penalty often exceeds tenfold the reserve procurement price, requiring system operators to decisively guard against severe generation dropouts. However, in practical industrial scenarios, telemetry of the blade pitch angle, which is the key parameter reflecting the aerodynamic control transition, is routinely withheld or masked at the control center due to original equipment manufacturer (OEM) commercial firewalls and multi-minute SCADA communication delays. When pitch data is withheld, traditional aerodynamic models experience severe miscalibration, resulting in severe reserve insufficiency (violation rate up to 24.02%). Conversely, end-to-end deep quantile networks, driven by severe asymmetric loss, exhibit pathological conservatism and blindly inject massive reserve volumes to avert penalties, provoking a counter-intuitive 87.2% surge in total assessment cost relative to the physical benchmark. 
+
+To overcome this dual failure, this paper proposes an orthogonal two-stage operating reserve decision framework rooted in turbine electromechanical dynamics. We demonstrate that the temporal dynamic response of single-turbine active power effectively inverts the latent pitch control switching, achieving a state identification AUROC of 0.988 without requiring pitch sensors. Building upon this inverse mapping, the proposed framework stage-wise decouples conditional expectation fitting from upper-tail residual quantile estimation. This design eliminates the gradient polarity imbalance of the asymmetric pinball loss on deep representation layers, slashing the total operating cost by 41.9% while strictly respecting grid reliability bounds. 
+
+Extensive causal ablations on 134 commercial wind turbines reveal that high-fidelity latent state identification does not entail downstream economic optimality: under steady-state conditions (accounting for 63.8% of operational time), a simple local wind-speed bin quantile baseline decisively outperforms deep neural networks, saving 410,304 kWh in net assessment expenses; under matched-budget constraints, the nominal shortfall reduction of neural models is proven to stem purely from procurement capital redundancy rather than improved spatial risk allocation. Finally, we formulate a minimal sufficient model selection hierarchy across distinct telemetry degradation tiers for modern power systems.
+
+**Keywords**: wind power reserve capacity; asymmetric penalty; SCADA telemetry degradation; latent pitch transitions; two-stage decision-making; minimal sufficient model
+
+---
+
 ## 1 引言
 
 随着以风力发电为代表的新能源大规模接入电网，风能固有的间歇性与波动性对电力系统的安全稳定运行构成了严峻挑战 [1], [2]。在日前和日内调度中，为了防范风电出力骤降带来的瞬时功率失衡，电力调度中心必须提前配置充裕的下行运行备用容量 [3], [4]。不同于以均方误差最小化为目标的常规负荷点预测，风电备用容量决策本质上是一个极度非对称的报童优化问题 [5], [6]。在电力现货市场与辅助服务考核准则下，电量短缺的惩罚单价通常数倍乃至数十倍于常规备用采购单价（惩罚倍率 $\rho = c_{\text{short}} / c_{\text{res}} \ge 10$）[3], [7]。根据极值优化条件，最小化全周期期望考核成本的最优备用容量，在数学上严格对应于预测残差条件分布的高位分位数（$q^* = 1 - 1/\rho \ge 0.90$）[7], [8]。这要求决策模型必须在极端低概率但高损失的出力尾部区间，实现对功率下边界的极其精准的刻画。
