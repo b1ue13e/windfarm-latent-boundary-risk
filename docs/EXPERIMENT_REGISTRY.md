@@ -615,3 +615,23 @@ Before the validator runs, include exact CPU reconstruction of A/B actions from
 the saved contexts and trained head weights with the original4096-cell batches
 and clipping. Report any platform/inference mismatch as non-exact, without fitting
 a tolerance or changing the stored actions/weights.
+
+### RAW-EXTERNAL-TRANSFER-EVIDENCE-AUDIT-V1 (before execution)
+Audit actual Metis transfer242600 without changing its methods/results. Require
+real exit0/nonempty input/output receipts and source/raw-cache/model hashes. On
+PBS GPU allocation, repeat the original pitch-masked forward with saved WTB
+aligned_force weights for Kelmarsh/Penmanshiel201–205 and require exact saved-gate
+agreement; any non-exact inference is retained and diagnosed, without fitted
+tolerance. Reconstruct the same local frozen forecast/target/mask/time/node and
+window identities, five posterior bins/ten wind quantile bins/q0.90/rho10/dt1/6.
+Independently execute per-cell action/metric/native144-issue-block reconstruction,
+20 seed rows and four joint statistics using original5000 resamples and RNG20261014.
+Write a new audit tree with derived calibration/actions/residuals/blocks/bootstrap
+draws; never overwrite original transfer CSV/NPY/NPZ or retrain weights to pass.
+Replay each implemented arithmetic stage exactly. Report differences between
+summed native paired contrasts and differences of separately summed costs as
+operation-order observations, not a fitted acceptance threshold. The block unit
+is consecutive144 eligible issue indices (last block may be partial), not a claim
+that these align with natural-calendar/weather-event boundaries. Empirical
+P(delta<=0) is not a two-sided p-value. No prior invalid EXP01 result is reinstated;
+this audit supplies evidence only for the current registered raw-window replay.
