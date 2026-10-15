@@ -293,3 +293,14 @@ Until then the original dependency remains. Watcher state/lock/logs are under
 metis_execution/factorial_readiness_control.* and fit_audit_tools/attempt2.
 All logs and nested audit reports are included in subsequent immutable snapshots.
 Final paper/claim reconciliation and all experiment evidence gates remain pending.
+
+##19:50follow-up: thirteen model artifact audits, not research completion
+
+NewCPUaudit242605 used the same pinned audit tool with a fresh output/log path.
+It exited0 and verified13closedmodels: WTBforecast201–205,LHB201–205 and
+Kelmarsh201/202/204;32models remained pending in that audit. The report retains
+readinessNOT_CERTIFIED/scientific_completionfalse. Nonewtrainingfailurewasfound.
+Returned logs/report and independently verified227-file/16-PBS-command snapshot:
+artifacts/metis_heartbeat_20261015_1951. The four-condition controller still awaited
+16requiredreceipts and made no dependency change. Whole experiment, decision
+statistics and paper claim reconciliation remain unfinished; no threshold changed.

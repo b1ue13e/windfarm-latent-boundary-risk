@@ -1,10 +1,10 @@
 {
   "title": "2026-10-15 审计修复与原始数据重跑",
   "created": "2026-09-18T00:00:00+08:00",
-  "updated": "2026-10-15T11:49:35.449875+00:00",
+  "updated": "2026-10-15T12:02:01.723716+00:00",
   "phase": "metis_training_running",
   "status": "in_progress",
-  "active_task": "TRR02-TRR11;14actualparallelfits(8WTB/6external);8closedfitartifactauditsPASS;fourconditionstillheld,strictreadinesswatcherWAITING17receipts;fullscienceNOT_COMPLETE",
+  "active_task": "TRR02-TRR11;13completed-model artifacts verified(5forecast/5LHB/3Kelmarsh);14parallel cap;fourconditionreadinessWAITING16, no newfitfailure;fullscienceNOT_COMPLETE",
   "last_verified_task": "TRR01",
   "notes": [
     "Priority revisions (P1-P5) and Exp-C stop condition verified: (1) P1: 'Independent decision value' demoted to 'transition-window localized risk hedge' across main manuscript, cover letter, and canonical docs, strictly preserving negative results (posterior +523k penalty, wspd baseline +410k advantage in steady state, -296k transition interaction); (2) P2: All external transfer statements bounded with 'within evaluated sites only', eliminating universal cross-site transfer claims; (3) P3: Delay regime conclusions in Regime 2 marked provisional pending field validation (Exp-A), evaluated under synthetic stress; (4) P4: MoE framed strictly as an implementation comparator (dense vs routed parity, p=0.380); (5) P5: EXP-02 report template fixed in scripts/run_exp02_zero_privileged_supervision.py to eliminate fabricated two-level bootstrap claims; (6) Stop condition Exp-C confirmed: under withheld pitch (pab=0), incoming wind speed alone deterministically classifies valid operating regimes with 100% precision/recall across all 639,378 test cells, confirming label degradation lacks an independent classification problem and reframing contributions around minimum sufficient modeling and empirical falsification; (7) Verification: main and standalone PDFs compile cleanly to exactly 10.0 pages (0 overfull hboxes), verify_scientific_claim_gate.py PASS, verify_final_pdf_integrity.py PASS, and .agents/scripts/verify_gate.py PASS.",
@@ -56,16 +56,17 @@
     "Four-condition software242601 actualExit0/11passed48.84s with9extension+88frozendependencyhashesPASS. Jobs242602[].cm(20conditions,seeds,cap4)afteroktests+core;aggregate242603 afterokarray. Snapshot20261015T111611Z_3bafacfe83files+14fullPBSstreamsindependentlyhashverified. One modelLHB202 EXECUTED0 observed, not yet countedfullfamily; auditinput/output/sourceandphysicalpopulation underway. Collectorrecursesnestedexecutiondirs outsidefrozencodetree. Scientificgateexit1forDOINGTRR02-10+rawscopeincomplete.",
     "Firstclosedcloudfit LHBseed202 actualEXECUTED0,6epochs; independentverify_run_receipt+deepoutputmanifest+provenanceinputs+rawsourcehashes, fullval/test anchor,target/mask/time/node/windowidentity+finitevalidprediction checks pass. ReportLHB_seed202_20261015T111934Z.json explicitly scientific_completionFalse. Only a singlefit artifact/lineage verification, not5seedexperiment ordecisionvalue/reproductioncertificate. Allunfinishedrequirements/gatesremainopen.",
     "User parallel request: node snapshot9 freegeneralGPU+4CPU nodes. RaisedindependentcapsWTB4→8/external4→6(qalterexit0), perfit4CPU1GPU64GB12h unchanged. Registered readiness schedulingaddendum beforeanyfourconditionjobexec; originaldependenciesremain untilreal20model+sharedcanonical PBScpuauditexit0 INPUTS_VERIFIED. Auditsourceholds(modelconfig,exactmatrix,exit0) fixed3dfb99a. Draftattempt1 toolsuploadedbutneverPBSsubmitted andwillremainpreserved; finalattempt2 tests+completedartifactualaudit to follow. No scientificgateorcanonicalgeneration changed.",
-    "Actualqstat8WTB+6external R afterresourcebasedcaps. BulkPBSCPUaudit242604 actualExit0:3softwareguardtestsPASS2.04s;8closedfitconfig/state/input/source/output/populationchecksverified,37pending,0failure,modecompleted readinessNOT_CERTIFIED. Notcompleteexperiments. Controllera96sourceboundedreviewPASS_WITH_LIMITATIONS; finalattempt2 verifiedtools,exclusive.lockpid+stateWAITING17 of21requiredreceipts, nofactorialreleaseorrecomputedcanonical. Before/afterqalterdependencychangewillrequireactual20models+canonicalPBSaudit0,knownoriginaldeps/systemhold only. Snapshot193files+15fullcommandstreams andreportbytecopy independentlyverified. Gateactualexit1forDOINGTRR02-11andrawreplayincomplete."
+    "Actualqstat8WTB+6external R afterresourcebasedcaps. BulkPBSCPUaudit242604 actualExit0:3softwareguardtestsPASS2.04s;8closedfitconfig/state/input/source/output/populationchecksverified,37pending,0failure,modecompleted readinessNOT_CERTIFIED. Notcompleteexperiments. Controllera96sourceboundedreviewPASS_WITH_LIMITATIONS; finalattempt2 verifiedtools,exclusive.lockpid+stateWAITING17 of21requiredreceipts, nofactorialreleaseorrecomputedcanonical. Before/afterqalterdependencychangewillrequireactual20models+canonicalPBSaudit0,knownoriginaldeps/systemhold only. Snapshot193files+15fullcommandstreams andreportbytecopy independentlyverified. Gateactualexit1forDOINGTRR02-11andrawreplayincomplete.",
+    "Heartbeat11:50UTC: initialsnapshot204files/15PBScommandsverified;3newexit0receiptsobserved. SubmittednewuniqueCPUaudit242605 usingunchangedpinnedauditattempt2source/newoutputdir. ActualExit0/toolsSHA/3softwaretestsPASS1.51s;13modelartifactsverified,32pending,0failures,modecompleted/readinessNOT_CERTIFIED/scientific_completionfalse. Verifiedgroupsforecast201-205,LHB201-205,Kel201/202/204;notwhole-paperorreserveexperimentcompletion. Finalsnapshot11:58:41UTC227files/16PBSstreamsindependentlyhashverified. ControllerWAITING16requiredreceipts,originalfactorialholdretained. No newtrainingfailurefound,nogate/seed/baseline/datachanges. Overallgateexit1openTRR02-11+rawscopeincomplete."
   ],
   "metis_followup": {
     "automation_id": "metis",
     "cadence_minutes": 30,
     "status": "ACTIVE",
-    "last_snapshot": "20261015T114439Z_c3b61a5e",
+    "last_snapshot": "20261015T115841Z_b093a134",
     "cloud_collector": "metis_execution/collect_metis_evidence.py",
-    "local_snapshot": "artifacts/metis_parallel_followup_20261015/20261015T114439Z_c3b61a5e",
-    "model_fit_receipts": 9,
+    "local_snapshot": "artifacts\\metis_heartbeat_20261015_1951\\20261015T115841Z_b093a134",
+    "model_fit_receipts": 28,
     "scientific_completion": false,
     "single_fit_hash_population_verified": [
       "la_haute_borne_seed202"
@@ -80,16 +81,22 @@
       "train_forecast_202",
       "train_forecast_203",
       "train_forecast_204",
+      "train_forecast_205",
+      "kelmarsh_201",
+      "kelmarsh_202",
+      "kelmarsh_204",
       "la_haute_borne_201",
       "la_haute_borne_202",
       "la_haute_borne_203",
-      "la_haute_borne_204"
+      "la_haute_borne_204",
+      "la_haute_borne_205"
     ],
     "concurrency_limits": {
       "wtb": 8,
       "external": 6
     },
-    "completed_fit_audit_job": "242604.cm",
-    "factorial_readiness_status": "WAITING_FOR_REQUIRED_EXECUTION_RECEIPTS"
+    "completed_fit_audit_job": "242605.cm",
+    "factorial_readiness_status": "WAITING_FOR_REQUIRED_EXECUTION_RECEIPTS",
+    "latest_model_audit_report": "artifacts\\metis_heartbeat_20261015_1951\\report.json"
   }
 }
