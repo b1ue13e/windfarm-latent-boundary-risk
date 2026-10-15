@@ -9,6 +9,7 @@ from collections import Counter
 from datetime import datetime,timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import shutil
@@ -87,9 +88,12 @@ def snapshot(root,qstat):
                     path=value.split(':',1)[-1]
                     save(Path(path) if Path(path).is_absolute() else root/path)
     for folder in ('logs','metis_execution'):
-        for path in sorted((root/folder).iterdir()):
-            if path.is_file() and path.suffix in ('.json','.txt','.log','.sha256'):
-                save(path)
+        for directory,dirs,names in os.walk(root/folder):
+            dirs[:]=[name for name in dirs if name not in ('monitor_snapshots','bin','__pycache__','.git','.venv')]
+            for name in sorted(names):
+                path=Path(directory)/name
+                if path.suffix in ('.json','.txt','.log','.sha256','.stdout','.stderr','.py','.pbs','.md'):
+                    save(path)
     records=[]
     for base in sorted((root/'artifacts').glob('raw_replay*')):
         if not base.is_dir():continue
