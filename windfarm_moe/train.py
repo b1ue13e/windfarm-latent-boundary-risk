@@ -320,6 +320,17 @@ def train_model(
     model.load_state_dict(best_state["model_state"])
     val_summary = evaluate_model(model, val_loader, bundle, device, eval_config, Path(output_root) / "val_metrics")
     test_summary = evaluate_model(model, test_loader, bundle, device, eval_config, Path(output_root) / "test_metrics")
+    if eval_config.save_predictions:
+        for split, dataset in [('val', val_dataset), ('test', test_dataset)]:
+            metric_dir = Path(output_root) / f'{split}_metrics'
+            np.save(metric_dir / 'anchor_time_index.npy', np.asarray(bundle.time_index[dataset.anchor_indices]))
+            save_json(metric_dir / 'population_identity.json', {
+                'node_labels': bundle.metadata.get('node_labels', np.asarray(bundle.node_ids).tolist()),
+                'window_begin': bundle.metadata.get('window_begin'),
+                'window_offset_days': bundle.metadata.get('window_offset_days'),
+                'split_bounds': bundle.metadata['split_bounds'],
+                'cache_dir': str(bundle.cache_dir),
+            })
     holdout_summary = None
     if "holdout" in bundle.metadata.get("split_bounds", {}):
         holdout_dataset = RegimeWindowDataset(bundle, "holdout", hist_len, pred_len)

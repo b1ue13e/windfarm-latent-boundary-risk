@@ -14,7 +14,7 @@ from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from replay_provenance import file_record, write_json, sha256, finalize
+from replay_provenance import file_record, write_json, sha256, finalize, provenance
 
 FAMILIES = {
     'forecast': 'artifacts/trainweight_full_rerun_20260830/wtb_full_seed{seed}',
@@ -28,6 +28,27 @@ FAMILIES = {
 
 def now():
     return datetime.now(timezone.utc).isoformat()
+
+
+def verify_records(records):
+    for r in records:
+        if not Path(r['path']).is_file() or sha256(r['path']) != r['sha256']:
+            raise ValueError(f"Evidence changed or missing: {r['path']}")
+
+
+def verify_run_receipt(receipt):
+    previous=json.loads(Path(receipt).read_text(encoding='utf-8'))
+    if previous['status'] != 'EXECUTED':
+        raise RuntimeError('Incomplete or failed run cannot be resumed as complete')
+    verify_records(previous['inputs'])
+    verify_records(previous['outputs'])
+    for record in previous['outputs']:
+        if Path(record['path']).name == 'output_manifest.json':
+            verify_records(json.loads(Path(record['path']).read_text(encoding='utf-8')))
+    for rel,digest in previous['source_sha256'].items():
+        if sha256(ROOT/rel) != digest:
+            raise ValueError(f'Source differs from completed run: {rel}; explicit versioned replay required')
+    return previous
 
 
 def freeze(out):
@@ -118,6 +139,7 @@ def prepare(out):
         equal = a.shape == b.shape and np.array_equal(a,b,equal_nan=True)
         comparison.append({'file':p.name,'exact_equal':bool(equal),'new':file_record(p),'old':file_record(q)})
     write_json(out/'preprocessing_comparison.json', comparison)
+    write_json(out/'cache_manifest.json', [file_record(p) for p in sorted((out/'cache_wtb').iterdir()) if p.is_file()])
     mandatory = ['target.npy','target_mask.npy','regime_primary.npy','regime_primary_valid.npy','time_index.npy']
     if any(not x.get('exact_equal',False) for x in comparison if x['file'] in mandatory):
         raise RuntimeError('Frozen target/population/label changed; training stopped')
@@ -134,6 +156,11 @@ def train_one(out, family, seed):
     target = out/'models'/family/f'seed{seed}'
     if target.exists():
         raise FileExistsError(f'Cannot overwrite training: {target}')
+    cache_records=json.loads((out/'cache_manifest.json').read_text(encoding='utf-8'))
+    verify_records(cache_records)
+    provenance(target, [out/'frozen_protocol.json', out/'cache_manifest.json',
+                        *[r['path'] for r in cache_records]],
+               {'family':family,'seed':seed,'model_config':cfg['model_config'],'train_config':cfg['train_config']})
     bundle = load_cache_bundle(out/'cache_wtb', mmap_mode='r')
     if cfg['train_config'].get('limit_train_batches') is not None or cfg['train_config'].get('limit_val_batches') is not None:
         raise ValueError('Partial batch training cannot serve as full replay')
@@ -152,15 +179,14 @@ def run_wtb(out):
         name=f'train_{family}_{seed}'
         receipt=out/'execution'/name/'record.json'
         if receipt.exists():
-            previous=json.loads(receipt.read_text(encoding='utf-8'))
-            if previous['status']=='EXECUTED' and all(sha256(r['path'])==r['sha256'] for r in previous['outputs']):
-                print('VERIFIED_RESUME',name,flush=True)
-                continue
-            raise RuntimeError(f'Prior run {name} failed/incomplete; do not silently rerun/select seeds')
+            verify_run_receipt(receipt)
+            print('VERIFIED_RESUME',name,flush=True)
+            continue
         target=out/'models'/family/f'seed{seed}'
         run_command(out,name,[sys.executable,'-u',__file__,'train-one','--output-dir',str(out),
                     '--family',family,'--seed',str(seed)],
-                    [out/'frozen_protocol.json',cache/'metadata.json'],
+                    [out/'frozen_protocol.json',out/'cache_manifest.json',
+                     *sorted(cache.glob('*.npy')),cache/'metadata.json'],
                     [target/'best_model.pt',target/'training_summary.json',target/'output_manifest.json'])
     residual=out/'fixed_forecast_residuals.npz'
     run_command(out,'fixed_residuals',[sys.executable,'scripts/build_fixed_forecast_residuals.py',

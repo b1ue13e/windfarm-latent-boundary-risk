@@ -5,6 +5,7 @@ import json
 import platform
 import subprocess
 import sys
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -25,7 +26,11 @@ def file_record(path):
 def write_json(path, value):
     p = Path(path)
     p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text(json.dumps(value, indent=2, ensure_ascii=False, allow_nan=False), encoding='utf-8')
+    def encode(v):
+        if isinstance(v, Path):
+            return str(v)
+        raise TypeError(f'Unsupported provenance value: {type(v)}')
+    p.write_text(json.dumps(value, indent=2, ensure_ascii=False, allow_nan=False, default=encode), encoding='utf-8')
 
 
 def provenance(output_dir, inputs=(), config=None):
@@ -39,6 +44,14 @@ def provenance(output_dir, inputs=(), config=None):
               'scope': 'archived execution products; no universal reproducibility certification'}
     if Path(sys.argv[0]).is_file():
         record['executed_script'] = file_record(sys.argv[0])
+    root=Path(__file__).resolve().parents[1]
+    sources=sorted([*root.joinpath('scripts').rglob('*.py'), *root.joinpath('windfarm_moe').rglob('*.py')])
+    snapshot=out/'source_snapshot.zip'
+    with zipfile.ZipFile(snapshot,'w',compression=zipfile.ZIP_DEFLATED) as z:
+        for p in sources:
+            z.write(p,str(p.relative_to(root)))
+    record['source_sha256']={str(p.relative_to(root)):sha256(p) for p in sources}
+    record['source_snapshot']=file_record(snapshot)
     write_json(out / 'provenance.json', record)
     return record
 

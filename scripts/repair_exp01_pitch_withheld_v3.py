@@ -116,6 +116,26 @@ def fit_bins(values, s, mask, bins, min_n=30):
     return edges, qs
 
 
+def assert_forecast_alignment(metric_dir, bundle, anchors, target, mask):
+    """Integer anchors are insufficient: reject different physical windows and nodes."""
+    metric_dir = Path(metric_dir)
+    saved_target = np.load(metric_dir/'target.npy', mmap_mode='r')
+    saved_mask = np.load(metric_dir/'mask.npy', mmap_mode='r').astype(bool)
+    if saved_target.shape != target.shape or not np.array_equal(saved_mask, mask):
+        raise ValueError('Frozen forecast population mask mismatch (possibly shifted physical window)')
+    if not np.array_equal(saved_target[mask], target[mask], equal_nan=True):
+        raise ValueError('Frozen forecast targets belong to a different physical window')
+    saved_times = np.load(metric_dir/'anchor_time_index.npy')
+    if not np.array_equal(saved_times, np.asarray(bundle.time_index[anchors])):
+        raise ValueError('Frozen forecast physical time indices differ')
+    identity = json.loads((metric_dir/'population_identity.json').read_text(encoding='utf-8'))
+    expected_nodes = bundle.metadata.get('node_labels', np.asarray(bundle.node_ids).tolist())
+    for key, expected in [('node_labels',expected_nodes), ('window_begin',bundle.metadata.get('window_begin')),
+                          ('window_offset_days',bundle.metadata.get('window_offset_days'))]:
+        if identity.get(key) != expected:
+            raise ValueError(f'Frozen forecast identity mismatch: {key}')
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", default="artifacts/exp01_pitchmasked_v3")
@@ -123,6 +143,10 @@ def main():
     parser.add_argument("--seeds", default="201,202,203,204,205")
     parser.add_argument("--bootstrap", type=int, default=5000)
     parser.add_argument("--random-seed", type=int, default=20261014)
+    parser.add_argument('--source-pattern', default=SOURCE_RUN)
+    parser.add_argument('--forecast-pattern', default='artifacts/external_wind_runs/{farm}/chronological/external_wind_full_seed{seed}')
+    parser.add_argument('--cache-map', type=Path, default=None,
+                        help='JSON mapping farm to corrected raw cache path')
     args = parser.parse_args()
     out = ROOT / args.output_dir
     out.mkdir(parents=True, exist_ok=True)
@@ -130,7 +154,9 @@ def main():
     seeds = [int(x) for x in args.seeds.split(",")]
     rows, provenance, block_records, native_blocks_dict = [], [], {}, {}
 
-    for farm, (display, cache_rel) in FARMS.items():
+    cache_map = json.loads(args.cache_map.read_text(encoding='utf-8')) if args.cache_map else {}
+    for farm, (display, legacy_cache) in FARMS.items():
+        cache_rel = cache_map.get(farm, legacy_cache)
         bundle = load_cache_bundle(ROOT / cache_rel, mmap_mode="r")
         names = bundle.metadata.get("physics_names", [])
         if "Pab_mean" not in names:
@@ -140,7 +166,7 @@ def main():
         wspd_idx = names.index("Wspd") if "Wspd" in names else 0
         pred_len = int(bundle.metadata["pred_len"])
         for seed in seeds:
-            src = ROOT / SOURCE_RUN.format(seed=seed)
+            src = ROOT / args.source_pattern.format(seed=seed)
             src_summary = json.loads((src / "training_summary.json").read_text(encoding="utf-8"))
             checkpoint_meta = torch.load(src / "best_model.pt", map_location="cpu", weights_only=False).get("metadata", {})
             if str(checkpoint_meta.get("dataset", "")).lower() != "wtb" or int(checkpoint_meta.get("num_nodes", 0)) != 134:
@@ -156,15 +182,17 @@ def main():
                 np.save(path, gate)
                 hashes[split] = sha256(path)
             val_anchor, test_anchor = anchors_by_split["val"], anchors_by_split["test"]
-            if not np.array_equal(test_anchor, np.load(ROOT / f"artifacts/external_wind_runs/{farm}/chronological/external_wind_full_seed{seed}/test_metrics/anchor_index.npy")):
+            run_dir = ROOT / args.forecast_pattern.format(farm=farm,seed=seed)
+            if not np.array_equal(test_anchor, np.load(run_dir / 'test_metrics/anchor_index.npy')):
                 raise ValueError(f"Frozen forecast anchor mismatch: {farm} seed {seed}")
-            if not np.array_equal(val_anchor, np.load(ROOT / f"artifacts/external_wind_runs/{farm}/chronological/external_wind_full_seed{seed}/val_metrics/anchor_index.npy")):
+            if not np.array_equal(val_anchor, np.load(run_dir / 'val_metrics/anchor_index.npy')):
                 raise ValueError(f"Frozen validation anchor mismatch: {farm} seed {seed}")
             val_target = np.stack([np.asarray(bundle.target[a+1:a+1+pred_len]) for a in val_anchor])
             test_target = np.stack([np.asarray(bundle.target[a+1:a+1+pred_len]) for a in test_anchor])
             val_mask = np.stack([np.asarray(bundle.target_mask[a+1:a+1+pred_len]) for a in val_anchor]).astype(bool)
             test_mask = np.stack([np.asarray(bundle.target_mask[a+1:a+1+pred_len]) for a in test_anchor]).astype(bool)
-            run_dir = ROOT / f"artifacts/external_wind_runs/{farm}/chronological/external_wind_full_seed{seed}"
+            assert_forecast_alignment(run_dir/'val_metrics', bundle, val_anchor, val_target, val_mask)
+            assert_forecast_alignment(run_dir/'test_metrics', bundle, test_anchor, test_target, test_mask)
             vp = np.load(run_dir / "val_metrics/pred.npy")
             tp = np.load(run_dir / "test_metrics/pred.npy")
             val_wspd = np.asarray(bundle.physics_model[val_anchor, :, wspd_idx])

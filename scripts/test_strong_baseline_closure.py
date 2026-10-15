@@ -95,6 +95,13 @@ def main():
     parser.add_argument('--runs-pattern', default=str(REPO_ROOT / 'artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed{seed}'))
     parser.add_argument('--device', default='cuda:0' if torch.cuda.is_available() else 'cpu')
     args = parser.parse_args()
+    from scripts.replay_provenance import provenance, finalize
+    evidence_dir = REPO_ROOT / os.environ.get('STRONG_BASELINE_OUTPUT_DIR', 'artifacts/strong_baseline_replay') / 'evidence'
+    if evidence_dir.exists():
+        raise FileExistsError(f'Baseline evidence already exists: {evidence_dir}')
+    provenance(evidence_dir, [args.residuals_file,Path(args.cache_dir)/'metadata.json',
+                *sorted(Path(args.cache_dir).glob('*.npy')),
+                *[Path(args.runs_pattern.format(seed=s))/'best_model.pt' for s in range(201,206)]], vars(args))
     device = torch.device(args.device)
     print(f"Using device: {device}")
     bundle = load_cache_bundle(args.cache_dir, mmap_mode="r")
@@ -381,7 +388,7 @@ def main():
     df_res = pd.DataFrame(all_seed_results)
     df_boot = pd.DataFrame(all_boot_results)
     out_dir = REPO_ROOT / os.environ.get("STRONG_BASELINE_OUTPUT_DIR", "artifacts")
-    out_dir.mkdir(exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
     df_boot.to_csv(out_dir / "strong_baseline_bootstrap_contrasts.csv", index=False)
     np.savez_compressed(
         out_dir / "strong_baseline_native_day_blocks_v2.npz",
@@ -446,6 +453,8 @@ def main():
     df_summary.to_csv(out_dir / "strong_baseline_closure_summary.csv", index=False)
     print(f"\nSuccessfully wrote summary to {out_dir / 'strong_baseline_closure_summary.csv'}", flush=True)
     print(f"Successfully wrote bootstrap contrasts to {out_dir / 'strong_baseline_bootstrap_contrasts.csv'}", flush=True)
+    from scripts.replay_provenance import file_record, write_json
+    write_json(evidence_dir/'output_manifest.json', [file_record(p) for p in out_dir.glob('strong_baseline_*') if p.is_file()])
 
 if __name__ == "__main__":
     main()

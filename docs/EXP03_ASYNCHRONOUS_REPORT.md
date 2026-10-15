@@ -1,3 +1,5 @@
+> WITHDRAWAL NOTICE — 2026-10-15: Historical asynchronous results used potentially unarrived initialization and incomplete packet provenance. Their interpretation as causal arrival-time decision evidence is withdrawn. Corrected v2 full-grid replay is pending; old numbers are preserved below.
+
 # EXP-03 Asynchronous Telemetry Envelope Benchmark Report
 
 **Status:** RECONCILED HARDENED PROTOCOL (Strict Parity & Fixed Population)  

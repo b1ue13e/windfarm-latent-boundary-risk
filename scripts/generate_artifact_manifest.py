@@ -172,7 +172,7 @@ ARTIFACT_DEFINITIONS = [
     {
         "filename": "artifacts/anchor_stress_guard/anchor_stress_summary.csv",
         "category": "A",
-        "generating_script": "scripts/run_anchor_stress_guard.py",
+        "generating_script": "windfarm_moe/anchor_stress.py",
         "upstream_inputs": ["artifacts/cache_signature_trainweight/wtb_245d_canonical"],
         "manuscript_claims_supported": [
             "Consequence channel ablation under anchor stress (no_patv, no_pab_mean, lagged_patv)",
@@ -326,7 +326,7 @@ ARTIFACT_DEFINITIONS = [
     {
         "filename": "artifacts/paper_assets/tables/table_main_benchmark.csv",
         "category": "A",
-        "generating_script": "scripts/rebuild_applied_energy_diagnostics.py",
+        "generating_script": "scripts/build_applied_energy_diagnostics.py",
         "upstream_inputs": ["artifacts/cache_signature_trainweight/"],
         "manuscript_claims_supported": [
             "Benchmark point forecast RMSE margin: 236.13 +- 8.41 vs 224.34 +- 2.23",
@@ -339,7 +339,7 @@ ARTIFACT_DEFINITIONS = [
     {
         "filename": "artifacts/paper_assets/tables/table_wtb_ablation.csv",
         "category": "A",
-        "generating_script": "scripts/rebuild_applied_energy_diagnostics.py",
+        "generating_script": "scripts/build_applied_energy_diagnostics.py",
         "upstream_inputs": ["artifacts/checkpoints/"],
         "manuscript_claims_supported": [
             "MoE + L_bal + L_align + L_force ablation metrics",
@@ -351,7 +351,7 @@ ARTIFACT_DEFINITIONS = [
     {
         "filename": "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv",
         "category": "A",
-        "generating_script": "scripts/run_anchor_stress_early_warning.py",
+        "generating_script": "windfarm_moe/anchor_stress.py",
         "upstream_inputs": ["artifacts/cache_signature_trainweight/wtb_245d_canonical"],
         "manuscript_claims_supported": [
             "Early warning label delay steps=6 and availability=0.50 robustness",
@@ -363,7 +363,7 @@ ARTIFACT_DEFINITIONS = [
     {
         "filename": "artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_summary.csv",
         "category": "A",
-        "generating_script": "scripts/run_early_warning_classifier_baseline.py",
+        "generating_script": "scripts/build_early_warning_classifier_baseline.py",
         "upstream_inputs": ["artifacts/cache_signature_trainweight/wtb_245d_canonical"],
         "manuscript_claims_supported": [
             "Classifier baseline clean live anchor comparison",
@@ -375,7 +375,7 @@ ARTIFACT_DEFINITIONS = [
     {
         "filename": "artifacts/final_evidence_package/export/tables/early_warning_consequence_audit.csv",
         "category": "A",
-        "generating_script": "scripts/build_final_evidence_package.py",
+        "generating_script": "scripts/build_early_warning_consequence_table.py",
         "upstream_inputs": ["artifacts/cache_signature_trainweight/wtb_245d_canonical"],
         "manuscript_claims_supported": [
             "Consequence audit under delay steps=6",
@@ -387,7 +387,7 @@ ARTIFACT_DEFINITIONS = [
     {
         "filename": "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv",
         "category": "A",
-        "generating_script": "scripts/run_class_weight_sensitivity.py",
+        "generating_script": "scripts/build_class_weight_sensitivity_audit.py",
         "upstream_inputs": ["artifacts/cache_signature_trainweight/wtb_245d_canonical"],
         "manuscript_claims_supported": [
             "Train-only class weight sensitivity audit",
@@ -423,7 +423,7 @@ ARTIFACT_DEFINITIONS = [
     {
         "filename": "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv",
         "category": "A",
-        "generating_script": "scripts/build_mechanism_behavior_pack.py",
+        "generating_script": "windfarm_moe/mechanism_behavior.py",
         "upstream_inputs": ["artifacts/cache_signature_trainweight/wtb_245d_canonical"],
         "manuscript_claims_supported": [
             "Gate transition lead-lag temporal evolution",
@@ -500,7 +500,7 @@ ARTIFACT_DEFINITIONS = [
     {
         "filename": "artifacts/fixed_forecast_residuals.npz",
         "category": "B",
-        "generating_script": "scripts/run_fixed_target_contract.py",
+        "generating_script": "scripts/build_fixed_forecast_residuals.py",
         "upstream_inputs": ["artifacts/cache_signature_trainweight/wtb_245d_canonical", "wtbdata_245days.csv"],
         "manuscript_claims_supported": [
             "Fixed forecast residuals across 5 seeds and 6 horizons (keys: 28)",

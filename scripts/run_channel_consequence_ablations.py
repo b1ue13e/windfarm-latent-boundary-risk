@@ -194,7 +194,8 @@ def main():
     archive = out_csv.parent / (out_csv.stem + '_runs')
     if archive.exists():
         raise FileExistsError(f'Refusing to overwrite run evidence: {archive}')
-    provenance(archive, [args.residuals_file, Path(args.cache_dir) / 'metadata.json'], vars(args))
+    provenance(archive, [args.residuals_file, Path(args.cache_dir) / 'metadata.json',
+                         *sorted(Path(args.cache_dir).glob('*.npy'))], vars(args))
     for split in ('val', 'test'):
         expected = RegimeWindowDataset(bundle, split, 36, 24).anchor_indices
         if not np.array_equal(expected, res_data[f'anchor_indices_{split}']):

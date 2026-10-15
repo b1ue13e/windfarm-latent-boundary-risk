@@ -64,6 +64,7 @@ from exp02_verdict import (
     derive_verdict,
     VerdictInputs,
 )
+from replay_provenance import provenance, finalize
 
 import numpy as np
 import pandas as pd
@@ -216,15 +217,21 @@ class ZeroPrivilegedRepresentationNet(nn.Module):
 # Helper Functions: Transition Recall & Metrics
 # ==============================================================================
 
-def compute_transition_recall(y_true: np.ndarray, y_pred_binary: np.ndarray, window_radius: int = 3) -> float:
+def compute_transition_recall(y_true: np.ndarray, y_pred_binary: np.ndarray, window_radius: int = 3,
+                              valid: np.ndarray | None = None) -> float:
     """Computes recall within +/- window_radius of true regime transitions."""
     W, N = y_true.shape
     diff = np.diff(y_true, axis=0, prepend=y_true[:1, :]) != 0
+    if valid is not None:
+        diff[1:] &= valid[1:] & valid[:-1]
+        diff[0] = False
     in_window = diff.copy()
     for offset in range(1, window_radius + 1):
         in_window[offset:, :] |= diff[:-offset, :]
         in_window[:-offset, :] |= diff[offset:, :]
     target_mask = in_window & (y_true == 1)
+    if valid is not None:
+        target_mask &= valid
     if np.sum(target_mask) == 0:
         return 0.0
     return float(np.mean(y_pred_binary[target_mask]))
@@ -506,6 +513,15 @@ def train_and_eval_challenger(
 # Main Orchestration Loop
 # ==============================================================================
 
+def physical_proxy_channels(cache_dir, anchors):
+    cache_dir = Path(cache_dir)
+    meta = json.loads((cache_dir / 'metadata.json').read_text(encoding='utf-8'))
+    values = np.load(cache_dir / 'physics.npy', mmap_mode='r')
+    names = meta['physics_names']
+    return (np.asarray(values[anchors, :, names.index('Wspd')]),
+            np.asarray(values[anchors, :, names.index('Patv')]))
+
+
 def main():
     parser = argparse.ArgumentParser(description="EXP-02: Zero-Privileged Supervision Boundary Protocol")
     parser.add_argument("--cache-dir", default="artifacts/cache_strictmask_trainweights/wtb_245d")
@@ -518,7 +534,7 @@ def main():
     parser.add_argument('--archive-dir', type=Path, default=Path('artifacts/exp02_replay_v2/runs'))
     parser.add_argument(
         "--output-blocks",
-        default="artifacts/exp02_zero_privileged_block_deltas.npz",
+        default="artifacts/exp02_replay_v2/day_blocks.npz",
         help="per-seed block-level paired differences, required to recompute joint CIs",
     )
     parser.add_argument(
@@ -537,6 +553,20 @@ def main():
         print("=" * 80)
         regenerate_report_only(args)
         return
+
+    evidence_dir = Path(args.output_csv).parent / 'evidence'
+    if evidence_dir.exists():
+        raise FileExistsError(f'Refusing to overwrite EXP02 evidence: {evidence_dir}')
+    oracle_inputs = []
+    for seed in SEEDS:
+        d = Path(args.oracle_pattern.format(seed=seed)) if args.oracle_pattern else Path(args.runs_root)/f'wtb_bal_align_seed{seed}'
+        if (d/'best_model.pt').exists():
+            oracle_inputs.append(d/'best_model.pt')
+            for split in ('val','test'):
+                oracle_inputs.extend(d/f'{split}_metrics'/name for name in
+                                     ('gate_prob.npy','anchor_index.npy','target.npy','mask.npy'))
+    provenance(evidence_dir, [args.residuals_file, Path(args.cache_dir)/'metadata.json',
+                              *sorted(Path(args.cache_dir).glob('*.npy')), *oracle_inputs], vars(args))
 
     device = torch.device(args.device)
     print("=" * 80)
@@ -590,8 +620,10 @@ def main():
         p_ratio = np.clip(p / P_RATED, 0.0, 1.5)
         return np.stack([w, p, e, i, pr, w_sq, p_ratio], axis=-1)
 
-    feats_val = construct_consequence_features(wspd_val, patv_val, etmp_val, itmp_val, prtv_val)
-    feats_test = construct_consequence_features(wspd_test, patv_test, etmp_test, itmp_test, prtv_test)
+    w_phys_v, p_phys_v = physical_proxy_channels(args.cache_dir, val_anchors)
+    w_phys_t, p_phys_t = physical_proxy_channels(args.cache_dir, test_anchors)
+    feats_val = construct_consequence_features(w_phys_v, p_phys_v, etmp_val, itmp_val, prtv_val)
+    feats_test = construct_consequence_features(w_phys_t, p_phys_t, etmp_test, itmp_test, prtv_test)
 
     # Check zero pitch in constructed features
     assert feats_val.shape[-1] == 7
@@ -599,16 +631,10 @@ def main():
 
     # 2. Rule 4: Unnormalize to physical engineering units and construct Pre-Frozen Proxy Labels
     print(f"\n[Step 2] Recovering physical units (m/s, kW) and constructing pre-frozen proxy labels...")
-    stats = meta.get("feature_stats", {})
-    w_mean = float(stats["Wspd"]["mean"]) if "Wspd" in stats else 5.30646
-    w_std = float(stats["Wspd"]["std"]) if "Wspd" in stats else 3.42599
-    p_mean = float(stats["Patv_hist"]["mean"]) if "Patv_hist" in stats else 379.878
-    p_std = float(stats["Patv_hist"]["std"]) if "Patv_hist" in stats else 416.439
-
-    wspd_real_val = wspd_val * w_std + w_mean
-    patv_real_val = patv_val * p_std + p_mean
-    wspd_real_test = wspd_test * w_std + w_mean
-    patv_real_test = patv_test * p_std + p_mean
+    # Proxy thresholds are physical; physics_model and Patv_hist use DIFFERENT scalers.
+    # Read the retained physical channels directly instead of applying a guessed scaler.
+    wspd_real_val, patv_real_val = physical_proxy_channels(args.cache_dir, val_anchors)
+    wspd_real_test, patv_real_test = physical_proxy_channels(args.cache_dir, test_anchors)
 
     proxy_labels_val = {}
     proxy_labels_test = {}
@@ -625,7 +651,12 @@ def main():
     mask_val_all = res_data["mask_val"] > 0.5
     mask_test_all = res_data["mask_test"] > 0.5
 
-    # Align temporal lengths
+    # Never truncate mismatched forecast/features into a seemingly matched experiment.
+    if not np.array_equal(val_anchors, res_data['anchor_indices_val']) or not np.array_equal(test_anchors, res_data['anchor_indices_test']):
+        raise ValueError('EXP02 forecast and feature anchors differ')
+    if feats_val.shape[0] != mask_val_all.shape[0] or feats_test.shape[0] != mask_test_all.shape[0]:
+        raise ValueError('EXP02 population length mismatch')
+    # These lengths are now proven equal.
     min_val_T = min(feats_val.shape[0], mask_val_all.shape[0])
     min_test_T = min(feats_test.shape[0], mask_test_all.shape[0])
 
@@ -738,6 +769,17 @@ def main():
             # ------------------------------------------------------------------
             oracle_dir = Path(args.oracle_pattern.format(seed=seed)) if args.oracle_pattern else runs_root / f"wtb_bal_align_seed{seed}"
             if oracle_dir.exists():
+                for split, expected_anchors in [('val', val_anchors), ('test', test_anchors)]:
+                    metric_dir=oracle_dir/f'{split}_metrics'
+                    if not np.array_equal(np.load(metric_dir/'anchor_index.npy'), expected_anchors):
+                        raise ValueError(f'Oracle {split} anchors mismatch')
+                    target=np.load(metric_dir/'target.npy')[:, :6, :]
+                    mask=np.load(metric_dir/'mask.npy')[:, :6, :]
+                    if not np.array_equal(mask, res_data[f'mask_{split}']):
+                        raise ValueError(f'Oracle {split} target mask mismatch')
+                    valid=mask.astype(bool)
+                    if not np.array_equal(target[valid],res_data[f'ytrue_{split}'][valid],equal_nan=True):
+                        raise ValueError(f'Oracle {split} physical target mismatch')
                 val_gate = np.load(oracle_dir / "val_metrics" / "gate_prob.npy")[:min_val_T, :, 2]
                 test_gate = np.load(oracle_dir / "test_metrics" / "gate_prob.npy")[:min_test_T, :, 2]
                 # Gate binning for reserve selection
@@ -757,6 +799,13 @@ def main():
             # ------------------------------------------------------------------
             # Run Paired Block Bootstrap on Full Population
             # ------------------------------------------------------------------
+            eval_dir = args.archive_dir / 'evaluation'
+            eval_dir.mkdir(parents=True, exist_ok=True)
+            np.savez_compressed(eval_dir / f'seed{seed}_{h_name.replace("=", "")}.npz',
+                                shortfall=s_test, mask=m_test, boundary_mask=boundary_mask_test,
+                                anchor_indices=test_anchors, true_labels=true_pitch_active_test,
+                                true_label_valid=true_regime_valid,
+                                **{f'reserve_{k}': v for k,v in reserves_dict.items()})
             boot_full = block_bootstrap_paired(
                 s=s_test,
                 reserves_map=reserves_dict,
@@ -802,7 +851,7 @@ def main():
                     y_pred_bin = (p_arr > 0.5).astype(int)
                     held_out_nmi = float(normalized_mutual_info_score(y_tr_sub, (p_pred_sub > 0.5).astype(int)))
                     held_out_ari = float(adjusted_rand_score(y_tr_sub, (p_pred_sub > 0.5).astype(int)))
-                    held_out_recall = compute_transition_recall(true_pitch_active_test, y_pred_bin)
+                    held_out_recall = compute_transition_recall(true_pitch_active_test, y_pred_bin, valid=v_mask)
 
                 # Role assignment comes from the single shared source of truth.
                 # Never substring-match "Privileged": the zero-pitch challenger
@@ -868,7 +917,9 @@ def main():
           f"({len(block_arrays)} arrays)")
 
     # Generate Markdown Summary Report with Joint Uncertainty & Catastrophic Failure Analysis
-    generate_audit_report(df_results, Path(args.output_report), block_deltas_tracker)
+    generate_audit_report(df_results, Path(args.output_report), block_deltas_tracker, source_csv=args.output_csv)
+    finalize(args.archive_dir)
+    finalize(evidence_dir)
     print(f"[Step 6] Audit and falsification report generated at {args.output_report}")
     print("=" * 80)
     print("EXP-02 BENCHMARK COMPLETE.")
@@ -925,7 +976,7 @@ def regenerate_report_only(args) -> None:
     if not blocks:
         print(f"[WARN] no block deltas at {args.output_blocks}; "
               f"the joint two-level CI column will be blank.")
-    generate_audit_report(df, Path(args.output_report), blocks or None)
+    generate_audit_report(df, Path(args.output_report), blocks or None, source_csv=args.output_csv)
     print(f"[OK] Report regenerated from {csv_path} -> {args.output_report}")
 
 
@@ -963,6 +1014,7 @@ def generate_audit_report(
     df: pd.DataFrame,
     report_path: Path,
     block_deltas_tracker: Optional[Dict[Tuple[str, str], Dict[int, np.ndarray]]] = None,
+    source_csv: str | None = None,
 ) -> None:
     """Generates the audit report, deriving every verdict from the measured data.
 
@@ -1042,7 +1094,7 @@ def generate_audit_report(
     verdict_text = (
         HEADLINE_SUPPORTED if all(c == VERDICT_SUPPORTED for c in codes)
         else "**NO STABLE ZERO-PRIVILEGED ADVANTAGE ESTABLISHED** "
-             "(DEFICIT NOT ESTABLISHED; INSTABILITY OBSERVED)"
+             "(interpret seed stability and risk diagnostics from the measured table)"
     )
 
     h6_stats, h6_v = verdicts["h=6"]
@@ -1078,7 +1130,7 @@ def generate_audit_report(
     md = f"""# EXP-02 (EXP-Q1-003): Zero-Privileged-Pitch Supervision Boundary Audit Report
 
 **Date:** {time.strftime('%Y-%m-%d %H:%M:%S')}  
-**Target Artifact:** `artifacts/zero_privileged_supervision_benchmark.csv`  
+**Target Artifact:** `{source_csv or 'not supplied; inspect execution receipt'}`  
 **Registry Reference:** `docs/EXPERIMENT_REGISTRY.md:229-292`  
 **Scientific Contract Anchor:** `docs/SCIENTIFIC_CONTRACT.md:47-55`  
 **Formal Scientific Verdict:** {verdict_text}
@@ -1102,44 +1154,17 @@ Baseline `{PRIMARY_BASELINE}`:
 
 ## 2. Executive Summary
 
-Under the zero-privileged weak supervision protocol (blade pitch strictly withheld
-from inputs, supervision loss, and checkpoint selection):
+Measured primary-challenger outcomes (no hardcoded direction or seed explanation):
 
-1. **Horizon h=1.** Mean delta PSREI = **{h1_stats['mean_delta_psrei_kwh']/1e3:+,.1f}k kWh**
-   with empirical P(non-inferior) = **{h1_stats['p_non_inferior']:.4f}**.
-   The challenger procures **{(h1_stats['challenger_reserve_kwh'] - h1_stats['baseline_reserve_kwh'])/1e3:+,.1f}k kWh**
-   less reserve than the baseline, which is why its PSREI is lower; violation rate
-   moves {h1_stats['baseline_violation_pct']:.2f}% -> {h1_stats['challenger_violation_pct']:.2f}%
-   (delta **{h1_stats['delta_violation_pp']:+.2f} pp**) and shortage exposure
-   **{h1_stats['delta_shortage_kwh']/1e3:+,.1f}k kWh**.
-2. **Horizon h=6 (primary endpoint).** Mean delta PSREI =
-   **{h6_stats['mean_delta_psrei_kwh']/1e3:+,.1f}k kWh**, but this mean is
-   dominated by a single catastrophic seed (Seed {worst_seed}:
-   {worst_delta/1e3:+,.1f}k kWh delta, {worst_viol:.2f}% violation rate). Catastrophic
-   run rate = **{h6_cat_rate:.1f}%** ({h6_failed}/{h6_total} seeds).
-3. **Operational fragility:** reserve procurement collapses by
-   **{(h6_stats['challenger_reserve_kwh'] - h6_stats['baseline_reserve_kwh'])/1e3:+,.1f}k kWh**
-   at h=6 while violation rises {h6_stats['baseline_violation_pct']:.2f}% ->
-   {h6_stats['challenger_violation_pct']:.2f}% and shortage exposure rises
-   **{h6_stats['delta_shortage_kwh']/1e3:+,.1f}k kWh**.
+| Horizon | Verdict | Mean delta PSREI (kWh) | P(delta<=0) | Delta violation (pp) | Delta shortage (kWh) |
+|---|---|---:|---:|---:|---:|
+| h=1 | {h1_v.code} | {h1_stats['mean_delta_psrei_kwh']:.6f} | {h1_stats['p_non_inferior']:.6f} | {h1_stats['delta_violation_pp']:.6f} | {h1_stats['delta_shortage_kwh']:.6f} |
+| h=6 | {h6_v.code} | {h6_stats['mean_delta_psrei_kwh']:.6f} | {h6_stats['p_non_inferior']:.6f} | {h6_stats['delta_violation_pp']:.6f} | {h6_stats['delta_shortage_kwh']:.6f} |
 
-**Supported conclusion:** the tested zero-privileged weak-supervision protocol
-establishes no stable downstream decision advantage over Site-Local Wspd-Bins,
-and exhibits severe seed instability at the longer horizon. At h=1 the point
-estimate favours the challenger at the pre-registered level C1 but fails the
-evidence bar C2, and it does so by procuring less reserve at a higher violation
-rate -- so the h=1 direction is "cheaper but not demonstrably better" rather
-than an established gain.
-
-**Strict Scientific Guardrail:**
-- **FORBIDDEN OVERCLAIMS:**
-  1. It CANNOT be concluded that *"active-power consequence carries no mutual
-     information"* (privileged STGQ bounds the boundary when aligned).
-  2. It CANNOT be concluded that *"real wind farms do not need pitch telemetry"*.
-  3. It CANNOT be concluded that a *"deficit is established"* as a general
-     property of consequence supervision. The current evidence licenses only
-     "no stable advantage established under this protocol", because the h=6 mean
-     is driven by one collapsed seed rather than by a uniform deficit.
+The registered catastrophic-run diagnostic at h=6 is {h6_cat_rate:.1f}%
+({h6_failed}/{h6_total}); this number alone does not prove a causal explanation.
+Positive cost/shortage differences are penalties. These protocol-specific outcomes
+do not establish a universal deficit or sufficiency of telemetry channels.
 
 ---
 
@@ -1187,7 +1212,7 @@ than an established gain.
 3. **Held-Out Secondary Diagnostic (Correction 3):** Blade pitch registers strictly held-out; secondary NMI/Brier reported for diagnostic characterization only and strictly isolated from model selection.
 4. **Preregistered Sensitivity (Correction 4):** Evaluated across preregistered grid $\\epsilon \\in \\{{20.0, 50.0, 100.0\\}}\\text{{ kW}}$.
 5. **Decoupled Oracle Reference (Correction 5):** Privileged STGQ-Modular demarcated explicitly as Oracle Upper Reference, not a competitive baseline.
-6. **Hard Assertions (Correction 6):** Pre-flight checks passed verifying zero pitch channel variance in input tensors and pitch-independent checkpoint selection.
+6. **Hard Assertions (Correction 6):** Training code checks pitch exclusion and pinball-only model selection. Report-only regeneration does not re-execute those checks; use execution receipts to establish that they ran.
 
 ---
 
@@ -1202,7 +1227,7 @@ than an established gain.
 2. **The verdict is a pure function of the measured statistics.** An earlier
    version hard-coded the outcome string, then later hard-coded a different
    outcome string; both are replaced by
-   `scripts/exp02_verdict.py:derive_verdict`. The four conditions and their
+   `scripts/exp02_verdict.py:derive_verdict`. The two gating conditions and non-gating diagnostics and their
    PASS/FAIL detail are printed in Section 1 of this report.
 3. **Bootstrap field semantics.** The paired bootstrap quantity is
    $P(\\Delta \\le 0)$, the empirical probability of non-inferiority. It is **not**

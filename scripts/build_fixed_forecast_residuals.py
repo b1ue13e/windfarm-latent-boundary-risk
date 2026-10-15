@@ -35,6 +35,13 @@ def main():
     parser.add_argument('--output-file', default='artifacts/fixed_forecast_residuals.npz')
     parser.add_argument('--device', default='cuda:0' if torch.cuda.is_available() else 'cpu')
     args = parser.parse_args()
+    from scripts.replay_provenance import provenance, file_record, write_json
+    evidence_dir = Path(args.output_file).with_suffix('.evidence')
+    if evidence_dir.exists():
+        raise FileExistsError(f'Frozen residual evidence already exists: {evidence_dir}')
+    provenance(evidence_dir, [Path(args.cache_dir)/'metadata.json',
+                *sorted(Path(args.cache_dir).glob('*.npy')),
+                *[Path(args.runs_pattern.format(seed=s))/'best_model.pt' for s in range(201,206)]], vars(args))
     device = torch.device(args.device)
     print(f"[Fixed Target Isolation] Using device: {device}")
 
@@ -148,6 +155,7 @@ def main():
         "metrics": metrics_summary,
     }
     meta_file.write_text(json.dumps(meta, indent=2), encoding="utf-8")
+    write_json(evidence_dir/'output_manifest.json',[file_record(out_file),file_record(meta_file)])
     print(f"[Saved] Metadata to {meta_file}")
 
 

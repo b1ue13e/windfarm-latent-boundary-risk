@@ -707,8 +707,7 @@ def _read_external_coords(base_dir: Path, node_ids: list[str]) -> pd.DataFrame:
         ],
     )
     if path is None:
-        idx = np.arange(len(node_ids), dtype=np.float32)
-        return pd.DataFrame({"node_id": node_ids, "x": idx * 500.0, "y": np.zeros_like(idx)})
+        raise FileNotFoundError(f'Actual turbine coordinate source missing under {base_dir}; synthetic fallback forbidden')
     df = pd.read_csv(path)
     id_col = _find_column(
         df.columns,
@@ -718,11 +717,20 @@ def _read_external_coords(base_dir: Path, node_ids: list[str]) -> pd.DataFrame:
     x_col = _find_column(df.columns, ["x", "easting", "longitude", "lon"], required=False)
     y_col = _find_column(df.columns, ["y", "northing", "latitude", "lat"], required=False)
     if id_col is None or x_col is None or y_col is None:
-        idx = np.arange(len(node_ids), dtype=np.float32)
-        return pd.DataFrame({"node_id": node_ids, "x": idx * 500.0, "y": np.zeros_like(idx)})
+        raise ValueError(f'Coordinate schema incomplete in {path}; synthetic fallback forbidden')
     coords = df[[id_col, x_col, y_col]].copy()
     coords.columns = ["node_id", "x", "y"]
     coords["node_id"] = coords["node_id"].astype(str)
+    # Greenbyte SCADA filenames use T01 while Kelmarsh metadata uses KWF1.
+    # Resolve the explicit numeric alias only when it maps to an actual input node.
+    aliases = {}
+    for value in coords['node_id']:
+        match = re.fullmatch(r'(?:KWF|WT|T)(\d+)', value, re.IGNORECASE)
+        candidate = f'T{int(match.group(1)):02d}' if match else value
+        aliases[value] = candidate if candidate in node_ids else value
+    coords['node_id'] = coords['node_id'].map(aliases)
+    if coords['node_id'].duplicated().any():
+        raise ValueError(f'Non-unique turbine coordinate identifiers in {path}')
     coords["x"] = pd.to_numeric(coords["x"], errors="coerce")
     coords["y"] = pd.to_numeric(coords["y"], errors="coerce")
     if _canonical_column(x_col) in {"longitude", "lon"} and _canonical_column(y_col) in {"latitude", "lat"}:
@@ -733,7 +741,10 @@ def _read_external_coords(base_dir: Path, node_ids: list[str]) -> pd.DataFrame:
         coords["y"] = (lat - float(lat.mean())) * 110540.0
         coords["longitude"] = lon
         coords["latitude"] = lat
-    return coords.dropna(subset=["x", "y"])
+    coords = coords.dropna(subset=["x", "y"])
+    if not set(node_ids).issubset(set(coords['node_id'])):
+        raise ValueError(f'Coordinate/source node mismatch in {path}: {set(node_ids)-set(coords.node_id)}')
+    return coords
 
 
 def _prepare_long_frame(raw: pd.DataFrame) -> pd.DataFrame:
@@ -965,9 +976,7 @@ def _write_cache_from_frame(
     coords = pd.DataFrame({"node_id": node_ids}).merge(coords_df, on="node_id", how="left")
     missing = coords["x"].isna() | coords["y"].isna()
     if missing.any():
-        fallback_idx = np.arange(len(coords), dtype=np.float32)
-        coords.loc[missing, "x"] = fallback_idx[missing.to_numpy()] * 500.0
-        coords.loc[missing, "y"] = 0.0
+        raise ValueError('Missing actual turbine coordinates; regular synthetic layout is forbidden')
     coord_arr = coords[["x", "y"]].to_numpy(dtype=np.float32)
     split_bounds = split_bounds_override or _split_bounds(len(timestamps), config.train_days, config.val_days, config.test_days)
     train_stop = int(split_bounds["train"][1])

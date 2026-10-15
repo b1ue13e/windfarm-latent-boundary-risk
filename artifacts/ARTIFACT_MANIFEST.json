@@ -185,7 +185,7 @@
     "sha256": "7f138057a42750dbd457a28a998fecdad6da627f4676d75805939b0c6692fc68",
     "size_bytes": 733,
     "category": "A",
-    "generating_script": "scripts/run_anchor_stress_guard.py",
+    "generating_script": "windfarm_moe/anchor_stress.py",
     "upstream_inputs": [
       "artifacts/cache_signature_trainweight/wtb_245d_canonical"
     ],
@@ -383,7 +383,7 @@
     "sha256": "e1b63a8ca26c46ff732880acf5544799f0acd1cd6093ed2c0c0517c4d5da0bea",
     "size_bytes": 1659,
     "category": "A",
-    "generating_script": "scripts/rebuild_applied_energy_diagnostics.py",
+    "generating_script": "scripts/build_applied_energy_diagnostics.py",
     "upstream_inputs": [
       "artifacts/cache_signature_trainweight/"
     ],
@@ -400,7 +400,7 @@
     "sha256": "89a9ea7311ec748edd3bd3fbb85553463d15495f799422822416d48252f3f7ff",
     "size_bytes": 1340,
     "category": "A",
-    "generating_script": "scripts/rebuild_applied_energy_diagnostics.py",
+    "generating_script": "scripts/build_applied_energy_diagnostics.py",
     "upstream_inputs": [
       "artifacts/checkpoints/"
     ],
@@ -416,7 +416,7 @@
     "sha256": "7d82807484437c1d5a21f633f37ad66fa05957a4e42c71ab5bc4963660736170",
     "size_bytes": 6543,
     "category": "A",
-    "generating_script": "scripts/run_anchor_stress_early_warning.py",
+    "generating_script": "windfarm_moe/anchor_stress.py",
     "upstream_inputs": [
       "artifacts/cache_signature_trainweight/wtb_245d_canonical"
     ],
@@ -432,7 +432,7 @@
     "sha256": "fcfb29d0a6a43efac23dd765d65814334a0ceb0ff9f71e65b9a44a8419043531",
     "size_bytes": 3054,
     "category": "A",
-    "generating_script": "scripts/run_early_warning_classifier_baseline.py",
+    "generating_script": "scripts/build_early_warning_classifier_baseline.py",
     "upstream_inputs": [
       "artifacts/cache_signature_trainweight/wtb_245d_canonical"
     ],
@@ -448,7 +448,7 @@
     "sha256": "780b5ff2aeaaff02958af0da3139566638a5cb714fb8da9b91e2212020d7382a",
     "size_bytes": 2084,
     "category": "A",
-    "generating_script": "scripts/build_final_evidence_package.py",
+    "generating_script": "scripts/build_early_warning_consequence_table.py",
     "upstream_inputs": [
       "artifacts/cache_signature_trainweight/wtb_245d_canonical"
     ],
@@ -464,7 +464,7 @@
     "sha256": "e905c09b564815fadc8b7e5bf89fc01c9d8868cc9235b7b94b6a70817f867995",
     "size_bytes": 782,
     "category": "A",
-    "generating_script": "scripts/run_class_weight_sensitivity.py",
+    "generating_script": "scripts/build_class_weight_sensitivity_audit.py",
     "upstream_inputs": [
       "artifacts/cache_signature_trainweight/wtb_245d_canonical"
     ],
@@ -512,7 +512,7 @@
     "sha256": "00fb94f9f2a55ee6e9d7f9ce0437e45a56d87020207436db5087fe24bcd94ef1",
     "size_bytes": 10090,
     "category": "A",
-    "generating_script": "scripts/build_mechanism_behavior_pack.py",
+    "generating_script": "windfarm_moe/mechanism_behavior.py",
     "upstream_inputs": [
       "artifacts/cache_signature_trainweight/wtb_245d_canonical"
     ],
@@ -611,7 +611,7 @@
     "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
     "size_bytes": 173410167,
     "category": "B",
-    "generating_script": "scripts/run_fixed_target_contract.py",
+    "generating_script": "scripts/build_fixed_forecast_residuals.py",
     "upstream_inputs": [
       "artifacts/cache_signature_trainweight/wtb_245d_canonical",
       "wtbdata_245days.csv"

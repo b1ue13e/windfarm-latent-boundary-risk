@@ -1,3 +1,5 @@
+> WITHDRAWAL NOTICE — 2026-10-15: The historical physical proxy labels used a mismatched power scaler. The original numerical result is retained below but withdrawn as evidence for the correctly specified physical epsilon protocol until v2 replay. No corrected result has been substituted.
+
 # EXP-02 (EXP-Q1-003): Zero-Privileged-Pitch Supervision Boundary Audit Report
 
 **Date:** 2026-10-14 09:39:38  

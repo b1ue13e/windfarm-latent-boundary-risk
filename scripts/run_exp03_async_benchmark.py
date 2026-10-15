@@ -48,6 +48,7 @@ if str(REPO_ROOT) not in sys.path:
 
 from scripts.exp03_async_packet_protocol import BufferPolicy, CausalPacketBuffer, Packet
 from scripts.hierarchical_bootstrap import compute_hierarchical_joint_bootstrap
+from scripts.replay_provenance import provenance, finalize
 
 # Preregistered Execution Constants
 RHO = 10.0
@@ -392,7 +393,11 @@ def main() -> None:
     args = parser.parse_args()
 
     out_dir = args.output_dir
+    if (out_dir / 'provenance.json').exists():
+        raise FileExistsError(f'Refusing to overwrite asynchronous execution: {out_dir}')
     out_dir.mkdir(parents=True, exist_ok=True)
+    provenance(out_dir, [args.residuals_file,args.cache_dir/'metadata.json',
+                         *sorted(args.cache_dir.glob('*.npy'))], vars(args))
     device = torch.device(args.device)
 
     print("==================================================================")
@@ -434,6 +439,7 @@ def main() -> None:
     val_feat_block = np.asarray(raw_features[val_slice])
     val_inputs = val_feat_block[rel_anchors_val]
     wspd_val_raw = val_inputs[..., wspd_idx]
+    feature_stats = meta['feature_stats']
 
     def make_input_tensor(feat_arr: np.ndarray) -> np.ndarray:
         w = feat_arr[..., wspd_idx]
@@ -441,8 +447,10 @@ def main() -> None:
         e = feat_arr[..., etmp_idx]
         i = feat_arr[..., itmp_idx]
         pr = feat_arr[..., prtv_idx]
-        w2 = (w ** 2) / 100.0
-        pratio = np.clip(p / (P_RATED + 1e-5), 0.0, 1.5)
+        w_physical = w * feature_stats['Wspd']['std'] + feature_stats['Wspd']['mean']
+        p_physical = p * feature_stats['Patv_hist']['std'] + feature_stats['Patv_hist']['mean']
+        w2 = (w_physical ** 2) / 100.0
+        pratio = np.clip(p_physical / P_RATED, 0.0, 1.5)
         return np.stack([w, p, e, i, pr, w2, pratio], axis=-1)
 
     val_x_7 = make_input_tensor(val_inputs)
@@ -735,6 +743,7 @@ verdict is hardcoded. Inspect every joint interval and preserve negative/null re
 """
     args.output_report.parent.mkdir(parents=True, exist_ok=True)
     args.output_report.write_text(report_md, encoding="utf-8")
+    finalize(out_dir)
     print(f"[OK] Generated hardened audit report: {args.output_report}")
     print("==================================================================")
     print("EXP-03 EXECUTION COMPLETE")

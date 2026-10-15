@@ -509,3 +509,11 @@ For every new experiment:
 ## RERUN-20261015 — Registered raw-data replication and protocol correction
 
 Status: REGISTERED / NOT YET EXECUTED at entry creation. Full frozen scope, information set, primary baseline, estimand, population, seeds, uncertainty procedures, failure conditions, artifact requirements and withdrawal rules are specified in docs/RAW_REPLAY_PROTOCOL_20261015.md. This campaign replays existing experiments and separates retrospective corrections from confirmatory evidence; no scientific claim ceiling or success threshold is changed. Newly detected corrections: channel h6 used residual index1 rather than5; hardcoded channel decision references were unmatched; asynchronous initial LOCF exposed a potentially unarrived value. Corrected outputs must be versioned and cannot overwrite historical arrays or inherit their scientific validity.
+
+### RERUN-20261015 addendum before affected stages
+
+See docs/REPLAY_CORRECTION_ADDENDUM_20261015.md for EXP02 physical-power scaler correction and external raw-window normalization correction, registered before those stages train/evaluate. None changes epsilon, primary comparator, decision threshold or seed count. Claim dispositions are explicitly recorded in docs/REPLAY_CLAIM_DISPOSITION_20261015.md. Withdrawal is not successful experimental reproduction.
+
+### EXP01 v4 invalidation (2026-10-15)
+
+The earlier retrospective repair note is superseded as a validity claim: archived forecasts refer to original chronological windows while v4 evaluates offset120/720-day targets. Integer anchors coincide but targets, masks and physical times differ. All v4 numerical decision claims and directions are withdrawn from current interpretation; old files remain immutable. See docs/EXP01_INVALIDATION_20261015.md and falsifier section13. New raw-window matched evaluation is NOT RUN yet. No older result is reinstated as valid by this notice.
