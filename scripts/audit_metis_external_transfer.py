@@ -23,6 +23,7 @@ def main():
     parser.add_argument('--frozen-input-manifest-sha256', required=True)
     parser.add_argument('--transfer-name', choices=['matched_transfer', 'deterministic_matched_transfer_v1'], default='matched_transfer')
     parser.add_argument('--deterministic', action='store_true')
+    parser.add_argument('--package-manifest', type=Path)
     args = parser.parse_args()
     if not os.environ.get('PBS_JOBID'):
         raise RuntimeError('Audit only inside PBS allocation')
@@ -30,6 +31,12 @@ def main():
         raise ValueError('Execution profile must match the explicitly selected new transfer version')
     profile = None
     if args.deterministic:
+        if args.package_manifest is None or args.package_manifest.resolve().parent != Path(__file__).resolve().parent:
+            raise ValueError('Matching package manifest required')
+        package = json.loads(args.package_manifest.read_text())
+        for row in package['files']:
+            if sha(args.package_manifest.parent / row['name']) != row['sha256']:
+                raise ValueError('Deterministic package source differs')
         from metis_numeric_profile import configure
         profile = configure()
     root = args.workspace.resolve()
@@ -64,6 +71,7 @@ def main():
         return record
     successful(base / f'execution/{args.transfer_name}/record.json')
     if profile is not None:
+        verify_records(json.loads((transfer / 'output_manifest.json').read_text()))
         producer_profile = json.loads((transfer / 'numeric_execution_profile.json').read_text())
         for key in ('profile', 'deterministic_algorithms', 'cudnn_deterministic', 'cudnn_benchmark',
                     'cudnn_tf32', 'matmul_tf32', 'cublas_workspace_config', 'torch_threads', 'torch', 'cuda', 'python', 'gpu'):
@@ -227,6 +235,7 @@ def main():
         statistics.append({'farm': farm, 'horizon': horizon, 'values': mapping})
     report = {'pbs_job_id': os.environ['PBS_JOBID'], 'status': 'EXACT_EXTERNAL_EVIDENCE_VERIFIED',
         'transfer_version': args.transfer_name, 'numeric_execution_profile': profile,
+        'package_manifest_sha256': sha(args.package_manifest) if args.package_manifest else None,
         'source_sha256': sha(__file__), 'results': results, 'statistics': statistics,
         'operation_order_observations': operation_order, 'scientific_completion': False,
         'scope': 'current raw-window external inference/actions/statistics only; no legacy reinstatement or whole-paper certificate'}

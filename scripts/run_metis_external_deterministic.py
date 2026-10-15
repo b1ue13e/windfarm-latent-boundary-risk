@@ -59,7 +59,7 @@ def main():
     for filename in ('produce_external_transfer.py', 'audit_metis_external_transfer.py'):
         compile((tool / filename).read_text(), filename, 'exec')
     sys.path[:0] = [str(root / 'scripts'), str(root)]
-    from raw_replay import verify_run_receipt, run_command
+    from raw_replay import verify_run_receipt, verify_records, run_command
     from replay_provenance import write_json, file_record
     base = root / 'artifacts/raw_replay_external_models_20261015'
     name = 'deterministic_matched_transfer_v1'
@@ -74,6 +74,16 @@ def main():
             not record.get('inputs') or not record.get('outputs') or record.get('missing_outputs')):
             raise ValueError('Incomplete upstream success receipt')
         verify_run_receipt(path)
+    for seed in range(201, 206):
+        verify_records(json.loads((root / f'artifacts/raw_replay_20261015_v2/models/aligned_force/seed{seed}/output_manifest.json').read_text()))
+    cache_map = json.loads((base / 'cache_map.json').read_text())
+    for farm in ('kelmarsh', 'penmanshiel'):
+        cache = Path(cache_map[farm])
+        if not cache.is_absolute():
+            cache = root / cache
+        verify_records(json.loads((cache.parent / 'output_manifest.json').read_text()))
+        for seed in range(201, 206):
+            verify_records(json.loads((base / farm / f'seed{seed}/output_manifest.json').read_text()))
     if args.mode == 'preflight':
         path = tool / 'preflight_report.json'
         if path.exists():
