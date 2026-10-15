@@ -40,6 +40,12 @@
       "command": "python scripts/verify_scientific_claim_gate.py",
       "required": true,
       "enabled": true
+    },
+    {
+      "name": "verify_raw_replay",
+      "command": "python scripts/verify_raw_replay.py",
+      "required": true,
+      "enabled": true
     }
   ]
 }

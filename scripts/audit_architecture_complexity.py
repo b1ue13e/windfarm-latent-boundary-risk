@@ -2,7 +2,7 @@
 
 This script calculates exact parameter counts, layer-wise breakdowns,
 and computational characteristics of:
-1. STGQ-Modular (RegimeAwareForecaster with Spatio-Temporal Graph WaveNet & Physics-Aligned MoE)
+1. STGQ-Modular (RegimeAwareForecaster with Directed-Diffusion GRU & Physics-Aligned MoE)
 2. No-Graph Architectural Control (NoGraphQuantileMLP)
 3. Direct Wind-Speed Bins (Non-parametric empirical quantile lookup)
 
@@ -95,7 +95,7 @@ def main():
     print(f"\n1. STGQ-Modular (Physics-Aligned Spatio-Temporal Graph MoE):")
     print(f"   - Total Parameters: {stgq_stats['total_parameters']:,}")
     print(f"   - Trainable Parameters: {stgq_stats['trainable_parameters']:,}")
-    print(f"   - Spatio-Temporal Encoder (Graph WaveNet): {stgq_encoder_params:,} ({stgq_encoder_params/stgq_stats['total_parameters']*100:.1f}%)")
+    print(f"   - Spatio-Temporal Encoder (Directed-Diffusion GRU): {stgq_encoder_params:,} ({stgq_encoder_params/stgq_stats['total_parameters']*100:.1f}%)")
     print(f"   - Regime Router / Gate Head: {stgq_gate_params:,} ({stgq_gate_params/stgq_stats['total_parameters']*100:.1f}%)")
     print(f"   - Regime Expert Heads (4 experts): {stgq_experts_params:,} ({stgq_experts_params/stgq_stats['total_parameters']*100:.1f}%)")
     print(f"   - Dense Head: {stgq_dense_params:,} ({stgq_dense_params/stgq_stats['total_parameters']*100:.1f}%)")
@@ -127,7 +127,7 @@ def main():
     # Save structured audit artifact
     audit_data = {
         "stgq_modular": {
-            "architecture": "RegimeAwareForecaster (Spatio-Temporal Graph WaveNet + Physics-Aligned MoE)",
+            "architecture": "RegimeAwareForecaster (Directed-Diffusion GRU + Physics-Aligned MoE)",
             "total_parameters": stgq_stats["total_parameters"],
             "trainable_parameters": stgq_stats["trainable_parameters"],
             "component_breakdown": {
@@ -233,7 +233,7 @@ def main():
 In earlier exploratory drafts, the single-turbine MLP baseline was informally labeled as a *“capacity-matched No-Graph MLP”*. 
 A rigorous scientific review identified that:
 1. No parameter count, training iteration, or compute equivalence table was formally recorded in the evidence ledger.
-2. Sizing a single-turbine network to match the dimension of a local representation vector does not constitute identical farm-level parameter count or FLOPs equivalence with a full multi-turbine Spatio-Temporal Graph WaveNet MoE.
+2. Sizing a single-turbine network to match the dimension of a local representation vector does not constitute identical farm-level parameter count or FLOPs equivalence with a full multi-turbine Directed-Diffusion GRU MoE.
 
 To preserve strict scientific honesty and prevent over-claiming, this audit establishes the exact parameter breakdown, compute profiles, and formal nomenclature.
 
@@ -243,15 +243,15 @@ To preserve strict scientific honesty and prevent over-claiming, this audit esta
 
 | Model / Baseline | Architecture | Spatial Graph | Total Parameters | Trainable Parameters | FLOPs Scaling per Step |
 |---|---|:---:|---:|---:|:---:|
-| **STGQ-Modular** | Graph WaveNet + MoE | **Yes** (Diffusion Conv) | **{stgq_stats['total_parameters']:,}** | **{stgq_stats['trainable_parameters']:,}** | $O(N^2 + N \\cdot T \\cdot C)$ |
+| **STGQ-Modular** | Directed-Diffusion GRU + MoE | **Yes** (Diffusion Conv) | **{stgq_stats['total_parameters']:,}** | **{stgq_stats['trainable_parameters']:,}** | $O(N^2 + N \\cdot T \\cdot C)$ |
 | **No-Graph Architectural Control** | Multi-Layer Perceptron | **No** (Severed) | **{nograph_stats['total_parameters']:,}** | **{nograph_stats['trainable_parameters']:,}** | $O(N \\cdot C)$ |
 | **Site-Local Wspd-Bins** | 10-bin Empirical Quantile | **No** (Direct Table) | **10** | **0** | $O(N \\log K)$ |
 
 ### Detailed Layer Breakdown
 
 #### STGQ-Modular Submodules
-- **Spatio-Temporal Graph WaveNet Encoder**: {stgq_encoder_params:,} parameters ({stgq_encoder_params/stgq_stats['total_parameters']*100:.1f}%)
-  - Directed spatial graph diffusion convolutions, temporal causal dilated GLU layers, residual projections.
+- **Directed-Diffusion GRU Encoder**: {stgq_encoder_params:,} parameters ({stgq_encoder_params/stgq_stats['total_parameters']*100:.1f}%)
+  - Two directed-diffusion spatial blocks, a two-layer temporal GRU, and layer normalization.
 - **Physics-Aligned Regime Gate**: {stgq_gate_params:,} parameters ({stgq_gate_params/stgq_stats['total_parameters']*100:.1f}%)
   - Multi-layer routing network mapping concatenated context and physics anchors to operating regime probabilities.
 - **Regime Expert Heads**: {stgq_experts_params:,} parameters ({stgq_experts_params/stgq_stats['total_parameters']*100:.1f}%)

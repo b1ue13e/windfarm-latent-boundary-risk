@@ -1848,3 +1848,8 @@ Full raw-data reproduction is in progress and is not certified. Withdrawn claims
 
 
 The 2026-10-15 source-level audit supersedes the prior authority assigned to EXP01 v4: saved forecast targets match original chronological data, while the evaluation target windows are shifted by120/720 days. All v4 cost directions and uncertainty claims are invalidated. See docs/EXP01_INVALIDATION_20261015.md.
+
+
+# Target and population correction for delay scans
+
+Historical dense/MoE phase scans used separate model-derived shortfalls, while delay conditions selected boundary cells using delayed wind. Their common-target architecture and fixed-population latency interpretations are withdrawn; stored numbers remain historical diagnostics. Clean/recalibrated physics comparisons within a single condition share the same target and mask and retain that local scope. RAW-PHASE-FROZEN-V1 fixes shortfalls and boundary populations across all arms and includes the ten-bin wind-speed comparator. Auxiliary heads retain the declared150 cached batches and5 training epochs, using shared frozen targets, validity masks and identical sampled anchors. No corrected result is reported before execution.

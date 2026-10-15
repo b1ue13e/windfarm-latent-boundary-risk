@@ -15,7 +15,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/clean_evidence_v2/risk_layer_benchmark/h6_lead6/results_by_seed.csv",
@@ -34,7 +37,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/direct_quantile_baselines_summary.csv",
@@ -53,7 +59,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/single_task_dense_vs_multitask_moe_ablation.csv",
@@ -75,7 +84,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/posterior_calibration.csv",
@@ -92,7 +104,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/active_power_anchor_audit.csv",
@@ -110,7 +125,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/fair_degradation_replay_20260903/fair_degradation_summary.csv",
@@ -127,7 +145,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/factorial_boundary_ablation_summary.csv",
@@ -144,7 +165,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/clean_privileged_supervision_ablation.csv",
@@ -161,7 +185,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/channel_consequence_ablations.csv",
@@ -178,7 +205,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "h6 decision and valid-transition recall interpretations withdrawn; separate representation metrics remain historical"
   },
   {
     "filename": "artifacts/anchor_stress_guard/anchor_stress_summary.csv",
@@ -194,7 +224,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/strong_baseline_closure_summary.csv",
@@ -213,7 +246,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/strong_baseline_bootstrap_contrasts.csv",
@@ -230,7 +266,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/matched_budget/baseline_reproduction.csv",
@@ -246,7 +285,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/matched_budget/exact_matched_budget_frontier.csv",
@@ -263,7 +305,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/matched_budget/validation_calibrated_frontier.csv",
@@ -279,7 +324,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/matched_budget/bootstrap_frontier_statistics.csv",
@@ -296,7 +344,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/matched_budget/frontier_auc_summary.csv",
@@ -312,7 +363,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/matched_budget/mechanism_reallocation_diagnostic.csv",
@@ -328,7 +382,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/matched_budget/provenance.json",
@@ -344,7 +401,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/matched_budget/frozen_policy_rho_sensitivity.csv",
@@ -360,7 +420,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/matched_budget/reoptimized_rho_sensitivity.csv",
@@ -376,7 +439,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/paper_assets/tables/table_main_benchmark.csv",
@@ -393,7 +459,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/paper_assets/tables/table_wtb_ablation.csv",
@@ -409,7 +478,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv",
@@ -425,7 +497,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_summary.csv",
@@ -441,7 +516,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/final_evidence_package/export/tables/early_warning_consequence_audit.csv",
@@ -457,7 +535,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv",
@@ -473,7 +554,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_summary.csv",
@@ -489,7 +573,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_raw_runs.csv",
@@ -505,7 +592,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv",
@@ -521,7 +611,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/external_wind_guard_windowfix/external_wind_guard.json",
@@ -540,7 +633,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/external_wind_lhb_guard_full_5seed/external_wind_guard.json",
@@ -556,7 +652,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json",
@@ -572,7 +671,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/mediation_analysis.csv",
@@ -588,7 +690,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/information_set_manifest.csv",
@@ -604,7 +709,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/fixed_forecast_residuals.npz",
@@ -622,7 +730,10 @@
     ],
     "tracked_in_git": false,
     "externally_hosted": true,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/matched_budget/cached_posterior_probs.npz",
@@ -640,7 +751,10 @@
     ],
     "tracked_in_git": false,
     "externally_hosted": true,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/external_matched_control_benchmark.csv",
@@ -659,7 +773,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "superseded historical protocol; no current external matched decision conclusion"
   },
   {
     "filename": "artifacts/no_graph_architecture_audit.json",
@@ -676,7 +793,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   },
   {
     "filename": "artifacts/zero_privileged_supervision_benchmark.csv",
@@ -695,7 +815,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "physical-proxy protocol interpretation withdrawn due to wrong scaler; corrected replay pending"
   },
   {
     "filename": "artifacts/exp03_async/psrei_vs_delay.csv",
@@ -715,7 +838,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "causal arrival interpretation withdrawn; old initialization and full-trace provenance invalid"
   },
   {
     "filename": "artifacts/exp03_async/protocol.json",
@@ -731,7 +857,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "causal arrival interpretation withdrawn; old initialization and full-trace provenance invalid"
   },
   {
     "filename": "artifacts/exp03_async/missing_mask_manifest.json",
@@ -747,7 +876,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "causal arrival interpretation withdrawn; old initialization and full-trace provenance invalid"
   },
   {
     "filename": "artifacts/exp03_async/input_trace_hash.txt",
@@ -763,7 +895,10 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": false
+    "regenerable": false,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "causal arrival interpretation withdrawn; old initialization and full-trace provenance invalid"
   },
   {
     "filename": "artifacts/joint_uncertainty_summary.json",
@@ -783,6 +918,9 @@
     ],
     "tracked_in_git": true,
     "externally_hosted": false,
-    "regenerable": true
+    "regenerable": true,
+    "claim_list_scope": "historical artifact claims; not automatic scientific validation or raw-training certification",
+    "raw_retraining_status": "NOT_CERTIFIED_BY_THIS_MANIFEST",
+    "current_scientific_use": "historical evidence subject to scoped scientific contract and replay review"
   }
 ]

@@ -84,15 +84,15 @@ def solve_alpha_for_budget(r_base_arr, target_budget, mask, dt=DT, alpha_min=0.1
 
 def main():
     start_time = time.time()
-    out_dir = REPO_ROOT / "artifacts/matched_budget"
+    out_dir = Path(os.environ.get("MATCHED_BUDGET_OUTPUT_DIR", str(REPO_ROOT / "artifacts/matched_budget")))
     out_dir.mkdir(parents=True, exist_ok=True)
     
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print(f"=== Starting Matched-Reserve-Budget Frontier Evaluation ===", flush=True)
     print(f"Device: {device}", flush=True)
     
-    bundle = load_cache_bundle(REPO_ROOT / "artifacts/cache_strictmask_trainweights/wtb_245d", mmap_mode="r")
-    res_data = np.load(REPO_ROOT / "artifacts/fixed_forecast_residuals.npz")
+    bundle = load_cache_bundle(Path(os.environ.get("RAW_REPLAY_CACHE", str(REPO_ROOT / "artifacts/cache_strictmask_trainweights/wtb_245d"))), mmap_mode="r")
+    res_data = np.load(Path(os.environ.get("RAW_REPLAY_RESIDUALS", str(REPO_ROOT / "artifacts/fixed_forecast_residuals.npz"))))
     
     spec = DegradationSpec(delay_steps=0, withheld_channels=("Pab_mean", "Pab_std"))
     val_ds = UnifiedArrivalDataset(bundle, "val", hist_len=36, pred_len=24, degradation=spec)
@@ -100,6 +100,8 @@ def main():
     
     test_anchors = test_ds.anchor_indices
     val_anchors = val_ds.anchor_indices
+    if not np.array_equal(val_anchors, res_data['anchor_indices_val']) or not np.array_equal(test_anchors, res_data['anchor_indices_test']):
+        raise ValueError('Budget analysis frozen-forecast anchors mismatch')
     N_turbines = 134
     time_indices = np.repeat(test_anchors[:, None], N_turbines, axis=1).reshape(-1)
     
@@ -156,7 +158,7 @@ def main():
         probs_test = {}
         
         for seed in SEEDS:
-            dense_ckpt = REPO_ROOT / f"artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed{seed}"
+            dense_ckpt = Path(os.environ.get("RAW_REPLAY_POSTERIOR_PATTERN", str(REPO_ROOT / "artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed{seed}")).format(seed=seed))
             model = _load_model_from_checkpoint(dense_ckpt, bundle, device)
             model.eval()
             

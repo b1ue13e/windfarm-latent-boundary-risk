@@ -105,17 +105,15 @@ def extract_channel_features(bundle: CacheBundle, split: str, channels: List[str
 
     # Gather feature windows
     idx = anchors[:, None] - np.arange(H)[None, ::-1]  # (W, H)
-    wins_feat = features[idx]                          # (W, H, N, F_feat)
-    wins_phy = physics[idx]                            # (W, H, N, F_phy)
 
     cols = []
     for ch in channels:
         if ch == "wake_score":
             # wake_score is index 2 in physics
-            ch_data = wins_phy[..., 2:3]
+            ch_data = physics[..., 2:3][idx]
         elif ch in feat_names:
             ch_idx = feat_names.index(ch)
-            ch_data = wins_feat[..., ch_idx : ch_idx + 1]
+            ch_data = features[..., ch_idx : ch_idx + 1][idx]
         else:
             continue
 
@@ -124,7 +122,7 @@ def extract_channel_features(bundle: CacheBundle, split: str, channels: List[str
             ch_data = ch_data + rng.normal(0.0, noise_sigma, size=ch_data.shape).astype(np.float32)
 
         # Compute summary stats: latest, mean, std, max
-        latest = ch_data[:, -1, :, :]
+        latest = ch_data[:, -1, :, :].copy()
         c_mean = np.mean(ch_data, axis=1)
         c_std = np.std(ch_data, axis=1)
         c_max = np.max(ch_data, axis=1)

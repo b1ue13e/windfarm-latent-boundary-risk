@@ -45,6 +45,8 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from windfarm_moe.data import CacheBundle, RegimeWindowDataset, load_cache_bundle
+from masked_representation import check_frozen_reference
+from replay_provenance import provenance,finalize,write_json
 
 DT = 1.0 / 6.0
 RHO = 10.0
@@ -165,14 +167,17 @@ def extract_features_fast(
     return X, y, m
 
 
-def compute_transition_recall(y_true: np.ndarray, y_pred_binary: np.ndarray, window_radius: int = 3) -> float:
+def compute_transition_recall(y_true: np.ndarray, y_pred_binary: np.ndarray, window_radius: int = 3, valid=None) -> float:
     W, N = y_true.shape
     diff = np.diff(y_true, axis=0, prepend=y_true[:1, :]) != 0
+    if valid is not None:
+        diff[1:] &= valid[1:] & valid[:-1];diff[0]=False
     in_window = diff.copy()
     for offset in range(1, window_radius + 1):
         in_window[offset:, :] |= diff[:-offset, :]
         in_window[:-offset, :] |= diff[offset:, :]
     target_mask = in_window & (y_true == 1)
+    if valid is not None:target_mask &= valid
     if np.sum(target_mask) == 0:
         return 0.0
     return float(np.mean(y_pred_binary[target_mask]))
@@ -187,6 +192,7 @@ def fit_and_evaluate_binned_reserves(
     test_mask: np.ndarray,
     n_bins: int = N_BINS,
     tau: float = Q_STAR,
+    archive_path: Path | None = None,
 ) -> Tuple[float, float, float]:
     valid_v = val_mask & np.isfinite(val_s) & np.isfinite(val_probs)
     valid_t = test_mask & np.isfinite(test_s) & np.isfinite(test_probs)
@@ -215,6 +221,9 @@ def fit_and_evaluate_binned_reserves(
         r_test[t_bins == b] = reserves[b]
 
     shortage = np.maximum(t_s - r_test, 0.0)
+    if archive_path is not None:
+        np.savez_compressed(archive_path,reserve=r_test,shortfall=t_s,mask=valid_t,
+                            selected_flat_indices=np.flatnonzero(valid_t),bin_edges=edges)
     cost = float(np.sum(r_test + RHO * shortage) * DT)
     viol_rate = float(np.mean(t_s > r_test))
     return cost, viol_rate, global_res
@@ -224,8 +233,8 @@ def main():
     parser = argparse.ArgumentParser(description="Active-Power Anchor Identifiability Audit")
     parser.add_argument("--cache-dir", default="artifacts/cache_strictmask_trainweights/wtb_245d")
     parser.add_argument("--residuals-file", default="artifacts/fixed_forecast_residuals.npz")
-    parser.add_argument("--output-csv", default="artifacts/active_power_anchor_audit.csv")
-    parser.add_argument("--output-md", default="docs/ACTIVE_POWER_IDENTIFIABILITY_AUDIT.md")
+    parser.add_argument("--output-csv", default="artifacts/active_power_replay_v2/results.csv")
+    parser.add_argument("--output-md", default="artifacts/active_power_replay_v2/report.md")
     parser.add_argument("--device", default="cuda:0" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--batch-size", type=int, default=4096)
@@ -237,6 +246,13 @@ def main():
 
     print(f"[Anchor Audit] Loading residuals from {args.residuals_file}", flush=True)
     res_data = np.load(args.residuals_file)
+    archive=Path(args.output_csv).parent/'evidence'
+    if archive.exists():raise FileExistsError(archive)
+    provenance(archive,[args.residuals_file,Path(args.cache_dir)/'metadata.json',
+                *sorted(Path(args.cache_dir).glob('*.npy'))],vars(args))
+    for split in ('val','test'):
+        ds=RegimeWindowDataset(bundle,split,bundle.metadata['hist_len'],bundle.metadata['pred_len'])
+        check_frozen_reference(bundle,res_data,split,ds.anchor_indices)
 
     conditions = [
         "A_Contemporaneous_Plus_Hist",
@@ -289,9 +305,13 @@ def main():
             model = BoundaryClassifierMLP(in_dim=D_dim, hidden_dim=64, dropout=0.1).to(device)
             optimizer = optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-4)
             criterion = nn.CrossEntropyLoss()
+            run_dir=archive/cond/f'seed{seed}';run_dir.mkdir(parents=True)
+            np.save(run_dir/'selected_training_flat_indices.npy',valid_idx_tr)
+            history=[]
 
             model.train()
             for epoch in range(args.epochs):
+                loss_sum,count=0.,0
                 for bx, by in loader:
                     bx, by = bx.to(device), by.to(device)
                     optimizer.zero_grad()
@@ -299,6 +319,12 @@ def main():
                     loss = criterion(out, by)
                     loss.backward()
                     optimizer.step()
+                    loss_sum+=float(loss.item())*len(bx);count+=len(bx)
+                history.append({'epoch':epoch+1,'cross_entropy':loss_sum/count})
+                write_json(run_dir/'history.json',history)
+            torch.save({'model_state':model.state_dict(),'seed':seed,'condition':cond,
+                        'scaler_mean':scaler.mean_,'scaler_scale':scaler.scale_,'epochs':args.epochs,
+                        'subsample_seed':42,'training_limit':200000},run_dir/'model.pt')
 
             model.eval()
             with torch.no_grad():
@@ -307,6 +333,8 @@ def main():
 
                 va_probs = torch.softmax(va_logits, dim=-1)[:, 1].numpy().reshape(W_va, N_va)
                 te_probs = torch.softmax(te_logits, dim=-1)[:, 1].numpy().reshape(W_te, N_te)
+            np.savez_compressed(run_dir/'probabilities.npz',val_probability=va_probs,test_probability=te_probs,
+                                test_label=y_te,test_valid=m_te)
 
             te_mask = m_te
             p_test = te_probs[te_mask]
@@ -331,15 +359,16 @@ def main():
             fpr = float(fp / (fp + tn)) if (fp + tn) > 0 else 0.0
 
             pred_bin_2d = (te_probs > 0.5).astype(int)
-            trans_recall = compute_transition_recall(y_te, pred_bin_2d)
+            trans_recall = compute_transition_recall(y_te, pred_bin_2d,valid=m_te)
 
             s_val_h1 = res_data[f"shortfall_val_seed{seed}"][:, 0, :]
             s_test_h1 = res_data[f"shortfall_test_seed{seed}"][:, 0, :]
             s_val_h6 = res_data[f"shortfall_val_seed{seed}"][:, 5, :]
             s_test_h6 = res_data[f"shortfall_test_seed{seed}"][:, 5, :]
 
-            min_va = min(len(va_probs), len(s_val_h1))
-            min_te = min(len(te_probs), len(s_test_h1))
+            if len(va_probs)!=len(s_val_h1) or len(te_probs)!=len(s_test_h1):
+                raise ValueError('Active-power probe population mismatch; no truncation allowed')
+            min_va,min_te=len(va_probs),len(te_probs)
 
             mask_va_h1 = (m_va[:min_va] > 0.5) & (res_data["mask_val"][:min_va, 0, :] > 0.5)
             mask_te_h1 = (m_te[:min_te] > 0.5) & (res_data["mask_test"][:min_te, 0, :] > 0.5)
@@ -348,11 +377,11 @@ def main():
 
             cost_h1, viol_h1, _ = fit_and_evaluate_binned_reserves(
                 va_probs[:min_va], s_val_h1[:min_va], mask_va_h1,
-                te_probs[:min_te], s_test_h1[:min_te], mask_te_h1,
+                te_probs[:min_te], s_test_h1[:min_te], mask_te_h1,archive_path=run_dir/'decision_h1.npz',
             )
             cost_h6, viol_h6, _ = fit_and_evaluate_binned_reserves(
                 va_probs[:min_va], s_val_h6[:min_va], mask_va_h6,
-                te_probs[:min_te], s_test_h6[:min_te], mask_te_h6,
+                te_probs[:min_te], s_test_h6[:min_te], mask_te_h6,archive_path=run_dir/'decision_h6.npz',
             )
 
             row = {
@@ -475,31 +504,14 @@ def main():
     d_noth_brier = agg.loc[agg['condition'] == 'D_Full_Suite_No_Thermal', 'brier_mean'].values[0]
 
     md_lines.extend([
-        "",
-        "## 3. Detailed Forensic Findings",
-        "",
-        "### Finding 1: Contemporaneous vs Dynamical Role of Active Power",
-        f"- **Condition A (Contemporaneous + History)** achieves AUROC of {agg.loc[agg['condition']=='A_Contemporaneous_Plus_Hist', 'auroc_mean'].values[0]:.3f}, F1 of {agg.loc[agg['condition']=='A_Contemporaneous_Plus_Hist', 'f1_mean'].values[0]:.3f}, and Brier score of {agg.loc[agg['condition']=='A_Contemporaneous_Plus_Hist', 'brier_mean'].values[0]:.4f}.",
-        f"- **Condition B (Historical Only)** drops F1 to {agg.loc[agg['condition']=='B_Hist_Only_No_Current', 'f1_mean'].values[0]:.3f} and AUROC to {agg.loc[agg['condition']=='B_Hist_Only_No_Current', 'auroc_mean'].values[0]:.3f}.",
-        "- This proves that instantaneous active power at the anchor is the primary operational determinant: when a turbine is generating at rated capacity, it is electromechanically locked into pitch regulation.",
-        "",
-        "### Finding 2: Reinterpreting Condition D Operating Point",
-        f"- In Condition D (Full Suite without contemporaneous $P_{{\\text{{atv}}, t}}$), precision is {agg.loc[agg['condition']=='D_Full_Suite_With_Thermal', 'precision_mean'].values[0]:.3f} and F1 is {agg.loc[agg['condition']=='D_Full_Suite_With_Thermal', 'f1_mean'].values[0]:.3f}.",
-        "- **Scientific Reinterpretation**: While removing contemporaneous active power prevents near-perfect pinpointing of the pitch threshold, **the remaining non-active-power consequence suite retains some collectively recoverable state information** (AUROC remains substantially above chance at ~0.80--0.85). The model operates at an asymmetric recall/precision tradeoff rather than complete collapse.",
-        "",
-        "### Finding 3: Thermal Channel Incremental Value Audit",
-        f"- Comparing Condition D With Thermal vs No Thermal:",
-        f"  - AUROC: {d_full_auroc:.4f} (With) vs {d_noth_auroc:.4f} (Without) [$\\Delta = {d_full_auroc - d_noth_auroc:+.4f}$]",
-        f"  - F1 Score: {d_full_f1:.4f} (With) vs {d_noth_f1:.4f} (Without) [$\\Delta = {d_full_f1 - d_noth_f1:+.4f}$]",
-        f"  - Brier Score: {d_full_brier:.4f} (With) vs {d_noth_brier:.4f} (Without) [$\\Delta = {d_full_brier - d_noth_brier:+.4f}$]",
-        "- **Empirical Verdict**: Thermal channels (`Etmp`, `Itmp`) exhibit large thermal inertia with time constants of multiple tens of minutes, providing negligible high-frequency state-discrimination power for 10-minute dispatch boundaries. They contribute minimal incremental value ($\Delta \\text{AUROC} < 0.01$) and can be safely omitted without degrading reserve screening performance.",
-        "",
-        "## 4. Required Manuscript Modifications",
-        "1. Disclose the precision/F1 operating point of Condition D explicitly.",
-        "2. State that 'the remaining non-active-power consequence suite retains some collectively recoverable state information'.",
-        "3. Document that thermal channels fail to provide incremental high-frequency boundary information due to slow thermal dynamics.",
+        '', '## Interpretation boundary',
+        'All directions must be read from the measured table; no causal determinant or thermal time constant is established.',
+        f'Thermal-minus-no-thermal AUROC difference: {d_full_auroc-d_noth_auroc:+.8f}; F1 difference: {d_full_f1-d_noth_f1:+.8f}; Brier difference: {d_full_brier-d_noth_brier:+.8f}.',
+        'These are descriptive seed means, not a significance test or a proof of safe channel omission.',
+        'Training uses up to200000 valid labelled cells selected with seed42 and the declared3 epochs; selected indices and all model histories are archived.',
+        'Decision metrics in this diagnostic are additionally restricted to valid-labelled regimes. They are not full-population operational claims.',
     ])
-
+    finalize(archive)
     md_path = Path(args.output_md)
     md_path.parent.mkdir(parents=True, exist_ok=True)
     with open(md_path, "w", encoding="utf-8") as f:

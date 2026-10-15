@@ -95,6 +95,10 @@ def run_command(out, name, argv, inputs, outputs, env_extra=None):
               for p in (ROOT/folder).rglob('*.py')}
     record = {'name':name, 'argv':argv, 'start_utc':now(), 'git_commit':commit,
               'source_sha256':source, 'inputs':[file_record(p) for p in inputs], 'status':'RUNNING'}
+    record['environment_overrides'] = dict(env_extra or {})
+    record['execution_environment'] = {key:os.environ.get(key) for key in
+        ('CUDA_VISIBLE_DEVICES','CUBLAS_WORKSPACE_CONFIG','PYTHONHASHSEED')}
+    record['thread_limits'] = {'OMP_NUM_THREADS':'4','MKL_NUM_THREADS':'4'}
     write_json(logdir / 'record.json', record)
     env = os.environ.copy()
     env.update({'PYTHONUNBUFFERED':'1','OMP_NUM_THREADS':'4','MKL_NUM_THREADS':'4'})
@@ -188,6 +192,14 @@ def run_wtb(out):
                     [out/'frozen_protocol.json',out/'cache_manifest.json',
                      *sorted(cache.glob('*.npy')),cache/'metadata.json'],
                     [target/'best_model.pt',target/'training_summary.json',target/'output_manifest.json'])
+    evaluate_wtb(out)
+
+
+def evaluate_wtb(out):
+    cache=out/'cache_wtb'
+    for family in FAMILIES:
+        for seed in range(201,206):
+            verify_run_receipt(out/'execution'/f'train_{family}_{seed}'/'record.json')
     residual=out/'fixed_forecast_residuals.npz'
     run_command(out,'fixed_residuals',[sys.executable,'scripts/build_fixed_forecast_residuals.py',
                 '--cache-dir',str(cache),'--runs-pattern',str(out/'models/forecast/seed{seed}'),

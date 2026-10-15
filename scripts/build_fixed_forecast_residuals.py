@@ -115,6 +115,8 @@ def main():
                 out_arrays[f"mask_{split_name}"] = mask_arr
                 out_arrays[f"anchor_indices_{split_name}"] = anchor_arr
                 out_arrays[f"z_label_{split_name}"] = z_arr
+                out_arrays[f"anchor_time_index_{split_name}"] = np.asarray(bundle.time_index[anchor_arr])
+                out_arrays['node_ids'] = np.asarray(bundle.node_ids)
 
             # Metrics per horizon
             for h_idx in range(6):

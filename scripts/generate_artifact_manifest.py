@@ -663,6 +663,17 @@ def main():
             "externally_hosted": item["externally_hosted"],
             "regenerable": item["regenerable"],
         }
+        entry['claim_list_scope'] = 'historical artifact claims; not automatic scientific validation or raw-training certification'
+        entry['raw_retraining_status'] = 'NOT_CERTIFIED_BY_THIS_MANIFEST'
+        withdrawn = {
+            'artifacts/channel_consequence_ablations.csv': 'h6 decision and valid-transition recall interpretations withdrawn; separate representation metrics remain historical',
+            'artifacts/zero_privileged_supervision_benchmark.csv': 'physical-proxy protocol interpretation withdrawn due to wrong scaler; corrected replay pending',
+            'artifacts/external_matched_control_benchmark.csv': 'superseded historical protocol; no current external matched decision conclusion',
+        }
+        if rel.startswith('artifacts/exp03_async/'):
+            entry['current_scientific_use'] = 'causal arrival interpretation withdrawn; old initialization and full-trace provenance invalid'
+        else:
+            entry['current_scientific_use'] = withdrawn.get(rel, 'historical evidence subject to scoped scientific contract and replay review')
         manifest_entries.append(entry)
         print(f"  [OK] {rel} ({size:,} bytes, sha256={sha[:12]}...)")
 

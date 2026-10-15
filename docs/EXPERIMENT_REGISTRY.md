@@ -517,3 +517,37 @@ See docs/REPLAY_CORRECTION_ADDENDUM_20261015.md for EXP02 physical-power scaler 
 ### EXP01 v4 invalidation (2026-10-15)
 
 The earlier retrospective repair note is superseded as a validity claim: archived forecasts refer to original chronological windows while v4 evaluates offset120/720-day targets. Integer anchors coincide but targets, masks and physical times differ. All v4 numerical decision claims and directions are withdrawn from current interpretation; old files remain immutable. See docs/EXP01_INVALIDATION_20261015.md and falsifier section13. New raw-window matched evaluation is NOT RUN yet. No older result is reinstated as valid by this notice.
+
+### RAW-PHASE-FROZEN-V1
+
+Registered corrected phase scan before execution: see REPLAY_CORRECTION_ADDENDUM_20261015.md.
+Same canonical shortfall across models/delay, fixed raw-wind boundary diagnostic population,
+matched auxiliary-head training targets/masks/anchors, ten-bin wind baseline, same-channel
+physical calibration. Old mixed-target/moving-population curves remain historical only.
+No positive result or numerical agreement with an old value is an acceptance criterion.
+
+### RAW-FACTORIAL-MASKED-V1 and RAW-ACTIVE-POWER-V2
+
+Registered before corrected execution in the Metis campaign. See the correction addendum:
+factorial A/B use identically configured backbones differing only in alignment loss,
+matched double-pitch-withheld inference and common canonical shortfalls. Primary
+comparator K is ten wind bins; h6 primary, h1 secondary; full and fixed wind-boundary
+populations reported together. All five seeds201–205, rho10 and validation q0.90 retained.
+Five-epoch linear heads use up to20000 validation cells and descriptive seed mean/SD;
+no significance is inferred from these summaries. Shuffled posterior/label controls
+affect calibration and test, and unknown oracle labels use global reserve fallback.
+Oracle arms remain non-deployable diagnostics; J aliases C and is not a separate method.
+Active-power diagnostic retains its three epochs /200000-cell budget and all conditions;
+transitions require two valid adjacent labels, and decision results are labelled as
+valid-regime cohorts. No hardcoded positive direction, mechanism or thermal-omission
+conclusion is permitted. Old inconsistent artifacts remain historical, not overwritten.
+
+### METIS-RAW-20261015
+
+Execution host change authorized by user before further training. Same corrected
+protocol/configurations, seeds, targets, comparator and uncertainty procedures; isolated
+cloud workspace, raw hashes checked, new raw preprocessing and fresh fits. Partial
+local attempts remain archived as interrupted/completed-local, never mixed into a
+homogeneous cloud five-seed result. No optimizer-resume claim: interrupted fits restart
+from scratch. PBS jobs, environments, code/data hashes and receipts are evidence;
+submission/queuing does not count as experiment execution or scientific completion.

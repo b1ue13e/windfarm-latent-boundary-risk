@@ -720,6 +720,8 @@ def _read_external_coords(base_dir: Path, node_ids: list[str]) -> pd.DataFrame:
         raise ValueError(f'Coordinate schema incomplete in {path}; synthetic fallback forbidden')
     coords = df[[id_col, x_col, y_col]].copy()
     coords.columns = ["node_id", "x", "y"]
+    # Static CSVs may contain trailing all-empty footer rows; these are not turbines.
+    coords = coords.dropna(subset=['node_id'])
     coords["node_id"] = coords["node_id"].astype(str)
     # Greenbyte SCADA filenames use T01 while Kelmarsh metadata uses KWF1.
     # Resolve the explicit numeric alias only when it maps to an actual input node.

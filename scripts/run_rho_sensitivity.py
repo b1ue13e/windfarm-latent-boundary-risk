@@ -30,13 +30,13 @@ SEEDS = [201, 202, 203, 204, 205]
 RHO_GRID = [2.0, 5.0, 10.0, 15.0, 20.0, 30.0, 40.0, 50.0, 75.0, 100.0]
 
 def main():
-    out_dir = REPO_ROOT / "artifacts/matched_budget"
+    out_dir = Path(os.environ.get("MATCHED_BUDGET_OUTPUT_DIR", str(REPO_ROOT / "artifacts/matched_budget")))
     out_dir.mkdir(parents=True, exist_ok=True)
     
     print("=== Starting Policy Re-Optimization rho Sensitivity Evaluation (Phase 8) ===", flush=True)
     
-    bundle = load_cache_bundle(REPO_ROOT / "artifacts/cache_strictmask_trainweights/wtb_245d", mmap_mode="r")
-    res_data = np.load(REPO_ROOT / "artifacts/fixed_forecast_residuals.npz")
+    bundle = load_cache_bundle(Path(os.environ.get("RAW_REPLAY_CACHE", str(REPO_ROOT / "artifacts/cache_strictmask_trainweights/wtb_245d"))), mmap_mode="r")
+    res_data = np.load(Path(os.environ.get("RAW_REPLAY_RESIDUALS", str(REPO_ROOT / "artifacts/fixed_forecast_residuals.npz"))))
     
     spec = DegradationSpec(delay_steps=0, withheld_channels=("Pab_mean", "Pab_std"))
     val_ds = UnifiedArrivalDataset(bundle, "val", hist_len=36, pred_len=24, degradation=spec)
@@ -44,6 +44,8 @@ def main():
     
     test_anchors = test_ds.anchor_indices
     val_anchors = val_ds.anchor_indices
+    if not np.array_equal(val_anchors, res_data['anchor_indices_val']) or not np.array_equal(test_anchors, res_data['anchor_indices_test']):
+        raise ValueError('Budget analysis frozen-forecast anchors mismatch')
     
     meta = bundle.metadata.get("feature_stats", {})
     w_stats = meta.get("Wspd", meta.get("0", {}))

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#PBS -N paper3_replay
+#PBS -q qllm
+#PBS -l select=1:ncpus=4:ngpus=1:mem=64gb
+#PBS -l walltime=12:00:00
+#PBS -j oe
+
+set -euo pipefail
+cd /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015
+export OMP_NUM_THREADS=4
+export MKL_NUM_THREADS=4
+export PYTHONUNBUFFERED=1
+export RAW_REPLAY_EXTERNAL_CACHE_MAP="$PWD/metis_cache_map.json"
+args=()
+if [[ -n "${PBS_ARRAY_INDEX:-}" ]]; then
+    args+=(--index "$PBS_ARRAY_INDEX")
+fi
+exec "$PWD/.venv/bin/python" -u scripts/metis_replay.py "${REPLAY_STAGE:?required}" "${args[@]}"

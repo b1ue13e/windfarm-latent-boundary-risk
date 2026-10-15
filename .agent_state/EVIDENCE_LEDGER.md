@@ -253,7 +253,8 @@ Task-ID: T26
 Status: VERIFIED_REPO
 Summary: Final causal-statistical integrity pass completed: (1) Purged 'strictly requires' overclaim from Limitations, replacing with 'assumes historical pitch availability during offline training, followed by pitch withholding at deployment. Performance in settings where pitch was never historically recorded remains untested'; (2) Conducted exact n=5 seed-level statistical audit with leave-one-out sensitivity on Seed 204 for Brier score (disclosing that Brier paired CI includes zero [-0.740, +0.299] and effect size is sensitive to single collapse run); (3) Replaced 'prevents collapse' with 'reduces observed susceptibility to representation collapse'; (4) Aligned Abstract with training-time historical pitch disclosure; (5) Sanitized /grill-me playbook; (6) Verified Supplementary Table A6c reporting exact 5-seed paired values and inferential statistics; (7) Enforced tripartite evidence hierarchy across manuscript and verified 10.0 page limit and PES compliance
 Source: paper_tste_ieee.md, paper_tste_supplementary.md, docs/PRIVILEGED_SUPERVISION_ABLATION.md, artifacts/clean_privileged_supervision_ablation.csv
-## T27 — 2026-09-19T02:58:41+08:00
+
+## T27 — 2026-09-19T02:58:41+08:00
 Task-ID: T27
 Status: VERIFIED_COMMAND
 Summary: Final Submission-Artifact and Statistical-Claim Integrity Pass: 0.00 pt overflows, 0 tabularx warnings, 10.0 pages exact, fonts >= 7.97 bp, Figure 1 verified, docs/FINAL_LAYOUT_OVERFLOW_AUDIT.md and docs/STATISTICAL_REPLICATION_UNIT_AUDIT.md created.
@@ -306,7 +307,8 @@ Task-ID: T31
 Status: VERIFIED_REPO
 Summary: Universal overclaims replaced: 'Reliable industrial deployment strictly mandates site-specific local retraining' -> 'These results support site-specific retraining or recalibration for the evaluated farms rather than assuming reliable zero-shot transfer'; 'proving that generic predictive uncertainty cannot identify...' -> 'showing that the tested heuristic uncertainty score does not reliably identify unsafe operating states under the evaluated prolonged-latency setting'. Synchronized across main paper, supplementary, and standalone tex.
 Source: paper_tste_ieee.md
-## T32 — 2026-09-19T03:54:10+08:00
+
+## T32 — 2026-09-19T03:54:10+08:00
 Task-ID: T32
 Status: VERIFIED_REPO
 Summary: AI disclosure expanded to comply with IEEE policy: explicitly identifies OpenAI ChatGPT and Codex, outlines sections and assistance level (drafting, formatting, audit scripts), and confirms scientific hypotheses, data, analysis, verification, and final approval remain authors sole responsibility.
@@ -1384,3 +1386,110 @@ Command: `python scripts/audit_phase2_retrospective.py; python scripts/verify_re
 Exit-Code: 0
 Relevant-Output: All 6 audit checks PASS; replication 21/21 PASS; scientific claim gate PASS; repository verification gate PASS.
 Epistemic-Status: VERIFIED.
+
+## 2026-10-15 Current evidence audit — TCA01 / TCA02 / TCA04
+Task-ID: TCA01
+Status: VERIFIED
+Evidence: .agent_state/CURRENT_RESEARCH_AUDIT_20261015.md maps ideas to actual model/policy scripts and raw/current CSV/JSON artifacts. Inspected current scientific contract, registry, source and manuscript. Current EXP01 v4 is separated from historical v2; no global novelty certification.
+Task-ID: TCA02
+Status: VERIFIED_COMMAND
+Command: python scripts/audit_phase2_retrospective.py
+Exit-Code: 0
+Output: C01-C06 PASS (checkpoint metadata, masking, target/anchor population, v4 statistics, native day-block bootstrap recomputation, historical preservation).
+Command: Python/pandas direct CSV arithmetic on channel/supervision and matched-budget files (2026-10-15).
+Exit-Code: 0
+Output: NMI .2401419142 -> .8189175054; ARI .1977954171 -> .8893290652; matched-budget Transition bootstrap-summary mean delta_U=5233.969389241536; 4 positive seed means, only 3 seeds with zero favorable support. No retraining executed.
+Task-ID: TCA04
+Status: VERIFIED_ARTIFACT
+Evidence: .agent_state/CURRENT_RESEARCH_AUDIT_20261015.md exists and gives source-linked current contribution/baseline/ablation/results plus authenticity and replication limitations. Full end-to-end reproducibility expressly NOT CERTIFIED.
+
+## 2026-10-15 Independent reviews
+Task-ID: TCA03
+Status: VERIFIED_WITH_BLOCKERS
+Evidence: .agent_state/FALSIFICATION_REPORT.md section 11 dated 2026-10-15 (current scientific package FAIL; bounded evidence audit PASS_WITH_LIMITATIONS); .agent_state/AUDIT_REPORT.md and REVIEW_REPORT.md dated 2026-10-15 (PASS_WITH_BLOCKERS for bounded diagnostic audit only).
+Direct checks: scientific falsifier recomputed wind-only classification on formal anchors [30275,35256), 639378 valid cells, 0 errors; 28076 ambiguous/excluded cells. Independent reviewer executed invalid documented CLI external_cache --help (exit 1), valid external-wind-preprocess --help (exit 0), loaded five checkpoint/training_summary pairs (exit 0).
+Task-ID: TCA05
+Status: BLOCKED
+Reason: full raw-data retraining not executed; complete EXP03 packet trace and EXP02 paired day blocks unavailable; full exact command/environment/lineage incomplete. Neither all-results authenticity nor universal reproducibility certified. This is a disclosed requirement gap, not a claim of fabrication.
+
+## 2026-10-15 final verification checkpoint
+Task-ID: TCA02
+Command: python .agents/scripts/verify_gate.py
+Exit-Code: 0
+Output: VERIFICATION_GATE: PASS. All five required command exits are 0 in GATE_REPORT.md (PDF integrity, decisive gate, number consistency, cached replication, scientific claim gate).
+Interpretation: existing automated consistency checks pass; they do NOT certify the newly identified scientific/reproducibility gaps. Independent falsifier certification remains FAIL, bounded evidence review PASS_WITH_BLOCKERS. No manuscript, implementation, experiment outcome, or scientific contract was altered.
+
+## Raw replay repair checkpoint — 2026-10-15
+Task-ID: TRR01
+Status: VERIFIED_REGISTRATION
+Evidence: docs/RAW_REPLAY_PROTOCOL_20261015.md; docs/EXPERIMENT_REGISTRY.md RERUN-20261015; experiments/replay_20261015/frozen_wtb_configs.json (30 frozen configs, 6 families x seeds201-205); artifacts/raw_replay_20261015_v2/frozen_protocol.json, runtime.json, environment.txt and coverage.json. Initial raw-only probe is separately preserved.
+Task-ID: TRR03
+Status: PARTIAL_VERIFIED
+Evidence: git commit 30b1cd8. Fixed channel h6 index and matched direct baseline; archives per-run weights/history/predictions and both transition denominators. EXP03 no-arrival initial value fixed, complete compressed grid/selected-source/mask archive added, model RNG seeds explicit. EXP02 weight/history/prediction archive added; native day blocks already supported. Raw runner refuses overwrites and records source/input/output hashes and actual process exits. Remaining: extend every external/ancillary family and final lineage verification.
+Command: python -m pytest tests/test_replay_integrity.py tests/test_exp03_async_arrival.py tests/test_exp02_protocol.py tests/test_f4_verdict_regression.py tests/test_f4_hierarchical_bootstrap.py -q
+Exit-Code: 0
+Output: 28 passed.
+Task-ID: TRR04
+Status: PARTIAL_EXECUTED
+Command: python main.py preprocess --root-dir . --dataset wtb --cache-root artifacts/raw_replay_20261015/cache_raw
+Exit-Code: 0
+Evidence: artifacts/raw_replay_20261015/preprocess_wtb.log. Direct array comparison: target/mask/labels/graphs/time exact; floating-point normalization/features non-exact. No post-hoc tolerance selected and no bitwise historical reproduction certified.
+Task-ID: TRR05
+Status: RUNNING_NOT_COMPLETE
+Command: python -u scripts/raw_replay.py run-wtb
+Evidence: unified exec session10314; durable execution receipts under artifacts/raw_replay_20261015_v2/execution. Do not count queued training as executed.
+
+## 2026-10-15 second repair / invalidation checkpoint
+Task-ID: TRR02
+Status: PARTIAL_VERIFIED
+Evidence: docs/EXP01_INVALIDATION_20261015.md and .agent_state/FALSIFICATION_REPORT.md section13 directly establish EXP01 v4's120/720-day wrong-window comparison. Its cost means/CIs/directions are withdrawn from active main manuscript; old CSVs preserved. Supplementary v2 authority, hidden-state necessity, 4/5-all-budgets and full-reproduction wording corrected. Additional invalid EXP02/03 interpretations explicitly withdrawn, no older result reinstated.
+Task-ID: TRR03
+Status: PARTIAL_VERIFIED
+Evidence: deeper cache/input/prediction manifests, exact target/mask/time/node alignment guard, physical proxy/ratio fixes, no synthetic coordinate fallback, source snapshots, dynamic reports and explicit external replay drivers. No scientific threshold change. Cache_manifest late-link notice records that linking was AFTER first training launch; old pre-training array hashes rechecked unchanged.
+Commands: python -m pytest tests/test_replay_integrity.py -q ->7 passed; python -m pytest tests/test_external_wind.py -q ->42 passed; EXP02/03 and F4 tests ->25 passed. All exit0.
+Task-ID: TRR04
+Status: PARTIAL_EXECUTED
+Evidence: raw_replay_20261015_v2 WTB recorded preprocessing/train-only weights both exit0; LHB raw corrected window rebuilt35280x4, exit0, source/output manifests exist; Kelmarsh raw log records35280x6; Penmanshiel remains running in session23398. Original target/mask/labels compare exactly on WTB while feature floats remain non-exact.
+Task-ID: TRR05
+Status: RUNNING_NOT_COMPLETE
+Evidence: WTB seed201 training_history.json records actual epoch1 train_loss142622.26147476037 and val_rmse231.49546911118182; current stdout shows epoch3. This is partial training, not a final test result. Other seeds remain queued, not complete.
+Task-ID: TRR06
+Status: PARTIAL_FORMAT_CHECK
+Evidence: first corrected standalone source compiled to11 pages (export_standalone_ieee.py actual success), but subsequent scientific invalidation edits require rebuilding. No page-count gate weakened and no PDF scientific validity inferred.
+
+## 2026-10-15 phase-scan / first completed fit checkpoint
+Task-ID: TRR03
+Status: PARTIAL_VERIFIED
+Evidence: RAW-PHASE-FROZEN-V1 now reads common residuals, fixes target/mask/time/node population, trains auxiliary heads on shared reference targets and identical sampled anchors, adds the ten-bin wind baseline, and keys physical calibration by channel mode. Regression test uses deliberately different toy forecasters and proves their heads still receive identical fixed targets. Tests are explicitly software fixtures, not research results.
+Command: python -m pytest tests/test_replay_integrity.py tests/test_exp02_protocol.py tests/test_exp03_async_arrival.py tests/test_f4_verdict_regression.py tests/test_f4_hierarchical_bootstrap.py tests/test_external_wind.py -q
+Exit-Code: 0
+Output: 77 passed before the last memory-equivalence test; latest replay_integrity standalone has9 passing tests including that added test. No conclusion derived from mocked data.
+Task-ID: TRR05
+Status: PARTIAL_EXECUTED
+Evidence: WTB forecast seed201 record EXECUTED exit0,9 epochs, best_epoch4, best_val_rmse223.8371326717991, total_train_seconds3028.1621092999994; weights/history/evaluation/output_manifest saved. LHB seed201 also EXECUTED exit0. Remaining primary fits and downstream experiments are NOT complete; WTB seed202 and LHB seed202 running.
+Task-ID: TRR04
+Status: PARTIAL_WITH_FAILED_ATTEMPT
+Evidence: Penmanshiel first raw attempt exit1 because15 empty static CSV footer rows became duplicate nan IDs. The14 actual turbine records were unique. Failure retained in original directory/FAILED_ATTEMPT.json; parser now excludes empty-ID non-records and tests verify no synthetic coordinate fallback. Retry runs in distinct artifacts/raw_replay_external_retry1_20261015 (session15893), not overwriting failure. The already-running parent queue may access an explicit cache alias only after successful retry; alias is recorded separately.
+Task-ID: TRR06
+Status: PARTIAL
+Evidence: main10-page and supplementary46-page PDFs compiled and text extracted; withdrawal mentions5/7 verified. Supplementary log has58 overfull boxes; final layout not certified. Current source has later method/phase edits and needs another build. Overall verify_gate exit1 solely for open TRR02-TRR07; command checks returned0. No gate was weakened to mark work finished.
+
+## 2026-10-15 ongoing execution and scope guard checkpoint
+Task-ID: TRR03
+Status: PARTIAL_VERIFIED
+Correction to the prior test-count wording: the77-test run includes the then-current10 replay integrity tests (including memory-equivalence and shared-head-target tests). The later scope-deletion regression brought replay_integrity to11 passing tests. Tests remain software verification only.
+Evidence: new verify_raw_replay.py is a required result-neutral evidence gate. It rejects missing/removed scope, absent run/output hashes, unexecuted rows and absent final review. It currently reports0 validated reproduced manuscript artifacts and47 unresolved checks; completed backbone fits are not mislabeled complete manuscript artifacts. No scientific effect threshold, primary baseline or seed list changed.
+Task-ID: TRR04
+Status: VERIFIED_RAW_CACHES_WITH_LIMITATIONS
+Evidence: WTB full raw pipeline exits0; LHB35280x4 and Kelmarsh35280x6 completed; Penmanshiel retry1 completed35280x14 exit0 after fixing blank footer parsing. Original failed attempt and source bytes preserved. Explicit training dependency alias recorded in RETRY_CACHE_ALIAS.json; retry cache is a new directory, not an overwritten failure.
+Task-ID: TRR05
+Status: RUNNING
+Evidence: primary backbone queues continue (WTB and external), with raw output manifests per completed fit. Downstream budget/rho/frozen-phase job session52836 waits on upstream results and fails closed on recorded upstream failure. This covers named core families; coverage.json still retains unexecuted ancillary requirements.
+Task-ID: TRR02
+Status: PARTIAL_VERIFIED
+Evidence: IDEA_METHOD_EVIDENCE_MAP_20261015.md and runtime architecture_config_audit.json distinguish87,067-parameter dense classifier,110,012-parameter MoE,115,240-parameter approximately matched dense. Main encoder verified SpatioTemporalEncoder, not Graph WaveNet. Local raw-file year labels corrected without inventing calendar dates for WTB.
+
+## Metis migration checkpoint
+Task-ID: TRR08
+Status: PARTIAL_VERIFIED
+Evidence: SSH alias metis authenticates as junyu; PBS qsub/qstat available; GPU queue qllm exists and has unrelated active job242580.cm. Matching raw WTB SHA2566cf7613a82c61bb5cf9fcbbf22e3f6c48165fa32021eb6f1905cb2b7af4d7667 and coordinates15c19ceca43171dfda06e8de487d4d55eb116112904d77958aed7260c2f0d9fe found remotely. Owned local replay PIDs stopped after exact command-line checks. METIS_MIGRATION_NOTICE.json preserves local statuses; RUNNING receipts explicitly interrupted, not failed hypotheses or completed results.

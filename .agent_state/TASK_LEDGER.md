@@ -216,3 +216,24 @@ Created: 2026-09-18T05:01:00+08:00
 
 
 
+
+## Current evidence audit — 2026-10-15
+
+- [x] TCA01 VERIFIED Map current ideas to implementation, baseline and ablation artifacts; distinguish historical versus current results.
+- [x] TCA02 VERIFIED Recompute selected current statistics and run existing validation commands, recording actual exits; do not represent cached checks as retraining.
+- [x] TCA03 VERIFIED Obtain scientific falsifier and independent evidence review for this audit and report all unresolved reproducibility blockers.
+- [x] TCA04 VERIFIED Deliver source-linked Chinese answer; no certification of full retraining without direct execution evidence.
+
+- [!] TCA05 BLOCKED Certification of every result through independent raw-data retraining: no full retraining execution; missing EXP03 full-grid trace, EXP02 native blocks, incomplete channel seed artifacts, invalid documented preprocessing CLI. Do not certify until repaired and reproduced.
+
+## Repair and raw-data replay — 2026-10-15 (user authorized)
+- [x] TRR01 VERIFIED Freeze audit issue list, experimental scope, original data/config hashes, and non-favorable acceptance criteria before replay.
+- [ ] TRR02 DOING Repair manuscript/method/version wording and reproducibility commands; preserve superseded evidence and withdraw unsupported claims explicitly.
+- [ ] TRR03 DOING Implement per-run provenance, raw-data replay entry points, full prediction/checkpoint/log/block/packet archives and fail-closed checks; test and commit code changes.
+- [ ] TRR04 DOING Rebuild all required caches from raw source data in isolated output directories and verify splits/masks/features against declared protocols.
+- [ ] TRR05 DOING Retrain all scoped model/baseline/ablation seeds, evaluate frozen endpoints, record failures and compare regenerated tables without tuning to old outcomes.
+- [ ] TRR06 DOING Reconcile manuscript against replay evidence, withdraw unreproducible conclusions, compile and verify outputs.
+- [ ] TRR07 DOING Obtain independent scientific/evidence review, run verification gate and commit final changes; disclose every remaining blocker.
+
+## Metis execution steering —2026-10-15
+- [ ] TRR08 DOING Move raw replay to isolated Metis workspace; verify input/source hashes and environment, submit PBS jobs, preserve receipts and failures, never count queued jobs as completed.

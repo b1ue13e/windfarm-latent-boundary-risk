@@ -11,10 +11,10 @@ This document provides official public sources, licenses, cryptographic specific
 
 | Dataset Identifier | Turbine Architecture | Array Size ($N$) | Telemetry Duration | Sampling Resolution | Primary Observability Role |
 | :--- | :--- | :---: | :---: | :---: | :--- |
-| **WTB (SDWPF / KDD Cup 2022)** | 1.5 MW Commercial Turbines | 134 | 245 Days continuous (2020--2021) | 10 minutes | Primary mechanism identification; boundary band $|v-10.5| \le 1.0$ m/s |
-| **Kelmarsh** | Senvion MM92 (2.05 MW) | 6 | Multi-year (2016--2021) | 10 minutes | External validity probe; compact layout, low spatial wake redundancy |
-| **Penmanshiel** | Senvion MM82 (2.05 MW) | 14 operational (WT01--WT15 ex. WT03) | Multi-year (2016--2021) | 10 minutes | External validity probe; complex terrain, high wake interaction |
-| **ENGIE La Haute Borne (LHB)** | Senvion MM82 (2.05 MW) | 4 | Multi-year (2013--2016) | 10 minutes | Transferability failure boundary; micro-farm GNN overfitting envelope |
+| **WTB (SDWPF / KDD Cup 2022)** | 1.5 MW Commercial Turbines | 134 | 245 indexed days; calendar dates not verified from the CSV | 10 minutes | Primary mechanism identification; boundary band $|v-10.5| \le 1.0$ m/s |
+| **Kelmarsh** | Senvion MM92 (2.05 MW) | 6 | Local archives named 2016--2024; fixed245-day evaluation window | 10 minutes | External validity probe; compact layout, low spatial wake redundancy |
+| **Penmanshiel** | Senvion MM82 (2.05 MW) | 14 operational (WT01--WT15 ex. WT03) | Local archives named 2016--2024; fixed245-day evaluation window | 10 minutes | External validity probe; complex terrain, high wake interaction |
+| **ENGIE La Haute Borne (LHB)** | Senvion MM82 (2.05 MW) | 4 | Local archive named 2017--2020; evaluated245-day window | 10 minutes | Transferability failure boundary; small-farm diagnostic; raw replay pending |
 | **ERA5 Reanalysis** | ECMWF Reanalysis v5 | 256 cells ($16 \times 16$) | 3 continuous months (2,208 hrs) | 1 hour | Thermodynamic surface sensible heat flux convective contrast |
 
 ---

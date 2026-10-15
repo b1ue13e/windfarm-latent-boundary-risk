@@ -31,6 +31,9 @@ if str(REPO_ROOT) not in sys.path:
 
 import numpy as np
 import pandas as pd
+import torch
+from masked_representation import infer_masked, check_frozen_reference
+from replay_provenance import provenance, finalize
 from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
 
 DT = 1.0 / 6.0
@@ -39,14 +42,18 @@ Q_STAR = 1.0 - 1.0 / RHO  # 0.90
 N_BINS = 5
 
 
-def compute_transition_recall(y_true: np.ndarray, y_pred_binary: np.ndarray, window_radius: int = 3) -> float:
+def compute_transition_recall(y_true: np.ndarray, y_pred_binary: np.ndarray, window_radius: int = 3, valid=None) -> float:
     W, N = y_true.shape
     diff = np.diff(y_true, axis=0, prepend=y_true[:1, :]) != 0
+    if valid is not None:
+        diff[1:] &= valid[1:] & valid[:-1]
+        diff[0]=False
     in_window = diff.copy()
     for offset in range(1, window_radius + 1):
         in_window[offset:, :] |= diff[:-offset, :]
         in_window[:-offset, :] |= diff[offset:, :]
     target_mask = in_window & (y_true == 1)
+    if valid is not None:target_mask &= valid
     if np.sum(target_mask) == 0:
         return 0.0
     return float(np.mean(y_pred_binary[target_mask]))
@@ -61,6 +68,7 @@ def fit_and_evaluate_binned_reserves(
     test_mask: np.ndarray,
     n_bins: int = N_BINS,
     tau: float = Q_STAR,
+    archive_path: Path | None = None,
 ) -> Tuple[float, float]:
     valid_v = val_mask & np.isfinite(val_s) & np.isfinite(val_probs)
     valid_t = test_mask & np.isfinite(test_s) & np.isfinite(test_probs)
@@ -94,6 +102,9 @@ def fit_and_evaluate_binned_reserves(
     shortage = np.maximum(t_s - r_test, 0.0)
     cost = float(np.sum(r_test + RHO * shortage) * DT)
     viol_rate = float(np.mean(t_s > r_test))
+    if archive_path is not None:
+        np.savez_compressed(archive_path,reserve=r_test,shortfall=t_s,selected_flat_indices=np.flatnonzero(valid_t),
+                            mask=valid_t,bin_edges=edges,bin_reserves=np.array(list(reserves.values())))
     return cost, viol_rate
 
 
@@ -102,11 +113,23 @@ def main():
     parser.add_argument("--runs-root", default="artifacts/strictmask_ablation_rerun_wtb_full")
     parser.add_argument("--cache-dir", default="artifacts/cache_strictmask_trainweights/wtb_245d")
     parser.add_argument("--residuals-file", default="artifacts/fixed_forecast_residuals.npz")
-    parser.add_argument("--output-csv", default="artifacts/clean_privileged_supervision_ablation.csv")
-    parser.add_argument("--output-md", default="docs/PRIVILEGED_SUPERVISION_ABLATION.md")
+    parser.add_argument("--output-csv", default="artifacts/supervision_replay_v2/results.csv")
+    parser.add_argument("--output-md", default="artifacts/supervision_replay_v2/report.md")
+    parser.add_argument('--unaligned-pattern',default=None)
+    parser.add_argument('--aligned-pattern',default=None)
+    parser.add_argument('--device',default='cuda' if torch.cuda.is_available() else 'cpu')
     args = parser.parse_args()
 
     runs_root = Path(args.runs_root)
+    device=torch.device(args.device)
+    archive=Path(args.output_csv).parent/'evidence'
+    if archive.exists():raise FileExistsError(archive)
+    paths={key:{seed:Path(pattern.format(seed=seed)) if pattern else runs_root/f'{key}_seed{seed}'
+                for seed in range(201,206)} for key,pattern in
+                [('wtb_bal',args.unaligned_pattern),('wtb_bal_align',args.aligned_pattern)]}
+    provenance(archive,[args.residuals_file,Path(args.cache_dir)/'metadata.json',
+                *sorted(Path(args.cache_dir).glob('*.npy')),
+                *[paths[k][s]/'best_model.pt' for k in paths for s in range(201,206)]],vars(args))
     print(f"[Privileged Supervision] Loading residuals from {args.residuals_file}")
     res_data = np.load(args.residuals_file)
 
@@ -127,25 +150,37 @@ def main():
     boundary_mask_test = (np.abs(test_wspd - 10.5) <= 1.0)  # (W, N) exactly 13,883 cells with mask
 
     variants = {
-        "wtb_bal": {"name": "No Privileged Supervision (lambda_align = 0)", "align_weight": 0.0},
-        "wtb_bal_align": {"name": "Privileged Supervision (lambda_align = 5000)", "align_weight": 5000.0},
+        "wtb_bal": {"name": "No regime-label alignment (historical pitch retained)", "align_weight": 0.0},
+        "wtb_bal_align": {"name": "Regime-label alignment (lambda_align = 5000)", "align_weight": 5000.0},
     }
 
     seeds = [201, 202, 203, 204, 205]
+    from windfarm_moe.config import TrainConfig
+    for seed in seeds:
+        c0=torch.load(paths['wtb_bal'][seed]/'best_model.pt',map_location='cpu',weights_only=False)
+        c1=torch.load(paths['wtb_bal_align'][seed]/'best_model.pt',map_location='cpu',weights_only=False)
+        w0=TrainConfig(**c0['train_config']).effective_loss_weights()
+        w1=TrainConfig(**c1['train_config']).effective_loss_weights()
+        if c0['model_config']!=c1['model_config'] or w0['align']!=0 or w1['align']!=5000 or any(w0[k]!=w1[k] for k in w0 if k!='align'):
+            raise ValueError('The supervision pair does not isolate alignment on the same architecture')
     all_rows = []
 
     for v_key, v_info in variants.items():
         print(f"\n==================== VARIANT: {v_info['name']} ====================")
         for seed in seeds:
-            run_dir = runs_root / f"{v_key}_seed{seed}"
+            run_dir = paths[v_key][seed]
             if not run_dir.exists():
-                print(f"  Missing directory {run_dir}, skipping.")
-                continue
+                raise FileNotFoundError(run_dir)
 
-            val_gate = np.load(run_dir / "val_metrics" / "gate_prob.npy")  # (W_val, N, 4)
-            test_gate = np.load(run_dir / "test_metrics" / "gate_prob.npy")  # (W_test, N, 4)
-            test_regime = np.load(run_dir / "test_metrics" / "regime_primary.npy")  # (W_test, N)
-            test_regime_valid = np.load(run_dir / "test_metrics" / "regime_primary_valid.npy") > 0.5
+            evidence=archive/f'{v_key}_seed{seed}'
+            val_gate,_,va=infer_masked(run_dir,bundle,'val',device,evidence/'val')
+            test_gate,_,ta=infer_masked(run_dir,bundle,'test',device,evidence/'test')
+            if not np.array_equal(va,res_data['anchor_indices_val']) or not np.array_equal(ta,res_data['anchor_indices_test']):
+                raise ValueError('Supervision experiment frozen target anchors differ')
+            check_frozen_reference(bundle,res_data,'val',va)
+            check_frozen_reference(bundle,res_data,'test',ta)
+            test_regime = np.asarray(bundle.regime_primary[ta])
+            test_regime_valid = np.asarray(bundle.regime_primary_valid[ta])>0.5
 
             # Alignment metrics
             pred_regime = np.argmax(test_gate[:, :, :3], axis=-1)
@@ -165,7 +200,7 @@ def main():
 
             pred_pitch_bin = (test_p_pitch > 0.5).astype(int)
             y_pitch_true_2d = (test_regime == 2).astype(int)
-            trans_recall = compute_transition_recall(y_pitch_true_2d, pred_pitch_bin)
+            trans_recall = compute_transition_recall(y_pitch_true_2d, pred_pitch_bin,valid=valid_cells)
 
             # Residual data for h=1 and h=6
             s_val_h1 = res_data[f"shortfall_val_seed{seed}"][:, 0, :]
@@ -173,8 +208,9 @@ def main():
             s_val_h6 = res_data[f"shortfall_val_seed{seed}"][:, 5, :]
             s_test_h6 = res_data[f"shortfall_test_seed{seed}"][:, 5, :]
 
-            min_va = min(len(val_p_pitch), len(s_val_h1))
-            min_te = min(len(test_p_pitch), len(s_test_h1))
+            if len(val_p_pitch)!=len(s_val_h1) or len(test_p_pitch)!=len(s_test_h1):
+                raise ValueError('Supervision experiment population mismatch; no truncation allowed')
+            min_va, min_te = len(val_p_pitch),len(test_p_pitch)
 
             mask_va_h1 = res_data["mask_val"][:min_va, 0, :] > 0.5
             mask_te_h1 = res_data["mask_test"][:min_te, 0, :] > 0.5
@@ -185,10 +221,12 @@ def main():
             cost_full_h1, viol_full_h1 = fit_and_evaluate_binned_reserves(
                 val_p_pitch[:min_va], s_val_h1[:min_va], mask_va_h1,
                 test_p_pitch[:min_te], s_test_h1[:min_te], mask_te_h1,
+                archive_path=evidence/'full_h1.npz',
             )
             cost_full_h6, viol_full_h6 = fit_and_evaluate_binned_reserves(
                 val_p_pitch[:min_va], s_val_h6[:min_va], mask_va_h6,
                 test_p_pitch[:min_te], s_test_h6[:min_te], mask_te_h6,
+                archive_path=evidence/'full_h6.npz',
             )
 
             # Boundary-Band Slice Evaluation (|v-10.5| <= 1.0)
@@ -198,10 +236,12 @@ def main():
             cost_bnd_h1, viol_bnd_h1 = fit_and_evaluate_binned_reserves(
                 val_p_pitch[:min_va], s_val_h1[:min_va], mask_va_h1,
                 test_p_pitch[:min_te], s_test_h1[:min_te], b_mask_te_h1,
+                archive_path=evidence/'boundary_h1.npz',
             )
             cost_bnd_h6, viol_bnd_h6 = fit_and_evaluate_binned_reserves(
                 val_p_pitch[:min_va], s_val_h6[:min_va], mask_va_h6,
                 test_p_pitch[:min_te], s_test_h6[:min_te], b_mask_te_h6,
+                archive_path=evidence/'boundary_h6.npz',
             )
 
             row = {
@@ -269,66 +309,32 @@ def main():
     delta_cost_bnd_h6 = align["cost_bnd_h6"] - bal["cost_bnd_h6"]
     delta_cost_full_h6 = align["cost_full_h6"] - bal["cost_full_h6"]
 
-    md_lines = [
-        "# Clean Privileged-Supervision Ablation & Lifecycle Audit",
-        "",
-        "**Date**: 2026-09-18",
-        r"**Objective**: Rigorously isolate the role of privileged offline supervision ($\mathcal{L}_{\text{align}}$ cross-entropy on aerodynamic regime labels $Z$) on identical backbones under pitch withholding.",
-        "",
-        "## 1. Sensor & Supervision Lifecycle Table",
-        "",
-        "The table below explicitly answers whether blade-pitch telemetry enters network inputs during training and maps the full feature lifecycle:",
-        "",
-        "| Variable / Modality | Role | Train Input | Train Target | Validation Input | Test Input (Deployment) |",
-        "| :--- | :--- | :---: | :---: | :---: | :---: |",
-        r"| **Blade Pitch Angle ($\beta$)** | Electromechanical control | **YES** ($x_{\text{hist}}$, $P_{\text{ab}}$) | **NO** | **NO** (Zero-masked) | **NO** (Strictly withheld) |",
-        r"| **Aerodynamic Regime ($Z$)** | Latent state label | **NO** | **YES** (via $\mathcal{L}_{\text{align}}$) | **NO** | **NO** (Unobservable) |",
-        r"| **Active Power ($P_{\text{atv}}$)** | Electromechanical consequence | **YES** | **NO** | **YES** | **YES** |",
-        "| **Wind Speed ($v$)** | Inflow condition | **YES** | **NO** | **YES** | **YES** |",
-        "| **Spatial Wind & Nacelle Dir** | Topological advection | **YES** | **NO** | **YES** | **YES** |",
-        r"| **Thermal Registers ($E_{\text{tmp}}, I_{\text{tmp}}$)** | Ambient & internal state | **YES** | **NO** | **YES** | **YES** |",
-        r"| **Future Power ($y_{t+1:t+P}$)** | Forecast objective | **NO** | **YES** ($\mathcal{L}_{\text{pred}}$) | **NO** | **NO** (Evaluation ground truth) |",
-        "",
-        "### Explicit Modality Shift Disclosure",
-        r"- **Training Modality**: The base encoder was trained with blade-pitch angle registers ($\beta$) present in historical input sequences ($x_{\text{hist}}$ channels 7--8) and anchor physics.",
-        "- **Deployment Modality**: At validation and test evaluation time, all blade-pitch registers are strictly zero-masked/withheld.",
-        r"- **Consequence**: The model operates under a structured **modality shift** (transfer from fully observable training telemetry to partially observable deployment telemetry). Offline privileged supervision ($\mathcal{L}_{\text{align}}$) forces the network to map secondary consequence signals into the latent boundary space learned during training.",
-        "",
-        "## 2. Clean Matched-Backbone Ablation Results (5 Seeds 201--205)",
-        "",
-        r"Ablation compares identical backbones with $\lambda_{\text{align}} = 5000.0$ vs $\lambda_{\text{align}} = 0.0$ (both with $\lambda_{\text{balance}} = 1000.0$, hidden dimension 64, 4 experts, identical AdamW schedules):",
-        "",
-        "| Architecture & Supervision | NMI | ARI | Brier Score | Transition Recall | Boundary PSREI $h=6$ (kWh) | Full-Pop PSREI $h=6$ (kWh) |",
-        "| :--- | :---: | :---: | :---: | :---: | :---: | :---: |",
-    ]
-
-    for _, r in agg.iterrows():
-        md_lines.append(
-            f"| **{r['name']}** | {r['nmi_mean']:.3f}±{r['nmi_std']:.3f} | {r['ari_mean']:.3f}±{r['ari_std']:.3f} | "
-            f"{r['brier_mean']:.4f}±{r['brier_std']:.4f} | {r['recall_mean']*100:.1f}%±{r['recall_std']*100:.1f}% | "
-            f"{r['cost_bnd_h6_mean']:,.0f}±{r['cost_bnd_h6_std']:,.0f} | "
-            f"{r['cost_full_h6_mean']:,.0f}±{r['cost_full_h6_std']:,.0f} |"
-        )
-
-    md_lines.extend([
-        "",
-        r"## 3. Paired Statistical Differences ($\Delta = \text{Align} - \text{No Align}$)",
-        "",
-        f"- **$\\Delta$ NMI**: {delta_nmi.mean():+.3f} ± {delta_nmi.std():.3f} ($p < 0.001$, privileged supervision dramatically improves alignment)",
-        f"- **$\\Delta$ Brier Score**: {delta_brier.mean():+.4f} ± {delta_brier.std():.4f} ($p < 0.001$, sharp posterior calibration improvement)",
-        f"- **$\\Delta$ Boundary PSREI ($h=6$)**: {delta_cost_bnd_h6.mean():+,.0f} ± {delta_cost_bnd_h6.std():,.0f} kW·h",
-        f"- **$\\Delta$ Full-Population PSREI ($h=6$)**: {delta_cost_full_h6.mean():+,.0f} ± {delta_cost_full_h6.std():,.0f} kW·h",
-        "",
-        "## 4. Scientific Verdict",
-        r"1. **Privileged supervision is essential for gating structure**: Without $\mathcal{L}_{\text{align}}$ ($\lambda = 0$), gating weights collapse to a single expert (expert usage entropy $\to 0$, NMI drops to ~0.25).",
-        r"2. **Privileged supervision improves latent-state resolution**: With $\mathcal{L}_{\text{align}}$, the network achieves NMI $> 0.75$ and ARI $> 0.85$, demonstrating that offline cross-entropy supervision allows secondary SCADA consequence channels to reliably reconstruct the unobservable operating boundary.",
-    ])
-
-    md_path = Path(args.output_md)
-    md_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(md_path, "w", encoding="utf-8") as f:
-        f.write("\n".join(md_lines))
-    print(f"[Privileged Supervision] Saved Markdown report to {md_path}")
+    from scipy import stats
+    from datetime import datetime,timezone
+    if len(bal)!=5 or len(align)!=5 or not np.array_equal(bal.seed,align.seed):
+        raise ValueError('All five matched seeds are required')
+    summaries=[]
+    for metric in ['nmi','ari','brier','trans_recall','cost_full_h1','cost_full_h6','cost_bnd_h1','cost_bnd_h6']:
+        delta=(align[metric]-bal[metric]).to_numpy()
+        mean=float(delta.mean()); se=float(stats.sem(delta))
+        half=float(stats.t.ppf(0.975,4)*se)
+        pval=float(stats.ttest_rel(align[metric],bal[metric]).pvalue) if se>0 else float('nan')
+        summaries.append(dict(metric=metric,n=5,mean_delta=mean,ci_low=mean-half,ci_high=mean+half,p_paired_t=pval))
+    pd.DataFrame(summaries).to_csv(out_csv.parent/'paired_seed_statistics.csv',index=False)
+    agg.to_csv(out_csv.parent/'aggregate.csv',index=False)
+    lines=['# Corrected masked-inference supervision ablation',
+           'Executed UTC: '+datetime.now(timezone.utc).isoformat(),
+           'Historical pitch remains in training inputs in both arms; only regime alignment differs.',
+           'Both deployment pitch channels and their masks are explicitly zeroed before every forward pass.',
+           'Brier is evaluated for the raw pitch-expert gating score; it is not assumed calibrated physical-state probability.',
+           'Paired Student-t intervals/tests use five model seeds, conditional on this test population. No two-level bootstrap or universal gain is claimed.',
+           '| Metric | Mean aligned-minus-unaligned | 95% seed-level t interval | Paired t p |',
+           '|---|---:|---|---:|']
+    for row in summaries:
+        lines.append(f"| {row['metric']} | {row['mean_delta']:.8g} | [{row['ci_low']:.8g}, {row['ci_high']:.8g}] | {row['p_paired_t']:.8g} |")
+    md_path=Path(args.output_md);md_path.parent.mkdir(parents=True,exist_ok=True)
+    md_path.write_text('\n'.join(lines)+'\n',encoding='utf-8')
+    finalize(archive)
 
 
 if __name__ == "__main__":

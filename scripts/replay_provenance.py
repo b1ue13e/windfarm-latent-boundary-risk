@@ -30,7 +30,9 @@ def write_json(path, value):
         if isinstance(v, Path):
             return str(v)
         raise TypeError(f'Unsupported provenance value: {type(v)}')
-    p.write_text(json.dumps(value, indent=2, ensure_ascii=False, allow_nan=False, default=encode), encoding='utf-8')
+    temporary=p.with_name(p.name+'.tmp')
+    temporary.write_text(json.dumps(value, indent=2, ensure_ascii=False, allow_nan=False, default=encode), encoding='utf-8')
+    temporary.replace(p)
 
 
 def provenance(output_dir, inputs=(), config=None):

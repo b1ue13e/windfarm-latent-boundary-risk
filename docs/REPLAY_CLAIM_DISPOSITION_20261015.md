@@ -12,10 +12,11 @@ scientific contract or delete historical evidence. Negative/null findings are pr
 | EXP02 correctly specified physical proxy conclusion | WITHDRAWN pending corrected run | Wrong power scaler; epsilon50 proxy labels differ on189 validation/24 test cells. Thresholds unchanged |
 | EXP03 causal arrival curve and complete packet provenance | WITHDRAWN pending corrected run | Unarrived initial value and incomplete full-grid records; new simulator archives event/arrival/select/masks |
 | Four of five seeds worse at every reserve budget | CORRECTED | Four seed averages are worse; only three are worse at every evaluated budget |
-| External v2 is authoritative current benchmark | SUPERSEDED | Current archived comparison is retrospective v4; new raw-window replay remains pending |
+| External v2/v4 are valid current matched benchmarks | WITHDRAWN / INVALID v4 | v4 uses predictions and targets from different physical windows; v2 is not reinstated. New raw-window replay pending |
 | NoGraph establishes graph causality; MoE is necessary | NOT ESTABLISHED | Capacity/training confounding and intervals crossing zero preserved |
 | Global FULLY_REPRODUCIBLE certificate | WITHDRAWN | Cached artifact checks do not execute raw-data training; renamed verifier output without changing checks |
-| Existing WTB full-cost posterior penalty and external v4 values | HISTORICAL ARTIFACT EVIDENCE; raw replay pending | Original CSVs unmodified; new forecast/training/evaluation must be completed before independent reproduction claims |
+| Existing WTB full-cost posterior penalty | HISTORICAL ARTIFACT EVIDENCE; raw replay pending | Original CSV unmodified; new forecast/training/evaluation must complete before independent reproduction claims |
+| External v4 values and confidence intervals | INVALID; retained as erroneous calculation records | Wrong-window targets are not a valid negative or positive transfer result. See EXP01_INVALIDATION_20261015.md |
 
 Running evidence is under artifacts/raw_replay_20261015_v2. Every original manifest
 entry remains in coverage.json with a separate execution status. Withdrawn is not
@@ -25,3 +26,5 @@ changes old text assertions; its thresholds must not be relaxed to obtain PASS.
 The main manuscript, supplementary correction notice and cover-letter hold have been
 updated. PDF compilation is a format check only. No submission or remote publication
 is authorized by completion of these local edits.
+
+Old dense/MoE phase-scan costs are not common-target decision evidence; old cross-delay curves do not hold boundary populations fixed. These interpretations are withdrawn. Same-condition physical recalibration comparisons retain their explicitly local scope. Corrected RAW-PHASE-FROZEN-V1 is registered before execution.

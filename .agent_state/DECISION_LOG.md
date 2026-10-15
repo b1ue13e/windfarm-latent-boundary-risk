@@ -35,3 +35,25 @@
 - 2026-10-12: [RA05 SCIENTIFIC FALSIFIER] Independent falsification issued `FAIL FOR CURRENT SUBMISSION; REVISE THE PROJECT`. Do not soften this to PASS_WITH_LIMITATIONS: the main manuscript has a headline condition error and stale comparator narrative, EXP-02's verdict logic is invalid, and EXP-03 violates same-information and fixed-population requirements. Preserve the narrower negative-result thesis and all null/negative evidence.
 - 2026-10-12: [RA06 INDEPENDENT EVIDENCE REVIEW] Independent reviewer issued `PASS_WITH_BLOCKERS` for the integrity and completeness of RA00-RA05. This is not a paper/science PASS. Final user-facing decision remains: current submission FAIL / hard stop; project REVISE. The old manifest gate is procedural and does not validate October experiments.
 
+
+## 2026-10-15 Current evidence audit
+- User requires explicit sources, idea-to-method correspondence, authentic training products and independent reproducibility. Scope is diagnosis of existing project; no new decisive experiments or claim upgrades are authorized by the audit itself.
+- Preserve pre-existing changes to research-manifest.json and .agent_state/GATE_REPORT.md. No training, source edits, contract changes, or remote publication planned.
+- Audit may establish local artifact consistency; it cannot certify full end-to-end retraining from cached results.
+
+## 2026-10-15 final disposition
+- Bounded current-status audit and source-linked answer are supported; full authenticity/retraining certification remains BLOCKED (TCA05).
+- Existing gate returned PASS, but independent falsifier found material idea-method, wording and version gaps. Gate PASS is not substituted for scientific validity.
+- Preserve negative results and all pre-existing user modifications. No code changes, new training, contract changes, remote actions, or manuscript repairs were made this turn.
+
+## 2026-10-15 repair/replay authorization
+User explicitly authorized fixing audited paper/code/command defects, completing every experiment evidence chain, and full raw-data replay. Preserve all negative/null results. Do not change scientific contract, statistical thresholds, seed lists, target/population or baseline to obtain favorable results. New outputs are versioned separately; historical artifacts remain immutable. Existing research-manifest.json changes are user-owned and must not be committed accidentally. Runtime failures are evidence, not grounds to label unexecuted work successful.
+
+## Scientific hard stops discovered during implementation
+- EXP01 v4 is invalid because its predictions and targets belong to different physical windows, not because its outcome is negative. Withdraw both signs/CIs; preserve erroneous calculation files. Prior status audit is superseded for this claim.
+- EXP02 proxy scaler and physical feature-ratio correction; EXP03 causal initialization/provenance correction are registered before affected replay.
+- Stop treating a gate PASS, absent generator pathname or source directory naming as full lineage proof. Add explicit input/output/source snapshots and semantic time/node/target checks.
+- All execution remains active. No claim of completed full raw replay or final scientific PASS is authorized.
+
+## Metis-only execution
+User explicitly requires code execution on Metis. Stop only verified owned local replay jobs and retain outputs; leave unrelated jobs alone. All new model fits restart from scratch in isolated cloud workspace. Use PBS allocation, never login-node training; do not pool completed local seeds with cloud seeds or treat partial best weights as resumed optimizer state. Existing numerical scientific gates unchanged.

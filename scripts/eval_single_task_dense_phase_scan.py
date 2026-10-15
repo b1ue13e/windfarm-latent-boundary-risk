@@ -74,13 +74,18 @@ def train_frozen_quantile_head_dynamic(
     max_cache_batches: int = 150,
     epochs: int = 5,
     lr: float = 1e-3,
+    forecast_reference: nn.Module | None = None,
+    archive_dir: Path | None = None,
+    shared_targets: Path | None = None,
 ) -> QuantileResidualHead:
     """Trains residual quantile head adapting dynamically to any backbone hidden_dim."""
     for p in model.parameters():
         p.requires_grad = False
     model.eval()
 
-    cached_ctx, cached_anc, cached_shortfall = [], [], []
+    cached_ctx, cached_anc, cached_shortfall, cached_mask, cached_indices = [], [], [], [], []
+    shared = np.load(shared_targets) if shared_targets is not None else None
+    sample_offset = 0
     with torch.no_grad():
         count = 0
         for batch in train_loader:
@@ -93,13 +98,23 @@ def train_frozen_quantile_head_dynamic(
 
             pred, _, aux = model(x_hist, edge_index, edge_weight, feature_mask, anchor_phys)
             context = aux["context"]
+            if shared is None and forecast_reference is not None and forecast_reference is not model:
+                pred, _, _ = forecast_reference(x_hist, edge_index, edge_weight, feature_mask, anchor_phys)
             y_pred = pred[:, lead_step, :]
             y_true = target[:, lead_step, :]
             shortfall = torch.clamp(y_pred - y_true, min=0.0)
+            if shared is not None:
+                stop = sample_offset + len(x_hist)
+                if not np.array_equal(batch['anchor_index'].cpu().numpy(),shared['anchor_indices'][sample_offset:stop]):
+                    raise ValueError('Auxiliary heads sampled different training windows')
+                shortfall=torch.as_tensor(shared['shortfall'][sample_offset:stop],device=device)
+                sample_offset=stop
 
             cached_ctx.append(context.detach())
             cached_anc.append(anchor_phys.detach())
             cached_shortfall.append(shortfall.detach())
+            cached_mask.append(batch['target_mask'][:, lead_step, :].to(device))
+            cached_indices.append(batch['anchor_index'].cpu().numpy())
 
             count += 1
             if count >= max_cache_batches:
@@ -108,6 +123,7 @@ def train_frozen_quantile_head_dynamic(
     all_ctx = torch.cat(cached_ctx, dim=0)
     all_anc = torch.cat(cached_anc, dim=0)
     all_s = torch.cat(cached_shortfall, dim=0)
+    all_mask = torch.cat(cached_mask, dim=0)
 
     context_dim = int(all_ctx.shape[-1])
     phys_dim = int(all_anc.shape[-1])
@@ -117,7 +133,9 @@ def train_frozen_quantile_head_dynamic(
     N_samples = all_ctx.size(0)
     batch_sz = 64
     head.train()
-    for _ in range(epochs):
+    history = []
+    for epoch in range(epochs):
+        loss_sum, loss_count = 0., 0
         perm = torch.randperm(N_samples)
         for i in range(0, N_samples, batch_sz):
             idx = perm[i : i + batch_sz]
@@ -127,14 +145,46 @@ def train_frozen_quantile_head_dynamic(
 
             pred_r = head(b_ctx, b_anc)
             u = b_s - pred_r
-            loss = torch.maximum(CRITICAL_FRACTILE * u, (CRITICAL_FRACTILE - 1.0) * u).mean()
+            valid = all_mask[idx] > 0.5
+            if not torch.any(valid):
+                continue
+            losses = torch.maximum(CRITICAL_FRACTILE * u, (CRITICAL_FRACTILE - 1.0) * u)
+            loss = losses[valid].mean()
 
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+            loss_sum += float(loss.item()) * int(valid.sum())
+            loss_count += int(valid.sum())
+        if loss_count == 0:
+            raise ValueError('No valid targets for quantile-head training')
+        history.append({'epoch':epoch+1,'pinball_loss':loss_sum/loss_count})
 
     head.eval()
+    if archive_dir is not None:
+        archive_dir.mkdir(parents=True, exist_ok=False)
+        torch.save({'state_dict':head.state_dict(),'context_dim':context_dim,'phys_dim':phys_dim,
+                    'epochs':epochs,'max_cache_batches':max_cache_batches,'history':history},archive_dir/'head.pt')
+        np.savez_compressed(archive_dir/'training_targets.npz',anchor_indices=np.concatenate(cached_indices),
+                            shortfall=all_s.cpu().numpy(),mask=all_mask.cpu().numpy())
     return head
+
+
+def frozen_phase_population(bundle, split, seed, lead, anchors, frozen):
+    if not np.array_equal(anchors, frozen[f'anchor_indices_{split}']):
+        raise ValueError('Phase scan physical window anchors differ from frozen reference')
+    shortfall = frozen[f'shortfall_{split}_seed{seed}'][:,lead,:].reshape(-1)
+    mask = frozen[f'mask_{split}'][:,lead,:].reshape(-1)>0.5
+    actual_mask=np.asarray(bundle.target_mask[anchors+lead+1]).reshape(-1)>0.5
+    actual_target=np.asarray(bundle.target[anchors+lead+1]).reshape(-1)
+    if not np.array_equal(mask,actual_mask) or not np.array_equal(
+        actual_target[mask],frozen[f'ytrue_{split}'][:,lead,:].reshape(-1)[mask],equal_nan=True):
+        raise ValueError('Phase scan physical target/mask mismatch')
+    if not np.array_equal(bundle.time_index[anchors],frozen[f'anchor_time_index_{split}']) or not np.array_equal(bundle.node_ids,frozen['node_ids']):
+        raise ValueError('Phase scan timestamp/node identity mismatch')
+    wi = bundle.metadata['physics_names'].index('Wspd')
+    wind = np.asarray(bundle.physics[anchors,:,wi]).reshape(-1)
+    return shortfall, mask & np.isfinite(shortfall) & (np.abs(wind-10.5)<=1.)
 
 
 def run_joint_multilead_pass(
@@ -205,10 +255,16 @@ def run_dense_phase_scan_for_seed(
     channel_modes: List[str] = ["all", "no_pitch"],
     lead_steps: List[int] = [0, 2, 5],
     abstention_coverages: Tuple[float, ...] = (0.50, 0.60, 0.70, 0.80, 0.90, 0.95, 1.00),
+    frozen: Dict[str, Any] | None = None,
+    archive_dir: Path | None = None,
 ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
     """Runs 30-condition phase scan comparing Single-Task Dense vs Multi-Task MoE for one seed."""
     print(f"\n=======================================================", flush=True)
     print(f"Starting Dense vs MoE Phase Scan for Seed {seed} on {farm.upper()}", flush=True)
+    if frozen is None or archive_dir is None:
+        raise ValueError('Frozen residuals and evidence archive required; legacy mixed-target replay is not certified')
+    torch.manual_seed(seed)
+    np.random.seed(seed)
     print(f"=======================================================", flush=True)
 
     # 1. Load Pretrained Models
@@ -242,10 +298,19 @@ def run_dense_phase_scan_for_seed(
     for lead in lead_steps:
         lead_m = (lead + 1) * 10
         print(f"  Training MoE Frozen Quantile Head for lead_step={lead} (h={lead_m}m)...", flush=True)
-        frozen_heads_moe[lead] = train_frozen_quantile_head_dynamic(routed_model, train_clean_loader, device=device, lead_step=lead)
+        torch.manual_seed(seed+lead)
+        frozen_heads_moe[lead] = train_frozen_quantile_head_dynamic(routed_model, train_clean_loader, device=device, lead_step=lead,
+            forecast_reference=routed_model,archive_dir=archive_dir/f'seed{seed}_head_moe_h{lead+1}')
 
         print(f"  Training Dense Frozen Quantile Head for lead_step={lead} (h={lead_m}m)...", flush=True)
-        frozen_heads_dense[lead] = train_frozen_quantile_head_dynamic(dense_model, train_clean_loader, device=device, lead_step=lead)
+        torch.manual_seed(seed+lead)
+        frozen_heads_dense[lead] = train_frozen_quantile_head_dynamic(dense_model, train_clean_loader, device=device, lead_step=lead,
+            forecast_reference=routed_model,archive_dir=archive_dir/f'seed{seed}_head_dense_h{lead+1}',
+            shared_targets=archive_dir/f'seed{seed}_head_moe_h{lead+1}'/'training_targets.npz')
+        with np.load(archive_dir/f'seed{seed}_head_moe_h{lead+1}'/'training_targets.npz') as a, np.load(archive_dir/f'seed{seed}_head_dense_h{lead+1}'/'training_targets.npz') as b:
+            for key in ('anchor_indices','mask','shortfall'):
+                if not np.array_equal(a[key],b[key]):
+                    raise ValueError(f'Quantile head training data are not matched: {key}')
 
     # 3. Precompute Condition-Matching Validation Calibrations across all (lag, channel_mode)
     print("Precomputing condition-matching validation calibrations...", flush=True)
@@ -272,12 +337,14 @@ def run_dense_phase_scan_for_seed(
             v_prob_moe = v_out_moe["prob"].reshape(-1)
 
             for lead in lead_steps:
-                # Target shortfall from MoE prediction
-                v_s_moe = np.maximum(v_out_moe["pred"][lead] - v_out_moe["target"][lead], 0.0).reshape(-1)
-                v_s_dense = np.maximum(v_out_dense["pred"][lead] - v_out_dense["target"][lead], 0.0).reshape(-1)
-
-                v_act_moe = ((np.abs(v_wspd - rated_wind) <= band) & (v_out_moe["mask"][lead].reshape(-1) > 0.5) & np.isfinite(v_s_moe))
-                v_act_dense = ((np.abs(v_wspd - rated_wind) <= band) & (v_out_dense["mask"][lead].reshape(-1) > 0.5) & np.isfinite(v_s_dense))
+                v_s_moe, v_act_moe = frozen_phase_population(bundle,'val',seed,lead,val_ds.anchor_indices,frozen)
+                v_s_dense, v_act_dense = v_s_moe, v_act_moe
+                w_edges=np.linspace(0.,25.,11);w_edges[0],w_edges[-1]=-np.inf,np.inf
+                w_quantiles=[]
+                for bi in range(10):
+                    vm=v_act_moe & (v_wspd>=w_edges[bi]) & (v_wspd<w_edges[bi+1])
+                    w_quantiles.append(float(np.quantile(v_s_moe[vm if vm.sum()>20 else v_act_moe],CRITICAL_FRACTILE)))
+                val_calibrations[(lead,lag,ch_mode,'wind_baseline')] = (w_edges,np.asarray(w_quantiles))
 
                 # Physical Rule calibration
                 phys_feat = v_pab if ch_mode == "all" else v_wspd
@@ -285,8 +352,8 @@ def run_dense_phase_scan_for_seed(
                 v_phys_raw = apply_5bin_policy(phys_feat, p_res, p_edg)
                 g_phys, d_phys, _ = find_iso_reliability_multiplier(v_s_moe, v_phys_raw, v_act_moe, target_violation=TARGET_VIOLATION)
 
-                if lag == 0 and ch_mode == "all":
-                    clean_phys_calib[lead] = {
+                if lag == 0:
+                    clean_phys_calib[(lead,ch_mode)] = {
                         "reserves": p_res,
                         "edges": p_edg,
                         "gamma": g_phys,
@@ -332,8 +399,8 @@ def run_dense_phase_scan_for_seed(
 
                 # Validation reserve baselines for ex-ante alpha computation
                 P_rated = 1500.0
-                v_pred_moe = v_out_moe["pred"][lead].reshape(-1)
-                v_pred_dense = v_out_dense["pred"][lead].reshape(-1)
+                v_pred_moe = frozen[f"yhat_val_seed{seed}"][:,lead,:].reshape(-1)
+                v_pred_dense = v_pred_moe
                 v_aero_fb_moe = np.maximum(0.0, np.minimum(P_rated - v_pred_moe, P_rated))
                 v_aero_fb_dense = np.maximum(0.0, np.minimum(P_rated - v_pred_dense, P_rated))
 
@@ -403,16 +470,16 @@ def run_dense_phase_scan_for_seed(
                 cond_id = f"lag{lag}_{ch_mode}_lead{lead}"
                 print(f"  Evaluating condition: {cond_id} (Seed {seed})", flush=True)
                 calib = val_calibrations[(lead, lag, ch_mode)]
-                clean_cal = clean_phys_calib[lead]
+                clean_cal = clean_phys_calib[(lead,ch_mode)]
 
-                test_s_moe = np.maximum(t_out_moe["pred"][lead] - t_out_moe["target"][lead], 0.0).reshape(-1)
-                test_s_dense = np.maximum(t_out_dense["pred"][lead] - t_out_dense["target"][lead], 0.0).reshape(-1)
+                test_s_moe, test_act_moe = frozen_phase_population(bundle,'test',seed,lead,test_ds.anchor_indices,frozen)
+                test_s_dense, test_act_dense = test_s_moe, test_act_moe
+                w_edges,w_quantiles=val_calibrations[(lead,lag,ch_mode,'wind_baseline')]
+                r_wind=w_quantiles[np.clip(np.digitize(test_wspd,w_edges)-1,0,9)]
+                m_wind=compute_decisive_metrics(test_s_moe,r_wind,test_act_moe,np.zeros_like(test_prob_moe),test_regime)
 
-                test_act_moe = ((np.abs(test_wspd - rated_wind) <= band) & (t_out_moe["mask"][lead].reshape(-1) > 0.5) & np.isfinite(test_s_moe))
-                test_act_dense = ((np.abs(test_wspd - rated_wind) <= band) & (t_out_dense["mask"][lead].reshape(-1) > 0.5) & np.isfinite(test_s_dense))
-
-                test_pred_moe = t_out_moe["pred"][lead].reshape(-1)
-                test_pred_dense = t_out_dense["pred"][lead].reshape(-1)
+                test_pred_moe = frozen[f"yhat_test_seed{seed}"][:,lead,:].reshape(-1)
+                test_pred_dense = test_pred_moe
 
                 # Arm 1: Clean Physical (Deterministic Unadapted)
                 clean_feat = test_pab if ch_mode == "all" else test_wspd
@@ -425,6 +492,8 @@ def run_dense_phase_scan_for_seed(
                 r_phys_recal_raw = apply_5bin_policy(recal_feat, calib["phys_res"], calib["phys_edg"])
                 r_phys_recal = np.maximum(calib["g_phys"] * r_phys_recal_raw + calib["d_phys"], 0.0)
                 m_phys_recal = compute_decisive_metrics(test_s_moe, r_phys_recal, test_act_moe, test_prob_moe, test_regime)
+                if lag == 0 and not np.array_equal(r_phys_clean,r_phys_recal):
+                    raise ValueError('Zero-delay same-channel physical policies must coincide')
 
                 # Arm 3: Multi-Task MoE Frozen Backbone + Residual Quantile
                 t_froz_moe_raw = t_out_moe["frozen_raw"][lead]
@@ -442,6 +511,9 @@ def run_dense_phase_scan_for_seed(
                 r_froz_dense_binned = apply_5bin_policy(t_froz_dense_raw, calib["froz_dense_res"], calib["froz_dense_edg"])
                 r_froz_dense = np.maximum(calib["g_froz_dense"] * r_froz_dense_binned + calib["d_froz_dense"], 0.0)
                 m_froz_dense = compute_decisive_metrics(test_s_dense, r_froz_dense, test_act_dense, np.zeros_like(test_prob_moe), test_regime)
+                np.savez_compressed(archive_dir/f'seed{seed}_{cond_id}.npz',shortfall=test_s_moe,mask=test_act_moe,
+                    anchor_indices=test_ds.anchor_indices,wind_baseline=r_wind,physical_clean=r_phys_clean,
+                    physical_recal=r_phys_recal,moe_frozen=r_froz_moe,moe_routed=r_routed,dense_frozen=r_froz_dense)
 
                 # Record full scan row
                 scan_results.append({
@@ -451,6 +523,10 @@ def run_dense_phase_scan_for_seed(
                     "lag_steps": lag,
                     "lag_minutes": lag * 10,
                     "channel_mode": ch_mode,
+                    "target_protocol": "canonical-frozen-reference-v1",
+                    "n_evaluated_cells": int(test_act_moe.sum()),
+                    "wind_baseline_cost": m_wind['total_cost'],
+                    "routed_delta_vs_wind": m_routed['total_cost']-m_wind['total_cost'],
                     # Physical Clean
                     "phys_clean_cost": m_phys_clean["total_cost"],
                     "phys_clean_shortage": m_phys_clean["shortage_mwh"],
@@ -531,17 +607,34 @@ def main():
     parser.add_argument("--dense-pat", type=str, default="artifacts/capacity_matched_dense_wtb/wtb_dense_seed{seed}")
     parser.add_argument("--output-dir", type=str, default="artifacts/single_task_dense_vs_multitask_moe_scan")
     parser.add_argument("--device", type=str, default="cuda:0")
+    parser.add_argument('--frozen-residuals',type=Path,default=None)
     args = parser.parse_args()
 
     device = torch.device(args.device if torch.cuda.is_available() else "cpu")
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
+    if args.frozen_residuals is None:
+        args.frozen_residuals=Path(args.cache_dir).resolve().parent/'fixed_forecast_residuals.npz'
+    if not args.frozen_residuals.is_file():
+        raise FileNotFoundError('Supply --frozen-residuals for the corrected common-target scan')
+    archive_dir=out_dir/'execution_arrays'
+    if archive_dir.exists():raise FileExistsError(archive_dir)
+    archive_dir.mkdir()
+    from scripts.replay_provenance import provenance, finalize
+    provenance(archive_dir,[args.frozen_residuals,Path(args.cache_dir)/'metadata.json',
+                *sorted(Path(args.cache_dir).glob('*.npy')),
+                *[Path(pattern.format(seed=s))/'best_model.pt' for pattern in (args.routed_pat,args.dense_pat) for s in map(int,args.seeds.split(','))]],vars(args))
 
     bundle = load_cache_bundle(args.cache_dir, mmap_mode="r")
     seeds = [int(s.strip()) for s in args.seeds.split(",") if s.strip()]
 
     all_scan, all_abs = [], []
+    residual_archive=np.load(args.frozen_residuals)
     for seed in seeds:
+        keys=['anchor_indices_val','anchor_indices_test','anchor_time_index_val','anchor_time_index_test',
+              'mask_val','mask_test','ytrue_val','ytrue_test','node_ids',
+              f'shortfall_val_seed{seed}',f'shortfall_test_seed{seed}',f'yhat_val_seed{seed}',f'yhat_test_seed{seed}']
+        frozen={k:residual_archive[k] for k in keys}
         s_scan, s_abs = run_dense_phase_scan_for_seed(
             farm=args.farm,
             seed=seed,
@@ -549,6 +642,7 @@ def main():
             routed_ckpt_pattern=args.routed_pat,
             dense_ckpt_pattern=args.dense_pat,
             device=device,
+            frozen=frozen,archive_dir=archive_dir,
         )
         all_scan.extend(s_scan)
         all_abs.extend(s_abs)
@@ -561,6 +655,7 @@ def main():
 
     print(f"\nSaved per-seed scan to {out_dir / 'phase_scan_results_by_seed.csv'}", flush=True)
     print(f"Saved per-seed risk coverage to {out_dir / 'phase_scan_risk_coverage_by_seed.csv'}", flush=True)
+    finalize(out_dir)
 
 
 if __name__ == "__main__":
