@@ -570,3 +570,6 @@ Report all20 runs, descriptive seed mean/SD, reserve/shortage/cost/violations an
 paired day-block arrays; no invented p-values or significance gate. Preserve old
 single-condition output separately. Frozen running source tree remains unchanged;
 the versioned extension source/protocol/config/receipt must be independently hashed.
+
+### Factorial input-readiness scheduling addendum (before any condition run)
+The numerical protocol is unchanged. docs/FACTORIAL_READINESS_SCHEDULING_20261015.md registers a dedicated PBS audit of all20 actual required model outputs and the one shared canonical residual/cache before replacing the blanket afterok(core) wait. Preserve software-test afterok and add audit afterok; do not release on file existence or favorable values. This removes unrelated channel/EXP02/EXP03 scheduling waits only, and does not waive any scientific claim gate, four-condition result, five-seed requirement or final review. Original dependency/metadata and the hashed addendum/audit/release records remain provenance.
