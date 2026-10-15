@@ -43,6 +43,8 @@ def check_shortfall(f,split,seed):
     pred=f[f'yhat_{split}_seed{seed}'];true=f[f'ytrue_{split}'];mask=f[f'mask_{split}']
     short=f[f'shortfall_{split}_seed{seed}']
     if len({x.shape for x in (pred,true,mask,short)})!=1:raise ValueError('Canonical residual shape mismatch')
+    if not all(np.isfinite(x[mask>.5]).all() for x in (pred,true,short)):
+        raise ValueError('Nonfinite canonical forecast/target/shortfall')
     expected=np.maximum(pred-true,0.)*mask
     if not np.array_equal(short,expected,equal_nan=True) or not np.isfinite(short[mask>.5]).all():
         raise ValueError('Canonical shortfall formula differs')

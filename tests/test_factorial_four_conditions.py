@@ -37,6 +37,9 @@ def test_residual_target_cannot_change_even_if_anchor_and_observed_power_match()
     extension.check_shortfall(frozen,'test',201)
     frozen['shortfall_test_seed201'][0,0,0]=7.
     with pytest.raises(ValueError,match='formula'):extension.check_shortfall(frozen,'test',201)
+    frozen['yhat_test_seed201'][0,0,0]=-np.inf
+    frozen['shortfall_test_seed201'][0,0,0]=0.
+    with pytest.raises(ValueError,match='Nonfinite'):extension.check_shortfall(frozen,'test',201)
 
 
 @pytest.mark.parametrize('condition',extension.CONDITIONS)
