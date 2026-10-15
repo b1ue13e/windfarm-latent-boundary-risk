@@ -423,6 +423,12 @@
       "latestVersion": 1,
       "updatedAt": "2026-10-15T00:38:55.085Z",
       "description": "中文顶刊论文最终成稿（五章制高密度流水叙事版）与编译生成的8页双栏PDF"
+    },
+    {
+      "name": "topjournal-complete-submission-package",
+      "latestVersion": 1,
+      "updatedAt": "2026-10-15T03:11:37.191Z",
+      "description": "包含原生 OMML 公式、6 大高清图表、双语摘要、技术附录 PDF、Cover Letter 与 Highlights 的顶刊全套投稿包"
     }
   ],
   "reviews": [],
@@ -519,5 +525,5 @@
       "updatedAt": "2026-10-15T00:40:05.293Z"
     }
   ],
-  "updatedAt": "2026-10-15T00:40:18.290Z"
+  "updatedAt": "2026-10-15T03:11:37.191Z"
 }
