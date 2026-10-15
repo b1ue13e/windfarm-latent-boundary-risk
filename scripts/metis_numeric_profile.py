@@ -10,6 +10,7 @@ def configure():
         raise RuntimeError('Configure execution profile before importing torch')
     os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
     import torch
+    import numpy as np
     torch.use_deterministic_algorithms(True)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
@@ -25,5 +26,6 @@ def configure():
         matmul_tf32=torch.backends.cuda.matmul.allow_tf32,
         cublas_workspace_config=os.environ.get('CUBLAS_WORKSPACE_CONFIG'),
         torch_threads=torch.get_num_threads(), torch=torch.__version__, cuda=torch.version.cuda,
+        numpy=np.__version__, cudnn=torch.backends.cudnn.version(),
         python=sys.version, gpu=torch.cuda.get_device_name(0), host=platform.node(),
         pbs_job_id=os.environ.get('PBS_JOBID'))

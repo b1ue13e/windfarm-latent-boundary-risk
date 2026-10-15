@@ -74,7 +74,7 @@ def main():
         verify_records(json.loads((transfer / 'output_manifest.json').read_text()))
         producer_profile = json.loads((transfer / 'numeric_execution_profile.json').read_text())
         for key in ('profile', 'deterministic_algorithms', 'cudnn_deterministic', 'cudnn_benchmark',
-                    'cudnn_tf32', 'matmul_tf32', 'cublas_workspace_config', 'torch_threads', 'torch', 'cuda', 'python', 'gpu'):
+                    'cudnn_tf32', 'matmul_tf32', 'cublas_workspace_config', 'torch_threads', 'torch', 'cuda', 'python', 'gpu', 'numpy', 'cudnn'):
             if producer_profile[key] != profile[key]:
                 raise ValueError('Production/audit execution profile differs: ' + key)
     cache_map = json.loads((base / 'cache_map.json').read_text())
