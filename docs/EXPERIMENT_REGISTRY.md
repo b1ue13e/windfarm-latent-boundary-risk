@@ -611,3 +611,7 @@ Per-run arithmetic uses round-trip CSV parsing. The aggregation-stage audit sepa
 replays the frozen summarizer's actual default pandas CSV parser before its groupby;
 record any parser-induced representation differences explicitly. Exact comparisons
 apply at each implemented stage; no fitted numerical tolerance or result change.
+Before the validator runs, include exact CPU reconstruction of A/B actions from
+the saved contexts and trained head weights with the original4096-cell batches
+and clipping. Report any platform/inference mismatch as non-exact, without fitting
+a tolerance or changing the stored actions/weights.

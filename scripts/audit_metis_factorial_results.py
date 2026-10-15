@@ -168,7 +168,8 @@ def main():
                                 if not np.array_equal(saved[key], values):
                                     raise ValueError('Exact native daily-block mismatch: ' + key)
                 selected_sets = []
-                for variant in ('A_No_Alignment_Context', 'B_Aligned_Context'):
+                for variant, model_family in [('A_No_Alignment_Context', 'unaligned'),
+                                               ('B_Aligned_Context', 'aligned')]:
                     head = directory / f'h{horizon}/{variant}'
                     checkpoint = torch.load(head / 'head.pt', map_location='cpu', weights_only=False)
                     if checkpoint['epochs'] != 5 or checkpoint['seed'] != seed or len(checkpoint['history']) != 5:
@@ -179,6 +180,18 @@ def main():
                         raise ValueError('Nonfinite head losses')
                     if not all(torch.isfinite(tensor).all() for tensor in checkpoint['model_state'].values()):
                         raise ValueError('Nonfinite head parameters')
+                    context = np.load(directory / model_family / 'test/context.npy', mmap_mode='r')
+                    context = context.reshape(-1, context.shape[-1])
+                    head_model = torch.nn.Linear(context.shape[-1], 1)
+                    head_model.load_state_dict(checkpoint['model_state'])
+                    pieces = []
+                    with torch.no_grad():
+                        for start in range(0, len(context), 4096):
+                            pieces.append(head_model(torch.from_numpy(np.array(context[start:start + 4096])).float()).squeeze(-1).numpy())
+                    reproduced = np.clip(np.concatenate(pieces), 0, float(np.max(val_shortfall[val_mask]) * 1.5))
+                    with np.load(directory / f'h{horizon}_predictions.npz') as saved_actions:
+                        if not np.array_equal(reproduced, saved_actions[variant]):
+                            raise ValueError('Exact head-checkpoint-to-action inference differs: ' + variant)
                     selected_sets.append(np.load(head / 'selected_validation_indices.npy'))
                 if not np.array_equal(*selected_sets):
                     raise ValueError('A/B validation-head populations differ')
@@ -204,6 +217,7 @@ def main():
         'runs': completed, 'rows': len(result), 'summary_rows': len(summary),
         'audit_source_sha256': sha(__file__), 'extension_manifest_sha256': sha(manifest),
         'csv_parser_observations': parser_differences,
+        'head_checkpoint_to_action_reinference': 'exact CPU inference from saved contexts and weights',
         'scientific_completion': False,
         'scope': 'actions/targets/head-history/native-block/table arithmetic only; no superiority or whole-paper certificate'}
     (output / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
