@@ -71,12 +71,29 @@ def main():
         sha256=sha256(out/'metis_cache_map.json')))
     raw=[ROOT/'wtbdata_245days.csv',ROOT/'sdwpf_baidukddcup2022_turb_location.CSV']
     raw.extend(p for p in (ROOT/'data/external_wind').rglob('*') if p.is_file() and p.suffix.lower() in ('.csv','.zip'))
-    raw_records=[dict(relative_path=str(p.relative_to(ROOT)).replace('\\','/'),bytes=p.stat().st_size,sha256=sha256(p)) for p in raw]
+    # These expected hashes were frozen when local raw preprocessing actually read
+    # the files. Metis independently hashes every transferred byte against them.
+    # Do not call this a new local full-data hash pass.
+    receipts=[ROOT/'artifacts/raw_replay_20261015_v2/frozen_protocol.json',
+        ROOT/'artifacts/raw_replay_external_20261015/la_haute_borne/provenance.json',
+        ROOT/'artifacts/raw_replay_external_20261015/kelmarsh/provenance.json',
+        ROOT/'artifacts/raw_replay_external_retry1_20261015/penmanshiel/provenance.json']
+    frozen_inputs={}
+    for receipt in receipts:
+        r=json.loads(receipt.read_text(encoding='utf-8'))
+        frozen_inputs.update({str(Path(x['path']).resolve()):x for x in r.get('inputs',r.get('raw_wtb',[]))})
+    raw_records=[]
+    for p in raw:
+        r=frozen_inputs[str(p.resolve())]
+        if p.stat().st_size!=r['bytes']:raise ValueError('Raw size changed since recorded preprocessing: '+str(p))
+        raw_records.append(dict(relative_path=str(p.relative_to(ROOT)).replace('\\','/'),bytes=r['bytes'],sha256=r['sha256']))
     write_json(out/'metis_input_manifest.json',input_records+raw_records)
     write_json(out/'deployment.json',{'upstream_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         'source_files':len(paths),'archive_scope':'explicit runtime dependencies + tests + frozen protocols/configs + historical target identity; no local fitted weights',
         'cloud_root':'/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015',
-        'raw_files':raw_records,'scientific_completion':False})
+        'raw_files':raw_records,'expected_raw_hash_origin':[file_record(p) for p in receipts],
+        'raw_validation':'Expected hashes from prior raw-read receipts; full independent byte hashing required on Metis before execution',
+        'scientific_completion':False})
     with zipfile.ZipFile(package,'x',compression=zipfile.ZIP_DEFLATED) as z:
         for p in sorted(paths):z.write(p,str(p.relative_to(ROOT)).replace('\\','/'))
         for name in ['metis_cache_map.json','metis_input_manifest.json','deployment.json']:z.write(out/name,name)
