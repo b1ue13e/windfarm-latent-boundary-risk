@@ -635,3 +635,22 @@ is consecutive144 eligible issue indices (last block may be partial), not a clai
 that these align with natural-calendar/weather-event boundaries. Empirical
 P(delta<=0) is not a two-sided p-value. No prior invalid EXP01 result is reinstated;
 this audit supplies evidence only for the current registered raw-window replay.
+The scope is frozen WTB gate weights with target-local normalization and validation
+calibration, conditional on the same local frozen point-forecast product supplied
+to both policies. This does not establish an entirely zero-shot pipeline or a
+pitch-never-recorded/pitch-free forecasting pipeline.
+
+### INFERENCE-EXACTNESS-FAILURE-DIAGNOSIS-V1 (before diagnostic execution)
+External audit242736 failed the frozen exact gate comparison on Kelmarsh201/val.
+Preserve its full stdout, source, inputs and non-exact output; current external
+exact-reproduction certification is FAILED, not rescued by tolerance. Diagnose
+the same frozen weights/cache/split by two original-helper GPU forwards in a
+fresh default process and two in a fresh explicitly deterministic process
+(CUBLAS_WORKSPACE_CONFIG=:4096:8, deterministic algorithms/cudnn on, benchmark/TF32
+off). Record actual backend flags, environment, shapes, dtypes, exact mismatch
+counts/max differences and all replay arrays. This is a numeric execution diagnosis,
+not a new scientific performance claim. No seed count, comparator, target, metric,
+uncertainty or exact-equality gate is weakened. No original gate/CSV is overwritten.
+Only observed repeatability may motivate a separately registered execution repair;
+old non-exact claims/results remain uncertified and retained. Do not attribute a
+specific kernel or original unlogged backend setting without evidence.

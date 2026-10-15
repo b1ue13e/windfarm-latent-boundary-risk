@@ -1,10 +1,10 @@
 {
   "title": "2026-10-15 审计修复与原始数据重跑",
   "created": "2026-09-18T00:00:00+08:00",
-  "updated": "2026-10-15T14:30:50.054936+00:00",
-  "phase": "metis_core_and_diagnostics_running",
+  "updated": "2026-10-15T14:46:10.734527+00:00",
+  "phase": "metis_external_exactness_failure_diagnosis",
   "status": "in_progress",
-  "active_task": "TRR02-TRR12 ongoing;TRR13 exact four-condition arithmetic audit VERIFIED with bounded independent PASS;core242628 channels running/diagnostics242629 held",
+  "active_task": "TRR02-TRR12/TRR14/TRR15;core channelsC2 running;external exact replay242736 FAILED1 atKelmarsh201val;diagnosis registered",
   "last_verified_task": "TRR13",
   "notes": [
     "Priority revisions (P1-P5) and Exp-C stop condition verified: (1) P1: 'Independent decision value' demoted to 'transition-window localized risk hedge' across main manuscript, cover letter, and canonical docs, strictly preserving negative results (posterior +523k penalty, wspd baseline +410k advantage in steady state, -296k transition interaction); (2) P2: All external transfer statements bounded with 'within evaluated sites only', eliminating universal cross-site transfer claims; (3) P3: Delay regime conclusions in Regime 2 marked provisional pending field validation (Exp-A), evaluated under synthetic stress; (4) P4: MoE framed strictly as an implementation comparator (dense vs routed parity, p=0.380); (5) P5: EXP-02 report template fixed in scripts/run_exp02_zero_privileged_supervision.py to eliminate fabricated two-level bootstrap claims; (6) Stop condition Exp-C confirmed: under withheld pitch (pab=0), incoming wind speed alone deterministically classifies valid operating regimes with 100% precision/recall across all 639,378 test cells, confirming label degradation lacks an independent classification problem and reframing contributions around minimum sufficient modeling and empirical falsification; (7) Verification: main and standalone PDFs compile cleanly to exactly 10.0 pages (0 overfull hboxes), verify_scientific_claim_gate.py PASS, verify_final_pdf_integrity.py PASS, and .agents/scripts/verify_gate.py PASS.",
@@ -68,7 +68,9 @@
     "2026-10-15T14:07:19Z independent returned snapshot verifies513 files/27PBS streams. Strong baseline retry_import_v1 actualreceipt EXECUTED0 with all3required outputs;channels RUNNING. Factorial15 receipts EXECUTED0 and5 combined-condition RUNNING;aggregate H. No whole20-run or manuscript reproduction certificate.",
     "Independent arithmetic/head inference audit242732 PBS submitted after actual aggregate242631exit0;unexecuted initialauditattempt1 preserved as superseded before execution after adding exact originalCPU saved-head reconstruction to scope. No favorable-result threshold/tolerance;no originalweight/action mutation. Actual numeric audit outcome stillUNKNOWN.",
     "2026-10-15T14:23:24Z immutable snapshot independently verified533files/28fullPBSstreams. Actual numeric audit242732 F/exit0:20runs/880seed rows/176five-seed summary groups;exact saved-action metrics/native day blocks/control algebra/canonical populations/head5epoch+seeded samples+CPU checkpoint-to-action inference. Per-stage actual CSV parsers replayed exactly;846 representation differences recorded,not fitted tolerance or changed outputs. Fullnumeric report/source/20receipt hashes and aggregate exported files match. Core242628 R(channels),diagnostics242629H;only originalstrongbaselineFAILED retained. Whole46artifact/claim replay stillunfinished.",
-    "Bounded independent evidence rereview PASS for actual20-run saved-artifact arithmetic/head closure,not whole-paper science. TRR13 canclose withdirect report/PBS/hash evidence;TRR02-TRR12 stayongoing,remaining46coverage/claims and finalreviewsunfinished. Originalarray242602 terminalcauseUNKNOWN. Bounded report docs/FACTORIAL_V2_EVIDENCE_20261015.md."
+    "Bounded independent evidence rereview PASS for actual20-run saved-artifact arithmetic/head closure,not whole-paper science. TRR13 canclose withdirect report/PBS/hash evidence;TRR02-TRR12 stayongoing,remaining46coverage/claims and finalreviewsunfinished. Originalarray242602 terminalcauseUNKNOWN. Bounded report docs/FACTORIAL_V2_EVIDENCE_20261015.md.",
+    "22:32 follow-up snapshot20261015T143212Z_4a84e184 independently verified533files/28fullPBSstreams,no newFAILED receipt. Channels progressedfromC1 toC2,not allgroupsdone. Registered external transfer readonly audit beforeexecution,source9da475a/2911ead with finite/shape/unchangedpopulation guards reviewed before deployment;newGPUaudit 242736.cm submitted after actual242600exit0. Originalmodel/gate/CSV files unchanged;no scientific threshold/seed/bootstrap changed.",
+    "Actual external audit242736 F/exit1,traceback exact gate replay differs kelmarsh201val. Saved nonexact replay gate and originalinputs/logs unchanged. Do not relaxgate or callit harmlessroundoff;causeUNKNOWN. Registered default/deterministic repeated-forward diagnosis before execution;no scientific result gate changed. External exact-reproduction assertion withdrawn;branch conclusionsuncertified."
   ],
   "metis_followup": {
     "automation_id": "metis",
@@ -180,6 +182,11 @@
       "Run final scientific-falsifier/independent evidence review/verification gate only after all requiredscopeactuallyclosed"
     ],
     "factorial_execution_status": "ALL20_EXECUTED_EXIT0_EXACT_ARTIFACT_ARITHMETIC_AND_HEAD_INFERENCE_VERIFIED",
-    "whole_project_verification_gate": "FAIL_OPEN_SCOPE"
+    "whole_project_verification_gate": "FAIL_OPEN_SCOPE",
+    "external_numeric_audit_job": "242736.cm",
+    "external_numeric_audit_tool": "metis_execution/external_numeric_audit/attempt1",
+    "external_numeric_audit_status": "FAILED_EXACT_WEIGHT_TO_GATE_COMPARISON",
+    "external_numeric_audit_source_sha256": "7750f6b771e14de205a6a82fe6488d1b7726b005c56d8ac0b26fc9ba08c2bfa3",
+    "external_exact_replay_claim": "WITHDRAWN_UNCERTIFIED_PENDING_DIAGNOSIS"
   }
 }

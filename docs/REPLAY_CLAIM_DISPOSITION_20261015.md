@@ -28,3 +28,20 @@ updated. PDF compilation is a format check only. No submission or remote publica
 is authorized by completion of these local edits.
 
 Old dense/MoE phase-scan costs are not common-target decision evidence; old cross-delay curves do not hold boundary populations fixed. These interpretations are withdrawn. Same-condition physical recalibration comparisons retain their explicitly local scope. Corrected RAW-PHASE-FROZEN-V1 is registered before execution.
+# External raw-transfer exactness gate failure —2026-10-15
+
+PBS external audit242736 exited1: the saved WTB-source Kelmarsh201 validation
+gate array was not exactly equal to the fresh forward using verified weights and
+cache. The failing replay array, full stdout and source/input provenance are
+retained. Any assertion that this external raw-transfer branch has passed exact
+independent replay is withdrawn. Its numerical decision conclusions remain
+UNCERTIFIED; no older invalid EXP01 result is reinstated. This does not negate the
+already verified saved-artifact arithmetic of the separate four-condition family,
+which was explicitly not a fresh backbone-inference certification.
+
+The cause is UNKNOWN pending the registered repeated-forward diagnosis. Do not
+describe this as rounding noise, a particular CUDA kernel defect, harmlessness,
+scientific-direction agreement or acceptable tolerance without direct evidence.
+The exact gate remains unchanged; any execution repair must be registered and
+run as a new version while preserving this failed attempt.
+
