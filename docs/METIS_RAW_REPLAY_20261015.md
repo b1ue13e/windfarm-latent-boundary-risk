@@ -248,3 +248,48 @@ This is a single-fit artifact/population verification, never a five-seed experim
 matched decision-value result, historical numerical replication or whole-paper PASS.
 The11 software tests and20 pending factorial diagnostics likewise do not certify
 scientific completion. All open task/coverage/final gates remain unchanged.
+
+## Parallel training and exact-input readiness gate —2026-10-15
+
+After observing9 additional general nodes with unassigned GPU and >=4 freeCPUs,
+qalter increased independent WTB array242594 cap4→8 and external242599 cap4→6.
+Subsequent actual PBS counts were8WTB+6external RUNNING; per-fit resource request,
+configuration, seeds, data and every scientific endpoint remain unchanged.
+
+A separate registered scheduling addendum,
+FACTORIAL_READINESS_SCHEDULING_20261015.md, permits overlapping the factorial with
+unrelated core analyses only after its actual inputs are independently verified.
+The existing20-job array242602 has NOT been released by this note. Its current
+original dependency is afterok242595 plus beforeok242603, with system hold.
+
+Audit/controller code a96f96ed was source-reviewed in falsifier§18 as bounded
+PASS_WITH_LIMITATIONS after adding exact architecture/train-config checks,
+unique family×seed coverage, actual exit0/nonempty evidence, and strict current
+PBS dependency/hold preservation. A new prerequisite or human hold blocks any
+replacement. Source review does not certify actual software/audit/job execution.
+Draft tools attempt1 were never PBS-executed and remain retained. Tools attempt2
+live outside frozen scripts/windfarm_moe and pin all audit/controller/test sources.
+An exclusive controller lock prevents duplicate submissions; probe creates no lock.
+
+Actual PBS CPU audit242604 exited0: audit tool hashes PASS,3 negative-guard software
+fixtures passed in2.04s, and8 completed model artifacts passed full checks. These
+are forecast201–204 and LHB201–204. Checks cover frozen training/architecture
+configs, finite checkpoint tensors, input/source/output hashes, complete epoch
+history, and full val/test target/mask/time/node/window identity and finite predictions.
+The report explicitly says completed-mode,37pending,0failures, readinessNOT_CERTIFIED,
+scientific_completionfalse. It cannot release factorial or certify a5-seed experiment.
+Returned report/stdout: artifacts/metis_fit_audit_20261015_attempt2. Future audit
+attempts must use new output/log directories; do not rerun the fixed attempt2 script
+against its existing report or overwrite it.
+
+The one-shot watcher is active, polling receipt metadata only. Once all20 required
+models and the shared canonical residual have actually exited0, it submits a PBS
+CPU readiness audit (no login-node model computation). That audit verifies the
+same artifacts plus residual provenance/target/formula/finiteness. Only matching
+INPUTS_VERIFIED report+actual audit exit0+software-test dependency+unchanged original
+PBS dependency/hold permit qalter. It saves full before/after qstat and qalter logs;
+no qrun, no forced hold removal, no new canonical target, no numerical gate changes.
+Until then the original dependency remains. Watcher state/lock/logs are under
+metis_execution/factorial_readiness_control.* and fit_audit_tools/attempt2.
+All logs and nested audit reports are included in subsequent immutable snapshots.
+Final paper/claim reconciliation and all experiment evidence gates remain pending.
