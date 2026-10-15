@@ -310,6 +310,47 @@ def build_docx(md_path, docx_path):
             idx += 1
             continue
 
+        # Handle Images (![...](...))
+        m_img = re.match(r'!\[(.*?)\]\((.*?)\)', line)
+        if m_img:
+            img_rel_path = m_img.group(2).strip()
+            # Search candidates for image file
+            cand_paths = [
+                img_rel_path,
+                os.path.abspath(img_rel_path),
+                os.path.join(os.path.dirname(os.path.abspath(md_path)), img_rel_path),
+                os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(md_path))), img_rel_path),
+                os.path.join("figures", os.path.basename(img_rel_path)),
+            ]
+            found_img = None
+            for cp in cand_paths:
+                if os.path.exists(cp):
+                    found_img = cp
+                    break
+
+            if found_img:
+                p_img = doc.add_paragraph()
+                p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p_img.paragraph_format.space_before = Pt(8)
+                p_img.paragraph_format.space_after = Pt(2)
+                p_img.paragraph_format.keep_with_next = True
+                run_img = p_img.add_run()
+                # 5.8 inches width nicely fits within 8.27 - 2 = 6.27 inches margins
+                run_img.add_picture(found_img, width=Inches(5.8))
+                print(f"  [Word] Embedded figure: {found_img}")
+            else:
+                print(f"  [Word WARNING] Figure not found: {img_rel_path}")
+
+            idx += 1
+            continue
+
+        # Handle Figure Caption (**图 X** ...)
+        if line.startswith('**图') and ('**' in line[3:]):
+            p = add_styled_paragraph(doc, space_before=2, space_after=8, line_spacing=1.2, align=WD_ALIGN_PARAGRAPH.CENTER)
+            format_mixed_text(p, line, default_size=10.5, default_bold=True, default_ea='黑体', default_ascii='Times New Roman')
+            idx += 1
+            continue
+
         # Handle Table Caption (**表 X** ...)
         if line.startswith('**表') and ('**' in line[3:]):
             p = add_styled_paragraph(doc, space_before=10, space_after=4, line_spacing=1.2, align=WD_ALIGN_PARAGRAPH.CENTER)

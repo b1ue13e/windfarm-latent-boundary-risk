@@ -140,7 +140,8 @@ def create_figure1(output_paths):
 
     for path in output_paths:
         os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
-        fig.savefig(path, format='pdf')
+        ext = os.path.splitext(path)[1].lstrip('.').lower()
+        fig.savefig(path, format=ext, dpi=300)
         print(f"Saved {path}")
     plt.close(fig)
 
