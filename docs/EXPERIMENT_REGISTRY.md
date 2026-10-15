@@ -595,3 +595,19 @@ report/exit0. Bind the new aggregate to the new array and all20 real per-run rec
 Do not rerun or overwrite completed rows, weaken gates or infer a full-condition
 result from the first four runs. Scheduler termination cause remains UNKNOWN until
 adequate accounting supports it. This is execution recovery, not a new hypothesis.
+
+### Factorial evidence arithmetic audit (before validator execution)
+Validate the twenty real successful receipts and all deep output hashes, forty-four
+unique cells per run, the exact canonical targets/masks/time/node and fixed boundary
+population. Recompute CSV reserve, shortage, PSREI, violation and native paired daily
+arrays from the saved per-cell actions using the same NumPy operations; require exact
+round-trip values, without fitting a tolerance. Verify actual head checkpoints and
+five-epoch histories/selected validation indices. Recompute the descriptive five-seed
+summary from the full880 rows and require the same values. This is a read-only evidence
+check in a PBS CPU allocation, not a new decisive experiment or a favorable-result gate.
+Any mismatch is preserved and diagnosed; do not overwrite original outputs or change
+the registered scientific thresholds, seeds, comparator or uncertainty procedure.
+Per-run arithmetic uses round-trip CSV parsing. The aggregation-stage audit separately
+replays the frozen summarizer's actual default pandas CSV parser before its groupby;
+record any parser-induced representation differences explicitly. Exact comparisons
+apply at each implemented stage; no fitted numerical tolerance or result change.
