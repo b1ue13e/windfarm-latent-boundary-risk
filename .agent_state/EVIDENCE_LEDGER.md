@@ -1493,3 +1493,20 @@ Evidence: IDEA_METHOD_EVIDENCE_MAP_20261015.md and runtime architecture_config_a
 Task-ID: TRR08
 Status: PARTIAL_VERIFIED
 Evidence: SSH alias metis authenticates as junyu; PBS qsub/qstat available; GPU queue qllm exists and has unrelated active job242580.cm. Matching raw WTB SHA2566cf7613a82c61bb5cf9fcbbf22e3f6c48165fa32021eb6f1905cb2b7af4d7667 and coordinates15c19ceca43171dfda06e8de487d4d55eb116112904d77958aed7260c2f0d9fe found remotely. Owned local replay PIDs stopped after exact command-line checks. METIS_MIGRATION_NOTICE.json preserves local statuses; RUNNING receipts explicitly interrupted, not failed hypotheses or completed results.
+
+## Metis PBS submission evidence checkpoint
+Task-ID: TRR08
+Status: PARTIAL_EXECUTED_NOT_COMPLETE
+Evidence: docs/METIS_RAW_REPLAY_20261015.md; artifacts/metis_deployment_20261015_v3/{source_archive_manifest.json,metis_input_manifest.json,deployment.json,pbs_jobs_wtb.json,software_tests.txt,environment.txt,preflight_attempts.json}. v3 actual SHA/source verification, compileall, pip check and79 software tests passed on Metis. Cloud subset HEAD3ec80337b95a32831ad32f4b217b63a9606fc3a5 maps upstream3c0e4e2. qstat observed242589.cm RUNNING on cn14;30-fit array242590[].cm, core242591 and diagnostics242592 HELD on dependencies. This is not completed model training. External raw download/hash validation continues; one-shot dispatcher waits for ALL_EXTERNAL_RAW_SHA256_PASS before submission. No threshold changed.
+Failure preservation gap: original v2 pytest failure file overwritten by v3; missing-seaborn error inspected in tool output, byte-complete original not archived. Disclosed to user, preflight_attempts.json and execution document. Two origin companion ZIP creation failures preserved; attempt3 includes4 original receipts. No empirical result erased.
+Verification: python .agents/scripts/verify_gate.py exit1, open TRR02-08 plus verify_raw_replay exit1. No final scientific/reproduction PASS.
+
+## Metis first PBS failure and retry (supersedes earlier R/H status)
+Task-ID: TRR08
+Status: PARTIAL_WITH_FAILED_ATTEMPT
+Evidence: actual p3_wtb_prepare.o242589 reports79 software tests passed, configs frozen30, then FileNotFoundError git before preprocess_wtb child started. qstat history Exit_status1; dependent jobs canceled. Original stdout/history/submission JSON archived separately. Failed output root retained as raw_replay_20261015_failed_prepare_attempt1. Shared actual git2.43.7 binary SHA2564712661e824361c85d1c8f9dc231d45a79f853b393745a86b7ded95937bcbd38 supplied with explicit PBS PATH. Retry submissions242593.cm/242594[].cm/242595.cm/242596.cm; latest qstat array queued, prep ended but exit/output verification still pending at this entry. External watcher still waits for complete raw-byte receipt. No scientific gate/model config changed.
+
+## Metis retry preparation result verified
+Task-ID: TRR04 / TRR08
+Status: PARTIAL_VERIFIED
+Evidence: p3_wtb_prepare.o242593 and qstat -xf242593.cm Exit_status0. Actual79 tests passed in9.66s, frozen30 configs, preprocess_wtb exit0, train_only_weights exit0, TARGET_MASK_LABEL_EXACT. Returned preprocessing_comparison.json/cache_manifest.json retain full hashes. Latest qstat242594[].cm Q;242595/242596 H. No cloud model training completion yet. External staged data partial3.1GB; source download/hash worker and one-shot dispatch wait active. Gate re-run exit1 for DOING TRR02-08 and incomplete raw evidence. Independent deployment review PASS_WITH_BLOCKERS only, not scientific/raw-data-to-manuscript PASS.

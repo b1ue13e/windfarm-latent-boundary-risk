@@ -290,3 +290,213 @@ UNKNOWN/BLOCKED:
 **OVERALL SUBMISSION DISPOSITION:** **REVISE / NO GO FOR CURRENT MANUSCRIPT.**
 
 
+
+---
+
+## 11. Independent evidence-grounded scientific falsification — 2026-10-15
+
+**Verdict: FAIL for certification of the current scientific package.** The present bounded evidence audit is **PASS_WITH_LIMITATIONS**: direct code/data checks support the findings below, but this is not certification that every experiment was trained from raw data or that any external person can reproduce every number. No training, manuscript edit, artifact change, or scientific-contract change was performed. Only this report is appended; historical findings remain provenance, not automatically current truth.
+
+Scope: the user's request to identify innovations, baselines, ablations, and results without fabrication; inspect idea–method correspondence and reproducibility. Mandatory inputs read: current state ledgers, scientific contract, experiment registry, first-principles audit, current main and supplementary manuscript passages, relevant scripts, CSV/JSON artifacts and cached label/physics arrays. This is a coverage-bounded audit, not a complete independent rerun of the project.
+
+| Claim / attack | Contract status | Strongest falsifier and evidence inspected | Result / allowed wording |
+|---|---|---|---|
+| Discrete boundary is hidden when pitch is withheld (A, C) | Recoverability supported but no architecture necessity | `windfarm_moe/regimes.py:11-23` defines valid states using mutually exclusive wind intervals and excludes ambiguous class 3. `windfarm_moe/data.py:91-97` specifies anchors. Direct recomputation on cached `physics.npy`, `regime_primary.npy`, `regime_primary_valid.npy`, using metadata test split, H=36 and P=24: anchors [30275,35256), **639,378 valid cells, 0 wind-only classification errors, 28,076 excluded cells**. | VERIFIED. On this label definition and valid population, fresh wind alone determines the state. This is a definitional sufficiency result, not learned latent recovery. The main paper acknowledges it at lines 98/106, yet still asserts critical-state unobservability at lines 169/215/471 and in its narrative. Idea and method are not fully reconciled. Do not generalize 100% to independent controller truth or excluded ambiguous cells. |
+| Consequence-channel representation establishes necessary complex mechanism (A, F) | NOT SUPPORTED | Contract lines 49-55: C2 active-power Brier .0112, NMI .461, ARI .647; C9 power+wake .463/.648; full suite worse. No-Graph audit lines 73-84 records 4,865 vs 110,012 parameters and training asymmetry. Main paper line 102 treats MoE as comparator; supplementary line 1475 records clean dense/routed parity p=.380. | Retain channel information content and architecture comparisons only. No necessary wake, graph, multi-channel, or MoE mechanism established. These are ablations/probes with explicitly different inferential strengths. |
+| Negative transition interaction proves decision benefit (B, C, D) | No plant-wide superiority; localized trade-off only | `artifacts/strong_baseline_joint_v2/strong_baseline_joint_interaction_v2.json:5-17`: interaction -297,565.353 kWh, interval [-651,679.775,-18,020.605], empirical P=.9824; seed 202 +158,748.768. Main paper line 473 discloses positive per-cell costs in BOTH slices (+.807/+1.671 kWh/cell). Contract lines 67-84 discloses extra reserve and extra PSREI. | VERIFIED as a relative attenuation of cost penalty, not absolute superiority or a deployable transition detector. Transition slices remain oracle diagnostic partitions. The contract's strong local baseline ceiling controls. |
+| Matched-budget posterior has no overall shortage advantage (B, C, D) | No allocation superiority established | `artifacts/matched_budget/frontier_auc_summary.csv:2-6` has mean bootstrap shortage deltas averaging **+5,233.969 kWh** across seeds. Direct read of `exact_matched_budget_frontier.csv` yields raw-sample mean **+5,284.617 kWh**. Code `scripts/run_matched_budget_frontier.py:662-679` explains that the summary averages bootstrap means; these are distinct estimators, not evidence of fabrication. | The broad negative mean survives. HOWEVER paper lines 428/473 and old final audit claim 4/5 seeds are worse across ALL budgets: **false**. Raw frontier has favorable budgets 18/30 for 201 and 4/30 for 205; 202/203/204 have 0/30. Correct wording: 4/5 seed-average deltas are positive; 3/5 are positive at all evaluated budgets. Summary itself reports seed 205 favorable support 13.333%. Do not interchange raw and bootstrap means. |
+| EXP-01 establishes external superiority / universal transfer failure (B, G) | Neither universal claim established | `artifacts/exp01_pitchmasked_v4/exp01_pitchmasked_v3_joint_statistics.csv:2-5`: Penmanshiel h=6 -315,399.619, interval [-1,590,023.531,+970,006.324], P=.7084; Kelmarsh h=6 +352,433.947, interval [+59,969.703,+736,901.181], P=.0074. Repair script lines 38-57/80-97 masks both pitch history channels and anchor pitch before forward. Provenance JSON explicitly says retrospective and includes source checkpoint hashes. | Latest inspected evidence is retrospective v4, not historical v2. No demonstrated positive external benefit; site heterogeneity retained. Empirical P(delta<=0) is not a classical p-value. Main line 475 uses v4, but supplementary line 808 still calls v2 authoritative: package synchronization is incomplete. Earlier section 10 wording 'universal ... decisively refuted' is too broad; absence of benefit here does not establish impossibility across sites. |
+| EXP-02 solves never-recorded-pitch setting (E, C) | UNKNOWN / no stable advantage established | `docs/ZERO_PRIVILEGED_SUPERVISION_REPORT.md:40-52,69-86,101-119,220`; frozen primary epsilon=50 rows: h=1 mean -365,904 with P=.8805 and higher violation/shortage; h=6 mean +3,435,465, P=.4837, catastrophic seed 201 1/5. Report explicitly discloses missing block arrays. | No stable gain. Prior F4 report-heading defect is repaired in current report: section 3 is seed-level, no invented two-level CI. Still no archived paired blocks for a full day/seed interval, and current main paper line 487 incorrectly says never-recorded setting remains untested despite EXP-02 existing. Separate privileged training from zero-privileged evaluation. |
+| EXP-03 is packet-trace reproducible (H, B) | Synthetic stress only; full provenance outstanding | Runner lines 515-516 hashes node 0 first 144 steps only; lines 591-606 writes sampled trace/mask. Direct parse of archived trace: **1,440 packets, zero arrival_time > event_time**. Current report lines 17/66 explicitly says full-grid provenance OUTSTANDING. | FAIL for full executed-grid provenance. A digest is not evidence of all delayed packets or identical complete masks. Numeric output may be quoted as archived synthetic results with invalidity/provenance limitations, not certified independently reproducible field evidence. |
+| Every result is a direct real-training product and whole pipeline independently reproducible | UNKNOWN | Existing code, checkpoints, metadata, frozen arrays and hashes are evidence of artifacts and runnable definitions; they do not independently prove the entire historical execution chain. This audit performed read-only computations, no fresh raw-data-to-training rerun, and did not verify each literature citation or release payload. | Cannot certify the user's full reproducibility requirement. Deterministic physics/binning/bootstrap results correctly need not involve training. For neural results, require documented code/data/environment/checkpoint/run lineage and an independent rerun within declared tolerances, not just matching stored outputs. No fabrication is inferred merely from incomplete provenance. |
+
+### Simplest surviving explanation
+
+The valid operating-state classification target is already separated by fresh wind speed; active power retains correlated operating information. Wind-speed-conditioned empirical quantiles provide a strong direct decision baseline. Additional posterior conditioning changes procurement and tail-risk trade-offs but does not establish a mean allocation advantage under matched budgets. Neural architecture is not necessary on current evidence. This supports a bounded empirical sufficiency/falsification study; it does not establish a new general latent-discovery mechanism.
+
+### Claims requiring weakening or correction
+
+1. Reconcile 'hidden discrete state' with the wind-only definitional oracle and explicitly disclose excluded ambiguous cases.
+2. Correct 4/5 seeds at all budgets to 4/5 seed-average penalties, 3/5 all-budget penalties; state whether a number is raw-sample or bootstrap mean.
+3. Synchronize supplementary EXP-01 authority with the main paper's retrospective v4 and distinguish historical v2.
+4. Replace 'zero-privileged scenario untested' with the actual limited EXP-02 result; retain its missing-block limitation.
+5. Do not certify complete EXP-03 packet provenance or globally independently reproducible training from artifact-checker PASS.
+6. Keep synthetic stress and field prevalence separate: main line 81's assertion that commercial pitch registers are 'frequently restricted' exceeds the contract's UNKNOWN prevalence ceiling unless independently sourced.
+
+### Genuinely decisive unresolved evidence (no new experiment authorized or run here)
+
+Independent controller-state or pitch-ambiguous population evidence would be necessary to test a nontrivial recovery question without wind-defined target circularity. A graph necessity claim would need capacity/training matched controls. Any deployment claim needs causal issue-time transition selection. Full asynchronous-grid packet provenance, EXP-02 paired block arrays, and fresh-environment raw-data-to-result replication remain required for the corresponding reproducibility assertions. These are evidence requirements, not newly registered confirmatory experiments; registration and frozen gates are required before execution.
+
+### UNKNOWN / BLOCKED
+
+- Exact historical authenticity of all neural training and every result: UNKNOWN, not established by this audit.
+- Independent raw-data training reproducibility and numerical tolerance across environments: UNKNOWN / not run.
+- EXP-03 full-grid trace/mask reconstruction: BLOCKED by missing archived provenance.
+- EXP-02 full day/seed joint uncertainty from archived arrays: BLOCKED by missing paired blocks.
+- Complete paper/code idea–method one-to-one alignment: FAIL while state-observability and protocol/version mismatches persist.
+- Full citation verification, external data availability, and release sufficiency: outside inspected coverage; UNKNOWN this turn.
+
+**Disposition:** The evidence-grounded status answer can be delivered with the above restrictions. The scientific package remains **REVISE / NOT CERTIFIED**, despite any repository consistency gate passing. No gate was weakened and no favorable result was made an acceptance criterion.
+
+### Direct reproducibility of this audit's Exp-C recomputation
+
+Executed from `E:\论文3` with exit code 0 on 2026-10-15 (reads existing arrays; does not train a model):
+
+```powershell
+python -c "import numpy as np,json,pathlib; p=pathlib.Path('artifacts/cache_strictmask_trainweights/wtb_245d'); m=json.loads((p/'metadata.json').read_text()); a,b=m['split_bounds']['test']; a+=m['hist_len']-1; b-=m['pred_len']; y=np.load(p/'regime_primary.npy',mmap_mode='r')[a:b]; v=np.load(p/'regime_primary_valid.npy',mmap_mode='r')[a:b]>0; x=np.load(p/'physics.npy',mmap_mode='r')[a:b,:,0]; q=np.where(x<3,0,np.where(x<=10.5,1,2)); print('anchors',a,b,'valid',int(v.sum()),'mismatch',int(((q!=y)&v).sum()),'excluded',int((~v).sum()))"
+```
+
+Direct output:
+
+```text
+anchors 30275 35256 valid 639378 mismatch 0 excluded 28076
+```
+
+Sources are exactly `E:\论文3\artifacts\cache_strictmask_trainweights\wtb_245d\metadata.json`, `physics.npy`, `regime_primary.npy`, and `regime_primary_valid.npy`. `physics_names[0]` is `Wspd`; no pitch value is used in the classifier. The evaluation mask was originally derived from wind-and-pitch label validity, so this is conditional on that mask, not an independent field controller-state validation.
+
+Parent summary review: inspected `.agent_state/CURRENT_RESEARCH_AUDIT_20261015.md` after its update. The reported idea–implementation map, matched-budget estimator distinction, and restricted interpretation of Exp-C agree with this scientific review. The map correctly separates consequence MLP probes from the full STGNN and post-hoc quantile calibration from end-to-end training. Newly supplied CLI/preprocessing findings belong to the separate independent evidence review and were not independently re-executed by this scientific reviewer. Bounded summary review: PASS_WITH_LIMITATIONS; scientific package certification remains FAIL.
+
+## 12. 2026-10-15 raw-replay protocol early scientific falsification
+
+**Stage:** pre-replay protocol audit, not final certification. **Verdict: FAIL for scientific-package completion; PASS_WITH_LIMITATIONS for the correction campaign direction.** No complete raw-data retraining was executed by this reviewer. Read-only code and cached-array inspections plus a synthetic causal counterexample were executed. Contract and outputs were not changed.
+
+### Verified defects and required repairs
+
+| Claim / attack | Evidence inspected | Result and allowed wording |
+|---|---|---|
+| Channel decision h=6 | `run_channel_consequence_ablations.py:269-273`; `build_fixed_forecast_residuals.py` saves horizons 1..6 | VERIFIED defect: enumerate index 1 selects h=2 although tuple h_step=5. Old h6 channel decision results cannot support a h6 conclusion. Correct indices 0/5; assert exact saved anchor equality and shape, retain historical outputs. |
+| Channel matched direct baseline | channel script hardcoded direct_ref_h1/h6 and subtraction | VERIFIED unmatched hardcoded reference. Regenerate wind-bin baseline using identical seed forecast/residual/mask/population, record challenger-minus-baseline sign and both component costs. |
+| Causal asynchronous initialization | `run_exp03_async_benchmark.py:221-237` | VERIFIED future-arrival exposure: last_causal_val starts at first raw value before arrival. Toy input all 17 at mean_delay=6, seed=20261012 produced t0=[17,17,17,17,17] while all five no-candidate masks were True; first packets arrived at 5..9. Use fixed standardized zero until first causal observation; retain source=-1 sentinel, arrival arrays and selected-source audit. Historical ASYNC results cannot inherit corrected validity. |
+| Channel transition recall population | `compute_transition_recall`, channel lines 138-154; valid cache labels on formal test anchors | VERIFIED pseudo-transition defect: validity is never passed to transition detection. Cached test yields 3334 binary edges, only 470 edges with valid labels at both adjacent steps. Existing ±3 positive recall denominator is 5846; valid-adjacent-edge window and valid-positive target denominator is 977. Positive targets themselves have 0 invalid cells; the defect is invalid surrounding labels generating boundaries. Withdraw old 62.9% recall as evidence of valid regime-transition recall until corrected. Freeze corrected validity definition before rerun, report old/new denominators, do not silently replace the historical population. This does not by itself invalidate valid-cell NMI/ARI/Brier. |
+| Independent arrival replications | EXP03 lines 500-510 and 529 | VERIFIED one arrival realization per delay, seed=20261012+100*delay; all five model seeds share it. Historical results are conditional on one trace per delay, not five independent simulator replications. Freeze this exact replay scope or register independent simulator replication separately before execution. |
+| Critical delay interpretation | EXP03 lines 648-649; EXP03 registry primary estimand | Code uses upper CI >=0: first loss of evidence for advantage. It does not identify first demonstrated disadvantage (lower CI >=0). Retain criterion, name it precisely; do not move the threshold after outputs. Full curve and both CI endpoints must remain primary evidence. |
+
+### Mandatory attack coverage and claim ceilings
+
+A (active power): C2/C9 evidence remains a channel MLP probe; neither it nor wind-defined label recovery establishes a hidden physical mechanism. New transition denominator defect further restricts recall claims. B (matched quantiles): corrected channel comparator is mandatory; no global-only victory. C (decision sufficiency): preserve positive PSREI penalties and distinguish NMI from cost. D (slices): full/steady/transition side-by-side, with transition-definition versions explicit. E (privileged supervision): original historical-pitch training and EXP02 zero-privileged setting remain separate. F (architecture): no graph necessity from unmatched parameter/training budgets; no routing necessity from nonsignificance. G (external): v4 is retrospective and cannot be described as pre-registered positive validation; each site separate. H (synthetic stress): EXP03 remains synthetic; event timestamps do not establish arrival delays or field prevalence.
+
+**Simplest surviving explanation:** wind-defined valid labels can be read out from wind alone; consequence MLPs learn correlated signals; posterior calibration changes reserve quantity, without established matched-budget allocation advantage. This survives as the scientific null interpretation. No reconstruction result may be tuned until it contradicts this explanation.
+
+### Protocol assessment
+
+`docs/RAW_REPLAY_PROTOCOL_20261015.md` retains site-local 10-bin q=.90 baseline, rho=10, h6 primary, 201..205 seeds, frozen residuals, negative preservation, historical immutability, and stop-on-mask-mismatch. It does not lower the contract claim ceiling. Its broad scope is appropriate, but is not yet an executable frozen manifest. Before each family starts, save actual configs/hashes/argv, explicit bin-edge rule, masks/anchor IDs, block definition/bootstrap seed and model/simulator seeds. The legacy channel transition population and EXP03 simulator/critical-delay semantics above require explicit pre-run clarification; no silent population change is approved.
+
+Full raw replay is not complete when a failed family is merely withdrawn. Withdrawal is necessary scientific honesty and can close claim disposition, but the run inventory must still mark its execution as failed, blocked or not run and state that comprehensive numerical reproduction remains incomplete. Existing gate PASS cannot certify the campaign.
+
+### Direct check provenance
+
+2026-10-15 Python command exited 0. Cached paths: `artifacts/cache_strictmask_trainweights/wtb_245d/{metadata.json,regime_primary.npy,regime_primary_valid.npy}`. Formal anchors computed as test split start + hist_len - 1 through test end - pred_len (exclusive). `y=(regime_primary==2)`; raw edges `diff(y)`; valid edges additionally require validity at t and t-1. Both window variants use bounded ±3 dilation. Printed: `raw_transition_edges 3334 valid_adjacent_edges 470 unmasked_positive_targets 5846 unmasked_invalid_targets 0 valid_edge_window_targets 977`. The causal test directly called the current simulator with shape (3,1,5), all entries 17, feature names Wspd/Patv_hist/Etmp/Itmp/Prtv, delay 6, seed 20261012. This is a unit counterexample, not an experimental result or retraining.
+
+**UNKNOWN/BLOCKED:** raw-source accessibility/completeness, exact original preprocessing reconstruction, complete training provenance and independent fresh-environment reproduction remain unverified by this early review. Final falsification must inspect repaired code, the frozen manifest, run failures, all replay arrays and final manuscript after execution. No final scientific PASS is issued.
+
+## 13. 2026-10-15 mid-repair independent scientific review
+
+**Scope:** subsequent EXP02 physical-unit/diagnostic repairs, real external coordinates/raw-window preprocessing, claim disposition, and EXP01 v4 forecast lineage. **Verdict: FAIL for scientific completion; mid-repair review only.** This reviewer did not train any model or certify the running jobs. No scientific threshold was changed.
+
+### Confirmed corrections from source inspection
+
+- EXP02 `physical_proxy_channels` now selects named Wspd and Patv from `physics.npy`; the proxy threshold no longer inverts `physics_model` power with incompatible Patv_hist statistics. The current WTB cache metadata identifies these physical fields unambiguously. Actual corrected EXP02 outcomes remain NOT RUN/UNKNOWN in this review.
+- EXP02 transition recall requires valid labels at both endpoints of each detected edge and validity of scored positives. The report executive table uses measured deltas instead of hardcoded favorable direction/catastrophic-seed explanation. Anchor inequality now raises rather than truncating mismatches.
+- `_read_external_coords` and `_write_cache_from_frame` now fail on missing coordinates instead of generating a regular 500 m layout. Raw Kelmarsh static CSV identifies Title `Kelmarsh 1`, Alternative Title `KWF1`; the explicit KWF1->T01 mapping is consistent with the numbered SCADA identifier. Duplicates and missing node coverage fail. These are real-coordinate safeguards, not performance gates.
+- `replay_external_raw.py` selects the fixed raw window before training-only normalization; synthetic padding adds NaN boundary rows, not invented observations. `REPLAY_CORRECTION_ADDENDUM_20261015.md` properly calls this a corrected protocol, not bitwise reproduction. `REPLAY_CLAIM_DISPOSITION_20261015.md` correctly separates withdrawn from executed/reproduced.
+
+### Critical newly verified invalidity: EXP01 v4 mixes physical windows
+
+`repair_exp01_pitch_withheld_v3.py` constructs gates/targets/masks from `cache_signature_{farm}/external_wind_{farm}_obs_window_canonical` but reads frozen predictions from `external_wind_runs/{farm}/chronological/external_wind_full_seed*/{val,test}_metrics/pred.npy`. Its anchor equality check compares only local integers. Those integers designate different dates in these caches.
+
+Direct read-only Python checks (exit 0) for seed201 establish:
+
+| Farm/split | Shared valid cells over all 24 saved horizons | Different targets on shared valid cells | Mean absolute target difference (kW) |
+|---|---:|---:|---:|
+| Kelmarsh val | 441681 | 441681 | 555.200073 |
+| Kelmarsh test | 574800 | 574800 | 651.515991 |
+| Penmanshiel val | 1065358 | 1065358 | 735.002747 |
+| Penmanshiel test | 1209852 | 1209852 | 887.841614 |
+
+For both farms and both splits, saved run `target.npy` and `mask.npy` are **exactly equal** to reconstructions from `artifacts/cache_external_wind/external_wind_{farm}_chronological/{target,target_mask}.npy`. They are not equal to the canonical window targets/masks. Source `time_index[30275]=[211,35]`; canonical Kelmarsh is `[331,35]` and Penmanshiel `[931,35]`, exactly the 120/720-day window offsets. Checkpoint metadata also identifies full chronological arrays (473184 and 451334 steps), not the 35280-step canonical windows. This is a genuine different-window pairing, not a float-tolerance discrepancy.
+
+**Required disposition:** withdraw v4 paired-cost values, intervals and directional conclusions as scientifically valid matched-forecast evidence, including the -315.4k Penmanshiel and +352.4k Kelmarsh headlines. Preserve their files as invalid historical computations. A negative direction does not exempt a result from withdrawal. Current main/supplementary prose still contained these figures during inspection; any parent edits after this snapshot require final review.
+
+**Required prevention:** each external reserve calculation must assert physical timestamps or equivalent cache/window identity, node ordering, forecast target arrays, validity masks and anchors before subtraction. Train a new site-frozen forecast on the corrected raw window, archive its target/mask/prediction arrays and cache manifest, and share its residuals among all policies. Never reuse a full-archive prediction merely because its local anchor integers match.
+
+### Remaining pre-run cautions
+
+1. EXP02 and EXP03 feature construction still divides standardized active power by physical P_RATED and clips it as `Patv_ratio`; this is not a physical P/P_rated ratio. EXP02 also squares standardized Wspd. Preserve and name these mathematical features accurately for exact implementation replay, or explicitly register a corrected physical-feature version before fitting. Do not describe these transforms as engineering-unit ratios while executing standardized ratios. Physical proxy-label repair itself is correctly separate.
+2. EXP02 oracle provenance hashes `best_model.pt`, while reserve computation directly consumes `val_metrics/gate_prob.npy` and `test_metrics/gate_prob.npy`. Those consumed arrays and their anchor/target/mask lineage must be hashed/aligned too. The oracle is noncompetitive, but its reported numbers still need a complete evidence chain.
+3. The generic provenance helper records a Git commit and executed-script hash, while the outer replay runner additionally records Python dependency hashes. Use the outer receipt or equivalent full source snapshot for standalone external runs; uncommitted dependency changes are not identified by the commit alone. This is a lineage-completeness limitation, not evidence that any run was fabricated.
+4. Full raw replay remains unfinished. One running forecast seed and completed preprocessing cannot establish all-family reproduction. Existing consistency gates and PDF compilation cannot supersede the above invalidity.
+
+### Claim ceilings and strongest alternative explanations
+
+The mandatory active-power/direct-quantile/decision/slice/privileged/architecture/external/synthetic attacks remain in force from section 12. The external negative-result narrative now has an additional evidentiary restriction: invalid v4 pairing establishes neither superiority nor inferiority. The simplest surviving explanation of its cost differences is that predictions and targets came from different physical time windows. Corrected training and matched evaluation are required before scientific interpretation. Existing negative/null WTB outcomes remain preserved; no relaxation or favorable sign is authorized.
+
+## 14. 2026-10-15 limited pre-execution check: phase-scan / decisive targets
+
+**Verdict:** These runners must not be counted as canonical fixed-target reserve isolation without a separately versioned correction. Read-only source check; no training or execution of either benchmark.
+
+- `eval_single_task_dense_phase_scan.py:276-277` constructs separate validation shortfalls from routed and dense predictions; `408-409` constructs separate test shortfalls after each condition-specific forward pass (`394-395`). Physical policies, routed and MoE-frozen heads use the routed shortfall (`421,427,433,438`), whereas the dense head uses its own shortfall (`444`). Cross-model cost ratios (`475-476`) therefore compare different forecast-plus-reserve pipelines, not isolated reserve policies on a common target. Even frozen neural weights do not freeze predictions across delay/withholding conditions.
+- The phase-scan within-cell contrast of unadapted vs recalibrated physical policies DOES share `test_s_moe` and `test_act_moe` (`421,427`). Such a contrast may be described only as recalibration on that condition-specific routed-forecast residual problem. It cannot validate dense-versus-physics reserve superiority or a canonical fixed-target cross-delay law. The boundary filter also uses degraded/arrived wind (`397,411-412`; arrival_feed.py:182-187), so constancy of evaluated population across conditions is not assured.
+- `decisive_fair_risk_benchmark.py` is different: all reserve methods, including Joint Dense, share one routed-model residual within each evaluated regime. Validation `val_s_clean` and `val_s_stale` are defined at `715,721`; dense reserve calibration uses the common clean residual at `768`. Test `test_s` is defined from the current regime routed prediction at `843`, and every policy is evaluated against it and `test_active` at `926-933`. This supports a bounded within-regime common-target comparison, subject to the remaining protocol checks; it is not the same two-target defect as phase-scan.
+- However, decisive's frozen backbone is re-evaluated under each degraded regime (`835-843`), and the wind-defined boundary population changes with arrived wind (`844-846`). It does not load the canonical `fixed_forecast_residuals.npz`; across regimes its target and possibly population change. It therefore does not implement the universal canonical fixed-target objective in `docs/FIXED_TARGET_CONTRACT.md` sections 1-2. Cross-delay changes conflate forecast degradation, policy behavior and population selection.
+
+**Required pre-run disposition:** block interpretation of phase-scan cross-model ratios and cross-condition cost changes as fixed-target incremental decision value. Preserve legacy results as explicitly condition/pipeline-dependent historical computations. A corrected reserve-isolation version must use the same precomputed canonical forecast residuals and explicitly frozen population for all competing policies, with exact anchor/target/mask matching; do not change baselines or success thresholds. Replaying legacy pipelines remains possible only with the above labels and without claiming the main frozen-target contract has passed. Current scientific completion remains FAIL/in progress.
+
+## 15. 2026-10-15 limited pre-execution check: supervision, factorial, active-power audit
+
+**Scope:** read-only check of the three named legacy runners before connecting them to raw replay. No training; no source edits. **Verdict: HOLD these stages until the listed protocol/reporting defects are resolved.** This section does not review or invalidate subsequent corrected phase-scan code; section 14 described its earlier source snapshot.
+
+### Shared checked facts
+
+All three select h1/h6 correctly using residual indices 0 and 5. They read the common residual archive rather than constructing method-specific forecasts. No wrong physical-scaler inversion was found in these three scripts. However, none establishes full cache/model/anchor identity merely by loading that archive. Exact anchors, node IDs, target/mask arrays and source hashes must be checked before scoring.
+
+### Clean privileged-supervision ablation
+
+1. `run_clean_privileged_supervision_ablation.py:145-148` reads ordinary stored val/test gate arrays and labels; no withheld forward pass is performed. Its report at 284 and 294 asserts strict validation/test pitch withholding. `windfarm_moe/train.py:179-181,321-322` generates these ordinary arrays using RegimeWindowDataset; evaluate.py:71-76 forwards the ordinary features/anchor physics. Thus the new raw model outputs cannot substantiate that withheld deployment claim. Re-evaluate both matched backbones under identical explicit pitch masking, or accurately label the existing calculation clean-telemetry; do not silently substitute clean gates.
+2. Lines 176-177 silently truncate mismatched sequences. Lines 140-143 skip missing seed directories; the final subtraction pairs reset row positions rather than validating exact paired seed sets. Missing seeds and unequal anchors must fail closed.
+3. Transition recall at 42-53/168 lacks adjacent-label validity, reproducing the pseudo-boundary problem from section 12.
+4. Lines 317-318 literally emit `p < 0.001` without a significance calculation. Lines 323-324 hardcode collapse, necessity, NMI and ARI conclusions. These assertions must be removed or genuinely computed from the archived paired evidence; no p-value may be inherited from old data.
+5. Inspected seed201 checkpoint modes are moe_balance_only and moe_balance_align. Although raw train-config numeric fields differ, `config.py:239-246,255-262` sets effective auxiliary/smoothing/force losses to zero in both and changes only alignment (plus common balance). Do not incorrectly call unused config fields an effective-loss confound. Still verify architecture/schedule/seed for every pair.
+
+### Factorial boundary ablation
+
+1. `run_factorial_boundary_ablation.py:198-199` hardcodes historical checkpoint paths. Lines 206-213 silently replace a missing dense model with routed latents, then report it as dense. Both are blocking provenance/identity defects for a fresh raw replay.
+2. A is labeled no-state-supervision at 335 but uses context from routed `moe_phys_full`; directly inspected seed201 has alignment5000, auxiliary250 and physics_force10000. B uses dense_classifier context at 352-359. This A/B comparison changes architecture and supervision bundle and cannot isolate state supervision. Preserve historical outputs as mislabeled probes or register actual matched contexts before execution. C and J are intentionally the exact same reserve vector (282-283), not independent ablation evidence.
+3. Negative-control semantics are narrower than the names: pi_rand_v at 306 is unused, so F permutes test posteriors while retaining calibrated original c_bin_q. E permutes validation state labels but assigns reserves using true test z at 315-320; it remains an oracle diagnostic, not a deployable randomized predictor. Do not claim train-label randomization or full posterior-randomization controls that were not executed.
+4. E/G initialize reserve at zero and fill only z0/1/2 (`316-328`). Direct cached check of `fixed_forecast_residuals.npz` found decision-valid cells with z outside0/1/2: **23431 at h1**, **23734 at h6** (total decision-valid408937/408939). These are silently scored at zero reserve. Freeze an explicit missing-state fallback on the full population, or declare a separately registered oracle-valid subset; never silently relabel zero-reserve cells as known-state oracle evidence.
+5. Head optimization has no torch.manual_seed tied to the reported seed (train_fast_linear_quantile uses shuffled DataLoader). Fixed initial zero weights do not fix shuffled SGD order. Save the actual seed, heads, sampled validation indices, losses, predictions, per-seed metrics and paired blocks; currently only aggregate CSVs are saved. `delta_vs_direct_kwh` is direct-minus-challenger at374 (opposite the canonical penalty sign) and no site-local wind-bin comparator is present: it is an internal ablation contrast, not primary matched-baseline success.
+
+### Active-power anchor audit
+
+1. `run_active_power_anchor_audit.py:341-347` silently truncates and intersects decision masks with pitch-derived regime-valid labels. All conditions share that subset, but it is not the full fixed-residual population. Keep its population definition explicit, match any baseline to it, and assert exact anchors rather than min-length alignment.
+2. Transition recall at168-179/334 ignores adjacent-label validity; fix under the registered valid-boundary definition and retain legacy/new denominators.
+3. Report lines483-495 hardcode a decrease, causal proof, AUROC0.80--0.85, thermal time constants, Delta AUROC<0.01 and safe omission. None follows automatically from recomputed metrics; even an observed near-zero AUROC difference does not establish thermal mechanism or reserve equivalence. Report measured contrasts with no prewritten direction or causal story.
+4. A/B/C correctly distinguish current power, history excluding current, and lag1 (110-126). D excludes current active power but includes current other channels (128-159); D is not an all-channels history-only condition. E excludes active power, whereas D retains historical active power; report488 incorrectly calls D's remaining suite non-active-power.
+5. The 200000-sample fixed subsample and 3-epoch default are actual protocol choices (230,275-277), not full-population classifier training. Preserve and disclose them if reproducing this family; save sampled IDs, scaler, weights, loss history and probabilities. The current runner saves only summary rows.
+
+**Disposition:** stopping these interpretations is result-neutral. No old favorable or negative estimate is endorsed before corrected evidence exists. Full campaign scientific completion remains unverified.
+
+## 16. 2026-10-15 Metis migration pre-execution source review
+
+**Scope:** limited source-only review of the Metis stage dispatcher, WTB evaluation split, external cache/transfer resolution, corrected factorial, masked supervision and active-power runners. No training, Python execution or local experiment was performed by this reviewer. Only source reads and this audit append were performed. **Verdict: HOLD deployment/claim certification pending the blockers below; scientific completion NOT CERTIFIED.** Parent-reported stopping/completion of local jobs is not independently process-audited here.
+
+### Blocking or coverage-relevant findings at the inspected source snapshot
+
+1. **Runtime package discovery omits dynamic script names.** `package_metis_replay.py:25-44` starts from a short source list, follows imports and literal `scripts/name.py` matches. `metis_replay.py` dynamically invokes the bare tuple names `run_clean_privileged_supervision_ablation.py` and `run_active_power_anchor_audit.py`; `replay_after_wtb.py:35-38` similarly invokes `run_matched_budget_frontier.py` and `run_rho_sensitivity.py`. These are not imports or literal `scripts/name.py` in the discovered launcher. An explicit runtime entrypoint list and cloud archive existence/import check are required; otherwise later stages fail despite earlier expensive fits succeeding. No package execution was performed by this reviewer.
+2. **Git identity assumption after ZIP-only deployment.** `raw_replay.py:93` calls checked `git rev-parse HEAD`, whereas the isolated source ZIP intentionally omits `.git`. A fresh extracted directory without an initialized committed repository fails at the first run_command. Either establish a real, identifiable cloud snapshot commit before launch or derive run identity explicitly from the deployment/source manifests. Do not invent a local HEAD. This is conditional on the cloud setup; that setup was not inspected/executed here.
+3. **Empty mandatory output list for phase scan.** `replay_after_wtb.py:39-42` invokes dense_phase_scan with `outputs=[]`. A successful child can therefore be marked EXECUTED without any output existence/hash check, and `verify_raw_replay.py` rejects its empty receipt outputs for a REPRODUCED artifact. Require both phase CSVs and the output_manifest (and ideally actual forecast/dense checkpoint input hashes). This is receipt integrity, not a changed effect threshold.
+4. **Factorial condition coverage reduced.** `replay_factorial.py:85` always calls `infer_masked`, whose dataset at `masked_representation.py:25-26` fixes delay0 and pitch withholding. Unlike the legacy factorial runner's four conditions, there is no clean/delay6/delay6-withholding loop or condition field in the new seed CSV. The registered masked correction can support that bounded condition, but cannot count as full reconstruction of the original four-condition artifact. Restore those conditions under a frozen corrected specification, or retain separate NOT_RUN/WITHDRAWN coverage entries for the omitted conditions; full replay remains incomplete.
+
+### Findings corrected while this review was in progress
+
+- Initially external-prepare used the fresh cloud directory while the default local external_cache_roots map selected Penmanshiel's local retry1 directory. The later inspected `metis_replay.pbs` exports `RAW_REPLAY_EXTERNAL_CACHE_MAP=$PWD/metis_cache_map.json`; `package_metis_replay.py` generates and hashes a map pointing all three sites to fresh cloud directories. This fixes the mismatch **when launched through that PBS with the packaged map**. Verify the deployed map hash and avoid copying local retry outputs as cloud fits.
+- Initially `external-transfer` could exit successfully after transfer() returned WAITING without execution. The later inspected dispatcher now first verifies all five WTB aligned_force receipts plus external receipts and checks transfer_status for EXECUTED_PENDING_INDEPENDENT_REVIEW. This removes the silent-success path for the dispatcher. The generic transfer helper still returns while waiting by default, so callers must retain the status guard.
+
+### Corrected scientific checks that survive this bounded source inspection
+
+- `evaluate_wtb` verifies all30 backbone receipts before constructing canonical residuals and downstream evaluation. No completed local fit is substituted by this fresh-dispatch path; freeze and per-run guards reject existing outputs. Actual cloud execution remains unknown.
+- Masked supervision now performs explicit pre-forward pitch/history-mask assertions, rejects missing seeds and unequal target/time/node alignment, and computes actual paired seed t statistics. It no longer emits the previously hardcoded p-values or necessity verdict. These are seed-conditional statistics, not day/seed joint uncertainty.
+- Corrected factorial uses matched unaligned/aligned model configs and effective loss weights, archives sampled head fitting inputs/weights/losses, randomizes both posterior splits, defaults unknown oracle labels to global quantiles, includes a wind-bin comparator, and calls J an alias of C. These are improvements; single-condition coverage remains the limitation above. No architecture-necessity claim is licensed by dense-family comparison.
+- Active-power audit saves classifiers/scalers/history/probabilities and decision arrays, checks the frozen reference, uses validity-aware transitions, and removes previous causal/thermal-direction assertions. Its valid-regime decision subset and200000-cell/3-epoch classifier budget remain explicit limitations.
+- External transfer now checks saved forecast target/mask/time/node/window identity before computing residuals; this addresses the earlier120/720-day wrong-window defect. It must consume newly trained forecasts from the same corrected raw cache. These source guards are not evidence that the actual cloud comparison has completed or passed.
+
+**Remaining UNKNOWN:** final package contents and deployment hash, cloud environment/PBS dependency graph, actual cloud stage exits, all raw-to-model-to-prediction results, full artifact coverage, and final manuscript reconciliation. No scientific contract, comparator, seed list or acceptance threshold was changed by this review.

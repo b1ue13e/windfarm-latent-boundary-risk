@@ -57,3 +57,5 @@ User explicitly authorized fixing audited paper/code/command defects, completing
 
 ## Metis-only execution
 User explicitly requires code execution on Metis. Stop only verified owned local replay jobs and retain outputs; leave unrelated jobs alone. All new model fits restart from scratch in isolated cloud workspace. Use PBS allocation, never login-node training; do not pool completed local seeds with cloud seeds or treat partial best weights as resumed optimizer state. Existing numerical scientific gates unchanged.
+
+Metis deployment uses a real subset Git snapshot linked by upstream commit and per-file hashes; never impersonate original HEAD. Expected raw hashes derive from earlier raw-read receipts and are recomputed independently on cloud bytes. Missing seaborn failed the first preflight and is now declared. Failed pytest file overwrite is a disclosed evidence retention defect; never reconstruct it as an original raw log. Source versions and distinct stage receipts preserve later attempts.
