@@ -52,8 +52,8 @@ def clean_latex_for_mathml(eq):
     return eq
 
 
-def latex_to_omml_element(latex_str):
-    """Convert LaTeX string to Word OMML XML element."""
+def latex_to_omml_element(latex_str, is_display=False):
+    """Convert LaTeX string to Word OMML XML element with display-style enhancements."""
     if not XSLT_TRANSFORM:
         return None
     try:
@@ -62,6 +62,15 @@ def latex_to_omml_element(latex_str):
         mml_tree = etree.fromstring(mathml.encode('utf-8'))
         omml_doc = XSLT_TRANSFORM(mml_tree)
         omml_root = omml_doc.getroot()
+
+        # If it is a block display equation, configure limits above/below (undOvr)
+        if is_display:
+            ns = {'m': 'http://schemas.openxmlformats.org/officeDocument/2006/math'}
+            for limLoc in omml_root.xpath('.//m:limLoc', namespaces=ns):
+                for attr in list(limLoc.attrib.keys()):
+                    if 'val' in attr:
+                        limLoc.attrib[attr] = 'undOvr'
+
         # Parse into docx oxml element
         xml_str = etree.tostring(omml_root, encoding='utf-8')
         return parse_xml(xml_str)
@@ -105,20 +114,21 @@ def set_cell_margins(cell, top=80, bottom=80, left=100, right=100):
 
 
 def set_run_font(run, font_name_ascii="Times New Roman", font_name_ea="宋体", size_pt=12, bold=False, italic=False, color_rgb=(0,0,0)):
-    """Set both Western and EastAsian fonts for a run."""
-    run.font.name = font_name_ascii
+    """Set both Western and EastAsian fonts for a run without duplicate elements."""
     run.font.size = Pt(size_pt)
     run.bold = bold
     run.italic = italic
     run.font.color.rgb = RGBColor(*color_rgb)
     
     rPr = run._r.get_or_add_rPr()
-    rFonts = OxmlElement('w:rFonts')
+    rFonts = rPr.find(qn('w:rFonts'))
+    if rFonts is None:
+        rFonts = OxmlElement('w:rFonts')
+        rPr.append(rFonts)
     rFonts.set(qn('w:ascii'), font_name_ascii)
     rFonts.set(qn('w:hAnsi'), font_name_ascii)
     rFonts.set(qn('w:eastAsia'), font_name_ea)
     rFonts.set(qn('w:cs'), font_name_ascii)
-    rPr.append(rFonts)
 
 
 def add_styled_paragraph(doc, text="", style='Normal', space_before=0, space_after=2, line_spacing=1.25, indent=0, align=WD_ALIGN_PARAGRAPH.LEFT):
@@ -171,7 +181,7 @@ def render_block_equation(doc, formula_str):
     tag_text = f"({tag_m.group(1)})" if tag_m else ""
     clean_eq = re.sub(r'\\tag\{[^}]+\}', '', raw).strip()
 
-    omml_el = latex_to_omml_element(clean_eq)
+    omml_el = latex_to_omml_element(clean_eq, is_display=True)
 
     # Use a borderless 2-column table to place equation centered and tag right-aligned
     table = doc.add_table(rows=1, cols=2)
