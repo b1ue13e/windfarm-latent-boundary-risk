@@ -415,3 +415,47 @@ A read-only planning inventory groups all46 original coverage entries by source;
 source existence alone does not establish replay coverage. Actual final gate
 still exits1 for unfinished tasks/raw replay. All20 factorial runs, decision
 statistics, manuscript claims and final independent reviews remain pending.
+
+## 21:53-22:25 recovery and bounded four-condition evidence closure
+
+All45 first-batch model artifacts passed actual CPU audit242626 (0pending,
+0failures; NOT_CERTIFIED/scientific_completionfalse). Core242595 then failed with
+a real missing-json NameError during serialization. Its complete strong-baseline
+stdout/stderr and partial outputs/code/environment/config were retained in an
+11-file archive, returned and independently hashed. Only importjson was added
+in a separately pinned recovery script; frozen runtime scripts/windfarm_moe
+were not changed. Actual PBS preflight242627 exited0 after source/input and
+completed-clean-output checks. New strong_baseline_retry_import_v1 executed0;
+core242628 is now running channels, with diagnostics242629 still dependency-held.
+
+Original factorial242602 terminal PBS Exit_status is absent; termination cause
+remains UNKNOWN. Its four real clean201-204 successful runs were preserved.
+Only sixteen unexecuted indices4-19 continued in new array242630, after the
+actual242623 exact-input audit and242627 preflight. With15 eligible free GPUs
+observed, cap12 plus1core were actually running. The old unstarted aggregate
+was canceled only after metadata archival; new array242630 and aggregate242631
+both actually exited0. No completed seed was overwritten or rerun.
+
+Separate registered read-only CPU audit242732 exited0. It verified all20 runs,
+880 seed rows and176five-seed summary groups; exact canonical identities,
+saved-action metrics, native day blocks, control algebra, head training history/
+samples and original CPU saved-head inference all passed. Source commit24a2de4,
+SHA b687825d4c5169a317994cf2577888b6c233bdccf773ac9b6640ca9c85ac2e52.
+The actual per-run round-trip CSV and aggregation default-parser stages were
+audited separately, retaining846 parser representation differences. No fitted
+tolerance or original-output edits. Source attempt1 was never PBS-executed and
+remains archived as superseded before execution; actual attempt2 was checked.
+
+Final snapshot20261015T142324Z_4d5e7b85 independently verified533files/28complete
+PBS stdout/stderr pairs. Every audit report/source/20receipt/exportedaggregate
+file hash matches its evidence. Independent evidence role issued boundedPASS
+for four-condition execution/saved-artifact arithmetic; onlyTRR13 is closed.
+This reuses frozen helper functions and is not a wholly independent algorithm
+implementation, a new backbone retraining, a superiority/significance claim or
+whole-paper scientific certification. All other experiment/46coverage/claim
+work remains open; final verification gate actually still exits1.
+
+See [bounded evidence report](FACTORIAL_V2_EVIDENCE_20261015.md),
+artifacts/metis_heartbeat_20261015_2153/numeric_verification.json and
+artifacts/metis_factorial_numeric_audit_20261015_attempt2/report.json.
+All negative/zero outcomes and the original failed attempts remain retained.
