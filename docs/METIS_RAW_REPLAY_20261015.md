@@ -120,3 +120,43 @@ The current training array242594[].cm is QUEUED; no training completion, test me
 scientific significance or final manuscript reproduction is claimed. External raw
 staging is still incomplete. The result-neutral verification gate still exits1 for
 open TRR02–TRR08 and unfinished raw replay, as required.
+
+## Continuing follow-up —2026-10-15
+
+The current-thread automation `metis` is ACTIVE every30 minutes. It checks actual PBS
+history/exits and execution/output lineage, preserves negative/null results and failed
+attempts, fixes diagnosed runtime/implementation defects in new attempts, and continues
+through all experiment/claim reconciliation and final independent gates. Unchanged
+queue states do not count as progress or reproduction. Do not run training locally or
+on the Metis login node. No scientific threshold or frozen experiment endpoint changed.
+
+All34 external source files now passed complete SHA256 validation on Metis.
+Job242598.cm ran external preprocessing on cn09 and exited0; stdout reports
+raw_la_haute_borne, raw_kelmarsh and raw_penmanshiel EXECUTED exit0. GPU training
+arrays242594[].cm(30 WTB) and242599[].cm(15 external) remain queued because the
+single-GPU queue has no available allocation. Core242595/diagnostics242596/transfer242600
+are held by afterok dependencies. No cloud fit/result is certified by those submissions.
+
+`collect_metis_evidence.py` is a read-only collector, deployed outside the frozen
+experiment source tree at metis_execution/collect_metis_evidence.py. Run:
+```bash
+.venv/bin/python metis_execution/collect_metis_evidence.py --root "$PWD"
+```
+Every call creates metis_execution/monitor_snapshots/<UTC>_<UUID> and never overwrites
+older snapshots. Full PBS JSON/stdout/stderr and visible log/receipt bytes are retained,
+with SHA256 and source stability metadata. Missing history/logs remain UNKNOWN; copied
+running logs are explicitly incomplete snapshots. Exit0 on a stage is not a certificate
+of scientific correctness or complete experiment reproduction.
+
+First snapshot20261015T102903Z_3bbcd9a1 archived44 files and11 full scheduler command
+outputs/errors. Returned archive and all file hashes were independently checked locally.
+Collector correction: its first index mistakenly categorized train_only_weights as a fit
+because of a train_ prefix. This is preprocessing, not model training. The first snapshot
+is preserved but that fit classification is withdrawn; corrected collector requires an
+actual registered model-family-plus-seed name. It cannot turn weighting or queue states
+into trained model counts. Later snapshots carry the corrected source hash.
+
+Existing disclosed v2 pytest raw-log loss remains a historical preservation gap; it
+is not repaired by claiming a reconstructed original. The new immutable snapshot policy
+applies going forward. Full46-artifact/claim coverage, pending factorial conditions,
+all fits/decisions and final paper checks remain DOING, and final verification remains FAIL.

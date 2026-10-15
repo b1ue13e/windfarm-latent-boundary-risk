@@ -237,3 +237,6 @@ Created: 2026-09-18T05:01:00+08:00
 
 ## Metis execution steering —2026-10-15
 - [ ] TRR08 DOING Move raw replay to isolated Metis workspace; verify input/source hashes and environment, submit PBS jobs, preserve receipts and failures, never count queued jobs as completed.
+
+## Persistent Metis follow-up —2026-10-15
+- [ ] TRR09 DOING Schedule continuing thread follow-up, preserve immutable full PBS/stdout/stderr/receipt snapshots, diagnose and version every failed retry, and reconcile all experiment/claim coverage before final scientific verification. No queued/partial run counts as reproduced.
