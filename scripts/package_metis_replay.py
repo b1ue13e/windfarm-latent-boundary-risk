@@ -4,6 +4,7 @@ No Git credentials, local SSH/deploy scripts, historical weights or local fits i
 """
 from __future__ import annotations
 import ast
+import argparse
 import json
 from pathlib import Path
 import re
@@ -24,7 +25,10 @@ ENTRYPOINTS=['metis_replay','raw_replay','replay_provenance','replay_after_wtb',
 
 
 def main():
-    out=ROOT/'artifacts/metis_deployment_20261015'
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output-dir',type=Path,default=ROOT/'artifacts/metis_deployment_20261015')
+    out=parser.parse_args().output_dir.resolve()
+    if not out.is_relative_to(ROOT/'artifacts'):raise ValueError('Package must stay in artifacts')
     out.mkdir(exist_ok=True)
     package=out/'source.zip'
     if package.exists():raise FileExistsError('Do not overwrite a deployed source archive')

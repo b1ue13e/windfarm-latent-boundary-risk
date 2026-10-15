@@ -39,7 +39,10 @@ def main():
     run_command(root,'dense_phase_scan',[sys.executable,'-u','scripts/eval_single_task_dense_phase_scan.py',
         '--cache-dir',str(cache),'--routed-pat',str(root/'models/forecast/seed{seed}'),
         '--dense-pat',str(root/'models/dense/seed{seed}'),'--output-dir',str(root/'dense_phase_scan')],
-        inputs,[])
+        [*inputs,*[root/f'models/{family}/seed{s}/best_model.pt'
+                   for family in ['forecast','dense'] for s in range(201,206)]],
+        [root/'dense_phase_scan'/name for name in ['phase_scan_results_by_seed.csv',
+            'phase_scan_risk_coverage_by_seed.csv','output_manifest.json']])
     write_json(root/'downstream_status.json',{'status':'EXECUTED_PENDING_AUDIT',
         'scientific_completion':False,'scope':'matched budget, rho sensitivity, dense phase scan only',
         'remaining':'Coverage.json still governs all unexecuted ancillary families; independent review required'})
