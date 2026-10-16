@@ -46,6 +46,8 @@ def main():
     from scripts.raw_replay import verify_run_receipt, run_command
     manifest_path = tool / 'manifest.json'
     manifest = read(manifest_path)
+    if digest(root/'metis_input_manifest.json') != manifest['frozen_input_manifest_sha256']:
+        raise ValueError('Frozen input/source manifest identity changed')
     for row in manifest['files']:
         if digest(tool / row['name']) != row['sha256']:
             raise ValueError('Tool package changed: ' + row['name'])
@@ -112,7 +114,10 @@ def main():
                 for seed in range(201, 206):
                     mask = f['mask_' + split] > .5
                     pred, target, short = f[f'yhat_{split}_seed{seed}'], f['ytrue_' + split], f[f'shortfall_{split}_seed{seed}']
-                    if not np.isfinite(short[mask]).all() or not np.array_equal(short, np.maximum(pred-target, 0.) * f['mask_' + split], equal_nan=True):
+                    if (len({x.shape for x in (pred,target,short,mask)})!=1 or
+                        not np.isfinite(f['mask_'+split]).all() or
+                        not all(np.isfinite(x[mask]).all() for x in (pred,target,short)) or
+                        not np.array_equal(short, np.maximum(pred-target, 0.) * f['mask_' + split], equal_nan=True)):
                         raise ValueError('Invalid canonical residual identity')
         test_env = dict(os.environ, PHASE_GUARD_SOURCE=str(tool/'eval_single_task_dense_phase_scan.py'))
         subprocess.run([sys.executable, '-m', 'pytest', str(tool / 'test_phase_head_target_guard.py'), '-q'], check=True, env=test_env)

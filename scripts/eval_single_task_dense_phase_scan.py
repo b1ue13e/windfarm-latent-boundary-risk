@@ -551,7 +551,6 @@ def run_dense_phase_scan_for_seed(
                                   r_routed, r_froz_dense, test_prob_moe):
                     if not np.isfinite(candidate[test_act_moe]).all():
                         raise ValueError('Nonfinite test policy on original phase population')
-                cond_id = f'lag{lag}_{ch_mode}_h{lead+1}'
                 np.savez_compressed(archive_dir/f'seed{seed}_{cond_id}.npz',shortfall=test_s_moe,mask=test_act_moe,
                     anchor_indices=test_ds.anchor_indices,wind_baseline=r_wind,physical_clean=r_phys_clean,
                     physical_recal=r_phys_recal,moe_frozen=r_froz_moe,moe_routed=r_routed,dense_frozen=r_froz_dense,
@@ -617,6 +616,9 @@ def run_dense_phase_scan_for_seed(
                         ("Frozen Backbone (MoE)", r_froz_moe, t_hyb_moe, calib["thresh_hyb_moe"], calib["alpha_val_moe_froz"], test_s_moe, test_act_moe, r_fb_moe),
                         ("Single-Task Dense Backbone", r_froz_dense, t_spr_dense, calib["thresh_spr_dense"], calib["alpha_val_dense_froz"], test_s_dense, test_act_dense, r_fb_dense),
                     ]:
+                        for candidate in (t_s_sub, r_cand, r_fb_sub, u_cand):
+                            if not np.isfinite(candidate[t_act_sub]).all():
+                                raise ValueError('Nonfinite abstention input; do not shrink original population')
                         np.savez_compressed(archive_dir/f'seed{seed}_{cond_id}_{m_label.replace(" ", "_")}_abstention.npz',
                             shortfall=t_s_sub, mask=t_act_sub, reserve=r_cand, fallback=r_fb_sub,
                             uncertainty=u_cand, coverages=np.asarray(abstention_coverages),
