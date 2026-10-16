@@ -1,10 +1,10 @@
 {
   "title": "2026-10-15 审计修复与原始数据重跑",
   "created": "2026-09-18T00:00:00+08:00",
-  "updated": "2026-10-16T00:07:31.505160+00:00",
-  "phase": "metis_downstream_failure_recovery_parallel_input_preflight",
+  "updated": "2026-10-16T00:24:20.401784+00:00",
+  "phase": "metis_downstream_seven_gpu_workers_running_pending_audit",
   "status": "in_progress",
-  "active_task": "TRR17-TRR19;core242628F0_channelsEXP02EXP03executed_pendingaudit;diagnostics242629F1_phaseheadguard;preserve-and-diagnose-before-new-attempt",
+  "active_task": "TRR17-TRR19;242793fivephase_seeds+242794supervision+242795activepower_actualR;242796aggregateH;upstreamcompleted_PENDING_NUMERIC_AUDIT;old242629FAILEDpreserved",
   "last_verified_task": "TRR16",
   "notes": [
     "Priority revisions (P1-P5) and Exp-C stop condition verified: (1) P1: 'Independent decision value' demoted to 'transition-window localized risk hedge' across main manuscript, cover letter, and canonical docs, strictly preserving negative results (posterior +523k penalty, wspd baseline +410k advantage in steady state, -296k transition interaction); (2) P2: All external transfer statements bounded with 'within evaluated sites only', eliminating universal cross-site transfer claims; (3) P3: Delay regime conclusions in Regime 2 marked provisional pending field validation (Exp-A), evaluated under synthetic stress; (4) P4: MoE framed strictly as an implementation comparator (dense vs routed parity, p=0.380); (5) P5: EXP-02 report template fixed in scripts/run_exp02_zero_privileged_supervision.py to eliminate fabricated two-level bootstrap claims; (6) Stop condition Exp-C confirmed: under withheld pitch (pab=0), incoming wind speed alone deterministically classifies valid operating regimes with 100% precision/recall across all 639,378 test cells, confirming label degradation lacks an independent classification problem and reframing contributions around minimum sufficient modeling and empirical falsification; (7) Verification: main and standalone PDFs compile cleanly to exactly 10.0 pages (0 overfull hboxes), verify_scientific_claim_gate.py PASS, verify_final_pdf_integrity.py PASS, and .agents/scripts/verify_gate.py PASS.",
@@ -78,9 +78,9 @@
     "automation_id": "metis",
     "cadence_minutes": 30,
     "status": "ACTIVE",
-    "last_snapshot": "20261016T000344Z_2a074c32",
+    "last_snapshot": "20261016T001950Z_27c31733",
     "cloud_collector": "metis_execution/collect_metis_evidence.py",
-    "local_snapshot": "artifacts/metis_followup_20261016_0804/20261016T000344Z_2a074c32",
+    "local_snapshot": "artifacts/metis_followup_20261016_0804/20261016T001950Z_27c31733",
     "model_fit_receipts": 45,
     "scientific_completion": false,
     "single_fit_hash_population_verified": [
@@ -178,14 +178,14 @@
     "factorial_numeric_verified_summary_groups": 176,
     "factorial_numeric_bounded_evidence_review": "PASS_LIMITED_EXECUTION_AND_ARITHMETIC_ONLY",
     "next_actions": [
-      "Monitor core242628 channels/EXP02/EXP03 and dependent242629; archive failures before unique diagnosed retry",
-      "Preserve original external242736FAILED; certify new deterministic branch only within bounded reviewed scope",
-      "Complete remaining46coverage families; register necessary corrections before real PBS execution",
-      "Reconcile all manuscript tables/claims/reproduction commands; retain negatives and withdraw unreproducible claims",
-      "Final whole-scope scientific-falsifier/evidence review/verify_gate only when real coverage complete"
+      "First collect immutable evidence and check242793children/242794/242795/242796 actual states,receipts,full logs;archive failures before diagnosis/new attempt",
+      "Do not rerun completed channel/EXP02/EXP03/budget/rho;independently audit their deep artifacts/numerics/nativeblocks/full packet grids",
+      "Verify full five-seed30condition phase and supervision/active-power outputs before family closure;preserve all negative/null results",
+      "Complete all46coverage/reproduction commands and exact manuscript tables/claim reconciliation;withdraw unsupported conclusions",
+      "Only after actual fullscopeclosure run finalscientific-falsifier/evidence review/verify_gate and stop currentheartbeat"
     ],
     "factorial_execution_status": "ALL20_EXECUTED_EXIT0_EXACT_ARTIFACT_ARITHMETIC_AND_HEAD_INFERENCE_VERIFIED",
-    "whole_project_verification_gate": "FAIL_EXIT1_OPEN_TRR02_TRR12_AND_VERIFY_RAW_REPLAY",
+    "whole_project_verification_gate": "FAIL_EXIT1_OPEN_TRR02_TRR12_TRR17_TRR19_AND_VERIFY_RAW_REPLAY",
     "external_numeric_audit_job": "242736.cm",
     "external_numeric_audit_tool": "metis_execution/external_numeric_audit/attempt1",
     "external_numeric_audit_status": "FAILED_EXACT_WEIGHT_TO_GATE_COMPARISON",
@@ -218,11 +218,29 @@
     "external_version_comparison_scope": "20keys_weight_summary_evaluated_counts_windmetrics_exact;NOT_old_new_per_cell_identity",
     "external_deterministic_bounded_scientific_review": "PASS_WITH_LIMITATIONS_FIXED_WEIGHTS_LOCAL_FORECASTS_CALIBRATION_ONLY",
     "external_deterministic_bounded_report": "docs/EXTERNAL_DETERMINISTIC_EVIDENCE_20261015.md",
-    "latest_gate_log": "artifacts/metis_heartbeat_20261015_2232/verification_gate_after_reviews.log",
+    "latest_gate_log": "artifacts/metis_followup_20261016_0804/verification_gate.log",
     "downstream_diagnostics_status": "242629_F_EXIT1_DENSE_PHASE_HEAD_GUARD",
     "downstream_successful_before_failure": [
       "run_matched_budget_frontier",
       "run_rho_sensitivity"
-    ]
+    ],
+    "downstream_recovery_tool": "metis_execution/downstream_recovery/attempt1",
+    "downstream_recovery_source_commit": "69251ab6f51358b35f56b37c109fa3a921fdaf7f",
+    "downstream_recovery_preflight_job": "242792.cm",
+    "downstream_recovery_preflight_status": "F_EXIT0_INPUTS_AND_SOFTWARE_VERIFIED",
+    "downstream_recovery_source_review": "PASS_WITH_LIMITATIONS_SOURCE_ONLY",
+    "downstream_original_failure_archive": "artifacts/metis_followup_20261016_0804/failure_archive_verification.json",
+    "downstream_recovery_worker_status": "ACTUAL7_PBS_R_AND7_RUNNING_RECEIPTS_NOT_COMPLETE",
+    "downstream_recovery_preflight_tests": "8PASSED_0.17S",
+    "downstream_recovery_jobs": {
+      "preflight": "242792.cm",
+      "phase_five_seeds": "242793[].cm",
+      "supervision": "242794.cm",
+      "active_power": "242795.cm",
+      "phase_aggregate": "242796.cm"
+    },
+    "downstream_phase_concurrency": 5,
+    "downstream_phase_aggregate_status": "242796_H_WAITING_ALL5SEEDS",
+    "downstream_recovery_report": "docs/METIS_DOWNSTREAM_RECOVERY_20261016.md"
   }
 }
