@@ -616,9 +616,18 @@ def run_dense_phase_scan_for_seed(
                         ("Frozen Backbone (MoE)", r_froz_moe, t_hyb_moe, calib["thresh_hyb_moe"], calib["alpha_val_moe_froz"], test_s_moe, test_act_moe, r_fb_moe),
                         ("Single-Task Dense Backbone", r_froz_dense, t_spr_dense, calib["thresh_spr_dense"], calib["alpha_val_dense_froz"], test_s_dense, test_act_dense, r_fb_dense),
                     ]:
+                        if len({candidate.shape for candidate in (t_s_sub, t_act_sub, r_cand, r_fb_sub, u_cand)}) != 1:
+                            raise ValueError('Abstention input shapes differ')
                         for candidate in (t_s_sub, r_cand, r_fb_sub, u_cand):
                             if not np.isfinite(candidate[t_act_sub]).all():
                                 raise ValueError('Nonfinite abstention input; do not shrink original population')
+                        effective = t_act_sub & np.isfinite(t_s_sub) & np.isfinite(r_cand) & np.isfinite(r_fb_sub) & np.isfinite(u_cand)
+                        if not np.array_equal(effective, t_act_sub):
+                            raise ValueError('Abstention helper would change the original population')
+                        if not np.isfinite([a_val_dict[c] for c in abstention_coverages]).all():
+                            raise ValueError('Nonfinite validation-frozen abstention multiplier')
+                        if not np.isfinite([th_dict[c] for c in abstention_coverages if c < 1.]).all():
+                            raise ValueError('Nonfinite nontrivial validation abstention threshold')
                         np.savez_compressed(archive_dir/f'seed{seed}_{cond_id}_{m_label.replace(" ", "_")}_abstention.npz',
                             shortfall=t_s_sub, mask=t_act_sub, reserve=r_cand, fallback=r_fb_sub,
                             uncertainty=u_cand, coverages=np.asarray(abstention_coverages),
