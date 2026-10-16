@@ -1,10 +1,10 @@
 {
   "title": "2026-10-15 审计修复与原始数据重跑",
   "created": "2026-09-18T00:00:00+08:00",
-  "updated": "2026-10-15T16:01:31.189159+00:00",
-  "phase": "metis_external_deterministic_bounded_validation_core_running",
+  "updated": "2026-10-16T00:07:31.505160+00:00",
+  "phase": "metis_downstream_failure_recovery_parallel_input_preflight",
   "status": "in_progress",
-  "active_task": "TRR02-TRR12;TRR14BLOCKED_original_exact_FAIL;TRR15-TRR16_boundedVERIFIED;core242628channelsRUNNING;remaining46coverage/manuscript/finalgateOPEN",
+  "active_task": "TRR17-TRR19;core242628F0_channelsEXP02EXP03executed_pendingaudit;diagnostics242629F1_phaseheadguard;preserve-and-diagnose-before-new-attempt",
   "last_verified_task": "TRR16",
   "notes": [
     "Priority revisions (P1-P5) and Exp-C stop condition verified: (1) P1: 'Independent decision value' demoted to 'transition-window localized risk hedge' across main manuscript, cover letter, and canonical docs, strictly preserving negative results (posterior +523k penalty, wspd baseline +410k advantage in steady state, -296k transition interaction); (2) P2: All external transfer statements bounded with 'within evaluated sites only', eliminating universal cross-site transfer claims; (3) P3: Delay regime conclusions in Regime 2 marked provisional pending field validation (Exp-A), evaluated under synthetic stress; (4) P4: MoE framed strictly as an implementation comparator (dense vs routed parity, p=0.380); (5) P5: EXP-02 report template fixed in scripts/run_exp02_zero_privileged_supervision.py to eliminate fabricated two-level bootstrap claims; (6) Stop condition Exp-C confirmed: under withheld pitch (pab=0), incoming wind speed alone deterministically classifies valid operating regimes with 100% precision/recall across all 639,378 test cells, confirming label degradation lacks an independent classification problem and reframing contributions around minimum sufficient modeling and empirical falsification; (7) Verification: main and standalone PDFs compile cleanly to exactly 10.0 pages (0 overfull hboxes), verify_scientific_claim_gate.py PASS, verify_final_pdf_integrity.py PASS, and .agents/scripts/verify_gate.py PASS.",
@@ -78,9 +78,9 @@
     "automation_id": "metis",
     "cadence_minutes": 30,
     "status": "ACTIVE",
-    "last_snapshot": "20261015T154812Z_bdce736a",
+    "last_snapshot": "20261016T000344Z_2a074c32",
     "cloud_collector": "metis_execution/collect_metis_evidence.py",
-    "local_snapshot": "artifacts/metis_heartbeat_20261015_2232/20261015T154812Z_bdce736a",
+    "local_snapshot": "artifacts/metis_followup_20261016_0804/20261016T000344Z_2a074c32",
     "model_fit_receipts": 45,
     "scientific_completion": false,
     "single_fit_hash_population_verified": [
@@ -167,7 +167,7 @@
       "EXECUTED": 20
     },
     "core_retry_strong_baseline_status": "EXECUTED_EXIT0",
-    "core_current_stage": "channels_C6_RUNNING_SNAPSHOT_PARTIAL",
+    "core_current_stage": "F_EXIT0_CHANNELS_EXP02_EXP03_PENDING_INDEPENDENT_AUDIT",
     "factorial_aggregate_pbs_status": "F_EXIT0_NUMERIC_AUDIT242732_BOUNDED_PASS",
     "factorial_numeric_audit_source_commit": "24a2de4",
     "factorial_numeric_audit_job": "242732.cm",
@@ -218,6 +218,11 @@
     "external_version_comparison_scope": "20keys_weight_summary_evaluated_counts_windmetrics_exact;NOT_old_new_per_cell_identity",
     "external_deterministic_bounded_scientific_review": "PASS_WITH_LIMITATIONS_FIXED_WEIGHTS_LOCAL_FORECASTS_CALIBRATION_ONLY",
     "external_deterministic_bounded_report": "docs/EXTERNAL_DETERMINISTIC_EVIDENCE_20261015.md",
-    "latest_gate_log": "artifacts/metis_heartbeat_20261015_2232/verification_gate_after_reviews.log"
+    "latest_gate_log": "artifacts/metis_heartbeat_20261015_2232/verification_gate_after_reviews.log",
+    "downstream_diagnostics_status": "242629_F_EXIT1_DENSE_PHASE_HEAD_GUARD",
+    "downstream_successful_before_failure": [
+      "run_matched_budget_frontier",
+      "run_rho_sensitivity"
+    ]
   }
 }

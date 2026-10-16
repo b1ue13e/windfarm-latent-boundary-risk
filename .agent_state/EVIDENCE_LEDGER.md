@@ -1666,3 +1666,9 @@ Verification: independent_evidence_review.txt boundedPASS;scientific_falsifier_r
 
 
 Final checkpoint2026-10-15T16:02UTC: actual .agents/scripts/verify_gate.py exit1 after boundedreviews. Fullstdout/exitcode artifacts/metis_heartbeat_20261015_2232/verification_gate_after_reviews.log and .exitcode;generatedgate report preserved separately. Failures are openTRR02-TRR12 andverify_raw_replay(exit1),notmissingTRR15/TRR16evidence. Prior gatebeforeTRR16closure retainedseparately. Wholeprojectincomplete,automationremainsACTIVE. User-existingdirtyfiles notstaged;localcode commits alreadyrecorded. No scientificgate/contract changed.
+
+
+## 2026-10-16 Shanghai08:04 initial downstream evidence
+Task-ID: TRR17 / TRR18 / TRR19
+Status: PARTIAL_WITH_NEW_EXECUTION_FAILURE
+Evidence: actualcollector20261016T000344Z_2a074c32,index928files/34PBSstreams independently SHAverified,collector source identity matcheslocal. Actualcore242628F0,channels/exp02/exp03 receiptsEXECUTED0;diagnostics242629F1. Matchedbudget/rhosensitivity receiptsEXECUTED0 beforephasefailed. Fullphase stdout actualValueError Quantile head training data are not matched: shortfall,not numericalscientificfailure. Complete19file failurearchive6889924bytes SHAba270b4e393dab3c2e49a4012d96bfd13125fa17e18b671bc2e5429067086573 returned/independently19filehashed. Originalbothpartialheads preserved,notresume. DirectNumPy observation artifacts/metis_followup_20261016_0804/phase_failure_numeric_diagnosis.json: anchors/masks exact,shape9600x134,925335valid finite shortfalls exact;16722NaNs allinvalid andsamepositions;fullshortfalls equal_nan=Trueexact,defaultcomparisonfalse. No scientific tolerance fit. Sourcealso hasundefinedcond_id archival filename,notyetreachedbyfailedexecution. Actualnodes.json13compatiblegeneral freeGPU/4CPU/64GBnodes observed;nojobsmodifiedyet. Completedoutputs stillpending independentnumeric/packet/statisticalaudit;notwholepaperreproduction.

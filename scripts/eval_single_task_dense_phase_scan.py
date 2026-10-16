@@ -41,7 +41,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(os.environ.get("WINDFARM_REPO_ROOT", Path(__file__).resolve().parents[1]))
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
@@ -64,6 +64,25 @@ from scripts.decisive_fair_risk_benchmark import (
     compute_decisive_metrics,
 )
 from scripts.run_boundary_phase_scan import evaluate_frozen_threshold_abstention
+
+
+def assert_matched_head_training(a, b):
+    """Require exact targets; matching NaN placeholders are allowed only off-mask."""
+    for key in ('anchor_indices', 'mask'):
+        if not np.array_equal(a[key], b[key]):
+            raise ValueError(f'Quantile head training data are not matched: {key}')
+    left, right = a['shortfall'], b['shortfall']
+    if left.shape != right.shape or left.shape != a['mask'].shape:
+        raise ValueError('Quantile head target shapes differ')
+    if not np.isfinite(a['mask']).all():
+        raise ValueError('Nonfinite head training mask')
+    valid = a['mask'] > 0.5
+    if not valid.any() or not np.isfinite(left[valid]).all() or not np.isfinite(right[valid]).all():
+        raise ValueError('Nonfinite/empty valid head training targets')
+    if not np.array_equal(left, right, equal_nan=True):
+        raise ValueError('Quantile head training data are not matched: shortfall')
+    return dict(valid_cells=int(valid.sum()), matching_invalid_nan_cells=int(np.isnan(left).sum()),
+                valid_targets_exact=True, tolerance=None)
 
 
 def train_frozen_quantile_head_dynamic(
@@ -184,6 +203,8 @@ def frozen_phase_population(bundle, split, seed, lead, anchors, frozen):
         raise ValueError('Phase scan timestamp/node identity mismatch')
     wi = bundle.metadata['physics_names'].index('Wspd')
     wind = np.asarray(bundle.physics[anchors,:,wi]).reshape(-1)
+    if not np.isfinite(shortfall[mask]).all() or not np.isfinite(wind[mask]).all():
+        raise ValueError('Nonfinite canonical phase population; do not drop valid cells')
     return shortfall, mask & np.isfinite(shortfall) & (np.abs(wind-10.5)<=1.)
 
 
@@ -308,9 +329,9 @@ def run_dense_phase_scan_for_seed(
             forecast_reference=routed_model,archive_dir=archive_dir/f'seed{seed}_head_dense_h{lead+1}',
             shared_targets=archive_dir/f'seed{seed}_head_moe_h{lead+1}'/'training_targets.npz')
         with np.load(archive_dir/f'seed{seed}_head_moe_h{lead+1}'/'training_targets.npz') as a, np.load(archive_dir/f'seed{seed}_head_dense_h{lead+1}'/'training_targets.npz') as b:
-            for key in ('anchor_indices','mask','shortfall'):
-                if not np.array_equal(a[key],b[key]):
-                    raise ValueError(f'Quantile head training data are not matched: {key}')
+            matched = assert_matched_head_training(a, b)
+        (archive_dir/f'seed{seed}_head_target_check_h{lead+1}.json').write_text(
+            json.dumps(matched, indent=2), encoding='utf-8')
 
     # 3. Precompute Condition-Matching Validation Calibrations across all (lag, channel_mode)
     print("Precomputing condition-matching validation calibrations...", flush=True)
@@ -440,6 +461,21 @@ def run_dense_phase_scan_for_seed(
                     "alpha_val_moe_rout": alpha_val_moe_rout,
                     "alpha_val_dense_froz": alpha_val_dense_froz,
                 }
+                for candidate in (v_phys_raw, v_froz_moe_raw, v_froz_moe_bin,
+                                  v_froz_dense_raw, v_froz_dense_bin, v_prob_moe,
+                                  v_r_phys, v_r_froz_moe, v_r_rout, v_r_froz_dense):
+                    if not np.isfinite(candidate[v_act_moe]).all():
+                        raise ValueError('Nonfinite validation policy on original phase population')
+                np.savez_compressed(archive_dir/f'seed{seed}_val_lag{lag}_{ch_mode}_h{lead+1}.npz',
+                    anchor_indices=val_ds.anchor_indices, shortfall=v_s_moe, mask=v_act_moe,
+                    wind=v_wspd, pitch=v_pab, gate_pitch=v_prob_moe,
+                    moe_raw=v_froz_moe_raw, dense_raw=v_froz_dense_raw,
+                    physical_raw=v_phys_raw, moe_binned=v_froz_moe_bin,
+                    dense_binned=v_froz_dense_bin, physical_reserve=v_r_phys,
+                    moe_reserve=v_r_froz_moe, routed_reserve=v_r_rout,
+                    dense_reserve=v_r_froz_dense,
+                    calibration=np.array([val_calibrations[(lead,lag,ch_mode)]],dtype=object),
+                    wind_edges=w_edges, wind_quantiles=np.asarray(w_quantiles))
 
     # 4. Multi-Dimensional Grid Scan on Test Split
     print("Executing multidimensional grid scan on test set...", flush=True)
@@ -511,9 +547,16 @@ def run_dense_phase_scan_for_seed(
                 r_froz_dense_binned = apply_5bin_policy(t_froz_dense_raw, calib["froz_dense_res"], calib["froz_dense_edg"])
                 r_froz_dense = np.maximum(calib["g_froz_dense"] * r_froz_dense_binned + calib["d_froz_dense"], 0.0)
                 m_froz_dense = compute_decisive_metrics(test_s_dense, r_froz_dense, test_act_dense, np.zeros_like(test_prob_moe), test_regime)
+                for candidate in (r_wind, r_phys_clean, r_phys_recal, r_froz_moe,
+                                  r_routed, r_froz_dense, test_prob_moe):
+                    if not np.isfinite(candidate[test_act_moe]).all():
+                        raise ValueError('Nonfinite test policy on original phase population')
+                cond_id = f'lag{lag}_{ch_mode}_h{lead+1}'
                 np.savez_compressed(archive_dir/f'seed{seed}_{cond_id}.npz',shortfall=test_s_moe,mask=test_act_moe,
                     anchor_indices=test_ds.anchor_indices,wind_baseline=r_wind,physical_clean=r_phys_clean,
-                    physical_recal=r_phys_recal,moe_frozen=r_froz_moe,moe_routed=r_routed,dense_frozen=r_froz_dense)
+                    physical_recal=r_phys_recal,moe_frozen=r_froz_moe,moe_routed=r_routed,dense_frozen=r_froz_dense,
+                    gate_pitch=test_prob_moe, wind=test_wspd, regime=test_regime,
+                    forecast_fixed=test_pred_moe)
 
                 # Record full scan row
                 scan_results.append({
@@ -574,6 +617,12 @@ def run_dense_phase_scan_for_seed(
                         ("Frozen Backbone (MoE)", r_froz_moe, t_hyb_moe, calib["thresh_hyb_moe"], calib["alpha_val_moe_froz"], test_s_moe, test_act_moe, r_fb_moe),
                         ("Single-Task Dense Backbone", r_froz_dense, t_spr_dense, calib["thresh_spr_dense"], calib["alpha_val_dense_froz"], test_s_dense, test_act_dense, r_fb_dense),
                     ]:
+                        np.savez_compressed(archive_dir/f'seed{seed}_{cond_id}_{m_label.replace(" ", "_")}_abstention.npz',
+                            shortfall=t_s_sub, mask=t_act_sub, reserve=r_cand, fallback=r_fb_sub,
+                            uncertainty=u_cand, coverages=np.asarray(abstention_coverages),
+                            thresholds=np.asarray([th_dict[c] for c in abstention_coverages]),
+                            alpha_validation=np.asarray([a_val_dict[c] for c in abstention_coverages]),
+                            random_seed=seed)
                         abs_evals = evaluate_frozen_threshold_abstention(
                             t_s=t_s_sub,
                             t_act=t_act_sub,
