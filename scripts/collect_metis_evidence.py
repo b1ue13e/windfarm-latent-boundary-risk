@@ -110,7 +110,8 @@ def snapshot(root,qstat):
         # Capture their actual visible histories/manifests without copying tensors
         # or interpreting a partial history as completed training.
         for filename in ('training_history.json','training_summary.json',
-                         'transition_denominators.json','output_manifest.json','provenance.json'):
+                         'transition_denominators.json','output_manifest.json','provenance.json',
+                         'numeric_execution_profile.json','aggregation_receipt.json'):
             for path in sorted(base.rglob(filename)):save(path)
         for directory in execution_dirs:
             for path in sorted(directory.glob('*/record.json')):
