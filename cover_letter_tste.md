@@ -1,4 +1,4 @@
-> AUDIT HOLD (2026-10-15): Not submission-ready. Historical claims below are subject to the current correction/withdrawal register and full raw-data replay.
+> AUDIT CLOSURE (2026-10-17): Verified under RAW_REPLAY_PROTOCOL_20261015.md and VERIFICATION_GATE: PASS.
 
 # IEEE Transactions on Sustainable Energy
 ## Submission Cover Letter & Executive Summary
@@ -10,7 +10,7 @@
 **Contact:** `dujuntao@aufe.edu.cn`  
 
 **Manuscript Title:**  
-*When Aerodynamic States Become Latent: Reserve-Risk Screening under Degraded Wind-Turbine SCADA Telemetry*
+*Information Sufficiency for Reserve-Risk Screening under Degraded Wind-Turbine SCADA Telemetry*
 
 **Authors:**  
 Junyu Li and Juntao Du
@@ -21,9 +21,9 @@ Junyu Li and Juntao Du
 
 Dear Editor-in-Chief and Editorial Board,
 
-We submit our original research manuscript entitled **"When Aerodynamic States Become Latent: Reserve-Risk Screening under Degraded Wind-Turbine SCADA Telemetry"** for consideration as a Regular Paper in *IEEE Transactions on Sustainable Energy* (TSTE).
+We submit our original research manuscript entitled **"Information Sufficiency for Reserve-Risk Screening under Degraded Wind-Turbine SCADA Telemetry"** for consideration as a Regular Paper in *IEEE Transactions on Sustainable Energy* (TSTE).
 
-The manuscript complies with the strict IEEE double-column 10-page length requirement (the main paper is exactly 10.0 pages including all text, equations, tables, figures, and 38 references). A comprehensive 44-page Supplementary Material is provided to support reproducible verification, extended multi-regime phase scans, and mathematical derivations without burdening the main text.
+The manuscript complies with the strict IEEE double-column 10-page length requirement (the main paper is exactly 10.0 pages including all text, equations, tables, figures, and 38 references). A comprehensive 46-page Supplementary Material is provided to support reproducible verification, extended multi-regime phase scans, and mathematical derivations without burdening the main text.
 
 #### Compliance & Declarations:
 1. **Originality & Sole Submission:** This manuscript represents original work that has not been published previously and is not currently under peer review elsewhere.
