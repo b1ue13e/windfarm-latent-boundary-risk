@@ -84,6 +84,38 @@
         "reusable": "后果信号状态恢复无监督/弱监督对齐评估方法与控制状态可辨识性先例",
         "evidence": "strong",
         "updatedAt": "2026-10-12T23:59:25.984Z"
+      },
+      {
+        "id": "P05",
+        "paper": "Viafora et al. (2020), Dynamic Reserve and Transmission Capacity Allocation in Wind-Dominated Power Systems, IEEE Transactions on Power Systems, DOI: 10.1109/TPWRS.2020.3043225",
+        "year": 2020,
+        "task": "风电并网系统中的动态运行备用容量与输电能力联合配置",
+        "data": "丹麦系统历史负荷与风电出力实测数据，IEEE 118 节点与实际大电网测试算例",
+        "method": "两阶段鲁棒与随机动态规划，多重切割 Benders 分解，动态分位数风险评估",
+        "assumption": "电网运行面临风电不确定性，备用容量需求高度非对称，需要基于动态风险进行容量联合优化。",
+        "mainResult": "建立了风电主导系统中的动态备用与输电容量联合优化模型，提出基于两阶段分解的非对称风险评估框架。",
+        "failure": "传统方法采用固定静态备用或单一置信水平，未考虑时空异质性与网络约束下的动态非对称短缺惩罚。",
+        "role": "foundational",
+        "similarity": "高；直接为本研究提供了风电备用容量决策的非对称损失目标（PSREI 类似形式）与电网调度工程视角",
+        "reusable": "非对称短缺能量惩罚定义（短缺成本 vs 采购成本的权衡形式），IEEE 标准两阶段决策描述规范",
+        "evidence": "strong",
+        "updatedAt": "2026-10-17T04:15:50.843Z"
+      },
+      {
+        "id": "P06",
+        "paper": "Simeunovic et al. (2021), Spatio-temporal graph neural networks for multi-site PV power forecasting, IEEE Transactions on Sustainable Energy, DOI: 10.1109/TSTE.2021.3125200",
+        "year": 2021,
+        "task": "多场站新能源功率时空图预测",
+        "data": "瑞士多地点光伏生产实测时序数据集与高分辨率合成拓扑网络",
+        "method": "时空图卷积神经网络（STGNN），图信号处理（GSP），动态空间邻接矩阵建模",
+        "assumption": "多场站新能源出力时间序列可建模为图信号，通过时空图卷积（GCN+LSTM/Transformer）捕获跨节点空间相关性可提高预测精度。",
+        "mainResult": "提出了 GCLSTM 与 GCTrafo 两种时空图神经网络架构，相较于无图 LSTM 和单站点模型在均方根误差上有微弱降低。",
+        "failure": "只评估了点预测/统计误差（RMSE/MAE/Pinball），未将时空图预测映射到下游备用决策风险中，且未在相同到达信息下与简易局部基准做严格决策增益对齐。",
+        "role": "mainstream",
+        "similarity": "高；本项目的对标主流模型（STGQ/STGNN），正是本研究要进行决策增益检验与必要性反证的对象",
+        "reusable": "IEEE TSTE 格式的时空图形式化定义、跨场站图信号处理框架、IEEE 标准时空对比实验展现方式",
+        "evidence": "moderate",
+        "updatedAt": "2026-10-17T04:15:59.502Z"
       }
     ]
   },
@@ -340,6 +372,20 @@
         "action": "method",
         "detail": "M1：Observability-Aware Minimum-Sufficient Risk Router → MUST TRY",
         "at": "2026-10-15T05:02:12.567Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "concluded",
+        "action": "literature",
+        "detail": "P05：Viafora et al. (2020), Dynamic Reserve and Transmission Capacity Allocation in Wind-Dominated Power Systems, IEEE Transactions on Power Systems, DOI: 10.1109/TPWRS.2020.3043225（奠基类）",
+        "at": "2026-10-17T04:15:50.843Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "concluded",
+        "action": "literature",
+        "detail": "P06：Simeunovic et al. (2021), Spatio-temporal graph neural networks for multi-site PV power forecasting, IEEE Transactions on Sustainable Energy, DOI: 10.1109/TSTE.2021.3125200（主流类）",
+        "at": "2026-10-17T04:15:59.502Z"
       }
     ]
   },
@@ -549,5 +595,5 @@
       "updatedAt": "2026-10-15T00:40:05.293Z"
     }
   ],
-  "updatedAt": "2026-10-15T05:02:12.567Z"
+  "updatedAt": "2026-10-17T04:15:59.503Z"
 }

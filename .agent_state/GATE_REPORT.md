@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-10-17T12:02:16+08:00
+Generated: 2026-10-17T12:36:02+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -25,21 +25,19 @@ Total pages: 10
   [PASS] Confirmed absent: 'decision value is maximized'
 
 --- Checking Headline Number Proximity Qualifiers ---
-Number 589,535 found 6 times:
-  [PASS] Occurrence #1 at index 996: qualifier present=True
-  [PASS] Occurrence #2 at index 5219: qualifier present=True
-  [PASS] Occurrence #3 at index 8493: qualifier present=True
-  [PASS] Occurrence #4 at index 27696: qualifier present=True
-  [PASS] Occurrence #5 at index 36646: qualifier present=True
-  [PASS] Occurrence #6 at index 59267: qualifier present=True
-Number 881,367 found 7 times:
-  [PASS] Occurrence #1 at index 1021: qualifier present=True
-  [PASS] Occurrence #2 at index 5246: qualifier present=True
-  [PASS] Occurrence #3 at index 8518: qualifier present=True
-  [PASS] Occurrence #4 at index 27751: qualifier present=True
-  [PASS] Occurrence #5 at index 30248: qualifier present=True
-  [PASS] Occurrence #6 at index 32884: qualifier present=True
-  [PASS] Occurrence #7 at index 59291: qualifier present=True
+Number 589,535 found 5 times:
+  [PASS] Occurrence #1 at index 1027: qualifier present=True
+  [PASS] Occurrence #2 at index 6391: qualifier present=True
+  [PASS] Occurrence #3 at index 26780: qualifier present=True
+  [PASS] Occurrence #4 at index 37169: qualifier present=True
+  [PASS] Occurrence #5 at index 57774: qualifier present=True
+Number 881,367 found 6 times:
+  [PASS] Occurrence #1 at index 1051: qualifier present=True
+  [PASS] Occurrence #2 at index 6416: qualifier present=True
+  [PASS] Occurrence #3 at index 26835: qualifier present=True
+  [PASS] Occurrence #4 at index 30907: qualifier present=True
+  [PASS] Occurrence #5 at index 33543: qualifier present=True
+  [PASS] Occurrence #6 at index 57799: qualifier present=True
 
 [ALL IEEE PDF CHECKS PASSED]
 
@@ -87,8 +85,8 @@ Exit: 0
   [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (8,150 bytes)
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,571 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (7,010 bytes)
-  [PASS] build/paper_tste_ieee.pdf (269,582 bytes)
-  [PASS] build/paper_tste_supplementary.pdf (1,020,227 bytes)
+  [PASS] build/paper_tste_ieee.pdf (265,195 bytes)
+  [PASS] build/paper_tste_supplementary.pdf (1,021,376 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
   [PASS] Information-set manifest validated (819 rows, zero forward leakage)

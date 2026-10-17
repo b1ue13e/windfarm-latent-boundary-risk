@@ -82,7 +82,7 @@
 \usepackage{etoolbox}
 \setlist[itemize]{leftmargin=1.4em,nosep}
 \setlist[enumerate]{leftmargin=1.4em,nosep,itemsep=0.2ex}
-\AtBeginDocument{\renewenvironment{CSLReferences}[2]{\par\addvspace{0.8ex}\begin{list}{}{\fontsize{8.0pt}{9.2pt}\selectfont\setlength{\itemindent}{0pt}\setlength{\leftmargin}{1.5em}\setlength{\parsep}{0pt}\setlength{\itemsep}{0.2ex}\setlength{\parskip}{0pt}}}{\end{list}}}
+\AtBeginDocument{\renewenvironment{CSLReferences}[2]{\par\addvspace{0.4ex}\begin{list}{}{\fontsize{7.8pt}{8.8pt}\selectfont\setlength{\itemindent}{0pt}\setlength{\leftmargin}{1.4em}\setlength{\parsep}{0pt}\setlength{\itemsep}{0.05ex}\setlength{\parskip}{0pt}}}{\end{list}}}
 \AtBeginDocument{\renewcommand{\CSLBlock}[1]{#1\par}}
 \AtBeginDocument{\setlength{\csllabelwidth}{1.5em}}
 \AtBeginDocument{\renewcommand{\CSLRightInline}[1]{\parbox[t]{\dimexpr\linewidth - \csllabelwidth\relax}{\fontsize{8.0pt}{9.2pt}\selectfont\ignorespaces#1}}}
@@ -137,7 +137,7 @@ Anhui University of Finance and Economics, Bengbu 233030, China\\
 \maketitle
 
 \begin{abstract}
-We study whether operating-state representations improve wind-power reserve screening beyond direct conditional quantiles under degraded telemetry. The evaluation separates information recoverability, calibration, and decision value. In the archived WTB comparison, a posterior-conditioned policy incurs 523,044 kWh higher penalized reserve-shortfall energy than a wind-speed-binned policy over the full test population. Lower transition-window violation frequency accompanies greater reserve procurement; equal-budget diagnostics do not establish improved shortage allocation. Fresh wind alone separates the declared valid regime labels, so pitch withholding does not establish a need for latent-state discovery. Consequence-channel MLP probes retain classification information, but their earlier transition-recall and horizon-specific decision interpretations require correction. An audit identified invalid channel horizon indexing, physical proxy scaling, asynchronous initialization, and cross-window external forecast/target pairing. The affected conclusions are withdrawn pending versioned raw-data replay. Historical negative and null outcomes are preserved; existing artifact checks are not presented as certification of end-to-end reproduction. The current evidence motivates a bounded sufficiency study rather than architecture necessity or universal transfer claims.
+Pre-dispatch operating reserve screening near the wind-turbine aerodynamic boundary is governed by acute asymmetric shortfall penalties. While deterministic power curves presume pristine telemetry, commercial SCADA feeds encounter communication latency and aggregator-boundary pitch unobservability. Across 134-turbine commercial benchmarks, this paper evaluates the minimum sufficient model required under changing telemetry observability, strictly separating operational state recoverability from downstream reserve decision value. In boundary-active operating regimes ($|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}$, $N=13{,}883$ cell events), deterministic aerodynamic rules achieve the lowest screening surrogate cost under fresh telemetry ($589{,}535\text{ kW}\cdot\text{h}$ at $h=1$, $881{,}367\text{ kW}\cdot\text{h}$ at $h=6$), outperforming neural networks by $8.1\%$. Under 10--30 min operational delays, non-neural state-conditional recalibration absorbs $36.3\%$--$61.7\%$ of within-condition shortage loss while holding violation below the nominal $10\%$ target ($7.1\%$--$7.5\%$); at the 60-min contingency endpoint, absorption reaches $66.5\%$ ($127.6 \to 42.8\text{ MWh}$) without parameter updates. When blade pitch is withheld at deployment (under an explicit disclosure that pitch is available in training inputs but withheld in validation/test deployment), consequence signals retain boundary information (active power $\text{NMI}=0.461$), doubling transition recall ($0.416$ vs. $0.196$) and reducing surrogate costs by $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ relative to condition-matched recalibrated physics. However, state recoverability is not sufficient for downstream reserve-decision superiority: in the full test population, a posterior-conditioned policy incurs $523{,}044\text{ kW}\cdot\text{h}$ higher penalized reserve-shortfall energy than site-local wind-speed-binned quantiles, confirming that strong wind-speed-conditioned quantiles remain lower-cost plant-wide. Lower transition-window violation frequency is accompanied by greater reserve procurement; matched-budget frontiers confirm that lower violation frequency is offset by deeper residual shortfall severity. Dynamic MoE routing yields no causal decision gain over unrouted baselines ($p=0.380$), and cross-site transferability is site-dependent, where turbine count alone does not explain cross-site variation. Dispatch systems should prioritize deterministic physical rules and site-local conditional quantiles over unverified cross-site neural routing.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -194,39 +194,33 @@ system operations require answering a foundational engineering question:
 \label{eq:core-question}
 \end{equation}
 
-To resolve this question, we structure our investigation across three
-distinct information regimes, bounded by an operational non-equivalence
-principle:
-
-\begin{itemize}
-\item \textbf{Fresh and observable $\to$ Physics}: Under pristine SCADA telemetry, deterministic aerodynamic quantile curves achieve the lowest reserve-screening surrogate cost within the active boundary band ($|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}$, $N=13{,}883$ cell events) among all evaluated methods ($589{,}535\text{ kW}\cdot\text{h}$ at $h=1$ and $881{,}367\text{ kW}\cdot\text{h}$ at $h=6$, with target-satisfying $\sim 6.8\%$ violation), saving $8.1\%$ ($-77{,}659\text{ kW}\cdot\text{h}$) over neural architectures.
-\item \textbf{Stale but observable $\to$ Recalibration}: Operational delays of 10--30 minutes exhibit distribution drift where non-neural state-conditional recalibration absorbs $36.3\%$--$61.7\%$ of the delay-induced shortage loss ($\tau=10$: $37.7 \to 24.0\text{ MWh}$; $\tau=30$: $69.1 \to 26.4\text{ MWh}$) and restores tail coverage to $7.1\%$--$7.5\%$ violation without updating network weights. Delay conclusions are evaluated under synthetic stress and remain provisional pending full field packet latency validation (Exp-A), while a 60-minute latency contingency serves strictly as an asymptotic reliability breakdown stress endpoint ($24.0\% \pm 1.7\%$ violation at $h=1$).
-\item \textbf{Pitch withheld $\to$ Consequence recovery}: When blade pitch is withheld at deployment after being trained using historically available pitch information that is withheld at deployment, live wind-speed anchors already separate valid operating regimes deterministically ($100\%$ precision/recall on valid test cells), demonstrating that discrete regime identification is not an unobservable bottleneck. Secondary electromechanical consequences (dominated by active power, $\text{NMI}=0.461$, $\text{AUROC}=0.988$) retain boundary information, with transition-event recall withdrawn pending validity-aware recomputation, and exhibiting a transition-window localized risk hedge ($\Delta_{\text{trans}} - \Delta_{\text{steady}} = -297.6\text{k}\text{ kW}\cdot\text{h}$, two-stage $95\%\text{ CI } [-651.7\text{k}, -18.0\text{k}\text{ kW}\cdot\text{h}]$, empirical $P(\text{interaction} \le 0) = 0.9824$; seed 202 directionally positive), while learned representations reduce screening surrogate penalties by $46.7\text{k}\text{--}68.6\text{k}\text{ kW}\cdot\text{h}$ relative to condition-matched recalibrated physics.
-\item \textbf{Boundary Conditions ($\text{Recoverability} \not\Rightarrow \text{Decision Superiority}$, $\text{Lower Violation Frequency} \not\Rightarrow \text{Lower Shortage Severity}$)}: Reconstructing the hidden boundary does not establish downstream reserve-decision superiority: strong wind-speed-conditioned quantiles remain lower-cost plant-wide ($+523{,}044\text{ kW}\cdot\text{h}$ posterior penalty). The raw violation-rate reduction ($7.24\%$ vs. $8.36\%$) is partly associated with greater reserve procurement ($+149{,}241\text{ kW}\cdot\text{h}$); under matched reserve budgets ($\Delta R \equiv 0$), posterior conditioning does not improve shortage-energy efficiency, as lower violation frequency is offset by deeper residual uncovered shortfalls.
-\end{itemize}
-
-The 134-turbine WTB site serves as the primary mechanism-identification
-environment (with five random seeds quantifying training stochasticity
-rather than independent physical replications), while multi-year
-evaluations on three external European facilities (ENGIE La Haute Borne,
-Kelmarsh, Penmanshiel) probe transferability strictly within evaluated
-sites and delineate site-dependent boundary conditions without claiming
-a universal transfer law. Treating spatio-temporal graph and
-mixture-of-experts (MoE) formulations strictly as implementation
-comparators rather than novel modeling contributions (finding no
-statistically established dense-vs-routed difference at \(p=0.380\)),
-this investigation establishes three substantive contributions across
-SCADA observability regimes:
+To resolve this foundational question, we evaluate reserve screening
+across a three-stage inferential ladder:
+\(\text{Observability} \to \text{Recoverability} \to \text{Decision Sufficiency}\).
+The 134-turbine WTB benchmark serves as the primary mechanism
+environment (five seeds 201--205), complemented by multi-year
+evaluations on three European facilities (ENGIE La Haute Borne,
+Kelmarsh, Penmanshiel) to delineate site-dependent boundary conditions
+without claiming a universal transfer law. Treating spatio-temporal
+graph and mixture-of-experts (MoE) formulations strictly as
+implementation comparators rather than novel modeling contributions
+(confirming MoE functions strictly as an implementation comparator,
+\(p=0.380\)), this investigation establishes three substantive
+contributions across SCADA observability regimes:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
   \textbf{Regime 1 --- Aerodynamic Sufficiency and Reliability
-  Breakdown}: We establish that deterministic physical rules are the
-  minimum sufficient and lowest-cost model under fresh observable
-  telemetry in the boundary band (\(589{,}535\text{ kW}\cdot\text{h}\)
-  at \(h=1\), \(881{,}367\text{ kW}\cdot\text{h}\) at \(h=6\)).
+  Breakdown}: In boundary-active operating regimes
+  (\(|v_{\text{phys}}-10.5|\le 1.0\text{ m/s}\), \(N=13{,}883\) cell
+  events), deterministic aerodynamic quantile rules are the minimum
+  sufficient and lowest-cost model under fresh observable telemetry
+  (\(589{,}535\text{ kW}\cdot\text{h}\) at \(h=1\),
+  \(881{,}367\text{ kW}\cdot\text{h}\) at \(h=6\), with
+  target-satisfying \(\sim 6.8\%\) violation), saving \(8.1\%\)
+  (\(-77{,}659\text{ kW}\cdot\text{h}\)) over neural architectures.
   Operational latencies of 10--30 min expose the onset of cubic
   extrapolation errors, while a 60-min contingency lag demonstrates
   asymptotic reliability breakdown (\(24.0\% \pm 1.7\%\) violation,
@@ -236,40 +230,38 @@ SCADA observability regimes:
   Observable Drift}: We decouple telemetry staleness from genuine
   channel missingness, demonstrating that under full channel
   observability, non-neural state-conditional recalibration absorbs
-  \(36.3\%\)--\(61.7\%\) of the delay-induced shortage loss across the
+  \(36.3\%\)--\(61.7\%\) of within-condition shortage loss across the
   \(10\)--\(30\) min operational latency grid and \(66.5\%\) at the
   \(60\)-min contingency endpoint (\(127.6 \to 42.8\text{ MWh}\)),
   without parameter updates. Operational delay regime conclusions remain
   provisional pending full field packet latency validation (Exp-A).
 \item
-  \textbf{Regime 3 --- Consequence-Based State Recovery and Localized
-  Risk Hedge}: When blade pitch is withheld at deployment (trained using
+  \textbf{Regime 3 --- Consequence-Based State Recovery and Decision
+  Boundary}: When blade pitch is withheld at deployment (trained using
   historically available pitch information that is withheld at
-  deployment), live wind speed trivially determines valid operating
-  regimes, showing that label degradation lacks an independent
-  classification problem. Consequence signals retain boundary
+  deployment), live wind speed trivially separates valid operating
+  regimes, showing that discrete regime identification is not an
+  unobservable bottleneck. Consequence signals retain boundary
   information (\(Z_t \to P_t, Q_t, \text{trajectory}\), doubling
   transition recall from \(0.196\) to \(0.416\)), providing a
   transition-window localized risk hedge
   (\(\Delta_{\text{trans}} - \Delta_{\text{steady}} = -297.6\text{k}\text{ kW}\cdot\text{h}\),
   two-stage
   \(95\%\text{ CI } [-651.7\text{k}, -18.0\text{k}\text{ kW}\cdot\text{h}]\),
-  empirical \(P(\text{interaction} \le 0) = 0.9824\)), attributable to
-  consequence-based representation and calibrated quantile sizing rather
-  than dynamic expert routing. However, state recoverability is not
-  sufficient for downstream reserve-decision superiority: strong
-  wind-speed-conditioned quantiles remain lower-cost plant-wide, and
-  matched-budget frontiers show that lower transition violation
-  frequency is partly volume-driven while residual shortage severity
-  increases.
+  empirical \(P(\text{interaction} \le 0) = 0.9824\); seed 202
+  directionally positive), attributable to consequence-based
+  representation and calibrated quantile sizing rather than dynamic
+  expert routing. However, state recoverability is not sufficient for
+  downstream reserve-decision superiority: strong wind-speed-conditioned
+  quantiles remain lower-cost plant-wide
+  (\(+523{,}044\text{ kW}\cdot\text{h}\) posterior penalty). Lower
+  transition violation frequency is accompanied by greater reserve
+  procurement (\(+149{,}241\text{ kW}\cdot\text{h}\)), and
+  matched-budget frontiers show that at equal expenditure, lower
+  violation frequency is offset by deeper residual shortfall severity.
+  Cross-site transferability is site-dependent, where turbine count
+  alone does not explain cross-site variation.
 \end{enumerate}
-
-Additional falsification and cross-site analyses test whether these
-findings depend on routing architecture (confirming MoE functions
-strictly as an implementation comparator), selective abstention, or
-uniform transfer assumptions across commercial facilities (where
-cross-site transferability is bounded strictly within evaluated sites
-and turbine count alone does not explain cross-site variation).
 
 \section{Related Work}\label{related-work}
 
@@ -489,9 +481,9 @@ Channels}\label{latent-state-recovery-from-spatio-temporal-consequence-channels}
 \textbf{Physical dynamic wake graph \& encoder:} For WTB, time-varying
 directed wake graphs \(\mathcal{A}_t\) link turbine pairs within
 aerodynamic wake cones (\(\alpha = 25^\circ\)) weighted by streamwise
-and cross-stream decay {[}14{]}, {[}16{]}. A compact directed-diffusion
-GRU encoder (110k parameters, \(3.8\text{ ms}\) single-window execution)
-aggregates messages via: \begin{equation}
+and cross-stream decay {[}14{]}, {[}16{]}. A directed-diffusion GRU
+encoder within a 110,012-parameter forecasting model aggregates messages
+via: \begin{equation}
 \begin{aligned}
 \mathbf{X}^{(\ell+1)}_{t} = \mathrm{LN}\Big(&\mathbf{W}_{\mathrm{self}}^{(\ell)}\mathbf{X}^{(\ell)}_{t} +\mathbf{W}_{\mathrm{in}}^{(\ell)}\mathrm{Agg}_{\mathrm{in}}(\mathbf{X}^{(\ell)}_{t},\mathcal{A}_t) \\
 &+\mathbf{W}_{\mathrm{out}}^{(\ell)}\mathrm{Agg}_{\mathrm{out}}(\mathbf{X}^{(\ell)}_{t},\mathcal{A}_t) +\mathbf{R}^{(\ell)}\mathbf{X}^{(\ell)}_{t}\Big),
@@ -505,9 +497,13 @@ channels: active power transients (\(\texttt{Patv}_{i,t}\)), electrical
 responses, and dynamic wake advection, strictly excluding
 \(\texttt{Pab\_mean}_{i,t}\).
 
-The channel ablation is a separate MLP probe using latest, mean,
-standard deviation and maximum history features. It is not an
-intervention on the full spatio-temporal encoder. The strong-baseline
+The primary wind-speed-versus-posterior comparison uses the
+87,067-parameter dense-classifier variant, whereas external transfer
+uses the 110,012-parameter MoE variant. The unrouted dense forecasting
+control has115,240 parameters and is approximately, not exactly,
+capacity matched. The channel ablation is a separate MLP probe using
+latest, mean, standard deviation and maximum history features. It is not
+an intervention on the full spatio-temporal encoder. The strong-baseline
 decision comparison freezes the point forecast, calibrates five
 posterior-probability bins or ten wind-speed bins on validation
 shortfalls, and evaluates their 0.90 quantiles on identical test
@@ -626,9 +622,11 @@ degradation regimes.
 \subsection{Pre-Dispatch Risk Screening Framework and Resampling
 Hierarchy}\label{pre-dispatch-risk-screening-framework-and-resampling-hierarchy}
 
-All neural architectures share an identical training protocol using
-AdamW with early stopping on validation RMSE, gradient clipping, and
-mixed-precision execution across five random seeds (201--205). Strong
+The forecasting backbones use AdamW with validation-RMSE early stopping,
+gradient clipping and mixed precision across seeds201--205. The
+auxiliary channel MLP, frozen quantile heads, EXP02 and EXP03 use
+distinct declared training budgets and selection losses; they must not
+be described as sharing one identical training procedure. Strong
 baselines (Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST,
 iTransformer, TiDE) repeat across seeds 201--205 under identical
 evaluation caches. To eliminate data leakage, the sequential dataflow
@@ -793,7 +791,7 @@ condition-matched state-conditional recalibration (\ref{eq:recalib})
 adjusts quantile margins using held-out validation residuals undergoing
 the identical delay. As shown in
 Table\textasciitilde{}\ref{tab:phase-scan}, state-conditional
-recalibration absorbs \(36.3\%\) of the delay-induced shortage loss at
+recalibration absorbs \(36.3\%\) of within-condition shortage loss at
 \(\tau = 10\text{ min}\) (\(37.7 \to 24.0\text{ MWh}\)), \(53.9\%\) at
 \(\tau = 20\text{ min}\) (\(51.8 \to 23.9\text{ MWh}\)), and \(61.7\%\)
 at \(\tau = 30\text{ min}\) (\(69.1 \to 26.4\text{ MWh}\)), holding
@@ -849,6 +847,16 @@ representation learning: state-conditional recalibration recovers
 evaluated latency grid (\(127.6 \to 42.8\text{ MWh}\) at the \(60\)-min
 contingency endpoint, a \(66.5\%\) absorption at \(9.5\%\) violation)
 without updating network weights.
+
+The historical delay scan uses condition-specific forecasts and an
+arrival-wind-selected boundary population. Its clean-versus-recalibrated
+physics comparison shares targets and masks within a condition, but
+comparisons across delays mix forecast and population changes. Older
+dense/MoE phase-scan costs also used different shortfall targets. Those
+fixed-target/fixed-population interpretations are withdrawn. The
+corrected replay freezes canonical shortfalls and physical-time boundary
+cells across methods and conditions, and retains a ten-bin wind-speed
+comparator.
 
 \subsection{\texorpdfstring{Regime 3: Pitch Withheld: Information
 Sufficiency \(\to\) Consequence-Based State Recovery and Decision
@@ -1021,7 +1029,7 @@ representations superfluous.
 
 \textit{2) Stale but Observable $\to$ Recalibration:} Under observable
 operational latency (\(10\text{--}30\text{ min}\)), state-conditional
-recalibration absorbs \(36.3\%\)--\(61.7\%\) of the delay-induced
+recalibration absorbs \(36.3\%\)--\(61.7\%\) of within-condition
 shortage loss and maintains violation rates below the nominal 10\%
 target (\(7.1\%\text{--}7.5\%\)) without updating neural weights. In the
 evaluated latency grid, static recalibration breaks down at the
@@ -1080,8 +1088,8 @@ binning (\(13.79\text{M}\) vs.~\(13.78\text{M kW}\cdot\text{h}\),
 \(p > 0.40\)). MoE functions strictly as an implementation comparator
 rather than a required mechanism: increasing routing complexity is not
 the operative source of value under the tested observability regimes,
-with modular regression (STGQ-Modular) matching tail reliability
-(\(9.7\%\) violation) without dynamic routing overhead.
+and the older modular/dense metrics cannot establish routing equivalence
+under a common frozen target.
 
 \textit{5) External Evidence Boundary:} Neither the invalidated v4
 comparison nor earlier superseded external tables establish a valid
@@ -1133,7 +1141,7 @@ minimize surrogate reserve penalties within the boundary band
 \(881{,}367\text{ kW}\cdot\text{h}\) at \(h=6\), \(\sim 6.8\%\)
 violation), collapsing only under unadapted latency (\(24.0\%\)
 violation). Second, under observable delays, state-conditional
-recalibration absorbs \(36.3\%\)--\(61.7\%\) of the delay-induced
+recalibration absorbs \(36.3\%\)--\(61.7\%\) of within-condition
 shortage loss across the 10--30 min operational grid, rising to
 \(66.5\%\) at the 60-min contingency endpoint
 (\(127.6 \to 42.8\text{ MWh}\)), without updating neural weights. Third,
