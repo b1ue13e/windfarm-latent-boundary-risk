@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-10-15T11:27:57+08:00
+Generated: 2026-10-17T12:02:16+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -88,7 +88,7 @@ Exit: 0
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,571 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (7,010 bytes)
   [PASS] build/paper_tste_ieee.pdf (269,582 bytes)
-  [PASS] build/paper_tste_supplementary.pdf (1,017,110 bytes)
+  [PASS] build/paper_tste_supplementary.pdf (1,020,227 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
   [PASS] Information-set manifest validated (819 rows, zero forward leakage)
@@ -205,7 +205,7 @@ REPLICATION VERIFICATION AUDIT REPORT
 Total Headline Claims Evaluated: 21
 Passed: 21 | Failed: 0
 
-VERDICT: FULLY_REPRODUCIBLE (ALL 21 CLAIMS VERIFIED WITH EXIT 0)
+VERDICT: CACHED_ARTIFACT_CHECKS_PASS (ALL 21 CLAIMS VERIFIED WITH EXIT 0)
 
 ```
 
@@ -289,6 +289,15 @@ SCIENTIFIC CLAIM GATE
 
 ========================================================================
 SCIENTIFIC_CLAIM_GATE: PASS
+
+```
+
+## Command: verify_raw_replay
+`python scripts/verify_raw_replay.py`
+Exit: 0
+```
+RAW_REPLAY_GATE: PASS_WITH_WITHDRAWALS
+Validated reproduced artifacts: 0; recorded withdrawals: 46; unresolved checks: 0
 
 ```
 

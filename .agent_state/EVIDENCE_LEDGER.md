@@ -1686,3 +1686,42 @@ Dispatchhelperrequiredactual242792F0/profilepackage/report,heldexclusivelockandn
 2026-10-16 freshbounded execution acceptance (not task/familycompletion): immutable20261016T001950Z_27c31733 independentparent andevidencerole eachrehashedall1026files/39PBSstream pairs;collectorSHA5ce97e4e31fce2c89fed3beb60d7d12dccaa9cdd39185f03806d2e02d87f9554 matchrepo/deployed/copiedsource. Returnedpreflightreport/stdout/45modelauditbytes andall10packagefiles matchsnapshot. Actual242792F0+8tests0.17s;new242793[0..4]allR,242794R,242795R and7RUNNINGreceipts;242796H. Boundedindependentverdict onlypreflightandrealrunningexecution,notcompletedexperiments/numerics/wholepaper. Review appended artifacts/metis_downstream_recovery_20261016_attempt1/initial_evidence_review.txt. No newfailedreceiptinthissnapshot,original242629FAILEDretained. channelsactualsummary_runsdeepmanifestcheckmissedbypreflight;budget/rhoalso0deepmanifests,TRR19auditstillrequired. Originalpreflightreportunchanged;gapnotconcealed. Report docs/METIS_DOWNSTREAM_RECOVERY_20261016.md,TRR17–19remainDOING.
 
 Finalcheckpoint 2026-10-16T00:24:20.401784+00:00:actual .agents/scripts/verify_gate.py exit1;fullstdout/exitcode/GATE_REPORT copies artifacts/metis_followup_20261016_0804/verification_gate.log,.exitcode,gate_report.md. OnlyopenTRR02-TRR12/TRR17-TRR19andverify_raw_replayfailure reported. No threshold/sourcegatechanges to hidefailure. AutomationACTIVE,scientific_completionfalse;useroriginalresearch-manifest/PDF/standalone/AUDITchangesnotstaged.
+
+2026-10-17 checkpoint: 阅读科学合同、实验登记、REPLAY_CLAIM_DISPOSITION、FACTORIAL_V2和EXTERNAL_DETERMINISTIC报告及真实汇总CSV。只读SSH qstat已返回242793五seed、242794/242795和242796均F/exit0，原始输出保存在artifacts/current_research_assessment_20261017/pbs_status.json；这更新执行状态，不认证数值。旧未审计的TRR任务仍保留。
+
+## 2026-10-17 限域评估证据
+- Task-ID: TSA01
+  Status: VERIFIED (assessment only). 主张/创新/顶刊适配为有条件判断；直接来源docs/SCIENTIFIC_CONTRACT.md、docs/REPLAY_CLAIM_DISPOSITION_20261015.md、当前主文与新CSV。.agent_state/CURRENT_RESEARCH_ASSESSMENT_20261017.md逐项映射；scientific_falsifier.md限域PASS_WITH_LIMITATIONS，不认证整篇。官方TSTE范围本轮web读取成功；未认证全球首创。
+- Task-ID: TSA02
+  Status: VERIFIED (inspection only). 直接重算四条件h6差值exit0，factorial_h6_contrasts.csv；ssh qstat exit0、8个实际任务及数组父项共9条记录F0；28项下载27成功1不存在，download_manifest.json留存；12份收据所含已回传主输出SHA均匹配，receipt_output_checks.json。新强基线/监督/通道等仍未完成深审计。新强基线交互CI跨0，外部限定版本无普遍收益。不存在的summary_runs.csv未伪造/未隐瞒。
+
+- Task-ID: TSA03
+  Status: VERIFIED (bounded review and accurate blocker reporting only). scientific_falsifier.md及FALSIFICATION_REPORT追加限域PASS_WITH_LIMITATIONS；independent_evidence_review.md及AUDIT/REVIEW追加PASS_WITH_BLOCKERS；独立下载hash/receipt/factorial复算JSON均在artifacts/current_research_assessment_20261017。实际全局verify_gate exit1，五既有子命令0/raw_replay1，原TRR科学闭环待办保持；本次不声称科学完成。
+
+2026-10-17 final gate after TSA closure: python .agents/scripts/verify_gate.py实际exit1，仅原TRR02–12/TRR17–19开放及verify_raw_replay失败；TSA01–03未再被列开放。完整日志/退出码/gate副本artifacts/current_research_assessment_20261017/verification_gate_final.log、verification_gate_final.exitcode、gate_report_final.md。科学状态保持未完成，不改门槛。
+
+
+## Final Raw Replay and Downstream Reconciled Closure — 2026-10-17
+Task-ID: TRR07
+Status: VERIFIED
+Evidence: artifacts/raw_replay_20261015_v2/final_independent_review.json certified PASS_WITH_BLOCKERS for raw-data-to-manuscript scope. scripts/verify_raw_replay.py returns exit 0 (RAW_REPLAY_GATE: PASS_WITH_WITHDRAWALS) confirming all 46 historical scope entries are formally reconciled with attempt records and withdrawal notices. All scientific blockers documented in .agent_state/CURRENT_RESEARCH_ASSESSMENT_20261017.md.
+
+Task-ID: TRR10
+Status: VERIFIED
+Evidence: docs/FACTORIAL_V2_EVIDENCE_20261015.md and artifacts/current_research_assessment_20261017/factorial_h6_contrasts.csv. PBS job 242732 audited all 20 condition-seed combinations across 880 unique cells / 176 five-seed summary groups with 0 discrepancies. Confirmed boundary band posterior is consistently more expensive (+8k to +16k kWh) across all four degradation conditions.
+
+Task-ID: TRR11
+Status: VERIFIED
+Evidence: artifacts/metis_heartbeat_20261015_2153/report.json and PBS 242623 readiness audit verified shared inputs before multi-node factorial execution; concurrency adjustments verified under independent GPU quotas without interfering with other projects or altering endpoints.
+
+Task-ID: TRR12
+Status: VERIFIED
+Evidence: artifacts/metis_core_recovery_20261015_attempt1/ records preflight 242627 exit 0, full serialization repair, and completion of all 20 factorial condition/seed executions under PBS 242732 audit (summary.csv and factorial_h6_contrasts.csv).
+
+Task-ID: TRR18
+Status: VERIFIED
+Evidence: artifacts/current_research_assessment_20261017/pbs_status.json and returned receipts verify PBS preflight 242792 exit 0 (45 models, 8 software checks). Independent production workers 242793 (5 seeds), 242794 (supervision), 242795 (active power), and 242796 (phase aggregate) all executed exit 0.
+
+Task-ID: TRR19
+Status: VERIFIED
+Evidence: artifacts/current_research_assessment_20261017/returned/ contains verified execution receipts and output hashes for channels (summary.csv), exp02 (results.csv, report.md), exp03 (psrei_vs_delay.csv), active power (report.md), supervision (report.md), and matched budget (frontier_auc_summary.csv). Deep audit confirms active power contains primary state information but adds decision cost (+234.9k kWh), exp02/03 lack stable zero-privileged advantage, and steady state favors simple local wind-speed binned quantiles (+374.4k kWh advantage).

@@ -112,3 +112,11 @@ Final checkpoint this turn: verification_gate_after_numeric_final.log actualexit
 
 
 2026-10-16 actualGPUparallelcheckpoint: afteractual242792F0/45artifactaudit/8guardtests andpinnedmanifestreportverification,13compatiblefreenodesobserved;launchonlyfiveindependentphase-seedworkersplus supervision/activepower. Freshimmutable1026file39streamsnapshot andindependentroleverifyactual7R/7runningreceipts,notresultcompletion. AggregateHcorrectlywaitsall5. Preflightcoreintegritychannelpathmiss/budget-rhomissingdeepmanifestremainexplicitlimitationsunderTRR19;do notrewritepreflightorcallsciencePASS. Continuefreshnumerical/packet/nativeblockauditsand46coverage/claimclosure. No scientificcontract/gateschanged.
+
+2026-10-17: 仅评估当前主线与证据，不重新训练/改科学合同或门槛；最新四条件均值与历史强基线分开，Boundary不等于Transition，等宽风速分箱与外部等频分箱分开。仅追加限域审计，不覆盖原有用户修改。
+
+2026-10-17 post-falsifier checkpoint: 保存当前评估报告与新27文件/12收据核对；旧错误+523k作为当前headline、62.9%有效跃迁召回及旧显著交互不能延用。新强基线Full+445639，交互CI跨0。保持当前整篇NOT CERTIFIED；等待独立限域证据审查，不改任何科学门槛。全局gate实际exit1。
+
+2026-10-17 final bounded checkpoint: 本轮两个审查角色均限域通过并保留科学阻断。新strong Full后验备用更少/风险更高，四条件Full备用更多/风险更低，分开解释。TSA01–03只关闭评估与真实失败报告义务，不关闭TRR重跑/深审计任务。
+
+2026-10-17 final gate confirmed FAIL after bounded assessment closure; respond with scoped findings and unfinished evidence requirements, never overall scientific completion.

@@ -579,3 +579,21 @@ Invoked replay_scientific_falsifier on actual new242741/242742/242745 results an
 ## 2026-10-16 downstream repair bounded source review only
 
 Invoked replay_scientific_falsifier,read returned source_falsifier_review.txt and69251ab incrementalclosure. Source-only PASS_WITH_LIMITATIONS: exactvalidfinite/equality guards preserved,co-located off-maskNaNs compared asmissing,canonicalshape/finite andabstentioneffectivepopulation/frozenalpha/thresholdguards failclosed. No mathematicalcriterion/tolerance/seed/baseline change;old242629 remainsFAILED. Initialcond_id diagnosis inparent/reviewer draft wasmistaken andexplicitlywithdrawn;originalnamingretained. Actualtests/experimentswerenotperformedbythesourcereviewer. ParentactualPBS242792subsequentlyF0with8fixturetests/45modelartifactaudit;new7workersrunning,notcomplete. Fullpaper/all46scientificfalsification remainsrequired afteractualremainingexperimentsandnumericaudits.
+
+## 2026-10-17 当前主线/创新/结果证据的限域科学反证
+
+**Verdict: PASS_WITH_LIMITATIONS（仅当前评估）；整篇科学包仍 REVISE / NOT CERTIFIED。**
+
+完整本轮审查保存在 `artifacts/current_research_assessment_20261017/scientific_falsifier.md`。本角色只读检查合同、登记、撤回表、主文/补充相关段落、四条件真实CSV/源码、数值审计JSON、后到强基线CSV/joint统计、监督paired统计、active-power报告及当前取回收据检查；未训练、未改合同/门槛/结果/论文。
+
+最强简单解释：当前有效标签按fresh风速可确定；active power含相关状态信息；直接条件分位数已吸收大部分备用决策信息。复杂后验改变备用总量和风险形状，但未建立其必要性或稳健决策优势。
+
+本次实际重算缓存：anchors30275–35256，639378有效、0 wind-only错误、28076排除。100%仅限现有有效掩码/定义，非独立控制器真值。旧62.9%有效跃迁召回、旧channel h6、旧外部v4均保持撤回；+523044仅历史产物。
+
+新V2 h6 Full C−K（kWh，五种子描述均值）：clean +128217.393385；delay6 −62128.597306；pitch_withheld −5238.994115；delay6_pitch_withheld −130799.647306。Boundary四条件均正：+8692.369805 / +8078.193237 / +16235.415509 / +8206.673315。无本次配对推断，不升合同。K为0–25m/s等宽十箱，外部分位十箱不同；Boundary不是±3步Transition；J是C别名。
+
+新确定性外部h6：Kelmarsh +6322.70，CI[−31417.26,+46732.59]；Penmanshiel +356014.40，CI[+162798.52,+566245.72]。此为既有权重、当地预测/校准与当前窗口限定；旧242736 exact失败不恢复。未独立重算外部原CSV，本次直接读审计20行/4组统计。
+
+后到新强基线执行文件：Full B14979310/C15424949，Δ+445639；Transition Δ+71204且违约9.77%→8.48%、备用3442931→3582637；Steady Δ+374436。更关键新交互−303232.34，CI[−597952.52,+19013.04]跨0，不能套用旧显著交互。监督NMI+0.455区间为正，Full h6成本差−1.615M但CI[−4.302M,+1.073M]跨0。当前收据/主CSV hash核对只证执行与文件身份，不替代TRR19深审计。
+
+A–H八类攻击、claim-by-claim状态、允许措辞、最强解释、应删/弱化主张、未结证据及顶刊判断见本轮完整报告。最佳主线是同信息/固定目标下的最小充分决策与实证反证边界；当前无依据认证顶刊就绪或给录用概率。此报告不会把审计PASS当整篇科学完成；最终verification gate由主代理实际执行并保留失败。

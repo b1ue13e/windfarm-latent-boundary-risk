@@ -87,7 +87,24 @@
       }
     ]
   },
-  "methods": [],
+  "methods": [
+    {
+      "id": "M1",
+      "name": "Observability-Aware Minimum-Sufficient Risk Router",
+      "scores": {
+        "gap_fit": 5,
+        "information_gain": 5,
+        "theory_fit": 4,
+        "implementation_risk": 2,
+        "compute_feasibility": 4,
+        "comparison_value": 5,
+        "novelty_value": 4
+      },
+      "verdict": "MUST TRY",
+      "rationale": "它直接把当前已观察到的矛盾（状态可恢复但全场决策不优）转化为可证伪的条件路由方法，但必须新增一个严格前瞻、非事后oracle的观测条件门控实验才能声称已实现。",
+      "updatedAt": "2026-10-15T05:02:12.567Z"
+    }
+  ],
   "hypotheses": [
     {
       "id": "H1",
@@ -316,6 +333,13 @@
         "action": "phase",
         "detail": "论文撰写 → 已收束",
         "at": "2026-10-15T00:40:18.290Z"
+      },
+      {
+        "iteration": 0,
+        "phase": "concluded",
+        "action": "method",
+        "detail": "M1：Observability-Aware Minimum-Sufficient Risk Router → MUST TRY",
+        "at": "2026-10-15T05:02:12.567Z"
       }
     ]
   },
@@ -525,5 +549,5 @@
       "updatedAt": "2026-10-15T00:40:05.293Z"
     }
   ],
-  "updatedAt": "2026-10-15T03:11:37.191Z"
+  "updatedAt": "2026-10-15T05:02:12.567Z"
 }
