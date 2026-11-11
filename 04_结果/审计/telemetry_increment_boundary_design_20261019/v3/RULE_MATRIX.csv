@@ -1,0 +1,7 @@
+id,features,role,fit_folds,selection_fold,refit_after_selection,ridge_grid,train_hinge_quantiles,label_pair,label,risk_filtered_labels,status
+G-CONST,weighted_train_mean,diagnostic,1;2,3,false,none,none,D-HGB-S0-q0.95_vs_X-HGB-S0-q0.95,mean_five_instance_loss_difference,false,DESIGN_SPECIFIED_NOT_FITTED
+G-AGE,age_onehot,diagnostic,1;2,3,false,0.0001;0.01;1,none,D-HGB-S0-q0.95_vs_X-HGB-S0-q0.95,mean_five_instance_loss_difference,false,DESIGN_SPECIFIED_NOT_FITTED
+G-VOL,vol6_linear_and_3hinges;missing,diagnostic,1;2,3,false,0.0001;0.01;1,0.25;0.50;0.75,D-HGB-S0-q0.95_vs_X-HGB-S0-q0.95,mean_five_instance_loss_difference,false,DESIGN_SPECIFIED_NOT_FITTED
+G-AV,age_onehot;vol6_linear_and_3hinges;missing,primary_simple_comparator,1;2,3,false,0.0001;0.01;1,0.25;0.50;0.75,D-HGB-S0-q0.95_vs_X-HGB-S0-q0.95,mean_five_instance_loss_difference,false,DESIGN_SPECIFIED_NOT_FITTED
+G-LINEAR,age_onehot;all_numeric_z_linear;missing,primary_same_information_comparator,1;2,3,false,0.0001;0.01;1,none,D-HGB-S0-q0.95_vs_X-HGB-S0-q0.95,mean_five_instance_loss_difference,false,DESIGN_SPECIFIED_NOT_FITTED
+G-FULL,age_onehot;all_numeric_z_linear_and_3hinges;missing,primary_prediction_candidate,1;2,3,false,0.0001;0.01;1,0.25;0.50;0.75,D-HGB-S0-q0.95_vs_X-HGB-S0-q0.95,mean_five_instance_loss_difference,false,DESIGN_SPECIFIED_NOT_FITTED

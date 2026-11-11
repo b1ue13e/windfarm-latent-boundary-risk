@@ -1,0 +1,16 @@
+{
+  "bundle_root": ".",
+  "files": [
+    {
+      "bytes": 478,
+      "path": "selector_stability.csv",
+      "sha256": "d0a8c269ad13f94e9dbb5716282a55a354e6e1154b4678cee6075489eef794c2"
+    },
+    {
+      "bytes": 5057,
+      "path": "selector_stability.json",
+      "sha256": "f2e58ab12ac1228784a3a27187ec769f459162e5fa86892bafd8e774317c8f93"
+    }
+  ],
+  "schema_version": "E04-receipt-v1"
+}

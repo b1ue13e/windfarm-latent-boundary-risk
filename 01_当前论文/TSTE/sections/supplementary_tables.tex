@@ -1,0 +1,81 @@
+\section*{Supporting Tables}
+
+\begin{table}[H]
+\caption{Registered pitch-withheld input subsets and resource tuples.}
+\label{tab:subsets}
+\centering
+\scriptsize
+\begin{tabular}{lrrrrl}
+\toprule
+Subset family & Additional channels & Predictor calls & Raw columns, 1 step & Raw columns, 6 steps & Raw columns, 36 steps \\
+\midrule
+Common & 0 & 1 & 4 & -- & -- \\
+W, P, or Q & 1 & 1 & 5 & 10 & 40 \\
+WP, WQ, or PQ & 2 & 1 & 6 & 16 & 76 \\
+WPQ & 3 & 1 & 7 & 22 & 112 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Turbine-level endpoint means for the matched telemetry comparison.}
+\label{tab:wtb-full}
+\centering
+\scriptsize
+\begin{tabular}{llrrrr}
+\toprule
+Estimator & Input configuration & $C$ & $R$ & $U$ & $V$ (\%) \\
+\midrule
+HGB & Delayed background & 37.2720 & 33.3826 & 0.3889 & 6.6349 \\
+HGB & Current pitch & 35.9752 & 32.6695 & 0.3306 & 6.8983 \\
+HGB & Current power & 32.9272 & 30.2772 & 0.2650 & 6.0316 \\
+HGB & Current power and differences & 32.3778 & 29.6993 & 0.2678 & 5.2822 \\
+HGB & Augmented power and pitch & 32.4060 & 29.9838 & 0.2422 & 4.9984 \\
+MLP & Delayed background & 44.9654 & 34.9979 & 0.9968 & 6.0598 \\
+MLP & Current pitch & 45.0200 & 35.8595 & 0.9160 & 5.5258 \\
+MLP & Current power & 39.1445 & 31.6181 & 0.7526 & 5.3135 \\
+MLP & Current power and differences & 38.4176 & 31.6103 & 0.6807 & 4.9332 \\
+MLP & Augmented power and pitch & 38.6709 & 32.0996 & 0.6571 & 4.8010 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Cross-year endpoint decomposition for the fixed reserve rules.}
+\label{tab:crossyear-means}
+\centering
+\scriptsize
+\begin{tabular}{llrrrrr}
+\toprule
+Window & Rule & $C$ & $R$ & $U$ & $V$ (\%) & Valid intervals per fit \\
+\midrule
+2025 & Current power & 67.0204 & 49.2971 & 1.7723 & 5.5314 & 1,059,248 \\
+2025 & Three-channel history & 66.6444 & 49.3000 & 1.7344 & 5.5334 & 1,059,248 \\
+2026 Jan--Apr & Current power & 78.4144 & 59.3417 & 1.9073 & 6.4416 & 361,326 \\
+2026 Jan--Apr & Three-channel history & 77.8157 & 59.2249 & 1.8591 & 6.4492 & 361,326 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Registered smaller-candidate witnesses for the 2025 finite-family minimum at $q=0.925$ and a 2\% cost margin.}
+\label{tab:minimum-witnesses}
+\centering
+\scriptsize
+\begin{tabular}{llp{3.2cm}r}
+\toprule
+Smaller candidate & Exclusion criterion & Feasible witness & Evidence \\
+\midrule
+Common/HGB/$q=0.90$ & Risk lower bound above 10\% & -- & 4 instances above cap \\
+Common/HGB/$q=0.925,0.95,0.975$ & Cost lower bound above 2\% & PQ6/HGB/$q=0.925$ & 14.59\%, 15.44\%, 27.24\% \\
+Common/HGB/$q=0.99$ & Cost lower bound above 2\% & PQ36/HGB/$q=0.925$ & 61.24\% \\
+Common/MLP/$q=0.90$ & Risk lower bound above 10\% & -- & 4 instances above cap \\
+Common/MLP/$q=0.925,0.95,0.975$ & Cost lower bound above 2\% & PQ6/HGB/$q=0.925$ & 15.09\%, 15.84\%, 27.15\% \\
+Common/MLP/$q=0.99$ & Cost lower bound above 2\% & PQ36/HGB/$q=0.925$ & 61.62\% \\
+P1/Persistence/all $q$ & Cost lower bound above 2\% & PQ36/HGB/$q=0.925$ & 25.07\%--85.58\% \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\parbox{\textwidth}{\footnotesize Each registered $q$ level is listed. Cost values are archived lower bounds against the indicated risk-qualified witness. Risk exclusions use an instance-specific lower bound above the 10\% cap. Identification applies to the registered family, five fixed fits, 2025 evaluation and primary three-day analysis.}
+\end{table}

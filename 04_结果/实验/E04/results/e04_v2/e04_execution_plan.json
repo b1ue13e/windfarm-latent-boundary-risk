@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "test_strong_baseline_e04_v2.py",
+    "--frozen-inputs"
+  ],
+  "expected_outputs": [
+    "seed201_full_policy_day_blocks.npz",
+    "seed202_full_policy_day_blocks.npz",
+    "seed203_full_policy_day_blocks.npz",
+    "seed204_full_policy_day_blocks.npz",
+    "seed205_full_policy_day_blocks.npz"
+  ],
+  "git_commit": "64478031c8ba630edff8f57851e90de4f2bdc6cb",
+  "inputs": [
+    {
+      "bytes": 3567,
+      "path": "/nfs/ihfs/home_metis/junyu/dsh-scratch/e04-v2-direct/prereg/PREREGISTRATION_E04_V2.json",
+      "role": "preregistration",
+      "sha256": "bd95a16802f312b08d06ca3f04974be47dc76316c3a3886625c95e0e5d77354c"
+    }
+  ],
+  "metadata": {
+    "direct_process_receipt": "E04_direct_v2",
+    "remote_replay_script_sha256": "007088D9F2C6116C5D6467F8982808101625BF6348F308F55DEDF001DB9E405F"
+  },
+  "schema_version": "E04-receipt-v1",
+  "working_dir": "/lstr/ihfs/home_metis/junyu/paper3_raw_replay_20261015"
+}

@@ -1,0 +1,320 @@
+{
+  "candidate_sha256": {
+    "manuscript.md": "a31720df046072cfad6bdcdccfc791385c99d5ed4283a9a28a6848d5f5061b10",
+    "supplementary.md": "c24096ecf1888bf3e48caadbd91b245bade8ece5e392320cfe8394974e625aa5"
+  },
+  "scope": "Actual ACTIVE main and SI artifacts, not an empty state scan",
+  "findings_reviewed": [
+    {
+      "finding_index": 1,
+      "code": "PROSE008",
+      "artifact": "main",
+      "match": "active- and reactive-power",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Parallel electrical-channel names or explicitly enumerated block durations are familiar technical phrases, defined in context and retained with their units."
+    },
+    {
+      "finding_index": 2,
+      "code": "PROSE008",
+      "artifact": "main",
+      "match": "one- and seven-day",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Parallel electrical-channel names or explicitly enumerated block durations are familiar technical phrases, defined in context and retained with their units."
+    },
+    {
+      "finding_index": 3,
+      "code": "PROSE008",
+      "artifact": "main",
+      "match": "one- and seven-day",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Parallel electrical-channel names or explicitly enumerated block durations are familiar technical phrases, defined in context and retained with their units."
+    },
+    {
+      "finding_index": 4,
+      "code": "PROSE012",
+      "artifact": "main",
+      "match": "draw on",
+      "count": 1,
+      "message": "formulaic connective or indirect academic verb; retain only when it clarifies the relation better than direct wording",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "The opening sentence concretely says forecasting and monitoring use the same measurements. This is a literal shared-input relation, not a stock transition or unsupported appeal."
+    },
+    {
+      "finding_index": 5,
+      "code": "PROSE010",
+      "artifact": "main",
+      "match": "wind-power, en-GB, scientific-reports-brackets, link-citations, header-includes, Wind-power",
+      "count": 6,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "YAML/configuration tokens are not rendered prose; no editorial wording repair applies."
+    },
+    {
+      "finding_index": 6,
+      "code": "PROSE010",
+      "artifact": "main",
+      "match": "active-power, reactive-power, current-power, histogram-boosting, pitch-only",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "The match consists of defined physical channels, probe/control names, stage labels or distinct inference-family responsibilities. Exact technical distinctions are retained; manual paragraph reading found the referents recoverable."
+    },
+    {
+      "finding_index": 7,
+      "code": "PROSE010",
+      "artifact": "main",
+      "match": "point-model, label-release, state-fit, state-fit",
+      "count": 4,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "The match consists of defined physical channels, probe/control names, stage labels or distinct inference-family responsibilities. Exact technical distinctions are retained; manual paragraph reading found the referents recoverable."
+    },
+    {
+      "finding_index": 8,
+      "code": "PROSE010",
+      "artifact": "main",
+      "match": "full-input, pitch-target, continuous-pitch, base-input, shuffled-target",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "The match consists of defined physical channels, probe/control names, stage labels or distinct inference-family responsibilities. Exact technical distinctions are retained; manual paragraph reading found the referents recoverable."
+    },
+    {
+      "finding_index": 9,
+      "code": "PROSE010",
+      "artifact": "main",
+      "match": "lower-error, continuous-pitch, recovered-score, actual-pitch, primary-span",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "The match consists of defined physical channels, probe/control names, stage labels or distinct inference-family responsibilities. Exact technical distinctions are retained; manual paragraph reading found the referents recoverable."
+    },
+    {
+      "finding_index": 10,
+      "code": "PROSE010",
+      "artifact": "main",
+      "match": "low-increment, per-fit, per-fit, weighted-shortfall",
+      "count": 4,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "The match consists of defined physical channels, probe/control names, stage labels or distinct inference-family responsibilities. Exact technical distinctions are retained; manual paragraph reading found the referents recoverable."
+    },
+    {
+      "finding_index": 11,
+      "code": "PROSE008",
+      "artifact": "supplementary",
+      "match": "active- and reactive-power",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Parallel electrical-channel names or explicitly enumerated block durations are familiar technical phrases, defined in context and retained with their units."
+    },
+    {
+      "finding_index": 12,
+      "code": "PROSE008",
+      "artifact": "supplementary",
+      "match": "one- and seven-day",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Parallel electrical-channel names or explicitly enumerated block durations are familiar technical phrases, defined in context and retained with their units."
+    },
+    {
+      "finding_index": 13,
+      "code": "PROSE008",
+      "artifact": "supplementary",
+      "match": "one- and seven-day",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Parallel electrical-channel names or explicitly enumerated block durations are familiar technical phrases, defined in context and retained with their units."
+    },
+    {
+      "finding_index": 14,
+      "code": "PROSE008",
+      "artifact": "supplementary",
+      "match": "three- and seven-day",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Parallel electrical-channel names or explicitly enumerated block durations are familiar technical phrases, defined in context and retained with their units."
+    },
+    {
+      "finding_index": 15,
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "wind-power, en-GB, scientific-reports-brackets, link-citations, header-includes, ten-minute",
+      "count": 6,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "YAML/configuration tokens are not rendered prose; no editorial wording repair applies."
+    },
+    {
+      "finding_index": 16,
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Zero-based, Point-forecast, Pitch-probe, Signed-offset, Signed-offset",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Structured table headings/identifiers were flattened into a sentence by extraction; they must preserve program and coordinate identities."
+    },
+    {
+      "finding_index": 17,
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Reader-facing, WPQ-history, active-power, reactive-power",
+      "count": 4,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Structured table headings/identifiers were flattened into a sentence by extraction; they must preserve program and coordinate identities."
+    },
+    {
+      "finding_index": 18,
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Reader-facing, decision-head, Base-input, Shuffled-label",
+      "count": 4,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Structured table headings/identifiers were flattened into a sentence by extraction; they must preserve program and coordinate identities."
+    },
+    {
+      "finding_index": 19,
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "mean-cost, instance-shortfall, mean-shortfall, mean-procurement",
+      "count": 4,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "The match consists of defined physical channels, probe/control names, stage labels or distinct inference-family responsibilities. Exact technical distinctions are retained; manual paragraph reading found the referents recoverable."
+    },
+    {
+      "finding_index": 20,
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Within-family, exposed-data, all-stage, selection-adjusted, manuscript-wide",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "The match consists of defined physical channels, probe/control names, stage labels or distinct inference-family responsibilities. Exact technical distinctions are retained; manual paragraph reading found the referents recoverable."
+    },
+    {
+      "finding_index": 21,
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "cost-reduction, power-versus-pitch, cost-premium, cost-reduction, per-fit",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "The match consists of defined physical channels, probe/control names, stage labels or distinct inference-family responsibilities. Exact technical distinctions are retained; manual paragraph reading found the referents recoverable."
+    },
+    {
+      "finding_index": 22,
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "B-A, B-A, B-A, C-B, C-B, C-B, C-WindScore, C-WindScore, C-WindScore, C-ShuffledScore, C-ShuffledScore, C-ShuffledScore, E-B, E-B, E-B, D-B, D-B, D-B",
+      "count": 18,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Structured table headings/identifiers were flattened into a sentence by extraction; they must preserve program and coordinate identities."
+    },
+    {
+      "finding_index": 23,
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Fixed-fit, Pitch-target, Base-input, Shuffled-target, Finite-pitch, state-addition, offset-level",
+      "count": 7,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Structured table headings/identifiers were flattened into a sentence by extraction; they must preserve program and coordinate identities."
+    },
+    {
+      "finding_index": 24,
+      "code": "PROSE001",
+      "artifact": "supplementary",
+      "match": "removing pitch fit severity interval has lower bound above",
+      "count": 2,
+      "message": "exact or punctuation-only sentence repetition",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Numeric stripping makes two different Original/Common HGB witness rows appear identical; both configurations and different bounds must remain visible."
+    },
+    {
+      "finding_index": 25,
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "bound exceeds uniformly low increment",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Separate S10 rows evaluate the same locked predicate for four configurations. Repeated responsibilities are required for row comparability; they are not duplicated running narrative."
+    },
+    {
+      "finding_index": 26,
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "exceeds uniformly low increment is",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Separate S10 rows evaluate the same locked predicate for four configurations. Repeated responsibilities are required for row comparability; they are not duplicated running narrative."
+    },
+    {
+      "finding_index": 27,
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "gain lower bound does not",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Separate S10 rows evaluate the same locked predicate for four configurations. Repeated responsibilities are required for row comparability; they are not duplicated running narrative."
+    },
+    {
+      "finding_index": 28,
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "gain upper bound exceeds uniformly",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Separate S10 rows evaluate the same locked predicate for four configurations. Repeated responsibilities are required for row comparability; they are not duplicated running narrative."
+    },
+    {
+      "finding_index": 29,
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "lower bound does not exceed",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Separate S10 rows evaluate the same locked predicate for four configurations. Repeated responsibilities are required for row comparability; they are not duplicated running narrative."
+    },
+    {
+      "finding_index": 30,
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "uniformly low increment is unresolved",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Separate S10 rows evaluate the same locked predicate for four configurations. Repeated responsibilities are required for row comparability; they are not duplicated running narrative."
+    },
+    {
+      "finding_index": 31,
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "upper bound exceeds uniformly low",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences",
+      "disposition": "RETAINED_AFTER_CONTEXT_REVIEW",
+      "reason": "Separate S10 rows evaluate the same locked predicate for four configurations. Repeated responsibilities are required for row comparability; they are not duplicated running narrative."
+    }
+  ],
+  "scientific_or_AI_authorship_certification": false
+}

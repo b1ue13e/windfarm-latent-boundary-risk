@@ -1,0 +1,33 @@
+{
+  "utc": "2026-10-19T04:54:09.078434+00:00",
+  "checks": {
+    "snapshots_exact": 8,
+    "pre_unlock_sources_still_exact": 56,
+    "legacy_table_numbers": {
+      "paper_tste_ieee": {
+        "old_tables": 4,
+        "new_tables": 4,
+        "all_old_numeric_tokens_unchanged": true
+      },
+      "paper_tste_supplementary": {
+        "old_tables": 27,
+        "new_tables": 28,
+        "all_old_numeric_tokens_unchanged": true
+      }
+    },
+    "paper_tste_ieee": {
+      "source_sha256": "f8fd4c902c1dbf04fba04bede20e69c1b6390f871c7809e51ac58bb81d24d773",
+      "pdf_sha256": "e60ac070e4b20f16ddf281f203499de5d93c0781603a725ffc6b1251a2ee747c",
+      "pages": 10
+    },
+    "paper_tste_supplementary": {
+      "source_sha256": "81b1756005021efea994531f42a557778e089909445cbcb0d62414ef3a07c836",
+      "pdf_sha256": "c435277f214a16462305aa0e08e050d44c5d6178079c72aa653c77a52c7f09ec",
+      "pages": 47
+    },
+    "both_archives_unchanged": true,
+    "derived_inputs_and_source_unchanged": true,
+    "visual_review": "All10 main/47 supplementary pages rendered and overview sheets inspected; mainp8 and supplementaryp46 reviewed at readable resolution. No new clipping/overlap/overflow; existing supplement float-onlypage22 warning retained.",
+    "scientific_scope": "Fixed-reference primary confirmed; secondary q.925 finite-family minimum is distinct. No global minimum/coverage/field safety certificate."
+  }
+}

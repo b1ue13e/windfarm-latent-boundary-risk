@@ -1,0 +1,13 @@
+prior_id,verdict,anchor,verified_change,residual_or_new_issue
+R01,SPEC_ADDRESSED,RULES B/O/N and DECISION_TABLE,旧R不增/meanU多余硬门已移除,不再重复指控旧矛盾
+R02,SPEC_ADDRESSED_NEW_BRIDGE_ISSUE,PLAN section5 native RAW/B925/B950,历史任务选择已分开,新N06针对新增尾部桥接而非旧选择错位
+R03,ADDRESSED_BY_ROLE_CANCELLATION,WINDOW_DECISION.json,已取消2026独立职责且null,不等于获得独立来源;去留见N08
+R04,PARTIALLY_ADDRESSED,SPEC U0/C1/C5;PLAN phase diagnostic,改善弱投影基线,数值/边界/制度责任仍缺N02/N05
+R05,STRUCTURE_ADDRESSED_COMPETENCE_UNKNOWN,SPEC hinge/mature correction/convex plan,已定义目标对齐可实现候选,强度与信息资格N01/N03/N04未证
+R06,SPEC_ADDRESSED,PLAN layer table,逐机/组预算与完整向量已定,实际模型/资源/样本未资格
+R07,LIMITATION_DISCLOSED_SUPPORT_UNKNOWN,PLAN fixed groupcomplete population,同日历/全流运行及条件人口限制明示,完整块选择和天气支持仍无实证
+R08,PARTIALLY_ADDRESSED,PLAN4178roles and inference prerequisite,坐标更正且不假称覆盖,记忆/样本/推断资格仍未做
+R09,SPEC_ADDRESSED_AT_REPRESENTATIVE_SCOPE,RULES S/X,替代与排除方向已明确,不能从代表排除推整个方法族N07
+R10,PARTIALLY_ADDRESSED_NEW_BRIDGE_RISK,RULES statecodes;TSTE composition,无资格/反证/不确定分开,不受支持RAW外推会误导投入N06
+R11,LIMITED_SCOPE_ADDRESSED,PLAN proxy externalr;SCADA notPCC,未声称现金/真实交付,运行制度与TSTE意义仍须N05/E4
+R12,SPEC_ADDRESSED_NOT_COMPUTED,PLAN oracle diagnostic only,区分账本可行与风险可行,未检验任何真实可行性

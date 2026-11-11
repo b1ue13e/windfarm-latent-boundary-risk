@@ -1,0 +1,8 @@
+{
+  "source_job": "J04",
+  "source_bundle": "/home/junyu/dsh-scratch/J04/e06_bundle",
+  "source_job_final_status": "failed_after_replay_due_to_postcheck",
+  "replay_receipt_status": "EXECUTED",
+  "replay_command_exit_code": 0,
+  "repackaged_by": "J05"
+}

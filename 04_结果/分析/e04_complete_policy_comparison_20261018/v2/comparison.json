@@ -1,0 +1,132 @@
+{
+  "status": "VERIFIED_DESCRIPTIVE_COMPARISON_ONLY",
+  "time_Asia_Shanghai": "2026-10-18T15:14:49.494085+08:00",
+  "inputs_before": {
+    "analyses\\e04_c201_exactness_20261018\\reconciliation\\result.json": "a2a4199e9760b61d1c5ae46a4af55cb85094ba3157ebb5230520719609039147",
+    "analyses\\e04_c201_exactness_20261018\\reconciliation\\complete_slices\\alignment.json": "6c799be126b047e516c1c9462726e50f66b06afec59ba4082616ca3a7518320b",
+    "analyses\\e04_c201_exactness_20261018\\reconciliation\\complete_slices\\slices_by_seed.csv": "78b5e88545e53497e9f49e4b5fc2acace60094580ac8a49ec8c8bdf5c7039e9e",
+    "analyses\\e04_c201_exactness_20261018\\reconciliation\\complete_summary\\pooled_summary.json": "8a520e5fac0545c961fe1ea1f1f596cf907599ef838744e8356aff368cdb8ac0",
+    "analyses\\e04_c201_exactness_20261018\\reconciliation\\complete_summary\\pooled_slices.csv": "e3791d9fb3a81e8497bc096fe42332edf40f1af69e042391a6703a2dffda34b4",
+    "analyses\\e04_regime_slices_20261018\\summary\\pooled_slices.csv": "31681eb0b2bd07a40dcac13c525fe08cb6a5e46e4a47d0017e0b10d6c9e1221a",
+    "experiments\\E04\\results\\e04_v2\\seed201_full_policy_day_blocks.npz": "0cf8e76f5c7ed2c309bcb04d545465643429b375ecc727011b56967586d7c0a6",
+    "experiments\\E04\\results\\e04_v2\\seed202_full_policy_day_blocks.npz": "0656105b0bbc89517616515e6ba383d67c6f8ce78852860634dad215e30a8188",
+    "experiments\\E04\\results\\e04_v2\\seed203_full_policy_day_blocks.npz": "166d79fd073d6c6f3b8785e7cf525a07862854f0bd2b6529542af745b169e158",
+    "experiments\\E04\\results\\e04_v2\\seed204_full_policy_day_blocks.npz": "801b0f33e6ee247b5bee17eae6c1a6e7ea8f37e5ce473051245fbecbdd407db1",
+    "experiments\\E04\\results\\e04_v2\\seed205_full_policy_day_blocks.npz": "d61bf43ce5031acf7b35b1c0e6aaf85647f8ae77ef38b215fe1a4b85b2651ee3"
+  },
+  "inputs_after": {
+    "analyses\\e04_c201_exactness_20261018\\reconciliation\\result.json": "a2a4199e9760b61d1c5ae46a4af55cb85094ba3157ebb5230520719609039147",
+    "analyses\\e04_c201_exactness_20261018\\reconciliation\\complete_slices\\alignment.json": "6c799be126b047e516c1c9462726e50f66b06afec59ba4082616ca3a7518320b",
+    "analyses\\e04_c201_exactness_20261018\\reconciliation\\complete_slices\\slices_by_seed.csv": "78b5e88545e53497e9f49e4b5fc2acace60094580ac8a49ec8c8bdf5c7039e9e",
+    "analyses\\e04_c201_exactness_20261018\\reconciliation\\complete_summary\\pooled_summary.json": "8a520e5fac0545c961fe1ea1f1f596cf907599ef838744e8356aff368cdb8ac0",
+    "analyses\\e04_c201_exactness_20261018\\reconciliation\\complete_summary\\pooled_slices.csv": "e3791d9fb3a81e8497bc096fe42332edf40f1af69e042391a6703a2dffda34b4",
+    "analyses\\e04_regime_slices_20261018\\summary\\pooled_slices.csv": "31681eb0b2bd07a40dcac13c525fe08cb6a5e46e4a47d0017e0b10d6c9e1221a",
+    "experiments\\E04\\results\\e04_v2\\seed201_full_policy_day_blocks.npz": "0cf8e76f5c7ed2c309bcb04d545465643429b375ecc727011b56967586d7c0a6",
+    "experiments\\E04\\results\\e04_v2\\seed202_full_policy_day_blocks.npz": "0656105b0bbc89517616515e6ba383d67c6f8ce78852860634dad215e30a8188",
+    "experiments\\E04\\results\\e04_v2\\seed203_full_policy_day_blocks.npz": "166d79fd073d6c6f3b8785e7cf525a07862854f0bd2b6529542af745b169e158",
+    "experiments\\E04\\results\\e04_v2\\seed204_full_policy_day_blocks.npz": "801b0f33e6ee247b5bee17eae6c1a6e7ea8f37e5ce473051245fbecbdd407db1",
+    "experiments\\E04\\results\\e04_v2\\seed205_full_policy_day_blocks.npz": "d61bf43ce5031acf7b35b1c0e6aaf85647f8ae77ef38b215fe1a4b85b2651ee3"
+  },
+  "inputs_unchanged": true,
+  "all_20_exact_cells_confirmed": true,
+  "previous_B_D_D10_counts_unchanged": true,
+  "all_partitions_recover_full_counts": true,
+  "seed_directions": {
+    "wind_policy_bin:bin_02": {
+      "C_worse_seeds": 5,
+      "C_better_seeds": 0,
+      "deltas_pp": [
+        4.534905355516603,
+        6.262301824342189,
+        3.883704305760926,
+        3.720169606047846,
+        1.4267668112692056
+      ]
+    },
+    "transition_original:steady": {
+      "C_worse_seeds": 5,
+      "C_better_seeds": 0,
+      "deltas_pp": [
+        0.836889945917769,
+        1.3182543819639017,
+        0.9953085293542712,
+        1.0971199582980387,
+        0.6853945396494429
+      ]
+    },
+    "transition_original:transition": {
+      "C_worse_seeds": 1,
+      "C_better_seeds": 4,
+      "deltas_pp": [
+        -1.001768669487945,
+        -2.6816466527750924,
+        0.07733453631500935,
+        -1.1958210707969037,
+        -1.6619764702512656
+      ]
+    },
+    "past60_power_ramp:down_gt150kW": {
+      "C_worse_seeds": 5,
+      "C_better_seeds": 0,
+      "deltas_pp": [
+        0.7401163627392529,
+        3.201003268847269,
+        3.466211632162168,
+        2.824777451121482,
+        0.694887029460743
+      ]
+    }
+  },
+  "own_top5_blocks": {
+    "B": [
+      31,
+      34,
+      29,
+      13,
+      19
+    ],
+    "C": [
+      34,
+      31,
+      29,
+      26,
+      12
+    ],
+    "D": [
+      31,
+      34,
+      29,
+      13,
+      19
+    ],
+    "D10": [
+      31,
+      34,
+      29,
+      13,
+      19
+    ]
+  },
+  "protocol_fitted_or_executed": false,
+  "protocol_activation_ready": false,
+  "argv": [
+    "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "scripts/compare_e04_complete_slices.py",
+    "--output-dir",
+    "analyses/e04_complete_policy_comparison_20261018/v2"
+  ],
+  "script_sha256": "747143f3e17546c62074379073da81918bfd4b30b1324fc55791ead90e706bca",
+  "environment": {
+    "device": "CPU, no training",
+    "python": "3.12.10",
+    "numpy": "2.4.6",
+    "cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "limitations": [
+    "descriptive, post-hoc, not causal attribution or simultaneous inference",
+    "same 35 days recur across seeds; totals are repeated evaluations, not independent samples",
+    "future ramp/true transition/high block IDs are diagnostic only",
+    "slice reserve/shortage summaries are as archived; do not reconstruct exact slice PSREI from rounded means"
+  ]
+}

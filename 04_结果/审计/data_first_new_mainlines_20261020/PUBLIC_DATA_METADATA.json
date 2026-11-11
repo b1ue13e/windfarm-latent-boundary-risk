@@ -1,0 +1,58 @@
+{
+  "review_date": "2026-10-20",
+  "scope": "PUBLIC_RECORD_METADATA_ONLY_NO_RESOURCE_CONTENT_REQUESTED",
+  "records": [
+    {
+      "record_id": 13693388,
+      "source": "https://zenodo.org/api/records/13693388",
+      "status": "published",
+      "access": "open",
+      "license": "cc-by-4.0",
+      "files": [
+        {
+          "name": "inverterfitting-main.zip",
+          "bytes": 182951658,
+          "checksum": "md5:f70725209f1b3d639168f100a403a559"
+        }
+      ]
+    },
+    {
+      "record_id": 17866847,
+      "source": "https://zenodo.org/api/records/17866847",
+      "status": "published",
+      "access": "open",
+      "license": "cc-by-4.0",
+      "version": "1.0.0",
+      "file_count": 7,
+      "selected_files": [
+        {
+          "name": "ev-charging_lf.parquet",
+          "bytes": 422470722,
+          "checksum": "md5:0327dae2664c79ecde0bd07166bf6b1d"
+        },
+        {
+          "name": "ev-charging_hf.parquet",
+          "bytes": 22382024820,
+          "checksum": "md5:dc692e948cb53e0362553be6a64a972a"
+        }
+      ]
+    },
+    {
+      "record_id": 19361280,
+      "source": "https://zenodo.org/api/records/19361280",
+      "status": "published",
+      "access": "open",
+      "license": "cc-by-4.0",
+      "version": "Version v1",
+      "files": [
+        {
+          "name": "pem_water_electrolysis_degradation_data.zip",
+          "bytes": 199357168,
+          "checksum": "md5:b161b3a2eb0d655266bd13618da386a7"
+        }
+      ]
+    }
+  ],
+  "payload_bytes_downloaded": 0,
+  "payload_checksums_independently_verified": false
+}

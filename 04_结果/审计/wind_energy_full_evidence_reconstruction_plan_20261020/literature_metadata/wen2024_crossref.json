@@ -1,0 +1,931 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          10
+        ]
+      ],
+      "date-time": "2026-10-10T13:47:50Z",
+      "timestamp": 1791640070788,
+      "version": "4.3.4"
+    },
+    "reference-count": 59,
+    "publisher": "Elsevier BV",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/legal/tdmrep-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-017"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-037"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-012"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-029"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-004"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100001809",
+        "name": "National Natural Science Foundation of China",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "52307119"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "52307119"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001809",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "elsevier.com",
+        "sciencedirect.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Energy"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2024,
+          8
+        ]
+      ]
+    },
+    "DOI": "10.1016/j.energy.2024.131544",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2024,
+          5,
+          7
+        ]
+      ],
+      "date-time": "2024-05-07T11:50:04Z",
+      "timestamp": 1715082604000
+    },
+    "page": "131544",
+    "update-policy": "https://doi.org/10.1016/elsevier_cm_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 35,
+    "special_numbering": "C",
+    "title": [
+      "Probabilistic wind power forecasting resilient to missing values: An adaptive quantile regression approach"
+    ],
+    "prefix": "10.1016",
+    "volume": "300",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-8263-1399",
+        "authenticated-orcid": false,
+        "given": "Honglin",
+        "family": "Wen",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "78",
+    "reference": [
+      {
+        "key": "10.1016/j.energy.2024.131544_b1",
+        "series-title": "Integrating renewables in electricity markets: operational problems",
+        "author": "Morales",
+        "year": "2013"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b2",
+        "doi-asserted-by": "crossref",
+        "first-page": "125",
+        "DOI": "10.1146/annurev-statistics-062713-085831",
+        "article-title": "Probabilistic forecasting",
+        "volume": "1",
+        "author": "Gneiting",
+        "year": "2014",
+        "journal-title": "Annu Rev Stat Appl"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b3",
+        "doi-asserted-by": "crossref",
+        "first-page": "1148",
+        "DOI": "10.1109/TPWRS.2007.901117",
+        "article-title": "Trading wind generation from short-term probabilistic forecasts of wind power",
+        "volume": "22",
+        "author": "Pinson",
+        "year": "2007",
+        "journal-title": "IEEE Trans Power Syst"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.energy.2024.131544_b4",
+        "doi-asserted-by": "crossref",
+        "first-page": "594",
+        "DOI": "10.1109/TPWRS.2010.2065818",
+        "article-title": "Setting the operating reserve using probabilistic wind power forecasts",
+        "volume": "26",
+        "author": "Matos",
+        "year": "2010",
+        "journal-title": "IEEE Trans Power Syst"
+      },
+      {
+        "issue": "6",
+        "key": "10.1016/j.energy.2024.131544_b5",
+        "doi-asserted-by": "crossref",
+        "first-page": "46",
+        "DOI": "10.1109/MPE.2019.2932639",
+        "article-title": "The use of probabilistic forecasts: Applying them in theory and practice",
+        "volume": "17",
+        "author": "Haupt",
+        "year": "2019",
+        "journal-title": "IEEE Power Energy Mag"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.energy.2024.131544_b6",
+        "article-title": "The future of forecasting for renewable energy",
+        "volume": "9",
+        "author": "Sweeney",
+        "year": "2020",
+        "journal-title": "Wiley Interdiscip Rev: Energy Environ"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.energy.2024.131544_b7",
+        "doi-asserted-by": "crossref",
+        "first-page": "657",
+        "DOI": "10.1002/we.2029",
+        "article-title": "LASSO vector autoregression structures for very short-term wind power forecasting",
+        "volume": "20",
+        "author": "Cavalcante",
+        "year": "2017",
+        "journal-title": "Wind Energy"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b8",
+        "doi-asserted-by": "crossref",
+        "first-page": "1777",
+        "DOI": "10.1109/TSTE.2021.3065117",
+        "article-title": "Privacy-preserving distributed learning for renewable energy forecasting",
+        "volume": "12",
+        "author": "Goncalves",
+        "year": "2021",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.energy.2024.131544_b9",
+        "doi-asserted-by": "crossref",
+        "first-page": "533",
+        "DOI": "10.1109/TSTE.2020.3009615",
+        "article-title": "Towards data markets in renewable energy forecasting",
+        "volume": "12",
+        "author": "Goncalves",
+        "year": "2020",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b10",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Bohlke-Schneider M, Kapoor S, Januschowski T. Resilient neural forecasting systems. In: Proceedings of the fourth international workshop on data management for end-to-end machine learning. 2020, p. 1–5.",
+        "DOI": "10.1145/3399579.3399869"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b11",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.epsr.2020.106640",
+        "article-title": "Missing data in wind farm time series: Properties and effect on forecasts",
+        "volume": "189",
+        "author": "Tawn",
+        "year": "2020",
+        "journal-title": "Electr Power Syst Res"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.energy.2024.131544_b12",
+        "doi-asserted-by": "crossref",
+        "first-page": "143",
+        "DOI": "10.1002/pip.3349",
+        "article-title": "Data processing and quality verification for improved photovoltaic performance and reliability analytics",
+        "volume": "29",
+        "author": "Livera",
+        "year": "2021",
+        "journal-title": "Prog Photovolt, Res Appl"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b13",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2021.120777",
+        "article-title": "Imputation of missing data from offshore wind farms using spatio-temporal correlation and feature correlation",
+        "volume": "229",
+        "author": "Sun",
+        "year": "2021",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b14",
+        "article-title": "Towards resilient energy forecasting: A robust optimization approach",
+        "author": "Stratigakos",
+        "year": "2023",
+        "journal-title": "IEEE Trans Smart Grid"
+      },
+      {
+        "issue": "9",
+        "key": "10.1016/j.energy.2024.131544_b15",
+        "doi-asserted-by": "crossref",
+        "first-page": "10933",
+        "DOI": "10.1109/JSEN.2021.3061109",
+        "article-title": "A two-stage deep autoencoder-based missing data imputation method for wind farm SCADA data",
+        "volume": "21",
+        "author": "Liu",
+        "year": "2021",
+        "journal-title": "IEEE Sens J"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.energy.2024.131544_b16",
+        "doi-asserted-by": "crossref",
+        "first-page": "964",
+        "DOI": "10.35833/MPCE.2020.000894",
+        "article-title": "Data-driven missing data imputation for wind farms using context encoder",
+        "volume": "10",
+        "author": "Liao",
+        "year": "2021",
+        "journal-title": "J Mod Power Syst Clean Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b17",
+        "article-title": "Wind energy forecasting with missing values within a fully conditional specification framework",
+        "author": "Wen",
+        "year": "2023",
+        "journal-title": "Int J Forecast"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.energy.2024.131544_b18",
+        "doi-asserted-by": "crossref",
+        "first-page": "2549",
+        "DOI": "10.1109/TPWRS.2020.2971607",
+        "article-title": "Improved deep mixture density network for regional wind power probabilistic forecasting",
+        "volume": "35",
+        "author": "Zhang",
+        "year": "2020",
+        "journal-title": "IEEE Trans Power Syst"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.energy.2024.131544_b19",
+        "doi-asserted-by": "crossref",
+        "first-page": "957",
+        "DOI": "10.1109/TSTE.2022.3141549",
+        "article-title": "Sparse variational gaussian process based day-ahead probabilistic wind power forecasting",
+        "volume": "13",
+        "author": "Wen",
+        "year": "2022",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b20",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2023.129496",
+        "article-title": "Transferable wind power probabilistic forecasting based on multi-domain adversarial networks",
+        "author": "Dong",
+        "year": "2023",
+        "journal-title": "Energy"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b21",
+        "doi-asserted-by": "crossref",
+        "first-page": "1166",
+        "DOI": "10.1109/TPWRS.2013.2288100",
+        "article-title": "Optimal prediction intervals of wind power generation",
+        "volume": "29",
+        "author": "Wan",
+        "year": "2013",
+        "journal-title": "IEEE Trans Power Syst"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b22",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2020.117072",
+        "article-title": "Probabilistic wind power forecasting based on spiking neural network",
+        "volume": "196",
+        "author": "Wang",
+        "year": "2020",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b23",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2021.120379",
+        "article-title": "Multi-objective wind power scenario forecasting based on PG-GAN",
+        "volume": "226",
+        "author": "Yuan",
+        "year": "2021",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b24",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2021.122045",
+        "article-title": "Regional wind power probabilistic forecasting based on an improved kernel density estimation, regular vine copulas, and ensemble learning",
+        "volume": "238",
+        "author": "Dong",
+        "year": "2022",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b25",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2022.126420",
+        "article-title": "Fluctuation pattern recognition based ultra-short-term wind power probabilistic forecasting method",
+        "volume": "266",
+        "author": "Fan",
+        "year": "2023",
+        "journal-title": "Energy"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.energy.2024.131544_b26",
+        "doi-asserted-by": "crossref",
+        "first-page": "143",
+        "DOI": "10.1257/jep.15.4.143",
+        "article-title": "Quantile regression",
+        "volume": "15",
+        "author": "Koenker",
+        "year": "2001",
+        "journal-title": "J Econ Perspect"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b27",
+        "doi-asserted-by": "crossref",
+        "first-page": "1061",
+        "DOI": "10.1016/j.ijforecast.2016.02.002",
+        "article-title": "Probabilistic gradient boosting machines for GEFCom2014 wind forecasting",
+        "volume": "32",
+        "author": "Landry",
+        "year": "2016",
+        "journal-title": "Int J Forecast"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b28",
+        "doi-asserted-by": "crossref",
+        "first-page": "355",
+        "DOI": "10.1016/j.energy.2016.07.055",
+        "article-title": "On-line quantile regression in the RKHS (Reproducing Kernel Hilbert Space) for operational probabilistic forecasting of wind power",
+        "volume": "113",
+        "author": "Gallego-Castillo",
+        "year": "2016",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b29",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2021.122955",
+        "article-title": "Probabilistic load forecasting with a non-crossing sparse-group Lasso-quantile regression deep neural network",
+        "volume": "242",
+        "author": "Lu",
+        "year": "2022",
+        "journal-title": "Energy"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.energy.2024.131544_b30",
+        "doi-asserted-by": "crossref",
+        "first-page": "2250",
+        "DOI": "10.1109/TSTE.2022.3191330",
+        "article-title": "Continuous and distribution-free probabilistic wind power forecasting: A conditional normalizing flow approach",
+        "volume": "13",
+        "author": "Wen",
+        "year": "2022",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b31",
+        "series-title": "Statistical analysis with missing data",
+        "author": "Little",
+        "year": "2019"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b32",
+        "doi-asserted-by": "crossref",
+        "first-page": "394",
+        "DOI": "10.1016/j.energy.2017.07.034",
+        "article-title": "Application of imputation techniques and adaptive neuro-fuzzy inference system to predict wind turbine power production",
+        "volume": "138",
+        "author": "Morshedizadeh",
+        "year": "2017",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b33",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2023.127799",
+        "article-title": "An imputation and decomposition algorithms based integrated approach with bidirectional LSTM neural network for wind speed prediction",
+        "volume": "278",
+        "author": "Sareen",
+        "year": "2023",
+        "journal-title": "Energy"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b34",
+        "doi-asserted-by": "crossref",
+        "first-page": "3044",
+        "DOI": "10.1109/TSG.2018.2817387",
+        "article-title": "Cyber risk analysis of combined data attacks against power system state estimation",
+        "volume": "10",
+        "author": "Pan",
+        "year": "2018",
+        "journal-title": "IEEE Trans Smart Grid"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b35",
+        "series-title": "Availability adversarial attack and countermeasures for deep learning-based load forecasting",
+        "author": "Xu",
+        "year": "2023"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.energy.2024.131544_b36",
+        "doi-asserted-by": "crossref",
+        "first-page": "1493",
+        "DOI": "10.1109/TSTE.2020.3029731",
+        "article-title": "PV generation forecasting with missing input data: A super-resolution perception approach",
+        "volume": "12",
+        "author": "Liu",
+        "year": "2020",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b37",
+        "doi-asserted-by": "crossref",
+        "first-page": "1843",
+        "DOI": "10.1109/TSTE.2022.3173147",
+        "article-title": "Missing-data tolerant hybrid learning method for solar power forecasting",
+        "volume": "13",
+        "author": "Liu",
+        "year": "2022",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b38",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2023.129080",
+        "article-title": "A robust De-Noising Autoencoder imputation and VMD algorithm based deep learning technique for short-term wind speed prediction ensuring cyber resilience",
+        "volume": "283",
+        "author": "Sareen",
+        "year": "2023",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b39",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2023.128565",
+        "article-title": "A spatio-temporal forecasting model using optimally weighted graph convolutional network and gated recurrent unit for wind speed of different sites distributed in an offshore wind farm",
+        "volume": "284",
+        "author": "Xu",
+        "year": "2023",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b40",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2023.128730",
+        "article-title": "Renewable energy forecasting: A self-supervised learning-based transformer variant",
+        "volume": "284",
+        "author": "Liu",
+        "year": "2023",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b41",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2023.128995",
+        "article-title": "WindFix: Harnessing the power of self-supervised learning for versatile imputation of offshore wind speed time series",
+        "volume": "287",
+        "author": "Chen",
+        "year": "2024",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b42",
+        "article-title": "Brits: Bidirectional recurrent imputation for time series",
+        "volume": "31",
+        "author": "Cao",
+        "year": "2018",
+        "journal-title": "Adv Neural Inf Process Syst"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b43",
+        "doi-asserted-by": "crossref",
+        "first-page": "1181",
+        "DOI": "10.1016/j.ijforecast.2019.07.001",
+        "article-title": "DeepAR: Probabilistic forecasting with autoregressive recurrent networks",
+        "volume": "36",
+        "author": "Salinas",
+        "year": "2020",
+        "journal-title": "Int J Forecast"
+      },
+      {
+        "issue": "6",
+        "key": "10.1016/j.energy.2024.131544_b44",
+        "doi-asserted-by": "crossref",
+        "first-page": "4447",
+        "DOI": "10.1109/TPWRS.2022.3146982",
+        "article-title": "An integrated missing-data tolerant model for probabilistic PV power generation forecasting",
+        "volume": "37",
+        "author": "Li",
+        "year": "2022",
+        "journal-title": "IEEE Trans Power Syst"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b45",
+        "series-title": "On the consistency of supervised learning with missing values",
+        "author": "Josse",
+        "year": "2019"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.energy.2024.131544_b46",
+        "doi-asserted-by": "crossref",
+        "first-page": "1",
+        "DOI": "10.1111/j.2517-6161.1977.tb01600.x",
+        "article-title": "Maximum likelihood from incomplete data via the EM algorithm",
+        "volume": "39",
+        "author": "Dempster",
+        "year": "1977",
+        "journal-title": "J R Stat Soc Ser B Stat Methodol"
+      },
+      {
+        "issue": "12",
+        "key": "10.1016/j.energy.2024.131544_b47",
+        "doi-asserted-by": "crossref",
+        "first-page": "1049",
+        "DOI": "10.1080/10629360600810434",
+        "article-title": "Fully conditional specification in multivariate imputation",
+        "volume": "76",
+        "author": "Van Buuren",
+        "year": "2006",
+        "journal-title": "J Stat Comput Simul"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b48",
+        "doi-asserted-by": "crossref",
+        "first-page": "905",
+        "DOI": "10.1016/j.asoc.2018.07.027",
+        "article-title": "Wind power prediction with missing data using Gaussian process regression and multiple imputation",
+        "volume": "71",
+        "author": "Liu",
+        "year": "2018",
+        "journal-title": "Appl Soft Comput"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b49",
+        "series-title": "Conformal prediction with missing values",
+        "author": "Zaffran",
+        "year": "2023"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b50",
+        "first-page": "7",
+        "article-title": "Prediction with missing data",
+        "volume": "1050",
+        "author": "Bertsimas",
+        "year": "2021",
+        "journal-title": "Stat"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.energy.2024.131544_b51",
+        "doi-asserted-by": "crossref",
+        "first-page": "205",
+        "DOI": "10.1016/j.ijforecast.2020.04.004",
+        "article-title": "Online distributed learning in wind power forecasting",
+        "volume": "37",
+        "author": "Sommer",
+        "year": "2021",
+        "journal-title": "Int J Forecast"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b52",
+        "first-page": "5980",
+        "article-title": "NeuMiss networks: differentiable programming for supervised learning with missing values",
+        "volume": "33",
+        "author": "Le Morvan",
+        "year": "2020",
+        "journal-title": "Adv Neural Inf Process Syst"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b53",
+        "series-title": "International conference on artificial intelligence and statistics",
+        "first-page": "8127",
+        "article-title": "Learning quantile functions without quantile crossing for distribution-free time series forecasting",
+        "author": "Park",
+        "year": "2022"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b54",
+        "doi-asserted-by": "crossref",
+        "first-page": "355",
+        "DOI": "10.1016/j.apenergy.2015.03.121",
+        "article-title": "The wind integration national dataset (wind) toolkit",
+        "volume": "151",
+        "author": "Draxl",
+        "year": "2015",
+        "journal-title": "Appl Energy"
+      },
+      {
+        "issue": "387",
+        "key": "10.1016/j.energy.2024.131544_b55",
+        "doi-asserted-by": "crossref",
+        "first-page": "516",
+        "DOI": "10.1080/01621459.1984.10478078",
+        "article-title": "Reducing bias in observational studies using subclassification on the propensity score",
+        "volume": "79",
+        "author": "Rosenbaum",
+        "year": "1984",
+        "journal-title": "J Amer Statist Assoc"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.energy.2024.131544_b56",
+        "doi-asserted-by": "crossref",
+        "first-page": "112",
+        "DOI": "10.1093/bioinformatics/btr597",
+        "article-title": "MissForest—non-parametric missing value imputation for mixed-type data",
+        "volume": "28",
+        "author": "Stekhoven",
+        "year": "2012",
+        "journal-title": "Bioinformatics"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b57",
+        "doi-asserted-by": "crossref",
+        "first-page": "5",
+        "DOI": "10.1023/A:1010933404324",
+        "article-title": "Random forests",
+        "volume": "45",
+        "author": "Breiman",
+        "year": "2001",
+        "journal-title": "Mach Learn"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b58",
+        "series-title": "Value-oriented renewable energy forecasting for coordinated energy dispatch problems at two stages",
+        "author": "Zhang",
+        "year": "2023"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b59",
+        "article-title": "A contextual bandit approach for value-oriented prediction interval forecasting",
+        "author": "Zhang",
+        "year": "2023",
+        "journal-title": "IEEE Trans Smart Grid"
+      }
+    ],
+    "container-title": [
+      "Energy"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0360544224013173?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0360544224013173?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          9,
+          21
+        ]
+      ],
+      "date-time": "2024-09-21T02:38:24Z",
+      "timestamp": 1726886304000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0360544224013173"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          8
+        ]
+      ]
+    },
+    "references-count": 59,
+    "alternative-id": [
+      "S0360544224013173"
+    ],
+    "URL": "https://doi.org/10.1016/j.energy.2024.131544",
+    "relation": {
+      "has-preprint": [
+        {
+          "id-type": "doi",
+          "id": "10.36227/techrxiv.23118806.v2",
+          "asserted-by": "object"
+        }
+      ]
+    },
+    "ISSN": [
+      "0360-5442"
+    ],
+    "issn-type": [
+      {
+        "value": "0360-5442",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          8
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "Elsevier",
+        "name": "publisher",
+        "label": "This article is maintained by"
+      },
+      {
+        "value": "Probabilistic wind power forecasting resilient to missing values: An adaptive quantile regression approach",
+        "name": "articletitle",
+        "label": "Article Title"
+      },
+      {
+        "value": "Energy",
+        "name": "journaltitle",
+        "label": "Journal Title"
+      },
+      {
+        "value": "https://doi.org/10.1016/j.energy.2024.131544",
+        "name": "articlelink",
+        "label": "CrossRef DOI link to publisher maintained version"
+      },
+      {
+        "value": "article",
+        "name": "content_type",
+        "label": "Content Type"
+      },
+      {
+        "value": "© 2024 Elsevier Ltd. All rights reserved.",
+        "name": "copyright",
+        "label": "Copyright"
+      }
+    ],
+    "article-number": "131544"
+  }
+}

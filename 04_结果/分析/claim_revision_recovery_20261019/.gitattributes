@@ -1,0 +1,4 @@
+# Preserve the bytes bound by recovery and snapshot manifests.
+* -text whitespace=cr-at-eol
+# Historical whitespace is part of the bound snapshot identity.
+snapshots/** -whitespace

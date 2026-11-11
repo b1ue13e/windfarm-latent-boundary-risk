@@ -1,0 +1,13 @@
+﻿Configuration,Claim,Representative stored failure witnesses
+Original HGB,A,"Fresh and residual pitch cost-gain upper bounds are 0.1808% and 0.4724%, below the 1% important-gain threshold."
+Original HGB,B,"Old-pitch gain lower bound 0.3191% does not exceed 1%; old-pitch endpoint unqualified. Removing pitch, fit204 severity interval [0.0029770, 0.0125835] has lower bound above 0.001."
+Original HGB,C,Old-pitch gain upper bound 6.6986% exceeds 1%; uniformly low increment is unresolved.
+Original MLP,A,Fresh and residual pitch gain lower bounds -3.5467% and -1.8780% do not exceed 1%; important benefit is not established.
+Original MLP,B,Old-pitch gain lower bound -0.9653% does not exceed 1%; residual-pitch gain upper bound 1.8493% exceeds the 1% substitution responsibility. Reverse severity bounds also do not qualify.
+Original MLP,C,Old-pitch gain upper bound 7.6746% exceeds 1%; uniformly low increment is unresolved.
+Common HGB,A,"Fresh and residual pitch cost-gain upper bounds are 0.1540% and 0.4707%, below the 1% important-gain threshold."
+Common HGB,B,"Old-pitch gain lower bound 0.2885% does not exceed 1%; old-pitch endpoint unqualified. Removing pitch, fit204 severity interval [0.0028221, 0.0124244] has lower bound above 0.001."
+Common HGB,C,Old-pitch gain upper bound 6.6700% exceeds 1%; uniformly low increment is unresolved.
+Common MLP,A,Fresh and residual pitch gain lower bounds -2.3175% and -2.6867% do not exceed 1%; important benefit is not established.
+Common MLP,B,Old-pitch gain lower bound -4.7070% does not exceed 1%; residual-pitch gain upper bound 1.3681% exceeds the 1% substitution responsibility. Reverse severity bounds also do not qualify.
+Common MLP,C,Old-pitch gain upper bound 4.4642% exceeds 1%; uniformly low increment is unresolved.

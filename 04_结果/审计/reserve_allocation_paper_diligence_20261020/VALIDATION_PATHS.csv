@@ -1,0 +1,9 @@
+id,route,status,verified,qualification_gap,decision,source
+V01,HillofTowie2026Jan-Apr,CANCELLED_IN_V2,现有曝光答复UNKNOWN;官方仍只到Apr,无新的真实知情史证据,不恢复独立身份;无下载,https://zenodo.org/records/22662930
+V02,WTBDay1-245 and Towie2025,EXPOSED_DEVELOPMENT,已有解释/评价与公开归档,不能重命名确认;Day246未有来源,只保留既有证据,Existing project receipts and reports
+V03,Kelmarsh/Penmanshiel2016-24,NOT_A_CERTIFIED_BLIND_BACKUP,旧缓存source_files含2016-24;完整cache已存在,来源指纹不证明每行被人看;亦不支持未见身份,不可拿新版本/后两年自动确认,artifacts/final_evidence_package/export/tables/external_wind_cache_status.csv
+V04,后续同场站前瞻发布,HYPOTHETICAL_NOT_BOUND,官方当前Towie年包只列到Apr2026,无已绑定新日历/发布承诺/保护证据,不把未来可能发布当已可行;不创建监控,https://zenodo.org/records/22662930
+V05,SMARTEOLE fieldtest3,REAL_PUBLIC_SOURCE_NOT_V2_READY,7机1min;2020Feb-May;发布者已删任一机停机时刻,强选择后的总体;3叶片/Q/完整块/暴露和训练确认支持未资格,可定义另一个有界外场问题;不替换V2或取ZIP,https://zenodo.org/records/7342466
+V06,Greece SMD10TOWFGR,CURRENT_DATA_ENDPOINT_NOT_AVAILABLE,官方descriptor可核;原数据record14546479 API返回410,未找到该DOI当前可取得测量入口;不推永久无数据,15781269仅描述论文PDF不能当数据集,https://zenodo.org/api/records/14546479
+V07,SaintHilaire SCADA,DOCUMENTED_NEW_EXTERNAL_ROUTE_NOT_QUALIFIED,WES全文和DataCite623核4机2020Dec-2024Jan 10min含P/风/pitch/torque,目录本轮访问未成功;权限/文件/三叶片与Q/完整性/曝光未核,存在具体来源并非无数据;可观察4机但不冒称6机全场;不自动申请下载,https://api.datacite.org/dois/10.25326/623
+V08,真正第三方封存或原创理论替代,NO_ACTUAL_PACKAGE,已有E1四条路径为条件可能,没有既往封存协议/新材料或实际新定理,不靠当下第三方/交叉验证/加seed洗旧身份,research_audit/q1_research_decision_20261019/E1_EVIDENCE_PATHS.md

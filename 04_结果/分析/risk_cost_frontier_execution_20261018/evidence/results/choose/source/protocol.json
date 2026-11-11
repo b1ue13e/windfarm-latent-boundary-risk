@@ -1,0 +1,50 @@
+{
+  "study_id": "risk_cost_frontier_development_20261018_v1",
+  "status": "AUTHORIZED_DEVELOPMENT_NOT_CONFIRMATORY",
+  "authorization": "User requested first-principles analysis and authorized further reliable Metis experiments on 2026-10-18.",
+  "parent_study": "decision_information_development_20261018_v2",
+  "parent_root": "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1",
+  "parent_protocol_sha256": "c69bfdc1940996ad5b9bee9d610e52f6d0ad9618e316bc704e64d78ee1a1179b",
+  "parent_archive_sha256": "13fba6f0f96c3777e511bb177f7566ddc8fd6b37e1946cd946813f15c5234d15",
+  "conditions": ["pitch_withheld", "fresh", "delay1", "delay2", "delay3", "delay6_stress"],
+  "seeds": [201, 202, 203, 204, 205],
+  "variants": ["WindBins", "A_Wind", "B_Consequences", "E_Compressed", "C_WindScore", "C_ShuffledScore", "C_PitchScore"],
+  "excluded": "D_TruePitch_Diagnostic receives unavailable current pitch under some conditions and is not deployable there. All seven other archived model families remain competitors, including score controls.",
+  "task": {"horizon_steps": 6, "target_release_delay_steps": 1, "rho": 10.0, "dt_hours": 0.16666666666666666, "nominal_cost_quantile": 0.9, "v_max": 0.1, "alpha": 0.05},
+  "stages": {
+    "offset_fit_days": [176, 192],
+    "offset_selection_days": [193, 210],
+    "development_evaluation_days": [211, 245],
+    "selection_first_anchor": 27648,
+    "evaluation_first_anchor": 30240,
+    "maturity": "Each preceding issue+horizon+release must be strictly earlier than the next stage start. Boundary issues excluded identically for every condition and candidate. Exact retained coordinates are archived."
+  },
+  "offset_quantiles": [0.90, 0.925, 0.95, 0.975, 0.99],
+  "offset_method": "Global signed higher-quantile of s-max(raw,0) on offset_fit only. Action=max(max(raw,0)+offset,0). Higher offset levels are post-processing actions under an unchanged rho10 loss, not changed E04/E07 q* or risk caps.",
+  "historical_choice": "For each condition and base variant choose one shared quantile level across five seeds. Among levels whose simultaneous selection-stage violation upper bound is <=0.10 for EVERY archived seed, minimize mean selection cost; tie by lower quantile. If none qualify, retain q=.99 as an explicitly unqualified diagnostic fallback. Evaluation outcomes never alter this choice.",
+  "complexity": {
+    "scope": "Incremental reserve-layer resource order conditional on the same common external forecast; its identical upstream cost is shared, not asserted free end-to-end.",
+    "lexicographic_fields": ["telemetry_channel_count", "estimator_passes", "total_raw_estimator_input_width"],
+    "ties": "Report all equally simple eligible candidates; serialized bytes and elapsed prediction seconds also reported, not post-hoc reorder criteria.",
+    "notes": "E still consumes consequence signals and a separate predictor. WindBins deliberately ignores available inputs and is a restricted-resource candidate, not an equal-input representation control. Historical pitch supervision remains permitted."
+  },
+  "inference": {
+    "unit": "Shared contiguous index-day blocks; all seeds and conditions share temporal draws. No seed resampling; mean cost conditional on five frozen instances, risk checked for every instance.",
+    "primary_span_days": 3,
+    "sensitivity_spans_days": [1, 7],
+    "n_boot": 20000,
+    "rng_seed": 20261025,
+    "simultaneous_method": "Symmetric bootstrap maximum standardized deviation envelope across all declared metric coordinates. Selection envelope includes all conditions/seeds/variants/offset risks. Evaluation envelope jointly includes all condition/seed candidate risks and all condition-wise candidate mean-cost ratios, covering the entire epsilon curve. Approximate dependent-data bounds, not distribution-free guarantees.",
+    "risk_zero_variance_rule": "Set bounds to [0,1] for empirically constant risk coordinates; do not interpret a degenerate bootstrap as zero uncertainty.",
+    "epsilon_curve": [0.0, 0.005, 0.01, 0.02, 0.05],
+    "epsilon_role": "Descriptive sensitivity tolerances, not certified engineering requirements and not modifications to original zero tolerances.",
+    "possible_feasible": "A candidate is possible-feasible when max_seed lower(violation)<=0.10. This retains every truly feasible competitor on the joint coverage event.",
+    "selection_rule": "Candidate m must have passed historical choice, max_seed upper(V_m)<=0.10, and max over possible-feasible competitors k of upper(C_m/C_k-1)<=epsilon. Choose all eligible minimum-resource candidates. Allow no risk-qualified policy and uncertainty about near-optimality.",
+    "universe": "Seven policies produced by the frozen historical offset-choice procedure, not all possible actions, all models, or all offset-grid policies. The complete offset grid is separately retained for descriptive diagnostics.",
+    "evaluation_role": "Already inspected development window. Any evaluation-side identified set is retrospective identification, not an ex-ante deployable selection or independent confirmation."
+  },
+  "immutability": "Parent source, model, coordinate and raw-action manifests verified before reading. Calibration raw predictions saved in a new bundle; evaluation reuses exact parent raw actions. No retraining or rewriting parent arrays. No E04/E07 activation, threshold change or scientific claim upgrade.",
+  "success_outputs": ["historical offset choice with maturity coordinates", "complete offset-grid costs and violations", "shared-bound risk/cost frontier", "minimum-resource identified set versus epsilon", "serialized-resource and prediction-time diagnostics"],
+  "remaining_evidence": ["second estimator and sample-size learning curves", "new independent confirmation cohort", "real PCC procurement/deliverability, if claimed", "engineering choice of practical cost tolerance"],
+  "stop_rules": "Do not tune levels or caps after new outputs. If no policy qualifies, report no qualified policy. Do not add models to force a winner. Cost benefits at unequal risk are not certified risk dominance."
+}

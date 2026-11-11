@@ -1,0 +1,169 @@
+{
+  "utc_timestamp": "2026-10-18T07:54:20.884869+00:00",
+  "protected_inputs": [
+    {
+      "path": "archives/windfarm_derived_artifacts_v1.0.zip",
+      "sha256": "cf90924b1fead36317addabfcbee6aa6236bebc29889f8ce5dfd57466fc7fc22",
+      "size_bytes": 195613174,
+      "sha256_after": "cf90924b1fead36317addabfcbee6aa6236bebc29889f8ce5dfd57466fc7fc22",
+      "size_bytes_after": 195613174,
+      "unchanged": true
+    },
+    {
+      "path": "archives/windfarm_derived_artifacts_v1.0.zip.sha256",
+      "sha256": "d43623d08967e9334e2d67000ae6ba4b7497c04556246617247a0a3d8066fb9d",
+      "size_bytes": 103,
+      "sha256_after": "d43623d08967e9334e2d67000ae6ba4b7497c04556246617247a0a3d8066fb9d",
+      "size_bytes_after": 103,
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/fixed_forecast_residuals.npz",
+      "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+      "size_bytes": 173410167,
+      "sha256_after": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+      "size_bytes_after": 173410167,
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/matched_budget/cached_posterior_probs.npz",
+      "sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca",
+      "size_bytes": 22475033,
+      "sha256_after": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca",
+      "size_bytes_after": 22475033,
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/ARTIFACT_MANIFEST.json",
+      "sha256": "44fdb8fc1bf5ad8035fa51a5103bba7d468cd2f67b1cd9bcd2a9a1cdcf719e0d",
+      "size_bytes": 44766,
+      "sha256_after": "44fdb8fc1bf5ad8035fa51a5103bba7d468cd2f67b1cd9bcd2a9a1cdcf719e0d",
+      "size_bytes_after": 44766,
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/raw_replay_20261015_v2/historical_ARTIFACT_MANIFEST.json",
+      "sha256": "e7d85ab46fe29de89fd3599d53f803f28f46a24dc039603872837ad118a72ff4",
+      "size_bytes": 31018,
+      "sha256_after": "e7d85ab46fe29de89fd3599d53f803f28f46a24dc039603872837ad118a72ff4",
+      "size_bytes_after": 31018,
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/fixed_forecast_residuals_meta.json",
+      "sha256": "e521b773bc7bdb5d0adbcd7e8c28526464a4de98cf332f1b92e235a27e8bf86c",
+      "size_bytes": 14057,
+      "sha256_after": "e521b773bc7bdb5d0adbcd7e8c28526464a4de98cf332f1b92e235a27e8bf86c",
+      "size_bytes_after": 14057,
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/matched_budget/provenance.json",
+      "sha256": "22624366b20c5790c74e661c670b27895d0ca9b19fcec1e9d4e6b022f7b364b3",
+      "size_bytes": 633,
+      "sha256_after": "22624366b20c5790c74e661c670b27895d0ca9b19fcec1e9d4e6b022f7b364b3",
+      "size_bytes_after": 633,
+      "unchanged": true
+    },
+    {
+      "path": "experiments/E06/remote_e06_inputs/e06_exact_inputs/fixed_forecast_residuals.npz",
+      "sha256": "50499806cf6103d869086318858d9eb2cde89f99dac43c65917cc423572330a1",
+      "size_bytes": 175752841,
+      "sha256_after": "50499806cf6103d869086318858d9eb2cde89f99dac43c65917cc423572330a1",
+      "size_bytes_after": 175752841,
+      "unchanged": true
+    },
+    {
+      "path": "experiments/E04/results/e04_v2/e04_v2_selection.json",
+      "sha256": "9e22f0fcb449943153919307203626866bebfce854287b29d75d5976287e91df",
+      "size_bytes": 3250,
+      "sha256_after": "9e22f0fcb449943153919307203626866bebfce854287b29d75d5976287e91df",
+      "size_bytes_after": 3250,
+      "unchanged": true
+    },
+    {
+      "path": "analyses/e07_data_availability_audit_20261018/archive_coordinates_audit.json",
+      "sha256": "e7a9125602b2acb7967db0f86de78c9c517c3aa42bdc5bab05778f954f8d16a4",
+      "size_bytes": 2261,
+      "sha256_after": "e7a9125602b2acb7967db0f86de78c9c517c3aa42bdc5bab05778f954f8d16a4",
+      "size_bytes_after": 2261,
+      "unchanged": true
+    },
+    {
+      "path": "analyses/e07_data_availability_audit_20261018/final/availability_manifest.json",
+      "sha256": "327e0c96b406d2e8a5554a95bfcc7be93a068c64187cd7a4c3d9ffa077a9fdc3",
+      "size_bytes": 31473,
+      "sha256_after": "327e0c96b406d2e8a5554a95bfcc7be93a068c64187cd7a4c3d9ffa077a9fdc3",
+      "size_bytes_after": 31473,
+      "unchanged": true
+    },
+    {
+      "path": "experiments/E07_history_only_recalibration/.gitattributes",
+      "sha256": "e2fe006d61db02faa37b668c78b95d67e89eecf6faad9321b6ce9dcf7d3bd615",
+      "size_bytes": 142,
+      "sha256_after": "e2fe006d61db02faa37b668c78b95d67e89eecf6faad9321b6ce9dcf7d3bd615",
+      "size_bytes_after": 142,
+      "unchanged": true
+    },
+    {
+      "path": "experiments/E07_history_only_recalibration/PREREGISTRATION_DRAFT.md",
+      "sha256": "9fca4bd061d2c533264151d67d30b21164715c13aa68d6ee107822fada61bbd8",
+      "size_bytes": 10975,
+      "sha256_after": "9fca4bd061d2c533264151d67d30b21164715c13aa68d6ee107822fada61bbd8",
+      "size_bytes_after": 10975,
+      "unchanged": true
+    },
+    {
+      "path": "experiments/E07_history_only_recalibration/protocol.json",
+      "sha256": "2f9769f0341b20f9407d040f5c0bee53809314ff4268bc5ebd1b09edfe67cf17",
+      "size_bytes": 6600,
+      "sha256_after": "2f9769f0341b20f9407d040f5c0bee53809314ff4268bc5ebd1b09edfe67cf17",
+      "size_bytes_after": 6600,
+      "unchanged": true
+    },
+    {
+      "path": "experiments/E07_history_only_recalibration/references_verified.csv",
+      "sha256": "a7fa734c868a1d3cbb2804ee4088555dc1d242af17b8e174df33508df67dbde7",
+      "size_bytes": 742,
+      "sha256_after": "a7fa734c868a1d3cbb2804ee4088555dc1d242af17b8e174df33508df67dbde7",
+      "size_bytes_after": 742,
+      "unchanged": true
+    }
+  ],
+  "protected_count": 16,
+  "all_protected_unchanged": true,
+  "zip_member_full_hash_and_size_vs_historical_manifests": "PASS",
+  "corrected_document_hashes_and_sizes": "PASS",
+  "original_document_and_history_snapshot_hashes": "PASS",
+  "document_local_links": "PASS",
+  "E07_null_activation_bindings": "PASS",
+  "existing_checks": [
+    {
+      "command": "python -m pytest tests/test_e07_data_inventory.py -q",
+      "exit_code": 0,
+      "result": "8 passed"
+    },
+    {
+      "command": "python scripts/verify_scientific_claim_gate.py",
+      "exit_code": 0,
+      "result": "SCIENTIFIC_CLAIM_GATE: PASS"
+    },
+    {
+      "command": "python scripts/verify_tste_number_consistency.py --output-dir analyses/legacy_release_hash_audit_20261018/number_consistency_gate",
+      "exit_code": 0,
+      "result": "complete_tste_number_consistency"
+    }
+  ],
+  "limitations": [
+    "No original generation replay or calibration executed",
+    "No renewal of historical 19/19 scientific certification",
+    "No remote release asset re-download"
+  ],
+  "staging_checks": {
+    "git_diff_cached_check": "PASS; historical snapshot whitespace preserved by scoped attributes",
+    "audit_files_staged_byte_exact": 28,
+    "corrected_document_git_blob_sha256": "PASS",
+    "only_authorized_docs_and_new_metadata_staged": "PASS",
+    "unrelated_AGENTS_and_untracked_work_not_staged": true
+  }
+}

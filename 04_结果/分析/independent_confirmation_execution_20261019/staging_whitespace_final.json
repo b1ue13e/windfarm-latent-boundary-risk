@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "scope": "Immutable raw logs and pre-edit snapshots retain original whitespace; human-authored current code/docs checked",
+  "exit_code": 0
+}

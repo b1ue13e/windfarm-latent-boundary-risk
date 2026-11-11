@@ -1,0 +1,10 @@
+{
+  "preflight_receipt.json": {
+    "bytes": 743,
+    "sha256": "a96246b7ff970bda4c02c20bec581d170d60b9c07440513761b47304196d7e79"
+  },
+  "receipt.json": {
+    "bytes": 743,
+    "sha256": "a96246b7ff970bda4c02c20bec581d170d60b9c07440513761b47304196d7e79"
+  }
+}

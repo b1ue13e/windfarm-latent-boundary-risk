@@ -1,0 +1,14 @@
+{
+  "span_1": {
+    "candidate_max_risk_upper": 0.07292732354750629,
+    "reference_max_risk_upper": 0.07297155488297102,
+    "relative_cost_ratio_upper": 0.011129083858339677,
+    "confirmed": true
+  },
+  "span_7": {
+    "candidate_max_risk_upper": 0.0773666395489903,
+    "reference_max_risk_upper": 0.07724762627624539,
+    "relative_cost_ratio_upper": 0.011407435326580622,
+    "confirmed": true
+  }
+}

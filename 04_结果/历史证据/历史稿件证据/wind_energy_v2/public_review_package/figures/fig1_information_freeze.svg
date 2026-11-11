@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="510.23622pt" height="354.330709pt" viewBox="0 0 510.23622 354.330709" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-20T18:36:11.332943</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.9, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 354.330709 
+L 510.23622 354.330709 
+L 510.23622 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 38.267717 81.825084 
+L 161.566299 81.825084 
+L 161.566299 42.34252 
+L 38.267717 42.34252 
+z
+" clip-path="url(#p0a68fc34be)" style="fill: #e9ecef"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 200.38252 81.825084 
+L 332.814331 81.825084 
+L 332.814331 42.34252 
+L 200.38252 42.34252 
+z
+" clip-path="url(#p0a68fc34be)" style="fill: #e9ecef"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 371.630551 81.825084 
+L 494.929134 81.825084 
+L 494.929134 42.34252 
+L 371.630551 42.34252 
+z
+" clip-path="url(#p0a68fc34be)" style="fill: #deedf6"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="38.267717" y="21.614864" transform="rotate(-0 38.267717 21.614864)">a</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 9px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="63.384094" y="21.799551" transform="rotate(-0 63.384094 21.799551)">Shared forecast; different incremental reserve inputs</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(61.092008 59.046302)">Upstream W/P history</text>
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(62.783258 69.355052)">36 steps per channel</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(235.257175 59.06224)">Frozen forecast F</text>
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(234.697175 69.241615)">Clock + turbine ID</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(407.048593 59.015365)">Reserve policy</text>
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif" transform="translate(408.604843 69.28849)">P1 or WPQ36</text>
+   </g>
+   <g id="patch_5">
+    <path d="M 165.852238 62.083802 
+Q 180.973912 62.083802 194.977552 62.083802 
+" style="fill: none; stroke: #757575; stroke-linecap: round"/>
+    <path d="M 191.777552 60.483802 
+L 194.977552 62.083802 
+L 191.777552 63.683802 
+" style="fill: none; stroke: #757575; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 337.10027 62.083802 
+Q 352.221944 62.083802 366.225583 62.083802 
+" style="fill: none; stroke: #757575; stroke-linecap: round"/>
+    <path d="M 363.025583 60.483802 
+L 366.225583 62.083802 
+L 363.025583 63.683802 
+" style="fill: none; stroke: #757575; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="38.267717" y="111.496005" transform="rotate(-0 38.267717 111.496005)">Forecast inputs end at t − 60 min; target is t + 60 min.</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="38.267717" y="133.25079" transform="rotate(-0 38.267717 133.25079)">P1 adds current P; WPQ36 adds W/P/Q history. Both retain the shared forecast.</text>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_7">
+    <path d="M 38.267717 311.811024 
+L 494.929134 311.811024 
+L 494.929134 213.104612 
+L 38.267717 213.104612 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 39.309371 279.237908 
+L 112.641862 279.237908 
+L 112.641862 245.677728 
+L 39.309371 245.677728 
+z
+" clip-path="url(#pe5d08d6b12)" style="fill: #dbe0e4"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 114.725171 279.237908 
+L 189.307647 279.237908 
+L 189.307647 245.677728 
+L 114.725171 245.677728 
+z
+" clip-path="url(#pe5d08d6b12)" style="fill: #dbe0e4"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 191.390956 279.237908 
+L 265.140109 279.237908 
+L 265.140109 245.677728 
+L 191.390956 245.677728 
+z
+" clip-path="url(#pe5d08d6b12)" style="fill: #dbe0e4"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 267.223418 279.237908 
+L 341.805894 279.237908 
+L 341.805894 245.677728 
+L 267.223418 245.677728 
+z
+" clip-path="url(#pe5d08d6b12)" style="fill: #dbe0e4"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 343.889203 279.237908 
+L 493.887479 279.237908 
+L 493.887479 245.677728 
+L 343.889203 245.677728 
+z
+" clip-path="url(#pe5d08d6b12)" style="fill: #0072b2"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_8">
+      <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle" x="38.267717" y="321.037274" transform="rotate(-0 38.267717 321.037274)">2023</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_9">
+      <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle" x="190.349302" y="321.037274" transform="rotate(-0 190.349302 321.037274)">2024</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_10">
+      <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle" x="342.847549" y="321.037274" transform="rotate(-0 342.847549 321.037274)">2025</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4"/>
+     <g id="text_11">
+      <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle" x="494.929134" y="321.037274" transform="rotate(-0 494.929134 321.037274)">2026</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2"/>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="38.267717" y="199.286405" transform="rotate(-0 38.267717 199.286405)">b</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 9px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="63.384094" y="199.365624" transform="rotate(-0 63.384094 199.365624)">Historical choice frozen before the original 2025 confirmation</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #222222" x="75.975616" y="264.525943" transform="rotate(-0 75.975616 264.525943)">Forecast fit</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #222222" x="152.016409" y="264.527818" transform="rotate(-0 152.016409 264.527818)">Policy fit</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #222222" x="228.265533" y="264.525943" transform="rotate(-0 228.265533 264.525943)">Offset fit</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #222222" x="304.514656" y="264.525943" transform="rotate(-0 304.514656 264.525943)">Selection</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="418.888341" y="264.525943" transform="rotate(-0 418.888341 264.525943)">Confirmation</text>
+   </g>
+  </g>
+  <g id="text_19">
+   <text style="font-size: 8px; font-family: 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start" x="38.267717" y="340.245384" transform="rotate(-0 38.267717 340.245384)">Actual sequence (19 Oct 2026 UTC): package created 04:27:16; unlock 04:30:57.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p0a68fc34be">
+   <rect x="38.267717" y="35.433071" width="456.661417" height="98.706412"/>
+  </clipPath>
+  <clipPath id="pe5d08d6b12">
+   <rect x="38.267717" y="213.104612" width="456.661417" height="98.706412"/>
+  </clipPath>
+ </defs>
+</svg>

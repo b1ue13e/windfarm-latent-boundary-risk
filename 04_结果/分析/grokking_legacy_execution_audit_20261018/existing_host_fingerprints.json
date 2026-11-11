@@ -1,0 +1,53 @@
+{
+  "scope": "valid parsed records for192.168.17.251 only; source file hashes in preflight",
+  "records": [
+    {
+      "line": 1,
+      "host": "[192.168.17.251]:25717",
+      "algorithm": "ssh-ed25519",
+      "fingerprint": "SHA256:oNc+CkuCXl8LGjk3kqlIPZhdp/i/VTb0gtd5oF0ctY8"
+    },
+    {
+      "line": 2,
+      "host": "[192.168.17.251]:25717",
+      "algorithm": "ssh-rsa",
+      "fingerprint": "SHA256:DLEgaqJm3iOURzSMq02jjJ0xl9yn4jEQMft1Pas6O4M"
+    },
+    {
+      "line": 3,
+      "host": "[192.168.17.251]:25717",
+      "algorithm": "ecdsa-sha2-nistp256",
+      "fingerprint": "SHA256:TiD2qitJFqWLI5L2+XoANAgzP0G/0dI4PcPL/CcOjEs"
+    },
+    {
+      "line": 4,
+      "host": "[192.168.17.251]:25329",
+      "algorithm": "ssh-ed25519",
+      "fingerprint": "SHA256:oNc+CkuCXl8LGjk3kqlIPZhdp/i/VTb0gtd5oF0ctY8"
+    },
+    {
+      "line": 5,
+      "host": "[192.168.17.251]:25243",
+      "algorithm": "ssh-ed25519",
+      "fingerprint": "SHA256:CAsufHSIkkZAALehurvmyFr6GCxxA/bP2WM3WDxYnPM"
+    },
+    {
+      "line": 6,
+      "host": "[192.168.17.251]:25457",
+      "algorithm": "ssh-ed25519",
+      "fingerprint": "SHA256:oNc+CkuCXl8LGjk3kqlIPZhdp/i/VTb0gtd5oF0ctY8"
+    },
+    {
+      "line": 7,
+      "host": "[192.168.17.251]:25346",
+      "algorithm": "ssh-ed25519",
+      "fingerprint": "SHA256:oNc+CkuCXl8LGjk3kqlIPZhdp/i/VTb0gtd5oF0ctY8"
+    },
+    {
+      "line": 8,
+      "host": "[192.168.17.251]:25979",
+      "algorithm": "ssh-ed25519",
+      "fingerprint": "SHA256:oNc+CkuCXl8LGjk3kqlIPZhdp/i/VTb0gtd5oF0ctY8"
+    }
+  ]
+}

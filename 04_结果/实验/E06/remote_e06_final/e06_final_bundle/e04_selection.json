@@ -1,0 +1,92 @@
+{
+  "protocol": {
+    "version": "E04-v2",
+    "alpha": 0.05,
+    "epsilon_C_kwh": 0.0,
+    "epsilon_V": 0.0,
+    "v_max": 0.1,
+    "n_primary_boot": 20000,
+    "n_stability_boot": 10000,
+    "primary_seed": 20261017,
+    "stability_seed": 20261018,
+    "unit": "5 training seeds x 35 daily blocks, joint resampling",
+    "complexity_order": [
+      "B",
+      "C",
+      "D",
+      "D10"
+    ],
+    "primary_population": "Full",
+    "stability_is_diagnostic": true
+  },
+  "policies": {
+    "B": {
+      "cost_delta_point_kwh": 0.0,
+      "cost_delta_ucb95_kwh": 0.0,
+      "violation_delta_point": 0.0,
+      "violation_delta_ucb95": 0.0,
+      "absolute_violation_point": 0.10296349774233053,
+      "absolute_violation_ucb95": 0.11419393570436379,
+      "feasible": false
+    },
+    "C": {
+      "cost_delta_point_kwh": 2220894.110799228,
+      "cost_delta_ucb95_kwh": 3758647.2788021564,
+      "violation_delta_point": 0.0015578611149081269,
+      "violation_delta_ucb95": 0.004864387540585626,
+      "absolute_violation_point": 0.10452135885723865,
+      "absolute_violation_ucb95": 0.11731446644166825,
+      "feasible": false
+    },
+    "D": {
+      "cost_delta_point_kwh": 56887.91184938946,
+      "cost_delta_ucb95_kwh": 119264.05077571867,
+      "violation_delta_point": -5.632796907315956e-05,
+      "violation_delta_ucb95": 2.3944358534497945e-05,
+      "absolute_violation_point": 0.10290716977325737,
+      "absolute_violation_ucb95": 0.11418291791543933,
+      "feasible": false
+    },
+    "D10": {
+      "cost_delta_point_kwh": 73791.61732165221,
+      "cost_delta_ucb95_kwh": 128434.65169582365,
+      "violation_delta_point": -0.00024322001068603273,
+      "violation_delta_ucb95": -0.00013071235932205286,
+      "absolute_violation_point": 0.10272027773164448,
+      "absolute_violation_ucb95": 0.11389418686057207,
+      "feasible": false
+    }
+  },
+  "selection": {
+    "status": "NO FEASIBLE POLICY",
+    "selected_policy": null,
+    "feasible_policies": [],
+    "no_feasible_frequency": 0.6464,
+    "selection_frequency": {
+      "B": 0.3523,
+      "C": 0.0013,
+      "D": 0.0,
+      "D10": 0.0
+    },
+    "note": "Stability frequencies are diagnostic; thresholds, candidates, baseline, and complexity order were immutable in E04-v2 preregistration."
+  },
+  "provenance": {
+    "execution_receipt": {
+      "path": "/nfs/ihfs/home_metis/junyu/dsh-scratch/J05/e06_final_bundle/e04_execution_receipt.json",
+      "sha256": "8dc7cfb787d83e7fa3a6de7078dce2903ab0fb8c635992c3f4ae2e6d96d4b5aa"
+    },
+    "execution_plan": {
+      "path": "/nfs/ihfs/home_metis/junyu/dsh-scratch/J05/e06_final_bundle/e04_execution_plan.json",
+      "sha256": "f3a0ee702b781d3501d3249bbc2284ced6ec96fe8ef04078feae9ecd13354684"
+    },
+    "output_manifest": {
+      "path": "/nfs/ihfs/home_metis/junyu/dsh-scratch/J05/e06_final_bundle/e04_output_manifest.json",
+      "sha256": "da738539088b6b18a8e8bdef85e7503939387ce2054ab7504073993964f2c2b6"
+    },
+    "selector_script": {
+      "path": "/nfs/ihfs/home_metis/junyu/dsh-scratch/J05/e06_final_bundle/select_e04_v2.py",
+      "sha256": "69ea4e287eef08e01b7f3bd63bb2f9912e9d293e4c9cbde2338cad57125ec599"
+    },
+    "binding": "selector input arrays are accepted only after receipt and manifest verification"
+  }
+}

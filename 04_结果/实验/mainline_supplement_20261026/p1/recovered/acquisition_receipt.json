@@ -1,0 +1,16 @@
+{
+  "start_utc": "2026-10-26T07:55:59.730082+00:00",
+  "url": "https://zenodo.org/api/records/22662930/files/2026.zip/content",
+  "expected_bytes": 553982874,
+  "expected_md5": "42a2264187912ca63214bacfbc8d4905",
+  "archive_listed": false,
+  "measurements_read": false,
+  "argv": [
+    "/lstr/sahara/minlpml/junyu/mainline_supplement_20261026/p1/acquire_sealed.py"
+  ],
+  "status": "SEALED_ACQUISITION_VERIFIED",
+  "bytes": 553982874,
+  "md5": "42a2264187912ca63214bacfbc8d4905",
+  "sha256": "4bcfd706769369eacde59ea4f3a45bc3f9c0fb334c67fea75fcf3aa0c424eaea",
+  "finished_utc": "2026-10-26T07:59:13.550138+00:00"
+}

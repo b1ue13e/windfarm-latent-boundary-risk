@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption*{\textbf{Table 1. Conditions shared by the studies and differences retained in reporting.} The target interval is ten minutes; the reserve issue is six steps before it. Counts are per fixed fit, not counts of independent observations.}
+\small
+\begin{tabular}{p{.22\linewidth}p{.35\linewidth}p{.35\linewidth}}
+\toprule
+Item & Measurement updates & State reconstruction \\
+\midrule
+Source and evaluation & SDWPF; 134 turbines; days 211--245 & Same source and weather period \\
+Common forecast & Earlier wind/power forecast; identical target and clock grid & Same inherited forecast and grid \\
+Main population & Future power, current power and all three current pitch angles finite & Future power finite \\
+Scored turbine-interval cells & 671,538 & 672,939 \\
+Decision-training row limit & 360,000 per fixed fit & 120,000 per fixed fit \\
+State supervision & Current measured pitch is an added input & Retrospective pitch regression; 100,000-row limit; early publication exception \\
+Calibration stages & Days 176--192 offset; 193--210 selection & Days 176--210 signed offset \\
+Calibration recipes & Historical per-group selection; later common $q=0.925$ & Fixed offset $q=0.90$ \\
+Main inference families & Original 154; later diagnostic 596 & 42 cost contrasts; other endpoints descriptive \\
+\bottomrule
+\end{tabular}
+\end{table}

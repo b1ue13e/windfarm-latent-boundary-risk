@@ -1,0 +1,16 @@
+{
+  "protocol_before_sha256": "7e3ec72ae119de76512c84342721b8a2152437cea400511a9d9940a078e22207",
+  "protocol_before_snapshot": "analyses/e07_data_availability_audit_20261018/protocol_before_availability_audit.json",
+  "protocol_after_sha256": "2f9769f0341b20f9407d040f5c0bee53809314ff4268bc5ebd1b09edfe67cf17",
+  "unchanged_sections": [
+    "data",
+    "frozen_objects",
+    "gates",
+    "calibration",
+    "evaluation"
+  ],
+  "all_unchanged_sections_equal": true,
+  "collection_manifest_still_null": true,
+  "calibration_not_run": true,
+  "note": "Availability metadata only; numeric thresholds, window, baseline and calibration recipe unchanged"
+}

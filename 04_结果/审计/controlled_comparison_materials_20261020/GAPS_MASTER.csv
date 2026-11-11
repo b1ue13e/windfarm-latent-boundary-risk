@@ -1,0 +1,18 @@
+﻿id,category,status,material_or_claim_responsibility,evidence,current_resolution,required_scope,study
+MAT01,material,CLOSED_VERIFIED,实验原数据与公开版本/许可绑定,data_source/SOURCE_AND_LICENSE.json;RAW_IDENTITY.json,原文件大小+MD5精确匹配Figshare v2;官方metadata已存;原CSV不复制,无须新增测量;按明确版本引用,两研究
+MAT02,material,CLOSED_VERIFIED,冻结执行源码而非当前同名源码,study_M/SOURCE_PACKET_RECOVERY_M.json;study_R/LOCAL_IDENTITY_R.json,原部署包恢复不同版本文件并核旧SHA;R成功source tar也绑定,不拿当前修改版冒充执行版,两研究
+MAT03,material,CLOSED_SELECTED_BYTES_NOT_REEXECUTED,R主缺pitch五fit动作/坐标/模型/索引及30run日块,CURRENT_AVAILABILITY.json;RECOVERED_FILES.csv#group=R,仅复制旧manifest约束的既有文件;由主索引给最终字节资格,主五fit外的R条件仅完整日块/既存统计;不称所有条件动作已回收,R
+MAT04,material,CLOSED_SELECTED_BYTES_NOT_REEXECUTED,M各阶段坐标/模型/原预测/动作和控制动作,CURRENT_AVAILABILITY.json;RECOVERED_FILES.csv#group=M_pilot/M_controls,70任务的5唯一训练索引本体按声明hash作别名;60模型原样回收,不能把文件身份核验说成又跑了一次拟合/校准/账目,M
+MAT05,material,CLOSED_VERIFIED,两研究共用派生物理通道阵列与共同预测生产模型,SUPPLEMENT_PHYSICAL.json;SUPPLEMENT_TRANSFER.json,同一派生阵列只存一份且两manifest相同;point model未加载,原CSV依正式入口;未生成新数据或执行输入重建,两研究
+MAT06,original_not_persisted,NOT_PERSISTED_SCOPE_NARROWED,原20000次抽样索引数组本体,study_R/GAPS_R.csv#R-G03;study_M/GAPS_M.csv#M-G08,原程序只保存抽样hash/seed/生成规则;无法靠复制补出不存在的矩阵,可报告原近似区间与生成材料;不称本轮取回原抽样数组/位级重现/认证覆盖率,两研究
+MAT07,runtime,PARTIAL_METADATA_NO_RUNTIME_REPLAY,原软件环境可执行封装,study_M/ENVIRONMENT_INDEX_M.csv;study_R原execution_receipt,已存Python/NumPy/sklearn/Torch/CPU/seed/命令/源码身份;未制作或验证容器/完整环境锁,L4材料存在而运行复现未验收;不安装依赖或跑模型补证,两研究
+PUB01,submission_administration,NOT_PUBLISHED_NOT_AUTHORIZED,长期公开地址及作者代码/派生材料许可确认,README.md;PACKAGE_MANIFEST.json,本地复核资产及原数据许可存在;没有上传仓库或替作者赋许可,只能称本地可交付复核包;不写成已开放永久归档,两研究
+LIM01,population,VERIFIED_DISTINCT_MASKS,R MSE与成本的计分人口不是同一逐格mask,POPULATION_IDENTITY_R.json,五fit已有坐标逐格布尔比较均不同;时钟索引符合anchors±6,MSE独立点值诊断;禁止中介/传递率/同人口联合结论,R
+LIM02,comparison_not_generated,NOT_GENERATED_CLAIM_REMOVED,真实pitch D与恢复分数C的直接成本区间,study_R/CLAIMS_R.csv#R-C07,504原记录没有D-C;D-B和C-B均原样保留,不推D显著优于C;不新计算区间,R
+LIM03,identification,UNRESOLVED_CLAIM_NARROWED,恢复分数pitch语义的独有作用,study_R/display_R_cost.csv,两个控制比较原联合区间跨零,保留具体小幅增量;不写语义优越或语义无效/等效,R
+LIM04,identification,FAILED_TRANSFER_CLAIM_NARROWED,严格开发同预算及排除自适应P-only,study_M/copies/controls/budget_transfer.csv;display_M_decomposition.csv,历史采购匹配在开发漂移;常数界只限指定有限类,不称等预算或状态独有分配;不在开发侧重新配平,M
+LIM05,confirmation,NO_NEW_INDEPENDENT_CONFIRMATION,新整合问题独立确认,两原protocol;CLAIM_EVIDENCE_DISPLAY.csv#CC11,共同暴露35天天气和固定五fit,受控开发比较;不合并成独立复制;不借Towie2025,两研究
+LIM06,operational_scope,CONTROLLED_SYNTHETIC_ONLY,真实到达/采购/交付与费用价值,两原protocol;prepared receipts,合成信息时钟;代理目标;没有现场日志或交易账单,不写现场服务、sensor savings、货币收益或部署安全,两研究
+LIM07,inference,APPROXIMATE_ORIGINAL_INFERENCE_ONLY,区间覆盖和风险职责,原42/154/596协议和区间记录,原近似推断条件固定fit;R42只成本;不合成全稿95%,原界原条件报告;R/U/V描述不借成本界认证风险,两研究
+LIM08,implementation_scope,HEAD_WIDTH_ONLY,E低维输入的作用范围,study_R/CLAIMS_R.csv#R-C09,E=A40+g1;g使用B112,指定头压缩的实现结果;不称端到端单标量/可删传感器,R
+LIM09,registered_gate,ORIGINAL_FAILURES_PRESERVED,修正A/B/C全部false,study_M/display_M_routes.csv;CLAIM_EVIDENCE_DISPLAY.csv#CC10,四配置原布尔结果均false;成本局部比较不被抹去,不把本稿成文改称原路线通过;按资格/不利界/未定分别报告,M

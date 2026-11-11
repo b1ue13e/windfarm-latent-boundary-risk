@@ -1,0 +1,18 @@
+{
+  "scientific-gate": {
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "02_公共资源/工程/project.py",
+      "scientific-gate"
+    ]
+  },
+  "number-gate": {
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "02_公共资源/工程/project.py",
+      "number-gate"
+    ]
+  }
+}

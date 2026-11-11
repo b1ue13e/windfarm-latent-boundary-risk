@@ -1,0 +1,4 @@
+# Preserve exact public metadata/access-response bytes recorded in the reviews.
+mlwa/crossref_metadata.json -text
+seta/crossref.json -text
+seta/*.txt -text -whitespace

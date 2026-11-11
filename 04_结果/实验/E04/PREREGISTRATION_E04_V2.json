@@ -1,0 +1,49 @@
+{
+  "experiment_id": "E04-v2",
+  "status": "PREREGISTERED_BEFORE_EXECUTION",
+  "registered_at": "2026-10-18T02:30:00Z",
+  "question": "Under the frozen WTB Full-population information/target protocol, does the risk-constrained selector return a lowest-complexity feasible policy?",
+  "information_set": "docs/INFORMATION_SET_CONTRACT.md",
+  "fixed_target": "docs/FIXED_TARGET_CONTRACT.md",
+  "criterion": "docs/MINIMUM_SUFFICIENT_DECISION_CRITERION.md",
+  "alpha": 0.05,
+  "epsilon_C_kwh": 0.0,
+  "epsilon_V": 0.0,
+  "v_max": 0.10,
+  "primary_population": "WTB Full test population",
+  "replication_unit": "5 training seeds x 35 daily blocks; joint seed/block resampling",
+  "primary_bootstrap_replicates": 20000,
+  "stability_bootstrap_replicates": 10000,
+  "primary_seed": 20261017,
+  "stability_seed": 20261018,
+  "candidate_policies": [
+    {"id": "B", "name": "Site-Local Wind-Speed Bins", "complexity_rank": 0},
+    {"id": "C", "name": "Posterior-Conditioned Quantile", "complexity_rank": 1},
+    {"id": "D", "name": "Validation-Frozen Hybrid", "complexity_rank": 2},
+    {"id": "D10", "name": "Pre-Specified Boundary-Band Hybrid", "complexity_rank": 3}
+  ],
+  "selection_rule": "Select the first policy in B<C<D<D10 satisfying one-sided UCB cost delta <= epsilon_C, UCB violation delta <= epsilon_V, and UCB absolute violation <= v_max; otherwise NO FEASIBLE POLICY.",
+  "stability_rule": "Report diagnostic selection frequency from the separately seeded stability bootstrap; frequency is not used to relax or alter primary feasibility.",
+  "post_result_changes_forbidden": ["thresholds", "candidate_set", "baseline", "complexity_order", "replication_unit", "uncertainty_procedure", "population"],
+  "input_artifact_sha256": {
+    "information_set_contract": "5BAB1146136CCD00EC4104B99DDB0F3441309575B4EFF59BB19AA3D71EE04B68",
+    "fixed_target_contract": "CC715A1A832B67DA0CBAAF1502B50A5DFBC0514AE9937FF1D8943EBF5B9FAA35",
+    "criterion_doc": "A5307C985DC80B13AA310CBE11EC4A2FA6B3AD068D437873FE5351DB76B8A040",
+    "selector_script": "69EA4E287EEF08E01B7F3BD63BB2F9912E9D293E4C9CBDE2338CAD57125EC599",
+    "provenance_module": "E7CDFF57E79DAB2ACF38F06B727597AA63FA7CAE3D32109F9DA23194E2E8DE6F",
+    "receipt_wrapper": "6945883D848E7F614DB66C58961D10B7549366DFD5C4E7B7DCF4F49AF4DC9274",
+    "preregistration_verifier": "9A2610788360C483E3F8803F7A695659B801FE0B04FDB5DF6B265E0CD3B6A503"
+  },
+  "remote_input_sha256": {
+    "cache_metadata": "6175e219cc9e9e0a9f641ad133336db7ed16fcdf40f413465ee25095413cfaa9",
+    "fixed_forecast_residuals": "50499806cf6103d869086318858d9eb2cde89f99dac43c65917cc423572330a1",
+    "checkpoint_seed201": "005c3e662432d493f49a617c10e8319b28c078aba79686c7c9490959ac05507c",
+    "checkpoint_seed202": "e5b2a1c865f8d94a992cef6afbc4b0a9994744bfcab8da794cd8df0b4d60247b",
+    "checkpoint_seed203": "75dd321b7a9df0ac1f9418d564193290fc08f8407e58ffea61c747a322ecefcf",
+    "checkpoint_seed204": "ac15696ff37c52c9b811533891f96a77e1cfbe7e1c673d552b9510dc7fa4e39d",
+    "checkpoint_seed205": "2f3016035a406f8fc329a3159a963a0e5329972ce19f43ccdbe381bbab4f42f4"
+  },
+  "execution_policy": "Use existing frozen checkpoints/cache/residuals only; no retraining, no architecture changes, no test-time threshold tuning. Recompute and compare each listed remote input hash before executing E04-v2.",
+  "valid_outcomes": ["SELECTED", "NO FEASIBLE POLICY", "UNSTABLE SELECTION", "BLOCKED"],
+  "claim_ceiling": "No outcome establishes a universal minimum-sufficient law or complex-model deployment necessity without independent falsification review."
+}

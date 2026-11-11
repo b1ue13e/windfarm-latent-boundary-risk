@@ -1,0 +1,17 @@
+{
+  "experiment_id": "E04-v2",
+  "preregistration_commit": "64478031c8ba630edff8f57851e90de4f2bdc6cb",
+  "preregistration_git_blob": "d6294c7947bb3ffca48fda3976925a37df81b6d9",
+  "preregistration_json_sha256": "AC5ADFE7CC9809E25CB1EEEDC51B8E24BA2D3D632146D4A030ADAE437007F3EC",
+  "thresholds": {"alpha": 0.05, "epsilon_C_kwh": 0.0, "epsilon_V": 0.0, "v_max": 0.10},
+  "population": "WTB Full test population",
+  "unit": "5 seeds x 35 daily blocks; joint seed/block resampling",
+  "candidates": ["B", "C", "D", "D10"],
+  "complexity_order": ["B", "C", "D", "D10"],
+  "primary_bootstrap": {"replicates": 20000, "seed": 20261017},
+  "stability_bootstrap": {"replicates": 10000, "seed": 20261018},
+  "input_hash_manifest": "experiments/E04/remote_inputs.sha256",
+  "remote_wrapper": "experiments/E04/code/run_e04_v2_preregistered.sh",
+  "post_result_changes_forbidden": ["thresholds", "candidate_set", "baseline", "complexity_order", "replication_unit", "uncertainty_procedure", "population"],
+  "pre_execution_note": "This committed record is the immutable anchor. Any protocol change requires E04-v3 before viewing outcomes."
+}

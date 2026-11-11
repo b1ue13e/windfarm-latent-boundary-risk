@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-19",
+  "scope": "ReviewerN only; source downloads and reports, not scientific-result certification",
+  "checks": "12reference rows, allowed roles, required outputs, frozen claim inventory hash matched",
+  "files": [
+    {
+      "file": "crossref_metadata.json",
+      "bytes": 21779,
+      "sha256": "0cdcd6d1ca3ffa29d45f80d9076dda3030546188e70f79d001939b52da4661b8"
+    },
+    {
+      "file": "fetch_receipt.json",
+      "bytes": 1255,
+      "sha256": "1907562614d1cc39a5c07dabb8eb49e3129594c171279988c7eaf66baf837995"
+    },
+    {
+      "file": "fetch_receipt2.json",
+      "bytes": 647,
+      "sha256": "4794f78e7ee35dde03def047e9ef74e23e2fe439b7323fd2300867d95288c19d"
+    },
+    {
+      "file": "kuhnau2023.pdf",
+      "bytes": 2797588,
+      "sha256": "245d5b73ffb86bdafd3706b033a06a79c4012fdcfba6959d98582f5d60a0cae7"
+    },
+    {
+      "file": "kuhnau2023.txt",
+      "bytes": 44846,
+      "sha256": "cf530f59c4d923e52369abae1271bcb80ff0d316fc851bd76df3944eabfa7da3"
+    },
+    {
+      "file": "munoz2020.pdf",
+      "bytes": 262987,
+      "sha256": "2b5a35022aa7cd0b85512ca005710c246b9e29c12e276e2d836d6516c891dc0a"
+    },
+    {
+      "file": "munoz2020.txt",
+      "bytes": 96952,
+      "sha256": "6fb8fece66d04954f76cb94e3d0f0da88231bd0ca7824932ea0bff33aebe6c66"
+    },
+    {
+      "file": "PRIOR_ART_N.md",
+      "bytes": 12131,
+      "sha256": "c78c6b8e1b978b68e0bc7d2681db2fab79c6d4c94e2291ff56b113eccd474633"
+    },
+    {
+      "file": "references.csv",
+      "bytes": 4782,
+      "sha256": "0c1b74e8ea33dcf58252a16b87a7a4ce3461337e0ea6b0600e8fc7f73b79a921"
+    },
+    {
+      "file": "REVIEWER_N.md",
+      "bytes": 3746,
+      "sha256": "15b090f1dab21cf20e22781355a893780cb3f6e874656d7e079a5cc1e0f63d38"
+    },
+    {
+      "file": "SEARCH_LOG.md",
+      "bytes": 9080,
+      "sha256": "1c060d0b30417c9ece9dc1bf66b3cfdf2eadd035d9f3f1d04edfa3a51d087a92"
+    },
+    {
+      "file": "stratigakos2024.pdf",
+      "bytes": 6242955,
+      "sha256": "8f7f3a8293c7a0b5bf017b05deca8bec9e6fc60547fadad4b9d41bc9bb73e524"
+    },
+    {
+      "file": "stratigakos2024.txt",
+      "bytes": 137244,
+      "sha256": "9b83b9b424b52636377c256508433f3dd8a6c60438e2fe4cff8974c1470cf7ad"
+    },
+    {
+      "file": "sun2022.pdf",
+      "bytes": 6264659,
+      "sha256": "7439f4070fbf322dd8654331c2a2de217787c4392cdbda44bac8e66c30b35b82"
+    },
+    {
+      "file": "sun2022.txt",
+      "bytes": 148572,
+      "sha256": "e51a42d5bec2b8a2872bb88866d13c73aab0065b4fbd2a2423693b1ff0620381"
+    },
+    {
+      "file": "wahdany2023.pdf",
+      "bytes": 1482481,
+      "sha256": "9dbc973e8902156c79c177766e7c9febae4b0420388661f0ca5f4752e46ce713"
+    },
+    {
+      "file": "wahdany2023.txt",
+      "bytes": 100216,
+      "sha256": "6e0e3d0e48d2cb6cdc6c348a6bf4c8d8f5def476508317d6f598fd0d9c52db22"
+    },
+    {
+      "file": "wen_v2.html",
+      "bytes": 277969,
+      "sha256": "23ec4c35ab0dd7fa82bab851efcb3b58555b6e02c92776ebdc0051d9254f1db7"
+    },
+    {
+      "file": "wen_v3.pdf",
+      "bytes": 850250,
+      "sha256": "64e665affb2ef8cf4144b6c3b6f9dc7ef0620dfa2ce4c7df35cbf887cea3ea4e"
+    },
+    {
+      "file": "wen_v3.txt",
+      "bytes": 88870,
+      "sha256": "4e6396fa3f28294fda804050c088ef35f62334d4c33ca01724aa26fce1b5fe4e"
+    }
+  ]
+}

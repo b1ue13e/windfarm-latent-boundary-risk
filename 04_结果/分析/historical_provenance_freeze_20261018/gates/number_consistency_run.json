@@ -1,0 +1,9 @@
+{
+  "command": [
+    "python",
+    "scripts/verify_tste_number_consistency.py",
+    "--output-dir",
+    "analyses\\historical_provenance_freeze_20261018\\gates\\number_consistency"
+  ],
+  "exit_code": 0
+}

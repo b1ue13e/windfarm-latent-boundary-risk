@@ -1,0 +1,65 @@
+{
+  "R1": {
+    "type": "statistical_fixed_reference_confirmation",
+    "scope": "Hill of Towie sealed2025; fixed synthetic clocks, shared W/P forecast, five archived instances",
+    "candidate": "P1/HGB/q0.95",
+    "reference": "WPQ36/HGB/q0.95",
+    "mean_costs": [
+      67.020403,
+      66.64443
+    ],
+    "relative_cost_percent": 0.5641,
+    "joint_approx_interval_percent": [
+      0.3575,
+      0.7708
+    ],
+    "max_instance_risk_upper_percent": [
+      6.2025,
+      6.2004
+    ],
+    "margin_percent": 2,
+    "risk_cap_percent": 10,
+    "status": "SUPPORTED_WITHIN_DECLARED_APPROXIMATE_SCOPE",
+    "not_established": [
+      "cost_superiority",
+      "all_family_near_optimality",
+      "minimality",
+      "realized_resource_savings"
+    ]
+  },
+  "R2": {
+    "type": "prespecified_secondary_finite_family_identification",
+    "candidate": "P1/HGB/q0.925",
+    "candidate_count_pitch_withheld": 225,
+    "mean_cost": 65.739232,
+    "max_instance_risk_upper_percent": 9.7699,
+    "margin_percent": 2,
+    "resource_tuple": [
+      1,
+      1,
+      5
+    ],
+    "strictly_smaller_excluded": 15,
+    "excluded_by_risk": 2,
+    "excluded_by_cost_witness": 13,
+    "status": "SUPPORTED_WITHIN_DECLARED_APPROXIMATE_SCOPE",
+    "primary_q095_in_full_q_2percent_set": false,
+    "not_established": [
+      "ex_ante_minimal_policy_selection",
+      "global_information_minimality",
+      "universal_redundancy",
+      "distribution_free_guarantee"
+    ]
+  },
+  "background_not_third_independent_confirmation": {
+    "WTB_cases": 420,
+    "WTB_minima_identified": 0,
+    "independent_year_dependent_secondary_cases": 90,
+    "identified": 46,
+    "unresolved": 26,
+    "no_sufficient_candidate": 18,
+    "fixed_history_secondary_failures": 3,
+    "case_counts_are_independent_replications": false
+  },
+  "scope": "Freeze of existing results; no recalculation, new statistical interval or research execution."
+}

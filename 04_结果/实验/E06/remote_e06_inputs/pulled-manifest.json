@@ -1,0 +1,32 @@
+{
+  "jobId": "J07",
+  "host": "metis",
+  "pulledAt": "2026-10-18T03:49:38.757Z",
+  "remoteJobDir": "~/dsh-scratch/J07",
+  "localOutDir": "E:\\论文3\\experiments\\E06\\remote_e06_inputs",
+  "pulled": [
+    {
+      "name": "e06_exact_inputs",
+      "size": 177586176
+    },
+    {
+      "name": "lineage_observations.json",
+      "size": 119184
+    },
+    {
+      "name": "smoke",
+      "size": 2736128
+    },
+    {
+      "name": "stderr.log",
+      "size": 91
+    },
+    {
+      "name": "stdout.log",
+      "size": 1423
+    }
+  ],
+  "leftOnHost": [],
+  "thresholdBytes": 250000000,
+  "note": "leftOnHost 中的文件因超过阈值留在主机，路径见 remoteJobDir（可用 remote_exec 查看/按需下载）。"
+}

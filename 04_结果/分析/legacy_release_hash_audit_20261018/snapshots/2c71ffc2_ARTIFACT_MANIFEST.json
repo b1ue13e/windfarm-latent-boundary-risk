@@ -1,0 +1,645 @@
+[
+  {
+    "filename": "artifacts/clean_evidence_v2/risk_layer_benchmark/h1_lead1/results_by_seed.csv",
+    "sha256": "fa6e7a281e7f7bf26e793ae6666ece3b7990c4eae48759a25e15ae4a1e92f48f",
+    "size_bytes": 17135,
+    "category": "A",
+    "generating_script": "scripts/decisive_fair_risk_benchmark.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Clean Physics h=1 PSREI: 589,535 kWh",
+      "Clean Physics h=1 standard deviation: 77,390 kWh",
+      "Boundary-active cell count: N=13,883"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/clean_evidence_v2/risk_layer_benchmark/h6_lead6/results_by_seed.csv",
+    "sha256": "047aa3d74f606684065e5f0e06df9e9d4421dd5b3055714fdd0ccb7b31a89cbf",
+    "size_bytes": 17375,
+    "category": "A",
+    "generating_script": "scripts/decisive_fair_risk_benchmark.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Clean Physics h=6 PSREI: 881,367 kWh",
+      "Clean Physics h=6 standard deviation: 95,741 kWh",
+      "Clean Physics h=6 violation rate: 6.81%",
+      "Delay-6 physics breakdown at h=6: 12.20% violation, 47.41 MWh deficit"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/direct_quantile_baselines_summary.csv",
+    "sha256": "be74766467dcf21656b372e89e269ae02e0ee6c52371fe0afab8196e0fedec8b",
+    "size_bytes": 5922,
+    "category": "A",
+    "generating_script": "scripts/decisive_fair_risk_benchmark.py",
+    "upstream_inputs": [
+      "artifacts/fixed_forecast_residuals.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Table I / Tab 1 Direct Quantile baselines: B3 GBDT breaches 10% target at h=6 (14.98%)",
+      "Direct Quantile MLP pinball conservatism: 1,649,721 kWh (0.58% viol)",
+      "STGQ-Dense: 991,181 kWh at h=6",
+      "STGQ-Routed: 959,027 kWh at h=6"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/single_task_dense_vs_multitask_moe_ablation.csv",
+    "sha256": "dfbdd3d7884337ba8d0a1ed5fbc760463cd95752e984d60e2edb0c43533b50d2",
+    "size_bytes": 20798,
+    "category": "A",
+    "generating_script": "scripts/eval_single_task_dense_phase_scan.py",
+    "upstream_inputs": [
+      "artifacts/checkpoints/",
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Delay-6 Physics breakdown at h=1: 24.02% viol, 127.55 MWh deficit",
+      "State-conditional recalibration absorbs 55.3% shortage loss (127.6 -> 57.0 MWh)",
+      "Recalibrated physics at tau=60: 1,228,609 kWh (9.46% viol)",
+      "Pitch-withheld recalibration degradation: 824,393 -> 1,378,900 kWh",
+      "Learned recovery tau=0 no-pitch: 755,794 kWh (-68.6k vs recal)",
+      "Learned recovery tau=60 no-pitch: 1,330,318 kWh (-48.6k vs recal)"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/posterior_calibration.csv",
+    "sha256": "7c0ae323842a0973a8687cd403fad3384c9e7fd1c61d14282ad0cd41f90376d0",
+    "size_bytes": 2985,
+    "category": "A",
+    "generating_script": "scripts/audit_posterior_calibration.py",
+    "upstream_inputs": [
+      "artifacts/checkpoints/"
+    ],
+    "manuscript_claims_supported": [
+      "All uncalibrated ECE values pass strict gate: max ECE = 3.46% <= 5.00%",
+      "State-conditional posterior calibration preserves reliability"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/active_power_anchor_audit.csv",
+    "sha256": "6cf0e3a2ea30f37e28bedb070e51a74ed25a90024e5119fcbbe2e2b11300de30",
+    "size_bytes": 13026,
+    "category": "A",
+    "generating_script": "scripts/run_active_power_anchor_audit.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Active power AUROC: 0.988",
+      "Active power AUPRC: 0.941",
+      "Active power Brier score: 0.0112"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/fair_degradation_replay_20260903/fair_degradation_summary.csv",
+    "sha256": "4c69b485d12581a32bfce013a73449b970b42b9737bad6aa7beac55d96fa3e28",
+    "size_bytes": 772,
+    "category": "A",
+    "generating_script": "scripts/fair_degradation_replay.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Transition window recall gain: 0.416 (Model) vs 0.196 (Rule)",
+      "Delay-6 operational degradation bounds"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/factorial_boundary_ablation_summary.csv",
+    "sha256": "21206306425bf54ed2cfd090bede1ff8bb9781b6e5157eecd163d5741cb9ae92",
+    "size_bytes": 12819,
+    "category": "A",
+    "generating_script": "scripts/run_factorial_boundary_ablation.py",
+    "upstream_inputs": [
+      "artifacts/checkpoints/"
+    ],
+    "manuscript_claims_supported": [
+      "Random posterior negative control exceeds 10% target: 11.41% > 10.0%",
+      "MoE vs Dense parity at h=6 pitch-withheld: Dense=15,471,506 kWh vs Routed=15,768,203 kWh"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/clean_privileged_supervision_ablation.csv",
+    "sha256": "07d1d159f03ce52f77bfba29c9f29c9ff6cabd8ff5f7911764fbdc97e8bb10c1",
+    "size_bytes": 2692,
+    "category": "A",
+    "generating_script": "scripts/run_clean_privileged_supervision_ablation.py",
+    "upstream_inputs": [
+      "artifacts/checkpoints/"
+    ],
+    "manuscript_claims_supported": [
+      "Matched-backbone privileged supervision ablation (lambda_align=5000 vs lambda_align=0)",
+      "Decision cost delta CI crosses zero"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/channel_consequence_ablations.csv",
+    "sha256": "df398623b52a243c129ed48b8909cb9e3d64d2725b9e5b7622a3b44be166a02c",
+    "size_bytes": 3608,
+    "category": "A",
+    "generating_script": "scripts/run_channel_consequence_ablations.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "C2 Active Power confirmed dominant mechanism (Brier=0.0112, NMI=0.461)",
+      "C4 Thermal confirmed unable to detect fast transitions (recall=0.0%)"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/anchor_stress_guard/anchor_stress_summary.csv",
+    "sha256": "38f69f2795244d226575a01d52ef6564d523f0c511fbdf9c1057aeff63269230",
+    "size_bytes": 733,
+    "category": "A",
+    "generating_script": "scripts/run_anchor_stress_guard.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Consequence channel ablation under anchor stress (no_patv, no_pab_mean, lagged_patv)"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/strong_baseline_closure_summary.csv",
+    "sha256": "2596eb5fbd4c16ac92edbc57a9e57f21764135864f597761d33ee4096bf59953",
+    "size_bytes": 1539,
+    "category": "A",
+    "generating_script": "scripts/test_strong_baseline_closure.py",
+    "upstream_inputs": [
+      "artifacts/fixed_forecast_residuals.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Plant-wide posterior cost superiority not supported (+523,044 kWh penalty)",
+      "Transition slice risk hedge: lower violation (7.24% vs 8.36%) and lower shortage at higher reserve (+112,739 kWh PSREI)",
+      "Steady-state simple baseline remains lower-cost (+410,305 kWh posterior penalty)",
+      "Full population: Policy B 84,577,217 kWh vs Policy C 85,100,261 kWh"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/strong_baseline_bootstrap_contrasts.csv",
+    "sha256": "c26fd8ad56402fba0047223faf59159001857f2fbe773a299471b929adf379c4",
+    "size_bytes": 1364,
+    "category": "A",
+    "generating_script": "scripts/test_strong_baseline_closure.py",
+    "upstream_inputs": [
+      "artifacts/fixed_forecast_residuals.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Transition-localization interaction: -296,053 kWh (CI [-568,265, -39,429], p=0.002)",
+      "Day-block cluster bootstrap statistical significance across 35 observed days"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/matched_budget/baseline_reproduction.csv",
+    "sha256": "a2faa1493b48fa2aba53f050b6400adedcbb9d69dbd3d7c626448c15bf768aaf",
+    "size_bytes": 4684,
+    "category": "A",
+    "generating_script": "scripts/run_matched_budget_frontier.py",
+    "upstream_inputs": [
+      "artifacts/matched_budget/cached_posterior_probs.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Reproduced baseline PSREI accounting identity C = R + 10 U closes within 0.001 kWh"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/matched_budget/exact_matched_budget_frontier.csv",
+    "sha256": "fa3b00203741a2f0672ac329c22fa4f4e1ffe67248f4b53189d69d68b1bf7668",
+    "size_bytes": 132792,
+    "category": "A",
+    "generating_script": "scripts/run_matched_budget_frontier.py",
+    "upstream_inputs": [
+      "artifacts/matched_budget/cached_posterior_probs.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Matched-budget frontier: at matched budget (Delta R = 0), posterior shortage increase +5,241 kWh on average",
+      "4 of 5 seeds fail to improve shortage at matched budget"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/matched_budget/validation_calibrated_frontier.csv",
+    "sha256": "b0d5e8b3c79432166846d26a266de30ce069f0c140758737dedbee2f0bdcde59",
+    "size_bytes": 132920,
+    "category": "A",
+    "generating_script": "scripts/run_matched_budget_frontier.py",
+    "upstream_inputs": [
+      "artifacts/matched_budget/cached_posterior_probs.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Validation-calibrated deployable matched-budget frontier confirming shortage non-superiority"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/matched_budget/bootstrap_frontier_statistics.csv",
+    "sha256": "af7d4e50f118fc50c295dbc7da174592b5620184bc36c8e50ddd6e7cfeb976de",
+    "size_bytes": 83638,
+    "category": "A",
+    "generating_script": "scripts/run_matched_budget_frontier.py",
+    "upstream_inputs": [
+      "artifacts/matched_budget/cached_posterior_probs.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Bootstrap confidence intervals for Delta U(B) and Delta V(B) across 5,000 resamples",
+      "Bootstrap probability P(Delta U >= 0) = 0.81"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/matched_budget/frontier_auc_summary.csv",
+    "sha256": "b807e7dfcc0e376507b2ec5f20d17c9ae727f92e9e0b90dc95c59b298384cde8",
+    "size_bytes": 1316,
+    "category": "A",
+    "generating_script": "scripts/run_matched_budget_frontier.py",
+    "upstream_inputs": [
+      "artifacts/matched_budget/cached_posterior_probs.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Integrated shortfall AUC difference confirms absence of decision superiority across budget support"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/matched_budget/mechanism_reallocation_diagnostic.csv",
+    "sha256": "b983915b0b1fdd9f5a9fb9fb9f6fcd36ab6ad0ac86e862e146563ed837fe3f03",
+    "size_bytes": 545,
+    "category": "A",
+    "generating_script": "scripts/run_matched_budget_frontier.py",
+    "upstream_inputs": [
+      "artifacts/matched_budget/cached_posterior_probs.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Reserve reallocation mechanism diagnostic: lower violation frequency offset by deeper residual shortfalls"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/matched_budget/provenance.json",
+    "sha256": "22624366b20c5790c74e661c670b27895d0ca9b19fcec1e9d4e6b022f7b364b3",
+    "size_bytes": 633,
+    "category": "A",
+    "generating_script": "scripts/run_matched_budget_frontier.py",
+    "upstream_inputs": [
+      "artifacts/matched_budget/cached_posterior_probs.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Campaign MB00-MB13 parameter specification and sample definitions"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/matched_budget/frozen_policy_rho_sensitivity.csv",
+    "sha256": "c63c82fb8436fc01ab5ab46e9d03b215b38650c32cf0e74fa507b8a5de391d34",
+    "size_bytes": 1652,
+    "category": "A",
+    "generating_script": "scripts/run_rho_sensitivity.py",
+    "upstream_inputs": [
+      "artifacts/matched_budget/cached_posterior_probs.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Frozen-policy break-even ratio sweep rho in [1, 100]"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/matched_budget/reoptimized_rho_sensitivity.csv",
+    "sha256": "af8cec02ae018be445873124172643f8a0e74ec5d0014a9f4fce14c0a6cd4de0",
+    "size_bytes": 37002,
+    "category": "A",
+    "generating_script": "scripts/run_rho_sensitivity.py",
+    "upstream_inputs": [
+      "artifacts/matched_budget/cached_posterior_probs.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Re-optimized policy rho-sensitivity: absence of economic crossover for any rho >= 5"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/paper_assets/tables/table_main_benchmark.csv",
+    "sha256": "41f079300f6e6e17c7e475027e5dc95ec89040bfcb32d7369569d63416fee537",
+    "size_bytes": 1659,
+    "category": "A",
+    "generating_script": "scripts/rebuild_applied_energy_diagnostics.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/"
+    ],
+    "manuscript_claims_supported": [
+      "Benchmark point forecast RMSE margin: 236.13 +- 8.41 vs 224.34 +- 2.23",
+      "Graph WaveNet benchmark comparison on WTB"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/paper_assets/tables/table_wtb_ablation.csv",
+    "sha256": "666f65e5769a02cf8b7ecad6d090e7d3640de792759669f2b58bdc41074952dc",
+    "size_bytes": 1340,
+    "category": "A",
+    "generating_script": "scripts/rebuild_applied_energy_diagnostics.py",
+    "upstream_inputs": [
+      "artifacts/checkpoints/"
+    ],
+    "manuscript_claims_supported": [
+      "MoE + L_bal + L_align + L_force ablation metrics"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv",
+    "sha256": "128a66251cfe21625f9c879d3b68956646c4fb004fa801fd779b4ed3f7d2436e",
+    "size_bytes": 6543,
+    "category": "A",
+    "generating_script": "scripts/run_anchor_stress_early_warning.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Early warning label delay steps=6 and availability=0.50 robustness"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_summary.csv",
+    "sha256": "eb283165a7daa2b3ab4358e2716383196618b6b5f540abc202967c954f8d0ebe",
+    "size_bytes": 3054,
+    "category": "A",
+    "generating_script": "scripts/run_early_warning_classifier_baseline.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Classifier baseline clean live anchor comparison"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/final_evidence_package/export/tables/early_warning_consequence_audit.csv",
+    "sha256": "4442e3e5465f752c517e79b187e93cdb4281cca3f7e680c545cb1d8e87640b8c",
+    "size_bytes": 2084,
+    "category": "A",
+    "generating_script": "scripts/build_final_evidence_package.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Consequence audit under delay steps=6"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv",
+    "sha256": "5d89bb0f0ab08916435c90b1f58e90d7019170ad342978509372e599527dcc7c",
+    "size_bytes": 782,
+    "category": "A",
+    "generating_script": "scripts/run_class_weight_sensitivity.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Train-only class weight sensitivity audit"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_summary.csv",
+    "sha256": "4d8327efd6c0a0901331cf4dc876a6b5de663bddf7b361e3278ffa9e1f598158",
+    "size_bytes": 44004,
+    "category": "A",
+    "generating_script": "scripts/decisive_fair_risk_benchmark.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Reserve decision summary for boundary subset, cost ratio 10.0"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/decision_reserve_trainweight_allclean_20260830/reserve_decision_raw_runs.csv",
+    "sha256": "64cd417043193886302415965412f72d8fbd4d01ae86de4310c4214257e700b6",
+    "size_bytes": 875908,
+    "category": "A",
+    "generating_script": "scripts/decisive_fair_risk_benchmark.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Same-model reserve statistics across seeds"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/mechanism_behavior_pack_wtb/gate_transition_lead_lag.csv",
+    "sha256": "dead11446dc02604761bb4685204233cf591b201633c4572bf42159c4b2492f9",
+    "size_bytes": 10090,
+    "category": "A",
+    "generating_script": "scripts/build_mechanism_behavior_pack.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical"
+    ],
+    "manuscript_claims_supported": [
+      "Gate transition lead-lag temporal evolution"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/external_wind_guard_windowfix/external_wind_guard.json",
+    "sha256": "d8613a504f6ed58c02d4894f6a698282da99a6f8b6f430864478f21d65fcedc8",
+    "size_bytes": 2699,
+    "category": "A",
+    "generating_script": "scripts/build_cross_farm_generalization.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_kelmarsh",
+      "artifacts/cache_signature_penmanshiel"
+    ],
+    "manuscript_claims_supported": [
+      "Kelmarsh (6 MM92) and Penmanshiel (14 MM82) external validation",
+      "Zero-shot directional asymmetry: Kelmarsh -> Penm 0.77 vs reverse 0.34",
+      "Turbine count alone does not explain cross-site variation"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/external_wind_lhb_guard_full_5seed/external_wind_guard.json",
+    "sha256": "f4233089af07460d15ac0520b734a6e12de6aa5ecba7a8f549816c0d6c11e46b",
+    "size_bytes": 2403,
+    "category": "A",
+    "generating_script": "scripts/build_cross_farm_generalization.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_lhb"
+    ],
+    "manuscript_claims_supported": [
+      "La Haute Borne (LHB 4 MM82) micro-farm overfitting boundary: +43k kWh (CI [-28.7k, +141.2k])"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json",
+    "sha256": "fe33f4886468bd18100bb069576fcbc22230fe2323ab9ad4c8e79ac20d283271",
+    "size_bytes": 1161,
+    "category": "A",
+    "generating_script": "scripts/build_cross_farm_generalization.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_lhb"
+    ],
+    "manuscript_claims_supported": [
+      "LHB anchor observability guard and intervention"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/mediation_analysis.csv",
+    "sha256": "9a0be5a2f93a2a5df91a5a1a8a7ccc35d451e2cf2e4d1f1a190e5221f28bddf3",
+    "size_bytes": 2979,
+    "category": "A",
+    "generating_script": "scripts/run_decision_mediation_test.py",
+    "upstream_inputs": [
+      "artifacts/fixed_forecast_residuals.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Mediation confirmed: Dynamic transition windows account for 48.4% of total savings (p=0.0000)"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/information_set_manifest.csv",
+    "sha256": "820f5f8ea7cb360c513f2184a081d4e67d20f2304d644f2ca157bbdcafde3930",
+    "size_bytes": 133318,
+    "category": "A",
+    "generating_script": "scripts/verify_decisive_gate.py",
+    "upstream_inputs": [
+      "windfarm_moe/arrival_feed.py"
+    ],
+    "manuscript_claims_supported": [
+      "Information-set symmetry: 819 rows validated, zero forward leakage"
+    ],
+    "tracked_in_git": true,
+    "externally_hosted": false,
+    "regenerable": true
+  },
+  {
+    "filename": "artifacts/fixed_forecast_residuals.npz",
+    "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+    "size_bytes": 173410167,
+    "category": "B",
+    "generating_script": "scripts/run_fixed_target_contract.py",
+    "upstream_inputs": [
+      "artifacts/cache_signature_trainweight/wtb_245d_canonical",
+      "wtbdata_245days.csv"
+    ],
+    "manuscript_claims_supported": [
+      "Fixed forecast residuals across 5 seeds and 6 horizons (keys: 28)",
+      "Underlies Table I, Table II, direct quantiles, mediation analysis, and strong-baseline closure"
+    ],
+    "tracked_in_git": false,
+    "externally_hosted": true,
+    "regenerable": false
+  },
+  {
+    "filename": "artifacts/matched_budget/cached_posterior_probs.npz",
+    "sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca",
+    "size_bytes": 22475033,
+    "category": "B",
+    "generating_script": "scripts/run_matched_budget_frontier.py",
+    "upstream_inputs": [
+      "artifacts/checkpoints/",
+      "artifacts/fixed_forecast_residuals.npz"
+    ],
+    "manuscript_claims_supported": [
+      "Precomputed posterior probabilities across 5 seeds for matched-budget campaign (MB00-MB13)",
+      "Underlies exact matched-budget frontier, bootstrap CIs, and rho sensitivity"
+    ],
+    "tracked_in_git": false,
+    "externally_hosted": true,
+    "regenerable": false
+  }
+]

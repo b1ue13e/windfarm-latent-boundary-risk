@@ -1,0 +1,135 @@
+{
+  "inference_reproduction": {
+    "status": "MATCHED",
+    "coordinates": 154,
+    "n_boot": 20000,
+    "span": 3,
+    "draw_sha256": "40de4cf0514e1240666d3d60dfeaabbf3e1e1c78c121cb615c69c6ad966f0c62",
+    "critical": 3.1968210987632597,
+    "maximum_errors": {
+      "point": 3.972516759986888e-16,
+      "lower": 3.95516952522712e-16,
+      "upper": 3.9898639947466563e-16
+    },
+    "scope": "Numerical reproduction only, not verification of dependent-bootstrap coverage"
+  },
+  "b_implementation_discrepancy": {
+    "unexpected_extra_guards": [
+      "U(OZ6)-U(O6)",
+      "U(OP6)-U(O6)"
+    ],
+    "counterexample_original": false,
+    "counterexample_specified": true,
+    "current_data": {
+      "HGB": {
+        "original_B": false,
+        "specified_B": false,
+        "current_verdict_changed": false
+      },
+      "MLP": {
+        "original_B": false,
+        "specified_B": false,
+        "current_verdict_changed": false
+      }
+    }
+  },
+  "retained_HGB_OP_to_OPZ": {
+    "cost_premium": {
+      "point": 0.0008654818689250179,
+      "lower": -0.004426828979532314,
+      "upper": 0.0061577927173823484
+    },
+    "uncovered_before": 0.2705928588520905,
+    "uncovered_after": 0.24472050581566038,
+    "uncovered_reduction_relative": 0.09561358398808406,
+    "reserve_before": 29.657864471154625,
+    "reserve_after": 29.944598277621722,
+    "reserve_increase_relative": 0.00966805303011542,
+    "normalized_U_OP_minus_OPZ_mean": {
+      "point": 0.006460554002768541,
+      "lower": 0.0007425804748077231,
+      "upper": 0.01217852753072936
+    },
+    "instances_exceeding_original_severity_tolerance_by_lower_bound": [
+      202,
+      204,
+      205
+    ],
+    "scope": "Post-hoc interpretation of original registered coordinates; no new selection or field qualification"
+  },
+  "risk_status": {
+    "HGB:F": {
+      "max_instance_lower": 0.041695801534811894,
+      "max_instance_upper": 0.07242644021986329,
+      "status": "QUALIFIED"
+    },
+    "HGB:FZ": {
+      "max_instance_lower": 0.06165676527540826,
+      "max_instance_upper": 0.12688059225313073,
+      "status": "UNRESOLVED_QUALIFICATION"
+    },
+    "HGB:O6": {
+      "max_instance_lower": 0.043369124531865796,
+      "max_instance_upper": 0.09214070514270213,
+      "status": "QUALIFIED"
+    },
+    "HGB:OP6": {
+      "max_instance_lower": 0.061373434570751784,
+      "max_instance_upper": 0.12176437743690824,
+      "status": "UNRESOLVED_QUALIFICATION"
+    },
+    "HGB:OZ6": {
+      "max_instance_lower": 0.06817870489391263,
+      "max_instance_upper": 0.14550093795578461,
+      "status": "UNRESOLVED_QUALIFICATION"
+    },
+    "HGB:OPZ6": {
+      "max_instance_lower": 0.05905506546103373,
+      "max_instance_upper": 0.12119385567224539,
+      "status": "UNRESOLVED_QUALIFICATION"
+    },
+    "MLP:F": {
+      "max_instance_lower": 0.055328975164029084,
+      "max_instance_upper": 0.10072355856720089,
+      "status": "UNRESOLVED_QUALIFICATION"
+    },
+    "MLP:FZ": {
+      "max_instance_lower": 0.06774221832270133,
+      "max_instance_upper": 0.12202515150596063,
+      "status": "UNRESOLVED_QUALIFICATION"
+    },
+    "MLP:O6": {
+      "max_instance_lower": 0.04331865420654516,
+      "max_instance_upper": 0.09548645012801957,
+      "status": "QUALIFIED"
+    },
+    "MLP:OP6": {
+      "max_instance_lower": 0.05324466624442856,
+      "max_instance_upper": 0.11224112904935973,
+      "status": "UNRESOLVED_QUALIFICATION"
+    },
+    "MLP:OZ6": {
+      "max_instance_lower": 0.06714894928899467,
+      "max_instance_upper": 0.10652997878357903,
+      "status": "UNRESOLVED_QUALIFICATION"
+    },
+    "MLP:OPZ6": {
+      "max_instance_lower": 0.05878075038273221,
+      "max_instance_upper": 0.11067801442283354,
+      "status": "UNRESOLVED_QUALIFICATION"
+    },
+    "CONTROL:Global": {
+      "max_instance_lower": 0.012254202766974528,
+      "max_instance_upper": 0.058365777040571734,
+      "status": "QUALIFIED"
+    },
+    "CONTROL:Persistence": {
+      "max_instance_lower": 0.01807539635190236,
+      "max_instance_upper": 0.061783077777633116,
+      "status": "QUALIFIED"
+    }
+  },
+  "added_model_fits": 0,
+  "new_measurements": 0,
+  "original_source_sha256": "d806c22dfcb6c96482fb9a268a428cf21045fb872aa26f930315c64929dadb16"
+}

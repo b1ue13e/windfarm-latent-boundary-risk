@@ -1,0 +1,212 @@
+[
+  {
+    "path": "literature_reading\\.gitignore",
+    "bytes": 18,
+    "sha256": "8dc8c11a82f17d84cd11d235b4aa6107238e68a40ef55f1e575a0c59c084ca72",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\dantas2026seamless_existing_pdf.txt",
+    "bytes": 108223,
+    "sha256": "bc624f1041b86ba5f0b3658100b2b8c1087f11d79fb8f16f40ed12914e9f4070",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\iversen2017.pdf",
+    "bytes": 1683819,
+    "sha256": "c4511e2afa6d08393271d3b129b74e4ea7099ce7848b3376a4af49a0d6a983de",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\iversen2017.txt",
+    "bytes": 48125,
+    "sha256": "871d81dbd665576529cb567b38bf60bdf66b2a25687b9b2af831c57ea35c416e",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\LOCAL_ORIGINALS.json",
+    "bytes": 247,
+    "sha256": "ca436fb4035d880dab79ae31aef312fc3c2b720035716309b0adc75612d46ec4",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\meng2026_accepted.pdf",
+    "bytes": 17327448,
+    "sha256": "9188c97fb5ca61e8f2d8de6c88909a11a21a7155820ba791ccce92037f37d992",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\meng2026_accepted.txt",
+    "bytes": 65020,
+    "sha256": "b88d0d0ee99e9b8cd4570cb147f29806ba41e82ac16bef431eeaaa60801fc541",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\missing_and_dynamic.png",
+    "bytes": 734082,
+    "sha256": "51d1e7982739163a55276fb912b11b4959c523f5751ad2f0f4a0da08ced23e35",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\mlwa2026_user_pdf.txt",
+    "bytes": 101255,
+    "sha256": "90dd4703a057656ed7ed2e0fb01d7719f08ca6a0378b6e6f3ce4db2b49583631",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\phipps2022postprocessing_existing_pdf.txt",
+    "bytes": 96228,
+    "sha256": "dda10c9ef4cf00ecb8c96f4f5e7b1c6e350e003276232410fabfdaa0699f0d5f",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\recent_methods.png",
+    "bytes": 1151601,
+    "sha256": "41569cc4062218e59e93a571c08ed8d6a95033ae46c37cbbef71f556ffc24133",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\stratigakos2026_accepted.pdf",
+    "bytes": 4535088,
+    "sha256": "09c82bfe1cd5c60b04f817c38a75a74ce2613b8ba4a90f3a13042871ac6fedc6",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\stratigakos2026_accepted.txt",
+    "bytes": 73057,
+    "sha256": "2eafc4652df4777ca19050f3d26bb578528692cdc23cff452730bb89f45982be",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\wen2024_arxiv_v3.pdf",
+    "bytes": 850250,
+    "sha256": "64e665affb2ef8cf4144b6c3b6f9dc7ef0620dfa2ce4c7df35cbf887cea3ea4e",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\wen2024_arxiv_v3.txt",
+    "bytes": 70196,
+    "sha256": "b50744af0cc99624879a22489fbcf100b5a60b0b98032659735fe26d199e9512",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\wen2025_arxiv_v2.pdf",
+    "bytes": 594806,
+    "sha256": "5b15d9fe7a85fc04e74ede9011c9c87b779e863258fa2f2d88831d02cf8b7def",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_reading\\wen2025_arxiv_v2.txt",
+    "bytes": 61903,
+    "sha256": "52c95d6a5cf777a2a56e732c3ef9cf6ccf25cdfe0b4aa37d7da94efa805f128c",
+    "purpose": "literature_only_not_measurement_or_experiment"
+  },
+  {
+    "path": "literature_metadata\\dantas2026_crossref.json",
+    "bytes": 24553,
+    "sha256": "71a44f84ed477271fa51377a249709fc0aa8956b9fe56a4cd90b74be226c623d",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "literature_metadata\\iversen2017_crossref.json",
+    "bytes": 15031,
+    "sha256": "c972ef602b2b3f08079230509d4c3f4e7181472d428228e2730c48a9d9507fc9",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "literature_metadata\\meng2026_crossref.json",
+    "bytes": 13196,
+    "sha256": "bc3864d3c70c83787f738449111f5ef0ff652f3c3ab5d856c7e03fe0dedc46da",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "literature_metadata\\mlwa_crossref_previous_verified.json",
+    "bytes": 18219,
+    "sha256": "705f00ae47107ae5cb525f67767950c55243b2d6243c317a15dd3ee2ed7d0eb9",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "literature_metadata\\phipps2022_crossref.json",
+    "bytes": 20698,
+    "sha256": "f5c200a51998286f991364aeea68510756eb83e7cfa42a111745a592190e3acc",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "literature_metadata\\pritchard2011_crossref.json",
+    "bytes": 7376,
+    "sha256": "f09c59832f469294151d20dbc87b050b4613086d14fca5912ac55d9fbf768cdc",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "literature_metadata\\safer_crossref_previous_verified.json",
+    "bytes": 18051,
+    "sha256": "6c77cea7e4465efeab96ade4c85fe152840ac481448a38cb5ca0e416424f9665",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "literature_metadata\\seta_crossref_previous_verified.json",
+    "bytes": 16992,
+    "sha256": "df6ff5d814faa7c6e86860f3f2bb0e97ea9a3707cfbc99162e7d5ede5b273ee2",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "literature_metadata\\sophia2011_crossref.json",
+    "bytes": 13369,
+    "sha256": "138eeb0f8eb695720b4c5ec49262557580a2d4e2192d8532e946722f8e69fe1e",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "literature_metadata\\stratigakos2026_crossref.json",
+    "bytes": 10919,
+    "sha256": "fdfc2bc55a8b28bc8a252e55c3fbd127be19ddabfe93a270962c096117365275",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "literature_metadata\\sun2022_crossref.json",
+    "bytes": 27053,
+    "sha256": "aa33cde58dd975e51aaedf7e849c599f8efc03c64fca0e3b454115779fe93b5d",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "literature_metadata\\wen2024_crossref.json",
+    "bytes": 30825,
+    "sha256": "054f2a7604f34deea163f2fe64d1953467a32c0eab099d3337ee96cd8c3a8088",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "literature_metadata\\zhao2021_crossref.json",
+    "bytes": 13656,
+    "sha256": "d520578a3131ccc32915c86e50fd63a0befbb18cd824266527bc3aadc2a9d53f",
+    "purpose": "registry_metadata"
+  },
+  {
+    "path": "E:\\论文3\\1-s2.0-S2666827026001222-main.pdf",
+    "bytes": 3760604,
+    "sha256": "1a7ce47d5d4cf01dd0d6a008434d0d6679541fa2021d0c3a5778f036d57b477c",
+    "purpose": "existing_primary_source_read_only"
+  },
+  {
+    "path": "E:\\论文3\\manuscripts\\wind_energy\\literature\\fulltext\\dantas2026seamless.pdf",
+    "bytes": 2320087,
+    "sha256": "31406ad001b17911e8fbec6394a80c773a56754bf47f6c1bde047a76854ee33d",
+    "purpose": "existing_primary_source_read_only"
+  },
+  {
+    "path": "E:\\论文3\\manuscripts\\wind_energy\\literature\\fulltext\\phipps2022postprocessing.pdf",
+    "bytes": 21107126,
+    "sha256": "c53dc985141458e6070bef4fb554482f7e3ff094f0277a2688c7e463ffa89d0c",
+    "purpose": "existing_primary_source_read_only"
+  },
+  {
+    "path": "E:\\论文3\\manuscripts\\wind_energy\\literature\\fulltext\\pritchard2011shortterm_with_formulas.html",
+    "bytes": 63761,
+    "sha256": "b3aaa5ec7bc0c6b9599d65daf8097833a5c7e667de3230dd83d3cc3fedfc0d93",
+    "purpose": "existing_primary_source_read_only"
+  },
+  {
+    "path": "E:\\论文3\\research_audit\\reserve_allocation_paper_diligence_20261020\\method_source\\SAFER_code_cells.txt",
+    "bytes": 63623,
+    "sha256": "70e78b5e46a2b324ef22b53e2c9fef6d059a74b9d61cd88458f20c76c4215ce4",
+    "purpose": "existing_primary_source_read_only"
+  }
+]

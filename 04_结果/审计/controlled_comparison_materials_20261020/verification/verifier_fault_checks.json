@@ -1,0 +1,10 @@
+{
+  "status": "PASS_ENGINEERING_IDENTITY_CHECKS",
+  "checks": {
+    "core_only_valid": true,
+    "arrays_not_silently_claimed": true,
+    "changed_payload_rejected": true,
+    "path_escape_rejected": true
+  },
+  "research_executed": false
+}

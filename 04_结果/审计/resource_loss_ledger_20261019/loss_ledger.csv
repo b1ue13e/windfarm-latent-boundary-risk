@@ -1,0 +1,6 @@
+﻿metric,reference,P1,delta,unit,status,limit
+cost_mean,66.64443044512102,67.0204033211033,0.3759728759822849,kWh-equivalent per valid turbine interval,VERIFIED_ARCHIVED_POINT_ACCOUNTING,No new interval/resampling; not currency/settlement/PCC dispatch; violation denominator is fixed full period
+reserve_mean,49.299979974143106,49.29708949251145,-0.002890481631659725,kWh-equivalent per valid turbine interval,VERIFIED_ARCHIVED_POINT_ACCOUNTING,No new interval/resampling; not currency/settlement/PCC dispatch; violation denominator is fixed full period
+shortage_mean,1.734445047097794,1.7723313828591845,0.037886335761390555,kWh-equivalent per valid turbine interval,VERIFIED_ARCHIVED_POINT_ACCOUNTING,No new interval/resampling; not currency/settlement/PCC dispatch; violation denominator is fixed full period
+violation_rate,0.05533378396749392,0.05531339214235005,-2.0391825143871445e-05,fraction,VERIFIED_ARCHIVED_POINT_ACCOUNTING,No new interval/resampling; not currency/settlement/PCC dispatch; violation denominator is fixed full period
+cost_total,70592979.66013357,70991228.17707202,398248.51693844795,summed turbine-interval proxy units; mean over fixed instances,VERIFIED_ARCHIVED_POINT_ACCOUNTING,No new interval/resampling; not currency/settlement/PCC dispatch; violation denominator is fixed full period

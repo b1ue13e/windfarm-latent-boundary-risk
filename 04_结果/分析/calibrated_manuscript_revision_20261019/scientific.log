@@ -1,0 +1,77 @@
+========================================================================
+SCIENTIFIC CLAIM GATE
+========================================================================
+
+[1] Control-plane files
+  [PASS] docs\SCIENTIFIC_CONTRACT.md
+  [PASS] docs\EXPERIMENT_REGISTRY.md
+  [PASS] .agents\agents\scientific-falsifier\agent.md
+  [PASS] docs\EVIDENCE_FREEZE_20261017.md
+  [PASS] artifacts\raw_replay_20261015_v2\strong_baseline_retry_import_v1\strong_baseline_closure_summary.csv
+  [PASS] artifacts\raw_replay_20261015_v2\strong_baseline_retry_import_v1\strong_baseline_joint_interaction_v2.json
+  [PASS] artifacts\metis_external_deterministic_20261015_attempt1\audit_report.json
+  [PASS] paper_tste_ieee.md
+
+[2] Strong-baseline claim ceiling
+  [PASS] current candidate does not establish plant-wide posterior cost superiority (+445,639 kWh; pending audit)
+  [PASS] current candidate transition penalty is +71,204 kWh; no cost superiority claim
+  [PASS] current candidate steady penalty is +374,436 kWh; pending audit
+
+[3] Transition-localization interaction
+  [PASS] current candidate interaction verified: mean=-303232.3 kWh, CI=[-597952.5,19013.0] crosses zero
+
+[4] Manuscript interpretation guard
+  [PASS] claim boundary present: strong wind-speed-conditioned quantiles remain lower-cost plant-wide
+  [FAIL] required claim-boundary phrase missing from manuscript: 'not interpreted as decision-value evidence'
+  [PASS] claim boundary present: the latest imported strong-baseline snapshot reports a full-population posterior penalty
+  [PASS] claim boundary present: trained using historically available pitch information that is withheld at deployment
+  [PASS] no unqualified universal ML superiority
+  [PASS] no unqualified cross-site generalization proof
+  [PASS] no MoE mechanism superiority
+  [PASS] no plant-wide posterior superiority
+
+[5] Contract authority guard
+  [PASS] contract marker present: Observability �� Recoverability �� Decision Sufficiency
+  [PASS] contract marker present: REFUTED by current closure
+  [PASS] contract marker present: Negative-result preservation rule
+  [PASS] contract marker present: Older reports remain provenance records
+  [PASS] contract marker present: Architectural-control non-equivalence rule
+  [PASS] contract marker present: Transition-slice diagnostic boundary rule
+  [PASS] contract marker present: Synthetic telemetry envelope rule
+
+[6] EXP-01, EXP-02, EXP-03 Control & Evidence Integrity
+  [PASS] EXP-01 bounded deterministic branch present; corrected-v2 remains superseded/not reinstated
+  [PASS] EXP-02 verified with corrected Primary Challenger role classification
+  [PASS] EXP-03 evaluated population fixed ([408937, 408939]) with disclosed imputation boundary (max drop=60.25%, max stale=99.79%)
+  [PASS] Joint hierarchical uncertainty summary verified
+
+[7] Stale-Content Re-Pollution Guard (F6)
+  [PASS] experiments/E01/log.md: no live (unmarked) superseded v1 numbers
+  [PASS] docs/NO_GRAPH_CONTROL_AUDIT.md: no live (unmarked) superseded v1 numbers
+  [PASS] docs/EXPERIMENT_REGISTRY.md: no live (unmarked) superseded v1 numbers
+  [PASS] architecture audit parameter count self-consistent (110,012) and claim ceiling intact
+  [PASS] NO_GRAPH_CONTROL_AUDIT.md retains nomenclature + causal-necessity ceilings
+  [PASS] experiment registry has no open duplicate PROPOSED/BLOCKED registration
+  [PASS] docs/EXP03_ASYNCHRONOUS_REPORT.md: EXP-03 trace provenance not overstated
+  [PASS] docs/EXPERIMENT_REGISTRY.md: EXP-03 trace provenance not overstated
+  [PASS] EXP-03 staleness disclosed (max stale=0.9979, max drop=0.6025)
+
+[8] EXP-02 Verdict Integrity Guard (F4)
+  [PASS] role assignment: challenger is Primary Challenger, Oracle restricted to Privileged STGQ
+  [PASS] verdict gates on C1 (mean <= 0) and C2 (P >= 0.95), with diagnostics non-gating
+  [PASS] registry does not present a stale 'DEFICIT ESTABLISHED' EXP-02 verdict
+  [PASS] EXP-02 emits P(delta <= 0) under the non-inferiority name; legacy name appears only in the schema-migration mapping
+  [PASS] joint report generator is labelled seed-level, not two-level hierarchical
+  [PASS] EXP-02 report Section 3 does not claim an uncomputed two-level interval
+  [PASS] EXP-02 report runner derives the Section 3 heading from block-delta availability
+
+[9] Phase 2 Retrospective Analysis & Native Blocks Guard
+  [PASS] strong baseline native day blocks verified (10 arrays x 35 blocks)
+  [PASS] current candidate interaction verified: -303232.3 kWh, CI crosses zero, pending audit
+  [PASS] withdrawn EXP-01 retrospective artifacts preserved with physical-window invalidation
+  [PASS] historical Phase 2 audit retained; current candidate and superseded interaction are separately labeled
+  [PASS] manuscript matches current freeze; withdrawn recall and superseded decision tokens are absent
+
+========================================================================
+SCIENTIFIC_CLAIM_GATE: FAIL (1 issue(s))
+ - required claim-boundary phrase missing from manuscript: 'not interpreted as decision-value evidence'

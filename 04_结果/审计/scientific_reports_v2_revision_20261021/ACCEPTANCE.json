@@ -1,0 +1,53 @@
+{
+  "status": "COMPLETED_EVIDENCE_CLOSURE_REVISION_WITH_DECLARED_OPEN_ITEMS",
+  "checks": {
+    "manuscript_checks": true,
+    "isolated_source_and_materials": true,
+    "source_fault_control_detected": true,
+    "existing_files_unchanged": true,
+    "legacy_claim_and_cached_numbers": true,
+    "not_submitted": true
+  },
+  "parent_draft": "manuscripts/scientific_reports",
+  "new_draft": "manuscripts/scientific_reports_v2",
+  "preserved_existing_files": 6187,
+  "main_pages": 14,
+  "SI_pages": 13,
+  "abstract_words": 184,
+  "documents": {
+    "manuscript": {
+      "pages": 14,
+      "outside_page_words": [],
+      "sha256": "b527e2573bce01543741e70ce821c7c6ee64bd6485ca286536c7e4bc67731c0c"
+    },
+    "supplementary": {
+      "pages": 13,
+      "outside_page_words": [],
+      "sha256": "256f7ff29d9f2d5a46adf2251e10cbed17c5a7f76c8eca0d2b15c5200561bce0"
+    }
+  },
+  "archives": {
+    "scientific_reports_v2_review_sources.zip": {
+      "bytes": 5098646,
+      "sha256": "b927e8491f1d2bf33e7ebb496f5f7b80c5969ea0136fe54c2e32ffa9b78e811b"
+    },
+    "scientific_reports_v2_figures_and_sources.zip": {
+      "bytes": 1448346,
+      "sha256": "a39518851b5ef12d3f5284d73ad56105e99543e6b52b0c0e0e2d4e1ead090b29"
+    },
+    "scientific_reports_v2_review_materials.zip": {
+      "bytes": 1881362085,
+      "sha256": "7fcca8ede5f749acf6e86ab5ae822c4b76610fcb00a47badcf76c9d3c72a6937"
+    }
+  },
+  "new_experiments_measurements_or_sampling": false,
+  "clock": "retrospective exception disclosed; original implementation and unknown corrected effects retained",
+  "remaining_open": [
+    "author approval/contributions/funding/conflicts",
+    "external reviewer access and permanent deposit",
+    "code/derived material and QA utility public redistribution licences",
+    "SETA/SAFER final fulltexts",
+    "full runtime replay and corrected-clock effects not evaluated"
+  ],
+  "review_scope": "self-review and deterministic file/field/render checks, not external review, nominal coverage or submission certification"
+}

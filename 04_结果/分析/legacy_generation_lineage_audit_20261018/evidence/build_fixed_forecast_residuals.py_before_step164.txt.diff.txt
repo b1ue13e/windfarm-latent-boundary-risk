@@ -1,0 +1,12 @@
+--- recovered/build_fixed_forecast_residuals.py_before_step164.txt
++++ release_tag/build_fixed_forecast_residuals.py
+@@ -69,7 +69,8 @@
+                     target = batch["target"].numpy()  # (B, 24, N)
+                     target_mask = batch["target_mask"].numpy()  # (B, 24, N)
+                     anchor_idx = batch["anchor_index"].numpy()
+-                    z_label = batch["regime_label"].numpy()  # (B, N)
++                    z_label = batch["regime_primary"].numpy()  # (B, N)
++                    z_valid = batch["regime_primary_valid"].numpy()
+ 
+                     pred, _, aux = model(x_hist, edge_index, edge_weight, feature_mask, anchor_phys)
+                     pred_np = pred[:, :6, :].cpu().numpy()  # Extract h=1..6 (B, 6, N)

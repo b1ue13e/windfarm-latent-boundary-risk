@@ -1,0 +1,29 @@
+{
+  "status": "AUDIT_COMPLETE_WITH_UNRESOLVED_GLOBAL_PRIORITY",
+  "created_utc": "2026-10-19T12:58:10.381054+00:00",
+  "literature_records": 8,
+  "metadata_records_checked": 8,
+  "crossref_verified_after_retry": 7,
+  "publisher_only_metadata": 1,
+  "content_scope": {
+    "method_section_spot_read": 5,
+    "publisher_abstract_or_intro_only": 3,
+    "systematic_review_or_exhaustive_search": false
+  },
+  "protected_files_unchanged": 26,
+  "gates": {
+    "scientific": "PASS",
+    "number_checks": 77,
+    "number_failures": 0,
+    "independent_archive_claims": "PASS"
+  },
+  "novelty_assessment": "Bounded empirical knowledge and task-specific protocol; new inferential capability and transferable law not established",
+  "execution": {
+    "manuscripts_changed": false,
+    "model_or_evaluation_execution": false,
+    "new_bootstrap": false,
+    "remote_access": false,
+    "project_state_changed": false
+  },
+  "independence": "Single-agent targeted audit; no independent panel claim"
+}

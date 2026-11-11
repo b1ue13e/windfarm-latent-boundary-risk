@@ -1,5 +1,10 @@
 # Evidence Ledger
 
+> **现行状态 2026-10-19：STOP_ADDITIONAL_INVESTMENT（用户正式决定）**。执行队列为空；停止训练、采数、远端作业、后续实验及方向扩展。以下旧待办、状态和建议仅为原时点历史记录，不再授权执行，也不因停止而改记完成。仍成立结论、禁用主张及可复用资产见[正式停止决定](../docs/MAINLINE_STOP_DECISION_20261019.md)。未解决审查与全范围科学认证仍未完成，不自动恢复。
+
+## 历史记录（原时点评估，不覆盖当前停止决定）
+
+
 Evidence describes what was inspected or executed, not what was intended.
 
 - Task-ID: F1-EXP03
@@ -1724,4 +1729,97 @@ Evidence: artifacts/current_research_assessment_20261017/pbs_status.json and ret
 
 Task-ID: TRR19
 Status: VERIFIED
-Evidence: artifacts/current_research_assessment_20261017/returned/ contains verified execution receipts and output hashes for channels (summary.csv), exp02 (results.csv, report.md), exp03 (psrei_vs_delay.csv), active power (report.md), supervision (report.md), and matched budget (frontier_auc_summary.csv). Deep audit confirms active power contains primary state information but adds decision cost (+234.9k kWh), exp02/03 lack stable zero-privileged advantage, and steady state favors simple local wind-speed binned quantiles (+374.4k kWh advantage).
+Evidence: artifacts/current_research_assessment_20261017/returned/ contains verified execution receipts and output hashes for channels (summary.csv), exp02 (results.csv, report.md), exp03 (psrei_vs_delay.csv), active power (report.md), supervision (report.md), and matched budget (frontier_auc_summary.csv). These establish bounded execution/file lineage; family-level scientific interpretation remains subject to the limits in the independent review and current evidence freeze.
+
+## 2026-10-17 P0 evidence freeze
+- Task-ID: P0-FZ01 / P0-FZ02
+  Status: VERIFIED (version inventory only; numeric claim audit pending).
+  Evidence: `docs/EVIDENCE_FREEZE_20261017.md`; source SHA-256 values were recomputed for the old strong-baseline closure, latest retry-import candidate, old joint interaction, corrected-v2 external CSV, pitchmasked-v4 statistics, deterministic external audit report, and independent review. The record labels +445,639 kWh as the sole current candidate (not claim-ready), +523,044 kWh as historical/superseded, deterministic external transfer as bounded only, corrected-v2 as superseded/not reinstated, and v4 as withdrawn for window mismatch.
+- Task-ID: P0-FZ03 / P0-FZ04
+  Status: VERIFIED (control-plane state edits; scientific re-audit pending).
+  Evidence: `docs/EXPERIMENT_REGISTRY.md`, `research-manifest.json`; project set to active/analysis, E01 inconclusive, H1 testing pending adjudication, and old research audit passes reset to pending to prevent a stale concluded/pass display.
+- Task-ID: P0-FZ05
+  Status: VERIFIED (control-plane/mechanical only; scientific certification remains open).
+  Evidence: UTF-8 ConvertFrom-Json succeeds for `research-manifest.json` and `.agent_state/RUN_STATE.json`; five direct source SHA-256 values match `docs/EVIDENCE_FREEZE_20261017.md`; `artifact_verify` reports status=ok for `strong-baseline-canonical-candidate-20261017 v1` (3 files) and `exp01-deterministic-bounded-evidence-20261017 v1` (2 files); `python .agents/scripts/verify_gate.py` returned `VERIFICATION_GATE: PASS`; `git diff --check` returned exit 0 with only the known LF/CRLF warning. These checks do not establish numerical scientific validity or submission readiness. Scientific-falsifier/independent review of the freeze and deep numerical audit remain pending.
+
+## 2026-10-17 P0 manuscript contradiction cleanup
+- Task-ID: P0-M01 / P0-M02 / P0-M03 / P0-M04
+  Status: VERIFIED.
+  Evidence: `paper_tste_ieee.md` and `build/paper_tste_ieee.pdf`; source/PDF scans show no `0.196`, `0.416`, `523,044`, old `-297,565`, or recall token. Current candidate tokens `+445,639`, `+71,204`, `-303,232`, and `+19,013` are present with pending-audit wording. PSREI uses `\\hat{y}^{\\mathrm{fixed}}`; Table I labels `Reserve Energy (kW\\cdot h)`. External text names `deterministic_matched_transfer_v1`, marks corrected-v2 superseded/not reinstated, and invalidates v4.
+- Task-ID: P0-M05
+  Status: VERIFIED.
+  Evidence: versioned artifacts `tste-p0-manuscript-cleanup-20261017 v1` and `tste-p0-final-submission-readiness-20261017 v1`; `python scripts/verify_scientific_claim_gate.py` PASS; `python scripts/verify_final_pdf_integrity.py` PASS; `python scripts/verify_tste_number_consistency.py` PASS; main PDF 10 pages and supplementary PDF 46 pages; abstract 189 words; source/PDF residue checks remove old recall/closure/unit/source-markup tokens; `git diff --check` PASS. Scientific candidate remains pending deep audit; this is a manuscript/control-plane completion, not a scientific completion certificate.
+
+## 2026-10-17 P1 formalization
+- Task-ID: P1-F02 / P1-F03
+  Status: VERIFIED (formalization only; not empirical certification).
+  Evidence: `DERIVATION_PACKAGE.md`, `docs/MINIMUM_SUFFICIENT_DECISION_CRITERION.md`, `paper_tste_ieee.md` Eq. `eq:conditional-min-sufficient`, `docs/SCIENTIFIC_CONTRACT.md`, `docs/EXPERIMENT_REGISTRY.md`, and `experiments/E04/design.md`. The selector is defined under the same arrival information, frozen point forecast, frozen residual target, strong direct baseline, one-sided upper bounds, absolute violation cap, and a pre-registered complexity preorder. The document explicitly records `NO FEASIBLE POLICY` and unvalidated threshold/complexity parameters.
+- Task-ID: P1-F01
+  Status: VERIFIED.
+  Evidence: `experiments/E04/design.md` freezes alpha=0.05, epsilon_C=0, epsilon_V=0, v_max=0.10, Full population, five seeds x 35 daily blocks, candidates B/C/D/D10, and B<C<D<D10 complexity order before v4 replay.
+- Task-ID: P1-F04
+  Status: NEEDS-WORK / NOT SCIENTIFICALLY CERTIFIED.
+  Evidence: `e04-minimum-sufficient-selector-20261017 v3`; Metis v4 direct replay arrays; `experiments/E04/results/e04_selection.json`; selector returns NO FEASIBLE POLICY because even Policy B absolute violation UCB=0.11419 exceeds v_max=0.10, while C/D/D10 also fail constraints. Independent review supports the numeric conclusion conditional on v4 arrays, but flags missing immutable pre-execution hash/temporal precedence, invalid remote receipt/output-hash binding, and unestimated selector stability. These blockers must be fixed before promoting E04 beyond NEEDS-WORK.
+
+## 2026-10-17 P2 complexity stop
+- Task-ID: P2-S01 / P2-S02 / P2-S03
+  Status: VERIFIED (policy and claim-boundary update; no new experiment).
+  Evidence: `docs/SCIENTIFIC_CONTRACT.md` P2 stop rule, `docs/EXPERIMENT_REGISTRY.md` Q3 decision rule, `paper_tste_ieee.md` Discussion/Conclusion, `experiments/E04/design.md`, and `.agent_state/TASK_LEDGER.md`. The repository now explicitly separates recoverability, risk-shape change, and decision value; forbids additional architecture expansion before E04; and requires independent matched PSREI evidence before calling a complex representation deployment-necessary. No new graph/MoE/hidden-state model was added. `p2-complexity-stop-and-claim-boundary-20261017 v1` stores the synchronized policy and claim-boundary files; scientific/PDF/number gates pass and E04 remains pending.
+
+- Task-ID: P1-F05
+  Status: VERIFIED (formalization/build verification only).
+  Evidence: `python scripts/verify_scientific_claim_gate.py`, `python scripts/verify_final_pdf_integrity.py`, and `python scripts/verify_tste_number_consistency.py` all PASS after insertion of Eq. `eq:conditional-min-sufficient`; main PDF remains 10 pages and supplementary PDF 46 pages. The PDF includes the conditional selector and `no feasible policy` failure branch. E04 remains planned; no empirical selector claim is made.
+
+## 2026-10-17 Metis E04 receipt/hash binding repair
+- Task-ID: E04-R01 / E04-R02
+  Status: VERIFIED (code/provenance integrity only; no scientific result promotion).
+  Evidence: `experiments/E04/code/e04_provenance.py`, `experiments/E04/code/run_e04_bound.py`, `experiments/E04/code/select_e04_v2.py`, and `tests/test_e04_receipt_binding.py`. The wrapper smoke run generated a pre-execution plan, output manifest, and `EXECUTED` receipt. `python -m pytest tests/test_e04_receipt_binding.py tests/test_replay_integrity.py -q` returned 19 passed; `py_compile` returned exit 0. The selector now refuses unbound/mutated/mismatched outputs and records receipt, plan, manifest, and selector hashes in its result provenance. Existing v4 arrays remain historical/untrusted and were not retroactively certified.
+- Task-ID: E04-R03
+  Status: BLOCKED (review infrastructure unavailable).
+  Evidence: independent Codex read-only sweep invocation returned `WinError 2`; no external review PASS was inferred. Local tests do not substitute for the cross-model sweep.
+
+## 2026-10-18 E05 selector stability/frequency diagnostic
+- Task-ID: E05-S01 / E05-S02 / E05-S03
+  - Status: VERIFIED (conditional diagnostic; no E04 scientific promotion).
+  - Evidence: `experiments/E05/code/run_selector_stability.py`, `experiments/E05/results/selector_stability.json`, `experiments/E05/results/selector_stability.csv`, artifact `e05-selector-stability-frequency-20261018 v3`.
+  - Execution: 10,000 joint seed-by-35-day-block resamples with frozen `alpha=0.05`, `epsilon_C=0`, `epsilon_V=0`, `v_max=0.10`, candidate order B<C<D<D10, stability seed 20261018.
+  - Result: NO FEASIBLE frequency 0.6464; feasible frequencies B/C/D/D10 = 0.3523/0.0042/0.0001/0.0002; first-selection frequencies = 0.3523/0.0013/0/0. Receipt-bound JSON/CSV hashes are (`f2e58ab12ac1228784a3a27187ec769f459162e5fa86892bafd8e774317c8f93` and `d0a8c269ad13f94e9dbb5716282a55a354e6e1154b4678cee6075489eef794c2`); exact five-seed/35-block assertions, frequency sum, and count bounds passed.
+  - Epistemic status: VERIFIED for computation and local reproducibility; conditional on frozen v4 arrays. The arrays lack an original replay execution receipt, so E05 does not repair E04 provenance or certify a minimum-sufficient policy.
+- Task-ID: E05-S04
+  - Status: BLOCKED.
+  - Evidence: `experiments/E05/results/selector_stability.json` explicitly records `execution_receipt_available_for_input_arrays=false`; E05 diagnostic receipt `experiments/E05/results/e04_execution_receipt.json` verifies the local diagnostic execution, not original v4 replay generation; independent falsification review remains pending. R01 is archived as `reviews/R01/report.md` with verdict `needs-work`.
+
+## 2026-10-18 E04-v2 receipt-bound preregistered replay
+- Task-ID: E04-V2-PREREG / E04-V2-EXECUTION
+  Status: VERIFIED (preregistration and receipt/bundle binding; scientific review pending).
+  Evidence: immutable preregistration commit `64478031`, execution receipt `experiments/E04/results/e04_v2/e04_v2_execution_receipt.json`, execution plan, output manifest, five policy arrays, selector result, and local verifier `experiments/E04/results/e04_v2_local_verification.json` with status `PASS_BUNDLE`. Selector returns NO FEASIBLE POLICY and stability frequencies; no deployment-necessity claim is promoted.
+- Task-ID: E04-V2-REVIEW
+  Status: NEEDS-WORK / PENDING.
+  Evidence: v1 review blockers are addressed for temporal/preregistration anchor and local receipt binding, but independent review must inspect the v2 receipt/manifest and stability diagnostic before promotion.
+
+## 2026-10-18 E06 provenance-bound Metis replay
+- Task-ID: E06-R01 / E06-R02 / E06-R03
+  Status: VERIFIED (remote execution and file-lineage closure; no scientific claim promotion).
+  Evidence: `experiments/E06/remote_e06_final/e06_final_bundle/` and `experiments/E06/results/local_verification.json`. Metis J04 executed the replay command with exit 0 and generated five policy arrays; its wrapper failed only in a post-replay path-record comparison and is preserved as a failed tooling attempt. J05 verified/repackaged the completed replay, generated `e04_execution_plan.json`, `e04_output_manifest.json`, `e04_execution_receipt.json`, ran the receipt-bound selector, and returned `NO FEASIBLE POLICY`. Local verification returned `PASS_BUNDLE_LOCAL_INPUTS`: selector hash checks all true and 23/23 exact remote input hashes matched pulled equivalents. The four policy UCB values match the previous E04 result exactly. Versioned artifact: `e06-metis-receipt-bound-replay-20261018 v1`.
+- Task-ID: E06-R04
+  Status: BLOCKED (tooling hygiene / scientific review remains open).
+  Evidence: J07's helper emitted `script.sh: line 11: /bin/true: syntax error` after writing the complete exact-input manifest; the pulled files and hashes are valid, but J07 is not treated as a clean success. Independent falsification review and scientific claim promotion remain pending.
+
+## 2026-10-18 E04-v2 immutable preregistration and receipt-bound replay
+- Task-ID: E04-V2-PREREG
+  Status: VERIFIED (immutable preregistration anchor).
+  Evidence: preregistration-only commit `64478031c8ba630edff8f57851e90de4f2bdc6cb`, committed JSON SHA-256 `bd95a168...`, execution-source addendum, and input hashes. No E04-v2 outcome was available at the preregistration commit.
+- Task-ID: E04-V2-EXECUTION
+  Status: VERIFIED (receipt/output binding; scientific review pending).
+  Evidence: `experiments/E04/results/e04_v2/` contains execution plan, `EXECUTED` receipt, output manifest, five policy arrays and selector result. Receipt/manifest hashes and preregistration hash are locally preserved in `e04_v2_review_status.md`; selector returns NO FEASIBLE POLICY with stability frequencies `no_feasible=0.6464`, `B=0.3523`, `C=0.0013`, `D=0`, `D10=0`. Artifact: `e04-v2-receipt-bound-selector-20261018 v1`.
+- Task-ID: E04-V2-REVIEW
+  Status: NEEDS-WORK / PENDING.
+  Evidence: v1 independent review identified remaining issues: exact replay-source binding and receipt semantics were not initially clean, and an independent falsification review of v2 is still required. No complex-model deployment-necessity claim is promoted.
+
+
+## 2026-10-19 当前主线停止决定
+
+- Task-ID: STOP-20261019
+- Status: VERIFIED（用户决定与状态同步，不是实验或科学完成）
+- Evidence: docs/MAINLINE_STOP_DECISION_20261019.md；research_audit/14_resource_loss_break_even_review.md；research_audit/resource_loss_ledger_20261019/decision.json。
+- Boundary: 未决项保持未决，当前执行队列为空；本次保护及门禁结果以research_audit/mainline_stop_20261019/validation_receipt.json为准。

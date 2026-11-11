@@ -1,0 +1,23 @@
+[
+  "02_代码/工程/project.py",
+  "02_代码/工程/repo_paths.py",
+  "02_代码/工程/tests/test_repository_paths.py",
+  "01_当前论文/TSTE/figure_code/audit_panel_alignment.py",
+  "01_当前论文/TSTE/figure_code/figures_v14.py",
+  "01_当前论文/TSTE/qa/build_pdfs.py",
+  "01_当前论文/TSTE/qa/export_reading_copy.py",
+  "01_当前论文/TSTE/qa/verify_draft.py",
+  "01_当前论文/TSTE/qa/figure_rebuild_v14/package_v14.py",
+  "01_当前论文/TSTE/qa/figure_rebuild_v14/save_revision.py",
+  "01_当前论文/TSTE/qa/figure_rebuild_v14/verify_v14.py",
+  "02_代码/工程/repo_paths.py",
+  "02_代码/工程/project.py",
+  "AGENTS.md",
+  "PROJECT.md",
+  "pytest.ini",
+  ".gitignore",
+  "01_当前论文/TSTE/qa/verify_draft.py",
+  "01_当前论文/TSTE/qa/figure_rebuild_v14/verify_v14.py",
+  "01_当前论文/TSTE/qa/figure_rebuild_v14/protected_inputs_layout_20261111.json",
+  "02_代码/实验复现/mainline_report.py"
+]

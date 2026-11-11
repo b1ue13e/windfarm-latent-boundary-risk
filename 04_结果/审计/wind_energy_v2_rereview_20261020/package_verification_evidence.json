@@ -1,0 +1,797 @@
+{
+  "inventory": {
+    "zip_members": 71,
+    "scientific_payload_files": 69,
+    "zip_bytes": 32877316,
+    "zip_sha256": "6c01787351a6ffbc6bf61262593dc2a533f12c6d86c1278b838d4fecc2f95e96",
+    "manifest_sha256": "edf1e7760eb3a9904203dcb0801019f5cd536e2acc8c0ddfcedc2d9df0e704e4",
+    "uncompressed_bytes": 107420682,
+    "exact_extracted_members": 71,
+    "unexpected_members": []
+  },
+  "local_package_directory": {
+    "files_byte_equal": 71,
+    "only_in_zip": []
+  },
+  "v2_root_identity": {
+    "compared": 35,
+    "all_byte_equal": true,
+    "map": {
+      "documents/manuscript.md": "manuscripts/wind_energy_v2/manuscript.md",
+      "documents/manuscript.tex": "manuscripts/wind_energy_v2/manuscript.tex",
+      "documents/manuscript.pdf": "manuscripts/wind_energy_v2/manuscript.pdf",
+      "documents/supplementary.md": "manuscripts/wind_energy_v2/supplementary.md",
+      "documents/supplementary.tex": "manuscripts/wind_energy_v2/supplementary.tex",
+      "documents/supplementary.pdf": "manuscripts/wind_energy_v2/supplementary.pdf",
+      "documents/references.bib": "manuscripts/wind_energy_v2/references.bib",
+      "documents/american-medical-association.csl": "manuscripts/wind_energy_v2/american-medical-association.csl",
+      "documents/GAPS.md": "manuscripts/wind_energy_v2/GAPS.md",
+      "documents/FOUR_QUESTIONS_CN.md": "manuscripts/wind_energy_v2/FOUR_QUESTIONS_CN.md",
+      "documents/REVISION_RESPONSE.md": "manuscripts/wind_energy_v2/REVISION_RESPONSE.md",
+      "documents/INTERFACE_EVIDENCE.md": "manuscripts/wind_energy_v2/interface_review/INTERFACE_AND_NEIGHBOR_REVIEW.md",
+      "csv/registered_confirmation_policies.csv": "manuscripts/wind_energy_v2/supplement_data/registered_confirmation_policies.csv",
+      "csv/towie_all_90_cases.csv": "manuscripts/wind_energy_v2/supplement_data/towie_all_90_cases.csv",
+      "csv/towie_q925_all_15_witnesses.csv": "manuscripts/wind_energy_v2/supplement_data/towie_q925_all_15_witnesses.csv",
+      "csv/towie_q925_block_sensitivity.csv": "manuscripts/wind_energy_v2/supplement_data/towie_q925_block_sensitivity.csv",
+      "csv/wtb_all_420_minimum_cases.csv": "manuscripts/wind_energy_v2/supplement_data/wtb_all_420_minimum_cases.csv",
+      "csv/wtb_all_420_sufficiency_cases.csv": "manuscripts/wind_energy_v2/supplement_data/wtb_all_420_sufficiency_cases.csv",
+      "figure_data/v2/fig1_information_freeze.csv": "manuscripts/wind_energy_v2/source_data/fig1_information_freeze.csv",
+      "figure_data/v2/fig2_primary_confirmation.csv": "manuscripts/wind_energy_v2/source_data/fig2_primary_confirmation.csv",
+      "figure_data/v2/fig3_field_manifest.json": "manuscripts/wind_energy_v2/source_data/fig3_field_manifest.json",
+      "figure_data/v2/fig3_secondary_minimality.csv": "manuscripts/wind_energy_v2/source_data/fig3_secondary_minimality.csv",
+      "figure_data/v2/fig4_identification_boundary.csv": "manuscripts/wind_energy_v2/source_data/fig4_identification_boundary.csv",
+      "figures/fig1_information_freeze.pdf": "manuscripts/wind_energy_v2/figures/fig1_information_freeze.pdf",
+      "figures/fig1_information_freeze.png": "manuscripts/wind_energy_v2/figures/fig1_information_freeze.png",
+      "figures/fig1_information_freeze.svg": "manuscripts/wind_energy_v2/figures/fig1_information_freeze.svg",
+      "figures/fig2_primary_confirmation.pdf": "manuscripts/wind_energy_v2/figures/fig2_primary_confirmation.pdf",
+      "figures/fig2_primary_confirmation.png": "manuscripts/wind_energy_v2/figures/fig2_primary_confirmation.png",
+      "figures/fig2_primary_confirmation.svg": "manuscripts/wind_energy_v2/figures/fig2_primary_confirmation.svg",
+      "figures/fig3_secondary_minimality.pdf": "manuscripts/wind_energy_v2/figures/fig3_secondary_minimality.pdf",
+      "figures/fig3_secondary_minimality.png": "manuscripts/wind_energy_v2/figures/fig3_secondary_minimality.png",
+      "figures/fig3_secondary_minimality.svg": "manuscripts/wind_energy_v2/figures/fig3_secondary_minimality.svg",
+      "figures/fig4_identification_boundary.pdf": "manuscripts/wind_energy_v2/figures/fig4_identification_boundary.pdf",
+      "figures/fig4_identification_boundary.png": "manuscripts/wind_energy_v2/figures/fig4_identification_boundary.png",
+      "figures/fig4_identification_boundary.svg": "manuscripts/wind_energy_v2/figures/fig4_identification_boundary.svg"
+    }
+  },
+  "provenance_local_originals": {
+    "count": 50,
+    "all_present_and_hash_equal": true,
+    "records": [
+      {
+        "file": "data/confirmation/primary.json",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "data/confirmation/secondary_span1.json",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "data/confirmation/secondary_span3.json",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "data/confirmation/secondary_span7.json",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "data/history/choices.json",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "data/history/bounds.json",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "data/wtb/aggregate.json",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "data/wtb/necessity.json",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "csv/registered_confirmation_policies.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "csv/towie_all_90_cases.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "csv/towie_q925_all_15_witnesses.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "csv/towie_q925_block_sensitivity.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "csv/wtb_all_420_minimum_cases.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "csv/wtb_all_420_sufficiency_cases.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figure_data/fig1_information_freeze.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figure_data/fig2_primary_confirmation.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figure_data/fig3_secondary_minimality.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figure_data/fig4_identification_boundary.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "data/ledger/derived.json",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "data/ledger/loss_ledger.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "data/ledger/resource_ledger.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "data/ledger/policy_seed_ledger.csv",
+        "transformation": "CSV projection: host column omitted; all numerical fields retained.",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "protocol/confirmation_protocol.json",
+        "transformation": "JSON projection: internal historical_root and annual_source_root omitted.",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "protocol/freeze_public_projection.json",
+        "transformation": "JSON projection: internal absolute-path-keyed historical_manifests omitted.",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "protocol/unlock_public_projection.json",
+        "transformation": "JSON projection: event UTC and bindings retained; internal paths and scheduler identifiers omitted.",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "source_static/windfarm_moe/independent_confirmation.py",
+        "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier.",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "source_static/windfarm_moe/information_subset.py",
+        "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier.",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "source_static/windfarm_moe/decision_information.py",
+        "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier.",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "source_static/windfarm_moe/subset_inference.py",
+        "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier.",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "source_static/windfarm_moe/risk_frontier.py",
+        "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier.",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "source_static/scripts/run_independent_confirmation.py",
+        "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier.",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "source_static/scripts/run_information_subset_study.py",
+        "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier.",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "source_static/scripts/audit_subset_minimum_necessity.py",
+        "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier.",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figures/fig1_information_freeze.pdf",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figures/fig1_information_freeze.png",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figures/fig1_information_freeze.svg",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figures/fig2_primary_confirmation.pdf",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figures/fig2_primary_confirmation.png",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figures/fig2_primary_confirmation.svg",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figures/fig3_secondary_minimality.pdf",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figures/fig3_secondary_minimality.png",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figures/fig3_secondary_minimality.svg",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figures/fig4_identification_boundary.pdf",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figures/fig4_identification_boundary.png",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figures/fig4_identification_boundary.svg",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figure_data/v2/fig1_information_freeze.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figure_data/v2/fig2_primary_confirmation.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figure_data/v2/fig3_secondary_minimality.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figure_data/v2/fig4_identification_boundary.csv",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      },
+      {
+        "file": "figure_data/v2/fig3_field_manifest.json",
+        "transformation": "BYTE_IDENTICAL",
+        "original_hash_match": true,
+        "package_hash_match": true
+      }
+    ]
+  },
+  "runtime_imports_static": {
+    "verify_package.py": [
+      "__future__",
+      "argparse",
+      "collections",
+      "csv",
+      "hashlib",
+      "json",
+      "math",
+      "pathlib",
+      "re",
+      "sys"
+    ],
+    "refresh_manifest.py": [
+      "argparse",
+      "hashlib",
+      "json",
+      "pathlib",
+      "re",
+      "sys"
+    ],
+    "test_package.py": [
+      "csv",
+      "json",
+      "pathlib",
+      "refresh_manifest",
+      "shutil",
+      "tempfile",
+      "unittest",
+      "verify_package"
+    ]
+  },
+  "sensitive_scan": {
+    "patterns": [
+      "absolute_windows",
+      "private_linux",
+      "private_skill",
+      "private_key",
+      "github_token",
+      "openai_token",
+      "inline_url_credential"
+    ],
+    "files": 71,
+    "pdf_flate_streams_scanned": 126,
+    "findings_without_secret_text": [
+      {
+        "file": "figures/fig3_secondary_minimality.png",
+        "pattern": "absolute_windows"
+      }
+    ],
+    "scope": "Specified text/binary and decompressible-PDF-stream patterns only, not a guarantee for every possible encoding."
+  },
+  "forbidden_members": [],
+  "document_members": [
+    "documents/FOUR_QUESTIONS_CN.md",
+    "documents/GAPS.md",
+    "documents/INTERFACE_EVIDENCE.md",
+    "documents/REVISION_RESPONSE.md",
+    "documents/american-medical-association.csl",
+    "documents/manuscript.md",
+    "documents/manuscript.pdf",
+    "documents/manuscript.tex",
+    "documents/references.bib",
+    "documents/supplementary.md",
+    "documents/supplementary.pdf",
+    "documents/supplementary.tex"
+  ],
+  "safe_extraction": {
+    "path_traversal": false,
+    "absolute_names": false,
+    "symlinks": false,
+    "encrypted_members": false,
+    "duplicates": false,
+    "repo_external": true,
+    "retained_temp_path_not_disclosed": true
+  },
+  "source_git_checks": [
+    {
+      "file": "source_static/windfarm_moe/independent_confirmation.py",
+      "git_content_match": true,
+      "freeze_source_hash_match": true
+    },
+    {
+      "file": "source_static/windfarm_moe/information_subset.py",
+      "git_content_match": true,
+      "freeze_source_hash_match": true
+    },
+    {
+      "file": "source_static/windfarm_moe/decision_information.py",
+      "git_content_match": true,
+      "freeze_source_hash_match": true
+    },
+    {
+      "file": "source_static/windfarm_moe/subset_inference.py",
+      "git_content_match": true,
+      "freeze_source_hash_match": true
+    },
+    {
+      "file": "source_static/windfarm_moe/risk_frontier.py",
+      "git_content_match": true,
+      "freeze_source_hash_match": true
+    },
+    {
+      "file": "source_static/scripts/run_independent_confirmation.py",
+      "git_content_match": true,
+      "freeze_source_hash_match": true
+    },
+    {
+      "file": "source_static/scripts/run_information_subset_study.py",
+      "git_content_match": true,
+      "freeze_source_hash_match": false
+    },
+    {
+      "file": "source_static/scripts/audit_subset_minimum_necessity.py",
+      "git_content_match": true,
+      "freeze_source_hash_match": true
+    }
+  ],
+  "projection_checks": [
+    {
+      "file": "protocol/confirmation_protocol.json",
+      "exact_except_declared_omissions": true,
+      "omitted_top_level_fields": [
+        "historical_root",
+        "annual_source_root"
+      ]
+    },
+    {
+      "file": "protocol/freeze_public_projection.json",
+      "exact_except_declared_omissions": true,
+      "omitted_top_level_fields": [
+        "historical_manifests"
+      ]
+    },
+    {
+      "file": "data/ledger/policy_seed_ledger.csv",
+      "exact_except_declared_omissions": true,
+      "omitted_columns": [
+        "host"
+      ]
+    },
+    {
+      "file": "protocol/unlock_public_projection.json",
+      "event_exact_except_pbs_job": true,
+      "finite_target_count_retained": true,
+      "original_receipt_binding": true,
+      "not_full_receipt": true
+    }
+  ],
+  "isolated_execution": {
+    "verifier": {
+      "command": "python -I -S -B <external-package>/verify_package.py",
+      "exit_code": 0,
+      "report": {
+        "status": "PASS_ARCHIVED_RECORD_AUDIT",
+        "files_sha256_checked": 69,
+        "primary": {
+          "labels": [
+            "P1/HGB/q0.95",
+            "WPQ36/HGB/q0.95"
+          ],
+          "cost_premium_percent": 0.5641474815991643,
+          "interval_percent": [
+            0.35746800646510357,
+            0.770826956733225
+          ],
+          "max_instance_risk_upper_percent": 6.202467799118139,
+          "family_size": 14,
+          "historical_choice_binding": "PASS"
+        },
+        "secondary": {
+          "counts": {
+            "NO_CERTIFIED_SUFFICIENT_POLICY": 18,
+            "MINIMUM_UNRESOLVED": 26,
+            "FINITE_FAMILY_MINIMUM_IDENTIFIED": 46
+          },
+          "historical_fixed": {
+            "NO_HISTORICAL_SELECTION": 24,
+            "ALL_FROZEN_CANDIDATES_CONFIRMED": 63,
+            "CONFIRMATION_NOT_ESTABLISHED": 3
+          },
+          "cost_bridge": {
+            "q925_required_upper_percent": 0.9741996453634834,
+            "q950_required_upper_percent": 3.517815071811852,
+            "q925_resource": [
+              1,
+              1,
+              5
+            ],
+            "smaller": 15,
+            "exclusion_reasons": {
+              "RISK_LOWER_ABOVE_CAP": 2,
+              "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE": 13
+            },
+            "meaning": "q0.95 is not certified against the full family; this is not a proof that its true regret exceeds 2%."
+          },
+          "scope": "90 dependent assessments; spans are separate envelopes, not independent confirmations."
+        },
+        "wtb": {
+          "counts": {
+            "NO_CERTIFIED_SUFFICIENT_POLICY": 367,
+            "MINIMUM_UNRESOLVED": 53
+          },
+          "primary_28_no_sufficient": 28,
+          "scope": "Classification from stored bounds; no new fit, prediction, bootstrap, or coverage certification."
+        },
+        "ledger": {
+          "shortage_increase_percent": 2.1843491567971496,
+          "measurement": "Archived point accounting, no new U interval or significance test."
+        },
+        "fig3_v2": {
+          "status": "PASS_FIELD_BY_FIELD",
+          "rows": 17,
+          "sufficiency_rows": 2,
+          "excluded_smaller_candidates": 15,
+          "cost_witnesses_risk_qualified": true,
+          "controlling_upper_competitor": "PQ36/HGB/q0.9",
+          "controlling_competitor_is_only_possibly_feasible": true,
+          "scope": "Fields and witness duties match archived JSON. Pixel identity or full figure reconstruction is not certified."
+        },
+        "not_certified": [
+          "Training or inference reproduction",
+          "Resampling reproduction or nominal interval coverage",
+          "A real operational interface or deployment benefit",
+          "Public hosting, licences, or author approvals"
+        ],
+        "new_training": false,
+        "new_inference": false,
+        "new_calibration": false,
+        "new_resampling": false,
+        "new_measurement_download": false
+      }
+    },
+    "unittest": {
+      "command": "python -S -B -m unittest test_package.py -v",
+      "exit_code": 0,
+      "tests": 8,
+      "output": "test_cost_witness_must_be_risk_qualified (test_package.PackageTest.test_cost_witness_must_be_risk_qualified) ... ok\r\ntest_full_record_audit (test_package.PackageTest.test_full_record_audit) ... ok\r\ntest_manifest_cannot_escape_package (test_package.PackageTest.test_manifest_cannot_escape_package) ... ok\r\ntest_missing_file_fails (test_package.PackageTest.test_missing_file_fails) ... ok\r\ntest_refresh_rejects_unknown_payload_and_personal_paths (test_package.PackageTest.test_refresh_rejects_unknown_payload_and_personal_paths) ... ok\r\ntest_risk_nonqualification_does_not_prove_infeasibility (test_package.PackageTest.test_risk_nonqualification_does_not_prove_infeasibility) ... ok\r\ntest_sha_tampering_is_rejected (test_package.PackageTest.test_sha_tampering_is_rejected) ... ok\r\ntest_v2_figure3_numeric_tampering_fails (test_package.PackageTest.test_v2_figure3_numeric_tampering_fails) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 8 tests in 2.403s\r\n\r\nOK\r\n"
+    },
+    "manifest_check": {
+      "command": "python -I -S -B <external-package>/refresh_manifest.py --check",
+      "exit_code": 0,
+      "report": {
+        "status": "PASS_MANIFEST_CHECK",
+        "files": 69,
+        "published": false
+      }
+    },
+    "guarded_verifier": {
+      "status": "PASS_GUARDED_OFFLINE_EXECUTION",
+      "python_version": "3.12.10",
+      "isolated": 1,
+      "no_site": 1,
+      "dont_write_bytecode": true,
+      "forbidden_network_or_process_events": [],
+      "source_static_executed": false,
+      "nonstdlib_or_package_read_paths": [],
+      "foreign_modules": [],
+      "audit_report": {
+        "status": "PASS_ARCHIVED_RECORD_AUDIT",
+        "files_sha256_checked": 69,
+        "primary": {
+          "labels": [
+            "P1/HGB/q0.95",
+            "WPQ36/HGB/q0.95"
+          ],
+          "cost_premium_percent": 0.5641474815991643,
+          "interval_percent": [
+            0.35746800646510357,
+            0.770826956733225
+          ],
+          "max_instance_risk_upper_percent": 6.202467799118139,
+          "family_size": 14,
+          "historical_choice_binding": "PASS"
+        },
+        "secondary": {
+          "counts": {
+            "NO_CERTIFIED_SUFFICIENT_POLICY": 18,
+            "MINIMUM_UNRESOLVED": 26,
+            "FINITE_FAMILY_MINIMUM_IDENTIFIED": 46
+          },
+          "historical_fixed": {
+            "NO_HISTORICAL_SELECTION": 24,
+            "ALL_FROZEN_CANDIDATES_CONFIRMED": 63,
+            "CONFIRMATION_NOT_ESTABLISHED": 3
+          },
+          "cost_bridge": {
+            "q925_required_upper_percent": 0.9741996453634834,
+            "q950_required_upper_percent": 3.517815071811852,
+            "q925_resource": [
+              1,
+              1,
+              5
+            ],
+            "smaller": 15,
+            "exclusion_reasons": {
+              "RISK_LOWER_ABOVE_CAP": 2,
+              "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE": 13
+            },
+            "meaning": "q0.95 is not certified against the full family; this is not a proof that its true regret exceeds 2%."
+          },
+          "scope": "90 dependent assessments; spans are separate envelopes, not independent confirmations."
+        },
+        "wtb": {
+          "counts": {
+            "NO_CERTIFIED_SUFFICIENT_POLICY": 367,
+            "MINIMUM_UNRESOLVED": 53
+          },
+          "primary_28_no_sufficient": 28,
+          "scope": "Classification from stored bounds; no new fit, prediction, bootstrap, or coverage certification."
+        },
+        "ledger": {
+          "shortage_increase_percent": 2.1843491567971496,
+          "measurement": "Archived point accounting, no new U interval or significance test."
+        },
+        "fig3_v2": {
+          "status": "PASS_FIELD_BY_FIELD",
+          "rows": 17,
+          "sufficiency_rows": 2,
+          "excluded_smaller_candidates": 15,
+          "cost_witnesses_risk_qualified": true,
+          "controlling_upper_competitor": "PQ36/HGB/q0.9",
+          "controlling_competitor_is_only_possibly_feasible": true,
+          "scope": "Fields and witness duties match archived JSON. Pixel identity or full figure reconstruction is not certified."
+        },
+        "not_certified": [
+          "Training or inference reproduction",
+          "Resampling reproduction or nominal interval coverage",
+          "A real operational interface or deployment benefit",
+          "Public hosting, licences, or author approvals"
+        ],
+        "new_training": false,
+        "new_inference": false,
+        "new_calibration": false,
+        "new_resampling": false,
+        "new_measurement_download": false
+      }
+    }
+  },
+  "scan_followup": {
+    "raw_binary_match": {
+      "file": "figures/fig3_secondary_minimality.png",
+      "pattern": "absolute_windows",
+      "classification": "FALSE_POSITIVE_COMPRESSED_IDAT_BYTES",
+      "png_text_metadata_pattern_match": false,
+      "chunk_scan": [
+        {
+          "type": "IHDR",
+          "length": 13,
+          "pattern_match": false
+        },
+        {
+          "type": "tEXt",
+          "length": 58,
+          "pattern_match": false
+        },
+        {
+          "type": "pHYs",
+          "length": 9,
+          "pattern_match": false
+        },
+        {
+          "type": "IDAT",
+          "length": 65536,
+          "pattern_match": true
+        },
+        {
+          "type": "IDAT",
+          "length": 65536,
+          "pattern_match": false
+        },
+        {
+          "type": "IDAT",
+          "length": 65536,
+          "pattern_match": false
+        },
+        {
+          "type": "IDAT",
+          "length": 65536,
+          "pattern_match": false
+        },
+        {
+          "type": "IDAT",
+          "length": 65536,
+          "pattern_match": false
+        },
+        {
+          "type": "IDAT",
+          "length": 65536,
+          "pattern_match": false
+        },
+        {
+          "type": "IDAT",
+          "length": 46738,
+          "pattern_match": false
+        },
+        {
+          "type": "IEND",
+          "length": 0,
+          "pattern_match": false
+        }
+      ]
+    },
+    "confirmed_sensitive_findings": [],
+    "limitation": "Pattern-based checks and package inventory; no claim of an exhaustive secret-detection proof."
+  },
+  "scope": {
+    "no_training": true,
+    "no_inference": true,
+    "no_calibration": true,
+    "no_resampling": true,
+    "no_new_measurement": true,
+    "no_remote_access": true,
+    "no_public_release": true,
+    "no_submission": true,
+    "no_manifest_refresh": true,
+    "no_source_static_import_or_execution": true,
+    "no_old_cache_deletion": true,
+    "scientific_result_status": "VERIFIED_ARCHIVED_RESULT_DECISIONS_ONLY",
+    "full_training_reproduction": "NOT_PROVIDED",
+    "nominal_coverage": "NOT_CERTIFIED",
+    "publication_rights": "AUTHOR_CONFIRMATION_PENDING",
+    "immutable_public_url": "NOT_ASSIGNED",
+    "authorship_declarations": "PENDING"
+  },
+  "final_preservation_recheck": {
+    "zip_unchanged": true,
+    "manifest_unchanged": true,
+    "package_payload_69_unchanged": true,
+    "provenance_original_50_unchanged": true,
+    "scope": "Checked against identities captured in this review and unchanged package provenance, not all repository files."
+  },
+  "created_utc": "2026-10-20T11:50:28.675365+00:00",
+  "status": "PASS_PORTABLE_ARCHIVED_RESULT_REVIEW_WITH_OPEN_PUBLICATION_RESPONSIBILITIES"
+}

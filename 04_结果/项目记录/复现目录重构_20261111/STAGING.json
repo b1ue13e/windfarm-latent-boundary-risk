@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "staged_paths": 9697,
+  "moved_tracked_paths": 4833,
+  "raw_datasets_excluded": true,
+  "existing_blobs_reused": true,
+  "unrelated_unstaged_file_content_preserved": true
+}

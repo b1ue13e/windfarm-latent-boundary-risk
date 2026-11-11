@@ -1,0 +1,9 @@
+﻿issue_id,severity,evidence,status,scope,location,problem,bounded_action,authority_needed,blocks_submission,requires_new_experiment
+SR-01,S3,CONFIRMED,OPEN,method_and_novelty,"main:45-47,129,135,151-166;Fig2/4",代理成本与pinball等价关系未说明,给出定义层恒等式并把贡献限为输入包比较与后果分解,existing_definitions,yes,no
+SR-02,S3,CONFIRMED_AND_FULLTEXT_UNKNOWN,OPEN,literature_and_argument,"main:41-47,129-135;literature matrix",近邻已引用但正文缺可核的具体责任差异,用已读方法补差异表和正文；不可得全文不作排他论断,existing_texts_plus_lawful_fulltext_if_available,yes_for_positioning_not_all_fulltexts,no
+SR-03,S2,CONFIRMED,OPEN,display_and_interpretation,main:82-90;Fig2;Table2,成本展示与端点资格需同处可读；后文已经披露,关联原族资格符号；区分HGB未资格与Common MLP双端资格,existing_bounds,recommended,no
+SR-04,S3,CONFIRMED,OPEN,negative_results_and_traceability,main:105-121;Table3;SI:161-179,原12个false已保留但缺原数值失败见证表,区分不利证据、未解决与资格未证；给seed204反向严重度界,existing_output_fields,yes,no
+SR-05,S2,CONFIRMED_AND_COVERAGE_UNKNOWN,OPEN,statistical_reporting,main:194-202;SI:161-179;Fig2-4,推断对象已明确但pooling公式/族与事后叙事选择后果需更直接,补固定fit汇总公式和图注名义水平；不声称选择后或全稿覆盖,existing_protocols_and_sources,recommended,no
+SR-06,S3,CONFIRMED,OPEN,reviewability_and_access,main:208-214;SI:245-258;Data4,本地文件可定位但审稿访问和分版本复核路线未落实,独立源码目录映射/依赖/命令DAG/访问；不声称已执行重放,existing_assets_plus_author_approved_access,yes,no
+SR-07,S3,CONFIRMED,OPEN,submission_metadata,AUTHOR_ITEMS.md;main:end matter,作者贡献/冲突/新稿同意及许可尚待核,作者提供真实声明；附信和技术文件按官方指南落实,authors_and_rightsholders,yes,no
+SR-08,S3,CONFIRMED_CLOCK_EXCEPTION_EFFECT_UNKNOWN,OPEN,method_and_clock_provenance,"main:59,149,170;SI:S1;frozen R source:160-172,246-271",R首5个state-fit的名义publication早于点预测已消费标签释放；第6个相等,披露历史训练F为回顾特征并限定后续publication保证；若坚持全阶段合法发布须另授权纠正，不改原输出,frozen_source_and_consumed_indices_plus_author_scope_decision,yes,conditional_if_unqualified_online_claim_retained

@@ -1,0 +1,20 @@
+[
+  {
+    "file": "nva_publication.json",
+    "bytes": 10776,
+    "sha256": "d3b232b5a5ff0badc5af179fcb951685a2e8536a6557f6b018af7e2f046e44a6",
+    "role": "metadata_or_endpoint_evidence_not_paper_fulltext"
+  },
+  {
+    "file": "openalex_work.json",
+    "bytes": 22761,
+    "sha256": "5786ea4abebabec0771dac8963420a3c471e95d21ffc45de99151fd0e7638084",
+    "role": "metadata_or_endpoint_evidence_not_paper_fulltext"
+  },
+  {
+    "file": "public_endpoint_provenance.json",
+    "bytes": 9097,
+    "sha256": "05d1de9c170a4f72f680ad974e3ddf8c401d3d0d7c5e8c8e2c7ddd5a57a01de3",
+    "role": "metadata_or_endpoint_evidence_not_paper_fulltext"
+  }
+]

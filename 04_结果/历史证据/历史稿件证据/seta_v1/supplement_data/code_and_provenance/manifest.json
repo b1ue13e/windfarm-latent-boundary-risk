@@ -1,0 +1,62 @@
+{
+  "scope": "Frozen existing implementation/parameter/identity records; no archived command was executed by this package",
+  "files": {
+    "frozen_R_source.tar": {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/original/source_5fe47e1.tar",
+      "bytes": 81920,
+      "sha256": "b0c01daa4cc9fa611af8b96765e9c56601debd42bbae5b9d1e07ec7b9f4789ae"
+    },
+    "frozen_M_original_packet.tar.gz": {
+      "source": "experiments/state_measurement_pilot_20261020/packet_v2.tar.gz",
+      "bytes": 37006,
+      "sha256": "d6fcb1f7de7dd7a8c18fb03d6900b027ab0a751f7ddc876eafe8e9fd1621ccd5"
+    },
+    "frozen_M_controls_packet.tar.gz": {
+      "source": "experiments/state_calibration_controls_20261020/packet.tar.gz",
+      "bytes": 50445,
+      "sha256": "0a22cc024ea1dee68d7aa2284ea9bde4dbc92ce2dda5436ff39a110c267fec82"
+    },
+    "M_environment.csv": {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/ENVIRONMENT_INDEX_M.csv",
+      "bytes": 36331,
+      "sha256": "7042d687629de1a125861d6bf5b16158091a8fe8c85e69b3ac66c5ba7a7929a3"
+    },
+    "larger_existing_materials.csv": {
+      "source": "research_audit/controlled_comparison_materials_20261020/RECOVERED_FILES.csv",
+      "bytes": 177030,
+      "sha256": "54b18352c8c463c7faa9384e6c08562b16efd416cd4025d1090ae7a0329d4aa9"
+    },
+    "training_index_aliases.csv": {
+      "source": "research_audit/controlled_comparison_materials_20261020/TRAINING_INDEX_ALIASES_M.csv",
+      "bytes": 8820,
+      "sha256": "70cc8608d1746b486e8f431e640d863edaf8564ba6b35d87e97cb3f172688c2d"
+    },
+    "raw_version_and_licence.json": {
+      "source": "research_audit/controlled_comparison_materials_20261020/data_source/SOURCE_AND_LICENSE.json",
+      "bytes": 681,
+      "sha256": "6ade307b6472b4914a98ff5c5a8803fbc5628a78ad4218bc599f58968f2813b6"
+    },
+    "R_protocol.json": {
+      "source": "manuscripts/scientific_reports/source_data/R_protocol.json",
+      "bytes": 6197,
+      "sha256": "c69bfdc1940996ad5b9bee9d610e52f6d0ad9618e316bc704e64d78ee1a1179b"
+    },
+    "M_protocol.json": {
+      "source": "manuscripts/scientific_reports/source_data/M_protocol.json",
+      "bytes": 4694,
+      "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e"
+    },
+    "M_controls_protocol.json": {
+      "source": "manuscripts/scientific_reports/source_data/M_controls_protocol.json",
+      "bytes": 4712,
+      "sha256": "3be445a2e274d9ec92d53730389bcb4c3d16e46f83271fa93c79c5feabadb0c1"
+    },
+    "M_frozen.json": {
+      "source": "manuscripts/scientific_reports/source_data/M_frozen.json",
+      "bytes": 20417,
+      "sha256": "35398087d7ce59a513e948ddb8018a7e0b586d8deb64fc9e85a2507be795d470"
+    }
+  },
+  "large_materials_are_separate": true,
+  "public_deposit_assigned": false
+}

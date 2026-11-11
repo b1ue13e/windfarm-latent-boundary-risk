@@ -1,0 +1,272 @@
+[
+  {
+    "ref": "2c71ffc2",
+    "commit": "2c71ffc241dc8b9e23684bd660bc728d3ae14e45",
+    "path": "artifacts/ARTIFACT_MANIFEST.json",
+    "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/2c71ffc2_ARTIFACT_MANIFEST.json",
+    "git_blob": "ca8f57c317e16c717e2da3ef30904fb4629e5fbe",
+    "sha256": "497807d7f655c8d8164c7b7c3db3fb33b208762d4c4e46dca4ebbaaae3b615f9",
+    "category_b": [
+      {
+        "filename": "artifacts/fixed_forecast_residuals.npz",
+        "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+        "size_bytes": 173410167,
+        "category": "B",
+        "generating_script": "scripts/run_fixed_target_contract.py",
+        "upstream_inputs": [
+          "artifacts/cache_signature_trainweight/wtb_245d_canonical",
+          "wtbdata_245days.csv"
+        ],
+        "manuscript_claims_supported": [
+          "Fixed forecast residuals across 5 seeds and 6 horizons (keys: 28)",
+          "Underlies Table I, Table II, direct quantiles, mediation analysis, and strong-baseline closure"
+        ],
+        "tracked_in_git": false,
+        "externally_hosted": true,
+        "regenerable": false
+      },
+      {
+        "filename": "artifacts/matched_budget/cached_posterior_probs.npz",
+        "sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca",
+        "size_bytes": 22475033,
+        "category": "B",
+        "generating_script": "scripts/run_matched_budget_frontier.py",
+        "upstream_inputs": [
+          "artifacts/checkpoints/",
+          "artifacts/fixed_forecast_residuals.npz"
+        ],
+        "manuscript_claims_supported": [
+          "Precomputed posterior probabilities across 5 seeds for matched-budget campaign (MB00-MB13)",
+          "Underlies exact matched-budget frontier, bootstrap CIs, and rho sensitivity"
+        ],
+        "tracked_in_git": false,
+        "externally_hosted": true,
+        "regenerable": false
+      }
+    ]
+  },
+  {
+    "ref": "b8d894e5",
+    "commit": "b8d894e5f416b37bd3ce43c0f03927c2ca8226ad",
+    "path": "artifacts/ARTIFACT_MANIFEST.json",
+    "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/b8d894e5_ARTIFACT_MANIFEST.json",
+    "git_blob": "6b9555c05d275ea118a50a5d849d3af2a72f57cd",
+    "sha256": "0db94c34bc47e5519788edd056d76f6090f19e7aa0d885abc6431a9d913ee9c1",
+    "category_b": [
+      {
+        "filename": "artifacts/fixed_forecast_residuals.npz",
+        "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+        "size_bytes": 173410167,
+        "category": "B",
+        "generating_script": "scripts/run_fixed_target_contract.py",
+        "upstream_inputs": [
+          "artifacts/cache_signature_trainweight/wtb_245d_canonical",
+          "wtbdata_245days.csv"
+        ],
+        "manuscript_claims_supported": [
+          "Fixed forecast residuals across 5 seeds and 6 horizons (keys: 28)",
+          "Underlies Table I, Table II, direct quantiles, mediation analysis, and strong-baseline closure"
+        ],
+        "tracked_in_git": false,
+        "externally_hosted": true,
+        "regenerable": false
+      },
+      {
+        "filename": "artifacts/matched_budget/cached_posterior_probs.npz",
+        "sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca",
+        "size_bytes": 22475033,
+        "category": "B",
+        "generating_script": "scripts/run_matched_budget_frontier.py",
+        "upstream_inputs": [
+          "artifacts/checkpoints/",
+          "artifacts/fixed_forecast_residuals.npz"
+        ],
+        "manuscript_claims_supported": [
+          "Precomputed posterior probabilities across 5 seeds for matched-budget campaign (MB00-MB13)",
+          "Underlies exact matched-budget frontier, bootstrap CIs, and rho sensitivity"
+        ],
+        "tracked_in_git": false,
+        "externally_hosted": true,
+        "regenerable": false
+      }
+    ]
+  },
+  {
+    "ref": "tste-submission-v1.0",
+    "commit": "1085f23c925b7b9bfc312608cbaaecc50cba676e",
+    "path": "artifacts/ARTIFACT_MANIFEST.json",
+    "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/tste-submission-v1_0_ARTIFACT_MANIFEST.json",
+    "git_blob": "6b9555c05d275ea118a50a5d849d3af2a72f57cd",
+    "sha256": "0db94c34bc47e5519788edd056d76f6090f19e7aa0d885abc6431a9d913ee9c1",
+    "category_b": [
+      {
+        "filename": "artifacts/fixed_forecast_residuals.npz",
+        "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+        "size_bytes": 173410167,
+        "category": "B",
+        "generating_script": "scripts/run_fixed_target_contract.py",
+        "upstream_inputs": [
+          "artifacts/cache_signature_trainweight/wtb_245d_canonical",
+          "wtbdata_245days.csv"
+        ],
+        "manuscript_claims_supported": [
+          "Fixed forecast residuals across 5 seeds and 6 horizons (keys: 28)",
+          "Underlies Table I, Table II, direct quantiles, mediation analysis, and strong-baseline closure"
+        ],
+        "tracked_in_git": false,
+        "externally_hosted": true,
+        "regenerable": false
+      },
+      {
+        "filename": "artifacts/matched_budget/cached_posterior_probs.npz",
+        "sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca",
+        "size_bytes": 22475033,
+        "category": "B",
+        "generating_script": "scripts/run_matched_budget_frontier.py",
+        "upstream_inputs": [
+          "artifacts/checkpoints/",
+          "artifacts/fixed_forecast_residuals.npz"
+        ],
+        "manuscript_claims_supported": [
+          "Precomputed posterior probabilities across 5 seeds for matched-budget campaign (MB00-MB13)",
+          "Underlies exact matched-budget frontier, bootstrap CIs, and rho sensitivity"
+        ],
+        "tracked_in_git": false,
+        "externally_hosted": true,
+        "regenerable": false
+      }
+    ]
+  },
+  {
+    "ref": "tste-submission-v1.0",
+    "commit": "1085f23c925b7b9bfc312608cbaaecc50cba676e",
+    "path": "docs/EXTERNAL_RELEASE_METADATA.md",
+    "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/tste-submission-v1_0_EXTERNAL_RELEASE_METADATA.md",
+    "git_blob": "e3c36d02a302419aad8211776e99eb77f0fc3c82",
+    "sha256": "30a3d89714443513e5f151913bb2dedb78bdfacdf3e52edbb1518fb5f68e3e28"
+  },
+  {
+    "ref": "a273a05b",
+    "commit": "a273a05b8a67ccbc24d1b55ee2e0208ae31ff373",
+    "path": "artifacts/ARTIFACT_MANIFEST.json",
+    "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/a273a05b_ARTIFACT_MANIFEST.json",
+    "git_blob": "6b9555c05d275ea118a50a5d849d3af2a72f57cd",
+    "sha256": "0db94c34bc47e5519788edd056d76f6090f19e7aa0d885abc6431a9d913ee9c1",
+    "category_b": [
+      {
+        "filename": "artifacts/fixed_forecast_residuals.npz",
+        "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+        "size_bytes": 173410167,
+        "category": "B",
+        "generating_script": "scripts/run_fixed_target_contract.py",
+        "upstream_inputs": [
+          "artifacts/cache_signature_trainweight/wtb_245d_canonical",
+          "wtbdata_245days.csv"
+        ],
+        "manuscript_claims_supported": [
+          "Fixed forecast residuals across 5 seeds and 6 horizons (keys: 28)",
+          "Underlies Table I, Table II, direct quantiles, mediation analysis, and strong-baseline closure"
+        ],
+        "tracked_in_git": false,
+        "externally_hosted": true,
+        "regenerable": false
+      },
+      {
+        "filename": "artifacts/matched_budget/cached_posterior_probs.npz",
+        "sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca",
+        "size_bytes": 22475033,
+        "category": "B",
+        "generating_script": "scripts/run_matched_budget_frontier.py",
+        "upstream_inputs": [
+          "artifacts/checkpoints/",
+          "artifacts/fixed_forecast_residuals.npz"
+        ],
+        "manuscript_claims_supported": [
+          "Precomputed posterior probabilities across 5 seeds for matched-budget campaign (MB00-MB13)",
+          "Underlies exact matched-budget frontier, bootstrap CIs, and rho sensitivity"
+        ],
+        "tracked_in_git": false,
+        "externally_hosted": true,
+        "regenerable": false
+      }
+    ]
+  },
+  {
+    "ref": "a273a05b",
+    "commit": "a273a05b8a67ccbc24d1b55ee2e0208ae31ff373",
+    "path": "docs/EXTERNAL_RELEASE_METADATA.md",
+    "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/a273a05b_EXTERNAL_RELEASE_METADATA.md",
+    "git_blob": "e3c36d02a302419aad8211776e99eb77f0fc3c82",
+    "sha256": "30a3d89714443513e5f151913bb2dedb78bdfacdf3e52edbb1518fb5f68e3e28"
+  },
+  {
+    "ref": "a273a05b",
+    "commit": "a273a05b8a67ccbc24d1b55ee2e0208ae31ff373",
+    "path": "docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md",
+    "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/a273a05b_EXTERNAL_REPRODUCIBILITY_VERDICT.md",
+    "git_blob": "6a6e315a065b1e51e1d7f7e00f9dbe963669b5f1",
+    "sha256": "ca11c61b1482b2b9b51933f10a59135d4d154c96d5e00cf545d6ae7022992eae"
+  },
+  {
+    "ref": "00c92f0b",
+    "commit": "00c92f0b8ebf1640082f54b60d0e2b9aa6f0eef1",
+    "path": "artifacts/ARTIFACT_MANIFEST.json",
+    "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/00c92f0b_ARTIFACT_MANIFEST.json",
+    "git_blob": "887c0d426a6725af3a9dd08a5604934cc2e6eaf7",
+    "sha256": "bb6ad39336578e8ebeea73b0da3ae94eef035f7068b48b612c6c91b7f1cfd12a",
+    "category_b": [
+      {
+        "filename": "artifacts/fixed_forecast_residuals.npz",
+        "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+        "size_bytes": 173410167,
+        "category": "B",
+        "generating_script": "scripts/build_fixed_forecast_residuals.py",
+        "upstream_inputs": [
+          "artifacts/cache_signature_trainweight/wtb_245d_canonical",
+          "wtbdata_245days.csv"
+        ],
+        "manuscript_claims_supported": [
+          "Fixed forecast residuals across 5 seeds and 6 horizons (keys: 28)",
+          "Underlies Table I, Table II, direct quantiles, mediation analysis, and strong-baseline closure"
+        ],
+        "tracked_in_git": false,
+        "externally_hosted": true,
+        "regenerable": false
+      },
+      {
+        "filename": "artifacts/matched_budget/cached_posterior_probs.npz",
+        "sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca",
+        "size_bytes": 22475033,
+        "category": "B",
+        "generating_script": "scripts/run_matched_budget_frontier.py",
+        "upstream_inputs": [
+          "artifacts/checkpoints/",
+          "artifacts/fixed_forecast_residuals.npz"
+        ],
+        "manuscript_claims_supported": [
+          "Precomputed posterior probabilities across 5 seeds for matched-budget campaign (MB00-MB13)",
+          "Underlies exact matched-budget frontier, bootstrap CIs, and rho sensitivity"
+        ],
+        "tracked_in_git": false,
+        "externally_hosted": true,
+        "regenerable": false
+      }
+    ]
+  },
+  {
+    "ref": "00c92f0b",
+    "commit": "00c92f0b8ebf1640082f54b60d0e2b9aa6f0eef1",
+    "path": "docs/EXTERNAL_RELEASE_METADATA.md",
+    "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/00c92f0b_EXTERNAL_RELEASE_METADATA.md",
+    "git_blob": "e3c36d02a302419aad8211776e99eb77f0fc3c82",
+    "sha256": "30a3d89714443513e5f151913bb2dedb78bdfacdf3e52edbb1518fb5f68e3e28"
+  },
+  {
+    "ref": "00c92f0b",
+    "commit": "00c92f0b8ebf1640082f54b60d0e2b9aa6f0eef1",
+    "path": "docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md",
+    "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/00c92f0b_EXTERNAL_REPRODUCIBILITY_VERDICT.md",
+    "git_blob": "225b4ae21d883fac8f03c97738313695c36d2560",
+    "sha256": "349da79e828e6d50e7e3233c6931a87648c31bb04ef64086858501016d77cb52"
+  }
+]

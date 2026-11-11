@@ -1,0 +1,11 @@
+{
+  "status": "PASS_SOURCE_LEDGER_STATIC_CHECK_ONLY",
+  "source_records": 7,
+  "official_dataset_creator_names_checked": true,
+  "protected_document_git_diff_empty": true,
+  "new_measurements_downloaded": false,
+  "experiments_run": false,
+  "formal_mainline_changed": false,
+  "decision": "PRIORITIZE_QUALIFICATION_ONLY",
+  "note": "Three subagent workstreams were read-only; candidate novelty and identification not certified."
+}

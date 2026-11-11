@@ -1,0 +1,18 @@
+{
+  "primary.json": {
+    "bytes": 6733,
+    "sha256": "14c1e9ecc0930d175431e841935bca7567a056f48b4e44745aa862e2207b625c"
+  },
+  "receipt.json": {
+    "bytes": 40586,
+    "sha256": "361d8528f37d2ac432e415616df681e145e6afb638c3ac4f9364ba7dd68709f6"
+  },
+  "sensitivity.json": {
+    "bytes": 405,
+    "sha256": "26a5b66b7f7da777aed6cfc683d9b4762dae3d0d3167400fa7c8da077d1eeae5"
+  },
+  "summary.json": {
+    "bytes": 2001,
+    "sha256": "962563f9fed4a4a5abbffa1e8fe409ffacb28c053db7430c23e7625abc9c7905"
+  }
+}

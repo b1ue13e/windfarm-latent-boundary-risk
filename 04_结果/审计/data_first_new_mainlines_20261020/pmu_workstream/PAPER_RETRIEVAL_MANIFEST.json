@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-20",
+  "scope": "public papers only; no operational data",
+  "pdfs_local_reading_only": true,
+  "files": [
+    {
+      "file": "complex_phase_2409.17132.pdf",
+      "bytes": 2698605,
+      "sha256": "9e442dc4f11c80d3af769f09b5a9d1155a7e63e4bb8b9b0a60343507be076240",
+      "pages": 11,
+      "source_url": "https://arxiv.org/pdf/2409.17132v2",
+      "inspection_depth": "fulltext_methods_results_limits_pp4-10; theory_pp1-3",
+      "stage_allowed": false
+    },
+    {
+      "file": "complex_phase_analysis_2506.22054.pdf",
+      "bytes": 720557,
+      "sha256": "60d53303d6528827804d493cecdd9e95bc97cdff99d44ea0f826edc73c3bf5b3",
+      "pages": 6,
+      "source_url": "https://arxiv.org/pdf/2506.22054",
+      "inspection_depth": "retrieved_for_reading; not used as core evidence; no fulltext coverage claim",
+      "stage_allowed": false
+    },
+    {
+      "file": "distributed_certification_2604.16212.pdf",
+      "bytes": 283288,
+      "sha256": "11c387e8e1e3891ff15a4c7b840952b5284bd7cb7753b56065c569a813753fbc",
+      "pages": 6,
+      "source_url": "https://arxiv.org/pdf/2604.16212",
+      "inspection_depth": "fulltext_methods_cases_limits_pp1-6",
+      "stage_allowed": false
+    },
+    {
+      "file": "dlc_2021.pdf",
+      "bytes": 741328,
+      "sha256": "3db0425100d2c312014d7c1f2ae1cca0a2c118a3e7645ec8c0d9c3ab095625ca",
+      "pages": 9,
+      "source_url": "https://par.nsf.gov/servlets/purl/10288928",
+      "inspection_depth": "fulltext_definitions_assumptions_methods_pp1-4",
+      "stage_allowed": false
+    },
+    {
+      "file": "incremental_passivity_2506.14469.pdf",
+      "bytes": 521532,
+      "sha256": "584c2062d7f3e04bdb285c05795d73831cf187e8c7f439bb3c5fadd12da95157",
+      "pages": 7,
+      "source_url": "https://arxiv.org/pdf/2506.14469",
+      "inspection_depth": "retrieved_for_reading; not used as core evidence; no fulltext coverage claim",
+      "stage_allowed": false
+    },
+    {
+      "file": "io_dissipativity_2512.11468.pdf",
+      "bytes": 1375683,
+      "sha256": "0215e37b33c69fd982ff91b705be0d703618f99ef155a639f53ebe6f56562b76",
+      "pages": 8,
+      "source_url": "https://arxiv.org/pdf/2512.11468",
+      "inspection_depth": "fulltext_methods_Thm2-3_results_limits_pp2-6; appendix8",
+      "stage_allowed": false
+    },
+    {
+      "file": "lfi_node_2510.09826.pdf",
+      "bytes": 5478640,
+      "sha256": "92f539979b6d2f4f497305d6f217c23a23617be2b3eab906674902996b67e997",
+      "pages": 6,
+      "source_url": "https://arxiv.org/pdf/2510.09826",
+      "inspection_depth": "fulltext_all6pages",
+      "stage_allowed": false
+    },
+    {
+      "file": "nonlinear_io_2411.13404.pdf",
+      "bytes": 340655,
+      "sha256": "1eae4124e7329606bf6e219b29cea3067451b5b0bc607d02e29bc0d74455c9ee",
+      "pages": 6,
+      "source_url": "https://arxiv.org/pdf/2411.13404",
+      "inspection_depth": "fulltext_SecII-VI_pp1-6",
+      "stage_allowed": false
+    },
+    {
+      "file": "nonlinear_polynomial_2108.11298.pdf",
+      "bytes": 1752365,
+      "sha256": "07e5876cb11f78a3457cb375339f071c93a897e81ce75febb6fdfa91c1c6633d",
+      "pages": 17,
+      "source_url": "https://arxiv.org/pdf/2108.11298",
+      "inspection_depth": "fulltext_assumptions_pp1-3; regional_Thm15_pp8-9; incremental_p13",
+      "stage_allowed": false
+    },
+    {
+      "file": "pmu_quality_2025.pdf",
+      "bytes": 4510815,
+      "sha256": "f1b7cc16b673a95b271af6154d05e48e8a9e909a747f0253702654f9c4ab5bb8",
+      "pages": 13,
+      "source_url": "https://www.osti.gov/pages/servlets/purl/2564170",
+      "inspection_depth": "fulltext_curation_anonymization_pp2-5; usecase metadata",
+      "stage_allowed": false
+    },
+    {
+      "file": "proprietary_inverter_2507.15259.pdf",
+      "bytes": 1235424,
+      "sha256": "bde46e52d8d0c87884404e30dfa7c3bb652e4f14df54921667d5608e59ac2212",
+      "pages": 7,
+      "source_url": "https://arxiv.org/pdf/2507.15259",
+      "inspection_depth": "retrieved_for_reading; not used as core evidence; no fulltext coverage claim",
+      "stage_allowed": false
+    },
+    {
+      "file": "rkhs_dissipativity_2510.27669.pdf",
+      "bytes": 501990,
+      "sha256": "84b8bd77d3856edf113ceaed1cbd0064d15b68828c805658bcdbe8f1bf1fd3b4",
+      "pages": 26,
+      "source_url": "https://arxiv.org/pdf/2510.27669",
+      "inspection_depth": "fulltext_problem_setup_and_storage_methods_Sec0.2-0.4; not_all_proofs_checked",
+      "stage_allowed": false
+    },
+    {
+      "file": "robust_dissipativity_2006.05974.pdf",
+      "bytes": 1392958,
+      "sha256": "d9a43a76dc3ed6eaa7d602f5180e12f91ec69053eca2b118d2c866b2101e523d",
+      "pages": 13,
+      "source_url": "https://arxiv.org/pdf/2006.05974",
+      "inspection_depth": "fulltext_SecII-VI_pp2-9_espThm6; experimentp10",
+      "stage_allowed": false
+    },
+    {
+      "file": "socal28_2504.06588.pdf",
+      "bytes": 1434871,
+      "sha256": "0a889052314a09797a7ee66e723814a74220a64b344824d3665c601b3584121a",
+      "pages": 11,
+      "source_url": "https://arxiv.org/pdf/2504.06588",
+      "inspection_depth": "official_README; fulltext_dataset_clock_error_pp3-6",
+      "stage_allowed": false
+    }
+  ]
+}

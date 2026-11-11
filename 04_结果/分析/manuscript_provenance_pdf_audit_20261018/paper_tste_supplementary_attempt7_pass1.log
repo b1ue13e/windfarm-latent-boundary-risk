@@ -1,0 +1,69 @@
+xelatex: security risk: running with elevated privileges
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+
+(analyses/manuscript_provenance_pdf_audit_20261018/build/paper_tste_supplementa
+ry.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(E:\MiKTeX\tex/latex/ieeetran\IEEEtran.cls
+Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+(tuptm.fd)
+-- Using 8.5in x 11in (letter) paper.
+-- Using DVI output.
+-- This is a 10 point document.
+) (E:\MiKTeX\tex/latex/xcolor\xcolor.sty
+(E:\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(E:\MiKTeX\tex/latex/graphics-def\xetex.def)
+(E:\MiKTeX\tex/latex/graphics\mathcolor.ltx))
+(E:\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(E:\MiKTeX\tex/latex/amsmath\amstext.sty
+(E:\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(E:\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(E:\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(E:\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(E:\MiKTeX\tex/latex/amsfonts\amsfonts.sty))
+(E:\MiKTeX\tex/generic/iftex\iftex.sty)
+(E:\MiKTeX\tex/latex/unicode-math\unicode-math.sty
+(E:\MiKTeX\tex/latex/l3kernel\expl3.sty
+(E:\MiKTeX\tex/latex/l3backend\l3backend-xetex.def))
+(E:\MiKTeX\tex/latex/unicode-math\unicode-math-xetex.sty
+(E:\MiKTeX\tex/latex/l3packages/xparse\xparse.sty)
+(E:\MiKTeX\tex/latex/l3packages/l3keys2e\l3keys2e.sty)
+(E:\MiKTeX\tex/latex/fontspec\fontspec.sty
+(E:\MiKTeX\tex/latex/fontspec\fontspec-xetex.sty
+(E:\MiKTeX\tex/latex/base\fontenc.sty)
+(E:\MiKTeX\tex/latex/fontspec\fontspec.cfg)))
+(E:\MiKTeX\tex/latex/base\fix-cm.sty (E:\MiKTeX\tex/latex/base\ts1enc.def))
+(E:\MiKTeX\tex/latex/unicode-math\unicode-math-table.tex)))
+(E:\MiKTeX\tex/latex/lm\lmodern.sty) (E:\MiKTeX\tex/latex/upquote\upquote.sty
+(E:\MiKTeX\tex/latex/base\textcomp.sty))
+(E:\MiKTeX\tex/latex/microtype\microtype.sty
+(E:\MiKTeX\tex/latex/graphics\keyval.sty)
+(E:\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(E:\MiKTeX\tex/latex/microtype\microtype-xetex.def)
+(E:\MiKTeX\tex/latex/microtype\microtype.cfg))
+(E:\MiKTeX\tex/latex/parskip\parskip.sty
+(E:\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+(E:\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(E:\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty)))
+(E:\MiKTeX\tex/latex/fancyvrb\fancyvrb.sty) (E:\MiKTeX\tex/latex/tools\calc.sty
+) (E:\MiKTeX\tex/latex/tools\tabularx.sty (E:\MiKTeX\tex/latex/tools\array.sty)
+) (E:\MiKTeX\tex/latex/booktabs\booktabs.sty)
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.120 \makeatother
+                  
+No pages of output.
+Transcript written on E:\论文3\analyses\manuscript_provenance_pdf_audit_20261018\
+build\paper_tste_supplementary.log.
+xelatex: major issue: So far, you have not checked for MiKTeX updates.

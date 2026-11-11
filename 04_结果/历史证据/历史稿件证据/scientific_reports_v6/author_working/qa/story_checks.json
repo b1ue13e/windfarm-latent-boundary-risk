@@ -1,0 +1,671 @@
+{
+  "status": "PASS_NARRATIVE_SOURCE_AND_BUILD_CHECKS",
+  "checks": [
+    {
+      "check": "stored_number:M_original_summary.HGB:old_power|cost|G.point",
+      "passed": true,
+      "evidence": {
+        "value": 13.168686763519988,
+        "display": "13.17",
+        "source": "M_original_summary.HGB:old_power|cost|G.point",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.HGB:old_power|cost|G.lower",
+      "passed": true,
+      "evidence": {
+        "value": 8.094772071892395,
+        "display": "8.09",
+        "source": "M_original_summary.HGB:old_power|cost|G.lower",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.HGB:old_power|cost|G.upper",
+      "passed": true,
+      "evidence": {
+        "value": 18.242601455147582,
+        "display": "18.24",
+        "source": "M_original_summary.HGB:old_power|cost|G.upper",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.HGB:old_state|cost|G.point",
+      "passed": true,
+      "evidence": {
+        "value": 3.5088526077845525,
+        "display": "3.51",
+        "source": "M_original_summary.HGB:old_state|cost|G.point",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.HGB:old_state|cost|G.lower",
+      "passed": true,
+      "evidence": {
+        "value": 0.4944793683624916,
+        "display": "0.49",
+        "source": "M_original_summary.HGB:old_state|cost|G.lower",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.HGB:old_state|cost|G.upper",
+      "passed": true,
+      "evidence": {
+        "value": 6.5232258472066125,
+        "display": "6.52",
+        "source": "M_original_summary.HGB:old_state|cost|G.upper",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.HGB:P_premium_vs_Z|cost|D.point",
+      "passed": true,
+      "evidence": {
+        "value": -10.011109222766642,
+        "display": "-10.01",
+        "source": "M_original_summary.HGB:P_premium_vs_Z|cost|D.point",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.HGB:P_premium_vs_Z|cost|D.lower",
+      "passed": true,
+      "evidence": {
+        "value": -13.737287470975165,
+        "display": "-13.74",
+        "source": "M_original_summary.HGB:P_premium_vs_Z|cost|D.lower",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.HGB:P_premium_vs_Z|cost|D.upper",
+      "passed": true,
+      "evidence": {
+        "value": -6.28493097455812,
+        "display": "-6.28",
+        "source": "M_original_summary.HGB:P_premium_vs_Z|cost|D.upper",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.MLP:P_premium_vs_Z|cost|D.point",
+      "passed": true,
+      "evidence": {
+        "value": -14.812123914413549,
+        "display": "-14.81",
+        "source": "M_original_summary.MLP:P_premium_vs_Z|cost|D.point",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.MLP:P_premium_vs_Z|cost|D.lower",
+      "passed": true,
+      "evidence": {
+        "value": -19.593463117178242,
+        "display": "-19.59",
+        "source": "M_original_summary.MLP:P_premium_vs_Z|cost|D.lower",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.MLP:P_premium_vs_Z|cost|D.upper",
+      "passed": true,
+      "evidence": {
+        "value": -10.030784711648858,
+        "display": "-10.03",
+        "source": "M_original_summary.MLP:P_premium_vs_Z|cost|D.upper",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.HGB:fresh_state|cost|G.point",
+      "passed": true,
+      "evidence": {
+        "value": -0.1347900629032529,
+        "display": "-0.13",
+        "source": "M_original_summary.HGB:fresh_state|cost|G.point",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.HGB:fresh_state|cost|G.lower",
+      "passed": true,
+      "evidence": {
+        "value": -0.43394696110066405,
+        "display": "-0.43",
+        "source": "M_original_summary.HGB:fresh_state|cost|G.lower",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_original_summary.HGB:fresh_state|cost|G.upper",
+      "passed": true,
+      "evidence": {
+        "value": 0.16436683529415821,
+        "display": "0.16",
+        "source": "M_original_summary.HGB:fresh_state|cost|G.upper",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:M_controls_summary.Common:HGB:P_premium_vs_Z|cost|D.point",
+      "passed": true,
+      "evidence": {
+        "value": -9.999724014563759,
+        "display": "-10.00",
+        "source": "M_controls_summary.Common:HGB:P_premium_vs_Z|cost|D.point",
+        "location": "supplement"
+      }
+    },
+    {
+      "check": "stored_number:M_controls_summary.Common:HGB:P_premium_vs_Z|cost|D.lower",
+      "passed": true,
+      "evidence": {
+        "value": -13.95679990983465,
+        "display": "-13.96",
+        "source": "M_controls_summary.Common:HGB:P_premium_vs_Z|cost|D.lower",
+        "location": "supplement"
+      }
+    },
+    {
+      "check": "stored_number:M_controls_summary.Common:HGB:P_premium_vs_Z|cost|D.upper",
+      "passed": true,
+      "evidence": {
+        "value": -6.042648119292866,
+        "display": "-6.04",
+        "source": "M_controls_summary.Common:HGB:P_premium_vs_Z|cost|D.upper",
+        "location": "supplement"
+      }
+    },
+    {
+      "check": "stored_number:M_controls_summary.Common:MLP:P_premium_vs_Z|cost|D.point",
+      "passed": true,
+      "evidence": {
+        "value": -14.665422806155167,
+        "display": "-14.67",
+        "source": "M_controls_summary.Common:MLP:P_premium_vs_Z|cost|D.point",
+        "location": "supplement"
+      }
+    },
+    {
+      "check": "stored_number:M_controls_summary.Common:MLP:P_premium_vs_Z|cost|D.lower",
+      "passed": true,
+      "evidence": {
+        "value": -19.169243811785908,
+        "display": "-19.17",
+        "source": "M_controls_summary.Common:MLP:P_premium_vs_Z|cost|D.lower",
+        "location": "supplement"
+      }
+    },
+    {
+      "check": "stored_number:M_controls_summary.Common:MLP:P_premium_vs_Z|cost|D.upper",
+      "passed": true,
+      "evidence": {
+        "value": -10.16160180052443,
+        "display": "-10.16",
+        "source": "M_controls_summary.Common:MLP:P_premium_vs_Z|cost|D.upper",
+        "location": "supplement"
+      }
+    },
+    {
+      "check": "stored_number:R_paired_intervals[0].point",
+      "passed": true,
+      "evidence": {
+        "value": -2.734363955871603,
+        "display": "-2.734",
+        "source": "R_paired_intervals[0].point",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:R_paired_intervals[0].simultaneous_ci[0]",
+      "passed": true,
+      "evidence": {
+        "value": -4.85290699221191,
+        "display": "-4.853",
+        "source": "R_paired_intervals[0].simultaneous_ci[0]",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:R_paired_intervals[0].simultaneous_ci[1]",
+      "passed": true,
+      "evidence": {
+        "value": -0.8370848058554794,
+        "display": "-0.837",
+        "source": "R_paired_intervals[0].simultaneous_ci[1]",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:R_paired_intervals[3].point",
+      "passed": true,
+      "evidence": {
+        "value": -0.06798086059689047,
+        "display": "-0.068",
+        "source": "R_paired_intervals[3].point",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:R_paired_intervals[3].simultaneous_ci[0]",
+      "passed": true,
+      "evidence": {
+        "value": -0.17142537235693617,
+        "display": "-0.171",
+        "source": "R_paired_intervals[3].simultaneous_ci[0]",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:R_paired_intervals[3].simultaneous_ci[1]",
+      "passed": true,
+      "evidence": {
+        "value": -0.004111534860021267,
+        "display": "-0.004",
+        "source": "R_paired_intervals[3].simultaneous_ci[1]",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:R_paired_intervals[12].point",
+      "passed": true,
+      "evidence": {
+        "value": 1.7195662509603067,
+        "display": "1.720",
+        "source": "R_paired_intervals[12].point",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:R_paired_intervals[12].simultaneous_ci[0]",
+      "passed": true,
+      "evidence": {
+        "value": 0.36105544670281525,
+        "display": "0.361",
+        "source": "R_paired_intervals[12].simultaneous_ci[0]",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:R_paired_intervals[12].simultaneous_ci[1]",
+      "passed": true,
+      "evidence": {
+        "value": 3.591488665483038,
+        "display": "3.591",
+        "source": "R_paired_intervals[12].simultaneous_ci[1]",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:R_paired_intervals[15].point",
+      "passed": true,
+      "evidence": {
+        "value": -0.13238054925177659,
+        "display": "-0.132",
+        "source": "R_paired_intervals[15].point",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:R_paired_intervals[15].simultaneous_ci[0]",
+      "passed": true,
+      "evidence": {
+        "value": -0.27210742450624165,
+        "display": "-0.272",
+        "source": "R_paired_intervals[15].simultaneous_ci[0]",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:R_paired_intervals[15].simultaneous_ci[1]",
+      "passed": true,
+      "evidence": {
+        "value": -0.016333796980181666,
+        "display": "-0.016",
+        "source": "R_paired_intervals[15].simultaneous_ci[1]",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:Common:HGB:residual_state|cost|G.cost_difference_point",
+      "passed": true,
+      "evidence": {
+        "value": 0.08709373132009135,
+        "display": "0.09",
+        "source": "Common:HGB:residual_state|cost|G.cost_difference_point",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:Common:HGB:residual_state|cost|G.cost_difference_lower",
+      "passed": true,
+      "evidence": {
+        "value": -0.47074764655141893,
+        "display": "-0.47",
+        "source": "Common:HGB:residual_state|cost|G.cost_difference_lower",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:Common:HGB:residual_state|cost|G.cost_difference_upper",
+      "passed": true,
+      "evidence": {
+        "value": 0.6449351091916017,
+        "display": "0.64",
+        "source": "Common:HGB:residual_state|cost|G.cost_difference_upper",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:Common:HGB:relative_R",
+      "passed": true,
+      "evidence": {
+        "value": 0.9578361566655706,
+        "display": "0.96",
+        "source": "Common:HGB:relative_R",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:Common:HGB:relative_U",
+      "passed": true,
+      "evidence": {
+        "value": 9.56776069092931,
+        "display": "9.57",
+        "source": "Common:HGB:relative_U",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:Common:HGB:OPZ6.R",
+      "passed": true,
+      "evidence": {
+        "value": 29.98379360751082,
+        "display": "29.984",
+        "source": "Common:HGB:OPZ6.R",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:Common:HGB:Match_residual_state.R",
+      "passed": true,
+      "evidence": {
+        "value": 29.501448796582967,
+        "display": "29.501",
+        "source": "Common:HGB:Match_residual_state.R",
+        "location": "main"
+      }
+    },
+    {
+      "check": "stored_number:Historical_match.event_frequency",
+      "passed": true,
+      "evidence": {
+        "value": 20.06686144343284,
+        "display": "20.07",
+        "source": "Historical_match.event_frequency",
+        "location": "main"
+      }
+    },
+    {
+      "check": "all_joint_results_retained",
+      "passed": true,
+      "evidence": "Twelve original false criteria remain false and are stated in Results/SI"
+    },
+    {
+      "check": "twelve_joint_outcomes_in_SI",
+      "passed": true,
+      "evidence": [
+        [
+          "Estimator",
+          "Calibration",
+          "Pitch benefit",
+          "Power substitution",
+          "Uniformly small pitch increment"
+        ],
+        [
+          "HGB",
+          "Individual",
+          "Not established",
+          "Not established",
+          "Not established"
+        ],
+        [
+          "HGB",
+          "Shared",
+          "Not established",
+          "Not established",
+          "Not established"
+        ],
+        [
+          "MLP",
+          "Individual",
+          "Not established",
+          "Not established",
+          "Not established"
+        ],
+        [
+          "MLP",
+          "Shared",
+          "Not established",
+          "Not established",
+          "Not established"
+        ]
+      ]
+    },
+    {
+      "check": "original_limits_unchanged",
+      "passed": true,
+      "evidence": {
+        "important_cost_gain": 0.01,
+        "substitution_margin": 0.01,
+        "risk_cap": 0.1,
+        "weighted_U_increment_over_Cstar": 0.001,
+        "cost_margin_sensitivity": [
+          0.005,
+          0.02
+        ]
+      }
+    },
+    {
+      "check": "negative_controls_and_variation_retained",
+      "passed": true,
+      "evidence": "Small-score instability, compression loss, event increase, learner difference and matching failure remain in the story"
+    },
+    {
+      "check": "material_design_facts_retained",
+      "passed": true,
+      "evidence": "Essential design facts remain in Methods, without execution/audit narration"
+    },
+    {
+      "check": "pinball_definition_retained",
+      "passed": true,
+      "evidence": "Scientific loss definition remains; no scoring-principle novelty claim"
+    },
+    {
+      "check": "imposed_information_age_stated",
+      "passed": true,
+      "evidence": "Controlled input ages are not observed communication-delay frequencies"
+    },
+    {
+      "check": "no_dash_punctuation",
+      "passed": true,
+      "evidence": "No rhetorical or relational dashes in the article source; mathematical minus signs retained"
+    },
+    {
+      "check": "internal_record_language_absent",
+      "passed": true,
+      "evidence": [
+        "SHA256",
+        "checksum",
+        "manifest",
+        "corrected_routes",
+        "SR-01",
+        "SR-08",
+        "guard ledger",
+        "20,000-draw matrices were not persisted",
+        "source packets",
+        "manuscript preparation generated",
+        "not submitted",
+        "not_submission_ready",
+        "403 previously",
+        "external reviewer access",
+        "scientific gate",
+        "no new matrices were generated",
+        "original fits and outputs are retained"
+      ]
+    },
+    {
+      "check": "no_missing_literature_access_story",
+      "passed": true,
+      "evidence": "Source-access status belongs to author working records, not scientific conclusions"
+    },
+    {
+      "check": "abstract_under200",
+      "passed": true,
+      "evidence": 179
+    },
+    {
+      "check": "keywords_six",
+      "passed": true,
+      "evidence": "Six keyword phrases"
+    },
+    {
+      "check": "citation_identities",
+      "passed": true,
+      "evidence": {
+        "cited": [
+          "bessa2011",
+          "bremnes2006",
+          "dantas2026",
+          "iversen2017",
+          "kandemir2026",
+          "kometsi2026",
+          "meng2026",
+          "phipps2022",
+          "pritchard2011",
+          "sdwpf2024",
+          "stratigakos2026",
+          "sun2022",
+          "wang2026",
+          "wen2024",
+          "zhao2021"
+        ],
+        "bibliography": [
+          "bessa2011",
+          "bremnes2006",
+          "dantas2026",
+          "iversen2017",
+          "kandemir2026",
+          "kometsi2026",
+          "meng2026",
+          "phipps2022",
+          "pritchard2011",
+          "sdwpf2024",
+          "stratigakos2026",
+          "sun2022",
+          "wang2026",
+          "wen2024",
+          "zhao2021"
+        ]
+      }
+    },
+    {
+      "check": "original_source_copies",
+      "passed": true,
+      "evidence": "Unchanged original source file hashes"
+    },
+    {
+      "check": "all_measurement_contrasts_displayed",
+      "passed": true,
+      "evidence": "Four panels times five paired comparisons"
+    },
+    {
+      "check": "all_reconstruction_points_displayed",
+      "passed": true,
+      "evidence": "Six cost contrasts and fifteen original MSE points"
+    },
+    {
+      "check": "figure_rendering",
+      "passed": true,
+      "evidence": {
+        "records": [
+          {
+            "figure": "fig1_information_and_timing.pdf",
+            "sha256": "c0845be8c4b0a21293e0b9799f5a6666a1afb5d109223a542195e1efde4f5719",
+            "glyph_exit": 0,
+            "collision_exit": 0
+          },
+          {
+            "figure": "fig2_measurement_cost.pdf",
+            "sha256": "cb74a87254b2bed58e09e695f4ec43f678ca91cb6d0d0b5f40825397c4168a17",
+            "glyph_exit": 0,
+            "collision_exit": 0
+          },
+          {
+            "figure": "fig3_reconstruction_and_controls.pdf",
+            "sha256": "a3e7cd6872b00faca6b4210dd888f0c0227302255afc395c0741ab6ca45710a0",
+            "glyph_exit": 0,
+            "collision_exit": 0
+          },
+          {
+            "figure": "fig4_procurement_shortfall.pdf",
+            "sha256": "c2c95c08581e25e0df959c2c4577a50e20e8d00b5977eda3ea76ba3c3ddd3a04",
+            "glyph_exit": 0,
+            "collision_exit": 0
+          },
+          {
+            "figure": "figS1_block_sensitivity.pdf",
+            "sha256": "d72d49352e6d74d68b2c5e5735dd47e1b6e8450b636fba2eb2ce778e971e41e6",
+            "glyph_exit": 0,
+            "collision_exit": 0
+          }
+        ],
+        "failed": []
+      }
+    },
+    {
+      "check": "compiled_inputs_current",
+      "passed": true,
+      "evidence": "Exact manuscript/SI/table/figure inputs"
+    },
+    {
+      "check": "page_bounds:manuscript",
+      "passed": true,
+      "evidence": []
+    },
+    {
+      "check": "page_bounds:supplementary",
+      "passed": true,
+      "evidence": []
+    },
+    {
+      "check": "figure_caption_limits",
+      "passed": true,
+      "evidence": [
+        94,
+        113,
+        132,
+        101,
+        56
+      ]
+    }
+  ],
+  "failed": [],
+  "documents": {
+    "manuscript": {
+      "pages": 9,
+      "sha256": "2944a62eeb6726d372015b2c6efbbe6929fed025b708a1db8b4f6369bd10e0bd"
+    },
+    "supplementary": {
+      "pages": 8,
+      "sha256": "f08fbba54fed669c502e9754bfb464f2557781c31c6730370a44ee5601f6a702"
+    }
+  },
+  "abstract_words": 179,
+  "new_research": false
+}

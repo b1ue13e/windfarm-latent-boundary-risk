@@ -1,0 +1,18 @@
+{
+  "status": "PASS_STATIC_SCREEN_DOCUMENT_CHECKS_ONLY",
+  "date": "2026-10-20",
+  "candidates": {
+    "A": "CONDITIONAL_PRIORITY_QUALIFICATION",
+    "B": "HOLD_NOVELTY_GAP_UNPROVEN",
+    "C": "NO_GO_NOVELTY_NOT_ESTABLISHED"
+  },
+  "literature_records": 8,
+  "data_document_entries": 12,
+  "protected_files_unchanged": 6,
+  "execution_authorized": false,
+  "execution_queue": [],
+  "new_operational_data_downloaded": false,
+  "experiments_optimizers_or_resampling_run": false,
+  "papers_or_contract_changed": false,
+  "scope": "Literature and official schema screening plus read-only existing code review; no exclusive novelty, sample completeness, realized risk effect or publication probability certified."
+}

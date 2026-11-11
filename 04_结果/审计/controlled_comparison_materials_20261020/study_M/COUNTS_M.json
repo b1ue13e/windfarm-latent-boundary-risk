@@ -1,0 +1,27 @@
+{
+  "copied_files": 99,
+  "copied_bytes": 4305792,
+  "local_files": 1029,
+  "historical_remote_entries": 356,
+  "exported_members_checked": 1936,
+  "archive_and_export_checks_pass": true,
+  "source_checks": 33,
+  "source_matches": 31,
+  "git_recovered_bindings": 2,
+  "npz_headers_inspected": 173,
+  "claim_fields": 226,
+  "current_remote_bytes_verified": 0,
+  "arrays_loaded": 0,
+  "new_measurements": 0,
+  "model_operations": 0,
+  "statistical_resampling": 0,
+  "packet_recovered_bindings": 2,
+  "same_seed_fit_index_identity_checks": {
+    "201": 1,
+    "202": 1,
+    "203": 1,
+    "204": 1,
+    "205": 1
+  },
+  "environment_receipts_indexed": 70
+}

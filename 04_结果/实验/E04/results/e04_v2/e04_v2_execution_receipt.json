@@ -1,0 +1,60 @@
+{
+  "argv": [
+    "test_strong_baseline_e04_v2.py",
+    "--frozen-inputs"
+  ],
+  "execution_plan": {
+    "bytes": 934,
+    "path": "e04_execution_plan.json",
+    "sha256": "4d719fdc72ceb1d33e192b38a80a02047ee3627b0a4b3d2bd1ccfd22d69e114b"
+  },
+  "exit_code": 0,
+  "git_commit": "64478031c8ba630edff8f57851e90de4f2bdc6cb",
+  "inputs": [
+    {
+      "bytes": 3567,
+      "path": "/nfs/ihfs/home_metis/junyu/dsh-scratch/e04-v2-direct/prereg/PREREGISTRATION_E04_V2.json",
+      "role": "preregistration",
+      "sha256": "bd95a16802f312b08d06ca3f04974be47dc76316c3a3886625c95e0e5d77354c"
+    }
+  ],
+  "metadata": {
+    "direct_process_receipt": "E04_direct_v2",
+    "remote_replay_script_sha256": "007088D9F2C611D5F6467F8982808101625BF6348F308F55DEDF001DB9E405F"
+  },
+  "output_manifest": {
+    "bytes": 925,
+    "path": "e04_output_manifest.json",
+    "sha256": "647066786fd2b3cb6168cf1f25647a5560b25e1f40c3e2adae2dad2e51d523a5"
+  },
+  "outputs": [
+    {
+      "bytes": 3297,
+      "path": "seed201_full_policy_day_blocks.npz",
+      "sha256": "0cf8e76f5c7ed2c309bcb04d545465643429b375ecc727011b56967586d7c0a6"
+    },
+    {
+      "bytes": 3331,
+      "path": "seed202_full_policy_day_blocks.npz",
+      "sha256": "0656105b0bbc89517616515e6ba383d67c6f8ce78852860634dad215e30a8188"
+    },
+    {
+      "bytes": 3355,
+      "path": "seed203_full_policy_day_blocks.npz",
+      "sha256": "166d79fd073d6c6f3b8785e7cf525a07862854f0bd2b6529542af745b169e158"
+    },
+    {
+      "bytes": 3354,
+      "path": "seed204_full_policy_day_blocks.npz",
+      "sha256": "801b0f33e6ee247b5bee17eae6c1a6e7ea8f37e5ce473051245fbecbdd407db1"
+    },
+    {
+      "bytes": 3311,
+      "path": "seed205_full_policy_day_blocks.npz",
+      "sha256": "d61bf43ce5031acf7b35b1c0e6aaf85647f8ae77ef38b215fe1a4b85b2651ee3"
+    }
+  ],
+  "pid": 390154,
+  "schema_version": "E04-receipt-v1",
+  "status": "EXECUTED"
+}

@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "path_tests": 6,
+  "current_experiment_unit_tests": 26,
+  "live_navigation_broken_links": [],
+  "entries": {
+    "results": "04_结果/复现运行/20261111_194255_941746_reproduce-results",
+    "build": "04_结果/复现运行/20261111_193946_779155_build-paper",
+    "redraw": "04_结果/复现运行/20261111_194007_811264_redraw",
+    "verify": "04_结果/复现运行/20261111_194207_680653_verify"
+  },
+  "help_smokes": [
+    "run_praw_offline_supplement.py",
+    "run_independent_confirmation.py",
+    "mainline_report.py"
+  ],
+  "external_working_directory_smoke": "PASS",
+  "new_training": false,
+  "new_resampling": false
+}

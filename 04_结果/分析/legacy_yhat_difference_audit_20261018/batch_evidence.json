@@ -1,0 +1,132 @@
+[
+  {
+    "seed": 201,
+    "split": "val",
+    "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed201/val_metrics/metrics.json",
+    "efficiency": {
+      "eval_seconds": 15.677067464217544,
+      "num_windows": 4261,
+      "num_batches": 267,
+      "windows_per_second": 271.79828177212414
+    },
+    "num_batches_implies": 16,
+    "residual_source_requests_batch_size": 64
+  },
+  {
+    "seed": 201,
+    "split": "test",
+    "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed201/test_metrics/metrics.json",
+    "efficiency": {
+      "eval_seconds": 18.33326911740005,
+      "num_windows": 4981,
+      "num_batches": 312,
+      "windows_per_second": 271.69186074253105
+    },
+    "num_batches_implies": 16,
+    "residual_source_requests_batch_size": 64
+  },
+  {
+    "seed": 202,
+    "split": "val",
+    "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed202/val_metrics/metrics.json",
+    "efficiency": {
+      "eval_seconds": 22.461725430563092,
+      "num_windows": 4261,
+      "num_batches": 267,
+      "windows_per_second": 189.70047573469876
+    },
+    "num_batches_implies": 16,
+    "residual_source_requests_batch_size": 64
+  },
+  {
+    "seed": 202,
+    "split": "test",
+    "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed202/test_metrics/metrics.json",
+    "efficiency": {
+      "eval_seconds": 27.521694900467992,
+      "num_windows": 4981,
+      "num_batches": 312,
+      "windows_per_second": 180.98449307042137
+    },
+    "num_batches_implies": 16,
+    "residual_source_requests_batch_size": 64
+  },
+  {
+    "seed": 203,
+    "split": "val",
+    "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed203/val_metrics/metrics.json",
+    "efficiency": {
+      "eval_seconds": 18.473671421408653,
+      "num_windows": 4261,
+      "num_batches": 267,
+      "windows_per_second": 230.65258133053285
+    },
+    "num_batches_implies": 16,
+    "residual_source_requests_batch_size": 64
+  },
+  {
+    "seed": 203,
+    "split": "test",
+    "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed203/test_metrics/metrics.json",
+    "efficiency": {
+      "eval_seconds": 22.054733704775572,
+      "num_windows": 4981,
+      "num_batches": 312,
+      "windows_per_second": 225.84720662129104
+    },
+    "num_batches_implies": 16,
+    "residual_source_requests_batch_size": 64
+  },
+  {
+    "seed": 204,
+    "split": "val",
+    "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed204/val_metrics/metrics.json",
+    "efficiency": {
+      "eval_seconds": 22.648838529363275,
+      "num_windows": 4261,
+      "num_batches": 267,
+      "windows_per_second": 188.133267605568
+    },
+    "num_batches_implies": 16,
+    "residual_source_requests_batch_size": 64
+  },
+  {
+    "seed": 204,
+    "split": "test",
+    "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed204/test_metrics/metrics.json",
+    "efficiency": {
+      "eval_seconds": 26.430629279464483,
+      "num_windows": 4981,
+      "num_batches": 312,
+      "windows_per_second": 188.4555962453014
+    },
+    "num_batches_implies": 16,
+    "residual_source_requests_batch_size": 64
+  },
+  {
+    "seed": 205,
+    "split": "val",
+    "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed205/val_metrics/metrics.json",
+    "efficiency": {
+      "eval_seconds": 12.029710980132222,
+      "num_windows": 4261,
+      "num_batches": 267,
+      "windows_per_second": 354.2063485180395
+    },
+    "num_batches_implies": 16,
+    "residual_source_requests_batch_size": 64
+  },
+  {
+    "seed": 205,
+    "split": "test",
+    "path": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed205/test_metrics/metrics.json",
+    "efficiency": {
+      "eval_seconds": 14.259497115388513,
+      "num_windows": 4981,
+      "num_batches": 312,
+      "windows_per_second": 349.31105632221926
+    },
+    "num_batches_implies": 16,
+    "residual_source_requests_batch_size": 64
+  }
+]

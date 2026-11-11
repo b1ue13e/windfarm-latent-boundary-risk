@@ -1,0 +1,9 @@
+claim_id,claim,rule_ids,required_evidence,current_status
+C1,共同资源下的时序分配增量,B,同F/S/完整块/账本;强预算P与Z;两层净后果,UNEXECUTED_NO_CONFIRMATION_WINDOW
+C2,对登记P代表程序的有限族不可替代,S and X,任一S停止不可替代;逐P的X才排除;未解决保留,UNEXECUTED
+C3,超出尺度和误差适应的程序增量,B plus X for C1-C5/U0,预算任务内C1和C5;全量合法无pitch上下文;同机会,STRUCTURE_SPECIFIED_NOT_IMPLEMENTED
+C4,预算赢家原任务后果可接受,O,预算Z原任务版本对RAW强P;另报RAW原生配对,UNEXECUTED
+C5,未多采购措辞,N,真实确认采购差逐实例上界<=0;不强加到B/O,NO_CLAIM
+C6,RAW时效边界,F,同尺度绝对成本改善交互;不声称预算时效规律,UNEXECUTED
+C7,独立确认成立,Q,源/相关设计曝光/完整冻结/人口/推断资格,CANCELLED_TOWIE_2026_NO_ACTIVE_WINDOW
+C8,值得TSTE继续,compositions.TSTE_continue,两层B;后果O;有限族与边界责任;近邻方法;新窗口,NOT_READY_NO_EMPIRICAL_UPGRADE

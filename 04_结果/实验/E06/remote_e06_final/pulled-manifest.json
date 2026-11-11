@@ -1,0 +1,28 @@
+{
+  "jobId": "J05",
+  "host": "metis",
+  "pulledAt": "2026-10-18T03:40:43.986Z",
+  "remoteJobDir": "~/dsh-scratch/J05",
+  "localOutDir": "E:\\论文3\\experiments\\E06\\remote_e06_final",
+  "pulled": [
+    {
+      "name": "e06_final_bundle",
+      "size": 122880
+    },
+    {
+      "name": "smoke",
+      "size": 2732032
+    },
+    {
+      "name": "stderr.log",
+      "size": 0
+    },
+    {
+      "name": "stdout.log",
+      "size": 4437
+    }
+  ],
+  "leftOnHost": [],
+  "thresholdBytes": 104857600,
+  "note": "leftOnHost 中的文件因超过阈值留在主机，路径见 remoteJobDir（可用 remote_exec 查看/按需下载）。"
+}

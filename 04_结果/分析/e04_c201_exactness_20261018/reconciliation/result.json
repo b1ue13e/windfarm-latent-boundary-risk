@@ -1,0 +1,9 @@
+{
+  "status": "ALL_20_SEED_POLICY_CELLS_EXACT",
+  "five_seed_C_evidence_closed": true,
+  "protected_inputs_unchanged": true,
+  "n_seed_policy_cells": 20,
+  "blocks_per_cell": 35,
+  "independent_scientific_review_status": "NOT UPGRADED",
+  "historical_4p256908_cost_difference_cause": "UNRESOLVED; missing failed-run posterior archive"
+}

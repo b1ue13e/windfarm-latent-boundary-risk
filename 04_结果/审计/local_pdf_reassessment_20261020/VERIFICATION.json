@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-20",
+  "status": "LITERATURE_READING_AND_SCOPE_REASSESSMENT_NOT_NEW_EMPIRICAL_CERTIFICATION",
+  "pdf_reading": {
+    "one_full_article_read": true,
+    "mlwa_pages": 15,
+    "seta_fulltext": false,
+    "seta_abstract_corresponds_to_primary_source": true,
+    "pdf_original_sha256": "1a7ce47d5d4cf01dd0d6a008434d0d6679541fa2021d0c3a5778f036d57b477c"
+  },
+  "protected_files": [
+    {
+      "path": "AGENTS.md",
+      "before_sha256": "B1FEB8E637FD05BAEEACE62925F086257BB2B9AF7C0905C25F636DC8EC92C993",
+      "after_sha256": "B1FEB8E637FD05BAEEACE62925F086257BB2B9AF7C0905C25F636DC8EC92C993",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "PROJECT.md",
+      "before_sha256": "E0483F7639188DCD1F6A442E2159BB83482D616E43EAFF5EFF156C39F258F420",
+      "after_sha256": "0620DADCBF1F577A4AA908AD1AB8AA4F3B034150EBF03E9BB2290970BB5D0696",
+      "unchanged": false,
+      "expected_append": true
+    },
+    {
+      "path": "docs/SCIENTIFIC_CONTRACT.md",
+      "before_sha256": "CF0C38FBA403D842CA87521DBE03897E9078DCB87DA593DAA7AF6FD009545F76",
+      "after_sha256": "CF0C38FBA403D842CA87521DBE03897E9078DCB87DA593DAA7AF6FD009545F76",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "paper_tste_ieee.md",
+      "before_sha256": "B9E5E417ABDE1856201E21C6022A994C0601010340B19CC0EE4B4F5F31D17456",
+      "after_sha256": "B9E5E417ABDE1856201E21C6022A994C0601010340B19CC0EE4B4F5F31D17456",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "paper_tste_supplementary.md",
+      "before_sha256": "43487C70FEACC9F0EDFB991E56CE342ACFA5DC9C678534BC6A42A9EAEB02065E",
+      "after_sha256": "43487C70FEACC9F0EDFB991E56CE342ACFA5DC9C678534BC6A42A9EAEB02065E",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "paper_tste_chinese.md",
+      "before_sha256": "14CDC51DF2AD440F8C96EAB97C7B450D04437C1599EB4C3C65010280D673352F",
+      "after_sha256": "14CDC51DF2AD440F8C96EAB97C7B450D04437C1599EB4C3C65010280D673352F",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "1-s2.0-S2666827026001222-main.pdf",
+      "before_sha256": "1A7CE47D5D4CF01DD0D6A008434D0D6679541FA2021D0C3A5778F036D57B477C",
+      "after_sha256": "1A7CE47D5D4CF01DD0D6A008434D0D6679541FA2021D0C3A5778F036D57B477C",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "research_audit/core_question_identification_20261020/DECISION.md",
+      "before_sha256": "599DA07C516DEC875E0D2EAA1DB8C9C7AC7767DBD9C76C467B6BC471B8D508B7",
+      "after_sha256": "599DA07C516DEC875E0D2EAA1DB8C9C7AC7767DBD9C76C467B6BC471B8D508B7",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "research_audit/core_question_fulltext_followup_20261020/FOLLOWUP_STATUS.md",
+      "before_sha256": "625EE3A93253D75ED9CCABC09F1588AF5D5667F4D15B4FBA049A52600281FA94",
+      "after_sha256": "625EE3A93253D75ED9CCABC09F1588AF5D5667F4D15B4FBA049A52600281FA94",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "research_audit/core_question_reset_20261020/MAIN_QUESTION.md",
+      "before_sha256": "B5D06F338069DDBF1147B24FCEDE1FC1B4CC0E53D2664A1E2A6846F0A8C98353",
+      "after_sha256": "B5D06F338069DDBF1147B24FCEDE1FC1B4CC0E53D2664A1E2A6846F0A8C98353",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "analyses/decision_information_execution_20261018/REPORT.md",
+      "before_sha256": "1B4FAB5AE226F5C5C18E6B1DBE917A5C8EE4350486E8C76F7BFF0EF80CFD6BA7",
+      "after_sha256": "1B4FAB5AE226F5C5C18E6B1DBE917A5C8EE4350486E8C76F7BFF0EF80CFD6BA7",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "analyses/independent_confirmation_execution_20261019/REPORT.md",
+      "before_sha256": "CE09E9CF779B02729985581ACE83241316D35002DCEC151979545B60AA905995",
+      "after_sha256": "CE09E9CF779B02729985581ACE83241316D35002DCEC151979545B60AA905995",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "experiments/decision_information_development_20261018/protocol.json",
+      "before_sha256": "3071798CB3DE4CC690D05E2E823B4590BDBCF1E322454849E50EB1B42A65D940",
+      "after_sha256": "3071798CB3DE4CC690D05E2E823B4590BDBCF1E322454849E50EB1B42A65D940",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "scripts/run_decision_information_development.py",
+      "before_sha256": "A5F27587F2548FCC2F9F98FA76AFFC196C720B29DA55C109C0D831CB7FEFE039",
+      "after_sha256": "A5F27587F2548FCC2F9F98FA76AFFC196C720B29DA55C109C0D831CB7FEFE039",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "scripts/run_independent_confirmation.py",
+      "before_sha256": "62B7913197D1050F700D5D6AE2467F3C49B16546DAD37953A05818EB576EFEE9",
+      "after_sha256": "62B7913197D1050F700D5D6AE2467F3C49B16546DAD37953A05818EB576EFEE9",
+      "unchanged": true,
+      "expected_append": false
+    }
+  ],
+  "static_checks": {
+    "protected_unchanged_excluding_intentional_project_append": 14,
+    "unexpected_changes": 0,
+    "literature_rows": 4,
+    "invalid_gap_roles": 0
+  },
+  "research_judgment": "CONTINUE_SCOPED_TSTE_QUESTION",
+  "execution_status": "STOP_ADDITIONAL_INVESTMENT_EMPTY_QUEUE",
+  "boundaries": {
+    "no_new_measurements": true,
+    "no_research_model_execution": true,
+    "no_new_statistical_analysis": true,
+    "no_manuscript_edits": true,
+    "no_contract_edits": true,
+    "no_old_version_overwrite": true,
+    "no_new_subagent_calls": true
+  },
+  "notes": [
+    "Provided PDF is a user asset and is excluded from this commit",
+    "Document processing and rendered-page inspection are not research experiments",
+    "Scientific gates were not run; no new empirical milestone is claimed",
+    "Second article remains abstract/preview only; no global novelty exclusion certified"
+  ]
+}

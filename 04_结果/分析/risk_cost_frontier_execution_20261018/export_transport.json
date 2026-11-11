@@ -1,0 +1,5 @@
+{
+  "stdout": "{\"argv\": [\"qsub\", \"-N\", \"rf_export\", \"-q\", \"rqdf\", \"-l\", \"select=1:ncpus=2:mem=8gb\", \"-l\", \"walltime=00:10:00\", \"-W\", \"depend=afterok:244620.cm\", \"-j\", \"oe\", \"-o\", \"/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/logs/export.log\", \"/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/export.pbs\"], \"stdout\": \"244621.cm\\n\", \"stderr\": \"\", \"returncode\": 0}\n",
+  "stderr": "",
+  "returncode": 0
+}

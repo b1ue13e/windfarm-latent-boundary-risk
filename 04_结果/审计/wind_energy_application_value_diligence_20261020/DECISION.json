@@ -1,0 +1,50 @@
+{
+  "candidate_commit": "ecb8ef00697e7ac6a7a67eec466099133da9bbfc",
+  "candidate": "Wind Energy V2, unchanged",
+  "decision": "NO_GO_CURRENT_V2_WIND_ENERGY_SUBMISSION_WITH_EXISTING_EVIDENCE",
+  "recommend_submit_now": false,
+  "recommend_one_shot_speculative_submission_of_current_v2": false,
+  "recommend_further_wording_revisions_for_same_target": false,
+  "recommend_new_experiments_now": false,
+  "is_hold_waiting_for_materials": false,
+  "editorial_judgement_status": "INFERRED_NOT_JOURNAL_DECISION_OR_ACCEPTANCE_PROBABILITY",
+  "three_checks": {
+    "fixed_interface_real_use": {
+      "general_use": "VERIFIED_FOR_DIFFERENT_FORECAST_RESERVE_INTERFACES",
+      "exact_single_F_tminus6_t_tplus6_owner_and_arrival_contract": "NOT_ESTABLISHED",
+      "can_close_current_importance_gap": false
+    },
+    "fewer_inputs_actual_value": {
+      "local_selected_array_and_recorded_model_file_reduction": "VERIFIED_WITH_RECORDED_SOURCE_SCOPE",
+      "fit_time": "VERIFIED_OFFLINE_OBSERVATION_NOT_CONTROLLED_RESOURCE_BENCHMARK",
+      "avoidable_production_burden_or_user_constraint": "NOT_ESTABLISHED",
+      "net_value": "UNKNOWN_NOT_ZERO_OR_PROVEN_NEGATIVE",
+      "can_close_current_importance_gap": false
+    },
+    "acceptability_of_cost_and_shortfall_increases": {
+      "original_research_qualification": "RETAINED",
+      "relative_cost_increase_percent": 0.5641474815992087,
+      "relative_uncovered_shortfall_point_increase_percent": 2.184349,
+      "two_percent_margin_identity": "EXPLICITLY_RESEARCH_NONINFERIORITY_NOT_ENGINEERING_VALIDATED_REQUIREMENT",
+      "same_task_user_acceptance_or_business_value_mapping": "NOT_ESTABLISHED",
+      "can_close_current_importance_gap": false
+    }
+  },
+  "reason_for_submission_decision": "The remaining empirical increment is credible but highly conditional on the supplied forecast interface, fitted family and research criteria. Close precedents cover the component ideas; no sufficiently general wind-energy finding or concrete use/value link independently establishes significance. This is not a universal requirement for deployment, SLA or cost superiority.",
+  "positive_assets_retained": ["historical freeze and original independent-year comparison", "primary fixed-reference qualification", "transparent cost and uncovered-shortfall penalty", "secondary finite-family qualification and 15 smaller-candidate exclusions", "WTB nonidentification", "portable archived-result audit package"],
+  "previous_technical_closures_reopened": [],
+  "new_method_or_result_invalidity_claimed": false,
+  "demand_nonexistence_proven": false,
+  "all_journals_unpublishable_claimed": false,
+  "scope_fit_alone_sufficient": false,
+  "prior_reconstruction_recommendation": "Calibrated downward after direct evidence closure; no continued positive first-submission recommendation on present evidence",
+  "next_action": "Archive this evidence-based decision and retain V2 and existing assets. End the same-target wording loop. No manuscript or research execution task is created.",
+  "published": false,
+  "submitted": false,
+  "changed_manuscript": false,
+  "changed_thresholds": false,
+  "changed_original_results_or_package": false,
+  "new_training_inference_calibration_resampling": false,
+  "new_measurements": false,
+  "review_disclosure": "Role-separated internal application diligence; not blinded, not statistical independence, not external peer review. Public documentation rechecks only, no new measurement downloads."
+}

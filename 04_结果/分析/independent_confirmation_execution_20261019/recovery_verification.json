@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-19T04:38:49.561773+00:00",
+  "archive_sha256": "4771896a7f8cea440178405d830e0c15189ac91508ff4aa5009482602203e64a",
+  "bytes": 66999598,
+  "members_exact": 5037,
+  "raw_annual_scada_not_included": true,
+  "no_models_refit": true,
+  "no_new_bootstrap": true
+}

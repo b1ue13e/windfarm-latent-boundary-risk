@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "version": "Scientific Reports controlled empirical draft v1",
+  "updated_local": "2026-10-21T00:06:44.572056+08:00",
+  "status": "RESEARCH_TEXT_AND_FIGURES_COMPLETE_FOR_AUTHOR_REVIEW_NOT_SUBMITTED",
+  "active_sources": [
+    "manuscript.md",
+    "supplementary.md",
+    "references.bib",
+    "source_data/",
+    "tables/",
+    "scripts/build_figures.py"
+  ],
+  "generated_documents": [
+    "main.tex",
+    "manuscript.pdf",
+    "supplementary.tex",
+    "supplementary.pdf"
+  ],
+  "fixed_question": "After common historical SCADA and a fixed forecast commitment, compare measurement updates and recovered-state features in the evaluated shortfall procedures",
+  "one_contribution_not_three_method_innovations": true,
+  "authority": [
+    "WRITING_CONTRACT.md",
+    "../../research_audit/controlled_comparison_materials_20261020/CLAIM_EVIDENCE_DISPLAY.csv",
+    "../../docs/SCIENTIFIC_CONTRACT.md"
+  ],
+  "confirmed_terms": {
+    "P": "active power",
+    "pitch": "current continuous mean of three finite blade angles, not complete physical controller state",
+    "q": "historical signed residual-offset level; learner quantile remains0.90",
+    "R/U/C/V": "proxy procurement/uncovered-shortfall/cost/strict-event quantities",
+    "study_R": "reconstruction comparisons, not procurement R",
+    "Original/Common": "calibration recipes, not new forecast models",
+    "A/B/C routes": "original decision predicates, distinct from R program labels"
+  },
+  "locked_limits": [
+    "Different main masks and budgets; no pooling",
+    "Five fixed fits share35 exposed weather days",
+    "R42 cost-only; original154 and later596 distinct",
+    "No D-C original interval; no unique semantics or equal-budget advantage",
+    "No independent confirmation, sensor removal, monetary or field delivery claim",
+    "Original thresholds and failed routes unchanged"
+  ],
+  "open_author_items": [
+    "approval and carried-over author metadata",
+    "contributions",
+    "funding",
+    "competing interests",
+    "ORCID",
+    "permanent access and author code/derived-material licences"
+  ],
+  "new_experiments_or_sampling": false,
+  "review_type": "Self-review plus deterministic source/render checks; no new independent reviewer agent",
+  "known_reading_limits": "SETA/SAFER final fulltexts unavailable; no global priority claim",
+  "compiled_source_sha256": {
+    "manuscript.md": "d1d1cddc936c874040f319e039588a1bc69de462875caaa1859ced58d7c36046",
+    "supplementary.md": "d7f92cc06a8b83ea543854d8f765d009e290f505cfa43bb3128876a8230dd034",
+    "references.bib": "9eecf81cacf69681fb450867886b286ceafb0cfacc15e3d62d5c0c705d7a0d51",
+    "scientific-reports-brackets.csl": "2a9ee5a40f5f44e497e9b3051a9a7b52517fc651d490251acabcb10c2a7b8e7b",
+    "figures/fig1_information_and_timing.pdf": "9e04e5d07be229ba379972ad51fa8184c60a80c069b2faa18f29cbcd47f2f2fe",
+    "figures/fig2_measurement_cost.pdf": "f7020a7c1193bd869747dc13748b2823b5168c845061ea96ab945a89a90ff184",
+    "figures/fig3_reconstruction_and_controls.pdf": "f873af26682efa150c13a4e32356d855ecab91b97bbfee0fcadb9fc4e9f84ccc",
+    "figures/fig4_procurement_shortfall.pdf": "c572b57dc689e2585faca6387877a1f12732b9b588df9a9e94c998cfebc426dc",
+    "figures/figS1_block_sensitivity.pdf": "8d0b9dc5e29056812d46bf7074beace285639c51cb5962dbdf68e4ea2ee54dc6",
+    "tables/table3.tex": "23a66fa2a55acbaa5478638ef1096b7ba3be8426a4f3487812203a12c6393e48"
+  }
+}

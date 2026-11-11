@@ -1,0 +1,17 @@
+{
+  "operations": 5332,
+  "counts": {
+    "delete": 1953,
+    "move": 3379
+  },
+  "deleted_bytes": 452333371,
+  "extracted_unique_bytes": 107896,
+  "move_hash_mismatches": [],
+  "worker_task": "45c64b4c541c4a2d83e02add465c775d",
+  "worker_model": "group/gemini-executor (specific serving model not disclosed)",
+  "duplicate_copies_deleted": 703,
+  "duplicate_bytes": 74320700,
+  "retired_aliases": 32,
+  "live_aliases": 8012,
+  "net_reclaimed_bytes": 526546175
+}

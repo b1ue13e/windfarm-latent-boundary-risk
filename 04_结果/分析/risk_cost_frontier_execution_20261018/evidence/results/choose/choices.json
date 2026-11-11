@@ -1,0 +1,609 @@
+{
+  "choices": {
+    "pitch_withheld": {
+      "WindBins": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 62.32295040996309,
+        "all_seed_risk_upper": [
+          0.09231747624879152,
+          0.09231747624879152,
+          0.09231747624879152,
+          0.09231747624879152,
+          0.09231747624879152
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "A_Wind": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 48.06813063341849,
+        "all_seed_risk_upper": [
+          0.08284830854285577,
+          0.07918075442839428,
+          0.0803833752802558,
+          0.08119339383429407,
+          0.08350917273245116
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "B_Consequences": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 42.05888054367466,
+        "all_seed_risk_upper": [
+          0.09136192480424642,
+          0.09232116924641062,
+          0.09250173170331673,
+          0.09165401813468127,
+          0.09426197637327063
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "E_Compressed": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 44.76827675170638,
+        "all_seed_risk_upper": [
+          0.09711085888418314,
+          0.09244980183410917,
+          0.09306816949020735,
+          0.09265475156839223,
+          0.09407315057605878
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_WindScore": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 41.95575576887549,
+        "all_seed_risk_upper": [
+          0.09523848983035621,
+          0.09366095161223575,
+          0.09150596508150115,
+          0.09347454333937606,
+          0.09574488470794046
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_ShuffledScore": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 42.04548567364,
+        "all_seed_risk_upper": [
+          0.09531079512376753,
+          0.0923586649670661,
+          0.09106135410769853,
+          0.09168362605243328,
+          0.09426197637327063
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_PitchScore": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 41.89720444929187,
+        "all_seed_risk_upper": [
+          0.09676646759465998,
+          0.09147924890318505,
+          0.09640767827643006,
+          0.09290318405315366,
+          0.09079681838808357
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      }
+    },
+    "fresh": {
+      "WindBins": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 62.32295040996309,
+        "all_seed_risk_upper": [
+          0.09231747624879152,
+          0.09231747624879152,
+          0.09231747624879152,
+          0.09231747624879152,
+          0.09231747624879152
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "A_Wind": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 44.76394709154815,
+        "all_seed_risk_upper": [
+          0.0992405744151626,
+          0.09755438995549931,
+          0.09322385800723727,
+          0.09050059198127786,
+          0.0915512849793042
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "B_Consequences": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 41.625075077204556,
+        "all_seed_risk_upper": [
+          0.09740154237736764,
+          0.09593988409908796,
+          0.09446397561373572,
+          0.0920517894028394,
+          0.09767783183952733
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "E_Compressed": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 44.8356452150989,
+        "all_seed_risk_upper": [
+          0.09535738664497004,
+          0.0952776515825623,
+          0.09373815313822823,
+          0.09151626119332934,
+          0.09779914766511087
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_WindScore": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 41.65188156093949,
+        "all_seed_risk_upper": [
+          0.09811067758518294,
+          0.09459446478690459,
+          0.09505138960621995,
+          0.09654664877510279,
+          0.09570829331093506
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_ShuffledScore": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 41.626411862333256,
+        "all_seed_risk_upper": [
+          0.09740154237736764,
+          0.09116720255306271,
+          0.09446397561373572,
+          0.09638595063930014,
+          0.09493689085216474
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_PitchScore": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 41.73497585026505,
+        "all_seed_risk_upper": [
+          0.0968170277175793,
+          0.09459446478690459,
+          0.09653088995181427,
+          0.09657953320735259,
+          0.09833231727951894
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      }
+    },
+    "delay1": {
+      "WindBins": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 62.13406882149698,
+        "all_seed_risk_upper": [
+          0.09307704893308648,
+          0.09307704893308648,
+          0.09307704893308648,
+          0.09307704893308648,
+          0.09307704893308648
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "A_Wind": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 46.88025224851269,
+        "all_seed_risk_upper": [
+          0.07881240002679119,
+          0.07990955040322124,
+          0.07645572913384521,
+          0.07804283457164662,
+          0.07798783236942868
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "B_Consequences": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 43.587338150076086,
+        "all_seed_risk_upper": [
+          0.09938127964267501,
+          0.09710735685365363,
+          0.09278556584469824,
+          0.09342307574793013,
+          0.09475905743978179
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "E_Compressed": {
+        "q_index": 0,
+        "quantile": 0.9,
+        "historically_qualified": true,
+        "selection_cost": 46.746630506656366,
+        "all_seed_risk_upper": [
+          0.09898616267326135,
+          0.09783932853697258,
+          0.09615058894601344,
+          0.09457741928387478,
+          0.09763477084257566
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_WindScore": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 43.46426558215364,
+        "all_seed_risk_upper": [
+          0.07217200374365643,
+          0.07161456435823374,
+          0.07163026045533238,
+          0.0761680380024171,
+          0.07261210832773266
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_ShuffledScore": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 43.620026197637976,
+        "all_seed_risk_upper": [
+          0.07321244460446671,
+          0.07164080651169688,
+          0.07206755101012353,
+          0.07362689301164693,
+          0.07111363793968231
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_PitchScore": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 43.522646936711936,
+        "all_seed_risk_upper": [
+          0.07184602761246812,
+          0.07330292421498882,
+          0.0704984072970216,
+          0.07295554134842301,
+          0.07349877119415651
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      }
+    },
+    "delay2": {
+      "WindBins": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 61.75674686481559,
+        "all_seed_risk_upper": [
+          0.09297259231662838,
+          0.09297259231662838,
+          0.09297259231662838,
+          0.09297259231662838,
+          0.09297259231662838
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "A_Wind": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 49.243018458011214,
+        "all_seed_risk_upper": [
+          0.08121752016911098,
+          0.08284161592760375,
+          0.07933320050408546,
+          0.0790413801694834,
+          0.08268808920764413
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "B_Consequences": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 45.08072057691528,
+        "all_seed_risk_upper": [
+          0.07564922203672644,
+          0.07514736903449681,
+          0.07605656505044159,
+          0.07495593872930012,
+          0.08095402972426036
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "E_Compressed": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 48.73199965536851,
+        "all_seed_risk_upper": [
+          0.08249577968023482,
+          0.08001413060902945,
+          0.07831951301278532,
+          0.08034902302004292,
+          0.08161204470643595
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_WindScore": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 44.89366046095525,
+        "all_seed_risk_upper": [
+          0.07600462110368313,
+          0.07545851247106078,
+          0.07707830228555046,
+          0.07565025521251685,
+          0.07831441924626346
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_ShuffledScore": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 45.09109594693386,
+        "all_seed_risk_upper": [
+          0.07564922203672644,
+          0.07500559144617187,
+          0.07605656505044159,
+          0.07495593872930012,
+          0.0812627868644098
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_PitchScore": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 44.99699096702902,
+        "all_seed_risk_upper": [
+          0.08156204746162335,
+          0.07750009092455734,
+          0.07570679298057044,
+          0.0758934275825381,
+          0.08021301593578126
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      }
+    },
+    "delay3": {
+      "WindBins": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 61.27872253554861,
+        "all_seed_risk_upper": [
+          0.0929048900181734,
+          0.0929048900181734,
+          0.0929048900181734,
+          0.0929048900181734,
+          0.0929048900181734
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "A_Wind": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 51.028436431595374,
+        "all_seed_risk_upper": [
+          0.08052280559593702,
+          0.08317230071727484,
+          0.08038041667821957,
+          0.08125692020131202,
+          0.08538005468582088
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "B_Consequences": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 46.28594518959172,
+        "all_seed_risk_upper": [
+          0.07947763814397191,
+          0.07761676894834468,
+          0.0739628709085011,
+          0.08038936195886154,
+          0.07923828964026056
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "E_Compressed": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 50.44551964574559,
+        "all_seed_risk_upper": [
+          0.08566194254360486,
+          0.08128536155264389,
+          0.08364478060871068,
+          0.08166324276767953,
+          0.08473253708147327
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_WindScore": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 46.30350089513972,
+        "all_seed_risk_upper": [
+          0.07631054535232672,
+          0.07506556624613538,
+          0.07868036955904062,
+          0.0790505926547609,
+          0.07877084130223387
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_ShuffledScore": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 46.27515592089503,
+        "all_seed_risk_upper": [
+          0.07947763814397191,
+          0.07985369362250558,
+          0.0739628709085011,
+          0.08038936195886154,
+          0.07923828964026056
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_PitchScore": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 46.214116487926944,
+        "all_seed_risk_upper": [
+          0.077507290280692,
+          0.07829382442415697,
+          0.07851705182245934,
+          0.07927006489316418,
+          0.07863309683102782
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      }
+    },
+    "delay6_stress": {
+      "WindBins": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 58.7999661370221,
+        "all_seed_risk_upper": [
+          0.08626585047421234,
+          0.08626585047421234,
+          0.08626585047421234,
+          0.08626585047421234,
+          0.08626585047421234
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "A_Wind": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 53.17428234381613,
+        "all_seed_risk_upper": [
+          0.08751281272679937,
+          0.08725961133704238,
+          0.08533503275891838,
+          0.08447425305830955,
+          0.08700457595418326
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "B_Consequences": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 49.68670534841695,
+        "all_seed_risk_upper": [
+          0.07756663467586195,
+          0.07411472447055466,
+          0.0795314720690039,
+          0.07785992759218097,
+          0.07933255010383264
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "E_Compressed": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 53.3040984509964,
+        "all_seed_risk_upper": [
+          0.09023224335641561,
+          0.08529184731470521,
+          0.08322627281707286,
+          0.0871959663355913,
+          0.09253906517054508
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_WindScore": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 49.68036280003687,
+        "all_seed_risk_upper": [
+          0.08246331145975415,
+          0.07814743900733265,
+          0.07575194545474691,
+          0.08113025683975049,
+          0.08269121459324971
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_ShuffledScore": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 49.68609945659712,
+        "all_seed_risk_upper": [
+          0.07756663467586195,
+          0.07411472447055466,
+          0.0795314720690039,
+          0.07916745396804918,
+          0.07933255010383264
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      },
+      "C_PitchScore": {
+        "q_index": 1,
+        "quantile": 0.925,
+        "historically_qualified": true,
+        "selection_cost": 49.53748023111959,
+        "all_seed_risk_upper": [
+          0.08215897258367733,
+          0.07763621259203804,
+          0.07719253775223332,
+          0.08222222709352947,
+          0.08152007974431771
+        ],
+        "status": "FROZEN_HISTORICAL_CHOICE"
+      }
+    }
+  },
+  "joint_critical": 2.717452728032687,
+  "shared_indices_sha256": "4d1a25128e1b3755433a1cf1b109371a6859264249d7126e5b87cadacffd1381",
+  "seed": 20261025,
+  "n_boot": 20000,
+  "scope": "Frozen before evaluation stage execution, but development design used previously inspected test outcomes"
+}

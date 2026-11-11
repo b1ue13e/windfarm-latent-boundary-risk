@@ -1,0 +1,541 @@
+{
+  "grouped_arithmetic_identity": [
+    {
+      "population": "original_circular",
+      "mode": "original",
+      "checks": 30,
+      "identity_failures_at_original_1e_4": 29,
+      "max_absolute_identity_gap_kwh": 1.875
+    },
+    {
+      "population": "original_circular",
+      "mode": "sum64_only",
+      "checks": 30,
+      "identity_failures_at_original_1e_4": 30,
+      "max_absolute_identity_gap_kwh": 0.0555496197193861
+    },
+    {
+      "population": "original_circular",
+      "mode": "float64",
+      "checks": 30,
+      "identity_failures_at_original_1e_4": 0,
+      "max_absolute_identity_gap_kwh": 1.862645149230957e-09
+    },
+    {
+      "population": "later_bounded",
+      "mode": "original",
+      "checks": 30,
+      "identity_failures_at_original_1e_4": 29,
+      "max_absolute_identity_gap_kwh": 1.21875
+    },
+    {
+      "population": "later_bounded",
+      "mode": "sum64_only",
+      "checks": 30,
+      "identity_failures_at_original_1e_4": 30,
+      "max_absolute_identity_gap_kwh": 0.0555496197193861
+    },
+    {
+      "population": "later_bounded",
+      "mode": "float64",
+      "checks": 30,
+      "identity_failures_at_original_1e_4": 0,
+      "max_absolute_identity_gap_kwh": 1.862645149230957e-09
+    }
+  ],
+  "float32_vs_float64_contrasts": [
+    {
+      "seed": 201,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -1.0123672485351562,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 201,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.8999888114631176,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 201,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -0.9123560599982738,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 201,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.16231028269976377,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 201,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.8704083766788244,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 201,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -0.032718658447265625,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 202,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.331268310546875,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 202,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.5201594037935138,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 202,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -0.6014277152717113,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 202,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.35303243016824126,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 202,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.07703399658203125,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 202,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -2.180066427215934,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 203,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.19272232055664062,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 203,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": 0.48862457275390625,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 203,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": 0.2959022521972656,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 203,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.44162495993077755,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 203,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.6452585868537426,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 203,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -1.086883544921875,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 204,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.11402384471148252,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 204,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": 0.4264094028621912,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 204,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": 0.31238555908203125,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 204,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.4712549848482013,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 204,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.5241266898810863,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 204,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -0.995381673797965,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 205,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": 0.07109832763671875,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 205,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.36288706585764885,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 205,
+      "policy": "B",
+      "population": "original_circular",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": 0.7082112617790699,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 205,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.09866714477539062,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 205,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": 0.7584851570427418,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 205,
+      "policy": "C",
+      "population": "original_circular",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -0.34018198773264885,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 201,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.5350418090820312,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 201,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": 0.1226857490837574,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 201,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -0.9123560599982738,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 201,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.6992098493501544,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 201,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.3335088100284338,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 201,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -0.032718658447265625,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 202,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.3744112653657794,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 202,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.22701644897460938,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 202,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -0.6014277152717113,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 202,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": 0.0015920000150799751,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 202,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.4316584272310138,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 202,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -2.180066427215934,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 203,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": 0.08177057839930058,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 203,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": 0.2141316719353199,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 203,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": 0.2959022521972656,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 203,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.15512593649327755,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 203,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": 0.5682423897087574,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 203,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -1.086883544921875,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 204,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.13027445506304502,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 204,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": 0.4426600132137537,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 204,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": 0.31238555908203125,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 204,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.31110382080078125,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 204,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.1842778529971838,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 204,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -0.995381673797965,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 205,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": 0.0022684726864099503,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 205,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.79405721090734,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 205,
+      "policy": "B",
+      "population": "later_bounded",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": 0.7082112617790699,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 205,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Transition",
+      "cost_64_minus_original_kwh": -0.5788332624360919,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 205,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Steady",
+      "cost_64_minus_original_kwh": -0.7613487243652344,
+      "same_n_and_violation_count": true
+    },
+    {
+      "seed": 205,
+      "policy": "C",
+      "population": "later_bounded",
+      "slice": "Full",
+      "cost_64_minus_original_kwh": -0.34018198773264885,
+      "same_n_and_violation_count": true
+    }
+  ],
+  "max_absolute_cost_change_kwh": 2.180066427215934,
+  "same_violation_counts_in_all_60_contrasts": true,
+  "existing_baseline_exact_float_fields": 90,
+  "existing_baseline_compared_float_fields": 90,
+  "existing_baseline_max_absolute_delta": 0.0,
+  "existing_csv_strict_identity_checks": 1836,
+  "existing_csv_strict_identity_failures": 0,
+  "source_metrics_tail_after_two_input_assignments_identical": true,
+  "source_historical_action_construction_unchanged": true,
+  "source_cache_read_write_branch_unchanged": true,
+  "original_runtime_exact_residuals": "UNKNOWN; diagnostic numbers apply to current frozen legacy arrays under recorded local NumPy2.4.6",
+  "cache_semantic_correctness_certified": false,
+  "E07": "UNCHANGED_UNACTIVATED"
+}

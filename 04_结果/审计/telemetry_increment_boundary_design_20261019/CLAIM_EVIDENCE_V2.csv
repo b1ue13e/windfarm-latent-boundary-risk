@@ -1,0 +1,14 @@
+claim_id,claim,current_status,existing_evidence,required_new_evidence,controls,pass_rule,stop_or_narrowing,open_item_ids,manuscript_action
+E1,旧q.95固定参照非劣,VERIFIED_BOUNDED,docs/SCIENTIFIC_CONTRACT.md_section9,无新确认归属,原冻结参照,只保留原协议范围,不得改称成本更优或新边界确认,,保留原事实
+E2,旧q.925有限族最小性,VERIFIED_SECONDARY,docs/SCIENTIFIC_CONTRACT.md_section9,无新主要选择归属,原15个严格更小候选,只保留次要分析范围,不得归给q.95或全函数类,,保留原事实
+E3,WTB未识别最小性,VERIFIED_BOUNDED,docs/SCIENTIFIC_CONTRACT.md_section8,无需补成阳性,原共享数据案例,保留原420案例非独立身份,不推出所有模型不安全,,保留负结果
+C0,新终点推断经验可靠,UNKNOWN,旧门禁不认证新覆盖,已知真值独立模拟验证,相关;稀疏;边界;代表族规模,覆盖下界和错误声明上界及MC精度通过,欠覆盖停止认证或精度不足未识别,S01;S02;S03;S04;B02,未检验不得写为通过
+C1,强P程序之外的全局实质收益,UNKNOWN,旧q.95不回答此问题,A强挑战及D新窗口,12格及B-Q;B-P,联合收益下界超过delta_global且风险严重度合格,小收益用上界确认;宽区间未识别,T01;T02;T05;M01;M02;D01,有证据后限范围写
+C1M,同估计器WQ扩展收益,UNKNOWN,尚无完整新矩阵,X_j与D_j配对,LIN;HGB;MLP全部保留,对应算法的联合收益及风险通过,算法相反则限定配方;非Bayes信息价值,T01;T05;M01;S01,无纯信息因果措辞
+C2,读取WQ前可预测高低收益域,UNKNOWN,旧状态标签不证明边界,B向前标签及D固定分组,G-CONST;G-AGE;G-VOL;G-FULL,高组下界超过delta_H且低组上界低于delta_L并满足覆盖,不得重分组;空组稀疏未识别,T02;T03;T04;M03;M04;D01;S01,未确认不写部署地图
+C2A,比简单年龄和波动规则多提供预测信息,UNKNOWN,尚未检验,新窗口配对平方误差,G-AGE;G-VOL,两项误差改善下界超过delta_pred,未超过则不声称丰富边界,T02;M03;S01,不能以复杂度代替新知识
+C2R,风险合格的静态适用建议,UNKNOWN,全期合格不保证组内合格,高组X与低组P各实例风险严重度,G_H;G_L,组内风险UCB及严重度门槛通过,只通过C2则只报告条件收益,T03;T05;S01,不等于在线切换资格
+C3,新环境复验对应主张,UNKNOWN,2025已查看不能复用,真正新窗口一次冻结确认,每环境逐项报告,C1或C2及声明的简单规则比较逐环境通过,时间外推与跨站迁移分开;保留失败,D01;D02;D03;D04;M04;S04,不做普遍性外推
+O1,逐时切换整体收益与风险,OPTIONAL_NOT_ENABLED,静态边界不能认证切换,完整切换动作风险损失调用总账,始终P;始终X;age;固定率随机,冻结切换整体约束通过,失败删在线选择主张,O01;T05;S01,当前排除
+O2,真实资源节约值得决策代价,OPTIONAL_NOT_ENABLED,前评审未建立需求,真实接口约束及同等优化工程A/B,共同上游依赖与最强可行替代,真实验收标准与边际收益支持,无可取消负担则停止工程路线,O02,当前不声称净收益
+O3,历史程序事前选择有限族最小者,OPTIONAL_NOT_ENABLED,旧q.925只是次要事实,新窗同时充分与排除所有严格更小者,新声明完整有限族,所有规定资格与排除证据通过,更小者未排除则最小性未识别,O03;S01;S04,当前核心不承担

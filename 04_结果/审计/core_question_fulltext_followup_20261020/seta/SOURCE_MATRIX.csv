@@ -1,0 +1,10 @@
+id,kind,url_or_query,actual_result,local_evidence,fulltext_status,notes
+F01,Institutional author page,https://dqxy.xju.edu.cn/info/1047/1658.htm,Public_page_read_no_target_manuscript_link,,NOT_OBTAINED,Selected_papers_through2024_not_all_author_outputs
+F02,CORE public search,https://core.ac.uk/search?q=10.1016%2Fj.seta.2026.105438,Web_unavailable_browser_Cloudflare_challenge,,NOT_OBTAINED,Did_not_solve_challenge_not_a_zero_result_search
+F03,Unpaywall DOI API,https://api.unpaywall.org/v2/10.1016/j.seta.2026.105438,HTTP422_email_required,unpaywall_route_result.json,NOT_OBTAINED,No_user_or_author_email_supplied
+F04,Unpaywall official API documentation,https://data.unpaywall.org/products/api,Public_documentation_read,,DOCUMENTATION_ONLY,Requires_email_search_retired20260918_recommends_OpenAlex
+F05,Elsevier public PDF representation,https://api.elsevier.com/content/article/PII:S2213138826006247?httpAccept=application/pdf,HTTP429_one_attempt_no_retry,pdf_route_result.json,NOT_OBTAINED,No_Crossref_registered_PDF_link_only_normal_API_representation_probe
+F06,Open-index scoped search,"10.1016/j.seta.2026.105438 site:core.ac.uk OR site:unpaywall.org OR site:base-search.net",No_qualified_new_fulltext_URL_returned,,NOT_OBTAINED,Search_result_does_not_prove_global_absence
+F07,Author and manuscript search,"Haiyun Wang Yang Wang Reserve filetype:pdf; Reserve-risk-oriented manuscript repository",Publisher_preview_and_unrelated_results_only,,NOT_OBTAINED,Other_author_papers_not_substituted
+F08,Public repository search,"regime-calibrated interval github OR gitlab OR researchgate OR zenodo",No_verified_target_fulltext_repository_found,,NOT_OBTAINED,No_new_topic_screening
+F09,CORE indexed exact-title search,"Reserve-risk-oriented site:core.ac.uk",No_target_fulltext_returned_by_search_index,,NOT_OBTAINED,Distinct_from_blocked_CORE_direct_search

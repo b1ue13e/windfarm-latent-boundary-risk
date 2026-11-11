@@ -1,0 +1,6 @@
+{
+  "status": "PASS_EXACT_STAGED_WORKING_BYTES",
+  "files_checked": 235,
+  "mismatches": [],
+  "new_version_gitattributes": "* -text; frozen identities preserved across checkout"
+}

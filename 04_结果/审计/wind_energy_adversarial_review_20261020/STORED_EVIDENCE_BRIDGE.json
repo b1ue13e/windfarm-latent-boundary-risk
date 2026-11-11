@@ -1,0 +1,161 @@
+{
+  "status": "LITERAL_STORED_FIELD_PROJECTION",
+  "scope": "Existing JSON fields only; no new model result, inference, interval or resampling",
+  "sources": {
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json": {
+      "sha256": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060"
+    },
+    "analyses/independent_confirmation_execution_20261019/history_freeze/bounds.json": {
+      "sha256": "9da74aab5654ff5b8eeb7636834d4914c01adddc467bfd7274a3280e7a0a6a0b"
+    }
+  },
+  "condition": "pitch_withheld",
+  "span": 3,
+  "epsilon": 0.02,
+  "cases": [
+    {
+      "index": 41,
+      "label": "P1/HGB/q0.925",
+      "mean_cost_2025": 65.73923230784504,
+      "risk_upper_2025_by_fit": [
+        0.09724559028432236,
+        0.09731819479560558,
+        0.0976988760696712,
+        0.09729453254277491,
+        0.09720639187975477
+      ],
+      "stored_required_relative_tolerance": 0.009741996453634834,
+      "in_full_q_sufficient_set": true,
+      "historical_selection_mean_cost": 72.04798840838436,
+      "historical_selection_risk_upper_by_fit": [
+        0.11071948147739905,
+        0.11048946346250008,
+        0.11052277011524096,
+        0.11037818681082823,
+        0.1101743675160057
+      ],
+      "cost_comparisons": [
+        {
+          "index": 180,
+          "label": "PQ36/HGB/q0.9",
+          "possibly_feasible": true,
+          "risk_qualified": false,
+          "risk_upper_by_fit": [
+            0.10948839740151196,
+            0.1125832260908858,
+            0.11525734470810363,
+            0.11433529589432731,
+            0.11149621265103687
+          ],
+          "paired_cost_ratio_point": 0.005802549823273662,
+          "paired_cost_ratio_lower": 0.0018631031929124886,
+          "paired_cost_ratio_upper": 0.009741996453634834
+        },
+        {
+          "index": 171,
+          "label": "PQ6/HGB/q0.925",
+          "possibly_feasible": true,
+          "risk_qualified": true,
+          "risk_upper_by_fit": [
+            0.09624166471780686,
+            0.09675836667108721,
+            0.09756399270149216,
+            0.09721436369093144,
+            0.0966816421092025
+          ],
+          "paired_cost_ratio_point": 0.005520661457782738,
+          "paired_cost_ratio_lower": 0.002409030019819272,
+          "paired_cost_ratio_upper": 0.008632292895746204
+        },
+        {
+          "index": 181,
+          "label": "PQ36/HGB/q0.925",
+          "possibly_feasible": true,
+          "risk_qualified": true,
+          "risk_upper_by_fit": [
+            0.09552322178391345,
+            0.09604004658251054,
+            0.09659798632751562,
+            0.09608175533826083,
+            0.09621435876136165
+          ],
+          "paired_cost_ratio_point": 0.005603925553251177,
+          "paired_cost_ratio_lower": 0.0016205201211503357,
+          "paired_cost_ratio_upper": 0.009587330985352017
+        }
+      ]
+    },
+    {
+      "index": 42,
+      "label": "P1/HGB/q0.95",
+      "mean_cost_2025": 67.02040332110329,
+      "risk_upper_2025_by_fit": [
+        0.06695218967084723,
+        0.06689588151442377,
+        0.06678353321356774,
+        0.0669383490611065,
+        0.0670488602271627
+      ],
+      "stored_required_relative_tolerance": 0.03517815071811852,
+      "in_full_q_sufficient_set": false,
+      "historical_selection_mean_cost": 73.05620402203374,
+      "historical_selection_risk_upper_by_fit": [
+        0.07865455360052429,
+        0.07861792084918368,
+        0.07854931123818945,
+        0.07865042518763894,
+        0.07861731095038192
+      ],
+      "cost_comparisons": [
+        {
+          "index": 180,
+          "label": "PQ36/HGB/q0.9",
+          "possibly_feasible": true,
+          "risk_qualified": false,
+          "risk_upper_by_fit": [
+            0.10948839740151196,
+            0.1125832260908858,
+            0.11525734470810363,
+            0.11433529589432731,
+            0.11149621265103687
+          ],
+          "paired_cost_ratio_point": 0.025404316175829944,
+          "paired_cost_ratio_lower": 0.015630481633541367,
+          "paired_cost_ratio_upper": 0.03517815071811852
+        },
+        {
+          "index": 171,
+          "label": "PQ6/HGB/q0.925",
+          "possibly_feasible": true,
+          "risk_qualified": true,
+          "risk_upper_by_fit": [
+            0.09624166471780686,
+            0.09675836667108721,
+            0.09756399270149216,
+            0.09721436369093144,
+            0.0966816421092025
+          ],
+          "paired_cost_ratio_point": 0.025116934177539463,
+          "paired_cost_ratio_lower": 0.015794866804682388,
+          "paired_cost_ratio_upper": 0.03443900155039654
+        },
+        {
+          "index": 181,
+          "label": "PQ36/HGB/q0.925",
+          "possibly_feasible": true,
+          "risk_qualified": true,
+          "risk_upper_by_fit": [
+            0.09552322178391345,
+            0.09604004658251054,
+            0.09659798632751562,
+            0.09608175533826083,
+            0.09621435876136165
+          ],
+          "paired_cost_ratio_point": 0.025201820980511602,
+          "paired_cost_ratio_lower": 0.015650546089210637,
+          "paired_cost_ratio_upper": 0.034753095871812564
+        }
+      ]
+    }
+  ]
+}

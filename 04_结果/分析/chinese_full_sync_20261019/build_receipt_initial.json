@@ -1,0 +1,49 @@
+{
+  "scope": "Chinese manuscript PDF only; no scientific execution",
+  "source_sha256": "b66d8950c72e91a51fbc9069354c85f1063a3d6e42e2e0df4552383f36444117",
+  "runs": [
+    {
+      "command": [
+        "E:\\\u8bba\u65873\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+        "E:\\\u8bba\u65873\\paper_tste_chinese.md",
+        "--citeproc",
+        "--csl",
+        "E:\\\u8bba\u65873\\IEEE.csl",
+        "--standalone",
+        "-t",
+        "latex",
+        "-o",
+        "E:\\\u8bba\u65873\\analyses\\chinese_full_sync_20261019\\build\\paper_tste_chinese.tex"
+      ],
+      "exit_code": 0,
+      "seconds": 0.422,
+      "log": "analyses\\chinese_full_sync_20261019\\build_pass0.log"
+    },
+    {
+      "command": [
+        "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-output-directory=E:\\\u8bba\u65873\\analyses\\chinese_full_sync_20261019\\build",
+        "E:\\\u8bba\u65873\\analyses\\chinese_full_sync_20261019\\build\\paper_tste_chinese.tex"
+      ],
+      "exit_code": 0,
+      "seconds": 5.485,
+      "log": "analyses\\chinese_full_sync_20261019\\build_pass1.log"
+    },
+    {
+      "command": [
+        "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-output-directory=E:\\\u8bba\u65873\\analyses\\chinese_full_sync_20261019\\build",
+        "E:\\\u8bba\u65873\\analyses\\chinese_full_sync_20261019\\build\\paper_tste_chinese.tex"
+      ],
+      "exit_code": 0,
+      "seconds": 2.687,
+      "log": "analyses\\chinese_full_sync_20261019\\build_pass2.log"
+    }
+  ],
+  "pages": 15,
+  "warnings": []
+}

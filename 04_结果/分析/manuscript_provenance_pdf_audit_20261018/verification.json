@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-18T10:20:11.861086+00:00",
+  "environment_for_document_build_only": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "checks": [
+    {
+      "check": "Original evidence, original figures, protocols, past audits and scripts unchanged",
+      "passed": true,
+      "details": {
+        "count": 519,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "Pre-edit source, PDF and build-file snapshots preserve exact bytes",
+      "passed": true,
+      "details": {
+        "count": 15
+      }
+    },
+    {
+      "check": "E07 remains inactive with all activation/confirmation bindings empty",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paper_tste_ieee root/build copies match isolated compiled PDF",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "paper_tste_supplementary root/build copies match isolated compiled PDF",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Final number gate",
+      "passed": true,
+      "details": {
+        "checks": 77,
+        "failed": 0
+      }
+    },
+    {
+      "check": "Final scientific claim gate",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Existing actual-PDF integrity audit uses pypdf",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Final main page budget and final layouts",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Numerical content of 498 table rows unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Eight historical plot records retain all 32 numeric values exactly",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Staged paths limited to authorized manuscript/PDF/audit files",
+      "passed": true,
+      "details": {
+        "staged_count_before_output_manifest": 121
+      }
+    },
+    {
+      "check": "All staged bytes equal workspace bytes including pre-edit snapshots",
+      "passed": true
+    },
+    {
+      "check": "Document relative links resolve",
+      "passed": true
+    },
+    {
+      "check": "git diff --cached --check",
+      "passed": true
+    }
+  ],
+  "input_manifest_sha256": "6a3ba0127fac9217ea9346a969fcdf512ad42f37b8c8f579b4b67ea5dacbccdd",
+  "model_training_calls": 0,
+  "model_inference_calls": 0,
+  "calibration_calls": 0,
+  "bootstrap_or_statistical_reestimation_calls": 0,
+  "original_result_regeneration_calls": 0,
+  "remote_access_calls": 0,
+  "scientific_certification": "NEEDS-WORK / NOT SCIENTIFICALLY CERTIFIED",
+  "E07": "DRAFT_NOT_EXECUTED_PENDING_ACTIVATION_MANIFESTS",
+  "notes": [
+    "Only Pandoc/XeLaTeX and a historical-literal chart renderer executed; no evaluation/experiment producer ran.",
+    "The broad build_paper_ieee.ps1 script was not used because it regenerates evidence assets.",
+    "Initial layout attempts found horizontal overflow, raw Markdown fences/citation keys and duplicate starred captions. A trial caption package changed float handling and was removed; native handler initially required YAML quoting and AtBeginDocument ordering. Final build is main attempt3 and supplement attempt10; failed/intermediate logs are retained.",
+    "An initial edit-batch uniqueness assertion stopped after one prose replacement; the recorded change list includes that replacement.",
+    "Figure-record verification first detected JSON tuple/list serialization in presentation offsets. All 32 numeric values were then checked with exact float.hex equality; no tolerance was introduced.",
+    "Nonblocking inherited underfull spacing, obsolete fixltx2e notice and hyperref bookmark math-token notices are recorded in the logs, not hidden or treated as scientific evidence.",
+    "Original release package is unchanged; this is not a new submission package or scientific certification.",
+    "Git whitespace lint flagged native trailing spaces in compiler logs and extracted PDF text. Scoped log/build/snapshot/text-extraction attributes preserve bytes; authored text passes. No scientific or LaTeX overflow rule changed."
+  ],
+  "output_manifest_sha256": "56b243070a609e360b48fca5f43330520414c697348a62039ea1d44e5bc67105"
+}

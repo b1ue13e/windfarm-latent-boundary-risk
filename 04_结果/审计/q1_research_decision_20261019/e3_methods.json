@@ -1,0 +1,87 @@
+{
+  "record_id": "q1_e3_implementation_applicability_20261019",
+  "record_type": "E3_PAPER_JUDGMENT_ARCHIVE_NOT_IMPLEMENTATION_VALIDATION_OR_EXECUTION",
+  "date": "2026-10-19",
+  "parent_record": "research_audit/q1_research_decision_20261019/decision.json",
+  "source_spec": "research_audit/q1_paper_closure_20261019/paper_contract.json",
+  "source_spec_id": "q1_conditional_cost_domain_paper_v1_20261019",
+  "scope": "E3_REUSE_LIMITS_V1_V4_MINIMUM_AND_OPTIONAL_ENHANCEMENTS_ONLY",
+  "current_state": {
+    "E3_closed": false,
+    "V1_V4_status": "NOT_EXECUTED_OR_VALIDATED_FOR_NEW_TASK",
+    "E1_closed": false,
+    "candidate_exposure": "EXPOSURE_UNKNOWN",
+    "E2_actual_package": "NOT_PRODUCED_OR_VERIFIED",
+    "E4_confirmation": "NOT_EXECUTED",
+    "project_state": "STOP_ADDITIONAL_INVESTMENT",
+    "execution_authorized": false,
+    "execution_queue": [],
+    "automatic_resume_conditions": []
+  },
+  "reusable_components": [
+    {"component": "sample_loss/block_totals", "source": "windfarm_moe/decision_information.py", "reuse": "loss accounting and day numerator/denominator structure", "limit": "new conditional aggregation and integration unvalidated"},
+    {"component": "shared_block_draws", "source": "windfarm_moe/risk_frontier.py", "reuse": "shared circular-day weights and draw identity", "limit": "does not establish task-specific block applicability"},
+    {"component": "simultaneous_envelope", "source": "windfarm_moe/risk_frontier.py", "reuse": "max absolute standardized deviation and nonexact zero-variance uninformative bounds", "limit": "requires valid new endpoint draws; undefined conditional ratios need explicit handling"},
+    {"component": "existing tests", "sources": ["tests/test_decision_information.py", "tests/test_subset_inference.py", "tests/test_risk_frontier.py", "tests/test_independent_confirmation.py"], "reuse": "regression-check patterns", "limit": "not a new-task certificate; not run during this archive"},
+    {"component": "freeze/tamper checks", "reuse": "identity and freeze-before-access structure", "limit": "not statistical applicability evidence"}
+  ],
+  "noninheritable_certifications": [
+    "streamed_envelopes global cost-ratio/population-denominator interface is not H/L conditional-mean inference",
+    "old intervals, critical values, coordinate families and PASS do not certify new endpoints",
+    "software execution success does not establish inferential coverage",
+    "block-length sensitivity agreement does not prove coverage"
+  ],
+  "conditional_endpoint_semantics": {
+    "A_H_day": "sum of fixed-instance-mean paired cost differences on common-population H cells in that day",
+    "N_H_day": "number of common-population H cells in that day",
+    "thetaH_draw": "sum(w*A_H)/sum(w*N_H)",
+    "thetaL_draw": "sum(w*A_L)/sum(w*N_L)",
+    "Gamma_draw": "thetaH_draw-thetaL_draw",
+    "same_weights_for_H_L_and_ten_risks": true,
+    "fixed_group_denominators_allowed": false,
+    "mean_of_daily_conditional_means_is_target": false,
+    "refit_reselect_q_or_recompute_domain_thresholds_in_bootstrap_required": false
+  },
+  "minimum_necessary_evidence": [
+    {"id": "V1", "level": "A", "item": "task semantics and pairing", "minimum": "new arrival/maturity, actual-fit-row preprocessing, missingness fallback, shared F/target/population and original domains", "failure_if_absent": "unarrived information or mismatched targets/populations", "status": "NOT_VALIDATED_FOR_NEW_TASK", "can_reference_same_E2_evidence": true, "execution_task_created": false},
+    {"id": "V2", "level": "A", "item": "conditional endpoint arithmetic", "minimum": "cell/day equivalence, unequal group sizes, positive/negative differences, recomputed group numerator/denominator and shared Gamma draws", "failure_if_absent": "wrong weighting or omitted denominator uncertainty/covariance", "status": "NOT_VALIDATED_FOR_NEW_TASK", "execution_task_created": false},
+    {"id": "V3", "level": "A", "item": "joint inference and failure semantics", "minimum": "historical100 and confirmation12 mapped separately; shared weather blocks; empty groups, zero denominators and nonexact zero variance handled as original rules", "failure_if_absent": "false certification, artificial precision or deletion of adverse draws", "status": "NOT_VALIDATED_FOR_NEW_TASK", "execution_task_created": false},
+    {"id": "V4", "level": "A", "item": "statistical applicability basis", "minimum": "applicable existing-method basis and mapping of dependence, stability, moments and domain support to new endpoints/scope", "failure_if_absent": "interval computation without supported uncertainty interpretation", "status": "NOT_VALIDATED_FOR_NEW_TASK", "execution_task_created": false}
+  ],
+  "V4_proportionality": {
+    "adequate_existing_argument_and_condition_mapping_can_suffice": true,
+    "simulation_always_required": false,
+    "new_theorem_always_required": false,
+    "targeted_finite_calibration": "consider only for a specific remaining sparse/dependence gap; not proof for arbitrary real weather",
+    "prior_global_loss_dependence_alone_covers_all_conditional_counts_and_risks": false,
+    "method_validation_and_actual_window_support_distinguished": true,
+    "preinspect_or_select_confirmation_until_applicable_allowed": false
+  },
+  "optional_enhancements": [
+    {"level": "B", "item": "broader finite-sample calibration beyond adequate applicability evidence"},
+    {"level": "B", "item": "alternative inference comparison and deeper dependence diagnostics"},
+    {"level": "C", "item": "new coverage theory, arbitrary-drift guarantees or universal cross-site validity"}
+  ],
+  "preserved_inference_settings": {"historical_risk_coordinates": 100, "primary_joint_coordinates": 12, "primary_risk_coordinates": 10, "block_days": 3, "sensitivity_days": [1, 7], "bootstrap_replicates": 20000, "bootstrap_seed": 20261029, "alpha": 0.05},
+  "minimum_closure": {
+    "required_evidence_groups": ["V1", "V2", "V3", "V4"],
+    "meaning": "necessary new-interface validation plus scope-proportionate applicability basis and honest unidentified failure branches",
+    "groups_are_new_scientific_experiments_or_E_gates": false,
+    "stop_adding_obligations_for_same_scope_after_satisfaction": true,
+    "closes_E1": false,
+    "materializes_E2": false,
+    "is_E4_success": false
+  },
+  "method_reference": {"literature_id": "L05", "role": "foundational", "source_url": "https://pure.au.dk/ws/files/34269366/rp10_76.pdf", "read_scope": "author-version section3 assumption2 read in preceding E3 paper judgment; no new retrieval here", "use_limit": "illustrates conditional assumptions, not a certificate for this project's twelve endpoints"},
+  "no_unconditional_new_requirements": ["narrower intervals", "smaller p values", "more seeds", "per-domain 10percent risk", "new theory", "all-weather coverage", "mandatory simulation despite adequate existing basis", "duplicate E2 evidence"],
+  "original_requirements_estimands_domains_or_acceptance_changed": false,
+  "tests_or_gates_run_this_archive": false,
+  "statistical_validation_or_calibration_run_this_archive": false,
+  "measurement_access_or_download": false,
+  "code_or_model_changes": false,
+  "manuscript_edits": false,
+  "remote_access_or_jobs": false,
+  "new_scientific_conclusion": false,
+  "project_resumption": false,
+  "future_execution_requires_separate_explicit_user_authorization": true
+}

@@ -1,0 +1,70 @@
+{
+  "resources": {
+    "WindBins": {
+      "order": [
+        1,
+        0,
+        1
+      ],
+      "serialized_model_bytes": 525
+    },
+    "A_Wind": {
+      "order": [
+        2,
+        1,
+        76
+      ],
+      "serialized_model_bytes": 317961
+    },
+    "B_Consequences": {
+      "order": [
+        4,
+        1,
+        148
+      ],
+      "serialized_model_bytes": 439961
+    },
+    "E_Compressed": {
+      "order": [
+        4,
+        2,
+        225
+      ],
+      "serialized_model_bytes": 761090
+    },
+    "C_WindScore": {
+      "order": [
+        4,
+        2,
+        225
+      ],
+      "serialized_model_bytes": 762866
+    },
+    "C_ShuffledScore": {
+      "order": [
+        4,
+        2,
+        297
+      ],
+      "serialized_model_bytes": 883970
+    },
+    "C_PitchScore": {
+      "order": [
+        4,
+        2,
+        297
+      ],
+      "serialized_model_bytes": 883074
+    }
+  },
+  "policy_prediction_seconds": {
+    "WindBins": 0.01799265155568719,
+    "A_Wind": 4.025421725586057,
+    "B_Consequences": 5.149096640758216,
+    "E_Compressed": 4.123310884926468,
+    "C_WindScore": 5.681130237877369,
+    "C_ShuffledScore": 5.506775503978133,
+    "C_PitchScore": 5.476230752654374
+  },
+  "scope": "Calibration-batch predictions; teacher timings not isolated, not an end-to-end latency benchmark"
+}

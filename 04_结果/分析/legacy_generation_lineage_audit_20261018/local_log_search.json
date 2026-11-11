@@ -1,0 +1,593 @@
+{
+  "scanned_logs": 1415,
+  "matches": [
+    {
+      "path": "E:\\论文3\\artifacts\\metis_deployment_20261015_v3\\remote_logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_factorial_extension_20261015_v2_attempt1\\20261015T111611Z_3bafacfe\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_followup_20261015\\20261015T102903Z_3bbcd9a1\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_followup_20261015\\20261015T103157Z_b302320b\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_followup_20261015_2003\\20261015T120259Z_2ebe97af\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_followup_20261015_2003\\20261015T121447Z_2c1a8337\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_followup_20261016_0804\\20261016T000344Z_2a074c32\\files\\artifacts\\raw_replay_20261015_v2\\execution\\fixed_residuals\\stdout_stderr.log",
+      "sha256": "eee4b5e1185b3a986e69b7a7ed0846a40968dad4782014c9eb9d97f4174d5977",
+      "bytes": 1958,
+      "hits": [
+        {
+          "line": 1,
+          "text": "[Fixed Target Isolation] Using device: cuda:0"
+        },
+        {
+          "line": 24,
+          "text": "[Saved] Compressed residuals to /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.npz (Size: 167.61 MB)"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_followup_20261016_0804\\20261016T000344Z_2a074c32\\files\\artifacts\\raw_replay_20261015_v2\\execution\\run_matched_budget_frontier\\stdout_stderr.log",
+      "sha256": "f97ae3ae3fadbe68f77c52a9e72e941249773d731ec4616f154f119bea023251",
+      "bytes": 6211,
+      "hits": [
+        {
+          "line": 5,
+          "text": "  Extracted probabilities for Seed 201"
+        },
+        {
+          "line": 6,
+          "text": "  Extracted probabilities for Seed 202"
+        },
+        {
+          "line": 7,
+          "text": "  Extracted probabilities for Seed 203"
+        },
+        {
+          "line": 8,
+          "text": "  Extracted probabilities for Seed 204"
+        },
+        {
+          "line": 9,
+          "text": "  Extracted probabilities for Seed 205"
+        },
+        {
+          "line": 10,
+          "text": "Saved cached probabilities to /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/matched_budget/cached_posterior_probs.npz"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_followup_20261016_0804\\20261016T000344Z_2a074c32\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_followup_20261016_0804\\20261016T001950Z_27c31733\\files\\artifacts\\raw_replay_20261015_v2\\execution\\fixed_residuals\\stdout_stderr.log",
+      "sha256": "eee4b5e1185b3a986e69b7a7ed0846a40968dad4782014c9eb9d97f4174d5977",
+      "bytes": 1958,
+      "hits": [
+        {
+          "line": 1,
+          "text": "[Fixed Target Isolation] Using device: cuda:0"
+        },
+        {
+          "line": 24,
+          "text": "[Saved] Compressed residuals to /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.npz (Size: 167.61 MB)"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_followup_20261016_0804\\20261016T001950Z_27c31733\\files\\artifacts\\raw_replay_20261015_v2\\execution\\run_matched_budget_frontier\\stdout_stderr.log",
+      "sha256": "f97ae3ae3fadbe68f77c52a9e72e941249773d731ec4616f154f119bea023251",
+      "bytes": 6211,
+      "hits": [
+        {
+          "line": 5,
+          "text": "  Extracted probabilities for Seed 201"
+        },
+        {
+          "line": 6,
+          "text": "  Extracted probabilities for Seed 202"
+        },
+        {
+          "line": 7,
+          "text": "  Extracted probabilities for Seed 203"
+        },
+        {
+          "line": 8,
+          "text": "  Extracted probabilities for Seed 204"
+        },
+        {
+          "line": 9,
+          "text": "  Extracted probabilities for Seed 205"
+        },
+        {
+          "line": 10,
+          "text": "Saved cached probabilities to /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/matched_budget/cached_posterior_probs.npz"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_followup_20261016_0804\\20261016T001950Z_27c31733\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015\\20261015T105607Z_729fc1ad\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_1951\\20261015T115123Z_c151e104\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_1951\\20261015T115841Z_b093a134\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2023\\20261015T122311Z_ad0c9ba7\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2023\\20261015T122608Z_fd54cc64\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2053\\20261015T125311Z_defcc9f9\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2053\\20261015T125528Z_bbf9850e\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2123\\20261015T132311Z_4e9afa18\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2123\\20261015T132639Z_65519edd\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2153\\20261015T135310Z_571e7e68\\files\\artifacts\\raw_replay_20261015_v2\\execution\\fixed_residuals\\stdout_stderr.log",
+      "sha256": "eee4b5e1185b3a986e69b7a7ed0846a40968dad4782014c9eb9d97f4174d5977",
+      "bytes": 1958,
+      "hits": [
+        {
+          "line": 1,
+          "text": "[Fixed Target Isolation] Using device: cuda:0"
+        },
+        {
+          "line": 24,
+          "text": "[Saved] Compressed residuals to /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.npz (Size: 167.61 MB)"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2153\\20261015T135310Z_571e7e68\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2153\\20261015T140719Z_22e10b8f\\files\\artifacts\\raw_replay_20261015_v2\\execution\\fixed_residuals\\stdout_stderr.log",
+      "sha256": "eee4b5e1185b3a986e69b7a7ed0846a40968dad4782014c9eb9d97f4174d5977",
+      "bytes": 1958,
+      "hits": [
+        {
+          "line": 1,
+          "text": "[Fixed Target Isolation] Using device: cuda:0"
+        },
+        {
+          "line": 24,
+          "text": "[Saved] Compressed residuals to /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.npz (Size: 167.61 MB)"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2153\\20261015T140719Z_22e10b8f\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2153\\20261015T141933Z_f0b8b124\\files\\artifacts\\raw_replay_20261015_v2\\execution\\fixed_residuals\\stdout_stderr.log",
+      "sha256": "eee4b5e1185b3a986e69b7a7ed0846a40968dad4782014c9eb9d97f4174d5977",
+      "bytes": 1958,
+      "hits": [
+        {
+          "line": 1,
+          "text": "[Fixed Target Isolation] Using device: cuda:0"
+        },
+        {
+          "line": 24,
+          "text": "[Saved] Compressed residuals to /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.npz (Size: 167.61 MB)"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2153\\20261015T141933Z_f0b8b124\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2153\\20261015T142324Z_4d5e7b85\\files\\artifacts\\raw_replay_20261015_v2\\execution\\fixed_residuals\\stdout_stderr.log",
+      "sha256": "eee4b5e1185b3a986e69b7a7ed0846a40968dad4782014c9eb9d97f4174d5977",
+      "bytes": 1958,
+      "hits": [
+        {
+          "line": 1,
+          "text": "[Fixed Target Isolation] Using device: cuda:0"
+        },
+        {
+          "line": 24,
+          "text": "[Saved] Compressed residuals to /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.npz (Size: 167.61 MB)"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2153\\20261015T142324Z_4d5e7b85\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2232\\20261015T143212Z_4a84e184\\files\\artifacts\\raw_replay_20261015_v2\\execution\\fixed_residuals\\stdout_stderr.log",
+      "sha256": "eee4b5e1185b3a986e69b7a7ed0846a40968dad4782014c9eb9d97f4174d5977",
+      "bytes": 1958,
+      "hits": [
+        {
+          "line": 1,
+          "text": "[Fixed Target Isolation] Using device: cuda:0"
+        },
+        {
+          "line": 24,
+          "text": "[Saved] Compressed residuals to /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.npz (Size: 167.61 MB)"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2232\\20261015T143212Z_4a84e184\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2232\\20261015T150018Z_964727de\\files\\artifacts\\raw_replay_20261015_v2\\execution\\fixed_residuals\\stdout_stderr.log",
+      "sha256": "eee4b5e1185b3a986e69b7a7ed0846a40968dad4782014c9eb9d97f4174d5977",
+      "bytes": 1958,
+      "hits": [
+        {
+          "line": 1,
+          "text": "[Fixed Target Isolation] Using device: cuda:0"
+        },
+        {
+          "line": 24,
+          "text": "[Saved] Compressed residuals to /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.npz (Size: 167.61 MB)"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2232\\20261015T150018Z_964727de\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2232\\20261015T154812Z_bdce736a\\files\\artifacts\\raw_replay_20261015_v2\\execution\\fixed_residuals\\stdout_stderr.log",
+      "sha256": "eee4b5e1185b3a986e69b7a7ed0846a40968dad4782014c9eb9d97f4174d5977",
+      "bytes": 1958,
+      "hits": [
+        {
+          "line": 1,
+          "text": "[Fixed Target Isolation] Using device: cuda:0"
+        },
+        {
+          "line": 24,
+          "text": "[Saved] Compressed residuals to /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.npz (Size: 167.61 MB)"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2232\\20261015T154812Z_bdce736a\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_parallel_followup_20261015\\20261015T114439Z_c3b61a5e\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    },
+    {
+      "path": "E:\\论文3\\artifacts\\metis_queue_fix_20261015\\20261015T104344Z_ca0a9dd6\\files\\logs\\deployment_preflight.log",
+      "sha256": "9b5ca0761b2c5218cd79b49d69d51bd8b551ae3eb6051e0c56e47771c2640a27",
+      "bytes": 5279,
+      "hits": [
+        {
+          "line": 23,
+          "text": " create mode 100644 scripts/build_fixed_forecast_residuals.py"
+        },
+        {
+          "line": 47,
+          "text": " create mode 100644 scripts/run_matched_budget_frontier.py"
+        }
+      ]
+    }
+  ],
+  "patterns": "Fixed Target Isolation|Compressed residuals|cached posterior probabilities|Saved cached probabilities|Extracted probabilities for Seed|build_fixed_forecast_residuals\\.py|run_fixed_target_contract\\.py|run_matched_budget_frontier\\.py|621bb8b"
+}

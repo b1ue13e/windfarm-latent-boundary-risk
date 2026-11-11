@@ -1,0 +1,13 @@
+﻿Estimator,Input,Individual primary (%),Individual expanded (%),Shared (%)
+HGB,Fresh,7.2426,7.3298,7.3298
+HGB,Fresh + pitch,12.6881†,12.8822†,7.9073
+HGB,Old,9.2141,9.3476,9.3476
+HGB,Old + power,12.1764†,12.3571†,7.2707
+HGB,Old + pitch,14.5501†,14.7623†,10.2865†
+HGB,Old + power + pitch,12.1194†,12.3002†,7.0831
+MLP,Fresh,10.0724†,10.2036†,7.3931
+MLP,Fresh + pitch,12.2025†,12.3434†,9.0794
+MLP,Old,9.5486,9.7086,9.7086
+MLP,Old + power,11.2241†,11.3778†,8.1791
+MLP,Old + pitch,10.6530†,10.7646†,8.0564
+MLP,Old + power + pitch,11.0678†,11.2077†,8.3374

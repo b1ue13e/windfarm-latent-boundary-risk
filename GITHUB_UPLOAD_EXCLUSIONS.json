@@ -1,0 +1,133 @@
+{
+  "local_source": "a62c872ae9162c906188c7cc20ce125b5e78566b",
+  "remote_parent": "de692c62a0f4f31a222c6d95545f3c69aeb90b20",
+  "excluded_files": [
+    {
+      "path": "04_结果/分析/calibrated_manuscript_revision_20261019/snapshots.zip",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "e73cf3c0955432313cb8b56b35dc9b170c444909"
+    },
+    {
+      "path": "04_结果/分析/chinese_full_sync_20261019/snapshots.zip",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "403eb9895dc278af4fd8b8391247e00c6d66ad06"
+    },
+    {
+      "path": "04_结果/分析/claim_revision_recovery_20261019/compact_evidence.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "d1c72d9d8f4d73507d8c78a808fea75f1ca2526d"
+    },
+    {
+      "path": "04_结果/分析/claim_revision_recovery_20261019/necessity_evidence.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "883bffe7a05f9634e62e0feddf6d28ac2cfe9ff5"
+    },
+    {
+      "path": "04_结果/分析/claim_revision_recovery_20261019/source_metadata.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "da9ed19d31e3cd76862a7be19f0a19094ce2e82e"
+    },
+    {
+      "path": "04_结果/分析/decision_information_execution_20261018/compact_evidence.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "33fdac05327db066095eccaf9ca85007c4f8c1c6"
+    },
+    {
+      "path": "04_结果/分析/independent_confirmation_execution_20261019/deployment_packet.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "b32c0c10a2c13c74ce3e63549ab79212e272258c"
+    },
+    {
+      "path": "04_结果/分析/independent_confirmation_execution_20261019/result_evidence.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "818e121440759ed3404ac822674dfa9085f25272"
+    },
+    {
+      "path": "04_结果/分析/information_subset_execution_20261019/necessity_source_ee836206.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "3692091f1a07e279f5545ffa2c28e3a01df2e6e9"
+    },
+    {
+      "path": "04_结果/分析/information_subset_execution_20261019/post_source_7ade6743.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "065caeaace145a7c79c21bff6f57b7f8e25bb647"
+    },
+    {
+      "path": "04_结果/分析/information_subset_execution_20261019/source_bundle.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "ae6ec8f0b773ab44bc2cde74fece5bbb4f9767b2"
+    },
+    {
+      "path": "04_结果/分析/information_subset_execution_20261019/source_bundle_18c9efc3.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "ad43baa30aeaedc4cc4220a6813f73e356526a8f"
+    },
+    {
+      "path": "04_结果/分析/manuscript_provenance_pdf_audit_20261018/snapshots/build/paper_tste_ieee.aux",
+      "reason": "Rebuildable cache",
+      "oid": "4b2cb5a82ce2560f7c690657975bf945dedfd34f"
+    },
+    {
+      "path": "04_结果/分析/manuscript_provenance_pdf_audit_20261018/snapshots/build/paper_tste_supplementary.aux",
+      "reason": "Rebuildable cache",
+      "oid": "8b9cee6ace843bd2085debc2cc210efa3447f6f8"
+    },
+    {
+      "path": "04_结果/分析/risk_cost_frontier_execution_20261018/compact_evidence.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "539369937d3aa98406458d40290b95e50d889c52"
+    },
+    {
+      "path": "04_结果/分析/risk_cost_frontier_execution_20261018/secondary_metadata.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "f73c0416a53b236f8cf3b845ca5d8ce052a5d2bb"
+    },
+    {
+      "path": "04_结果/历史证据/历史稿件证据/seta_v1/supplement_data/M_controls_compact.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "85a8fbc4a655b7863a5915f9281028fca39437c8"
+    },
+    {
+      "path": "04_结果/历史证据/历史稿件证据/seta_v1/supplement_data/M_original_compact.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "6a98644d293cfd229e1faa60339ffe0b9a1091b6"
+    },
+    {
+      "path": "04_结果/历史证据/历史稿件证据/seta_v1/supplement_data/R_original_compact.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "33fdac05327db066095eccaf9ca85007c4f8c1c6"
+    },
+    {
+      "path": "04_结果/历史证据/历史稿件证据/seta_v1/supplement_data/code_and_provenance/frozen_M_controls_packet.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "15aa8109b83896da67ac534c076ea8a16dadf09c"
+    },
+    {
+      "path": "04_结果/历史证据/历史稿件证据/seta_v1/supplement_data/code_and_provenance/frozen_M_original_packet.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "f5597ea3eac04365c0f6a49f2386f31230fa8ddc"
+    },
+    {
+      "path": "04_结果/历史证据/历史稿件证据/wind_energy_v2/wind_energy_v2_review_package.zip",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "95c27bd90cca04f72eb17192395c37e2d2aeb0b4"
+    },
+    {
+      "path": "04_结果/审计/controlled_comparison_materials_20261020/study_M/copies/controls/compact_evidence.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "85a8fbc4a655b7863a5915f9281028fca39437c8"
+    },
+    {
+      "path": "04_结果/审计/controlled_comparison_materials_20261020/study_M/copies/pilot/compact_evidence.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "6a98644d293cfd229e1faa60339ffe0b9a1091b6"
+    },
+    {
+      "path": "04_结果/审计/controlled_comparison_materials_20261020/study_R/original/compact_evidence.tar.gz",
+      "reason": "Packed source/data/weight bundles retained locally; excluded from GitHub snapshot",
+      "oid": "33fdac05327db066095eccaf9ca85007c4f8c1c6"
+    }
+  ],
+  "raw_data_and_weights_remain_local": true,
+  "unpushed_local_history_uploaded": false
+}

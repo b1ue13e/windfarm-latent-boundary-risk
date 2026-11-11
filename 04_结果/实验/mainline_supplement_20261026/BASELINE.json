@@ -1,0 +1,26 @@
+{
+  "utc": "2026-10-26T07:56:24.760910+00:00",
+  "git_head": "dfd9bb56a5fe7e0a4887ae2a1e9934350e37b57b",
+  "initial_tracked_changes": " M AGENTS.md\n M PROJECT.md\n M artifacts/tste_number_consistency_audit/tste_number_consistency_audit.csv\n M docs/EXPERIMENT_REGISTRY.md\n",
+  "protected_local_files": {
+    "AGENTS.md": "b1feb8e637fd05baeeace62925f086257bb2b9af7c0905c25f636dc8ec92c993",
+    "PROJECT.md": "bee90f221ed0ab120d7005c581faeaa368f222af56db8158ccea9781e425d15a",
+    "docs\\SCIENTIFIC_CONTRACT.md": "cf0c38fba403d842ca87521dbe03897e9078dcb87da593daa7af6fd009545f76",
+    "docs\\EXPERIMENT_REGISTRY.md": "af8d7239c8f32860d0d61ad35102bbc783e4074e332ae63ff3782f01b8c3d9b5",
+    "cover_letter_tste.md": "4fe520099e6636228606412fea5ef5a7d67cdaac84ea20fdbbafebbec8929ca3",
+    "paper_tste_chinese.md": "14cdc51df2ad440f8c96eab97c7b450d04437c1599eb4c3c65010280d673352f",
+    "paper_tste_chinese.pdf": "a7e9aefeb05885dc5fd813014440d0d66e53a33a79421ba8c4772b2eb602fc10",
+    "paper_tste_ieee.md": "b9e5e417abde1856201e21c6022a994c0601010340b19cc0ee4b4f5f31d17456",
+    "paper_tste_ieee.pdf": "8e363d56ef8e0b88d83c903ee8ef66b52976d69d18ccb2b98b48127f88577100",
+    "paper_tste_supplementary.md": "43487c70feacc9f0edfb991e56ce342acfa5dc9c678534bc6a42a9eaeb02065e",
+    "paper_tste_supplementary.pdf": "d30d6980c2714d01bac93451560cccb20cb8303248f091f4832634e82bc615fb",
+    "tste_submission_20260903.zip": "8faf4575efdc4ba0158003e92cfee438e6da43e44bcb4cd07ab992c07d2d9449",
+    "tste_submission_20260904.zip": "fa20e53f580c905ba780db7fb6c2876781574e2b0b3cae5d08c14f01480c8e2c"
+  },
+  "legacy_runtime_identity": "p1/identity_packet.json",
+  "authorization": "User authorized supplementary experiments; team confirms no prior access to2026 raw measurements or outcomes; no new model search on old windows",
+  "gemini_failures": [
+    "afdce4a39e454c549a3e48a5ae2711f5",
+    "fee18c884f7647a8a2ca98a457555023"
+  ]
+}

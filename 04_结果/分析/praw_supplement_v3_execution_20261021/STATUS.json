@@ -1,0 +1,31 @@
+{
+  "status": "COMPLETED_BOUNDED_V3_EXECUTION",
+  "finished_utc": "2026-10-21T03:54:50.471248+00:00",
+  "production_commit": "87fde9b057806c13617a30aeb111b68dea6b4cd1",
+  "fit_identities_completed": 10,
+  "fit_identities_failed": 0,
+  "new_fit_identities_beyond_V3": 0,
+  "new_measurements": 0,
+  "optional_budget_active": false,
+  "qualification_used_for_evaluation_filter": false,
+  "all_predeclared_coordinates_retained": 882,
+  "inference_families_and_spans": 12,
+  "n_boot_per_coordinate": 20000,
+  "primary_span_days": 3,
+  "sensitivity_span_days": [
+    1,
+    7
+  ],
+  "new_confirmation_window": false,
+  "manuscript_changed": false,
+  "thresholds_changed": false,
+  "old_results_modified": false,
+  "current_run_complete": true,
+  "jobs": {
+    "prepare": "245215.cm",
+    "fits": "245216[].cm",
+    "accounting": "245217[].cm",
+    "inference": "245218.cm"
+  },
+  "scientific_scope": "Fixed-fit retrospective WTB comparison; no pure sensor ordering, equal-budget efficiency, field deployment or independent confirmation certificate"
+}

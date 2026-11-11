@@ -1,0 +1,10 @@
+﻿Item,Measurement updates,Reconstruction
+Source and evaluation,SDWPF;134 turbines;days211–245,Same source and weather
+Common forecast,Earlier W/P; identical target/clock,Same inherited forecast/grid
+Main population,Finite future/currentP and all3 pitch,Finite futureP
+Scored turbine-interval cells,671538,672939
+Decision-training row limit,360000,120000
+State supervision,Added current pitch,Retrospective pitch regression;100000 rows; clock exception
+Calibration stages,176–192 offset;193–210 selection,176–210 signed offset
+Calibration recipes,Original or common q.925,Fixed q.90 offset
+Main inference families,154/596 separate,42 primary cost comparisons

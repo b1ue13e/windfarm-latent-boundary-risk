@@ -1,0 +1,80 @@
+{
+  "status": "PASS_DOCUMENT_REVISION_ONLY",
+  "timestamp_utc": "2026-10-19T12:14:12.471379+00:00",
+  "checks": {
+    "paper_tste_ieee.md": {
+      "table_count": 4,
+      "table_rows_and_numeric_tokens_unchanged": true,
+      "caption_or_note_text_changed_at_table_positions": [],
+      "citation_groups_unchanged": true,
+      "sha256": "b9e5e417abde1856201e21c6022a994c0601010340b19cc0ee4b4f5f31d17456"
+    },
+    "paper_tste_supplementary.md": {
+      "table_count": 49,
+      "table_rows_and_numeric_tokens_unchanged": true,
+      "caption_or_note_text_changed_at_table_positions": [
+        1,
+        40
+      ],
+      "citation_groups_unchanged": true,
+      "sha256": "43487c70feacc9f0edfb991e56ce342acfa5dc9c678534bc6a42a9eaeb02065e"
+    },
+    "paper_tste_chinese.md": {
+      "historical_body_preserved": true,
+      "current_claim_notice_added": true
+    },
+    "manuscript/paper_chinese_topjournal_final.md": {
+      "historical_body_preserved": true,
+      "current_claim_notice_added": true
+    },
+    "manuscript/paper_tste_chinese_topjournal.md": {
+      "historical_body_preserved": true,
+      "current_claim_notice_added": true
+    },
+    "protected_files_unchanged": 15
+  },
+  "gates": {
+    "scientific": "PASS",
+    "number_checks": 77,
+    "number_failures": 0,
+    "independent_archive_claim_gate": "PASS"
+  },
+  "pdfs": [
+    {
+      "path": "E:\\论文3\\paper_tste_ieee.pdf",
+      "pages": 10,
+      "sha256": "8e363d56ef8e0b88d83c903ee8ef66b52976d69d18ccb2b98b48127f88577100",
+      "source_sha256": "b9e5e417abde1856201e21c6022a994c0601010340b19cc0ee4b4f5f31d17456"
+    },
+    {
+      "path": "E:\\论文3\\paper_tste_supplementary.pdf",
+      "pages": 47,
+      "sha256": "d30d6980c2714d01bac93451560cccb20cb8303248f091f4832634e82bc615fb",
+      "source_sha256": "43487c70feacc9f0edfb991e56ce342acfa5dc9c678534bc6a42a9eaeb02065e"
+    }
+  ],
+  "visual_review": {
+    "all_page_overviews_reviewed": 57,
+    "detail_pages": {
+      "main": [
+        1,
+        9
+      ],
+      "supplementary": [
+        2,
+        34,
+        47
+      ]
+    },
+    "new_clipping_or_overflow_observed": false,
+    "existing_supplement_warning": "Text page22 contains only floats; retained historical layout"
+  },
+  "execution_boundary": {
+    "new_experiments": false,
+    "new_bootstrap": false,
+    "remote_access": false,
+    "project_state_changed": false,
+    "protocol_or_scientific_gate_changed": false
+  },
+  "retained_failed_check": "Initial scientific gate required explicit representation-metrics boundary phrase; restored without changing gate. Initial failure log retained."
+}

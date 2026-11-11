@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-19T07:42:51.917213+00:00",
+  "authority": "Current user: record three gates as pending and design experiments",
+  "status": "TODO_NOT_STARTED",
+  "planning_authorized": true,
+  "execution_authorized": false,
+  "project_execution_state": "STOP_ADDITIONAL_INVESTMENT",
+  "execution_queue": [],
+  "plan": "research_audit/contribution_gate_plan_20261019/PLAN.md",
+  "preregistered": false,
+  "scientific_results_added": false,
+  "items": [
+    {
+      "id": "CG-1",
+      "title": "真实约束下的工程价值",
+      "status": "TODO_NOT_STARTED",
+      "readiness": "BLOCKED_NEW_INTERFACE_EVIDENCE",
+      "subtasks": [
+        {
+          "id": "CG-1A",
+          "title": "新增事实材料与真实验收约束",
+          "status": "TODO_NOT_STARTED",
+          "execution_authorized": false
+        },
+        {
+          "id": "CG-1B",
+          "title": "双向同等优化工程对照",
+          "status": "TODO_NOT_STARTED",
+          "execution_authorized": false
+        },
+        {
+          "id": "CG-1C",
+          "title": "决策单位对齐(若保留PCC主张)",
+          "status": "TODO_NOT_STARTED",
+          "execution_authorized": false
+        }
+      ],
+      "depends_on": [],
+      "stop_if": "No specific avoidable burden or credible acceptance criterion; do not repeat already completed unsuccessful demand search"
+    },
+    {
+      "id": "CG-2",
+      "title": "事前可预测的适用边界与决策尾部解释",
+      "status": "TODO_NOT_STARTED",
+      "readiness": "HYPOTHESIS_DRAFT_ONLY",
+      "subtasks": [
+        {
+          "id": "CG-2A",
+          "title": "功率age×新增WQ可用性2x2",
+          "status": "TODO_NOT_STARTED",
+          "execution_authorized": false
+        },
+        {
+          "id": "CG-2B",
+          "title": "功率变化下尾探针及强简单控制",
+          "status": "TODO_NOT_STARTED",
+          "execution_authorized": false
+        }
+      ],
+      "depends_on": [
+        "CG-1A",
+        "CG-3A"
+      ],
+      "primary_fits_proposed": 40,
+      "total_learning_fits_proposed": 70,
+      "total_with_missingness_control_proposed": 90,
+      "stop_if": "Only generic fresh-data advantage or no held-out predictive boundary; no new mechanism claim"
+    },
+    {
+      "id": "CG-3",
+      "title": "统计证书可靠性及事前最小性确认",
+      "status": "TODO_NOT_STARTED",
+      "readiness": "VALIDATION_NOT_RUN_CONFIRMATION_DATA_UNBOUND",
+      "subtasks": [
+        {
+          "id": "CG-3A",
+          "title": "已知真值依赖过程联合覆盖/错误最小率",
+          "status": "TODO_NOT_STARTED",
+          "execution_authorized": false
+        },
+        {
+          "id": "CG-3B",
+          "title": "新窗口同时确认充分性与排除更小者",
+          "status": "TODO_NOT_STARTED",
+          "execution_authorized": false
+        }
+      ],
+      "depends_on": [],
+      "forward_confirmation_depends_on": [
+        "CG-1A",
+        "CG-1B",
+        "CG-2A",
+        "CG-3A"
+      ],
+      "stop_if": "Undercalibration in claimed scope, no new data, no historical selection, or smaller alternatives unresolved; retain failures"
+    }
+  ],
+  "recommended_order": [
+    "CG-1A",
+    "CG-3A",
+    "CG-1B",
+    "CG-2A/CG-2B exploratory development",
+    "CG-3B one new confirmation with frozen boundary hypotheses"
+  ],
+  "parameter_values_are_drafts": true,
+  "no_automatic_resume": true
+}

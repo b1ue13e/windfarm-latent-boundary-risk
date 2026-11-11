@@ -1,0 +1,86 @@
+{
+  "record_id": "q1_e2_asset_reuse_20261019",
+  "date": "2026-10-19",
+  "status": "PASS_E2_ARCHIVE_CONSISTENCY_ONLY_E2_NOT_CLOSED",
+  "base_commit": "0769b646e8c1f60780cbf74d2d68a6e753e664e9",
+  "document_checks": {
+    "status": "PASS_E2_ARCHIVE_STATIC_CHECKS_ONLY",
+    "protected_files_unchanged": 114,
+    "parent_decision_unchanged_except_E2_pointer": true,
+    "parent_narrative_append_only": true,
+    "asset_category_counts": {
+      "reusable": 5,
+      "reference_or_match_required": 6,
+      "missing_current_task_product_groups": 5
+    },
+    "minimum_product_groups": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5"
+    ],
+    "all_products_unverified": true,
+    "original_E1_E4_and_acceptance_unchanged": true,
+    "E2_closed": false,
+    "numeric_thresholds": null,
+    "candidate_exposure": "EXPOSURE_UNKNOWN",
+    "new_products_or_experiments": false,
+    "remote_availability": "UNKNOWN_NOT_RECHECKED",
+    "execution_authorized": false,
+    "project_state": "STOP_ADDITIONAL_INVESTMENT",
+    "execution_queue": []
+  },
+  "authorized_edits_before_sha256": {
+    "research_audit/README.md": "2fd6c4a626048a8d46dd998127c61b52ea6d9247495b5e293f33ee43aead29ff",
+    "research_audit/q1_research_decision_20261019/DECISION.md": "d84c1adb799855d77078430f1feba740d2fda6ad87764b26d6023c1faacf9d7f",
+    "research_audit/q1_research_decision_20261019/decision.json": "d78bfd63c02d9891cab7d1b9b201aa5580e570ed4d13a8c7f224f2f4bd885d42"
+  },
+  "authorized_edits_after_sha256": {
+    "research_audit/README.md": "b991df3b6b8165a4e3d5b22bdf7df51f38583ab4bdb3f790f7b99b0d4ecdaff2",
+    "research_audit/q1_research_decision_20261019/DECISION.md": "f87aa50f058abc1e20a3d0c6a04dc2d28486b6bc85aede7863748b588dea79af",
+    "research_audit/q1_research_decision_20261019/decision.json": "48ad16fccdda37ed23cbc7abbac8dcc19c07a563c12067af099b580ca8ac6371"
+  },
+  "gates": {
+    "scientific": {
+      "command": "python scripts/verify_scientific_claim_gate.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "validation/e2/scientific_claim_gate.log"
+    },
+    "numbers": {
+      "command": "python scripts/verify_tste_number_consistency.py --output-dir research_audit/q1_research_decision_20261019/validation/e2/numbers",
+      "status": "complete_tste_number_consistency",
+      "exit_code": 0,
+      "checks": 77,
+      "failed": 0,
+      "report": "validation/e2/numbers/tste_number_consistency_audit.json"
+    }
+  },
+  "preserved_states": {
+    "E2_closed": false,
+    "actual_F1_F5_products_generated": false,
+    "E1_closed": false,
+    "candidate_exposure": "EXPOSURE_UNKNOWN",
+    "statistical_applicability": "NOT_IMPLEMENTED_OR_VALIDATED",
+    "E4_confirmation": "NOT_EXECUTED",
+    "project_state": "STOP_ADDITIONAL_INVESTMENT",
+    "execution_authorized": false,
+    "execution_queue": [],
+    "new_scientific_conclusion": false
+  },
+  "operations": {
+    "E2_paper_judgment_archive_and_links_only": true,
+    "static_checks_and_existing_consistency_gates": true,
+    "new_qualification_evidence": false,
+    "measurement_access_or_download": false,
+    "code_or_model_changes": false,
+    "model_training_evaluation_calibration_or_resampling": false,
+    "remote_access_or_jobs": false,
+    "manuscript_edits": false,
+    "paper_spec_or_original_protocol_changes": false,
+    "project_resumption": false
+  },
+  "historical_validation_records": "All previous decision/E1 validation records and outputs preserved byte-for-byte; this receipt concerns only the E2 archival supplement.",
+  "scope_limit": "Static document/source consistency only. Reusable components are not a new validated pipeline. F1-F5 are E2 product groups, not new experiments, and none was generated here. Existing gate PASS does not certify E2 closure, E1 qualification, E3 applicability, E4 success or execution authorization."
+}

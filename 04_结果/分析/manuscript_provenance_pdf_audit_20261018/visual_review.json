@@ -1,0 +1,22 @@
+{
+  "scope": "All accepted PDF pages rendered at 120 dpi; contact sheets visually reviewed; key pages enlarged",
+  "main_pages": 10,
+  "supplement_pages": 44,
+  "contact_sheets": [
+    "analyses/manuscript_provenance_pdf_audit_20261018/renders/accepted/main-contact-1.png",
+    "analyses/manuscript_provenance_pdf_audit_20261018/renders/accepted/main-contact-2.png",
+    "analyses/manuscript_provenance_pdf_audit_20261018/renders/accepted/supp-contact-1.png",
+    "analyses/manuscript_provenance_pdf_audit_20261018/renders/accepted/supp-contact-2.png",
+    "analyses/manuscript_provenance_pdf_audit_20261018/renders/accepted/supp-contact-3.png",
+    "analyses/manuscript_provenance_pdf_audit_20261018/renders/accepted/supp-contact-4.png",
+    "analyses/manuscript_provenance_pdf_audit_20261018/renders/accepted/supp-contact-5.png",
+    "analyses/manuscript_provenance_pdf_audit_20261018/renders/accepted/supp-contact-6.png"
+  ],
+  "enlarged_review": [
+    "main page 4: selector equation and negative E04 result",
+    "supp pages 18/19/20 before caption cleanup: numerical-table widths; final contact sheets reconfirm layout",
+    "supp page 40: noncertifying assessment table and frozen provenance",
+    "supp page 42: neutral S1 literal-record redraw and scope caption"
+  ],
+  "findings": "No visible clipping, overprinted table cells or stray fences/citation keys in accepted pages; duplicate roman/star captions removed. Sparse float pages retained rather than tightening type or changing evidence."
+}

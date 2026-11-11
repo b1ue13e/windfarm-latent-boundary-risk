@@ -1,0 +1,5 @@
+results/
+logs/
+packet/
+evidence/
+__pycache__/

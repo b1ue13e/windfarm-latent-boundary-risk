@@ -1,0 +1,3 @@
+# Preserve the exact planning-validation receipts and tool output.
+* -text whitespace=cr-at-eol
+*.log -whitespace

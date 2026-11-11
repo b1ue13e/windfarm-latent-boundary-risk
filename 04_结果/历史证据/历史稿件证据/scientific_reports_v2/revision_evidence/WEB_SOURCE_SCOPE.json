@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-21",
+  "venue_sources": [
+    {
+      "url": "https://www.nature.com/srep/guide-to-referees?error=cookies_not_supported",
+      "checked": "criteria for publication, writing the review; soundness, validity, niche/negative/replication acceptance, not perceived impact"
+    },
+    {
+      "url": "https://www.nature.com/srep/author-instructions/submission-guidelines?error=cookies_not_supported",
+      "checked": "Article limits, structure, captions, author statements, AI, access and submission files"
+    },
+    {
+      "url": "https://www.nature.com/srep/journal-policies/editorial-policies?error=cookies_not_supported",
+      "checked": "authorship/contributions, availability of materials/data/code"
+    }
+  ],
+  "recent_neighbours": [
+    {
+      "doi": "10.1016/j.mlwa.2026.100957",
+      "source": "user publisher PDF plus current official search record",
+      "scope": "this round selective method/table recheck; prior full-text record retained"
+    },
+    {
+      "doi": "10.1016/j.seta.2026.105438",
+      "source": "official indexed preview; current full page403",
+      "final_fulltext_read": false
+    },
+    {
+      "doi": "10.1016/j.egyai.2026.100900",
+      "source": "official indexed final abstract; pre-existing fixed author notebook source read; full page403",
+      "final_fulltext_read": false
+    }
+  ],
+  "no_new_measurement_or_author_code_execution": true,
+  "search_scope": "targeted check, not systematic novelty exclusion"
+}

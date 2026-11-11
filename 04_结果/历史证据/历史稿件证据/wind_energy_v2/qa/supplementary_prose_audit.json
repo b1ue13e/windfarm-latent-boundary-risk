@@ -1,0 +1,97 @@
+{
+  "status": "FINDINGS",
+  "candidate_sha256": "9276ff55a05f6da900e79d4c92661df66664e7df47c535da1b8278b05fbb4c13",
+  "profile_loaded": true,
+  "findings": [
+    {
+      "code": "PROSE007",
+      "artifact": "supplementary",
+      "match": "syntactic dash punctuation",
+      "count": 5,
+      "message": "review em/en dash punctuation in context; retain when functional, not by default"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Wind-Power, en-GB, american-medical-association, header-includes",
+      "count": 4,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Reserve-feed, direct-input, six-recipe, six-recipe, six-recipe, six-recipe, event-time",
+      "count": 7,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "point-forecast, Reserve-estimator, squared-error, wind-speed, active-power",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "byte-identical, sufficient-set, risk-qualified, smaller-policy",
+      "count": 4,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Risk-qualified, risk-qualified, Cost-exclusion, Risk-qualified, Cost-exclusion, Risk-qualified",
+      "count": 6,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Current-power, complete-year, cross-year, post-processing, final-power, reserve-layer, Point-forecast-derived, fixed-reference, full-family, fitted-family, feature-selection, near-optimal, acceptable-set, Uncertainty-source, decision-layer",
+      "count": 15,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "d b s m d",
+      "count": 3,
+      "message": "repeated multiword phrase across sentences"
+    }
+  ],
+  "manual_checks_required": [
+    "paragraph contract and adjacent-paragraph flow",
+    "claim scope and preservation of locked meaning",
+    "functional transitions and cumulative information flow",
+    "literature-example ordering from broad context to the closest precedent and gap, or another explicit evidentiary logic",
+    "function-preserving concision and sentence rhythm",
+    "sentence-opening families and repeated clause shapes, including We first/We then/We next; preserve necessary procedural order without cosmetic synonym or voice rotation",
+    "natural scholarly subjects, syntax, and disciplinary accessibility",
+    "reader accessibility, including nonessential field shorthand, transition templates, and indirect verbs",
+    "claim-to-citation support and reference-list changes",
+    "observable stock or AI-like prose features without authorship inference",
+    "dash and hyphen style, including grammatical role, established open compounds, density, and suspended compounds",
+    "necessary technical repetition versus avoidable restatement"
+  ],
+  "state_sha256": "8c896029f46d3a462f728b5c68a5a3cbe099e2eaca2fa382c8e3ba53548e334d",
+  "project_id": "wind_energy_incremental_telemetry_v2_20261020",
+  "artifact_role": "supplementary",
+  "scope_unresolved": false,
+  "rule_sha256": {
+    "SKILL.md": "459925a746693c840aa40489828438a398cd8b11534ef76b2d05bde9891c8296",
+    "references/state-and-authority.md": "fbeb7bd26b13b745ad78f19fc66a4c63c9af608b6c4460d433c0f7af49a4621e",
+    "references/universal-integrity.md": "5f7335a39209ce301ad3f0c0a8e553bc8dbe1cb474f4afbe601e47af23c1a183",
+    "references/prose-and-citation-editing.md": "32565f3c0d09e3565877e70864f4b61e2e5945c984a2058d4aa059d2a8f6907c",
+    "scripts/audit_candidate_text.py": "d45142bddba6bed8a2d108ee3c30b9dbd512c155700a544def07ad1f797c5090",
+    "scripts/audit_text_consistency.py": "66a83db55d2c7d8c17cb4089b70bf986421bc38568fb309eae606374e1ced1b2",
+    "scripts/audit_prose_patterns.py": "1bdcd5fc9444b749e612a9eefb119a2ce369621b87d9c4468e801d05f4e9537f"
+  },
+  "terminology_coverage": {
+    "registered_entries": 4,
+    "applicable_entries": 4,
+    "scope_unresolved": false,
+    "inventory_completeness_certified": false,
+    "scan_basis": "registered_patterns_only; contextual review remains required"
+  }
+}

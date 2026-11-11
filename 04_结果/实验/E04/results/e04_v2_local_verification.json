@@ -1,0 +1,24 @@
+{
+  "status": "PASS_BUNDLE",
+  "failures": [],
+  "receipt": {
+    "bytes": 1875,
+    "sha256": "7ea5e1cc58bf23108651641315b0d9030cad4ac2fae4b983ed75d63ec31cff02"
+  },
+  "plan": {
+    "bytes": 934,
+    "sha256": "4d719fdc72ceb1d33e192b38a80a02047ee3627b0a4b3d2bd1ccfd22d69e114b"
+  },
+  "manifest": {
+    "bytes": 925,
+    "sha256": "647066786fd2b3cb6168cf1f25647a5560b25e1f40c3e2adae2dad2e51d523a5"
+  },
+  "selection": "NO FEASIBLE POLICY",
+  "stability": {
+    "B": 0.3523,
+    "C": 0.0013,
+    "D": 0.0,
+    "D10": 0.0
+  },
+  "scientific_status": "needs-work; independent review pending"
+}

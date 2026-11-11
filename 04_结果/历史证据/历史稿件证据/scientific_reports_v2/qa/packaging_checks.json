@@ -1,0 +1,37 @@
+{
+  "status": "PASS_ISOLATED_SOURCE_AND_ALL403_ARCHIVED_MATERIAL_IDENTITIES",
+  "isolated_source": {
+    "status": "PASS_OFFLINE_BYTES_AND_STORED_FIELDS",
+    "source_files_checked": 232,
+    "material_members_checked": 0,
+    "failures": [],
+    "models_loaded": false,
+    "experimental_modules_executed": false,
+    "new_predictions_calibration_or_statistics": false
+  },
+  "intentional_temp_doc_fault": {
+    "status": "FAIL",
+    "source_files_checked": 232,
+    "material_members_checked": 0,
+    "failures": [
+      "sha256:README.md"
+    ],
+    "models_loaded": false,
+    "experimental_modules_executed": false,
+    "new_predictions_calibration_or_statistics": false
+  },
+  "isolated_materials": {
+    "status": "PASS_OFFLINE_BYTES_AND_STORED_FIELDS",
+    "source_files_checked": 232,
+    "material_members_checked": 403,
+    "failures": [],
+    "models_loaded": false,
+    "experimental_modules_executed": false,
+    "new_predictions_calibration_or_statistics": false
+  },
+  "nested_source_zip_matches": true,
+  "raw_SCADA_CSV_absent": true,
+  "new_experiments": false,
+  "no_models_or_experimental_code_loaded": true,
+  "source_sha256": "b927e8491f1d2bf33e7ebb496f5f7b80c5969ea0136fe54c2e32ffa9b78e811b"
+}

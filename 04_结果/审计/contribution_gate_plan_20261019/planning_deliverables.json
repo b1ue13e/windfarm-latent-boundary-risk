@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-19T07:47:51.088724+00:00",
+  "scope": "Planning deliverables; no research execution or claim upgrade",
+  "sha256": {
+    "PLAN.md": "8113be4e70e995fe4abcc58fe24fc528c46c34ae0963e8d3f9e3ff2e802460c2",
+    "backlog.json": "ab6f8a9f2b539d6e6a51baedc3d725db2527dd6c00edea057f7854037a7bf547",
+    "source_map.csv": "fd824f7c769cd8e2c92465ec324f61d13ebec1e916c3b39ec10bd41ecd5a5f04"
+  }
+}

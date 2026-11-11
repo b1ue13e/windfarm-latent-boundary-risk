@@ -1,0 +1,20 @@
+[
+  {
+    "pdf": "analyses/manuscript_provenance_pdf_audit_20261018/build/paper_tste_ieee.pdf",
+    "pages": 10,
+    "warnings": [
+      "Overfull \\hbox (21.11607pt too wide) detected at line 555"
+    ],
+    "words_outside_page": [],
+    "rendered_pages": 10
+  },
+  {
+    "pdf": "analyses/manuscript_provenance_pdf_audit_20261018/build/paper_tste_supplementary.pdf",
+    "pages": 46,
+    "warnings": [
+      "Overfull \\hbox (1.27773pt too wide) in paragraph at lines 1120--1120"
+    ],
+    "words_outside_page": [],
+    "rendered_pages": 46
+  }
+]

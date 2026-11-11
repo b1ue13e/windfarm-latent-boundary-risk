@@ -1,0 +1,34 @@
+{
+  "schema_version": "E06-selector-output-v1",
+  "status": "SELECTOR_OUTPUT_HASHED",
+  "selector_result": {
+    "path": "e04_selection.json",
+    "bytes": 3260,
+    "sha256": "8e1f5dd3ad8f99e7dbde3b4a5b0a165510dc4479643caaee2779c15fe3b240a2"
+  },
+  "execution_receipt": {
+    "path": "e04_execution_receipt.json",
+    "bytes": 8708,
+    "sha256": "8dc7cfb787d83e7fa3a6de7078dce2903ab0fb8c635992c3f4ae2e6d96d4b5aa"
+  },
+  "execution_plan": {
+    "path": "e04_execution_plan.json",
+    "bytes": 7764,
+    "sha256": "f3a0ee702b781d3501d3249bbc2284ced6ec96fe8ef04078feae9ecd13354684"
+  },
+  "output_manifest": {
+    "path": "e04_output_manifest.json",
+    "bytes": 925,
+    "sha256": "da738539088b6b18a8e8bdef85e7503939387ce2054ab7504073993964f2c2b6"
+  },
+  "remote_input_verification": {
+    "path": "e06_remote_input_verification.json",
+    "bytes": 14787,
+    "sha256": "efd1e094de780533ad6bf6358b3eecf79185d6ea34545eb46c53e338fa6ed8b8"
+  },
+  "replay_source": {
+    "path": "e06_replay_source.json",
+    "bytes": 254,
+    "sha256": "858153434ffc0e31fc0b1b455e12b2ee177f989b39deaaa41089123f7da08061"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "decision": "STOP_ADDITIONAL_INVESTMENT",
+  "adoption": "NOT_RECOMMENDED_ON_CURRENT_EVIDENCE",
+  "real_specific_interface_need": "NOT_ESTABLISHED_IN_BOUNDED_REVIEW",
+  "net_benefit": "UNPROVEN",
+  "numeric_loss_premium": 0.005641474815992087,
+  "proxy_shortage_relative_increase": 0.021843491567971496,
+  "no_currency_conversion": true,
+  "no_new_training": true,
+  "no_new_inference": true,
+  "no_new_direction": true,
+  "preserve_existing_scientific_results": true,
+  "reason": "Local recipe resource differences are verified; no actual avoidable service burden or business tolerance connects them to the positive proxy-loss premium."
+}

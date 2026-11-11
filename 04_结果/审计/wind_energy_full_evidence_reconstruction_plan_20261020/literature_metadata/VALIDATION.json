@@ -1,0 +1,82 @@
+{
+  "audit_date": "2026-10-20",
+  "check_type": "literature_metadata_and_file_identity_only_not_scientific_gate",
+  "matrix_rows": 14,
+  "unique_ids": 14,
+  "unique_dois": 14,
+  "crossref_bindings": [
+    {
+      "id": "L01",
+      "doi_match": true,
+      "title_match": true
+    },
+    {
+      "id": "L02",
+      "doi_match": true,
+      "title_match": true
+    },
+    {
+      "id": "L03",
+      "doi_match": true,
+      "title_match": true
+    },
+    {
+      "id": "L04",
+      "doi_match": true,
+      "title_match": true
+    },
+    {
+      "id": "L05",
+      "doi_match": true,
+      "title_match": true
+    },
+    {
+      "id": "L06",
+      "doi_match": true,
+      "title_match": true
+    },
+    {
+      "id": "L08",
+      "doi_match": true,
+      "title_match": true
+    },
+    {
+      "id": "L09",
+      "doi_match": true,
+      "title_match": true
+    },
+    {
+      "id": "L10",
+      "doi_match": true,
+      "title_match": true
+    },
+    {
+      "id": "L11",
+      "doi_match": true,
+      "title_match": true
+    },
+    {
+      "id": "L12",
+      "doi_match": true,
+      "title_match": true
+    },
+    {
+      "id": "L13",
+      "doi_match": true,
+      "title_match": true
+    },
+    {
+      "id": "L14",
+      "doi_match": true,
+      "title_match": true
+    }
+  ],
+  "arxiv_version_record": "https://arxiv.org/abs/2403.03631v2",
+  "verified_provenance_entries": 35,
+  "roles_allowed": true,
+  "read_scopes_and_boundaries_present": true,
+  "pdf_text_png_gitignored": true,
+  "research_computation_performed": false,
+  "original_assets_modified": false,
+  "commit_created": false
+}

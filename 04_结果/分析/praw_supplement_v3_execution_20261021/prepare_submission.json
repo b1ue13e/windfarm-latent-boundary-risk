@@ -1,0 +1,8 @@
+{
+  "stage": "prepare",
+  "command": "cd /lstr/sahara/minlpml/junyu/praw_supplement_v3_20261021_87fde9b && qsub -v SUPPLEMENT_ROOT=/lstr/sahara/minlpml/junyu/praw_supplement_v3_20261021_87fde9b,STAGE=prepare experiments/praw_supplement_v3_20261021/run.pbs",
+  "returncode": 0,
+  "stdout": "245215.cm",
+  "stderr": "",
+  "submitted_utc": "2026-10-21T03:34:57.668252+00:00"
+}

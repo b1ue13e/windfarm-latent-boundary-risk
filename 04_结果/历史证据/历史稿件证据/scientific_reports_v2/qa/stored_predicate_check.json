@@ -1,0 +1,29 @@
+{
+  "status": "MATCHES_ALL12_STORED_CORRECTED_ROUTES",
+  "family": 596,
+  "guard_rows": 204,
+  "routes": {
+    "Original:HGB": {
+      "A": false,
+      "B": false,
+      "C": false
+    },
+    "Original:MLP": {
+      "A": false,
+      "B": false,
+      "C": false
+    },
+    "Common:HGB": {
+      "A": false,
+      "B": false,
+      "C": false
+    },
+    "Common:MLP": {
+      "A": false,
+      "B": false,
+      "C": false
+    }
+  },
+  "new_estimates": false,
+  "thresholds_source": "source_data/M_protocol.json"
+}

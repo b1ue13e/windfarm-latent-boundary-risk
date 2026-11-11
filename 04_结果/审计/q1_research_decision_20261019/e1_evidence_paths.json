@@ -1,0 +1,74 @@
+{
+  "record_id": "q1_e1_evidence_paths_20261019",
+  "record_type": "E1_PAPER_JUDGMENT_ARCHIVE_NOT_QUALIFICATION_OR_EXECUTION",
+  "date": "2026-10-19",
+  "parent_record": "research_audit/q1_research_decision_20261019/decision.json",
+  "scope": "A1_E1_ONLY_NO_NEW_REQUIREMENTS_OR_E2_E4_REVIEW",
+  "epistemic_status": "CONDITIONAL_JUDGMENT_NO_NEW_QUALIFICATION_EVIDENCE",
+  "current_state": {
+    "candidate": "Hill of Towie 2026 Jan-Apr",
+    "exposure": "EXPOSURE_UNKNOWN",
+    "user_answer_verbatim": "无法确认查看历史",
+    "independent_confirmation_qualified": false,
+    "E1_closed": false,
+    "qualified_windows": 0,
+    "analysis_performed": false,
+    "project_state": "STOP_ADDITIONAL_INVESTMENT",
+    "execution_authorized": false,
+    "execution_queue": [],
+    "automatic_resume_conditions": []
+  },
+  "evidence_identities": [
+    {"id": "POTENTIAL_INDEPENDENT_CONFIRMATION", "meaning": "a conditional qualification path requiring actual supporting evidence", "qualified_now": false, "closes_E1_by_label_alone": false},
+    {"id": "PREDECLARED_SECONDARY_INDEPENDENCE_UNESTABLISHED", "meaning": "retrospective secondary analysis with rules fixed before that analysis and prior knowledge disclosed; independence not established", "closes_E1": false, "analysis_performed": false},
+    {"id": "EXPLORATORY_RESULT_INFORMED", "meaning": "relevant data or results actually informed hypothesis or analysis choices", "closes_E1": false, "UNKNOWN_alone_proves_this": false, "analysis_performed": false}
+  ],
+  "potential_paths_are_alternatives_not_joint_requirements": true,
+  "potential_paths": [
+    {"id": "P1", "path": "clarify existing 2026 candidate knowledge history", "minimum_basis": "credible records and participant account reasonably support no relevant use in design or selection", "status": "CONDITIONAL_NOT_VERIFIED", "qualifies_candidate_now": false},
+    {"id": "P2", "path": "verified protected existing within-site subwindow", "minimum_basis": "no use or indirect disclosure via whole-window summaries; eligibility/time-based selection", "status": "CONDITIONAL_NOT_VERIFIED", "qualifies_candidate_now": false},
+    {"id": "P3", "path": "same-site window generated after complete analysis-package freeze", "minimum_basis": "prebound eligibility/calendar, no outcome feedback, clear access and reporting boundary", "status": "UNBOUND_NO_AVAILABILITY_CLAIM", "qualifies_candidate_now": false},
+    {"id": "P4", "path": "genuinely protected window under third-party custody", "minimum_basis": "credible prior custody and information separation; original freeze/unlock obligations preserved", "status": "CONDITIONAL_NO_CUSTODY_EVIDENCE", "qualifies_candidate_now": false, "third_party_contact_authorized": false}
+  ],
+  "nonqualifying_shortcuts": [
+    "new timestamp alone does not establish past independence",
+    "unknown-exposure data plus a new split/CV/bootstrap does not establish independence",
+    "new analyst or independent recomputation does not remove original design knowledge",
+    "custody imposed now cannot repair past unknown exposure",
+    "new file name/version/DOI or redownload of same measurements does not create new data identity",
+    "different farm cannot silently replace current within-site E1"
+  ],
+  "E1_explanation_dimensions": ["source/calendar/context identity", "relevant designers' prior viewing/analysis/communication and timing", "basis concerning use in design or selection", "eligibility/time rather than outcome basis for window choice"],
+  "calibrated_limits": {
+    "unseen_by_everyone_worldwide_required": false,
+    "absolute_proof_of_no_influence_required": false,
+    "complete_forensic_logs_or_external_auditor_required": false,
+    "custodian_viewing_automatically_disqualifies": false,
+    "all_historical_context_must_be_unseen": false,
+    "missing_download_log_proves_unseen": false,
+    "no_computed_d_proves_independence": false,
+    "any_prior_access_automatically_exploratory": false,
+    "predeclared_secondary_equals_independent_confirmation": false
+  },
+  "decision": "retain bounded clarification or genuinely protected later within-site path; if history remains unresolved stop claiming independence, retain transparent secondary-analysis identity; no permanent rejection of data and no status upgrade",
+  "source_spec": "research_audit/q1_paper_closure_20261019/paper_contract.json",
+  "original_exposure_record": "research_audit/q1_paper_closure_20261019/exposure_record.json",
+  "method_guidance_reference": {
+    "institution": "Center for Open Science",
+    "title": "Preregistration",
+    "url": "https://www.cos.io/initiatives/prereg",
+    "source_type": "official_method_guidance",
+    "gap_role": "foundational",
+    "read_scope": "existing-data access, analysis and prior-knowledge guidance read in preceding E1 paper assessment; archived here without new retrieval",
+    "use_limit": "supports distinctions and disclosure; does not certify this candidate or create new mandatory steps"
+  },
+  "original_E1_requirement_changed": false,
+  "E2_E4_requirements_changed": false,
+  "new_scientific_conclusion": false,
+  "new_source_qualification_evidence": false,
+  "measurement_access_or_download": false,
+  "manuscript_edits": false,
+  "experiment_execution": false,
+  "project_resumption": false,
+  "future_execution_requires_separate_explicit_user_authorization": true
+}

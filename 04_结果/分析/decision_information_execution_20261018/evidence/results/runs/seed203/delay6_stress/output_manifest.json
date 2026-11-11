@@ -1,0 +1,98 @@
+{
+  "block_totals.npz": {
+    "bytes": 41614,
+    "sha256": "17390fd6b28d05cdc5c4b551c8674abe07e3aea6c625922ce2796f3b135305d2"
+  },
+  "calibration_offsets.json": {
+    "bytes": 325,
+    "sha256": "1718bc4d28093a0df4ba296c06775c3a332c9bc13b1e9ee8dd8d5d805b29bc20"
+  },
+  "evaluation_actions.npz": {
+    "bytes": 45743851,
+    "sha256": "248a8725ac701817fb43c1e7254f5a682918bca5cc494c9aaf133d4396a6534b"
+  },
+  "evaluation_coordinates.npz": {
+    "bytes": 11320499,
+    "sha256": "128957e19901443db961f66d6aa4de2ef7dfce62ba01f5a1c0190eff04a8c1c5"
+  },
+  "execution_receipt.json": {
+    "bytes": 2902,
+    "sha256": "d35d2519f04ee3c30c4d45034600ffdd6e539c8e2d522c7dc969b1a2b308f448"
+  },
+  "metrics.csv": {
+    "bytes": 2341,
+    "sha256": "a4b5e7fdc9cefca18c5404b115b9784b543cba192908a43aaa9f278e7f5afcdf"
+  },
+  "models_and_diagnostics.json": {
+    "bytes": 1131,
+    "sha256": "5ccafb60f32ea8da81e6becc274389151a21f1dee6150285a4d6f5c58918fed5"
+  },
+  "policy_A_Wind.joblib": {
+    "bytes": 298265,
+    "sha256": "a551a93a9dfdffd5c88939d3498064d9e76563fb5124c935e29f68037929beaa"
+  },
+  "policy_B_Consequences.joblib": {
+    "bytes": 401369,
+    "sha256": "4fbc6421b7fa48261fe641d5a1f0905ab0963d90e510b6bb891343f100505e7b"
+  },
+  "policy_C_PitchScore.joblib": {
+    "bytes": 403465,
+    "sha256": "344c2f998f56d4492bad4a69bdaa6f1c56678e05a3ea6f170de9b6286b30259e"
+  },
+  "policy_C_ShuffledScore.joblib": {
+    "bytes": 403465,
+    "sha256": "9dcbf5ae56fef1e62334ae06cb0edb86cab1c63e45ffc10cc409acd93f1783d4"
+  },
+  "policy_C_WindScore.joblib": {
+    "bytes": 403465,
+    "sha256": "c06fd99d87db1c61ef8f1c088c1f7087f3236bacc81c548d6b4d391c754d5f68"
+  },
+  "policy_D_TruePitch_Diagnostic.joblib": {
+    "bytes": 402713,
+    "sha256": "ab6de214f3957a2a713c3d0fa2a9b03fae16f13afdb2143ad05f0f5cd0b87c2c"
+  },
+  "policy_E_Compressed.joblib": {
+    "bytes": 300377,
+    "sha256": "5a95255bcf668461cf30e937896413a6a533073e3e80b9fb6c5de8a6b9bd4a08"
+  },
+  "policy_fit_sample_indices.npy": {
+    "bytes": 960128,
+    "sha256": "04517adf9d99dc9df827404df9211d654457fd8321c09f30560d7e52d157b49b"
+  },
+  "source/decision_information.py": {
+    "bytes": 7293,
+    "sha256": "7e6fd36eec25a5d1c9276cc14224f0aad5ea78b34e802ef84bdc6b7c043173a5"
+  },
+  "source/protocol.json": {
+    "bytes": 6197,
+    "sha256": "c69bfdc1940996ad5b9bee9d610e52f6d0ad9618e316bc704e64d78ee1a1179b"
+  },
+  "source/run_decision_information_development.py": {
+    "bytes": 32009,
+    "sha256": "a11f43242004687ea9da4d73a9c087373dd1d0f991eb196afe66706c87a86df4"
+  },
+  "state_fit_sample_indices.npy": {
+    "bytes": 800128,
+    "sha256": "aed0bab840db895225803977292486b94c2a6a645fa4f6620519bce3b8cd5938"
+  },
+  "state_label_control_permutation.npy": {
+    "bytes": 800128,
+    "sha256": "5130bfa9091ee15c51b34fc8c2be71627663fb3f62e3472b8002d619d7a76663"
+  },
+  "state_pitch.joblib": {
+    "bytes": 403305,
+    "sha256": "0cf80dc18b335927f7284bbb562ad6ef5ea163d1110e0824f0432a290e0bbc9d"
+  },
+  "state_shuffle.joblib": {
+    "bytes": 403305,
+    "sha256": "bb89e7b56da2439c758299ab50f01f451eaaa483298071f89a76beaa8682c4d1"
+  },
+  "state_wind.joblib": {
+    "bytes": 301465,
+    "sha256": "29d351222576ef4fb6b2aa973da937ffb6e9f64df86aa509306d2ebd7dbb8fef"
+  },
+  "wind_bins.json": {
+    "bytes": 528,
+    "sha256": "51b9d25a823fb8de78a02687207a89aa7594e4bf69f999ee546fd5e60f09ef30"
+  }
+}

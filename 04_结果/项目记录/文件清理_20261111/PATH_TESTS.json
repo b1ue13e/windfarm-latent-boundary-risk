@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "command": [
+    "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "-m",
+    "pytest",
+    "02_公共资源/工程/tests/test_repository_paths.py",
+    "-q",
+    "-p",
+    "no:cacheprovider"
+  ]
+}

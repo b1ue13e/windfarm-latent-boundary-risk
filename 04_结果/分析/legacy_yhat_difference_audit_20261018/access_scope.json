@@ -1,0 +1,8 @@
+{
+  "original_remote_document_reference": "docs/tste_trainonly_rerun_results_20260830.md identifies grokking192.168.17.251:/root/paper3_audit_rerun_20260830",
+  "attempt": "ssh BatchMode StrictHostKeyChecking=yes ConnectTimeout8 root@192.168.17.251 read-only hostname/directory probe",
+  "result": "HOST_KEY_VERIFICATION_FAILED; no known ED25519 host key; no remote filesystem access",
+  "trust_configuration_changed": false,
+  "original_remote_checkpoint_environment_validation": "UNKNOWN",
+  "local_month_session_root": "C:/Users/lidong/.codex/sessions/2026/08 not present"
+}

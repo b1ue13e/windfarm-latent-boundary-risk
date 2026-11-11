@@ -1,0 +1,58 @@
+{
+  "utc": "2026-10-19T06:57:39.064848+00:00",
+  "status": "PASS_STOP_STATE_AND_BOUNDED_PRESERVATION",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "protected_paths_rechecked": 656,
+  "protected_changes": [],
+  "historical_state_snapshots_verified": 8,
+  "execution_queue": [],
+  "automatic_resume": false,
+  "metis_automation_observed": "PAUSED_UNCHANGED_LOCAL_CONFIG",
+  "remote_access": false,
+  "training_inference_calibration_resampling_data_acquisition": false,
+  "commands": [
+    {
+      "name": "scientific_claim_gate",
+      "argv": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_scientific_claim_gate.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "number_gate",
+      "argv": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_tste_number_consistency.py",
+        "--output-dir",
+        "E:\\论文3\\research_audit\\mainline_stop_20261019\\verification\\numbers"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "independent_confirmation_gate",
+      "argv": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_independent_confirmation_gate.py",
+        "--output",
+        "E:\\论文3\\research_audit\\mainline_stop_20261019\\verification\\confirmation_gate.json"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "scientific_completion": false,
+  "scope": "504 prior resource/loss input paths plus tracked pre-existing research_audit files and listed control-plane files; not a fresh census/hash of all raw assets",
+  "state_sha256": {
+    "PROJECT.md": "f1e1a9fdd90dd04156abad8b88d7524c8cad9d83a63afde33875508249b4c848",
+    "research_state.yaml": "45268886c4f2d2ebc9fbf6de5c5a5178dea0aac9813cc2786c37c4d59fd789df",
+    "research-manifest.json": "d53b3e0ea9b6e9dfe374dececea0b1c04012c59ca6b4d64b819cb771536f2e97",
+    ".agent_state/RUN_STATE.json": "49992e4a4858a5934a4d282d418a282f6b4fa2d9ccf163207a68b87bde63a4cd",
+    ".agent_state/TASK_LEDGER.md": "8f8f23b68fcb041bfea8d299257d0a9f3091101fc720fb5b44a17250e8ba237a",
+    ".agent_state/EVIDENCE_LEDGER.md": "20db1f55608b863c395b9cef42a46564a39ea1cf3c62223edcd3c8e634868a1a",
+    ".agent_state/DECISION_LOG.md": "6d008e67540f5e61aff668eea0c0d339b5816c6751bb0aa07319b5f7bf9b7fc4",
+    ".agent_state/CURRENT_RESEARCH_ASSESSMENT_20261017.md": "43f09fe99f21732475c2dc8198b03b82fce729fe8f6b63257b7d9acd3d27d805"
+  },
+  "decision_record_sha256": "e248170f90a20761fb756d0d1ace63f0fe27f0b9a46f8c56eee3816550a04459",
+  "script_sha256": "71d8b0db34b97ba4eb8d570a181bff1f59fc10eaf4a8bd4b190d9aa1ff9d1d6d"
+}

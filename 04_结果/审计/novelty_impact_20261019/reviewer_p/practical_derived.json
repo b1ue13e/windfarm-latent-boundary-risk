@@ -1,0 +1,728 @@
+{
+  "primary": {
+    "verdict": {
+      "status": "ALL_FROZEN_CANDIDATES_CONFIRMED",
+      "candidates": [
+        {
+          "position": 0,
+          "risk_pass": true,
+          "paired_cost_pass": true,
+          "reference_risk_pass": true,
+          "confirmed": true
+        }
+      ],
+      "epsilon": 0.02,
+      "scope": "Fixed historical choices against frozen full-information reference only; not finite-family minimum or deployment safety"
+    },
+    "labels": [
+      "P1/HGB/q0.95",
+      "WPQ36/HGB/q0.95"
+    ],
+    "bounds": {
+      "groups": [
+        {
+          "mean_cost": [
+            67.02040332110329,
+            66.64443044512103
+          ],
+          "mean_cost_ci_low": [
+            61.37664132554632,
+            61.03111535571304
+          ],
+          "mean_cost_ci_high": [
+            72.79440878669442,
+            72.36631821164205
+          ],
+          "risk_point": [
+            [
+              0.05532415449450931,
+              0.055354364605833574
+            ],
+            [
+              0.05529866471307947,
+              0.05538363065117895
+            ],
+            [
+              0.05519859371931785,
+              0.05534020361615032
+            ],
+            [
+              0.05531754603265713,
+              0.05553090494388472
+            ],
+            [
+              0.055428001752186457,
+              0.05505981602042204
+            ]
+          ],
+          "risk_lower": [
+            [
+              0.048723404341745526,
+              0.04891388285014025
+            ],
+            [
+              0.048715408865274534,
+              0.04895702687726801
+            ],
+            [
+              0.048622307186229466,
+              0.04884222753264524
+            ],
+            [
+              0.04872090126834086,
+              0.04905786009297956
+            ],
+            [
+              0.04883132551319152,
+              0.04856827209068859
+            ]
+          ],
+          "risk_upper": [
+            [
+              0.06192490464727309,
+              0.0617948463615269
+            ],
+            [
+              0.0618819205608844,
+              0.061810234425089886
+            ],
+            [
+              0.06177488025240624,
+              0.0618381796996554
+            ],
+            [
+              0.0619141907969734,
+              0.062003949794789875
+            ],
+            [
+              0.062024677991181394,
+              0.06155135995015548
+            ]
+          ],
+          "relative_ratio_point": [
+            [
+              0.0,
+              0.005641474815991643
+            ],
+            [
+              -0.005609827117585731,
+              0.0
+            ]
+          ],
+          "relative_ratio_lower": [
+            [
+              0.0,
+              0.0035746800646510356
+            ],
+            [
+              -0.007653670308769844,
+              0.0
+            ]
+          ],
+          "relative_ratio_upper": [
+            [
+              0.0,
+              0.00770826956733225
+            ],
+            [
+              -0.003565983926401617,
+              0.0
+            ]
+          ]
+        }
+      ],
+      "critical": 2.26575648595302,
+      "draw_sha256": "d13859e1ffc77a7004bab17fd76564fbef6696d97a7b4f8031dd013129429544",
+      "coordinate_family_size": 14,
+      "coverage": "Approximate shared-day-block envelope, conditional on frozen seed instances"
+    },
+    "choices_sha256": "358e0884ea36c86f98518a3f4ba5b3902716c60b27c476a93536203f689ada29",
+    "uses_test_selection": false
+  },
+  "timing_summary": {
+    "Common/HGB": {
+      "fit_seconds": {
+        "mean": 1.5825391551945358,
+        "min": 1.291193668032065,
+        "max": 2.2919725789688528
+      },
+      "historical_stage_seconds": {
+        "mean": 5.794639800000001,
+        "min": 4.986893,
+        "max": 7.360323
+      },
+      "evaluation_stage_seconds": {
+        "mean": 5.018996799999999,
+        "min": 4.75333,
+        "max": 5.323297
+      },
+      "hosts": [
+        "cn01",
+        "cn14",
+        "cn26",
+        "cn28"
+      ]
+    },
+    "Common/MLP": {
+      "fit_seconds": {
+        "mean": 45.15482143149711,
+        "min": 20.225905182305723,
+        "max": 125.1569657039363
+      },
+      "historical_stage_seconds": {
+        "mean": 48.269391999999996,
+        "min": 22.545469,
+        "max": 132.090698
+      },
+      "evaluation_stage_seconds": {
+        "mean": 3.0209974,
+        "min": 2.835667,
+        "max": 3.17594
+      },
+      "hosts": [
+        "cn01",
+        "cn04",
+        "cn13",
+        "cn21",
+        "cn31"
+      ]
+    },
+    "P1/HGB": {
+      "fit_seconds": {
+        "mean": 2.5003294139867647,
+        "min": 1.6747728241607547,
+        "max": 3.576088441070169
+      },
+      "historical_stage_seconds": {
+        "mean": 8.6652676,
+        "min": 5.967207,
+        "max": 14.804154
+      },
+      "evaluation_stage_seconds": {
+        "mean": 5.3467248,
+        "min": 5.028695,
+        "max": 5.618053
+      },
+      "hosts": [
+        "cn21",
+        "cn26",
+        "cn28"
+      ]
+    },
+    "P1/MLP": {
+      "fit_seconds": {
+        "mean": 30.23175993382465,
+        "min": 24.15119810588658,
+        "max": 35.047817309969105
+      },
+      "historical_stage_seconds": {
+        "mean": 32.6733994,
+        "min": 26.131817,
+        "max": 37.890633
+      },
+      "evaluation_stage_seconds": {
+        "mean": 2.9875100000000003,
+        "min": 2.726518,
+        "max": 3.286664
+      },
+      "hosts": [
+        "cn07",
+        "cn09",
+        "cn21",
+        "cn26",
+        "cn31"
+      ]
+    },
+    "P1/Persistence": {
+      "fit_seconds": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "historical_stage_seconds": {
+        "mean": 2.1676604,
+        "min": 1.721165,
+        "max": 3.025757
+      },
+      "evaluation_stage_seconds": {
+        "mean": 3.1006343999999997,
+        "min": 2.864665,
+        "max": 3.544131
+      },
+      "hosts": [
+        "cn21",
+        "cn26",
+        "cn28"
+      ]
+    },
+    "WPQ36/HGB": {
+      "fit_seconds": {
+        "mean": 34.679387310240415,
+        "min": 33.31857215985656,
+        "max": 37.12162638735026
+      },
+      "historical_stage_seconds": {
+        "mean": 42.531908,
+        "min": 38.604436,
+        "max": 50.024568
+      },
+      "evaluation_stage_seconds": {
+        "mean": 6.797192,
+        "min": 6.251744,
+        "max": 7.455374
+      },
+      "hosts": [
+        "cn04",
+        "cn13",
+        "cn21",
+        "cn28"
+      ]
+    },
+    "WPQ36/MLP": {
+      "fit_seconds": {
+        "mean": 131.9217282208614,
+        "min": 59.05943961115554,
+        "max": 413.2459097909741
+      },
+      "historical_stage_seconds": {
+        "mean": 136.78445200000002,
+        "min": 63.436598,
+        "max": 418.282193
+      },
+      "evaluation_stage_seconds": {
+        "mean": 5.7365254,
+        "min": 5.35735,
+        "max": 6.747439
+      },
+      "hosts": [
+        "cn21",
+        "cn31"
+      ]
+    }
+  },
+  "primary_seed_pairs": [
+    {
+      "seed": 201,
+      "count": 1059248,
+      "p1_mean_cost": 67.16764014439781,
+      "reference_mean_cost": 66.72497183808,
+      "absolute_mean_premium": 0.44266830631780846,
+      "relative_premium": 0.006634222452607724,
+      "total_premium": 468895.51813052595
+    },
+    {
+      "seed": 202,
+      "count": 1059248,
+      "p1_mean_cost": 66.95061528985414,
+      "reference_mean_cost": 66.50793826938256,
+      "absolute_mean_premium": 0.4426770204715851,
+      "relative_premium": 0.006656002756822412,
+      "total_premium": 468904.7485804856
+    },
+    {
+      "seed": 203,
+      "count": 1059248,
+      "p1_mean_cost": 66.97172684414346,
+      "reference_mean_cost": 66.69058706310307,
+      "absolute_mean_premium": 0.28113978104038595,
+      "relative_premium": 0.004215584138948569,
+      "total_premium": 297796.75078746676
+    },
+    {
+      "seed": 204,
+      "count": 1059248,
+      "p1_mean_cost": 67.05270913523037,
+      "reference_mean_cost": 66.65235205476421,
+      "absolute_mean_premium": 0.40035708046616053,
+      "relative_premium": 0.006006645949076355,
+      "total_premium": 424077.4367696196
+    },
+    {
+      "seed": 205,
+      "count": 1059248,
+      "p1_mean_cost": 66.95932519189067,
+      "reference_mean_cost": 66.64630300027531,
+      "absolute_mean_premium": 0.31302219161535977,
+      "relative_premium": 0.004696767525335452,
+      "total_premium": 331568.1304241866
+    }
+  ],
+  "mean_annual_proxy_premium": 398248.5169384569,
+  "daily_worst_premium": {
+    "seed": 201,
+    "day_id": 1077,
+    "date": "2025-12-13",
+    "count": 3024,
+    "p1_cost": 452663.72284396575,
+    "reference_cost": 425061.29342735687,
+    "premium": 27602.42941660888,
+    "p1_risk": 0.07771164021164022,
+    "reference_risk": 0.06944444444444445
+  },
+  "daily_worst_risk": {
+    "seed": 204,
+    "day_id": 1034,
+    "date": "2025-10-31",
+    "count": 2886,
+    "p1_cost": 531177.8235809372,
+    "reference_cost": 530822.6568263432,
+    "premium": 355.1667545940727,
+    "p1_risk": 0.21101871101871103,
+    "reference_risk": 0.20928620928620928
+  },
+  "number_seed_days": 1825,
+  "valid_seed_days": 1765,
+  "zero_target_seed_days": 60,
+  "fraction_valid_seed_days_positive_premium": 0.681586402266289,
+  "forecast_shape": [
+    52553,
+    21
+  ],
+  "raw_feature_materialization_columns": 148,
+  "raw_feature_materialization_bytes": 653338896,
+  "fit_first_index_copy_bytes": 213120000,
+  "p1_raw_width": 5,
+  "full_raw_width": 112,
+  "p1_mlp_width": 10,
+  "full_mlp_width": 224,
+  "raw_width_reduction": 0.9553571428571429,
+  "standalone_float32_row_bytes": {
+    "P1": 20,
+    "WPQ36": 448
+  },
+  "actual_hgb_width": "UNKNOWN: original model/scaler not exported; missing indicators depend on fit data",
+  "scheduler": {
+    "utc": "2026-10-19T04:54:04.582714+00:00",
+    "jobs": {
+      "prepare": {
+        "job": "244727.cm",
+        "query_exit": 0,
+        "fields": {
+          "resources_used.cput": "00:00:44",
+          "resources_used.mem": "918012kb",
+          "resources_used.ncpus": "2",
+          "resources_used.walltime": "00:00:32",
+          "job_state": "F",
+          "Exit_status": "0"
+        }
+      },
+      "smoke": {
+        "job": "244728.cm",
+        "query_exit": 0,
+        "fields": {
+          "resources_used.cput": "00:01:13",
+          "resources_used.mem": "1223488kb",
+          "resources_used.ncpus": "2",
+          "resources_used.walltime": "00:00:43",
+          "job_state": "F",
+          "Exit_status": "0"
+        }
+      },
+      "historical": {
+        "job": "244729[].cm",
+        "query_exit": 0,
+        "fields": {
+          "job_state": "F",
+          "Exit_status": "0"
+        }
+      },
+      "choose": {
+        "job": "244730.cm",
+        "query_exit": 0,
+        "fields": {
+          "resources_used.cput": "00:00:35",
+          "resources_used.mem": "982176kb",
+          "resources_used.ncpus": "2",
+          "resources_used.walltime": "00:01:00",
+          "job_state": "F",
+          "Exit_status": "0"
+        }
+      },
+      "unlock": {
+        "job": "244731.cm",
+        "query_exit": 0,
+        "fields": {
+          "resources_used.cput": "00:00:40",
+          "resources_used.mem": "813028kb",
+          "resources_used.ncpus": "2",
+          "resources_used.walltime": "00:00:38",
+          "job_state": "F",
+          "Exit_status": "0"
+        }
+      },
+      "evaluate": {
+        "job": "244732[].cm",
+        "query_exit": 0,
+        "fields": {
+          "job_state": "F",
+          "Exit_status": "0"
+        }
+      },
+      "aggregate": {
+        "job": "244733.cm",
+        "query_exit": 0,
+        "fields": {
+          "resources_used.cput": "00:01:32",
+          "resources_used.mem": "966908kb",
+          "resources_used.ncpus": "2",
+          "resources_used.walltime": "00:01:53",
+          "job_state": "F",
+          "Exit_status": "0"
+        }
+      }
+    }
+  },
+  "baselines": {
+    "Common/HGB/q0.9": {
+      "mean_cost": 77.79965075510094,
+      "max_risk_point": 0.12126716311949609,
+      "max_risk_upper": 0.14009589616776644,
+      "resource": [
+        0,
+        1,
+        4
+      ]
+    },
+    "Common/HGB/q0.925": {
+      "mean_cost": 77.79120652012016,
+      "max_risk_point": 0.08877524432427533,
+      "max_risk_upper": 0.10250013505159794,
+      "resource": [
+        0,
+        1,
+        4
+      ]
+    },
+    "Common/HGB/q0.95": {
+      "mean_cost": 78.27292154501403,
+      "max_risk_point": 0.055925524523057865,
+      "max_risk_upper": 0.06994065467209985,
+      "resource": [
+        0,
+        1,
+        4
+      ]
+    },
+    "Common/HGB/q0.975": {
+      "mean_cost": 86.62716801283656,
+      "max_risk_point": 0.029846645922390225,
+      "max_risk_upper": 0.03983631633424779,
+      "resource": [
+        0,
+        1,
+        4
+      ]
+    },
+    "Common/HGB/q0.99": {
+      "mean_cost": 115.3753131602816,
+      "max_risk_point": 0.011673375828889929,
+      "max_risk_upper": 0.01705077601437435,
+      "resource": [
+        0,
+        1,
+        4
+      ]
+    },
+    "Common/MLP/q0.9": {
+      "mean_cost": 78.23961848562406,
+      "max_risk_point": 0.1219827651314895,
+      "max_risk_upper": 0.14175725602523842,
+      "resource": [
+        0,
+        1,
+        4
+      ]
+    },
+    "Common/MLP/q0.925": {
+      "mean_cost": 78.22940750498644,
+      "max_risk_point": 0.08912549280244098,
+      "max_risk_upper": 0.10322208592233871,
+      "resource": [
+        0,
+        1,
+        4
+      ]
+    },
+    "Common/MLP/q0.95": {
+      "mean_cost": 78.65914830992007,
+      "max_risk_point": 0.05631259157439995,
+      "max_risk_upper": 0.07032419207654078,
+      "resource": [
+        0,
+        1,
+        4
+      ]
+    },
+    "Common/MLP/q0.975": {
+      "mean_cost": 86.50627743233235,
+      "max_risk_point": 0.029674825914233493,
+      "max_risk_upper": 0.03962588218216774,
+      "resource": [
+        0,
+        1,
+        4
+      ]
+    },
+    "Common/MLP/q0.99": {
+      "mean_cost": 115.43958086724685,
+      "max_risk_point": 0.011596906484600395,
+      "max_risk_upper": 0.016955595470100476,
+      "resource": [
+        0,
+        1,
+        4
+      ]
+    },
+    "P1/HGB/q0.9": {
+      "mean_cost": 65.72799380029856,
+      "max_risk_point": 0.0994847287887256,
+      "max_risk_upper": 0.11051819384794667,
+      "resource": [
+        1,
+        1,
+        5
+      ]
+    },
+    "P1/HGB/q0.925": {
+      "mean_cost": 65.73923230784504,
+      "max_risk_point": 0.08688994456444572,
+      "max_risk_upper": 0.0976988760696712,
+      "resource": [
+        1,
+        1,
+        5
+      ]
+    },
+    "P1/HGB/q0.95": {
+      "mean_cost": 67.02040332110329,
+      "max_risk_point": 0.055428001752186457,
+      "max_risk_upper": 0.0670488602271627,
+      "resource": [
+        1,
+        1,
+        5
+      ]
+    },
+    "P1/HGB/q0.975": {
+      "mean_cost": 75.42737894679873,
+      "max_risk_point": 0.02772721779979759,
+      "max_risk_upper": 0.03621204820383128,
+      "resource": [
+        1,
+        1,
+        5
+      ]
+    },
+    "P1/HGB/q0.99": {
+      "mean_cost": 101.50231764983255,
+      "max_risk_point": 0.011103159977644517,
+      "max_risk_upper": 0.015793016659769316,
+      "resource": [
+        1,
+        1,
+        5
+      ]
+    },
+    "WPQ36/HGB/q0.9": {
+      "mean_cost": 65.37877498883573,
+      "max_risk_point": 0.10674931649623129,
+      "max_risk_upper": 0.11776914333418274,
+      "resource": [
+        3,
+        1,
+        112
+      ]
+    },
+    "WPQ36/HGB/q0.925": {
+      "mean_cost": 65.39477483782802,
+      "max_risk_point": 0.08434946301527121,
+      "max_risk_upper": 0.09521252240177089,
+      "resource": [
+        3,
+        1,
+        112
+      ]
+    },
+    "WPQ36/HGB/q0.95": {
+      "mean_cost": 66.64443044512103,
+      "max_risk_point": 0.05553090494388472,
+      "max_risk_upper": 0.06693397148668102,
+      "resource": [
+        3,
+        1,
+        112
+      ]
+    },
+    "WPQ36/HGB/q0.975": {
+      "mean_cost": 74.7264586013055,
+      "max_risk_point": 0.028051032430554505,
+      "max_risk_upper": 0.0364468897560814,
+      "resource": [
+        3,
+        1,
+        112
+      ]
+    },
+    "WPQ36/HGB/q0.99": {
+      "mean_cost": 99.69189070501614,
+      "max_risk_point": 0.011150363276588674,
+      "max_risk_upper": 0.015796978254775152,
+      "resource": [
+        3,
+        1,
+        112
+      ]
+    },
+    "P1/Persistence/q0.9": {
+      "mean_cost": 85.8502632514936,
+      "max_risk_point": 0.10092631753848012,
+      "max_risk_upper": 0.11960352719996031,
+      "resource": [
+        1,
+        0,
+        2
+      ]
+    },
+    "P1/Persistence/q0.925": {
+      "mean_cost": 86.96947990577442,
+      "max_risk_point": 0.07650427473075239,
+      "max_risk_upper": 0.09287414487738713,
+      "resource": [
+        1,
+        0,
+        2
+      ]
+    },
+    "P1/Persistence/q0.95": {
+      "mean_cost": 92.28348943188657,
+      "max_risk_point": 0.0516479615727384,
+      "max_risk_upper": 0.06472914556454744,
+      "resource": [
+        1,
+        0,
+        2
+      ]
+    },
+    "P1/Persistence/q0.975": {
+      "mean_cost": 109.28924771413782,
+      "max_risk_point": 0.026564128513813574,
+      "max_risk_upper": 0.03499228099262656,
+      "resource": [
+        1,
+        0,
+        2
+      ]
+    },
+    "P1/Persistence/q0.99": {
+      "mean_cost": 143.25066157863216,
+      "max_risk_point": 0.01076896062111989,
+      "max_risk_upper": 0.015185127022061935,
+      "resource": [
+        1,
+        0,
+        2
+      ]
+    }
+  },
+  "all_seed_noninferiority_mean_reconstructed": true
+}

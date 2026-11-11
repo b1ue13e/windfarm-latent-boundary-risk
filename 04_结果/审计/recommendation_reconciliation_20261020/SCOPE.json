@@ -1,0 +1,2398 @@
+{
+  "task": "Reconcile GO to NO recommendation: distinguish empirical changes and editorial-standard changes; select one stable paper identity and primary venue",
+  "created_utc": "2026-10-20T13:39:03.233867+00:00",
+  "starting_commit": "490f59ab395b5a5a8f006dd197e2865f7ba44624",
+  "review_only": true,
+  "protected_files": {
+    "AGENTS.md": {
+      "bytes": 5487,
+      "sha256": "b1feb8e637fd05baeeace62925f086257bb2b9af7c0905c25f636dc8ec92c993"
+    },
+    "DECISIVE_EXPERIMENT_REPORT.md": {
+      "bytes": 6097,
+      "sha256": "b824856886cc65b8fe55a9c9e37ed1fe029b36541008325cfab636b9af70b7ad"
+    },
+    "PROJECT.md": {
+      "bytes": 80535,
+      "sha256": "d1e10b86bb86934464452ae534259004a7b05705ec22370a0b57d47242d3636d"
+    },
+    "RESEARCH_VERDICT.md": {
+      "bytes": 6825,
+      "sha256": "b5c533402cef2a65aa30214615d32276fb2e6a7974b7bb7626ba253dac286efd"
+    },
+    "analyses/claim_revision_recovery_20261019/derived/summary.json": {
+      "bytes": 1052,
+      "sha256": "316ad260e73cfaafdd7fa47f8aaf36cab0a9bc38d5cb46e3a4b73658905ed758"
+    },
+    "analyses/decision_information_execution_20261018/evidence/results/aggregate/paired_intervals.json": {
+      "bytes": 397994,
+      "sha256": "1de4be76bf901008eb006a5baca2f253325efd7499287287296369b1cc56822c"
+    },
+    "analyses/decision_information_execution_20261018/evidence/results/aggregate/summary.csv": {
+      "bytes": 12103,
+      "sha256": "1a416f7b7ceb8145cd0b705c84a215c1a21a1137c74828ed8add52c5c13be6f4"
+    },
+    "analyses/decision_information_execution_20261018/key_comparisons.csv": {
+      "bytes": 1742,
+      "sha256": "981ef8b6406a50a88dd3386f33d81d7e8f0d596f286f723d1e3dcc41300d8929"
+    },
+    "analyses/e04_c201_exactness_20261018/reconciliation/complete_summary/pooled_slices.csv": {
+      "bytes": 52725,
+      "sha256": "e3791d9fb3a81e8497bc096fe42332edf40f1af69e042391a6703a2dffda34b4"
+    },
+    "analyses/e04_c201_exactness_20261018/reconciliation/result.json": {
+      "bytes": 346,
+      "sha256": "a2a4199e9760b61d1c5ae46a4af55cb85094ba3157ebb5230520719609039147"
+    },
+    "analyses/e04_complete_policy_comparison_20261018/v2/full_policy_metrics.csv": {
+      "bytes": 395,
+      "sha256": "5f75bd197e93c0cdf5156962a691e75ad75e6b0acf913eabd6fbab3793ef990d"
+    },
+    "analyses/e04_feasibility_diagnostic_20261018/diagnostic.json": {
+      "bytes": 41732,
+      "sha256": "0067d7aae891eb8e5e6a2d89f58cb6cf13b8e15f2b78e4f4c3207197f422ac90"
+    },
+    "analyses/e04_regime_slices_20261018/closure_seed201.json": {
+      "bytes": 1021,
+      "sha256": "845b6fa34a17bd76a5d474acd3c7ed0b0b67358feae6aa4290db526e2217e4c4"
+    },
+    "analyses/independent_confirmation_execution_20261019/derived/secondary_cases.csv": {
+      "bytes": 8927,
+      "sha256": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc"
+    },
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json": {
+      "bytes": 3233,
+      "sha256": "f703e64fb7e20843f7daddeb9cc3b0b6d4e95594658560831ba425ac1df7bf72"
+    },
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json": {
+      "bytes": 7504439,
+      "sha256": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060"
+    },
+    "analyses/risk_cost_frontier_execution_20261018/secondary_evidence/results/model_class_results.json": {
+      "bytes": 1495656,
+      "sha256": "ed0cb9d446cf5065aa0ded02a662df58a33bce6b96dc734c9f82d55d72178d76"
+    },
+    "artifacts/anchor_only_decisive_comparison_20260613/anchor_only_decisive_deltas.csv": {
+      "bytes": 6260,
+      "sha256": "5d2a9fed92d57dfee3b538eda3283ce00837b11a878c09f6cc3189caf0cd75a1"
+    },
+    "artifacts/anchor_stress_early_warning_wtb_strictmask/anchor_stress_early_warning_summary.csv": {
+      "bytes": 6543,
+      "sha256": "128a66251cfe21625f9c879d3b68956646c4fb004fa801fd779b4ed3f7d2436e"
+    },
+    "artifacts/boundary_negative_controls_wtb/boundary_negative_controls_summary.csv": {
+      "bytes": 3155,
+      "sha256": "9a11f47fa0915d50398bbba9d1db98b974ab5ec51ef3a2ca2f504dbf05c2e176"
+    },
+    "artifacts/boundary_slice_wtb_strictmask_full/boundary_slice_config.json": {
+      "bytes": 466,
+      "sha256": "70f81c8ec94664f470dc42805da0af4beeffd8dc300d24254495bb13e8475577"
+    },
+    "artifacts/boundary_slice_wtb_strictmask_full/boundary_slice_effects.csv": {
+      "bytes": 1043,
+      "sha256": "775c27987067488fe99fdbf1e3866d3a6514bbaa9e3b1be089ac9cca21094ee4"
+    },
+    "artifacts/breakthrough_20260904/dense_fair_degradation_summary.csv": {
+      "bytes": 786,
+      "sha256": "4eaa43c51bb9d71e4d73e79135668df0d2767d19650351769dbdfa828764f9b8"
+    },
+    "artifacts/breakthrough_20260904/multichannel_classifier_results.csv": {
+      "bytes": 649,
+      "sha256": "4afb6e1c7cbf65f31e4edf45ac9a0bd6fd4feea62a2d2bff549702ea0a384750"
+    },
+    "artifacts/cache_strictmask/wtb_245d/metadata.json": {
+      "bytes": 3626,
+      "sha256": "36d0cb03b7e2d5509f1fa2a4d4707899c348568f68b32cbe91965a2ca4627167"
+    },
+    "artifacts/capacity_matched_dense_wtb/wtb_dense_seed201/training_summary.json": {
+      "bytes": 3718,
+      "sha256": "a9febf3bd201f7024345d25c15fd08efe499c8ed084b58e917eaf6c2cf80f5e9"
+    },
+    "artifacts/checkpoint_replay_fix_wtb/README.md": {
+      "bytes": 1561,
+      "sha256": "65bb2791f53a1c0d740de75edc38cb95467384a58ec2e647eace7354370fc184"
+    },
+    "artifacts/checkpoint_replay_fix_wtb_full/README.md": {
+      "bytes": 1675,
+      "sha256": "127f1281e9a5f96ddd3ada8cc4613af1c75d265d40c474743ca70c32e9629c21"
+    },
+    "artifacts/class_weight_boundary_audit/class_weight_boundary_audit.json": {
+      "bytes": 2443,
+      "sha256": "c228777aedc9e40a2f5ed86cd02960af455c3597b6bb1e872fd7c54f9c040cb1"
+    },
+    "artifacts/class_weight_boundary_audit/class_weight_sensitivity_summary.csv": {
+      "bytes": 782,
+      "sha256": "5d89bb0f0ab08916435c90b1f58e90d7019170ad342978509372e599527dcc7c"
+    },
+    "artifacts/clean_evidence_v2/risk_layer_benchmark/h6_lead6/cross_seed_aggregate.csv": {
+      "bytes": 5277,
+      "sha256": "3bc6438bf8b863e3e334c45acbad3fd2271f4eae9c86c8cc82063ef1d185d0bc"
+    },
+    "artifacts/cloud_revision/era5/20260525_163247/main/suite_summary.json": {
+      "bytes": 85970,
+      "sha256": "1ad9b876c3d4247e0a50cbd5ca74ba8c2cf8a10f8982959d5bfba61f8d1449e7"
+    },
+    "artifacts/current_research_assessment_20261017/factorial_h6_contrasts.csv": {
+      "bytes": 1468,
+      "sha256": "a45c36c3516a79f0138bc15e8a4db898d2099067a9ca7e2496daa6cec84ab562"
+    },
+    "artifacts/decisive_fair_risk/benchmark_report.md": {
+      "bytes": 6095,
+      "sha256": "0a365009608ac0dc75cb47a4b1229d2437e92d070c7b6ea434a574ecbef57f08"
+    },
+    "artifacts/decisive_fair_risk/decisive_cross_seed_aggregate.csv": {
+      "bytes": 13405,
+      "sha256": "650a34d9759cc38634360f909d78b45da016ef82aedda939ffc325af2637c277"
+    },
+    "artifacts/decisive_fair_risk/route_dispatch_verdict.json": {
+      "bytes": 908,
+      "sha256": "f00fea28aadd9b380a2b85ed315a6e46a54fd315ac944b60bead486215a928b8"
+    },
+    "artifacts/direct_quantile_baselines_summary.csv": {
+      "bytes": 5922,
+      "sha256": "be74766467dcf21656b372e89e269ae02e0ee6c52371fe0afab8196e0fedec8b"
+    },
+    "artifacts/dynamic_price_settlement_audit/kelmarsh_real_price_paired_summary.csv": {
+      "bytes": 96860,
+      "sha256": "52a45191d7e75c9cd40194326fc8466be4877185553b2e1bf4d210c6d057dae7"
+    },
+    "artifacts/dynamic_price_settlement_audit/penmanshiel_real_price_paired_summary.csv": {
+      "bytes": 85768,
+      "sha256": "be66931fdae9a1f0a0b9f87a25a2223df63470169f2f7cdf700784f129bf122a"
+    },
+    "artifacts/early_warning_classifier_baseline_wtb/early_warning_classifier_baseline_summary.csv": {
+      "bytes": 3054,
+      "sha256": "eb283165a7daa2b3ab4358e2716383196618b6b5f540abc202967c954f8d0ebe"
+    },
+    "artifacts/era5_baseline_expansion_20260529/_tables/era5_test_aggregated_runs.csv": {
+      "bytes": 5297,
+      "sha256": "1bec940c6b672195f80b5cda7d0ecee3e4fd1a284483f66816659e6535de3396"
+    },
+    "artifacts/exp01_pitchmasked_v4/exp01_pitchmasked_v3_seed_results.csv": {
+      "bytes": 10324,
+      "sha256": "ae0ff8e282a138a4f7fca4a62a27aa668dfce271cef6771b4ed001b8faee6e03"
+    },
+    "artifacts/exp02-zero-privileged-supervision/v1/zero_privileged_supervision_benchmark.csv": {
+      "bytes": 19740,
+      "sha256": "b8c40e3df3c8a9530e2a8a9da1edd46411bd216592c7d1680a81c5b5b0356466"
+    },
+    "artifacts/exp03_async/psrei_vs_delay.csv": {
+      "bytes": 19897,
+      "sha256": "e35aadbe8887190b9e859e5344a970e9952b02764cf4f166539aab9ba4b6176a"
+    },
+    "artifacts/external_reserve_enhanced/external_reserve_enhanced_by_seed.csv": {
+      "bytes": 876,
+      "sha256": "aab5c06a965bf25fa0aaf8c8042039525d76455c4c80940c2fa948ce51a98418"
+    },
+    "artifacts/external_reserve_enhanced/external_reserve_enhanced_summary.csv": {
+      "bytes": 160,
+      "sha256": "60bb6debe239bd8e09558a660ec6f4fabfb28acb9464259e82c336c6092cce40"
+    },
+    "artifacts/external_wind_guard_windowfix/external_wind_guard.json": {
+      "bytes": 2699,
+      "sha256": "d8613a504f6ed58c02d4894f6a698282da99a6f8b6f430864478f21d65fcedc8"
+    },
+    "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_compact.csv": {
+      "bytes": 782,
+      "sha256": "2a727b8affe15fc92e30bf21b15cf0ac64af286bd623eadb685acc405c67659b"
+    },
+    "artifacts/external_wind_lhb_anchor_intervention_full/lhb_anchor_observability_guard.json": {
+      "bytes": 1161,
+      "sha256": "fe33f4886468bd18100bb069576fcbc22230fe2323ab9ad4c8e79ac20d283271"
+    },
+    "artifacts/external_wind_portability_rescue/external_wind_recalibration_guard.json": {
+      "bytes": 696,
+      "sha256": "81d85840060eb3f7262a329cec8dbc65c465bfbaee55eca552e019f225414e28"
+    },
+    "artifacts/external_wind_portability_rescue/external_wind_recalibration_summary.csv": {
+      "bytes": 4478,
+      "sha256": "242ce8d9dc07e960f6bd06096f2e9aae71be27ee94748df1602d2e3134bdfbea"
+    },
+    "artifacts/external_wind_reviewer_stats/kelmarsh_to_penmanshiel/leave_one_farm_out/_run_table/external_wind_test_aggregated_runs.csv": {
+      "bytes": 9049,
+      "sha256": "236aafe16e5faa3f4645e6146600fb9ac5001f408f940e7ad8af559390671981"
+    },
+    "artifacts/external_wind_small_calibration_adaptation/adaptation_guard.json": {
+      "bytes": 1137,
+      "sha256": "a756159881ba4fb83cc163d03a7b4520ce9c9507258078b17bcd0d79581be15a"
+    },
+    "artifacts/external_wind_small_calibration_adaptation/adaptation_summary.csv": {
+      "bytes": 11121,
+      "sha256": "227441615d652221cd11fba44231db06267187282ad14676cdd226131adf0885"
+    },
+    "artifacts/fair_degradation_replay_20260903/fair_degradation_config.json": {
+      "bytes": 517,
+      "sha256": "08f2a16ddde230edcb5310b963c80a4c41481540bda86e550c732da0c704b94f"
+    },
+    "artifacts/fair_degradation_replay_20260903/fair_degradation_raw.csv": {
+      "bytes": 6565,
+      "sha256": "1568da5ffc9ff0d4bb207b8c81dcaf0d855f8f2769d9e8fcfdd0b1068b275c4d"
+    },
+    "artifacts/fair_degradation_replay_20260903/fair_degradation_summary.csv": {
+      "bytes": 772,
+      "sha256": "4c69b485d12581a32bfce013a73449b970b42b9737bad6aa7beac55d96fa3e28"
+    },
+    "artifacts/farm_aggregate_reserve_20260905/farm_pcc_guard.json": {
+      "bytes": 1976,
+      "sha256": "9a7e475c2cd857e2a60de792225fe2405bcc811efc5cfce92f5baebd8e7bde15"
+    },
+    "artifacts/farm_aggregate_reserve_20260905/farm_pcc_paired_summary.csv": {
+      "bytes": 42166,
+      "sha256": "d44ffe23f927253ab6751ef13ba1294886b3fa0260aaf1e7914473da1be11800"
+    },
+    "artifacts/future_holdout_wtb_strictmask_boundary_slice/boundary_slice_summary.csv": {
+      "bytes": 1836,
+      "sha256": "5b5af26de1676f7c79e20352ea9e9fed9e7807e4474ec90b27f94cd1264aa55d"
+    },
+    "artifacts/future_holdout_wtb_strictmask_reviewer_stats/paired_effects_summary.csv": {
+      "bytes": 2,
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+    },
+    "artifacts/iec_density_rolling_eval/iec_rolling_guard.json": {
+      "bytes": 1388,
+      "sha256": "834e65cbe8c80050c55beec30d0e00fd7cf4e7ac8ececab957332e808cb5acdd"
+    },
+    "artifacts/iec_density_rolling_eval/la_haute_borne_rolling_paired_summary.csv": {
+      "bytes": 30266,
+      "sha256": "a08d1365937f55a3c42d683c5362f0a9202063b3b64a17e0f297497c8a8378f9"
+    },
+    "artifacts/kelmarsh_grounding_20260903/kelmarsh_grounding_summary.json": {
+      "bytes": 947,
+      "sha256": "1151790cea63f6d1bfe3f865aa67ffa1586303dede088e53b42891d3845fdbdd"
+    },
+    "artifacts/markov_gilbert_eval_honest/markov_gilbert_guard.json": {
+      "bytes": 1925,
+      "sha256": "04d2194d7d28f3678a53f8664ea2aa61906abb8464c9732d516fcc129e344960"
+    },
+    "artifacts/markov_gilbert_eval_honest/markov_gilbert_summary.csv": {
+      "bytes": 638,
+      "sha256": "5e723175848d7558ee9cf9b059c8adc127627f6107bf5a6fb682e4766b744e53"
+    },
+    "artifacts/matched_budget/frontier_auc_summary.csv": {
+      "bytes": 1316,
+      "sha256": "b807e7dfcc0e376507b2ec5f20d17c9ae727f92e9e0b90dc95c59b298384cde8"
+    },
+    "artifacts/matched_budget/frozen_policy_rho_sensitivity.csv": {
+      "bytes": 1652,
+      "sha256": "c63c82fb8436fc01ab5ab46e9d03b215b38650c32cf0e74fa507b8a5de391d34"
+    },
+    "artifacts/matched_budget/mechanism_reallocation_diagnostic.csv": {
+      "bytes": 545,
+      "sha256": "b983915b0b1fdd9f5a9fb9fb9f6fcd36ab6ad0ac86e862e146563ed837fe3f03"
+    },
+    "artifacts/matched_budget/provenance.json": {
+      "bytes": 633,
+      "sha256": "22624366b20c5790c74e661c670b27895d0ca9b19fcec1e9d4e6b022f7b364b3"
+    },
+    "artifacts/matched_budget/reoptimized_rho_sensitivity.csv": {
+      "bytes": 37002,
+      "sha256": "af8cec02ae018be445873124172643f8a0e74ec5d0014a9f4fce14c0a6cd4de0"
+    },
+    "artifacts/matched_modular_rerun_5seeds/modular_mlp_summary_5seeds.csv": {
+      "bytes": 607,
+      "sha256": "e0e3ee08fa7ca84939964319a1e215d95021f76adc93a0f6f29f366bc771ff8f"
+    },
+    "artifacts/mechanism_gate_wtb_corrected_full/README.md": {
+      "bytes": 3181,
+      "sha256": "284b09a116e14fb7d8ae86bac9826cabd22d300deca9f8c583d64ef7f1a24d96"
+    },
+    "artifacts/mechanism_gate_wtb_corrected_full/mechanism_intervention/mechanism_intervention_effects.csv": {
+      "bytes": 1524,
+      "sha256": "5560ebcb609eada34853bf0a087c6716889697ad1dfd09b22d230122742a1c9c"
+    },
+    "artifacts/mechanism_gate_wtb_strictmask_full/README.md": {
+      "bytes": 1901,
+      "sha256": "a0f948f1b1565b201b5c9223791301b8b940bd0872574040fae5f7e297989991"
+    },
+    "artifacts/mechanism_gate_wtb_strictmask_full/mechanism_intervention/mechanism_intervention_summary.csv": {
+      "bytes": 1608,
+      "sha256": "d8e4b0ce55562c40b380e535c2f90bd94ce4e6b9ba4cf07e92a1577f0377843c"
+    },
+    "artifacts/metis_core_recovery_20261015_attempt1/factorial_result_export/aggregate/summary.csv": {
+      "bytes": 21924,
+      "sha256": "c7c133c85aaf2a0cee9ab5098ff66bb3bb12790b9e3cf3e2d341217782fb8444"
+    },
+    "artifacts/metis_external_deterministic_20261015_attempt1/audit_report.json": {
+      "bytes": 47720,
+      "sha256": "0455763ac369188d682c4ec54c8ba8ac0a5213692e78e012ae1b7f295af1e3d0"
+    },
+    "artifacts/metis_factorial_numeric_audit_20261015_attempt2/report.json": {
+      "bytes": 6596,
+      "sha256": "7bb8dea29ceb9b4e96a231fd3739ff6127df78b69cd70abfad5b8ae524d11973"
+    },
+    "artifacts/no_graph_architecture_audit.json": {
+      "bytes": 2041,
+      "sha256": "47e3ff56d8c3bf0841b83eb3f1359170bf8a1005a6300f19d0f3a6eb78a9c667"
+    },
+    "artifacts/p1_stats_20260904/farm_median_iqr.csv": {
+      "bytes": 2873,
+      "sha256": "683580766782cd973b712f9ad41d75bf0b105dedc08b293906f9de072358d26c"
+    },
+    "artifacts/p1_stats_20260904/unified_control_table.csv": {
+      "bytes": 2821,
+      "sha256": "04813c201f6e2a7e494f0613c49acd39026d919264809341b33da63255ad1f99"
+    },
+    "artifacts/p1_stats_20260904/window_scan_pass_rate.csv": {
+      "bytes": 127,
+      "sha256": "43af4161acf3b37c569e81c9c5dcbcc2d3f7172ddafa2629b8aee2374743f018"
+    },
+    "artifacts/paper_assets/tables/table_main_benchmark.csv": {
+      "bytes": 1659,
+      "sha256": "41f079300f6e6e17c7e475027e5dc95ec89040bfcb32d7369569d63416fee537"
+    },
+    "artifacts/paper_assets/tables/table_robustness.csv": {
+      "bytes": 2446,
+      "sha256": "07ebdab1a2089ae0c3af0ae07ead6c45b6011ce723fdb2247d2cd8da073a9ac7"
+    },
+    "artifacts/paper_assets/tables/table_routing_quality.csv": {
+      "bytes": 371,
+      "sha256": "eeb65a66c34f7416e662baf3ca07a458c3b3973f2dee57cf1be2ff6dd26c6c52"
+    },
+    "artifacts/paper_assets/tables/table_wtb_ablation.csv": {
+      "bytes": 1340,
+      "sha256": "666f65e5769a02cf8b7ecad6d090e7d3640de792759669f2b58bdc41074952dc"
+    },
+    "artifacts/paper_assets/tables/wtb_parameter_table.csv": {
+      "bytes": 136,
+      "sha256": "25c8ddec65da615f9658e429c7e8d4e154870e45f3399f55717adf8b5bf5f4bb"
+    },
+    "artifacts/paper_assets/tables/wtb_test_aggregated_runs.csv": {
+      "bytes": 43884,
+      "sha256": "2ef0748e81add6a092769bb4dbf0a44fe574f5c857770190784c61c7e0f8ea2e"
+    },
+    "artifacts/paper_assets_backup_before_era5_merge_20260526/tables/table_main_results.csv": {
+      "bytes": 588,
+      "sha256": "acd4a5674b59f6d9695e947ff4e01b891a374f870b0ce2e322c267f69c99962d"
+    },
+    "artifacts/paper_assets_expanded_era5_20260529c/tables/table_main_benchmark.csv": {
+      "bytes": 1339,
+      "sha256": "56eea7ada6a547dd57e175a178a76e6f6015dca7e5425982b721061b72d46b79"
+    },
+    "artifacts/paper_assets_merged_era5_20260526/tables/table_main_results.csv": {
+      "bytes": 676,
+      "sha256": "4ce283b7ddb99357426fd2bea8579e9a10c475604f2f0fb8c9ad2a81cc62c2a0"
+    },
+    "artifacts/paper_runs/wtb_full_revision_20260314/manifest.json": {
+      "bytes": 2820,
+      "sha256": "424727604266f295995fc8413dc3d5df95c75e9f80eadaf19175fc9ea6d2d88c"
+    },
+    "artifacts/raw_replay_20261015_v2/channels/summary.csv": {
+      "bytes": 3632,
+      "sha256": "a3895fbc0787fe08f8d2577449ea4f0b06ef91b6f22fe7e4584a4326966fdfb0"
+    },
+    "artifacts/raw_replay_20261015_v2/downstream_recovery_v1_attempt1/active_power/report.md": {
+      "bytes": 3847,
+      "sha256": "37eae210aafce3642b5196f3e3f8b7e6ae8797a4f34ac439e411dc2f0fc9e3fe"
+    },
+    "artifacts/raw_replay_20261015_v2/downstream_recovery_v1_attempt1/active_power/results.csv": {
+      "bytes": 12967,
+      "sha256": "34bc29769fb7d8a7ca930b26366883db5f866a67d49b2c585931f5ca55ff4073"
+    },
+    "artifacts/raw_replay_20261015_v2/downstream_recovery_v1_attempt1/phase_aggregate/aggregation_receipt.json": {
+      "bytes": 1512,
+      "sha256": "719365e665f801bea54e00eb8a3a2f7cd83d7a4401b4b676771fdc2096a50cd9"
+    },
+    "artifacts/raw_replay_20261015_v2/downstream_recovery_v1_attempt1/phase_aggregate/phase_scan_results_by_seed.csv": {
+      "bytes": 61861,
+      "sha256": "3e4fa907ac4b02b9fabc2f59f47b0eaf9a733b9893464d0ba00d21fdd7e4dccf"
+    },
+    "artifacts/raw_replay_20261015_v2/downstream_recovery_v1_attempt1/supervision/paired_seed_statistics.csv": {
+      "bytes": 722,
+      "sha256": "a2da141bf40b42ef0821dcb020e9e064dcc86617007d6f5ab2af689f180129e4"
+    },
+    "artifacts/raw_replay_20261015_v2/execution/channels/record.json": {
+      "bytes": 14773,
+      "sha256": "a4bd8c7ed1d2b435fcf4b531a560cdbb1aba7e70a4e0922f0a31237cb3f077ea"
+    },
+    "artifacts/raw_replay_20261015_v2/execution/downstream_v1_supervision/record.json": {
+      "bytes": 33900,
+      "sha256": "f2a92d2bb75378ea864d5002dea55e9161a0f9187ab92d8a647f6a6a7e6db0b0"
+    },
+    "artifacts/raw_replay_20261015_v2/execution/exp02/record.json": {
+      "bytes": 15310,
+      "sha256": "ad4b8877e7000b6f1170dcb52e475cbfd28e5360be835ae2154e7bed35b57e5e"
+    },
+    "artifacts/raw_replay_20261015_v2/execution/exp03/record.json": {
+      "bytes": 14885,
+      "sha256": "c942b8ce1abefe78c2fcd97457ff04422f1400ace955f7848d6ce69efc96a894"
+    },
+    "artifacts/raw_replay_20261015_v2/exp02/report.md": {
+      "bytes": 17314,
+      "sha256": "4f001a84f2d23a0b88b6e938720b6ee647e20f2d73fbcdc6f8f31366ca4a5d47"
+    },
+    "artifacts/raw_replay_20261015_v2/exp02/results.csv": {
+      "bytes": 20462,
+      "sha256": "f2df21e67cea1c661c4415a5377d02392433f30452b3c867080e32fc9df187ee"
+    },
+    "artifacts/raw_replay_20261015_v2/exp03/psrei_vs_delay.csv": {
+      "bytes": 19756,
+      "sha256": "944b125e2596b89cdd17ae9e951a7f1093627af62d47519672707ba483d2d73d"
+    },
+    "artifacts/raw_replay_20261015_v2/strong_baseline_retry_import_v1/strong_baseline_closure_summary.csv": {
+      "bytes": 1540,
+      "sha256": "8360d4bcf131fa09fd513d7e3eba3e59c2f931f2463f08eaaa472a45f01fb562"
+    },
+    "artifacts/raw_replay_20261015_v2/strong_baseline_retry_import_v1/strong_baseline_joint_interaction_v2.json": {
+      "bytes": 722,
+      "sha256": "a75efa63418f011d5f3963359e209842e8992c6cbaaec6f59ec36e2caa125970"
+    },
+    "artifacts/regime2-recalibration-absorption/artifact.json": {
+      "bytes": 1953,
+      "sha256": "c88ad0a6250b666ad7b3c086586eba5ec5d8ea763f757e185c96cc4d4331ee44"
+    },
+    "artifacts/regime2-recalibration-absorption/v1/regime2_recalibration_absorption.csv": {
+      "bytes": 542,
+      "sha256": "d84294d21bdd7804a70674926732f138d34e527e446a1bd49558cd21557e77cd"
+    },
+    "artifacts/reserve_toy_operational_cost/reserve_toy_operational_cost.csv": {
+      "bytes": 3617,
+      "sha256": "1c651070e7a011e364d9dda1e3bb6f0be6641586a4181573b10a8421ff7eca2a"
+    },
+    "artifacts/reserve_toy_operational_cost/reserve_toy_operational_cost.json": {
+      "bytes": 659,
+      "sha256": "8f5f16805455160c7e10f11d0d5589cfc328fb35e5cb1f71d0919813281878d2"
+    },
+    "artifacts/routing_placebo_wtb_strictmask_full/routing_placebo_effects.csv": {
+      "bytes": 1207,
+      "sha256": "578669b4175148de6326a792c4e76127f4fd8d922c5ca8a63d9a8486bdf1b547"
+    },
+    "artifacts/signature_gate_farms_guard_20260903/kelmarsh/anchor_stress_summary.csv": {
+      "bytes": 818,
+      "sha256": "6a52d8bb841ba4b587747a306aad143a713966123c3fb48c9acc351ec2b0fc10"
+    },
+    "artifacts/signature_gate_farms_guard_20260903/penmanshiel/anchor_stress_summary.csv": {
+      "bytes": 805,
+      "sha256": "bf3a183c9342a7fbfaa15d30cbd675a00d827bd3f27eeb36d434483f5911da98"
+    },
+    "artifacts/signature_gate_guard_20260901/anchor_stress_summary.csv": {
+      "bytes": 477,
+      "sha256": "13ca8aec3022e39306dd52fdeb59076d74309171f8715f1a4dd435eaadf1b520"
+    },
+    "artifacts/signature_gate_guard_core_shuffled_20260902/anchor_stress_summary.csv": {
+      "bytes": 336,
+      "sha256": "d405030a787a687e13f9e34d91835f26d39b6835e648240c24e4e076bd91944e"
+    },
+    "artifacts/signature_gate_guard_no_pab_std_lhb_20260903/anchor_stress_summary.csv": {
+      "bytes": 324,
+      "sha256": "dfb6c0c439e2356cd5856c0eb1ef508928bc211c9c184898da1aed21f85b1847"
+    },
+    "artifacts/signature_gate_guard_no_pab_std_wtb_20260903/anchor_stress_summary.csv": {
+      "bytes": 324,
+      "sha256": "0cd72a598c7a1685b5d257aff017a3075cd459127d0e3521644217ca37728305"
+    },
+    "artifacts/signature_gate_lhb_guard_20260902/anchor_stress_summary.csv": {
+      "bytes": 608,
+      "sha256": "9f12c2789813455f54605eecaeb49ad2f9655d82d38c9b7a4fc9877ad17edc3d"
+    },
+    "artifacts/signature_gate_lhb_shuffled_guard_20260902/anchor_stress_summary.csv": {
+      "bytes": 334,
+      "sha256": "bc6d26a171181ad47c4854d3b2dd6f3e6c891e8958578bf171e8291f6e6ecf6f"
+    },
+    "artifacts/soft_rule_contrast_20260903/soft_rule_contrast_paired_summary.csv": {
+      "bytes": 4657,
+      "sha256": "a18421f8ad4c6cd7a7c16013592c4e7758893181d02a8e70cc950d83a800b6e8"
+    },
+    "artifacts/spatial_holdout_wtb_east_reviewer_stats/reviewer_stat_pack_run_table.csv": {
+      "bytes": 9812,
+      "sha256": "febf5b187899aa7f6d1c358e20c828ef19a3e807dfda61727f4a1a7d2eefe084"
+    },
+    "artifacts/strict_anchor_mask_diagnostic_wtb_20260609/strict_anchor_mask_summary.csv": {
+      "bytes": 429,
+      "sha256": "ec90c3f942771860efb0416c2d52138db044d06ee0aa4434ddb1012a1b62b880"
+    },
+    "artifacts/strictmask_threshold_controls_mechanism/mechanism_intervention_effects.csv": {
+      "bytes": 748,
+      "sha256": "f942235fa543323de1fa729a6d65a7407a75b9cd0cb764dca8f195e122499b8e"
+    },
+    "artifacts/strong_baseline_closure_summary.csv": {
+      "bytes": 1539,
+      "sha256": "2596eb5fbd4c16ac92edbc57a9e57f21764135864f597761d33ee4096bf59953"
+    },
+    "artifacts/strong_baseline_joint_v2/strong_baseline_joint_interaction_v2.json": {
+      "bytes": 740,
+      "sha256": "592b22b579370fc7f931f9d9c3691e9a2f65e4a16316acf4dc8820f793007381"
+    },
+    "artifacts/threshold_label_validity_audit_wtb_strictmask/README.md": {
+      "bytes": 757,
+      "sha256": "c479b2e578495f5a0c174a2207bcbd316ef02482abf06ebc04ee052c7d408648"
+    },
+    "artifacts/time_forward_wtb_strictmask_full/time_forward_report.md": {
+      "bytes": 1058,
+      "sha256": "d6fd2245b3b27d804001e4483795452ff90e96c7f6ea8a1c3271a20958e7dd05"
+    },
+    "artifacts/trainweight_full_rerun_20260830/wtb_full_seed201/training_summary.json": {
+      "bytes": 5293,
+      "sha256": "f88c99dbbd2131d1365e53fb7cd1421445a1da2d26f64154711fce1af20ae495"
+    },
+    "artifacts/tste_number_consistency_audit/tste_number_consistency_audit.csv": {
+      "bytes": 12364,
+      "sha256": "b1fd4b4aab53574705467c02a55761ae2a39012481b29b29c09fd7bf79eb45cc"
+    },
+    "artifacts/wind_bess_simulation/bess_dispatch_guard.json": {
+      "bytes": 888,
+      "sha256": "b11d539af4bfedd5feb51008206058f33d083213f708604ee3644117df1b159a"
+    },
+    "artifacts/wind_bess_simulation/bess_dispatch_summary.csv": {
+      "bytes": 7374,
+      "sha256": "319f873cfae071c79d35af6caccd243e320d885aaab38809edd4c6c6a297c21d"
+    },
+    "docs/ELEXON_A12_PROVENANCE_AUDIT.md": {
+      "bytes": 7795,
+      "sha256": "e39b2072359c67f5e90f7436777ced556df9c00c02a6bc995722289af94058be"
+    },
+    "docs/EVIDENCE_FREEZE_20261017.md": {
+      "bytes": 7058,
+      "sha256": "d91fefe37fe35a45cca13b88b9f50bbd72304757f76f5ac28412cbcc5a261a5a"
+    },
+    "docs/EXP01_INVALIDATION_20261015.md": {
+      "bytes": 2039,
+      "sha256": "f635c37de2d2fc7cf51a7eea2eda648508f13d811646b6ccb4fe2852b200ed7f"
+    },
+    "docs/EXP03_ASYNCHRONOUS_REPORT.md": {
+      "bytes": 6401,
+      "sha256": "2858e1a0f8ee2ff3b164159aa089dd44116d9134a8e4e4e6aa41c590a92420cb"
+    },
+    "docs/EXP03_INVALIDATION_NOTICE.md": {
+      "bytes": 15863,
+      "sha256": "230c0d3964b783f2d4515abe02d4ec053a8847377bd71578cbce226a40096ae7"
+    },
+    "docs/EXPERIMENT_AUDIT.md": {
+      "bytes": 6308,
+      "sha256": "31a59b03b1e93a0ec9d97989209190ad75734409e16b832694fd362efc9cd402"
+    },
+    "docs/EXPERIMENT_REGISTRY.md": {
+      "bytes": 84473,
+      "sha256": "2c027cd3f592df1bd2128b73550d1dec217c076874d24684952fa37a6d59d2b7"
+    },
+    "docs/FIXED_TARGET_CONTRACT.md": {
+      "bytes": 4251,
+      "sha256": "cc715a1a832b67da0cbaaf1502b50a5dfbc0514ae9937ff1d8943ebf5b9faa35"
+    },
+    "docs/INFORMATION_SET_CONTRACT.md": {
+      "bytes": 7573,
+      "sha256": "5bab1146136ccd00ec4104b99ddb0f3441309575b4eff59bb19aa3d71ee04b68"
+    },
+    "docs/REPLAY_CLAIM_DISPOSITION_20261015.md": {
+      "bytes": 6572,
+      "sha256": "7cf4b3b1582e6e27cfecf2c56079d16381993040d8e2c1ef39ee57e49a2ccea8"
+    },
+    "docs/SCIENTIFIC_CONTRACT.md": {
+      "bytes": 24422,
+      "sha256": "cf0c38fba403d842ca87521dbe03897e9078dcb87da593daa7af6fd009545f76"
+    },
+    "experiments/E01/README.md": {
+      "bytes": 173,
+      "sha256": "08c6b48b45bb696a03e0d67686b6ac654a787aa528fd064d8c742ed123688cd0"
+    },
+    "experiments/E01/design.md": {
+      "bytes": 1875,
+      "sha256": "56b6dec4d56484c2970b9f566832a81613481dbc0a6440299f414874651e341e"
+    },
+    "experiments/E01/log.md": {
+      "bytes": 5108,
+      "sha256": "41008690b21500230e7cb64c61402437b665ede81753be46150676e246290cb4"
+    },
+    "experiments/E02/README.md": {
+      "bytes": 155,
+      "sha256": "2ce8c5bd87dfdcba3111530c276ae63886b8213426afabb9709dd24957d36938"
+    },
+    "experiments/E02/design.md": {
+      "bytes": 759,
+      "sha256": "edbd6a51dac13b2d7be21ef26d261c7efeacbfc369c551bfbabb14a8b979f2b0"
+    },
+    "experiments/E02/log.md": {
+      "bytes": 1103,
+      "sha256": "7277eb7cea12047db7888e652280bccffc0cd36391df74987022891d64cbb1f9"
+    },
+    "experiments/E03/README.md": {
+      "bytes": 151,
+      "sha256": "15f520adc8b605b5d5e8aee6bb95a59c5c8a9543f348730c272c1144c39cab8d"
+    },
+    "experiments/E03/design.md": {
+      "bytes": 1870,
+      "sha256": "93ded53a66dfbf436f5446a0f87e68db55da59ad685915cbdf9f7d528d40d9ad"
+    },
+    "experiments/E03/log.md": {
+      "bytes": 1356,
+      "sha256": "cf207bcb83d2c94e9e9db48bf1146f44a456fa870511984b69919436bd7f4f20"
+    },
+    "experiments/E04/PREREGISTRATION_E04_V2.json": {
+      "bytes": 3567,
+      "sha256": "bd95a16802f312b08d06ca3f04974be47dc76316c3a3886625c95e0e5d77354c"
+    },
+    "experiments/E04/PREREGISTRATION_E04_V2.md": {
+      "bytes": 2058,
+      "sha256": "0af9f8dd0234403d9beebf2e4b801331e6d47c5c652192a2b0ab2cb15d05b6cd"
+    },
+    "experiments/E04/PREREGISTRATION_E04_V2_COMMITTED.json": {
+      "bytes": 1126,
+      "sha256": "097168b984243cd92f14092c2a38c42ec3b077562664815713a5ac5c6947f653"
+    },
+    "experiments/E04/PREREGISTRATION_E04_V2_EXECUTION_ADDENDUM.json": {
+      "bytes": 2132,
+      "sha256": "bd2e754a3176d2edbfa042b53eb42c44f955cdaa5972953119062300b7ca0935"
+    },
+    "experiments/E04/README.md": {
+      "bytes": 148,
+      "sha256": "14f00269e82bc0af1e21a7b6105bad614d7aa3d20f6ca73f6ad61bc32e04b66d"
+    },
+    "experiments/E04/design.md": {
+      "bytes": 4102,
+      "sha256": "584b28ad14d3663c43d6cf9ae35d2e4d1929bff786e47e34380cb331fb4196d3"
+    },
+    "experiments/E04/log.md": {
+      "bytes": 2945,
+      "sha256": "34f2888e6e8719154c0b2cbd4d0658d8fde3824b11220ceca6c67f05020f3e3e"
+    },
+    "experiments/E04/results/e04_v2/e04_v2_execution_receipt.json": {
+      "bytes": 1875,
+      "sha256": "7ea5e1cc58bf23108651641315b0d9030cad4ac2fae4b983ed75d63ec31cff02"
+    },
+    "experiments/E04/results/e04_v2/e04_v2_selection.json": {
+      "bytes": 3250,
+      "sha256": "9e22f0fcb449943153919307203626866bebfce854287b29d75d5976287e91df"
+    },
+    "experiments/E05/README.md": {
+      "bytes": 153,
+      "sha256": "06b7bda877a71ecc4c861b3789159552d05c8811c8749d86e2d135fc3f0fa126"
+    },
+    "experiments/E05/design.md": {
+      "bytes": 1048,
+      "sha256": "b89c0bb529a316829c56d3d78ef49de21ee8f7a04b5c79b4101cb5c7f1eacff7"
+    },
+    "experiments/E05/log.md": {
+      "bytes": 1297,
+      "sha256": "058eb2dd8fbbfe82ea0cb53ac9166d7bf44b20302158ce1efb4f6d0cce40610f"
+    },
+    "experiments/E05/results/selector_stability.json": {
+      "bytes": 5057,
+      "sha256": "f2e58ab12ac1228784a3a27187ec769f459162e5fa86892bafd8e774317c8f93"
+    },
+    "experiments/E06/README.md": {
+      "bytes": 138,
+      "sha256": "7d0f79236b64a2f48b878d2296eaceafbe88345798e964a3453d63d2af0ce2d4"
+    },
+    "experiments/E06/design.md": {
+      "bytes": 1554,
+      "sha256": "21f1328b048d8bafec18b927626c4a08f02819361e985e31bb892daf4cecfa86"
+    },
+    "experiments/E06/log.md": {
+      "bytes": 2674,
+      "sha256": "6fc91a4ea334e73b8ceb0d6dce6261289f0eb21da7e39edf44126222f6f91fd0"
+    },
+    "experiments/E06/results/local_verification.json": {
+      "bytes": 15684,
+      "sha256": "e3966006f3e5728a8db49aa826965afecc0dfa5b77f12370580f6d02d54a94cb"
+    },
+    "experiments/E07_history_only_recalibration/PREREGISTRATION_DRAFT.md": {
+      "bytes": 10975,
+      "sha256": "9fca4bd061d2c533264151d67d30b21164715c13aa68d6ee107822fada61bbd8"
+    },
+    "experiments/E07_history_only_recalibration/protocol.json": {
+      "bytes": 6600,
+      "sha256": "2f9769f0341b20f9407d040f5c0bee53809314ff4268bc5ebd1b09edfe67cf17"
+    },
+    "experiments/E07_history_only_recalibration/references_verified.csv": {
+      "bytes": 742,
+      "sha256": "a7fa734c868a1d3cbb2804ee4088555dc1d242af17b8e174df33508df67dbde7"
+    },
+    "experiments/decision_information_development_20261018/README.md": {
+      "bytes": 2996,
+      "sha256": "379ed80b13467f26b18921ac688c3acf241005a663ff5ec844c142dbaa52ae81"
+    },
+    "experiments/decision_information_development_20261018/confirmation_source_screen.md": {
+      "bytes": 2703,
+      "sha256": "2a07931c15ea661d413af59b400d31581e3909c3e8458db74e9159ac869094ad"
+    },
+    "experiments/decision_information_development_20261018/execution_log.md": {
+      "bytes": 4640,
+      "sha256": "11b9009bc730182e1afec1835bfa7a170a8dbfa9378a6f343fbfbbf2ce4af40a"
+    },
+    "experiments/decision_information_development_20261018/protocol.json": {
+      "bytes": 6114,
+      "sha256": "3071798cb3de4cc690d05e2e823b4590bdbcf1e322454849e50eb1b42a65d940"
+    },
+    "experiments/independent_confirmation_20261019/IDENTICAL_COPIES_ADDENDUM.md": {
+      "bytes": 2728,
+      "sha256": "6835e7d4c93cf5643a7eec03a2c7604168c8647b2ff57e9d2bd8c80b83e2c3f7"
+    },
+    "experiments/independent_confirmation_20261019/decision_protocol.json": {
+      "bytes": 5715,
+      "sha256": "929c78cb1aa2c83edd7659236ee2dc3dbed240d5888b89df91b9562068a11c11"
+    },
+    "experiments/independent_confirmation_20261019/source_binding.json": {
+      "bytes": 3608,
+      "sha256": "4df5eca98530dc2777c92b83213fb0342829d7f926694615363b57cd5c2ddd76"
+    },
+    "experiments/independent_confirmation_execution_20261019/FIRST_PRINCIPLES_FREEZE.md": {
+      "bytes": 5173,
+      "sha256": "1121ff10ee27741c63760e23f691680c1ea808befb6a4e043393704785da42ed"
+    },
+    "experiments/independent_confirmation_execution_20261019/execution_log.md": {
+      "bytes": 6471,
+      "sha256": "cb0017b72d44bc7938d7a178f26c31ee4145f35b25d0d3bab75718ba9ee7de7c"
+    },
+    "experiments/independent_confirmation_execution_20261019/protocol.json": {
+      "bytes": 7583,
+      "sha256": "27ba6498427ca425978f6674f013862ba272049f778562cb839969cb7f3bbc33"
+    },
+    "experiments/information_subset_development_20261019/NECESSITY_ADDENDUM.md": {
+      "bytes": 2662,
+      "sha256": "4fb2234ee0b3e31b93bd2cb0fbe54eea96d9180e2461f8b3290a40efdf55f893"
+    },
+    "experiments/information_subset_development_20261019/PLAN.md": {
+      "bytes": 5722,
+      "sha256": "1a163cb2303308c24bd8cc555b2f7830b9356df70807e57d72d4ad2975941c3a"
+    },
+    "experiments/information_subset_development_20261019/execution_log.md": {
+      "bytes": 9825,
+      "sha256": "75472b89fb36bc5aabe05c780d5f5165e45fddc8f8d695e23553f5d553b9fb4d"
+    },
+    "experiments/information_subset_development_20261019/protocol.json": {
+      "bytes": 7505,
+      "sha256": "5d36b4859a14d1299f5198735b7fa4f0860e2fa02cd677a448af54d26dbf5675"
+    },
+    "experiments/replay_20261015/external_cache_roots.json": {
+      "bytes": 226,
+      "sha256": "9b38d524aeabd8bfd5f45f6d59665a4dd20715a9a31d07726759b206cde4702b"
+    },
+    "experiments/replay_20261015/frozen_external_configs.json": {
+      "bytes": 17061,
+      "sha256": "71f5e044b973e17b49850b22e32689032713bae617980e9aec2dc3334deaf45b"
+    },
+    "experiments/replay_20261015/frozen_wtb_configs.json": {
+      "bytes": 179322,
+      "sha256": "1e20da1e2118089e581db07307c82ac4b05f4e8799bc874ea8e4784911f2b7c4"
+    },
+    "experiments/risk_cost_frontier_development_20261018/PLAN.md": {
+      "bytes": 4109,
+      "sha256": "feba9754b6193a3594696ee14bf03d90519967484fe4ffe2ee72f457db3751b9"
+    },
+    "experiments/risk_cost_frontier_development_20261018/execution_log.md": {
+      "bytes": 2819,
+      "sha256": "731d4e4b6972b2a116a5bc43dfbfb34bf1fb0fbdcd5b551a4bcf3f9252b2cf60"
+    },
+    "experiments/risk_cost_frontier_development_20261018/protocol.json": {
+      "bytes": 6116,
+      "sha256": "db4c96be04d802e296e263b91d4196475b39fd3dac075c01323499ad9dba2a1a"
+    },
+    "experiments/risk_cost_frontier_development_20261018/references_verified.csv": {
+      "bytes": 2099,
+      "sha256": "c9dc37f99e02923273c52a5ced7f451793b4cbd0041f3b3cff38e71a4800b765"
+    },
+    "experiments/risk_frontier_model_class_audit_20261018/protocol.json": {
+      "bytes": 2663,
+      "sha256": "91e693fbcdcc13e9eeee0abb42417458a6d97cc76d7f80950e030696065a07c3"
+    },
+    "experiments/state_calibration_controls_20261020/EXECUTION.md": {
+      "bytes": 3741,
+      "sha256": "da55fdf490924099ea99697c0be6ca5a65f5d58c49a07533b0be28de8c99f7d4"
+    },
+    "experiments/state_calibration_controls_20261020/REPORT.md": {
+      "bytes": 8706,
+      "sha256": "3e2a0d3a340a90826c853694022e385c2e528da7830eb7c44aff28f998114977"
+    },
+    "experiments/state_calibration_controls_20261020/VERIFICATION.json": {
+      "bytes": 5749,
+      "sha256": "bf6df9acd2be0d3e72569daeb7c3938f5c81553b686cea39b8e7c754170df325"
+    },
+    "experiments/state_calibration_controls_20261020/action_audit.json": {
+      "bytes": 87494,
+      "sha256": "e1dc657634bae68789be73f67b20d7cd0cb0214ec3240daaecedf4296dfe91a1"
+    },
+    "experiments/state_calibration_controls_20261020/additional_purchase_bound.json": {
+      "bytes": 5240,
+      "sha256": "31bd8a6ff674ea9e9ff188ba65bb5bfbbeb0240cd3747e6031cddf8b465b1114"
+    },
+    "experiments/state_calibration_controls_20261020/budget_transfer.csv": {
+      "bytes": 14819,
+      "sha256": "0597c29fe981dc789107d1081bac0c8c0c01caf5e8712f1e818b3ff8c1c0fcda"
+    },
+    "experiments/state_calibration_controls_20261020/deployment_manifest.json": {
+      "bytes": 3342,
+      "sha256": "0da552dc270eb13f1a35c6fef5c3897d089b011b2dc312bf2c5c17edf2b91481"
+    },
+    "experiments/state_calibration_controls_20261020/envelopes.json": {
+      "bytes": 358847,
+      "sha256": "9899a050c76d7cd7e8ea1027cda6b362ce85ad93b1a4525fd8bf4812f51a6861"
+    },
+    "experiments/state_calibration_controls_20261020/export_manifest.json": {
+      "bytes": 22196,
+      "sha256": "c874a69141cf7b7c36ac6bb39c36736144b5a5ecb3aacbd53deb717d15f981ef"
+    },
+    "experiments/state_calibration_controls_20261020/frozen.json": {
+      "bytes": 20417,
+      "sha256": "35398087d7ce59a513e948ddb8018a7e0b586d8deb64fc9e85a2507be795d470"
+    },
+    "experiments/state_calibration_controls_20261020/instance_metrics.csv": {
+      "bytes": 42054,
+      "sha256": "8f12007baa0c9d3c8f5c9a67e01e7824b680a9fbcfbe186517d32ae962ba89fe"
+    },
+    "experiments/state_calibration_controls_20261020/point_reconstruction.json": {
+      "bytes": 194,
+      "sha256": "7e243f74b0e9c28ea2f706900e071dc1dfd0f388dbbd49af0f6fdd93fd9219af"
+    },
+    "experiments/state_calibration_controls_20261020/protocol.json": {
+      "bytes": 4712,
+      "sha256": "3be445a2e274d9ec92d53730389bcb4c3d16e46f83271fa93c79c5feabadb0c1"
+    },
+    "experiments/state_calibration_controls_20261020/scheduler_history.json": {
+      "bytes": 15174,
+      "sha256": "c100582d638106d2f81a9b185e7b1b4179361c81a272f6587276402f513d0350"
+    },
+    "experiments/state_calibration_controls_20261020/summary.json": {
+      "bytes": 105070,
+      "sha256": "12b91fa1555e1e4a1e4b99894ba8722da7980c0237bcfd4249f7f01564678f3f"
+    },
+    "experiments/state_measurement_pilot_20261020/EXECUTION.md": {
+      "bytes": 3461,
+      "sha256": "37f90cfd1aec462f140edcfd1a6e713984095b46b19a7124e1ad55ff551a5122"
+    },
+    "experiments/state_measurement_pilot_20261020/QUALIFICATION.md": {
+      "bytes": 1357,
+      "sha256": "d0dbf63a59dd31227ef45bd40ac9303b80318ed1e022afeafce634682ce586f7"
+    },
+    "experiments/state_measurement_pilot_20261020/REPORT.md": {
+      "bytes": 9250,
+      "sha256": "5c84795a3646eb2710ce6d69bf0ab05f89c27182f48e127f190147d6db8d350e"
+    },
+    "experiments/state_measurement_pilot_20261020/VERIFICATION.json": {
+      "bytes": 1258,
+      "sha256": "679998981b6138aa085b8deacbdfa57562f982a9c01cc7e90a2df44da9a52e68"
+    },
+    "experiments/state_measurement_pilot_20261020/action_audit.json": {
+      "bytes": 30859,
+      "sha256": "efe9afb5a067dbde49f79caca04deed4fc49d478a87e4e82c5398f8eb4f03db0"
+    },
+    "experiments/state_measurement_pilot_20261020/audit_deployment_manifest.json": {
+      "bytes": 455,
+      "sha256": "3c247471595934455a75fe03d48da07b0b46e7863cd5fcce3a466784859570a3"
+    },
+    "experiments/state_measurement_pilot_20261020/deployment_manifest.json": {
+      "bytes": 2229,
+      "sha256": "8be571fc0743023bbb953866aa90c0c2ccfa5c0d08162311e9c799e35e60609e"
+    },
+    "experiments/state_measurement_pilot_20261020/deployment_manifest_v2.json": {
+      "bytes": 2209,
+      "sha256": "40c2fde929d193a0dc4f7ff94139d9cc5634836d0e6654ea1fe0f66564298cbf"
+    },
+    "experiments/state_measurement_pilot_20261020/development_envelopes.json": {
+      "bytes": 94331,
+      "sha256": "b4d8351536d6aeba6d00fc2f2a29b64ea107b119b993ce5c4cbabce900f544db"
+    },
+    "experiments/state_measurement_pilot_20261020/export_manifest.json": {
+      "bytes": 125586,
+      "sha256": "7a6cd3cd22099df3873e71fe8aafbbe7f05b97928b0195158b1b88f58b3e20bf"
+    },
+    "experiments/state_measurement_pilot_20261020/historical_choices.json": {
+      "bytes": 6077,
+      "sha256": "c4a009b8d529847697a8c1c9c84edb253453de684d904f0cb9b408521ca5d306"
+    },
+    "experiments/state_measurement_pilot_20261020/instance_metrics.csv": {
+      "bytes": 20889,
+      "sha256": "be41cfa1abdcac869e9c5d763fcac88438f18a16aac47bf11692dbd18dcf850c"
+    },
+    "experiments/state_measurement_pilot_20261020/local_number_gate.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "experiments/state_measurement_pilot_20261020/protocol.json": {
+      "bytes": 4694,
+      "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e"
+    },
+    "experiments/state_measurement_pilot_20261020/qualification.json": {
+      "bytes": 10287,
+      "sha256": "35764ef57ee5d79fb67137e9b40a3ee7f9874cc5e4133fe68f543e9c65568a83"
+    },
+    "experiments/state_measurement_pilot_20261020/scheduler_history.json": {
+      "bytes": 104156,
+      "sha256": "faa1aa03ef9ec72f07ce81d6edc858ddcaf44f185936109bac7c0fab74ff0f22"
+    },
+    "experiments/state_measurement_pilot_20261020/summary.json": {
+      "bytes": 29922,
+      "sha256": "40eebd3602783fb4a2d883ce9169b3a2eec131e00441483a87826946b6dadc12"
+    },
+    "manuscripts/wind_energy_v2/.gitattributes": {
+      "bytes": 89,
+      "sha256": "d609c9a134c0ac853c6d13089b97ffa5bde241dc37ddc276000c85ef9d348586"
+    },
+    "manuscripts/wind_energy_v2/.gitignore": {
+      "bytes": 117,
+      "sha256": "117dfe92735c52c83440d05e57767ae8a2faaf8e1f09a37a15790de7f50f9a0f"
+    },
+    "manuscripts/wind_energy_v2/DECISION.json": {
+      "bytes": 2326,
+      "sha256": "5558cb666b7ceeaa62c487d51394de670b8355b52cd745d626414beb717c4594"
+    },
+    "manuscripts/wind_energy_v2/FIGURE_CONTRACT.md": {
+      "bytes": 3228,
+      "sha256": "6a7fad0779da967e0dc96b45f263443521909d6d65a600d51d506c0f86f952ac"
+    },
+    "manuscripts/wind_energy_v2/FIGURE_QA.md": {
+      "bytes": 3367,
+      "sha256": "1af44adf3066ea9158f1d11a1bb41cb1de6ad4fe7ce85df9a0edc18b6a0897bc"
+    },
+    "manuscripts/wind_energy_v2/FOUR_QUESTIONS_CN.md": {
+      "bytes": 2363,
+      "sha256": "7de659e82a2c759f16dda668fa92861f20fab6ea3dbef5e293b0b12679bb137c"
+    },
+    "manuscripts/wind_energy_v2/GAPS.md": {
+      "bytes": 3619,
+      "sha256": "0967b2abfb69f2109ecdb3648b1b418a544bf50cadf30ffe2a2ed6dd57178729"
+    },
+    "manuscripts/wind_energy_v2/PDF_VISUAL_REVIEW.md": {
+      "bytes": 2075,
+      "sha256": "544c577876d60bbb40f3c36da137483bceba1994686a8af0a46e606f80fd5ef2"
+    },
+    "manuscripts/wind_energy_v2/README.md": {
+      "bytes": 2819,
+      "sha256": "af3311313a919088929c2183c049fac1f2c47ade052b4c1e553401feac0d0d93"
+    },
+    "manuscripts/wind_energy_v2/REVISION_RESPONSE.md": {
+      "bytes": 3386,
+      "sha256": "25074d56dca509664f017d4246cf60b6dffb733ad9b7e5c72c0978664b4833cf"
+    },
+    "manuscripts/wind_energy_v2/WRITING_CONTRACT.md": {
+      "bytes": 3302,
+      "sha256": "1661738e3ba9a2792cf804186c55b5936b69107a0edc30f62454bdfea791754a"
+    },
+    "manuscripts/wind_energy_v2/american-medical-association.csl": {
+      "bytes": 11575,
+      "sha256": "d70f843d93c2b1e8c59c0e26e2396bea4ed99fb4a1aac69b6dddc249a10fadf7"
+    },
+    "manuscripts/wind_energy_v2/build.py": {
+      "bytes": 3795,
+      "sha256": "5d6245f71abfcb172da9aae08241b5967ca0403229ff84feedefc821045d5455"
+    },
+    "manuscripts/wind_energy_v2/export_supplement_evidence.py": {
+      "bytes": 6017,
+      "sha256": "668cb0294da4829046ca8dd3924527aa47bc474e202217a677f713f9bd8dcff0"
+    },
+    "manuscripts/wind_energy_v2/figures/fig1_information_freeze.pdf": {
+      "bytes": 42663,
+      "sha256": "2a3162495dfab285f8d2d510444089cdcc0a65148fe983f282ceda93980c082e"
+    },
+    "manuscripts/wind_energy_v2/figures/fig1_information_freeze.png": {
+      "bytes": 337554,
+      "sha256": "d8b2a86fded705e8f2d0e15deab9750c8b4aefc65b2134a12f5c942e6017a88c"
+    },
+    "manuscripts/wind_energy_v2/figures/fig1_information_freeze.svg": {
+      "bytes": 9190,
+      "sha256": "8d9febc237ec95589dc2e83926be9a3242ec9a64663df42f6977363976f4fc11"
+    },
+    "manuscripts/wind_energy_v2/figures/fig2_primary_confirmation.pdf": {
+      "bytes": 42879,
+      "sha256": "0f611b8106e7827c967b26c336bec58bb82eefc1d338ce8a585d430e37cf8dec"
+    },
+    "manuscripts/wind_energy_v2/figures/fig2_primary_confirmation.png": {
+      "bytes": 221669,
+      "sha256": "7c2e9b495ee8e98011956a740436259d84cc786aafa3b8c6a11c99a601eca61e"
+    },
+    "manuscripts/wind_energy_v2/figures/fig2_primary_confirmation.svg": {
+      "bytes": 21647,
+      "sha256": "d20b1c410d7873a21465accdc7252e8c496abc5a0c76d79b5702815253eb9ce9"
+    },
+    "manuscripts/wind_energy_v2/figures/fig3_secondary_minimality.pdf": {
+      "bytes": 45894,
+      "sha256": "0082b1a5afa1c5db0834e4b844193f20c2106fffacb6b66d823be000800b8768"
+    },
+    "manuscripts/wind_energy_v2/figures/fig3_secondary_minimality.png": {
+      "bytes": 440174,
+      "sha256": "6fb37cc99edcd037dbc33f497d47686d371fff64097b706b2caad919d5d4d885"
+    },
+    "manuscripts/wind_energy_v2/figures/fig3_secondary_minimality.svg": {
+      "bytes": 27700,
+      "sha256": "57e16506ef0fcde5ea7f55f209e8935a7bc0047e43ef568bbea78e7a66499b3e"
+    },
+    "manuscripts/wind_energy_v2/figures/fig4_identification_boundary.pdf": {
+      "bytes": 42296,
+      "sha256": "5c2d9ef4ba99172791c87d07c7a6e3c48926b96cef65692ac13d4d84565e1550"
+    },
+    "manuscripts/wind_energy_v2/figures/fig4_identification_boundary.png": {
+      "bytes": 290280,
+      "sha256": "66516450b6750664927920e856628366324e1e2d7b0c0a70db44658141029f3c"
+    },
+    "manuscripts/wind_energy_v2/figures/fig4_identification_boundary.svg": {
+      "bytes": 32649,
+      "sha256": "d131b7736dfd2f957459d3f6a8dfa316c96ebb77d87ad63a96e8729d3eed0b87"
+    },
+    "manuscripts/wind_energy_v2/interface_review/INTERFACE_AND_NEIGHBOR_REVIEW.md": {
+      "bytes": 11278,
+      "sha256": "ca0eea2f71db924f6fb4b71396b1aab6d7dd6409db18425a32875ffa07188b7c"
+    },
+    "manuscripts/wind_energy_v2/interface_review/NEIGHBOR_CLAIM_SUPPORT.csv": {
+      "bytes": 1862,
+      "sha256": "7165bb9af483a8e2dd4c64b898ca439d038a99a67460a6d975c944f0b045467d"
+    },
+    "manuscripts/wind_energy_v2/interface_review/metadata/source_status.json": {
+      "bytes": 1113,
+      "sha256": "f9072f34723d1a3fbc7c08413ac1f9cc15274756a2148b033a362c24236e646f"
+    },
+    "manuscripts/wind_energy_v2/interface_review/sources.csv": {
+      "bytes": 6457,
+      "sha256": "ea491fb04d978b15d4bf99e6bdd97b1caffd0db7a3cc32528c9f81c52cac2a6a"
+    },
+    "manuscripts/wind_energy_v2/literature/.gitignore": {
+      "bytes": 34,
+      "sha256": "2f81a72024b8e8beb779f23dc2080dbeffd5f2d3db8b178a69262ae92dc7cc4a"
+    },
+    "manuscripts/wind_energy_v2/literature/READING_NOTES.md": {
+      "bytes": 9779,
+      "sha256": "64d4de0acc04c6ed43f6c0b7ddd1c40528faaffb4389c9167911f83a0c8fc845"
+    },
+    "manuscripts/wind_energy_v2/literature/pritchard_formula_manifest.csv": {
+      "bytes": 13837,
+      "sha256": "f880767926f8b0a022c019de0d8b8df55fd4ae2c810cddf3c66953d2b6a29050"
+    },
+    "manuscripts/wind_energy_v2/literature/sources.csv": {
+      "bytes": 11457,
+      "sha256": "455deca372ad50faab3c2ae11d999ce945964de0a3f6a358afeee812957da0aa"
+    },
+    "manuscripts/wind_energy_v2/manuscript.md": {
+      "bytes": 42569,
+      "sha256": "c5d5aecdabf793f4b2eac65cd8351254cfecbbf64691de8a534c3dd1d6bbe767"
+    },
+    "manuscripts/wind_energy_v2/manuscript.pdf": {
+      "bytes": 250394,
+      "sha256": "993aefc855a10f6c8c4a471a9362f2fe176593978bebb0147f2081fa2f49e566"
+    },
+    "manuscripts/wind_energy_v2/manuscript.tex": {
+      "bytes": 59154,
+      "sha256": "9798634deaeae5422a5d8514f9c03220300a4219ebec7e67def4a6eaf1897b0f"
+    },
+    "manuscripts/wind_energy_v2/manuscript_state.json": {
+      "bytes": 5166,
+      "sha256": "8c896029f46d3a462f728b5c68a5a3cbe099e2eaca2fa382c8e3ba53548e334d"
+    },
+    "manuscripts/wind_energy_v2/provenance_before.json": {
+      "bytes": 22618,
+      "sha256": "63db1f15418e19638aa06bafca93046359bc77c2cc2c5c29233bdaee187bc039"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/FIELD_GUIDE.md": {
+      "bytes": 3980,
+      "sha256": "e85516b1d65bf03972d17f78917a8db4618ed7de12d1badeb980562ff750635b"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/MANIFEST.json": {
+      "bytes": 11246,
+      "sha256": "edf1e7760eb3a9904203dcb0801019f5cd536e2acc8c0ddfcedc2d9df0e704e4"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/PORTABILITY_CHECK.json": {
+      "bytes": 3501,
+      "sha256": "f45a5a5934ceb7cb089f4128eeb11eb1aec61bbe594596e1baae7562e9396cd0"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/PROVENANCE.json": {
+      "bytes": 25642,
+      "sha256": "5966244ef6dfa945d464753b32d84302d0e7398b570f07779b786a9a3bf8db24"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/PUBLICATION_GAPS.md": {
+      "bytes": 1865,
+      "sha256": "ef41264e1dec8d55a74bd0d8066eaa9f9e0f1764b3c4b9f59c8e6f4564a33f26"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/README.md": {
+      "bytes": 6245,
+      "sha256": "9486645ff8a554449cb95c847b2a21616793b081b9ef8cd3ec551a4321dfd9ad"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/csv/registered_confirmation_policies.csv": {
+      "bytes": 28347,
+      "sha256": "89506f8fe6be44aa0fae4356bbb39665fdad1233027738da183c7b844438eed1"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/csv/towie_all_90_cases.csv": {
+      "bytes": 8927,
+      "sha256": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/csv/towie_q925_all_15_witnesses.csv": {
+      "bytes": 1661,
+      "sha256": "c6e3985277500fec0f275d4c9caa5ec1886dec5a52592e74395ac9824ff15a40"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/csv/towie_q925_block_sensitivity.csv": {
+      "bytes": 423,
+      "sha256": "70e3de525c42df644eead9d2eadf29ad0b1d2eaf6929b3e90d5472bc5b9107ee"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/csv/wtb_all_420_minimum_cases.csv": {
+      "bytes": 61908,
+      "sha256": "aeb36ec93b2492fd8e0aaca48a96622848efcd0fa9ef6939d7d33cb2e0297010"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/csv/wtb_all_420_sufficiency_cases.csv": {
+      "bytes": 34358,
+      "sha256": "fe1467ce249808a946e734ef93cd52b31412e630f842e7f21e97535db8b7e96b"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/confirmation/primary.json": {
+      "bytes": 3233,
+      "sha256": "f703e64fb7e20843f7daddeb9cc3b0b6d4e95594658560831ba425ac1df7bf72"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/confirmation/secondary_span1.json": {
+      "bytes": 7480928,
+      "sha256": "753141814c4baad335b6d5c6b3aa258b5bc52a7829d7e547d0cb333094439339"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/confirmation/secondary_span3.json": {
+      "bytes": 7504439,
+      "sha256": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/confirmation/secondary_span7.json": {
+      "bytes": 7484562,
+      "sha256": "8ca94402bd42c8e9e7903556c95e4c28af3feff7366e9dd70dd7760f932c6612"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/history/bounds.json": {
+      "bytes": 7076648,
+      "sha256": "9da74aab5654ff5b8eeb7636834d4914c01adddc467bfd7274a3280e7a0a6a0b"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/history/choices.json": {
+      "bytes": 118825,
+      "sha256": "358e0884ea36c86f98518a3f4ba5b3902716c60b27c476a93536203f689ada29"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/ledger/derived.json": {
+      "bytes": 2983,
+      "sha256": "96e9bd2406a4151bdc8a9b213818557281ed046715db7a2c8a5aa33023641159"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/ledger/loss_ledger.csv": {
+      "bytes": 1324,
+      "sha256": "90b8b2e24f274291e409ebbb1c43cff427579a6414cf18a74ed427f5d1cbd980"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/ledger/policy_seed_ledger.csv": {
+      "bytes": 2850,
+      "sha256": "7096a07743dbbd6fa2e34a30b9ae1ad342f94a145ae96721436c348ff10b5604"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/ledger/resource_ledger.csv": {
+      "bytes": 4758,
+      "sha256": "ffb91eff1313db57ff8ae169f465f20d852f3fe74628e1da7a611310ac9cacbd"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/wtb/aggregate.json": {
+      "bytes": 73865666,
+      "sha256": "236d8d0fde557809bb7aa89cbc92e922f65e0fa224ec8e956d304d552f4b0211"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/wtb/necessity.json": {
+      "bytes": 1361185,
+      "sha256": "750ae8f3de81504973dbc8c261720ba525a3d1b34742b4c5e7d04da964b3895d"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/FOUR_QUESTIONS_CN.md": {
+      "bytes": 2363,
+      "sha256": "7de659e82a2c759f16dda668fa92861f20fab6ea3dbef5e293b0b12679bb137c"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/GAPS.md": {
+      "bytes": 3619,
+      "sha256": "0967b2abfb69f2109ecdb3648b1b418a544bf50cadf30ffe2a2ed6dd57178729"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/INTERFACE_EVIDENCE.md": {
+      "bytes": 11278,
+      "sha256": "ca0eea2f71db924f6fb4b71396b1aab6d7dd6409db18425a32875ffa07188b7c"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/REVISION_RESPONSE.md": {
+      "bytes": 3386,
+      "sha256": "25074d56dca509664f017d4246cf60b6dffb733ad9b7e5c72c0978664b4833cf"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/american-medical-association.csl": {
+      "bytes": 11575,
+      "sha256": "d70f843d93c2b1e8c59c0e26e2396bea4ed99fb4a1aac69b6dddc249a10fadf7"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/manuscript.md": {
+      "bytes": 42569,
+      "sha256": "c5d5aecdabf793f4b2eac65cd8351254cfecbbf64691de8a534c3dd1d6bbe767"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/manuscript.pdf": {
+      "bytes": 250394,
+      "sha256": "993aefc855a10f6c8c4a471a9362f2fe176593978bebb0147f2081fa2f49e566"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/manuscript.tex": {
+      "bytes": 59154,
+      "sha256": "9798634deaeae5422a5d8514f9c03220300a4219ebec7e67def4a6eaf1897b0f"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/references.bib": {
+      "bytes": 6141,
+      "sha256": "fe60155dc22a2127d5f1695f4bf0ee281ccdc151d694d57bdd0e3827baa8066e"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/supplementary.md": {
+      "bytes": 43114,
+      "sha256": "9276ff55a05f6da900e79d4c92661df66664e7df47c535da1b8278b05fbb4c13"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/supplementary.pdf": {
+      "bytes": 92429,
+      "sha256": "b34afd5d9e23d828596bb90368ac4136475c1842a2c728e84377377f2aae5820"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/supplementary.tex": {
+      "bytes": 58242,
+      "sha256": "9c568e4a6f2fdd921eafe8de54090c02805535effa73fb911b5bdc69fc24fc78"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/fig1_information_freeze.csv": {
+      "bytes": 1036,
+      "sha256": "642a1365722172bdeea869d13140dbd74828b59bed94c5604426cde2b4997e7c"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/fig2_primary_confirmation.csv": {
+      "bytes": 2486,
+      "sha256": "dd3a1abd98ecf840d6526568463e3a9119c3863bdcc9be44d30593f278705877"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/fig3_secondary_minimality.csv": {
+      "bytes": 9004,
+      "sha256": "9c8c9c5456769176795e192f8e80f457b6ef90c133e6ad67000bba40a0d59d87"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/fig4_identification_boundary.csv": {
+      "bytes": 10310,
+      "sha256": "f20b6263ccc90660f69174a8fd1d36abc254917ec600278ce84cfd19708975ab"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/v2/fig1_information_freeze.csv": {
+      "bytes": 1036,
+      "sha256": "642a1365722172bdeea869d13140dbd74828b59bed94c5604426cde2b4997e7c"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/v2/fig2_primary_confirmation.csv": {
+      "bytes": 2486,
+      "sha256": "dd3a1abd98ecf840d6526568463e3a9119c3863bdcc9be44d30593f278705877"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/v2/fig3_field_manifest.json": {
+      "bytes": 3565,
+      "sha256": "44e27f25b3f55e04170ec05823ca025a2a16be171a88b28935ddae1137a1f564"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/v2/fig3_secondary_minimality.csv": {
+      "bytes": 7443,
+      "sha256": "5591e87e866d07c87eddd95376eb6e7cac4a6c35c0f56c9a06ac56289839e3d8"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/v2/fig4_identification_boundary.csv": {
+      "bytes": 10310,
+      "sha256": "f20b6263ccc90660f69174a8fd1d36abc254917ec600278ce84cfd19708975ab"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig1_information_freeze.pdf": {
+      "bytes": 42663,
+      "sha256": "2a3162495dfab285f8d2d510444089cdcc0a65148fe983f282ceda93980c082e"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig1_information_freeze.png": {
+      "bytes": 337554,
+      "sha256": "d8b2a86fded705e8f2d0e15deab9750c8b4aefc65b2134a12f5c942e6017a88c"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig1_information_freeze.svg": {
+      "bytes": 9190,
+      "sha256": "8d9febc237ec95589dc2e83926be9a3242ec9a64663df42f6977363976f4fc11"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig2_primary_confirmation.pdf": {
+      "bytes": 42879,
+      "sha256": "0f611b8106e7827c967b26c336bec58bb82eefc1d338ce8a585d430e37cf8dec"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig2_primary_confirmation.png": {
+      "bytes": 221669,
+      "sha256": "7c2e9b495ee8e98011956a740436259d84cc786aafa3b8c6a11c99a601eca61e"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig2_primary_confirmation.svg": {
+      "bytes": 21647,
+      "sha256": "d20b1c410d7873a21465accdc7252e8c496abc5a0c76d79b5702815253eb9ce9"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig3_secondary_minimality.pdf": {
+      "bytes": 45894,
+      "sha256": "0082b1a5afa1c5db0834e4b844193f20c2106fffacb6b66d823be000800b8768"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig3_secondary_minimality.png": {
+      "bytes": 440174,
+      "sha256": "6fb37cc99edcd037dbc33f497d47686d371fff64097b706b2caad919d5d4d885"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig3_secondary_minimality.svg": {
+      "bytes": 27700,
+      "sha256": "57e16506ef0fcde5ea7f55f209e8935a7bc0047e43ef568bbea78e7a66499b3e"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig4_identification_boundary.pdf": {
+      "bytes": 42296,
+      "sha256": "5c2d9ef4ba99172791c87d07c7a6e3c48926b96cef65692ac13d4d84565e1550"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig4_identification_boundary.png": {
+      "bytes": 290280,
+      "sha256": "66516450b6750664927920e856628366324e1e2d7b0c0a70db44658141029f3c"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig4_identification_boundary.svg": {
+      "bytes": 32649,
+      "sha256": "d131b7736dfd2f957459d3f6a8dfa316c96ebb77d87ad63a96e8729d3eed0b87"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/protocol/confirmation_protocol.json": {
+      "bytes": 7379,
+      "sha256": "de2f14aabb504bbd5a32c3e1f3829eb1a88a7e68b10e7b4607eb5a88d561f188"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/protocol/freeze_public_projection.json": {
+      "bytes": 6414,
+      "sha256": "36ad768a498bdbfdda9255da4af0dac4d714631b82c812a912c9047087775200"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/protocol/unlock_public_projection.json": {
+      "bytes": 771,
+      "sha256": "780304ef590a6024b54e2455413c092b6453b837d7b09c8b819dfb2fb1c6c47f"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/refresh_manifest.py": {
+      "bytes": 3837,
+      "sha256": "21d14d2a29ea74660f1516bd4232560966d7ce96901b58c8e9cf177747674b8d"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/scripts/audit_subset_minimum_necessity.py": {
+      "bytes": 5881,
+      "sha256": "8e876567dfabe3fc471ee15c0c5f280602de58f8938fe1e166136bc0f0e22058"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/scripts/run_independent_confirmation.py": {
+      "bytes": 35485,
+      "sha256": "62b7913197d1050f700d5d6ae2467f3c49b16546dad37953a05818eb576efee9"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/scripts/run_information_subset_study.py": {
+      "bytes": 24553,
+      "sha256": "20d7cc4587fa028263d461267722eb7cec5a779cec4376cf6563b6b059d0faba"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/windfarm_moe/decision_information.py": {
+      "bytes": 7146,
+      "sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/windfarm_moe/independent_confirmation.py": {
+      "bytes": 6064,
+      "sha256": "dd59f461df7535202f9727a3b8472b4e6a0a11edbb1070920ecea6184e09a4f2"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/windfarm_moe/information_subset.py": {
+      "bytes": 5469,
+      "sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/windfarm_moe/risk_frontier.py": {
+      "bytes": 5754,
+      "sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/windfarm_moe/subset_inference.py": {
+      "bytes": 4863,
+      "sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/test_package.py": {
+      "bytes": 4401,
+      "sha256": "358193c78a3d8f1cd6b68e93f41f44df2d88ead3193ce05929e5cff039d247f2"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/verification_report.json": {
+      "bytes": 2618,
+      "sha256": "ed4bb69510d8c7f30a9149426e185edba0fc14a12a4b50b0125df819e95eaa1e"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/verify_package.py": {
+      "bytes": 20626,
+      "sha256": "93b5d0770f81b2ff2488be015761007c587a8d26639292f7427b816759f33358"
+    },
+    "manuscripts/wind_energy_v2/qa/CLOSURE_ACCEPTANCE.md": {
+      "bytes": 5251,
+      "sha256": "39d517ac22dbef38bc5425ac3b7499d11f9ca1cfe86d57d5f06962ae8cd1ba1d"
+    },
+    "manuscripts/wind_energy_v2/qa/build_figures_receipt.json": {
+      "bytes": 17099,
+      "sha256": "019a63ba08cff94e9c4649ab4e7ae04a365d426f69f95d6f1f843ca8399986ea"
+    },
+    "manuscripts/wind_energy_v2/qa/build_receipt.json": {
+      "bytes": 3225,
+      "sha256": "548573ba19fb1938b71602b5618e4f4a4bc95f09c3eb7c733cb86f8a90ee852c"
+    },
+    "manuscripts/wind_energy_v2/qa/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "manuscripts/wind_energy_v2/qa/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "manuscripts/wind_energy_v2/qa/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 748,
+      "sha256": "1b02a10a9a962f24d1e5c2989c3837d963897f07fdddf2ea5d99874a8d59321b"
+    },
+    "manuscripts/wind_energy_v2/qa/fig1_information_freeze.alignment.json": {
+      "bytes": 1690,
+      "sha256": "0d752013da6fdbcb92734b99ba75d1042072fab7eb1ad5ab29c78985652b5444"
+    },
+    "manuscripts/wind_energy_v2/qa/fig1_information_freeze.collision.json": {
+      "bytes": 565,
+      "sha256": "3c2fa8aa8e1861fbda34b045df7f9e495d37223a81c8f5dc35656a7d9e1bc1ca"
+    },
+    "manuscripts/wind_energy_v2/qa/fig1_information_freeze.collision.pdf": {
+      "bytes": 42522,
+      "sha256": "70446f5b8e25af504214ef4bc8102177533100c19221b939d05da053e09d8936"
+    },
+    "manuscripts/wind_energy_v2/qa/fig1_information_freeze.grayscale.png": {
+      "bytes": 165812,
+      "sha256": "1360adb0c508d4dd11ce99cb759026538118c39ae012a0539653f72a7eb5b916"
+    },
+    "manuscripts/wind_energy_v2/qa/fig1_information_freeze.pdf_preview.png": {
+      "bytes": 37988,
+      "sha256": "787c12ad87fa5a49878b7958e49f7ee4b6ffe1f0a079cbbb53cc706908566222"
+    },
+    "manuscripts/wind_energy_v2/qa/fig1_information_freeze.text.json": {
+      "bytes": 271,
+      "sha256": "b5530160c8d45750e9b9bcb2ad3364bb2693c0143ef2a24698b8c8fd05606b26"
+    },
+    "manuscripts/wind_energy_v2/qa/fig2_primary_confirmation.alignment.json": {
+      "bytes": 1685,
+      "sha256": "acf90a8eeb2e0feeac5089d3e7ffdc12a650b22fcccc546a4a774998052ed2e6"
+    },
+    "manuscripts/wind_energy_v2/qa/fig2_primary_confirmation.collision.json": {
+      "bytes": 567,
+      "sha256": "24d0a22b523bd08074312a7aed413f85c00b08c8873648b065df59f46e50fe2f"
+    },
+    "manuscripts/wind_energy_v2/qa/fig2_primary_confirmation.collision.pdf": {
+      "bytes": 42694,
+      "sha256": "ac1332296d701e9f1335af77dde17a34e3750ed3ab288667505946117656ab2a"
+    },
+    "manuscripts/wind_energy_v2/qa/fig2_primary_confirmation.grayscale.png": {
+      "bytes": 109783,
+      "sha256": "6bc5bd6322fa361d1f506cc4afe395585d85f1d4adaa7c28cc0fa844e5f9fd28"
+    },
+    "manuscripts/wind_energy_v2/qa/fig2_primary_confirmation.pdf_preview.png": {
+      "bytes": 28538,
+      "sha256": "4eae49d2a7dd4f0c5da718fa190390d599685ae89dc03de1bf7f8fd59d305c07"
+    },
+    "manuscripts/wind_energy_v2/qa/fig2_primary_confirmation.text.json": {
+      "bytes": 273,
+      "sha256": "08fcfdecaf9dbaae41fb5e074ee97e720203ad3e9427547546a15142839ec3d9"
+    },
+    "manuscripts/wind_energy_v2/qa/fig3_secondary_minimality.alignment.json": {
+      "bytes": 2451,
+      "sha256": "133c92851bce45a1b103831cd1af484b843a69657b9cff2a02e64effef6604df"
+    },
+    "manuscripts/wind_energy_v2/qa/fig3_secondary_minimality.collision.json": {
+      "bytes": 571,
+      "sha256": "606c0de71e4f7ef6ab450547724b41f96373483ea472cd13986963027fd802aa"
+    },
+    "manuscripts/wind_energy_v2/qa/fig3_secondary_minimality.collision.pdf": {
+      "bytes": 45753,
+      "sha256": "f3914fcf050f8ae5535ed76a0c3173aa033c3afcca6471180a5d9e0add455575"
+    },
+    "manuscripts/wind_energy_v2/qa/fig3_secondary_minimality.grayscale.png": {
+      "bytes": 224633,
+      "sha256": "05e37463aeb8d3c6aeb31bfc33ffe7b2eb9a4fb6e2764bcf4141e7c4dcc1568d"
+    },
+    "manuscripts/wind_energy_v2/qa/fig3_secondary_minimality.pdf_preview.png": {
+      "bytes": 55713,
+      "sha256": "4371272c7ff20004cdfcde85ba5238b83364130dc822c370344b5c23018f6833"
+    },
+    "manuscripts/wind_energy_v2/qa/fig3_secondary_minimality.text.json": {
+      "bytes": 277,
+      "sha256": "f33b8afedf50e0306f4e00fe1b23a9e7ae2e4540dc3ac86e55f3377577c73d02"
+    },
+    "manuscripts/wind_energy_v2/qa/fig4_identification_boundary.alignment.json": {
+      "bytes": 1687,
+      "sha256": "5047eafbc6ff6885ff82a76d8913518ef4fb0c85ded61b3e93182590ddbce2d1"
+    },
+    "manuscripts/wind_energy_v2/qa/fig4_identification_boundary.collision.json": {
+      "bytes": 571,
+      "sha256": "7d666be84443e8f15d8cf3f354ef1eadfa043b0efba363ab36a0907a5b9cffb0"
+    },
+    "manuscripts/wind_energy_v2/qa/fig4_identification_boundary.collision.pdf": {
+      "bytes": 42135,
+      "sha256": "821963d40e7e63c79c3e0aa2181d5890f62da55fbe29bd7cf4228474da48a466"
+    },
+    "manuscripts/wind_energy_v2/qa/fig4_identification_boundary.grayscale.png": {
+      "bytes": 146056,
+      "sha256": "8b29014a69e39bf3cd282f15a161ce2a73ca817d2a9100a0f76f6e8da1282fab"
+    },
+    "manuscripts/wind_energy_v2/qa/fig4_identification_boundary.pdf_preview.png": {
+      "bytes": 37385,
+      "sha256": "1b2c6373b807934d17494bf576b4742ac1dbf4fff66a5880e05bc6120ba0d872"
+    },
+    "manuscripts/wind_energy_v2/qa/fig4_identification_boundary.text.json": {
+      "bytes": 276,
+      "sha256": "acc14b97e57c81fd62d4be4cb8cc6ec76528483aad3ba2347689a159f2cec9d9"
+    },
+    "manuscripts/wind_energy_v2/qa/final_preservation_check.json": {
+      "bytes": 1386,
+      "sha256": "b391ed32fef76143994bf7adf32c1a4023db57c4cf517752af685e634214b57c"
+    },
+    "manuscripts/wind_energy_v2/qa/final_size_contact_sheet.png": {
+      "bytes": 163867,
+      "sha256": "fcddc2148089be7ced60e4dca41b5c3f3b234fa25138ae8b7bc75ea416b5896c"
+    },
+    "manuscripts/wind_energy_v2/qa/independent_archive_gate.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    },
+    "manuscripts/wind_energy_v2/qa/legacy_scientific_gate.txt": {
+      "bytes": 4952,
+      "sha256": "fa9dcfaef7b9366fad5d9bbb9da05dbb56a556daa6c446059cb2238411c12594"
+    },
+    "manuscripts/wind_energy_v2/qa/main_prose_audit.json": {
+      "bytes": 4764,
+      "sha256": "ae6cfa47274ad3a283151ab51f90ad97e51e5d74ee05dee941c8ac9a6a1459e5"
+    },
+    "manuscripts/wind_energy_v2/qa/method_revision_check.md": {
+      "bytes": 9234,
+      "sha256": "cd0ab15b2f0e501c414a5a7a4f60e1c640451befb8946df39c614a28d90d61d6"
+    },
+    "manuscripts/wind_energy_v2/qa/pdf_visual_review_v2.json": {
+      "bytes": 10961,
+      "sha256": "8809319c223849ed0cd367203e2e3d3ed6fff00be84f5c6ed247d6e9252d269e"
+    },
+    "manuscripts/wind_energy_v2/qa/public_package_receipt.json": {
+      "bytes": 643,
+      "sha256": "79cb8f3f386fecc9df1f6915236050eec9fde9ef1554d5b3e5f80b308c627c4d"
+    },
+    "manuscripts/wind_energy_v2/qa/source_validation.json": {
+      "bytes": 4079,
+      "sha256": "ef77a14a65992cfddc8565af5af699c9607426fee05baae40d3578a2d7c4c2c9"
+    },
+    "manuscripts/wind_energy_v2/qa/static_release_check.json": {
+      "bytes": 763,
+      "sha256": "72ed3c8550b673b1b7eaee0d0d40391ed4f5b5bf33e2a4b1ddfc248cdcc02b6a"
+    },
+    "manuscripts/wind_energy_v2/qa/supplementary_prose_audit.json": {
+      "bytes": 4861,
+      "sha256": "7dfcbfa8cf41622a0481c5ecf7769d119a4ee337a222a3c1d4d93639be19cc23"
+    },
+    "manuscripts/wind_energy_v2/references.bib": {
+      "bytes": 6141,
+      "sha256": "fe60155dc22a2127d5f1695f4bf0ee281ccdc151d694d57bdd0e3827baa8066e"
+    },
+    "manuscripts/wind_energy_v2/scripts/build_figures.py": {
+      "bytes": 30106,
+      "sha256": "b14a186096152aa1aeb3cdab2edd48d465de58ce23423cc43663bafd50c5cf89"
+    },
+    "manuscripts/wind_energy_v2/source_data/fig1_information_freeze.csv": {
+      "bytes": 1036,
+      "sha256": "642a1365722172bdeea869d13140dbd74828b59bed94c5604426cde2b4997e7c"
+    },
+    "manuscripts/wind_energy_v2/source_data/fig2_primary_confirmation.csv": {
+      "bytes": 2486,
+      "sha256": "dd3a1abd98ecf840d6526568463e3a9119c3863bdcc9be44d30593f278705877"
+    },
+    "manuscripts/wind_energy_v2/source_data/fig3_field_manifest.json": {
+      "bytes": 3565,
+      "sha256": "44e27f25b3f55e04170ec05823ca025a2a16be171a88b28935ddae1137a1f564"
+    },
+    "manuscripts/wind_energy_v2/source_data/fig3_secondary_minimality.csv": {
+      "bytes": 7443,
+      "sha256": "5591e87e866d07c87eddd95376eb6e7cac4a6c35c0f56c9a06ac56289839e3d8"
+    },
+    "manuscripts/wind_energy_v2/source_data/fig4_identification_boundary.csv": {
+      "bytes": 10310,
+      "sha256": "f20b6263ccc90660f69174a8fd1d36abc254917ec600278ce84cfd19708975ab"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/projection_receipt.json": {
+      "bytes": 3541,
+      "sha256": "454bcaa9f8bf7cb042c8735656b8add4d26904f6c332cfc8a724fee21182914b"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/registered_confirmation_policies.csv": {
+      "bytes": 28347,
+      "sha256": "89506f8fe6be44aa0fae4356bbb39665fdad1233027738da183c7b844438eed1"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/towie_all_90_cases.csv": {
+      "bytes": 8927,
+      "sha256": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/towie_q925_all_15_witnesses.csv": {
+      "bytes": 1661,
+      "sha256": "c6e3985277500fec0f275d4c9caa5ec1886dec5a52592e74395ac9824ff15a40"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/towie_q925_block_sensitivity.csv": {
+      "bytes": 423,
+      "sha256": "70e3de525c42df644eead9d2eadf29ad0b1d2eaf6929b3e90d5472bc5b9107ee"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/wtb_all_420_minimum_cases.csv": {
+      "bytes": 61908,
+      "sha256": "aeb36ec93b2492fd8e0aaca48a96622848efcd0fa9ef6939d7d33cb2e0297010"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/wtb_all_420_sufficiency_cases.csv": {
+      "bytes": 34358,
+      "sha256": "fe1467ce249808a946e734ef93cd52b31412e630f842e7f21e97535db8b7e96b"
+    },
+    "manuscripts/wind_energy_v2/supplementary.md": {
+      "bytes": 43114,
+      "sha256": "9276ff55a05f6da900e79d4c92661df66664e7df47c535da1b8278b05fbb4c13"
+    },
+    "manuscripts/wind_energy_v2/supplementary.pdf": {
+      "bytes": 92429,
+      "sha256": "b34afd5d9e23d828596bb90368ac4136475c1842a2c728e84377377f2aae5820"
+    },
+    "manuscripts/wind_energy_v2/supplementary.tex": {
+      "bytes": 58242,
+      "sha256": "9c568e4a6f2fdd921eafe8de54090c02805535effa73fb911b5bdc69fc24fc78"
+    },
+    "manuscripts/wind_energy_v2/test_release.py": {
+      "bytes": 2761,
+      "sha256": "92daa04eeb780f7864799ea297856223e6277a329fbfad532b1e26bb0d35e8a7"
+    },
+    "manuscripts/wind_energy_v2/test_supplement_evidence.py": {
+      "bytes": 3827,
+      "sha256": "e15d129f6ee0a3d093de0f91e099affc02a8274cec9189a834782793ba26476a"
+    },
+    "manuscripts/wind_energy_v2/tests/test_fig3_bridge.py": {
+      "bytes": 3118,
+      "sha256": "5fc07b0ce7c71067214c4c51a1b0f215be79718df0ac1ea57e281aec36e34eda"
+    },
+    "manuscripts/wind_energy_v2/tests/test_figure_sources.py": {
+      "bytes": 2744,
+      "sha256": "7d443433614966f8e357d1ed860557ebb96de601f873b4402e92218a01ff5234"
+    },
+    "manuscripts/wind_energy_v2/validate_release.py": {
+      "bytes": 6695,
+      "sha256": "f2fed45fb4df6b3f59aca81b1123a90fdc51de69b5b154874ef4794f537401c9"
+    },
+    "manuscripts/wind_energy_v2/wind_energy_v2_review_package.zip": {
+      "bytes": 32877316,
+      "sha256": "6c01787351a6ffbc6bf61262593dc2a533f12c6d86c1278b838d4fecc2f95e96"
+    },
+    "research-manifest.json": {
+      "bytes": 46397,
+      "sha256": "d53b3e0ea9b6e9dfe374dececea0b1c04012c59ca6b4d64b819cb771536f2e97"
+    },
+    "research_audit/14_resource_loss_break_even_review.md": {
+      "bytes": 10889,
+      "sha256": "7e999e0844f066e121a61fd6c9a576a4c127cd694e8d8ff7d79475e57fe7adf4"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/ASSET_INVENTORY.csv": {
+      "bytes": 11214349,
+      "sha256": "5bb321e781d63ac5095216eefc1418b67b8722788c2a205aaeb4bdb65b5b4a82"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/CONTRIBUTION_ATLAS.md": {
+      "bytes": 15851,
+      "sha256": "966f769ab58ac5362aab9e5d3505b46b21596a7b3908ec2e0cab3edceea0d4cf"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/DECISION.json": {
+      "bytes": 5016,
+      "sha256": "f128308b028a933d277978fb1f9b3e78f9d46a53d2f62eceba6f1efc12a2234e"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/DIRECTORY_COVERAGE.csv": {
+      "bytes": 89594,
+      "sha256": "82c044a1decc1fd065ed2e48be6d60a05bdd2ee6fe0f1f33b04115af26979c72"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/DIRECTORY_INVENTORY.csv": {
+      "bytes": 25109,
+      "sha256": "e55a15f10e72635cc717009a76eca5e7b7b4e4dc586f2bf034b1f08b785aab35"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/EVIDENCE_INDEX.csv": {
+      "bytes": 214181,
+      "sha256": "a237e637d88df7c93382a7f5479ee36b5c6c4073ed7dd0211d1973cf583c14d7"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/HISTORICAL_ARCHIVE_INDEX.csv": {
+      "bytes": 7658,
+      "sha256": "c7fe94a189dbbe0fce30802951a60cf21775b35cad269f85f6e8acb1943bf121"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/HISTORICAL_AUXILIARY.md": {
+      "bytes": 5376,
+      "sha256": "9f03362511c3057d9ca965b989083bb57d5e74842313300440e48366407bcf07"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/INVENTORY_RECEIPT.json": {
+      "bytes": 1719,
+      "sha256": "42fd07d90e96851e3023a0038dfe03752787937f34049d103eb0655c45728983"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/LEGACY_CLAIMS.csv": {
+      "bytes": 30315,
+      "sha256": "9b211c63bbcc7d47d6afedff1a03a183784d0e78bb835f5f9201db8b157d0de2"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/LEGACY_MODELS.md": {
+      "bytes": 33808,
+      "sha256": "1be06e6341ab78ccec7cc9808a3ae8ab5e64c6712ff5da2ca6d2aca7eb9c3e45"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/OPERATIONAL_CLAIMS.csv": {
+      "bytes": 20212,
+      "sha256": "8716eda358b5e79dc4ec23bff33be354b5fe6f83676d89c6e9cbe7fd71615797"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/OPERATIONAL_EXTERNAL.md": {
+      "bytes": 30214,
+      "sha256": "8ee8f8339f729e5f373ba54c8756f84b4a82e719a80562afb87c6afe32a04522"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/READ_SOURCE_IDENTITIES.json": {
+      "bytes": 28133,
+      "sha256": "91ec10ce8ccfc7bf999d1c20c50f7098ffa8152046dac456aee171dff38b3bbf"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/RECENT_CLAIMS.csv": {
+      "bytes": 6286,
+      "sha256": "4f936c17b29a67af0e0af3dcb59c2215976a376617c3fb27f8f634c1fdf046ab"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/RECENT_SOURCE_EXTRACT.json": {
+      "bytes": 11363,
+      "sha256": "fc2eb49cf811234522a91212fbeb39dd4a17ab745b2023a62ddeb3fc1b2c9422"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/RECENT_SOURCE_IDENTITIES.json": {
+      "bytes": 3065,
+      "sha256": "7d3904ec9ff7e06014cd94bff9be7eb1d7a9d049b65d9da231c8eebea6799ff5"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/REVIEW_SCOPE.json": {
+      "bytes": 68272,
+      "sha256": "315526b844eee9e33a92373849419189174a31a603c7b58958e8e56bd93dd185"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/SELECTOR_AND_STATE.md": {
+      "bytes": 21215,
+      "sha256": "08a1f24a7b5c7ea066f71fea93bc0d07ecebbc8fb233b33fc185907514fd44ec"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/SELECTOR_STATE_CLAIMS.csv": {
+      "bytes": 256821,
+      "sha256": "ae6be0339541eb5b18d0748a8b205cd9a3a15f0750615815c79f6ac2dfe094b6"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/VERIFICATION.json": {
+      "bytes": 5844,
+      "sha256": "6713901a29c62efe786301bfb4d43687cc2f6d2cf82f8cd785ea6ad1ce8b5d5b"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/verification/cached_number_gate.txt": {
+      "bytes": 207,
+      "sha256": "cb48d209d5f965a7ec692ca586442d4041317610e785d644018fda38c2f966b0"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/verification/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/verification/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/verification/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 883,
+      "sha256": "5c7252be4408ecefd84b7885ea913a4edcbf917f2e860cf903fb28e79633cca4"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/verification/legacy_scientific_gate.txt": {
+      "bytes": 4946,
+      "sha256": "f731c371bf68b05afe9d9bdcbb07592374c02410008918c9c6537d51e8430fc3"
+    },
+    "research_audit/all_experiment_contribution_inventory_20261020/verification_independent_archive.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/DECISION.json": {
+      "bytes": 1139,
+      "sha256": "8c9dbc9efa2b1792bd649131eeb63826cf6ea635c0997aed80f071ca5039ae9d"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/EVIDENCE_MAP.csv": {
+      "bytes": 2421,
+      "sha256": "312a8471e3fd9e43553c16f7bb1ff3c0f65f6222fe06db2641c17d8b077e5b39"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/FOUR_QUESTIONS.md": {
+      "bytes": 1728,
+      "sha256": "2873f05d161115839e65909b83d813155aeabbb2eefcbd580287e45f4255bd4e"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/JOURNAL_MATRIX.csv": {
+      "bytes": 2877,
+      "sha256": "15cc89fe4bfb6be86ca6441506305ec7e02b8caea19cef86094d31142d34f51d"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/LITERATURE_MATRIX.csv": {
+      "bytes": 4472,
+      "sha256": "c1e17934515b5812240dc7fd35befeb8ecc63bd7220bf733ab6dd2f19a51c583"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/POSITIONING.md": {
+      "bytes": 12037,
+      "sha256": "0f49495aeb8e700784d4cba591b5a96afb996bd058f47d471ade844edcd9d818"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/SOURCES.csv": {
+      "bytes": 2405,
+      "sha256": "9bbb3ade69e40690d2c2583aed18a53e20783f547ed562d8ef3a5fe18a133b19"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/VERIFICATION.json": {
+      "bytes": 14499,
+      "sha256": "39d6aaceb7e5d69b87ed8c7736fee5d03e96c70eb9fc1c0d89a36a9c2e70eaf2"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/metadata/10.1002_we.416.json": {
+      "bytes": 7109,
+      "sha256": "fb32bff3553c05f58f37a90cefac82f024a00e244f72a6310d13de6a17c6a609"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/metadata/10.1002_we.70079.json": {
+      "bytes": 23783,
+      "sha256": "eb69e27958d9e0e81575957beba2603321d2bee62a1fc58e7aef06e635ebf17c"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/metadata/10.1016_j.egyai.2025.100573.json": {
+      "bytes": 27113,
+      "sha256": "3073ce9b6f06ddf27ad4f8a1292f39c7b05a83077c4d9a4b0f4d2f0b9c134130"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/metadata/10.1016_j.epsr.2024.110513.json": {
+      "bytes": 24370,
+      "sha256": "daf4f79ab8dd358c44e0d3e38321c88dea5046f09bc15feb17066d4db6e6f433"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/metadata/10.1016_j.epsr.2024.110750.json": {
+      "bytes": 15728,
+      "sha256": "5dd62e5611af13b24733c6b889306796707b46c5cf2aea6e78fe5e5a9d37f40f"
+    },
+    "research_audit/completed_evidence_venue_positioning_20261020/metadata/10.5194_wes-10-2117-2025.json": {
+      "bytes": 25744,
+      "sha256": "e21f91be523bb17ab1970806bafaa5a16455df032295089f264a0cb552c12ca7"
+    },
+    "research_audit/local_pdf_reassessment_20261020/LITERATURE_MATRIX.csv": {
+      "bytes": 2953,
+      "sha256": "adeae1f3401853d196ff31583a39bc22b97d776f9d4304f51f2ece6d92670c91"
+    },
+    "research_audit/local_pdf_reassessment_20261020/MLWA_FULLTEXT_READING.md": {
+      "bytes": 7704,
+      "sha256": "e93f27f20ecf906ee53fc10b37d4c881f9707ebad2406b2c2019c3aee9f8cf98"
+    },
+    "research_audit/reserve_allocation_confirmation_v2_20261020/WINDOW_DECISION.json": {
+      "bytes": 915,
+      "sha256": "a11afe8870c35fd7e226de26d7c3931f433af476c58dbb5901d88d30c7e0335e"
+    },
+    "research_audit/resource_loss_ledger_20261019/.gitignore": {
+      "bytes": 36,
+      "sha256": "e93cb3a48692667938b80c87ca8bd48c6bdcfda57d9ac4e6bdd43d7e2099038f"
+    },
+    "research_audit/resource_loss_ledger_20261019/README.md": {
+      "bytes": 1371,
+      "sha256": "25e282c292cbacf4b9ec073eecc51f8dccb8762449734360904608bce4a9b494"
+    },
+    "research_audit/resource_loss_ledger_20261019/decision.json": {
+      "bytes": 655,
+      "sha256": "164f2a3f219d6c4fa66f4c76982015ee372cb581cad0bb41422f507fa825ca38"
+    },
+    "research_audit/resource_loss_ledger_20261019/demand_evidence.csv": {
+      "bytes": 1583,
+      "sha256": "6fd3fb5680e90e9ae47c7a3c8a87d8eb147c1401ed7629ff6eb948142072bcb1"
+    },
+    "research_audit/resource_loss_ledger_20261019/demand_search_hits.csv": {
+      "bytes": 6507,
+      "sha256": "c39b0cdc071ec2a1680b7478b75ab1f54ab1d735ee8679764579e0aa31b27d39"
+    },
+    "research_audit/resource_loss_ledger_20261019/demand_search_summary.json": {
+      "bytes": 1112,
+      "sha256": "8c967fb3af0ecf4cf1a43febf51ea693607990fe3167027e610470cb0dbb124c"
+    },
+    "research_audit/resource_loss_ledger_20261019/derived.json": {
+      "bytes": 2983,
+      "sha256": "96e9bd2406a4151bdc8a9b213818557281ed046715db7a2c8a5aa33023641159"
+    },
+    "research_audit/resource_loss_ledger_20261019/derived_initial.json": {
+      "bytes": 2576,
+      "sha256": "4b3dd79f5f2bd8b14dd570a58f6723a9e5a475fc3ecca6935e18e79427c0ee8e"
+    },
+    "research_audit/resource_loss_ledger_20261019/loss_ledger.csv": {
+      "bytes": 1324,
+      "sha256": "90b8b2e24f274291e409ebbb1c43cff427579a6414cf18a74ed427f5d1cbd980"
+    },
+    "research_audit/resource_loss_ledger_20261019/policy_seed_ledger.csv": {
+      "bytes": 2908,
+      "sha256": "b07ca538a8404fcbc0d99633ddf96d286253bca0aacd143fbe5b2508feef1101"
+    },
+    "research_audit/resource_loss_ledger_20261019/public_sources.csv": {
+      "bytes": 1773,
+      "sha256": "7f5bbf382db0f6bd452b1c55a0fe300a5c41be037912b4f1041f1c593bc0ce47"
+    },
+    "research_audit/resource_loss_ledger_20261019/recompute_ledger.py": {
+      "bytes": 9976,
+      "sha256": "2e283cc73b6d629c3b0be287cb6a98b45fc76ec6d34f40ab4d0a69558ef131c7"
+    },
+    "research_audit/resource_loss_ledger_20261019/recompute_receipt.json": {
+      "bytes": 124140,
+      "sha256": "a6c56d488677d085dfae4b17dc6733680c5f370aee28ea2e48fa24332133d86d"
+    },
+    "research_audit/resource_loss_ledger_20261019/recompute_receipt_initial.json": {
+      "bytes": 123785,
+      "sha256": "4af05b8339ab50752f40e0c66faa2c5fa39acf054a271a10d0dfaf76aed4b632"
+    },
+    "research_audit/resource_loss_ledger_20261019/resource_ledger.csv": {
+      "bytes": 4758,
+      "sha256": "ffb91eff1313db57ff8ae169f465f20d852f3fe74628e1da7a611310ac9cacbd"
+    },
+    "research_audit/resource_loss_ledger_20261019/scope_and_inputs.json": {
+      "bytes": 3010,
+      "sha256": "eade007ec8d423d4967f33d1283d883946d4ff82954abb3667d5c19bafd86cbb"
+    },
+    "research_audit/resource_loss_ledger_20261019/validate_review.py": {
+      "bytes": 4360,
+      "sha256": "88b3ac8f6b938e3e649014707c52bdd2171e2598a6e9cc2f69efc9248184769e"
+    },
+    "research_audit/resource_loss_ledger_20261019/validation_receipt.json": {
+      "bytes": 4942,
+      "sha256": "908d2d85caf06809065bee4fcc1786e41fe25efbbe2924cdbdb351aa102822be"
+    },
+    "research_audit/resource_loss_ledger_20261019/verification/number_gate.txt": {
+      "bytes": 181,
+      "sha256": "1e92e2330da4456330cfab0c322287de9146d4b555027a537105996312d04087"
+    },
+    "research_audit/resource_loss_ledger_20261019/verification/numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "research_audit/resource_loss_ledger_20261019/verification/numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12442,
+      "sha256": "8e319f47763bb96ddb1b7afed6d471487591c9dd07ac4e903919e8d5913412e4"
+    },
+    "research_audit/resource_loss_ledger_20261019/verification/numbers/tste_number_consistency_audit.json": {
+      "bytes": 811,
+      "sha256": "97eb638f9059e3d9074ac47a9a94d36ad33dfb35cc69094a50da2ea2cb6486a3"
+    },
+    "research_audit/resource_loss_ledger_20261019/verification/scientific_claim_gate.txt": {
+      "bytes": 4944,
+      "sha256": "e803ab20b200991d71403171d45a976b77472633dbfc816803cb128ad5e29dcb"
+    },
+    "research_audit/resource_loss_ledger_20261019/write_review.py": {
+      "bytes": 21982,
+      "sha256": "c77b381ab649dabd0cb00a9183d674599db84694fe17f28871d37965cd2ea785"
+    },
+    "research_audit/state_measurement_pilot_code_review_20261020/findings.json": {
+      "bytes": 4223,
+      "sha256": "eda4f130acc4043f642ac2f435db237d83bef0a562916132d463d5112fa06205"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/DECISION.json": {
+      "bytes": 1507,
+      "sha256": "b9e265a5ad5553e410662e08c04728a1a0b433ba85ffd0995eae5d0ca34816cb"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/REVIEW.md": {
+      "bytes": 16964,
+      "sha256": "2388305a2634777c590e937a69990942176aaecd999954152d0fa169704c5284"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/REVIEW_SCOPE.json": {
+      "bytes": 18919,
+      "sha256": "26b99182c7ba5dce0c58bf0412a3ead35ab79e2d40b46956e124cb2f3057761e"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/STORED_EVIDENCE_BRIDGE.json": {
+      "bytes": 5407,
+      "sha256": "1e7aa9d878f85caa977047bd5f3475dc21d66af2dfdf9b7b79dc3d86af2eae59"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/VERIFICATION.json": {
+      "bytes": 1001,
+      "sha256": "3deaf7974dd7ff8bb76a3b5717a95df3418b4e38048cd377817a70169fd6fe8c"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/reviewer_claim_figures.md": {
+      "bytes": 19819,
+      "sha256": "4d9bc1ea2025e3ad18ac510becbd03640a3ebe22d722207aef8f7fb8b579a30a"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/reviewer_editor_novelty.md": {
+      "bytes": 20840,
+      "sha256": "7d07e0e7a3c5a0425e2c62e6c3d6a3d04fc46bcc87f0d80f3d4e7efc500b3556"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/reviewer_methods.md": {
+      "bytes": 23112,
+      "sha256": "e75f2317b3c099a5cde9042e22ea425dc956032a198133be37e6d40c20bf2292"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/verification/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/verification/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/verification/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 862,
+      "sha256": "713a867e2abe54e7ad4703e82057d62278ab5e4ca06003a9b2d6880d4e1a85b6"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/verification/legacy_scientific_gate.txt": {
+      "bytes": 4952,
+      "sha256": "fa9dcfaef7b9366fad5d9bbb9da05dbb56a556daa6c446059cb2238411c12594"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/verification_independent_archive.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/ACCEPTABILITY_EVIDENCE.md": {
+      "bytes": 16434,
+      "sha256": "771a9a86b97e3948f8a0208363aca2ed88823b9b536882c4385b0c8b43ffa06a"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/ACCEPTABILITY_SOURCES.csv": {
+      "bytes": 7997,
+      "sha256": "8acedbc59d492f201983373e5bac7e156b65c0abbfbe2c3141ca17f3ede35fc3"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/DECISION.json": {
+      "bytes": 3469,
+      "sha256": "955093a8efbd7fac66cd09ff57dd2938063f99fef641f0a45bef3d57ff27ff2e"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/DILIGENCE.md": {
+      "bytes": 15084,
+      "sha256": "2566061ec69714ce7585dc0b2e2e382267330128278e630bde5226c5cbcb8ea9"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/EVIDENCE_MATRIX.csv": {
+      "bytes": 2988,
+      "sha256": "c3bc927fb5817e4a706b1568f882354da08ae2202c0bb967047e8acb24bc539b"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/INTERFACE_EVIDENCE.md": {
+      "bytes": 14487,
+      "sha256": "ab2891bd690c699b9c81480489b3ae1fbd94485f40d6bb2ba5daae3ea8626394"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/PUBLIC_SOURCE_CHECKS.json": {
+      "bytes": 2016,
+      "sha256": "92b145c73b43932f2e3482123f1ecf53d4550da573c52a87e9473f3846d0bf82"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/RESOURCE_EVIDENCE.md": {
+      "bytes": 12723,
+      "sha256": "2a496de1edc3456ab8f4c8d2bf892e434968133913e3869bbd75f14e3bf05781"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/RESOURCE_SOURCES.csv": {
+      "bytes": 25482,
+      "sha256": "6025fe8d8d1042a62b7d741b6af90dab0a1e5d38f2897273a7f6793805de57db"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/REVIEW_SCOPE.json": {
+      "bytes": 49721,
+      "sha256": "c238d7a2bb2caa9fe1982f9f6168719ab60432b59b38f953b224f22aaabac924"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/VERIFICATION.json": {
+      "bytes": 4295,
+      "sha256": "8c31ea954c63eef178271d7a821bd8a21d20223465da492542b41f6fad635e72"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/verification/cached_number_gate.txt": {
+      "bytes": 209,
+      "sha256": "caf90398fdd315099f73b8f66445a03efb46b533cbdd4e3f804d19d85f0f99e7"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/verification/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/verification/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/verification/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 889,
+      "sha256": "6b46cf5514735071f7bab3a635bfd1c10b9a4a9503e58d0e0bbeeeb8cc52d634"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/verification/legacy_scientific_gate.txt": {
+      "bytes": 4952,
+      "sha256": "fa9dcfaef7b9366fad5d9bbb9da05dbb56a556daa6c446059cb2238411c12594"
+    },
+    "research_audit/wind_energy_application_value_diligence_20261020/verification_independent_archive.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/ADVERSARIAL_VENUE_ASSESSMENT.md": {
+      "bytes": 22690,
+      "sha256": "c175b402af5b2b20ebab822d21113bd7d86742f352617e25702171ad9cd6f47b"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/CLAIM_EVIDENCE.csv": {
+      "bytes": 322889,
+      "sha256": "72ce657d1b12cc8d99008ea675de3a240b6e056b518e9bf430a0fefc73b3c96b"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/COMPARISON_MATRIX.csv": {
+      "bytes": 4362,
+      "sha256": "f23cfc35012f7a3dd19331de7e6fa080cb6c3664218a90123dba9f28f804306a"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/DECISION.json": {
+      "bytes": 5809,
+      "sha256": "c7df0374b9792fcae49a9691f1f559b19f93d935c666993bdccd2d982c4d7feb"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/EVIDENCE_ARCHITECTURE.md": {
+      "bytes": 20531,
+      "sha256": "9db76edd3b0dfc433d69515ec06eead98a4e09e85137b3d91334569304e389e1"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/FIGURE_TABLE_PLAN.md": {
+      "bytes": 5567,
+      "sha256": "3c570600a87aea74b70d9a9caa077c6b095c96cce96472c565459eda044535e4"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/LITERATURE_MATRIX.csv": {
+      "bytes": 20006,
+      "sha256": "8aaed4aba742fb09a9923f2341479871313386382e464981fea999b8b6aca33c"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/LITERATURE_REVIEW.md": {
+      "bytes": 16107,
+      "sha256": "6b86ede1c569b353db0e8517be84dbe4a31e49f5ec4e0a2eed3366de24fd1bc2"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/NUMERIC_PROJECTION_CHECK.json": {
+      "bytes": 4642,
+      "sha256": "7eeea327ef600a10bc2d80450d143be1878ade6d633175d9e9806a77c2a3f4d1"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/RECONSTRUCTION_PLAN.md": {
+      "bytes": 18223,
+      "sha256": "4a63225597bf0dd50ae75c53ceec8ad7da5274ebc535cf93fcd8cf67f3ce2f20"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/REVIEW_SCOPE.json": {
+      "bytes": 102368,
+      "sha256": "d8074313004a8c5040dcfb192a7a4ab86f863ee65250ed4bd759bf670d153a89"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/ROOT_LITERATURE_CHECKS.csv": {
+      "bytes": 3714,
+      "sha256": "a03c4893a40b07e7ec73fda707b717b8706f28742cf0b390dec5cb5528c0addf"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/SEARCH_LOG.md": {
+      "bytes": 2179,
+      "sha256": "f90c711c920931f14f7293d00e8233ba6a368912679090ab56b5bc1b6c8b95c8"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/VERIFICATION.json": {
+      "bytes": 11055,
+      "sha256": "2146b60bd7254fdc301309e7d7e9cf7f951ce2438ce3ad60585102e32f926078"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/ACCESS_RECEIPTS.json": {
+      "bytes": 35059,
+      "sha256": "59cdc2cb8ab2e4da72a03763ac695edd55ed9a41d70cc700e5c213bd5772ee0e"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/PROVENANCE.json": {
+      "bytes": 8220,
+      "sha256": "b3f037ddf31842e83c8f80c8b6db31b46f13d6474dfa2102c0c613c6f462ab72"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/SEARCH_LOG.json": {
+      "bytes": 3891,
+      "sha256": "c8bd09a37ca08d08684562e028b8499479fd9b8ff36d630c22d8a4c81b4024a6"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/VALIDATION.json": {
+      "bytes": 1679,
+      "sha256": "31ea9283900b99b1ca85198a4577f7d7c283919cc7b56b450fc3c0cc0d52e45d"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/build_matrix.py": {
+      "bytes": 21677,
+      "sha256": "7cd415e341a29ad3e7b6c10dd7a8811c586e032072c187a14b2b786043e5e030"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/collect_primary_sources.py": {
+      "bytes": 3063,
+      "sha256": "ed0c094fd0290fbf3c2e2e49e276f9d71b8cc313ee7ae15550e88f4b3f36f8e0"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/dantas2026_crossref.json": {
+      "bytes": 24553,
+      "sha256": "71a44f84ed477271fa51377a249709fc0aa8956b9fe56a4cd90b74be226c623d"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/iversen2017_crossref.json": {
+      "bytes": 15031,
+      "sha256": "c972ef602b2b3f08079230509d4c3f4e7181472d428228e2730c48a9d9507fc9"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/meng2026_crossref.json": {
+      "bytes": 13196,
+      "sha256": "bc3864d3c70c83787f738449111f5ef0ff652f3c3ab5d856c7e03fe0dedc46da"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/mlwa_crossref_previous_verified.json": {
+      "bytes": 18219,
+      "sha256": "705f00ae47107ae5cb525f67767950c55243b2d6243c317a15dd3ee2ed7d0eb9"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/phipps2022_crossref.json": {
+      "bytes": 20698,
+      "sha256": "f5c200a51998286f991364aeea68510756eb83e7cfa42a111745a592190e3acc"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/pritchard2011_crossref.json": {
+      "bytes": 7376,
+      "sha256": "f09c59832f469294151d20dbc87b050b4613086d14fca5912ac55d9fbf768cdc"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/safer_crossref_previous_verified.json": {
+      "bytes": 18051,
+      "sha256": "6c77cea7e4465efeab96ade4c85fe152840ac481448a38cb5ca0e416424f9665"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/seta_crossref_previous_verified.json": {
+      "bytes": 16992,
+      "sha256": "df6ff5d814faa7c6e86860f3f2bb0e97ea9a3707cfbc99162e7d5ede5b273ee2"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/sophia2011_crossref.json": {
+      "bytes": 13369,
+      "sha256": "138eeb0f8eb695720b4c5ec49262557580a2d4e2192d8532e946722f8e69fe1e"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/stratigakos2026_crossref.json": {
+      "bytes": 10919,
+      "sha256": "fdfc2bc55a8b28bc8a252e55c3fbd127be19ddabfe93a270962c096117365275"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/sun2022_crossref.json": {
+      "bytes": 27053,
+      "sha256": "aa33cde58dd975e51aaedf7e849c599f8efc03c64fca0e3b454115779fe93b5d"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/wen2024_crossref.json": {
+      "bytes": 30825,
+      "sha256": "054f2a7604f34deea163f2fe64d1953467a32c0eab099d3337ee96cd8c3a8088"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_metadata/zhao2021_crossref.json": {
+      "bytes": 13656,
+      "sha256": "d520578a3131ccc32915c86e50fd63a0befbb18cd824266527bc3aadc2a9d53f"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/.gitignore": {
+      "bytes": 18,
+      "sha256": "8dc8c11a82f17d84cd11d235b4aa6107238e68a40ef55f1e575a0c59c084ca72"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/LOCAL_ORIGINALS.json": {
+      "bytes": 247,
+      "sha256": "ca436fb4035d880dab79ae31aef312fc3c2b720035716309b0adc75612d46ec4"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/dantas2026seamless_existing_pdf.txt": {
+      "bytes": 108223,
+      "sha256": "bc624f1041b86ba5f0b3658100b2b8c1087f11d79fb8f16f40ed12914e9f4070"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/iversen2017.pdf": {
+      "bytes": 1683819,
+      "sha256": "c4511e2afa6d08393271d3b129b74e4ea7099ce7848b3376a4af49a0d6a983de"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/iversen2017.txt": {
+      "bytes": 48125,
+      "sha256": "871d81dbd665576529cb567b38bf60bdf66b2a25687b9b2af831c57ea35c416e"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/meng2026_accepted.pdf": {
+      "bytes": 17327448,
+      "sha256": "9188c97fb5ca61e8f2d8de6c88909a11a21a7155820ba791ccce92037f37d992"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/meng2026_accepted.txt": {
+      "bytes": 65020,
+      "sha256": "b88d0d0ee99e9b8cd4570cb147f29806ba41e82ac16bef431eeaaa60801fc541"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/missing_and_dynamic.png": {
+      "bytes": 734082,
+      "sha256": "51d1e7982739163a55276fb912b11b4959c523f5751ad2f0f4a0da08ced23e35"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/mlwa2026_user_pdf.txt": {
+      "bytes": 101255,
+      "sha256": "90dd4703a057656ed7ed2e0fb01d7719f08ca6a0378b6e6f3ce4db2b49583631"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/phipps2022postprocessing_existing_pdf.txt": {
+      "bytes": 96228,
+      "sha256": "dda10c9ef4cf00ecb8c96f4f5e7b1c6e350e003276232410fabfdaa0699f0d5f"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/recent_methods.png": {
+      "bytes": 1151601,
+      "sha256": "41569cc4062218e59e93a571c08ed8d6a95033ae46c37cbbef71f556ffc24133"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/stratigakos2026_accepted.pdf": {
+      "bytes": 4535088,
+      "sha256": "09c82bfe1cd5c60b04f817c38a75a74ce2613b8ba4a90f3a13042871ac6fedc6"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/stratigakos2026_accepted.txt": {
+      "bytes": 73057,
+      "sha256": "2eafc4652df4777ca19050f3d26bb578528692cdc23cff452730bb89f45982be"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/wen2024_arxiv_v3.pdf": {
+      "bytes": 850250,
+      "sha256": "64e665affb2ef8cf4144b6c3b6f9dc7ef0620dfa2ce4c7df35cbf887cea3ea4e"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/wen2024_arxiv_v3.txt": {
+      "bytes": 70196,
+      "sha256": "b50744af0cc99624879a22489fbcf100b5a60b0b98032659735fe26d199e9512"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/wen2025_arxiv_v2.pdf": {
+      "bytes": 594806,
+      "sha256": "5b15d9fe7a85fc04e74ede9011c9c87b779e863258fa2f2d88831d02cf8b7def"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/literature_reading/wen2025_arxiv_v2.txt": {
+      "bytes": 61903,
+      "sha256": "52c95d6a5cf777a2a56e732c3ef9cf6ccf25cdfe0b4aa37d7da94efa805f128c"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/verification/cached_number_gate.txt": {
+      "bytes": 215,
+      "sha256": "3b90278e441dc5be1ad26b57fef125c318ad6df0c943363d743b7299df76492a"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/verification/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/verification/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/verification/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 907,
+      "sha256": "900348832eca831919b817b30dec1f80796df00a85b7a0c7e3b3e756eec8dcc9"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/verification/legacy_scientific_gate.txt": {
+      "bytes": 4946,
+      "sha256": "f731c371bf68b05afe9d9bdcbb07592374c02410008918c9c6537d51e8430fc3"
+    },
+    "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/verification_independent_archive.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/DECISION.json": {
+      "bytes": 3912,
+      "sha256": "6e01b8bc62c2f6a97596db4b32a9cdd0341c41946984bd11fb18303f87137b4d"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/ISSUE_VERIFICATION.csv": {
+      "bytes": 1962,
+      "sha256": "add35bcaecc58a95d0354e98fa27528fad1a4a43def8cbc0cf6140d5fe10960a"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/REVIEW.md": {
+      "bytes": 16712,
+      "sha256": "4ddcb8a6cf02494ea41af4b8dbdc842ee6c84f336cf8981458cb2470a273e2ff"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/REVIEW_SCOPE.json": {
+      "bytes": 38596,
+      "sha256": "c1601ef7fb002b2834fc1ea37432f9ae06a890c6a187b578f85c881f8037ef7e"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/VERIFICATION.json": {
+      "bytes": 4233,
+      "sha256": "236d7024ae9d54c480eb061a918e6d39f6304835778f742bc9a65870cd87351a"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/editor_verification.md": {
+      "bytes": 17864,
+      "sha256": "6f336d9a6b7af2634e65dcaa7c9585dc1811806a4e794e933194263441c040ce"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/method_figure_verification.md": {
+      "bytes": 15867,
+      "sha256": "56d60767c2782d09797197f6a6a22edd9178fbf8d7ff777cb35677d1d4845251"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/package_verification.md": {
+      "bytes": 10158,
+      "sha256": "30b45819ecfd355d6e953dbcdde188e59dfdc7a31bb4670aeb55704044e5f49e"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/package_verification_evidence.json": {
+      "bytes": 31005,
+      "sha256": "6492f669a8b90f9ad388130ce7d5322fc2c9a38d147cfe061ba9afca1f484919"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/verification/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/verification/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/verification/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 841,
+      "sha256": "1dc92140948574055de43da366bf1ab4eca838abcb1dc9fb45b70a5636f7df44"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/verification/legacy_scientific_gate.txt": {
+      "bytes": 4952,
+      "sha256": "fa9dcfaef7b9366fad5d9bbb9da05dbb56a556daa6c446059cb2238411c12594"
+    },
+    "research_audit/wind_energy_v2_rereview_20261020/verification_independent_archive.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    },
+    "research_audit/working/novelty/literature_matrix.csv": {
+      "bytes": 13574,
+      "sha256": "b60ffac3b64a0505d8b29e8e58f38e6b5585eed56f976042bd9c25f9d5b00fbc"
+    },
+    "scripts/remote_external_reserve_enhancement.py": {
+      "bytes": 8756,
+      "sha256": "400bad6964522aa572847f730c003d8b18cef6afd9f78dceab1cca4fdb0d37f2"
+    },
+    "scripts/run_wind_bess_simulation.py": {
+      "bytes": 27906,
+      "sha256": "5902b33ec6d657f835409ad65ce821fdc608776f03247c562bbaba3e7c221748"
+    },
+    "scripts/verify_independent_confirmation_gate.py": {
+      "bytes": 9794,
+      "sha256": "0c5de3a89140f4495e2c0ea6670a40325797833371ed61a90c0816327d64e200"
+    },
+    "scripts/verify_scientific_claim_gate.py": {
+      "bytes": 34965,
+      "sha256": "f16db4344193431ae5deb4f22a9ace360233ea941e376c5ffa7f068f01c4c185"
+    },
+    "scripts/verify_tste_number_consistency.py": {
+      "bytes": 33655,
+      "sha256": "34cca01a64d4671bed164c5c70c448ca4935cb2cd3bccc50cb97d1dc9ad14b13"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/ATTRIBUTION_PRIMITIVES.csv": {
+      "bytes": 18679,
+      "sha256": "add62f639a97327cdc17f0fb032289c08860382fcfd5d6fa8e358299a7770d4f"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/CHAIN_AND_GATES_REVIEW.md": {
+      "bytes": 17095,
+      "sha256": "33aae3f368fccc3bfbfc6d7ecb51e02a9b79a2b33b8e6c6c5bb41e330682ce88"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/CHAIN_FIELD_ASSERTIONS.csv": {
+      "bytes": 41841,
+      "sha256": "318a832714b382a2e5f9d522ea14a432427271089575ed9b5da193f866673dbc"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/DECISION.json": {
+      "bytes": 4058,
+      "sha256": "84d2ec31836c9ebae0b4950218cda8afb2fe415131a509c9c42ed3e8f8871dfd"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/EDITORIAL_REDTEAM.md": {
+      "bytes": 23907,
+      "sha256": "60088e2938d02d11731e76bb63c2c946985dd7467628a14994bbffc18842d936"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/GATE_PRIMITIVES.csv": {
+      "bytes": 187211,
+      "sha256": "ca5a0b1503452a570253de8558457aa1f5dbe82089b79d7021d8cd81b28acf72"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/ISSUES.csv": {
+      "bytes": 1798,
+      "sha256": "c5b198f712653cda0e1ee8dfe0fb2307dd2606d3d22985e145dc1b63f20ec5d1"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/NOVELTY_REVIEW.md": {
+      "bytes": 24599,
+      "sha256": "13c86a87cc6992466981ae53df1bfd3967e01c49ad0c528aee3c95de81f29d17"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/REVIEW.md": {
+      "bytes": 16708,
+      "sha256": "d3c05f0e20e2a8ba4aa58b55cafe52d7a4fd8d7b035c7fdf423b5c8dea8c0663"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/REVIEW_FACTS.json": {
+      "bytes": 4125,
+      "sha256": "244caaf716a9a0738414fcc2ef4491bd65b949ce5c6ea19505ecb82e0c25db23"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/REVIEW_SCOPE.json": {
+      "bytes": 115464,
+      "sha256": "62025b0a48dfe0362859ccb86290b18a932a6c18ab20b06c84417e5ea3011fe4"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/VERIFICATION.json": {
+      "bytes": 5846,
+      "sha256": "e878138d5d009549f7beb7bf4a0a4d79555812c773cdaa4a179987967ab28b81"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/verification_independent_archive.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/verification/cached_number_gate.txt": {
+      "bytes": 208,
+      "sha256": "173b83e931ff9d5d91615a8df032033023d1f890e42c21f5de5322374e44117d"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/verification/legacy_scientific_gate.txt": {
+      "bytes": 4946,
+      "sha256": "f731c371bf68b05afe9d9bdcbb07592374c02410008918c9c6537d51e8430fc3"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/verification/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/verification/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/verification/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 919,
+      "sha256": "2d15eeae288a79468c4fd77e719704a986bcbb5ad411af26d9d3f5cc74550f28"
+    }
+  },
+  "new_directory_only": "research_audit/recommendation_reconciliation_20261020",
+  "no_experiments_no_threshold_change_no_manuscript_change": true
+}

@@ -1,0 +1,97 @@
+{
+  "study_id": "hill_of_towie_mainline_supplement_20261026_p1",
+  "primary_status": "ALL_FROZEN_CANDIDATES_CONFIRMED",
+  "confirmed": true,
+  "coordinate_count": 14,
+  "labels": [
+    "P1/HGB/q0.95",
+    "WPQ36/HGB/q0.95"
+  ],
+  "mean_cost": [
+    78.41435959989415,
+    77.8156718678719
+  ],
+  "risk_point": [
+    [
+      0.06430481061423755,
+      0.06446256289334286
+    ],
+    [
+      0.06435739470727266,
+      0.06430481061423755
+    ],
+    [
+      0.06425776168889036,
+      0.06477806745155344
+    ],
+    [
+      0.06458710416632071,
+      0.06458710416632071
+    ],
+    [
+      0.06457326624710095,
+      0.06432695128498918
+    ]
+  ],
+  "risk_upper": [
+    [
+      0.07447323001710808,
+      0.07451970278907485
+    ],
+    [
+      0.07462196156221167,
+      0.07443212726418111
+    ],
+    [
+      0.07445521860154905,
+      0.07488634904742936
+    ],
+    [
+      0.07484588486463004,
+      0.07477258142890579
+    ],
+    [
+      0.07481810830576302,
+      0.07444889307553336
+    ]
+  ],
+  "relative_ratio_point": [
+    [
+      0.0,
+      0.007693665268852401
+    ],
+    [
+      -0.007634924713751823,
+      0.0
+    ]
+  ],
+  "relative_ratio_upper": [
+    [
+      0.0,
+      0.011259607786145213
+    ],
+    [
+      -0.0041229096379931315,
+      0.0
+    ]
+  ],
+  "paired_cost_upper_percent": 1.1259607786145214,
+  "candidate_max_risk_upper_percent": 7.484588486463004,
+  "reference_max_risk_upper_percent": 7.488634904742936,
+  "sensitivity": {
+    "span_1": {
+      "candidate_max_risk_upper": 0.07292732354750629,
+      "reference_max_risk_upper": 0.07297155488297102,
+      "relative_cost_ratio_upper": 0.011129083858339677,
+      "confirmed": true
+    },
+    "span_7": {
+      "candidate_max_risk_upper": 0.0773666395489903,
+      "reference_max_risk_upper": 0.07724762627624539,
+      "relative_cost_ratio_upper": 0.011407435326580622,
+      "confirmed": true
+    }
+  },
+  "H_threshold_applied": false,
+  "U_R_H_role": "descriptive only; point estimates reported in primary and summary"
+}

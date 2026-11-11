@@ -1,0 +1,36 @@
+\RequirePackage[T1]{fontenc}
+\documentclass[journal]{IEEEtran}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{placeins}
+\hyphenation{wind-power telem-e-try prob-a-bil-is-tic}
+\begin{document}
+\title{Current Power as Incremental Telemetry for Wind Power Reserve Decisions}
+\author{Junyu~Li and Juntao~Du\thanks{The authors are with the School of Statistics and Applied Mathematics, Anhui University of Finance and Economics, Bengbu 233030, China. Corresponding author: Juntao Du (e-mail: dujuntao@aufe.edu.cn).}}
+\markboth{Working Manuscript}{Li and Du: Incremental Telemetry for Wind Power Reserve Decisions}
+\maketitle
+\begin{abstract}
+Reserve requests can use measurements arriving after a wind power forecast has been issued. The value of these additional inputs depends on the information already summarized by the forecast. This paper evaluates incremental telemetry through an asymmetric procurement and shortfall loss while holding the forecast and future target fixed. In a matched study of 134 turbines, a single current-power update reduced decision cost relative to a current-pitch update by 8.47\% with histogram gradient boosting and 13.05\% with a multilayer perceptron. A second study at Hill of Towie evaluated a current-power rule selected on 2023--2024 data. The rule used five raw reserve inputs, compared with 112 for a three-channel history reference. Its cost premium was 0.56\% in 2025 and 0.77\% in January--April 2026. Simultaneous upper cost bounds remained within the prespecified 2\% margin, and both rules met a 10\% shortfall-event cap. The small cost premium included slightly greater mean uncovered shortfall. These findings support a compact telemetry interface for the reserve layer and quantify its cost and shortfall trade-off across subsequent years.
+\end{abstract}
+\begin{IEEEkeywords}
+Wind power, reserve sizing, telemetry, shortfall decisions, probabilistic forecasting.
+\end{IEEEkeywords}
+\input{sections/introduction_body}
+\input{sections/methods_body}
+\input{sections/result_figures_body}
+\input{sections/study_design_body}
+\input{sections/results_body}
+\input{sections/discussion_body}
+\section*{Acknowledgment}
+OpenAI Codex and Google Gemini assisted with drafting and language revision across the Abstract, Introduction, Methods, Results, and Discussion. Codex assisted with the vector diagrams and plotting code. All plotted data and numerical values come from the study records.
+\bibliographystyle{IEEEtran}
+\IEEEtriggeratref{8}
+\bibliography{references}
+\end{document}

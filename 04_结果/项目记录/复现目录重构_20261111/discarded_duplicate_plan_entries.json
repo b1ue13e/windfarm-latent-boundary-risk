@@ -1,0 +1,482 @@
+[
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/active_power_anchor_audit.csv",
+    "retained_destination": "04_结果/产物/active_power_anchor_audit.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__active_power_anchor_audit.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/artifacts.json",
+    "retained_destination": "04_结果/产物/artifacts.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__artifacts.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/ARTIFACT_MANIFEST.json",
+    "retained_destination": "04_结果/产物/ARTIFACT_MANIFEST.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__ARTIFACT_MANIFEST.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/channel_consequence_ablations.csv",
+    "retained_destination": "04_结果/产物/channel_consequence_ablations.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__channel_consequence_ablations.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/cite_test.md",
+    "retained_destination": "04_结果/产物/cite_test.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__cite_test.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/clean_privileged_supervision_ablation.csv",
+    "retained_destination": "04_结果/产物/clean_privileged_supervision_ablation.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__clean_privileged_supervision_ablation.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/deep_investigator_route_a_audit.md",
+    "retained_destination": "04_结果/产物/deep_investigator_route_a_audit.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__deep_investigator_route_a_audit.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/direct_quantile_baselines_summary.csv",
+    "retained_destination": "04_结果/产物/direct_quantile_baselines_summary.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__direct_quantile_baselines_summary.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/evidence_chain_status_snapshot_20260611.md",
+    "retained_destination": "04_结果/产物/evidence_chain_status_snapshot_20260611.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__evidence_chain_status_snapshot_20260611.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/evidence_chain_status_snapshot_20260611.ps1",
+    "retained_destination": "04_结果/产物/evidence_chain_status_snapshot_20260611.ps1",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__evidence_chain_status_snapshot_20260611.ps1"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/external_matched_control_benchmark.csv",
+    "retained_destination": "04_结果/产物/external_matched_control_benchmark.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__external_matched_control_benchmark.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/factorial_boundary_ablation_summary.csv",
+    "retained_destination": "04_结果/产物/factorial_boundary_ablation_summary.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__factorial_boundary_ablation_summary.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/fixed_forecast_residuals.npz",
+    "retained_destination": "04_结果/产物/fixed_forecast_residuals.npz",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__fixed_forecast_residuals.npz"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/fixed_forecast_residuals_meta.json",
+    "retained_destination": "04_结果/产物/fixed_forecast_residuals_meta.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__fixed_forecast_residuals_meta.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/future_holdout_queue_20260611.ps1",
+    "retained_destination": "04_结果/产物/future_holdout_queue_20260611.ps1",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__future_holdout_queue_20260611.ps1"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/goal_progress_20260611.md",
+    "retained_destination": "04_结果/产物/goal_progress_20260611.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__goal_progress_20260611.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/goal_strict_completion_queue_20260612.ps1",
+    "retained_destination": "04_结果/产物/goal_strict_completion_queue_20260612.ps1",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__goal_strict_completion_queue_20260612.ps1"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/information_set_manifest.csv",
+    "retained_destination": "04_结果/产物/information_set_manifest.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__information_set_manifest.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/joint_uncertainty_summary.json",
+    "retained_destination": "04_结果/产物/joint_uncertainty_summary.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__joint_uncertainty_summary.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/leakage_confounding_audit_wtb_20260609.md",
+    "retained_destination": "04_结果/产物/leakage_confounding_audit_wtb_20260609.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__leakage_confounding_audit_wtb_20260609.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/lhb_anchor_intervention_full.tgz",
+    "retained_destination": "04_结果/产物/lhb_anchor_intervention_full.tgz",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__lhb_anchor_intervention_full.tgz"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/lhb_anchor_stress_guard_full_combined.tgz",
+    "retained_destination": "04_结果/产物/lhb_anchor_stress_guard_full_combined.tgz",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__lhb_anchor_stress_guard_full_combined.tgz"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/lhb_full_5seed_results.tgz",
+    "retained_destination": "04_结果/产物/lhb_full_5seed_results.tgz",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__lhb_full_5seed_results.tgz"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/mediation_analysis.csv",
+    "retained_destination": "04_结果/产物/mediation_analysis.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__mediation_analysis.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/no_graph_architecture_audit.json",
+    "retained_destination": "04_结果/产物/no_graph_architecture_audit.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__no_graph_architecture_audit.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/paper_current-01.png",
+    "retained_destination": "04_结果/产物/paper_current-01.png",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__paper_current-01.png"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/paper_current-02.png",
+    "retained_destination": "04_结果/产物/paper_current-02.png",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__paper_current-02.png"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/paper_draft_debug.tex",
+    "retained_destination": "04_结果/产物/paper_draft_debug.tex",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__paper_draft_debug.tex"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/paper_draft_refcheck.pdf",
+    "retained_destination": "04_结果/产物/paper_draft_refcheck.pdf",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__paper_draft_refcheck.pdf"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/paper_finalcheck_20260314235659-01.png",
+    "retained_destination": "04_结果/产物/paper_finalcheck_20260314235659-01.png",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__paper_finalcheck_20260314235659-01.png"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/paper_freshcheck-02.png",
+    "retained_destination": "04_结果/产物/paper_freshcheck-02.png",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__paper_freshcheck-02.png"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/paper_freshcover-01.png",
+    "retained_destination": "04_结果/产物/paper_freshcover-01.png",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__paper_freshcover-01.png"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/paper_trimmed-01.png",
+    "retained_destination": "04_结果/产物/paper_trimmed-01.png",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__paper_trimmed-01.png"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/paper_updated-01.png",
+    "retained_destination": "04_结果/产物/paper_updated-01.png",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__paper_updated-01.png"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/paper_updated-02.png",
+    "retained_destination": "04_结果/产物/paper_updated-02.png",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__paper_updated-02.png"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/paper_updated_cited-01.png",
+    "retained_destination": "04_结果/产物/paper_updated_cited-01.png",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__paper_updated_cited-01.png"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/paper_updated_cited-02.png",
+    "retained_destination": "04_结果/产物/paper_updated_cited-02.png",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__paper_updated_cited-02.png"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/phase2_retrospective_audit_report.json",
+    "retained_destination": "04_结果/产物/phase2_retrospective_audit_report.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__phase2_retrospective_audit_report.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/posterior_calibration.csv",
+    "retained_destination": "04_结果/产物/posterior_calibration.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__posterior_calibration.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/ref_main-01.png",
+    "retained_destination": "04_结果/产物/ref_main-01.png",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__ref_main-01.png"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/ref_main-02.png",
+    "retained_destination": "04_结果/产物/ref_main-02.png",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__ref_main-02.png"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/regime2_recalibration_absorption.csv",
+    "retained_destination": "04_结果/产物/regime2_recalibration_absorption.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__regime2_recalibration_absorption.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/science_top_experiment_audit_20260609.md",
+    "retained_destination": "04_结果/产物/science_top_experiment_audit_20260609.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__science_top_experiment_audit_20260609.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/single_task_dense_vs_multitask_moe_ablation.csv",
+    "retained_destination": "04_结果/产物/single_task_dense_vs_multitask_moe_ablation.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__single_task_dense_vs_multitask_moe_ablation.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/single_task_dense_vs_multitask_moe_risk_coverage.csv",
+    "retained_destination": "04_结果/产物/single_task_dense_vs_multitask_moe_risk_coverage.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__single_task_dense_vs_multitask_moe_risk_coverage.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/strict_extension_queue_20260611.ps1",
+    "retained_destination": "04_结果/产物/strict_extension_queue_20260611.ps1",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__strict_extension_queue_20260611.ps1"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/strict_followup_queue_20260611.ps1",
+    "retained_destination": "04_结果/产物/strict_followup_queue_20260611.ps1",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__strict_followup_queue_20260611.ps1"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/strict_postqueue_finalize_20260611.ps1",
+    "retained_destination": "04_结果/产物/strict_postqueue_finalize_20260611.ps1",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__strict_postqueue_finalize_20260611.ps1"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/strong_baseline_bootstrap_contrasts.csv",
+    "retained_destination": "04_结果/产物/strong_baseline_bootstrap_contrasts.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__strong_baseline_bootstrap_contrasts.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/strong_baseline_closure_summary.csv",
+    "retained_destination": "04_结果/产物/strong_baseline_closure_summary.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__strong_baseline_closure_summary.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/test_factorial_ablation.csv",
+    "retained_destination": "04_结果/产物/test_factorial_ablation.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__test_factorial_ablation.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/tste_submission_freeze_20260923.zip",
+    "retained_destination": "04_结果/产物/tste_submission_freeze_20260923.zip",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__tste_submission_freeze_20260923.zip"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/tste_submission_freeze_20260923_pes_compliant.zip",
+    "retained_destination": "04_结果/产物/tste_submission_freeze_20260923_pes_compliant.zip",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__tste_submission_freeze_20260923_pes_compliant.zip"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/TSTE_SUBMISSION_PACKAGE_20260921.zip",
+    "retained_destination": "04_结果/产物/TSTE_SUBMISSION_PACKAGE_20260921.zip",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__TSTE_SUBMISSION_PACKAGE_20260921.zip"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/zero_privileged_supervision_benchmark.csv",
+    "retained_destination": "04_结果/产物/zero_privileged_supervision_benchmark.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts__zero_privileged_supervision_benchmark.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/实验/artifacts/_smoke_atomic_json.json",
+    "retained_destination": "04_结果/产物/_smoke_atomic_json.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__实验__artifacts___smoke_atomic_json.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/.gitattributes",
+    "retained_destination": "04_结果/审计/.gitattributes",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__.gitattributes"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/01_project_inventory.md",
+    "retained_destination": "04_结果/审计/01_project_inventory.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__01_project_inventory.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/02_experiment_ledger.csv",
+    "retained_destination": "04_结果/审计/02_experiment_ledger.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__02_experiment_ledger.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/03_validity_and_reproducibility.md",
+    "retained_destination": "04_结果/审计/03_validity_and_reproducibility.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__03_validity_and_reproducibility.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/04_discovery_ranking.md",
+    "retained_destination": "04_结果/审计/04_discovery_ranking.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__04_discovery_ranking.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/05_scientific_problem_candidates.md",
+    "retained_destination": "04_结果/审计/05_scientific_problem_candidates.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__05_scientific_problem_candidates.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/06_decisive_experiments.md",
+    "retained_destination": "04_结果/审计/06_decisive_experiments.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__06_decisive_experiments.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/07_reviewer_assessment.md",
+    "retained_destination": "04_结果/审计/07_reviewer_assessment.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__07_reviewer_assessment.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/08_claim_inventory.md",
+    "retained_destination": "04_结果/审计/08_claim_inventory.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__08_claim_inventory.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/09_prior_art_threats.md",
+    "retained_destination": "04_结果/审计/09_prior_art_threats.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__09_prior_art_threats.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/10_novelty_audit.md",
+    "retained_destination": "04_结果/审计/10_novelty_audit.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__10_novelty_audit.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/11_scientific_significance.md",
+    "retained_destination": "04_结果/审计/11_scientific_significance.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__11_scientific_significance.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/12_practical_impact.md",
+    "retained_destination": "04_结果/审计/12_practical_impact.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__12_practical_impact.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/13_prior_art_comparison.csv",
+    "retained_destination": "04_结果/审计/13_prior_art_comparison.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__13_prior_art_comparison.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/all_accessible_files.csv.gz",
+    "retained_destination": "04_结果/审计/all_accessible_files.csv.gz",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__all_accessible_files.csv.gz"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/asset_readability.csv",
+    "retained_destination": "04_结果/审计/asset_readability.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__asset_readability.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/asset_readability_summary.json",
+    "retained_destination": "04_结果/审计/asset_readability_summary.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__asset_readability_summary.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/audit_inventory.py",
+    "retained_destination": "04_结果/审计/audit_inventory.py",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__audit_inventory.py"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/baseline_tracked_status.txt",
+    "retained_destination": "04_结果/审计/baseline_tracked_status.txt",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__baseline_tracked_status.txt"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/build_ledger.py",
+    "retained_destination": "04_结果/审计/build_ledger.py",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__build_ledger.py"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/finalize_audit.py",
+    "retained_destination": "04_结果/审计/finalize_audit.py",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__finalize_audit.py"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/final_audit_receipt.json",
+    "retained_destination": "04_结果/审计/final_audit_receipt.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__final_audit_receipt.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/FINAL_NOVELTY_AND_IMPACT_VERDICT.md",
+    "retained_destination": "04_结果/审计/FINAL_NOVELTY_AND_IMPACT_VERDICT.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__FINAL_NOVELTY_AND_IMPACT_VERDICT.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/FINAL_RESEARCH_STRATEGY.md",
+    "retained_destination": "04_结果/审计/FINAL_RESEARCH_STRATEGY.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__FINAL_RESEARCH_STRATEGY.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/git_history.tsv",
+    "retained_destination": "04_结果/审计/git_history.tsv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__git_history.tsv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/inventory_run.log",
+    "retained_destination": "04_结果/审计/inventory_run.log",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__inventory_run.log"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/inventory_summary.json",
+    "retained_destination": "04_结果/审计/inventory_summary.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__inventory_summary.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/ledger_receipt.json",
+    "retained_destination": "04_结果/审计/ledger_receipt.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__ledger_receipt.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/literature_matrix.csv",
+    "retained_destination": "04_结果/审计/literature_matrix.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__literature_matrix.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/panel_provenance.json",
+    "retained_destination": "04_结果/审计/panel_provenance.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__panel_provenance.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/plot_evidence.py",
+    "retained_destination": "04_结果/审计/plot_evidence.py",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__plot_evidence.py"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/readability_encoding_followup.json",
+    "retained_destination": "04_结果/审计/readability_encoding_followup.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__readability_encoding_followup.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/readability_encoding_followup_attempt1.json",
+    "retained_destination": "04_结果/审计/readability_encoding_followup_attempt1.json",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__readability_encoding_followup_attempt1.json"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/README.md",
+    "retained_destination": "04_结果/审计/README.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__README.md"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/recompute_primary_slices.py",
+    "retained_destination": "04_结果/审计/recompute_primary_slices.py",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__recompute_primary_slices.py"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/research_assets.csv",
+    "retained_destination": "04_结果/审计/research_assets.csv",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__research_assets.csv"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/run_validation.py",
+    "retained_destination": "04_结果/审计/run_validation.py",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__run_validation.py"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/survey_assets.py",
+    "retained_destination": "04_结果/审计/survey_assets.py",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__survey_assets.py"
+  },
+  {
+    "source": "01_研究尝试/尝试01_图网络与状态恢复/阶段03_公平对照与重放/评审/research_audit/write_reports.py",
+    "retained_destination": "04_结果/审计/write_reports.py",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__评审__research_audit__write_reports.py"
+  },
+  {
+    "source": "01_研究尝试/尝试02_最小充分决策与跨年验证/阶段02_信息子集及2025确认/评审/research_audit/14_resource_loss_break_even_review.md",
+    "retained_destination": "04_结果/审计/14_resource_loss_break_even_review.md",
+    "discarded_destination": "04_结果/项目记录/旧目录说明/尝试02_最小充分决策与跨年验证__阶段02_信息子集及2025确认__评审__research_audit__14_resource_loss_break_even_review.md"
+  }
+]

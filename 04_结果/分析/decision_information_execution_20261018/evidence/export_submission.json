@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "qsub",
+    "-N",
+    "di_export",
+    "-q",
+    "rqdf",
+    "-l",
+    "select=1:ncpus=2:mem=8gb",
+    "-l",
+    "walltime=00:10:00",
+    "-W",
+    "depend=afterok:244603.cm",
+    "-j",
+    "oe",
+    "-o",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/logs/export.log",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/export.pbs"
+  ],
+  "stdout": "244609.cm\n",
+  "stderr": "",
+  "returncode": 0
+}

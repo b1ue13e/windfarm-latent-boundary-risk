@@ -1,0 +1,14 @@
+id,material,component,status,evidence,remaining_gap,decision_consequence
+T1a,真实处理,UTC计划50分钟交替,CLOSED_DOCUMENT_SCOPE,official uplift_ws._hot_initialize_toggle,无随机分配保证,仅计划组定义
+T1b,真实处理,13直接受控加T07受益,CLOSED_DOCUMENT_SCOPE,RES2026报告PDF第4页及CC排除T07,逐时现场角色仍需日志,纠正前轮数量疑点
+T1c,真实处理,部分日期角色变化,PARTIALLY_CLOSED,exclusion_periods及主YAML,非完整现场配置/部署收据,不能混合全期同一处理
+T1d,真实处理,logged enable与命令依从,NOT_CLOSED,字段及聚合代码存在,未读测量且无公开逐段执行摘要,不能认证实际处理效应
+T1e,真实处理,actual yaw与配置版本,NOT_CLOSED,lookup静态且actual高频仅9台,全场ACK/执行和有效版本缺口,不作纯WS或全21机结论
+T2a,全场计量,表名字段单位,CLOSED_DOCUMENT_SCOPE,grid/tables_description.csv,名称不提供净注入语义,只确认字段候选
+T2b,全场计量,PCC位置及净值,NOT_CLOSED,所读字典未绑定grid StationId与PCC,计量位置符号厂用电损耗,交付结果量未资格
+T2c,全场计量,累计或区间电能,NOT_CLOSED,kWh/MWh单位已知,倍率累计/区间重置回卷及对功率一致性,不能自行相加或差分认证
+T2d,全场计量,2026有效覆盖,NOT_CLOSED,年度包条目存在,表/站/月非空完整同步未核实,文件入口不等实测合格
+T3a,记忆与时窗,300秒分析过滤及10分钟删格,CLOSED_DOCUMENT_SCOPE,wind-up ceil实现及timebase,不是物理稳定保证,纠正5分钟稳定表述
+T3b,记忆与时窗,物理记忆上界,NOT_CLOSED,公开lookup和产品/报告未提供保证,控制滤波偏航尾流功率响应范围,无法认证稳定短窗
+T3c,记忆与时窗,60分钟恒态处理,UNSUPPORTED_BY_PUBLISHED_SCHEDULE,50分钟计划交替,需要不同处理路径或额外模型假设,不能继承旧60分钟主张
+T3d,记忆与时窗,短窗真实交付接口,NOT_CLOSED,公开材料为AEP/SCADA控制包,承诺发布时点信息与履约规则未绑定,任意短窗不是可靠交付任务

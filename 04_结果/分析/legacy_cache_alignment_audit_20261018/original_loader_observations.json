@@ -1,0 +1,2639 @@
+[
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\0e90f7dd-c8dc-4a00-baca-113e8dfc066e\\.system_generated\\logs\\transcript_full.jsonl",
+    "source_sha256": "6ba6a2cf7687baf3ca658fe7e17acc9185bf09f4ce0a3097ff0f6ecce68cd402",
+    "source_line": 62,
+    "source_record_sha256_excluding_separator": "1f63dadd6a9f13b28607e7007502c45170b9cb1a02030d04041c120e4268cdee",
+    "created_at": "2026-09-17T20:57:25Z",
+    "path": "windfarm_moe/arrival_feed.py",
+    "visible_source_lines": [
+      {
+        "line": 1,
+        "observed": "\"\"\"Unified Arrival-Time Data Feed for causally symmetric degradation benchmarking.",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 2,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 3,
+        "observed": "This module directly addresses P0-B from the independent audit:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 4,
+        "observed": "- Problem in legacy code: When delaying anchor_physics, history_delay was False,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 5,
+        "observed": "  so the model's GNN encoder x_hist retained uncorrupted contemporary readings at issue time t,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 6,
+        "observed": "  while threshold rules were forced to evaluate on delayed values.",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 7,
+        "observed": "- Solution: UnifiedArrivalDataset enforces that ANY delay, burst loss, or sensor noise",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 8,
+        "observed": "  is applied synchronously and identically to:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 9,
+        "observed": "    1. x_hist (contemporary steps t-d+1:t are stalled or shifted)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 10,
+        "observed": "    2. feature_mask_hist (masks reflect arrival status)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 11,
+        "observed": "    3. anchor_physics (anchor readings reflect arrival status)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 12,
+        "observed": "    4. rule inputs (extracted directly from the corrupted batch, guaranteeing symmetry).",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 13,
+        "observed": "\"\"\"",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 14,
+        "observed": "from __future__ import annotations",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 15,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 16,
+        "observed": "from dataclasses import dataclass, field",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 17,
+        "observed": "from typing import Any, Dict, List, Optional, Tuple",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 18,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 19,
+        "observed": "import numpy as np",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 20,
+        "observed": "import torch",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 21,
+        "observed": "from torch.utils.data import Dataset",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 22,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 23,
+        "observed": "from .data import CacheBundle, RegimeWindowDataset",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 24,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 25,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 26,
+        "observed": "@dataclass",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 27,
+        "observed": "class DegradationSpec:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 28,
+        "observed": "    \"\"\"Specification of communication/sensor degradation applied at arrival time.\"\"\"",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 29,
+        "observed": "    delay_steps: int = 0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 30,
+        "observed": "    corrupted_channels: Optional[Tuple[str, ...]] = (\"all\",)  # Pass ('all',) or None for all channels",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 31,
+        "observed": "    withheld_channels: Tuple[str, ...] = ()  # Completely unobservable channels (zeroed out & masked)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 32,
+        "observed": "    history_policy: str = \"stalled\"  # 'stalled' (sample-and-hold from t-d) or 'shifted'",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 33,
+        "observed": "    noise_sigma_physical: Dict[str, float] = field(default_factory=dict)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 34,
+        "observed": "    # Markov-Gilbert parameters (if active, overrides static delay_steps)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 35,
+        "observed": "    use_markov_gilbert: bool = False",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 36,
+        "observed": "    p_gb: float = 0.08",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 37,
+        "observed": "    p_bb: float = 0.75",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 38,
+        "observed": "    max_lag: int = 6",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 39,
+        "observed": "    random_seed: int = 2026",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 40,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 41,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 42,
+        "observed": "def simulate_markov_gilbert_lags(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 43,
+        "observed": "    n_steps: int,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 44,
+        "observed": "    p_gb: float = 0.08,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 45,
+        "observed": "    p_bb: float = 0.75,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 46,
+        "observed": "    max_lag: int = 6,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 47,
+        "observed": "    rng: Optional[np.random.Generator] = None,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 48,
+        "observed": ") -> Tuple[np.ndarray, np.ndarray]:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 49,
+        "observed": "    \"\"\"Generate two-state Markov-Gilbert burst drop states and lags.\"\"\"",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 50,
+        "observed": "    if rng is None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 51,
+        "observed": "        rng = np.random.default_rng(2026)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 52,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 53,
+        "observed": "    states = np.zeros(n_steps, dtype=np.int8)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 54,
+        "observed": "    lags = np.zeros(n_steps, dtype=np.int64)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 55,
+        "observed": "    curr_state = 0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 56,
+        "observed": "    curr_lag = 0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 57,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 58,
+        "observed": "    for t in range(n_steps):",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 59,
+        "observed": "        u = rng.uniform(0.0, 1.0)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 60,
+        "observed": "        if curr_state == 0:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 61,
+        "observed": "            if u < p_gb:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 62,
+        "observed": "                curr_state = 1",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 63,
+        "observed": "                curr_lag = 1",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 64,
+        "observed": "            else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 65,
+        "observed": "                curr_state = 0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 66,
+        "observed": "                curr_lag = 0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 67,
+        "observed": "        else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 68,
+        "observed": "            if u < p_bb:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 69,
+        "observed": "                curr_state = 1",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 70,
+        "observed": "                curr_lag = min(curr_lag + 1, max_lag)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 71,
+        "observed": "            else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 72,
+        "observed": "                curr_state = 0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 73,
+        "observed": "                curr_lag = 0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 74,
+        "observed": "        states[t] = curr_state",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 75,
+        "observed": "        lags[t] = curr_lag",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 76,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 77,
+        "observed": "    return states, lags",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 78,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 79,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 80,
+        "observed": "class UnifiedArrivalDataset(Dataset):",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 81,
+        "observed": "    \"\"\"Dataset that applies synchronous, causally symmetric arrival-time degradation.\"\"\"",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 82,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 83,
+        "observed": "    def __init__(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 84,
+        "observed": "        self,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 85,
+        "observed": "        bundle: CacheBundle,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 86,
+        "observed": "        split: str,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 87,
+        "observed": "        hist_len: int,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 88,
+        "observed": "        pred_len: int,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 89,
+        "observed": "        degradation: Optional[DegradationSpec] = None,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 90,
+        "observed": "    ) -> None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 91,
+        "observed": "        self.base_dataset = RegimeWindowDataset(bundle, split, hist_len, pred_len)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 92,
+        "observed": "        self.bundle = bundle",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 93,
+        "observed": "        self.hist_len = hist_len",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 94,
+        "observed": "        self.pred_len = pred_len",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 95,
+        "observed": "        self.degradation = degradation or DegradationSpec()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 96,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 97,
+        "observed": "        # Cache feature and physics indices",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 98,
+        "observed": "        feature_names = list(bundle.metadata.get(\"feature_names\", []))",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 99,
+        "observed": "        physics_names = list(bundle.metadata.get(\"physics_names\", [\"Wspd\", \"Pab_mean\", \"wake_score\", \"Patv\"]))",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 100,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 101,
+        "observed": "        target_corrupted = self.degradation.corrupted_channels",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 102,
+        "observed": "        if target_corrupted is None or \"all\" in target_corrupted:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 103,
+        "observed": "            # Degrade ALL telemetry channels synchronously",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 104,
+        "observed": "            self.feat_indices = {name: i for i, name in enumerate(feature_names)}",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 105,
+        "observed": "            self.phy_indices = {name: i for i, name in enumerate(physics_names)}",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 106,
+        "observed": "        else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 107,
+        "observed": "            self.feat_indices = {",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 108,
+        "observed": "                name: feature_names.index(name) for name in target_corrupted if name in feature_names",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 109,
+        "observed": "            }",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 110,
+        "observed": "            self.phy_indices = {",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 111,
+        "observed": "                name: physics_names.index(name) for name in target_corrupted if name in physics_names",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 112,
+        "observed": "            }",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 113,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 114,
+        "observed": "        # Withheld channels (completely masked out across all timesteps)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 115,
+        "observed": "        self.withheld_feat_indices = [",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 116,
+        "observed": "            feature_names.index(name) for name in self.degradation.withheld_channels if name in feature_names",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 117,
+        "observed": "        ]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 118,
+        "observed": "        self.withheld_phy_indices = [",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 119,
+        "observed": "            physics_names.index(name) for name in self.degradation.withheld_channels if name in physics_names",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 120,
+        "observed": "        ]",
+        "exact_visible_text_match": true
+      }
+    ],
+    "all_displayed_lines_match_621bb8b": true,
+    "semantics": "exact displayed source text including terminal empty line; not a generation-time file-byte hash"
+  },
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\0e90f7dd-c8dc-4a00-baca-113e8dfc066e\\.system_generated\\logs\\transcript_full.jsonl",
+    "source_sha256": "6ba6a2cf7687baf3ca658fe7e17acc9185bf09f4ce0a3097ff0f6ecce68cd402",
+    "source_line": 64,
+    "source_record_sha256_excluding_separator": "a5837fcad39d8cf12742d0570351a9963ab32d0aeb677ea481ec966630cc9f4b",
+    "created_at": "2026-09-17T20:57:27Z",
+    "path": "windfarm_moe/arrival_feed.py",
+    "visible_source_lines": [
+      {
+        "line": 121,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 122,
+        "observed": "        # Precompute noise scales in normalized feature space if specified",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 123,
+        "observed": "        self.feat_noise_stds: Dict[str, float] = {}",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 124,
+        "observed": "        self.phy_noise_stds: Dict[str, float] = {}",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 125,
+        "observed": "        if self.degradation.noise_sigma_physical:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 126,
+        "observed": "            feat_stats = bundle.metadata.get(\"feature_stats\", {})",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 127,
+        "observed": "            phy_stats = bundle.metadata.get(\"physics_model_stats\", {})",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 128,
+        "observed": "            for ch, phys_sigma in self.degradation.noise_sigma_physical.items():",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 129,
+        "observed": "                if ch in feat_stats:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 130,
+        "observed": "                    ch_std = float(feat_stats[ch].get(\"std\", 1.0) or 1.0)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 131,
+        "observed": "                    self.feat_noise_stds[ch] = float(phys_sigma) / max(ch_std, 1e-6)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 132,
+        "observed": "                if ch in self.phy_indices:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 133,
+        "observed": "                    idx_str = str(self.phy_indices[ch])",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 134,
+        "observed": "                    p_std = float(phy_stats.get(idx_str, {}).get(\"std\", 1.0) or 1.0) if phy_stats else 1.0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 135,
+        "observed": "                    self.phy_noise_stds[ch] = float(phys_sigma) / max(p_std, 1e-6)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 136,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 137,
+        "observed": "        # Precompute Markov-Gilbert channel if requested",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 138,
+        "observed": "        self.burst_states: Optional[np.ndarray] = None",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 139,
+        "observed": "        self.burst_lags: Optional[np.ndarray] = None",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 140,
+        "observed": "        if self.degradation.use_markov_gilbert:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 141,
+        "observed": "            rng = np.random.default_rng(self.degradation.random_seed)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 142,
+        "observed": "            self.burst_states, self.burst_lags = simulate_markov_gilbert_lags(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 143,
+        "observed": "                len(self.base_dataset),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 144,
+        "observed": "                p_gb=self.degradation.p_gb,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 145,
+        "observed": "                p_bb=self.degradation.p_bb,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 146,
+        "observed": "                max_lag=self.degradation.max_lag,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 147,
+        "observed": "                rng=rng,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 148,
+        "observed": "            )",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 149,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 150,
+        "observed": "    def __len__(self) -> int:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 151,
+        "observed": "        return len(self.base_dataset)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 152,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 153,
+        "observed": "    @property",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 154,
+        "observed": "    def anchor_indices(self) -> np.ndarray:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 155,
+        "observed": "        return self.base_dataset.anchor_indices",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 156,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 157,
+        "observed": "    def __getitem__(self, index: int) -> Dict[str, Any]:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 158,
+        "observed": "        item = self.base_dataset[index]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 159,
+        "observed": "        has_withholding = bool(self.withheld_feat_indices or self.withheld_phy_indices)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 160,
+        "observed": "        if (",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 161,
+        "observed": "            self.degradation.delay_steps == 0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 162,
+        "observed": "            and not self.degradation.use_markov_gilbert",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 163,
+        "observed": "            and not self.degradation.noise_sigma_physical",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 164,
+        "observed": "            and not has_withholding",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 165,
+        "observed": "        ):",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 166,
+        "observed": "            # Clean baseline: return unchanged",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 167,
+        "observed": "            item[\"lag_applied\"] = 0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 168,
+        "observed": "            return item",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 169,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 170,
+        "observed": "        # Determine lag at this step",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 171,
+        "observed": "        if self.degradation.use_markov_gilbert and self.burst_lags is not None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 172,
+        "observed": "            lag = int(self.burst_lags[index])",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 173,
+        "observed": "        else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 174,
+        "observed": "            lag = int(self.degradation.delay_steps)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 175,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 176,
+        "observed": "        anchor = int(item[\"anchor_index\"])",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 177,
+        "observed": "        total_steps = self.bundle.features.shape[0]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 178,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 179,
+        "observed": "        # Clone anchor_physics to prevent modifying base dataset in place",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 180,
+        "observed": "        item[\"anchor_physics\"] = item[\"anchor_physics\"].clone()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 181,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 182,
+        "observed": "        # 1. Synchronously degrade anchor_physics",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 183,
+        "observed": "        if lag > 0:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 184,
+        "observed": "            lagged_anchor = max(0, anchor - lag)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 185,
+        "observed": "            lagged_physics = torch.from_numpy(np.array(self.bundle.physics_model[lagged_anchor], dtype=np.float32, copy=True))",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 186,
+        "observed": "            for ch, phy_idx in self.phy_indices.items():",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 187,
+        "observed": "                item[\"anchor_physics\"][:, phy_idx] = lagged_physics[:, phy_idx]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 188,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 189,
+        "observed": "        # 1b. True channel withholding in anchor_physics",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 190,
+        "observed": "        if self.withheld_phy_indices:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 191,
+        "observed": "            for phy_idx in self.withheld_phy_indices:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 192,
+        "observed": "                item[\"anchor_physics\"][:, phy_idx] = 0.0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 193,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 194,
+        "observed": "        # 2. Synchronously degrade x_hist and feature_mask_hist to eliminate information asymmetry",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 195,
+        "observed": "        # When lag > 0, the readings at steps (H - lag) to (H - 1) have not arrived yet.",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 196,
+        "observed": "        has_delayed_feats = (lag > 0 and self.feat_indices)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 197,
+        "observed": "        if has_delayed_feats:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 198,
+        "observed": "            x_hist = item[\"x_hist\"].clone()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 199,
+        "observed": "            fmask_hist = item[\"feature_mask_hist\"].clone()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 200,
+        "observed": "            H = x_hist.shape[0]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 201,
+        "observed": "            eff_lag = min(lag, H - 1)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 202,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 203,
+        "observed": "            for ch, feat_idx in self.feat_indices.items():",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 204,
+        "observed": "                if self.degradation.history_policy == \"stalled\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 205,
+        "observed": "                    # Sample-and-hold: replicate reading from t - lag to all subsequent unarrived steps",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 206,
+        "observed": "                    stalled_step = max(0, H - 1 - eff_lag)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 207,
+        "observed": "                    last_known_val = x_hist[stalled_step:stalled_step + 1, :, feat_idx]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 208,
+        "observed": "                    last_known_mask = fmask_hist[stalled_step:stalled_step + 1, :, feat_idx]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 209,
+        "observed": "                    for step_idx in range(stalled_step + 1, H):",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 210,
+        "observed": "                        x_hist[step_idx, :, feat_idx] = last_known_val[0]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 211,
+        "observed": "                        fmask_hist[step_idx, :, feat_idx] = last_known_mask[0]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 212,
+        "observed": "                elif self.degradation.history_policy == \"shifted\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 213,
+        "observed": "                    # Shift entire history backwards by lag steps",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 214,
+        "observed": "                    vals = x_hist[:, :, feat_idx]  # (H, N)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 215,
+        "observed": "                    head = vals[:1, :].repeat(eff_lag, 1)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 216,
+        "observed": "                    shifted = torch.cat([head, vals[:-eff_lag, :]], dim=0)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 217,
+        "observed": "                    x_hist[:, :, feat_idx] = shifted",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 218,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 219,
+        "observed": "                    mvals = fmask_hist[:, :, feat_idx]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 220,
+        "observed": "                    mhead = mvals[:1, :].repeat(eff_lag, 1)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 221,
+        "observed": "                    mshifted = torch.cat([mhead, mvals[:-eff_lag, :]], dim=0)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 222,
+        "observed": "                    fmask_hist[:, :, feat_idx] = mshifted",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 223,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 224,
+        "observed": "            item[\"x_hist\"] = x_hist",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 225,
+        "observed": "            item[\"feature_mask_hist\"] = fmask_hist",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 226,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 227,
+        "observed": "        # 2b. True channel withholding in x_hist and feature_mask_hist",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 228,
+        "observed": "        if self.withheld_feat_indices:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 229,
+        "observed": "            if not has_delayed_feats:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 230,
+        "observed": "                item[\"x_hist\"] = item[\"x_hist\"].clone()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 231,
+        "observed": "                item[\"feature_mask_hist\"] = item[\"feature_mask_hist\"].clone()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 232,
+        "observed": "            for feat_idx in self.withheld_feat_indices:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 233,
+        "observed": "                item[\"x_hist\"][:, :, feat_idx] = 0.0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 234,
+        "observed": "                item[\"feature_mask_hist\"][:, :, feat_idx] = 0.0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 235,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 236,
+        "observed": "        # Synchronously degrade dynamic graph topology",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 237,
+        "observed": "        if lag > 0 and \"edge_index_hist\" in item and \"edge_weight_hist\" in item:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 238,
+        "observed": "            e_hist = item[\"edge_index_hist\"].clone()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 239,
+        "observed": "            w_hist = item[\"edge_weight_hist\"].clone()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 240,
+        "observed": "            H = item[\"x_hist\"].shape[0]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 241,
+        "observed": "            eff_lag = min(lag, H - 1)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 242,
+        "observed": "            if self.degradation.history_policy == \"stalled\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 243,
+        "observed": "                stalled_step = max(0, H - 1 - eff_lag)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 244,
+        "observed": "                last_e = e_hist[stalled_step:stalled_step + 1]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 245,
+        "observed": "                last_w = w_hist[stalled_step:stalled_step + 1]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 246,
+        "observed": "                for step_idx in range(stalled_step + 1, H):",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 247,
+        "observed": "                    e_hist[step_idx] = last_e[0]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 248,
+        "observed": "                    w_hist[step_idx] = last_w[0]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 249,
+        "observed": "            elif self.degradation.history_policy == \"shifted\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 250,
+        "observed": "                e_head = e_hist[:1].repeat(eff_lag, 1, 1)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 251,
+        "observed": "                e_hist = torch.cat([e_head, e_hist[:-eff_lag]], dim=0)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 252,
+        "observed": "                w_head = w_hist[:1].repeat(eff_lag, 1, 1)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 253,
+        "observed": "                w_hist = torch.cat([w_head, w_hist[:-eff_lag]], dim=0)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 254,
+        "observed": "            item[\"edge_index_hist\"] = e_hist",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 255,
+        "observed": "            item[\"edge_weight_hist\"] = w_hist",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 256,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 257,
+        "observed": "        # 3. Add synchronous sensor noise if specified",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 258,
+        "observed": "        if self.degradation.noise_sigma_physical:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 259,
+        "observed": "            rng = np.random.default_rng(self.degradation.random_seed + index * 31)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 260,
+        "observed": "            for ch, std_scale in self.feat_noise_stds.items():",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 261,
+        "observed": "                feat_idx = self.feat_indices.get(ch)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 262,
+        "observed": "                if feat_idx is not None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 263,
+        "observed": "                    noise = torch.from_numpy(rng.normal(0.0, std_scale, size=item[\"x_hist\"][:, :, feat_idx].shape)).float()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 264,
+        "observed": "                    item[\"x_hist\"][:, :, feat_idx] += noise",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 265,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 266,
+        "observed": "            for ch, p_std_scale in self.phy_noise_stds.items():",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 267,
+        "observed": "                phy_idx = self.phy_indices.get(ch)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 268,
+        "observed": "                if phy_idx is not None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 269,
+        "observed": "                    noise = torch.from_numpy(rng.normal(0.0, p_std_scale, size=item[\"anchor_physics\"][:, phy_idx].shape)).float()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 270,
+        "observed": "                    item[\"anchor_physics\"][:, phy_idx] += noise",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 271,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 272,
+        "observed": "        item[\"lag_applied\"] = lag",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 273,
+        "observed": "        return item",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 274,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 275,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 276,
+        "observed": "def extract_symmetric_rule_input(batch: Dict[str, Any], metadata: Dict[str, Any]) -> Tuple[torch.Tensor, torch.Tensor]:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 277,
+        "observed": "    \"\"\"Extract Wspd and Pab_mean from anchor_physics to guarantee exact symmetry with model inputs.",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 278,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 279,
+        "observed": "    Returns:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 280,
+        "observed": "        wspd: (B, N) standardized or physical wind speed",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 281,
+        "observed": "        pab: (B, N) standardized or physical blade pitch",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 282,
+        "observed": "    \"\"\"",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 283,
+        "observed": "    anchor_physics = batch[\"anchor_physics\"]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 284,
+        "observed": "    physics_names = list(metadata.get(\"physics_names\", [\"Wspd\", \"Pab_mean\", \"wake_score\", \"Patv\"]))",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 285,
+        "observed": "    wspd_idx = physics_names.index(\"Wspd\") if \"Wspd\" in physics_names else 0",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 286,
+        "observed": "    pab_idx = physics_names.index(\"Pab_mean\") if \"Pab_mean\" in physics_names else 1",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 287,
+        "observed": "    return anchor_physics[..., wspd_idx], anchor_physics[..., pab_idx]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 288,
+        "observed": "",
+        "exact_visible_text_match": true
+      }
+    ],
+    "all_displayed_lines_match_621bb8b": true,
+    "semantics": "exact displayed source text including terminal empty line; not a generation-time file-byte hash"
+  },
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\0e90f7dd-c8dc-4a00-baca-113e8dfc066e\\.system_generated\\logs\\transcript_full.jsonl",
+    "source_sha256": "6ba6a2cf7687baf3ca658fe7e17acc9185bf09f4ce0a3097ff0f6ecce68cd402",
+    "source_line": 166,
+    "source_record_sha256_excluding_separator": "1898553bf637819681237f376b86e529203dd9c7b89d50d600b7127b2acf8612",
+    "created_at": "2026-09-17T21:03:29Z",
+    "path": "windfarm_moe/data.py",
+    "visible_source_lines": [
+      {
+        "line": 90,
+        "observed": "        self.pred_len = pred_len",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 91,
+        "observed": "        start, end = bundle.metadata[\"split_bounds\"][split]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 92,
+        "observed": "        anchor_start = start + hist_len - 1",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 93,
+        "observed": "        anchor_end = end - pred_len - 1",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 94,
+        "observed": "        if anchor_end < anchor_start:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 95,
+        "observed": "            self.anchor_indices = np.empty((0,), dtype=np.int64)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 96,
+        "observed": "        else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 97,
+        "observed": "            self.anchor_indices = np.arange(anchor_start, anchor_end + 1, dtype=np.int64)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 98,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 99,
+        "observed": "    def __len__(self) -> int:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 100,
+        "observed": "        return int(self.anchor_indices.shape[0])",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 101,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 102,
+        "observed": "    def __getitem__(self, index: int) -> dict[str, Any]:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 103,
+        "observed": "        anchor = int(self.anchor_indices[index])",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 104,
+        "observed": "        hist_slice = slice(anchor - self.hist_len + 1, anchor + 1)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 105,
+        "observed": "        future_slice = slice(anchor + 1, anchor + 1 + self.pred_len)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 106,
+        "observed": "        aux = self.bundle.regime_aux",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 107,
+        "observed": "        aux_valid = self.bundle.regime_aux_valid",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 108,
+        "observed": "        if aux is None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 109,
+        "observed": "            aux_anchor = np.full((self.bundle.features.shape[1],), -1, dtype=np.int64)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 110,
+        "observed": "        else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 111,
+        "observed": "            aux_anchor = np.array(aux[anchor], dtype=np.int64, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 112,
+        "observed": "        if aux_valid is None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 113,
+        "observed": "            aux_anchor_valid = np.zeros((self.bundle.features.shape[1],), dtype=np.float32)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 114,
+        "observed": "        else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 115,
+        "observed": "            aux_anchor_valid = np.array(aux_valid[anchor], dtype=np.float32, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 116,
+        "observed": "        return {",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 117,
+        "observed": "            \"x_hist\": torch.from_numpy(np.array(self.bundle.features[hist_slice], dtype=np.float32, copy=True)),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 118,
+        "observed": "            \"feature_mask_hist\": torch.from_numpy(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 119,
+        "observed": "                np.array(self.bundle.feature_mask[hist_slice], dtype=np.float32, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 120,
+        "observed": "            ),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 121,
+        "observed": "            \"edge_index_hist\": torch.from_numpy(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 122,
+        "observed": "                np.array(self.bundle.edge_index[hist_slice], dtype=np.int64, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 123,
+        "observed": "            ),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 124,
+        "observed": "            \"edge_weight_hist\": torch.from_numpy(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 125,
+        "observed": "                np.array(self.bundle.edge_weight[hist_slice], dtype=np.float32, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 126,
+        "observed": "            ),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 127,
+        "observed": "            \"target\": torch.from_numpy(np.array(self.bundle.target[future_slice], dtype=np.float32, copy=True)),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 128,
+        "observed": "            \"target_mask\": torch.from_numpy(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 129,
+        "observed": "                np.array(self.bundle.target_mask[future_slice], dtype=np.float32, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 130,
+        "observed": "            ),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 131,
+        "observed": "            \"regime_primary\": torch.from_numpy(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 132,
+        "observed": "                np.array(self.bundle.regime_primary[anchor], dtype=np.int64, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 133,
+        "observed": "            ),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 134,
+        "observed": "            \"regime_primary_valid\": torch.from_numpy(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 135,
+        "observed": "                np.array(self.bundle.regime_primary_valid[anchor], dtype=np.float32, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 136,
+        "observed": "            ),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 137,
+        "observed": "            \"regime_aux\": torch.from_numpy(aux_anchor),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 138,
+        "observed": "            \"regime_aux_valid\": torch.from_numpy(aux_anchor_valid),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 139,
+        "observed": "            \"anchor_physics\": torch.from_numpy(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 140,
+        "observed": "                np.array(self.bundle.physics_model[anchor], dtype=np.float32, copy=True)",
+        "exact_visible_text_match": true
+      }
+    ],
+    "all_displayed_lines_match_621bb8b": true,
+    "semantics": "exact displayed source text including terminal empty line; not a generation-time file-byte hash"
+  },
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\0e90f7dd-c8dc-4a00-baca-113e8dfc066e\\.system_generated\\logs\\transcript_full.jsonl",
+    "source_sha256": "6ba6a2cf7687baf3ca658fe7e17acc9185bf09f4ce0a3097ff0f6ecce68cd402",
+    "source_line": 423,
+    "source_record_sha256_excluding_separator": "eb14157f6fdf5fee34dd1d5a6100a6b69cfb66c2da1893d33fb1246427c605c0",
+    "created_at": "2026-09-17T21:17:29Z",
+    "path": "windfarm_moe/model.py",
+    "visible_source_lines": [
+      {
+        "line": 593,
+        "observed": "class RegimeAwareForecaster(nn.Module):",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 594,
+        "observed": "    def __init__(self, feature_dim: int, pred_len: int, mode: str, config: ModelConfig) -> None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 595,
+        "observed": "        super().__init__()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 596,
+        "observed": "        self.mode = mode",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 597,
+        "observed": "        self.pred_len = pred_len",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 598,
+        "observed": "        self.num_experts = config.num_experts",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 599,
+        "observed": "        self.primary_num_classes = config.primary_num_classes",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 600,
+        "observed": "        self.gate_physics_dim = config.gate_physics_dim",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 601,
+        "observed": "        self.tau = config.tau",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 602,
+        "observed": "        if mode == \"baseline_stgcn\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 603,
+        "observed": "            self.encoder = STGCNEncoder(feature_dim * 2, config)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 604,
+        "observed": "        elif mode == \"baseline_graph_wavenet\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 605,
+        "observed": "            self.encoder = GraphWaveNetEncoder(feature_dim * 2, config)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 606,
+        "observed": "        elif mode == \"baseline_patchtst\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 607,
+        "observed": "            self.encoder = PatchTSTEncoder(feature_dim * 2, config)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 608,
+        "observed": "        elif mode == \"baseline_gat_gru\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 609,
+        "observed": "            self.encoder = GraphAttentionTemporalEncoder(feature_dim * 2, config)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 610,
+        "observed": "        elif mode == \"baseline_graph_transformer\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 611,
+        "observed": "            self.encoder = TemporalGraphTransformerEncoder(feature_dim * 2, config)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 612,
+        "observed": "        elif mode == \"baseline_tcn\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 613,
+        "observed": "            self.encoder = TemporalConvEncoder(feature_dim * 2, config)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 614,
+        "observed": "        elif mode == \"baseline_itransformer\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 615,
+        "observed": "            self.encoder = InvertedTransformerEncoder(feature_dim * 2, config)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 616,
+        "observed": "        elif mode == \"baseline_tide\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 617,
+        "observed": "            self.encoder = TiDEEncoder(feature_dim * 2, config)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 618,
+        "observed": "        else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 619,
+        "observed": "            self.encoder = SpatioTemporalEncoder(feature_dim * 2, config)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 620,
+        "observed": "        hidden = config.hidden_dim",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 621,
+        "observed": "        self.is_baseline_mode = mode in {",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 622,
+        "observed": "            \"baseline_dense\",",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 623,
+        "observed": "            \"baseline_stgcn\",",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 624,
+        "observed": "            \"baseline_graph_wavenet\",",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 625,
+        "observed": "            \"baseline_patchtst\",",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 626,
+        "observed": "            \"baseline_gat_gru\",",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 627,
+        "observed": "            \"baseline_graph_transformer\",",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 628,
+        "observed": "            \"baseline_tcn\",",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 629,
+        "observed": "            \"baseline_itransformer\",",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 630,
+        "observed": "            \"baseline_tide\",",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 631,
+        "observed": "        }",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 632,
+        "observed": "        self.dense_head = ExpertHead(hidden, pred_len, config.dropout)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 633,
+        "observed": "        self.is_dense_classifier = mode == \"dense_classifier\"",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 634,
+        "observed": "        if self.is_dense_classifier:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 635,
+        "observed": "            self.experts = nn.ModuleList()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 636,
+        "observed": "            self.gate = None",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 637,
+        "observed": "            self.classifier_head = nn.Sequential(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 638,
+        "observed": "                nn.Linear(hidden + config.gate_physics_dim, config.gate_hidden_dim),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 639,
+        "observed": "                nn.GELU(),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 640,
+        "observed": "                nn.Dropout(config.dropout),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 641,
+        "observed": "                nn.Linear(config.gate_hidden_dim, config.primary_num_classes),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 642,
+        "observed": "            )",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 643,
+        "observed": "        elif self.is_baseline_mode:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 644,
+        "observed": "            self.experts = nn.ModuleList()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 645,
+        "observed": "            self.gate = None",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 646,
+        "observed": "        else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 647,
+        "observed": "            self.experts = nn.ModuleList(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 648,
+        "observed": "                [ExpertHead(hidden, pred_len, config.dropout) for _ in range(config.num_experts)]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 649,
+        "observed": "            )",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 650,
+        "observed": "            if mode in {\"moe_no_phys\", \"moe_context_align\"}:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 651,
+        "observed": "                gate_input_dim = hidden",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 652,
+        "observed": "            elif mode == \"moe_anchor_only\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 653,
+        "observed": "                gate_input_dim = config.gate_physics_dim",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 654,
+        "observed": "            else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 655,
+        "observed": "                gate_input_dim = hidden + config.gate_physics_dim",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 656,
+        "observed": "            self.gate = nn.Sequential(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 657,
+        "observed": "                nn.Linear(gate_input_dim, config.gate_hidden_dim),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 658,
+        "observed": "                nn.GELU(),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 659,
+        "observed": "                nn.Dropout(config.dropout),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 660,
+        "observed": "                nn.Linear(config.gate_hidden_dim, config.num_experts),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 661,
+        "observed": "            )",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 662,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 663,
+        "observed": "    def forward(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 664,
+        "observed": "        self,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 665,
+        "observed": "        x_hist: torch.Tensor,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 666,
+        "observed": "        edge_index_hist: torch.Tensor,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 667,
+        "observed": "        edge_weight_hist: torch.Tensor,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 668,
+        "observed": "        feature_mask_hist: torch.Tensor,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 669,
+        "observed": "        anchor_physics: torch.Tensor | None = None,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 670,
+        "observed": "    ) -> tuple[torch.Tensor, torch.Tensor | None, dict[str, torch.Tensor]]:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 671,
+        "observed": "        edge_index_hist = edge_index_hist.long()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 672,
+        "observed": "        feature_mask_hist = feature_mask_hist.float()",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 673,
+        "observed": "        context = self.encoder(x_hist, edge_index_hist, edge_weight_hist, feature_mask_hist)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 674,
+        "observed": "        if self.is_dense_classifier:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 675,
+        "observed": "            pred = self.dense_head(context).transpose(1, 2)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 676,
+        "observed": "            if anchor_physics is None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 677,
+        "observed": "                anchor_physics = x_hist.new_zeros((x_hist.shape[0], x_hist.shape[2], self.gate_physics_dim))",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 678,
+        "observed": "            cls_logits = self.classifier_head(torch.cat([context, anchor_physics], dim=-1))",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 679,
+        "observed": "            pad = torch.full(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 680,
+        "observed": "                (cls_logits.shape[0], cls_logits.shape[1], 1),",
+        "exact_visible_text_match": true
+      }
+    ],
+    "all_displayed_lines_match_621bb8b": true,
+    "semantics": "exact displayed source text including terminal empty line; not a generation-time file-byte hash"
+  },
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\0e90f7dd-c8dc-4a00-baca-113e8dfc066e\\.system_generated\\logs\\transcript_full.jsonl",
+    "source_sha256": "6ba6a2cf7687baf3ca658fe7e17acc9185bf09f4ce0a3097ff0f6ecce68cd402",
+    "source_line": 425,
+    "source_record_sha256_excluding_separator": "06d06189c3f13d02d330861f531644c15a864e2655c1938d814eb3fc18249b5b",
+    "created_at": "2026-09-17T21:17:30Z",
+    "path": "windfarm_moe/model.py",
+    "visible_source_lines": [
+      {
+        "line": 680,
+        "observed": "                (cls_logits.shape[0], cls_logits.shape[1], 1),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 681,
+        "observed": "                float(\"-inf\"),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 682,
+        "observed": "                device=cls_logits.device,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 683,
+        "observed": "            )",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 684,
+        "observed": "            gate_logits = torch.cat([cls_logits, pad], dim=-1)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 685,
+        "observed": "            gate_prob = torch.softmax(gate_logits / self.tau, dim=-1)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 686,
+        "observed": "            aux = {\"context\": context, \"gate_logits\": gate_logits, \"anchor_physics\": anchor_physics}",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 687,
+        "observed": "            return pred, gate_prob, aux",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 688,
+        "observed": "        if self.is_baseline_mode:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 689,
+        "observed": "            pred = self.dense_head(context).transpose(1, 2)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 690,
+        "observed": "            return pred, None, {\"context\": context}",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 691,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 692,
+        "observed": "        if anchor_physics is None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 693,
+        "observed": "            anchor_physics = x_hist.new_zeros((x_hist.shape[0], x_hist.shape[2], self.gate_physics_dim))",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 694,
+        "observed": "        if anchor_physics.shape[-1] != self.gate_physics_dim:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 695,
+        "observed": "            if anchor_physics.shape[-1] > self.gate_physics_dim:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 696,
+        "observed": "                anchor_physics = anchor_physics[..., : self.gate_physics_dim]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 697,
+        "observed": "            else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 698,
+        "observed": "                pad = self.gate_physics_dim - anchor_physics.shape[-1]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 699,
+        "observed": "                anchor_physics = F.pad(anchor_physics, (0, pad))",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 700,
+        "observed": "        if self.mode in {\"moe_no_phys\", \"moe_context_align\"}:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 701,
+        "observed": "            gate_input = context",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 702,
+        "observed": "        elif self.mode == \"moe_anchor_only\":",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 703,
+        "observed": "            gate_input = anchor_physics",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 704,
+        "observed": "        else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 705,
+        "observed": "            gate_input = torch.cat([context, anchor_physics], dim=-1)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 706,
+        "observed": "        gate_logits = self.gate(gate_input)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 707,
+        "observed": "        gate_prob = torch.softmax(gate_logits / self.tau, dim=-1)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 708,
+        "observed": "        expert_outputs = torch.stack([expert(context) for expert in self.experts], dim=-2)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 709,
+        "observed": "        pred = (gate_prob.unsqueeze(-1) * expert_outputs).sum(dim=-2).transpose(1, 2)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 710,
+        "observed": "        aux = {",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 711,
+        "observed": "            \"context\": context,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 712,
+        "observed": "            \"gate_logits\": gate_logits,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 713,
+        "observed": "            \"expert_outputs\": expert_outputs,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 714,
+        "observed": "            \"anchor_physics\": anchor_physics,",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 715,
+        "observed": "        }",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 716,
+        "observed": "        return pred, gate_prob, aux",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 717,
+        "observed": "",
+        "exact_visible_text_match": true
+      }
+    ],
+    "all_displayed_lines_match_621bb8b": true,
+    "semantics": "exact displayed source text including terminal empty line; not a generation-time file-byte hash"
+  },
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\0e90f7dd-c8dc-4a00-baca-113e8dfc066e\\.system_generated\\logs\\transcript_full.jsonl",
+    "source_sha256": "6ba6a2cf7687baf3ca658fe7e17acc9185bf09f4ce0a3097ff0f6ecce68cd402",
+    "source_line": 782,
+    "source_record_sha256_excluding_separator": "4d9bfaa76f6b1c7be5ef1a1fe598bb8ceb0534319a0512e96d6c853bbfc18770",
+    "created_at": "2026-09-18T02:21:45Z",
+    "path": "windfarm_moe/data.py",
+    "visible_source_lines": [
+      {
+        "line": 83,
+        "observed": "class RegimeWindowDataset(Dataset):",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 84,
+        "observed": "    def __init__(self, bundle: CacheBundle, split: str, hist_len: int, pred_len: int) -> None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 85,
+        "observed": "        if split not in bundle.metadata.get(\"split_bounds\", {}):",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 86,
+        "observed": "            raise ValueError(f\"Unsupported split: {split}\")",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 87,
+        "observed": "        self.bundle = bundle",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 88,
+        "observed": "        self.split = split",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 89,
+        "observed": "        self.hist_len = hist_len",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 90,
+        "observed": "        self.pred_len = pred_len",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 91,
+        "observed": "        start, end = bundle.metadata[\"split_bounds\"][split]",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 92,
+        "observed": "        anchor_start = start + hist_len - 1",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 93,
+        "observed": "        anchor_end = end - pred_len - 1",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 94,
+        "observed": "        if anchor_end < anchor_start:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 95,
+        "observed": "            self.anchor_indices = np.empty((0,), dtype=np.int64)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 96,
+        "observed": "        else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 97,
+        "observed": "            self.anchor_indices = np.arange(anchor_start, anchor_end + 1, dtype=np.int64)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 98,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 99,
+        "observed": "    def __len__(self) -> int:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 100,
+        "observed": "        return int(self.anchor_indices.shape[0])",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 101,
+        "observed": "",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 102,
+        "observed": "    def __getitem__(self, index: int) -> dict[str, Any]:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 103,
+        "observed": "        anchor = int(self.anchor_indices[index])",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 104,
+        "observed": "        hist_slice = slice(anchor - self.hist_len + 1, anchor + 1)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 105,
+        "observed": "        future_slice = slice(anchor + 1, anchor + 1 + self.pred_len)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 106,
+        "observed": "        aux = self.bundle.regime_aux",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 107,
+        "observed": "        aux_valid = self.bundle.regime_aux_valid",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 108,
+        "observed": "        if aux is None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 109,
+        "observed": "            aux_anchor = np.full((self.bundle.features.shape[1],), -1, dtype=np.int64)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 110,
+        "observed": "        else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 111,
+        "observed": "            aux_anchor = np.array(aux[anchor], dtype=np.int64, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 112,
+        "observed": "        if aux_valid is None:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 113,
+        "observed": "            aux_anchor_valid = np.zeros((self.bundle.features.shape[1],), dtype=np.float32)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 114,
+        "observed": "        else:",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 115,
+        "observed": "            aux_anchor_valid = np.array(aux_valid[anchor], dtype=np.float32, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 116,
+        "observed": "        return {",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 117,
+        "observed": "            \"x_hist\": torch.from_numpy(np.array(self.bundle.features[hist_slice], dtype=np.float32, copy=True)),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 118,
+        "observed": "            \"feature_mask_hist\": torch.from_numpy(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 119,
+        "observed": "                np.array(self.bundle.feature_mask[hist_slice], dtype=np.float32, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 120,
+        "observed": "            ),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 121,
+        "observed": "            \"edge_index_hist\": torch.from_numpy(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 122,
+        "observed": "                np.array(self.bundle.edge_index[hist_slice], dtype=np.int64, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 123,
+        "observed": "            ),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 124,
+        "observed": "            \"edge_weight_hist\": torch.from_numpy(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 125,
+        "observed": "                np.array(self.bundle.edge_weight[hist_slice], dtype=np.float32, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 126,
+        "observed": "            ),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 127,
+        "observed": "            \"target\": torch.from_numpy(np.array(self.bundle.target[future_slice], dtype=np.float32, copy=True)),",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 128,
+        "observed": "            \"target_mask\": torch.from_numpy(",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 129,
+        "observed": "                np.array(self.bundle.target_mask[future_slice], dtype=np.float32, copy=True)",
+        "exact_visible_text_match": true
+      },
+      {
+        "line": 130,
+        "observed": "            ),",
+        "exact_visible_text_match": true
+      }
+    ],
+    "all_displayed_lines_match_621bb8b": true,
+    "semantics": "exact displayed source text including terminal empty line; not a generation-time file-byte hash"
+  }
+]

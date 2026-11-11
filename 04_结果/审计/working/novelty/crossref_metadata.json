@@ -1,0 +1,6157 @@
+[
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          30
+        ]
+      ],
+      "date-time": "2026-09-30T18:10:33Z",
+      "timestamp": 1790791833076,
+      "version": "4.1.0"
+    },
+    "reference-count": 43,
+    "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+    "issue": "4",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              7,
+              1
+            ]
+          ],
+          "date-time": "2021-07-01T00:00:00Z",
+          "timestamp": 1625097600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              7,
+              1
+            ]
+          ],
+          "date-time": "2021-07-01T00:00:00Z",
+          "timestamp": 1625097600000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-029"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              7,
+              1
+            ]
+          ],
+          "date-time": "2021-07-01T00:00:00Z",
+          "timestamp": 1625097600000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-037"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100013290",
+        "name": "National Key R&amp;D Program of China",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "2018YFB0905000"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "2018YFB0905000"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100013290",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100001809",
+        "name": "National Natural Science Foundation of China",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "51877189"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "51877189"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001809",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100001809",
+        "name": "National Natural Science Foundation of China",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "51761135015"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "51761135015"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001809",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100001809",
+        "name": "National Natural Science Foundation of China",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "U2066601"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "U2066601"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001809",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "name": "Young Elite Scientists Sponsorship Program by China Association of Science and Technology",
+        "award": [
+          "2018QNRC001"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "2018QNRC001"
+            ]
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100004835",
+        "name": "Zhejiang University",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/501100004835",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "IEEE Trans. Power Syst."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2021,
+          7
+        ]
+      ]
+    },
+    "DOI": "10.1109/tpwrs.2021.3053847",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2021,
+          1,
+          22
+        ]
+      ],
+      "date-time": "2021-01-22T23:02:46Z",
+      "timestamp": 1611356566000
+    },
+    "page": "3701-3714",
+    "source": "Crossref",
+    "is-referenced-by-count": 91,
+    "title": [
+      "Operating Reserve Quantification Using Prediction Intervals of Wind Power: An Integrated Probabilistic Forecasting and Decision Methodology"
+    ],
+    "prefix": "10.1109",
+    "volume": "36",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-0289-3813",
+        "authenticated-orcid": false,
+        "given": "Changfei",
+        "family": "Zhao",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0263-9812",
+        "authenticated-orcid": false,
+        "given": "Can",
+        "family": "Wan",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-1495-4644",
+        "authenticated-orcid": false,
+        "given": "Yonghua",
+        "family": "Song",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "263",
+    "reference": [
+      {
+        "key": "ref39",
+        "article-title": "Actual and forecast wind generation",
+        "year": "0"
+      },
+      {
+        "key": "ref38",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2020.2986282"
+      },
+      {
+        "key": "ref33",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2019.2924355"
+      },
+      {
+        "key": "ref32",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2017.2716658"
+      },
+      {
+        "key": "ref31",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2019.2954844"
+      },
+      {
+        "key": "ref30",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2018.2878723"
+      },
+      {
+        "key": "ref37",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2016.2554629"
+      },
+      {
+        "key": "ref36",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1467-9868.2011.00771.x"
+      },
+      {
+        "key": "ref35",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2013.2258824"
+      },
+      {
+        "key": "ref34",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSMCB.2011.2168604"
+      },
+      {
+        "key": "ref10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2010.2065818"
+      },
+      {
+        "key": "ref40",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSTE.2018.2831238"
+      },
+      {
+        "key": "ref11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2005.846206"
+      },
+      {
+        "key": "ref12",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2013.2287871"
+      },
+      {
+        "key": "ref13",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSTE.2011.2181878"
+      },
+      {
+        "key": "ref14",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSTE.2014.2320193"
+      },
+      {
+        "key": "ref15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2016.2602942"
+      },
+      {
+        "key": "ref16",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2016.2565058"
+      },
+      {
+        "key": "ref17",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2016.2625101"
+      },
+      {
+        "key": "ref18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSTE.2016.2555483"
+      },
+      {
+        "key": "ref19",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2018.2884711"
+      },
+      {
+        "key": "ref28",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2016.2621261"
+      },
+      {
+        "key": "ref4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2016.2617466"
+      },
+      {
+        "key": "ref27",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2017.2707568"
+      },
+      {
+        "key": "ref3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2172/1023095"
+      },
+      {
+        "key": "ref6",
+        "article-title": "EirGrid grid code",
+        "year": "2019"
+      },
+      {
+        "key": "ref29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2018.2847239"
+      },
+      {
+        "key": "ref5",
+        "article-title": "Reliability standards for the bulk electric systems of North America",
+        "year": "2020"
+      },
+      {
+        "key": "ref8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSG.2016.2623760"
+      },
+      {
+        "key": "ref7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSTE.2012.2208207"
+      },
+      {
+        "key": "ref2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2013.2288100"
+      },
+      {
+        "key": "ref9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2016.2562141"
+      },
+      {
+        "key": "ref1",
+        "article-title": "Renewables 2020 global status report",
+        "year": "2020"
+      },
+      {
+        "key": "ref20",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2020.2992763"
+      },
+      {
+        "key": "ref22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2010.2100414"
+      },
+      {
+        "key": "ref21",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2017.2773561"
+      },
+      {
+        "key": "ref42",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSTE.2012.2199340"
+      },
+      {
+        "key": "ref24",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2008.2004745"
+      },
+      {
+        "key": "ref41",
+        "article-title": "Harmonised all-island implementation arrangements for ancillary services and other payments and charges: A decision paper,&#x201D; Single Electricity Market Committee",
+        "year": "2009"
+      },
+      {
+        "key": "ref23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2009.2016598"
+      },
+      {
+        "key": "ref26",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2012.2207465"
+      },
+      {
+        "key": "ref43",
+        "article-title": "The value of reliability in power systems: Pricing operating reserves",
+        "author": "prada",
+        "year": "1999"
+      },
+      {
+        "key": "ref25",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2011.2121095"
+      }
+    ],
+    "container-title": [
+      "IEEE Transactions on Power Systems"
+    ],
+    "original-title": [],
+    "link": [
+      {
+        "URL": "http://xplorestaging.ieee.org/ielx7/59/9460709/09334448.pdf?arnumber=9334448",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          10
+        ]
+      ],
+      "date-time": "2022-05-10T14:49:07Z",
+      "timestamp": 1652194147000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://ieeexplore.ieee.org/document/9334448/"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          7
+        ]
+      ]
+    },
+    "references-count": 43,
+    "journal-issue": {
+      "issue": "4"
+    },
+    "URL": "https://doi.org/10.1109/tpwrs.2021.3053847",
+    "relation": {},
+    "ISSN": [
+      "0885-8950",
+      "1558-0679"
+    ],
+    "issn-type": [
+      {
+        "value": "0885-8950",
+        "type": "print"
+      },
+      {
+        "value": "1558-0679",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          7
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          3,
+          4
+        ]
+      ],
+      "date-time": "2026-03-04T11:12:58Z",
+      "timestamp": 1772622778052,
+      "version": "3.50.1"
+    },
+    "reference-count": 16,
+    "publisher": "Wiley",
+    "issue": "2",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2011,
+              3,
+              14
+            ]
+          ],
+          "date-time": "2011-03-14T00:00:00Z",
+          "timestamp": 1300060800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 13,
+        "URL": "http://onlinelibrary.wiley.com/termsAndConditions#vor"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Wind Energy"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2011,
+          3
+        ]
+      ]
+    },
+    "abstract": "<jats:title>Abstract</jats:title><jats:p>We discuss some ways of formulating quantile‐type models for forecasting variations in wind power in the short term (within a few hours). Such models predict quantiles of the conditional distribution of the wind power available at some future time using information presently available. A natural reference for models of this kind is a ‘probabilistic‐persistence’ quantile forecast whose only input is the present wind power. Using data from some New Zealand wind farms, we find that more complex quantile models can readily improve on probabilistic persistence in resolution but not in sharpness. The most valuable model inputs, apart from the present power, are found to be real‐time air pressure measurements and a power total‐variation indicator. Copyright © 2010 John Wiley &amp; Sons, Ltd.</jats:p>",
+    "DOI": "10.1002/we.416",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2010,
+          7,
+          19
+        ]
+      ],
+      "date-time": "2010-07-19T11:14:00Z",
+      "timestamp": 1279538040000
+    },
+    "page": "255-269",
+    "source": "Crossref",
+    "is-referenced-by-count": 8,
+    "title": [
+      "Short‐term variations in wind power: Some quantile‐type models for probabilistic forecasting"
+    ],
+    "prefix": "10.1002",
+    "volume": "14",
+    "author": [
+      {
+        "given": "Geoffrey",
+        "family": "Pritchard",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "member": "311",
+    "published-online": {
+      "date-parts": [
+        [
+          2011,
+          3,
+          14
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_2_7_2_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.284"
+      },
+      {
+        "key": "e_1_2_7_3_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2008.922526"
+      },
+      {
+        "key": "e_1_2_7_4_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.107"
+      },
+      {
+        "key": "e_1_2_7_5_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.180"
+      },
+      {
+        "key": "e_1_2_7_6_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1017/CBO9780511754098"
+      },
+      {
+        "key": "e_1_2_7_7_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.csda.2007.06.027"
+      },
+      {
+        "key": "e_1_2_7_8_2",
+        "unstructured": "New Zealand Electricity Commission.Centralised data set April 2009 ed."
+      },
+      {
+        "key": "e_1_2_7_9_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/(SICI)1099-1824(199809)1:1<29::AID-WE10>3.0.CO;2-B"
+      },
+      {
+        "key": "e_1_2_7_10_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-1-4612-6333-3"
+      },
+      {
+        "key": "e_1_2_7_11_2",
+        "unstructured": "R Development Core Team A language and environment for statistical computing. [Online]. Available:http://www.R‐project.org. (Accessed 1 July 2010)"
+      },
+      {
+        "key": "e_1_2_7_12_2",
+        "unstructured": "PinsonPet al.Properties of interval and quantile forecasts of wind generation and their evaluation.Proceedings of European Wind Energy Conference 2006."
+      },
+      {
+        "key": "e_1_2_7_13_2",
+        "unstructured": "LangeM HeinemannD.Relating the uncertainty of short‐term wind speed predictions to meteorological situations with methods from synoptic climatology.Proceedings of European Wind Energy Conference and Exhibition 2003."
+      },
+      {
+        "key": "e_1_2_7_14_2",
+        "volume-title": "Elements of Meteorology",
+        "author": "Miller A",
+        "year": "1993"
+      },
+      {
+        "key": "e_1_2_7_15_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/01621459.1999.10473882"
+      },
+      {
+        "key": "e_1_2_7_16_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1198/073500105000000018"
+      },
+      {
+        "key": "e_1_2_7_17_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1198/016214506000001437"
+      }
+    ],
+    "container-title": [
+      "Wind Energy"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Fwe.416",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.416",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          7
+        ]
+      ],
+      "date-time": "2023-10-07T10:06:58Z",
+      "timestamp": 1696673218000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://onlinelibrary.wiley.com/doi/10.1002/we.416"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2011,
+          3
+        ]
+      ]
+    },
+    "references-count": 16,
+    "journal-issue": {
+      "issue": "2",
+      "published-print": {
+        "date-parts": [
+          [
+            2011,
+            3
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1002/we.416"
+    ],
+    "URL": "https://doi.org/10.1002/we.416",
+    "archive": [
+      "Portico"
+    ],
+    "relation": {},
+    "ISSN": [
+      "1095-4244",
+      "1099-1824"
+    ],
+    "issn-type": [
+      {
+        "value": "1095-4244",
+        "type": "print"
+      },
+      {
+        "value": "1099-1824",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2011,
+          3
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          6
+        ]
+      ],
+      "date-time": "2026-10-06T07:06:59Z",
+      "timestamp": 1791270419492,
+      "version": "4.1.0"
+    },
+    "reference-count": 64,
+    "publisher": "Elsevier BV",
+    "issue": "2",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              6,
+              1
+            ]
+          ],
+          "date-time": "2024-06-01T00:00:00Z",
+          "timestamp": 1717200000000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              6,
+              1
+            ]
+          ],
+          "date-time": "2024-06-01T00:00:00Z",
+          "timestamp": 1717200000000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/legal/tdmrep-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              1,
+              23
+            ]
+          ],
+          "date-time": "2024-01-23T00:00:00Z",
+          "timestamp": 1705968000000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100001659",
+        "name": "Deutsche Forschungsgemeinschaft",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "GRK2201/277991500"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "GRK2201/277991500"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001659",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "elsevier.com",
+        "sciencedirect.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "European Journal of Operational Research"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2024,
+          6
+        ]
+      ]
+    },
+    "DOI": "10.1016/j.ejor.2024.01.025",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          24
+        ]
+      ],
+      "date-time": "2024-01-24T12:06:59Z",
+      "timestamp": 1706098019000
+    },
+    "page": "703-714",
+    "update-policy": "https://doi.org/10.1016/elsevier_cm_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 13,
+    "title": [
+      "Bilevel optimization for feature selection in the data-driven newsvendor problem"
+    ],
+    "prefix": "10.1016",
+    "volume": "315",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-8725-0218",
+        "authenticated-orcid": false,
+        "given": "Breno",
+        "family": "Serrano",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-6127-8223",
+        "authenticated-orcid": false,
+        "given": "Stefan",
+        "family": "Minner",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-2682-4975",
+        "authenticated-orcid": false,
+        "given": "Maximilian",
+        "family": "Schiffer",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5183-8485",
+        "authenticated-orcid": false,
+        "given": "Thibaut",
+        "family": "Vidal",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "78",
+    "reference": [
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b1",
+        "doi-asserted-by": "crossref",
+        "first-page": "156",
+        "DOI": "10.1016/j.cor.2018.05.005",
+        "article-title": "Feature selection for classification models via bilevel optimization",
+        "volume": "106",
+        "author": "Agor",
+        "year": "2019",
+        "journal-title": "Computers & Operations Research"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b2",
+        "doi-asserted-by": "crossref",
+        "first-page": "40",
+        "DOI": "10.1214/09-SS054",
+        "article-title": "A survey of cross-validation procedures for model selection",
+        "volume": "4",
+        "author": "Arlot",
+        "year": "2010",
+        "journal-title": "Statistics Surveys"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b3",
+        "first-page": "309",
+        "article-title": "Confidence intervals for data-driven inventory policies with demand censoring",
+        "volume": "68",
+        "author": "Ban",
+        "year": "2020",
+        "journal-title": "Operations Research"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.ejor.2024.01.025_b4",
+        "doi-asserted-by": "crossref",
+        "first-page": "90",
+        "DOI": "10.1287/opre.2018.1757",
+        "article-title": "The big data newsvendor: Practical insights from machine learning",
+        "volume": "67",
+        "author": "Ban",
+        "year": "2019",
+        "journal-title": "Operations Research"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b5",
+        "doi-asserted-by": "crossref",
+        "first-page": "341",
+        "DOI": "10.1287/mnsc.1120.1641",
+        "article-title": "Robust solutions of optimization problems affected by uncertain probabilities",
+        "volume": "59",
+        "author": "Ben-Tal",
+        "year": "2013",
+        "journal-title": "Management Science"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b6",
+        "doi-asserted-by": "crossref",
+        "first-page": "280",
+        "DOI": "10.1016/j.cor.2013.10.005",
+        "article-title": "A mixed integer linear model for clustering with variable selection",
+        "volume": "43",
+        "author": "Benati",
+        "year": "2014",
+        "journal-title": "Computers & Operations Research"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b7",
+        "series-title": "Proceedings of the IEEE international joint conference on neural networks",
+        "first-page": "1922",
+        "article-title": "Model selection via bilevel optimization",
+        "author": "Bennett",
+        "year": "2006"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b8",
+        "series-title": "Computational intelligence: research frontiers: IEEE world congress on computational intelligence",
+        "first-page": "25",
+        "article-title": "Bilevel optimization and machine learning",
+        "author": "Bennett",
+        "year": "2008"
+      },
+      {
+        "issue": "10",
+        "key": "10.1016/j.ejor.2024.01.025_b9",
+        "first-page": "281",
+        "article-title": "Random search for hyper-parameter optimization",
+        "volume": "13",
+        "author": "Bergstra",
+        "year": "2012",
+        "journal-title": "Journal of Machine Learning Research"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b10",
+        "series-title": "Proceedings of the 30th international conference on machine learning",
+        "first-page": "115",
+        "article-title": "Making a science of model search: Hyperparameter optimization in hundreds of dimensions for vision architectures",
+        "volume": "vol. 28",
+        "author": "Bergstra",
+        "year": "2013"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.ejor.2024.01.025_b11",
+        "doi-asserted-by": "crossref",
+        "first-page": "217",
+        "DOI": "10.1007/s10107-017-1174-z",
+        "article-title": "Robust sample average approximation",
+        "volume": "171",
+        "author": "Bertsimas",
+        "year": "2018",
+        "journal-title": "Mathematical Programming"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.ejor.2024.01.025_b12",
+        "doi-asserted-by": "crossref",
+        "first-page": "1025",
+        "DOI": "10.1287/mnsc.2018.3253",
+        "article-title": "From predictive to prescriptive analytics",
+        "volume": "66",
+        "author": "Bertsimas",
+        "year": "2020",
+        "journal-title": "Management Science"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b13",
+        "doi-asserted-by": "crossref",
+        "first-page": "813",
+        "DOI": "10.1214/15-AOS1388",
+        "article-title": "Best subset selection via a modern optimization lens",
+        "volume": "44",
+        "author": "Bertsimas",
+        "year": "2016",
+        "journal-title": "The Annals of Statistics"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b14",
+        "series-title": "A data-driven approach to newsvendor problems",
+        "author": "Bertsimas",
+        "year": "2005"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.ejor.2024.01.025_b15",
+        "doi-asserted-by": "crossref",
+        "first-page": "150",
+        "DOI": "10.1287/opre.1050.0238",
+        "article-title": "A robust optimization approach to inventory theory",
+        "volume": "54",
+        "author": "Bertsimas",
+        "year": "2006",
+        "journal-title": "Operations Research"
+      },
+      {
+        "issue": "10",
+        "key": "10.1016/j.ejor.2024.01.025_b16",
+        "doi-asserted-by": "crossref",
+        "first-page": "5848",
+        "DOI": "10.1287/mnsc.2023.4725",
+        "article-title": "How big should your data really be? Data-driven newsvendor: Learning one sample at a time",
+        "volume": "69",
+        "author": "Besbes",
+        "year": "2023",
+        "journal-title": "Management Science"
+      },
+      {
+        "issue": "6",
+        "key": "10.1016/j.ejor.2024.01.025_b17",
+        "doi-asserted-by": "crossref",
+        "first-page": "1407",
+        "DOI": "10.1287/mnsc.1120.1654",
+        "article-title": "On implications of demand censoring in the newsvendor problem",
+        "volume": "59",
+        "author": "Besbes",
+        "year": "2013",
+        "journal-title": "Management Science"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b18",
+        "doi-asserted-by": "crossref",
+        "first-page": "637",
+        "DOI": "10.1016/j.ijpe.2011.04.017",
+        "article-title": "Safety stock planning under causal demand forecasting",
+        "volume": "140",
+        "author": "Beutel",
+        "year": "2012",
+        "journal-title": "International Journal of Production Economics"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.ejor.2024.01.025_b19",
+        "doi-asserted-by": "crossref",
+        "first-page": "97",
+        "DOI": "10.1016/j.ejor.2004.05.016",
+        "article-title": "Capacitated plant selection in a decentralized manufacturing environment: A bilevel optimization approach",
+        "volume": "169",
+        "author": "Cao",
+        "year": "2006",
+        "journal-title": "European Journal of Operational Research"
+      },
+      {
+        "issue": "5",
+        "key": "10.1016/j.ejor.2024.01.025_b20",
+        "doi-asserted-by": "crossref",
+        "first-page": "828",
+        "DOI": "10.1287/opre.1070.0429",
+        "article-title": "Risk aversion in inventory management",
+        "volume": "55",
+        "author": "Chen",
+        "year": "2007",
+        "journal-title": "Operations Research"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b21",
+        "doi-asserted-by": "crossref",
+        "first-page": "668",
+        "DOI": "10.1287/moor.2018.0940",
+        "article-title": "Sampling-based approximation schemes for capacitated stochastic inventory control models",
+        "volume": "44",
+        "author": "Cheung",
+        "year": "2019",
+        "journal-title": "Mathematics of Operations Research"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b22",
+        "series-title": "Handbook of newsvendor problems: models, extensions and applications",
+        "author": "Choi",
+        "year": "2012"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.ejor.2024.01.025_b23",
+        "doi-asserted-by": "crossref",
+        "first-page": "9",
+        "DOI": "10.1287/mnsc.2020.3922",
+        "article-title": "Smart “predict, then optimize”",
+        "volume": "68",
+        "author": "Elmachtoub",
+        "year": "2021",
+        "journal-title": "Management Science"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b24",
+        "doi-asserted-by": "crossref",
+        "first-page": "239",
+        "DOI": "10.1007/s101070100244",
+        "article-title": "Nonlinear programming without a penalty function",
+        "volume": "91",
+        "author": "Fletcher",
+        "year": "2002",
+        "journal-title": "Mathematical Programming"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b25",
+        "doi-asserted-by": "crossref",
+        "first-page": "163",
+        "DOI": "10.1016/j.trb.2014.09.007",
+        "article-title": "Benders decomposition for discrete–continuous linear bilevel problems with application to traffic network design",
+        "volume": "70",
+        "author": "Fontaine",
+        "year": "2014",
+        "journal-title": "Transportation Research, Part B (Methodological)"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b26",
+        "series-title": "Proceedings of the 35th international conference on machine learning",
+        "first-page": "1568",
+        "article-title": "Bilevel programming for hyperparameter optimization and meta-learning",
+        "volume": "vol. 80",
+        "author": "Franceschi",
+        "year": "2018"
+      },
+      {
+        "issue": "8",
+        "key": "10.1016/j.ejor.2024.01.025_b27",
+        "doi-asserted-by": "crossref",
+        "first-page": "825",
+        "DOI": "10.1057/jors.1993.141",
+        "article-title": "The distribution free newsboy problem: Review and extensions",
+        "volume": "44",
+        "author": "Gallego",
+        "year": "1993",
+        "journal-title": "Journal of the Operational Research Society"
+      },
+      {
+        "issue": "10",
+        "key": "10.1016/j.ejor.2024.01.025_b28",
+        "doi-asserted-by": "crossref",
+        "first-page": "861",
+        "DOI": "10.1080/07408170108936879",
+        "article-title": "Minimax analysis for finite-horizon inventory models",
+        "volume": "33",
+        "author": "Gallego",
+        "year": "2001",
+        "journal-title": "IIE Transactions"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b29",
+        "first-page": "551",
+        "article-title": "A mixed-integer fractional optimization approach to best subset selection",
+        "volume": "33",
+        "author": "Gómez",
+        "year": "2021",
+        "journal-title": "INFORMS Journal on Computing"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b30",
+        "first-page": "1157",
+        "article-title": "An introduction to variable and feature selection",
+        "volume": "3",
+        "author": "Guyon",
+        "year": "2003",
+        "journal-title": "Journal of Machine Learning Research"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.ejor.2024.01.025_b31",
+        "doi-asserted-by": "crossref",
+        "first-page": "1",
+        "DOI": "10.1007/s10107-014-0776-y",
+        "article-title": "Distributionally robust multi-item newsvendor problems with multimodal demand distributions",
+        "volume": "152",
+        "author": "Hanasusanto",
+        "year": "2015",
+        "journal-title": "Mathematical Programming"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b32",
+        "series-title": "The elements of statistical learning: Data mining, inference, and prediction",
+        "author": "Hastie",
+        "year": "2009"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.ejor.2024.01.025_b33",
+        "doi-asserted-by": "crossref",
+        "first-page": "904",
+        "DOI": "10.1016/j.ejor.2019.04.043",
+        "article-title": "A data-driven newsvendor problem: From data to decision",
+        "volume": "278",
+        "author": "Huber",
+        "year": "2019",
+        "journal-title": "European Journal of Operational Research"
+      },
+      {
+        "issue": "5",
+        "key": "10.1016/j.ejor.2024.01.025_b34",
+        "doi-asserted-by": "crossref",
+        "first-page": "537",
+        "DOI": "10.1016/S0305-0483(99)00017-1",
+        "article-title": "The single-period (news-vendor) problem: Literature review and suggestions for future research",
+        "volume": "27",
+        "author": "Khouja",
+        "year": "1999",
+        "journal-title": "Omega"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.ejor.2024.01.025_b35",
+        "doi-asserted-by": "crossref",
+        "first-page": "633",
+        "DOI": "10.1080/10556788.2017.1333611",
+        "article-title": "Minimization of Akaike’s information criterion in linear regression analysis via mixed integer nonlinear program",
+        "volume": "33",
+        "author": "Kimura",
+        "year": "2018",
+        "journal-title": "Optimization Methods & Software"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b36",
+        "doi-asserted-by": "crossref",
+        "first-page": "479",
+        "DOI": "10.1137/S1052623499363220",
+        "article-title": "The sample average approximation method for stochastic discrete optimization",
+        "volume": "12",
+        "author": "Kleywegt",
+        "year": "2002",
+        "journal-title": "SIAM Journal on Optimization"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b37",
+        "doi-asserted-by": "crossref",
+        "first-page": "448",
+        "DOI": "10.1016/S0377-2217(02)00450-2",
+        "article-title": "Multi-stage newsboy problem: A dynamic model",
+        "volume": "149",
+        "author": "Kogan",
+        "year": "2003",
+        "journal-title": "European Journal of Operational Research"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b38",
+        "series-title": "Feature engineering and selection: A practical approach for predictive models",
+        "author": "Kuhn",
+        "year": "2019"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.ejor.2024.01.025_b39",
+        "doi-asserted-by": "crossref",
+        "first-page": "29",
+        "DOI": "10.1016/0377-2217(95)00192-1",
+        "article-title": "The newsstand problem: A capacitated multiple-product single-period inventory problem",
+        "volume": "94",
+        "author": "Lau",
+        "year": "1996",
+        "journal-title": "European Journal of Operational Research"
+      },
+      {
+        "issue": "6",
+        "key": "10.1016/j.ejor.2024.01.025_b40",
+        "doi-asserted-by": "crossref",
+        "first-page": "1294",
+        "DOI": "10.1287/opre.2015.1422",
+        "article-title": "The data-driven newsvendor problem: New bounds and insights",
+        "volume": "63",
+        "author": "Levi",
+        "year": "2015",
+        "journal-title": "Operations Research"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.ejor.2024.01.025_b41",
+        "doi-asserted-by": "crossref",
+        "first-page": "821",
+        "DOI": "10.1287/moor.1070.0272",
+        "article-title": "Provably near-optimal sampling-based policies for stochastic inventory control models",
+        "volume": "32",
+        "author": "Levi",
+        "year": "2007",
+        "journal-title": "Mathematics of Operations Research"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b42",
+        "unstructured": "Mackay, M., Vicol, P., Lorraine, J., Duvenaud, D., & Grosse, R. (2019). Self-Tuning Networks: Bilevel optimization of hyperparameters using structured best-response functions. In International conference on learning representations. New Orleans, Louisiana, USA."
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b43",
+        "doi-asserted-by": "crossref",
+        "first-page": "163",
+        "DOI": "10.1016/j.ins.2014.03.110",
+        "article-title": "Feature selection for support vector machines via mixed integer linear programming",
+        "volume": "279",
+        "author": "Maldonado",
+        "year": "2014",
+        "journal-title": "Information Sciences"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b44",
+        "series-title": "Proceedings of the AAAI Conference on Artificial Intelligence",
+        "first-page": "1603",
+        "article-title": "Smart predict-and-optimize for hard combinatorial optimization problems",
+        "volume": "34",
+        "author": "Mandi",
+        "year": "2020"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b45",
+        "doi-asserted-by": "crossref",
+        "first-page": "371",
+        "DOI": "10.1287/msom.2020.0890",
+        "article-title": "Data-driven optimization for commodity procurement under price uncertainty",
+        "volume": "25",
+        "author": "Mandl",
+        "year": "2023",
+        "journal-title": "Manufacturing & Service Operations Management"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.ejor.2024.01.025_b46",
+        "doi-asserted-by": "crossref",
+        "first-page": "721",
+        "DOI": "10.1016/j.ejor.2015.06.081",
+        "article-title": "Mixed integer second-order cone programming formulations for variable selection in linear regression",
+        "volume": "247",
+        "author": "Miyashiro",
+        "year": "2015",
+        "journal-title": "European Journal of Operational Research"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b47",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Molina, L., Belanche, L., & Nebot, A. (2002). Feature selection algorithms: A survey and experimental evaluation. In Proceedings of the IEEE international conference on data mining (pp. 306–313). Maebashi City, Japan.",
+        "DOI": "10.1109/ICDM.2002.1183917"
+      },
+      {
+        "issue": "6",
+        "key": "10.1016/j.ejor.2024.01.025_b48",
+        "doi-asserted-by": "crossref",
+        "first-page": "651",
+        "DOI": "10.1057/jors.1994.103",
+        "article-title": "Distribution free procedures for some inventory models",
+        "volume": "45",
+        "author": "Moon",
+        "year": "1994",
+        "journal-title": "Journal of the Operational Research Society"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.ejor.2024.01.025_b49",
+        "doi-asserted-by": "crossref",
+        "first-page": "444",
+        "DOI": "10.1080/24725854.2019.1632502",
+        "article-title": "Applying deep learning to the newsvendor problem",
+        "volume": "52",
+        "author": "Oroojlooyjadid",
+        "year": "2020",
+        "journal-title": "IISE Transactions"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.ejor.2024.01.025_b50",
+        "doi-asserted-by": "crossref",
+        "first-page": "543",
+        "DOI": "10.1007/s10898-020-00876-1",
+        "article-title": "Subset selection for multiple linear regression via optimization",
+        "volume": "77",
+        "author": "Park",
+        "year": "2020",
+        "journal-title": "Journal of Global Optimization"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.ejor.2024.01.025_b51",
+        "doi-asserted-by": "crossref",
+        "first-page": "188",
+        "DOI": "10.1287/opre.1070.0486",
+        "article-title": "Regret in the newsvendor model with partial information",
+        "volume": "56",
+        "author": "Perakis",
+        "year": "2008",
+        "journal-title": "Operations Research"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b52",
+        "doi-asserted-by": "crossref",
+        "first-page": "183",
+        "DOI": "10.1287/opre.47.2.183",
+        "article-title": "Pricing and the newsvendor problem: A review with extensions",
+        "volume": "47",
+        "author": "Petruzzi",
+        "year": "1999",
+        "journal-title": "Operations Research"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b53",
+        "doi-asserted-by": "crossref",
+        "first-page": "361",
+        "DOI": "10.1016/j.ejor.2010.11.024",
+        "article-title": "The newsvendor problem: Review and directions for future research",
+        "volume": "213",
+        "author": "Qin",
+        "year": "2011",
+        "journal-title": "European Journal of Operational Research"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b54",
+        "doi-asserted-by": "crossref",
+        "first-page": "28",
+        "DOI": "10.1016/j.ijpe.2013.04.039",
+        "article-title": "The data-driven newsvendor with censored demand observations",
+        "volume": "149",
+        "author": "Sachs",
+        "year": "2014",
+        "journal-title": "International Journal of Production Economics"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b55",
+        "series-title": "Studies in the mathematical theory of inventory and production",
+        "first-page": "201",
+        "article-title": "A min-max solution of an inventory problem",
+        "author": "Scarf",
+        "year": "1958"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.ejor.2024.01.025_b56",
+        "doi-asserted-by": "crossref",
+        "first-page": "583",
+        "DOI": "10.1287/opre.1090.0746",
+        "article-title": "Robust approximation to multiperiod inventory management",
+        "volume": "58",
+        "author": "See",
+        "year": "2010",
+        "journal-title": "Operations Research"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b57",
+        "series-title": "Stochastic programming",
+        "first-page": "353",
+        "article-title": "Monte Carlo sampling methods",
+        "volume": "vol. 10",
+        "author": "Shapiro",
+        "year": "2003"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b58",
+        "doi-asserted-by": "crossref",
+        "first-page": "475",
+        "DOI": "10.1007/s11750-020-00538-1",
+        "article-title": "Best subset selection via cross-validation criterion",
+        "volume": "28",
+        "author": "Takano",
+        "year": "2020",
+        "journal-title": "TOP"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b59",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.ijpe.2023.109016",
+        "article-title": "An end-to-end deep learning model for solving data-driven newsvendor problem with accessibility to textual review data",
+        "volume": "265",
+        "author": "Tian",
+        "year": "2023",
+        "journal-title": "International Journal of Production Economics"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.ejor.2024.01.025_b60",
+        "doi-asserted-by": "crossref",
+        "first-page": "241",
+        "DOI": "10.1007/s10287-015-0240-3",
+        "article-title": "Likelihood robust optimization for data-driven problems",
+        "volume": "13",
+        "author": "Wang",
+        "year": "2016",
+        "journal-title": "Computational Management Science"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.ejor.2024.01.025_b61",
+        "doi-asserted-by": "crossref",
+        "first-page": "93",
+        "DOI": "10.1016/j.omega.2006.08.003",
+        "article-title": "The loss-averse newsvendor problem",
+        "volume": "37",
+        "author": "Wang",
+        "year": "2009",
+        "journal-title": "Omega"
+      },
+      {
+        "issue": "6",
+        "key": "10.1016/j.ejor.2024.01.025_b62",
+        "doi-asserted-by": "crossref",
+        "first-page": "1128",
+        "DOI": "10.1287/opre.1060.0318",
+        "article-title": "Expected value of distribution information for the newsvendor problem",
+        "volume": "54",
+        "author": "Yue",
+        "year": "2006",
+        "journal-title": "Operations Research"
+      },
+      {
+        "key": "10.1016/j.ejor.2024.01.025_b63",
+        "series-title": "Neural information processing",
+        "first-page": "912",
+        "article-title": "Assessing the performance of deep learning algorithms for newsvendor problem",
+        "author": "Zhang",
+        "year": "2017"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.ejor.2024.01.025_b64",
+        "first-page": "1379",
+        "article-title": "Semiparametric quantile regression with high-dimensional covariates",
+        "volume": "22",
+        "author": "Zhu",
+        "year": "2012",
+        "journal-title": "Statistica Sinica"
+      }
+    ],
+    "container-title": [
+      "European Journal of Operational Research"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0377221724000432?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0377221724000432?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2026,
+          5,
+          13
+        ]
+      ],
+      "date-time": "2026-05-13T16:43:13Z",
+      "timestamp": 1778690593000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0377221724000432"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          6
+        ]
+      ]
+    },
+    "references-count": 64,
+    "journal-issue": {
+      "issue": "2",
+      "published-print": {
+        "date-parts": [
+          [
+            2024,
+            6
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "S0377221724000432"
+    ],
+    "URL": "https://doi.org/10.1016/j.ejor.2024.01.025",
+    "relation": {},
+    "ISSN": [
+      "0377-2217"
+    ],
+    "issn-type": [
+      {
+        "value": "0377-2217",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          6
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "Elsevier",
+        "name": "publisher",
+        "label": "This article is maintained by"
+      },
+      {
+        "value": "Bilevel optimization for feature selection in the data-driven newsvendor problem",
+        "name": "articletitle",
+        "label": "Article Title"
+      },
+      {
+        "value": "European Journal of Operational Research",
+        "name": "journaltitle",
+        "label": "Journal Title"
+      },
+      {
+        "value": "https://doi.org/10.1016/j.ejor.2024.01.025",
+        "name": "articlelink",
+        "label": "CrossRef DOI link to publisher maintained version"
+      },
+      {
+        "value": "article",
+        "name": "content_type",
+        "label": "Content Type"
+      },
+      {
+        "value": "© 2024 The Author(s). Published by Elsevier B.V.",
+        "name": "copyright",
+        "label": "Copyright"
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          8,
+          27
+        ]
+      ],
+      "date-time": "2026-08-27T01:10:01Z",
+      "timestamp": 1787793001667,
+      "version": "build-2784847793"
+    },
+    "reference-count": 54,
+    "publisher": "Elsevier BV",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              1
+            ]
+          ],
+          "date-time": "2026-06-01T00:00:00Z",
+          "timestamp": 1780272000000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              1
+            ]
+          ],
+          "date-time": "2026-06-01T00:00:00Z",
+          "timestamp": 1780272000000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/legal/tdmrep-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              1
+            ]
+          ],
+          "date-time": "2026-06-01T00:00:00Z",
+          "timestamp": 1780272000000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-017"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              1
+            ]
+          ],
+          "date-time": "2026-06-01T00:00:00Z",
+          "timestamp": 1780272000000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-037"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              1
+            ]
+          ],
+          "date-time": "2026-06-01T00:00:00Z",
+          "timestamp": 1780272000000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-012"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              1
+            ]
+          ],
+          "date-time": "2026-06-01T00:00:00Z",
+          "timestamp": 1780272000000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-029"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              6,
+              1
+            ]
+          ],
+          "date-time": "2026-06-01T00:00:00Z",
+          "timestamp": 1780272000000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-004"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100001809",
+        "name": "National Natural Science Foundation of China",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "71931005"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "71931005"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001809",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100001809",
+        "name": "National Natural Science Foundation of China",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "71821001"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "71821001"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001809",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "elsevier.com",
+        "sciencedirect.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Omega"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2026,
+          6
+        ]
+      ]
+    },
+    "DOI": "10.1016/j.omega.2025.103508",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2025,
+          12,
+          23
+        ]
+      ],
+      "date-time": "2025-12-23T16:51:45Z",
+      "timestamp": 1766508705000
+    },
+    "page": "103508",
+    "update-policy": "https://doi.org/10.1016/elsevier_cm_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 1,
+    "special_numbering": "C",
+    "title": [
+      "Feature-based profitability evaluation for newsvendor-type products"
+    ],
+    "prefix": "10.1016",
+    "volume": "141",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-8580-6147",
+        "authenticated-orcid": false,
+        "given": "Yuying",
+        "family": "Zhang",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Shiming",
+        "family": "Deng",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-9860-1802",
+        "authenticated-orcid": false,
+        "given": "Wanpeng",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "78",
+    "reference": [
+      {
+        "key": "10.1016/j.omega.2025.103508_b1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.ijpe.2022.108617",
+        "article-title": "Selling to profit-target-oriented retailers: Optimal supply chain contracting with bargaining",
+        "volume": "250",
+        "author": "Choi",
+        "year": "2022",
+        "journal-title": "Int J Prod Econ"
+      },
+      {
+        "issue": "7",
+        "key": "10.1016/j.omega.2025.103508_b2",
+        "doi-asserted-by": "crossref",
+        "first-page": "1292",
+        "DOI": "10.1111/poms.12561",
+        "article-title": "Designing supply contracts considering profit targets and risk",
+        "volume": "25",
+        "author": "Deng",
+        "year": "2016",
+        "journal-title": "Prod Oper Manage"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.omega.2025.103508_b3",
+        "doi-asserted-by": "crossref",
+        "first-page": "1630",
+        "DOI": "10.1111/poms.13635",
+        "article-title": "Data-Driven newsvendor problems regularized by a profit risk constraint",
+        "volume": "31",
+        "author": "Lin",
+        "year": "2022",
+        "journal-title": "Prod Oper Manage"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b4",
+        "series-title": "EBay Wednesday reported fourth-quarter earnings that missed wall street forecasts and announced a two-for-one stock split",
+        "author": "Money",
+        "year": "2005"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b5",
+        "series-title": "Target expects squeezed profits from aggressive plan to get rid of unwanted inventory",
+        "author": "Repko",
+        "year": "2022"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.omega.2025.103508_b6",
+        "doi-asserted-by": "crossref",
+        "first-page": "90",
+        "DOI": "10.1287/opre.2018.1757",
+        "article-title": "The big data newsvendor: Practical insights from machine learning",
+        "volume": "67",
+        "author": "Ban",
+        "year": "2019",
+        "journal-title": "Oper Res"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.omega.2025.103508_b7",
+        "doi-asserted-by": "crossref",
+        "first-page": "1025",
+        "DOI": "10.1287/mnsc.2018.3253",
+        "article-title": "From predictive to prescriptive analytics",
+        "volume": "66",
+        "author": "Bertsimas",
+        "year": "2020",
+        "journal-title": "Manag Sci"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.omega.2025.103508_b8",
+        "doi-asserted-by": "crossref",
+        "first-page": "86",
+        "DOI": "10.1016/j.ejor.2024.10.045",
+        "article-title": "Data-driven ordering policies for target oriented newsvendor with censored demand",
+        "volume": "323",
+        "author": "Wang",
+        "year": "2025",
+        "journal-title": "European J Oper Res"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.omega.2025.103508_b9",
+        "doi-asserted-by": "crossref",
+        "first-page": "371",
+        "DOI": "10.1287/msom.2020.0890",
+        "article-title": "Data-Driven optimization for commodity procurement under price uncertainty",
+        "volume": "25",
+        "author": "Mandl",
+        "year": "2023",
+        "journal-title": "Manuf Serv Oper Manag"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.omega.2025.103508_b10",
+        "doi-asserted-by": "crossref",
+        "first-page": "967",
+        "DOI": "10.1007/s10479-023-05167-y",
+        "article-title": "Estimating conservative profitability of a newsboy-type product with exponentially distributed demand based on multiple samples",
+        "volume": "322",
+        "author": "Su",
+        "year": "2023",
+        "journal-title": "Ann Oper Res"
+      },
+      {
+        "issue": "6",
+        "key": "10.1016/j.omega.2025.103508_b11",
+        "doi-asserted-by": "crossref",
+        "first-page": "525",
+        "DOI": "10.1057/jors.1980.96",
+        "article-title": "The newsboy problem under alternative optimization objectives",
+        "volume": "31",
+        "author": "Lau",
+        "year": "1980",
+        "journal-title": "J Oper Res Soc"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.omega.2025.103508_b12",
+        "doi-asserted-by": "crossref",
+        "first-page": "110",
+        "DOI": "10.1016/j.omega.2010.04.003",
+        "article-title": "Optimal ordering and pricing decisions for a target oriented newsvendor",
+        "volume": "39",
+        "author": "Yang",
+        "year": "2011",
+        "journal-title": "Omega"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.omega.2025.103508_b13",
+        "doi-asserted-by": "crossref",
+        "first-page": "214",
+        "DOI": "10.1016/j.ijpe.2011.04.010",
+        "article-title": "Product selection for Newsboy-Type products with normal demands and unequal costs",
+        "volume": "132",
+        "author": "Su",
+        "year": "2011",
+        "journal-title": "Int J Prod Econ"
+      },
+      {
+        "issue": "18",
+        "key": "10.1016/j.omega.2025.103508_b14",
+        "doi-asserted-by": "crossref",
+        "first-page": "3401",
+        "DOI": "10.1080/03610926.2011.624245",
+        "article-title": "Assessing profitability of a newsboy-type product with normally distributed demand based on multiple samples",
+        "volume": "42",
+        "author": "Su",
+        "year": "2013",
+        "journal-title": "Comm Statist Theory Methods"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.omega.2025.103508_b15",
+        "doi-asserted-by": "crossref",
+        "first-page": "221",
+        "DOI": "10.1080/16843703.2015.11673378",
+        "article-title": "Estimating and testing achievable capacity index with exponentially distributed demand",
+        "volume": "12",
+        "author": "Su",
+        "year": "2015",
+        "journal-title": "Qual Technol Quant Manag"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b16",
+        "first-page": "1",
+        "article-title": "Should KOL live streaming be adopted? A target-oriented newsvendor analysis of supply chain performance",
+        "author": "Sun",
+        "year": "2025",
+        "journal-title": "Int J Prod Res"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.omega.2025.103508_b17",
+        "doi-asserted-by": "crossref",
+        "first-page": "74",
+        "DOI": "10.1080/16843703.2021.1989142",
+        "article-title": "Conservative profitability evaluation for Newsboy-Type products with bootstrap methods",
+        "volume": "19",
+        "author": "Su",
+        "year": "2022",
+        "journal-title": "Qual Technol Quant Manag"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b18",
+        "first-page": "1",
+        "article-title": "Conservative profitability estimation using Bayesian approach for a newsboy-type product in supply chain",
+        "author": "Su",
+        "year": "2025",
+        "journal-title": "Ann Oper Res"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b19",
+        "first-page": "1",
+        "article-title": "Integrated conservative profitability evaluation for Newsboy-Type product in an OBM group",
+        "author": "Su",
+        "year": "2024",
+        "journal-title": "Qual Technol Quant Manag"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b20",
+        "series-title": "From predictions to prescriptions in multistage optimization problems",
+        "author": "Bertsimas",
+        "year": "2019"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b21",
+        "first-page": "36",
+        "article-title": "Integrating Prediction/Estimation and optimization with applications in operations management",
+        "author": "Qi",
+        "year": "2022",
+        "journal-title": "Tutor Oper Res: Emerg Impactful Top Oper"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b22",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1287/opre.2020.0533",
+        "article-title": "Data-driven sample average approximation with covariate information",
+        "author": "Kannan",
+        "year": "2025",
+        "journal-title": "Oper Res"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b23",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1287/mnsc.2023.04164",
+        "article-title": "Contextual data-integrated newsvendor solution with operational data analytics (oda)",
+        "author": "Feng",
+        "year": "2025",
+        "journal-title": "Manag Sci"
+      },
+      {
+        "issue": "7",
+        "key": "10.1016/j.omega.2025.103508_b24",
+        "doi-asserted-by": "crossref",
+        "first-page": "6092",
+        "DOI": "10.1287/mnsc.2023.01268",
+        "article-title": "Private optimal inventory policy learning for feature-based newsvendor with unknown demand",
+        "volume": "71",
+        "author": "Zhao",
+        "year": "2025",
+        "journal-title": "Manag Sci"
+      },
+      {
+        "issue": "5",
+        "key": "10.1016/j.omega.2025.103508_b25",
+        "doi-asserted-by": "crossref",
+        "first-page": "1196",
+        "DOI": "10.1177/10591478241242122",
+        "article-title": "Learning newsvendor problems with intertemporal dependence and moderate Non-stationarities",
+        "volume": "33",
+        "author": "Qi",
+        "year": "2024",
+        "journal-title": "Prod Oper Manage"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b26",
+        "article-title": "The big data newsvendor problem under demand and yield uncertainties",
+        "author": "Cao",
+        "year": "2024",
+        "journal-title": "Int J Prod Econ"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.omega.2025.103508_b27",
+        "doi-asserted-by": "crossref",
+        "first-page": "1639",
+        "DOI": "10.1287/mnsc.2020.3903",
+        "article-title": "Distributionally robust conditional quantile prediction with fixed design",
+        "volume": "68",
+        "author": "Qi",
+        "year": "2022",
+        "journal-title": "Manag Sci"
+      },
+      {
+        "issue": "5",
+        "key": "10.1016/j.omega.2025.103508_b28",
+        "doi-asserted-by": "crossref",
+        "first-page": "1962",
+        "DOI": "10.1287/msom.2023.0159",
+        "article-title": "Distributionally robust newsvendor under stochastic dominance with a Feature-Based application",
+        "volume": "26",
+        "author": "Fu",
+        "year": "2024",
+        "journal-title": "Manuf Serv Oper Manag"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.omega.2025.103508_b29",
+        "doi-asserted-by": "crossref",
+        "first-page": "2315",
+        "DOI": "10.1287/mnsc.2023.4810",
+        "article-title": "Optimal robust policy for feature-based newsvendor",
+        "volume": "70",
+        "author": "Zhang",
+        "year": "2024",
+        "journal-title": "Manag Sci"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b30",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.omega.2025.103299",
+        "article-title": "IoT-driven dynamic replenishment of fresh produce in the presence of seasonal variations: A deep reinforcement learning approach using reward shaping",
+        "volume": "134",
+        "author": "Wang",
+        "year": "2025",
+        "journal-title": "Omega"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.omega.2025.103508_b31",
+        "doi-asserted-by": "crossref",
+        "first-page": "271",
+        "DOI": "10.1016/j.ejor.2024.03.020",
+        "article-title": "A survey of contextual optimization methods for decision-making under uncertainty",
+        "volume": "320",
+        "author": "Sadana",
+        "year": "2025",
+        "journal-title": "European J Oper Res"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b32",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.ijpe.2023.109042",
+        "article-title": "A data-driven newsvendor problem: A high-dimensional and mixed-frequency method",
+        "volume": "266",
+        "author": "Yang",
+        "year": "2023",
+        "journal-title": "Int J Prod Econ"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.omega.2025.103508_b33",
+        "doi-asserted-by": "crossref",
+        "first-page": "703",
+        "DOI": "10.1016/j.ejor.2024.01.025",
+        "article-title": "Bilevel optimization for feature selection in the data-driven newsvendor problem",
+        "volume": "315",
+        "author": "Serrano",
+        "year": "2024",
+        "journal-title": "European J Oper Res"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.omega.2025.103508_b34",
+        "first-page": "309",
+        "article-title": "Confidence intervals for data-driven inventory policies with demand censoring",
+        "volume": "68",
+        "author": "Ban",
+        "year": "2020",
+        "journal-title": "Oper Res"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.omega.2025.103508_b35",
+        "doi-asserted-by": "crossref",
+        "first-page": "1",
+        "DOI": "10.1287/opre.2020.0568",
+        "article-title": "Error propagation in asymptotic analysis of the Data-Driven (s, s) inventory policy",
+        "volume": "73",
+        "author": "Zhang",
+        "year": "2025",
+        "journal-title": "Oper Res"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b36",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.tre.2022.102766",
+        "article-title": "Estimating the reorder point for a Fill-Rate target under a continuous review policy in the presence of Non-Standard Lead-Time demand distributions",
+        "volume": "164",
+        "author": "Saldanha",
+        "year": "2022",
+        "journal-title": "Transp Res E: Logist Transp Rev"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.omega.2025.103508_b37",
+        "doi-asserted-by": "crossref",
+        "first-page": "1150",
+        "DOI": "10.1111/poms.13918",
+        "article-title": "A nonparametric approach for setting safety stock levels",
+        "volume": "32",
+        "author": "Saldanha",
+        "year": "2023",
+        "journal-title": "Prod Oper Manage"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.omega.2025.103508_b38",
+        "doi-asserted-by": "crossref",
+        "first-page": "593",
+        "DOI": "10.1287/mksc.2021.1283",
+        "article-title": "Scalable optimal online auctions",
+        "volume": "40",
+        "author": "Coey",
+        "year": "2021",
+        "journal-title": "Mark Sci"
+      },
+      {
+        "issue": "6",
+        "key": "10.1016/j.omega.2025.103508_b39",
+        "doi-asserted-by": "crossref",
+        "first-page": "1703",
+        "DOI": "10.1111/poms.13337",
+        "article-title": "Uncertainty quantification for demand prediction in contextual dynamic pricing",
+        "volume": "30",
+        "author": "Wang",
+        "year": "2021",
+        "journal-title": "Prod Oper Manage"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b40",
+        "series-title": "Combinatorial inference on the optimal assortment in multinomial logit models",
+        "author": "Shen",
+        "year": "2023"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b41",
+        "series-title": "The elements of statistical learning",
+        "author": "Hastie",
+        "year": "2009"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.omega.2025.103508_b42",
+        "doi-asserted-by": "crossref",
+        "first-page": "89",
+        "DOI": "10.1080/24754269.2021.1974158",
+        "article-title": "A review of distributed statistical inference",
+        "volume": "6",
+        "author": "Gao",
+        "year": "2022",
+        "journal-title": "Stat Theory Relat Fields"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b43",
+        "series-title": "Proceedings of thirty third conference on learning theory",
+        "first-page": "300",
+        "article-title": "Data-Driven confidence bands for distributed nonparametric regression",
+        "author": "Avanesov",
+        "year": "2020"
+      },
+      {
+        "issue": "195",
+        "key": "10.1016/j.omega.2025.103508_b44",
+        "first-page": "1",
+        "article-title": "Distributed bootstrap for simultaneous inference under high dimensionality",
+        "volume": "23",
+        "author": "Yu",
+        "year": "2022",
+        "journal-title": "J Mach Learn Res"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b45",
+        "series-title": "Solving Data-Driven newsvendor pricing problems with Decision-Dependent effect",
+        "author": "Liu",
+        "year": "2023"
+      },
+      {
+        "issue": "11",
+        "key": "10.1016/j.omega.2025.103508_b46",
+        "doi-asserted-by": "crossref",
+        "first-page": "19188",
+        "DOI": "10.1109/JIOT.2024.3376548",
+        "article-title": "Federated learning with Non-IID data: A survey",
+        "volume": "11",
+        "author": "Lu",
+        "year": "2024",
+        "journal-title": "IEEE Internet Things J"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b47",
+        "series-title": "Statistical foundations of data science",
+        "author": "Fan",
+        "year": "2020"
+      },
+      {
+        "issue": "5",
+        "key": "10.1016/j.omega.2025.103508_b48",
+        "doi-asserted-by": "crossref",
+        "first-page": "849",
+        "DOI": "10.1111/j.1467-9868.2008.00674.x",
+        "article-title": "Sure independence screening for ultrahigh dimensional feature space",
+        "volume": "70",
+        "author": "Fan",
+        "year": "2008",
+        "journal-title": "J R Stat Soc Ser B Stat Methodol"
+      },
+      {
+        "issue": "496",
+        "key": "10.1016/j.omega.2025.103508_b49",
+        "doi-asserted-by": "crossref",
+        "first-page": "1464",
+        "DOI": "10.1198/jasa.2011.tm10563",
+        "article-title": "Model-Free feature screening for Ultrahigh-Dimensional data",
+        "volume": "106",
+        "author": "Zhu",
+        "year": "2011",
+        "journal-title": "J Amer Statist Assoc"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.omega.2025.103508_b50",
+        "doi-asserted-by": "crossref",
+        "first-page": "342",
+        "DOI": "10.1214/13-AOS1087",
+        "article-title": "Quantile-Adaptive Model-Free variable screening for High-Dimensional heterogeneous data",
+        "volume": "41",
+        "author": "He",
+        "year": "2013",
+        "journal-title": "Ann Statist"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.omega.2025.103508_b51",
+        "doi-asserted-by": "crossref",
+        "first-page": "433",
+        "DOI": "10.1016/j.jeconom.2019.04.037",
+        "article-title": "Nonparametric estimation of conditional quantile functions in the presence of irrelevant covariates",
+        "volume": "212",
+        "author": "Chen",
+        "year": "2019",
+        "journal-title": "J Econometrics"
+      },
+      {
+        "issue": "477",
+        "key": "10.1016/j.omega.2025.103508_b52",
+        "doi-asserted-by": "crossref",
+        "first-page": "235",
+        "DOI": "10.1198/016214506000000843",
+        "article-title": "Controlling variable selection by the addition of pseudovariables",
+        "volume": "102",
+        "author": "Wu",
+        "year": "2007",
+        "journal-title": "J Amer Statist Assoc"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b53",
+        "series-title": "Breakthroughs in statistics",
+        "first-page": "569",
+        "article-title": "Bootstrap methods: Another look at the jackknife",
+        "author": "Efron",
+        "year": "1992"
+      },
+      {
+        "key": "10.1016/j.omega.2025.103508_b54",
+        "series-title": "The bootstrap and Edgeworth expansion",
+        "author": "Hall",
+        "year": "2013"
+      }
+    ],
+    "container-title": [
+      "Omega"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0305048325002348?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0305048325002348?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2026,
+          1,
+          21
+        ]
+      ],
+      "date-time": "2026-01-21T15:50:35Z",
+      "timestamp": 1769010635000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0305048325002348"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          6
+        ]
+      ]
+    },
+    "references-count": 54,
+    "alternative-id": [
+      "S0305048325002348"
+    ],
+    "URL": "https://doi.org/10.1016/j.omega.2025.103508",
+    "relation": {},
+    "ISSN": [
+      "0305-0483"
+    ],
+    "issn-type": [
+      {
+        "value": "0305-0483",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          6
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "Elsevier",
+        "name": "publisher",
+        "label": "This article is maintained by"
+      },
+      {
+        "value": "Feature-based profitability evaluation for newsvendor-type products",
+        "name": "articletitle",
+        "label": "Article Title"
+      },
+      {
+        "value": "Omega",
+        "name": "journaltitle",
+        "label": "Journal Title"
+      },
+      {
+        "value": "https://doi.org/10.1016/j.omega.2025.103508",
+        "name": "articlelink",
+        "label": "CrossRef DOI link to publisher maintained version"
+      },
+      {
+        "value": "article",
+        "name": "content_type",
+        "label": "Content Type"
+      },
+      {
+        "value": "© 2025 Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and similar technologies.",
+        "name": "copyright",
+        "label": "Copyright"
+      }
+    ],
+    "article-number": "103508"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          5
+        ]
+      ],
+      "date-time": "2026-10-05T19:54:59Z",
+      "timestamp": 1791230099240,
+      "version": "4.1.0"
+    },
+    "reference-count": 27,
+    "publisher": "Elsevier BV",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              10,
+              1
+            ]
+          ],
+          "date-time": "2026-10-01T00:00:00Z",
+          "timestamp": 1790812800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              10,
+              1
+            ]
+          ],
+          "date-time": "2026-10-01T00:00:00Z",
+          "timestamp": 1790812800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/legal/tdmrep-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              10,
+              1
+            ]
+          ],
+          "date-time": "2026-10-01T00:00:00Z",
+          "timestamp": 1790812800000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-017"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              10,
+              1
+            ]
+          ],
+          "date-time": "2026-10-01T00:00:00Z",
+          "timestamp": 1790812800000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-037"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              10,
+              1
+            ]
+          ],
+          "date-time": "2026-10-01T00:00:00Z",
+          "timestamp": 1790812800000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-012"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              10,
+              1
+            ]
+          ],
+          "date-time": "2026-10-01T00:00:00Z",
+          "timestamp": 1790812800000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-029"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              10,
+              1
+            ]
+          ],
+          "date-time": "2026-10-01T00:00:00Z",
+          "timestamp": 1790812800000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-004"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "elsevier.com",
+        "sciencedirect.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Sustainable Energy Technologies and Assessments"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2026,
+          10
+        ]
+      ]
+    },
+    "DOI": "10.1016/j.seta.2026.105438",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          27
+        ]
+      ],
+      "date-time": "2026-09-27T11:53:31Z",
+      "timestamp": 1790510011000
+    },
+    "page": "105438",
+    "update-policy": "https://doi.org/10.1016/elsevier_cm_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "special_numbering": "C",
+    "title": [
+      "Reserve-risk-oriented regime-calibrated interval forecasting for wind power integration under extreme fluctuations"
+    ],
+    "prefix": "10.1016",
+    "volume": "94",
+    "author": [
+      {
+        "given": "Yang",
+        "family": "Wang",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Haiyun",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "78",
+    "reference": [
+      {
+        "key": "10.1016/j.seta.2026.105438_b0005",
+        "series-title": "Global Wind Report 2025",
+        "author": "Council",
+        "year": "2025"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0010",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.rser.2021.111758",
+        "article-title": "A review of very short-term wind and solar power forecasting",
+        "volume": "153",
+        "author": "Tawn",
+        "year": "2022",
+        "journal-title": "Renew Sustain Energy Rev"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0015",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.apenergy.2025.126234",
+        "article-title": "A review of predictive uncertainty modeling techniques and evaluation metrics in probabilistic wind speed and wind power forecasting",
+        "volume": "396",
+        "author": "Wang",
+        "year": "2025",
+        "journal-title": "Appl Energy"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0020",
+        "article-title": "A conditional and regularized approach for large-scale spatiotemporal wind power forecasting",
+        "volume": "65",
+        "author": "Camal",
+        "year": "2024",
+        "journal-title": "Sustainable Energy Technol Assess"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0025",
+        "article-title": "A dual spatio-temporal network for short-term wind power forecasting",
+        "volume": "60",
+        "author": "Lai",
+        "year": "2023",
+        "journal-title": "Sustainable Energy Technol Assess"
+      },
+      {
+        "issue": "12",
+        "key": "10.1016/j.seta.2026.105438_b0030",
+        "doi-asserted-by": "crossref",
+        "first-page": "11106",
+        "DOI": "10.1609/aaai.v35i12.17325",
+        "article-title": "Informer: Beyond efficient transformer for long sequence time-series forecasting",
+        "volume": "35",
+        "author": "Zhou",
+        "year": "2021",
+        "journal-title": "Proceedings of the AAAI Conference on Artificial Intelligence."
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0035",
+        "unstructured": "Liu Y, Hu T, Zhang H, Wu H, Wang S, Ma L, Long M. iTransformer: Inverted transformers are effective for time series forecasting. International Conference on Learning Representations. 2024."
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.seta.2026.105438_b0040",
+        "doi-asserted-by": "crossref",
+        "first-page": "33",
+        "DOI": "10.2307/1913643",
+        "article-title": "Regression quantiles",
+        "volume": "46",
+        "author": "Koenker",
+        "year": "1978",
+        "journal-title": "Econometrica"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0045",
+        "article-title": "Computation of prediction intervals of wind energy based on the EWMA and BOA techniques",
+        "volume": "66",
+        "author": "Nouhitehrani",
+        "year": "2024",
+        "journal-title": "Sustainable Energy Technol Assess"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0050",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.apenergy.2022.120634",
+        "article-title": "Conformal asymmetric multi-quantile generative transformer for day-ahead wind power interval prediction",
+        "volume": "333",
+        "author": "Wang",
+        "year": "2023",
+        "journal-title": "Appl Energy"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0055",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.apenergy.2024.122900",
+        "article-title": "A novel day-ahead regional and probabilistic wind power forecasting framework using deep CNNs and conformalized regression forests",
+        "volume": "361",
+        "author": "Jonkers",
+        "year": "2024",
+        "journal-title": "Appl Energy"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0060",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2022.123497",
+        "article-title": "Conformalized temporal convolutional quantile regression networks for wind power interval forecasting",
+        "volume": "248",
+        "author": "Hu",
+        "year": "2022",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0065",
+        "article-title": "Optimizing multi-step wind power forecasting: Integrating advanced deep neural networks with stacking-based probabilistic learning",
+        "volume": "369",
+        "author": "de Azevedo",
+        "year": "2024",
+        "journal-title": "Appl Energy"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0070",
+        "article-title": "Conformalized quantile regression",
+        "volume": "32",
+        "author": "Romano",
+        "year": "2019",
+        "journal-title": "Adv Neural Inf Proces Syst"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.seta.2026.105438_b0075",
+        "doi-asserted-by": "crossref",
+        "first-page": "494",
+        "DOI": "10.1561/2200000101",
+        "article-title": "A gentle introduction to conformal prediction and distribution-free uncertainty quantification",
+        "volume": "16",
+        "author": "Angelopoulos",
+        "year": "2023",
+        "journal-title": "Found Trends Mach Learn"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0080",
+        "unstructured": "Jin M, Wang S, Ma L, Chu Z, Zhang JY, Shi X, Chen PY, Liang Y, Li YF, Pan S, Wen Q. Time-LLM: Time series forecasting by reprogramming large language models. International Conference on Learning Representations. 2024."
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0085",
+        "article-title": "Learning the language of time series. Transactions on Machine Learning",
+        "author": "Ansari",
+        "year": "2024",
+        "journal-title": "Research"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0090",
+        "article-title": "One fits all: Power general time series analysis by pretrained LM",
+        "volume": "36",
+        "author": "Zhou",
+        "year": "2023",
+        "journal-title": "Adv Neural Inf Proces Syst"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0095",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.apenergy.2025.126535",
+        "article-title": "Wind power prediction using foundation large time series models enhanced by time series prompt in exogenous and tuning forms",
+        "volume": "400",
+        "author": "Fan",
+        "year": "2025",
+        "journal-title": "Appl Energy"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0100",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.enconman.2024.118331",
+        "article-title": "BERT4ST: Fine-tuning pre-trained large language model for wind power forecasting",
+        "volume": "307",
+        "author": "Lai",
+        "year": "2024",
+        "journal-title": "Energ Conver Manage"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0105",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.apenergy.2026.127625",
+        "article-title": "PowerMistral: A data-efficient wind power forecasting framework leveraging pre-trained large language models",
+        "volume": "411",
+        "author": "Meng",
+        "year": "2026",
+        "journal-title": "Appl Energy"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0110",
+        "doi-asserted-by": "crossref",
+        "first-page": "1148",
+        "DOI": "10.1016/j.rser.2015.07.154",
+        "article-title": "A review on the recent history of wind power ramp forecasting",
+        "volume": "52",
+        "author": "Gallego-Castillo",
+        "year": "2015",
+        "journal-title": "Renew Sustain Energy Rev"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.seta.2026.105438_b0115",
+        "doi-asserted-by": "crossref",
+        "first-page": "1148",
+        "DOI": "10.1109/TPWRS.2007.901117",
+        "article-title": "Trading wind generation from short-term probabilistic forecasts of wind power",
+        "volume": "22",
+        "author": "Pinson",
+        "year": "2007",
+        "journal-title": "IEEE Trans Power Syst"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0120",
+        "doi-asserted-by": "crossref",
+        "first-page": "227",
+        "DOI": "10.1016/j.renene.2017.04.005",
+        "article-title": "Characterizing and analyzing ramping events in wind power, solar power, load, and netload",
+        "volume": "111",
+        "author": "Cui",
+        "year": "2017",
+        "journal-title": "Renew Energy"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0125",
+        "doi-asserted-by": "crossref",
+        "first-page": "542",
+        "DOI": "10.1016/j.renene.2021.02.123",
+        "article-title": "Algorithm for identifying wind power ramp events via novel improved dynamic swinging door",
+        "volume": "171",
+        "author": "Cui",
+        "year": "2021",
+        "journal-title": "Renew Energy"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0130",
+        "doi-asserted-by": "crossref",
+        "first-page": "5536",
+        "DOI": "10.1016/j.egyr.2021.08.137",
+        "article-title": "Wind power ramp event detection using a multi-parameter segmentation algorithm",
+        "volume": "7",
+        "author": "Lyners",
+        "year": "2021",
+        "journal-title": "Energy Rep"
+      },
+      {
+        "key": "10.1016/j.seta.2026.105438_b0135",
+        "doi-asserted-by": "crossref",
+        "first-page": "295",
+        "DOI": "10.1016/j.apenergy.2016.05.071",
+        "article-title": "Forecasting volatility of wind power production",
+        "volume": "176",
+        "author": "Shen",
+        "year": "2016",
+        "journal-title": "Appl Energy"
+      }
+    ],
+    "container-title": [
+      "Sustainable Energy Technologies and Assessments"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S2213138826006247?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S2213138826006247?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          5
+        ]
+      ],
+      "date-time": "2026-10-05T19:26:19Z",
+      "timestamp": 1791228379000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S2213138826006247"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          10
+        ]
+      ]
+    },
+    "references-count": 27,
+    "alternative-id": [
+      "S2213138826006247"
+    ],
+    "URL": "https://doi.org/10.1016/j.seta.2026.105438",
+    "relation": {},
+    "ISSN": [
+      "2213-1388"
+    ],
+    "issn-type": [
+      {
+        "value": "2213-1388",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          10
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "Elsevier",
+        "name": "publisher",
+        "label": "This article is maintained by"
+      },
+      {
+        "value": "Reserve-risk-oriented regime-calibrated interval forecasting for wind power integration under extreme fluctuations",
+        "name": "articletitle",
+        "label": "Article Title"
+      },
+      {
+        "value": "Sustainable Energy Technologies and Assessments",
+        "name": "journaltitle",
+        "label": "Journal Title"
+      },
+      {
+        "value": "https://doi.org/10.1016/j.seta.2026.105438",
+        "name": "articlelink",
+        "label": "CrossRef DOI link to publisher maintained version"
+      },
+      {
+        "value": "article",
+        "name": "content_type",
+        "label": "Content Type"
+      },
+      {
+        "value": "© 2026 Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and similar technologies.",
+        "name": "copyright",
+        "label": "Copyright"
+      }
+    ],
+    "article-number": "105438"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          15
+        ]
+      ],
+      "date-time": "2026-10-15T13:28:14Z",
+      "timestamp": 1792070894021,
+      "version": "4.4.0"
+    },
+    "reference-count": 66,
+    "publisher": "Institute of Mathematical Statistics",
+    "issue": "2",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Ann. Appl. Stat."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          1
+        ]
+      ]
+    },
+    "abstract": "<jats:p>We introduce a framework for calibrating machine learning models to satisfy finite-sample statistical guarantees. Our calibration algorithms work with any model and (unknown) data-generating distribution and do not require retraining. The algorithms address, among other examples, false discovery rate control in multilabel classification, intersection-over-union control in instance segmentation, and simultaneous control of the type-1 outlier error and confidence set coverage in classification or regression. Our main insight is to reframe risk control as multiple hypothesis testing, enabling different mathematical arguments. We demonstrate our algorithms with detailed worked examples in computer vision and tabular medical data. The computer vision experiments demonstrate the utility of our approach in calibrating state-of-the-art predictive architectures that have been deployed widely, such as the detectron2 object detection system.</jats:p>",
+    "DOI": "10.1214/24-aoas1998",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2025,
+          5,
+          28
+        ]
+      ],
+      "date-time": "2025-05-28T17:13:52Z",
+      "timestamp": 1748452432000
+    },
+    "page": "1641-1662",
+    "source": "Crossref",
+    "is-referenced-by-count": 42,
+    "title": [
+      "Learn then test: Calibrating predictive algorithms to achieve risk control"
+    ],
+    "prefix": "10.1214",
+    "volume": "19",
+    "author": [
+      {
+        "given": "Anastasios N.",
+        "family": "Angelopoulos",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Electrical Engineering and Computer Science, University of California, Berkeley"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Stephen",
+        "family": "Bates",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Electrical Engineering and Computer Science, Massachusetts Institute of Technology"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Emmanuel J.",
+        "family": "Candès",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Statistics, Stanford University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Michael I.",
+        "family": "Jordan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Electrical Engineering and Computer Science, University of California, Berkeley"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Lihua",
+        "family": "Lei",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Stanford Graduate School of Business"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "108",
+    "reference": [
+      {
+        "key": "40",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>Lei, J.</small>, <small>Rinaldo, A.</small> and <small>Wasserman, L.</small> (2015). A conformal prediction approach to explore functional data. <i>Ann. Math. Artif. Intell.</i> <b>74</b> 29–43.",
+        "DOI": "10.1007/s10472-013-9366-6"
+      },
+      {
+        "key": "36",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>KRISHNAMOORTHY, K.</small> and <small>MATHEW, T.</small> (2009). <i>Statistical Tolerance Regions</i>: <i>Theory, Applications, and Computation</i>. <i>Wiley Series in Probability and Statistics</i>. Wiley, Hoboken, NJ.",
+        "DOI": "10.1002/9780470473900"
+      },
+      {
+        "key": "65",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>WILKS, S. S.</small> (1941). Determination of sample sizes for setting tolerance limits. <i>Ann. Math. Stat.</i> <b>12</b> 91–96.",
+        "DOI": "10.1214/aoms/1177731788"
+      },
+      {
+        "key": "12",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>Breiman, L.</small> (2001). Statistical modeling: The two cultures. <i>Statist. Sci.</i> <b>16</b> 199–231.",
+        "DOI": "10.1214/ss/1009213726"
+      },
+      {
+        "key": "29",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>GUAN, L.</small> and <small>TIBSHIRANI, R.</small> (2022). Prediction and outlier detection in classification problems. <i>J. R. Stat. Soc. Ser. B. Stat. Methodol.</i> <b>84</b> 524–546.",
+        "DOI": "10.1111/rssb.12443"
+      },
+      {
+        "key": "46",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>PAPADOPOULOS, H.</small>, <small>PROEDROU, K.</small>, <small>VOVK, V.</small> and <small>GAMMERMAN, A.</small> (2002). Inductive confidence machines for regression. In <i>Machine Learning</i>: <i>ECML</i> 2002. <i>Lecture Notes in Computer Science</i> <b>2430</b> 345–356. Springer, Berlin.",
+        "DOI": "10.1007/3-540-36755-1_29"
+      },
+      {
+        "key": "51",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>SADINLE, M.</small>, <small>LEI, J.</small> and <small>WASSERMAN, L.</small> (2019). Least ambiguous set-valued classifiers with bounded error levels. <i>J. Amer. Statist. Assoc.</i> <b>114</b> 223–234.",
+        "DOI": "10.1080/01621459.2017.1395341"
+      },
+      {
+        "key": "54",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>TUKEY, J. W.</small> (1947). Non-parametric estimation. II. Statistically equivalent blocks and tolerance regions–the continuous case. <i>Ann. Math. Stat.</i> <b>18</b> 529–539.",
+        "DOI": "10.1214/aoms/1177730343"
+      },
+      {
+        "key": "56",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>VOVK, V.</small> (2015). Cross-conformal predictors. <i>Ann. Math. Artif. Intell.</i> <b>74</b> 9–28.",
+        "DOI": "10.1007/s10472-013-9368-4"
+      },
+      {
+        "key": "58",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>VOVK, V.</small> (2021). Testing randomness online. <i>Statist. Sci.</i> <b>36</b> 595–611.",
+        "DOI": "10.1214/20-sts817"
+      },
+      {
+        "key": "60",
+        "unstructured": "<small>VOVK, V.</small>, <small>GAMMERMAN, A.</small> and <small>SAUNDERS, C.</small> (1999). Machine-learning applications of algorithmic randomness. In <i>International Conference on Machine Learning</i> 444–453."
+      },
+      {
+        "key": "63",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>WALD, A.</small> (1943). An extension of Wilks’ method for setting tolerance limits. <i>Ann. Math. Stat.</i> <b>14</b> 45–55.",
+        "DOI": "10.1214/aoms/1177731491"
+      },
+      {
+        "key": "66",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>WILKS, S. S.</small> (1942). Statistical prediction with special reference to the problem of tolerance limits. <i>Ann. Math. Stat.</i> <b>13</b> 400–409.",
+        "DOI": "10.1214/aoms/1177731537"
+      },
+      {
+        "key": "41",
+        "doi-asserted-by": "crossref",
+        "unstructured": "<small>LEI, L.</small> and <small>CANDÈS, E. J.</small> (2021). Conformal inference of counterfactuals and individual treatment effects. <i>J. R. Stat. Soc. Ser. B. Stat. Methodol.</i> <b>83</b> 911–938.",
+        "DOI": "10.1111/rssb.12445"
+      },
+      {
+        "key": "26",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>Friedman, J. H.</small> (2001). Greedy function approximation: A gradient boosting machine. <i>Ann. Statist.</i> <b>29</b> 1189–1232.",
+        "DOI": "10.1214/aos/1013203451"
+      },
+      {
+        "key": "61",
+        "unstructured": "<small>Vovk, V.</small>, <small>Gammerman, A.</small> and <small>Shafer, G.</small> (2005). <i>Algorithmic Learning in a Random World</i>. Springer, New York."
+      },
+      {
+        "key": "33",
+        "doi-asserted-by": "crossref",
+        "unstructured": "<small>Hoeffding, W.</small> (1963). Probability inequalities for sums of bounded random variables. <i>J. Amer. Statist. Assoc.</i> <b>58</b> 13–30.",
+        "DOI": "10.1080/01621459.1963.10500830"
+      },
+      {
+        "key": "13",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>Bretz, F.</small>, <small>Maurer, W.</small>, <small>Brannath, W.</small> and <small>Posch, M.</small> (2009). A graphical approach to sequentially rejective multiple test procedures. <i>Stat. Med.</i> <b>28</b> 586–604.",
+        "DOI": "10.1002/sim.3495"
+      },
+      {
+        "key": "17",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>Chernozhukov, V.</small>, <small>Chetverikov, D.</small> and <small>Kato, K.</small> (2013). Gaussian approximations and multiplier bootstrap for maxima of sums of high-dimensional random vectors. <i>Ann. Statist.</i> <b>41</b> 2786–2819.",
+        "DOI": "10.1214/13-AOS1161"
+      },
+      {
+        "key": "23",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>FANG, Z.</small> and <small>SANTOS, A.</small> (2019). Inference on directionally differentiable functions. <i>Rev. Econ. Stud.</i> <b>86</b> 377–412.",
+        "DOI": "10.1093/restud/rdy049"
+      },
+      {
+        "key": "11",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>BENTKUS, V.</small> (2004). On Hoeffding’s inequalities. <i>Ann. Probab.</i> <b>32</b> 1650–1673.",
+        "DOI": "10.1214/009117904000000360"
+      },
+      {
+        "key": "9",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>BATES, S.</small>, <small>CANDÈS, E.</small>, <small>LEI, L.</small>, <small>ROMANO, Y.</small> and <small>SESIA, M.</small> (2023). Testing for outliers with conformal <i>p</i>-values. <i>Ann. Statist.</i> <b>51</b> 149–178.",
+        "DOI": "10.1214/22-aos2244"
+      },
+      {
+        "key": "22",
+        "doi-asserted-by": "crossref",
+        "unstructured": "<small>EFRON, B.</small> (2020). Prediction, estimation, and attribution. <i>Int. Stat. Rev.</i> <b>88</b> S28–S59.",
+        "DOI": "10.1111/insr.12409"
+      },
+      {
+        "key": "37",
+        "unstructured": "<small>KRIZHEVSKY, A.</small>, <small>HINTON, G.</small> et al. (2009). Learning multiple layers of features from tiny images."
+      },
+      {
+        "key": "49",
+        "unstructured": "<small>ROMANO, Y.</small>, <small>PATTERSON, E.</small> and <small>CANDES, E.</small> (2019). Conformalized quantile regression. <i>Adv. Neural Inf. Process. Syst.</i> <b>32</b>."
+      },
+      {
+        "key": "1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "<small>ANGELOPOULOS, A. N.</small>, <small>BATES, S.</small>, <small>CANDÈS, E. J.</small>, <small>JORDAN, M. I.</small> and <small>LEI, L.</small> (2025). Supplement to “Learn then test: Calibrating predictive algorithms to achieve risk control.” <a href=\"https://doi.org/10.1214/24-AOAS1998SUPPA\">https://doi.org/10.1214/24-AOAS1998SUPPA</a>, <a href=\"https://doi.org/10.1214/24-AOAS1998SUPPB\">https://doi.org/10.1214/24-AOAS1998SUPPB</a>",
+        "DOI": "10.1214/24-AOAS1998SUPPB"
+      },
+      {
+        "key": "2",
+        "unstructured": "<small>ANGELOPOULOS, A. N.</small>, <small>BATES, S.</small>, <small>MALIK, J.</small> and <small>JORDAN, M. I.</small> (2021). Uncertainty sets for image classifiers using conformal prediction. In <i>International Conference on Learning Representations</i> (<i>ICLR</i>)."
+      },
+      {
+        "key": "3",
+        "doi-asserted-by": "crossref",
+        "unstructured": "<small>ANGELOPOULOS, A. N.</small>, <small>BATES, S.</small> et al. (2023). Conformal prediction: A gentle introduction. <i>Found. Trends Mach. Learn.</i> <b>16</b> 494–591.",
+        "DOI": "10.1561/2200000101"
+      },
+      {
+        "key": "4",
+        "doi-asserted-by": "crossref",
+        "unstructured": "<small>ANGELOPOULOS, A. N.</small>, <small>BATES, S.</small>, <small>ZRNIC, T.</small> and <small>JORDAN, M. I.</small> (2022). Private prediction sets. <i>Harv. Data Sci. Rev.</i> <b>4</b>.",
+        "DOI": "10.1162/99608f92.16c71dad"
+      },
+      {
+        "key": "5",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>ANTHONY, M.</small> and <small>SHAWE-TAYLOR, J.</small> (1993). A result of Vapnik with applications. <i>Discrete Appl. Math.</i> <b>47</b> 207–217.",
+        "DOI": "10.1016/0166-218X(93)90126-9"
+      },
+      {
+        "key": "6",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>BARBER, R. F.</small>, <small>CANDÈS, E. J.</small>, <small>RAMDAS, A.</small> and <small>TIBSHIRANI, R. J.</small> (2021a). Predictive inference with the jackknife+. <i>Ann. Statist.</i> <b>49</b> 486–507.",
+        "DOI": "10.1214/20-AOS1965"
+      },
+      {
+        "key": "7",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>BARBER, R. F.</small>, <small>CANDÈS, E. J.</small>, <small>RAMDAS, A.</small> and <small>TIBSHIRANI, R. J.</small> (2021b). The limits of distribution-free conditional predictive inference. <i>Inf. Inference</i> <b>10</b> 455–482.",
+        "DOI": "10.1093/imaiai/iaaa017"
+      },
+      {
+        "key": "8",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>BATES, S.</small>, <small>ANGELOPOULOS, A.</small>, <small>LEI, L.</small>, <small>MALIK, J.</small> and <small>JORDAN, M.</small> (2021). Distribution-free, risk-controlling prediction sets. <i>J. ACM</i> <b>68</b> Art. 43.",
+        "DOI": "10.1145/3478535"
+      },
+      {
+        "key": "10",
+        "doi-asserted-by": "crossref",
+        "unstructured": "<small>BAUER, P.</small> (1991). Multiple testing in clinical trials. <i>Stat. Med.</i> <b>10</b> 871–890.",
+        "DOI": "10.1002/sim.4780100609"
+      },
+      {
+        "key": "14",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>CANDÈS, E.</small>, <small>LEI, L.</small> and <small>REN, Z.</small> (2023). Conformalized survival analysis. <i>J. R. Stat. Soc. Ser. B. Stat. Methodol.</i> <b>85</b> 24–45.",
+        "DOI": "10.1093/jrsssb/qkac004"
+      },
+      {
+        "key": "15",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>CAUCHOIS, M.</small>, <small>GUPTA, S.</small>, <small>ALI, A.</small> and <small>DUCHI, J. C.</small> (2024). Robust validation: Confident predictions even when distributions shift. <i>J. Amer. Statist. Assoc.</i> <b>119</b> 3033–3044.",
+        "DOI": "10.1080/01621459.2023.2298037"
+      },
+      {
+        "key": "16",
+        "unstructured": "<small>CAUCHOIS, M.</small>, <small>GUPTA, S.</small> and <small>DUCHI, J. C.</small> (2021). Knowing what you know: Valid and validated confidence sets in multiclass and multilabel prediction. <i>J. Mach. Learn. Res.</i> <b>22</b> Paper No. 81."
+      },
+      {
+        "key": "18",
+        "doi-asserted-by": "crossref",
+        "unstructured": "<small>CHERNOZHUKOV, V.</small>, <small>WÜTHRICH, K.</small> and <small>YINCHU, Z.</small> (2018). Exact and robust conformal inference methods for predictive machine learning with dependent data. In <i>Proceedings of the</i> 31<i>st Conference on Learning Theory</i>. <i>PMLR</i> <b>75</b> 732–749.",
+        "DOI": "10.1920/wp.cem.2018.1618"
+      },
+      {
+        "key": "19",
+        "doi-asserted-by": "crossref",
+        "unstructured": "<small>COHEN, J. W.</small>, <small>COHEN, S. B.</small> and <small>BANTHIN, J. S.</small> (2009). The medical expenditure panel survey: A national information resource to support healthcare cost research and inform policy and practice. <i>Med. Care</i> S44–S50.",
+        "DOI": "10.1097/MLR.0b013e3181a23e3a"
+      },
+      {
+        "key": "20",
+        "doi-asserted-by": "crossref",
+        "unstructured": "<small>DENG, J.</small> et al. (2009). Imagenet: A large-scale hierarchical image database. In <i>Computer Vision and Pattern Recognition</i> 248–255.",
+        "DOI": "10.1109/CVPR.2009.5206848"
+      },
+      {
+        "key": "21",
+        "unstructured": "<small>DUNN, R.</small>, <small>WASSERMAN, L.</small> and <small>RAMDAS, A.</small> (2020). Distribution-free prediction sets with random effects. ArXiv preprint. Available at arXiv:<a href=\"https://arxiv.org/abs/1809.07441\">1809.07441</a>."
+      },
+      {
+        "key": "24",
+        "unstructured": "<small>FISCH, A.</small>, <small>SCHUSTER, T.</small>, <small>JAAKKOLA, T.</small> and <small>BARZILAY, R.</small> (2021a). Few-shot conformal prediction with auxiliary tasks. ArXiv preprint. Available at arXiv:<a href=\"https://arxiv.org/abs/2102.08898\">2102.08898</a>."
+      },
+      {
+        "key": "25",
+        "unstructured": "<small>FISCH, A.</small>, <small>SCHUSTER, T.</small>, <small>JAAKKOLA, T. S.</small> and <small>BARZILAY, R.</small> (2021b). Efficient conformal prediction via cascaded inference with expanded admission. In <i>International Conference on Learning Representations</i>."
+      },
+      {
+        "key": "27",
+        "unstructured": "<small>GIBBS, I.</small> and <small>CANDÈS, E.</small> (2021). Adaptive conformal inference under distribution shift. ArXiv preprint. Available at arXiv:<a href=\"https://arxiv.org/abs/2106.00170\">2106.00170</a>."
+      },
+      {
+        "key": "28",
+        "unstructured": "<small>GUAN, L.</small> (2019). Conformal prediction with localization. ArXiv preprint. Available at arXiv:<a href=\"https://arxiv.org/abs/1908.08558\">1908.08558</a>."
+      },
+      {
+        "key": "30",
+        "unstructured": "<small>HE, K.</small>, <small>GKIOXARI, G.</small>, <small>DOLLÁR, P.</small> and <small>GIRSHICK, R.</small> (2017). Mask R-CNN. In <i>Proceedings of the IEEE International Conference on Computer Vision</i> 2961–2969."
+      },
+      {
+        "key": "31",
+        "doi-asserted-by": "crossref",
+        "unstructured": "<small>HE, K.</small>, <small>ZHANG, X.</small>, <small>REN, S.</small> and <small>SUN, J.</small> (2016). Deep residual learning for image recognition. In <i>Computer Vision and Pattern Recognition</i> 770–778.",
+        "DOI": "10.1109/CVPR.2016.90"
+      },
+      {
+        "key": "32",
+        "unstructured": "<small>HECHTLINGER, Y.</small>, <small>PÓCZOS, B.</small> and <small>WASSERMAN, L.</small> (2018). Cautious deep learning. ArXiv preprint. Available at arXiv:<a href=\"https://arxiv.org/abs/1805.09460\">1805.09460</a>."
+      },
+      {
+        "key": "34",
+        "unstructured": "<small>HU, X.</small> and <small>LEI, J.</small> (2020). A distribution-free test of covariate shift using conformal prediction. ArXiv preprint. Available at arXiv:<a href=\"https://arxiv.org/abs/2010.07147\">2010.07147</a>."
+      },
+      {
+        "key": "35",
+        "unstructured": "<small>IZBICKI, R.</small>, <small>SHIMIZU, G.</small> and <small>STERN, R.</small> (2020). Flexible distribution-free conditional predictive bands using density estimators. In <i>International Conference on Artificial Intelligence and Statistics</i> 3068–3077. PMLR."
+      },
+      {
+        "key": "38",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>KUCHIBHOTLA, A. K.</small> and <small>BERK, R. A.</small> (2023). Nested conformal prediction sets for classification with applications to probation data. <i>Ann. Appl. Stat.</i> <b>17</b> 761–785.",
+        "DOI": "10.1214/22-aoas1650"
+      },
+      {
+        "key": "39",
+        "doi-asserted-by": "publisher",
+        "unstructured": "<small>LEI, J.</small> (2014). Classification with confidence. <i>Biometrika</i> <b>101</b> 755–769.",
+        "DOI": "10.1093/biomet/asu038"
+      },
+      {
+        "key": "42",
+        "unstructured": "<small>LIANG, S.</small>, <small>LI, Y.</small> and <small>SRIKANT, R.</small> (2017). Enhancing the reliability of out-of-distribution image detection in neural networks. ArXiv preprint. Available at arXiv:<a href=\"https://arxiv.org/abs/1706.02690\">1706.02690</a>."
+      },
+      {
+        "key": "43",
+        "unstructured": "<small>LIN, T.-Y.</small>, <small>GOYAL, P.</small>, <small>GIRSHICK, R.</small>, <small>HE, K.</small> and <small>DOLLÁR, P.</small> (2017). Focal loss for dense object detection. In <i>Proceedings of the IEEE International Conference on Computer Vision</i> 2980–2988."
+      },
+      {
+        "key": "44",
+        "unstructured": "<small>LIN, T.-Y.</small>, <small>MAIRE, M.</small>, <small>BELONGIE, S.</small>, <small>HAYS, J.</small>, <small>PERONA, P.</small>, <small>RAMANAN, D.</small>, <small>DOLLÁR, P.</small> and <small>ZITNICK, C. L.</small> (2014). Microsoft COCO: Common objects in context. In <i>European Conference on Computer Vision</i> 740–755. Springer, Berlin."
+      },
+      {
+        "key": "45",
+        "unstructured": "<small>NGUYEN, D. T.</small>, <small>PATHAK, R.</small>, <small>ANGELOPOULOS, A. N.</small>, <small>BATES, S.</small> and <small>JORDAN, M. I.</small> (2024). Data-Adaptive Tradeoffs among Multiple Risks in Distribution-Free Prediction. ArXiv preprint. Available at arXiv:<a href=\"https://arxiv.org/abs/2403.19605\">2403.19605</a>."
+      },
+      {
+        "key": "47",
+        "unstructured": "<small>PARK, S.</small>, <small>BASTANI, O.</small>, <small>MATNI, N.</small> and <small>LEE, I.</small> (2020). PAC confidence sets for deep neural networks via calibrated prediction. In <i>ICLR</i> 2020."
+      },
+      {
+        "key": "48",
+        "unstructured": "<small>PARK, S.</small>, <small>DOBRIBAN, E.</small>, <small>LEE, I.</small> and <small>BASTANI, O.</small> (2021). PAC prediction sets under covariate shift. ArXiv preprint. Available at arXiv:<a href=\"https://arxiv.org/abs/2106.09848\">2106.09848</a>."
+      },
+      {
+        "key": "50",
+        "unstructured": "<small>ROMANO, Y.</small>, <small>SESIA, M.</small> and <small>CANDÈS, E.</small> (2020). Classification with valid and adaptive coverage. In <i>Advances in Neural Information Processing Systems</i> <b>33</b> 3581–3591."
+      },
+      {
+        "key": "52",
+        "unstructured": "<small>SCHUSTER, T.</small>, <small>FISCH, A.</small>, <small>JAAKKOLA, T.</small> and <small>BARZILAY, R.</small> (2021). Consistent accelerated inference via confident adaptive transformers. ArXiv preprint. Available at arXiv:<a href=\"https://arxiv.org/abs/2104.08803\">2104.08803</a>."
+      },
+      {
+        "key": "53",
+        "unstructured": "<small>TIBSHIRANI, R. J.</small>, <small>FOYGEL BARBER, R.</small>, <small>CANDES, E.</small> and <small>RAMDAS, A.</small> (2019). Conformal prediction under covariate shift. In <i>Advances in Neural Information Processing Systems</i> <b>32</b> 2530–2540."
+      },
+      {
+        "key": "55",
+        "doi-asserted-by": "crossref",
+        "unstructured": "<small>VIOLA, P.</small> and <small>JONES, M. J.</small> (2004). Robust real-time face detection. <i>Int. J. Comput. Vis.</i> <b>57</b> 137–154.",
+        "DOI": "10.1023/B:VISI.0000013087.49260.fb"
+      },
+      {
+        "key": "57",
+        "unstructured": "<small>VOVK, V.</small> (2019). Universally consistent conformal predictive distributions. In <i>Proceedings of the Eighth Symposium on Conformal and Probabilistic Prediction and Applications</i>. <i>PMLR</i> <b>105</b> 105–122."
+      },
+      {
+        "key": "59",
+        "unstructured": "<small>VOVK, V.</small> and <small>BENDTSEN, C.</small> (2018). Conformal predictive decision making. In <i>Proceedings of the Seventh Workshop on Conformal and Probabilistic Prediction and Applications</i>. <i>Proceedings of Machine Learning Research</i> <b>91</b> 52–62."
+      },
+      {
+        "key": "62",
+        "unstructured": "<small>VOVK, V.</small>, <small>PETEJ, I.</small>, <small>TOCCACELI, P.</small>, <small>GAMMERMAN, A.</small>, <small>AHLBERG, E.</small> and <small>CARLSSON, L.</small> (2020). Conformal calibrators. In <i>Proceedings of the Ninth Symposium on Conformal and Probabilistic Prediction and Applications</i> <b>128</b> 84–99."
+      },
+      {
+        "key": "64",
+        "unstructured": "<small>WAUDBY-SMITH, I.</small> and <small>RAMDAS, A.</small> (2020). Variance-adaptive confidence sequences by betting. ArXiv preprint. Available at arXiv:<a href=\"https://arxiv.org/abs/2010.09686\">2010.09686</a>."
+      }
+    ],
+    "container-title": [
+      "The Annals of Applied Statistics"
+    ],
+    "original-title": [],
+    "deposited": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          7
+        ]
+      ],
+      "date-time": "2026-10-07T16:41:56Z",
+      "timestamp": 1791391316000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://projecteuclid.org/journals/annals-of-applied-statistics/volume-19/issue-2/Learn-then-test--Calibrating-predictive-algorithms-to-achieve-risk/10.1214/24-AOAS1998.full"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          1
+        ]
+      ]
+    },
+    "references-count": 66,
+    "journal-issue": {
+      "issue": "2",
+      "published-online": {
+        "date-parts": [
+          [
+            2025,
+            6,
+            1
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1214/24-aoas1998",
+    "relation": {},
+    "ISSN": [
+      "1932-6157",
+      "1941-7330"
+    ],
+    "issn-type": [
+      {
+        "value": "1932-6157",
+        "type": "print"
+      },
+      {
+        "value": "1941-7330",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          10
+        ]
+      ],
+      "date-time": "2026-10-10T13:47:50Z",
+      "timestamp": 1791640070788,
+      "version": "4.3.4"
+    },
+    "reference-count": 59,
+    "publisher": "Elsevier BV",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/legal/tdmrep-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-017"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-037"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-012"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-029"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-004"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100001809",
+        "name": "National Natural Science Foundation of China",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "52307119"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "52307119"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001809",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "elsevier.com",
+        "sciencedirect.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Energy"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2024,
+          8
+        ]
+      ]
+    },
+    "DOI": "10.1016/j.energy.2024.131544",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2024,
+          5,
+          7
+        ]
+      ],
+      "date-time": "2024-05-07T11:50:04Z",
+      "timestamp": 1715082604000
+    },
+    "page": "131544",
+    "update-policy": "https://doi.org/10.1016/elsevier_cm_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 35,
+    "special_numbering": "C",
+    "title": [
+      "Probabilistic wind power forecasting resilient to missing values: An adaptive quantile regression approach"
+    ],
+    "prefix": "10.1016",
+    "volume": "300",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-8263-1399",
+        "authenticated-orcid": false,
+        "given": "Honglin",
+        "family": "Wen",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "78",
+    "reference": [
+      {
+        "key": "10.1016/j.energy.2024.131544_b1",
+        "series-title": "Integrating renewables in electricity markets: operational problems",
+        "author": "Morales",
+        "year": "2013"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b2",
+        "doi-asserted-by": "crossref",
+        "first-page": "125",
+        "DOI": "10.1146/annurev-statistics-062713-085831",
+        "article-title": "Probabilistic forecasting",
+        "volume": "1",
+        "author": "Gneiting",
+        "year": "2014",
+        "journal-title": "Annu Rev Stat Appl"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b3",
+        "doi-asserted-by": "crossref",
+        "first-page": "1148",
+        "DOI": "10.1109/TPWRS.2007.901117",
+        "article-title": "Trading wind generation from short-term probabilistic forecasts of wind power",
+        "volume": "22",
+        "author": "Pinson",
+        "year": "2007",
+        "journal-title": "IEEE Trans Power Syst"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.energy.2024.131544_b4",
+        "doi-asserted-by": "crossref",
+        "first-page": "594",
+        "DOI": "10.1109/TPWRS.2010.2065818",
+        "article-title": "Setting the operating reserve using probabilistic wind power forecasts",
+        "volume": "26",
+        "author": "Matos",
+        "year": "2010",
+        "journal-title": "IEEE Trans Power Syst"
+      },
+      {
+        "issue": "6",
+        "key": "10.1016/j.energy.2024.131544_b5",
+        "doi-asserted-by": "crossref",
+        "first-page": "46",
+        "DOI": "10.1109/MPE.2019.2932639",
+        "article-title": "The use of probabilistic forecasts: Applying them in theory and practice",
+        "volume": "17",
+        "author": "Haupt",
+        "year": "2019",
+        "journal-title": "IEEE Power Energy Mag"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.energy.2024.131544_b6",
+        "article-title": "The future of forecasting for renewable energy",
+        "volume": "9",
+        "author": "Sweeney",
+        "year": "2020",
+        "journal-title": "Wiley Interdiscip Rev: Energy Environ"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.energy.2024.131544_b7",
+        "doi-asserted-by": "crossref",
+        "first-page": "657",
+        "DOI": "10.1002/we.2029",
+        "article-title": "LASSO vector autoregression structures for very short-term wind power forecasting",
+        "volume": "20",
+        "author": "Cavalcante",
+        "year": "2017",
+        "journal-title": "Wind Energy"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b8",
+        "doi-asserted-by": "crossref",
+        "first-page": "1777",
+        "DOI": "10.1109/TSTE.2021.3065117",
+        "article-title": "Privacy-preserving distributed learning for renewable energy forecasting",
+        "volume": "12",
+        "author": "Goncalves",
+        "year": "2021",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.energy.2024.131544_b9",
+        "doi-asserted-by": "crossref",
+        "first-page": "533",
+        "DOI": "10.1109/TSTE.2020.3009615",
+        "article-title": "Towards data markets in renewable energy forecasting",
+        "volume": "12",
+        "author": "Goncalves",
+        "year": "2020",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b10",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Bohlke-Schneider M, Kapoor S, Januschowski T. Resilient neural forecasting systems. In: Proceedings of the fourth international workshop on data management for end-to-end machine learning. 2020, p. 1–5.",
+        "DOI": "10.1145/3399579.3399869"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b11",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.epsr.2020.106640",
+        "article-title": "Missing data in wind farm time series: Properties and effect on forecasts",
+        "volume": "189",
+        "author": "Tawn",
+        "year": "2020",
+        "journal-title": "Electr Power Syst Res"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.energy.2024.131544_b12",
+        "doi-asserted-by": "crossref",
+        "first-page": "143",
+        "DOI": "10.1002/pip.3349",
+        "article-title": "Data processing and quality verification for improved photovoltaic performance and reliability analytics",
+        "volume": "29",
+        "author": "Livera",
+        "year": "2021",
+        "journal-title": "Prog Photovolt, Res Appl"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b13",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2021.120777",
+        "article-title": "Imputation of missing data from offshore wind farms using spatio-temporal correlation and feature correlation",
+        "volume": "229",
+        "author": "Sun",
+        "year": "2021",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b14",
+        "article-title": "Towards resilient energy forecasting: A robust optimization approach",
+        "author": "Stratigakos",
+        "year": "2023",
+        "journal-title": "IEEE Trans Smart Grid"
+      },
+      {
+        "issue": "9",
+        "key": "10.1016/j.energy.2024.131544_b15",
+        "doi-asserted-by": "crossref",
+        "first-page": "10933",
+        "DOI": "10.1109/JSEN.2021.3061109",
+        "article-title": "A two-stage deep autoencoder-based missing data imputation method for wind farm SCADA data",
+        "volume": "21",
+        "author": "Liu",
+        "year": "2021",
+        "journal-title": "IEEE Sens J"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.energy.2024.131544_b16",
+        "doi-asserted-by": "crossref",
+        "first-page": "964",
+        "DOI": "10.35833/MPCE.2020.000894",
+        "article-title": "Data-driven missing data imputation for wind farms using context encoder",
+        "volume": "10",
+        "author": "Liao",
+        "year": "2021",
+        "journal-title": "J Mod Power Syst Clean Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b17",
+        "article-title": "Wind energy forecasting with missing values within a fully conditional specification framework",
+        "author": "Wen",
+        "year": "2023",
+        "journal-title": "Int J Forecast"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.energy.2024.131544_b18",
+        "doi-asserted-by": "crossref",
+        "first-page": "2549",
+        "DOI": "10.1109/TPWRS.2020.2971607",
+        "article-title": "Improved deep mixture density network for regional wind power probabilistic forecasting",
+        "volume": "35",
+        "author": "Zhang",
+        "year": "2020",
+        "journal-title": "IEEE Trans Power Syst"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.energy.2024.131544_b19",
+        "doi-asserted-by": "crossref",
+        "first-page": "957",
+        "DOI": "10.1109/TSTE.2022.3141549",
+        "article-title": "Sparse variational gaussian process based day-ahead probabilistic wind power forecasting",
+        "volume": "13",
+        "author": "Wen",
+        "year": "2022",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b20",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2023.129496",
+        "article-title": "Transferable wind power probabilistic forecasting based on multi-domain adversarial networks",
+        "author": "Dong",
+        "year": "2023",
+        "journal-title": "Energy"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b21",
+        "doi-asserted-by": "crossref",
+        "first-page": "1166",
+        "DOI": "10.1109/TPWRS.2013.2288100",
+        "article-title": "Optimal prediction intervals of wind power generation",
+        "volume": "29",
+        "author": "Wan",
+        "year": "2013",
+        "journal-title": "IEEE Trans Power Syst"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b22",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2020.117072",
+        "article-title": "Probabilistic wind power forecasting based on spiking neural network",
+        "volume": "196",
+        "author": "Wang",
+        "year": "2020",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b23",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2021.120379",
+        "article-title": "Multi-objective wind power scenario forecasting based on PG-GAN",
+        "volume": "226",
+        "author": "Yuan",
+        "year": "2021",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b24",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2021.122045",
+        "article-title": "Regional wind power probabilistic forecasting based on an improved kernel density estimation, regular vine copulas, and ensemble learning",
+        "volume": "238",
+        "author": "Dong",
+        "year": "2022",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b25",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2022.126420",
+        "article-title": "Fluctuation pattern recognition based ultra-short-term wind power probabilistic forecasting method",
+        "volume": "266",
+        "author": "Fan",
+        "year": "2023",
+        "journal-title": "Energy"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.energy.2024.131544_b26",
+        "doi-asserted-by": "crossref",
+        "first-page": "143",
+        "DOI": "10.1257/jep.15.4.143",
+        "article-title": "Quantile regression",
+        "volume": "15",
+        "author": "Koenker",
+        "year": "2001",
+        "journal-title": "J Econ Perspect"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b27",
+        "doi-asserted-by": "crossref",
+        "first-page": "1061",
+        "DOI": "10.1016/j.ijforecast.2016.02.002",
+        "article-title": "Probabilistic gradient boosting machines for GEFCom2014 wind forecasting",
+        "volume": "32",
+        "author": "Landry",
+        "year": "2016",
+        "journal-title": "Int J Forecast"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b28",
+        "doi-asserted-by": "crossref",
+        "first-page": "355",
+        "DOI": "10.1016/j.energy.2016.07.055",
+        "article-title": "On-line quantile regression in the RKHS (Reproducing Kernel Hilbert Space) for operational probabilistic forecasting of wind power",
+        "volume": "113",
+        "author": "Gallego-Castillo",
+        "year": "2016",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b29",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2021.122955",
+        "article-title": "Probabilistic load forecasting with a non-crossing sparse-group Lasso-quantile regression deep neural network",
+        "volume": "242",
+        "author": "Lu",
+        "year": "2022",
+        "journal-title": "Energy"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.energy.2024.131544_b30",
+        "doi-asserted-by": "crossref",
+        "first-page": "2250",
+        "DOI": "10.1109/TSTE.2022.3191330",
+        "article-title": "Continuous and distribution-free probabilistic wind power forecasting: A conditional normalizing flow approach",
+        "volume": "13",
+        "author": "Wen",
+        "year": "2022",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b31",
+        "series-title": "Statistical analysis with missing data",
+        "author": "Little",
+        "year": "2019"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b32",
+        "doi-asserted-by": "crossref",
+        "first-page": "394",
+        "DOI": "10.1016/j.energy.2017.07.034",
+        "article-title": "Application of imputation techniques and adaptive neuro-fuzzy inference system to predict wind turbine power production",
+        "volume": "138",
+        "author": "Morshedizadeh",
+        "year": "2017",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b33",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2023.127799",
+        "article-title": "An imputation and decomposition algorithms based integrated approach with bidirectional LSTM neural network for wind speed prediction",
+        "volume": "278",
+        "author": "Sareen",
+        "year": "2023",
+        "journal-title": "Energy"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b34",
+        "doi-asserted-by": "crossref",
+        "first-page": "3044",
+        "DOI": "10.1109/TSG.2018.2817387",
+        "article-title": "Cyber risk analysis of combined data attacks against power system state estimation",
+        "volume": "10",
+        "author": "Pan",
+        "year": "2018",
+        "journal-title": "IEEE Trans Smart Grid"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b35",
+        "series-title": "Availability adversarial attack and countermeasures for deep learning-based load forecasting",
+        "author": "Xu",
+        "year": "2023"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.energy.2024.131544_b36",
+        "doi-asserted-by": "crossref",
+        "first-page": "1493",
+        "DOI": "10.1109/TSTE.2020.3029731",
+        "article-title": "PV generation forecasting with missing input data: A super-resolution perception approach",
+        "volume": "12",
+        "author": "Liu",
+        "year": "2020",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b37",
+        "doi-asserted-by": "crossref",
+        "first-page": "1843",
+        "DOI": "10.1109/TSTE.2022.3173147",
+        "article-title": "Missing-data tolerant hybrid learning method for solar power forecasting",
+        "volume": "13",
+        "author": "Liu",
+        "year": "2022",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b38",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2023.129080",
+        "article-title": "A robust De-Noising Autoencoder imputation and VMD algorithm based deep learning technique for short-term wind speed prediction ensuring cyber resilience",
+        "volume": "283",
+        "author": "Sareen",
+        "year": "2023",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b39",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2023.128565",
+        "article-title": "A spatio-temporal forecasting model using optimally weighted graph convolutional network and gated recurrent unit for wind speed of different sites distributed in an offshore wind farm",
+        "volume": "284",
+        "author": "Xu",
+        "year": "2023",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b40",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2023.128730",
+        "article-title": "Renewable energy forecasting: A self-supervised learning-based transformer variant",
+        "volume": "284",
+        "author": "Liu",
+        "year": "2023",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b41",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2023.128995",
+        "article-title": "WindFix: Harnessing the power of self-supervised learning for versatile imputation of offshore wind speed time series",
+        "volume": "287",
+        "author": "Chen",
+        "year": "2024",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b42",
+        "article-title": "Brits: Bidirectional recurrent imputation for time series",
+        "volume": "31",
+        "author": "Cao",
+        "year": "2018",
+        "journal-title": "Adv Neural Inf Process Syst"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.energy.2024.131544_b43",
+        "doi-asserted-by": "crossref",
+        "first-page": "1181",
+        "DOI": "10.1016/j.ijforecast.2019.07.001",
+        "article-title": "DeepAR: Probabilistic forecasting with autoregressive recurrent networks",
+        "volume": "36",
+        "author": "Salinas",
+        "year": "2020",
+        "journal-title": "Int J Forecast"
+      },
+      {
+        "issue": "6",
+        "key": "10.1016/j.energy.2024.131544_b44",
+        "doi-asserted-by": "crossref",
+        "first-page": "4447",
+        "DOI": "10.1109/TPWRS.2022.3146982",
+        "article-title": "An integrated missing-data tolerant model for probabilistic PV power generation forecasting",
+        "volume": "37",
+        "author": "Li",
+        "year": "2022",
+        "journal-title": "IEEE Trans Power Syst"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b45",
+        "series-title": "On the consistency of supervised learning with missing values",
+        "author": "Josse",
+        "year": "2019"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.energy.2024.131544_b46",
+        "doi-asserted-by": "crossref",
+        "first-page": "1",
+        "DOI": "10.1111/j.2517-6161.1977.tb01600.x",
+        "article-title": "Maximum likelihood from incomplete data via the EM algorithm",
+        "volume": "39",
+        "author": "Dempster",
+        "year": "1977",
+        "journal-title": "J R Stat Soc Ser B Stat Methodol"
+      },
+      {
+        "issue": "12",
+        "key": "10.1016/j.energy.2024.131544_b47",
+        "doi-asserted-by": "crossref",
+        "first-page": "1049",
+        "DOI": "10.1080/10629360600810434",
+        "article-title": "Fully conditional specification in multivariate imputation",
+        "volume": "76",
+        "author": "Van Buuren",
+        "year": "2006",
+        "journal-title": "J Stat Comput Simul"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b48",
+        "doi-asserted-by": "crossref",
+        "first-page": "905",
+        "DOI": "10.1016/j.asoc.2018.07.027",
+        "article-title": "Wind power prediction with missing data using Gaussian process regression and multiple imputation",
+        "volume": "71",
+        "author": "Liu",
+        "year": "2018",
+        "journal-title": "Appl Soft Comput"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b49",
+        "series-title": "Conformal prediction with missing values",
+        "author": "Zaffran",
+        "year": "2023"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b50",
+        "first-page": "7",
+        "article-title": "Prediction with missing data",
+        "volume": "1050",
+        "author": "Bertsimas",
+        "year": "2021",
+        "journal-title": "Stat"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.energy.2024.131544_b51",
+        "doi-asserted-by": "crossref",
+        "first-page": "205",
+        "DOI": "10.1016/j.ijforecast.2020.04.004",
+        "article-title": "Online distributed learning in wind power forecasting",
+        "volume": "37",
+        "author": "Sommer",
+        "year": "2021",
+        "journal-title": "Int J Forecast"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b52",
+        "first-page": "5980",
+        "article-title": "NeuMiss networks: differentiable programming for supervised learning with missing values",
+        "volume": "33",
+        "author": "Le Morvan",
+        "year": "2020",
+        "journal-title": "Adv Neural Inf Process Syst"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b53",
+        "series-title": "International conference on artificial intelligence and statistics",
+        "first-page": "8127",
+        "article-title": "Learning quantile functions without quantile crossing for distribution-free time series forecasting",
+        "author": "Park",
+        "year": "2022"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b54",
+        "doi-asserted-by": "crossref",
+        "first-page": "355",
+        "DOI": "10.1016/j.apenergy.2015.03.121",
+        "article-title": "The wind integration national dataset (wind) toolkit",
+        "volume": "151",
+        "author": "Draxl",
+        "year": "2015",
+        "journal-title": "Appl Energy"
+      },
+      {
+        "issue": "387",
+        "key": "10.1016/j.energy.2024.131544_b55",
+        "doi-asserted-by": "crossref",
+        "first-page": "516",
+        "DOI": "10.1080/01621459.1984.10478078",
+        "article-title": "Reducing bias in observational studies using subclassification on the propensity score",
+        "volume": "79",
+        "author": "Rosenbaum",
+        "year": "1984",
+        "journal-title": "J Amer Statist Assoc"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.energy.2024.131544_b56",
+        "doi-asserted-by": "crossref",
+        "first-page": "112",
+        "DOI": "10.1093/bioinformatics/btr597",
+        "article-title": "MissForest—non-parametric missing value imputation for mixed-type data",
+        "volume": "28",
+        "author": "Stekhoven",
+        "year": "2012",
+        "journal-title": "Bioinformatics"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b57",
+        "doi-asserted-by": "crossref",
+        "first-page": "5",
+        "DOI": "10.1023/A:1010933404324",
+        "article-title": "Random forests",
+        "volume": "45",
+        "author": "Breiman",
+        "year": "2001",
+        "journal-title": "Mach Learn"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b58",
+        "series-title": "Value-oriented renewable energy forecasting for coordinated energy dispatch problems at two stages",
+        "author": "Zhang",
+        "year": "2023"
+      },
+      {
+        "key": "10.1016/j.energy.2024.131544_b59",
+        "article-title": "A contextual bandit approach for value-oriented prediction interval forecasting",
+        "author": "Zhang",
+        "year": "2023",
+        "journal-title": "IEEE Trans Smart Grid"
+      }
+    ],
+    "container-title": [
+      "Energy"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0360544224013173?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0360544224013173?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          9,
+          21
+        ]
+      ],
+      "date-time": "2024-09-21T02:38:24Z",
+      "timestamp": 1726886304000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0360544224013173"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          8
+        ]
+      ]
+    },
+    "references-count": 59,
+    "alternative-id": [
+      "S0360544224013173"
+    ],
+    "URL": "https://doi.org/10.1016/j.energy.2024.131544",
+    "relation": {
+      "has-preprint": [
+        {
+          "id-type": "doi",
+          "id": "10.36227/techrxiv.23118806.v2",
+          "asserted-by": "object"
+        }
+      ]
+    },
+    "ISSN": [
+      "0360-5442"
+    ],
+    "issn-type": [
+      {
+        "value": "0360-5442",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          8
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "Elsevier",
+        "name": "publisher",
+        "label": "This article is maintained by"
+      },
+      {
+        "value": "Probabilistic wind power forecasting resilient to missing values: An adaptive quantile regression approach",
+        "name": "articletitle",
+        "label": "Article Title"
+      },
+      {
+        "value": "Energy",
+        "name": "journaltitle",
+        "label": "Journal Title"
+      },
+      {
+        "value": "https://doi.org/10.1016/j.energy.2024.131544",
+        "name": "articlelink",
+        "label": "CrossRef DOI link to publisher maintained version"
+      },
+      {
+        "value": "article",
+        "name": "content_type",
+        "label": "Content Type"
+      },
+      {
+        "value": "© 2024 Elsevier Ltd. All rights reserved.",
+        "name": "copyright",
+        "label": "Copyright"
+      }
+    ],
+    "article-number": "131544"
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          18
+        ]
+      ],
+      "date-time": "2026-10-18T17:05:48Z",
+      "timestamp": 1792343148860,
+      "version": "4.4.0"
+    },
+    "reference-count": 0,
+    "publisher": "The Econometric Society",
+    "issue": "2",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2015,
+              9,
+              1
+            ]
+          ],
+          "date-time": "2015-09-01T00:00:00Z",
+          "timestamp": 1441065600000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 1704,
+        "URL": "http://doi.wiley.com/10.1002/tdm_license_1.1"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Econometrica"
+    ],
+    "DOI": "10.3982/ecta5771",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2011,
+          2,
+          14
+        ]
+      ],
+      "date-time": "2011-02-14T02:00:23Z",
+      "timestamp": 1297648823000
+    },
+    "page": "453-497",
+    "source": "Crossref",
+    "is-referenced-by-count": 2068,
+    "title": [
+      "The Model Confidence Set"
+    ],
+    "prefix": "10.3982",
+    "volume": "79",
+    "member": "2359",
+    "published-online": {
+      "date-parts": [
+        [
+          2011
+        ]
+      ]
+    },
+    "container-title": [
+      "Econometrica"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.3982%2FECTA5771",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.3982/ecta5771",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2020,
+          1,
+          24
+        ]
+      ],
+      "date-time": "2020-01-24T04:59:34Z",
+      "timestamp": 1579841974000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "http://doi.wiley.com/10.3982/ECTA5771"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2011
+        ]
+      ]
+    },
+    "references-count": 0,
+    "journal-issue": {
+      "issue": "2",
+      "published-online": {
+        "date-parts": [
+          [
+            2011
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.3982/ecta5771",
+    "relation": {},
+    "ISSN": [
+      "0012-9682"
+    ],
+    "issn-type": [
+      {
+        "value": "0012-9682",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2011
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          17
+        ]
+      ],
+      "date-time": "2026-10-17T19:30:07Z",
+      "timestamp": 1792265407807,
+      "version": "4.4.0"
+    },
+    "reference-count": 62,
+    "publisher": "Association for Computing Machinery (ACM)",
+    "issue": "6",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              9,
+              30
+            ]
+          ],
+          "date-time": "2021-09-30T00:00:00Z",
+          "timestamp": 1632960000000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "funder": [
+      {
+        "name": "National Science Foundation Graduate Research Fellowship Program and a Berkeley Fellowship"
+      },
+      {
+        "DOI": "10.13039/100000183",
+        "name": "Army Research Office",
+        "doi-asserted-by": "crossref",
+        "award": [
+          "W911NF-16-1-0368"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "W911NF-16-1-0368"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000183",
+            "id-type": "DOI",
+            "asserted-by": "crossref"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "dl.acm.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "J. ACM"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2021,
+          12,
+          31
+        ]
+      ]
+    },
+    "abstract": "<jats:p>While improving prediction accuracy has been the focus of machine learning in recent years, this alone does not suffice for reliable decision-making. Deploying learning systems in consequential settings also requires calibrating and communicating the uncertainty of predictions. To convey instance-wise uncertainty for prediction tasks, we show how to generate set-valued predictions from a black-box predictor that controls the expected loss on future test points at a user-specified level. Our approach provides explicit finite-sample guarantees for any dataset by using a holdout set to calibrate the size of the prediction sets. This framework enables simple, distribution-free, rigorous error control for many tasks, and we demonstrate it in five large-scale machine learning problems: (1) classification problems where some mistakes are more costly than others; (2) multi-label classification, where each observation has multiple associated labels; (3) classification problems where the labels have a hierarchical structure; (4) image segmentation, where we wish to predict a set of pixels containing an object of interest; and (5) protein structure prediction. Last, we discuss extensions to uncertainty quantification for ranking, metric learning, and distributionally robust learning.</jats:p>",
+    "DOI": "10.1145/3478535",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2021,
+          9,
+          30
+        ]
+      ],
+      "date-time": "2021-09-30T20:03:15Z",
+      "timestamp": 1633032195000
+    },
+    "page": "1-34",
+    "update-policy": "https://doi.org/10.1145/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 126,
+    "title": [
+      "Distribution-free, Risk-controlling Prediction Sets"
+    ],
+    "prefix": "10.1145",
+    "volume": "68",
+    "author": [
+      {
+        "given": "Stephen",
+        "family": "Bates",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "UC Berkeley, Berkeley, CA, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Anastasios",
+        "family": "Angelopoulos",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "UC Berkeley, Berkeley, CA, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Lihua",
+        "family": "Lei",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Stanford University, Stanford, CA, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jitendra",
+        "family": "Malik",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "UC Berkeley, Berkeley, CA, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Michael",
+        "family": "Jordan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "UC Berkeley, Berkeley, CA, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "320",
+    "published-online": {
+      "date-parts": [
+        [
+          2021,
+          9,
+          30
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_2_1_1_1",
+        "volume-title": "International Conference on Learning Representations (ICLR).",
+        "author": "Angelopoulos Anastasios Nikolas"
+      },
+      {
+        "key": "e_1_2_1_2_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/aoms/1177728077"
+      },
+      {
+        "key": "e_1_2_1_3_1",
+        "volume-title": "The limits of distribution-free conditional predictive inference. Inf. Infer. 10 (08",
+        "author": "Barber Rina",
+        "year": "2020"
+      },
+      {
+        "key": "e_1_2_1_4_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/20-AOS1965"
+      },
+      {
+        "key": "e_1_2_1_5_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/009117904000000360"
+      },
+      {
+        "key": "e_1_2_1_6_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.patcog.2012.03.002"
+      },
+      {
+        "key": "e_1_2_1_7_1",
+        "volume-title": "The Theory of Probabilities",
+        "author": "Bernstein Sergei"
+      },
+      {
+        "key": "e_1_2_1_8_1",
+        "first-page": "1",
+        "article-title": "HyperKvasir, a comprehensive multi-class image and video dataset for gastrointestinal endoscopy. Sci",
+        "volume": "7",
+        "author": "Borgli Hanna",
+        "year": "2020",
+        "journal-title": "Data"
+      },
+      {
+        "key": "e_1_2_1_9_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Lawrence D. Brown Tony Cai and Anirban DasGupta. 2001. Interval estimation for a binomial proportion. Statist. Sci. (2001) 101–117. DOI:DOI:https://doi.org/10.1214/ss/1009213286  Lawrence D. Brown Tony Cai and Anirban DasGupta. 2001. Interval estimation for a binomial proportion. Statist. Sci. (2001) 101–117. DOI:DOI:https://doi.org/10.1214/ss/1009213286",
+        "DOI": "10.1214/ss/1009213286"
+      },
+      {
+        "key": "e_1_2_1_10_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/3454287.3455291"
+      },
+      {
+        "key": "e_1_2_1_11_1",
+        "volume-title": "Duchi",
+        "author": "Cauchois Maxime",
+        "year": "2020"
+      },
+      {
+        "key": "e_1_2_1_12_1",
+        "first-page": "1",
+        "article-title": "Knowing what you know: Valid and validated confidence sets in multiclass and multilabel prediction",
+        "volume": "22",
+        "author": "Cauchois Maxime",
+        "year": "2021",
+        "journal-title": "J. Mach. Learn. Res."
+      },
+      {
+        "key": "e_1_2_1_13_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/009052607000000910"
+      },
+      {
+        "key": "e_1_2_1_14_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/1577069.1755862"
+      },
+      {
+        "key": "e_1_2_1_15_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/CVPR.2009.5206848"
+      },
+      {
+        "key": "e_1_2_1_16_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/2354409.2355033"
+      },
+      {
+        "key": "e_1_2_1_17_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-030-59725-2_26"
+      },
+      {
+        "key": "e_1_2_1_18_1",
+        "volume-title": "DOI:DOI:https://doi.org/10.1002/9781405198431.wbeal1285",
+        "author": "Fellbaum Christiane",
+        "year": "2012"
+      },
+      {
+        "key": "e_1_2_1_19_1",
+        "volume-title": "Information and Classification",
+        "author": "Grycko Eugen"
+      },
+      {
+        "key": "e_1_2_1_20_1",
+        "unstructured": "Leying Guan. 2020. Conformal prediction with localization. (2020). arXiv:1908.08558.  Leying Guan. 2020. Conformal prediction with localization. (2020). arXiv:1908.08558."
+      },
+      {
+        "key": "e_1_2_1_21_1",
+        "unstructured": "Leying Guan and Rob Tibshirani. 2019. Prediction and outlier detection in classification problems. (2019). arXiv:1905.04396.  Leying Guan and Rob Tibshirani. 2019. Prediction and outlier detection in classification problems. (2019). arXiv:1905.04396."
+      },
+      {
+        "key": "e_1_2_1_22_1",
+        "volume-title": "Ramdas",
+        "author": "Gupta Chirag",
+        "year": "2020"
+      },
+      {
+        "key": "e_1_2_1_23_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/CVPR.2016.90"
+      },
+      {
+        "key": "e_1_2_1_24_1",
+        "unstructured": "Yotam Hechtlinger Barnabas Poczos and Larry Wasserman. 2018. Cautious deep learning. (2018). arXiv:1805.09460.  Yotam Hechtlinger Barnabas Poczos and Larry Wasserman. 2018. Cautious deep learning. (2018). arXiv:1805.09460."
+      },
+      {
+        "key": "e_1_2_1_25_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/359138.359141"
+      },
+      {
+        "key": "e_1_2_1_26_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/01621459.1963.10500830"
+      },
+      {
+        "key": "e_1_2_1_27_1",
+        "unstructured": "Xiaoyu Hu and Jing Lei. 2020. A distribution-free test of covariate shift using conformal prediction. (2020). arXiv:2010.07147.  Xiaoyu Hu and Jing Lei. 2020. A distribution-free test of covariate shift using conformal prediction. (2020). arXiv:2010.07147."
+      },
+      {
+        "key": "e_1_2_1_28_1",
+        "volume-title": "Stern",
+        "author": "Izbicki Rafael",
+        "year": "2019"
+      },
+      {
+        "key": "e_1_2_1_29_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "K. Krishnamoorthy and T. Mathew. 2009. Statistical Tolerance Regions: Theory Applications and Computation. Wiley.   K. Krishnamoorthy and T. Mathew. 2009. Statistical Tolerance Regions: Theory Applications and Computation. Wiley.",
+        "DOI": "10.1002/9780470473900"
+      },
+      {
+        "key": "e_1_2_1_30_1",
+        "volume-title": "Classification with confidence. Biometrika 101, 4 (10",
+        "author": "Lei Jing",
+        "year": "2014"
+      },
+      {
+        "key": "e_1_2_1_31_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10472-013-9366-6"
+      },
+      {
+        "key": "e_1_2_1_32_1",
+        "volume-title": "Candès",
+        "author": "Lei Lihua",
+        "year": "2020"
+      },
+      {
+        "key": "e_1_2_1_33_1",
+        "volume-title": "European Conference on Computer Vision. Springer, 740–755",
+        "author": "Lin Tsung-Yi"
+      },
+      {
+        "key": "e_1_2_1_34_1",
+        "volume-title": "International Conference on Learning Representations (ICLR).",
+        "author": "Madry Aleksander",
+        "year": "2018"
+      },
+      {
+        "key": "e_1_2_1_35_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1873951.1874254"
+      },
+      {
+        "key": "e_1_2_1_36_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/1148466.1148472"
+      },
+      {
+        "key": "e_1_2_1_37_1",
+        "volume-title": "Conference on Learning Theory (COLT).",
+        "author": "Maurer Andreas",
+        "year": "2009"
+      },
+      {
+        "key": "e_1_2_1_38_1",
+        "unstructured": "Thomas Mortier Marek Wydmuch Krzysztof Dembczyński Eyke Hüllermeier and Willem Waegeman. 2020. Efficient set-valued prediction in multi-class classification. (2020). arXiv:1906.08129.  Thomas Mortier Marek Wydmuch Krzysztof Dembczyński Eyke Hüllermeier and Willem Waegeman. 2020. Efficient set-valued prediction in multi-class classification. (2020). arXiv:1906.08129."
+      },
+      {
+        "key": "e_1_2_1_39_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/3-540-36755-1_29"
+      },
+      {
+        "key": "e_1_2_1_40_1",
+        "volume-title": "International Conference on Learning Representations (ICLR).",
+        "author": "Park Sangdon",
+        "year": "2020"
+      },
+      {
+        "key": "e_1_2_1_41_1",
+        "volume-title": "International Conference on Learning Representations (ICLR).",
+        "author": "Park Sangdon",
+        "year": "2021"
+      },
+      {
+        "key": "e_1_2_1_42_1",
+        "first-page": "384",
+        "article-title": "Exact exponential bounds for sums of independent random variables",
+        "volume": "34",
+        "author": "Pinelis Iosif",
+        "year": "1989",
+        "journal-title": "Theor. Probab. Applic."
+      },
+      {
+        "key": "e_1_2_1_43_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3083187.3083212"
+      },
+      {
+        "key": "e_1_2_1_44_1",
+        "volume-title": "TResNet: High performance GPU-dedicated architecture. arXiv:2003.13630",
+        "author": "Ridnik Tal",
+        "year": "2020"
+      },
+      {
+        "key": "e_1_2_1_45_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.patrec.2004.07.002"
+      },
+      {
+        "key": "e_1_2_1_46_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/3454287.3454605"
+      },
+      {
+        "key": "e_1_2_1_47_1",
+        "volume-title": "International Conference on Advances in Neural Information Processing Systems, H. Larochelle, M. Ranzato, R. Hadsell, M. F. Balcan, and H. Lin (Eds.)",
+        "volume": "33",
+        "author": "Romano Yaniv",
+        "year": "2020"
+      },
+      {
+        "key": "e_1_2_1_48_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/01621459.2017.1395341"
+      },
+      {
+        "key": "e_1_2_1_49_1",
+        "volume-title": "et al",
+        "author": "Senior Andrew W.",
+        "year": "2020"
+      },
+      {
+        "key": "e_1_2_1_50_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s11548-013-0926-3"
+      },
+      {
+        "key": "e_1_2_1_51_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/3454287.3454514"
+      },
+      {
+        "key": "e_1_2_1_52_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/aoms/1177730343"
+      },
+      {
+        "key": "e_1_2_1_53_1",
+        "volume-title": "Asian Conference on Machine Learning",
+        "volume": "25",
+        "author": "Vovk Vladimir",
+        "year": "2012"
+      },
+      {
+        "key": "e_1_2_1_54_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10472-013-9368-4"
+      },
+      {
+        "key": "e_1_2_1_55_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/645528.657641"
+      },
+      {
+        "key": "e_1_2_1_56_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/1062391"
+      },
+      {
+        "key": "e_1_2_1_57_1",
+        "volume-title": "Ninth Symposium on Conformal and Probabilistic Prediction and Applications, Alexander Gammerman, Vladimir Vovk, Zhiyuan Luo, Evgueni Smirnov, and Giovanni Cherubin (Eds.)",
+        "volume": "128",
+        "author": "Vovk Vladimir",
+        "year": "2020"
+      },
+      {
+        "key": "e_1_2_1_58_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/aoms/1177731491"
+      },
+      {
+        "key": "e_1_2_1_59_1",
+        "volume-title": "Variance-adaptive confidence sequences by betting. arXiv preprint arXiv:2010.09686",
+        "author": "Waudby-Smith Ian",
+        "year": "2020"
+      },
+      {
+        "key": "e_1_2_1_60_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/aoms/1177731788"
+      },
+      {
+        "key": "e_1_2_1_61_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/aoms/1177731537"
+      },
+      {
+        "key": "e_1_2_1_62_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jsb.2014.10.003"
+      }
+    ],
+    "container-title": [
+      "Journal of the ACM"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://dl.acm.org/doi/10.1145/3478535",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://dl.acm.org/doi/pdf/10.1145/3478535",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://dl.acm.org/doi/pdf/10.1145/3478535",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          17
+        ]
+      ],
+      "date-time": "2025-06-17T20:11:40Z",
+      "timestamp": 1750191100000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://dl.acm.org/doi/10.1145/3478535"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          9,
+          30
+        ]
+      ]
+    },
+    "references-count": 62,
+    "journal-issue": {
+      "issue": "6",
+      "published-print": {
+        "date-parts": [
+          [
+            2021,
+            12,
+            31
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1145/3478535"
+    ],
+    "URL": "https://doi.org/10.1145/3478535",
+    "relation": {},
+    "ISSN": [
+      "0004-5411",
+      "1557-735X"
+    ],
+    "issn-type": [
+      {
+        "value": "0004-5411",
+        "type": "print"
+      },
+      {
+        "value": "1557-735X",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          9,
+          30
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2021-01-01",
+        "order": 0,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      },
+      {
+        "value": "2021-07-01",
+        "order": 1,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      },
+      {
+        "value": "2021-09-30",
+        "order": 2,
+        "name": "published",
+        "label": "Published",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      }
+    ]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          17
+        ]
+      ],
+      "date-time": "2026-10-17T00:17:15Z",
+      "timestamp": 1792196235848,
+      "version": "4.4.0"
+    },
+    "reference-count": 0,
+    "publisher": "Institute of Mathematical Statistics",
+    "issue": "2",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Ann. Math. Statist."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          1953,
+          6
+        ]
+      ]
+    },
+    "DOI": "10.1214/aoms/1177729032",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2007,
+          12,
+          17
+        ]
+      ],
+      "date-time": "2007-12-17T17:30:42Z",
+      "timestamp": 1197912642000
+    },
+    "page": "265-272",
+    "source": "Crossref",
+    "is-referenced-by-count": 1209,
+    "title": [
+      "Equivalent Comparisons of Experiments"
+    ],
+    "prefix": "10.1214",
+    "volume": "24",
+    "author": [
+      {
+        "given": "David",
+        "family": "Blackwell",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "108",
+    "container-title": [
+      "The Annals of Mathematical Statistics"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://projecteuclid.org/download/pdf_1/euclid.aoms/1177729032",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2017,
+          5,
+          10
+        ]
+      ],
+      "date-time": "2017-05-10T10:13:17Z",
+      "timestamp": 1494411197000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "http://projecteuclid.org/euclid.aoms/1177729032"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          1953,
+          6
+        ]
+      ]
+    },
+    "references-count": 0,
+    "journal-issue": {
+      "issue": "2",
+      "published-print": {
+        "date-parts": [
+          [
+            1953,
+            6
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1214/aoms/1177729032",
+    "relation": {},
+    "ISSN": [
+      "0003-4851"
+    ],
+    "issn-type": [
+      {
+        "value": "0003-4851",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          1953,
+          6
+        ]
+      ]
+    }
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          17
+        ]
+      ],
+      "date-time": "2026-10-17T19:50:18Z",
+      "timestamp": 1792266618617,
+      "version": "4.4.0"
+    },
+    "reference-count": 52,
+    "publisher": "Institute for Operations Research and the Management Sciences (INFORMS)",
+    "issue": "1",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Operations Research"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2019,
+          1
+        ]
+      ]
+    },
+    "abstract": "<jats:p>In Ban and Rudin’s (2018) “The Big Data Newsvendor: Practical Insights from Machine Learning,” the authors take an innovative machine-learning approach to a classic problem solved by almost every company, every day, for inventory management. By allowing companies to use large amounts of data to predict the correct answers to decisions directly, they avoid intermediate questions, such as “how many customers will we get tomorrow?” and instead can tell the company how much inventory to stock for these customers. This has implications for almost all other decision-making problems considered in operations research, which has traditionally considered data estimation separately from the decision optimization. Their proposed methods are shown to work both analytically and empirically with the latter explored in a hospital nurse staffing example in which the best one-step, feature-based newsvendor algorithm (the kernel-weights optimization method) is shown to beat the best-practice benchmark by 24% in the out-of-sample cost at a fraction of the speed.</jats:p>",
+    "DOI": "10.1287/opre.2018.1757",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2018,
+          11,
+          7
+        ]
+      ],
+      "date-time": "2018-11-07T14:51:37Z",
+      "timestamp": 1541602297000
+    },
+    "page": "90-108",
+    "source": "Crossref",
+    "is-referenced-by-count": 512,
+    "title": [
+      "The Big Data Newsvendor: Practical Insights from Machine Learning"
+    ],
+    "prefix": "10.1287",
+    "volume": "67",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-3229-1386",
+        "authenticated-orcid": false,
+        "given": "Gah-Yi",
+        "family": "Ban",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Management Science & Operations, London Business School, London NW1 4SA, United Kingdom;"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-4283-2780",
+        "authenticated-orcid": false,
+        "given": "Cynthia",
+        "family": "Rudin",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Computer Science, Department of Electrical and Computer Engineering, and Statistical Science, Duke University, Durham, North Carolina 27708"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "109",
+    "reference": [
+      {
+        "key": "B1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TAC.1974.1100705"
+      },
+      {
+        "key": "B2",
+        "volume-title": "Studies in the Mathematical Theory of Inventory and Production",
+        "volume": "1",
+        "author": "Arrow KJ",
+        "year": "1958"
+      },
+      {
+        "key": "B3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/mnsc.31.9.1150"
+      },
+      {
+        "key": "B4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/10-AOS827"
+      },
+      {
+        "key": "B5",
+        "first-page": "499",
+        "volume": "2",
+        "author": "Bousquet O",
+        "year": "2002",
+        "journal-title": "J. Mach. Learn. Res."
+      },
+      {
+        "key": "B6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/opre.48.3.436.12437"
+      },
+      {
+        "key": "B7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/aos/1176348119"
+      },
+      {
+        "key": "B8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/opre.1070.0441"
+      },
+      {
+        "key": "B9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jeconom.2007.06.005"
+      },
+      {
+        "key": "B90",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3982/ECTA7880"
+      },
+      {
+        "key": "B10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1137/1.9781611970289"
+      },
+      {
+        "key": "B12",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TIT.1979.1056032"
+      },
+      {
+        "key": "B13",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TIT.1979.1056087"
+      },
+      {
+        "key": "B15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1017/CBO9780511779398"
+      },
+      {
+        "key": "B16",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2307/3213131"
+      },
+      {
+        "key": "B17",
+        "volume-title": "The Elements of Statistical Learning: Data Mining, Inference, and Prediction",
+        "author": "Friedman J",
+        "year": "2009",
+        "edition": "2"
+      },
+      {
+        "key": "B18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1057/jors.1993.141"
+      },
+      {
+        "key": "B19",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/mnsc.47.10.1344.10261"
+      },
+      {
+        "key": "B20",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/mnsc.47.8.1101.10231"
+      },
+      {
+        "key": "B21",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-1-84800-155-8_7"
+      },
+      {
+        "key": "B22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-642-51693-1_2"
+      },
+      {
+        "key": "B23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/mnsc.2013.1713"
+      },
+      {
+        "key": "B24",
+        "first-page": "820",
+        "volume-title": "Advances in Neural Information Processing Systems (NIPS 2010)",
+        "author": "Hannah L",
+        "year": "2010"
+      },
+      {
+        "key": "B25",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/07408179408966604"
+      },
+      {
+        "key": "B26",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/009053607000000677"
+      },
+      {
+        "key": "B27",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/moor.1080.0355"
+      },
+      {
+        "key": "B28",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/msom.1060.0116"
+      },
+      {
+        "key": "B29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1017/CBO9780511754098"
+      },
+      {
+        "key": "B30",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/opre.1070.0477"
+      },
+      {
+        "key": "B31",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/opre.2015.1422"
+      },
+      {
+        "key": "B32",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/moor.1070.0272"
+      },
+      {
+        "key": "B33",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.orl.2004.08.003"
+      },
+      {
+        "key": "B34",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/mnsc.36.6.724"
+      },
+      {
+        "key": "B35",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/mnsc.38.5.688"
+      },
+      {
+        "key": "B36",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/opre.1060.0338"
+      },
+      {
+        "key": "B37",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1561/2000000050"
+      },
+      {
+        "key": "B38",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1137/1109020"
+      },
+      {
+        "key": "B39",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/01621459.1979.10481621"
+      },
+      {
+        "key": "B40",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/opre.1070.0486"
+      },
+      {
+        "key": "B41",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/moor.1040.0107"
+      },
+      {
+        "key": "B42",
+        "volume-title": "Convex Analysis",
+        "author": "Rockafellar RT",
+        "year": "1997"
+      },
+      {
+        "key": "B43",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/aos/1176344196"
+      },
+      {
+        "key": "B44",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/aoms/1177706264"
+      },
+      {
+        "key": "B45",
+        "volume-title": "Mathematical Methods in the Social Science",
+        "author": "Scarf H",
+        "year": "1959"
+      },
+      {
+        "key": "B46",
+        "first-page": "201",
+        "volume-title": "Studies in the Mathematical Theory of Inventory and Production",
+        "volume": "10",
+        "author": "Scarf H",
+        "year": "1958"
+      },
+      {
+        "key": "B47",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/aos/1176344136"
+      },
+      {
+        "key": "B48",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/opre.1090.0746"
+      },
+      {
+        "key": "B49",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1137/1.9780898718751"
+      },
+      {
+        "key": "B50",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/opre.41.2.351"
+      },
+      {
+        "key": "B51",
+        "first-page": "1231",
+        "volume": "7",
+        "author": "Takeuchi I",
+        "year": "2006",
+        "journal-title": "J. Mach. Learn. Res."
+      },
+      {
+        "key": "B52",
+        "volume-title": "Statistical Learning Theory",
+        "author": "Vapnik VN",
+        "year": "1998"
+      },
+      {
+        "key": "B53",
+        "first-page": "359",
+        "volume-title": "Sankhyā: Indian J. Statist. Ser. A",
+        "author": "Watson GS",
+        "year": "1964"
+      }
+    ],
+    "container-title": [
+      "Operations Research"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://pubsonline.informs.org/doi/pdf/10.1287/opre.2018.1757",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          4,
+          2
+        ]
+      ],
+      "date-time": "2023-04-02T10:31:20Z",
+      "timestamp": 1680431480000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://pubsonline.informs.org/doi/10.1287/opre.2018.1757"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          1
+        ]
+      ]
+    },
+    "references-count": 52,
+    "journal-issue": {
+      "issue": "1",
+      "published-print": {
+        "date-parts": [
+          [
+            2019,
+            1
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1287/opre.2018.1757"
+    ],
+    "URL": "https://doi.org/10.1287/opre.2018.1757",
+    "relation": {},
+    "ISSN": [
+      "0030-364X",
+      "1526-5463"
+    ],
+    "issn-type": [
+      {
+        "value": "0030-364X",
+        "type": "print"
+      },
+      {
+        "value": "1526-5463",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2019,
+          1
+        ]
+      ]
+    }
+  }
+]

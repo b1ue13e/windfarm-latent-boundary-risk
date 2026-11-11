@@ -1,0 +1,56 @@
+{
+  "array": {
+    "argv": [
+      "qsub",
+      "-N",
+      "di_grid",
+      "-q",
+      "rqdf",
+      "-l",
+      "select=1:ncpus=2:mem=48gb",
+      "-l",
+      "walltime=04:00:00",
+      "-J",
+      "0-28%3",
+      "-W",
+      "depend=afterok:244601.cm",
+      "-j",
+      "oe",
+      "-o",
+      "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/logs",
+      "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/array.pbs"
+    ],
+    "stdout": "244602[].cm\n",
+    "stderr": "",
+    "returncode": 0
+  },
+  "aggregate": {
+    "argv": [
+      "qsub",
+      "-N",
+      "di_aggregate",
+      "-q",
+      "rqdf",
+      "-l",
+      "select=1:ncpus=2:mem=16gb",
+      "-l",
+      "walltime=00:30:00",
+      "-W",
+      "depend=afterok:244602[].cm",
+      "-j",
+      "oe",
+      "-o",
+      "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/logs/aggregate.log",
+      "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/aggregate_audit.pbs"
+    ],
+    "stdout": "244603.cm\n",
+    "stderr": "",
+    "returncode": 0
+  },
+  "orchestration_sha256": {
+    "launch_array.py": "9e155e855bc95b71c193592560e8b5767df088975e0ae672ce7e527c7b977e93",
+    "array.pbs": "ebe7aadb06e6df9868c7f906be7f948cf005052b55d51119e35016428cb7eac4",
+    "aggregate_audit.pbs": "6ad25ded1aa2954fe34a68333173a7990e5e0dede49c3906f3763a6bb455c63c",
+    "scripts/audit_decision_information_actions.py": "d866461fd59f3edd823f71444a27e556bb78846362faf97eb9d8f7280ee1c0eb"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "stage": "infer",
+  "command": "cd /lstr/sahara/minlpml/junyu/praw_supplement_v3_20261021_87fde9b && qsub -v SUPPLEMENT_ROOT=/lstr/sahara/minlpml/junyu/praw_supplement_v3_20261021_87fde9b,STAGE=infer experiments/praw_supplement_v3_20261021/run.pbs",
+  "returncode": 0,
+  "stdout": "245218.cm",
+  "stderr": "",
+  "submitted_utc": "2026-10-21T03:39:05.481141+00:00",
+  "prerequisite": "All ten accounting manifests present; inference verifies all bundles before sealing labels"
+}

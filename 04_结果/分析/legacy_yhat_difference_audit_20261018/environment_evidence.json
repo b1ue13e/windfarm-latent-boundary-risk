@@ -1,0 +1,32 @@
+{
+  "auxiliary_origin_document": {
+    "path": "docs/tste_trainonly_rerun_results_20260830.md",
+    "sha256": "d1e90b81115c6e16c6805c75365c4a837ed3bb1e9f3ed424657ad267e9c6c421",
+    "epistemic_status": "documentary location/version report; not a complete run receipt",
+    "first_lines": [
+      "# Train-only Checkpoint 全量审计重跑结果（P0-2 补救）",
+      "",
+      "> 运行日期：2026-08-30 ｜ 运行位置：远程 grokking (192.168.17.251) `/root/paper3_audit_rerun_20260830`",
+      "> 目的：将论文 headline 运营数字从有类权重泄漏污点的 legacy checkpoint 切换到 train-only 类权重 checkpoint（5 seeds: 201–205），验证 P0-2 补救可行性。",
+      "> 代码版本：本地 git HEAD（90528db0）；运行环境修复：LD_PRELOAD hpcx UCX 栈。",
+      ""
+    ]
+  },
+  "residual_same_session_preflight": {
+    "source_record": "original_extraction_observations.json line40 from original transcript",
+    "local_time": "2026-09-18T04:56:45+08:00",
+    "python": "3.12.10",
+    "torch_build": "2.11.0+cu128",
+    "cuda_available": true,
+    "scope": "preflight about7minutes before extraction; not a full per-forward runtime receipt"
+  },
+  "residual_task171": "Windows Python312 path and cuda:0 directly recorded; no GPU model/driver/TF32/cuDNN flags",
+  "auxiliary_exact_hardware_torch_cuda_driver": "UNKNOWN; remote origin was not accessed after strict host-key verification failure",
+  "both_eval_entrypoints_explicit_autocast": false,
+  "training_autocast": "present in train loop only; not evidence of half-precision saved evaluation outputs",
+  "current_checkpoint_tensor_dtypes": [
+    "torch.float32"
+  ],
+  "generation_time_input_and_weight_checksum_binding": "UNKNOWN",
+  "historical_numeric_flags_TF32_deterministic_cudnn_CUBLAS": "UNKNOWN"
+}

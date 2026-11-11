@@ -1,6 +1,6 @@
 # Verification Gate Report
 
-Generated: 2026-10-17T12:37:27+08:00
+Generated: 2026-10-18T11:15:27+08:00
 
 ## Command: verify_final_pdf_integrity
 `python scripts/verify_final_pdf_integrity.py`
@@ -26,18 +26,18 @@ Total pages: 10
 
 --- Checking Headline Number Proximity Qualifiers ---
 Number 589,535 found 5 times:
-  [PASS] Occurrence #1 at index 1027: qualifier present=True
-  [PASS] Occurrence #2 at index 6391: qualifier present=True
-  [PASS] Occurrence #3 at index 26780: qualifier present=True
-  [PASS] Occurrence #4 at index 37169: qualifier present=True
-  [PASS] Occurrence #5 at index 57774: qualifier present=True
+  [PASS] Occurrence #1 at index 752: qualifier present=True
+  [PASS] Occurrence #2 at index 5505: qualifier present=True
+  [PASS] Occurrence #3 at index 27030: qualifier present=True
+  [PASS] Occurrence #4 at index 36657: qualifier present=True
+  [PASS] Occurrence #5 at index 57154: qualifier present=True
 Number 881,367 found 6 times:
-  [PASS] Occurrence #1 at index 1051: qualifier present=True
-  [PASS] Occurrence #2 at index 6416: qualifier present=True
-  [PASS] Occurrence #3 at index 26835: qualifier present=True
-  [PASS] Occurrence #4 at index 30907: qualifier present=True
-  [PASS] Occurrence #5 at index 33543: qualifier present=True
-  [PASS] Occurrence #6 at index 57799: qualifier present=True
+  [PASS] Occurrence #1 at index 777: qualifier present=True
+  [PASS] Occurrence #2 at index 5530: qualifier present=True
+  [PASS] Occurrence #3 at index 27085: qualifier present=True
+  [PASS] Occurrence #4 at index 30495: qualifier present=True
+  [PASS] Occurrence #5 at index 33131: qualifier present=True
+  [PASS] Occurrence #6 at index 57179: qualifier present=True
 
 [ALL IEEE PDF CHECKS PASSED]
 
@@ -85,7 +85,7 @@ Exit: 0
   [PASS] docs/FAILURE_FALLBACK_BOUNDARY.md (8,150 bytes)
   [PASS] docs/CLAIM_LANGUAGE_AUDIT.md (8,571 bytes)
   [PASS] docs/DECISIVE_EVIDENCE_GATE.md (7,010 bytes)
-  [PASS] build/paper_tste_ieee.pdf (265,195 bytes)
+  [PASS] build/paper_tste_ieee.pdf (264,568 bytes)
   [PASS] build/paper_tste_supplementary.pdf (1,021,376 bytes)
 
 [Audit Step 2: Information-Set Symmetry]
@@ -219,22 +219,24 @@ SCIENTIFIC CLAIM GATE
   [PASS] docs\SCIENTIFIC_CONTRACT.md
   [PASS] docs\EXPERIMENT_REGISTRY.md
   [PASS] .agents\agents\scientific-falsifier\agent.md
-  [PASS] artifacts\strong_baseline_closure_summary.csv
-  [PASS] artifacts\strong_baseline_bootstrap_contrasts.csv
+  [PASS] docs\EVIDENCE_FREEZE_20261017.md
+  [PASS] artifacts\raw_replay_20261015_v2\strong_baseline_retry_import_v1\strong_baseline_closure_summary.csv
+  [PASS] artifacts\raw_replay_20261015_v2\strong_baseline_retry_import_v1\strong_baseline_joint_interaction_v2.json
+  [PASS] artifacts\metis_external_deterministic_20261015_attempt1\audit_report.json
   [PASS] paper_tste_ieee.md
 
 [2] Strong-baseline claim ceiling
-  [PASS] plant-wide posterior cost superiority is not supported (+523,044 kWh)
-  [PASS] transition result is a risk hedge, not a cost win (PSREI delta +112739 kWh)
-  [PASS] steady-state simple baseline remains lower-cost (+410305 kWh posterior penalty)
+  [PASS] current candidate does not establish plant-wide posterior cost superiority (+445,639 kWh; pending audit)
+  [PASS] current candidate transition penalty is +71,204 kWh; no cost superiority claim
+  [PASS] current candidate steady penalty is +374,436 kWh; pending audit
 
 [3] Transition-localization interaction
-  [PASS] heterogeneity retained: interaction=-296052.9 kWh, CI=[-568265.1,-39428.8], p=0.002
+  [PASS] current candidate interaction verified: mean=-303232.3 kWh, CI=[-597952.5,19013.0] crosses zero
 
 [4] Manuscript interpretation guard
   [PASS] claim boundary present: strong wind-speed-conditioned quantiles remain lower-cost plant-wide
-  [PASS] claim boundary present: attributable to consequence-based representation and calibrated quantile sizing rather than dynamic expert routing
-  [PASS] claim boundary present: state recoverability is not sufficient for downstream reserve-decision superiority
+  [PASS] claim boundary present: not interpreted as decision-value evidence
+  [PASS] claim boundary present: the latest imported strong-baseline snapshot reports a full-population posterior penalty
   [PASS] claim boundary present: trained using historically available pitch information that is withheld at deployment
   [PASS] no unqualified universal ML superiority
   [PASS] no unqualified cross-site generalization proof
@@ -251,7 +253,7 @@ SCIENTIFIC CLAIM GATE
   [PASS] contract marker present: Synthetic telemetry envelope rule
 
 [6] EXP-01, EXP-02, EXP-03 Control & Evidence Integrity
-  [PASS] EXP-01 v2 benchmark verified (80 rows, 5 seeds, 2 farms)
+  [PASS] EXP-01 bounded deterministic branch present; corrected-v2 remains superseded/not reinstated
   [PASS] EXP-02 verified with corrected Primary Challenger role classification
   [PASS] EXP-03 evaluated population fixed ([408937, 408939]) with disclosed imputation boundary (max drop=60.25%, max stale=99.79%)
   [PASS] Joint hierarchical uncertainty summary verified
@@ -278,12 +280,10 @@ SCIENTIFIC CLAIM GATE
 
 [9] Phase 2 Retrospective Analysis & Native Blocks Guard
   [PASS] strong baseline native day blocks verified (10 arrays x 35 blocks)
-  [PASS] strong baseline hierarchical joint interaction verified: -297565.4 kWh, P=0.9824
-  [PASS] strong_baseline_bootstrap_contrasts.csv verified free of arithmetic Mean CI/p-values
-  [PASS] EXP-01 v4 native day blocks verified (80 arrays x 35 blocks)
-  [PASS] EXP-01 v4 statistics verified: Penmanshiel h=6 delta=-315400 kWh (CI spans zero), Kelmarsh h=6 delta=+352434 kWh (penalty)
-  [PASS] Phase 2 retrospective scientific audit report verified: PASS
-  [PASS] manuscript updated with retrospective hierarchical numbers
+  [PASS] current candidate interaction verified: -303232.3 kWh, CI crosses zero, pending audit
+  [PASS] withdrawn EXP-01 retrospective artifacts preserved with physical-window invalidation
+  [PASS] historical Phase 2 audit retained; current candidate and superseded interaction are separately labeled
+  [PASS] manuscript matches current freeze; withdrawn recall and superseded decision tokens are absent
 
 ========================================================================
 SCIENTIFIC_CLAIM_GATE: PASS

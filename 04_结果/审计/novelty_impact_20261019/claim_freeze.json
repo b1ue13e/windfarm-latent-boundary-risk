@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-19T06:12:33.402788+00:00",
+  "git_commit": "e3d891e75579abe84e8d2170e435bd5c9a4ad908",
+  "claims": "C1-C8 frozen; NC1-NC5 explicitly not author contributions",
+  "sources_sha256": {
+    "research_audit/08_claim_inventory.md": "336e69b4a28af7fdf95209bb64431b13dd87a52ca5b008f277a167807db5471a",
+    "research_audit/FINAL_RESEARCH_STRATEGY.md": "0063f2d83e14be310bee962f9ed6bd0536ef04ed6ff9b4050d277b6c1496fc42",
+    "research_audit/04_discovery_ranking.md": "4d4815c3a363ea765e459c094bdfe539af93923284c548259f4f0f4162ff487e",
+    "research_audit/05_scientific_problem_candidates.md": "fcc7c40024637e8c403ae6dc479ce3e3ce897b0b0a19bcae53ca87b26a2cf4b6",
+    "research_audit/06_decisive_experiments.md": "d1e600fe14dab9df94678d54b5179d118d415fe8195443e631e2fc6a7e209ed9",
+    "paper_tste_ieee.md": "f8fd4c902c1dbf04fba04bede20e69c1b6390f871c7809e51ac58bb81d24d773",
+    "docs/SCIENTIFIC_CONTRACT.md": "cf0c38fba403d842ca87521dbe03897e9078dcb87da593daa7af6fd009545f76",
+    "PROJECT.md": "3eae3ac3ca895b0d1561706b5e8a8fdef9b73924d98cd235520d8ec9a5d97789",
+    "experiments/independent_confirmation_execution_20261019/protocol.json": "27ba6498427ca425978f6674f013862ba272049f778562cb839969cb7f3bbc33",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json": "f703e64fb7e20843f7daddeb9cc3b0b6d4e95594658560831ba425ac1df7bf72",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060",
+    "windfarm_moe/independent_confirmation.py": "dd59f461df7535202f9727a3b8472b4e6a0a11edbb1070920ecea6184e09a4f2",
+    "windfarm_moe/risk_frontier.py": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944",
+    "windfarm_moe/subset_inference.py": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568"
+  },
+  "no_claim_redefinition_after_search": true
+}

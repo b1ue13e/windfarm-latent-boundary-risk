@@ -1,0 +1,27 @@
+{
+  "exit_code": 255,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "fa785432552d7fa7b128013800ad51f95286f7a4570aab523906424e7ee18a30",
+  "local_trust_files_after": [
+    {
+      "path": "C:\\Users\\lidong\\.ssh\\config",
+      "sha256": "a0fd2f514b252d0d400ec58bfcc5d17298911533fdfdd425571194e5af666222"
+    },
+    {
+      "path": "C:\\Users\\lidong\\.ssh\\config.bak",
+      "sha256": "8a766e413b7be247070f33e96bc661eeff4bb7fc3adeb39f89327c2aa2e3e370"
+    },
+    {
+      "path": "C:\\Users\\lidong\\.ssh\\known_hosts",
+      "sha256": "3172222ef05eaf88502312edece6f8df3c01df8d55a87c8c3389c833f651a762"
+    },
+    {
+      "path": "C:\\Users\\lidong\\.ssh\\known_hosts.old",
+      "sha256": "a629e288bec2cab625455a811946782ebcd5591e40c4f81f3dc68b1969a4c14d"
+    }
+  ],
+  "trust_files_unchanged": true,
+  "expected_fingerprint": "SHA256:oNc+CkuCXl8LGjk3kqlIPZhdp/i/VTb0gtd5oF0ctY8",
+  "hostkey_match_reported": false,
+  "authentication_reported": false
+}

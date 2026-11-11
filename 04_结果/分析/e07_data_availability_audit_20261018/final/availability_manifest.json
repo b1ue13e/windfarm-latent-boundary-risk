@@ -1,0 +1,798 @@
+{
+  "status": "NO_ELIGIBLE_WINDOW_FOUND_IN_AUDITED_SCOPES",
+  "prepared_utc": "2026-10-18T07:41:52.807647+00:00",
+  "kind": "AVAILABILITY_AUDIT_MANIFEST_NOT_CONFIRMATORY_DATA_MANIFEST",
+  "confirmed_eligible_window_count": 0,
+  "confirmatory_data_manifest": null,
+  "historical_source": {
+    "raw_sha256": "6cf7613a82c61bb5cf9fcbbf22e3f6c48165fa32021eb6f1905cb2b7af4d7667",
+    "bytes": 334304460,
+    "nodes": 134,
+    "rows": 4727520,
+    "day_range": [
+      1,
+      245
+    ],
+    "time_index_range": [
+      0,
+      35279
+    ],
+    "mirrors": [
+      {
+        "host": "bluelee",
+        "path": "E:\\论文3\\wtbdata_245days.csv"
+      },
+      {
+        "host": "metis",
+        "path": "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/wtbdata_245days.csv"
+      }
+    ],
+    "source_role": "verified existing history only; not a new test-window binding"
+  },
+  "required_new_window": {
+    "issue_first": 35280,
+    "issue_last": 40319,
+    "padding_last": 40343,
+    "missing_issue_positions": 5040,
+    "missing_padding_positions": 24,
+    "missing_node_time_cells": 678576
+  },
+  "inventory_summary": [
+    {
+      "host": "bluelee",
+      "roots": [
+        {
+          "path": "E:\\论文3",
+          "exists": true,
+          "follow_symlinks": false
+        },
+        {
+          "path": "C:\\Users\\lidong\\Downloads",
+          "exists": true,
+          "follow_symlinks": false
+        },
+        {
+          "path": "E:\\data",
+          "exists": false,
+          "follow_symlinks": false
+        },
+        {
+          "path": "E:\\datasets",
+          "exists": false,
+          "follow_symlinks": false
+        },
+        {
+          "path": "E:\\数据",
+          "exists": false,
+          "follow_symlinks": false
+        }
+      ],
+      "wtb_cache_count": 15,
+      "structural_future_candidate_count": 0,
+      "inspection_error_count": 0,
+      "excluded_other_site_archives": 31
+    },
+    {
+      "host": "metis",
+      "roots": [
+        {
+          "path": "/lstr/sahara/minlpml/junyu",
+          "exists": true,
+          "follow_symlinks": false
+        },
+        {
+          "path": "/nfs/ihfs/home_metis/junyu/dsh-scratch",
+          "exists": true,
+          "follow_symlinks": false
+        },
+        {
+          "path": "/nfs/ihfs/home_metis/junyu/data",
+          "exists": false,
+          "follow_symlinks": false
+        },
+        {
+          "path": "/nfs/ihfs/home_metis/junyu/datasets",
+          "exists": false,
+          "follow_symlinks": false
+        },
+        {
+          "path": "/nfs/ihfs/home_metis/junyu/Downloads",
+          "exists": false,
+          "follow_symlinks": false
+        }
+      ],
+      "wtb_cache_count": 2,
+      "structural_future_candidate_count": 0,
+      "inspection_error_count": 0,
+      "excluded_other_site_archives": 30
+    }
+  ],
+  "rejection_table": [
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\cache_anchor_stress\\wtb_245d_lagged_pab_wspd",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\cache_anchor_stress\\wtb_245d_lagged_patv",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\cache_anchor_stress\\wtb_245d_no_pab_mean",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\cache_anchor_stress\\wtb_245d_no_patv",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_kelmarsh_chronological",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_kelmarsh_obs_window",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_kelmarsh_rand",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_kelmarsh_sec",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out",
+      "max_day": null,
+      "nodes": 20,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out_headwindow_backup",
+      "max_day": null,
+      "nodes": 20,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_la_haute_borne_chronological",
+      "max_day": null,
+      "nodes": 4,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_penmanshiel_chronological",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_penmanshiel_obs_window",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_penmanshiel_rand",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_penmanshiel_sec",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out",
+      "max_day": null,
+      "nodes": 20,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind\\external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out_headwindow_backup",
+      "max_day": null,
+      "nodes": 20,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind_2016_smoke\\external_wind_kelmarsh_chronological",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind_2016_smoke\\external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out",
+      "max_day": null,
+      "nodes": 20,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind_2016_smoke\\external_wind_penmanshiel_chronological",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind_2016_smoke\\external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out",
+      "max_day": null,
+      "nodes": 20,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind_scada_header_smoke\\external_wind_penmanshiel_chronological",
+      "max_day": null,
+      "nodes": 5,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind_scan\\alt1\\external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out",
+      "max_day": null,
+      "nodes": 20,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind_scan\\alt1\\external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out",
+      "max_day": null,
+      "nodes": 20,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind_scan\\alt2\\external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out",
+      "max_day": null,
+      "nodes": 20,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind_scan\\alt2\\external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out",
+      "max_day": null,
+      "nodes": 20,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind_scan\\median\\external_wind_kelmarsh_to_penmanshiel_leave_one_farm_out",
+      "max_day": null,
+      "nodes": 20,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_external_wind_scan\\median\\external_wind_penmanshiel_to_kelmarsh_leave_one_farm_out",
+      "max_day": null,
+      "nodes": 20,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\cache_signature\\wtb_245d_signature_core",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\cache_signature\\wtb_245d_signature_full",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\cache_signature\\wtb_245d_signature_full_shuffled",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_kelmarsh\\external_wind_kelmarsh_obs_window_canonical",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_kelmarsh\\external_wind_kelmarsh_obs_window_signature_core",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_kelmarsh\\external_wind_kelmarsh_obs_window_signature_full",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_kelmarsh\\external_wind_kelmarsh_obs_window_signature_full_shuffled",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_kelmarsh_rand\\external_wind_kelmarsh_rand_signature_full",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_kelmarsh_sec\\external_wind_kelmarsh_sec_signature_full",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_lhb\\external_wind_la_haute_borne_chronological_canonical",
+      "max_day": null,
+      "nodes": 4,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_lhb\\external_wind_la_haute_borne_chronological_signature_core",
+      "max_day": null,
+      "nodes": 4,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_lhb\\external_wind_la_haute_borne_chronological_signature_core_no_pab_std",
+      "max_day": null,
+      "nodes": 4,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_lhb\\external_wind_la_haute_borne_chronological_signature_core_shuffled",
+      "max_day": null,
+      "nodes": 4,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_lhb\\external_wind_la_haute_borne_chronological_signature_full",
+      "max_day": null,
+      "nodes": 4,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_penmanshiel\\external_wind_penmanshiel_obs_window_canonical",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_penmanshiel\\external_wind_penmanshiel_obs_window_signature_core",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_penmanshiel\\external_wind_penmanshiel_obs_window_signature_full",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_penmanshiel\\external_wind_penmanshiel_obs_window_signature_full_shuffled",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_penmanshiel_rand\\external_wind_penmanshiel_rand_signature_full",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\cache_signature_penmanshiel_sec\\external_wind_penmanshiel_sec_signature_full",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\cache_signature_trainweight\\wtb_245d_signature_core_no_pab_std",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\cache_strictmask\\wtb_245d",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\cache_strictmask_future\\wtb_245d",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\cache_strictmask_spatial_east\\wtb_245d",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\cache_strictmask_trainweights\\wtb_245d",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\raw_replay_20261015\\cache_raw\\wtb_245d",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\raw_replay_20261015_v2\\cache_raw_recorded\\wtb_245d",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "cache",
+      "path": "E:\\论文3\\artifacts\\raw_replay_20261015_v2\\cache_wtb",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\raw_replay_external_20261015\\kelmarsh\\cache",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\raw_replay_external_20261015\\la_haute_borne\\cache",
+      "max_day": null,
+      "nodes": 4,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\raw_replay_external_20261015\\penmanshiel\\cache",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "external_cache_metadata_only",
+      "path": "E:\\论文3\\artifacts\\raw_replay_external_retry1_20261015\\penmanshiel\\cache",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "bluelee",
+      "kind": "raw_csv",
+      "path": "E:\\论文3\\wtbdata_245days.csv",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED;REQUIRED_NODE_TIME_CROSS_PRODUCT_MISSING"
+    },
+    {
+      "host": "metis",
+      "kind": "external_cache_metadata_only",
+      "path": "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_external_20261015/penmanshiel/cache",
+      "max_day": null,
+      "nodes": 14,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "metis",
+      "kind": "external_cache_metadata_only",
+      "path": "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_external_20261015/la_haute_borne/cache",
+      "max_day": null,
+      "nodes": 4,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "metis",
+      "kind": "external_cache_metadata_only",
+      "path": "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_external_20261015/kelmarsh/cache",
+      "max_day": null,
+      "nodes": 6,
+      "missing_required_time_positions": null,
+      "reasons": "DIFFERENT_DATASET_OR_NODE_POPULATION"
+    },
+    {
+      "host": "metis",
+      "kind": "cache",
+      "path": "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/cache_wtb",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "metis",
+      "kind": "cache",
+      "path": "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/cache_raw_recorded/wtb_245d",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED"
+    },
+    {
+      "host": "metis",
+      "kind": "raw_csv",
+      "path": "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/wtbdata_245days.csv",
+      "max_day": 245,
+      "nodes": 134,
+      "missing_required_time_positions": 5064,
+      "reasons": "REQUIRED_NEW_TIME_RANGE_OR_PADDING_MISSING;SOURCE_CONTINUATION_UNVERIFIED;UNVIEWED_STATUS_UNVERIFIED;REQUIRED_NODE_TIME_CROSS_PRODUCT_MISSING"
+    }
+  ],
+  "legacy_release_member_hash_discrepancies": [
+    {
+      "member": "artifacts/fixed_forecast_residuals.npz",
+      "documented_sha256": "b05b3751f45e2a2c1619623da3d038317769caec7d6a59b207eb4ea088e5d0d7",
+      "measured_sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+      "status": "MISMATCH_PRESERVED_NOT_REPAIRED"
+    },
+    {
+      "member": "artifacts/matched_budget/cached_posterior_probs.npz",
+      "documented_sha256": "d40f0ddbaee7452d3a339dd8917e766fb31ec227242c7f078d46a48970e4e7e7",
+      "measured_sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca",
+      "status": "MISMATCH_PRESERVED_NOT_REPAIRED"
+    }
+  ],
+  "gap_ledger": [
+    {
+      "id": "G1",
+      "status": "MISSING_IN_AUDITED_SCOPES",
+      "item": "WTB issue indices35280-40319 plus padding40320-40343"
+    },
+    {
+      "id": "G2",
+      "status": "UNBOUND",
+      "item": "New source continuity to the same physical134 nodes and original indexed clock"
+    },
+    {
+      "id": "G3",
+      "status": "UNVERIFIED",
+      "item": "Positive prior-exposure/collection-access evidence for any new window"
+    },
+    {
+      "id": "G4",
+      "status": "UNBOUND",
+      "item": "Actual event/label/QC arrival timestamps for future history-only chronology"
+    },
+    {
+      "id": "G5",
+      "status": "INTENTIONALLY_NOT_EXECUTED",
+      "item": "Recalibration offsets or performance evaluation; not run by this audit"
+    }
+  ],
+  "calibration_run": false,
+  "new_test_outcomes_interpreted": false,
+  "source_file_hashes_before": {
+    "analyses\\e07_data_availability_audit_20261018\\local_inventory.json": "2237049b658130819be9c0194dca197c4938500a60e4e32ad20d1b9ed433bc33",
+    "analyses\\e07_data_availability_audit_20261018\\metis_inventory.json": "d84cd4e8439503494e8a463f6a9e57b57c6a63b5a269683a02cd435512c5816b",
+    "analyses\\e07_data_availability_audit_20261018\\archive_coordinates_audit.json": "e7a9125602b2acb7967db0f86de78c9c517c3aa42bdc5bab05778f954f8d16a4",
+    "E:\\论文3\\scripts\\audit_e07_window_inventory.py": "c540e37406d4d5a66ebbaa417179a1e9a021157a6625773c2fd0e7f528f59061",
+    "E:\\论文3\\docs\\EXTERNAL_RELEASE_METADATA.md": "30a3d89714443513e5f151913bb2dedb78bdfacdf3e52edbb1518fb5f68e3e28",
+    "E:\\论文3\\experiments\\E07_history_only_recalibration\\protocol.json": "7e3ec72ae119de76512c84342721b8a2152437cea400511a9d9940a078e22207"
+  },
+  "argv": [
+    "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "scripts/finalize_e07_data_audit.py",
+    "--workspace",
+    ".",
+    "--local",
+    "analyses/e07_data_availability_audit_20261018/local_inventory.json",
+    "--remote",
+    "analyses/e07_data_availability_audit_20261018/metis_inventory.json",
+    "--archive",
+    "analyses/e07_data_availability_audit_20261018/archive_coordinates_audit.json",
+    "--remote-report-sha256",
+    "d84cd4e8439503494e8a463f6a9e57b57c6a63b5a269683a02cd435512c5816b",
+    "--output",
+    "analyses/e07_data_availability_audit_20261018/final/availability_manifest.json"
+  ],
+  "script_sha256": "015b066b182ffddbb0b9107225fea536e0260bee4c25e321e7e17990e109b051",
+  "scope_limitations": [
+    "Not an exhaustive search of all mounted/shared storage.",
+    "Roots, pruned directories, name filters and errors are in each inventory.",
+    "Unknown prior access cannot be promoted to an unviewed confirmation status.",
+    "Other wind farms, shifted labels, artificial padding or legacy holdout names cannot replace the registered WTB continuation."
+  ],
+  "source_file_hashes_after": {
+    "analyses\\e07_data_availability_audit_20261018\\local_inventory.json": "2237049b658130819be9c0194dca197c4938500a60e4e32ad20d1b9ed433bc33",
+    "analyses\\e07_data_availability_audit_20261018\\metis_inventory.json": "d84cd4e8439503494e8a463f6a9e57b57c6a63b5a269683a02cd435512c5816b",
+    "analyses\\e07_data_availability_audit_20261018\\archive_coordinates_audit.json": "e7a9125602b2acb7967db0f86de78c9c517c3aa42bdc5bab05778f954f8d16a4",
+    "E:\\论文3\\scripts\\audit_e07_window_inventory.py": "c540e37406d4d5a66ebbaa417179a1e9a021157a6625773c2fd0e7f528f59061",
+    "E:\\论文3\\docs\\EXTERNAL_RELEASE_METADATA.md": "30a3d89714443513e5f151913bb2dedb78bdfacdf3e52edbb1518fb5f68e3e28",
+    "E:\\论文3\\experiments\\E07_history_only_recalibration\\protocol.json": "7e3ec72ae119de76512c84342721b8a2152437cea400511a9d9940a078e22207"
+  },
+  "input_files_unchanged": true
+}

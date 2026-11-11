@@ -1,0 +1,106 @@
+{
+  "builds": [
+    {
+      "name": "paper_tste_ieee",
+      "pages": 10,
+      "runs": [
+        {
+          "command": [
+            "E:\\\u8bba\u65873\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+            "paper_tste_ieee.md",
+            "--citeproc",
+            "--csl",
+            "IEEE.csl",
+            "--standalone",
+            "-t",
+            "latex",
+            "-o",
+            "analyses\\independent_confirmation_execution_20261019\\build\\paper_tste_ieee.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 0.438,
+          "log": "analyses\\independent_confirmation_execution_20261019\\paper_tste_ieee_build1_pass0.log"
+        },
+        {
+          "command": [
+            "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-output-directory=analyses\\independent_confirmation_execution_20261019\\build",
+            "analyses\\independent_confirmation_execution_20261019\\build\\paper_tste_ieee.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 3.5,
+          "log": "analyses\\independent_confirmation_execution_20261019\\paper_tste_ieee_build1_pass1.log"
+        },
+        {
+          "command": [
+            "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-output-directory=analyses\\independent_confirmation_execution_20261019\\build",
+            "analyses\\independent_confirmation_execution_20261019\\build\\paper_tste_ieee.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 2.156,
+          "log": "analyses\\independent_confirmation_execution_20261019\\paper_tste_ieee_build1_pass2.log"
+        }
+      ],
+      "warnings": [],
+      "source_sha256": "f8fd4c902c1dbf04fba04bede20e69c1b6390f871c7809e51ac58bb81d24d773"
+    },
+    {
+      "name": "paper_tste_supplementary",
+      "pages": 47,
+      "runs": [
+        {
+          "command": [
+            "E:\\\u8bba\u65873\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+            "paper_tste_supplementary.md",
+            "--citeproc",
+            "--csl",
+            "IEEE.csl",
+            "--standalone",
+            "-t",
+            "latex",
+            "-o",
+            "analyses\\independent_confirmation_execution_20261019\\build\\paper_tste_supplementary.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 0.64,
+          "log": "analyses\\independent_confirmation_execution_20261019\\paper_tste_supplementary_build1_pass0.log"
+        },
+        {
+          "command": [
+            "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-output-directory=analyses\\independent_confirmation_execution_20261019\\build",
+            "analyses\\independent_confirmation_execution_20261019\\build\\paper_tste_supplementary.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 3.407,
+          "log": "analyses\\independent_confirmation_execution_20261019\\paper_tste_supplementary_build1_pass1.log"
+        },
+        {
+          "command": [
+            "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-output-directory=analyses\\independent_confirmation_execution_20261019\\build",
+            "analyses\\independent_confirmation_execution_20261019\\build\\paper_tste_supplementary.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 3.297,
+          "log": "analyses\\independent_confirmation_execution_20261019\\paper_tste_supplementary_build1_pass2.log"
+        }
+      ],
+      "warnings": [
+        "LaTeX Warning: Text page 22 contains only floats.",
+        "LaTeX Warning: Text page 22 contains only floats."
+      ],
+      "source_sha256": "81b1756005021efea994531f42a557778e089909445cbcb0d62414ef3a07c836"
+    }
+  ],
+  "scope": "Pandoc/XeLaTeX only, no scientific result regeneration"
+}

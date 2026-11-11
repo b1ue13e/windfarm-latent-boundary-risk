@@ -1,0 +1,121 @@
+{
+  "utc": "2026-10-20T10:36:10.601566+00:00",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "matplotlib": "3.10.9",
+  "numpy": "2.4.6",
+  "host": "bluelee",
+  "source_sha256": {
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json": "f703e64fb7e20843f7daddeb9cc3b0b6d4e95594658560831ba425ac1df7bf72",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060",
+    "experiments/independent_confirmation_execution_20261019/protocol.json": "27ba6498427ca425978f6674f013862ba272049f778562cb839969cb7f3bbc33",
+    "analyses/independent_confirmation_execution_20261019/history_freeze/freeze.json": "c04710efaa9e57b250906a9626c31e5a83559b4cfd30b6a18df2a489a39c7595",
+    "analyses/independent_confirmation_execution_20261019/unlocked_actual_receipt.json": "9ffbe0ced42ac521a5ab7d13903d4e22ad1074e17c7bfc4233e57d17b349c757",
+    "analyses/independent_confirmation_execution_20261019/derived/secondary_cases.csv": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc",
+    "analyses/claim_revision_recovery_20261019/necessity/necessity.csv": "aeb36ec93b2492fd8e0aaca48a96622848efcd0fa9ef6939d7d33cb2e0297010",
+    "windfarm_moe/independent_confirmation.py": "dd59f461df7535202f9727a3b8472b4e6a0a11edbb1070920ecea6184e09a4f2",
+    "windfarm_moe/information_subset.py": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd"
+  },
+  "script_sha256": "84eaa0a7a90f49b37c5af163e85e4ae424d9326718665ee6ea63e654884991bf",
+  "qa_tool_sha256": {
+    "audit_panel_alignment.py": "4ed2d6afe9db45aaf6ca26aeb264cfc251ae92b49ee9fbf117d926e1956acf56",
+    "validate_figure.py": "09694ac0ac4036d4b759e7c9aeb3d4f7a9b525212db50085d2ea0d88b0e49d76",
+    "audit_pdf_text.py": "0b3d3e30ce9ec7191b8ba6dd053226487ab41594297005afcd127acda3b08281",
+    "audit_figure_collisions.py": "4bd020238a9f207c8a67c61d7209cef5959f2995a1d9cd95911d6fa93de7aa36"
+  },
+  "scope": "Frozen-summary rendering only; no fit, inference, calibration, resampling or new interval",
+  "figures": [
+    {
+      "name": "fig1_information_freeze",
+      "csv_rows": 7,
+      "source_script_sha256": "84eaa0a7a90f49b37c5af163e85e4ae424d9326718665ee6ea63e654884991bf",
+      "width_mm": 180,
+      "png_dpi": 600,
+      "pdf_sha256": "2a3162495dfab285f8d2d510444089cdcc0a65148fe983f282ceda93980c082e"
+    },
+    {
+      "name": "fig2_primary_confirmation",
+      "csv_rows": 11,
+      "width_mm": 180,
+      "png_dpi": 600,
+      "pdf_sha256": "0f611b8106e7827c967b26c336bec58bb82eefc1d338ce8a585d430e37cf8dec",
+      "source_script_sha256": "433217440109cd6bdbe1080611b1e4a0ec80aaf8d0afa0bf9aeee940a1d25395"
+    },
+    {
+      "name": "fig3_secondary_minimality",
+      "csv_rows": 30,
+      "width_mm": 180,
+      "png_dpi": 600,
+      "pdf_sha256": "5a9484834d901d6c9ec7568c4c71731d6df5024bbaf2dd67783d4d703bcba1a3",
+      "source_script_sha256": "433217440109cd6bdbe1080611b1e4a0ec80aaf8d0afa0bf9aeee940a1d25395"
+    },
+    {
+      "name": "fig4_identification_boundary",
+      "csv_rows": 58,
+      "width_mm": 180,
+      "png_dpi": 600,
+      "pdf_sha256": "5c2d9ef4ba99172791c87d07c7a6e3c48926b96cef65692ac13d4d84565e1550",
+      "source_script_sha256": "433217440109cd6bdbe1080611b1e4a0ec80aaf8d0afa0bf9aeee940a1d25395"
+    }
+  ],
+  "previous_build_receipt": {
+    "utc": "2026-10-20T10:33:50.573458+00:00",
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "matplotlib": "3.10.9",
+    "numpy": "2.4.6",
+    "host": "bluelee",
+    "source_sha256": {
+      "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json": "f703e64fb7e20843f7daddeb9cc3b0b6d4e95594658560831ba425ac1df7bf72",
+      "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060",
+      "experiments/independent_confirmation_execution_20261019/protocol.json": "27ba6498427ca425978f6674f013862ba272049f778562cb839969cb7f3bbc33",
+      "analyses/independent_confirmation_execution_20261019/history_freeze/freeze.json": "c04710efaa9e57b250906a9626c31e5a83559b4cfd30b6a18df2a489a39c7595",
+      "analyses/independent_confirmation_execution_20261019/unlocked_actual_receipt.json": "9ffbe0ced42ac521a5ab7d13903d4e22ad1074e17c7bfc4233e57d17b349c757",
+      "analyses/independent_confirmation_execution_20261019/derived/secondary_cases.csv": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc",
+      "analyses/claim_revision_recovery_20261019/necessity/necessity.csv": "aeb36ec93b2492fd8e0aaca48a96622848efcd0fa9ef6939d7d33cb2e0297010",
+      "windfarm_moe/independent_confirmation.py": "dd59f461df7535202f9727a3b8472b4e6a0a11edbb1070920ecea6184e09a4f2",
+      "windfarm_moe/information_subset.py": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd"
+    },
+    "script_sha256": "433217440109cd6bdbe1080611b1e4a0ec80aaf8d0afa0bf9aeee940a1d25395",
+    "qa_tool_sha256": {
+      "audit_panel_alignment.py": "4ed2d6afe9db45aaf6ca26aeb264cfc251ae92b49ee9fbf117d926e1956acf56",
+      "validate_figure.py": "09694ac0ac4036d4b759e7c9aeb3d4f7a9b525212db50085d2ea0d88b0e49d76",
+      "audit_pdf_text.py": "0b3d3e30ce9ec7191b8ba6dd053226487ab41594297005afcd127acda3b08281",
+      "audit_figure_collisions.py": "4bd020238a9f207c8a67c61d7209cef5959f2995a1d9cd95911d6fa93de7aa36"
+    },
+    "scope": "Frozen-summary rendering only; no fit, inference, calibration, resampling or new interval",
+    "figures": [
+      {
+        "name": "fig1_information_freeze",
+        "csv_rows": 7,
+        "width_mm": 180,
+        "png_dpi": 600,
+        "pdf_sha256": "6321fa54173774fa92edfdd4359328b0ff5fb69595a153427b1b463481036c77"
+      },
+      {
+        "name": "fig2_primary_confirmation",
+        "csv_rows": 11,
+        "width_mm": 180,
+        "png_dpi": 600,
+        "pdf_sha256": "0f611b8106e7827c967b26c336bec58bb82eefc1d338ce8a585d430e37cf8dec"
+      },
+      {
+        "name": "fig3_secondary_minimality",
+        "csv_rows": 30,
+        "width_mm": 180,
+        "png_dpi": 600,
+        "pdf_sha256": "5a9484834d901d6c9ec7568c4c71731d6df5024bbaf2dd67783d4d703bcba1a3"
+      },
+      {
+        "name": "fig4_identification_boundary",
+        "csv_rows": 58,
+        "width_mm": 180,
+        "png_dpi": 600,
+        "pdf_sha256": "5c2d9ef4ba99172791c87d07c7a6e3c48926b96cef65692ac13d4d84565e1550"
+      }
+    ],
+    "protected_sources_unchanged": true
+  },
+  "selective_revision": [
+    "fig1_information_freeze"
+  ],
+  "protected_sources_unchanged": true
+}

@@ -1,0 +1,88 @@
+ [HPC] Metis commands ready: metis, metis-qstat, metis-gpu, metis-queues, metis-llm
+C:\Users\lidong\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\cuda\__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+=== Starting Matched-Reserve-Budget Frontier Evaluation ===
+Device: cuda:0
+Sample counts: Full=385205, Trans=139653 (36.25%), Steady=245552 (63.75%)
+Loading cached posterior probabilities from e:\�3\artifacts\matched_budget\cached_posterior_probs.npz
+
+--- PHASE 1: Baseline Reproduction & Numerical Closure ---
+[Full Mean] Base PSREI: 13,784,320 | Post PSREI: 14,307,363 | Delta PSREI: +523,043 kWh
+              Base Viol: 8.79% | Post Viol: 9.08% | Delta R: -145,051 kWh | Delta U: +66,809 kWh
+[Transition Mean] Base PSREI: 4,319,319 | Post PSREI: 4,432,058 | Delta PSREI: +112,739 kWh
+              Base Viol: 8.36% | Post Viol: 7.24% | Delta R: +149,241 kWh | Delta U: -3,650 kWh
+[Steady Mean] Base PSREI: 9,465,001 | Post PSREI: 9,875,305 | Delta PSREI: +410,304 kWh
+              Base Viol: 9.03% | Post Viol: 10.13% | Delta R: -294,293 kWh | Delta U: +70,460 kWh
+Saved baseline reproduction to e:\�3\artifacts\matched_budget\baseline_reproduction.csv
+Saved provenance to e:\�3\artifacts\matched_budget\provenance.json
+
+--- PHASE 2: Frozen-Policy Break-Even Analysis ---
+Transition 5-Seed Frozen Policy Delta R: +149,241.3 kWh, Delta U: -3,650.3 kWh
+Algebraic Break-Even Penalty Ratio: rho_break = 40.89
+Saved frozen policy rho sensitivity to e:\�3\artifacts\matched_budget\frozen_policy_rho_sensitivity.csv
+
+--- PHASE 3 & 4: Matched-Reserve-Budget Frontier Construction ---
+
+Processing slice: Transition
+  Common Budget Support for Transition: [1,949,712, 4,767,304] kWh (30 points)
+
+Processing slice: Steady
+  Common Budget Support for Steady: [3,838,103, 8,555,854] kWh (30 points)
+
+Processing slice: Full
+  Common Budget Support for Full: [5,669,875, 13,323,158] kWh (30 points)
+Saved exact matched budget frontier to e:\�3\artifacts\matched_budget\exact_matched_budget_frontier.csv
+Saved validation calibrated frontier to e:\�3\artifacts\matched_budget\validation_calibrated_frontier.csv
+
+--- PHASE 5 & 6: Paired Day-Cluster Bootstrap (B=5000) with Within-Bootstrap Budget Matching ---
+Identified 35 daily clusters (144 steps each) across test set.
+
+Running B=5000 cluster bootstrap for slice: Transition...
+  Completed Seed 201 in 764.7s
+  Completed Seed 202 in 536.7s
+  Completed Seed 203 in 506.6s
+  Completed Seed 204 in 506.6s
+  Completed Seed 205 in 553.5s
+
+Running B=5000 cluster bootstrap for slice: Steady...
+  Completed Seed 201 in 2193.3s
+  Completed Seed 202 in 2216.5s
+  Completed Seed 203 in 1585.5s
+  Completed Seed 204 in 1249.7s
+  Completed Seed 205 in 869.3s
+
+Running B=5000 cluster bootstrap for slice: Full...
+  Completed Seed 201 in 1573.0s
+  Completed Seed 202 in 2179.3s
+  Completed Seed 203 in 2165.4s
+  Completed Seed 204 in 2195.6s
+  Completed Seed 205 in 1979.2s
+Saved bootstrap frontier statistics to e:\�3\artifacts\matched_budget\bootstrap_frontier_statistics.csv
+
+--- PHASE 6: Frontier Summary Metrics (AUC Shortfall & Favorable Support) ---
+[Transition Seed 201] AUC Delta U: -3,099.1 | Fav Support: 60.0% | Sig Fav: 30.0% | Mean Delta U: -3,142.0 kWh
+[Transition Seed 202] AUC Delta U: +4,347.6 | Fav Support: 0.0% | Sig Fav: 0.0% | Mean Delta U: +4,310.2 kWh
+[Transition Seed 203] AUC Delta U: +13,041.4 | Fav Support: 0.0% | Sig Fav: 0.0% | Mean Delta U: +12,907.8 kWh
+[Transition Seed 204] AUC Delta U: +8,741.2 | Fav Support: 0.0% | Sig Fav: 0.0% | Mean Delta U: +8,638.4 kWh
+[Transition Seed 205] AUC Delta U: +3,483.1 | Fav Support: 13.3% | Sig Fav: 0.0% | Mean Delta U: +3,455.4 kWh
+[Steady Seed 201] AUC Delta U: +39,684.2 | Fav Support: 0.0% | Sig Fav: 0.0% | Mean Delta U: +39,451.2 kWh
+[Steady Seed 202] AUC Delta U: -9,427.7 | Fav Support: 100.0% | Sig Fav: 63.3% | Mean Delta U: -9,382.5 kWh
+[Steady Seed 203] AUC Delta U: +46,909.9 | Fav Support: 0.0% | Sig Fav: 0.0% | Mean Delta U: +46,702.0 kWh
+[Steady Seed 204] AUC Delta U: +49,328.2 | Fav Support: 0.0% | Sig Fav: 0.0% | Mean Delta U: +49,122.7 kWh
+[Steady Seed 205] AUC Delta U: +45,844.6 | Fav Support: 0.0% | Sig Fav: 0.0% | Mean Delta U: +45,633.1 kWh
+[Full Seed 201] AUC Delta U: +40,638.6 | Fav Support: 0.0% | Sig Fav: 0.0% | Mean Delta U: +40,305.5 kWh
+[Full Seed 202] AUC Delta U: -5,305.4 | Fav Support: 100.0% | Sig Fav: 0.0% | Mean Delta U: -5,292.1 kWh
+[Full Seed 203] AUC Delta U: +69,915.2 | Fav Support: 0.0% | Sig Fav: 0.0% | Mean Delta U: +69,508.3 kWh
+[Full Seed 204] AUC Delta U: +62,559.6 | Fav Support: 0.0% | Sig Fav: 0.0% | Mean Delta U: +62,211.4 kWh
+[Full Seed 205] AUC Delta U: +52,907.5 | Fav Support: 0.0% | Sig Fav: 0.0% | Mean Delta U: +52,607.3 kWh
+Saved AUC summary to e:\�3\artifacts\matched_budget\frontier_auc_summary.csv
+
+--- PHASE 9: Mechanism Diagnostic (Delta r vs Realized Baseline Shortfall) ---
+Seed 201 Mechanism: Corr(Delta r, U_base) = 0.0264 | Realloc to Shortage: +6.9146 vs No-Shortage: -0.6457
+Seed 202 Mechanism: Corr(Delta r, U_base) = 0.0500 | Realloc to Shortage: +0.4699 vs No-Shortage: -0.0505
+Seed 203 Mechanism: Corr(Delta r, U_base) = -0.0321 | Realloc to Shortage: +1.2675 vs No-Shortage: -0.1148
+Seed 204 Mechanism: Corr(Delta r, U_base) = -0.0067 | Realloc to Shortage: +0.3154 vs No-Shortage: -0.0281
+Seed 205 Mechanism: Corr(Delta r, U_base) = -0.0107 | Realloc to Shortage: +2.4594 vs No-Shortage: -0.1872
+Saved mechanism diagnostic to e:\�3\artifacts\matched_budget\mechanism_reallocation_diagnostic.csv
+
+=== Completed Matched-Budget Frontier Pipeline in 21102.1s ===

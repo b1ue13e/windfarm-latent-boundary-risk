@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-19T08:15:24.288901+00:00",
+  "status": "PLANNING_DELIVERED_CONSISTENCY_CHECKED",
+  "research_execution": false,
+  "metis_access": false,
+  "preregistered": false,
+  "existing_claim_gate": "PASS",
+  "existing_number_gate": "PASS",
+  "gate_scope": "Existing document/claim/number consistency only; no proof of this design or statistical coverage",
+  "files_sha256": {
+    ".gitattributes": "920781736b28385b1c3625f2a8a187763ea8facb06daa3f6bb319bee46182807",
+    "literature_matrix.csv": "f9c42567ad7e1d2eee10102c7518bb47fa2cd822561bc57b2877ecc321e3d1b0",
+    "PLAN.md": "7b4339d89eeb30b0e191dc44726cd8d58bdd3c615abb2ed2a467caf5463a13ff",
+    "search_log.md": "714fa89f6e947f6cdc21ae6d0eb57b79d7fc4d81da34f507945068b9a55c1ad7",
+    "validation/number_consistency/table_tste_number_consistency_audit.tex": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8",
+    "validation/number_consistency/tste_number_consistency_audit.csv": "8e319f47763bb96ddb1b7afed6d471487591c9dd07ac4e903919e8d5913412e4",
+    "validation/number_consistency/tste_number_consistency_audit.json": "820bed00bb81bae9fd211bb97d4558a863d1a2af982926a5346a196570512917",
+    "validation/number_consistency.log": "115ab2b0006922f979e58853cc7d36349451082176046564667bb7169794d729",
+    "validation/planning_checks.json": "c3fcbc85ba9e4e38b1da52ad77c7b49f61c417c56a26bad67c3d60ec234ac6ca",
+    "validation/scientific_claim_gate.log": "fa9dcfaef7b9366fad5d9bbb9da05dbb56a556daa6c446059cb2238411c12594"
+  }
+}

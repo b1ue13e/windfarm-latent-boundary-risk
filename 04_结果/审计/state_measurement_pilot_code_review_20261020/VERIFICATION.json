@@ -1,0 +1,34 @@
+{
+  "status": "COMPLETED_AUDIT_KEEP_QUESTION_REPAIR_PROTOCOL",
+  "new_model_fits": 0,
+  "new_measurements": 0,
+  "frozen_instances_replayed": 12,
+  "seeds_replayed": [
+    201
+  ],
+  "all_replayed_predictions_exact": true,
+  "independent_feature_rows_each_instance": 4096,
+  "original_inference_coordinates_reproduced": 154,
+  "original_draws_reproduced": 20000,
+  "original_B_discrepancy_verified": true,
+  "corrected_B_changes_current_verdict": false,
+  "related_tests_passed": 45,
+  "manuscript_changed": false,
+  "threshold_changed": false,
+  "budget_matched_power_only_control": "NOT_EXECUTED",
+  "scope": "Numerical reproduction and original-bounds reinterpretation only; no new fitting/calibration/confirmation or asserted state-exclusive gain",
+  "files": {
+    "analyze.py": "787c3800c96ed3c87dd9094b961de0fdcd9bf2aa2f087b6fbd27023815387e18",
+    "claim_gate.txt": "f731c371bf68b05afe9d9bdcbb07592374c02410008918c9c6537d51e8430fc3",
+    "findings.json": "eda4f130acc4043f642ac2f435db237d83bef0a562916132d463d5112fa06205",
+    "metis_replay.txt": "f6dff2a7228191d7833894a25ced4a87bc21b5c9eae63bc4a820c6867d3fcfbe",
+    "number_gate\\table_tste_number_consistency_audit.tex": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8",
+    "number_gate\\tste_number_consistency_audit.csv": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15",
+    "number_gate\\tste_number_consistency_audit.json": "8ca8daab447ecb94b1bd9aaaf5e9fcc09b502d870e13d112598740e92e843fd6",
+    "replay_and_magnitude.csv": "597b8b36722d58f28bf80e7fdb11eb5a9a75c68425b11690b0b2a8c44a1d0d2f",
+    "review.json": "7826aae53f3627ae0e58ccf6b9e110845662af183c2bce0c9bc80273753e6c06",
+    "REVIEW.md": "e8b77876eee523f0462a466f219f01b19489873cd6de43550db295da4bd654de",
+    "review.pbs": "0e9f5b2cfa0607909a1ecf337a4f3920a6b9cd009c016e38c90fbc6f7370118a",
+    "scheduler.json": "6f5680e3f7147729f2b3a8008f6eadd4accc77340c2288492c5d00a827785fdf"
+  }
+}

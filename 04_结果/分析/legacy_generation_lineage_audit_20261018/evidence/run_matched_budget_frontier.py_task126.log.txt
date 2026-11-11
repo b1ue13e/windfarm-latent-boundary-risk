@@ -1,0 +1,22 @@
+ [HPC] Metis commands ready: metis, metis-qstat, metis-gpu, metis-queues, metis-llm
+C:\Users\lidong\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\cuda\__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+=== Starting Matched-Reserve-Budget Frontier Evaluation ===
+Device: cuda:0
+Sample counts: Full=385205, Trans=139684 (36.26%), Steady=245521 (63.74%)
+Extracting posterior probabilities across 5 seeds...
+  Extracted probabilities for Seed 201
+  Extracted probabilities for Seed 202
+  Extracted probabilities for Seed 203
+  Extracted probabilities for Seed 204
+  Extracted probabilities for Seed 205
+Saved cached probabilities to e:\�3\artifacts\matched_budget\cached_posterior_probs.npz
+
+--- PHASE 1: Baseline Reproduction & Numerical Closure ---
+Traceback (most recent call last):
+  File "E:\�3\scripts\run_matched_budget_frontier.py", line 737, in <module>
+    main()
+  File "E:\�3\scripts\run_matched_budget_frontier.py", line 285, in main
+    assert c_close_b and c_close_c, f"Accounting identity failure for Seed {seed} on {slice_name}!"
+           ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Accounting identity failure for Seed 201 on Transition!

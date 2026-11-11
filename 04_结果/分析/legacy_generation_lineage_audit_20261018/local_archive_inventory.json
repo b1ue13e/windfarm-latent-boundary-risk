@@ -1,0 +1,2029 @@
+[
+  {
+    "archive": "E:\\论文3\\exp02_metis_payload.tar.gz",
+    "size_bytes": 430589010,
+    "member_count": 56,
+    "selected_members": [
+      "artifacts/fixed_forecast_residuals.npz"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\tste_submission_20260903.zip",
+    "size_bytes": 317489,
+    "member_count": 7,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\tste_submission_20260904.zip",
+    "size_bytes": 320891,
+    "member_count": 7,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\analyses\\e04_c201_exactness_20261018\\original_source_snapshot.zip",
+    "size_bytes": 408804,
+    "member_count": 66,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\analyses\\remote\\J04\\e06_bundle\\evidence\\source_snapshot.zip",
+    "size_bytes": 408804,
+    "member_count": 66,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\archives\\windfarm_derived_artifacts_v1.0.zip",
+    "size_bytes": 195613174,
+    "member_count": 2,
+    "selected_members": [
+      "artifacts/fixed_forecast_residuals.npz",
+      "artifacts/matched_budget/cached_posterior_probs.npz"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\archives\\cloud_exports\\code.zip",
+    "size_bytes": 162008,
+    "member_count": 42,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\archives\\cloud_exports\\paper3_cloud_exports_20260325_000550.tar.gz",
+    "size_bytes": 1831698,
+    "member_count": 26,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\lhb_anchor_intervention_full.tgz",
+    "size_bytes": 11940,
+    "member_count": 6,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\lhb_anchor_stress_guard_full_combined.tgz",
+    "size_bytes": 2551,
+    "member_count": 6,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\lhb_full_5seed_results.tgz",
+    "size_bytes": 22218790,
+    "member_count": 156,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission_freeze_20260923.zip",
+    "size_bytes": 1687926,
+    "member_count": 24,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission_freeze_20260923_pes_compliant.zip",
+    "size_bytes": 634009,
+    "member_count": 20,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\TSTE_SUBMISSION_PACKAGE_20260921.zip",
+    "size_bytes": 1190371,
+    "member_count": 13,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\cache_external_wind\\lofo_caches_windowfix.tar.gz",
+    "size_bytes": 43309818,
+    "member_count": 38,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260529_050945.zip",
+    "size_bytes": 4420955,
+    "member_count": 51,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260529_051538.zip",
+    "size_bytes": 4420956,
+    "member_count": 51,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260529_051727_ADMIN_FILES.zip",
+    "size_bytes": 2993,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260529_051727_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4349842,
+    "member_count": 35,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260529_051727_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10004057,
+    "member_count": 95,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260529_220519_ADMIN_FILES.zip",
+    "size_bytes": 2993,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260529_220519_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4652899,
+    "member_count": 41,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260529_220519_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10312216,
+    "member_count": 99,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_012249_ADMIN_FILES.zip",
+    "size_bytes": 2993,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_012249_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4663238,
+    "member_count": 41,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_012249_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10333406,
+    "member_count": 99,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_012510_ADMIN_FILES.zip",
+    "size_bytes": 3028,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_012510_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4663237,
+    "member_count": 41,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_012510_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10333474,
+    "member_count": 99,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_223234_ADMIN_FILES.zip",
+    "size_bytes": 3076,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_223234_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 3461384,
+    "member_count": 40,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_223234_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 7913421,
+    "member_count": 96,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_224409_ADMIN_FILES.zip",
+    "size_bytes": 3076,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_224409_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4665751,
+    "member_count": 41,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_224409_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10338841,
+    "member_count": 99,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_225043_ADMIN_FILES.zip",
+    "size_bytes": 3076,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_225043_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4663453,
+    "member_count": 41,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260530_225043_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10334100,
+    "member_count": 99,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_121528_ADMIN_FILES.zip",
+    "size_bytes": 3076,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_121528_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4663490,
+    "member_count": 41,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_121528_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10334121,
+    "member_count": 99,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_122726_ADMIN_FILES.zip",
+    "size_bytes": 3076,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_122726_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4663775,
+    "member_count": 41,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_122726_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10334801,
+    "member_count": 99,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_123122_ADMIN_FILES.zip",
+    "size_bytes": 3076,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_123122_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4664284,
+    "member_count": 41,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_123122_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10336133,
+    "member_count": 99,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_123348_ADMIN_FILES.zip",
+    "size_bytes": 3090,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_123348_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4665323,
+    "member_count": 41,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_123348_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10338790,
+    "member_count": 99,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_123650_ADMIN_FILES.zip",
+    "size_bytes": 3090,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_123650_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4667923,
+    "member_count": 41,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260531_123650_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10344148,
+    "member_count": 99,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260602_101545_ADMIN_FILES.zip",
+    "size_bytes": 3090,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260602_101545_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4656752,
+    "member_count": 41,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260602_101545_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10318643,
+    "member_count": 99,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260602_173728_ADMIN_FILES.zip",
+    "size_bytes": 3090,
+    "member_count": 5,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260602_173728_ANONYMOUS_REVIEW_FILES.zip",
+    "size_bytes": 4656506,
+    "member_count": 41,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\eaai_submission\\20260602_173728_FULL_LOCAL_DO_NOT_UPLOAD_AS_BLIND.zip",
+    "size_bytes": 10319242,
+    "member_count": 99,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\external_wind_scada_header_smoke\\data\\penmanshiel\\Penmanshiel_SCADA_2016_WT11-15_3107.zip",
+    "size_bytes": 55917173,
+    "member_count": 10,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_core_recovery_20261015_attempt1\\factorial_aggregate_export.tgz",
+    "size_bytes": 448757,
+    "member_count": 8,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_core_recovery_20261015_attempt1\\original_core242595_failure.tgz",
+    "size_bytes": 434891,
+    "member_count": 12,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_core_recovery_20261015_attempt1\\recovery_source.tgz",
+    "size_bytes": 30749,
+    "member_count": 11,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_core_recovery_20261015_attempt1\\factorial_result_export\\aggregate\\source_snapshot.zip",
+    "size_bytes": 408804,
+    "member_count": 66,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_deployment_20261015_v2\\source.zip",
+    "size_bytes": 12154402,
+    "member_count": 90,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_deployment_20261015_v3\\raw_hash_origin_receipts.zip",
+    "size_bytes": 22,
+    "member_count": 0,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_deployment_20261015_v3\\raw_hash_origin_receipts_attempt2.zip",
+    "size_bytes": 22,
+    "member_count": 0,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_deployment_20261015_v3\\raw_hash_origin_receipts_attempt3.zip",
+    "size_bytes": 22056,
+    "member_count": 4,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_deployment_20261015_v3\\source.zip",
+    "size_bytes": 12154410,
+    "member_count": 90,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_downstream_recovery_20261016_attempt1\\45d137b_unexecuted_deployment.tgz",
+    "size_bytes": 24343,
+    "member_count": 11,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_downstream_recovery_20261016_attempt1\\deployment.tgz",
+    "size_bytes": 24476,
+    "member_count": 11,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_downstream_recovery_20261016_attempt1\\pre_review_unexecuted_deployment.tgz",
+    "size_bytes": 24209,
+    "member_count": 11,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_external_numeric_audit_20261015_attempt1\\failed_exact_audit242736.tgz",
+    "size_bytes": 822276,
+    "member_count": 11,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_factorial_extension_20261015_v2_attempt1\\20261015T111611Z_3bafacfe.tgz",
+    "size_bytes": 129593,
+    "member_count": 149,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_factorial_extension_20261015_v2_attempt1\\extension.zip",
+    "size_bytes": 68318,
+    "member_count": 10,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_followup_20261015\\20261015T102903Z_3bbcd9a1.tgz",
+    "size_bytes": 60537,
+    "member_count": 82,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_followup_20261015\\20261015T103157Z_b302320b.tgz",
+    "size_bytes": 60461,
+    "member_count": 82,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_followup_20261015_2003\\20261015T120259Z_2ebe97af.tgz",
+    "size_bytes": 434671,
+    "member_count": 351,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_followup_20261015_2003\\20261015T121447Z_2c1a8337.tgz",
+    "size_bytes": 469006,
+    "member_count": 390,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_followup_20261016_0804\\20261016T000344Z_2a074c32.tgz",
+    "size_bytes": 1469346,
+    "member_count": 1304,
+    "selected_members": [
+      "20261016T000344Z_2a074c32/files/artifacts/raw_replay_external_models_20261015/execution/matched_transfer/stdout_stderr.log",
+      "20261016T000344Z_2a074c32/files/artifacts/raw_replay_external_models_20261015/execution/deterministic_matched_transfer_v1/stdout_stderr.log",
+      "20261016T000344Z_2a074c32/files/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.evidence",
+      "20261016T000344Z_2a074c32/files/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.evidence/provenance.json",
+      "20261016T000344Z_2a074c32/files/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.evidence/output_manifest.json",
+      "20261016T000344Z_2a074c32/files/artifacts/raw_replay_20261015_v2/execution/fixed_residuals/stdout_stderr.log",
+      "20261016T000344Z_2a074c32/files/artifacts/raw_replay_20261015_v2/execution/run_matched_budget_frontier",
+      "20261016T000344Z_2a074c32/files/artifacts/raw_replay_20261015_v2/execution/run_matched_budget_frontier/stdout_stderr.log",
+      "20261016T000344Z_2a074c32/files/artifacts/raw_replay_20261015_v2/execution/run_matched_budget_frontier/record.json"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_followup_20261016_0804\\20261016T001950Z_27c31733.tgz",
+    "size_bytes": 1581727,
+    "member_count": 1440,
+    "selected_members": [
+      "20261016T001950Z_27c31733/files/artifacts/raw_replay_external_models_20261015/execution/matched_transfer/stdout_stderr.log",
+      "20261016T001950Z_27c31733/files/artifacts/raw_replay_external_models_20261015/execution/deterministic_matched_transfer_v1/stdout_stderr.log",
+      "20261016T001950Z_27c31733/files/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.evidence",
+      "20261016T001950Z_27c31733/files/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.evidence/provenance.json",
+      "20261016T001950Z_27c31733/files/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.evidence/output_manifest.json",
+      "20261016T001950Z_27c31733/files/artifacts/raw_replay_20261015_v2/execution/fixed_residuals/stdout_stderr.log",
+      "20261016T001950Z_27c31733/files/artifacts/raw_replay_20261015_v2/execution/run_matched_budget_frontier",
+      "20261016T001950Z_27c31733/files/artifacts/raw_replay_20261015_v2/execution/run_matched_budget_frontier/stdout_stderr.log",
+      "20261016T001950Z_27c31733/files/artifacts/raw_replay_20261015_v2/execution/run_matched_budget_frontier/record.json"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_followup_20261016_0804\\dense_phase_242629_failure.tgz",
+    "size_bytes": 6889924,
+    "member_count": 19,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_followup_20261016_0804\\failure_242629\\artifacts\\raw_replay_20261015_v2\\dense_phase_scan\\execution_arrays\\source_snapshot.zip",
+    "size_bytes": 408804,
+    "member_count": 66,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015\\20261015T105607Z_729fc1ad.tgz",
+    "size_bytes": 88057,
+    "member_count": 133,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_1951\\20261015T115123Z_c151e104.tgz",
+    "size_bytes": 382433,
+    "member_count": 313,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_1951\\20261015T115841Z_b093a134.tgz",
+    "size_bytes": 412893,
+    "member_count": 347,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2023\\20261015T122311Z_ad0c9ba7.tgz",
+    "size_bytes": 495893,
+    "member_count": 419,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2023\\20261015T122608Z_fd54cc64.tgz",
+    "size_bytes": 503266,
+    "member_count": 442,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2053\\20261015T125311Z_defcc9f9.tgz",
+    "size_bytes": 571784,
+    "member_count": 492,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2053\\20261015T125528Z_bbf9850e.tgz",
+    "size_bytes": 579977,
+    "member_count": 508,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2123\\20261015T132311Z_4e9afa18.tgz",
+    "size_bytes": 622670,
+    "member_count": 533,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2123\\20261015T132639Z_65519edd.tgz",
+    "size_bytes": 629435,
+    "member_count": 540,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2153\\20261015T135310Z_571e7e68.tgz",
+    "size_bytes": 646413,
+    "member_count": 593,
+    "selected_members": [
+      "./files/artifacts/raw_replay_external_models_20261015/execution/matched_transfer/stdout_stderr.log",
+      "./files/artifacts/raw_replay_20261015_v2/execution/fixed_residuals/stdout_stderr.log"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2153\\20261015T140719Z_22e10b8f.tgz",
+    "size_bytes": 717458,
+    "member_count": 734,
+    "selected_members": [
+      "./files/artifacts/raw_replay_external_models_20261015/execution/matched_transfer/stdout_stderr.log",
+      "./files/artifacts/raw_replay_20261015_v2/execution/fixed_residuals/stdout_stderr.log"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2153\\20261015T141933Z_f0b8b124.tgz",
+    "size_bytes": 768233,
+    "member_count": 755,
+    "selected_members": [
+      "./files/artifacts/raw_replay_external_models_20261015/execution/matched_transfer/stdout_stderr.log",
+      "./files/artifacts/raw_replay_20261015_v2/execution/fixed_residuals/stdout_stderr.log"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2153\\20261015T142324Z_4d5e7b85.tgz",
+    "size_bytes": 771050,
+    "member_count": 761,
+    "selected_members": [
+      "./files/artifacts/raw_replay_external_models_20261015/execution/matched_transfer/stdout_stderr.log",
+      "./files/artifacts/raw_replay_20261015_v2/execution/fixed_residuals/stdout_stderr.log"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2232\\20261015T143212Z_4a84e184.tgz",
+    "size_bytes": 771089,
+    "member_count": 761,
+    "selected_members": [
+      "./files/artifacts/raw_replay_external_models_20261015/execution/matched_transfer/stdout_stderr.log",
+      "./files/artifacts/raw_replay_20261015_v2/execution/fixed_residuals/stdout_stderr.log"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2232\\20261015T150018Z_964727de.tgz",
+    "size_bytes": 834895,
+    "member_count": 799,
+    "selected_members": [
+      "./files/artifacts/raw_replay_external_models_20261015/execution/matched_transfer/stdout_stderr.log",
+      "./files/artifacts/raw_replay_20261015_v2/execution/fixed_residuals/stdout_stderr.log"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_heartbeat_20261015_2232\\20261015T154812Z_bdce736a.tgz",
+    "size_bytes": 1242057,
+    "member_count": 1156,
+    "selected_members": [
+      "./files/artifacts/raw_replay_external_models_20261015/execution/matched_transfer/stdout_stderr.log",
+      "./files/artifacts/raw_replay_external_models_20261015/execution/deterministic_matched_transfer_v1/stdout_stderr.log",
+      "./files/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.evidence",
+      "./files/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.evidence/provenance.json",
+      "./files/artifacts/raw_replay_20261015_v2/fixed_forecast_residuals.evidence/output_manifest.json",
+      "./files/artifacts/raw_replay_20261015_v2/execution/fixed_residuals/stdout_stderr.log"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_inference_diagnosis_20261015_attempt1\\inference_diagnosis_attempt1_export.tgz",
+    "size_bytes": 2414415,
+    "member_count": 26,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_inference_diagnosis_20261015_attempt1\\returned\\attempt1\\default\\source_snapshot.zip",
+    "size_bytes": 408804,
+    "member_count": 66,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_inference_diagnosis_20261015_attempt1\\returned\\attempt1\\deterministic\\source_snapshot.zip",
+    "size_bytes": 408804,
+    "member_count": 66,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_parallel_followup_20261015\\20261015T114439Z_c3b61a5e.tgz",
+    "size_bytes": 355750,
+    "member_count": 298,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\metis_queue_fix_20261015\\20261015T104344Z_ca0a9dd6.tgz",
+    "size_bytes": 67899,
+    "member_count": 114,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\raw_replay_20261015_v2\\models\\forecast\\seed202\\source_snapshot.zip",
+    "size_bytes": 837369,
+    "member_count": 203,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\raw_replay_20261015_v2\\models\\forecast\\seed203\\source_snapshot.zip",
+    "size_bytes": 839421,
+    "member_count": 203,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\raw_replay_20261015_v2\\models\\forecast\\seed204\\source_snapshot.zip",
+    "size_bytes": 842462,
+    "member_count": 205,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\raw_replay_external_20261015\\penmanshiel\\source_snapshot.zip",
+    "size_bytes": 835274,
+    "member_count": 202,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\raw_replay_external_models_20261015\\la_haute_borne\\seed201\\source_snapshot.zip",
+    "size_bytes": 835274,
+    "member_count": 202,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\raw_replay_external_models_20261015\\la_haute_borne\\seed202\\source_snapshot.zip",
+    "size_bytes": 839317,
+    "member_count": 203,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\raw_replay_external_models_20261015\\la_haute_borne\\seed203\\source_snapshot.zip",
+    "size_bytes": 841244,
+    "member_count": 204,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\raw_replay_external_models_20261015\\la_haute_borne\\seed204\\source_snapshot.zip",
+    "size_bytes": 842462,
+    "member_count": 205,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\raw_replay_external_models_20261015\\la_haute_borne\\seed205\\source_snapshot.zip",
+    "size_bytes": 845963,
+    "member_count": 206,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\raw_replay_external_retry1_20261015\\penmanshiel\\source_snapshot.zip",
+    "size_bytes": 839423,
+    "member_count": 203,
+    "selected_members": [
+      "scripts/build_fixed_forecast_residuals.py",
+      "scripts/run_matched_budget_frontier.py"
+    ]
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_073456\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1030063,
+    "member_count": 42,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_073456\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 82220,
+    "member_count": 15,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_073456\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 398787,
+    "member_count": 4,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_073606\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1029736,
+    "member_count": 42,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_073606\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 82220,
+    "member_count": 15,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_073606\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 398675,
+    "member_count": 4,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_073707\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1040508,
+    "member_count": 44,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_073707\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 87614,
+    "member_count": 17,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_073707\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 398681,
+    "member_count": 4,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_074321\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1060608,
+    "member_count": 48,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_074321\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 89699,
+    "member_count": 17,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_074321\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 403920,
+    "member_count": 6,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_074450\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1060601,
+    "member_count": 48,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_074450\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 89699,
+    "member_count": 17,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_074450\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 403925,
+    "member_count": 6,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_074910\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1071597,
+    "member_count": 54,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_074910\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 90807,
+    "member_count": 17,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_074910\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 406789,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_075325\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1076684,
+    "member_count": 55,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_075325\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 93286,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_075325\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 406818,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_075433\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1076789,
+    "member_count": 55,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_075433\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 93334,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_075433\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 406821,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_143121\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1103528,
+    "member_count": 62,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_143121\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 102330,
+    "member_count": 22,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_143121\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 409614,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_154023\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1113698,
+    "member_count": 66,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_154023\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 106133,
+    "member_count": 23,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_154023\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 409750,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_164744\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1125306,
+    "member_count": 66,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_164744\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 106426,
+    "member_count": 23,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_164744\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 415205,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_191007\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1279430,
+    "member_count": 83,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_191007\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 168389,
+    "member_count": 29,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_191007\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 417034,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_222229\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1280828,
+    "member_count": 83,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_222229\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 168488,
+    "member_count": 29,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_222229\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 417595,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_230413\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1282208,
+    "member_count": 83,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_230413\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 169076,
+    "member_count": 29,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260628_230413\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 417606,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260629_191246\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1282511,
+    "member_count": 83,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260629_191246\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 169135,
+    "member_count": 29,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260629_191246\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 417627,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260630_185905\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1301355,
+    "member_count": 83,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260630_185905\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 172583,
+    "member_count": 29,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260630_185905\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 422565,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260701_151251\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1300495,
+    "member_count": 83,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260701_151251\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 172572,
+    "member_count": 29,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260701_151251\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 422239,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_110437\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1260432,
+    "member_count": 87,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_110437\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 180854,
+    "member_count": 30,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_110437\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 392053,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_134321\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 2994747,
+    "member_count": 215,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_134321\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 1036952,
+    "member_count": 138,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_134321\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 391183,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_135318\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 930939,
+    "member_count": 79,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_135318\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 392990,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_135545\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1978301,
+    "member_count": 182,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_135545\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 525419,
+    "member_count": 105,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_135545\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 392993,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_145507\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1978461,
+    "member_count": 182,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_145507\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 525440,
+    "member_count": 105,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_145507\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 393028,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_145854\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1978755,
+    "member_count": 182,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_145854\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 525484,
+    "member_count": 105,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_145854\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 393118,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_230829\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1982866,
+    "member_count": 188,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_230829\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 529922,
+    "member_count": 106,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_230829\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 388615,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_231851\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 1991596,
+    "member_count": 203,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_231851\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 531095,
+    "member_count": 106,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_231851\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 381341,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_233035\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 2005289,
+    "member_count": 203,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_233035\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 530607,
+    "member_count": 106,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260702_233035\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 388848,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260703_135601\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 2007050,
+    "member_count": 203,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260703_135601\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 531292,
+    "member_count": 106,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260703_135601\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 388876,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260703_141452\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 4761272,
+    "member_count": 237,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260703_141452\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 1909502,
+    "member_count": 139,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260703_141452\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 388890,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260904_103339\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6076352,
+    "member_count": 260,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260904_103339\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2554531,
+    "member_count": 162,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260904_103339\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 396216,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260904_103543\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6043471,
+    "member_count": 255,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260904_103543\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2538025,
+    "member_count": 157,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260904_103543\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 396216,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_125011\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6193472,
+    "member_count": 260,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_125011\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2556784,
+    "member_count": 162,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_125011\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 450825,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_183941\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6233699,
+    "member_count": 263,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_183941\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2571626,
+    "member_count": 165,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_183941\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 453913,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_184841\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6233717,
+    "member_count": 263,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_184841\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2571626,
+    "member_count": 165,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_184841\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 453923,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_185532\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6238082,
+    "member_count": 263,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_185532\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2572978,
+    "member_count": 165,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_185532\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 454192,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_214212\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6259165,
+    "member_count": 267,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_214212\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2583177,
+    "member_count": 169,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_214212\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 452917,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_231710\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6409216,
+    "member_count": 273,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_231710\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2598982,
+    "member_count": 175,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_231710\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 511187,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_232918\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6417093,
+    "member_count": 274,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_232918\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2602219,
+    "member_count": 176,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260905_232918\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 511780,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260906_032746\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6435728,
+    "member_count": 274,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260906_032746\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2604383,
+    "member_count": 176,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260906_032746\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 517841,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_101005\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6420085,
+    "member_count": 297,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_101005\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2661204,
+    "member_count": 199,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_101005\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 449525,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_101405\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6420239,
+    "member_count": 297,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_101405\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2661288,
+    "member_count": 199,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_101405\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 449517,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_102050\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6420246,
+    "member_count": 297,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_102050\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2661287,
+    "member_count": 199,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_102050\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 449517,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_155445\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6420253,
+    "member_count": 297,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_155445\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2661287,
+    "member_count": 199,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_155445\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 449521,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_160244\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6420643,
+    "member_count": 297,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_160244\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2661300,
+    "member_count": 199,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_160244\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 449703,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_160728\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6420652,
+    "member_count": 297,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_160728\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2661300,
+    "member_count": 199,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_160728\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 449701,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_161004\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6420575,
+    "member_count": 297,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_161004\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2661312,
+    "member_count": 199,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260907_161004\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 449711,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_061233\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6423416,
+    "member_count": 297,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_061233\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2662069,
+    "member_count": 199,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_061233\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 450136,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_061417\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6423417,
+    "member_count": 297,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_061417\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2662083,
+    "member_count": 199,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_061417\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 450128,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_091025\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6424086,
+    "member_count": 297,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_091025\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2662246,
+    "member_count": 199,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_091025\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 450240,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_153427\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6489474,
+    "member_count": 304,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_153427\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2701416,
+    "member_count": 206,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_153427\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 445412,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_153853\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6489852,
+    "member_count": 304,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_153853\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2701626,
+    "member_count": 206,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_153853\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 445414,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_154337\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6489862,
+    "member_count": 304,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_154337\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2701623,
+    "member_count": 206,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_154337\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 445421,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_215812\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6506751,
+    "member_count": 304,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_215812\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2703425,
+    "member_count": 206,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_215812\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 450958,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_234512\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 6507290,
+    "member_count": 304,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_234512\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 2703590,
+    "member_count": 206,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260908_234512\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 451039,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_095342\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 8851937,
+    "member_count": 321,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_095342\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 3213570,
+    "member_count": 223,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_095342\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 1103862,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_095439\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 8852485,
+    "member_count": 321,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_095439\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 3213703,
+    "member_count": 223,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_095439\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 1103997,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_095529\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 8852483,
+    "member_count": 321,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_095529\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 3213703,
+    "member_count": 223,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_095529\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 1103997,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_132906\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 8771081,
+    "member_count": 322,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_132906\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 3209138,
+    "member_count": 224,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_132906\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 1073364,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_154915\\TSTE_FULL_LOCAL_PACKAGE.zip",
+    "size_bytes": 8771951,
+    "member_count": 322,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_154915\\TSTE_SOURCE_FILES.zip",
+    "size_bytes": 3210004,
+    "member_count": 224,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission\\20260912_154915\\TSTE_UPLOAD_FILES.zip",
+    "size_bytes": 1073124,
+    "member_count": 9,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission_package_ready\\IEEE_TSTE_Official_Submission_Package.zip",
+    "size_bytes": 1675125,
+    "member_count": 25,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\artifacts\\tste_submission_package_ready\\03_STANDALONE_LATEX_SOURCE\\IEEE_LaTeX_Source.zip",
+    "size_bytes": 242843,
+    "member_count": 6,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\kelmarsh\\Kelmarsh_SCADA_2016_3082.zip",
+    "size_bytes": 97915553,
+    "member_count": 12,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\kelmarsh\\Kelmarsh_SCADA_2017_3083.zip",
+    "size_bytes": 174604722,
+    "member_count": 12,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\kelmarsh\\Kelmarsh_SCADA_2018_3084.zip",
+    "size_bytes": 262157463,
+    "member_count": 12,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\kelmarsh\\Kelmarsh_SCADA_2019_3085.zip",
+    "size_bytes": 311269947,
+    "member_count": 12,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\kelmarsh\\Kelmarsh_SCADA_2020_3086.zip",
+    "size_bytes": 473677799,
+    "member_count": 12,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\kelmarsh\\Kelmarsh_SCADA_2021_4456.zip",
+    "size_bytes": 467454435,
+    "member_count": 12,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\kelmarsh\\Kelmarsh_SCADA_2022_4457.zip",
+    "size_bytes": 485620228,
+    "member_count": 12,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\kelmarsh\\Kelmarsh_SCADA_2023_5961.zip",
+    "size_bytes": 716099870,
+    "member_count": 12,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\kelmarsh\\Kelmarsh_SCADA_2024_5962.zip",
+    "size_bytes": 704598245,
+    "member_count": 12,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\la_haute_borne\\la-haute-borne-data-2017-2020.zip",
+    "size_bytes": 61916781,
+    "member_count": 1,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2016_WT01-10_3107.zip",
+    "size_bytes": 128926241,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2016_WT11-15_3107.zip",
+    "size_bytes": 55917173,
+    "member_count": 10,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2017_WT01-10_3114.zip",
+    "size_bytes": 273531678,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2017_WT11-15_3115.zip",
+    "size_bytes": 152896438,
+    "member_count": 10,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2018_WT01-10_3113.zip",
+    "size_bytes": 365016408,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2018_WT11-15_3116.zip",
+    "size_bytes": 204798983,
+    "member_count": 10,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2019_WT01-10_3112.zip",
+    "size_bytes": 473518587,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2019_WT11-15_3117.zip",
+    "size_bytes": 265354191,
+    "member_count": 10,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2020_WT01-10_3109.zip",
+    "size_bytes": 694483651,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2020_WT11-15_3118.zip",
+    "size_bytes": 389300869,
+    "member_count": 10,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2021_WT01-10_4460.zip",
+    "size_bytes": 749666360,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2021_WT11-15_4461.zip",
+    "size_bytes": 418617876,
+    "member_count": 10,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2022_WT01-10_4462.zip",
+    "size_bytes": 710776645,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2022_WT11-15_4463.zip",
+    "size_bytes": 396724464,
+    "member_count": 10,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2023_02_WT_01-10_5981.zip",
+    "size_bytes": 63977489,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2023_03_WT_01-10_5982.zip",
+    "size_bytes": 68784330,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2023_Q2_WT_01-10_5977.zip",
+    "size_bytes": 205040452,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2023_Q3 Q4_WT_01-10_5973.zip",
+    "size_bytes": 452196453,
+    "member_count": 18,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2023_WT_11-15_5964.zip",
+    "size_bytes": 633272988,
+    "member_count": 10,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\论文3\\data\\external_wind\\penmanshiel\\Penmanshiel_SCADA_2024_WT_11-15_5966.zip",
+    "size_bytes": 653879317,
+    "member_count": 10,
+    "selected_members": []
+  },
+  {
+    "archive": "E:\\windfarm_reproduction_final\\archives\\windfarm_derived_artifacts_v1.0.zip",
+    "size_bytes": 195613174,
+    "member_count": 2,
+    "selected_members": [
+      "artifacts/fixed_forecast_residuals.npz",
+      "artifacts/matched_budget/cached_posterior_probs.npz"
+    ]
+  }
+]

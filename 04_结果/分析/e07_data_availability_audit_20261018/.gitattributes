@@ -1,0 +1,2 @@
+# Inventory receipts and protocol snapshots must retain their hashed bytes.
+* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

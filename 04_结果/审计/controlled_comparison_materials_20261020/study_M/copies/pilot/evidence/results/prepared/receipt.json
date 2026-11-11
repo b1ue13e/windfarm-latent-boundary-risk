@@ -1,0 +1,54 @@
+{
+  "status": "COMPLETED_DEVELOPMENT",
+  "argv": [
+    "scripts/run_state_measurement_pilot.py",
+    "prepare",
+    "--protocol",
+    "experiments/state_measurement_pilot_20261020/protocol.json",
+    "--base",
+    "/lstr/sahara/minlpml/junyu/state_measurement_pilot_20261020_v2/results",
+    "--output",
+    "/lstr/sahara/minlpml/junyu/state_measurement_pilot_20261020_v2/results/prepared",
+    "--task",
+    "-1"
+  ],
+  "started_utc": "2026-10-20T04:00:08.463743+00:00",
+  "stage": "prepare",
+  "task": -1,
+  "seed": null,
+  "host": "cn21",
+  "platform": "Linux-4.18.0-553.154.1.el8_10.x86_64-x86_64-with-glibc2.28",
+  "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+  "numpy": "2.4.6",
+  "sklearn": "1.9.1",
+  "torch": "2.11.0+cu128",
+  "cpu": "x86_64",
+  "cpu_model": "\t: AMD EPYC 7713 64-Core Processor",
+  "backend": "CPU two threads; no GPU allocation",
+  "pbs_job_id": "244972.cm",
+  "environment": {
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2"
+  },
+  "protocol_sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e",
+  "source_sha256": {
+    "scripts/run_state_measurement_pilot.py": "d806c22dfcb6c96482fb9a268a428cf21045fb872aa26f930315c64929dadb16",
+    "windfarm_moe/state_measurement.py": "d850ab388f1c5b056e9f0a966957cde0e1fe122c82b5a5ace72e31dc134f771c",
+    "scripts/run_information_subset_study.py": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a",
+    "scripts/run_decision_information_development.py": "a5f27587f2548fcc2f9f98fa76affc196c720b29da55c109c0d831cb7fefe039",
+    "windfarm_moe/information_subset.py": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd",
+    "windfarm_moe/decision_information.py": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287",
+    "windfarm_moe/risk_frontier.py": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944",
+    "windfarm_moe/subset_inference.py": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568",
+    "experiments/state_measurement_pilot_20261020/protocol.json": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e"
+  },
+  "input_sha256": {
+    "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/wtbdata_245days.csv": "6cf7613a82c61bb5cf9fcbbf22e3f6c48165fa32021eb6f1905cb2b7af4d7667",
+    "/lstr/sahara/minlpml/junyu/home_migration_20261019_56db6c9f/data/dsh-scratch/decision_information_20261018_5fe47e1/results/prepared/output_manifest.json": "9b4d7f7526ddfafdb40da402577e78cc06af70df55f9015beaab2e98758b72eb",
+    "/lstr/sahara/minlpml/junyu/home_migration_20261019_56db6c9f/data/dsh-scratch/decision_information_20261018_5fe47e1/results/prepared/execution_receipt.json": "4345e72fe33c4bb8a05de79cd74439d75fbee1b065e7c725058cedee8d528361"
+  },
+  "git_commit": "183e32cd80a9d6ead726107b32ea9328423ac19d",
+  "scope": "Already-viewed WTB development; synthetic availability; not field safety, causal or independent confirmation",
+  "finished_utc": "2026-10-20T04:00:17.072899+00:00"
+}

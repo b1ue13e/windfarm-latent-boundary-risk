@@ -1,0 +1,54 @@
+{
+  "candidate_commit": "e1713282645abf86bdda132fe3ee06bd32aabb00",
+  "candidate_plan": "research_audit/wind_energy_full_evidence_reconstruction_plan_20261020/RECONSTRUCTION_PLAN.md",
+  "decision": "NO_GO_CURRENT_THREE_CONTRIBUTION_WIND_ENERGY_RECONSTRUCTION_WITH_EXISTING_EVIDENCE",
+  "judgement_type": "INFERRED_EDITORIAL_SIGNIFICANCE_AND_INVESTMENT_NOT_JOURNAL_DECISION_OR_NUMERICAL_INVALIDITY",
+  "continue_current_full_manuscript_reconstruction": false,
+  "prior_go_recommendation_revised": true,
+  "prior_plan_preserved": true,
+  "whole_project_contribution_judgement": "NOT_REJECTED_OR_REASSESSED_GLOBALLY; prior correction of V2-to-project overgeneralisation retained",
+  "local_comparison_validity": "SUPPORTED_WITH_CURRENT_SCOPE",
+  "claims": {
+    "C1": "VALID_BOUNDED_DIRECT_COST_CONTRAST; EMPIRICAL_EXTENSION_NOT_YET_A_STRONG_CENTRAL_WIND_ENERGY_KNOWLEDGE_CLAIM",
+    "C2": "POSITIVE_AND_NEGATIVE_RECIPE_RESULTS_EXIST; SCORE_SEMANTIC_VALUE_NOT_IDENTIFIED; REAL_PITCH_D_DIAGNOSTIC_MUST_NOT_BE_OMITTED",
+    "C3": "VALID_ACCOUNTING_AND_CALIBRATION_DIAGNOSTIC; NOT_INDEPENDENT_THIRD_NOVELTY_OR_IDENTIFIED_ALLOCATION_INFORMATION"
+  },
+  "evidence_chain": {
+    "within_study": "TWO_INTERNALLY_TRACEABLE_BOUNDED_COMPARISON_CHAINS",
+    "between_study": "COMPLEMENTARY_CHAPTERS_ALLOWED; NO_POOLED_EFFECT_MEDIATION_OR_INDEPENDENT_REPLICATION",
+    "unified_mechanism_required_as_universal_journal_rule": false,
+    "no_new_field_deployment_or_year_requirement_invented": true
+  },
+  "original_route_failure": {
+    "corrected_A_B_C_all_false": true,
+    "does_not_refute_all_components": true,
+    "failure_types": ["qualification not established", "direct adverse interval relative to original severity threshold", "statistical uncertainty across important and low-gain thresholds"],
+    "cost_contrasts_remain_valid": true,
+    "strong_claims_not_established": ["important extra state value under full criteria", "safe power substitution", "all-three-state-endpoint low increment", "state-exclusive allocation"],
+    "thresholds_changed": false
+  },
+  "concrete_repairs": [
+    {"id": "AR03", "required": "Show R true-current-pitch D-B diagnostic in C2 results/figure/matrix", "existing_evidence": "point -.1323805493; span3 [-.2721074245,-.0163337970]; span1 crosses0; span7 negative", "scope": "No stored D-C loss comparison in original504-record interval file"},
+    {"id": "AR04", "required": "Define E as A40 plus one recovered score, not a one-scalar decision head; upstream score still consumes B"},
+    {"id": "AR05", "required": "R42 family is cost inference; R/U/V descriptive rather than risk qualification"},
+    {"id": "AR06", "required": "Unify R main-text versus supplementary placement and avoid independent-weather wording"},
+    {"id": "AR07", "required": "Decompose route false into passed, adverse, unqualified and statistically unresolved predicates"}
+  ],
+  "repairs_alone_close_editorial_concern": false,
+  "literature": {
+    "14_item_scoped_review": true,
+    "single_identical_study_found": false,
+    "absence_of_single_identical_study_proves_sufficient_novelty": false,
+    "SETA_SAFER_final_fulltexts": "NOT_OBTAINED; limits priority exclusion but not sole NO-GO reason",
+    "generic_quality_value_and_conditional_measurement_principles_already_established": true
+  },
+  "role_judgements": {"methods": "GO_FOR_BOUNDED_COMPARATIVE_WRITEUP_WITH_REPAIRS", "novelty": "NO_GO_CURRENT_THREE_CONTRIBUTION_FULL_PAPER", "editorial": "NO_GO_CURRENT_FULL_PAPER_RETAINED_AFTER_D_POSITIVE_DIAGNOSTIC_ADDENDUM"},
+  "decision_by_majority_vote": false,
+  "recommend_new_experiments_or_parameter_or_wording_loop": false,
+  "recommend_automatic_topic_or_venue_switch": false,
+  "changed_plan_or_manuscript_or_v2": false,
+  "changed_original_results_or_thresholds_or_contract": false,
+  "new_training_inference_calibration_resampling_measurements_or_remote": false,
+  "published_or_submitted": false,
+  "disclosure": "Internal non-blind role-separated review; no independent error processes or external editorial certification claimed."
+}

@@ -1,0 +1,26 @@
+---
+title: "Supplementary Information"
+subtitle: "Incremental value of power and blade-pitch information for wind-turbine shortfall decisions"
+author: "Junyu Li and Juntao Du"
+date: ""
+lang: en-GB
+documentclass: article
+fontsize: 10pt
+geometry: margin=22mm
+mainfont: Times New Roman
+mathfont: Cambria Math
+bibliography: references.bib
+csl: scientific-reports-brackets.csl
+link-citations: true
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage{float}
+  - \usepackage{microtype}
+  - \usepackage{caption}
+  - \captionsetup{font=small,labelfont=bf}
+  - \captionsetup[figure]{labelformat=empty}
+  - \floatplacement{figure}{H}
+  - \setlength{\emergencystretch}{4em}
+  - \widowpenalty=10000
+  - \clubpenalty=10000
+---

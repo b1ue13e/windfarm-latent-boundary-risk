@@ -1,0 +1,217 @@
+{
+  "status": "POST_HOC_FINITE_WINDOW_ALGEBRAIC_CHECK_ONLY",
+  "records": {
+    "Original:HGB": {
+      "seeds": [
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "extra_R": [
+        0.2601613262582454,
+        0.19754462716290178,
+        0.14239048973452384,
+        0.5094419085454334,
+        0.3241306806343829
+      ],
+      "observed_U_decrease": [
+        0.029884621043845983,
+        0.02921014662307911,
+        0.012325535281803801,
+        0.03115740701882977,
+        0.026784055214592123
+      ],
+      "baseline_event_rate": [
+        0.08755424115984502,
+        0.09156890600383001,
+        0.08943797670422225,
+        0.08873362341371598,
+        0.0820638593795139
+      ],
+      "nonnegative_extra_budget_feasible": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "uniform_extra_purchase_U_decrease_upper": [
+        0.02277822749967954,
+        0.018088945396241396,
+        0.012735117303779141,
+        0.04520462646403522,
+        0.026599414596166125
+      ],
+      "excess_over_upper": [
+        0.007106393544166444,
+        0.011121201226837713,
+        -0.0004095820219753403,
+        -0.014047219445205449,
+        0.00018464061842599772
+      ],
+      "all_five_finite_window_excesses_positive": false
+    },
+    "Original:MLP": {
+      "seeds": [
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "extra_R": [
+        -1.4731648630698295,
+        2.572621081272157,
+        0.5146907289778149,
+        -0.45341576544369744,
+        -1.032819650519901
+      ],
+      "observed_U_decrease": [
+        -0.11265724691431411,
+        0.16055896974325012,
+        0.0691703844902457,
+        0.024979999899863436,
+        -0.13191062525661246
+      ],
+      "baseline_event_rate": [
+        0.058660865059013786,
+        0.08274289764689415,
+        0.06613922071424104,
+        0.08020394973925526,
+        0.06918744732241511
+      ],
+      "nonnegative_extra_budget_feasible": [
+        false,
+        true,
+        true,
+        false,
+        false
+      ],
+      "uniform_extra_purchase_U_decrease_upper": [
+        null,
+        0.21286612281194423,
+        0.034041243723437316,
+        null,
+        null
+      ],
+      "excess_over_upper": [
+        null,
+        -0.0523071530686941,
+        0.03512914076680839,
+        null,
+        null
+      ],
+      "all_five_finite_window_excesses_positive": false
+    },
+    "Common:HGB": {
+      "seeds": [
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "extra_R": [
+        0.2579586153702138,
+        0.19527476617677308,
+        0.1489071582065229,
+        0.5022933119610435,
+        0.31792040648811337
+      ],
+      "observed_U_decrease": [
+        0.029589449988004085,
+        0.028944730273490177,
+        0.012751438535108961,
+        0.03052863276617146,
+        0.026321650311222272
+      ],
+      "baseline_event_rate": [
+        0.05320473301585316,
+        0.05508549032221557,
+        0.05231126161140546,
+        0.053763152643632975,
+        0.04974550956163315
+      ],
+      "nonnegative_extra_budget_feasible": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "uniform_extra_purchase_U_decrease_upper": [
+        0.013724619259911381,
+        0.010756806242403542,
+        0.00778952130875236,
+        0.027004872002837542,
+        0.015815112620792743
+      ],
+      "excess_over_upper": [
+        0.015864830728092704,
+        0.018187924031086634,
+        0.004961917226356601,
+        0.0035237607633339177,
+        0.01050653769042953
+      ],
+      "all_five_finite_window_excesses_positive": true
+    },
+    "Common:MLP": {
+      "seeds": [
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "extra_R": [
+        -0.9571795577630269,
+        3.369584822326132,
+        0.9396459319274584,
+        -0.5201641903571996,
+        -0.38530462711038993
+      ],
+      "observed_U_decrease": [
+        -0.04533551910551348,
+        0.14385617344140367,
+        0.0735081291583084,
+        0.027692961657571846,
+        -0.08170953643645829
+      ],
+      "baseline_event_rate": [
+        0.04098502244102344,
+        0.05429030077225712,
+        0.0452960219674836,
+        0.056588011400695123,
+        0.04949980492541003
+      ],
+      "nonnegative_extra_budget_feasible": [
+        false,
+        true,
+        true,
+        false,
+        false
+      ],
+      "uniform_extra_purchase_U_decrease_upper": [
+        null,
+        0.18293577348171827,
+        0.04256222277424275,
+        null,
+        null
+      ],
+      "excess_over_upper": [
+        null,
+        -0.039079600040314605,
+        0.03094590638406565,
+        null,
+        null
+      ],
+      "all_five_finite_window_excesses_positive": false
+    }
+  },
+  "scope": "No statistical confirmation, no Bayes information claim, no prediction/calibration refit. Rules out only constant nonnegative additive purchase within each fixed instance's realized average reserve increment in this observed cohort, not adaptive power-only policies.",
+  "new_evaluation_policy_constructed": false,
+  "new_thresholds": false,
+  "primary_frozen_596_coordinate_conclusions_unchanged": true
+}

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "counts": {
+    "segments": 106,
+    "equation": 13,
+    "table": 4,
+    "figure": 4
+  },
+  "english_sha256": "b9e5e417abde1856201e21c6022a994c0601010340b19cc0ee4b4f5f31d17456",
+  "chinese_sha256": "14cdc51df2ad440f8c96eab97c7b450d04437c1599eb4c3c65010280d673352f",
+  "identical_chinese_copies": 3,
+  "protected_files_unchanged": 15,
+  "math_citations_labels_and_figures_preserved": true,
+  "table_numeric_rows_and_order_preserved": true,
+  "source_numerals_preserved": true,
+  "no_missing_source_segment": true,
+  "primary_secondary_and_negative_boundaries_present": true,
+  "scope": "Document synchronization only; no inference or experiment rerun"
+}

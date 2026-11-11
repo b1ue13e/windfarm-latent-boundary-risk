@@ -1,0 +1,12 @@
+{
+  "site": "Hill of Towie",
+  "turbine": 1,
+  "seed": 201,
+  "rule": "P1/HGB",
+  "calibration_q": 0.95,
+  "decision_utc": "2026-01-01T00:00:00Z",
+  "raw_kw": 234.9486916381771,
+  "offset_kw": 23.03161116486629,
+  "reserve_kw": 257.9803028030434,
+  "raw_is_already_nonnegative": true
+}

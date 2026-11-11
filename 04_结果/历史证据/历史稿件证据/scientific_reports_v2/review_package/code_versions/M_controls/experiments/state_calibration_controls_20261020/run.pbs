@@ -1,0 +1,18 @@
+#!/bin/bash
+#PBS -N state_controls
+#PBS -q rqdf
+#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -l walltime=00:15:00
+#PBS -j oe
+set -euo pipefail
+cd "${CONTROLS_ROOT:?required}"
+exec > "${CONTROLS_ROOT}/logs/${STAGE}_${PBS_JOBID}.log" 2>&1
+export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2
+export PYTHONUNBUFFERED=1
+worker="${PBS_ARRAY_INDEX:--1}"
+output="${CONTROLS_ROOT}/results/${STAGE}"
+if [[ "$STAGE" == prepare ]]; then output="${CONTROLS_ROOT}/results/prepared"; fi
+if [[ "$STAGE" == history || "$STAGE" == evaluate ]]; then output="${output}/${worker}"; fi
+exec /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python scripts/run_state_calibration_controls.py "$STAGE" \
+  --protocol experiments/state_calibration_controls_20261020/protocol.json \
+  --base "${CONTROLS_ROOT}/results" --output "$output" --worker "$worker"

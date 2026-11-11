@@ -1,0 +1,40 @@
+{
+  "necessity_counts": {
+    "NO_CERTIFIED_SUFFICIENT_POLICY": 367,
+    "MINIMUM_UNRESOLVED": 53
+  },
+  "original_fit_settings_unchanged": true,
+  "new_models_trained": false,
+  "new_bootstrap": false,
+  "primary_span_epsilon02": {
+    "cases": 28,
+    "identified": 0,
+    "all_cases_have_risk_qualified": true
+  },
+  "descriptive_estimator_comparison": {
+    "mlp_point_cost_higher": 83,
+    "lower": 5,
+    "nonmonotone_curves": {
+      "HGB": 17,
+      "MLP": 15
+    },
+    "scope": "Selected q, fixed recipes, previously viewed development window; no universal estimator or saturation claim"
+  },
+  "source_qualification": {
+    "status": "HISTORICAL_COORDINATE_FUNCTION_QUALIFIED",
+    "shape": [
+      105265,
+      21,
+      4
+    ],
+    "phase_finite_target_counts": {
+      "point_fit": 544177,
+      "policy_fit": 553075,
+      "offset_fit": 548163,
+      "selection": 554408
+    },
+    "test_archive_2025_opened": false,
+    "consumed_value_conflicts": 0,
+    "negative_power_preserved": 505609
+  }
+}

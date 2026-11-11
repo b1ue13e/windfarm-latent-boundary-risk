@@ -1,0 +1,6 @@
+﻿claim,target,rule_binding,acceptance,required_evidence,claim_limit,current_status
+C1,thetaH>0,02_HYPOTHESIS:H,L(thetaH)>0,actual paired frozen actions on qualified new window,hypothesis only in operational composite H; historical-relative net decline and proximity; no physical safety claim; no values computed,NO_DATA
+C2a,Gamma>0,02_HYPOTHESIS:H/L,L(Gamma)>0,same-window frozen domains and paired losses,composite-domain group-mean ordering only; not per-time ranking or component-specific attribution; L need not be path-stable or have strictly positive headroom; not accurate magnitude,NO_DATA
+RISK,both primary recipes full-population risk,01_ESTIMAND:risk,all10 U(V)<=0.1,per-instance full target population and appropriate joint bounds,no conditional-domain or switch safety claim,NO_DATA
+DATA,untouched confirmation identity,03_EVIDENCE_PATH:source,source/window/exposure qualified before unlock,"source manifest, exposure history and frozen historical package",2026 candidate exposure UNKNOWN; ineligible now,BLOCKED
+OLD,R1/R2 status preservation,existing scientific contract,unchanged inputs and stated scope,hash protection and existing gates,no upgrade or new replication claim,READ_ONLY

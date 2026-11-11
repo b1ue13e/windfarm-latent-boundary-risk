@@ -1,0 +1,421 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          1
+        ]
+      ],
+      "date-time": "2026-10-01T09:30:56Z",
+      "timestamp": 1790847056502,
+      "version": "4.1.0"
+    },
+    "reference-count": 38,
+    "publisher": "Wiley",
+    "issue": "5",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2010,
+              12,
+              13
+            ]
+          ],
+          "date-time": "2010-12-13T00:00:00Z",
+          "timestamp": 1292198400000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://onlinelibrary.wiley.com/termsAndConditions#vor"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Wind Energy"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2011,
+          7
+        ]
+      ]
+    },
+    "abstract": "<jats:title>Abstract</jats:title><jats:p>This paper reports a study on the importance of the training criteria for wind power forecasting and calls into question the generally assumed neutrality of the ‘goodness’ of particular forecasts. The study, focused on the Spanish Electricity Market as a representative example, combines different training criteria and different users of the forecasts to compare them in terms of the benefits obtained. In addition to more classical criteria, an information theoretic learning training criterion, called parametric correntropy, is introduced as a means to correct problems detected in other criteria and achieve more satisfactory compromises among conflicting criteria, namely forecasting value and quality. We show that the interests of wind farm owners may lead to a preference for biased forecasts, which may be in conflict with the larger needs of secure operating policies. The ideas and conclusions are supported by results from three real wind farms. Copyright © 2010 John Wiley &amp; Sons, Ltd.</jats:p>",
+    "DOI": "10.1002/we.444",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2010,
+          12,
+          14
+        ]
+      ],
+      "date-time": "2010-12-14T05:09:32Z",
+      "timestamp": 1292303372000
+    },
+    "page": "625-636",
+    "source": "Crossref",
+    "is-referenced-by-count": 53,
+    "title": [
+      "‘Good’ or ‘bad’ wind power forecasts: a relative concept"
+    ],
+    "prefix": "10.1002",
+    "volume": "14",
+    "author": [
+      {
+        "given": "R. J.",
+        "family": "Bessa",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "V.",
+        "family": "Miranda",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "A.",
+        "family": "Botterud",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "J.",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "311",
+    "published-online": {
+      "date-parts": [
+        [
+          2010,
+          12,
+          13
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_2_7_2_2",
+        "unstructured": "MonteiroC BessaR MirandaV BotterudA WangJ ConzelmannG.Wind power forecasting: state‐of‐the‐art2009. Technical report ANL/DIS‐10‐1. Argonne National Laboratory 2009. [Online]. Available:http://www.dis.anl.gov/projects/windpowerforecasting.html. (Accessed 10 October 2010)"
+      },
+      {
+        "key": "e_1_2_7_3_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.rser.2007.01.015"
+      },
+      {
+        "key": "e_1_2_7_4_2",
+        "doi-asserted-by": "crossref",
+        "first-page": "78",
+        "DOI": "10.1109/MPE.2007.906306",
+        "article-title": "Predicting the wind",
+        "volume": "5",
+        "author": "Ernst B",
+        "year": "2007",
+        "journal-title": "IEEE Power & Energy Magazine"
+      },
+      {
+        "key": "e_1_2_7_5_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1260/030952405776234599"
+      },
+      {
+        "key": "e_1_2_7_6_2",
+        "unstructured": "Industry Work Group. Wind power forecasting pilot project—industry work group report. Technical Report 2008. [Online]. Available:http://www.aeso.ca/gridoperations/13825.html. (Accessed 10 October 2010)"
+      },
+      {
+        "key": "e_1_2_7_7_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/1520-0434(1993)008<0281:WIAGFA>2.0.CO;2"
+      },
+      {
+        "key": "e_1_2_7_8_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/1520-0493(1987)115<1330:AGFFFV>2.0.CO;2"
+      },
+      {
+        "key": "e_1_2_7_9_2",
+        "unstructured": "PinsonP.Estimation of the uncertainty in wind power forecasting. PhD Thesis Ecole des Mines de Paris Paris France 2006."
+      },
+      {
+        "key": "e_1_2_7_10_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/1520-0477(1984)065<0126:VOWIAD>2.0.CO;2"
+      },
+      {
+        "key": "e_1_2_7_11_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1260/0309524041210838"
+      },
+      {
+        "key": "e_1_2_7_12_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.enpol.2008.01.027"
+      },
+      {
+        "key": "e_1_2_7_13_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.enpol.2007.03.031"
+      },
+      {
+        "key": "e_1_2_7_14_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2007.901117"
+      },
+      {
+        "key": "e_1_2_7_15_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2005.852148"
+      },
+      {
+        "key": "e_1_2_7_16_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2006.879276"
+      },
+      {
+        "key": "e_1_2_7_17_2",
+        "unstructured": "BourryF JubanJ CostaLM KariniotakisG.Advanced strategies for wind power trading in short‐term electricity markets. InProceeding of the European Wind Energy Conference & Exhibition EWEC 08 Brussels Belgium March 31–April 3 2008."
+      },
+      {
+        "key": "e_1_2_7_18_2",
+        "unstructured": "LinnetU.Tools supporting wind energy trade in deregulated markets. MSc Thesis Technical University of Denmark Lyngby Denmark July2005."
+      },
+      {
+        "key": "e_1_2_7_19_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/for.3980090107"
+      },
+      {
+        "key": "e_1_2_7_20_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.107"
+      },
+      {
+        "key": "e_1_2_7_21_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "BotterudA WangJ BessaR KekoH MirandaV.Risk management and optimal bidding for a wind power producer. InProceedings of the IEEE PES General Meeting 2010 Minneapolis Minnesota USA 2010.",
+        "DOI": "10.1109/PES.2010.5589535"
+      },
+      {
+        "key": "e_1_2_7_22_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "RavnHF.Short term wind power prognosis with different success criteria. InProceedings of International Conference on Probabilistic Methods Applied to Power Systems—PMAPS 2006 Stockholm Sweden June 11–15.",
+        "DOI": "10.1109/PMAPS.2006.360291"
+      },
+      {
+        "key": "e_1_2_7_23_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.tej.2010.03.006"
+      },
+      {
+        "key": "e_1_2_7_24_2",
+        "unstructured": "VerhaegenK MeeusL BelmansR.Development of balancing in the internal electricity market in Europe. InProceedings of the European Wind Energy Conference & Exhibition EWEC 06 Athens Greece 2006."
+      },
+      {
+        "key": "e_1_2_7_25_2",
+        "unstructured": "ReboursY KirschenDS.A survey of definitions and specifications of reserve services. Technical Report University of Manchester Oct 2005."
+      },
+      {
+        "key": "e_1_2_7_26_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2005.846206"
+      },
+      {
+        "key": "e_1_2_7_27_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "MatosMA BessaR.Operating reserve adequacy evaluation using uncertainties of wind power forecast. InProceedings of the IEEE PowerTech Conference Bucharest Romania 2009.",
+        "DOI": "10.1109/PTC.2009.5282039"
+      },
+      {
+        "key": "e_1_2_7_28_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.143"
+      },
+      {
+        "key": "e_1_2_7_29_2",
+        "unstructured": "DohertyR DennyE O'MalleyM.System operation with a significant wind power penetration. InProceedings of IEEE Power Engineering Society General Meeting 2004."
+      },
+      {
+        "key": "e_1_2_7_30_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "IlicMD MakarovY HawkinsD.Operations of electric power systems with high penetration of wind power: risks and possible solutions. InProceedings of IEEE Power Engineering Society General Meeting Tampa Florida USA Jun2007.",
+        "DOI": "10.1109/PES.2007.386237"
+      },
+      {
+        "key": "e_1_2_7_31_2",
+        "unstructured": "UCTE NetWork of experts on Wind Power. Wind power in the UCTE interconnected system. UCTE Position Paper 2004."
+      },
+      {
+        "key": "e_1_2_7_32_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-642-58242-4"
+      },
+      {
+        "key": "e_1_2_7_33_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0004-3702(02)00290-4"
+      },
+      {
+        "key": "e_1_2_7_34_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2009.2030291"
+      },
+      {
+        "key": "e_1_2_7_35_2",
+        "first-page": "265",
+        "volume-title": "Unsupervised Adaptive Filtering",
+        "author": "Principe JC",
+        "year": "2000"
+      },
+      {
+        "key": "e_1_2_7_36_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TNN.2002.1031936"
+      },
+      {
+        "key": "e_1_2_7_37_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSP.2007.896065"
+      },
+      {
+        "key": "e_1_2_7_38_2",
+        "unstructured": "XuJ.Nonlinear signal processing based on reproducing Kernel Hilbert space. PhD Thesis University of Florida Gainesville Florida USA 2007."
+      },
+      {
+        "key": "e_1_2_7_39_2",
+        "unstructured": "BludszuweitH.Reduction of the uncertainty of wind power predictions using energy storage. PhD Thesis Universidad de Zaragoza Spain 2009."
+      }
+    ],
+    "container-title": [
+      "Wind Energy"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Fwe.444",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.444",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          7
+        ]
+      ],
+      "date-time": "2023-10-07T08:00:55Z",
+      "timestamp": 1696665655000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://onlinelibrary.wiley.com/doi/10.1002/we.444"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2010,
+          12,
+          13
+        ]
+      ]
+    },
+    "references-count": 38,
+    "journal-issue": {
+      "issue": "5",
+      "published-print": {
+        "date-parts": [
+          [
+            2011,
+            7
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1002/we.444"
+    ],
+    "URL": "https://doi.org/10.1002/we.444",
+    "archive": [
+      "Portico"
+    ],
+    "relation": {},
+    "ISSN": [
+      "1095-4244",
+      "1099-1824"
+    ],
+    "issn-type": [
+      {
+        "value": "1095-4244",
+        "type": "print"
+      },
+      {
+        "value": "1099-1824",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2010,
+          12,
+          13
+        ]
+      ]
+    }
+  }
+}

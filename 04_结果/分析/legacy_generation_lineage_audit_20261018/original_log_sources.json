@@ -1,0 +1,44 @@
+[
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\0e90f7dd-c8dc-4a00-baca-113e8dfc066e\\.system_generated\\tasks\\task-171.log",
+    "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/build_fixed_forecast_residuals.py_task171.log.txt",
+    "bytes": 2009,
+    "sha256": "56d5d21a09ff052edb8b439b2ea863946f522829a0aaaef4e545767c454b2067"
+  },
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\e2ab7379-d77a-424d-9247-1d5be42d6962\\.system_generated\\tasks\\task-126.log",
+    "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task126.log.txt",
+    "bytes": 1410,
+    "sha256": "7680f806afb6b680c5ee39712ff42fc4bacf236075425cb1f12d58eb41cdcd0a"
+  },
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\e2ab7379-d77a-424d-9247-1d5be42d6962\\.system_generated\\tasks\\task-152.log",
+    "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task152.log.txt",
+    "bytes": 3969,
+    "sha256": "ac1c6aa55f26744b76d608e8b0fa9dc215341f3948b49b4cf483b626b1c4994a"
+  },
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\e2ab7379-d77a-424d-9247-1d5be42d6962\\.system_generated\\tasks\\task-170.log",
+    "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task170.log.txt",
+    "bytes": 2951,
+    "sha256": "5039725bb4043fc6885d59310d7b704da478814477557f60aa6afcbc64a9c50b"
+  },
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\e2ab7379-d77a-424d-9247-1d5be42d6962\\.system_generated\\tasks\\task-188.log",
+    "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task188.log.txt",
+    "bytes": 5065,
+    "sha256": "aaaf532b15db2175c6175a69f263fdf70866a4af5d1a0174468169f2141b8b3b"
+  },
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\e2ab7379-d77a-424d-9247-1d5be42d6962\\.system_generated\\tasks\\task-403.log",
+    "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task403.log.txt",
+    "bytes": 5065,
+    "sha256": "d803e576e669ca16239c48b1ed45a57899a00df27100589a80b4727b06c423cd"
+  },
+  {
+    "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\e2ab7379-d77a-424d-9247-1d5be42d6962\\.system_generated\\tasks\\task-507.log",
+    "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task507.log.txt",
+    "bytes": 5888,
+    "sha256": "b48956d849fe9b8c81274d48e5606adfe603e96cd3ae27041b3d5f7fd102b097"
+  }
+]

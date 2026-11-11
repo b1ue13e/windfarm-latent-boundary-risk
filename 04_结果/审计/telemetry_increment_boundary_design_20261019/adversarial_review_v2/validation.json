@@ -1,0 +1,18 @@
+{
+  "status": "PASS_DOCUMENT_STATIC_CHECKS_ONLY",
+  "triage_counts": {
+    "A_SPEC": 11,
+    "B_MATERIAL": 12
+  },
+  "source_open_items": 23,
+  "all_ids_preserved": true,
+  "review_findings": 11,
+  "protected_files_unchanged": 10,
+  "local_links_checked": 24,
+  "experiments_run": false,
+  "new_data_acquired": false,
+  "manuscript_changed": false,
+  "v2_changed": false,
+  "scientific_gates": "NOT_RERUN: review-only, no scientific milestone claimed; number gate includes resampling",
+  "note": "No coverage, power, new effect or execution-readiness certification."
+}

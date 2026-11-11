@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -N controls_tests
+#PBS -q rqdf
+#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -l walltime=00:05:00
+#PBS -j oe
+set -euo pipefail
+cd "${CONTROLS_ROOT:?required}"
+exec > "${CONTROLS_ROOT}/logs/tests_${PBS_JOBID}.log" 2>&1
+export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2
+exec /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python -m pytest tests/test_state_measurement_controls.py tests/test_state_calibration_controls_runner.py -q

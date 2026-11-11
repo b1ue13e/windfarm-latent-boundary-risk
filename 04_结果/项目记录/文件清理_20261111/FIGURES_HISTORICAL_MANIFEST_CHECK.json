@@ -1,0 +1,396 @@
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "Unchanged source_data/v2/cross_year_daily.csv",
+      "passed": true
+    },
+    {
+      "name": "Unchanged source_data/v2/cross_year_fits.csv",
+      "passed": true
+    },
+    {
+      "name": "Unchanged source_data/v2/cross_year_summary.csv",
+      "passed": true
+    },
+    {
+      "name": "Unchanged source_data/v2/measurement_contrasts.csv",
+      "passed": true
+    },
+    {
+      "name": "Unchanged source_data/v2/measurement_daily.csv",
+      "passed": true
+    },
+    {
+      "name": "Unchanged source_data/v2/measurement_fit.csv",
+      "passed": true
+    },
+    {
+      "name": "Unchanged source_data/v3/decision_example.csv",
+      "passed": true
+    },
+    {
+      "name": "Unchanged source_data/v3/scada_example.csv",
+      "passed": true
+    },
+    {
+      "name": "Unchanged source_data/v4/historical_offsets.csv",
+      "passed": true
+    },
+    {
+      "name": "Unchanged source_data/v4/request_example.json",
+      "passed": true
+    },
+    {
+      "name": "Unchanged source_data/v10/decision_construction.csv",
+      "passed": true
+    },
+    {
+      "name": "Unchanged ../../AGENTS.md",
+      "passed": false
+    },
+    {
+      "name": "Unchanged ../../docs/SCIENTIFIC_CONTRACT.md",
+      "passed": true
+    },
+    {
+      "name": "Unchanged supplementary.tex",
+      "passed": true
+    },
+    {
+      "name": "Unchanged supplementary.pdf",
+      "passed": true
+    },
+    {
+      "name": "Original experiment records unchanged",
+      "passed": true,
+      "files": 45,
+      "changed": []
+    },
+    {
+      "name": "All matched arms and fits retained",
+      "passed": true
+    },
+    {
+      "name": "Matched fit points within plotted range",
+      "passed": true
+    },
+    {
+      "name": "Matched cost accounting",
+      "passed": true
+    },
+    {
+      "name": "All35 matched weather days retained",
+      "passed": true
+    },
+    {
+      "name": "Six stored simultaneous comparisons",
+      "passed": true
+    },
+    {
+      "name": "All144 decision records",
+      "passed": true
+    },
+    {
+      "name": "One-hour target lead",
+      "passed": true
+    },
+    {
+      "name": "Stored raw estimate is nonnegative",
+      "passed": true
+    },
+    {
+      "name": "Stored final request follows correction and second clip",
+      "passed": true
+    },
+    {
+      "name": "Stored uncovered shortfall matches definition",
+      "passed": true
+    },
+    {
+      "name": "Example scatter retains entire observed shortfall range",
+      "passed": true
+    },
+    {
+      "name": "All historical offsets retained",
+      "passed": true
+    },
+    {
+      "name": "All20 cross-year fit points",
+      "passed": true
+    },
+    {
+      "name": "Event and severity points within plotted range",
+      "passed": true
+    },
+    {
+      "name": "Complete cross-year calendars",
+      "passed": true
+    },
+    {
+      "name": "Twelve target-free days remain missing",
+      "passed": true
+    },
+    {
+      "name": "2025 daily colour range retains all valid effects",
+      "passed": true
+    },
+    {
+      "name": "2025 cost-context scatter retains all valid days",
+      "passed": true
+    },
+    {
+      "name": "2026 daily colour range retains all valid effects",
+      "passed": true
+    },
+    {
+      "name": "2026 cost-context scatter retains all valid days",
+      "passed": true
+    },
+    {
+      "name": "2025 P1 C pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2025 P1 R pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2025 P1 U pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2025 P1 V pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2025 WPQ36 C pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2025 WPQ36 R pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2025 WPQ36 U pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2025 WPQ36 V pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2026 P1 C pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2026 P1 R pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2026 P1 U pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2026 P1 V pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2026 WPQ36 C pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2026 WPQ36 R pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2026 WPQ36 U pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "2026 WPQ36 V pooled accounting",
+      "passed": true
+    },
+    {
+      "name": "Cross-year stored cost intervals inside plotted range",
+      "passed": true
+    },
+    {
+      "name": "fig1_architecture three exports",
+      "passed": true
+    },
+    {
+      "name": "fig1_architecture live text and vector geometry",
+      "passed": true
+    },
+    {
+      "name": "fig1_architecture readable final type",
+      "passed": true
+    },
+    {
+      "name": "fig1_architecture physical width",
+      "passed": true
+    },
+    {
+      "name": "fig1_architecture text inside canvas",
+      "passed": true
+    },
+    {
+      "name": "fig1_architecture embedded in main text",
+      "passed": true
+    },
+    {
+      "name": "fig1_architecture no rendered collisions",
+      "passed": true
+    },
+    {
+      "name": "fig1_architecture rendered alignment",
+      "passed": true
+    },
+    {
+      "name": "fig2_decision_example three exports",
+      "passed": true
+    },
+    {
+      "name": "fig2_decision_example live text and vector geometry",
+      "passed": true
+    },
+    {
+      "name": "fig2_decision_example readable final type",
+      "passed": true
+    },
+    {
+      "name": "fig2_decision_example physical width",
+      "passed": true
+    },
+    {
+      "name": "fig2_decision_example text inside canvas",
+      "passed": true
+    },
+    {
+      "name": "fig2_decision_example embedded in main text",
+      "passed": true
+    },
+    {
+      "name": "fig2_decision_example no rendered collisions",
+      "passed": true
+    },
+    {
+      "name": "fig2_decision_example rendered alignment",
+      "passed": true
+    },
+    {
+      "name": "fig3_measurement three exports",
+      "passed": true
+    },
+    {
+      "name": "fig3_measurement live text and vector geometry",
+      "passed": true
+    },
+    {
+      "name": "fig3_measurement readable final type",
+      "passed": true
+    },
+    {
+      "name": "fig3_measurement physical width",
+      "passed": true
+    },
+    {
+      "name": "fig3_measurement text inside canvas",
+      "passed": true
+    },
+    {
+      "name": "fig3_measurement embedded in main text",
+      "passed": true
+    },
+    {
+      "name": "fig3_measurement no rendered collisions",
+      "passed": true
+    },
+    {
+      "name": "fig3_measurement rendered alignment",
+      "passed": true
+    },
+    {
+      "name": "fig4_cross_year three exports",
+      "passed": true
+    },
+    {
+      "name": "fig4_cross_year live text and vector geometry",
+      "passed": true
+    },
+    {
+      "name": "fig4_cross_year readable final type",
+      "passed": true
+    },
+    {
+      "name": "fig4_cross_year physical width",
+      "passed": true
+    },
+    {
+      "name": "fig4_cross_year text inside canvas",
+      "passed": true
+    },
+    {
+      "name": "fig4_cross_year embedded in main text",
+      "passed": true
+    },
+    {
+      "name": "fig4_cross_year no rendered collisions",
+      "passed": true
+    },
+    {
+      "name": "fig4_cross_year rendered alignment",
+      "passed": true
+    },
+    {
+      "name": "fig5_temporal three exports",
+      "passed": true
+    },
+    {
+      "name": "fig5_temporal live text and vector geometry",
+      "passed": true
+    },
+    {
+      "name": "fig5_temporal readable final type",
+      "passed": true
+    },
+    {
+      "name": "fig5_temporal physical width",
+      "passed": true
+    },
+    {
+      "name": "fig5_temporal text inside canvas",
+      "passed": true
+    },
+    {
+      "name": "fig5_temporal embedded in main text",
+      "passed": true
+    },
+    {
+      "name": "fig5_temporal no rendered collisions",
+      "passed": true
+    },
+    {
+      "name": "fig5_temporal rendered alignment",
+      "passed": true
+    },
+    {
+      "name": "Exactly five main figures",
+      "passed": true
+    },
+    {
+      "name": "No obsolete generated-image disclosure",
+      "passed": true
+    },
+    {
+      "name": "Original statistical and safety boundary retained",
+      "passed": true
+    },
+    {
+      "name": "Main PDF within journal page limit",
+      "passed": true
+    }
+  ],
+  "scope": "Figure transcription, complete record coverage, unchanged inputs and typeset integration. No new inference or publication-quality score."
+}

@@ -1,0 +1,872 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          15
+        ]
+      ],
+      "date-time": "2026-10-15T04:23:22Z",
+      "timestamp": 1792038202443,
+      "version": "4.4.0"
+    },
+    "reference-count": 54,
+    "publisher": "Elsevier BV",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              9,
+              1
+            ]
+          ],
+          "date-time": "2025-09-01T00:00:00Z",
+          "timestamp": 1756684800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              9,
+              1
+            ]
+          ],
+          "date-time": "2025-09-01T00:00:00Z",
+          "timestamp": 1756684800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/legal/tdmrep-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              7,
+              26
+            ]
+          ],
+          "date-time": "2025-07-26T00:00:00Z",
+          "timestamp": 1753488000000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100000780",
+        "name": "European Commission",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "1032 17/06/2022"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "1032 17/06/2022"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100000780",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100000780",
+        "name": "European Commission",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "1033 17/06/2022"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "1033 17/06/2022"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100000780",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100000780",
+        "name": "European Commission",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "CN00000023"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "CN00000023"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100000780",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100002855",
+        "name": "Ministry of Science and Technology of the People's Republic of China",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/501100002855",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "elsevier.com",
+        "sciencedirect.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Energy and AI"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2025,
+          9
+        ]
+      ]
+    },
+    "DOI": "10.1016/j.egyai.2025.100573",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2025,
+          8,
+          6
+        ]
+      ],
+      "date-time": "2025-08-06T00:58:49Z",
+      "timestamp": 1754441929000
+    },
+    "page": "100573",
+    "update-policy": "https://doi.org/10.1016/elsevier_cm_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 26,
+    "special_numbering": "C",
+    "title": [
+      "Comparative analysis of conformal prediction techniques and machine learning models for very short-term solar power forecasting"
+    ],
+    "prefix": "10.1016",
+    "volume": "21",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-4951-9431",
+        "authenticated-orcid": false,
+        "given": "Nguyen Binh",
+        "family": "Nam",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Emanuele",
+        "family": "Ogliari",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Sonia",
+        "family": "Leva",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Emilio",
+        "family": "Pafumi",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Davide",
+        "family": "Alberti",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Minh Quan",
+        "family": "Duong",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "78",
+    "reference": [
+      {
+        "key": "10.1016/j.egyai.2025.100573_b1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.apenergy.2021.117834",
+        "article-title": "Machine learning techniques for solar irradiation nowcasting: Cloud type classification forecast through satellite data and imagery",
+        "volume": "305",
+        "author": "Nespoli",
+        "year": "2022",
+        "journal-title": "Appl Energy"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b2",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.asoc.2020.106389",
+        "article-title": "Short-term photovoltaic power generation forecasting based on random forest feature selection and CEEMD: A case study",
+        "volume": "93",
+        "author": "Niu",
+        "year": "2020",
+        "journal-title": "Appl Soft Comput"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b3",
+        "doi-asserted-by": "crossref",
+        "first-page": "172524",
+        "DOI": "10.1109/ACCESS.2020.3024901",
+        "article-title": "Short-term photovoltaic power forecasting using an LSTM neural network and synthetic weather forecast",
+        "volume": "8",
+        "author": "Hossain",
+        "year": "2020",
+        "journal-title": "IEEE Access"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b4",
+        "doi-asserted-by": "crossref",
+        "first-page": "40820",
+        "DOI": "10.1109/ACCESS.2023.3270041",
+        "article-title": "Machine learning based solar photovoltaic power forecasting: A review and comparison",
+        "volume": "11",
+        "author": "Gaboitaolelwe",
+        "year": "2023",
+        "journal-title": "IEEE Access"
+      },
+      {
+        "issue": "12",
+        "key": "10.1016/j.egyai.2025.100573_b5",
+        "doi-asserted-by": "crossref",
+        "first-page": "2732",
+        "DOI": "10.1016/j.renene.2010.04.022",
+        "article-title": "Wind speed forecasting in three different regions of Mexico using a hybrid ARIMA– ANN model",
+        "volume": "35",
+        "author": "Cadenas",
+        "year": "2010",
+        "journal-title": "Renew Energy"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b6",
+        "doi-asserted-by": "crossref",
+        "first-page": "187",
+        "DOI": "10.1007/s42108-023-00254-z",
+        "article-title": "Autoregressive integrated moving average (ARIMA) modeling for wind resource assessment",
+        "volume": "8",
+        "author": "Ashraf",
+        "year": "2024",
+        "journal-title": "Int J Energy Water Resour"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b7",
+        "series-title": "2024 IEEE Canadian conference on electrical and computer engineering",
+        "first-page": "686",
+        "article-title": "Evaluating solar power forecasting robustness: A comparative analysis of xgboost, RNN, KNN, RF, and LSTM with emphasis on lagged steps, sensitivity, and cross-validation techniques",
+        "author": "Kiasari",
+        "year": "2024"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b8",
+        "series-title": "2023 IEEE workshop on power electronics and power quality applications",
+        "first-page": "1",
+        "article-title": "PV power generation forecasting based on xgboost and LSTM models",
+        "author": "Rodriguez-Leguizamon",
+        "year": "2023"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b9",
+        "series-title": "Temporal fusion transformers for interpretable multi-horizon time series forecasting",
+        "author": "Lim",
+        "year": "2020"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b10",
+        "series-title": "Deep transformer models for time series forecasting: The influenza prevalence case",
+        "author": "Wu",
+        "year": "2020"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b11",
+        "series-title": "AAAI",
+        "article-title": "Informer: Beyond efficient transformer for long sequence time-series forecasting",
+        "author": "Zhou",
+        "year": "2021"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b12",
+        "doi-asserted-by": "crossref",
+        "first-page": "125",
+        "DOI": "10.1146/annurev-statistics-062713-085831",
+        "article-title": "Probabilistic forecasting",
+        "volume": "1",
+        "author": "Gneiting",
+        "year": "2014",
+        "journal-title": "Annu Rev Stat Appl"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b13",
+        "series-title": "Forecasting: methods and applications",
+        "author": "Makridakis",
+        "year": "1998"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.egyai.2025.100573_b14",
+        "doi-asserted-by": "crossref",
+        "first-page": "325",
+        "DOI": "10.1109/TSTE.2020.2993524",
+        "article-title": "Probabilistic solar power forecasting using Bayesian model averaging",
+        "volume": "12",
+        "author": "Doubleday",
+        "year": "2021",
+        "journal-title": "IEEE Trans Sustain Energy"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b15",
+        "doi-asserted-by": "crossref",
+        "first-page": "577",
+        "DOI": "10.1016/j.solener.2021.07.063",
+        "article-title": "Bayesian bootstrapping in real-time probabilistic photovoltaic power forecasting",
+        "volume": "225",
+        "author": "Bozorg",
+        "year": "2021",
+        "journal-title": "Sol Energy"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b16",
+        "article-title": "Quantile regression based probabilistic forecasting of renewable energy generation and building electrical load: A state of the art review",
+        "volume": "79",
+        "author": "Xu",
+        "year": "2023",
+        "journal-title": "J Build Eng"
+      },
+      {
+        "issue": "7",
+        "key": "10.1016/j.egyai.2025.100573_b17",
+        "doi-asserted-by": "crossref",
+        "first-page": "9014",
+        "DOI": "10.1109/TNNLS.2022.3217694",
+        "article-title": "Ensemble conformalized quantile regression for probabilistic time series forecasting",
+        "volume": "35",
+        "author": "Jensen",
+        "year": "2024",
+        "journal-title": "IEEE Trans Neural Netw. Learn Syst"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b18",
+        "series-title": "2015 18th international conference on intelligent system application to power systems",
+        "first-page": "1",
+        "article-title": "Prediction intervals for electric load forecast: Evaluation for different profiles",
+        "author": "Almeida",
+        "year": "2015"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b19",
+        "first-page": "6216",
+        "article-title": "Conformal time-series forecasting",
+        "volume": "vol. 34",
+        "author": "Stankeviciute",
+        "year": "2021"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b20",
+        "first-page": "11559",
+        "article-title": "Conformal prediction interval for dynamic time-series",
+        "volume": "vol. 139",
+        "author": "Xu",
+        "year": "2021"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b21",
+        "series-title": "International symposium on conformal and probabilistic prediction with applications",
+        "first-page": "82",
+        "article-title": "Time series prediction with conformal prediction",
+        "author": "Dashevskiy",
+        "year": "2011"
+      },
+      {
+        "issue": "48",
+        "key": "10.1016/j.egyai.2025.100573_b22",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1073/pnas.2107794118",
+        "article-title": "Distributional conformal prediction",
+        "volume": "118",
+        "author": "Chernozhukov",
+        "year": "2021",
+        "journal-title": "Proc Natl Acad Sci"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b23",
+        "first-page": "126",
+        "article-title": "Conformal prediction intervals for solar power forecasting",
+        "volume": "223",
+        "author": "Kath",
+        "year": "2021",
+        "journal-title": "Sol Energy"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b24",
+        "series-title": "IEEE transactions on neural networks and learning systems",
+        "article-title": "Time series forecasting with conformal prediction: A comprehensive analysis",
+        "author": "Chen",
+        "year": "2023"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b25",
+        "series-title": "A gentle introduction to conformal prediction and distribution-free uncertainty quantification",
+        "author": "Angelopoulos",
+        "year": "2022"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b26",
+        "series-title": "Advances in neural information processing systems",
+        "first-page": "32",
+        "article-title": "Conformalized quantile regression",
+        "author": "Romano",
+        "year": "2019"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b27",
+        "series-title": "Advances in neural information processing systems",
+        "first-page": "32",
+        "article-title": "Conformal prediction under covariate shift",
+        "author": "Tibshirani",
+        "year": "2019"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.egyai.2025.100573_b28",
+        "doi-asserted-by": "crossref",
+        "first-page": "486",
+        "DOI": "10.1214/20-AOS1965",
+        "article-title": "Predictive inference with the jackknife+",
+        "volume": "49",
+        "author": "Barber",
+        "year": "2021",
+        "journal-title": "Ann Statist"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b29",
+        "article-title": "Enhancing the reliability of probabilistic PV power forecasts using conformal prediction",
+        "volume": "4",
+        "author": "Renkema",
+        "year": "2024",
+        "journal-title": "Sol Energy Adv"
+      },
+      {
+        "issue": "10",
+        "key": "10.1016/j.egyai.2025.100573_b30",
+        "doi-asserted-by": "crossref",
+        "first-page": "11575",
+        "DOI": "10.1109/TPAMI.2023.3272339",
+        "article-title": "Conformal prediction for time series",
+        "volume": "45",
+        "author": "Xu",
+        "year": "2023",
+        "journal-title": "IEEE Trans Pattern Anal Mach Intell"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b31",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.egyai.2023.100269",
+        "article-title": "Ensemble machine learning greatly improves ERA5 skills for wind energy applications",
+        "volume": "13",
+        "author": "Cavaiola",
+        "year": "2023",
+        "journal-title": "Energy AI"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b32",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.egyai.2022.100214",
+        "article-title": "Data-driven modeling of power generation for a coal power plant under cycling",
+        "volume": "11",
+        "author": "Sharma",
+        "year": "2023",
+        "journal-title": "Energy AI"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b33",
+        "series-title": "2024 IEEE 7th advanced information technology, electronic and automation control conference",
+        "first-page": "1345",
+        "article-title": "Photovoltaic power forecasting model based on random forest and BiLSTM neural network",
+        "volume": "vol. 7",
+        "author": "Li",
+        "year": "2024"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b34",
+        "first-page": "1063",
+        "article-title": "Analysis of a random forests model",
+        "volume": "13",
+        "author": "Biau",
+        "year": "2012",
+        "journal-title": "J Mach Learn Res"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b35",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.3389/fenrg.2023.1195418",
+        "article-title": "Editorial: recent advances in renewable energy automation and energy forecasting",
+        "volume": "11",
+        "author": "Sahoo",
+        "year": "2023",
+        "journal-title": "Front. Energy Res."
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.egyai.2025.100573_b36",
+        "article-title": "Hyperparameters and tuning strategies for random forest",
+        "volume": "9",
+        "author": "Probst",
+        "year": "2019",
+        "journal-title": "WIREs Data Min Knowl Discov"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b37",
+        "doi-asserted-by": "crossref",
+        "first-page": "294",
+        "DOI": "10.1007/s12559-018-9615-4",
+        "article-title": "Mining big data with random forests",
+        "volume": "11",
+        "author": "Lulli",
+        "year": "2019",
+        "journal-title": "Cogn Comput"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b38",
+        "doi-asserted-by": "crossref",
+        "first-page": "28",
+        "DOI": "10.1016/j.bdr.2017.07.003",
+        "article-title": "Random forests for big data",
+        "volume": "9",
+        "author": "Genuer",
+        "year": "2017",
+        "journal-title": "Big Data Res"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.egyai.2025.100573_b39",
+        "doi-asserted-by": "crossref",
+        "first-page": "166",
+        "DOI": "10.1177/0962280220946080",
+        "article-title": "Random forests for high-dimensional longitudinal data",
+        "volume": "30",
+        "author": "Capitaine",
+        "year": "2021",
+        "journal-title": "Stat Methods Med Res"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b40",
+        "series-title": "Proceedings of the 22nd ACM SIGKDD international conference on knowledge discovery and data mining",
+        "first-page": "785",
+        "article-title": "XGBoost: A scalable tree boosting system",
+        "author": "Chen",
+        "year": "2016"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b41",
+        "series-title": "Tree boosting with xGBoost - why does xGBoost win every machine learning competition?",
+        "author": "Nielsen",
+        "year": "2016"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b42",
+        "series-title": "XGBoost: Extreme gradient boosting, R package version 0",
+        "author": "Chen",
+        "year": "2015"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.egyai.2025.100573_b43",
+        "doi-asserted-by": "crossref",
+        "first-page": "1937",
+        "DOI": "10.1007/s10462-020-09896-5",
+        "article-title": "A comparative analysis of gradient boosting algorithms",
+        "volume": "54",
+        "author": "Bentéjac",
+        "year": "2021",
+        "journal-title": "Artif Intell Rev"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b44",
+        "series-title": "2019 IEEE international conference on healthcare informatics",
+        "first-page": "1",
+        "article-title": "Xgboost imputation for time series data",
+        "author": "Zhang",
+        "year": "2019"
+      },
+      {
+        "issue": "8",
+        "key": "10.1016/j.egyai.2025.100573_b45",
+        "doi-asserted-by": "crossref",
+        "first-page": "1735",
+        "DOI": "10.1162/neco.1997.9.8.1735",
+        "article-title": "Long short-term memory",
+        "volume": "9",
+        "author": "Hochreiter",
+        "year": "1997",
+        "journal-title": "Neural Comput"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b46",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.egyai.2023.100278",
+        "article-title": "Long short-term memory deep learning model for predicting the dynamic performance of automotive PEMFC system",
+        "volume": "14",
+        "author": "Wang",
+        "year": "2023",
+        "journal-title": "Energy AI"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b47",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.egyai.2024.100398",
+        "article-title": "Deep learning from three-dimensional lithium-ion battery multiphysics model part II: Convolutional neural network and long short-term memory integration",
+        "volume": "17",
+        "author": "Pang",
+        "year": "2024",
+        "journal-title": "Energy AI"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b48",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.jclepro.2019.119476",
+        "article-title": "Long short-term memory recurrent neural network for modeling temporal patterns in long-term power forecasting for solar PV facilities: Case study of South Korea",
+        "volume": "250",
+        "author": "Jung",
+        "year": "2020",
+        "journal-title": "J Clean Prod"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b49",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.renene.2023.118997",
+        "article-title": "Short-term photovoltaic power forecasting using meta-learning and numerical weather prediction independent long short-term memory models",
+        "volume": "216",
+        "author": "Sarmas",
+        "year": "2023",
+        "journal-title": "Renew Energy"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b50",
+        "series-title": "Advances in neural information processing systems",
+        "first-page": "30",
+        "article-title": "Attention is all you need",
+        "author": "Vaswani",
+        "year": "2017"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b51",
+        "first-page": "388",
+        "article-title": "Conformal prediction with neural networks",
+        "volume": "vol. 2",
+        "author": "Papadopoulos",
+        "year": "2007"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b52",
+        "series-title": "Algorithmic learning in a random world",
+        "author": "Vovk",
+        "year": "2005"
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b53",
+        "unstructured": "Kato Y, Tax DMJ, Loog M. Inductive Conformal Prediction under Data Scarcity: Exploring the Impacts of Nonconformity Measures. arXiv preprint arXiv:2024."
+      },
+      {
+        "key": "10.1016/j.egyai.2025.100573_b54",
+        "series-title": "Proceedings of the 34th international conference on neural information processing systems",
+        "first-page": "12",
+        "article-title": "Predictive inference is free with the jackknife+-after-bootstrap",
+        "author": "Kim",
+        "year": "2020"
+      }
+    ],
+    "container-title": [
+      "Energy and AI"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S2666546825001053?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S2666546825001053?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          12,
+          12
+        ]
+      ],
+      "date-time": "2025-12-12T08:28:22Z",
+      "timestamp": 1765528102000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S2666546825001053"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          9
+        ]
+      ]
+    },
+    "references-count": 54,
+    "alternative-id": [
+      "S2666546825001053"
+    ],
+    "URL": "https://doi.org/10.1016/j.egyai.2025.100573",
+    "relation": {
+      "is-referenced-by": [
+        {
+          "id-type": "doi",
+          "id": "10.1038/s41598-025-23661-0",
+          "asserted-by": "object"
+        }
+      ]
+    },
+    "ISSN": [
+      "2666-5468"
+    ],
+    "issn-type": [
+      {
+        "value": "2666-5468",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          9
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "Elsevier",
+        "name": "publisher",
+        "label": "This article is maintained by"
+      },
+      {
+        "value": "Comparative analysis of conformal prediction techniques and machine learning models for very short-term solar power forecasting",
+        "name": "articletitle",
+        "label": "Article Title"
+      },
+      {
+        "value": "Energy and AI",
+        "name": "journaltitle",
+        "label": "Journal Title"
+      },
+      {
+        "value": "https://doi.org/10.1016/j.egyai.2025.100573",
+        "name": "articlelink",
+        "label": "CrossRef DOI link to publisher maintained version"
+      },
+      {
+        "value": "article",
+        "name": "content_type",
+        "label": "Content Type"
+      },
+      {
+        "value": "© 2025 The Authors. Published by Elsevier Ltd.",
+        "name": "copyright",
+        "label": "Copyright"
+      }
+    ],
+    "article-number": "100573"
+  }
+}

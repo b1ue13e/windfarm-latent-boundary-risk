@@ -1,0 +1,61 @@
+{
+  "status": "PASS_MATERIAL_IDENTITY_FIELD_MAPPING_AND_PRESERVATION",
+  "created_utc": "2026-10-20T14:58:02.675720+00:00",
+  "protected_files": 1871,
+  "changed_protected_files": [],
+  "original_small_copies_verified": 135,
+  "recovered_files": 403,
+  "recovered_bytes": 1948178493,
+  "array_headers": 3548,
+  "display_csv_rows": 345,
+  "claim_display_responsibilities": 12,
+  "gap_responsibilities": 17,
+  "csv_row_counts": {
+    "CLAIM_EVIDENCE_DISPLAY.csv": 12,
+    "crosscheck/DISPLAY_REQUIREMENTS.csv": 12,
+    "crosscheck/GAPS_DELIVERY.csv": 12,
+    "GAPS_MASTER.csv": 17,
+    "RECOVERED_FILES.csv": 403,
+    "SOURCE_INDEX.csv": 135,
+    "study_M/ASSETS_M.csv": 1385,
+    "study_M/CLAIMS_M.csv": 226,
+    "study_M/display_M_cost.csv": 30,
+    "study_M/display_M_decomposition.csv": 104,
+    "study_M/display_M_programs.csv": 84,
+    "study_M/display_M_routes.csv": 4,
+    "study_M/ENVIRONMENT_INDEX_M.csv": 70,
+    "study_M/GAPS_M.csv": 12,
+    "study_M/REMOTE_MATERIALS_M.csv": 356,
+    "study_R/ASSETS_R.csv": 777,
+    "study_R/CLAIMS_R.csv": 12,
+    "study_R/display_R_cost.csv": 108,
+    "study_R/display_R_mse_per_fit.csv": 15,
+    "study_R/GAPS_R.csv": 10,
+    "TRAINING_INDEX_ALIASES_M.csv": 70
+  },
+  "saved_original_action_pairs_equal": 60,
+  "mask_identity_audit": "R current-pitch mask differs from future-P decision mask in all five fixed fits; R seed201 shared F/shortfall/clock equal M prepared, primary masks differ",
+  "raw_measurement_csv_downloaded": false,
+  "new_model_inference_fit_calibration_outcome_evaluation_or_bootstrap": false,
+  "model_weights_deserialized": false,
+  "paper_V2_thresholds_contract_and_original_results_changed": false,
+  "original_scientific_gate": "PASS in normal installed runtime after no-site dependency failure; gate rules unchanged",
+  "cached_number_gate": {
+    "checks": 77,
+    "failed": 0,
+    "resampling": false
+  },
+  "new_package_validates": "File and saved-field/identity traceability only; not fresh statistical coverage or model-execution certification",
+  "preexisting_tracked_changes": [
+    " M AGENTS.md",
+    " M artifacts/tste_number_consistency_audit/tste_number_consistency_audit.csv"
+  ],
+  "publicly_published_or_submitted": false,
+  "scope_limits": [
+    "R action/model recovery covers primary five pitch-withheld fits, with all30 daily blocks; not all R condition action files",
+    "Original bootstrap draws not persisted; stored hash/seed/code not matrix possession",
+    "No new D-C comparison or unique semantic/equal-budget identification",
+    "No runtime-container or full retraining/inference replay",
+    "Long-term public repository and author code/derived-material license not assigned"
+  ]
+}

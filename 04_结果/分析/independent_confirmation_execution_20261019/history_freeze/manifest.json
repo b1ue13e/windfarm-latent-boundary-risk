@@ -1,0 +1,18 @@
+{
+  "bounds.json": {
+    "bytes": 7076648,
+    "sha256": "9da74aab5654ff5b8eeb7636834d4914c01adddc467bfd7274a3280e7a0a6a0b"
+  },
+  "choices.json": {
+    "bytes": 118825,
+    "sha256": "358e0884ea36c86f98518a3f4ba5b3902716c60b27c476a93536203f689ada29"
+  },
+  "freeze.json": {
+    "bytes": 103071,
+    "sha256": "c04710efaa9e57b250906a9626c31e5a83559b4cfd30b6a18df2a489a39c7595"
+  },
+  "receipt.json": {
+    "bytes": 121058,
+    "sha256": "bdbc08b4d2dda2feaef729eceb4c94e51c41034fdb4c630f2fe90aee62538164"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "review_target": "Previous-chat recommendation: prioritize Q1; use Q2 as inference support; Q3 only for engineering-benefit claims",
+  "stage": "AUDIT / judgement only",
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "A predeclared frozen P-dynamic plus W/Q recipe has positive conditional paired-loss increment relative to its matched P-dynamic recipe in a specified domain",
+      "type": "conditional_program_performance",
+      "status": "UNTESTED"
+    },
+    {
+      "id": "C2",
+      "claim": "A rule using information available before extra W/Q can predict specified conditional-gain differences in a new untouched time window",
+      "type": "prospective_prediction",
+      "status": "UNTESTED"
+    },
+    {
+      "id": "C3_optional",
+      "claim": "The proposed rule adds predictive ability beyond a declared age-only rule",
+      "type": "incremental_prediction",
+      "status": "UNTESTED_IF_CLAIMED"
+    },
+    {
+      "id": "OUT1",
+      "claim": "Bayes information value or sensor causal necessity",
+      "status": "OUT_OF_CURRENT_SCOPE"
+    },
+    {
+      "id": "OUT2",
+      "claim": "Safe online switching, real acquisition savings or deployment net benefit",
+      "status": "OUT_OF_CURRENT_SCOPE"
+    },
+    {
+      "id": "OUT3",
+      "claim": "Finite-family minimum or universal cross-site law",
+      "status": "OUT_OF_CURRENT_SCOPE"
+    }
+  ],
+  "old_results": "R1 q0.95 fixed-reference confirmation and R2 q0.925 secondary finite-family minimum retain their prior declared scope",
+  "nonexecution": {
+    "model_runs": false,
+    "new_resampling": false,
+    "data_collection": false,
+    "remote_access": false,
+    "manuscript_edits": false,
+    "project_resumption": false
+  }
+}

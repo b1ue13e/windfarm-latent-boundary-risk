@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#PBS -N decision_info
+#PBS -q rqdf
+#PBS -l select=1:ncpus=2:mem=48gb
+#PBS -l walltime=04:00:00
+#PBS -j oe
+set -euo pipefail
+cd "${STUDY_ROOT:?required}"
+export OMP_NUM_THREADS=2
+export MKL_NUM_THREADS=2
+export OPENBLAS_NUM_THREADS=2
+export PYTHONUNBUFFERED=1
+PY=/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python
+PROTOCOL=experiments/decision_information_development_20261018/protocol.json
+RUNNER=scripts/run_decision_information_development.py
+echo "PBS_JOBID=$PBS_JOBID stage=${STUDY_STAGE:?required}"
+date -u
+hostname
+case "$STUDY_STAGE" in
+  prepare)
+    "$PY" -m pytest tests/test_decision_information.py -q
+    "$PY" -u "$RUNNER" prepare --protocol "$PROTOCOL" --output results/prepared --raw-csv /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/wtbdata_245days.csv --threads 2
+    ;;
+  run)
+    "$PY" -u "$RUNNER" run --protocol "$PROTOCOL" --prepared results/prepared --output "results/runs/seed${STUDY_SEED:?required}/${STUDY_CONDITION:?required}" --seed "$STUDY_SEED" --condition "$STUDY_CONDITION" --threads 2
+    ;;
+  aggregate)
+    "$PY" -u "$RUNNER" aggregate --protocol "$PROTOCOL" --runs results/runs --output results/aggregate --threads 2
+    ;;
+  *) echo "Unknown stage" >&2; exit 2 ;;
+esac

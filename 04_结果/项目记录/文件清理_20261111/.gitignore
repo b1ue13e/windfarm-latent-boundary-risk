@@ -1,0 +1,7 @@
+tracked_before.txt
+status*.txt
+staged*.txt
+git_paths.bin
+plan.json
+build_validation/
+git_*.txt

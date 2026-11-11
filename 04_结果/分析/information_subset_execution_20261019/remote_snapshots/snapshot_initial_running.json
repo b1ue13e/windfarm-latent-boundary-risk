@@ -1,0 +1,71 @@
+{
+  "observed_utc": "2026-10-19T02:20:42.974588+00:00",
+  "study_root": "/lstr/sahara/minlpml/junyu/information_subset_20261019_18c9efc3_lustre",
+  "post_root": "/lstr/sahara/minlpml/junyu/information_subset_post_20261019_7ade6743",
+  "data_root": "/lstr/sahara/minlpml/junyu/hill_of_towie_confirmation_20261019_18c9efc3_lustre",
+  "deployment": {
+    "root": "/lstr/sahara/minlpml/junyu/information_subset_20261019_18c9efc3_lustre",
+    "preflight": "244678.cm",
+    "smokes": [
+      "244679.cm",
+      "244680.cm"
+    ],
+    "historical_array": "244681[].cm",
+    "choose": "244682.cm",
+    "evaluation_array": "244683[].cm",
+    "aggregate": "244684.cm",
+    "data_pid": 2939932,
+    "data_root": "/lstr/sahara/minlpml/junyu/hill_of_towie_confirmation_20261019_18c9efc3_lustre",
+    "wrapper_sha256": "7c4e25f1917824eeda0faac837a73155d0e7f4f6a64da286baa39312aeb058df",
+    "source_archive_sha256": "9b0ba9e28c8e2583ef7be9cba2eaeb709625c5143f7271f8ee872f041f62c9d5",
+    "reason": "NFS home write quota error; numerical source/config unchanged; previous failures preserved"
+  },
+  "post_chain": {
+    "post_root": "/lstr/sahara/minlpml/junyu/information_subset_post_20261019_7ade6743",
+    "post_source_sha256": "ae70e75713f3ad3008ca2cc6ffe36e6c1b972997000ffdc4e393a38bb1bde652",
+    "audit_job": "244685.cm",
+    "aggregate_job": "244684.cm",
+    "report_and_export_job": "244686.cm",
+    "qualification_dependency_pid": 2978184,
+    "qualification_root": "/lstr/sahara/minlpml/junyu/information_subset_post_20261019_7ade6743/experiments/independent_confirmation_20261019",
+    "qualification_data_root": "/lstr/sahara/minlpml/junyu/hill_of_towie_confirmation_20261019_18c9efc3_lustre",
+    "sealed_2025_opened": false
+  },
+  "preflight": "................                                                         [100%]\n16 passed in 9.56s\n",
+  "smoke_hgb": "FIT_COMPLETE 0 {'condition': 'pitch_withheld', 'seed': 201, 'subset': 'Common', 'estimator': 'HGB', 'budgets': [10000, 40000, 120000, 360000]} 10000 2.3256234978325665\nFIT_COMPLETE 0 {'condition': 'pitch_withheld', 'seed': 201, 'subset': 'Common', 'estimator': 'HGB', 'budgets': [10000, 40000, 120000, 360000]} 40000 2.420202548149973\nFIT_COMPLETE 0 {'condition': 'pitch_withheld', 'seed': 201, 'subset': 'Common', 'estimator': 'HGB', 'budgets': [10000, 40000, 120000, 360000]} 120000 2.7588909519836307\nFIT_COMPLETE 0 {'condition': 'pitch_withheld', 'seed': 201, 'subset': 'Common', 'estimator': 'HGB', 'budgets': [10000, 40000, 120000, 360000]} 360000 3.965447444934398\n",
+  "smoke_mlp": "FIT_COMPLETE 43 {'condition': 'pitch_withheld', 'seed': 201, 'subset': 'WPQ36', 'estimator': 'MLP', 'budgets': [10000, 40000, 120000, 360000]} 10000 4.390190341044217\nFIT_COMPLETE 43 {'condition': 'pitch_withheld', 'seed': 201, 'subset': 'WPQ36', 'estimator': 'MLP', 'budgets': [10000, 40000, 120000, 360000]} 40000 8.980859763920307\nFIT_COMPLETE 43 {'condition': 'pitch_withheld', 'seed': 201, 'subset': 'WPQ36', 'estimator': 'MLP', 'budgets': [10000, 40000, 120000, 360000]} 120000 27.043694742023945\nFIT_COMPLETE 43 {'condition': 'pitch_withheld', 'seed': 201, 'subset': 'WPQ36', 'estimator': 'MLP', 'budgets': [10000, 40000, 120000, 360000]} 360000 84.72994553530589\n",
+  "qstat": "\ncm: \n                                                            Req'd  Req'd   Elap\nJob ID          Username Queue    Jobname    SessID NDS TSK Memory Time  S Time\n--------------- -------- -------- ---------- ------ --- --- ------ ----- - -----\n244681[].cm     junyu    medium   info_subs*    --    1   2   24gb 02:00 B   -- \n244682.cm       junyu    medium   info_subs*    --    1   2   24gb 02:00 H   -- \n244683[].cm     junyu    medium   info_subs*    --    1   2   24gb 02:00 H   -- \n244684.cm       junyu    medium   info_subs*    --    1   2   24gb 02:00 H   -- \n244685.cm       junyu    medium   audit.pbs     --    1   2    8gb 02:00 H   -- \n244686.cm       junyu    medium   report.pbs    --    1   2    8gb 02:00 H   -- \n",
+  "historical_manifests_present": 117,
+  "data_files": [
+    {
+      "name": "2024.zip.part",
+      "bytes": 620756992
+    },
+    {
+      "name": "receipt_2023.json",
+      "bytes": 409
+    },
+    {
+      "name": "2023.zip",
+      "bytes": 1512000259
+    },
+    {
+      "name": "start_receipt.json",
+      "bytes": 1195
+    }
+  ],
+  "acquisition_receipts": {
+    "receipt_2023.json": {
+      "year": 2023,
+      "role": "train",
+      "file": "/lstr/sahara/minlpml/junyu/hill_of_towie_confirmation_20261019_18c9efc3_lustre/2023.zip",
+      "bytes": 1512000259,
+      "official_md5": "45eceb1855af89cf4dc215f2ab97eda1",
+      "sha256": "e65f7acd65664584e5b72e4ad7ccd4c0f0af4ad68f618b8cf0b4e5c1f4a69521",
+      "status": "OPAQUE_ARCHIVE_MD5_VERIFIED_CONTENT_UNOPENED",
+      "finished_utc": "2026-10-19T02:17:45.696164+00:00"
+    }
+  },
+  "qualification_job": null,
+  "old_failure_qstat": "Job Id: 244673.cm\n    Job_Name = info_subset\n    Job_Owner = junyu@metis.head.cm.local\n    resources_used.cpupercent = 130\n    resources_used.cput = 00:04:14\n    resources_used.mem = 2313644kb\n    resources_used.ncpus = 2\n    resources_used.vmem = 11556668kb\n    resources_used.walltime = 00:02:15\n    job_state = F\n    queue = medium\n    server = cm\n    Checkpoint = u\n    ctime = Sun Oct 18 21:04:06 2026\n    depend = beforeok:244674[].cm@cm\n    Error_Path = metis.head.cm.local:/nfs/ihfs/home_metis/junyu/info_subset.e24\n\t4673\n    exec_host = cn26/0*2\n    exec_vnode = (cn26:ncpus=2:mem=25165824kb)\n    Hold_Types = n\n    Join_Path = oe\n    Keep_Files = n\n    Mail_Points = a\n    mtime = Sun Oct 18 21:06:55 2026\n    Output_Path = metis.niu.edu:/nfs/ihfs/home_metis/junyu/dsh-scratch/informat\n\tion_subset_20261019_18c9efc3/logs/smoke_43.log\n    Priority = 0\n    qtime = Sun Oct 18 21:04:06 2026\n    Rerunable = True\n    Resource_List.mem = 24gb\n    Resource_List.ncpus = 2\n    Resource_List.nodect = 1\n    Resource_List.place = free\n    Resource_List.select = 1:ncpus=2:mem=24gb\n    Resource_List.walltime = 02:00:00\n    stime = Sun Oct 18 21:04:06 2026\n    obittime = Sun Oct 18 21:06:55 2026\n    session_id = 2081717\n    jobdir = /home/junyu\n    substate = 93\n    Variable_List = PBS_O_HOME=/home/junyu,PBS_O_LANG=en_US.UTF-8,\n\tPBS_O_LOGNAME=junyu,\n\tPBS_O_PATH=/home/junyu/miniconda3/bin:/home/junyu/.local/bin:/home/jun\n\tyu/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/s\n\thare/Modules/bin:/usr/condabin:/usr/local/bin:/usr/bin:/usr/local/sbin:\n\t/usr/sbin:/opt/c3/bin:/opt/pbs/bin:/sbin:/bin,PBS_O_SHELL=/bin/bash,\n\tPBS_O_HOST=metis.niu.edu,PBS_O_WORKDIR=/nfs/ihfs/home_metis/junyu,\n\tPBS_O_SYSTEM=Linux,\n\tSUBSET_ROOT=/nfs/ihfs/home_metis/junyu/dsh-scratch/information_subset_\n\t20261019_18c9efc3,SUBSET_STAGE=historical,SUBSET_TASK_INDEX=43,\n\tPBS_O_QUEUE=rqdf\n    comment = Job run at Sun Oct 18 at 21:04 on (cn26:ncpus=2:mem=25165824kb) a\n\tnd failed\n    etime = Sun Oct 18 21:04:06 2026\n    run_count = 1\n    Stageout_status = 0\n    Exit_status = 1\n    Submit_arguments = -l walltime=02:00:00 -v SUBSET_ROOT=/nfs/ihfs/home_metis\n\t/junyu/dsh-scratch/information_subset_20261019_18c9efc3,\n\tSUBSET_STAGE=historical,\n\tSUBSET_TASK_INDEX=43 -W depend=afterok:244671.cm -o /nfs/ihfs/home_met\n\tis/junyu/dsh-scratch/information_subset_20261019_18c9efc3/logs/smoke_43\n\t.log /nfs/ihfs/home_metis/junyu/dsh-scratch/information_subset_20261019\n\t_18c9efc3/run_lf.pbs\n    history_timestamp = 1792375615\n    project = _pbs_project_default\n    Submit_Host = metis.head.cm.local\n\n"
+}

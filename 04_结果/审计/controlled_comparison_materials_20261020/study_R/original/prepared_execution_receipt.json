@@ -1,0 +1,44 @@
+{
+  "started_utc": "2026-10-18T14:01:31.357084+00:00",
+  "status": "COMPLETED_DEVELOPMENT_NOT_CERTIFIED",
+  "argv": [
+    "scripts/run_decision_information_development.py",
+    "prepare",
+    "--protocol",
+    "experiments/decision_information_development_20261018/protocol.json",
+    "--output",
+    "results/prepared",
+    "--raw-csv",
+    "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/wtbdata_245days.csv",
+    "--threads",
+    "2"
+  ],
+  "arguments": {
+    "stage": "prepare",
+    "seed": 20261018
+  },
+  "git_commit": "not-a-git-checkout; exact source hashes archived",
+  "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+  "executable": "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python",
+  "numpy": "2.4.6",
+  "pandas": "2.3.3",
+  "sklearn": "1.9.1",
+  "torch_installed": "2.11.0+cu128",
+  "compute_backend": "CPU sklearn histogram boosting; CUDA not used",
+  "protocol_sha256": "c69bfdc1940996ad5b9bee9d610e52f6d0ad9618e316bc704e64d78ee1a1179b",
+  "platform": "Linux-4.18.0-553.154.1.el8_10.x86_64-x86_64-with-glibc2.28",
+  "host": "cn12",
+  "cpu": "x86_64",
+  "pbs_job_id": "244599.cm",
+  "allocated_cpus": "2",
+  "source_sha256": {
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/scripts/run_decision_information_development.py": "a11f43242004687ea9da4d73a9c087373dd1d0f991eb196afe66706c87a86df4",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/windfarm_moe/decision_information.py": "7e6fd36eec25a5d1c9276cc14224f0aad5ea78b34e802ef84bdc6b7c043173a5",
+    "experiments/decision_information_development_20261018/protocol.json": "c69bfdc1940996ad5b9bee9d610e52f6d0ad9618e316bc704e64d78ee1a1179b"
+  },
+  "input_sha256": {
+    "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/wtbdata_245days.csv": "6cf7613a82c61bb5cf9fcbbf22e3f6c48165fa32021eb6f1905cb2b7af4d7667"
+  },
+  "scope": "development; no historical claim upgrade or E07 activation",
+  "finished_utc": "2026-10-18T14:02:00.941812+00:00"
+}

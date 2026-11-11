@@ -1,0 +1,188 @@
+[
+  {
+    "path": "windfarm_moe/data.py",
+    "snapshot": "analyses/legacy_cache_alignment_audit_20261018/source_snapshots/data.py.txt",
+    "versions": [
+      {
+        "ref": "c9907798",
+        "commit": "c99077980ed9dcd5d7a69a45f6e3f70888d0b766",
+        "sha256": "0444ee0c5e7c76291927abebd3296fcd7341933675c031b7bced4b384730a597",
+        "git_blob": "d3ff512c7b7da52aefcde10beaa7af11f67e0b69"
+      },
+      {
+        "ref": "621bb8b",
+        "commit": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+        "sha256": "0444ee0c5e7c76291927abebd3296fcd7341933675c031b7bced4b384730a597",
+        "git_blob": "d3ff512c7b7da52aefcde10beaa7af11f67e0b69"
+      },
+      {
+        "ref": "tste-submission-v1.0",
+        "commit": "1085f23c925b7b9bfc312608cbaaecc50cba676e",
+        "sha256": "0444ee0c5e7c76291927abebd3296fcd7341933675c031b7bced4b384730a597",
+        "git_blob": "d3ff512c7b7da52aefcde10beaa7af11f67e0b69"
+      },
+      {
+        "ref": "HEAD",
+        "commit": "0d2f77fe6192503ed9a74310779305f7b9300eb7",
+        "sha256": "0444ee0c5e7c76291927abebd3296fcd7341933675c031b7bced4b384730a597",
+        "git_blob": "d3ff512c7b7da52aefcde10beaa7af11f67e0b69"
+      }
+    ],
+    "same_blob_all_four_refs": true
+  },
+  {
+    "path": "windfarm_moe/arrival_feed.py",
+    "snapshot": "analyses/legacy_cache_alignment_audit_20261018/source_snapshots/arrival_feed.py.txt",
+    "versions": [
+      {
+        "ref": "c9907798",
+        "commit": "c99077980ed9dcd5d7a69a45f6e3f70888d0b766",
+        "sha256": "4c6d13f915f08da6cbb3d3486e408f4b41daa0e9c619f5f2a226615cde7bd950",
+        "git_blob": "a6af53e5ad8ff51a43df77e51b9d6b077c1e6ff4"
+      },
+      {
+        "ref": "621bb8b",
+        "commit": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+        "sha256": "4c6d13f915f08da6cbb3d3486e408f4b41daa0e9c619f5f2a226615cde7bd950",
+        "git_blob": "a6af53e5ad8ff51a43df77e51b9d6b077c1e6ff4"
+      },
+      {
+        "ref": "tste-submission-v1.0",
+        "commit": "1085f23c925b7b9bfc312608cbaaecc50cba676e",
+        "sha256": "4c6d13f915f08da6cbb3d3486e408f4b41daa0e9c619f5f2a226615cde7bd950",
+        "git_blob": "a6af53e5ad8ff51a43df77e51b9d6b077c1e6ff4"
+      },
+      {
+        "ref": "HEAD",
+        "commit": "0d2f77fe6192503ed9a74310779305f7b9300eb7",
+        "sha256": "4c6d13f915f08da6cbb3d3486e408f4b41daa0e9c619f5f2a226615cde7bd950",
+        "git_blob": "a6af53e5ad8ff51a43df77e51b9d6b077c1e6ff4"
+      }
+    ],
+    "same_blob_all_four_refs": true
+  },
+  {
+    "path": "windfarm_moe/model.py",
+    "snapshot": "analyses/legacy_cache_alignment_audit_20261018/source_snapshots/model.py.txt",
+    "versions": [
+      {
+        "ref": "c9907798",
+        "commit": "c99077980ed9dcd5d7a69a45f6e3f70888d0b766",
+        "sha256": "88fcfa75053a68328b3b00e73f0ac7b7429afb2379289ec56b799396ed5a36e9",
+        "git_blob": "2a49c4aacc4138ed5f0e71494b461303a6d839b5"
+      },
+      {
+        "ref": "621bb8b",
+        "commit": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+        "sha256": "88fcfa75053a68328b3b00e73f0ac7b7429afb2379289ec56b799396ed5a36e9",
+        "git_blob": "2a49c4aacc4138ed5f0e71494b461303a6d839b5"
+      },
+      {
+        "ref": "tste-submission-v1.0",
+        "commit": "1085f23c925b7b9bfc312608cbaaecc50cba676e",
+        "sha256": "88fcfa75053a68328b3b00e73f0ac7b7429afb2379289ec56b799396ed5a36e9",
+        "git_blob": "2a49c4aacc4138ed5f0e71494b461303a6d839b5"
+      },
+      {
+        "ref": "HEAD",
+        "commit": "0d2f77fe6192503ed9a74310779305f7b9300eb7",
+        "sha256": "88fcfa75053a68328b3b00e73f0ac7b7429afb2379289ec56b799396ed5a36e9",
+        "git_blob": "2a49c4aacc4138ed5f0e71494b461303a6d839b5"
+      }
+    ],
+    "same_blob_all_four_refs": true
+  },
+  {
+    "path": "windfarm_moe/mechanism_intervention.py",
+    "snapshot": "analyses/legacy_cache_alignment_audit_20261018/source_snapshots/mechanism_intervention.py.txt",
+    "versions": [
+      {
+        "ref": "c9907798",
+        "commit": "c99077980ed9dcd5d7a69a45f6e3f70888d0b766",
+        "sha256": "a4a3773bd4e53667d8db8fb391217f658d45eaebfef1eb8d7b3525761d377c5e",
+        "git_blob": "2aa2569b75b541abbdb7ea18fbb887529775fd96"
+      },
+      {
+        "ref": "621bb8b",
+        "commit": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+        "sha256": "a4a3773bd4e53667d8db8fb391217f658d45eaebfef1eb8d7b3525761d377c5e",
+        "git_blob": "2aa2569b75b541abbdb7ea18fbb887529775fd96"
+      },
+      {
+        "ref": "tste-submission-v1.0",
+        "commit": "1085f23c925b7b9bfc312608cbaaecc50cba676e",
+        "sha256": "a4a3773bd4e53667d8db8fb391217f658d45eaebfef1eb8d7b3525761d377c5e",
+        "git_blob": "2aa2569b75b541abbdb7ea18fbb887529775fd96"
+      },
+      {
+        "ref": "HEAD",
+        "commit": "0d2f77fe6192503ed9a74310779305f7b9300eb7",
+        "sha256": "a4a3773bd4e53667d8db8fb391217f658d45eaebfef1eb8d7b3525761d377c5e",
+        "git_blob": "2aa2569b75b541abbdb7ea18fbb887529775fd96"
+      }
+    ],
+    "same_blob_all_four_refs": true
+  },
+  {
+    "path": "windfarm_moe/preprocess.py",
+    "snapshot": "analyses/legacy_cache_alignment_audit_20261018/source_snapshots/preprocess.py.txt",
+    "versions": [
+      {
+        "ref": "c9907798",
+        "commit": "c99077980ed9dcd5d7a69a45f6e3f70888d0b766",
+        "sha256": "b7d2db98c39df02b43e8057a79592b847721d02cbc62d284b6d5367d41d6f01c",
+        "git_blob": "d0ad07b5e76f271b1d3b9465ee1d615ce1f5488f"
+      },
+      {
+        "ref": "621bb8b",
+        "commit": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+        "sha256": "b7d2db98c39df02b43e8057a79592b847721d02cbc62d284b6d5367d41d6f01c",
+        "git_blob": "d0ad07b5e76f271b1d3b9465ee1d615ce1f5488f"
+      },
+      {
+        "ref": "tste-submission-v1.0",
+        "commit": "1085f23c925b7b9bfc312608cbaaecc50cba676e",
+        "sha256": "b7d2db98c39df02b43e8057a79592b847721d02cbc62d284b6d5367d41d6f01c",
+        "git_blob": "d0ad07b5e76f271b1d3b9465ee1d615ce1f5488f"
+      },
+      {
+        "ref": "HEAD",
+        "commit": "0d2f77fe6192503ed9a74310779305f7b9300eb7",
+        "sha256": "b7d2db98c39df02b43e8057a79592b847721d02cbc62d284b6d5367d41d6f01c",
+        "git_blob": "d0ad07b5e76f271b1d3b9465ee1d615ce1f5488f"
+      }
+    ],
+    "same_blob_all_four_refs": true
+  },
+  {
+    "path": "windfarm_moe/evaluate.py",
+    "snapshot": "analyses/legacy_cache_alignment_audit_20261018/source_snapshots/evaluate.py.txt",
+    "versions": [
+      {
+        "ref": "c9907798",
+        "commit": "c99077980ed9dcd5d7a69a45f6e3f70888d0b766",
+        "sha256": "6c48f3e7b628873ed8954e307e9a2c608830989fca7a19b19e39dbc963c7e4af",
+        "git_blob": "bf2836efd19ee427b2f61925324c6149fa973713"
+      },
+      {
+        "ref": "621bb8b",
+        "commit": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+        "sha256": "6c48f3e7b628873ed8954e307e9a2c608830989fca7a19b19e39dbc963c7e4af",
+        "git_blob": "bf2836efd19ee427b2f61925324c6149fa973713"
+      },
+      {
+        "ref": "tste-submission-v1.0",
+        "commit": "1085f23c925b7b9bfc312608cbaaecc50cba676e",
+        "sha256": "6c48f3e7b628873ed8954e307e9a2c608830989fca7a19b19e39dbc963c7e4af",
+        "git_blob": "bf2836efd19ee427b2f61925324c6149fa973713"
+      },
+      {
+        "ref": "HEAD",
+        "commit": "0d2f77fe6192503ed9a74310779305f7b9300eb7",
+        "sha256": "6c48f3e7b628873ed8954e307e9a2c608830989fca7a19b19e39dbc963c7e4af",
+        "git_blob": "bf2836efd19ee427b2f61925324c6149fa973713"
+      }
+    ],
+    "same_blob_all_four_refs": true
+  }
+]

@@ -1,0 +1,173 @@
+{
+  "status": "NEEDS_LAYOUT_FIX",
+  "inspection": "Every rendered page visually inspected; initial PDF snapshot before long-path repair",
+  "utc": "2026-10-20T10:41:24.611408+00:00",
+  "documents": {
+    "manuscript": {
+      "sha256": "f179b6a55716289ff5b2f2c3295785911766495c01a219b14d0a60a524c07cfc",
+      "page_count": 14,
+      "pages": [
+        {
+          "page": 1,
+          "text_chars": 2875,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 2,
+          "text_chars": 4052,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 3,
+          "text_chars": 3381,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 4,
+          "text_chars": 3427,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 5,
+          "text_chars": 3272,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 6,
+          "text_chars": 2453,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 7,
+          "text_chars": 3490,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 8,
+          "text_chars": 2538,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 9,
+          "text_chars": 1761,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 10,
+          "text_chars": 4052,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 11,
+          "text_chars": 1254,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 12,
+          "text_chars": 3891,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 13,
+          "text_chars": 2559,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 14,
+          "text_chars": 621,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        }
+      ]
+    },
+    "supplementary": {
+      "sha256": "ea178ea1d1cf8b8c46fe894431855b556e78bfd6c188383754bcbe7a55b1c110",
+      "page_count": 10,
+      "pages": [
+        {
+          "page": 1,
+          "text_chars": 2339,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 2,
+          "text_chars": 2305,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 3,
+          "text_chars": 3508,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 4,
+          "text_chars": 3382,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 5,
+          "text_chars": 3407,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 6,
+          "text_chars": 3853,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 7,
+          "text_chars": 3030,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 8,
+          "text_chars": 3344,
+          "visible_page_inspected": true,
+          "clipped_text": [
+            {
+              "bbox_pt": [
+                70.52799987792969,
+                331.30712890625,
+                613.3226318359375,
+                396.41326904296875
+              ],
+              "text": "Two byte-identical attachments preserve this distinction. supplement_data/wtb_all_420_sufficiency_ca"
+            }
+          ]
+        },
+        {
+          "page": 9,
+          "text_chars": 3404,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        },
+        {
+          "page": 10,
+          "text_chars": 1113,
+          "visible_page_inspected": true,
+          "clipped_text": []
+        }
+      ]
+    }
+  }
+}

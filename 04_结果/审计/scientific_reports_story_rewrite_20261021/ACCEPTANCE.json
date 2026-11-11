@@ -1,0 +1,22 @@
+{
+  "status": "NARRATIVE_REWRITE_COMPLETED_FOR_AUTHOR_REVIEW",
+  "parent_versions_unchanged": true,
+  "parent_files_checked": 410,
+  "changed_parents": [],
+  "documents": {
+    "manuscript": {
+      "pages": 10,
+      "sha256": "d5dc62f72be4e173ac453907668ad9b97053e3205911d084bf3d20c065b5c2ca"
+    },
+    "supplementary": {
+      "pages": 8,
+      "sha256": "7714037107410ccf7e618c2b9315a23b457dec6ed98f58b5b36d8c8288241bd8"
+    }
+  },
+  "article_checks": "PASS_NARRATIVE_SOURCE_AND_BUILD_CHECKS",
+  "internal_records_location": "author_working/",
+  "negative_results_retained": true,
+  "new_experiments_or_threshold_changes": false,
+  "submitted": false,
+  "review": "Author-side self-review, source and rendered-document checks; not external review"
+}

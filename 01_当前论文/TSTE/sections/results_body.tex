@@ -1,0 +1,24 @@
+\section{Case Studies}
+\label{sec:results}
+
+\subsection{Current power and pitch carry different decision value}
+With the same delayed telemetry background, adding current active power reduced reserve decision cost relative to adding current pitch. Both measurements add one raw input at the same decision time, while retaining the common forecast commitment. In the 134-turbine comparison, HGB cost was 8.47\% lower with current power than with current pitch (approximate simultaneous 95\% interval, $[-11.88,-5.07]\%$). MLP gave a reduction of 13.05\% ($[-17.22,-8.88]\%$). The agreement across estimators shows that the contrast is not specific to one fitting procedure (Fig.~\ref{fig:measurement}).
+
+Current power also reduced HGB cost by 11.66\% relative to the delayed-only background ($[-15.94,-7.37]\%$). Adding two power-derived differences to the current-power update improved cost further. The current-power-only rule had 1.70\% higher cost than that augmented input ($[0.16,3.23]\%$). The power measurement therefore accounts for a substantial cost reduction before these derived features are added. The lower mean cost did not establish a uniform reduction in uncovered shortfall across all five fits.
+
+Figure~\ref{fig:measurement}(a), (b) shows the paired changes across all four input configurations, including the additional gain from the two power-derived features. The daily comparison in Fig.~\ref{fig:measurement}(d) retains the variation across shared weather days. Mean procurement and uncovered shortfall are both lower with the power update than with pitch; complete endpoint accounting is reported in Supplementary Table S2.
+
+\subsection{A compact reserve input retains performance across years}
+The historically selected rule using current power met the fixed-reference requirements in both subsequent periods. It adds one telemetry channel to the four common inputs, giving five raw columns. The reference uses three 36-step channel histories and 112 raw columns in total. Both retain the same upstream forecast, so this reduction concerns the reserve input supplied after forecast issuance.
+
+In the 2025 evaluation, the current-power rule had mean cost 67.0204 kWh-equivalent per valid interval, compared with 66.6444 for the three-channel reference. The relative difference was 0.5641\% ($[0.3575,0.7708]\%$). Maximum event-rate upper bounds across fits were 6.2025\% and 6.2004\%, respectively. The cost bound remained below the 2\% margin, and both rules met the 10\% event-rate limit.
+
+The fitted models and historical offsets were retained for the January--April 2026 evaluation. The current-power rule had a mean cost of 78.4144 kWh-equivalent per valid interval, versus 77.8157 for the reference. Its relative cost difference was 0.7694\% ($[0.4128,1.1260]\%$). Maximum event-rate upper bounds were 7.4846\% and 7.4886\%, respectively. Both requirements also held with one-day and seven-day block lengths. The documented Dynamic Yaw operating period remained in the evaluation. Figure~\ref{fig:crossyear} places the input reduction alongside the two performance requirements and the resulting cost composition.
+
+The cost decomposition explains the price of this input reduction (Fig.~\ref{fig:crossyear}(c)). In 2026, the current-power rule requested 59.3417 kWh per interval, compared with 59.2249 kWh for the reference. Mean uncovered shortfall was 1.9073 and 1.8591 kWh, respectively. Their similar event rates therefore accompanied a small difference in shortfall magnitude, also visible across the individual fits in Fig.~\ref{fig:crossyear}(d). The compact rule retained the specified cost and event-frequency performance with this explicit trade-off. Supplementary Table S3 gives the complete endpoint means.
+
+\subsection{Daily differences reveal the variation behind window means}
+Figure~\ref{fig:temporal} places the window-level comparison in its chronological context. The full calendars show days on which current power costs more or less than the history reference. Plotting these differences against the reference's daily cost makes their size visible within the operating conditions actually encountered. The twelve September days without eligible targets remain marked as missing. All other dates use the same valid-target population as the primary comparisons.
+
+\subsection{The registered family admits a resource minimum in 2025}
+A separate 2025 analysis identified a sufficient resource-minimal rule at offset level $q=0.925$. Its mean cost was 65.7392 kWh-equivalent per valid interval, and its maximum event-rate upper bound was 9.7699\%. All 15 strictly smaller registered candidates were excluded: two by the risk condition and 13 by paired cost comparisons (Supplementary Table S4). This family-wide result concerns the $q=0.925$ rule. The cross-year comparison above concerns the historically selected $q=0.95$ rule; minimum identification was not repeated in 2026.

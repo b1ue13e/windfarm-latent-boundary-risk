@@ -1,0 +1,1016 @@
+{
+  "status": "PASS_READ_ONLY_REVIEW_SOURCE_CHECKS",
+  "checks": [
+    {
+      "check": "draft_v2_and_authority_files_unchanged",
+      "passed": true,
+      "evidence": {
+        "count": 358,
+        "changed": []
+      }
+    },
+    {
+      "check": "original154",
+      "passed": true,
+      "evidence": 154
+    },
+    {
+      "check": "later596",
+      "passed": true,
+      "evidence": 596
+    },
+    {
+      "check": "direct_power_pitch_original:HGB",
+      "passed": true,
+      "evidence": {
+        "point": -0.10011109222766643,
+        "lower": -0.13737287470975165,
+        "upper": -0.0628493097455812
+      }
+    },
+    {
+      "check": "direct_power_pitch_common:HGB",
+      "passed": true,
+      "evidence": {
+        "point": -0.09999724014563759,
+        "lower": -0.1395679990983465,
+        "upper": -0.06042648119292866
+      }
+    },
+    {
+      "check": "direct_power_pitch_original:MLP",
+      "passed": true,
+      "evidence": {
+        "point": -0.1481212391441355,
+        "lower": -0.19593463117178242,
+        "upper": -0.10030784711648857
+      }
+    },
+    {
+      "check": "direct_power_pitch_common:MLP",
+      "passed": true,
+      "evidence": {
+        "point": -0.14665422806155168,
+        "lower": -0.19169243811785908,
+        "upper": -0.1016160180052443
+      }
+    },
+    {
+      "check": "R_primary:B_Consequences",
+      "passed": true,
+      "evidence": {
+        "point": -2.734363955871603,
+        "ci95": [
+          -4.062292789771045,
+          -1.4825799493117375
+        ],
+        "simultaneous_ci": [
+          -4.85290699221191,
+          -0.8370848058554794
+        ],
+        "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+        "n_boot": 20000,
+        "block_span": 3,
+        "resampling_seed": 20261019,
+        "family_size": 42,
+        "unit": "kWh per valid turbine-interval for loss",
+        "seed_inference": "conditional on archived instances; seeds not resampled",
+        "coverage_status": "development approximation; not finite-sample certification",
+        "condition": "pitch_withheld",
+        "metric": "loss_sum",
+        "left": "B_Consequences",
+        "right": "A_Wind",
+        "inference_role": "primary_loss_family"
+      }
+    },
+    {
+      "check": "R_primary:C_PitchScore",
+      "passed": true,
+      "evidence": {
+        "point": -0.06798086059689047,
+        "ci95": [
+          -0.12724129984975752,
+          -0.02147282920008469
+        ],
+        "simultaneous_ci": [
+          -0.17142537235693617,
+          -0.004111534860021267
+        ],
+        "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+        "n_boot": 20000,
+        "block_span": 3,
+        "resampling_seed": 20261019,
+        "family_size": 42,
+        "unit": "kWh per valid turbine-interval for loss",
+        "seed_inference": "conditional on archived instances; seeds not resampled",
+        "coverage_status": "development approximation; not finite-sample certification",
+        "condition": "pitch_withheld",
+        "metric": "loss_sum",
+        "left": "C_PitchScore",
+        "right": "B_Consequences",
+        "inference_role": "primary_loss_family"
+      }
+    },
+    {
+      "check": "R_primary:D_TruePitch_Diagnostic",
+      "passed": true,
+      "evidence": {
+        "point": -0.13238054925177659,
+        "ci95": [
+          -0.21574985763862564,
+          -0.0578720508009916
+        ],
+        "simultaneous_ci": [
+          -0.27210742450624165,
+          -0.016333796980181666
+        ],
+        "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+        "n_boot": 20000,
+        "block_span": 3,
+        "resampling_seed": 20261019,
+        "family_size": 42,
+        "unit": "kWh per valid turbine-interval for loss",
+        "seed_inference": "conditional on archived instances; seeds not resampled",
+        "coverage_status": "development approximation; not finite-sample certification",
+        "condition": "pitch_withheld",
+        "metric": "loss_sum",
+        "left": "D_TruePitch_Diagnostic",
+        "right": "B_Consequences",
+        "inference_role": "primary_loss_family"
+      }
+    },
+    {
+      "check": "R_primary:E_Compressed",
+      "passed": true,
+      "evidence": {
+        "point": 1.7195662509603067,
+        "ci95": [
+          0.7665774602890726,
+          2.8190100941267127
+        ],
+        "simultaneous_ci": [
+          0.36105544670281525,
+          3.591488665483038
+        ],
+        "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+        "n_boot": 20000,
+        "block_span": 3,
+        "resampling_seed": 20261019,
+        "family_size": 42,
+        "unit": "kWh per valid turbine-interval for loss",
+        "seed_inference": "conditional on archived instances; seeds not resampled",
+        "coverage_status": "development approximation; not finite-sample certification",
+        "condition": "pitch_withheld",
+        "metric": "loss_sum",
+        "left": "E_Compressed",
+        "right": "B_Consequences",
+        "inference_role": "primary_loss_family"
+      }
+    },
+    {
+      "check": "R_one_day_crosses_zero:C_PitchScore",
+      "passed": true,
+      "evidence": {
+        "point": -0.06798086059689047,
+        "ci95": [
+          -0.11852307490442432,
+          -0.022171270247460323
+        ],
+        "simultaneous_ci": [
+          -0.15384914812561368,
+          0.0031957841812169244
+        ],
+        "bootstrap_indices_sha256": "a2ab03f7bb15278475597191b9b23aef4e3ad8bb12156a1a82879b1de443ee41",
+        "n_boot": 20000,
+        "block_span": 1,
+        "resampling_seed": 20261019,
+        "family_size": 42,
+        "unit": "kWh per valid turbine-interval for loss",
+        "seed_inference": "conditional on archived instances; seeds not resampled",
+        "coverage_status": "development approximation; not finite-sample certification",
+        "condition": "pitch_withheld",
+        "metric": "loss_sum",
+        "left": "C_PitchScore",
+        "right": "B_Consequences",
+        "inference_role": "descriptive_sensitivity_only"
+      }
+    },
+    {
+      "check": "R_one_day_crosses_zero:D_TruePitch_Diagnostic",
+      "passed": true,
+      "evidence": {
+        "point": -0.13238054925177659,
+        "ci95": [
+          -0.23670944562080046,
+          -0.03848318535111306
+        ],
+        "simultaneous_ci": [
+          -0.3216463164327244,
+          0.02090870647602215
+        ],
+        "bootstrap_indices_sha256": "a2ab03f7bb15278475597191b9b23aef4e3ad8bb12156a1a82879b1de443ee41",
+        "n_boot": 20000,
+        "block_span": 1,
+        "resampling_seed": 20261019,
+        "family_size": 42,
+        "unit": "kWh per valid turbine-interval for loss",
+        "seed_inference": "conditional on archived instances; seeds not resampled",
+        "coverage_status": "development approximation; not finite-sample certification",
+        "condition": "pitch_withheld",
+        "metric": "loss_sum",
+        "left": "D_TruePitch_Diagnostic",
+        "right": "B_Consequences",
+        "inference_role": "descriptive_sensitivity_only"
+      }
+    },
+    {
+      "check": "semantic_control_unresolved:C_WindScore",
+      "passed": true,
+      "evidence": {
+        "point": -0.06453357523677074,
+        "ci95": [
+          -0.12698675595623993,
+          -0.007401111557289723
+        ],
+        "simultaneous_ci": [
+          -0.17528917899790486,
+          0.018666909874758573
+        ],
+        "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+        "n_boot": 20000,
+        "block_span": 3,
+        "resampling_seed": 20261019,
+        "family_size": 42,
+        "unit": "kWh per valid turbine-interval for loss",
+        "seed_inference": "conditional on archived instances; seeds not resampled",
+        "coverage_status": "development approximation; not finite-sample certification",
+        "condition": "pitch_withheld",
+        "metric": "loss_sum",
+        "left": "C_PitchScore",
+        "right": "C_WindScore",
+        "inference_role": "primary_loss_family"
+      }
+    },
+    {
+      "check": "semantic_control_unresolved:C_ShuffledScore",
+      "passed": true,
+      "evidence": {
+        "point": -0.06240577627027624,
+        "ci95": [
+          -0.129774527109911,
+          -0.008241580529593041
+        ],
+        "simultaneous_ci": [
+          -0.18202038915301444,
+          0.01210287557932879
+        ],
+        "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+        "n_boot": 20000,
+        "block_span": 3,
+        "resampling_seed": 20261019,
+        "family_size": 42,
+        "unit": "kWh per valid turbine-interval for loss",
+        "seed_inference": "conditional on archived instances; seeds not resampled",
+        "coverage_status": "development approximation; not finite-sample certification",
+        "condition": "pitch_withheld",
+        "metric": "loss_sum",
+        "left": "C_PitchScore",
+        "right": "C_ShuffledScore",
+        "inference_role": "primary_loss_family"
+      }
+    },
+    {
+      "check": "D_minus_C_not_generated",
+      "passed": true,
+      "evidence": "Existing pair list only; no new contrast computed"
+    },
+    {
+      "check": "all12_corrected_routes_false",
+      "passed": true,
+      "evidence": {
+        "Original:HGB": {
+          "A": false,
+          "B": false,
+          "C": false
+        },
+        "Original:MLP": {
+          "A": false,
+          "B": false,
+          "C": false
+        },
+        "Common:HGB": {
+          "A": false,
+          "B": false,
+          "C": false
+        },
+        "Common:MLP": {
+          "A": false,
+          "B": false,
+          "C": false
+        }
+      }
+    },
+    {
+      "check": "common_hgb_pitch_endpoint_unqualified",
+      "passed": true,
+      "evidence": false
+    },
+    {
+      "check": "common_mlp_direct_endpoints_qualified",
+      "passed": true,
+      "evidence": [
+        true,
+        true
+      ]
+    },
+    {
+      "check": "fixed_seed204_adverse_severity_witness",
+      "passed": true,
+      "evidence": {
+        "point": 0.007623267985668836,
+        "lower": 0.0028220972446333786,
+        "upper": 0.012424438726704293
+      }
+    },
+    {
+      "check": "fig2_transform:0",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "fresh_state",
+        "recipe": "Original",
+        "estimator": "HGB",
+        "family": "154",
+        "source_values": [
+          -0.0013479006290325292,
+          -0.0043394696110066406,
+          0.0016436683529415822
+        ],
+        "displayed_values": [
+          0.1347900629032529,
+          -0.16436683529415821,
+          0.43394696110066405
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:1",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "old_state",
+        "recipe": "Original",
+        "estimator": "HGB",
+        "family": "154",
+        "source_values": [
+          0.035088526077845524,
+          0.0049447936836249165,
+          0.06523225847206612
+        ],
+        "displayed_values": [
+          -3.5088526077845525,
+          -6.5232258472066125,
+          -0.4944793683624916
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:2",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "old_power",
+        "recipe": "Original",
+        "estimator": "HGB",
+        "family": "154",
+        "source_values": [
+          0.13168686763519988,
+          0.08094772071892395,
+          0.1824260145514758
+        ],
+        "displayed_values": [
+          -13.168686763519988,
+          -18.242601455147582,
+          -8.094772071892395
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:3",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "P_premium_vs_Z",
+        "recipe": "Original",
+        "estimator": "HGB",
+        "family": "154",
+        "source_values": [
+          -0.10011109222766643,
+          -0.13737287470975165,
+          -0.0628493097455812
+        ],
+        "displayed_values": [
+          -10.011109222766642,
+          -13.737287470975165,
+          -6.28493097455812
+        ],
+        "transformation": "D times100"
+      }
+    },
+    {
+      "check": "fig2_transform:4",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "residual_state",
+        "recipe": "Original",
+        "estimator": "HGB",
+        "family": "154",
+        "source_values": [
+          -0.0008654818689250179,
+          -0.0061577927173823484,
+          0.004426828979532314
+        ],
+        "displayed_values": [
+          0.08654818689250178,
+          -0.44268289795323135,
+          0.6157792717382349
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:5",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "fresh_state",
+        "recipe": "Original",
+        "estimator": "MLP",
+        "family": "154",
+        "source_values": [
+          -0.009208187759944465,
+          -0.034182947180215834,
+          0.015766571660326908
+        ],
+        "displayed_values": [
+          0.9208187759944465,
+          -1.5766571660326907,
+          3.4182947180215835
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:6",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "old_state",
+        "recipe": "Original",
+        "estimator": "MLP",
+        "family": "154",
+        "source_values": [
+          0.03354637357381942,
+          -0.007589919292248053,
+          0.07468266643988689
+        ],
+        "displayed_values": [
+          -3.354637357381942,
+          -7.468266643988689,
+          0.7589919292248053
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:7",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "old_power",
+        "recipe": "Original",
+        "estimator": "MLP",
+        "family": "154",
+        "source_values": [
+          0.1766986822954087,
+          0.1496033089313566,
+          0.2037940556594608
+        ],
+        "displayed_values": [
+          -17.66986822954087,
+          -20.37940556594608,
+          -14.960330893135659
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:8",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "P_premium_vs_Z",
+        "recipe": "Original",
+        "estimator": "MLP",
+        "family": "154",
+        "source_values": [
+          -0.1481212391441355,
+          -0.19593463117178242,
+          -0.10030784711648857
+        ],
+        "displayed_values": [
+          -14.812123914413549,
+          -19.593463117178242,
+          -10.030784711648858
+        ],
+        "transformation": "D times100"
+      }
+    },
+    {
+      "check": "fig2_transform:9",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "residual_state",
+        "recipe": "Original",
+        "estimator": "MLP",
+        "family": "154",
+        "source_values": [
+          -0.00014314770608777328,
+          -0.017833125670605913,
+          0.017546830258430363
+        ],
+        "displayed_values": [
+          0.014314770608777328,
+          -1.7546830258430364,
+          1.7833125670605914
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:10",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "fresh_state",
+        "recipe": "Common",
+        "estimator": "HGB",
+        "family": "596",
+        "source_values": [
+          -0.0016875339167091565,
+          -0.004915243891879197,
+          0.0015401760584608842
+        ],
+        "displayed_values": [
+          0.16875339167091566,
+          -0.15401760584608842,
+          0.4915243891879197
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:11",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "old_state",
+        "recipe": "Common",
+        "estimator": "HGB",
+        "family": "596",
+        "source_values": [
+          0.03479256088974479,
+          0.002885349527563655,
+          0.06669977225192593
+        ],
+        "displayed_values": [
+          -3.4792560889744792,
+          -6.669977225192593,
+          -0.2885349527563655
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:12",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "old_power",
+        "recipe": "Common",
+        "estimator": "HGB",
+        "family": "596",
+        "source_values": [
+          0.13131064096880884,
+          0.07734746461737581,
+          0.1852738173202419
+        ],
+        "displayed_values": [
+          -13.131064096880884,
+          -18.52738173202419,
+          -7.734746461737581
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:13",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "P_premium_vs_Z",
+        "recipe": "Common",
+        "estimator": "HGB",
+        "family": "596",
+        "source_values": [
+          -0.09999724014563759,
+          -0.1395679990983465,
+          -0.06042648119292866
+        ],
+        "displayed_values": [
+          -9.999724014563759,
+          -13.95679990983465,
+          -6.042648119292866
+        ],
+        "transformation": "D times100"
+      }
+    },
+    {
+      "check": "fig2_transform:14",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "residual_state",
+        "recipe": "Common",
+        "estimator": "HGB",
+        "family": "596",
+        "source_values": [
+          -0.0008709373132009135,
+          -0.006449351091916016,
+          0.004707476465514189
+        ],
+        "displayed_values": [
+          0.08709373132009135,
+          -0.47074764655141893,
+          0.6449351091916017
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:15",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "fresh_state",
+        "recipe": "Common",
+        "estimator": "MLP",
+        "family": "596",
+        "source_values": [
+          0.0031381913212069454,
+          -0.023175395041147868,
+          0.029451777683561758
+        ],
+        "displayed_values": [
+          -0.31381913212069457,
+          -2.9451777683561757,
+          2.317539504114787
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:16",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "old_state",
+        "recipe": "Common",
+        "estimator": "MLP",
+        "family": "596",
+        "source_values": [
+          -0.0012137455975167895,
+          -0.04706998401425839,
+          0.04464249281922481
+        ],
+        "displayed_values": [
+          0.12137455975167895,
+          -4.4642492819224815,
+          4.706998401425839
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:17",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "old_power",
+        "recipe": "Common",
+        "estimator": "MLP",
+        "family": "596",
+        "source_values": [
+          0.1456184833877018,
+          0.10772337010192289,
+          0.18351359667348072
+        ],
+        "displayed_values": [
+          -14.561848338770181,
+          -18.35135966734807,
+          -10.772337010192288
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_transform:18",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "P_premium_vs_Z",
+        "recipe": "Common",
+        "estimator": "MLP",
+        "family": "596",
+        "source_values": [
+          -0.14665422806155168,
+          -0.19169243811785908,
+          -0.1016160180052443
+        ],
+        "displayed_values": [
+          -14.665422806155167,
+          -19.169243811785908,
+          -10.16160180052443
+        ],
+        "transformation": "D times100"
+      }
+    },
+    {
+      "check": "fig2_transform:19",
+      "passed": true,
+      "evidence": {
+        "figure": "fig2",
+        "source": "display_M_cost.csv",
+        "comparison": "residual_state",
+        "recipe": "Common",
+        "estimator": "MLP",
+        "family": "596",
+        "source_values": [
+          -0.0065931196618172865,
+          -0.026867107261422222,
+          0.013680867937787649
+        ],
+        "displayed_values": [
+          0.6593119661817286,
+          -1.3680867937787649,
+          2.686710726142222
+        ],
+        "transformation": "-G with endpoint reversal, times100"
+      }
+    },
+    {
+      "check": "fig2_has20_cost_comparisons",
+      "passed": true,
+      "evidence": {
+        "M_cost": {
+          "input": 30,
+          "fig2": 20,
+          "rule": "Original154 and Common596; Original596 sensitivity retained in source/SI"
+        },
+        "R_cost": {
+          "input": 108,
+          "fig3": 6,
+          "rule": "pitch_withheld span3; sensitivity shows18 original span records"
+        },
+        "R_MSE": {
+          "input": 15,
+          "fig3": 15,
+          "exclusion": null
+        }
+      }
+    },
+    {
+      "check": "fig3_has6_cost_comparisons_and15_mse_points",
+      "passed": true,
+      "evidence": "Pitch-withheld primary six comparisons, fifteen fixed-fit point diagnostics"
+    },
+    {
+      "check": "review_issue_counts",
+      "passed": true,
+      "evidence": [
+        {
+          "issue_id": "SR-01",
+          "severity": "S3",
+          "evidence": "CONFIRMED",
+          "status": "OPEN",
+          "scope": "method_and_novelty",
+          "location": "main:45-47,129,135,151-166;Fig2/4",
+          "problem": "代理成本与pinball等价关系未说明",
+          "bounded_action": "给出定义层恒等式并把贡献限为输入包比较与后果分解",
+          "authority_needed": "existing_definitions",
+          "blocks_submission": "yes",
+          "requires_new_experiment": "no"
+        },
+        {
+          "issue_id": "SR-02",
+          "severity": "S3",
+          "evidence": "CONFIRMED_AND_FULLTEXT_UNKNOWN",
+          "status": "OPEN",
+          "scope": "literature_and_argument",
+          "location": "main:41-47,129-135;literature matrix",
+          "problem": "近邻已引用但正文缺可核的具体责任差异",
+          "bounded_action": "用已读方法补差异表和正文；不可得全文不作排他论断",
+          "authority_needed": "existing_texts_plus_lawful_fulltext_if_available",
+          "blocks_submission": "yes_for_positioning_not_all_fulltexts",
+          "requires_new_experiment": "no"
+        },
+        {
+          "issue_id": "SR-03",
+          "severity": "S2",
+          "evidence": "CONFIRMED",
+          "status": "OPEN",
+          "scope": "display_and_interpretation",
+          "location": "main:82-90;Fig2;Table2",
+          "problem": "成本展示与端点资格需同处可读；后文已经披露",
+          "bounded_action": "关联原族资格符号；区分HGB未资格与Common MLP双端资格",
+          "authority_needed": "existing_bounds",
+          "blocks_submission": "recommended",
+          "requires_new_experiment": "no"
+        },
+        {
+          "issue_id": "SR-04",
+          "severity": "S3",
+          "evidence": "CONFIRMED",
+          "status": "OPEN",
+          "scope": "negative_results_and_traceability",
+          "location": "main:105-121;Table3;SI:161-179",
+          "problem": "原12个false已保留但缺原数值失败见证表",
+          "bounded_action": "区分不利证据、未解决与资格未证；给seed204反向严重度界",
+          "authority_needed": "existing_output_fields",
+          "blocks_submission": "yes",
+          "requires_new_experiment": "no"
+        },
+        {
+          "issue_id": "SR-05",
+          "severity": "S2",
+          "evidence": "CONFIRMED_AND_COVERAGE_UNKNOWN",
+          "status": "OPEN",
+          "scope": "statistical_reporting",
+          "location": "main:194-202;SI:161-179;Fig2-4",
+          "problem": "推断对象已明确但pooling公式/族与事后叙事选择后果需更直接",
+          "bounded_action": "补固定fit汇总公式和图注名义水平；不声称选择后或全稿覆盖",
+          "authority_needed": "existing_protocols_and_sources",
+          "blocks_submission": "recommended",
+          "requires_new_experiment": "no"
+        },
+        {
+          "issue_id": "SR-06",
+          "severity": "S3",
+          "evidence": "CONFIRMED",
+          "status": "OPEN",
+          "scope": "reviewability_and_access",
+          "location": "main:208-214;SI:245-258;Data4",
+          "problem": "本地文件可定位但审稿访问和分版本复核路线未落实",
+          "bounded_action": "独立源码目录映射/依赖/命令DAG/访问；不声称已执行重放",
+          "authority_needed": "existing_assets_plus_author_approved_access",
+          "blocks_submission": "yes",
+          "requires_new_experiment": "no"
+        },
+        {
+          "issue_id": "SR-07",
+          "severity": "S3",
+          "evidence": "CONFIRMED",
+          "status": "OPEN",
+          "scope": "submission_metadata",
+          "location": "AUTHOR_ITEMS.md;main:end matter",
+          "problem": "作者贡献/冲突/新稿同意及许可尚待核",
+          "bounded_action": "作者提供真实声明；附信和技术文件按官方指南落实",
+          "authority_needed": "authors_and_rightsholders",
+          "blocks_submission": "yes",
+          "requires_new_experiment": "no"
+        },
+        {
+          "issue_id": "SR-08",
+          "severity": "S3",
+          "evidence": "CONFIRMED_CLOCK_EXCEPTION_EFFECT_UNKNOWN",
+          "status": "OPEN",
+          "scope": "method_and_clock_provenance",
+          "location": "main:59,149,170;SI:S1;frozen R source:160-172,246-271",
+          "problem": "R首5个state-fit的名义publication早于点预测已消费标签释放；第6个相等",
+          "bounded_action": "披露历史训练F为回顾特征并限定后续publication保证；若坚持全阶段合法发布须另授权纠正，不改原输出",
+          "authority_needed": "frozen_source_and_consumed_indices_plus_author_scope_decision",
+          "blocks_submission": "yes",
+          "requires_new_experiment": "conditional_if_unqualified_online_claim_retained"
+        }
+      ]
+    },
+    {
+      "check": "clock_index_bytes_match_original",
+      "passed": true,
+      "evidence": "research_audit\\controlled_comparison_materials_20261020\\recovered\\R\\results\\prepared\\point_fit_sample_indices.npy"
+    },
+    {
+      "check": "clock_retrospective_state_fit_exception",
+      "passed": true,
+      "evidence": {
+        "source": "research_audit\\controlled_comparison_materials_20261020\\recovered\\R\\results\\prepared\\point_fit_sample_indices.npy",
+        "sha_matches_original": true,
+        "shape": [
+          120000
+        ],
+        "max_consumed_flat_index": 1730194,
+        "point_fit_first_anchor": 35,
+        "last_consumed_point_input_anchor": 12946,
+        "latest_consumed_target_index": 12958,
+        "latest_assumed_label_release": 12959,
+        "first_state_issue": 12960,
+        "first_nominal_publication": 12954,
+        "first_policy_nominal_publication": 19434,
+        "reading_only": "existing index array metadata/max; no model, measurement, prediction or effect estimation"
+      }
+    },
+    {
+      "check": "clock_policy_stage_publication_later_than_fit_labels",
+      "passed": true,
+      "evidence": {
+        "source": "research_audit\\controlled_comparison_materials_20261020\\recovered\\R\\results\\prepared\\point_fit_sample_indices.npy",
+        "sha_matches_original": true,
+        "shape": [
+          120000
+        ],
+        "max_consumed_flat_index": 1730194,
+        "point_fit_first_anchor": 35,
+        "last_consumed_point_input_anchor": 12946,
+        "latest_consumed_target_index": 12958,
+        "latest_assumed_label_release": 12959,
+        "first_state_issue": 12960,
+        "first_nominal_publication": 12954,
+        "first_policy_nominal_publication": 19434,
+        "reading_only": "existing index array metadata/max; no model, measurement, prediction or effect estimation"
+      }
+    },
+    {
+      "check": "claim_map_sources_exist",
+      "passed": true,
+      "evidence": 13
+    },
+    {
+      "check": "existing_zip_crc:scientific_reports_figures_and_sources.zip",
+      "passed": true,
+      "evidence": {
+        "sha256": "68f702475083df39687b45d0a813c01df164c989aaa4671e115f1b7407e8ba75",
+        "first_corrupt": null
+      }
+    },
+    {
+      "check": "existing_zip_crc:scientific_reports_review_draft_sources.zip",
+      "passed": true,
+      "evidence": {
+        "sha256": "bce3b2085700dd0292062912e6471d15938b61eed54dc44b57aa9d8dfb1a7c06",
+        "first_corrupt": null
+      }
+    },
+    {
+      "check": "prior92_checks_available_not_new_science",
+      "passed": true,
+      "evidence": "Unchanged candidate is hash-bound; this is not a rerun of the mutating release validator"
+    },
+    {
+      "check": "legacy_checks_complete_bounded_scope",
+      "passed": true,
+      "evidence": {
+        "claim_gate_exit": 0,
+        "cached_number_gate_exit": 0,
+        "cached_mode": "-S prevents numpy/pandas import; existing cached CSV copied; no build_number_checks or resampling",
+        "scope_limit": "legacy documents only; not an external or statistical coverage certification of Scientific Reports draft"
+      }
+    }
+  ],
+  "n_checks": 51,
+  "new_experiments_calibration_bootstrap_or_measurements": false,
+  "scope": "Document/source/field identities and existing bound interpretation; no inferential coverage or journal acceptance certification"
+}

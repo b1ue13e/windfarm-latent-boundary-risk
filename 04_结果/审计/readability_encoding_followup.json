@@ -1,0 +1,47 @@
+{
+  "utc": "2026-10-19T05:47:10.362052+00:00",
+  "files": [
+    {
+      "path": "analyses/claim_revision_recovery_20261019/evidence/study/experiments/independent_confirmation_20261019/metadata/Hill_of_Towie_turbine_fields_description.csv",
+      "initial_error": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb0 in position 1522: invalid start byte",
+      "followup": "CP1252_COMMA_CSV_READABLE",
+      "codec": "cp1252",
+      "delimiter": ",",
+      "bytes": 3532,
+      "sha256": "c09390ee56a51bec3f2d942a02b292fecf58f78fb9572c1fd74988778c083d9c",
+      "csv_records": 56,
+      "column_counts": [
+        4
+      ],
+      "first_record": [
+        "Field Description",
+        "Manufacturer Name",
+        "Table",
+        "Unit"
+      ],
+      "scope": "Reversible alternate decode, not unique original-encoding certification. UTF8 failure and incorrect-delimiter attempt retained; source bytes unmodified."
+    },
+    {
+      "path": "experiments/independent_confirmation_20261019/metadata/Hill_of_Towie_turbine_fields_description.csv",
+      "initial_error": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb0 in position 1522: invalid start byte",
+      "followup": "CP1252_COMMA_CSV_READABLE",
+      "codec": "cp1252",
+      "delimiter": ",",
+      "bytes": 3532,
+      "sha256": "c09390ee56a51bec3f2d942a02b292fecf58f78fb9572c1fd74988778c083d9c",
+      "csv_records": 56,
+      "column_counts": [
+        4
+      ],
+      "first_record": [
+        "Field Description",
+        "Manufacturer Name",
+        "Table",
+        "Unit"
+      ],
+      "scope": "Reversible alternate decode, not unique original-encoding certification. UTF8 failure and incorrect-delimiter attempt retained; source bytes unmodified."
+    }
+  ],
+  "original_files_changed": false,
+  "attempt1_correction": "Attempt1 incorrectly assumed semicolon and returned one header column. Actual first record is comma-separated with four columns. Previous attempt retained separately."
+}

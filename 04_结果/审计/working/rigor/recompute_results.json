@@ -1,0 +1,153 @@
+{
+  "status": "PASS_BLOCK_ARITHMETIC_AND_STORED_BOUND_LOGIC_ONLY",
+  "export_members_hashed": 5037,
+  "evaluation_workers": 550,
+  "target_count": 1059248,
+  "n_day_blocks": 365,
+  "block_ids_first_last": [
+    731,
+    1095
+  ],
+  "maximum_point_cost_error": 2.842170943040401e-14,
+  "maximum_point_risk_error": 0.0,
+  "secondary_case_counts": {
+    "NO_CERTIFIED_SUFFICIENT_POLICY": 18,
+    "MINIMUM_UNRESOLVED": 26,
+    "FINITE_FAMILY_MINIMUM_IDENTIFIED": 46
+  },
+  "fixed_case_counts": {
+    "NO_HISTORICAL_SELECTION": 24,
+    "ALL_FROZEN_CANDIDATES_CONFIRMED": 63,
+    "CONFIRMATION_NOT_ESTABLISHED": 3
+  },
+  "primary_per_seed": [
+    {
+      "seed": 201,
+      "candidate_cost": 67.16764014439781,
+      "reference_cost": 66.72497183808,
+      "ratio": 0.0066342224526076965
+    },
+    {
+      "seed": 202,
+      "candidate_cost": 66.95061528985414,
+      "reference_cost": 66.50793826938256,
+      "ratio": 0.006656002756822321
+    },
+    {
+      "seed": 203,
+      "candidate_cost": 66.97172684414346,
+      "reference_cost": 66.69058706310307,
+      "ratio": 0.004215584138948625
+    },
+    {
+      "seed": 204,
+      "candidate_cost": 67.05270913523037,
+      "reference_cost": 66.65235205476421,
+      "ratio": 0.006006645949076406
+    },
+    {
+      "seed": 205,
+      "candidate_cost": 66.95932519189067,
+      "reference_cost": 66.64630300027531,
+      "ratio": 0.004696767525335543
+    }
+  ],
+  "smaller_exclusion_witnesses": [
+    {
+      "label": "Common/HGB/q0.9",
+      "reason": "RISK_LOWER_ABOVE_CAP",
+      "witness": [
+        0,
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "label": "Common/HGB/q0.925",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ6/HGB/q0.925"
+    },
+    {
+      "label": "Common/HGB/q0.95",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ6/HGB/q0.925"
+    },
+    {
+      "label": "Common/HGB/q0.975",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ6/HGB/q0.925"
+    },
+    {
+      "label": "Common/HGB/q0.99",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ36/HGB/q0.925"
+    },
+    {
+      "label": "Common/MLP/q0.9",
+      "reason": "RISK_LOWER_ABOVE_CAP",
+      "witness": [
+        0,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "label": "Common/MLP/q0.925",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ6/HGB/q0.925"
+    },
+    {
+      "label": "Common/MLP/q0.95",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ6/HGB/q0.925"
+    },
+    {
+      "label": "Common/MLP/q0.975",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ6/HGB/q0.925"
+    },
+    {
+      "label": "Common/MLP/q0.99",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ36/HGB/q0.925"
+    },
+    {
+      "label": "P1/Persistence/q0.9",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ36/HGB/q0.925"
+    },
+    {
+      "label": "P1/Persistence/q0.925",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ36/HGB/q0.925"
+    },
+    {
+      "label": "P1/Persistence/q0.95",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ36/HGB/q0.925"
+    },
+    {
+      "label": "P1/Persistence/q0.975",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ36/HGB/q0.925"
+    },
+    {
+      "label": "P1/Persistence/q0.99",
+      "reason": "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE",
+      "witness": "PQ36/HGB/q0.925"
+    }
+  ],
+  "e04": {
+    "status": "NO FEASIBLE POLICY",
+    "risk_upper": {
+      "B": 0.11419393570436379,
+      "C": 0.11731446644166825,
+      "D": 0.11418291791543933,
+      "D10": 0.11389418686057207
+    }
+  },
+  "raw_actions_present": false,
+  "scope": "No fitting, inference, calibration, raw ZIP reads, bootstrap, or remote access. Confidence interval coverage not certified."
+}

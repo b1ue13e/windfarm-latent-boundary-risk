@@ -1,0 +1,95 @@
+{
+  "created_utc": "2026-10-20T11:28:30.910982+00:00",
+  "inputs": {
+    "manuscript.md": "c5d5aecdabf793f4b2eac65cd8351254cfecbbf64691de8a534c3dd1d6bbe767",
+    "supplementary.md": "9276ff55a05f6da900e79d4c92661df66664e7df47c535da1b8278b05fbb4c13",
+    "references.bib": "fe60155dc22a2127d5f1695f4bf0ee281ccdc151d694d57bdd0e3827baa8066e",
+    "american-medical-association.csl": "d70f843d93c2b1e8c59c0e26e2396bea4ed99fb4a1aac69b6dddc249a10fadf7",
+    "figures\\fig1_information_freeze.pdf": "2a3162495dfab285f8d2d510444089cdcc0a65148fe983f282ceda93980c082e",
+    "figures\\fig2_primary_confirmation.pdf": "0f611b8106e7827c967b26c336bec58bb82eefc1d338ce8a585d430e37cf8dec",
+    "figures\\fig3_secondary_minimality.pdf": "0082b1a5afa1c5db0834e4b844193f20c2106fffacb6b66d823be000800b8768",
+    "figures\\fig4_identification_boundary.pdf": "5c2d9ef4ba99172791c87d07c7a6e3c48926b96cef65692ac13d4d84565e1550"
+  },
+  "purpose": "Pure document conversion and rendering; no research pipeline",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "host": "bluelee",
+  "commands": [
+    [
+      "E:\\\u8bba\u65873\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+      "manuscript.md",
+      "--standalone",
+      "--citeproc",
+      "--resource-path=.",
+      "--to=latex",
+      "--output=manuscript.tex",
+      "--number-sections"
+    ],
+    [
+      "xelatex",
+      "-disable-installer",
+      "-interaction=nonstopmode",
+      "-halt-on-error",
+      "-output-directory=build",
+      "manuscript.tex"
+    ],
+    [
+      "xelatex",
+      "-disable-installer",
+      "-interaction=nonstopmode",
+      "-halt-on-error",
+      "-output-directory=build",
+      "manuscript.tex"
+    ],
+    [
+      "E:\\\u8bba\u65873\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+      "supplementary.md",
+      "--standalone",
+      "--citeproc",
+      "--resource-path=.",
+      "--to=latex",
+      "--output=supplementary.tex"
+    ],
+    [
+      "xelatex",
+      "-disable-installer",
+      "-interaction=nonstopmode",
+      "-halt-on-error",
+      "-output-directory=build",
+      "supplementary.tex"
+    ],
+    [
+      "xelatex",
+      "-disable-installer",
+      "-interaction=nonstopmode",
+      "-halt-on-error",
+      "-output-directory=build",
+      "supplementary.tex"
+    ]
+  ],
+  "files": {
+    "manuscript.md": {
+      "bytes": 42569,
+      "sha256": "c5d5aecdabf793f4b2eac65cd8351254cfecbbf64691de8a534c3dd1d6bbe767"
+    },
+    "manuscript.tex": {
+      "bytes": 59154,
+      "sha256": "9798634deaeae5422a5d8514f9c03220300a4219ebec7e67def4a6eaf1897b0f"
+    },
+    "manuscript.pdf": {
+      "bytes": 250394,
+      "sha256": "993aefc855a10f6c8c4a471a9362f2fe176593978bebb0147f2081fa2f49e566"
+    },
+    "supplementary.md": {
+      "bytes": 43114,
+      "sha256": "9276ff55a05f6da900e79d4c92661df66664e7df47c535da1b8278b05fbb4c13"
+    },
+    "supplementary.tex": {
+      "bytes": 58242,
+      "sha256": "9c568e4a6f2fdd921eafe8de54090c02805535effa73fb911b5bdc69fc24fc78"
+    },
+    "supplementary.pdf": {
+      "bytes": 92429,
+      "sha256": "b34afd5d9e23d828596bb90368ac4136475c1842a2c728e84377377f2aae5820"
+    }
+  }
+}

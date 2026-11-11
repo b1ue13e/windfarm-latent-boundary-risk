@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -N ic_aggregate
+#PBS -q rqdf
+#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -l walltime=04:00:00
+#PBS -j oe
+set -euo pipefail
+export OMP_NUM_THREADS=2
+export OPENBLAS_NUM_THREADS=2
+export MKL_NUM_THREADS=2
+cd /lstr/sahara/minlpml/junyu/independent_confirmation_20261019_v1
+/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python scripts/run_independent_confirmation.py aggregate --protocol experiments/independent_confirmation_execution_20261019/protocol.json --output results
+/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python scripts/export_independent_confirmation.py --root . --output export

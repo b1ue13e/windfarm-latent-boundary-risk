@@ -1,0 +1,5 @@
+﻿recipe,estimator,family,A,B,C,source,interpretation
+Original,HGB,596,False,False,False,copies\controls\summary.json::corrected_routes.Original:HGB,All conjunctions false; individual effects remain reportable
+Original,MLP,596,False,False,False,copies\controls\summary.json::corrected_routes.Original:MLP,All conjunctions false; individual effects remain reportable
+Common,HGB,596,False,False,False,copies\controls\summary.json::corrected_routes.Common:HGB,All conjunctions false; individual effects remain reportable
+Common,MLP,596,False,False,False,copies\controls\summary.json::corrected_routes.Common:MLP,All conjunctions false; individual effects remain reportable

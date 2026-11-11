@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -N controls_audit
+#PBS -q rqdf
+#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -l walltime=00:15:00
+#PBS -j oe
+set -euo pipefail
+cd "${CONTROLS_ROOT:?required}"
+exec > "${CONTROLS_ROOT}/logs/audit_${PBS_JOBID}.log" 2>&1
+export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2
+export PYTHONUNBUFFERED=1
+exec /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python scripts/audit_state_calibration_controls.py \
+  --protocol experiments/state_calibration_controls_20261020/protocol.json \
+  --base "${CONTROLS_ROOT}/results" --output "${CONTROLS_ROOT}/results/audit"

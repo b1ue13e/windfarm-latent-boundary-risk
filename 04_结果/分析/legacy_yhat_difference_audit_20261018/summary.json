@@ -1,0 +1,51 @@
+{
+  "strict_exact_matches": 0,
+  "comparisons": 10,
+  "max_absolute_difference_kW": 0.00347900390625,
+  "max_ULP_description_only": 75,
+  "current_weights_vs_oct15_hash_matches": 5,
+  "present_checkpoint_metadata_vs_current_cache_equal5": true,
+  "present_input_copy_equal_count": 12,
+  "present_input_copy_compared_count": 12,
+  "stored_raw_physics_equal10": 10,
+  "stored_physics_is_actual_standardized_model_input": false,
+  "archived_batch_size_candidates": [
+    [
+      16
+    ],
+    [
+      16
+    ],
+    [
+      16
+    ],
+    [
+      16
+    ],
+    [
+      16
+    ],
+    [
+      16
+    ],
+    [
+      16
+    ],
+    [
+      16
+    ],
+    [
+      16
+    ],
+    [
+      16
+    ]
+  ],
+  "residual_requested_batch_size": 64,
+  "active_model_source_contract_same": true,
+  "weight_input_environment_causal_separation": "UNKNOWN; source and array pattern support floating execution hypothesis but do not prove it",
+  "all_nonexact_failures_retained": true,
+  "no_new_matching_tolerance": true,
+  "protected_input_count": 255,
+  "E07": "UNCHANGED_UNACTIVATED"
+}

@@ -1,0 +1,81 @@
+{
+  "scope": "Existing coordinate/mask identity only; no new outcome metric or statistical interval",
+  "rows": [
+    {
+      "seed": 201,
+      "source": "recovered/R/results/runs/seed201/pitch_withheld/evaluation_coordinates.npz",
+      "source_sha256": "db1ea5ae82041aafae6de42a6dc7b0706fe5e150a80cd81662a681252272479f",
+      "shape": [
+        5033,
+        134
+      ],
+      "same_grid_shape": true,
+      "current_pitch_mask_equals_decision_mask": false,
+      "target_indices_equal_anchors_plus6": true,
+      "publication_indices_equal_anchors_minus6": true,
+      "decision_mask_sha256": "5ce3e37d20953e75f3eea7a409e58ce707a03e63842b363894b77a357d751f6a",
+      "current_pitch_mask_sha256": "05aa054389646cdfc31cf75a6a14032b3c07f7608ba78a22d8c355d493dcfebf"
+    },
+    {
+      "seed": 202,
+      "source": "recovered/R/results/runs/seed202/pitch_withheld/evaluation_coordinates.npz",
+      "source_sha256": "81dd1f97a3e42d49be0de2f666378ae1fcfc8dc9451e8d446d4a6999e8e66865",
+      "shape": [
+        5033,
+        134
+      ],
+      "same_grid_shape": true,
+      "current_pitch_mask_equals_decision_mask": false,
+      "target_indices_equal_anchors_plus6": true,
+      "publication_indices_equal_anchors_minus6": true,
+      "decision_mask_sha256": "5ce3e37d20953e75f3eea7a409e58ce707a03e63842b363894b77a357d751f6a",
+      "current_pitch_mask_sha256": "05aa054389646cdfc31cf75a6a14032b3c07f7608ba78a22d8c355d493dcfebf"
+    },
+    {
+      "seed": 203,
+      "source": "recovered/R/results/runs/seed203/pitch_withheld/evaluation_coordinates.npz",
+      "source_sha256": "32ede5578c8fd1930deb7f9cc48e083ab40931acedc23ddba5ed4bf78c4f4870",
+      "shape": [
+        5033,
+        134
+      ],
+      "same_grid_shape": true,
+      "current_pitch_mask_equals_decision_mask": false,
+      "target_indices_equal_anchors_plus6": true,
+      "publication_indices_equal_anchors_minus6": true,
+      "decision_mask_sha256": "5ce3e37d20953e75f3eea7a409e58ce707a03e63842b363894b77a357d751f6a",
+      "current_pitch_mask_sha256": "05aa054389646cdfc31cf75a6a14032b3c07f7608ba78a22d8c355d493dcfebf"
+    },
+    {
+      "seed": 204,
+      "source": "recovered/R/results/runs/seed204/pitch_withheld/evaluation_coordinates.npz",
+      "source_sha256": "7b3702f039e45f614cbf5d9c8b029176ac31d6117adc9180643b7e7a43648c52",
+      "shape": [
+        5033,
+        134
+      ],
+      "same_grid_shape": true,
+      "current_pitch_mask_equals_decision_mask": false,
+      "target_indices_equal_anchors_plus6": true,
+      "publication_indices_equal_anchors_minus6": true,
+      "decision_mask_sha256": "5ce3e37d20953e75f3eea7a409e58ce707a03e63842b363894b77a357d751f6a",
+      "current_pitch_mask_sha256": "05aa054389646cdfc31cf75a6a14032b3c07f7608ba78a22d8c355d493dcfebf"
+    },
+    {
+      "seed": 205,
+      "source": "recovered/R/results/runs/seed205/pitch_withheld/evaluation_coordinates.npz",
+      "source_sha256": "2b611f915d9500cfc2f0b214268e0ac1d215327f7e0ad5ad52cc1781905192d5",
+      "shape": [
+        5033,
+        134
+      ],
+      "same_grid_shape": true,
+      "current_pitch_mask_equals_decision_mask": false,
+      "target_indices_equal_anchors_plus6": true,
+      "publication_indices_equal_anchors_minus6": true,
+      "decision_mask_sha256": "5ce3e37d20953e75f3eea7a409e58ce707a03e63842b363894b77a357d751f6a",
+      "current_pitch_mask_sha256": "05aa054389646cdfc31cf75a6a14032b3c07f7608ba78a22d8c355d493dcfebf"
+    }
+  ],
+  "all_five_same_mask_definition_in_coordinates": false
+}

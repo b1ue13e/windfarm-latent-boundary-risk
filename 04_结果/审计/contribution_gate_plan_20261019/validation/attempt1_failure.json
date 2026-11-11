@@ -1,0 +1,4 @@
+{
+  "status": "FAILED_BOOKKEEPING_VALIDATION",
+  "reason": "New UTF-8 planning JSON was read using the Windows GBK default; corrected by explicit UTF-8. Both scientific/number checks had already passed. No raw result or gate was changed."
+}

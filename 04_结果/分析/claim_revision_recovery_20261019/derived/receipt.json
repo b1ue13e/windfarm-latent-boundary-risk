@@ -1,0 +1,16 @@
+{
+  "input_sha256": {
+    "evidence\\study\\results\\aggregate\\results.json": "236d8d0fde557809bb7aa89cbc92e922f65e0fa224ec8e956d304d552f4b0211",
+    "necessity\\necessity.csv": "aeb36ec93b2492fd8e0aaca48a96622848efcd0fa9ef6939d7d33cb2e0297010",
+    "evidence\\post\\report\\historical_learning_curves.csv": "31fc2abbd7a66514a0eb6706ec17206b70ab08bfb7a4199b277280a43d245cfe",
+    "source_metadata\\history_adapter\\receipt.json": "4629d24c5c48b0d6da2f08e3ec025abd4ae0434fd77a9a01632d314d52e30f18"
+  },
+  "source_sha256": "43753ee6fd7b3648274ad85629a07218c205f3113e058f6e1738b4104d9ea2fa",
+  "utc": "2026-10-19T03:27:59.365946+00:00",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "host": "bluelee",
+  "argv": [
+    "analyses/claim_revision_recovery_20261019/summarize_evidence.py"
+  ],
+  "scope": "Read-only derived evidence reporting; no raw output, policy or threshold changes"
+}

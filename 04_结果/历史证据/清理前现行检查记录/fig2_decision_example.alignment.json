@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "applicable": true,
+  "auditable": true,
+  "verdict": "PASS",
+  "backend": "python-matplotlib",
+  "summary": {
+    "fail": 0,
+    "warn": 0,
+    "comparisons": 3,
+    "exemptions": 0
+  },
+  "tolerances": {
+    "alignment_pt": 1.5,
+    "gutter_pt": 1.5
+  },
+  "layout": {
+    "schema_version": 1,
+    "backend": "python-matplotlib",
+    "figure": {
+      "width_pt": 515.52,
+      "height_pt": 324.0
+    },
+    "panels": [
+      {
+        "id": "a",
+        "bbox_pt": [
+          51.552,
+          179.8231334622824,
+          500.05439999999993,
+          278.64
+        ],
+        "grid_id": "matplotlib-grid-1",
+        "row_start": 0,
+        "row_stop": 1,
+        "col_start": 0,
+        "col_stop": 2,
+        "panel_label": "a",
+        "panel_label_anchor_pt": [
+          39.55200000000001,
+          288.64000000000004
+        ]
+      },
+      {
+        "id": "b",
+        "bbox_pt": [
+          51.552,
+          42.120000000000005,
+          236.12088888888889,
+          115.31767891682786
+        ],
+        "grid_id": "matplotlib-grid-1",
+        "row_start": 1,
+        "row_stop": 2,
+        "col_start": 0,
+        "col_stop": 1,
+        "panel_label": "b",
+        "panel_label_anchor_pt": [
+          39.55200000000001,
+          125.31767891682786
+        ]
+      },
+      {
+        "id": "c",
+        "bbox_pt": [
+          315.48551111111107,
+          42.120000000000005,
+          500.05439999999993,
+          115.31767891682786
+        ],
+        "grid_id": "matplotlib-grid-1",
+        "row_start": 1,
+        "row_stop": 2,
+        "col_start": 1,
+        "col_stop": 2,
+        "panel_label": "c",
+        "panel_label_anchor_pt": [
+          303.48551111111107,
+          125.31767891682786
+        ]
+      }
+    ],
+    "row_groups": [
+      {
+        "id": "row-1",
+        "panels": [
+          "b",
+          "c"
+        ]
+      }
+    ],
+    "column_groups": [],
+    "boundary_groups": [
+      {
+        "id": "inferred-shared-left-1",
+        "edge": "left",
+        "panels": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "inferred-shared-right-1",
+        "edge": "right",
+        "panels": [
+          "a",
+          "c"
+        ]
+      }
+    ],
+    "exemptions": []
+  },
+  "findings": []
+}

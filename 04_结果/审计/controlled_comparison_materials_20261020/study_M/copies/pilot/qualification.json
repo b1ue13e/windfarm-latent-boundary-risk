@@ -1,0 +1,482 @@
+{
+  "num_steps": 35280,
+  "num_nodes": 134,
+  "node_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134
+  ],
+  "channels": [
+    "wind",
+    "power",
+    "reactive",
+    "pitch"
+  ],
+  "day_start": 1,
+  "day_end": 245,
+  "negative_power_cells_preserved": 1263062,
+  "zero_power_cells_preserved": 116702,
+  "missing_counts": {
+    "wind": 49518,
+    "power": 49518,
+    "reactive": 49518,
+    "pitch": 49518
+  },
+  "clock_status": "WTB event grid reconstructed; synthetic availability clock, not field arrival logs",
+  "stages": {
+    "fit": {
+      "first_anchor": 19440,
+      "last_anchor": 25192,
+      "latest_label_release": 25199,
+      "earliest_publication": 19434,
+      "target_cells": 768545,
+      "primary_cells": 766479,
+      "input_missing_counts": {
+        "W": 2356,
+        "P": 2356,
+        "Q": 2356,
+        "Z": 2356
+      },
+      "cross_table": {
+        "target0_P0_Z0": 290,
+        "target0_P0_Z1": 0,
+        "target0_P1_Z0": 0,
+        "target0_P1_Z1": 2067,
+        "target1_P0_Z0": 2066,
+        "target1_P0_Z1": 0,
+        "target1_P1_Z0": 0,
+        "target1_P1_Z1": 766479
+      },
+      "shared_identity": {
+        "anchors": {
+          "shape": [
+            5753
+          ],
+          "dtype": "<i8",
+          "sha256": "436789ae60aed540b5f8e09ac96f444331320792a4829028e008fe6564b97c8d"
+        },
+        "forecast": {
+          "shape": [
+            5753,
+            134
+          ],
+          "dtype": "<f4",
+          "sha256": "7a568c838c9685cd3aea0e76db74b5569cff968e88106df116c326bc1fb2b50f"
+        },
+        "publication_indices": {
+          "shape": [
+            5753
+          ],
+          "dtype": "<i8",
+          "sha256": "9ad1ba13622ba5d9eeab780b5978bc651469b2e3a1ab2160027239aa64165c9a"
+        },
+        "target_indices": {
+          "shape": [
+            5753
+          ],
+          "dtype": "<i8",
+          "sha256": "5833e4321bee58b6a495a2c7efd2a10aa1eb157f06290350c60b5a5ed192f860"
+        },
+        "shortfall": {
+          "shape": [
+            5753,
+            134
+          ],
+          "dtype": "<f8",
+          "sha256": "5df24c94bedfebe3410876883401f244a6906be06d53713d3fc833b4fc9acd48"
+        },
+        "target_mask": {
+          "shape": [
+            5753,
+            134
+          ],
+          "dtype": "|b1",
+          "sha256": "75b18b97ea75dedd941a3426daa31b8f1daaba083333571962fa71b9d2813634"
+        },
+        "primary_mask": {
+          "shape": [
+            5753,
+            134
+          ],
+          "dtype": "|b1",
+          "sha256": "7e02930d823f5490f287e5dd61ef5e1dae296be06fe081c6c55780a26bed72ee"
+        }
+      },
+      "weather_days": 40
+    },
+    "offset": {
+      "first_anchor": 25200,
+      "last_anchor": 27640,
+      "latest_label_release": 27647,
+      "earliest_publication": 25194,
+      "target_cells": 326156,
+      "primary_cells": 325513,
+      "input_missing_counts": {
+        "W": 937,
+        "P": 937,
+        "Q": 937,
+        "Z": 937
+      },
+      "cross_table": {
+        "target0_P0_Z0": 294,
+        "target0_P0_Z1": 0,
+        "target0_P1_Z0": 0,
+        "target0_P1_Z1": 644,
+        "target1_P0_Z0": 643,
+        "target1_P0_Z1": 0,
+        "target1_P1_Z0": 0,
+        "target1_P1_Z1": 325513
+      },
+      "shared_identity": {
+        "anchors": {
+          "shape": [
+            2441
+          ],
+          "dtype": "<i8",
+          "sha256": "ca122069e8c7ce3833cc9335bc20822e5e822639f80c8cbb339d37508ffa1726"
+        },
+        "forecast": {
+          "shape": [
+            2441,
+            134
+          ],
+          "dtype": "<f4",
+          "sha256": "4df18d3986ed140a4cff8805bea85826d1b95cb7f77c801f0ba7417747ce7bc9"
+        },
+        "publication_indices": {
+          "shape": [
+            2441
+          ],
+          "dtype": "<i8",
+          "sha256": "78d4fadbfdb48ecde5e3accff6bd11e2cd6f4e5823884cd601a7e91f9ad4e1e4"
+        },
+        "target_indices": {
+          "shape": [
+            2441
+          ],
+          "dtype": "<i8",
+          "sha256": "ef5659fa929413c2ec1d0bbeb076d6e04390985e0de43bf4122563f4859f1e93"
+        },
+        "shortfall": {
+          "shape": [
+            2441,
+            134
+          ],
+          "dtype": "<f8",
+          "sha256": "f302034ff4ac404c677e78408ce959b98305ff43e4559b10c1e6af1e444806e3"
+        },
+        "target_mask": {
+          "shape": [
+            2441,
+            134
+          ],
+          "dtype": "|b1",
+          "sha256": "17473fcc497bec4bb590a10f6d4833bd86e232be9ebf359007357140123d23cc"
+        },
+        "primary_mask": {
+          "shape": [
+            2441,
+            134
+          ],
+          "dtype": "|b1",
+          "sha256": "56ce8eb037967997b2bcca36cb3f0817434005b9edc8d2259cbab99038257602"
+        }
+      },
+      "weather_days": 17
+    },
+    "selection": {
+      "first_anchor": 27648,
+      "last_anchor": 30232,
+      "latest_label_release": 30239,
+      "earliest_publication": 27642,
+      "target_cells": 343678,
+      "primary_cells": 342770,
+      "input_missing_counts": {
+        "W": 2712,
+        "P": 2712,
+        "Q": 2712,
+        "Z": 2712
+      },
+      "cross_table": {
+        "target0_P0_Z0": 1804,
+        "target0_P0_Z1": 0,
+        "target0_P1_Z0": 0,
+        "target0_P1_Z1": 908,
+        "target1_P0_Z0": 908,
+        "target1_P0_Z1": 0,
+        "target1_P1_Z0": 0,
+        "target1_P1_Z1": 342770
+      },
+      "shared_identity": {
+        "anchors": {
+          "shape": [
+            2585
+          ],
+          "dtype": "<i8",
+          "sha256": "f455b96f3dd31a4bb0b29ebd8db917380333493000058f2855df1c0af994ab78"
+        },
+        "forecast": {
+          "shape": [
+            2585,
+            134
+          ],
+          "dtype": "<f4",
+          "sha256": "fcefce021f8adcca1361f4c37e4125f2ea2a0c17d4b40c1a438937423c946c18"
+        },
+        "publication_indices": {
+          "shape": [
+            2585
+          ],
+          "dtype": "<i8",
+          "sha256": "5f9d55c41470381e06933e4cbc51248c58fd82f57c3606d304a75d0001e0a231"
+        },
+        "target_indices": {
+          "shape": [
+            2585
+          ],
+          "dtype": "<i8",
+          "sha256": "5ccaa1fb237465d3721356cf92f1d305bf2c54ca3c8cbde4bcfc9b5e89f1dd79"
+        },
+        "shortfall": {
+          "shape": [
+            2585,
+            134
+          ],
+          "dtype": "<f8",
+          "sha256": "8e3d00c2e65912e874c4c769583be91acd60fd57fbd86761267dffec99b0303d"
+        },
+        "target_mask": {
+          "shape": [
+            2585,
+            134
+          ],
+          "dtype": "|b1",
+          "sha256": "3e256c20b9abb2a02eaff60d358388a00c2fa0fb6b60f2e53ad278fc34ae8caa"
+        },
+        "primary_mask": {
+          "shape": [
+            2585,
+            134
+          ],
+          "dtype": "|b1",
+          "sha256": "cdd5bd3e91f9aa0fe9cff8169036aa13f1f912dc0df2c0168ad82e1bcd657aa7"
+        }
+      },
+      "weather_days": 18
+    },
+    "evaluation": {
+      "first_anchor": 30240,
+      "last_anchor": 35272,
+      "latest_label_release": 35279,
+      "earliest_publication": 30234,
+      "target_cells": 672939,
+      "primary_cells": 671538,
+      "input_missing_counts": {
+        "W": 1483,
+        "P": 1483,
+        "Q": 1483,
+        "Z": 1483
+      },
+      "cross_table": {
+        "target0_P0_Z0": 82,
+        "target0_P0_Z1": 0,
+        "target0_P1_Z0": 0,
+        "target0_P1_Z1": 1401,
+        "target1_P0_Z0": 1401,
+        "target1_P0_Z1": 0,
+        "target1_P1_Z0": 0,
+        "target1_P1_Z1": 671538
+      },
+      "shared_identity": {
+        "anchors": {
+          "shape": [
+            5033
+          ],
+          "dtype": "<i8",
+          "sha256": "c64f40d7f1beea02303048b04c029303cc4d3be22155e6a64e48bdb7f699b41f"
+        },
+        "forecast": {
+          "shape": [
+            5033,
+            134
+          ],
+          "dtype": "<f4",
+          "sha256": "a174d11fbf60d4e862c6718d6794a701ab0b6d6583484166b5b5c1a3988670a8"
+        },
+        "publication_indices": {
+          "shape": [
+            5033
+          ],
+          "dtype": "<i8",
+          "sha256": "11eb1976bec8c71fa5383ef2d613db12a6ee545869c14a71c8f5fab0eefc98e1"
+        },
+        "target_indices": {
+          "shape": [
+            5033
+          ],
+          "dtype": "<i8",
+          "sha256": "0891f2c5954cb22f8f5d9c80d056eb0673fa2a9de78b2deb47b68b677253c4f3"
+        },
+        "shortfall": {
+          "shape": [
+            5033,
+            134
+          ],
+          "dtype": "<f8",
+          "sha256": "b88fdebd222e8782113976c97fa48ec99aa8b0763b513c1b1e41aac56305bc69"
+        },
+        "target_mask": {
+          "shape": [
+            5033,
+            134
+          ],
+          "dtype": "|b1",
+          "sha256": "5ce3e37d20953e75f3eea7a409e58ce707a03e63842b363894b77a357d751f6a"
+        },
+        "primary_mask": {
+          "shape": [
+            5033,
+            134
+          ],
+          "dtype": "|b1",
+          "sha256": "e6b5c056f9dc323efd4ce98d53fcfc91bbf12dd28b86732150924977a6522289"
+        }
+      },
+      "weather_days": 35
+    }
+  },
+  "upstream_manifest_sha256": "9b4d7f7526ddfafdb40da402577e78cc06af70df55f9015beaab2e98758b72eb",
+  "status": "S0_S1_PASSED_FOR_DEVELOPMENT_NOT_FIELD_ARRIVAL_LOGS",
+  "model_fits": 0
+}

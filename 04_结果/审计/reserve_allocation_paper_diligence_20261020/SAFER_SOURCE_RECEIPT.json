@@ -1,0 +1,24 @@
+{
+  "source_type": "AUTHOR_PUBLIC_METHOD_NOTEBOOK",
+  "commit": "3b0d501ce63425721c17d45cc76835af2846b24f",
+  "url": "https://raw.githubusercontent.com/VinDW/SAFER-Wind-Forecasting/3b0d501ce63425721c17d45cc76835af2846b24f/SAFER_Wind_Research_.ipynb",
+  "bytes_of_code_notebook_response": 1707850,
+  "sha256_of_notebook_response": "756ab22183d3a51d49b5282e2ce4292a7790dd352afcd9759ae36a17da1300c0",
+  "git_blob_sha1": "d8b3d5d842a0843834a00871970d7c3fc5989185",
+  "git_blob_verified": true,
+  "cell_count": 60,
+  "code_cell_count": 30,
+  "outputs_and_attachments_discarded_uninspected": true,
+  "notebook_executed": false,
+  "data_files_requested": false,
+  "measurement_files_saved": false,
+  "article_fulltext_obtained": false,
+  "source_extraction_only": true,
+  "content_type": "text/plain; charset=utf-8",
+  "source_only_files_sha256": {
+    "SAFER_code_cells.txt": "70e78b5e46a2b324ef22b53e2c9fef6d059a74b9d61cd88458f20c76c4215ce4",
+    "SAFER_markdown_cells.md": "861357b714234857157b68acb58f855ebff54b8ab818bf715b2fdb7a83c409c6"
+  },
+  "source_only_copies_gitignored": true,
+  "markdown_cell_count": 30
+}

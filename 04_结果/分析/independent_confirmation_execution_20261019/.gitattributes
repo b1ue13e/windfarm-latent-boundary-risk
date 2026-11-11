@@ -1,0 +1,6 @@
+# Preserve exact receipt, review and recovery bytes; CRLF is intentional.
+* -text whitespace=cr-at-eol
+# Compiler/tool output is immutable, including literal trailing spaces.
+*.log -whitespace
+# Historical Markdown hard breaks are part of the snapshot identity.
+snapshots/** -whitespace

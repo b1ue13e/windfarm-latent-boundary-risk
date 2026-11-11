@@ -1,0 +1,40 @@
+\section{Study Design}
+\label{sec:design}
+
+\subsection{Matched current-measurement comparison}
+The first study uses the public SDWPF dataset, which contains 134 turbines with ten-minute records \cite{zhou2024sdwpfdata}. A common point forecaster is fitted on days 1--90. Reserve models are fitted on days 136--175, offsets are calibrated on days 176--192, and historical assessment uses days 193--210. Evaluation uses days 211--245.
+
+The delayed background contains 118 raw columns: four shared forecast and clock inputs, 36 slots each for wind speed, active power and reactive power, and six summaries of available power history. Its most recent six slots are masked to represent a one-hour delay. The analysis does not search backward for replacement observations.
+
+Two matched updates append either current active power or current mean blade pitch to this background. Both therefore use 119 raw columns. An augmented-power condition also adds current power, forecast-minus-current power and current-minus-last-arrived power. This 121-column configuration tests the contribution of two derived power features. All updates refer to the same decision time.
+
+The evaluation population requires finite future active power, current active power and current pitch. Every configuration uses the same 671,538 turbine intervals per fitted instance across 35 days. Zero and negative active power are retained. Training and calibration use finite future targets. Each fit uses 360,000 matched training rows and the historical calibration level $q=0.925$ for the current-power update.
+
+\begin{table}[!t]
+\caption{Chronological study design. Evaluation counts are valid turbine intervals per fixed fit.}
+\label{tab:design}
+\centering
+\footnotesize
+\begin{tabularx}{\columnwidth}{lXX}
+\toprule
+Stage & SDWPF, 134 turbines & Hill of Towie, 21 turbines \\
+\midrule
+Point forecast & Days 1--90 & 2023 H1 \\
+Reserve fit & Days 136--175 & 2023 H2 \\
+Offset calibration & Days 176--192 & 2024 H1 \\
+Historical selection & Days 193--210 & 2024 H2 \\
+Evaluation & Days 211--245, 671,538 intervals, 35 days & 2025: 1,059,248 intervals, 365 days; 2026 Jan--Apr: 361,326 intervals, 120 days \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Hill of Towie historical selection and subsequent evaluation}
+The second study uses the public Hill of Towie dataset. It contains 21 turbines with UTC timestamps marking ten-minute period ends \cite{clerc2026towie}. A common point forecaster is trained on January--June 2023 using up to 120,000 samples. Reserve rules are fitted on July--December 2023 with 360,000 matched samples per seed. Offset calibration uses January--June 2024, and historical selection uses July--December 2024. Labels are required to mature before the next forecasting stage begins.
+
+The pitch-withheld input family contains Common and all 21 nonempty combinations of wind speed, active power and reactive power at history lengths 1, 6 and 36. HGB and MLP are paired with these subsets. A power-persistence rule and five historical offset levels produce 225 registered policies.
+
+Historical selection retains the HGB rule that adds current active power and the HGB reference using 36-step histories of all three channels. Their resource tuples are $(1,1,5)$ and $(3,1,112)$. The tuples count additional telemetry channels, learned predictor calls and raw reserve-input columns. Both rules share the forecast and common inputs. The reported input reduction therefore applies to the reserve layer, not the upstream forecast.
+
+The two selected rules and the common point forecaster are evaluated on the full 2025 year. The same fitted parameters and offsets are then used for January--April 2026. The latter period includes the documented Dynamic Yaw campaign; all prespecified turbines and times remain in the evaluation. The same future-target definition and mask are applied to both rules.
+
+The secondary finite-family analysis evaluates the registered calibration grid in 2025. The fixed-reference comparison and the secondary minimum-identification analysis answer different questions, so their calibration levels are reported separately.

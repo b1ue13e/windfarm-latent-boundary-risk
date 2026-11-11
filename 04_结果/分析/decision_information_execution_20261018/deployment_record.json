@@ -1,0 +1,29 @@
+{
+  "date_Asia_Shanghai": "2026-10-18",
+  "status": "COMPLETED_DEVELOPMENT_NOT_CONFIRMATORY",
+  "root": "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1",
+  "source_commit": "5fe47e13",
+  "audit_commit": "7e920f0",
+  "jobs": {
+    "failed_preflight": "244598.cm",
+    "prepare": "244599.cm",
+    "first_run": "244600.cm",
+    "first_action_audit": "244601.cm",
+    "remaining_grid": "244602[].cm",
+    "aggregate_and_audit": "244603.cm",
+    "export": "244609.cm"
+  },
+  "max_concurrent_workers": 12,
+  "cpus_per_worker": 2,
+  "minimum_sufficiency_certified": false,
+  "E07_activated": false,
+  "recorded_utc": "2026-10-18T14:08:32.007022+00:00",
+  "packages": {
+    "source_5a0b0d9.tar": "cb9a3dcf9fbef2cb656e3973a2ec37a23e74a576f2e5ec2c75c1866d7b2634ad",
+    "source_5fe47e1.tar": "b0c01daa4cc9fa611af8b96765e9c56601debd42bbae5b9d1e07ec7b9f4789ae"
+  },
+  "all_runs_completed": 30,
+  "exact_action_array_checks": 2880,
+  "exported_members_verified": 241,
+  "archive_sha256": "13fba6f0f96c3777e511bb177f7566ddc8fd6b37e1946cd946813f15c5234d15"
+}

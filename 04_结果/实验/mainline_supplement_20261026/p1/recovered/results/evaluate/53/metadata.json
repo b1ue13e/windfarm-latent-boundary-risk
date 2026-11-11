@@ -1,0 +1,15 @@
+{
+  "task": {
+    "condition": "pitch_withheld",
+    "seed": 202,
+    "subset": "P1",
+    "estimator": "HGB"
+  },
+  "resource": [
+    1,
+    1,
+    5
+  ],
+  "q095_offset": 20.30322456939473,
+  "refit": false
+}

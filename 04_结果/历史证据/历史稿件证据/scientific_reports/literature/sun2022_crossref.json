@@ -1,0 +1,678 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          8
+        ]
+      ],
+      "date-time": "2026-10-08T10:58:07Z",
+      "timestamp": 1791457087460,
+      "version": "4.3.4"
+    },
+    "reference-count": 47,
+    "publisher": "AIP Publishing",
+    "issue": "3",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2022,
+              6,
+              24
+            ]
+          ],
+          "date-time": "2022-06-24T00:00:00Z",
+          "timestamp": 1656028800000
+        },
+        "content-version": "am",
+        "delay-in-days": 54,
+        "URL": "https://publishing.aip.org/authors/rights-and-permissions"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100006133",
+        "name": "Advanced Research Projects Agency - Energy",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "DE-AR0001275"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "DE-AR0001275"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/100006133",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100006133",
+        "name": "the Advanced Research Projects Agency - Energy",
+        "doi-asserted-by": "crossref",
+        "id": [
+          {
+            "id": "10.13039/100006133",
+            "id-type": "DOI",
+            "asserted-by": "crossref"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "pubs.aip.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [],
+    "published-print": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          1
+        ]
+      ]
+    },
+    "abstract": "<jats:p>Accurately forecasting wind and solar power output poses challenges for deeply decarbonized electricity systems. Grid operators must commit resources to provide reserves to ensure reliable operations in the face of forecast errors, a process which can increase fuel consumption and emissions. We apply neural network-based machine learning to expand the usefulness of median point forecast data by creating probabilistic distributions of short-term uncertainty in demand, wind, and solar forecasts that adapt to prevailing grid conditions. Machine learning derived estimates of forecast errors compare favorably to estimates based on incumbent methods. Reserves derived from machine learning are usually smaller than values derived using incumbent methods, which enables fuel savings during most hours. Machine learning reserves are generally larger than incumbent reserves during times of higher forecast error, potentially improving system reliability. Performance is tested using multistage production simulation modeling of the California Independent System Operator system. Machine learning reserves provide production cost and greenhouse gas (GHG) emission reductions of approximately 0.3% relative to historical 2019 requirements. Savings in the 2030 timeframe are highly dependent on battery storage capacity. At lower levels of battery capacity, savings of 0.4% from machine learning reserves are shown. Significant quantities of battery storage are expected to be added to meet California's resource adequacy needs and GHG reduction targets. The addition of these batteries saturates reserve needs and results in minimal within-hour balancing costs in 2030.</jats:p>",
+    "DOI": "10.1063/5.0087144",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          18
+        ]
+      ],
+      "date-time": "2022-05-18T14:03:22Z",
+      "timestamp": 1652882602000
+    },
+    "update-policy": "https://doi.org/10.1063/aip-crossmark-policy-page",
+    "source": "Crossref",
+    "is-referenced-by-count": 11,
+    "title": [
+      "Machine learning derived dynamic operating reserve requirements in high-renewable power systems"
+    ],
+    "prefix": "10.1063",
+    "volume": "14",
+    "author": [
+      {
+        "given": "Yuchi",
+        "family": "Sun",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5688-3194",
+        "authenticated-orcid": false,
+        "given": "James H.",
+        "family": "Nelson",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-6785-3057",
+        "authenticated-orcid": false,
+        "given": "John C.",
+        "family": "Stevens",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Adrian H.",
+        "family": "Au",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Vignesh",
+        "family": "Venugopal",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Charles",
+        "family": "Gulian",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Saamrat",
+        "family": "Kasina",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Patrick",
+        "family": "O'Neill",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5923-4085",
+        "authenticated-orcid": false,
+        "given": "Mengyao",
+        "family": "Yuan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Arne",
+        "family": "Olson",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "317",
+    "published-online": {
+      "date-parts": [
+        [
+          2022,
+          6,
+          24
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "2024031601231097100_c1",
+        "unstructured": "J. Williams, B. Haley, F. Kahrl, J. Moore, A. D. Jones, M. S. Torn, and H. McJeon, “Pathways to deep decarbonization in the United States.” The U.S. report of the Deep Decarbonization Pathways Project of the Sustainable Development Solutions Network and the Institute for Sustainable Development and International Relations (2015), see https://irp-cdn.multiscreensite.com/be6d1d56/files/uploaded/DDPP_2015_REPORT.pdf."
+      },
+      {
+        "issue": "6064",
+        "key": "2024031601231097100_c2",
+        "doi-asserted-by": "publisher",
+        "first-page": "53",
+        "DOI": "10.1126/science.1208365",
+        "article-title": "The technology path to deep greenhouse gas emissions cuts by 2050: The pivotal role of electricity",
+        "volume": "335",
+        "year": "2012",
+        "journal-title": "Science"
+      },
+      {
+        "key": "2024031601231097100_c3",
+        "doi-asserted-by": "publisher",
+        "first-page": "1811",
+        "DOI": "10.1039/C7EE03420B",
+        "article-title": "Solar PV output prediction from video streams using convolutional neural networks",
+        "volume": "11",
+        "year": "2018",
+        "journal-title": "Energy Environ. Sci."
+      },
+      {
+        "key": "2024031601231097100_c4",
+        "doi-asserted-by": "publisher",
+        "first-page": "327",
+        "DOI": "10.1016/j.solener.2012.09.018",
+        "article-title": "Intra-hour DNI forecasting based on cloud tracking images 515 analysis",
+        "volume": "91",
+        "year": "2013",
+        "journal-title": "Sol. Energy"
+      },
+      {
+        "key": "2024031601231097100_c5",
+        "unstructured": "See Energy Exemplar, https://energyexemplar.com/products/plexos for “PLEXOS Software version 8.3, 2021;” accessed 21 December 2021."
+      },
+      {
+        "key": "2024031601231097100_c6",
+        "unstructured": "See K. Westendorf, https://www.caiso.com/Documents/FlexibleRampingProductUncertaintyCalculationImplementationIssues.pdf for “Flexible ramping product uncertainty calculation and implementation issues, 2018;” accessed 21 December 2021."
+      },
+      {
+        "key": "2024031601231097100_c7",
+        "article-title": "A comprehensive comparison of current operating reserve methodologies",
+        "year": "2016"
+      },
+      {
+        "key": "2024031601231097100_c8",
+        "first-page": "159",
+        "article-title": "What is the value of alternative methods for estimating ramping needs?",
+        "year": "2020"
+      },
+      {
+        "key": "2024031601231097100_c9",
+        "unstructured": "See Electricity Reliability Council of Texas ERCOT, http://www.ercot.com/content/wcm/key_documents_lists/137978/9_2019_Methodology_for_Determining_Minimum_Ancillary_Service_Requirements.pdf for “Item 9: 2019 methodology for determining minimum ancillary service requirements;” accessed 21 December 2021."
+      },
+      {
+        "key": "2024031601231097100_c10",
+        "doi-asserted-by": "publisher",
+        "first-page": "666",
+        "DOI": "10.1016/j.renene.2018.06.022",
+        "article-title": "Parametric methods for probabilistic forecasting of solar irradiance",
+        "volume": "129",
+        "year": "2018",
+        "journal-title": "Renewable Energy"
+      },
+      {
+        "key": "2024031601231097100_c11",
+        "first-page": "1231",
+        "article-title": "Nonparametric quantile estimation",
+        "volume": "7",
+        "year": "2006",
+        "journal-title": "J. Mach. Learn. Res."
+      },
+      {
+        "issue": "10",
+        "key": "2024031601231097100_c12",
+        "doi-asserted-by": "publisher",
+        "first-page": "1591",
+        "DOI": "10.3390/en10101591",
+        "article-title": "Probabilistic solar forecasting using quantile regression models",
+        "volume": "10",
+        "year": "2017",
+        "journal-title": "Energies"
+      },
+      {
+        "issue": "3",
+        "key": "2024031601231097100_c13",
+        "doi-asserted-by": "publisher",
+        "first-page": "337",
+        "DOI": "10.1109/TNN.2010.2096824",
+        "article-title": "Lower upper bound estimation method for construction of neural network-based prediction intervals",
+        "volume": "22",
+        "year": "2010",
+        "journal-title": "IEEE Trans. Neural Networks"
+      },
+      {
+        "issue": "3",
+        "key": "2024031601231097100_c14",
+        "doi-asserted-by": "publisher",
+        "first-page": "290",
+        "DOI": "10.1002/we.2574",
+        "article-title": "A new lower and upper bound estimation model using gradient descend training method for wind speed interval prediction",
+        "volume": "24",
+        "year": "2021",
+        "journal-title": "Wind Energy"
+      },
+      {
+        "issue": "5",
+        "key": "2024031601231097100_c15",
+        "doi-asserted-by": "publisher",
+        "first-page": "3850",
+        "DOI": "10.1109/TPWRS.2015.2502423",
+        "article-title": "Very short-term nonparametric probabilistic forecasting of renewable energy generation—With application to solar energy",
+        "volume": "31",
+        "year": "2016",
+        "journal-title": "IEEE Trans. Power Syst."
+      },
+      {
+        "key": "2024031601231097100_c16",
+        "first-page": "983",
+        "article-title": "Quantile regression forests",
+        "volume": "7",
+        "year": "2006",
+        "journal-title": "J. Mach. Learn. Res."
+      },
+      {
+        "key": "2024031601231097100_c17",
+        "unstructured": "A. Mayr, “Prediction inference with ensemble methods,” Doctoral dissertation (Institut Für Statistik, 2010)."
+      },
+      {
+        "key": "2024031601231097100_c18",
+        "unstructured": "See Electric Power Research Institute, https://www.epri.com/research/programs/067417/ for “Dynamic assessment and determination of operating reserve;” accessed 21 December 2021."
+      },
+      {
+        "issue": "4",
+        "key": "2024031601231097100_c19",
+        "doi-asserted-by": "publisher",
+        "first-page": "3701",
+        "DOI": "10.1109/TPWRS.2021.3053847",
+        "article-title": "Operating reserve quantification using prediction intervals of wind power: An integrated probabilistic forecasting and decision methodology",
+        "volume": "36",
+        "year": "2021",
+        "journal-title": "IEEE Trans. Power Syst."
+      },
+      {
+        "key": "2024031601231097100_c20",
+        "doi-asserted-by": "crossref",
+        "first-page": "279",
+        "DOI": "10.1016/B978-0-08-100504-0.00011-1",
+        "volume-title": "Renewable Energy Forecasting: From Models to Applications",
+        "year": "2017"
+      },
+      {
+        "key": "2024031601231097100_c21",
+        "doi-asserted-by": "publisher",
+        "first-page": "272",
+        "DOI": "10.1016/j.enpol.2018.09.031",
+        "article-title": "Dynamic dimensioning approach for operating reserves: Proof of concept in Belgium",
+        "volume": "124",
+        "year": "2019",
+        "journal-title": "Energy Policy"
+      },
+      {
+        "key": "2024031601231097100_c22",
+        "doi-asserted-by": "crossref",
+        "unstructured": "See J. Novacheck, G. Brinkman, and G. Porro, https://www.nrel.gov/docs/fy18osti/71465.pdf for “Operational analysis of the eastern interconnection at very high renewable penetrations, 2018;” accessed 5 May 2022.",
+        "DOI": "10.2172/1476255"
+      },
+      {
+        "key": "2024031601231097100_c23",
+        "doi-asserted-by": "publisher",
+        "first-page": "1001",
+        "DOI": "10.1016/j.apenergy.2015.10.180",
+        "article-title": "Power system balancing for deep decarbonization of the electricity sector",
+        "volume": "162",
+        "year": "2016",
+        "journal-title": "Appl. Energy"
+      },
+      {
+        "key": "2024031601231097100_c24",
+        "unstructured": "See Energy and Environmental Economics, Inc., https://www.ethree.com/wp-content/uploads/2017/02/PacifiCorp-ISOEnergyImbalanceMarketBenefits-1.pdf for “Pacificorp-ISO energy imbalance market benefits, 2013,” accessed 5 May 2022."
+      },
+      {
+        "key": "2024031601231097100_c25",
+        "unstructured": "J. Nelson, S. Kasina, J. Stevens, J. Moore, and A. Olson, “Investigating the economic value of flexible solar power plant operation” (Energy and Environmental Economics, Inc., 2018), see https://www.ethree.com/wp-content/uploads/2018/10/Investigating-the-Economic-Value-of-Flexible-Solar-Power-Plant-Operation.pdf."
+      },
+      {
+        "key": "2024031601231097100_c26",
+        "unstructured": "See J. Nelson and L. Wisland, https://www.ucsusa.org/sites/default/files/attach/2015/08/Achieving-50-Percent-Renewable-Electricity-In-California.pdf for “Achieving 50 percent renewable electricity in California,” (2015); accessed 5 May 2022."
+      },
+      {
+        "key": "2024031601231097100_c27",
+        "doi-asserted-by": "publisher",
+        "first-page": "1143",
+        "DOI": "10.1016/j.joule.2021.03.021",
+        "article-title": "The curtailment paradox in the transition to high solar power systems",
+        "volume": "5",
+        "year": "2021",
+        "journal-title": "Joule"
+      },
+      {
+        "key": "2024031601231097100_c28",
+        "unstructured": "See California Independent System Operator, http://oasis.caiso.com/mrioasis/logon.do for “California ISO open access same-time information system, 2021;” accessed 21 December 2021."
+      },
+      {
+        "key": "2024031601231097100_c29",
+        "unstructured": "See Tensorflow, https://www.tensorflow.org/ for “An end-to-end open source platform for machine learning;” accessed 27 December 2021."
+      },
+      {
+        "key": "2024031601231097100_c30",
+        "unstructured": "See Energy and Environmental Economics, Inc., https://github.com/e3-/RESERVE for “E3 RESERVE model;” accessed 21 December 2021."
+      },
+      {
+        "key": "2024031601231097100_c31",
+        "article-title": "Adam: A method for stochastic optimization",
+        "year": "2015"
+      },
+      {
+        "key": "2024031601231097100_c32",
+        "unstructured": "See California Independent System Operator, http://www.caiso.com/InitiativeDocuments/AppendixC-QuantileRegressionApproach-FlexibleRampingProductRequirements.pdf for “Flexible ramping product refinements initiative, appendix C—Quantile regression approach, 2020;” accessed 21 December 2021."
+      },
+      {
+        "key": "2024031601231097100_c33",
+        "unstructured": "See North American Electric Reliability Corporation, https://www.nerc.com/pa/Stand/Reliability%20Standards/BAL-001-2.pdf for “Standard BAL-001-2—Real power balancing control performance, 2020;” accessed 21 December 2021."
+      },
+      {
+        "key": "2024031601231097100_c34",
+        "unstructured": "See California Independent System Operator, http://www.caiso.com/InitiativeDocuments/Analysis-FlexibleRampingUncertaintyCalculationintheWesternEnergyImbalanceMarket.pdf for “Flexible ramping uncertainty calculation in the western energy imbalance market (EIM), 2022;” accessed 9 May 2022."
+      },
+      {
+        "key": "2024031601231097100_c35",
+        "unstructured": "See California Independent System Operator, https://bpmcm.caiso.com/Lists/PRR%20Details/Attachments/479/Market%20Operations%20BPM%2072hr%20RUC%20PRR.pdf for “Market processes and products;” accessed 21 December 2021."
+      },
+      {
+        "key": "2024031601231097100_c36",
+        "unstructured": "See California Public Utilities Commission, https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/electric-power-procurement/long-term-procurement-planning/2019-20-irp-events-and-materials/portfolios-and-modeling-assumptions-for-the-2021-2022-transmission-planning-process for “RESOLVE transmission preferred portfolio public release 2020–2021: 46 MMT scenario, 2021;” accessed 21 December 2021."
+      },
+      {
+        "key": "2024031601231097100_c37",
+        "unstructured": "See Southern California Edison, https://www.sce.com/regulatory/tariff-books/rates-pricing-choices/renewable-energy-credit for “Renewable Energy Credit (REC);” accessed 16 November 2021."
+      },
+      {
+        "key": "2024031601231097100_c38",
+        "unstructured": "See Western Energy Imbalance Market, https://www.westerneim.com/Pages/About/QuarterlyBenefits.aspx for “ISO EIM benefits report Q1–Q4 2019;” accessed 21 December 2021."
+      },
+      {
+        "key": "2024031601231097100_c39",
+        "unstructured": "See California Public Utilities Commission Energy Division, https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/integrated-resource-plan-and-long-term-procurement-plan-irp-ltpp/2019-2020-irp-events-and-materials/2019-irp-proposed-reference-system-plan_20191106.pdf for “2019–20 IRP: Proposed reference system plan, 2019;” accessed 16 November 2021."
+      },
+      {
+        "key": "2024031601231097100_c40",
+        "article-title": "Rectified linear units improve restricted Boltzmann machines",
+        "year": "2010"
+      },
+      {
+        "key": "2024031601231097100_c41",
+        "first-page": "437",
+        "article-title": "Practical recommendations for gradient-based training of deep architectures",
+        "volume-title": "Neural Networks: Tricks of the Trade",
+        "year": "2012"
+      },
+      {
+        "key": "2024031601231097100_c42",
+        "unstructured": "See CAISO, http://www.caiso.com/market/Pages/ReportsBulletins/RenewablesReporting.aspx for “Renewables and emissions reports, 2021;” accessed 21 December 2021."
+      },
+      {
+        "key": "2024031601231097100_c43",
+        "unstructured": "See U.S. Department of Energy's Energy Information Agency, https://www.eia.gov/electricity/gridmonitor/about for “Hourly grid electricity monitor” (2020)."
+      },
+      {
+        "key": "2024031601231097100_c44",
+        "doi-asserted-by": "crossref",
+        "unstructured": "C. Loutan, P. Klauer, S. Chowdhury, S. Hall, M. Morjaria, V. Chadliev, N. Milam, C. Milan, and V. Gevorgian, “Demonstration of essential reliability services by a 300-MW solar photovoltaic power plant,” Report No. NREL/TP-5D00-67799 (NREL, Boulder, CO, 2017).",
+        "DOI": "10.2172/1349211"
+      },
+      {
+        "key": "2024031601231097100_c45",
+        "unstructured": "C. Loutan, V. Gevorgian, S. Chowdhury, M. Bosanac, E. Kester, D. Hummel, R. Leonard, M. Rutemiller, J. Fregoe, D. Pittman, and C. Kosuth, “Avangrid renewables Tule Wind Farm: Demonstration of capability to provide essential grid services” (CAISO, Folsom, CA, 2020), see http://www.caiso.com/documents/windpowerplanttestresults.pdf."
+      },
+      {
+        "key": "2024031601231097100_c46",
+        "doi-asserted-by": "crossref",
+        "unstructured": "P. L. Denholm, Y. Sun, and T. T. Mai, “An introduction to grid services: Concepts, technical requirements, and provision from wind,” Report No. NREL/TP-6A20-72578 (National Renewable Energy Lab, 2019).",
+        "DOI": "10.2172/1493402"
+      },
+      {
+        "key": "2024031601231097100_c47",
+        "doi-asserted-by": "crossref",
+        "unstructured": "F. Kahrl, J. H. Kim, A. Mills, R. Wiser, C. C. Montañés, and W. Gorman, “Variable renewable energy participation in U.S. ancillary services markets” (Lawrence Berkeley National Laboratory, 2021), see https://escholarship.org/uc/item/29r4z5mx.",
+        "DOI": "10.2172/1824782"
+      }
+    ],
+    "container-title": [
+      "Journal of Renewable and Sustainable Energy"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://pubs.aip.org/aip/jrse/article-pdf/doi/10.1063/5.0087144/19799597/036303_1_online.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://pubs.aip.org/aip/jrse/article-pdf/doi/10.1063/5.0087144/19799597/036303_1_online.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          3,
+          16
+        ]
+      ],
+      "date-time": "2024-03-16T01:23:33Z",
+      "timestamp": 1710552213000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://pubs.aip.org/jrse/article/14/3/036303/2845529/Machine-learning-derived-dynamic-operating-reserve"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          1
+        ]
+      ]
+    },
+    "references-count": 47,
+    "journal-issue": {
+      "issue": "3",
+      "published-print": {
+        "date-parts": [
+          [
+            2022,
+            5,
+            1
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1063/5.0087144",
+    "relation": {},
+    "ISSN": [
+      "1941-7012"
+    ],
+    "issn-type": [
+      {
+        "value": "1941-7012",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published-other": {
+      "date-parts": [
+        [
+          2022,
+          5
+        ]
+      ]
+    },
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          1
+        ]
+      ]
+    },
+    "article-number": "036303"
+  }
+}

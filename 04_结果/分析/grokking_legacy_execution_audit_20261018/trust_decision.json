@@ -1,0 +1,15 @@
+{
+  "status": "HOST_KEY_MISMATCH_REFUSED_BEFORE_AUTHENTICATION",
+  "expected_existing_fingerprint": "SHA256:oNc+CkuCXl8LGjk3kqlIPZhdp/i/VTb0gtd5oF0ctY8",
+  "offered_fingerprint_untrusted": "SHA256:qTTam8cM3VllUiId9B76j+bK/FhOqskpd10eXfRVcLU",
+  "endpoint": "192.168.17.251:25329",
+  "command_stdout_empty": true,
+  "remote_probe_executed": false,
+  "new_key_accepted": false,
+  "trust_configuration_changed": false,
+  "user_subsequent_disclosure": "original rented cloud instance destroyed",
+  "network_attempts_after_destruction_disclosure": 0,
+  "async_identity_question": "superseded by user instance-destruction disclosure; no further fingerprint requested",
+  "current_endpoint_is_original_instance": "NOT_AUTHENTICATED; cannot infer identity or original directory contents",
+  "source": "raw OpenSSH stderr and user disclosure; no private key material copied into audit"
+}

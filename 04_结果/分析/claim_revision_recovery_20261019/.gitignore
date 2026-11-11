@@ -1,0 +1,7 @@
+# Exact recovery archives are retained; loose extracted copies are reproducible.
+/evidence/
+/necessity/
+/source_metadata/
+/build/
+/rendered/*.png
+__pycache__/

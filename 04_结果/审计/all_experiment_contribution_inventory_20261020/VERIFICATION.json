@@ -1,0 +1,156 @@
+{
+  "checked_utc": "2026-10-20T12:39:48.986761+00:00",
+  "status": "PASS_READ_ONLY_PROJECT_WIDE_INVENTORY_WITH_SCIENTIFIC_LIMITS",
+  "candidate_commit": "a6f3617b0561b8cbd02417aff3f3afab57f9df6f",
+  "protected_source_files_unchanged": 350,
+  "protected_mismatches": [],
+  "all_inventory_file_metadata_checked": 58430,
+  "inventory_metadata_mismatches": [],
+  "source_files_sha256_bound_and_rechecked": 152,
+  "recent_source_identities_rechecked": 16,
+  "evidence_records": 393,
+  "directory_navigation_groups": 407,
+  "gate_status": {
+    "scientific_claim": "PASS_EXISTING_SCOPE",
+    "cached_numbers": {
+      "checks": 77,
+      "failures": 0,
+      "statistical_generation": false
+    },
+    "independent_archive": "PASS_EXISTING_SOURCE_AND_CLASSIFICATION_SCOPE"
+  },
+  "preexisting_tracked_modifications_preserved": [
+    "AGENTS.md",
+    "artifacts/tste_number_consistency_audit/tste_number_consistency_audit.csv"
+  ],
+  "scope_limits": [
+    "File indexing and timestamps do not authenticate all payload bytes",
+    "No whole-repository per-array or per-checkpoint evaluation",
+    "Role reports declare representative versus complete table coverage and unresolved provenance",
+    "Novelty priority and global venue sufficiency not re-established",
+    "Old scientific contract and version conflicts not silently edited or upgraded"
+  ],
+  "mutations": {
+    "original_results": false,
+    "manuscripts_or_packages": false,
+    "thresholds": false,
+    "PROJECT_or_contract": false
+  },
+  "new_scientific_execution": {
+    "training": false,
+    "model_inference": false,
+    "calibration": false,
+    "resampling": false,
+    "simulation": false,
+    "measurement_download": false,
+    "remote_access": false
+  },
+  "published": false,
+  "submitted": false,
+  "new_audit_files": {
+    "ASSET_INVENTORY.csv": {
+      "bytes": 11214349,
+      "sha256": "5bb321e781d63ac5095216eefc1418b67b8722788c2a205aaeb4bdb65b5b4a82"
+    },
+    "CONTRIBUTION_ATLAS.md": {
+      "bytes": 15851,
+      "sha256": "966f769ab58ac5362aab9e5d3505b46b21596a7b3908ec2e0cab3edceea0d4cf"
+    },
+    "DECISION.json": {
+      "bytes": 5016,
+      "sha256": "f128308b028a933d277978fb1f9b3e78f9d46a53d2f62eceba6f1efc12a2234e"
+    },
+    "DIRECTORY_COVERAGE.csv": {
+      "bytes": 89594,
+      "sha256": "82c044a1decc1fd065ed2e48be6d60a05bdd2ee6fe0f1f33b04115af26979c72"
+    },
+    "DIRECTORY_INVENTORY.csv": {
+      "bytes": 25109,
+      "sha256": "e55a15f10e72635cc717009a76eca5e7b7b4e4dc586f2bf034b1f08b785aab35"
+    },
+    "EVIDENCE_INDEX.csv": {
+      "bytes": 214181,
+      "sha256": "a237e637d88df7c93382a7f5479ee36b5c6c4073ed7dd0211d1973cf583c14d7"
+    },
+    "HISTORICAL_ARCHIVE_INDEX.csv": {
+      "bytes": 7658,
+      "sha256": "c7fe94a189dbbe0fce30802951a60cf21775b35cad269f85f6e8acb1943bf121"
+    },
+    "HISTORICAL_AUXILIARY.md": {
+      "bytes": 5376,
+      "sha256": "9f03362511c3057d9ca965b989083bb57d5e74842313300440e48366407bcf07"
+    },
+    "INVENTORY_RECEIPT.json": {
+      "bytes": 1719,
+      "sha256": "42fd07d90e96851e3023a0038dfe03752787937f34049d103eb0655c45728983"
+    },
+    "LEGACY_CLAIMS.csv": {
+      "bytes": 30315,
+      "sha256": "9b211c63bbcc7d47d6afedff1a03a183784d0e78bb835f5f9201db8b157d0de2"
+    },
+    "LEGACY_MODELS.md": {
+      "bytes": 33808,
+      "sha256": "1be06e6341ab78ccec7cc9808a3ae8ab5e64c6712ff5da2ca6d2aca7eb9c3e45"
+    },
+    "OPERATIONAL_CLAIMS.csv": {
+      "bytes": 20212,
+      "sha256": "8716eda358b5e79dc4ec23bff33be354b5fe6f83676d89c6e9cbe7fd71615797"
+    },
+    "OPERATIONAL_EXTERNAL.md": {
+      "bytes": 30214,
+      "sha256": "8ee8f8339f729e5f373ba54c8756f84b4a82e719a80562afb87c6afe32a04522"
+    },
+    "READ_SOURCE_IDENTITIES.json": {
+      "bytes": 28133,
+      "sha256": "91ec10ce8ccfc7bf999d1c20c50f7098ffa8152046dac456aee171dff38b3bbf"
+    },
+    "RECENT_CLAIMS.csv": {
+      "bytes": 6286,
+      "sha256": "4f936c17b29a67af0e0af3dcb59c2215976a376617c3fb27f8f634c1fdf046ab"
+    },
+    "RECENT_SOURCE_EXTRACT.json": {
+      "bytes": 11363,
+      "sha256": "fc2eb49cf811234522a91212fbeb39dd4a17ab745b2023a62ddeb3fc1b2c9422"
+    },
+    "RECENT_SOURCE_IDENTITIES.json": {
+      "bytes": 3065,
+      "sha256": "7d3904ec9ff7e06014cd94bff9be7eb1d7a9d049b65d9da231c8eebea6799ff5"
+    },
+    "REVIEW_SCOPE.json": {
+      "bytes": 68272,
+      "sha256": "315526b844eee9e33a92373849419189174a31a603c7b58958e8e56bd93dd185"
+    },
+    "SELECTOR_AND_STATE.md": {
+      "bytes": 21215,
+      "sha256": "08a1f24a7b5c7ea066f71fea93bc0d07ecebbc8fb233b33fc185907514fd44ec"
+    },
+    "SELECTOR_STATE_CLAIMS.csv": {
+      "bytes": 256821,
+      "sha256": "ae6be0339541eb5b18d0748a8b205cd9a3a15f0750615815c79f6ac2dfe094b6"
+    },
+    "verification/cached_number_gate.txt": {
+      "bytes": 207,
+      "sha256": "cb48d209d5f965a7ec692ca586442d4041317610e785d644018fda38c2f966b0"
+    },
+    "verification/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "verification/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "verification/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 883,
+      "sha256": "5c7252be4408ecefd84b7885ea913a4edcbf917f2e860cf903fb28e79633cca4"
+    },
+    "verification/legacy_scientific_gate.txt": {
+      "bytes": 4946,
+      "sha256": "f731c371bf68b05afe9d9bdcbb07592374c02410008918c9c6537d51e8430fc3"
+    },
+    "verification_independent_archive.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    }
+  }
+}

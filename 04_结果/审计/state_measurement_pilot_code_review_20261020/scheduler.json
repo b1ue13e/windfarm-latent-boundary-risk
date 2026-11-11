@@ -1,0 +1,23 @@
+{
+  "job_state": "F",
+  "Exit_status": 0,
+  "resources_used": {
+    "cpupercent": 130,
+    "cput": "00:01:00",
+    "mem": "3067412kb",
+    "ncpus": 2,
+    "vmem": "7844460kb",
+    "walltime": "00:00:43"
+  },
+  "Resource_List": {
+    "mem": "16gb",
+    "ncpus": 2,
+    "nodect": 1,
+    "place": "free",
+    "select": "1:ncpus=2:mem=16gb",
+    "walltime": "00:10:00"
+  },
+  "exec_host": "cn19/1*2",
+  "stime": "Mon Oct 19 23:48:05 2026",
+  "mtime": "Mon Oct 19 23:48:49 2026"
+}

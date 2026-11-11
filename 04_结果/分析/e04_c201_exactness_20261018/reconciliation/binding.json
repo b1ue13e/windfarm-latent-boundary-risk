@@ -1,0 +1,165 @@
+{
+  "status": "AUDITED_POSTERIOR_INPUT_NOT_ORIGINAL_LOG_REPLACEMENT",
+  "primary_snapshot": "a100/repeat1_posterior_and_bins.npz",
+  "primary_snapshot_sha256": "f3ac78098e7cc2de3bdfaff1c0adaafc6e3273dedd75a9d38384ab246044cb88",
+  "primary_audit_runtime": {
+    "host": "metis",
+    "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+    "numpy": "2.4.6",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "gpu": "NVIDIA A100-PCIE-40GB",
+    "cudnn": 91900,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "cudnn_tf32": true,
+    "matmul_tf32": false,
+    "deterministic_algorithms": false,
+    "torch_threads": 128,
+    "cublas_workspace_config": null,
+    "omp_threads_env": "4",
+    "pbs_job_id": null
+  },
+  "original_slice_script_sha256": "e8c3c6aa0d148c8ecd5ee31766c6d0781b09188df14b27bbdd2ff9d70a246924",
+  "wrapper_sha256": "819ae8e2e388d3442c1ed21ee3861179685c87f884616e919282ff4d856f3016",
+  "command_argv": [
+    "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "scripts/reconcile_e04_c201_evidence.py",
+    "--evidence-dir",
+    "analyses/e04_c201_exactness_20261018",
+    "--output-dir",
+    "analyses/e04_c201_exactness_20261018/reconciliation"
+  ],
+  "comparisons_against_a100_repeat1": {
+    "a100_1": {
+      "posterior_val": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "posterior_test": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "val_bin_ids": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "test_bin_ids": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "reserve_quantiles": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "reserve_test": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "finite_edges_max_abs_difference": 0.0
+    },
+    "a100_2": {
+      "posterior_val": {
+        "changed_values": 23740,
+        "max_absolute_difference": 1.1324882507324219e-06
+      },
+      "posterior_test": {
+        "changed_values": 24478,
+        "max_absolute_difference": 1.0728836059570312e-06
+      },
+      "val_bin_ids": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "test_bin_ids": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "reserve_quantiles": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "reserve_test": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "finite_edges_max_abs_difference": 4.6566128719931904e-11
+    },
+    "rtx5060_1": {
+      "posterior_val": {
+        "changed_values": 24056,
+        "max_absolute_difference": 1.1324882507324219e-06
+      },
+      "posterior_test": {
+        "changed_values": 24879,
+        "max_absolute_difference": 1.0728836059570312e-06
+      },
+      "val_bin_ids": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "test_bin_ids": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "reserve_quantiles": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "reserve_test": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "finite_edges_max_abs_difference": 4.6566128719931904e-11
+    },
+    "rtx5060_2": {
+      "posterior_val": {
+        "changed_values": 23813,
+        "max_absolute_difference": 1.2516975402832031e-06
+      },
+      "posterior_test": {
+        "changed_values": 25033,
+        "max_absolute_difference": 1.0728836059570312e-06
+      },
+      "val_bin_ids": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "test_bin_ids": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "reserve_quantiles": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "reserve_test": {
+        "changed_values": 0,
+        "max_absolute_difference": 0.0
+      },
+      "finite_edges_max_abs_difference": 5.4569682106375694e-12
+    }
+  },
+  "inputs_before": {
+    "E:\\\u8bba\u65873\\analyses\\e04_regime_slices_20261018\\alignment.json": "f0364f41a8d4d65de50f34431aae25d683b7a7fd065ced6d946362c4a30ecf39",
+    "E:\\\u8bba\u65873\\scripts\\analyze_e04_regime_slices.py": "e8c3c6aa0d148c8ecd5ee31766c6d0781b09188df14b27bbdd2ff9d70a246924",
+    "analyses\\e04_c201_exactness_20261018\\a100\\manifest.json": "11a58ee07cdaa0ed0641f662462113b2c39d3a585598bd2f647ed11caa4a98c3",
+    "analyses\\e04_c201_exactness_20261018\\a100\\plan.json": "a31f9dd7590c9d7600d99ca4d36a7fd00411547af0b0ba1a15759f1ea653ed02",
+    "analyses\\e04_c201_exactness_20261018\\a100\\repeat1_posterior_and_bins.npz": "f3ac78098e7cc2de3bdfaff1c0adaafc6e3273dedd75a9d38384ab246044cb88",
+    "analyses\\e04_c201_exactness_20261018\\a100\\repeat1_report.json": "0c4e1341d614a1f7af6599d371e7b332472d7f1d21d8d70659602792284b2a2b",
+    "analyses\\e04_c201_exactness_20261018\\a100\\repeat2_posterior_and_bins.npz": "556e841bf3ede37d0b69d1c85ce6a982d6c06c2539902c9604c2a921ccdf47cd",
+    "analyses\\e04_c201_exactness_20261018\\a100\\repeat2_report.json": "1b15a7159ce915d77b471f32c5251bf015543829b795c6a4c5465c31d05898ce",
+    "analyses\\e04_c201_exactness_20261018\\rtx5060\\manifest.json": "be5c40e68c941e035d6626f1fead1d33d47131701e3520770a8d0737f65f3f8a",
+    "analyses\\e04_c201_exactness_20261018\\rtx5060\\plan.json": "b0e23d7da0773ba6fd20a68ee972bbf58ecaba74425e2578d2e7772fc909e746",
+    "analyses\\e04_c201_exactness_20261018\\rtx5060\\repeat1_posterior_and_bins.npz": "a8ffce95848d696dca7b7d48b63e5d8e1d0afc98c8be2c8041aa40ec58303a6b",
+    "analyses\\e04_c201_exactness_20261018\\rtx5060\\repeat1_report.json": "5da4b2943c9948b90346c12b2d693c7b39dc38bea6bf4fdea6df0299bee33fe4",
+    "analyses\\e04_c201_exactness_20261018\\rtx5060\\repeat2_posterior_and_bins.npz": "08bae42dd7c0009aa92b62418a1974de393f1553f398bc117ea7aed97077c0a9",
+    "analyses\\e04_c201_exactness_20261018\\rtx5060\\repeat2_report.json": "e7b3a663d235956d1d0865bb6f81d67bdcec570b54dcd1723fc499d84b6370e4"
+  },
+  "limitations": [
+    "Historical failed-run posteriors were not archived; its exact numerical cause remains unverified.",
+    "Daily aggregate closure does not prove bitwise identity to absent historical posterior logs.",
+    "Seed201 uses an audited A100 archive; other seeds replay on local RTX5060.",
+    "No original result, threshold or matching tolerance is changed."
+  ]
+}

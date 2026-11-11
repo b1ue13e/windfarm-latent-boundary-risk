@@ -1,0 +1,9 @@
+id,priority,topic,status,evidence,consequence,minimum_action
+N01,P0,到达信息与futureissue索引混淆,VERIFIED_SPEC_DERIVED_UNDER_NOMINAL_FEED,ALLOCATOR_SPEC section1 vs run_state_measurement_pilot.py publication=a-6 and run_decision_information_development.py,部分未来issue承诺可能已发布;强I0未资格;不是发现泄漏,按变量列发布时间/声明到达/访问权限;共同输入合法已到达承诺或限为单条合成feed
+N02,P1,曲线网格与原阈值未绑定,DERIVED_BOUND_NOT_EMPIRICAL,ALLOCATOR_SPEC section2;16interval capgrid,17节点不等于动作离散;理想插值误差cap/64未含学习误差也不控严格V,先纸面误差资格再未来历史数值核查;不改门槛
+N03,P1,三元组样本和名义容量不证明强度,VERIFIED_DESIGN_INFERRED_RISK,ALLOCATOR_SPEC section2 360000triples 144leads17nodes 100trees15leaves,可能估计受限但尚未证明欠拟合;不能推全部P-only不行,唯一原始目标/天气与边际风险/行动后果资格;不扩模型zoo
+N04,P1,风险水平校准不等于边际排序,DERIVED_INVARIANCE,ALLOCATOR_SPEC sections3-4,曲线加与动作无关的时段常数不改变固定预算最优解,把g-MSE/斜率排序/实际C-U分开验收
+N05,P1,共同预算仍有控制器与边界交互,VERIFIED_DESIGN_INFERRED_EFFECT,PLAN sections2-3;cap来自历史最大动作,同额不等于真实采购制度;cap同时改资源和网格,说明资源制度并预声明边界/数值分离诊断;只称限定程序效果
+N06,P0_BRIDGE,cap内g不能识别无上限RAW尾部,DERIVED_COUNTEREXAMPLE_NOT_EXECUTED,ALLOCATOR_SPEC section5;RULES O/composition,固定尾部外推可能造桥接失败/虚假后果;不是预算无效证据,补历史尾部资格或限桥接职责;本轮不改O/阈值
+N07,P1,有限代表排除不等于方法族排除,VERIFIED_SCOPE_LIMIT,RULES history familyrepresentative and X,规则对代表可用但不能推全部P-only不可替代,结论明确限定冻结代表程序;学习遗憾与纯信息分开
+N08,P0_CURRENT_TSTE,当前没有独立或等强度替代证据路线,VERIFIED_GAP_INFERRED_INVESTMENT,WINDOW_DECISION.json null;M10 fullmethods notclosed,不按V2规模恢复TSTE实验投入;不是TSTE统一禁止回顾研究,先闭合完整方法知识差异与可信验证路径;无路线结束候选追加投入

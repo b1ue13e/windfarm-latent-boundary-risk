@@ -1,0 +1,127 @@
+xelatex: security risk: running with elevated privileges
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(E:/论文3/analyses/chinese_full_sync_20261019/build/paper_tste_chinese.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(E:\MiKTeX\tex/latex/ctex\ctexart.cls
+(E:\MiKTeX\tex/latex/ctex/config\ctexbackend.cfg)
+(E:\MiKTeX\tex/latex/l3kernel\expl3.sty
+(E:\MiKTeX\tex/latex/l3backend\l3backend-xetex.def))
+Document Class: ctexart 2022/07/14 v2.5.10 Chinese adapter for class article (C
+TEX)
+(E:\MiKTeX\tex/latex/ctex\ctexhook.sty) (E:\MiKTeX\tex/latex/ctex\ctexpatch.sty
+) (E:\MiKTeX\tex/latex/base\fix-cm.sty (E:\MiKTeX\tex/latex/base\ts1enc.def))
+(E:\MiKTeX\tex/latex/ctex/config\ctexopts.cfg)
+(E:\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(E:\MiKTeX\tex/latex/base\size11.clo))
+(E:\MiKTeX\tex/latex/ctex/engine\ctex-engine-xetex.def
+(E:\MiKTeX\tex/xelatex/xecjk\xeCJK.sty
+(E:\MiKTeX\tex/latex/l3packages/xtemplate\xtemplate.sty)
+(E:\MiKTeX\tex/latex/fontspec\fontspec.sty
+(E:\MiKTeX\tex/latex/l3packages/xparse\xparse.sty)
+(E:\MiKTeX\tex/latex/fontspec\fontspec-xetex.sty
+(E:\MiKTeX\tex/latex/base\fontenc.sty)
+(E:\MiKTeX\tex/latex/fontspec\fontspec.cfg)))
+(E:\MiKTeX\tex/xelatex/xecjk\xeCJK.cfg)))
+(E:\MiKTeX\tex/latex/zhnumber\zhnumber.sty
+(E:\MiKTeX\tex/latex/zhnumber\zhnumber-utf8.cfg))
+(E:\MiKTeX\tex/latex/ctex/scheme\ctex-scheme-chinese-article.def
+(E:\MiKTeX\tex/latex/ctex/config\ctex-name-utf8.cfg))
+(E:\MiKTeX\tex/latex/ctex/fontset\ctex-fontset-windows.def))
+(E:\MiKTeX\tex/latex/ctex/config\ctex.cfg)
+(E:\MiKTeX\tex/latex/xcolor\xcolor.sty
+(E:\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(E:\MiKTeX\tex/latex/graphics-def\xetex.def)
+(E:\MiKTeX\tex/latex/graphics\mathcolor.ltx))
+(E:\MiKTeX\tex/latex/geometry\geometry.sty
+(E:\MiKTeX\tex/latex/graphics\keyval.sty)
+(E:\MiKTeX\tex/generic/iftex\ifvtex.sty (E:\MiKTeX\tex/generic/iftex\iftex.sty)
+) (E:\MiKTeX\tex/latex/geometry\geometry.cfg))
+(E:\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(E:\MiKTeX\tex/latex/amsmath\amstext.sty
+(E:\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(E:\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(E:\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(E:\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(E:\MiKTeX\tex/latex/amsfonts\amsfonts.sty))
+(E:\MiKTeX\tex/latex/unicode-math\unicode-math.sty
+(E:\MiKTeX\tex/latex/unicode-math\unicode-math-xetex.sty
+(E:\MiKTeX\tex/latex/l3packages/l3keys2e\l3keys2e.sty)
+(E:\MiKTeX\tex/latex/unicode-math\unicode-math-table.tex)))
+(E:\MiKTeX\tex/latex/lm\lmodern.sty) (E:\MiKTeX\tex/latex/upquote\upquote.sty
+(E:\MiKTeX\tex/latex/base\textcomp.sty))
+(E:\MiKTeX\tex/latex/microtype\microtype.sty
+(E:\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(E:\MiKTeX\tex/latex/microtype\microtype-xetex.def)
+(E:\MiKTeX\tex/latex/microtype\microtype.cfg))
+(E:\MiKTeX\tex/latex/parskip\parskip.sty
+(E:\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+(E:\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(E:\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty))
+Couldn't patch \@startsection
+Couldn't patch \@xsect
+) (E:\MiKTeX\tex/latex/tools\calc.sty)
+(E:\MiKTeX\tex/latex/graphics\graphicx.sty
+(E:\MiKTeX\tex/latex/graphics\graphics.sty
+(E:\MiKTeX\tex/latex/graphics\trig.sty)
+(E:\MiKTeX\tex/latex/graphics-cfg\graphics.cfg)))
+(E:\MiKTeX\tex/latex/tools\tabularx.sty (E:\MiKTeX\tex/latex/tools\array.sty))
+(E:\MiKTeX\tex/latex/booktabs\booktabs.sty)
+(E:\MiKTeX\tex/latex/float\float.sty)
+(E:\MiKTeX\tex/latex/enumitem\enumitem.sty)
+(E:\MiKTeX\tex/latex/adjustbox\adjustbox.sty
+(E:\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+(E:\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(E:\MiKTeX\tex/generic/xkeyval\xkvutils.tex)))
+(E:\MiKTeX\tex/latex/adjustbox\adjcalc.sty)
+(E:\MiKTeX\tex/latex/adjustbox\trimclip.sty
+(E:\MiKTeX\tex/latex/collectbox\collectbox.sty)
+(E:\MiKTeX\tex/latex/adjustbox\tc-xetex.def))
+(E:\MiKTeX\tex/latex/ifoddpage\ifoddpage.sty)
+(E:\MiKTeX\tex/latex/varwidth\varwidth.sty)
+==> First Aid for varwidth.sty applied!
+) (E:\MiKTeX\tex/latex/bookmark\bookmark.sty
+(E:\MiKTeX\tex/latex/hyperref\hyperref.sty
+(E:\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty)
+(E:\MiKTeX\tex/generic/pdfescape\pdfescape.sty
+(E:\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+(E:\MiKTeX\tex/generic/infwarerr\infwarerr.sty)))
+(E:\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(E:\MiKTeX\tex/latex/hyperref\nameref.sty
+(E:\MiKTeX\tex/latex/refcount\refcount.sty)
+(E:\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty))
+(E:\MiKTeX\tex/generic/stringenc\stringenc.sty)
+(E:\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(E:\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(E:\MiKTeX\tex/latex/hyperref\puenc.def) (E:\MiKTeX\tex/latex/url\url.sty)
+(E:\MiKTeX\tex/generic/bitset\bitset.sty
+(E:\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty)))
+(E:\MiKTeX\tex/latex/hyperref\hxetex.def
+(E:\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
+(E:\MiKTeX\tex/generic/uniquecounter\uniquecounter.sty)))
+(E:\MiKTeX\tex/latex/bookmark\bkm-xetex.def))
+(E:\MiKTeX\tex/latex/xurl\xurl.sty)
+(E:\论文3\analyses\chinese_full_sync_20261019\build\paper_tste_chinese.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+(E:\MiKTeX\tex/latex/lm\omllmm.fd) (E:\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(E:\MiKTeX\tex/latex/microtype\mt-msa.cfg)
+(E:\MiKTeX\tex/latex/amsfonts\umsb.fd)
+(E:\MiKTeX\tex/latex/microtype\mt-msb.cfg) [1miktex-dvipdfmx: security risk: running with elevated privileges
+] [2] [3] [4] [5] [6] [7] [8]
+[9] [10] [11] [12] [13] [14] [15]
+(E:\论文3\analyses\chinese_full_sync_20261019\build\paper_tste_chinese.aux)miktex-dvipdfmx: major issue: So far, you have not checked for MiKTeX updates.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+Output written on E:\论文3\analyses\chinese_full_sync_20261019\build\paper_tste_c
+hinese.pdf (15 pages).
+Transcript written on E:\论文3\analyses\chinese_full_sync_20261019\build\paper_ts
+te_chinese.log.
+xelatex: major issue: So far, you have not checked for MiKTeX updates.

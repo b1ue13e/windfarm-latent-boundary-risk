@@ -1,0 +1,882 @@
+{
+  "backend": "Python/Matplotlib",
+  "matplotlib": "3.10.9",
+  "numpy": "2.4.6",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "source_sha256": {
+    "dataset_source_and_license.json": "6ade307b6472b4914a98ff5c5a8803fbc5628a78ad4218bc599f58968f2813b6",
+    "display_M_cost.csv": "6f27d52a7c6156deb58b334b4180e797c9c523a8c6ba9df829234dd3774653c1",
+    "display_M_decomposition.csv": "e9971aea63972552fc58846e579cc1e6cd051b48f62240d5ae96789063bc41e5",
+    "display_M_programs.csv": "fb83fcbbe3abdc574e30a15e2c5ca993c37b3cc4c469c010ad1edc15096f07e5",
+    "display_M_routes.csv": "69a730a95c596e51be9d7bd811c3ec4e7be1793f4f3f87b1c7aaec6c4cefb384",
+    "display_R_cost.csv": "e9c51ff4a3cd5a937b2c2cebf79e9ba658f0bd73fe30f941037b327e967f6e92",
+    "display_R_mse_per_fit.csv": "d73def83ced61b5a84fa0a176f173a6c0692af52e3cdfc8358daac724e462a36",
+    "M_controls_protocol.json": "3be445a2e274d9ec92d53730389bcb4c3d16e46f83271fa93c79c5feabadb0c1",
+    "M_controls_summary.json": "12b91fa1555e1e4a1e4b99894ba8722da7980c0237bcfd4249f7f01564678f3f",
+    "M_frozen.json": "35398087d7ce59a513e948ddb8018a7e0b586d8deb64fc9e85a2507be795d470",
+    "M_historical_choices.json": "c4a009b8d529847697a8c1c9c84edb253453de684d904f0cb9b408521ca5d306",
+    "M_original_summary.json": "40eebd3602783fb4a2d883ce9169b3a2eec131e00441483a87826946b6dadc12",
+    "M_protocol.json": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e",
+    "population_identity_R.json": "416baf2440dca375e9dbff2e93538b1e40a92001b507094298e2074cfc046c44",
+    "R_all_primary_cost_contrasts.csv": "92ba59967f7da98c409a4c5b1dfe6919ed00bb13644dd8b4c0c98ec3e6ff9b6d",
+    "R_diagnostics_201.json": "94bbbd95b9fa48f9d7431c61aff5e7cdc72caecfd826d07ea6bd04c47be1f7d0",
+    "R_diagnostics_202.json": "b67bbe21561e4d8b45ab60d4d00d618a3867fb8a86d4443b983edaf5307fb151",
+    "R_diagnostics_203.json": "ccd24f55e3f53874330236b3647479bdf4620bf81a3ed1ac0c6da8ffe9a0caa4",
+    "R_diagnostics_204.json": "630c3cb389abefb684851a424729c40fe3b3fa869a2b2cc059206fe19f5617e8",
+    "R_diagnostics_205.json": "6ad217655cd4efd1c8557368fc4fb9b09ae64caec045aa6f5dee39176948810b",
+    "R_key_comparisons.csv": "981ef8b6406a50a88dd3386f33d81d7e8f0d596f286f723d1e3dcc41300d8929",
+    "R_paired_intervals.json": "1de4be76bf901008eb006a5baca2f253325efd7499287287296369b1cc56822c",
+    "R_protocol.json": "c69bfdc1940996ad5b9bee9d610e52f6d0ad9618e316bc704e64d78ee1a1179b",
+    "R_summary.csv": "1a416f7b7ceb8145cd0b705c84a215c1a21a1137c74828ed8add52c5c13be6f4",
+    "stored_identity_checks.json": "cf20c046d750cc8e7407f6d712132c15aa9e2a9c467c2201a04c1bb35662447c"
+  },
+  "plotted_fields": [
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "fresh_state",
+      "recipe": "Original",
+      "estimator": "HGB",
+      "family": "154",
+      "source_values": [
+        -0.0013479006290325292,
+        -0.0043394696110066406,
+        0.0016436683529415822
+      ],
+      "displayed_values": [
+        0.1347900629032529,
+        -0.16436683529415821,
+        0.43394696110066405
+      ],
+      "endpoint_qualification": [
+        true,
+        false
+      ],
+      "qualification_source": "M_original_summary.risk_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "old_state",
+      "recipe": "Original",
+      "estimator": "HGB",
+      "family": "154",
+      "source_values": [
+        0.035088526077845524,
+        0.0049447936836249165,
+        0.06523225847206612
+      ],
+      "displayed_values": [
+        -3.5088526077845525,
+        -6.5232258472066125,
+        -0.4944793683624916
+      ],
+      "endpoint_qualification": [
+        true,
+        false
+      ],
+      "qualification_source": "M_original_summary.risk_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "old_power",
+      "recipe": "Original",
+      "estimator": "HGB",
+      "family": "154",
+      "source_values": [
+        0.13168686763519988,
+        0.08094772071892395,
+        0.1824260145514758
+      ],
+      "displayed_values": [
+        -13.168686763519988,
+        -18.242601455147582,
+        -8.094772071892395
+      ],
+      "endpoint_qualification": [
+        true,
+        false
+      ],
+      "qualification_source": "M_original_summary.risk_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "P_premium_vs_Z",
+      "recipe": "Original",
+      "estimator": "HGB",
+      "family": "154",
+      "source_values": [
+        -0.10011109222766643,
+        -0.13737287470975165,
+        -0.0628493097455812
+      ],
+      "displayed_values": [
+        -10.011109222766642,
+        -13.737287470975165,
+        -6.28493097455812
+      ],
+      "endpoint_qualification": [
+        false,
+        false
+      ],
+      "qualification_source": "M_original_summary.risk_qualified",
+      "transformation": "D times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "residual_state",
+      "recipe": "Original",
+      "estimator": "HGB",
+      "family": "154",
+      "source_values": [
+        -0.0008654818689250179,
+        -0.0061577927173823484,
+        0.004426828979532314
+      ],
+      "displayed_values": [
+        0.08654818689250178,
+        -0.44268289795323135,
+        0.6157792717382349
+      ],
+      "endpoint_qualification": [
+        false,
+        false
+      ],
+      "qualification_source": "M_original_summary.risk_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "fresh_state",
+      "recipe": "Original",
+      "estimator": "MLP",
+      "family": "154",
+      "source_values": [
+        -0.009208187759944465,
+        -0.034182947180215834,
+        0.015766571660326908
+      ],
+      "displayed_values": [
+        0.9208187759944465,
+        -1.5766571660326907,
+        3.4182947180215835
+      ],
+      "endpoint_qualification": [
+        false,
+        false
+      ],
+      "qualification_source": "M_original_summary.risk_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "old_state",
+      "recipe": "Original",
+      "estimator": "MLP",
+      "family": "154",
+      "source_values": [
+        0.03354637357381942,
+        -0.007589919292248053,
+        0.07468266643988689
+      ],
+      "displayed_values": [
+        -3.354637357381942,
+        -7.468266643988689,
+        0.7589919292248053
+      ],
+      "endpoint_qualification": [
+        true,
+        false
+      ],
+      "qualification_source": "M_original_summary.risk_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "old_power",
+      "recipe": "Original",
+      "estimator": "MLP",
+      "family": "154",
+      "source_values": [
+        0.1766986822954087,
+        0.1496033089313566,
+        0.2037940556594608
+      ],
+      "displayed_values": [
+        -17.66986822954087,
+        -20.37940556594608,
+        -14.960330893135659
+      ],
+      "endpoint_qualification": [
+        true,
+        false
+      ],
+      "qualification_source": "M_original_summary.risk_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "P_premium_vs_Z",
+      "recipe": "Original",
+      "estimator": "MLP",
+      "family": "154",
+      "source_values": [
+        -0.1481212391441355,
+        -0.19593463117178242,
+        -0.10030784711648857
+      ],
+      "displayed_values": [
+        -14.812123914413549,
+        -19.593463117178242,
+        -10.030784711648858
+      ],
+      "endpoint_qualification": [
+        false,
+        false
+      ],
+      "qualification_source": "M_original_summary.risk_qualified",
+      "transformation": "D times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "residual_state",
+      "recipe": "Original",
+      "estimator": "MLP",
+      "family": "154",
+      "source_values": [
+        -0.00014314770608777328,
+        -0.017833125670605913,
+        0.017546830258430363
+      ],
+      "displayed_values": [
+        0.014314770608777328,
+        -1.7546830258430364,
+        1.7833125670605914
+      ],
+      "endpoint_qualification": [
+        false,
+        false
+      ],
+      "qualification_source": "M_original_summary.risk_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "fresh_state",
+      "recipe": "Common",
+      "estimator": "HGB",
+      "family": "596",
+      "source_values": [
+        -0.0016875339167091565,
+        -0.004915243891879197,
+        0.0015401760584608842
+      ],
+      "displayed_values": [
+        0.16875339167091566,
+        -0.15401760584608842,
+        0.4915243891879197
+      ],
+      "endpoint_qualification": [
+        true,
+        true
+      ],
+      "qualification_source": "M_controls_summary.jointly_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "old_state",
+      "recipe": "Common",
+      "estimator": "HGB",
+      "family": "596",
+      "source_values": [
+        0.03479256088974479,
+        0.002885349527563655,
+        0.06669977225192593
+      ],
+      "displayed_values": [
+        -3.4792560889744792,
+        -6.669977225192593,
+        -0.2885349527563655
+      ],
+      "endpoint_qualification": [
+        true,
+        false
+      ],
+      "qualification_source": "M_controls_summary.jointly_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "old_power",
+      "recipe": "Common",
+      "estimator": "HGB",
+      "family": "596",
+      "source_values": [
+        0.13131064096880884,
+        0.07734746461737581,
+        0.1852738173202419
+      ],
+      "displayed_values": [
+        -13.131064096880884,
+        -18.52738173202419,
+        -7.734746461737581
+      ],
+      "endpoint_qualification": [
+        true,
+        true
+      ],
+      "qualification_source": "M_controls_summary.jointly_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "P_premium_vs_Z",
+      "recipe": "Common",
+      "estimator": "HGB",
+      "family": "596",
+      "source_values": [
+        -0.09999724014563759,
+        -0.1395679990983465,
+        -0.06042648119292866
+      ],
+      "displayed_values": [
+        -9.999724014563759,
+        -13.95679990983465,
+        -6.042648119292866
+      ],
+      "endpoint_qualification": [
+        true,
+        false
+      ],
+      "qualification_source": "M_controls_summary.jointly_qualified",
+      "transformation": "D times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "residual_state",
+      "recipe": "Common",
+      "estimator": "HGB",
+      "family": "596",
+      "source_values": [
+        -0.0008709373132009135,
+        -0.006449351091916016,
+        0.004707476465514189
+      ],
+      "displayed_values": [
+        0.08709373132009135,
+        -0.47074764655141893,
+        0.6449351091916017
+      ],
+      "endpoint_qualification": [
+        true,
+        true
+      ],
+      "qualification_source": "M_controls_summary.jointly_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "fresh_state",
+      "recipe": "Common",
+      "estimator": "MLP",
+      "family": "596",
+      "source_values": [
+        0.0031381913212069454,
+        -0.023175395041147868,
+        0.029451777683561758
+      ],
+      "displayed_values": [
+        -0.31381913212069457,
+        -2.9451777683561757,
+        2.317539504114787
+      ],
+      "endpoint_qualification": [
+        true,
+        true
+      ],
+      "qualification_source": "M_controls_summary.jointly_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "old_state",
+      "recipe": "Common",
+      "estimator": "MLP",
+      "family": "596",
+      "source_values": [
+        -0.0012137455975167895,
+        -0.04706998401425839,
+        0.04464249281922481
+      ],
+      "displayed_values": [
+        0.12137455975167895,
+        -4.4642492819224815,
+        4.706998401425839
+      ],
+      "endpoint_qualification": [
+        true,
+        true
+      ],
+      "qualification_source": "M_controls_summary.jointly_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "old_power",
+      "recipe": "Common",
+      "estimator": "MLP",
+      "family": "596",
+      "source_values": [
+        0.1456184833877018,
+        0.10772337010192289,
+        0.18351359667348072
+      ],
+      "displayed_values": [
+        -14.561848338770181,
+        -18.35135966734807,
+        -10.772337010192288
+      ],
+      "endpoint_qualification": [
+        true,
+        true
+      ],
+      "qualification_source": "M_controls_summary.jointly_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "P_premium_vs_Z",
+      "recipe": "Common",
+      "estimator": "MLP",
+      "family": "596",
+      "source_values": [
+        -0.14665422806155168,
+        -0.19169243811785908,
+        -0.1016160180052443
+      ],
+      "displayed_values": [
+        -14.665422806155167,
+        -19.169243811785908,
+        -10.16160180052443
+      ],
+      "endpoint_qualification": [
+        true,
+        true
+      ],
+      "qualification_source": "M_controls_summary.jointly_qualified",
+      "transformation": "D times100"
+    },
+    {
+      "figure": "fig2",
+      "source": "display_M_cost.csv",
+      "comparison": "residual_state",
+      "recipe": "Common",
+      "estimator": "MLP",
+      "family": "596",
+      "source_values": [
+        -0.0065931196618172865,
+        -0.026867107261422222,
+        0.013680867937787649
+      ],
+      "displayed_values": [
+        0.6593119661817286,
+        -1.3680867937787649,
+        2.686710726142222
+      ],
+      "endpoint_qualification": [
+        true,
+        true
+      ],
+      "qualification_source": "M_controls_summary.jointly_qualified",
+      "transformation": "-G with endpoint reversal, times100"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_cost.csv",
+      "record_index": "0",
+      "displayed_values": [
+        -2.734363955871603,
+        -4.85290699221191,
+        -0.8370848058554794
+      ],
+      "transformation": "None; absolute cost difference"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_cost.csv",
+      "record_index": "12",
+      "displayed_values": [
+        1.7195662509603067,
+        0.36105544670281525,
+        3.591488665483038
+      ],
+      "transformation": "None; absolute cost difference"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_cost.csv",
+      "record_index": "3",
+      "displayed_values": [
+        -0.06798086059689047,
+        -0.17142537235693617,
+        -0.004111534860021267
+      ],
+      "transformation": "None; absolute cost difference"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_cost.csv",
+      "record_index": "15",
+      "displayed_values": [
+        -0.13238054925177659,
+        -0.27210742450624165,
+        -0.016333796980181666
+      ],
+      "transformation": "None; absolute cost difference"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_cost.csv",
+      "record_index": "6",
+      "displayed_values": [
+        -0.06453357523677074,
+        -0.17528917899790486,
+        0.018666909874758573
+      ],
+      "transformation": "None; absolute cost difference"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_cost.csv",
+      "record_index": "9",
+      "displayed_values": [
+        -0.06240577627027624,
+        -0.18202038915301444,
+        0.01210287557932879
+      ],
+      "transformation": "None; absolute cost difference"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "201",
+      "probe": "pitch",
+      "displayed_value": 53.68171330953183,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "202",
+      "probe": "pitch",
+      "displayed_value": 51.15846599497048,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "203",
+      "probe": "pitch",
+      "displayed_value": 52.27289791556148,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "204",
+      "probe": "pitch",
+      "displayed_value": 52.7287831621463,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "205",
+      "probe": "pitch",
+      "displayed_value": 51.40298314727334,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "201",
+      "probe": "wind",
+      "displayed_value": 385.53387105281934,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "202",
+      "probe": "wind",
+      "displayed_value": 386.97409952234017,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "203",
+      "probe": "wind",
+      "displayed_value": 389.60611643924346,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "204",
+      "probe": "wind",
+      "displayed_value": 387.2359972137717,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "205",
+      "probe": "wind",
+      "displayed_value": 390.1816397332614,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "201",
+      "probe": "shuffle",
+      "displayed_value": 1846.5468276841736,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "202",
+      "probe": "shuffle",
+      "displayed_value": 1820.909970409701,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "203",
+      "probe": "shuffle",
+      "displayed_value": 1806.3047609148734,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "204",
+      "probe": "shuffle",
+      "displayed_value": 1827.639456264848,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig3",
+      "source": "display_R_mse_per_fit.csv",
+      "seed": "205",
+      "probe": "shuffle",
+      "displayed_value": 1836.2930835941115,
+      "interval": "not available; points only"
+    },
+    {
+      "figure": "fig4",
+      "source": "copies\\controls\\summary.json::interval.Original:HGB:residual_state|mean_R",
+      "metric": "mean_R",
+      "estimator": "HGB",
+      "recipe": "Original",
+      "displayed_values": [
+        0.7159995221508015,
+        0.24115365673843145,
+        1.1908453875631715
+      ],
+      "transformation": "stored normalized difference times100"
+    },
+    {
+      "figure": "fig4",
+      "source": "copies\\controls\\summary.json::interval.Common:HGB:residual_state|mean_R",
+      "metric": "mean_R",
+      "estimator": "HGB",
+      "recipe": "Common",
+      "displayed_values": [
+        0.7103487250075056,
+        0.2355030429611834,
+        1.1851944070538276
+      ],
+      "transformation": "stored normalized difference times100"
+    },
+    {
+      "figure": "fig4",
+      "source": "copies\\controls\\summary.json::interval.Original:MLP:residual_state|mean_R",
+      "metric": "mean_R",
+      "estimator": "MLP",
+      "recipe": "Original",
+      "displayed_values": [
+        0.06388126768659877,
+        -1.7217109170846714,
+        1.849473452457869
+      ],
+      "transformation": "stored normalized difference times100"
+    },
+    {
+      "figure": "fig4",
+      "source": "copies\\controls\\summary.json::interval.Common:MLP:residual_state|mean_R",
+      "metric": "mean_R",
+      "estimator": "MLP",
+      "recipe": "Common",
+      "displayed_values": [
+        1.2218662569765866,
+        -0.5637259277946817,
+        3.0074584417478545
+      ],
+      "transformation": "stored normalized difference times100"
+    },
+    {
+      "figure": "fig4",
+      "source": "copies\\controls\\summary.json::interval.Original:HGB:residual_state|mean_U",
+      "metric": "mean_U",
+      "estimator": "HGB",
+      "recipe": "Original",
+      "displayed_values": [
+        -0.6460554002768546,
+        -1.111515317665071,
+        -0.18059548288863825
+      ],
+      "transformation": "stored normalized difference times100"
+    },
+    {
+      "figure": "fig4",
+      "source": "copies\\controls\\summary.json::interval.Common:HGB:residual_state|mean_U",
+      "metric": "mean_U",
+      "estimator": "HGB",
+      "recipe": "Common",
+      "displayed_values": [
+        -0.639933223379231,
+        -1.1042085245116469,
+        -0.1756579222468151
+      ],
+      "transformation": "stored normalized difference times100"
+    },
+    {
+      "figure": "fig4",
+      "source": "copies\\controls\\summary.json::interval.Original:MLP:residual_state|mean_U",
+      "metric": "mean_U",
+      "estimator": "MLP",
+      "recipe": "Original",
+      "displayed_values": [
+        -0.05064834404056303,
+        -2.0030116177992032,
+        1.901714929718077
+      ],
+      "transformation": "stored normalized difference times100"
+    },
+    {
+      "figure": "fig4",
+      "source": "copies\\controls\\summary.json::interval.Common:MLP:residual_state|mean_U",
+      "metric": "mean_U",
+      "estimator": "MLP",
+      "recipe": "Common",
+      "displayed_values": [
+        -0.5893737197522914,
+        -2.3690402351808437,
+        1.190292795676261
+      ],
+      "transformation": "stored normalized difference times100"
+    },
+    {
+      "figure": "fig4",
+      "source": "copies\\controls\\summary.json::interval.Original:HGB:residual_state|cost|G",
+      "metric": "cost",
+      "estimator": "HGB",
+      "recipe": "Original",
+      "displayed_values": [
+        0.08654818689250178,
+        -0.47237031527059115,
+        0.6454666890555948
+      ],
+      "transformation": "-G times100"
+    },
+    {
+      "figure": "fig4",
+      "source": "copies\\controls\\summary.json::interval.Common:HGB:residual_state|cost|G",
+      "metric": "cost",
+      "estimator": "HGB",
+      "recipe": "Common",
+      "displayed_values": [
+        0.08709373132009135,
+        -0.47074764655141893,
+        0.6449351091916017
+      ],
+      "transformation": "-G times100"
+    },
+    {
+      "figure": "fig4",
+      "source": "copies\\controls\\summary.json::interval.Original:MLP:residual_state|cost|G",
+      "metric": "cost",
+      "estimator": "MLP",
+      "recipe": "Original",
+      "displayed_values": [
+        0.014314770608777328,
+        -1.8493468440711183,
+        1.877976385288673
+      ],
+      "transformation": "-G times100"
+    },
+    {
+      "figure": "fig4",
+      "source": "copies\\controls\\summary.json::interval.Common:MLP:residual_state|cost|G",
+      "metric": "cost",
+      "estimator": "MLP",
+      "recipe": "Common",
+      "displayed_values": [
+        0.6593119661817286,
+        -1.3680867937787649,
+        2.686710726142222
+      ],
+      "transformation": "-G times100"
+    }
+  ],
+  "new_statistics": false,
+  "row_selection": {
+    "M_cost": {
+      "input": 30,
+      "fig2": 20,
+      "rule": "Original154 and Common596; Original596 sensitivity retained in source/SI"
+    },
+    "R_cost": {
+      "input": 108,
+      "fig3": 6,
+      "rule": "pitch_withheld span3; sensitivity shows18 original span records"
+    },
+    "R_MSE": {
+      "input": 15,
+      "fig3": 15,
+      "exclusion": null
+    }
+  },
+  "source_code_sha256": "261a507d2340ab330a83c254fbd0f96491dea26f3dbdfacbceaff50037ecce05",
+  "label_revision": {
+    "fig1": "Action updated; common forecast unchanged",
+    "fig3": "Additions distinguished from replacement; input and target labels aligned",
+    "figS1": "Same addition and replacement terms as the main reconstruction figure",
+    "numerical_fields_unchanged": true
+  }
+}

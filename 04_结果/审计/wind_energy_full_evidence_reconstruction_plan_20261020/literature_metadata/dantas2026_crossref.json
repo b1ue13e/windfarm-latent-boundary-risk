@@ -1,0 +1,772 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          7,
+          22
+        ]
+      ],
+      "date-time": "2026-07-22T08:32:44Z",
+      "timestamp": 1784709164850,
+      "version": "3.55.0"
+    },
+    "reference-count": 91,
+    "publisher": "Wiley",
+    "issue": "2",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              12,
+              25
+            ]
+          ],
+          "date-time": "2025-12-25T00:00:00Z",
+          "timestamp": 1766620800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              12,
+              25
+            ]
+          ],
+          "date-time": "2025-12-25T00:00:00Z",
+          "timestamp": 1766620800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "http://doi.wiley.com/10.1002/tdm_license_1.1"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "onlinelibrary.wiley.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Wind Energy"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2026,
+          2
+        ]
+      ]
+    },
+    "abstract": "<jats:title>ABSTRACT</jats:title>\n                  <jats:p>This paper brings a new understanding to the relative importance of different uncertainty sources across forecast horizons up to 7 days ahead. It presents a method for probabilistic wind power forecasting that quantifies uncertainty from weather forecasts and weather‐to‐power conversion separately. The study reveals that weather‐to‐power uncertainty is more significant for short‐term forecasts, while weather forecast uncertainty dominates mid‐term forecasts, with the transition point varying between wind farms. Offshore farms typically see this shift at shorter lead times than onshore. By addressing both uncertainty sources, the proposed forecast method achieves state‐of‐the‐art results for lead times of 6 to 162 h, eliminating the need for separate models for short‐ and mid‐term forecasting. Importantly, it also significantly improves short‐term forecasts during high weather uncertainty periods, where methods based on deterministic weather forecasts dramatically underestimate total uncertainty. The findings are supported by an extensive, reproducible case study comprising 73 wind farms in Great Britain over 5 years.</jats:p>",
+    "DOI": "10.1002/we.70079",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2025,
+          12,
+          26
+        ]
+      ],
+      "date-time": "2025-12-26T04:12:46Z",
+      "timestamp": 1766722366000
+    },
+    "update-policy": "https://doi.org/10.1002/crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 4,
+    "title": [
+      "Seamless Short‐ to Mid‐Term Probabilistic Wind Power Forecasting"
+    ],
+    "prefix": "10.1002",
+    "volume": "29",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-2818-9557",
+        "authenticated-orcid": false,
+        "given": "Gabriel",
+        "family": "Dantas",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "School of Mathematics and Statistics University of Glasgow  Glasgow UK"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5960-666X",
+        "authenticated-orcid": false,
+        "given": "Jethro",
+        "family": "Browell",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Mathematics and Statistics University of Glasgow  Glasgow UK"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "311",
+    "published-online": {
+      "date-parts": [
+        [
+          2025,
+          12,
+          25
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_2_12_2_1",
+        "unstructured": "REN21 “Renewables 2022: Global Status Report ” (2022)."
+      },
+      {
+        "key": "e_1_2_12_3_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.esr.2019.01.006"
+      },
+      {
+        "key": "e_1_2_12_4_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41560‐020‐00695‐4"
+      },
+      {
+        "key": "e_1_2_12_5_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.rser.2016.06.073"
+      },
+      {
+        "key": "e_1_2_12_6_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.energy.2018.07.100"
+      },
+      {
+        "key": "e_1_2_12_7_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "J.Smith S.Beuning H.Durrwachter et al. “Impact of Variable Renewable Energy on US Electricity Markets ” inIEEE PES General Meeting(2010):1–12 https://doi.org/10.1109/PES.2010.5589715.",
+        "DOI": "10.1109/PES.2010.5589715"
+      },
+      {
+        "key": "e_1_2_12_8_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.energy.2012.06.059"
+      },
+      {
+        "key": "e_1_2_12_9_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/wene.365"
+      },
+      {
+        "key": "e_1_2_12_10_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.rser.2018.02.007"
+      },
+      {
+        "key": "e_1_2_12_11_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-1-4614-9411-9"
+      },
+      {
+        "key": "e_1_2_12_12_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.rser.2018.09.046"
+      },
+      {
+        "key": "e_1_2_12_13_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/B978-0-08-100504-0.00003-2"
+      },
+      {
+        "key": "e_1_2_12_14_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.apenergy.2019.01.193"
+      },
+      {
+        "key": "e_1_2_12_15_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3390/en10091402"
+      },
+      {
+        "key": "e_1_2_12_16_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.rser.2021.111758"
+      },
+      {
+        "key": "e_1_2_12_17_1",
+        "unstructured": "G.Giebel C.Draxl R.Brownsword G.Kariniotakis M.Denhard “The State‐of‐the‐art in Short‐term Prediction of Wind Power. A Literature Overview ” (2011)."
+      },
+      {
+        "key": "e_1_2_12_18_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature14956"
+      },
+      {
+        "key": "e_1_2_12_19_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.2736"
+      },
+      {
+        "key": "e_1_2_12_20_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/BAMS‐D‐19‐0308.1"
+      },
+      {
+        "key": "e_1_2_12_21_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.enconman.2022.116297"
+      },
+      {
+        "key": "e_1_2_12_22_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.309"
+      },
+      {
+        "key": "e_1_2_12_23_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1115/1.1862266"
+      },
+      {
+        "key": "e_1_2_12_24_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2008.922526"
+      },
+      {
+        "key": "e_1_2_12_25_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1467‐9876.2011.01026.x"
+      },
+      {
+        "key": "e_1_2_12_26_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.182"
+      },
+      {
+        "key": "e_1_2_12_27_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.1666"
+      },
+      {
+        "key": "e_1_2_12_28_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.ijforecast.2016.02.001"
+      },
+      {
+        "key": "e_1_2_12_29_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.ijforecast.2015.12.002"
+      },
+      {
+        "key": "e_1_2_12_30_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSTE.2017.2694340"
+      },
+      {
+        "key": "e_1_2_12_31_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.ijforecast.2015.11.013"
+      },
+      {
+        "key": "e_1_2_12_32_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.ijforecast.2016.02.002"
+      },
+      {
+        "key": "e_1_2_12_33_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.ijhydene.2020.06.209"
+      },
+      {
+        "key": "e_1_2_12_34_1",
+        "unstructured": "J.Juban L.Fugon G.Kariniotakis “Probabilistic Short‐term Wind Power Forecasting Based on Kernel Density Estimators ” inEuropean Wind Energy Conference and exhibition EWEC 2007(MILAN 2007).http://ewec2007proceedings.info¿."
+      },
+      {
+        "key": "e_1_2_12_35_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Y.Zhang J.Wang “GEFCom2014 Probabilistic Solar Power Forecasting Based on K‐nearest Neighbor and Kernel Density Estimator ” in2015 IEEE Power Energy Society General Meeting(2015):1–5 https://doi.org/10.1109/PESGM.2015.7285696.",
+        "DOI": "10.1109/PESGM.2015.7285696"
+      },
+      {
+        "key": "e_1_2_12_36_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.energy.2021.122045"
+      },
+      {
+        "key": "e_1_2_12_37_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSTE.2012.2200302"
+      },
+      {
+        "key": "e_1_2_12_38_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1127/metz/2015/0659"
+      },
+      {
+        "key": "e_1_2_12_39_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.renene.2014.11.061"
+      },
+      {
+        "key": "e_1_2_12_40_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.renene.2019.06.132"
+      },
+      {
+        "key": "e_1_2_12_41_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.ijforecast.2015.11.007"
+      },
+      {
+        "key": "e_1_2_12_42_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.artint.2018.07.007"
+      },
+      {
+        "key": "e_1_2_12_43_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TIA.2018.2858183"
+      },
+      {
+        "key": "e_1_2_12_44_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSTE.2021.3086851"
+      },
+      {
+        "key": "e_1_2_12_45_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Y.Fujimoto D.Nohara Y.Kanno M.Ohba T.Kato Y.Hayashi “Probability Density Prediction of Wind Farm Power Generation: Benchmarking Natural Gradient Boosting Approach Using Ensemble Weather Forecast ” available at SSRN 4097480 https://doi.org/10.2139/ssrn.4097480.",
+        "DOI": "10.2139/ssrn.4097480"
+      },
+      {
+        "key": "e_1_2_12_46_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.energy.2018.05.157"
+      },
+      {
+        "key": "e_1_2_12_47_1",
+        "volume-title": "Proceedings of the 2004 Global Windpower Conference and Exhibition",
+        "author": "Nielsen H. A.",
+        "year": "2004"
+      },
+      {
+        "key": "e_1_2_12_48_1",
+        "unstructured": "C.Junk L.vonBremen D.Heinemann “Assessment of Probabilistic Wind Power Forecasts for Wind Farms in Northern Ireland ” inProceedings of the EWEA 2012 Annual Event(Copenhagen 2012) 16–19."
+      },
+      {
+        "key": "e_1_2_12_49_1",
+        "unstructured": "T.Gneiting “Calibration of Medium‐range Weather Forecasts ” European Centre for Medium‐Range Weather Forecasts Reading UK 2014."
+      },
+      {
+        "key": "e_1_2_12_50_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/MWR2906.1"
+      },
+      {
+        "key": "e_1_2_12_51_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/MWR2904.1"
+      },
+      {
+        "key": "e_1_2_12_52_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1146/annurev‐statistics‐062713‐085831"
+      },
+      {
+        "key": "e_1_2_12_53_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/qj.2397"
+      },
+      {
+        "key": "e_1_2_12_54_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/rssb.12450"
+      },
+      {
+        "key": "e_1_2_12_55_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3390/en16010180"
+      },
+      {
+        "key": "e_1_2_12_56_1",
+        "unstructured": "H.Aalborg Nielsen H.Madsen T.Skov Nielsen et al. “Wind Power Ensemble Forecasting using Wind Speed and Direction Ensembles from ECMWF or NCEP ” (2005a)."
+      },
+      {
+        "key": "e_1_2_12_57_1",
+        "unstructured": "H.Aalborg Nielsen D.Yates H.Madsen et al. “Analysis of the Results of an On‐line Wind Power Quantile Forecasting System ” (2005b)."
+      },
+      {
+        "key": "e_1_2_12_58_1",
+        "first-page": "10",
+        "volume-title": "Proceedings European Wind Energy Conference & Exhibition EWEC 2008",
+        "author": "Juban J.",
+        "year": "2008"
+      },
+      {
+        "key": "e_1_2_12_59_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TEC.2009.2025431"
+      },
+      {
+        "key": "e_1_2_12_60_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "N.Pinho da Silva L.Rosa R.Pestana “Ensemble‐based Estimation of Wind Power Forecast Uncertainty ” in2015 12th International Conference on the European Energy Market(EEM 2015) 1–5 https://doi.org/10.1109/EEM.2015.7216622.",
+        "DOI": "10.1109/EEM.2015.7216622"
+      },
+      {
+        "key": "e_1_2_12_61_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "C.Gilbert J.Browell D.McMillan “A Hierarchical Approach to Probabilistic Wind Power Forecasting ” in2018 IEEE International Conference on Probabilistic Methods Applied to Power Systems(PMAPS 2018) 1–6 https://doi.org/10.1109/PMAPS.2018.8440571.",
+        "DOI": "10.1109/PMAPS.2018.8440571"
+      },
+      {
+        "key": "e_1_2_12_62_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "J.Browell C.Gilbert R.Tawn L.May “Quantile Combination for the EEM20 Wind Power Forecasting Competition ” in2020 17th International Conference on the European Energy Market(EEM 2020) 1–6 https://doi.org/10.1109/EEM49802.2020.9221942.",
+        "DOI": "10.1109/EEM49802.2020.9221942"
+      },
+      {
+        "key": "e_1_2_12_63_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/aos/1013203451"
+      },
+      {
+        "key": "e_1_2_12_64_1",
+        "volume-title": "Advances in Neural Information Processing Systems",
+        "author": "Ke G.",
+        "year": "2017"
+      },
+      {
+        "key": "e_1_2_12_65_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2939672.2939785"
+      },
+      {
+        "key": "e_1_2_12_66_1",
+        "volume-title": "Advances in Neural Information Processing Systems",
+        "author": "Snoek J.",
+        "year": "2012"
+      },
+      {
+        "key": "e_1_2_12_67_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3982/ECTA7880"
+      },
+      {
+        "key": "e_1_2_12_68_1",
+        "first-page": "15909",
+        "volume-title": "Advances in Neural Information Processing Systems",
+        "author": "Zhou F.",
+        "year": "2020"
+      },
+      {
+        "key": "e_1_2_12_69_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/13‐EJS823"
+      },
+      {
+        "key": "e_1_2_12_70_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1198/016214506000001437"
+      },
+      {
+        "key": "e_1_2_12_71_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1467‐9868.2007.00587.x"
+      },
+      {
+        "key": "e_1_2_12_72_1",
+        "unstructured": "J.Browell S.Haglund H.Kalvegren et al. “Hybrid Energy Forecasting and Trading Competition ” (2023) https://doi.org/10.21227/5hn0‐8091."
+      },
+      {
+        "key": "e_1_2_12_73_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/15‐AOAS843"
+      },
+      {
+        "key": "e_1_2_12_74_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "M. A.Matos R. J.Bessa C.Gonçalves et al. “Setting the Maximum Import Net Transfer Capacity under Extreme RES Integration Scenarios ” in2016 International Conference on Probabilistic Methods Applied to Power Systems(PMAPS 2016) 1–7 https://doi.org/10.1109/PMAPS.2016.7764145.",
+        "DOI": "10.1109/PMAPS.2016.7764145"
+      },
+      {
+        "key": "e_1_2_12_75_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.284"
+      },
+      {
+        "key": "e_1_2_12_76_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2010.2065818"
+      },
+      {
+        "key": "e_1_2_12_77_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.epsr.2020.106636"
+      },
+      {
+        "key": "e_1_2_12_78_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/17‐EJS1286"
+      },
+      {
+        "key": "e_1_2_12_79_1",
+        "unstructured": "A. J.McNeilandT.Saladin “The Peaks over Thresholds Method for Estimating High Quantiles of Loss Distributions ” inProceedings of 28th international ASTIN Colloquium vol.23(1997):43."
+      },
+      {
+        "key": "e_1_2_12_80_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1137/0905021"
+      },
+      {
+        "key": "e_1_2_12_81_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.2497"
+      },
+      {
+        "key": "e_1_2_12_82_1",
+        "unstructured": "S.Arnold E.‐M.Walz J.Ziegel T.Gneiting “Decompositions of the Mean Continuous Ranked Probability Score ” arXiv preprint arXiv:2311.14122."
+      },
+      {
+        "key": "e_1_2_12_83_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/qj.2284"
+      },
+      {
+        "key": "e_1_2_12_84_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/qj.559"
+      },
+      {
+        "key": "e_1_2_12_85_1",
+        "unstructured": "Elexon “Balancing Mechanism Reporting Agent ” (2024) https://bscdocs.elexon.co.uk/service‐descriptions/balancing‐mechanism‐reporting‐agent‐service‐description."
+      },
+      {
+        "key": "e_1_2_12_86_1",
+        "unstructured": "National Grid Electricity System Operator Limited “The Grid Code ” issue 6 (2024) https://dcm.nationalgrideso.com/."
+      },
+      {
+        "key": "e_1_2_12_87_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.rser.2022.112519"
+      },
+      {
+        "key": "e_1_2_12_88_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.apenergy.2019.01.180"
+      },
+      {
+        "key": "e_1_2_12_89_1",
+        "first-page": "2825",
+        "article-title": "Scikit‐Learn: Machine Learning in Python",
+        "volume": "12",
+        "author": "Pedregosa F.",
+        "year": "2011",
+        "journal-title": "Journal of Machine Learning Research"
+      },
+      {
+        "key": "e_1_2_12_90_1",
+        "unstructured": "T.Head M.Kumar H.Nahrstaedt G.Louppe I.Shcherbatyi “scikit‐optimize/scikit‐optimize ” (2021) https://doi.org/10.5281/zenodo.5565057."
+      },
+      {
+        "key": "e_1_2_12_91_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/qj.49712556006"
+      },
+      {
+        "key": "e_1_2_12_92_1",
+        "unstructured": "IEA Wind Task 36 “Recommended Practices for Selecting Renewable Power Forecasting Solutions ” (2019) https://iea‐wind.org/task51/task51‐publications/task51‐recommended‐practices/."
+      }
+    ],
+    "container-title": [
+      "Wind Energy"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.70079",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/full-xml/10.1002/we.70079",
+        "content-type": "application/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.70079",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2026,
+          5,
+          2
+        ]
+      ],
+      "date-time": "2026-05-02T14:35:38Z",
+      "timestamp": 1777732538000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://onlinelibrary.wiley.com/doi/10.1002/we.70079"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          12,
+          25
+        ]
+      ]
+    },
+    "references-count": 91,
+    "journal-issue": {
+      "issue": "2",
+      "published-print": {
+        "date-parts": [
+          [
+            2026,
+            2
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1002/we.70079"
+    ],
+    "URL": "https://doi.org/10.1002/we.70079",
+    "archive": [
+      "Portico"
+    ],
+    "relation": {
+      "has-review": [
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.70079/v2/decision1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.70079/v2/response1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.70079/v1/review1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.70079/v1/review2",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.70079/v2/review1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.70079/v1/decision1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.70079/v2/review2",
+          "asserted-by": "object"
+        }
+      ]
+    },
+    "ISSN": [
+      "1095-4244",
+      "1099-1824"
+    ],
+    "issn-type": [
+      {
+        "value": "1095-4244",
+        "type": "print"
+      },
+      {
+        "value": "1099-1824",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          12,
+          25
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2025-05-08",
+        "order": 0,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      },
+      {
+        "value": "2025-11-23",
+        "order": 2,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      },
+      {
+        "value": "2025-12-25",
+        "order": 3,
+        "name": "published",
+        "label": "Published",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      }
+    ],
+    "article-number": "e70079"
+  }
+}

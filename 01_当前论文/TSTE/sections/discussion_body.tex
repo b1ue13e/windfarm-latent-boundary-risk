@@ -1,0 +1,16 @@
+\section{Discussion}
+
+The two studies support evaluating telemetry at the decision layer where it is used. A forecast can summarize a substantial history without making every subsequent measurement redundant. In the matched study, current power reduced cost even when its two derived differences were removed. In the cross-year study, current power and the shared forecast supported a reserve rule with a much smaller raw input set. The common lesson is that input requirements depend on the forecast already available and the decision loss imposed downstream.
+
+This finding complements turbine-level probabilistic forecasting \cite{gilbert2020} and forecast-error models for reserve sizing \cite{bruninx2014}. Those studies improve the uncertainty description available for operation. Here, the forecast commitment remains unchanged while the additional reserve inputs vary. The resulting comparison identifies an opportunity to simplify the interface between forecasting and reserve estimation, without redesigning the forecasting model.
+
+The cost and event-rate criteria give that simplification a concrete meaning. They allow a small cost premium in exchange for fewer reserve inputs. The shortfall decomposition matters because nearly identical event frequencies can conceal different deficit magnitudes. Reporting procurement and uncovered energy alongside event rate therefore reveals the operating trade-off accepted by the reduced interface.
+
+Decision-focused feature selection already establishes the importance of downstream cost \cite{munoz2020featuredriven,serrano2024featureselection}. Our results extend that perspective to additional measurements arriving after a common forecast. Matching the update width and retaining the selected rules across later periods make this a test of a specified telemetry interface. The finite-family minimum further shows how an input-reduction claim can be tested against smaller alternatives, provided the family and calibration level are explicit.
+
+The resulting simplification applies to the reserve learner's inputs. The upstream forecast continues to use wind and power history, and raw input width does not quantify communication or computing savings. The present loss measures turbine-level procurement and uncovered shortfall. Applying the same interface to a delivered reserve service would additionally require network constraints and settlement rules. Such an evaluation would determine whether the observed input trade-off remains attractive for a particular operating system.
+
+\FloatBarrier
+\section{Conclusion}
+
+This paper evaluated the additional telemetry needed for reserve decisions under an unchanged wind power forecast. Current power reduced decision cost relative to a matched current-pitch update under both tested estimators. A historically selected current-power rule then met the specified cost and event-rate requirements in two subsequent evaluation windows. The results support a compact reserve input interface whose value is assessed through the resulting procurement and shortfall trade-off.

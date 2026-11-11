@@ -1,0 +1,143 @@
+{
+  "created": "2022-11-24T16:46:56.249686+00:00",
+  "modified": "2022-11-25T02:26:32.711787+00:00",
+  "id": 7342466,
+  "conceptrecid": "7342465",
+  "doi": "10.5281/zenodo.7342466",
+  "conceptdoi": "10.5281/zenodo.7342465",
+  "doi_url": "https://doi.org/10.5281/zenodo.7342466",
+  "metadata": {
+    "title": "SMARTEOLE Wind Farm Control open dataset",
+    "doi": "10.5281/zenodo.7342466",
+    "publication_date": "2022-11-24",
+    "description": "<p><strong>Introduction</strong></p>\n\n<p>This dataset is issued from the third and final field campaign of the French national project SMARTEOLE. It consists in&nbsp;data from 7 wind turbines of a single wind farm&nbsp;(Sole du Moulin Vieux, located in France) for which Wind Farm Control field tests were performed to evaluate the performance of a wake steering strategy for improving&nbsp;the power production.</p>\n\n<p>The wind farm consists of 7x Senvion MM82 wind turbines (rotor diameter of 82m, nominal power of 2.05 MW).</p>\n\n<p>&nbsp;</p>\n\n<p><strong>Description</strong></p>\n\n<p>The tests were realized between&nbsp;17&nbsp;February &ndash; 25&nbsp;May&nbsp;2020, with wake steering implemented on turbine SMV6. This dataset covers this full period, and it has been&nbsp;pre-processed&nbsp;to facilitate the analysis of the&nbsp;Wind Farm Control experiment. All timesteps when at least one turbine was stopped were removed, and SCADA nacelle position and wind direction signals have been corrected to remove any north alignment issues. Finally,&nbsp;the time resolution has been standardized at 1-min from the raw data recorded at higher frequencies from the different sensors. For more details about the development of the field campaign and the&nbsp;pre-processing steps followed in the data analysis, please consult the related publication : <a href=\"https://wes.copernicus.org/articles/6/1427/2021/wes-6-1427-2021.html\">https://wes.copernicus.org/articles/6/1427/2021/wes-6-1427-2021.html</a>. Some information can also be found in the related&nbsp;<a href=\"https://ieawindtask44.tudelft.nl/index.php?title=SMARTEOLE_Field_Test_3\">IEA task 44 wiki page</a>.</p>\n\n<p>The following files can be found in the dataset :</p>\n\n<ul>\n\t<li>SMARTEOLE_WakeSteering_SCADA_1minData.csv : the Supervisory Control and Data Acquisition (SCADA) data from the 7 turbines.</li>\n\t<li>SMARTEOLE_WakeSteering_ControlLog_1minData.csv : logs from the control system located on turbine&nbsp;SMV6, responsible for the application of the wake steering. The applied yaw offset on the turbine at each timestep can be found here.</li>\n\t<li>SMARTEOLE_WakeSteering_WindCube_1minData.csv : data from the ground based WindCube profiler lidar, located between SMV2 and SMV3. This can be used to assess the ambient environmental wind conditions at the farm.</li>\n\t<li>SMARTEOLE_WakeSteering_Coordinates_staticData.csv : file listing the coordinates of the wind turbines in the farm and WindCube location in traditional Latitude / Longitude system (<a href=\"https://epsg.io/4326\">WGS84</a>) and XY metric system (<a href=\"https://epsg.io/2154\">French Lambert 93</a>).</li>\n\t<li>SMARTEOLE_WakeSteering_Map.pdf : the map of the farm showing the location of wind turbines and WindCube. This is the exact same map as the one seen in the paper indicated above.</li>\n\t<li>SMARTEOLE_WakeSteering_NTF_SMV6_staticData.csv : the transfer function used in the paper to correct the wind speed measured by SMV6 to better match the freestream wind speed at 150m&nbsp;upstream&nbsp;(i.e. approximately 1.8&nbsp;diameters), derived using&nbsp;WindCube nacelle lidar installed on top of the turbine.</li>\n\t<li>SMARTEOLE_WakeSteering_correction_factors_SMV1237_staticData.csv : the transfer function&nbsp;used in the paper to derive and correct the reference power and&nbsp;wind speed&nbsp;signals &mdash;defined as the mean values of the power and wind speeds from SMV1, SMV2, SMV3, and SMV7&mdash; to remove biases from the values at SMV6 as a function of wind direction and wind speed. These corrected reference signals are used for quantifying the impact of the wake steering.</li>\n\t<li>SMARTEOLE_WakeSteering_GuaranteedPowerCurve_staticData.csv : the warranted power and thrust curves for the standard mode (Mode 0) of the MM82 wind turbine.</li>\n\t<li>SMARTEOLE_WakeSteering_ReadMe.xlsx&nbsp;: read me file indicating for each dataset the signification of the different variables.</li>\n</ul>\n\n<p>Unfortunately, the WindCube nacelle lidar data on top of SMV6 could not be shared, instead the transfer functions derived thanks to this sensor can be used to correct the SCADA channels. The Wind Energy Science publication describes how these transfer functions were obtained.</p>\n\n<p>&nbsp;</p>\n\n<p><strong>Acknowledgement</strong></p>\n\n<p>The&nbsp;creation of this dataset was realized in the scope of French national project SMARTEOLE, supported by the <em>Agence Nationale de la Recherche</em> (grant no. ANR-14-CE05-0034).</p>\n\n<p>Furthermore, we would like to thank ENGIE Green for allowing us to make this dataset publicly available.</p>\n\n<p>&nbsp;</p>\n\n<p><strong>How to cite this dataset</strong></p>\n\n<p>When using this dataset in future research, please add the following sentence in the Ackowledgement section of your publication :</p>\n\n<p>&quot;The dataset used in this research has been obtained by ENGIE Green in the scope of French national project SMARTEOLE (grant no. ANR-14-CE05-0034)&quot;.</p>\n\n<p>When citing the dataset in the core text of a&nbsp;paper, the reference to <a href=\"https://wes.copernicus.org/articles/6/1427/2021/\">Simley et al.</a> can simply be used.</p>\n\n<p>&nbsp;</p>\n\n<p><strong>Related datasets and publications</strong></p>\n\n<p>Several field test campaigns were realized in the scope of SMARTEOLE project. Although these data are not made publicly available by default, they can be shared in a per-project basis and under the protection of a dedicated NDA. Please refer to the following publications listed below to get an idea of the content of the different datasets.</p>\n\n<p><em>SMARTEOLE Field Test 1</em></p>\n\n<ul>\n\t<li>Ahmad T. et al., Field Implementation and Trial of Coordinated Control of WIND Farms, <em>IEEE Transactions on Sustainable Energy</em>, 9(3), 2018, 10.1109/TSTE.2017.2774508.</li>\n\t<li>Duc T., Optimization of wind farm power production using innovative control strategies, Master&rsquo;s thesis, DTU Wind Energy-M-0161, 2017.</li>\n\t<li>Duc T. et al., Local turbulence parameterization improves the Jensen wake model and its implementation for power optimization of an operating wind farm, <em>Wind&nbsp;Energy Science</em>, 4(2), 2019, 10.5194/wes-4-287-2019.</li>\n\t<li>Torres Garcia E. et al., Statistical characteristics of interacting wind turbine wakes from a 7-month LiDAR measurement campaign, <em>Renewable Energy</em>, 130, 2019, 10.1016/j.renene.2018.06.030.</li>\n\t<li>Hegazy A. et al., LiDAR and SCADA data processing for interacting wind turbine wakes with comparison to analytical wake models, <em>Renewable Energy</em>, 181, 2022, 10.1016/j.renene.2021.09.019.</li>\n</ul>\n\n<p><em>SMARTEOLE Field Test 2</em></p>\n\n<ul>\n\t<li>Tagliatti F., Investigation of Wind Turbine Fatigue Loads under Wind Farm Control: Analysis of Field Measurements, Master&rsquo;s thesis, DTU Wind Energy-M-0302, 2019.</li>\n\t<li>G&ouml;&ccedil;men T. et al., FarmConners wind farm flow control benchmark &ndash; Part 1: Blind test results, <em>Wind&nbsp;Energy Science</em>, 7(5), 2022, 10.5194/wes-7-1791-2022.</li>\n</ul>\n\n<p><em>SMARTEOLE Field Test 3</em></p>\n\n<ul>\n\t<li>Simley E. et al., Results from a wake-steering experiment at a commercial wind plant: investigating the wind speed dependence of wake-steering performance,&nbsp;<em>Wind Energy Science</em>, 6(6) 2021, 10.5194/wes-6-1427-2021.</li>\n</ul>\n\n<p>&nbsp;</p>\n\n<p><strong>Release Notes</strong></p>\n\n<ul>\n\t<li>v1.0 (2022-11-24) : first version of the dataset.</li>\n</ul>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Thomas Duc",
+        "affiliation": "ENGIE Green",
+        "orcid": "0000-0002-4829-9641"
+      },
+      {
+        "name": "Eric Simley",
+        "affiliation": "NREL",
+        "orcid": "0000-0002-1027-9848"
+      }
+    ],
+    "keywords": [
+      "Wind Energy",
+      "Open Data",
+      "Wind Farm Control",
+      "Wake Steering",
+      "SCADA data"
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "10.5194/wes-6-1427-2021",
+        "relation": "isRequiredBy",
+        "resource_type": "publication-article",
+        "scheme": "doi"
+      }
+    ],
+    "version": "1.0",
+    "language": "eng",
+    "resource_type": {
+      "title": "Dataset",
+      "type": "dataset"
+    },
+    "license": {
+      "id": "etalab-2.0"
+    },
+    "grants": [
+      {
+        "code": "ANR-14-CE05-0034",
+        "internal_id": "10.13039/501100001665::ANR-14-CE05-0034",
+        "funder": {
+          "name": "Agence Nationale de la Recherche",
+          "doi": "10.13039/501100001665",
+          "acronym": "ANR"
+        },
+        "title": "Smart Rotors to Improve Wind Energy Efficiency and Sustainability",
+        "acronym": "SMARTEOLE"
+      }
+    ],
+    "relations": {
+      "version": [
+        {
+          "index": 0,
+          "is_last": true,
+          "parent": {
+            "pid_type": "recid",
+            "pid_value": "7342465"
+          }
+        }
+      ]
+    }
+  },
+  "title": "SMARTEOLE Wind Farm Control open dataset",
+  "links": {
+    "self": "https://zenodo.org/api/records/7342466",
+    "self_html": "https://zenodo.org/records/7342466",
+    "preview_html": "https://zenodo.org/records/7342466?preview=1",
+    "doi": "https://doi.org/10.5281/zenodo.7342466",
+    "self_doi": "https://doi.org/10.5281/zenodo.7342466",
+    "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.7342466",
+    "reserve_doi": "https://zenodo.org/api/records/7342466/draft/pids/doi",
+    "parent": "https://zenodo.org/api/records/7342465",
+    "parent_html": "https://zenodo.org/records/7342465",
+    "parent_doi": "https://doi.org/10.5281/zenodo.7342465",
+    "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.7342465",
+    "self_iiif_manifest": "https://zenodo.org/api/iiif/record:7342466/manifest",
+    "self_iiif_sequence": "https://zenodo.org/api/iiif/record:7342466/sequence/default",
+    "files": "https://zenodo.org/api/records/7342466/files",
+    "media_files": "https://zenodo.org/api/records/7342466/media-files",
+    "latest": "https://zenodo.org/api/records/7342466/versions/latest",
+    "latest_html": "https://zenodo.org/records/7342466/latest",
+    "versions": "https://zenodo.org/api/records/7342466/versions",
+    "draft": "https://zenodo.org/api/records/7342466/draft",
+    "access_links": "https://zenodo.org/api/records/7342466/access/links",
+    "access_grants": "https://zenodo.org/api/records/7342466/access/grants",
+    "access_users": "https://zenodo.org/api/records/7342466/access/users",
+    "access_request": "https://zenodo.org/api/records/7342466/access/request",
+    "access": "https://zenodo.org/api/records/7342466/access",
+    "communities": "https://zenodo.org/api/records/7342466/communities",
+    "communities-suggestions": "https://zenodo.org/api/records/7342466/communities-suggestions",
+    "request_deletion": "https://zenodo.org/api/records/7342466/request-deletion",
+    "file_modification": "https://zenodo.org/api/records/7342466/file-modification",
+    "quota_increase": "https://zenodo.org/api/records/7342466/quota-increase",
+    "requests": "https://zenodo.org/api/records/7342466/requests"
+  },
+  "updated": "2022-11-25T02:26:32.711787+00:00",
+  "recid": "7342466",
+  "revision": 2,
+  "files": [
+    {
+      "id": "45a1d9df-083d-4409-a029-cca4a717921f",
+      "key": "SMARTEOLE-WFC-open-dataset.zip",
+      "size": 150226596,
+      "checksum": "md5:ffecd4b8cfe3ef3c744a5e0ff4a981c2",
+      "links": {
+        "self": "https://zenodo.org/api/records/7342466/files/SMARTEOLE-WFC-open-dataset.zip/content"
+      }
+    }
+  ],
+  "swh": {},
+  "owners": [
+    {
+      "id": "73647"
+    }
+  ],
+  "status": "published",
+  "stats": {
+    "downloads": 1407,
+    "unique_downloads": 998,
+    "views": 3446,
+    "unique_views": 3167,
+    "version_downloads": 1399,
+    "version_unique_downloads": 992,
+    "version_unique_views": 3157,
+    "version_views": 3436
+  },
+  "state": "done",
+  "submitted": true
+}

@@ -1,0 +1,14 @@
+﻿claim_id,claim,source_file,source_field_or_selection,display,judgment,boundary
+C01,Tested power update beats pitch update on cost,source_data/M_original_summary.json,registered_intervals.HGB:P_premium_vs_Z|cost|D,Fig2;Table2/S3,SUPPORTED_BOUNDED,direct paired D; not pure channel or joint safety
+C02,Ordering repeats under common calibration and MLP,source_data/M_controls_summary.json,interval.Common:HGB/MLP:P_premium_vs_Z|cost|D,Fig2c/d;S3,SUPPORTED_BOUNDED,shared window; not independent replication
+C03,Fresh pitch redundancy not established,source_data/display_M_cost.csv,comparison=fresh_state,Fig2;S3,UNRESOLVED_NOT_EQUIVALENT,no freshness interaction interval
+C04,"Direct history cost reduction, with adverse event-rate description",source_data/R_paired_intervals.json,pitch_withheld;loss_sum;B_Consequences-A_Wind;block3,Fig3a;S4/S1,SUPPORTED_BOUNDED,R42 cost only; V is descriptive
+C05,Recovered score small block-sensitive increment,source_data/R_paired_intervals.json,pitch_withheld;loss_sum;C_PitchScore-B_Consequences;blocks1/3/7,Fig3b;S4/S1,SUPPORTED_PRIMARY_ONLY,one-day crosses zero
+C06,Pitch-specific semantics not isolated,source_data/R_paired_intervals.json,C_PitchScore-C_WindScore/C_ShuffledScore,Fig3b,UNRESOLVED,null controls not equivalence
+C07,Measured pitch also has favourable primary contrast,source_data/R_paired_intervals.json,D_TruePitch_Diagnostic-B_Consequences,Fig3b;S4/S1,SUPPORTED_PRIMARY_ONLY,no D-C interval generated
+C08,Specified compressed head costs more,source_data/R_paired_intervals.json,E_Compressed-B_Consequences,Fig3a;S4,SUPPORTED_BOUNDED,41 head inputs but score still needs112 upstream
+C09,Reconstruction errors lower in pitch probe,source_data/display_R_mse_per_fit.csv,all15 original points,Fig3c;S5,DESCRIPTIVE,different mask from decision costs; no mediation
+C10,Procurement-shortfall trade-off under common HGB,source_data/M_controls_summary.json,interval.Common:HGB:residual_state|mean_R/mean_U/cost|G,Fig4;S2,SUPPORTED_BOUNDED,U relative point9.57% not Fig4b confidence scale
+C11,No equal-budget or exclusive allocation conclusion,supplement_data/budget_transfer.csv,historical matching transfer records,S6;Data3,NOT_IDENTIFIED,constant bound excludes restricted class only
+C12,Original combined claims all fail,source_data/M_controls_summary.json,corrected_routes,Table3;SI predicates,VERIFIED_ALL_FALSE,need failure witnesses; not every component is false
+C13,Shared weather and distinct populations prohibit pooling,source_data/population_identity_R.json,existing mask identity evidence,Fig1;Table1;S1,VERIFIED_SCOPE,no new independent confirmation

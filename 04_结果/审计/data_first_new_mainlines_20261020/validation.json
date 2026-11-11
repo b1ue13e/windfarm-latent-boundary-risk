@@ -1,0 +1,151 @@
+{
+  "date_local": "2026-10-20",
+  "timezone": "Asia/Shanghai",
+  "kind": "DOCUMENT_METADATA_AND_PUBLIC_PAPER_STATIC_CHECK_ONLY",
+  "decision": "NO_QUALIFIED_POSITIVE_RECOMMENDATION",
+  "positive_selection_objective_achieved": false,
+  "candidate_decisions": {
+    "G": "NO_GO",
+    "H": "NO_GO",
+    "I": "NO_GO"
+  },
+  "recommended_count": 0,
+  "hold_candidates": 0,
+  "literature_rows": 16,
+  "data_qualification_rows": 8,
+  "evidence_chains": 3,
+  "public_dataset_records": 3,
+  "public_paper_receipts": [
+    {
+      "file": "complex_phase_2409.17132.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "fulltext_methods_results_limits_pp4-10; theory_pp1-3"
+    },
+    {
+      "file": "complex_phase_analysis_2506.22054.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "retrieved_for_reading; not used as core evidence; no fulltext coverage claim"
+    },
+    {
+      "file": "distributed_certification_2604.16212.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "fulltext_methods_cases_limits_pp1-6"
+    },
+    {
+      "file": "dlc_2021.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "fulltext_definitions_assumptions_methods_pp1-4"
+    },
+    {
+      "file": "incremental_passivity_2506.14469.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "retrieved_for_reading; not used as core evidence; no fulltext coverage claim"
+    },
+    {
+      "file": "io_dissipativity_2512.11468.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "fulltext_methods_Thm2-3_results_limits_pp2-6; appendix8"
+    },
+    {
+      "file": "lfi_node_2510.09826.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "fulltext_all6pages"
+    },
+    {
+      "file": "nonlinear_io_2411.13404.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "fulltext_SecII-VI_pp1-6"
+    },
+    {
+      "file": "nonlinear_polynomial_2108.11298.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "fulltext_assumptions_pp1-3; regional_Thm15_pp8-9; incremental_p13"
+    },
+    {
+      "file": "pmu_quality_2025.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "fulltext_curation_anonymization_pp2-5; usecase metadata"
+    },
+    {
+      "file": "proprietary_inverter_2507.15259.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "retrieved_for_reading; not used as core evidence; no fulltext coverage claim"
+    },
+    {
+      "file": "rkhs_dissipativity_2510.27669.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "fulltext_problem_setup_and_storage_methods_Sec0.2-0.4; not_all_proofs_checked"
+    },
+    {
+      "file": "robust_dissipativity_2006.05974.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "fulltext_SecII-VI_pp2-9_espThm6; experimentp10"
+    },
+    {
+      "file": "socal28_2504.06588.pdf",
+      "hash_match": true,
+      "size_match": true,
+      "inspection_depth": "official_README; fulltext_dataset_clock_error_pp3-6"
+    }
+  ],
+  "protected_documents": [
+    {
+      "path": "AGENTS.md",
+      "unchanged": true
+    },
+    {
+      "path": "paper_tste_ieee.md",
+      "unchanged": true
+    },
+    {
+      "path": "paper_tste_supplementary.md",
+      "unchanged": true
+    },
+    {
+      "path": "paper_tste_chinese.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/SCIENTIFIC_CONTRACT.md",
+      "unchanged": true
+    },
+    {
+      "path": "research_audit/d_material_closure_20261020/DECISION.md",
+      "unchanged": true
+    },
+    {
+      "path": "research_audit/new_mainline_deep_screen_20261020/SCREEN.md",
+      "unchanged": true
+    },
+    {
+      "path": "research_audit/telemetry_increment_boundary_design_20261019/PLAN_V3.md",
+      "unchanged": true
+    }
+  ],
+  "new_operational_or_measurement_data_downloaded": false,
+  "measurement_archive_or_session_payloads_read": false,
+  "experiments_or_simulations_started": false,
+  "model_code_changed": false,
+  "manuscript_changed": false,
+  "scientific_contract_changed": false,
+  "scientific_number_gates_run": false,
+  "certification_note": "Topic screening only; no new empirical finding or scientific milestone certification",
+  "unclosed_fulltexts": [
+    "Beichter_SSRN6265089",
+    "Imanaka_Baba_DOI10.1002tee.70176"
+  ],
+  "local_pdfs_for_reading_only": true
+}

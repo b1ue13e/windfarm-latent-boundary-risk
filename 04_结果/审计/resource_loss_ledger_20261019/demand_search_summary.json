@@ -1,0 +1,27 @@
+{
+  "files_scanned": 438,
+  "roots": [
+    "src",
+    "windfarm_moe",
+    "scripts",
+    "docs",
+    "manuscript",
+    "experiments",
+    "00_Planning",
+    "01_Literature",
+    "02_Theory",
+    "03_Implementation",
+    "04_Experiments",
+    "05_Manuscript",
+    "06_Review"
+  ],
+  "patterns": {
+    "business_need": "客户合同|接口合同|服务等级|访谈纪要|用户验收|带宽预算|计费|收费|signed contract|service.level agreement|\\bSLA\\b|billing|customer requirement",
+    "service_implementation": "\\bFastAPI\\b|\\bFlask\\b|\\bMQTT\\b|\\bKafka\\b|\\bgRPC\\b|production endpoint|service endpoint|IEC.?104|104.{0,8}规约|OPC.?UA",
+    "bounded_scope": "no real arrival|no observed field|synthetic.*clock|not.*settlement|not settlement|not.*cashflow"
+  },
+  "hits": 14,
+  "errors": [],
+  "exclusion": "Text/code <=2MiB; no env/Git/raw measurements; archived duplicates not exhaustive; no cloud/private business systems or contact outreach",
+  "inference": "Missing documentary evidence in this bounded search is not proof that no interface need exists anywhere."
+}

@@ -1,0 +1,182 @@
+{
+  "study_id": "hill_of_towie_frozen_historical_selector_confirmation_v1",
+  "status": "PRE_UNLOCK_EXECUTABLE_FREEZE",
+  "windows": {
+    "point_fit": [
+      "2023-01-01T00:00:00Z",
+      "2023-07-01T00:00:00Z"
+    ],
+    "policy_fit": [
+      "2023-07-01T00:00:00Z",
+      "2024-01-01T00:00:00Z"
+    ],
+    "offset_fit": [
+      "2024-01-01T00:00:00Z",
+      "2024-07-01T00:00:00Z"
+    ],
+    "selection": [
+      "2024-07-01T00:00:00Z",
+      "2025-01-01T00:00:00Z"
+    ],
+    "confirmation": [
+      "2025-01-01T00:00:00Z",
+      "2026-01-01T00:00:00Z"
+    ]
+  },
+  "conditions": {
+    "pitch_withheld": {
+      "delay_steps": 0,
+      "pitch_available": false
+    },
+    "fresh": {
+      "delay_steps": 0,
+      "pitch_available": true
+    },
+    "delay1": {
+      "delay_steps": 1,
+      "pitch_available": true
+    },
+    "delay2": {
+      "delay_steps": 2,
+      "pitch_available": true
+    },
+    "delay3": {
+      "delay_steps": 3,
+      "pitch_available": true
+    },
+    "delay6_stress": {
+      "delay_steps": 6,
+      "pitch_available": true
+    }
+  },
+  "pressure_subsets": [
+    "Common",
+    "P1",
+    "WP1",
+    "WP6",
+    "WP36",
+    "WPQ36"
+  ],
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "reserve_rows": 360000,
+  "point_rows": 120000,
+  "point_seed": 20261018,
+  "estimators": {
+    "max_iter": 100,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 50,
+    "learning_rate": 0.08,
+    "l2_regularization": 1.0
+  },
+  "mlp": {
+    "hidden": [
+      64,
+      32
+    ],
+    "epochs": 80,
+    "batch_size": 2048,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001
+  },
+  "primary_epsilon": 0.02,
+  "epsilon_curve": [
+    0,
+    0.005,
+    0.01,
+    0.02,
+    0.05
+  ],
+  "offset_quantiles": [
+    0.9,
+    0.925,
+    0.95,
+    0.975,
+    0.99
+  ],
+  "v_max": 0.1,
+  "alpha": 0.05,
+  "n_boot": 20000,
+  "bootstrap_seed": 20261029,
+  "historical_root": "/lstr/sahara/minlpml/junyu/confirmation_history_20261019_2885aac1/results",
+  "annual_source_root": "/lstr/sahara/minlpml/junyu/hill_of_towie_confirmation_20261019_18c9efc3_lustre",
+  "historical_input_sha256": {
+    "historical_physical_channels.npy": "949fc45669fbbad6d3c67346181bac2a9ddb3e4b42686821bde5095872e87992",
+    "receipt.json": "4629d24c5c48b0d6da2f08e3ec025abd4ae0434fd77a9a01632d314d52e30f18",
+    "historical_time_end_ns.npy": "147eed4d3639d052860e90f8c318cf9b9df721152af13a5d0def5b78a1a6aaa2"
+  },
+  "annual_sha256": {
+    "2024": "b6bb540e3d2fcc2cff8756d96ef4155037b1cc41b284e6249b41054f4e50fbc3",
+    "2025": "cd439de7bf8e297dd8422d5c93eda04785c56e3861be8d2a79f403ac39b873ee"
+  },
+  "test_archive_bytes": 1596220683,
+  "point_clock_correction": "Point-fit upper publication-anchor boundary is 2023-07-01 minus6 steps, then require last anchor+12+1 < first policy issue-6. All stages start at >=anchor41; early six slots removed consistently before labels, not according to outcomes.",
+  "selection_family": "First jointly bound all225/65 q candidates on Jul-Dec2024, choose q shared by5 instances per base using risk then mean cost. Primary near-optimal family is the resulting45/13 historically chosen q recipes, including unqualified possible competitors. Primary2% minimum-resource set retains all ties and may be empty. No full-q optimality claimed for this recipe set.",
+  "reference": "WPQ36/HGB or MLP with historically selected qualified q; lowest historical mean cost, tie lexicographic label. If none qualify, q.99 lowest point-cost reference explicitly unqualified; cannot confirm risk-matched sufficiency.",
+  "primary": "Pitch-withheld historically chosen2% set plus frozen reference only, joint5-instance risks and paired cost ratios; require reference historical and confirmation risk qualification. All ties reported; no test selection. No historical selection => NO_HISTORICAL_SELECTION, never substitute secondary winner.",
+  "secondary": "All6 conditions and0/.5/1/2/5% historical fixed-set assessments in joint full-q bounds; full-q capability/necessity explicitly retrospective. Primary3day and separate1/7day sensitivities. Do not replace primary family with the larger secondary family.",
+  "unlock": "Main unlock job initially held. Release only after reviewed committed executable, local+Metis preflight, historical complete package verification and documented no unresolved fatal. One exclusive event precedes ZIP open. Any raw consumed conflict fails entire source run. 2025 not used for refit or redesign; later tuning would be exploration and needs fresh confirmation data.",
+  "preprocessing": "Original consumption schema frozen from2024Dec before unlock; raw6fields+seen at2025Jan1 compared before negative-wind/pitch-mean transforms. Same finite future-power mask across policies; zero/negative power kept. No state/intervention exclusions. Fresh upstream forecast feed assumed; reserve-layer impairments synthetic. No real arrival/publication/runtime certificate.",
+  "inferential_scope": "Approximate circular UTC-day block envelope conditional on five instances. Annual seasonal drift can invalidate stationarity approximation;1/7day not proof of coverage. Turbine-level surrogate, no PCC/field safety/global minimum.",
+  "E07_activated": false,
+  "source_files": [
+    "windfarm_moe/__init__.py",
+    "windfarm_moe/analysis.py",
+    "windfarm_moe/anchor_stress.py",
+    "windfarm_moe/arrival_feed.py",
+    "windfarm_moe/boundary_negative_controls.py",
+    "windfarm_moe/boundary_slice.py",
+    "windfarm_moe/config.py",
+    "windfarm_moe/data.py",
+    "windfarm_moe/decision.py",
+    "windfarm_moe/decision_information.py",
+    "windfarm_moe/era5_worker.py",
+    "windfarm_moe/evaluate.py",
+    "windfarm_moe/evidence_export.py",
+    "windfarm_moe/external_wind.py",
+    "windfarm_moe/final_evidence.py",
+    "windfarm_moe/future_holdout.py",
+    "windfarm_moe/graph.py",
+    "windfarm_moe/independent_confirmation.py",
+    "windfarm_moe/information_subset.py",
+    "windfarm_moe/losses.py",
+    "windfarm_moe/mechanism_behavior.py",
+    "windfarm_moe/mechanism_intervention.py",
+    "windfarm_moe/model.py",
+    "windfarm_moe/operational_baselines.py",
+    "windfarm_moe/operational_cost.py",
+    "windfarm_moe/paper.py",
+    "windfarm_moe/preprocess.py",
+    "windfarm_moe/regimes.py",
+    "windfarm_moe/reproducibility.py",
+    "windfarm_moe/reproduction_package.py",
+    "windfarm_moe/reserve_baselines.py",
+    "windfarm_moe/reviewer_stats.py",
+    "windfarm_moe/risk_frontier.py",
+    "windfarm_moe/routing_placebo.py",
+    "windfarm_moe/science_readiness.py",
+    "windfarm_moe/spatial_holdout.py",
+    "windfarm_moe/strict_ablation.py",
+    "windfarm_moe/strict_anchor.py",
+    "windfarm_moe/strict_baseline.py",
+    "windfarm_moe/subset_inference.py",
+    "windfarm_moe/threshold_controls.py",
+    "windfarm_moe/time_forward.py",
+    "windfarm_moe/train.py",
+    "windfarm_moe/utils.py",
+    "scripts/run_independent_confirmation.py",
+    "scripts/run_decision_information_development.py",
+    "scripts/prepare_confirmation_history.py",
+    "scripts/audit_subset_minimum_necessity.py",
+    "experiments/independent_confirmation_20261019/qualify_hill_of_towie.py",
+    "experiments/independent_confirmation_20261019/source_binding.json",
+    "experiments/independent_confirmation_20261019/decision_protocol.json",
+    "tests/test_independent_confirmation.py",
+    "experiments/independent_confirmation_execution_20261019/protocol.json"
+  ]
+}

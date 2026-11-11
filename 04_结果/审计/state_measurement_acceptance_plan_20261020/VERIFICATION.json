@@ -1,0 +1,167 @@
+{
+  "date": "2026-10-20",
+  "status": "ACCEPTANCE_PLAN_ONLY_NO_RESEARCH_EXECUTION",
+  "plan_status": "REVIEWABLE_PLAN_THRESHOLDS_PROPOSED_NOT_PREREGISTERED_NOT_READY_FOR_EXECUTION",
+  "protected_files": [
+    {
+      "path": "AGENTS.md",
+      "before_sha256": "B1FEB8E637FD05BAEEACE62925F086257BB2B9AF7C0905C25F636DC8EC92C993",
+      "after_sha256": "B1FEB8E637FD05BAEEACE62925F086257BB2B9AF7C0905C25F636DC8EC92C993",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "PROJECT.md",
+      "before_sha256": "0620DADCBF1F577A4AA908AD1AB8AA4F3B034150EBF03E9BB2290970BB5D0696",
+      "after_sha256": "372B13A0C58DFA9A8069CE1A4D7AC14DCC9D616DAA8CE1AEB61C2D1DC7EE1681",
+      "unchanged": false,
+      "expected_append": true
+    },
+    {
+      "path": "docs/SCIENTIFIC_CONTRACT.md",
+      "before_sha256": "CF0C38FBA403D842CA87521DBE03897E9078DCB87DA593DAA7AF6FD009545F76",
+      "after_sha256": "CF0C38FBA403D842CA87521DBE03897E9078DCB87DA593DAA7AF6FD009545F76",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "docs/MAINLINE_STOP_DECISION_20261019.md",
+      "before_sha256": "E248170F90A20761FB756D0D1ACE63F0FE27F0B9A46F8C56EEE3816550A04459",
+      "after_sha256": "E248170F90A20761FB756D0D1ACE63F0FE27F0B9A46F8C56EEE3816550A04459",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "paper_tste_ieee.md",
+      "before_sha256": "B9E5E417ABDE1856201E21C6022A994C0601010340B19CC0EE4B4F5F31D17456",
+      "after_sha256": "B9E5E417ABDE1856201E21C6022A994C0601010340B19CC0EE4B4F5F31D17456",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "paper_tste_supplementary.md",
+      "before_sha256": "43487C70FEACC9F0EDFB991E56CE342ACFA5DC9C678534BC6A42A9EAEB02065E",
+      "after_sha256": "43487C70FEACC9F0EDFB991E56CE342ACFA5DC9C678534BC6A42A9EAEB02065E",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "paper_tste_chinese.md",
+      "before_sha256": "14CDC51DF2AD440F8C96EAB97C7B450D04437C1599EB4C3C65010280D673352F",
+      "after_sha256": "14CDC51DF2AD440F8C96EAB97C7B450D04437C1599EB4C3C65010280D673352F",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "research_audit/local_pdf_reassessment_20261020/REASSESSMENT.md",
+      "before_sha256": "DD5855D35BEB554CE28FF3B5EBB2228C5B271BD533AADBAD996191CA8010F8A5",
+      "after_sha256": "DD5855D35BEB554CE28FF3B5EBB2228C5B271BD533AADBAD996191CA8010F8A5",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "research_audit/telemetry_increment_boundary_design_20261019/PLAN_V3.md",
+      "before_sha256": "080FE01E3E36B4AAAA2BA0985BF5751B5E33A94B60A630DCCEF121FC11F1401A",
+      "after_sha256": "080FE01E3E36B4AAAA2BA0985BF5751B5E33A94B60A630DCCEF121FC11F1401A",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "analyses/decision_information_execution_20261018/REPORT.md",
+      "before_sha256": "1B4FAB5AE226F5C5C18E6B1DBE917A5C8EE4350486E8C76F7BFF0EF80CFD6BA7",
+      "after_sha256": "1B4FAB5AE226F5C5C18E6B1DBE917A5C8EE4350486E8C76F7BFF0EF80CFD6BA7",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "analyses/independent_confirmation_execution_20261019/REPORT.md",
+      "before_sha256": "CE09E9CF779B02729985581ACE83241316D35002DCEC151979545B60AA905995",
+      "after_sha256": "CE09E9CF779B02729985581ACE83241316D35002DCEC151979545B60AA905995",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "scripts/run_decision_information_development.py",
+      "before_sha256": "A5F27587F2548FCC2F9F98FA76AFFC196C720B29DA55C109C0D831CB7FEFE039",
+      "after_sha256": "A5F27587F2548FCC2F9F98FA76AFFC196C720B29DA55C109C0D831CB7FEFE039",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "scripts/run_independent_confirmation.py",
+      "before_sha256": "62B7913197D1050F700D5D6AE2467F3C49B16546DAD37953A05818EB576EFEE9",
+      "after_sha256": "62B7913197D1050F700D5D6AE2467F3C49B16546DAD37953A05818EB576EFEE9",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "scripts/eval_farm_aggregate_reserve.py",
+      "before_sha256": "B7501C507C527BC3FB36A761771391A2D23D8568A497BDFA359E1B230650AED4",
+      "after_sha256": "B7501C507C527BC3FB36A761771391A2D23D8568A497BDFA359E1B230650AED4",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "windfarm_moe/decision_information.py",
+      "before_sha256": "7A642B26618CBD27F0DDD7383063D6C9DAA286DA2370A08F580212D24F7BC287",
+      "after_sha256": "7A642B26618CBD27F0DDD7383063D6C9DAA286DA2370A08F580212D24F7BC287",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "windfarm_moe/subset_inference.py",
+      "before_sha256": "DEA108E73E47C52214C3A9D1971DB144C4141037A06E40EEB32A647EF15BA568",
+      "after_sha256": "DEA108E73E47C52214C3A9D1971DB144C4141037A06E40EEB32A647EF15BA568",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "artifacts/farm_aggregate_reserve_20260905/farm_pcc_paired_summary.csv",
+      "before_sha256": "D44FFE23F927253AB6751EF13BA1294886B3FA0260AAF1E7914473DA1BE11800",
+      "after_sha256": "D44FFE23F927253AB6751EF13BA1294886B3FA0260AAF1E7914473DA1BE11800",
+      "unchanged": true,
+      "expected_append": false
+    },
+    {
+      "path": "artifacts/farm_aggregate_reserve_20260905/farm_pcc_guard.json",
+      "before_sha256": "9A7E475C2CD857E2A60DE792225FE2405BCC811EFC5CFCE92F5BAEBD8E7BDE15",
+      "after_sha256": "9A7E475C2CD857E2A60DE792225FE2405BCC811EFC5CFCE92F5BAEBD8E7BDE15",
+      "unchanged": true,
+      "expected_append": false
+    }
+  ],
+  "checks": {
+    "assets": 15,
+    "control_rows": 13,
+    "primary_control_rows": 10,
+    "primary_contrasts": 9,
+    "stages": 6,
+    "all_stages_not_executed": true,
+    "unknown_primary_policy_references": 0,
+    "primary_coordinates_per_layer": 104,
+    "primary_coordinates_total": 208,
+    "nominal_new_learning_fit_upper_bound": 600,
+    "protected_unchanged": 17,
+    "intentional_project_append": 1,
+    "unexpected_protected_changes": 0
+  },
+  "scientific_scope": {
+    "new_measurement_downloads": false,
+    "raw_measurement_analysis": false,
+    "research_model_execution": false,
+    "statistical_recomputation": false,
+    "resampling": false,
+    "simulation": false,
+    "remote_access": false,
+    "new_subagents": false,
+    "manuscript_edits": false,
+    "scientific_contract_edits": false,
+    "execution_queue": "EMPTY"
+  },
+  "notes": [
+    "Thresholds are result-informed normative research proposals; not operator standards or TSTE acceptance cutoffs",
+    "Old E04 and q.95/q.925 results keep original thresholds and scopes",
+    "Code/old aggregation artifacts read only; future missing target-to-zero convention is not reused for the new fixed-member target",
+    "Only document-format and cross-reference arithmetic checks performed; no new empirical milestone or confidence coverage certification"
+  ]
+}

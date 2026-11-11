@@ -1,0 +1,13 @@
+{
+  "changes": [
+    {
+      "path": "AGENTS.md",
+      "historical_sha256": "b1feb8e637fd05baeeace62925f086257bb2b9af7c0905c25f636dc8ec92c993",
+      "cleanup_start_sha256": "16d4a6839e6e9ef9d75a43c33c51f848375d1d5b78a52774930c0f57614712ee",
+      "current_sha256": "16d4a6839e6e9ef9d75a43c33c51f848375d1d5b78a52774930c0f57614712ee",
+      "reason": "Historical figure receipt predates the current repository instructions; cleanup did not change AGENTS.md."
+    }
+  ],
+  "scientific_input_hashes_unchanged": true,
+  "historical_manifest_preserved": true
+}

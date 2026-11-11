@@ -1,0 +1,652 @@
+{
+  "status": "PASS",
+  "completed_utc": "2026-10-21T03:52:12.644354+00:00",
+  "script_sha256": "6a67279b4b2b853a3a122f0a51d5acaf3680e59e4292d78b2d28dbd2540a2762",
+  "scope": "Numerical reconstruction of existing sealed values only",
+  "method": "Independent daily-total arithmetic and stored-weight multiplication; explicit .95 higher order statistic",
+  "numerical_tolerance": {
+    "absolute": 1e-08,
+    "relative": 1e-10,
+    "interpretation": "Existing float64 accounting tolerance; not an effect threshold"
+  },
+  "checks": {
+    "draw_artifact_identity": 12,
+    "all_draw_rows_and_coordinates_retained": 12,
+    "draw_ids_retained": 12,
+    "coordinate_order_preserved": 12,
+    "stored_weights_valid": 12,
+    "reported_complete_draw_count": 12,
+    "uncompressed_natural_calendar": 12,
+    "source_calendar_unchanged": 4560,
+    "daily_total_point_reconstruction": 882,
+    "stored_weight_draw_reconstruction": 882,
+    "independent_interval_eligibility": 882,
+    "no_empirical_exact_inference": 882,
+    "finite_coordinate_ids_independent": 12,
+    "manual_family_critical": 12,
+    "manual_standard_error": 834,
+    "manual_lower_endpoint": 834,
+    "manual_upper_endpoint": 834,
+    "evaluation_families_share_identical_weights": 9,
+    "complete_default_family_ledger": 1,
+    "sealed_inputs_unchanged": 1
+  },
+  "max_absolute_errors": {
+    "daily_total_point_reconstruction": 4.547473508864641e-13,
+    "stored_weight_draw_reconstruction": 3.637978807091713e-12,
+    "manual_family_critical": 1.4654943925052066e-14,
+    "manual_standard_error": 1.2789769243681803e-13,
+    "manual_lower_endpoint": 5.115907697472721e-13,
+    "manual_upper_endpoint": 5.115907697472721e-13
+  },
+  "failures": [],
+  "families": [
+    {
+      "family": "H_P",
+      "span": 3,
+      "planned_coordinates": 40,
+      "finite_interval_coordinates": 40,
+      "draw_count": 20000,
+      "manual_critical": 2.5185478368750123,
+      "stored_critical": 2.51854783687501,
+      "focused_primary_coordinates": []
+    },
+    {
+      "family": "E_P",
+      "span": 3,
+      "planned_coordinates": 94,
+      "finite_interval_coordinates": 94,
+      "draw_count": 20000,
+      "manual_critical": 3.1394144798241443,
+      "stored_critical": 3.1394144798241497,
+      "focused_primary_coordinates": [
+        {
+          "coordinate_id": "E_P|span3|HGB|||Praw-minus-OP6|||D_C",
+          "point": 0.016968684232296364,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|201||Praw-minus-OP6|||H_U",
+          "point": 0.0020037653529860994,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|202||Praw-minus-OP6|||H_U",
+          "point": -0.0038131597229226905,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|203||Praw-minus-OP6|||H_U",
+          "point": 0.0028053956378379535,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|204||Praw-minus-OP6|||H_U",
+          "point": -0.0011397601802165618,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|205||Praw-minus-OP6|||H_U",
+          "point": -0.003416175640563972,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|||Praw-minus-OZ6|||D_C",
+          "point": -0.08472537750547383,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|201||Praw-minus-OZ6|||H_U",
+          "point": -0.022970707640400774,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|202||Praw-minus-OZ6|||H_U",
+          "point": -0.014543062704771242,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|203||Praw-minus-OZ6|||H_U",
+          "point": -0.007079296039264122,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|204||Praw-minus-OZ6|||H_U",
+          "point": -0.019679776805102727,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|205||Praw-minus-OZ6|||H_U",
+          "point": -0.017596805090064713,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|||Praw-minus-O6|||D_C",
+          "point": -0.11657012553945281,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|201||Praw-minus-O6|||H_U",
+          "point": -0.03519222711474235,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|202||Praw-minus-O6|||H_U",
+          "point": -0.03387900972590519,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|203||Praw-minus-O6|||H_U",
+          "point": -0.029986318988071452,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|204||Praw-minus-O6|||H_U",
+          "point": -0.02576297457415667,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|HGB|205||Praw-minus-O6|||H_U",
+          "point": -0.02992771097495262,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|||Praw-minus-OP6|||D_C",
+          "point": 0.018919065517764126,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|201||Praw-minus-OP6|||H_U",
+          "point": 0.008993094939585628,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|202||Praw-minus-OP6|||H_U",
+          "point": 0.04627508038429736,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|203||Praw-minus-OP6|||H_U",
+          "point": 0.012140336835307061,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|204||Praw-minus-OP6|||H_U",
+          "point": 0.014541483424291913,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|205||Praw-minus-OP6|||H_U",
+          "point": 0.00781674427077935,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|||Praw-minus-OZ6|||D_C",
+          "point": -0.13050972349294115,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|201||Praw-minus-OZ6|||H_U",
+          "point": -0.048076031686033714,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|202||Praw-minus-OZ6|||H_U",
+          "point": -0.0009064613247736821,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|203||Praw-minus-OZ6|||H_U",
+          "point": -0.05441036144916656,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|204||Praw-minus-OZ6|||H_U",
+          "point": -0.0321576982275907,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|205||Praw-minus-OZ6|||H_U",
+          "point": -0.06848062601751609,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|||Praw-minus-O6|||D_C",
+          "point": -0.12945438349774693,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|201||Praw-minus-O6|||H_U",
+          "point": -0.0896116619873549,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|202||Praw-minus-O6|||H_U",
+          "point": 0.009709057231962654,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|203||Praw-minus-O6|||H_U",
+          "point": -0.11302778435655589,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|204||Praw-minus-O6|||H_U",
+          "point": -0.03091303058855621,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_P|span3|MLP|205||Praw-minus-O6|||H_U",
+          "point": -0.0809469839109808,
+          "interval_status": "ESTIMATED_APPROX"
+        }
+      ]
+    },
+    {
+      "family": "E_R",
+      "span": 3,
+      "planned_coordinates": 128,
+      "finite_interval_coordinates": 112,
+      "draw_count": 20000,
+      "manual_critical": 4.135075614486719,
+      "stored_critical": 4.135075614486725,
+      "focused_primary_coordinates": [
+        {
+          "coordinate_id": "E_R|span3|HGB|||OPZ6-minus-OP6|wind_proxy|high_increment-minus-low_increment|interaction_C",
+          "point": -2.566635141877512,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|HGB|||OPZ6-minus-OP6|wind_proxy|high_increment-minus-low_increment|interaction_R",
+          "point": -3.566109686083763,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|HGB|||OPZ6-minus-OP6|wind_proxy|high_increment-minus-low_increment|interaction_U",
+          "point": 0.09994745442062414,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|HGB|||OPZ6-minus-OP6|wind_proxy|high_increment-minus-low_increment|interaction_V",
+          "point": 0.005329492963960299,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|HGB|||FZ-minus-F|wind_proxy|high_increment-minus-low_increment|interaction_C",
+          "point": -1.0694678275627112,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|HGB|||FZ-minus-F|wind_proxy|high_increment-minus-low_increment|interaction_R",
+          "point": -1.509252144752704,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|HGB|||FZ-minus-F|wind_proxy|high_increment-minus-low_increment|interaction_U",
+          "point": 0.04397843171899904,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|HGB|||FZ-minus-F|wind_proxy|high_increment-minus-low_increment|interaction_V",
+          "point": 0.0006874603007867158,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|MLP|||OPZ6-minus-OP6|wind_proxy|high_increment-minus-low_increment|interaction_C",
+          "point": 1.7427328991645297,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|MLP|||OPZ6-minus-OP6|wind_proxy|high_increment-minus-low_increment|interaction_R",
+          "point": 2.2425697843865287,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|MLP|||OPZ6-minus-OP6|wind_proxy|high_increment-minus-low_increment|interaction_U",
+          "point": -0.04998368852219981,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|MLP|||OPZ6-minus-OP6|wind_proxy|high_increment-minus-low_increment|interaction_V",
+          "point": -0.0013699850453157067,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|MLP|||FZ-minus-F|wind_proxy|high_increment-minus-low_increment|interaction_C",
+          "point": -1.0136742944222021,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|MLP|||FZ-minus-F|wind_proxy|high_increment-minus-low_increment|interaction_R",
+          "point": 0.005429148334844314,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|MLP|||FZ-minus-F|wind_proxy|high_increment-minus-low_increment|interaction_U",
+          "point": -0.10191034427570633,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_R|span3|MLP|||FZ-minus-F|wind_proxy|high_increment-minus-low_increment|interaction_V",
+          "point": -0.008367563488453716,
+          "interval_status": "ESTIMATED_APPROX"
+        }
+      ]
+    },
+    {
+      "family": "E_G",
+      "span": 3,
+      "planned_coordinates": 32,
+      "finite_interval_coordinates": 32,
+      "draw_count": 20000,
+      "manual_critical": 2.84929940738919,
+      "stored_critical": 2.84929940738919,
+      "focused_primary_coordinates": [
+        {
+          "coordinate_id": "E_G|span3|HGB|||OPZ6-minus-OP6|||delta_C",
+          "point": 31.999657030853086,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|||OPZ6-minus-OP6|||delta_R",
+          "point": 39.16982936918066,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|||OPZ6-minus-OP6|||delta_U",
+          "point": -0.717017233832884,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|||OPZ6-minus-OP6|||delta_V",
+          "point": -0.0025720164609053502,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|201|OP6||||absolute_V_G",
+          "point": 0.017746913580246913,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|202|OP6||||absolute_V_G",
+          "point": 0.019290123456790122,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|203|OP6||||absolute_V_G",
+          "point": 0.017232510288065845,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|204|OP6||||absolute_V_G",
+          "point": 0.018775720164609055,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|205|OP6||||absolute_V_G",
+          "point": 0.016975308641975308,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB||OP6||||gap_U",
+          "point": 31.202785050715335,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|201|OPZ6||||absolute_V_G",
+          "point": 0.01440329218106996,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|202|OPZ6||||absolute_V_G",
+          "point": 0.015174897119341564,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|203|OPZ6||||absolute_V_G",
+          "point": 0.018261316872427984,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|204|OPZ6||||absolute_V_G",
+          "point": 0.014660493827160493,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB|205|OPZ6||||absolute_V_G",
+          "point": 0.014660493827160493,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|HGB||OPZ6||||gap_U",
+          "point": 28.427163454681637,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|||OPZ6-minus-OP6|||delta_C",
+          "point": 29.05517598553797,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|||OPZ6-minus-OP6|||delta_R",
+          "point": 67.05013816455812,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|||OPZ6-minus-OP6|||delta_U",
+          "point": -3.7994962179019183,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|||OPZ6-minus-OP6|||delta_V",
+          "point": -0.002469135802469137,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|201|OP6||||absolute_V_G",
+          "point": 0.0257201646090535,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|202|OP6||||absolute_V_G",
+          "point": 0.035493827160493825,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|203|OP6||||absolute_V_G",
+          "point": 0.028292181069958847,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|204|OP6||||absolute_V_G",
+          "point": 0.040123456790123455,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|205|OP6||||absolute_V_G",
+          "point": 0.033950617283950615,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP||OP6||||gap_U",
+          "point": 57.843602590454324,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|201|OPZ6||||absolute_V_G",
+          "point": 0.030864197530864196,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|202|OPZ6||||absolute_V_G",
+          "point": 0.02700617283950617,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|203|OPZ6||||absolute_V_G",
+          "point": 0.02263374485596708,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|204|OPZ6||||absolute_V_G",
+          "point": 0.036265432098765434,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP|205|OPZ6||||absolute_V_G",
+          "point": 0.03446502057613169,
+          "interval_status": "ESTIMATED_APPROX"
+        },
+        {
+          "coordinate_id": "E_G|span3|MLP||OPZ6||||gap_U",
+          "point": 58.175621990124775,
+          "interval_status": "ESTIMATED_APPROX"
+        }
+      ]
+    },
+    {
+      "family": "H_P",
+      "span": 1,
+      "planned_coordinates": 40,
+      "finite_interval_coordinates": 40,
+      "draw_count": 20000,
+      "manual_critical": 2.5848335365981203,
+      "stored_critical": 2.584833536598118,
+      "focused_primary_coordinates": []
+    },
+    {
+      "family": "E_P",
+      "span": 1,
+      "planned_coordinates": 94,
+      "finite_interval_coordinates": 94,
+      "draw_count": 20000,
+      "manual_critical": 3.184549326640845,
+      "stored_critical": 3.1845493266408464,
+      "focused_primary_coordinates": []
+    },
+    {
+      "family": "E_R",
+      "span": 1,
+      "planned_coordinates": 128,
+      "finite_interval_coordinates": 112,
+      "draw_count": 20000,
+      "manual_critical": 3.7408384011636175,
+      "stored_critical": 3.740838401163632,
+      "focused_primary_coordinates": []
+    },
+    {
+      "family": "E_G",
+      "span": 1,
+      "planned_coordinates": 32,
+      "finite_interval_coordinates": 32,
+      "draw_count": 20000,
+      "manual_critical": 2.8832402374698076,
+      "stored_critical": 2.8832402374698116,
+      "focused_primary_coordinates": []
+    },
+    {
+      "family": "H_P",
+      "span": 7,
+      "planned_coordinates": 40,
+      "finite_interval_coordinates": 40,
+      "draw_count": 20000,
+      "manual_critical": 2.386694157028008,
+      "stored_critical": 2.386694157028013,
+      "focused_primary_coordinates": []
+    },
+    {
+      "family": "E_P",
+      "span": 7,
+      "planned_coordinates": 94,
+      "finite_interval_coordinates": 94,
+      "draw_count": 20000,
+      "manual_critical": 3.028491162678246,
+      "stored_critical": 3.0284911626782427,
+      "focused_primary_coordinates": []
+    },
+    {
+      "family": "E_R",
+      "span": 7,
+      "planned_coordinates": 128,
+      "finite_interval_coordinates": 112,
+      "draw_count": 20000,
+      "manual_critical": 4.269591359578163,
+      "stored_critical": 4.2695913595781585,
+      "focused_primary_coordinates": []
+    },
+    {
+      "family": "E_G",
+      "span": 7,
+      "planned_coordinates": 32,
+      "finite_interval_coordinates": 32,
+      "draw_count": 20000,
+      "manual_critical": 2.7683991451435754,
+      "stored_critical": 2.76839914514358,
+      "focused_primary_coordinates": []
+    }
+  ],
+  "input_sha256": {
+    "metis_results\\results\\accounting\\0\\daily_totals.npz": "612dee8aa1882ca77f936c3f03e3923e900b925dfa53776fd608175a4a3015d3",
+    "metis_results\\results\\fits\\0\\selection_blocks.npz": "8170ac64f625c52cc3021629bf0d41a16673666a485c443390b0dc0097d767d2",
+    "metis_results\\results\\fits\\0\\evaluation_blocks.npz": "30b3dba545d7986e850d7f01bb94232a267cd1ee759ea2241f3664315d38fe83",
+    "metis_results\\results\\accounting\\1\\daily_totals.npz": "26c22c1a37d8e6f87701db157bb26c5fd1b3bc1e4c4bc8db1ecd13f0d3e7f7f0",
+    "metis_results\\results\\fits\\1\\selection_blocks.npz": "b34ca07bbc4fa0f61d2b575c0daf2b26c49b340bc0bcb91697235787e707cc3b",
+    "metis_results\\results\\fits\\1\\evaluation_blocks.npz": "4c3bfd45a8be4d3917e09bfedb9ab3689d52c86d45ea431c8b75d0c402d548ad",
+    "metis_results\\results\\accounting\\2\\daily_totals.npz": "634e5eb62dc13e4767c5073c9894127c75b60f6655c80684d849dcda08d46fef",
+    "metis_results\\results\\fits\\2\\selection_blocks.npz": "0addd2ee04eb44d62d2b6f4293474d81ebfe5ec4fa7b8162fe22edf6a5fa6a2e",
+    "metis_results\\results\\fits\\2\\evaluation_blocks.npz": "68a7b8eb9471d04c5a7eb9b85f7f1ad1883ac4a6a51a68fdc4727570944ae3b2",
+    "metis_results\\results\\accounting\\3\\daily_totals.npz": "1884180a1236bd734c8c496d8f654ceaf83bf2708d85e9b8516f5b23ee24494b",
+    "metis_results\\results\\fits\\3\\selection_blocks.npz": "ea35f6c78673a75968576118fd2f0964d6f60d63139da3e2335b6356b7d9ab5d",
+    "metis_results\\results\\fits\\3\\evaluation_blocks.npz": "5929ca95b565358ce33d4df85ae1d7ed7328b0e0d842ded66498f05d1833a2d4",
+    "metis_results\\results\\accounting\\4\\daily_totals.npz": "c3569b45058fb6a5b7ab2255693033875a37c50e9c388122d4531d9d49b1248c",
+    "metis_results\\results\\fits\\4\\selection_blocks.npz": "dd2fcfe1cb0d5e120105e5448efec6c400d82b2123a7413604e103baf914c95d",
+    "metis_results\\results\\fits\\4\\evaluation_blocks.npz": "8d553ad145c216ed9dce4a94a729032ef82dd325f7aa6ca94e108091e2dfe581",
+    "metis_results\\results\\accounting\\5\\daily_totals.npz": "52603d3f35cc9a0b5d359bee9210c91ba371bacd07a0dd731dd0e16784984473",
+    "metis_results\\results\\fits\\5\\selection_blocks.npz": "a8256047cc89da11344963587dcd931e2d0189fdd706e31b73adf10204511bb2",
+    "metis_results\\results\\fits\\5\\evaluation_blocks.npz": "f4c0212914f04995dbfabe9e029974c9cca8e1d1c4a41a206cf424e8d9fae22e",
+    "metis_results\\results\\accounting\\6\\daily_totals.npz": "e1dabc32738912becf87519a359e93e9577c2ec9ba96aeec6ffb8df37200f72b",
+    "metis_results\\results\\fits\\6\\selection_blocks.npz": "f144e258e0988984e556e16cc8f617c0f29c063ce14556f06552175056c97c0f",
+    "metis_results\\results\\fits\\6\\evaluation_blocks.npz": "845babcd4e554b55d3d0246a97c7d8ed0732a5f9d17c97cd8877e5c17d23ad9a",
+    "metis_results\\results\\accounting\\7\\daily_totals.npz": "67e3558fa658a5e606d13633ce10c5b6d566a0adf26b11c58cb19136582a3b52",
+    "metis_results\\results\\fits\\7\\selection_blocks.npz": "5ff4efcb45a629ed4789fbc7024024163213b8d243f1dd0478b4671dd04e8e45",
+    "metis_results\\results\\fits\\7\\evaluation_blocks.npz": "8b10ab2226b0e707fe0187eeaece36db83acc8b7f9abaee3003e21155aad7e95",
+    "metis_results\\results\\accounting\\8\\daily_totals.npz": "1fd1f0f7ce7d8e8a739ecdb8081f198ac3e8b1c2ed834c1a91bc8d822d889e61",
+    "metis_results\\results\\fits\\8\\selection_blocks.npz": "987b46bc6f6965ed6dab9ac34ec4af721a5ff57d2f306c2f187e9e0b7b429681",
+    "metis_results\\results\\fits\\8\\evaluation_blocks.npz": "8b4078d61db252bac0a1059fd7402cb9ca1783715e4d6dc18b9e8c69206896f6",
+    "metis_results\\results\\accounting\\9\\daily_totals.npz": "81079559f6b472eb043571f004a65c4673d9c61de3bc29e87abd6277acd5776a",
+    "metis_results\\results\\fits\\9\\selection_blocks.npz": "d2373062df9025eb90451ae29bb70bd98cddafe8395ca3a9961e5c003a795786",
+    "metis_results\\results\\fits\\9\\evaluation_blocks.npz": "8a34910f1c592f33f512679e835a1ba863a0c3a855812d573846839d0c7d12c2",
+    "metis_results\\results\\infer\\families.json": "1e2151ff4fedf6c32d239985aaa708f1707dc32da3ac32f6071349444d0c5655",
+    "metis_results\\results\\infer\\families\\H_P_span3.json": "a8201129a5488a0a3d28e661c6d56f3487dda979d725f2098e780a1e6b5fe0d1",
+    "metis_results\\results\\infer\\draws\\H_P_span3.npz": "66ee5d2802a7d50581b7db90d22ef847b1d39aec3bb622dafc58bf6a17e717a7",
+    "metis_results\\results\\infer\\families\\E_P_span3.json": "702a3058e922b4b2e979ecd97398f89721b2daba39f373866c63b44440bd874b",
+    "metis_results\\results\\infer\\draws\\E_P_span3.npz": "8b2111cf91f788326f88e5cba7d13a97683202b909ee5e5c19881e24bdd7847e",
+    "metis_results\\results\\infer\\families\\E_R_span3.json": "6dffe35fdabf204293d4499afe9eb66939e81bb0e5a47cd54aa36cfb8c69f1b9",
+    "metis_results\\results\\infer\\draws\\E_R_span3.npz": "84de206edc9324ab227198bf4b21721dd5c2f8966c50af07e8709add5f66d52a",
+    "metis_results\\results\\infer\\families\\E_G_span3.json": "1be0787cbe1f256e35a3cf7a15819bf2649fe4dc112e6074694135d3fcb5d147",
+    "metis_results\\results\\infer\\draws\\E_G_span3.npz": "cfe8a0cc985f7480c5e07858d537f70286a2bc40e0879c77704479883ec62d67",
+    "metis_results\\results\\infer\\families\\H_P_span1.json": "f040a01225dadf0c351c2e90670d1a5a19442022694d1f1d53066ef073309325",
+    "metis_results\\results\\infer\\draws\\H_P_span1.npz": "13718b516d46073131ce5c9e1f11b038d4ea0198c9d4b660c3fe20cdd9091c3a",
+    "metis_results\\results\\infer\\families\\E_P_span1.json": "99fda4570a84a0f260018b023a00c7cb3eb6d46e25049c5d254cf9ac4fe3015e",
+    "metis_results\\results\\infer\\draws\\E_P_span1.npz": "151bb8c309e8b34e95b53a323057e45c8bc711540e92fa54c7748c610643a5e8",
+    "metis_results\\results\\infer\\families\\E_R_span1.json": "831ea6ba0a66a596e8aab053df32afe39bb2d51a4593107f4cca53f062385d24",
+    "metis_results\\results\\infer\\draws\\E_R_span1.npz": "f4f18b1a572f3315698d67d7e8f2c80b2310b5da0d0a7fff1083116330f4cfce",
+    "metis_results\\results\\infer\\families\\E_G_span1.json": "964e0d56ed2b154197fb8c6b9a6d0606f51803d34cb9b8d4cf60c91d07585bae",
+    "metis_results\\results\\infer\\draws\\E_G_span1.npz": "577d0aac87ec8dfd0d1162a8800f853d0887e8c6477505dd2bc22d224457a627",
+    "metis_results\\results\\infer\\families\\H_P_span7.json": "74642845e86c30e40544fca357320b45f4a67d5231c3848d96a805a04322826b",
+    "metis_results\\results\\infer\\draws\\H_P_span7.npz": "b70ade1af7a5f9af0ffc07d6fc016cfc9c4731ac9a2a14cf556a362e7382e13f",
+    "metis_results\\results\\infer\\families\\E_P_span7.json": "f1e0f07d6819a745013a424380f700b08ec134a9cb07517dbeed8445b93c32fc",
+    "metis_results\\results\\infer\\draws\\E_P_span7.npz": "434200d223a73e77112c9d145efaeddc6e9a6f100f1c453fdd5b9d2395ffd0a0",
+    "metis_results\\results\\infer\\families\\E_R_span7.json": "ca292d8ff0788fcecc8ed7f476a7be3b6a04249b48cc8ce3808cb6321f76d149",
+    "metis_results\\results\\infer\\draws\\E_R_span7.npz": "df1309166585849a784eaab2d318e38d3db15449ef9024d58e77b700b30568d0",
+    "metis_results\\results\\infer\\families\\E_G_span7.json": "6669cd86f37cd3ab54fa2ae328328b955ca20543748d8dbf294ae800ca74e151",
+    "metis_results\\results\\infer\\draws\\E_G_span7.npz": "456854bf394100c2db63ce635e865de4c6786f67d8fdd2563be15f515c5962e3"
+  },
+  "sealed_inputs_unchanged": true,
+  "new_random_draws": 0,
+  "bootstrap_or_resampler_called": false,
+  "new_model_fits": 0,
+  "measurement_arrays_loaded": false,
+  "stored_results_or_intervals_replaced": false,
+  "coverage_or_field_safety_certified": false
+}

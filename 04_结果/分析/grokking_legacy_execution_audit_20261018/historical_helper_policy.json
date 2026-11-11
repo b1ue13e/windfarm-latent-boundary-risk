@@ -1,0 +1,27 @@
+{
+  "source": "scripts/_remote_tool.py",
+  "sha256": "ff7d0ec906a4bb8ce5ec345ee6576ad850348b8e6b63855b426c631feb047337",
+  "static_inspection_only_not_executed": true,
+  "calls": [
+    {
+      "line": 6,
+      "safe_SSH_argument_subset": [
+        "ssh",
+        "-p"
+      ],
+      "has_disabled_host_key_check": false,
+      "full_command_and_input_not_printed": true
+    },
+    {
+      "line": 20,
+      "safe_SSH_argument_subset": [
+        "ssh",
+        "-p"
+      ],
+      "has_disabled_host_key_check": false,
+      "full_command_and_input_not_printed": true
+    }
+  ],
+  "credential_values_not_printed_or_copied": true,
+  "scope": "Helper routing/policy is documentary only; no helper was used as a substitute for strict host-key verification"
+}

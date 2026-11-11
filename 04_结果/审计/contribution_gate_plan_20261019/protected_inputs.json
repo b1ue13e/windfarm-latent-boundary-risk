@@ -1,0 +1,15 @@
+{
+  "AGENTS.md": "b1feb8e637fd05baeeace62925f086257bb2b9af7c0905c25f636dc8ec92c993",
+  "docs/SCIENTIFIC_CONTRACT.md": "cf0c38fba403d842ca87521dbe03897e9078dcb87da593daa7af6fd009545f76",
+  "docs/MAINLINE_STOP_DECISION_20261019.md": "e248170f90a20761fb756d0d1ace63f0fe27f0b9a46f8c56eee3816550a04459",
+  "research_state.yaml": "45268886c4f2d2ebc9fbf6de5c5a5178dea0aac9813cc2786c37c4d59fd789df",
+  "research-manifest.json": "d53b3e0ea9b6e9dfe374dececea0b1c04012c59ca6b4d64b819cb771536f2e97",
+  "research_audit/14_resource_loss_break_even_review.md": "7e999e0844f066e121a61fd6c9a576a4c127cd694e8d8ff7d79475e57fe7adf4",
+  "paper_tste_ieee.md": "f8fd4c902c1dbf04fba04bede20e69c1b6390f871c7809e51ac58bb81d24d773",
+  "paper_tste_supplementary.md": "81b1756005021efea994531f42a557778e089909445cbcb0d62414ef3a07c836",
+  "scripts/verify_scientific_claim_gate.py": "f16db4344193431ae5deb4f22a9ace360233ea941e376c5ffa7f068f01c4c185",
+  "scripts/verify_tste_number_consistency.py": "34cca01a64d4671bed164c5c70c448ca4935cb2cd3bccc50cb97d1dc9ad14b13",
+  "experiments/independent_confirmation_execution_20261019/protocol.json": "27ba6498427ca425978f6674f013862ba272049f778562cb839969cb7f3bbc33",
+  "scripts/run_independent_confirmation.py": "62b7913197d1050f700d5d6ae2467f3c49b16546dad37953a05818eb576efee9",
+  "windfarm_moe/independent_confirmation.py": "dd59f461df7535202f9727a3b8472b4e6a0a11edbb1070920ecea6184e09a4f2"
+}

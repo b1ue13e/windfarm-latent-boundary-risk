@@ -1,0 +1,12 @@
+# 阶段02_材料资格核查与终止决定
+
+本阶段归集原始研究材料；原编号、内容、执行及认识论状态保持。以包内协议、收据与报告为准，目录序号不代表完成认证。
+
+- [research_audit/caiso_dynamic_group_adversarial_review_20261020](评审/research_audit/caiso_dynamic_group_adversarial_review_20261020)
+- [research_audit/controlled_comparison_materials_20261020](评审/research_audit/controlled_comparison_materials_20261020)
+- [research_audit/control_delivery_adversarial_review_20261020](评审/research_audit/control_delivery_adversarial_review_20261020)
+- [research_audit/control_delivery_material_closure_20261020](评审/research_audit/control_delivery_material_closure_20261020)
+- [research_audit/d_material_closure_20261020](评审/research_audit/d_material_closure_20261020)
+- [research_audit/reserve_allocation_paper_diligence_20261020](评审/research_audit/reserve_allocation_paper_diligence_20261020)
+- [research_audit/reserve_allocation_v1_adversarial_review_20261020](评审/research_audit/reserve_allocation_v1_adversarial_review_20261020)
+- [research_audit/reserve_allocation_v2_adversarial_review_20261020](评审/research_audit/reserve_allocation_v2_adversarial_review_20261020)

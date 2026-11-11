@@ -1,0 +1,126 @@
+{
+  "date": "2026-10-18T09:37:19.598281+00:00",
+  "scope": "Documentation and read-only integrity checks only; not scientific certification",
+  "environment_for_this_document_audit_only": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "checks": [
+    {
+      "check": "Protected historical assets unchanged",
+      "passed": true,
+      "details": {
+        "count": 486,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "Six pre-edit snapshots preserve exact bytes",
+      "passed": true,
+      "details": {
+        "count": 6
+      }
+    },
+    {
+      "check": "E07 remains inactive; manifests empty; no eligible confirmation window",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Main manuscript changes confined to availability disclosure",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Supplement changes confined to compute and provenance disclosure",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "All fourteen dated PROJECT audit entries retained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "gates/scientific_claim_gate_run.json",
+      "passed": true,
+      "details": {
+        "command": [
+          "python",
+          "scripts/verify_scientific_claim_gate.py"
+        ],
+        "exit_code": 0
+      }
+    },
+    {
+      "check": "gates/number_consistency_run.json",
+      "passed": true,
+      "details": {
+        "command": [
+          "python",
+          "scripts/verify_tste_number_consistency.py",
+          "--output-dir",
+          "analyses\\historical_provenance_freeze_20261018\\gates\\number_consistency"
+        ],
+        "exit_code": 0
+      }
+    },
+    {
+      "check": "Scientific gate PASS marker",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Document relative links resolve",
+      "passed": true,
+      "details": {
+        "links_checked": 40,
+        "missing": []
+      }
+    },
+    {
+      "check": "Number gate has zero failed claims",
+      "passed": true,
+      "details": {
+        "n_checks": 77,
+        "n_failed": 0
+      }
+    },
+    {
+      "check": "Staged paths contain only intended documentation and new audit",
+      "passed": true,
+      "details": {
+        "staged_count": 25
+      }
+    },
+    {
+      "check": "All snapshots and audit files are byte-exact in Git; manuscript sources differ only by Git CRLF normalization",
+      "passed": true,
+      "details": {
+        "normalized_source_paths": [
+          "paper_tste_ieee.md",
+          "paper_tste_supplementary.md"
+        ]
+      }
+    },
+    {
+      "check": "git diff --cached --check",
+      "passed": true
+    }
+  ],
+  "protected_input_manifest_sha256": "9333332af414cbd15b90be9126e4ed012c35ab58b58c7248ad74854217174ee1",
+  "remote_access_calls": 0,
+  "new_experiments": 0,
+  "model_inference_calls": 0,
+  "calibration_calls": 0,
+  "original_result_regeneration_calls": 0,
+  "E07_status": "DRAFT_NOT_EXECUTED_PENDING_ACTIVATION_MANIFESTS",
+  "notes": [
+    "Scientific gate --help executed read-only gate because the script does not parse CLI arguments; formal logged execution also passed.",
+    "No model/data/metric code changed; no new experiment or test suite execution was required.",
+    "Pre-edit source snapshots retained; generated PDFs and release assets were not rebuilt.",
+    "Initial exact staging check flagged Git CRLF normalization in the two manuscript sources; normalized content matches. Both workspace and Git-blob SHA256 are recorded; snapshot bytes unchanged.",
+    "Default Git ignore rules initially omitted two new gate logs. They were explicitly staged within the new audit directory; no legacy log was changed."
+  ],
+  "output_manifest_sha256": "03d1c153043b4ee64135ea77992c4a6b080142b04904e47f1bcc33d82eb6966d"
+}

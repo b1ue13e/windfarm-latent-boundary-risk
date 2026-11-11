@@ -1,0 +1,21 @@
+{
+  "utc": "2026-10-26T08:54:42.686043+00:00",
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_scientific_claim_gate.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_tste_number_consistency.py",
+        "--output-dir",
+        "C:\\Users\\lidong\\AppData\\Local\\Temp\\paper3_mainline_acceptance_20261026\\final_checks\\numbers"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

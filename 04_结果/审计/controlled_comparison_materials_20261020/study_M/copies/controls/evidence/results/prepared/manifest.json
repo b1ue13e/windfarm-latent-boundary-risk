@@ -1,0 +1,66 @@
+{
+  "original_risks.npz": {
+    "bytes": 13172,
+    "sha256": "7b4ec0f8339f7b2042be5cebbdbcf059029b254f878032f71c99b39b66aa4491"
+  },
+  "prepared.json": {
+    "bytes": 9720,
+    "sha256": "c78924dae506fae82e64e42a3c635b0ddd77d4e460735ce1fa99926eaf0338bc"
+  },
+  "receipt.json": {
+    "bytes": 14912,
+    "sha256": "8ff45778817c4460ab6896cf83f3005e11083a0b522f4716a1d0416b5c9a4881"
+  },
+  "source/experiments/state_calibration_controls_20261020/protocol.json": {
+    "bytes": 4712,
+    "sha256": "3be445a2e274d9ec92d53730389bcb4c3d16e46f83271fa93c79c5feabadb0c1"
+  },
+  "source/experiments/state_measurement_pilot_20261020/protocol.json": {
+    "bytes": 4694,
+    "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e"
+  },
+  "source/scripts/run_decision_information_development.py": {
+    "bytes": 31464,
+    "sha256": "a5f27587f2548fcc2f9f98fa76affc196c720b29da55c109c0d831cb7fefe039"
+  },
+  "source/scripts/run_information_subset_study.py": {
+    "bytes": 24134,
+    "sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a"
+  },
+  "source/scripts/run_state_calibration_controls.py": {
+    "bytes": 20923,
+    "sha256": "8267e6b2813bee432ba5c83835fb709b8a89d3cb97849606cc2d6c0fcdb9b054"
+  },
+  "source/scripts/run_state_measurement_pilot.py": {
+    "bytes": 25104,
+    "sha256": "d806c22dfcb6c96482fb9a268a428cf21045fb872aa26f930315c64929dadb16"
+  },
+  "source/windfarm_moe/decision_information.py": {
+    "bytes": 7146,
+    "sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287"
+  },
+  "source/windfarm_moe/information_subset.py": {
+    "bytes": 5469,
+    "sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd"
+  },
+  "source/windfarm_moe/risk_frontier.py": {
+    "bytes": 5754,
+    "sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944"
+  },
+  "source/windfarm_moe/state_measurement.py": {
+    "bytes": 6462,
+    "sha256": "d850ab388f1c5b056e9f0a966957cde0e1fe122c82b5a5ace72e31dc134f771c"
+  },
+  "source/windfarm_moe/state_measurement_controls.py": {
+    "bytes": 8221,
+    "sha256": "9231a2798ee681a5cffa2a76a5ad385494aa1766a89a5f4e13b6af732b891fb5"
+  },
+  "source/windfarm_moe/state_measurement_review.py": {
+    "bytes": 3451,
+    "sha256": "6b2efb374954dfd746817d926837aa158b95a4583b6a3a4c7bff8190cbf70df2"
+  },
+  "source/windfarm_moe/subset_inference.py": {
+    "bytes": 4863,
+    "sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568"
+  }
+}

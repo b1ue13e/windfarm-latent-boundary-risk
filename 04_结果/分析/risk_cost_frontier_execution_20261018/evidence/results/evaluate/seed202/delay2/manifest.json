@@ -1,0 +1,38 @@
+{
+  "evaluation_grid.npz": {
+    "bytes": 66579,
+    "sha256": "514b688a34e09ad913e0045d1150cbb2370a26f8295c193ea10e50d9db3ab134"
+  },
+  "grid_metrics.json": {
+    "bytes": 6906,
+    "sha256": "03c0d193f4d117d53e1526a91dbb729760c854928a869317b7acaeb0db8e429d"
+  },
+  "receipt.json": {
+    "bytes": 5135,
+    "sha256": "e379ff7d16f658dce182240733bbdd1358d25bfa261922ccd9b21cc4b865263e"
+  },
+  "resources.json": {
+    "bytes": 1325,
+    "sha256": "75dbb5e2526be3cca1b9e155b09b69d9e48e5f174ba3b1abea3aafa36c59bd4a"
+  },
+  "selected_actions.npz": {
+    "bytes": 20389041,
+    "sha256": "26ecc17a591bd3f5345b2d7553ed65008d5b819c984a3fc099030b7626babeea"
+  },
+  "source/decision_information.py": {
+    "bytes": 7293,
+    "sha256": "7e6fd36eec25a5d1c9276cc14224f0aad5ea78b34e802ef84bdc6b7c043173a5"
+  },
+  "source/protocol.json": {
+    "bytes": 6166,
+    "sha256": "1fadbd8d0c79c285f0ad5e8c9fcd677e3ccadc887d6786ce2c927ea4a35fca90"
+  },
+  "source/risk_frontier.py": {
+    "bytes": 5850,
+    "sha256": "5212d87cc4ef88c6e7d406064937cb29f80650a4971a1e509ad69ffceedb7e4b"
+  },
+  "source/run_risk_cost_frontier.py": {
+    "bytes": 27171,
+    "sha256": "8d0d8570026045542082ecb6be07a9a1f21295d7a0141250a90f03d19eeefb9a"
+  }
+}

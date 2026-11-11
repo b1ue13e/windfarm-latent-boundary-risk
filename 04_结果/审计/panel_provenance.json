@@ -1,0 +1,44 @@
+{
+  "schema": "user_requested_three_role_audit/1.0",
+  "formal_reviewer_full_skill_package": false,
+  "role_count": 3,
+  "dispatch": "collaboration.spawn_agent",
+  "model_route": "Inherited parent for all seats; no model override",
+  "exact_model_version": "UNKNOWN_NOT_OBSERVED",
+  "provider": "OpenAI",
+  "calibration_status": "NOT_CALIBRATED",
+  "target_criteria_binding": "criteria_binding_unavailable; no author-confirmed official venue criteria manifest",
+  "accountable_human_identity": "UNKNOWN_NOT_INFERRED_FROM_MANUSCRIPT",
+  "common_context": "All seats inherited the shared parent conversation and scientific contract. Role separation does not establish independent errors.",
+  "seats": [
+    {
+      "role": "Reviewer A - Scientific Novelty",
+      "agent": "/root/novelty_audit",
+      "output": "working/novelty/REVIEWER_A.md",
+      "current_peer_outputs_read_before_commit": false,
+      "existing_prior_review_material_visible": true,
+      "numeric_recomputation": false,
+      "primary_literature_browsing": true
+    },
+    {
+      "role": "Reviewer B - Experimental Rigor",
+      "agent": "/root/rigor_audit",
+      "output": "working/rigor/REVIEWER_B.md",
+      "current_peer_outputs_read_before_commit": false,
+      "existing_prior_review_material_visible": true,
+      "numeric_recomputation": true,
+      "primary_literature_browsing": false
+    },
+    {
+      "role": "Reviewer C - Research Significance",
+      "agent": "/root/discovery_audit",
+      "output": "working/discovery/REVIEWER_C.md",
+      "current_peer_outputs_read_before_commit": false,
+      "existing_prior_review_material_visible": true,
+      "numeric_recomputation": true,
+      "primary_literature_browsing": false
+    }
+  ],
+  "synthesis": "Root agent read all three committed reports and records unresolved objections plus the D8 ranking disagreement in 07_reviewer_assessment.md.",
+  "scope": "Three user-specified research audit perspectives, not a five-seat formal reviewer_full run, anonymous peer review or calibrated acceptance prediction."
+}

@@ -1,0 +1,10 @@
+{
+  "records_exactly_preserved": 8,
+  "all_32_numeric_values_same_binary_float": true,
+  "original_source_not_executed": true,
+  "no_invented_uncertainty": true,
+  "unsafe_annotations_absent": true,
+  "pdf_text_within_page": true,
+  "source_sha256": "e464a094af0c2621a4227fb7a58d6938cbaef3f4aeafc2df97a81f634ae892be",
+  "verification_note": "Initial full-record check flagged JSON tuple/list encoding in presentation offsets; normalized JSON representation and all numeric float.hex values match exactly. No numeric tolerance used."
+}

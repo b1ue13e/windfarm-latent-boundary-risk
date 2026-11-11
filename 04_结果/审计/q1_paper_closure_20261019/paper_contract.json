@@ -1,0 +1,297 @@
+{
+  "spec_id": "q1_conditional_cost_domain_paper_v1_20261019",
+  "status": "PAPER_SPECIFIED_CONFIRMATION_DATA_BLOCKED",
+  "preregistration_status": "NOT_PREREGISTERED",
+  "execution_authorized": false,
+  "project_state": "STOP_ADDITIONAL_INVESTMENT",
+  "closure": {
+    "estimand": "SPECIFIED",
+    "conditional_prediction": "SPECIFIED_UNTESTED",
+    "forward_and_freeze_path": "SPECIFIED",
+    "confirmation_source_qualification": "BLOCKED"
+  },
+  "scientific_scope": {
+    "object": "conditional absolute loss difference between specified frozen programs",
+    "primary_claim": "positive mean gain in H and H greater than L in one qualified new within-site window",
+    "not_claimed": [
+      "Bayes information value",
+      "causal sensor necessity",
+      "low-domain zero value",
+      "accurate gain magnitude prediction",
+      "finite-family minimality",
+      "universal cross-site law",
+      "online switch safety",
+      "net deployment savings"
+    ]
+  },
+  "clock": {
+    "unit_minutes": 10,
+    "timestamp_convention": "UTC period END",
+    "uniform_measurement_release_steps": 1,
+    "forecast_publication_relative_to_issue": -6,
+    "forecast_latest_event_relative_to_issue": -7,
+    "forecast_history_steps": 36,
+    "reserve_latest_event_relative_to_issue": -1,
+    "reserve_history_steps": 36,
+    "target_relative_to_issue": 6,
+    "target_release_relative_to_issue": 7,
+    "forecast_training_target_relative_to_publication": 12,
+    "forecast_training_label_release_relative_to_publication": 13,
+    "release_constraint": "strictly before next-stage first decision; point training before first forecast publication",
+    "runtime_field_latency_validated": false
+  },
+  "loss": {
+    "shortfall": "max(F-P_future,0)",
+    "reserve_nonnegative": true,
+    "rho": 10,
+    "delta_t_hours": "1/6",
+    "unit": "kWh-equivalent per finite-target turbine interval"
+  },
+  "instances": {
+    "seeds": [
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "cost_aggregation": "mean of fixed-instance losses on each common cell",
+    "independent_weather_replicates": false,
+    "deployment_ensemble_claimed": false
+  },
+  "programs": {
+    "primary": [
+      "P36-HGB",
+      "P36-WQ36-HGB"
+    ],
+    "history_challenges": [
+      "P1-HGB",
+      "ShortfallPersistence"
+    ],
+    "common": [
+      "F",
+      "UTC_clock_sin_cos",
+      "fixed_turbine_ID"
+    ],
+    "P_summary_features": [
+      "finite mean of last6",
+      "finite population std ddof0 of last6",
+      "exact six-step P difference when available",
+      "OLS P slope using >=2 finite values among last36"
+    ],
+    "X_additions": [
+      "last36 W",
+      "last36 Q",
+      "their missingness indicators"
+    ],
+    "HGB": {
+      "loss": "quantile",
+      "quantile": 0.9,
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 50,
+      "learning_rate": 0.08,
+      "l2_regularization": 1,
+      "random_state": "instance_seed"
+    },
+    "point_forecaster": {
+      "type": "HGB squared_error",
+      "shared": true,
+      "seed": 20261018,
+      "max_rows": 120000,
+      "same_nominal_tree_parameters_as_risk": true,
+      "output": "max(point_prediction,0); raw and futureP unchanged"
+    },
+    "reserve_max_rows": 360000,
+    "fit_indices": "seed-specific historical sampling without replacement; same rows for paired programs; use all if fewer than budget",
+    "missingness": "fit-stage finite column median, empty column constant0, missing indicators; no future fit",
+    "nonfinite_output": "FAIL_ENTIRE_STAGE_NO_OUTCOME_DEPENDENT_ROW_DELETION",
+    "persistence_raw": "max(F-last finite arrivedP among36,0); if no finite history use D1 historicalP median; if absent qualification fails",
+    "P_summary_missingness": "mean/std finite entries; all missing NaN; exact delta needs both; OLS slope needs>=2 finite times",
+    "point_imputer_fit_rows": "only actual D0 model rows satisfying label-maturity-before-first-publication constraint"
+  },
+  "calibration": {
+    "offset_quantiles": [
+      0.9,
+      0.925,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "raw_reserve": "max(raw_prediction,0)",
+    "offset": "higher quantile of S-raw_reserve on D2",
+    "final_reserve": "max(raw_reserve+offset,0)",
+    "selection": "per recipe choose one q shared by five instances among historical risk-qualified q; minimum mean cost, tie smaller q",
+    "no_qualified_q": "NO_HISTORICAL_QUALIFICATION",
+    "historical_risk_family_nominal_coordinates": 100
+  },
+  "domain": {
+    "inputs": [
+      "F_t",
+      "P_t_minus1",
+      "P_t_minus7"
+    ],
+    "m": "P_t_minus1-F_t",
+    "deltaP": "P_t_minus1-P_t_minus7",
+    "a": "abs(deltaP)",
+    "threshold_period": "D4_2025_FEATURES_ONLY",
+    "threshold_weights": "equal eligible input-valid turbine cells; no future target validity selection",
+    "quantile_method": "higher",
+    "A25": {
+      "stat": "a",
+      "q": 0.25
+    },
+    "A75": {
+      "stat": "a",
+      "q": 0.75
+    },
+    "M25": {
+      "stat": "abs(m)",
+      "q": 0.25
+    },
+    "M75": {
+      "stat": "m",
+      "q": 0.75,
+      "lower_clip": 0
+    },
+    "H": "deltaP<0 AND a>A75 AND abs(m)<=M25",
+    "L": "a<=A25 AND m>=M75",
+    "U": "all other cells, including required-domain-input missing",
+    "numeric_thresholds": null,
+    "thresholds_use_d_or_future_P": false,
+    "recompute_on_confirmation": false,
+    "gain_regressor_required": false,
+    "turbine_mix_scope": "actual conditional population; not within-turbine causal contrast or common mechanism",
+    "interpretation": {
+      "basis": "operational composite input domains relative to frozen D4 input quantiles; no confirmation-window reranking",
+      "H_description": "historically relatively large negative six-step endpoint net change and historically relatively small absolute gap to forecast commitment",
+      "L_description": "historically relatively small absolute six-step endpoint net change and m at or above the fixed nonnegative threshold M75",
+      "net_change_not_path_stability": true,
+      "H_does_not_require_monotone_decline": true,
+      "historical_proximity_not_absolute_physical_distance": true,
+      "M75_zero_allows_m_zero": true,
+      "strictly_positive_or_engineering_sufficient_headroom_claimed": false,
+      "physical_stability_or_safe_domain_claimed": false,
+      "known_gain_or_risk_levels_claimed": false,
+      "ordering_scope": "conditional group means only; no per-time gain ranking or attribution to either grouping component alone",
+      "revision_changes_algorithm_estimands_or_acceptance": false
+    }
+  },
+  "estimands": {
+    "thetaH": "sum(H*dbar)/sum(H)",
+    "thetaL": "sum(L*dbar)/sum(L)",
+    "Gamma": "thetaH-thetaL",
+    "primary": [
+      "thetaH",
+      "Gamma"
+    ],
+    "must_have_positive_global_mean": false,
+    "zero_low_domain_required": false,
+    "margin_for_direction": 0,
+    "old_2percent_reused": false,
+    "condition_population": "declared chronology/context and common finite futureP; U remains in full risk population"
+  },
+  "risk": {
+    "cap": 0.1,
+    "scope": "each primary fixed instance on full scoring population",
+    "per_domain_cap_required": false,
+    "primary_risk_coordinates": 10
+  },
+  "inference": {
+    "status": "PAPER_ONLY_NOT_IMPLEMENTED_OR_VALIDATED",
+    "method": "shared circular UTC-day-block max absolute standardized envelope",
+    "alpha": 0.05,
+    "block_days": 3,
+    "bootstrap_replicates": 20000,
+    "bootstrap_seed": 20261029,
+    "primary_joint_coordinates": 12,
+    "sensitivity_days": [
+      1,
+      7
+    ],
+    "sensitivity_may_replace_primary": false,
+    "recompute_group_numerators_and_denominators": true,
+    "undefined_group_or_bootstrap_denominator": "UNIDENTIFIED_NO_REPLICATE_DELETION",
+    "constant_nonexact_coordinate": "UNINFORMATIVE_INTERVAL",
+    "coverage": "approximate under declared dependence conditions; no distribution-free guarantee"
+  },
+  "acceptance": {
+    "thetaH": "simultaneous lower bound strictly >0",
+    "Gamma": "simultaneous lower bound strictly >0",
+    "risk": "all10 simultaneous risk uppers <=0.1",
+    "cost_pass_without_risk": "COST_PATTERN_ONLY_RISK_UNCONFIRMED",
+    "wide_intervals": "UNIDENTIFIED",
+    "primary_success": "both cost directions and full-population risk gates pass"
+  },
+  "stages": {
+    "D0": {
+      "start": "2023-01-01",
+      "end_exclusive": "2023-07-01",
+      "purpose": "point fit"
+    },
+    "D1": {
+      "start": "2023-07-01",
+      "end_exclusive": "2024-01-01",
+      "purpose": "risk fit"
+    },
+    "D2": {
+      "start": "2024-01-01",
+      "end_exclusive": "2024-07-01",
+      "purpose": "offset fit"
+    },
+    "D3": {
+      "start": "2024-07-01",
+      "end_exclusive": "2025-01-01",
+      "purpose": "historical q selection and P challenge"
+    },
+    "D4": {
+      "start": "2025-01-01",
+      "end_exclusive": "2026-01-01",
+      "purpose": "input-only domain thresholds and exploratory forward d",
+      "target_release_strictly_before": "2026-01-01T00:00:00Z",
+      "post_D4_primary_refit": false
+    }
+  },
+  "confirmation": {
+    "site": "Hill of Towie for the currently defined within-site question",
+    "qualified_record": null,
+    "window_start": null,
+    "window_end": null,
+    "eligible_sources": [],
+    "current_candidate": {
+      "record_id": 22662930,
+      "file": "2026.zip",
+      "official_bytes": 553982874,
+      "official_md5": "42a2264187912ca63214bacfbc8d4905",
+      "metadata_verified": true,
+      "user_exposure_answer": "无法确认查看历史",
+      "exposure_status": "EXPOSURE_UNKNOWN",
+      "eligible": false,
+      "measurement_access_allowed": false
+    },
+    "source_change": "new documented amendment before outcome access; never outcome-driven substitution",
+    "unlock_gate": "complete actual historical model/offset/threshold/config/source/source-exposure/calendar and implementation-inference qualification freeze; explicit future execution authorization still required"
+  },
+  "old_results": {
+    "R1_q095": "unchanged fixed-reference bounded confirmation",
+    "R2_q0925": "unchanged secondary finite-family identification",
+    "E04": "unchanged",
+    "E07_activated": false
+  },
+  "allowed_now": [
+    "paper documents",
+    "metadata-only source check",
+    "static document validation",
+    "existing consistency gates"
+  ],
+  "not_executed": [
+    "model fitting",
+    "inference evaluation",
+    "calibration",
+    "bootstrap resampling",
+    "raw measurement download or ZIP listing",
+    "remote compute",
+    "manuscript rewrite",
+    "project resumption"
+  ]
+}

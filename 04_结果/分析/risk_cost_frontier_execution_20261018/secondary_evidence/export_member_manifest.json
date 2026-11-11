@@ -1,0 +1,46 @@
+{
+  "results/receipt.json": {
+    "bytes": 15178,
+    "sha256": "6e6a93c5bda343c1c544c00dedddd7df4f2a952c473771c340fcfa39039c28c0"
+  },
+  "results/model_class_results.json": {
+    "bytes": 1495656,
+    "sha256": "ed0cb9d446cf5065aa0ded02a662df58a33bce6b96dc734c9f82d55d72178d76"
+  },
+  "results/manifest.json": {
+    "bytes": 839,
+    "sha256": "4a17bf23c92de072b1fb654b94fa0c037d9883cdf7253e826140bafefc087cca"
+  },
+  "results/source/analyze_risk_frontier_model_class.py": {
+    "bytes": 7347,
+    "sha256": "b0bf50d4718a415a6f9cc7337f24bb62310a8bfce077f8088bd9761cf00c9a1f"
+  },
+  "results/source/risk_frontier.py": {
+    "bytes": 5850,
+    "sha256": "5212d87cc4ef88c6e7d406064937cb29f80650a4971a1e509ad69ffceedb7e4b"
+  },
+  "results/source/protocol.json": {
+    "bytes": 2690,
+    "sha256": "c7775687884c7300774094bed5a528808f05d54ac8b190d829fe0fae05d24d77"
+  },
+  "results/source/run_risk_cost_frontier.py": {
+    "bytes": 27171,
+    "sha256": "8d0d8570026045542082ecb6be07a9a1f21295d7a0141250a90f03d19eeefb9a"
+  },
+  "run.pbs": {
+    "bytes": 389,
+    "sha256": "528785cea4a2afa1259e556269c9a890cbd1c77cf28782ef1e3276bb323b3f3a"
+  },
+  "run.log": {
+    "bytes": 103,
+    "sha256": "469a1b408dc1c4772e7319c3c85ce5bc7e16640b85721e1d5569660bcd7a313c"
+  },
+  "submission.json": {
+    "bytes": 607,
+    "sha256": "c3eac3b6ea8cbd9cbb1399be8c653e95bf45839dde952964c1451415d1d309b5"
+  },
+  "experiments/risk_frontier_model_class_audit_20261018/protocol.json": {
+    "bytes": 2690,
+    "sha256": "c7775687884c7300774094bed5a528808f05d54ac8b190d829fe0fae05d24d77"
+  }
+}

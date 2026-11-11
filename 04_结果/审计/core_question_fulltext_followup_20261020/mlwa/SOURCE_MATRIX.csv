@@ -1,0 +1,12 @@
+id,url,method,status,new_information,coverage,local_artifact,article_fulltext_sha256
+F01,https://nva.sikt.no/registration/01a014031ebd-f999b58e-d400-4951-8306-979b270587b1,public_HTML_script_discovery,HTTP200,取得页面实际声明的JS文件路径,WEB_CONFIG,public_endpoint_provenance.json,NOT_OBTAINED
+F02,https://nva.sikt.no/assets/constants-CIOl1lOJ.js,public_HTTP_read_only,HTTP200,baseURL仍为https://api.nva.unit.no,WEB_CONFIG,public_endpoint_provenance.json,NOT_OBTAINED
+F03,https://nva.sikt.no/assets/apiRequest-CipB3k1F.js,public_HTTP_read_only,HTTP200,默认Accept application/json及Registration路径,WEB_CONFIG,public_endpoint_provenance.json,NOT_OBTAINED
+F04,https://nva.sikt.no/assets/registrationApi-DWhx4LSM.js,public_HTTP_read_only,HTTP200,未登录公开GET publication/identifier分支,WEB_CONFIG,public_endpoint_provenance.json,NOT_OBTAINED
+F05,https://nva.sikt.no/assets/useFetchRegistration-DZ3phq_Z.js,public_HTTP_read_only,HTTP200,登记页调用真实registration函数,WEB_CONFIG,public_endpoint_provenance.json,NOT_OBTAINED
+F06,https://api.nva.unit.no/publication/01a014031ebd-f999b58e-d400-4951-8306-979b270587b1,anonymous_GET_Accept_application_json,HTTP200_JSON,PUBLISHED;associatedArtifacts空;pendingOpenFileCount0,METADATA,nva_publication.json,NOT_OBTAINED
+F07,https://api.openalex.org/works/https://doi.org/10.1016/j.mlwa.2026.100957,anonymous_GET_Accept_application_json,HTTP200_JSON,W7169855474及OA实际链接;初次默认JSON解析大小写冲突后AsHashtable成功,METADATA,openalex_work.json,NOT_OBTAINED
+F08,https://content.openalex.org/works/W7169855474.pdf,anonymous_HEAD,HTTP401_STOPPED,正式记录所列全文副本要求授权;未认证未绕过,NONE,,NOT_OBTAINED
+F09,https://www.sciencedirect.com/science/article/pii/S2666827026001222/pdf,web_open_actual_discovered_PDF_URL,HTTP403_STOPPED,实际元数据所列PDF地址不可取得;无猜路径,NONE,,NOT_OBTAINED
+F10,https://doaj.org/article/b47e686b391846fca30f6323934dd131,web_open_discovered_record,FETCH_FAILED,OpenAlex给出的目录位置无pdf_url;未发现新副本,NONE,,NOT_OBTAINED
+F11,https://doi.org/10.1016/j.mlwa.2026.100957,publisher_public_index,PARTIAL_BODY,2.2前一分钟预测下一分钟及单步;2.4七输入不含当前P;数据范围与保密声明,PARTIAL_NOT_FULLTEXT,,NOT_OBTAINED

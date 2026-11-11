@@ -1,0 +1,8 @@
+{
+  "status": "FAILED_LOCAL_REFERENCE_CHECK",
+  "command": "python research_audit/mainline_stop_20261019/validate_stop.py",
+  "exit_code": 1,
+  "reason": "The new decision record linked ../FINAL_NOVELTY_AND_IMPACT_VERDICT.md, but the existing verdict resides under research_audit/.",
+  "resolution": "Corrected the new document link and current YAML evidence path; did not change the original verdict or any evidence.",
+  "scientific_gates_executed_in_this_attempt": false
+}

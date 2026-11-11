@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-20",
+  "access_scope": "Published papers, public metadata, dictionaries and source/configuration inspection only. No measurement archive contents requested or parsed.",
+  "official_analysis_commit": "d767968f45e3848057fce298901739abee7c91a4",
+  "sources": [
+    {"id":"ZENODO","url":"https://zenodo.org/records/22662930","version":"2.1.0","doi":"10.5281/zenodo.22662930","license":"CC-BY-4.0","local_metadata":"experiments/independent_confirmation_20261019/metadata/zenodo_record_22662930.json"},
+    {"id":"WS_CODE","url":"https://github.com/resgroup/hill-of-towie-open-source-analysis/blob/d767968f45e3848057fce298901739abee7c91a4/scripts/wfc_analysis_2026/uplift_ws.py","blob_sha":"dde32f790da34f7ddecc7e5d7e4270806795ed5a","locators":["_hot_initialize_toggle","hot_dy_toggle_df","hot_dy_scada_df","AssessmentInputs.from_cfg","_post_process_ws_results"]},
+    {"id":"DY_CONFIG","url":"https://github.com/resgroup/hill-of-towie-open-source-analysis/blob/d767968f45e3848057fce298901739abee7c91a4/scripts/wfc_analysis_2026/wind_up_config/HOT_dynamic_yaw.yaml","blob_sha":"626aaf3640954be131a50c54e8f77f09183d1fb0"},
+    {"id":"EXCLUSIONS","url":"https://github.com/resgroup/hill-of-towie-open-source-analysis/blob/d767968f45e3848057fce298901739abee7c91a4/scripts/wfc_analysis_2026/wind_up_config/exclusion_periods/HOT_DY.yaml","blob_sha":"762763ce12d467b32299d3d0013da7aaf0f4c183"},
+    {"id":"CC_CODE","url":"https://github.com/resgroup/hill-of-towie-open-source-analysis/blob/d767968f45e3848057fce298901739abee7c91a4/scripts/wfc_analysis_2026/uplift_cc.py","blob_sha":"b281a7df40e151b262ed2ec84c07ea7e5bb141a5"},
+    {"id":"FASTLOG_CODE","url":"https://github.com/resgroup/hill-of-towie-open-source-analysis/blob/d767968f45e3848057fce298901739abee7c91a4/src/hot_open/fastlog_helpers.py","blob_sha":"88b639f88d463e084ddf2cddb66d9d94af73b027"},
+    {"id":"SCADA_CODE","url":"https://github.com/resgroup/hill-of-towie-open-source-analysis/blob/d767968f45e3848057fce298901739abee7c91a4/src/hot_open/scada_helpers.py","blob_sha":"45e95df01b6d09ce3faeb29d43699961b7387432"},
+    {"id":"WINDUP_INTERFACE","url":"https://github.com/resgroup/wind-up/blob/ab04010311fa6a16740ff52547383e0f24399cb4/wind_up/interface.py","version":"0.4.10","note":"ceil settling/timebase filtering; source inspected, not executed"},
+    {"id":"WINDUP_FILTER","url":"https://github.com/resgroup/wind-up/blob/ab04010311fa6a16740ff52547383e0f24399cb4/wind_up/scada_funcs.py","version":"0.4.10","note":"ShutdownDuration normal-operation filter; not an assertion of source-study invalidity"},
+    {"id":"DICTIONARY","url":"https://zenodo.org/api/records/22662930/files/Hill_of_Towie_data_dictionary.md/content","md5":"8b34bcd19813feda5e45834763d46c0b","local":"experiments/independent_confirmation_20261019/metadata/Hill_of_Towie_data_dictionary.md"},
+    {"id":"GRID_DICTIONARY","url":"https://zenodo.org/api/records/22662930/files/Hill_of_Towie_grid_fields_description.csv/content","md5":"beb450d696fa4aca3572ccf35cf74d7b","local":"experiments/independent_confirmation_20261019/metadata/Hill_of_Towie_grid_fields_description.csv"},
+    {"id":"LOCAL_HISTORY","local":"analyses/independent_confirmation_execution_20261019/REPORT.md","note":"Previously used2023-2025 source; not a new independent holdout for this design"}
+  ],
+  "measurement_files_metadata_only": [
+    {"name":"2026.zip","bytes":553982874,"md5":"42a2264187912ca63214bacfbc8d4905","accessed":false},
+    {"name":"turbine_fastlog.zip","bytes":11925990240,"md5":"483acf28d7a901faf5eac611412e1a1f","accessed":false},
+    {"name":"lidar_data.zip","bytes":2413137067,"md5":"b5be91b03d3b18cbe85d332e9a792370","accessed":false},
+    {"name":"Hill_of_Towie_ShutdownDuration.zip","bytes":19834579,"md5":"089be3c24d6fa80f2d652f244b51e470","accessed":false}
+  ],
+  "execution_authorized": false,
+  "execution_queue": [],
+  "new_empirical_results": []
+}

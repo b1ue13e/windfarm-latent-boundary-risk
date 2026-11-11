@@ -1,0 +1,17 @@
+{
+  "local_logs_scanned": 1415,
+  "original_directory_token_hits_in_logs": 0,
+  "local_archive_member_inventories": 320,
+  "original_directory_member_name_hits": 0,
+  "scope_archive_search": "names only; not full text of all nested members",
+  "old_project_thread_index_rows": 114,
+  "indexed_rollout_paths_existing_now": 0,
+  "indexed_rollout_paths_missing_now": 114,
+  "thread_metadata_overlapping_Aug29_Sep2": 0,
+  "overlapping_rollouts_existing_now": 0,
+  "history_and_runtime_log_DB_queries": "read-only exact original-directory tokens before2026-09-05; zero matches",
+  "global_absence_claim": false,
+  "original_eval_weight_input_numeric_environment_binding": "UNKNOWN_NOT_CLOSED",
+  "provider_backup_or_export_availability": "UNKNOWN",
+  "E07": "UNCHANGED_UNACTIVATED"
+}

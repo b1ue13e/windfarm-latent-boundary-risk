@@ -1,0 +1,58 @@
+{
+  "git_commit": "183e32cd80a9d6ead726107b32ea9328423ac19d",
+  "files": {
+    "scripts/run_state_measurement_pilot.py": {
+      "sha256": "d806c22dfcb6c96482fb9a268a428cf21045fb872aa26f930315c64929dadb16",
+      "bytes": 25104
+    },
+    "windfarm_moe/state_measurement.py": {
+      "sha256": "d850ab388f1c5b056e9f0a966957cde0e1fe122c82b5a5ace72e31dc134f771c",
+      "bytes": 6462
+    },
+    "scripts/run_information_subset_study.py": {
+      "sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a",
+      "bytes": 24134
+    },
+    "scripts/run_decision_information_development.py": {
+      "sha256": "a5f27587f2548fcc2f9f98fa76affc196c720b29da55c109c0d831cb7fefe039",
+      "bytes": 31464
+    },
+    "windfarm_moe/information_subset.py": {
+      "sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd",
+      "bytes": 5469
+    },
+    "windfarm_moe/decision_information.py": {
+      "sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287",
+      "bytes": 7146
+    },
+    "windfarm_moe/risk_frontier.py": {
+      "sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944",
+      "bytes": 5754
+    },
+    "windfarm_moe/subset_inference.py": {
+      "sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568",
+      "bytes": 4863
+    },
+    "windfarm_moe/__init__.py": {
+      "sha256": "17ee5f3c992700309115073c67c9d24608b1fa113c1a68d7a1890cf47df08bca",
+      "bytes": 1315
+    },
+    "tests/test_state_measurement.py": {
+      "sha256": "b036140b8d139193f71a9a80f6b3554b5de35e4bc4e3f53b93549b21879f3e5d",
+      "bytes": 3822
+    },
+    "tests/test_state_measurement_runner.py": {
+      "sha256": "48f7607c133ce1e78742c60a0c723d00215572223d7fcca5b6688e6341fdc1da",
+      "bytes": 4562
+    },
+    "experiments/state_measurement_pilot_20261020/protocol.json": {
+      "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e",
+      "bytes": 4694
+    },
+    "experiments/state_measurement_pilot_20261020/run.pbs": {
+      "sha256": "bcd3e0c2a8fe5072a78a21a616cd335a8957ba935be845dfa0dea3e1ea422cd4",
+      "bytes": 1002
+    }
+  },
+  "transport": "LF normalized; exact transported bytes bound"
+}

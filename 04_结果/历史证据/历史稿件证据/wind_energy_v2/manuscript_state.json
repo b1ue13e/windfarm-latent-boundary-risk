@@ -1,0 +1,150 @@
+{
+  "project": {
+    "id": "wind_energy_incremental_telemetry_v2_20261020",
+    "archetype": "original applied empirical decision assessment",
+    "venue": "Wind Energy",
+    "article_type": "Research Article",
+    "stage": "existing-evidence closure revision",
+    "language": "en-GB",
+    "created_after_draft_note": "V2 authority record derived from V1 before substantive V2 edits; V1 remains unchanged"
+  },
+  "artifacts": [
+    {
+      "id": "main",
+      "path": "manuscript.md",
+      "role": "main",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "supplementary",
+      "path": "supplementary.md",
+      "role": "supplementary",
+      "status": "ACTIVE"
+    }
+  ],
+  "authority": [
+    "../../docs/SCIENTIFIC_CONTRACT.md sections 8-9",
+    "../../experiments/independent_confirmation_execution_20261019/protocol.json",
+    "../../analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json",
+    "../../analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json",
+    "../../research_audit/resource_loss_ledger_20261019/loss_ledger.csv"
+  ],
+  "contract": {
+    "gap": "Quantified cross-year consequences of incremental reserve-layer telemetry in a declared shared-forecast interface",
+    "task": "Separate fixed-reference qualification from full-family sufficiency and resource-minimum identification",
+    "primary": "Historically chosen P1/HGB/q0.95 versus frozen WPQ36/HGB/q0.95",
+    "secondary": "P1/HGB/q0.925 finite-family minimum; primary calibration absent from full-q 2% sufficient set",
+    "nonclaims": [
+      "new forecasting architecture",
+      "physical sensor removal",
+      "realised savings",
+      "field safety",
+      "global information minimum",
+      "causal operating-state mechanism"
+    ]
+  },
+  "semantic_locks": [
+    {
+      "id": "primary_secondary",
+      "kind": "SEMANTIC",
+      "canonical": "The primary q=.95 and secondary q=.925 results have different inferential responsibilities."
+    },
+    {
+      "id": "upstream",
+      "kind": "SEMANTIC",
+      "canonical": "Current power is additional reserve-layer telemetry; upstream wind and power histories remain."
+    },
+    {
+      "id": "tradeoff",
+      "kind": "SEMANTIC",
+      "canonical": "Primary proxy cost and mean uncovered shortfall increase; event qualification is not severity improvement."
+    },
+    {
+      "id": "negative_results",
+      "kind": "SEMANTIC",
+      "canonical": "WTB identifies zero finite-family minima; dependent case counts are not independent replication."
+    }
+  ],
+  "terminology": [
+    {
+      "id": "incremental",
+      "preferred": "incremental telemetry",
+      "allowed_variants": [
+        "additional telemetry",
+        "additional reserve-layer inputs"
+      ],
+      "status": "CONFIRMED",
+      "confirmation_source": "SCIENTIFIC_CONTRACT.md section9"
+    },
+    {
+      "id": "cost",
+      "preferred": "proxy cost",
+      "allowed_variants": [
+        "kWh-equivalent cost"
+      ],
+      "status": "CONFIRMED",
+      "confirmation_source": "decision_protocol.json loss"
+    },
+    {
+      "id": "minimum",
+      "preferred": "finite-family minimum",
+      "allowed_variants": [
+        "finite-family resource minimum"
+      ],
+      "status": "CONFIRMED",
+      "confirmation_source": "SCIENTIFIC_CONTRACT.md section9"
+    },
+    {
+      "id": "resource_axis",
+      "preferred": "learned predictor passes",
+      "status": "CONFIRMED",
+      "confirmation_source": "independent_confirmation.py resource()"
+    }
+  ],
+  "style_profile": {
+    "discouraged_phrases": [
+      "in this reconstruction",
+      "it is worth noting",
+      "novel framework",
+      "groundbreaking"
+    ],
+    "technical_terms": [
+      "policy",
+      "primary",
+      "secondary",
+      "risk",
+      "cost",
+      "calibration",
+      "input",
+      "forecast",
+      "minimum",
+      "historical",
+      "instance",
+      "family",
+      "shortfall",
+      "candidate",
+      "reference"
+    ]
+  },
+  "decisions": [
+    "English manuscript and independent supplement with Chinese four-question explanation",
+    "Four main figures and two main tables; generic readable Free Format, AMA references",
+    "No new experiment, model inference, calibration, resampling, measurement download or remote execution",
+    "Exact execution receipts in supplement; main text presents findings and operational interpretation",
+    "V2 adds stored cost bridge, explicit inferential target and documented interface gaps; no scientific threshold or statistical output change"
+  ],
+  "issues": [
+    {
+      "id": "author_metadata",
+      "status": "OPEN",
+      "severity": "S3",
+      "detail": "Author agreement, ORCID, funding and conflict declarations require author confirmation before actual submission"
+    },
+    {
+      "id": "public_archive",
+      "status": "OPEN",
+      "severity": "S3",
+      "detail": "Durable public code/derived-artifact release URL not yet assigned for this new version"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "checked_utc": "2026-10-20T11:58:05.057410+00:00",
+  "candidate_commit": "e5ad3fabcabd87642cccbc31288889c37af8aa01",
+  "status": "PASS_READ_ONLY_ISSUE_LINKED_REVIEW_WITH_EDITORIAL_RESIDUAL",
+  "protected_files_checked": 194,
+  "protected_files_unchanged": 194,
+  "protected_file_mismatches": [],
+  "issue_traceability_rows": 10,
+  "zip_sha256": "6c01787351a6ffbc6bf61262593dc2a533f12c6d86c1278b838d4fecc2f95e96",
+  "scientific_gate": "PASS_LEGACY_SCOPE_ONLY",
+  "cached_number_checks": {
+    "checked": 77,
+    "failed": 0
+  },
+  "independent_archive_gate": {
+    "status": "PASS",
+    "primary_status": "ALL_FROZEN_CANDIDATES_CONFIRMED",
+    "historical_workers_bound": 550,
+    "actual_review_workers": 550,
+    "one_unlock_event": true,
+    "code_and_protocol_frozen_before_unlock": true,
+    "original_gates_unchanged": true,
+    "secondary_cases_checked": 90,
+    "scope": "Archive/provenance/claim consistency; no model refit, bootstrap, coverage or deployment certification"
+  },
+  "package_execution_evidence": "package_verification_evidence.json",
+  "preexisting_tracked_modifications_preserved": [
+    "AGENTS.md",
+    "artifacts/tste_number_consistency_audit/tste_number_consistency_audit.csv"
+  ],
+  "administrative_check_note": "Initial git diff --name-only check omitted a status-dirty CSV due to normalized content/line endings. Actual protected bytes matched; final check uses git status porcelain plus SHA identities. No file repair or gate change was made.",
+  "mutations": {
+    "manuscript": false,
+    "thresholds": false,
+    "source_results": false,
+    "zip_or_manifest": false,
+    "PROJECT_or_contract": false
+  },
+  "research_execution": {
+    "training": false,
+    "model_inference": false,
+    "calibration": false,
+    "new_resampling": false,
+    "new_measurement_download": false,
+    "remote_execution": false
+  },
+  "published": false,
+  "submitted": false,
+  "coverage": "Specified issue-linked verification; not exhaustive novelty search, all-PDF visual recheck, nominal coverage, full training reproduction or journal acceptance certification",
+  "new_review_files": {
+    "DECISION.json": {
+      "bytes": 3912,
+      "sha256": "6e01b8bc62c2f6a97596db4b32a9cdd0341c41946984bd11fb18303f87137b4d"
+    },
+    "editor_verification.md": {
+      "bytes": 17864,
+      "sha256": "6f336d9a6b7af2634e65dcaa7c9585dc1811806a4e794e933194263441c040ce"
+    },
+    "ISSUE_VERIFICATION.csv": {
+      "bytes": 1962,
+      "sha256": "add35bcaecc58a95d0354e98fa27528fad1a4a43def8cbc0cf6140d5fe10960a"
+    },
+    "method_figure_verification.md": {
+      "bytes": 15867,
+      "sha256": "56d60767c2782d09797197f6a6a22edd9178fbf8d7ff777cb35677d1d4845251"
+    },
+    "package_verification.md": {
+      "bytes": 10158,
+      "sha256": "30b45819ecfd355d6e953dbcdde188e59dfdc7a31bb4670aeb55704044e5f49e"
+    },
+    "package_verification_evidence.json": {
+      "bytes": 31005,
+      "sha256": "6492f669a8b90f9ad388130ce7d5322fc2c9a38d147cfe061ba9afca1f484919"
+    },
+    "REVIEW.md": {
+      "bytes": 16712,
+      "sha256": "4ddcb8a6cf02494ea41af4b8dbdc842ee6c84f336cf8981458cb2470a273e2ff"
+    },
+    "REVIEW_SCOPE.json": {
+      "bytes": 38596,
+      "sha256": "c1601ef7fb002b2834fc1ea37432f9ae06a890c6a187b578f85c881f8037ef7e"
+    },
+    "verification/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "verification/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "verification/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 841,
+      "sha256": "1dc92140948574055de43da366bf1ab4eca838abcb1dc9fb45b70a5636f7df44"
+    },
+    "verification/legacy_scientific_gate.txt": {
+      "bytes": 4952,
+      "sha256": "fa9dcfaef7b9366fad5d9bbb9da05dbb56a556daa6c446059cb2238411c12594"
+    },
+    "verification_independent_archive.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    }
+  }
+}

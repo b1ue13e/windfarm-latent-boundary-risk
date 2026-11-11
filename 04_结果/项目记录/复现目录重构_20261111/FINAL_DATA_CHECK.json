@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "scientific_input_hashes_checked": 42,
+  "hash_mismatches": [],
+  "raw_data_columns": [
+    "TurbID",
+    "Day",
+    "Tmstamp",
+    "Wspd",
+    "Wdir",
+    "Etmp",
+    "Itmp",
+    "Ndir",
+    "Pab1",
+    "Pab2",
+    "Pab3",
+    "Prtv",
+    "Patv"
+  ],
+  "raw_data_bytes": 334304460,
+  "mainline_report_numeric_fields_exact": true,
+  "user_instruction_changes": "Only filesystem paths and invocation strings; original bytes retained in source_before/AGENTS.md."
+}

@@ -1,0 +1,23 @@
+{
+  "study_id": "praw_supplement_v3_20261021",
+  "execution_authorized": true,
+  "authority": "2026-10-21 user: 可以使用metis算力尝试，我觉得这个方向会成功，你继续干",
+  "scope": "Implement and execute the reviewed V3 default supplement only; preserve manuscript V7, V3, old results and thresholds",
+  "rules_path": "research_audit/minimum_supplement_plan_v3_20261021/RULES.json",
+  "rules_sha256": "a667a0902599c22d8e77bd067417a4845f8181651e8d57827528da776dd4f85a",
+  "coordinates_sha256": "2f69064a379bd2e87bf2d826e4330bb950a19c04399780f7c28fe2575c91661f",
+  "parent_results": "/lstr/sahara/minlpml/junyu/state_measurement_pilot_20261020_v2/results",
+  "controls_results": "/lstr/sahara/minlpml/junyu/state_calibration_controls_20261020_v1/results",
+  "python": "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python",
+  "max_new_model_fits": 10,
+  "seeds": [201, 202, 203, 204, 205],
+  "optional_budget_active": false,
+  "new_measurement_downloads": false,
+  "new_models_beyond_Praw": false,
+  "manuscript_changes": false,
+  "original_ABC_rejudged": false,
+  "execution_resources": {"queue": "rqdf", "cpus_per_job": 2, "memory_gb_per_job": 16, "array_concurrency": 10, "walltime": "00:45:00"},
+  "expected_packages": {"numpy": "2.4.6", "scikit-learn": "1.9.1", "torch": "2.11.0+cu128", "pandas": "2.3.3"},
+  "runtime_source_policy": "Archive exact deployed source hashes; use LF git blobs for legacy successful sources, do not edit them",
+  "success_definition": "All fixed computations and failures disclosed; scientific outcome may be positive, zero or negative; no retries for unfavorable effects"
+}

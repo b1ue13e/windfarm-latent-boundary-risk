@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "zip_file": "wind_energy_v2_review_package.zip",
+  "zip_bytes": 32877316,
+  "zip_sha256": "6c01787351a6ffbc6bf61262593dc2a533f12c6d86c1278b838d4fecc2f95e96",
+  "payload_files": 69,
+  "members_including_manifest_and_portability_report": 71,
+  "manifest_sha256": "edf1e7760eb3a9904203dcb0801019f5cd536e2acc8c0ddfcedc2d9df0e704e4",
+  "cache_included": false,
+  "copyright_papers_included": false,
+  "measurement_files_included": false,
+  "published": false,
+  "independent_audit": "PASS",
+  "scope": "Portable archived-result verification; not model training/bootstrap reproduction or statistical coverage"
+}

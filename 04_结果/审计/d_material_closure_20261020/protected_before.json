@@ -1,0 +1,42 @@
+[
+  {
+    "path": "AGENTS.md",
+    "length": 5487,
+    "sha256": "B1FEB8E637FD05BAEEACE62925F086257BB2B9AF7C0905C25F636DC8EC92C993"
+  },
+  {
+    "path": "paper_tste_ieee.md",
+    "length": 69591,
+    "sha256": "B9E5E417ABDE1856201E21C6022A994C0601010340B19CC0EE4B4F5F31D17456"
+  },
+  {
+    "path": "paper_tste_supplementary.md",
+    "length": 179061,
+    "sha256": "43487C70FEACC9F0EDFB991E56CE342ACFA5DC9C678534BC6A42A9EAEB02065E"
+  },
+  {
+    "path": "paper_tste_chinese.md",
+    "length": 58116,
+    "sha256": "14CDC51DF2AD440F8C96EAB97C7B450D04437C1599EB4C3C65010280D673352F"
+  },
+  {
+    "path": "docs/SCIENTIFIC_CONTRACT.md",
+    "length": 24422,
+    "sha256": "CF0C38FBA403D842CA87521DBE03897E9078DCB87DA593DAA7AF6FD009545F76"
+  },
+  {
+    "path": "research_audit/new_mainline_deep_screen_20261020/SCREEN.md",
+    "length": 16489,
+    "sha256": "D9FF4F5FBC1052156AC69B96D28AFEBBA83BF65D6CAEEDC190FC7CD266444A5E"
+  },
+  {
+    "path": "research_audit/new_mainline_deep_screen_20261020/MATERIAL_GATES.csv",
+    "length": 1601,
+    "sha256": "A16BBCC6904AC81906852C5787BD9EC2AABBF5F01F26D5D71FEAFFBCD6417FBB"
+  },
+  {
+    "path": "research_audit/telemetry_increment_boundary_design_20261019/PLAN_V3.md",
+    "length": 21274,
+    "sha256": "080FE01E3E36B4AAAA2BA0985BF5751B5E33A94B60A630DCCEF121FC11F1401A"
+  }
+]

@@ -1,0 +1,58 @@
+{
+  "started_utc": "2026-10-18T14:10:01.522064+00:00",
+  "status": "COMPLETED_DEVELOPMENT_NOT_CERTIFIED",
+  "argv": [
+    "scripts/run_decision_information_development.py",
+    "run",
+    "--protocol",
+    "experiments/decision_information_development_20261018/protocol.json",
+    "--prepared",
+    "results/prepared",
+    "--output",
+    "results/runs/seed202/delay6_stress",
+    "--seed",
+    "202",
+    "--condition",
+    "delay6_stress",
+    "--threads",
+    "2"
+  ],
+  "arguments": {
+    "stage": "run",
+    "seed": 202,
+    "condition": "delay6_stress"
+  },
+  "git_commit": "not-a-git-checkout; exact source hashes archived",
+  "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+  "executable": "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python",
+  "numpy": "2.4.6",
+  "pandas": "2.3.3",
+  "sklearn": "1.9.1",
+  "torch_installed": "2.11.0+cu128",
+  "compute_backend": "CPU sklearn histogram boosting; CUDA not used",
+  "protocol_sha256": "c69bfdc1940996ad5b9bee9d610e52f6d0ad9618e316bc704e64d78ee1a1179b",
+  "platform": "Linux-4.18.0-553.154.1.el8_10.x86_64-x86_64-with-glibc2.28",
+  "host": "cn12",
+  "cpu": "x86_64",
+  "pbs_job_id": "244602[10].cm",
+  "allocated_cpus": "2",
+  "source_sha256": {
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/scripts/run_decision_information_development.py": "a11f43242004687ea9da4d73a9c087373dd1d0f991eb196afe66706c87a86df4",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/windfarm_moe/decision_information.py": "7e6fd36eec25a5d1c9276cc14224f0aad5ea78b34e802ef84bdc6b7c043173a5",
+    "experiments/decision_information_development_20261018/protocol.json": "c69bfdc1940996ad5b9bee9d610e52f6d0ad9618e316bc704e64d78ee1a1179b"
+  },
+  "input_sha256": {
+    "results/prepared/physical_channels.npy": "a2e98a6cc141a8c2328b6c5b9166ec0006b5ba78d3db0322a37c32e94359316c",
+    "results/prepared/data_manifest.json": "ae655f2863db0d38ab8e9412e513bac65f12100edcacf73ee521dcfa7a581868",
+    "results/prepared/state_fit_forecast.npz": "35b479a02b83fd944cbc1c72228c86d6c6011fb97848b87f36a4d55a4f12079a",
+    "results/prepared/policy_fit_forecast.npz": "a7a0f2014b6d3f82bbe44c73a892e514e5d1c6c56f9cbba88fd39da2671c7104",
+    "results/prepared/calibration_forecast.npz": "94e9daeb2f0a50cb8a48e5f0331c50cc428e4fd890a47db119e7a663b1887c17",
+    "results/prepared/development_evaluation_forecast.npz": "72ad90923577c03cb01771d95738325450a28a2581cd57107cc700cb3b7d9b25"
+  },
+  "scope": "development; no historical claim upgrade or E07 activation",
+  "prepared_manifest_sha256": "9b4d7f7526ddfafdb40da402577e78cc06af70df55f9015beaab2e98758b72eb",
+  "raw_input_sha256": {
+    "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/wtbdata_245days.csv": "6cf7613a82c61bb5cf9fcbbf22e3f6c48165fa32021eb6f1905cb2b7af4d7667"
+  },
+  "finished_utc": "2026-10-18T14:14:44.260220+00:00"
+}

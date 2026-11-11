@@ -1,0 +1,33 @@
+{
+  "scientific_gate_initial": {
+    "command": "python -X utf8 -S -B scripts/verify_scientific_claim_gate.py",
+    "result": "ENVIRONMENT_ERROR_NUMPY_NOT_VISIBLE_WITH_NO_SITE",
+    "output": "verification/legacy_claim_gate_no_site_failed.txt",
+    "research_recomputed": false
+  },
+  "scientific_gate_final": {
+    "command": "python -X utf8 -B scripts/verify_scientific_claim_gate.py",
+    "result": "PASS",
+    "rules_edited": false
+  },
+  "number_gate": {
+    "mode": "Existing cached CSV standard-library branch under -S; no generation branch",
+    "checks": 77,
+    "failed": 0
+  },
+  "retrieval": [
+    {
+      "transport": "SFTP",
+      "result": "R selected files completed; two M connections dropped; verified files retained; partial files not counted as completed"
+    },
+    {
+      "transport": "Read-only SSH tar stream",
+      "result": "Remaining M files completed and historical SHA verified; no remote result writes"
+    },
+    {
+      "transport": "SCP existing supplemental files",
+      "result": "Initial point-file connection closed; retry succeeded; existing shared channel array copied once and bound to two manifests"
+    }
+  ],
+  "experiments_or_submission": false
+}

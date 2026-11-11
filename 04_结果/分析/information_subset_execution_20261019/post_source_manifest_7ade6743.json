@@ -1,0 +1,11 @@
+{
+  "git_commit": "7ade6743cea476ea50f9535b81b225003b593234",
+  "files": {
+    "scripts/report_information_subset_study.py": "0a7a1d0e07209d2c0b3698306e3f0fac852c61f705791b6ea610daf750547982",
+    "scripts/audit_information_subset_actions.py": "5929432c4536113e2fdb208dade56eae98fea91c0a01e642f58862ee1dc5e78e",
+    "scripts/export_information_subset_evidence.py": "fc05ed27682f8fb2fa408e4edd069a57671c41841749936f4f588ffb8987afbd",
+    "experiments/independent_confirmation_20261019/qualify_hill_of_towie.py": "4ef6c01b2744780356c5a19ba722c3bb04aa57d61f9c01102dfeab77a17cadc8",
+    "experiments/independent_confirmation_20261019/launch_qualification_when_acquired.py": "b7fab9ccb1e2fef77e4b94e54b7e06c56c8ffcdf226ca4e24fd74a8d6afe668e",
+    "experiments/independent_confirmation_20261019/qualification.pbs": "677910ffc55dc02e98fa1452d2233bfe90fe079ee7fe2e00b91a3e7064d778bd"
+  }
+}

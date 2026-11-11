@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/lstr/sahara/minlpml/junyu/information_subset_post_20261019_7ade6743/compact_evidence.tar.gz",
+    "bytes": 42157355,
+    "sha256": "c375cf3e327aff65d30e148a4b009b8bea08c773874be410c6bf6abc5f30c3a0"
+  },
+  {
+    "path": "/lstr/sahara/minlpml/junyu/subset_necessity_20261019_ee836206/results/necessity_evidence.tar.gz",
+    "bytes": 57689,
+    "sha256": "0a2729fef21ed5f34ab9113c484135df7956af473c16690ace70bfae12f11248"
+  },
+  {
+    "path": "/lstr/sahara/minlpml/junyu/claim_revision_source_metadata_20261019.tar.gz",
+    "bytes": 14669,
+    "sha256": "d218d05a6f50887b3f6c06cc68526cf91b877136c385222aac070d11c9438f2b"
+  }
+]

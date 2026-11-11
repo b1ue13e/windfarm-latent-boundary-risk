@@ -1,0 +1,18 @@
+{
+  "blocks.npz": {
+    "bytes": 23372,
+    "sha256": "03718fe7b665250ecedb6ae284775c3360cd4df6739bbd98a10031f389379ef8"
+  },
+  "metadata.json": {
+    "bytes": 209,
+    "sha256": "02d0cfecb4785ce47d6e15adc278f5a0a72350cc0e363f987180e6b475a8ee9f"
+  },
+  "raw_actions.npz": {
+    "bytes": 3166876,
+    "sha256": "a6127292c78c6ff974daa7790339bab296f9b77d51b9e07dd542d793abe99606"
+  },
+  "receipt.json": {
+    "bytes": 40019,
+    "sha256": "a5b8aaf9bad824a03bf1ec54b4c5c16fc33638dc15121d37526f59309db77783"
+  }
+}

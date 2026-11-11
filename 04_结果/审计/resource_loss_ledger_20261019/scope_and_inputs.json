@@ -1,0 +1,28 @@
+{
+  "utc": "2026-10-19T06:41:08.239295+00:00",
+  "scope": "Existing code, recorded artifacts and verifiable public documentation only; no new training/inference/calibration/resampling/remote access",
+  "comparison": "historically frozen pitch_withheld P1/HGB/q0.95 vs WPQ36/HGB/q0.95",
+  "decision_rule": "Do not accept premium or fund additional work without a demonstrated real interface need and an avoidable resource burden. Missing evidence is not proof no need exists anywhere.",
+  "git_commit": "2fa21d782082cb20d5fd63c4ceee89e311308eaa",
+  "inputs_sha256": {
+    "AGENTS.md": "b1feb8e637fd05baeeace62925f086257bb2b9af7c0905c25f636dc8ec92c993",
+    "docs/SCIENTIFIC_CONTRACT.md": "cf0c38fba403d842ca87521dbe03897e9078dcb87da593daa7af6fd009545f76",
+    "PROJECT.md": "3eae3ac3ca895b0d1561706b5e8a8fdef9b73924d98cd235520d8ec9a5d97789",
+    "scripts/run_independent_confirmation.py": "62b7913197d1050f700d5d6ae2467f3c49b16546dad37953a05818eb576efee9",
+    "scripts/run_decision_information_development.py": "a5f27587f2548fcc2f9f98fa76affc196c720b29da55c109c0d831cb7fefe039",
+    "windfarm_moe/independent_confirmation.py": "dd59f461df7535202f9727a3b8472b4e6a0a11edbb1070920ecea6184e09a4f2",
+    "windfarm_moe/information_subset.py": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd",
+    "windfarm_moe/decision_information.py": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287",
+    "experiments/independent_confirmation_execution_20261019/protocol.json": "27ba6498427ca425978f6674f013862ba272049f778562cb839969cb7f3bbc33",
+    "experiments/independent_confirmation_20261019/source_binding.json": "4df5eca98530dc2777c92b83213fb0342829d7f926694615363b57cd5c2ddd76",
+    "experiments/independent_confirmation_20261019/metadata/github_README.md": "0205b06ca92fc9dddb060e84a1c6bc1ef3e5e8a37bae214096421cfa7f3a275c",
+    "experiments/independent_confirmation_20261019/metadata/Hill_of_Towie_data_dictionary.md": "f7f4fc2f3fd58a925e1894e2f7ac00d6bde9c69883563a4653b1cf8c5f25cfc7",
+    "research_audit/novelty_impact_20261019/reviewer_p/practical_derived.json": "5b94173e2017ab6d52533b0fc20d4ab99f427d7eed3cfb0faee6e4a3acb5fa29",
+    "research_audit/novelty_impact_20261019/reviewer_p/practical_receipt.json": "bb7fb87e9bd2a0e476f5400d8d2f6b76b8a781b89cca3336e9777161e70bca44",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json": "f703e64fb7e20843f7daddeb9cc3b0b6d4e95594658560831ba425ac1df7bf72",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/chosen/choices.json": "358e0884ea36c86f98518a3f4ba5b3902716c60b27c476a93536203f689ada29",
+    "docs/WHY_LEVEL1_SCOPE_IS_SUFFICIENT.md": "c5188408aaf9c008934a4e6efc9872a4068165385a1a30d9dad3eb675be86c7b",
+    "docs/ELEXON_A12_PROVENANCE_AUDIT.md": "e39b2072359c67f5e90f7436777ced556df9c00c02a6bc995722289af94058be",
+    "manuscript/REBUTTAL_PREPARATION.md": "804608b8ad7ae7cfb5f100da7b379dd2931955821a3c9f3a93d2b3aca9584ce1"
+  }
+}

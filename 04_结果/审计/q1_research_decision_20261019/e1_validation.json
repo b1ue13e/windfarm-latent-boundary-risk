@@ -1,0 +1,84 @@
+{
+  "record_id": "q1_e1_evidence_paths_20261019",
+  "date": "2026-10-19",
+  "status": "PASS_E1_ARCHIVE_CONSISTENCY_ONLY_NO_QUALIFICATION_UPGRADE",
+  "base_commit": "ce2ce216e93df7c880b86c6977b4fa5d473c563f",
+  "document_checks": {
+    "status": "PASS_E1_ARCHIVE_STATIC_CHECKS_ONLY",
+    "protected_files_unchanged": 89,
+    "parent_decision_unchanged_except_E1_supplement_pointer": true,
+    "parent_decision_narrative_append_only": true,
+    "evidence_identities": [
+      "POTENTIAL_INDEPENDENT_CONFIRMATION",
+      "PREDECLARED_SECONDARY_INDEPENDENCE_UNESTABLISHED",
+      "EXPLORATORY_RESULT_INFORMED"
+    ],
+    "alternative_paths": [
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "paths_all_unqualified": true,
+    "exposure": "EXPOSURE_UNKNOWN",
+    "E1_closed": false,
+    "qualified_windows": 0,
+    "E1_and_E2_E4_requirements_unchanged": true,
+    "acceptance_source_unchanged": true,
+    "statistical_applicability": "NOT_IMPLEMENTED_OR_VALIDATED",
+    "new_analysis_or_scientific_conclusion": false,
+    "project_state": "STOP_ADDITIONAL_INVESTMENT",
+    "execution_authorized": false,
+    "execution_queue": []
+  },
+  "authorized_edits_before_sha256": {
+    "research_audit/README.md": "793b75525f4a534c1be92028c3d6f8f58c28ac85294c9e5b7d26b92c839e2a08",
+    "research_audit/q1_research_decision_20261019/DECISION.md": "7a7407df3a2dc66128acabeb3006ad007fdae09a13cb5dfc6bbc44b3828ef24f",
+    "research_audit/q1_research_decision_20261019/decision.json": "ab1a3f7f0454bb1dd61a8b184a53fbb631133a4682d0683d224108107a0dd2ed"
+  },
+  "authorized_edits_after_sha256": {
+    "research_audit/README.md": "2fd6c4a626048a8d46dd998127c61b52ea6d9247495b5e293f33ee43aead29ff",
+    "research_audit/q1_research_decision_20261019/DECISION.md": "d84c1adb799855d77078430f1feba740d2fda6ad87764b26d6023c1faacf9d7f",
+    "research_audit/q1_research_decision_20261019/decision.json": "d78bfd63c02d9891cab7d1b9b201aa5580e570ed4d13a8c7f224f2f4bd885d42"
+  },
+  "gates": {
+    "scientific": {
+      "command": "python scripts/verify_scientific_claim_gate.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "validation/e1/scientific_claim_gate.log"
+    },
+    "numbers": {
+      "command": "python scripts/verify_tste_number_consistency.py --output-dir research_audit/q1_research_decision_20261019/validation/e1/numbers",
+      "status": "complete_tste_number_consistency",
+      "exit_code": 0,
+      "checks": 77,
+      "failed": 0,
+      "report": "validation/e1/numbers/tste_number_consistency_audit.json"
+    }
+  },
+  "preserved_states": {
+    "candidate_exposure": "EXPOSURE_UNKNOWN",
+    "E1_closed": false,
+    "qualified_windows": 0,
+    "statistical_applicability": "NOT_IMPLEMENTED_OR_VALIDATED",
+    "project_state": "STOP_ADDITIONAL_INVESTMENT",
+    "execution_authorized": false,
+    "execution_queue": [],
+    "new_scientific_conclusion": false
+  },
+  "operations": {
+    "E1_decision_archive_and_links_only": true,
+    "static_checks_and_existing_consistency_gates": true,
+    "new_qualification_evidence": false,
+    "measurement_access_or_download": false,
+    "model_training_or_evaluation": false,
+    "calibration_or_bootstrap_resampling": false,
+    "remote_access_or_jobs": false,
+    "manuscript_edits": false,
+    "paper_spec_or_original_exposure_record_edits": false,
+    "project_resumption": false
+  },
+  "historical_validation_records": "All prior validation records and outputs preserved byte-for-byte. The parent decision adds only the E1 supplement; previous validation remains a receipt for the previous archive version.",
+  "scope_limit": "Static archival consistency only. Conditional routes do not qualify any source. Planned secondary analysis and exploratory analysis are evidence identities, not analyses performed here. Gate success does not establish E1 closure, inferential coverage, a scientific effect or permission to execute."
+}

@@ -1,0 +1,7 @@
+{
+  "initial": "Built-in compiler could not resolve MiKTeX-only TeX Gyre Termes although standalone XeLaTeX succeeded",
+  "repair": "Use installed Windows Times New Roman and Cambria Math in the new draft only",
+  "originals_or_scientific_numbers_changed": false,
+  "built_in_recheck": "SUCCESS with installed Times New Roman and Cambria Math",
+  "source_version_after_repair": "Current source compiled successfully by desktop editor"
+}

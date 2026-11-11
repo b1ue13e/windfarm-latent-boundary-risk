@@ -1,0 +1,23 @@
+{
+  "status": "POSITION_EXISTING_COMPLETED_EVIDENCE_FOR_APPLIED_RESEARCH_ARTICLE",
+  "primary_venue": "Wind Energy",
+  "conditional_alternative": "Electric Power Systems Research",
+  "higher_risk_challenge": "Wind Energy Science",
+  "paper_type": "Controlled empirical assessment of incrementaltelemetryforwindpowershortfalldecisions",
+  "scientific_claims_upgraded": false,
+  "ready_to_submit_now": false,
+  "Towie2025_independence": "Retained for oldfrozenquestion only;notnewV2confirmation",
+  "main_result": "q.95 fixedreference noninferiority atpositivecostpremium",
+  "secondary_result": "q.925 finitefamily identification separate",
+  "new_algorithm_or_theory_claim": false,
+  "real_resource_savings_or_deploymentsafety_claim": false,
+  "importance_and_novelty_risk": "Stillmaterial;scopefitnotacceptanceguarantee",
+  "next_step": "Evidence-grounded fullmanuscriptreconstructionforWindEnergy pluspre-submission audit;notperformedthisturn",
+  "paper_changed": false,
+  "experiments": false,
+  "new_measurements": false,
+  "remote_access": false,
+  "threshold_changes": false,
+  "editor_contact_or_submission": false,
+  "queue": []
+}

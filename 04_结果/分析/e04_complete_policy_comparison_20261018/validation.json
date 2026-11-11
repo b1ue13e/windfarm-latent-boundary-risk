@@ -1,0 +1,19 @@
+{
+  "status": "COMPARISON_VERIFIED_PROTOCOL_DRAFT_ONLY",
+  "parent_git_commit": "e992a8803eb81179ad9d4fe8d69b747d95b5eb5f",
+  "tests_passed": 35,
+  "scientific_claim_gate": "PASS",
+  "number_consistency_gate": "complete_tste_number_consistency",
+  "comparison_inputs_unchanged": true,
+  "all_20_seed_policy_cells_exact": true,
+  "previous_B_D_D10_counts_unchanged": true,
+  "protocol_fitted_or_executed": false,
+  "confirmation_data_bound": false,
+  "protocol_sha256": {
+    "experiments\\E07_history_only_recalibration\\protocol.json": "7e3ec72ae119de76512c84342721b8a2152437cea400511a9d9940a078e22207",
+    "experiments\\E07_history_only_recalibration\\PREREGISTRATION_DRAFT.md": "b952037d6f09ac99878a0417424c81f11780d33d1e0c0d1ed4cfdc763295990d",
+    "experiments\\E07_history_only_recalibration\\references_verified.csv": "a7fa734c868a1d3cbb2804ee4088555dc1d242af17b8e174df33508df67dbde7"
+  },
+  "official_protocol_refinement_from_generated_template": "Added explicit bootstrap_upper_quantile_method=linear; no fit or test run",
+  "scientific_review_status": "not upgraded"
+}

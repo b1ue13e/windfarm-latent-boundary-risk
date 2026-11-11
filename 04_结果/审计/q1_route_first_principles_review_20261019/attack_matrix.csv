@@ -1,0 +1,10 @@
+﻿id,level,target,counterexample,minimum_action,finding_status
+T1,A,conditional estimand selection,zero overall mean can mask conditional signs,correct prior screening interpretation,NEW_LOGIC_CORRECTION
+T2,A_IF_INFORMATION_CLAIM,oracle versus fitted recipe,predictable approximation or calibration error,retain program-only ceiling,EXISTING_PROTECTION_RETAINED
+T3,B_OR_A_IF_MECHANISM_CLAIM,absolute versus relative scale,constant relative gain with varying exposure,freeze scale; control only if claimed,ENDPOINT_DEPENDENT
+T4,A_IF_NOVEL_DISCOVERY_CLAIM,new scientific knowledge,generic age or feature-acquisition demonstration,write precise falsifiable prediction,NOVELTY_UNRESOLVED
+T5,A,prospective identity,in-sample gain labels or future-trained F,forward labels and frozen choices,EXISTING_PROTECTION_RETAINED
+T6,A,group inference,rare random denominator and weather dependence,appropriate paired group inference,TO_BE_SPECIFIED_IF_IMPLEMENTED
+T7,A_IF_SWITCH_OR_CONDITIONAL_RISK_CLAIM,risk scope,qualified strategies can yield unqualified switching,do not add unclaimed risk guarantee,NOT_CURRENT_BLOCKER
+T8,A,fixed task population,changed forecast or complete-case population,fixed F and shared target mask,EXISTING_PROTECTION_RETAINED
+T9,B,importance,precise but trivial effect,report magnitude coverage and knowledge difference,COMPETITIVENESS_ONLY

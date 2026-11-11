@@ -1,0 +1,11 @@
+{
+  "moved_units": 583,
+  "checked_tracked_and_protected_files": 4864,
+  "identity_mismatches": [],
+  "protected_hashes": 44,
+  "hash_mismatches": [],
+  "scientific_computation_executed": false,
+  "raw_data_copied_to_git": false,
+  "remaining_renames_verified_by_unit_identity": 0,
+  "note": "Original Windows rename interruption retained; tracked files and protected evidence verified against pre-move identities."
+}

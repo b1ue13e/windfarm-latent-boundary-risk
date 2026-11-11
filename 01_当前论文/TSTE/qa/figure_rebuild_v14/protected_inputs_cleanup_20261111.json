@@ -1,0 +1,62 @@
+[
+  {
+    "path": "source_data/v2/cross_year_daily.csv",
+    "sha256": "23e3d035e9ddfdd7c8e0b773d7904d7fa5aefc025a987e9b4d0c822a57aea24f"
+  },
+  {
+    "path": "source_data/v2/cross_year_fits.csv",
+    "sha256": "f99ef594481966e3783a458b6ef9c559ed4321d5cfe3f39ad44e5ac9b6e0a9bc"
+  },
+  {
+    "path": "source_data/v2/cross_year_summary.csv",
+    "sha256": "b946eefc95e922375cc3dade4204d9ed7767cd097ffc0c2c8375d0784564ca6a"
+  },
+  {
+    "path": "source_data/v2/measurement_contrasts.csv",
+    "sha256": "fe8a0ca1389f1e906265c118ca7fc5174d0727b305fa3609aef1e3317e451479"
+  },
+  {
+    "path": "source_data/v2/measurement_daily.csv",
+    "sha256": "01d8f578256e0d53c24b542b594e9f7abed15da11a752c68e4766ac4cdd5e78b"
+  },
+  {
+    "path": "source_data/v2/measurement_fit.csv",
+    "sha256": "4345d576febc58a2b6339673ef37c5e44b67886cc7e64108f2c4cbb637eb92bf"
+  },
+  {
+    "path": "source_data/v3/decision_example.csv",
+    "sha256": "c1818847ef6067f469cbcb2383d260864c225305c8a6e2d8b0f4891a322f32cf"
+  },
+  {
+    "path": "source_data/v3/scada_example.csv",
+    "sha256": "025a5216448186d279daa135fcdd1a28ed98b2ead487ed03ae8d85e5f230e5d8"
+  },
+  {
+    "path": "source_data/v4/historical_offsets.csv",
+    "sha256": "71448bfd16ed1831b16fb9e42f86600063a269e784a65a8254043fedad576064"
+  },
+  {
+    "path": "source_data/v4/request_example.json",
+    "sha256": "654d113146cf5f27abd1b7e42c2b6358618793b3661e99940779cc690a6d66ab"
+  },
+  {
+    "path": "source_data/v10/decision_construction.csv",
+    "sha256": "36be71559dd8820dc9cc65c2e1e4b4b1b1039acc6bdcd534729ece26574f16e7"
+  },
+  {
+    "path": "../../AGENTS.md",
+    "sha256": "16d4a6839e6e9ef9d75a43c33c51f848375d1d5b78a52774930c0f57614712ee"
+  },
+  {
+    "path": "../../docs/SCIENTIFIC_CONTRACT.md",
+    "sha256": "cf0c38fba403d842ca87521dbe03897e9078dcb87da593daa7af6fd009545f76"
+  },
+  {
+    "path": "supplementary.tex",
+    "sha256": "2d74ad0d9b8c2a3cea04a4afdefbaf3117af69c0770617bc8b9b76f859d20ab1"
+  },
+  {
+    "path": "supplementary.pdf",
+    "sha256": "33b0a5410e9eb75dadef1915f73427d6ac5f942903d15fc8c225bf99b6a62553"
+  }
+]

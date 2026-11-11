@@ -1,0 +1,12 @@
+{
+  "status": "EXISTING_DERIVED_CHANNEL_BYTES_EQUAL_BOTH_ORIGINAL_MANIFESTS",
+  "file": "research_audit/controlled_comparison_materials_20261020/recovered/shared/physical_channels.npy",
+  "historical_manifests": [
+    "analyses/decision_information_execution_20261018/evidence/results/prepared/output_manifest.json",
+    "experiments/state_measurement_pilot_20261020/evidence/results/prepared/manifest.json"
+  ],
+  "bytes": 75640448,
+  "sha256": "a2e98a6cc141a8c2328b6c5b9166ec0006b5ba78d3db0322a37c32e94359316c",
+  "raw_SCADA_csv_transferred": false,
+  "new_measurement_source_acquired": false
+}

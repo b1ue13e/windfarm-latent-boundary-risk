@@ -1,0 +1,32 @@
+{
+  "utc": "2026-10-19T05:46:46.662501+00:00",
+  "files": [
+    {
+      "path": "analyses/claim_revision_recovery_20261019/evidence/study/experiments/independent_confirmation_20261019/metadata/Hill_of_Towie_turbine_fields_description.csv",
+      "initial_error": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb0 in position 1522: invalid start byte",
+      "followup": "CP1252_TEXT_ROUNDTRIP_READABLE",
+      "codec": "cp1252",
+      "bytes": 3532,
+      "sha256": "c09390ee56a51bec3f2d942a02b292fecf58f78fb9572c1fd74988778c083d9c",
+      "records_under_semicolon_parser": 56,
+      "first_record": [
+        "Field Description,Manufacturer Name,Table,Unit"
+      ],
+      "scope": "A reversible alternative decode, not independent proof of original author encoding. Original UTF8 failure retained; bytes unmodified."
+    },
+    {
+      "path": "experiments/independent_confirmation_20261019/metadata/Hill_of_Towie_turbine_fields_description.csv",
+      "initial_error": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb0 in position 1522: invalid start byte",
+      "followup": "CP1252_TEXT_ROUNDTRIP_READABLE",
+      "codec": "cp1252",
+      "bytes": 3532,
+      "sha256": "c09390ee56a51bec3f2d942a02b292fecf58f78fb9572c1fd74988778c083d9c",
+      "records_under_semicolon_parser": 56,
+      "first_record": [
+        "Field Description,Manufacturer Name,Table,Unit"
+      ],
+      "scope": "A reversible alternative decode, not independent proof of original author encoding. Original UTF8 failure retained; bytes unmodified."
+    }
+  ],
+  "original_files_changed": false
+}

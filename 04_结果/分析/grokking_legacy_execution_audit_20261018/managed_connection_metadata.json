@@ -1,0 +1,15 @@
+{
+  "source": "C:\\Users\\lidong\\.codex\\.codex-global-state.json",
+  "source_sha256": "188586920a9e1fe2d3462de2990a915b94a375a09f6651a40f8d08133060f590",
+  "connections": [
+    {
+      "displayName": "grokking",
+      "hostname": "root@192.168.17.251",
+      "sshPort": 25329,
+      "hostId": "remote-ssh-codex-managed:grokking",
+      "source": "codex-managed",
+      "identity": "C:\\Users\\lidong\\.ssh\\codex_4090"
+    }
+  ],
+  "scope": "connection routing metadata only; not server identity proof or original run provenance"
+}

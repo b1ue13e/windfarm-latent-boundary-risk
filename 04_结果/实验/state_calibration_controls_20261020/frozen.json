@@ -1,0 +1,657 @@
+{
+  "common_q_index": 1,
+  "common_q": 0.925,
+  "common_rule": "First level passing original historical joint bound for all60 main instances; never reselected",
+  "original_choices": {
+    "HGB:F": {
+      "q_index": 1,
+      "q": 0.925,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.0719454257475193,
+        0.07380993849554646,
+        0.0757442804271165,
+        0.07261588835644919,
+        0.07102768005350234
+      ],
+      "mean_cost": 40.04664774157611
+    },
+    "HGB:FZ": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.09847668604186369,
+        0.09958940342261426,
+        0.09268940883391324,
+        0.09000204236096929,
+        0.0935049274373054
+      ],
+      "mean_cost": 39.99389626655686
+    },
+    "HGB:O6": {
+      "q_index": 1,
+      "q": 0.925,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.08173592606780522,
+        0.0788792965619982,
+        0.07523888104569756,
+        0.08139450579928537,
+        0.07859990617531648
+      ],
+      "mean_cost": 48.9399911680301
+    },
+    "HGB:OP6": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.09523818601287912,
+        0.09942720099201942,
+        0.09378433667479487,
+        0.08759442448711632,
+        0.09095468653639482
+      ],
+      "mean_cost": 40.69520290087632
+    },
+    "HGB:OZ6": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.09231027649324144,
+        0.09394014961352617,
+        0.09746742715375692,
+        0.09145100656489245,
+        0.09053349735433587
+      ],
+      "mean_cost": 45.74568560032113
+    },
+    "HGB:OPZ6": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.09326134596345273,
+        0.0944790109898841,
+        0.09424610548906732,
+        0.09300227021517796,
+        0.08973156234833074
+      ],
+      "mean_cost": 40.7023612504558
+    },
+    "MLP:F": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.09370585324323268,
+        0.09353262338628807,
+        0.09550669716890382,
+        0.09626093586620266,
+        0.08887400402008194
+      ],
+      "mean_cost": 43.324199849030556
+    },
+    "MLP:FZ": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.08682996376013524,
+        0.09888398437254067,
+        0.09032648713518551,
+        0.08935881597466067,
+        0.09874527090704913
+      ],
+      "mean_cost": 43.15307860243152
+    },
+    "MLP:O6": {
+      "q_index": 1,
+      "q": 0.925,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.07536075963442067,
+        0.07612743252430815,
+        0.06839805612716635,
+        0.08229117885780098,
+        0.06994933647146587
+      ],
+      "mean_cost": 55.013119748920715
+    },
+    "MLP:OP6": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.07854560718479524,
+        0.09496427414056569,
+        0.08161798738996817,
+        0.09576816867737828,
+        0.09427917762032627
+      ],
+      "mean_cost": 45.28069207565008
+    },
+    "MLP:OZ6": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.08046157608633311,
+        0.0843568451693626,
+        0.08527670535635372,
+        0.08129280880214462,
+        0.09258821853203314
+      ],
+      "mean_cost": 51.38985314247309
+    },
+    "MLP:OPZ6": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.08713852417613271,
+        0.09509573801146665,
+        0.08379097840075365,
+        0.08989653040245374,
+        0.08716473119363093
+      ],
+      "mean_cost": 44.4856289231851
+    },
+    "CONTROL:Global": {
+      "q_index": 1,
+      "q": 0.925,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.08867304363955696,
+        0.08867304363955696,
+        0.08867304363955696,
+        0.08867304363955696,
+        0.08867304363955696
+      ],
+      "mean_cost": 62.03639288921167
+    },
+    "CONTROL:Persistence": {
+      "q_index": 1,
+      "q": 0.925,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.08435143668236166,
+        0.08435143668236166,
+        0.08435143668236166,
+        0.08435143668236166,
+        0.08435143668236166
+      ],
+      "mean_cost": 49.10084530303167
+    }
+  },
+  "Cstar": 40.04664774157611,
+  "original_model_sha256": {
+    "0": "fe4664258fde41a1f360fb330cd3ba433462e5401961aa636678fa6a7d04a5e0",
+    "1": "8d07b5ed1eb2afcbb872310fac72ee5702469baeff411ee062695b721aad9cb6",
+    "2": "f01695f5255be67c88ee63814139024f77b3688dd55cbb82444f50b467bcd937",
+    "3": "3b28d6d69b5d32426b8fd17974bb3a0434368fa65e8ad65e743c4e9b466862a3",
+    "4": "8a15420f63b9b7d05263df5ab5d3f81ec34758a5716efa29a9814754e5a90bcf",
+    "5": "7f8bbb6eb82888181469f8d0332906972e3dd13cea217ef4785ed9bbb8711628",
+    "6": "037150013a4c48715cac28c300f0bed195d0ccc1cba8fb46211d03de41427943",
+    "7": "4a82ce9665a8bb07df24e0982d23a8beecb93f91e431155a1f0c7de120f24dfc",
+    "8": "d95a973e71ce18e739d82d6434e34c63f68c089ed6e4845fb3b71d8d27eed314",
+    "9": "3697c0b53dd0553a278367e9c1da2754e4c2d28e4ded4c75a4024906dc03eff0",
+    "10": "9fcdfc12a56709f06978dd408964cf0d6b3a59322f98b401e00bf04aea319446",
+    "11": "93e027a62d14eff6ee715c312f0b621edb1245b25fd6fc26a2ef17e0079aaf4d",
+    "12": "07f75fea3a6fef85217ca8fc2d3f8bde38893949a48343fd0ec01049995d86ba",
+    "13": "164d099aaec6ea9898dcb763bb7ad22f34fa812997cd28e1bff0035ec081f5b1",
+    "14": "908d055520fb86db0ca468a9d0c6005fd6a45ed963c4636a74a77062f1c34434",
+    "15": "12b65b0e149bd803a13c47bdf423dd334cc07d3a1bd0828c80c2faa9a82f0559",
+    "16": "0d649b6e3564cd490ac70e169d88ce6e3b199aaa14d4c63a922eeb4b9fabac4e",
+    "17": "4204113ff02c72da0a60d84ac654e02a40564d04410671ff53a1b07bd78848e6",
+    "18": "3c0137fb86fca73fcb3e677e8abefd75adb9c007cf9d9b63e709664bb908fdbd",
+    "19": "c78a8ba83386e639700686a236349e7c2727183b45d74f4235472f790e0f2414",
+    "20": "3353d28630ffeaeb2687bd6eee7f7065b0904d2b631ca1f97407961d13eabfc3",
+    "21": "c26d89b3bd932acef7701dc3f0c8523718704ec1505ad988c461f462f456cab6",
+    "22": "e5c060c7be744b92a84ca3906bbab697be26d8321e29514f261e16b1f33cf6e7",
+    "23": "eee70cc9dbfcc92d80daba0629d66273f670f9dee016a4ab4e56056b04ec4f19",
+    "24": "2d2620c43d9dec2cb7cdc25cd004d6aa6f0a6c375df95350d45b7cbd606103d0",
+    "25": "fe9a2bb5ee118d021c2b2d8826482c9b7ca07cc61b8bc1f83897d352bb151c61",
+    "26": "a2caa46ac18f747b163055332dc0f8ed2a84e7190e0f7ef6f17883946a89fe19",
+    "27": "54976f41aa1c645a528316bf55853db9a8b0fe6a883d73ad363c7bd5575a5814",
+    "28": "1f9fa1a58286ceb93e8d6b0ab13aa528ad5f245f66b424e477ef2285fe210069",
+    "29": "ef7927bd9bcd257cfc102d98cd1978406f4da4d4cb2f685ab3c2e4cc5d7e8bf1",
+    "30": "a10b8c0880ecd2d090a0dee2666a2265270e593c6410d61024ea2693c96889fd",
+    "31": "09c1e02a5951d4750248ce05b74dcdc86e84a780488f56193c390fa8c61ac0ca",
+    "32": "4a17e799a8fddbb2caf66e640077e780b51d5d0e763f85cac2a4abbb6aa812ed",
+    "33": "2f00a9b7277783152045c2aba4d049058b659ef731040f2aad990bc43b345260",
+    "34": "d591e0ce1b1a0c55f2688442a6f7b9a5527ef9382ef91ae0b1306958b90a4e81",
+    "35": "e3312aa9c556fcaac29dc500495c436b8c43c6e194646cf3126759f469214e67",
+    "36": "c5b76a4d1f2c78676738dc0a623f2bab24b72216226bc523ca80a29d32d404c0",
+    "37": "247948f5d420bc830b7d801f2f3ee1e8859e8f9c0829d2f40cb0621907eefa02",
+    "38": "0ebc6d264e24ec2b7e6dcf9f0fb816a7c6632d64a8251ff0e563c29d238097e1",
+    "39": "58e9980d58bd50aca4ceb368683f80edad5ba2cfa4cf622a4e7e2f5be8e238c6",
+    "40": "1f37f4cc493029f9d9f16b0f3002528ad1a176a0afbcd4c2d8e406797df9a059",
+    "41": "f1af4551028a302b11db4db9adea9eddb13b1870833f70bb06d170b87671389d",
+    "42": "ca9986b636b5dd3102088227ceb6ce13a5a79bba0ca44b9f4a1ab396a51812a2",
+    "43": "1c99652ddf03dfc413005f28259aa42432b3ec2706cc435bc1443e8c1e0735a6",
+    "44": "826fa22162ee4d48c4ed7cb42d30b39a279725c4640ad9bcef558141b6ba99ab",
+    "45": "6ef69eacc481595b4bfcaf1ea92b9c455708c0ccac8c84946184bcf184932e0f",
+    "46": "95f82d0e052e99fa08618c4b5e92f8a2b3b50f499d71323611ae66018a18206c",
+    "47": "5fa5707f8d9da0aceadfe6af4211f1d58a62929d60c54d0383ec48c776c1e7ba",
+    "48": "eb26d42b166e243ff55f71667e8c0b8a5f668606524676b8d93bb9eab6c86d77",
+    "49": "677b645ea2c71c8cfd218819685216a143fa8088fd1960911f28e80216b478b2",
+    "50": "4502b3886d4c2e1a88b324a19c5579d863f5f0771f792987ff768a9a4647e81e",
+    "51": "9f42cf229146c3e6d3ec3b9b9af2c63ebdabd5bc311be9e6577e59852cb86b0e",
+    "52": "4204d2702c9f37bdeba0fce82eedd5e343156e4abfbf7ce7e579762f6277f198",
+    "53": "93d5156b36a6e051c13f2d101b63ee7c2fcd24f2e46ef95ee8a12dafd1a701b9",
+    "54": "f198ed155fcb62c10286fc9e3d061060f9adda29dcaa21d3fb314f4d1dd5c2e4",
+    "55": "c93d95fe0598f53a3d451eaaa53bb3855b89fb75adab1e34f7e58b52cd950814",
+    "56": "5a8a97e84c9032789bea81a344c5ad45686643756b3c123c822411511fa34c9d",
+    "57": "bac1f1a4b679749feb7f000f949b3fdc0160a2881be7ae776dbe503bc27bb2eb",
+    "58": "6c12ba0caeacd39e0e93d971adebdc21d7ea391863f1710aa504491df3ed34a1",
+    "59": "3bad4f083aa27b2a188c2d9ab97ad27b4d8277e285e96e5063e57bc6eb1ac06a"
+  },
+  "old_prepare_manifest_sha256": "c01dcd443bb36ce4d4a38b767bb8e9068a05e4f09f8a08c2c9a3750e00f27fc1",
+  "old_selection_manifest_sha256": "a59316923a9071723ed27ed8b5107518ee9fbf4c84251b12a07d261a0f2dea42",
+  "historical_qualification": {
+    "Original:HGB:F": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.07110229814229961,
+        0.0729500520412699,
+        0.0748324975682549,
+        0.07169896984760643,
+        0.07014613527904091
+      ],
+      "risk_grid_column": 1
+    },
+    "Original:HGB:FZ": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.09735762234443802,
+        0.09849467474296399,
+        0.09173971214301982,
+        0.08910654112794168,
+        0.09254924292473261
+      ],
+      "risk_grid_column": 5
+    },
+    "Original:HGB:O6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.08074741833945316,
+        0.07799434777444333,
+        0.074351220257212,
+        0.08035698737107402,
+        0.0776821618045759
+      ],
+      "risk_grid_column": 11
+    },
+    "Original:HGB:OP6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.09419322093224143,
+        0.098301462716819,
+        0.09288518423557922,
+        0.08670567377661953,
+        0.08995838299799769
+      ],
+      "risk_grid_column": 15
+    },
+    "Original:HGB:OZ6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.09141240103959421,
+        0.09306412494210814,
+        0.09651359684037056,
+        0.09056270083103567,
+        0.0897343237124327
+      ],
+      "risk_grid_column": 20
+    },
+    "Original:HGB:OPZ6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.09224790237722996,
+        0.09347098860319845,
+        0.09331344545917185,
+        0.0919867173748177,
+        0.08875900792635066
+      ],
+      "risk_grid_column": 25
+    },
+    "Original:HGB:Match_fresh_state": {
+      "all_instances_qualified": false,
+      "per_instance_upper": [
+        0.22883016966227326,
+        0.1790302498506354,
+        0.20134486172567007,
+        0.2776518520237993,
+        0.20509035814982424
+      ],
+      "risk_grid_column": 75
+    },
+    "Original:HGB:Match_old_state": {
+      "all_instances_qualified": false,
+      "per_instance_upper": [
+        0.30198595586571,
+        0.3123368301588948,
+        0.2993746954639891,
+        0.31141501327312415,
+        0.3431561195195567
+      ],
+      "risk_grid_column": 100
+    },
+    "Original:HGB:Match_residual_state": {
+      "all_instances_qualified": false,
+      "per_instance_upper": [
+        0.28314646946979954,
+        0.20382956495418258,
+        0.2590859971035131,
+        0.06393589329435087,
+        0.28838105754330084
+      ],
+      "risk_grid_column": 120
+    },
+    "Original:MLP:F": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.09251680343796666,
+        0.09245056569317164,
+        0.09426664345455685,
+        0.09486378026715625,
+        0.0876032888125164
+      ],
+      "risk_grid_column": 30
+    },
+    "Original:MLP:FZ": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.08546687052985272,
+        0.09735301955358341,
+        0.08899076042028582,
+        0.08840808434787906,
+        0.0973454645712604
+      ],
+      "risk_grid_column": 35
+    },
+    "Original:MLP:O6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.07403201422598421,
+        0.07478709468149823,
+        0.06757409782235008,
+        0.08089016436143787,
+        0.06894265463660562
+      ],
+      "risk_grid_column": 41
+    },
+    "Original:MLP:OP6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.07751066140157645,
+        0.09368507563936948,
+        0.08065897729636569,
+        0.09436933958328758,
+        0.0929704374217929
+      ],
+      "risk_grid_column": 45
+    },
+    "Original:MLP:OZ6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.07934024070788395,
+        0.08313111648527707,
+        0.08414247309172361,
+        0.08010449889043098,
+        0.09131766409901311
+      ],
+      "risk_grid_column": 50
+    },
+    "Original:MLP:OPZ6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.08594954164050625,
+        0.09367388298289887,
+        0.08272321393082138,
+        0.08858023453300073,
+        0.08609156941386847
+      ],
+      "risk_grid_column": 55
+    },
+    "Original:MLP:Match_fresh_state": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.07951486423297657,
+        0.07781671392834594,
+        0.08914535756357272,
+        0.09937908100385923,
+        0.08834600412684085
+      ],
+      "risk_grid_column": 145
+    },
+    "Original:MLP:Match_old_state": {
+      "all_instances_qualified": false,
+      "per_instance_upper": [
+        0.08915768738925164,
+        0.09770020693349944,
+        0.08769347354687845,
+        0.11115183688346199,
+        0.08946643514232122
+      ],
+      "risk_grid_column": 175
+    },
+    "Original:MLP:Match_residual_state": {
+      "all_instances_qualified": false,
+      "per_instance_upper": [
+        0.08558431269017991,
+        0.10398092655480067,
+        0.08526328475840929,
+        0.09784714290239553,
+        0.09253103250875734
+      ],
+      "risk_grid_column": 195
+    },
+    "Common:HGB:F": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.07110229814229961,
+        0.0729500520412699,
+        0.0748324975682549,
+        0.07169896984760643,
+        0.07014613527904091
+      ],
+      "risk_grid_column": 1
+    },
+    "Common:HGB:FZ": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.071639164596597,
+        0.07287319602211174,
+        0.07300079929184639,
+        0.07019428748044765,
+        0.07110971578932862
+      ],
+      "risk_grid_column": 6
+    },
+    "Common:HGB:O6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.08074741833945316,
+        0.07799434777444333,
+        0.074351220257212,
+        0.08035698737107402,
+        0.0776821618045759
+      ],
+      "risk_grid_column": 11
+    },
+    "Common:HGB:OP6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.06865735083449905,
+        0.06950426346870206,
+        0.0713368122019801,
+        0.0660885170268506,
+        0.06507770596127126
+      ],
+      "risk_grid_column": 16
+    },
+    "Common:HGB:OZ6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.07138552824745863,
+        0.07208077987565967,
+        0.07460614961472842,
+        0.07267101965393177,
+        0.07212505261689896
+      ],
+      "risk_grid_column": 21
+    },
+    "Common:HGB:OPZ6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.0678606891243562,
+        0.06757722524147303,
+        0.06982061719681915,
+        0.06651132807977822,
+        0.06509873840149571
+      ],
+      "risk_grid_column": 26
+    },
+    "Common:HGB:Match_fresh_state": {
+      "all_instances_qualified": false,
+      "per_instance_upper": [
+        0.20871686054263416,
+        0.14305239657897617,
+        0.15289593004001617,
+        0.2709240252718253,
+        0.17507240929756418
+      ],
+      "risk_grid_column": 76
+    },
+    "Common:HGB:Match_old_state": {
+      "all_instances_qualified": false,
+      "per_instance_upper": [
+        0.2996401990146117,
+        0.31097307781476197,
+        0.29805662714369036,
+        0.30893415307218214,
+        0.3380720110127604
+      ],
+      "risk_grid_column": 101
+    },
+    "Common:HGB:Match_residual_state": {
+      "all_instances_qualified": false,
+      "per_instance_upper": [
+        0.2794508170945029,
+        0.17037676355814024,
+        0.24723081910732764,
+        0.06184678296654206,
+        0.2850296364351408
+      ],
+      "risk_grid_column": 126
+    },
+    "Common:MLP:F": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.07231006461381274,
+        0.07144652498991305,
+        0.07677672168988098,
+        0.0756105273587479,
+        0.06805169985049847
+      ],
+      "risk_grid_column": 31
+    },
+    "Common:MLP:FZ": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.06941464014210058,
+        0.07815628960997509,
+        0.06997347627145656,
+        0.07396811155063404,
+        0.07811257204354241
+      ],
+      "risk_grid_column": 36
+    },
+    "Common:MLP:O6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.07403201422598421,
+        0.07478709468149823,
+        0.06757409782235008,
+        0.08089016436143787,
+        0.06894265463660562
+      ],
+      "risk_grid_column": 41
+    },
+    "Common:MLP:OP6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.06074744800351445,
+        0.07378080609655874,
+        0.06337756014384233,
+        0.07515885146504546,
+        0.07031712670598897
+      ],
+      "risk_grid_column": 46
+    },
+    "Common:MLP:OZ6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.06392799759144342,
+        0.06371798621360412,
+        0.06671460944854449,
+        0.06346998887687993,
+        0.07180249366007102
+      ],
+      "risk_grid_column": 51
+    },
+    "Common:MLP:OPZ6": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.06750442027980512,
+        0.07241118080448432,
+        0.0646890598044905,
+        0.0710042401898654,
+        0.06762298548225253
+      ],
+      "risk_grid_column": 56
+    },
+    "Common:MLP:Match_fresh_state": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.06315448549226284,
+        0.0625913880462663,
+        0.07247181722727404,
+        0.08321518714220404,
+        0.07225498348597287
+      ],
+      "risk_grid_column": 151
+    },
+    "Common:MLP:Match_old_state": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.07087470526859595,
+        0.0772132996664577,
+        0.06476119808074957,
+        0.08830097251294405,
+        0.06636707735686076
+      ],
+      "risk_grid_column": 176
+    },
+    "Common:MLP:Match_residual_state": {
+      "all_instances_qualified": true,
+      "per_instance_upper": [
+        0.06341296251800538,
+        0.07495824677071987,
+        0.06402030583717408,
+        0.07722885788285958,
+        0.06659277817791097
+      ],
+      "risk_grid_column": 201
+    }
+  },
+  "historical_family_size": 1100,
+  "historical_critical": 2.7703570300024825,
+  "historical_draw_sha256": "ab20a1973f6792b18ae94500bd956fdbd9826fa0ea5d01d80fb060706cab1fdb",
+  "rules": "No q/margin changes after freeze; failed historical qualification remains diagnostic, never deployable",
+  "fixed_before_new_development_scoring": true
+}

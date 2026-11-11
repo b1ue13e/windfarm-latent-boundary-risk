@@ -1,0 +1,43 @@
+{
+  "utc": "2026-10-19T04:17:20.004394+00:00",
+  "changes": [
+    {
+      "command": [
+        "ssh",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectTimeout=15",
+        "metis",
+        "qalter -W max_run_subjobs=64 244729[].cm"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ssh",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectTimeout=15",
+        "metis",
+        "qalter -W max_run_subjobs=64 244732[].cm"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "from_concurrency": 16,
+  "to_concurrency": 64,
+  "cpus_per_worker": 2,
+  "queue_per_user_cpu_limit": 768,
+  "free_unassigned_cpus_observed": 2125,
+  "scope": "Throughput only; no source, per-worker threads, numerical settings or scientific gates changed; unlock remains held"
+}

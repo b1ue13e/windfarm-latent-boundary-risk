@@ -1,0 +1,13 @@
+id,item,status,required_path,closure,failure_action
+M01,全局曝光台账,UNKNOWN,既有receipt/manifest/同checksum跨2.0/2.1档案;作者与其他任务曝光登记,冻结前证实没有看新主比较目标/输出,"否则只能开发,不用未见确认名义"
+M02,新窗口完整块/组人口,NOT_OBSERVED,未来另授权取得2026.zip后盲结构QC,固定成员/目标/当期P与三pitch/F完全对齐;不看策略效果,"不足则DATA_INSUFFICIENT,不按效果换组补0"
+M03,Towie当前pitch模型身份,PARTIAL_EXISTING_ASSETS,旧模型输入/训练行/源码hash;当前pitch与pitch36区分,两臂同任务/机会;无对应权重则未来另训后冻结,不得把pitch36旧输出当当前值增量
+M04,来源/层级Cstar,UNKNOWN_FOR_TOWIE_AND_GROUP,按既有规则由同来源同层历史fresh参照五实例均值,确认前冻结;正值;WTB旧40.04664774157611不改,"零/非正相对量不可定义,不加epsilon"
+M05,B_month和rmax数值,PROPOSED_NOT_FITTED,历史P-only整块采购统计;实验包络或真实容量文档,所有臂/seed相同;开块前可知;0<B<Kdt rmax,无自由度或预算用Z/未来确定则不可识别
+M06,校准参数/有限搜索域,NOT_FROZEN,已暴露WTB/Towie2023-2025时间折;官方DtACI Algorithm2,冻结C1求解域/C2支持fallback/C3窗口/C4专家状态/C5容量,无足够成熟校准历史或无主要合格配对则不启确认
+M07,真实到达与控制字段可用,METADATA_PARTIAL,UTC结束时标/功率设定值字典;实际到达记录,可issue获知才给两臂;未闭合就标名义可用时钟,不输入后处理yaw目标;不声称真实通信收益
+M08,在线依赖/精度资格,UNKNOWN,未来开发的状态记忆/天气依赖/跨度资格;不看确认效果,"冻结适用统计族/块方案与足够精度,不挑最窄界",没有可靠不确定性则不宣布确认
+M09,2026控制混合支持域,DOCUMENTED_DATES_ONLY,官方README Jan7/Feb3活动及50min切换;精确标志可另核,完整混合窗口预声明;分层只有合法标签,不把off或非试验机组等同未处理
+M10,最新近邻完整排重,NOT_COMPLETE,SETA105438合法全文;SAFER100900完整方法/合法源码文档,逐项核P历史/自适应/预算/决策目标/外部验证,若近邻已承担同责任且无新增知识则停止新颖性主张
+M11,净组合计量/成员,METADATA_PLUS_EXISTING_SOURCE,固定21ID字典与组目标资格;SCADA和PCC语义,直接S_G;每成员future完整;不混零补目标,只剩逐机正部和就不称电网组合价值
+M12,运营预算与价格意义,UNKNOWN_FIELD_INTERFACE,真实采购容量/价格/预算约束公开文档或明确仿真假设,实验包络明示;原代理单位不转现金/可交付证书,若论文需要现场结论而材料缺失则停止该扩大主张

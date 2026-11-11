@@ -1,0 +1,408 @@
+{
+  "status": "LOCAL_PREPUBLICATION_CANDIDATE_NOT_PUBLISHED",
+  "source_commit_for_confirmation_code": "24153f857bb0f1e62b041cd5924c2d3bae562f44",
+  "base_manuscript_commit": "2b6eb3d",
+  "review_commit": "2c2de36",
+  "record_policy": "Original result assets remain read-only. Copies marked BYTE_IDENTICAL preserve bytes; projections identify omitted deployment fields. Original hashes identify retained source assets but cannot authenticate an unavailable original independently.",
+  "sources": [
+    {
+      "package_path": "data/confirmation/primary.json",
+      "original_repo_relative_path": "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json",
+      "original_sha256": "f703e64fb7e20843f7daddeb9cc3b0b6d4e95594658560831ba425ac1df7bf72",
+      "package_sha256": "f703e64fb7e20843f7daddeb9cc3b0b6d4e95594658560831ba425ac1df7bf72",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "data/confirmation/secondary_span1.json",
+      "original_repo_relative_path": "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span1.json",
+      "original_sha256": "753141814c4baad335b6d5c6b3aa258b5bc52a7829d7e547d0cb333094439339",
+      "package_sha256": "753141814c4baad335b6d5c6b3aa258b5bc52a7829d7e547d0cb333094439339",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "data/confirmation/secondary_span3.json",
+      "original_repo_relative_path": "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json",
+      "original_sha256": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060",
+      "package_sha256": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "data/confirmation/secondary_span7.json",
+      "original_repo_relative_path": "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span7.json",
+      "original_sha256": "8ca94402bd42c8e9e7903556c95e4c28af3feff7366e9dd70dd7760f932c6612",
+      "package_sha256": "8ca94402bd42c8e9e7903556c95e4c28af3feff7366e9dd70dd7760f932c6612",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "data/history/choices.json",
+      "original_repo_relative_path": "analyses/independent_confirmation_execution_20261019/history_freeze/choices.json",
+      "original_sha256": "358e0884ea36c86f98518a3f4ba5b3902716c60b27c476a93536203f689ada29",
+      "package_sha256": "358e0884ea36c86f98518a3f4ba5b3902716c60b27c476a93536203f689ada29",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "data/history/bounds.json",
+      "original_repo_relative_path": "analyses/independent_confirmation_execution_20261019/history_freeze/bounds.json",
+      "original_sha256": "9da74aab5654ff5b8eeb7636834d4914c01adddc467bfd7274a3280e7a0a6a0b",
+      "package_sha256": "9da74aab5654ff5b8eeb7636834d4914c01adddc467bfd7274a3280e7a0a6a0b",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "data/wtb/aggregate.json",
+      "original_repo_relative_path": "analyses/claim_revision_recovery_20261019/evidence/study/results/aggregate/results.json",
+      "original_sha256": "236d8d0fde557809bb7aa89cbc92e922f65e0fa224ec8e956d304d552f4b0211",
+      "package_sha256": "236d8d0fde557809bb7aa89cbc92e922f65e0fa224ec8e956d304d552f4b0211",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "data/wtb/necessity.json",
+      "original_repo_relative_path": "analyses/claim_revision_recovery_20261019/necessity/necessity.json",
+      "original_sha256": "750ae8f3de81504973dbc8c261720ba525a3d1b34742b4c5e7d04da964b3895d",
+      "package_sha256": "750ae8f3de81504973dbc8c261720ba525a3d1b34742b4c5e7d04da964b3895d",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "csv/registered_confirmation_policies.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy/supplement_data/registered_confirmation_policies.csv",
+      "original_sha256": "89506f8fe6be44aa0fae4356bbb39665fdad1233027738da183c7b844438eed1",
+      "package_sha256": "89506f8fe6be44aa0fae4356bbb39665fdad1233027738da183c7b844438eed1",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "csv/towie_all_90_cases.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy/supplement_data/towie_all_90_cases.csv",
+      "original_sha256": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc",
+      "package_sha256": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "csv/towie_q925_all_15_witnesses.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy/supplement_data/towie_q925_all_15_witnesses.csv",
+      "original_sha256": "c6e3985277500fec0f275d4c9caa5ec1886dec5a52592e74395ac9824ff15a40",
+      "package_sha256": "c6e3985277500fec0f275d4c9caa5ec1886dec5a52592e74395ac9824ff15a40",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "csv/towie_q925_block_sensitivity.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy/supplement_data/towie_q925_block_sensitivity.csv",
+      "original_sha256": "70e3de525c42df644eead9d2eadf29ad0b1d2eaf6929b3e90d5472bc5b9107ee",
+      "package_sha256": "70e3de525c42df644eead9d2eadf29ad0b1d2eaf6929b3e90d5472bc5b9107ee",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "csv/wtb_all_420_minimum_cases.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy/supplement_data/wtb_all_420_minimum_cases.csv",
+      "original_sha256": "aeb36ec93b2492fd8e0aaca48a96622848efcd0fa9ef6939d7d33cb2e0297010",
+      "package_sha256": "aeb36ec93b2492fd8e0aaca48a96622848efcd0fa9ef6939d7d33cb2e0297010",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "csv/wtb_all_420_sufficiency_cases.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy/supplement_data/wtb_all_420_sufficiency_cases.csv",
+      "original_sha256": "fe1467ce249808a946e734ef93cd52b31412e630f842e7f21e97535db8b7e96b",
+      "package_sha256": "fe1467ce249808a946e734ef93cd52b31412e630f842e7f21e97535db8b7e96b",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "figure_data/fig1_information_freeze.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy/source_data/fig1_information_freeze.csv",
+      "original_sha256": "642a1365722172bdeea869d13140dbd74828b59bed94c5604426cde2b4997e7c",
+      "package_sha256": "642a1365722172bdeea869d13140dbd74828b59bed94c5604426cde2b4997e7c",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "figure_data/fig2_primary_confirmation.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy/source_data/fig2_primary_confirmation.csv",
+      "original_sha256": "dd3a1abd98ecf840d6526568463e3a9119c3863bdcc9be44d30593f278705877",
+      "package_sha256": "dd3a1abd98ecf840d6526568463e3a9119c3863bdcc9be44d30593f278705877",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "figure_data/fig3_secondary_minimality.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy/source_data/fig3_secondary_minimality.csv",
+      "original_sha256": "9c8c9c5456769176795e192f8e80f457b6ef90c133e6ad67000bba40a0d59d87",
+      "package_sha256": "9c8c9c5456769176795e192f8e80f457b6ef90c133e6ad67000bba40a0d59d87",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "figure_data/fig4_identification_boundary.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy/source_data/fig4_identification_boundary.csv",
+      "original_sha256": "f20b6263ccc90660f69174a8fd1d36abc254917ec600278ce84cfd19708975ab",
+      "package_sha256": "f20b6263ccc90660f69174a8fd1d36abc254917ec600278ce84cfd19708975ab",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "data/ledger/derived.json",
+      "original_repo_relative_path": "research_audit/resource_loss_ledger_20261019/derived.json",
+      "original_sha256": "96e9bd2406a4151bdc8a9b213818557281ed046715db7a2c8a5aa33023641159",
+      "package_sha256": "96e9bd2406a4151bdc8a9b213818557281ed046715db7a2c8a5aa33023641159",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "data/ledger/loss_ledger.csv",
+      "original_repo_relative_path": "research_audit/resource_loss_ledger_20261019/loss_ledger.csv",
+      "original_sha256": "90b8b2e24f274291e409ebbb1c43cff427579a6414cf18a74ed427f5d1cbd980",
+      "package_sha256": "90b8b2e24f274291e409ebbb1c43cff427579a6414cf18a74ed427f5d1cbd980",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "data/ledger/resource_ledger.csv",
+      "original_repo_relative_path": "research_audit/resource_loss_ledger_20261019/resource_ledger.csv",
+      "original_sha256": "ffb91eff1313db57ff8ae169f465f20d852f3fe74628e1da7a611310ac9cacbd",
+      "package_sha256": "ffb91eff1313db57ff8ae169f465f20d852f3fe74628e1da7a611310ac9cacbd",
+      "transformation": "BYTE_IDENTICAL"
+    },
+    {
+      "package_path": "data/ledger/policy_seed_ledger.csv",
+      "original_repo_relative_path": "research_audit/resource_loss_ledger_20261019/policy_seed_ledger.csv",
+      "original_sha256": "b07ca538a8404fcbc0d99633ddf96d286253bca0aacd143fbe5b2508feef1101",
+      "package_sha256": "7096a07743dbbd6fa2e34a30b9ae1ad342f94a145ae96721436c348ff10b5604",
+      "transformation": "CSV projection: host column omitted; all numerical fields retained."
+    },
+    {
+      "package_path": "protocol/confirmation_protocol.json",
+      "original_repo_relative_path": "experiments/independent_confirmation_execution_20261019/protocol.json",
+      "original_sha256": "27ba6498427ca425978f6674f013862ba272049f778562cb839969cb7f3bbc33",
+      "package_sha256": "de2f14aabb504bbd5a32c3e1f3829eb1a88a7e68b10e7b4607eb5a88d561f188",
+      "transformation": "JSON projection: internal historical_root and annual_source_root omitted."
+    },
+    {
+      "package_path": "protocol/freeze_public_projection.json",
+      "original_repo_relative_path": "analyses/independent_confirmation_execution_20261019/history_freeze/freeze.json",
+      "original_sha256": "c04710efaa9e57b250906a9626c31e5a83559b4cfd30b6a18df2a489a39c7595",
+      "package_sha256": "36ad768a498bdbfdda9255da4af0dac4d714631b82c812a912c9047087775200",
+      "transformation": "JSON projection: internal absolute-path-keyed historical_manifests omitted."
+    },
+    {
+      "package_path": "protocol/unlock_public_projection.json",
+      "original_repo_relative_path": "analyses/independent_confirmation_execution_20261019/unlocked_actual_receipt.json",
+      "original_sha256": "9ffbe0ced42ac521a5ab7d13903d4e22ad1074e17c7bfc4233e57d17b349c757",
+      "package_sha256": "780304ef590a6024b54e2455413c092b6453b837d7b09c8b819dfb2fb1c6c47f",
+      "transformation": "JSON projection: event UTC and bindings retained; internal paths and scheduler identifiers omitted."
+    },
+    {
+      "package_path": "source_static/windfarm_moe/independent_confirmation.py",
+      "original_repo_relative_path": "windfarm_moe/independent_confirmation.py",
+      "original_sha256": "dd59f461df7535202f9727a3b8472b4e6a0a11edbb1070920ecea6184e09a4f2",
+      "package_sha256": "dd59f461df7535202f9727a3b8472b4e6a0a11edbb1070920ecea6184e09a4f2",
+      "source_commit": "24153f857bb0f1e62b041cd5924c2d3bae562f44",
+      "git_blob_sha256": "dd59f461df7535202f9727a3b8472b4e6a0a11edbb1070920ecea6184e09a4f2",
+      "git_content_matches_after_crlf_normalization": true,
+      "freeze_source_hash_match": true,
+      "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier."
+    },
+    {
+      "package_path": "source_static/windfarm_moe/information_subset.py",
+      "original_repo_relative_path": "windfarm_moe/information_subset.py",
+      "original_sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd",
+      "package_sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd",
+      "source_commit": "24153f857bb0f1e62b041cd5924c2d3bae562f44",
+      "git_blob_sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd",
+      "git_content_matches_after_crlf_normalization": true,
+      "freeze_source_hash_match": true,
+      "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier."
+    },
+    {
+      "package_path": "source_static/windfarm_moe/decision_information.py",
+      "original_repo_relative_path": "windfarm_moe/decision_information.py",
+      "original_sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287",
+      "package_sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287",
+      "source_commit": "24153f857bb0f1e62b041cd5924c2d3bae562f44",
+      "git_blob_sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287",
+      "git_content_matches_after_crlf_normalization": true,
+      "freeze_source_hash_match": true,
+      "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier."
+    },
+    {
+      "package_path": "source_static/windfarm_moe/subset_inference.py",
+      "original_repo_relative_path": "windfarm_moe/subset_inference.py",
+      "original_sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568",
+      "package_sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568",
+      "source_commit": "24153f857bb0f1e62b041cd5924c2d3bae562f44",
+      "git_blob_sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568",
+      "git_content_matches_after_crlf_normalization": true,
+      "freeze_source_hash_match": true,
+      "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier."
+    },
+    {
+      "package_path": "source_static/windfarm_moe/risk_frontier.py",
+      "original_repo_relative_path": "windfarm_moe/risk_frontier.py",
+      "original_sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944",
+      "package_sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944",
+      "source_commit": "24153f857bb0f1e62b041cd5924c2d3bae562f44",
+      "git_blob_sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944",
+      "git_content_matches_after_crlf_normalization": true,
+      "freeze_source_hash_match": true,
+      "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier."
+    },
+    {
+      "package_path": "source_static/scripts/run_independent_confirmation.py",
+      "original_repo_relative_path": "scripts/run_independent_confirmation.py",
+      "original_sha256": "62b7913197d1050f700d5d6ae2467f3c49b16546dad37953a05818eb576efee9",
+      "package_sha256": "62b7913197d1050f700d5d6ae2467f3c49b16546dad37953a05818eb576efee9",
+      "source_commit": "24153f857bb0f1e62b041cd5924c2d3bae562f44",
+      "git_blob_sha256": "2172346f6967df1e18fc31e77d64a85a81caa34130cf6f5ca9a5a5f154b67fed",
+      "git_content_matches_after_crlf_normalization": true,
+      "freeze_source_hash_match": true,
+      "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier."
+    },
+    {
+      "package_path": "source_static/scripts/run_information_subset_study.py",
+      "original_repo_relative_path": "scripts/run_information_subset_study.py",
+      "original_sha256": "20d7cc4587fa028263d461267722eb7cec5a779cec4376cf6563b6b059d0faba",
+      "package_sha256": "20d7cc4587fa028263d461267722eb7cec5a779cec4376cf6563b6b059d0faba",
+      "source_commit": "24153f857bb0f1e62b041cd5924c2d3bae562f44",
+      "git_blob_sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a",
+      "git_content_matches_after_crlf_normalization": true,
+      "freeze_source_hash_match": false,
+      "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier."
+    },
+    {
+      "package_path": "source_static/scripts/audit_subset_minimum_necessity.py",
+      "original_repo_relative_path": "scripts/audit_subset_minimum_necessity.py",
+      "original_sha256": "8e876567dfabe3fc471ee15c0c5f280602de58f8938fe1e166136bc0f0e22058",
+      "package_sha256": "8e876567dfabe3fc471ee15c0c5f280602de58f8938fe1e166136bc0f0e22058",
+      "source_commit": "24153f857bb0f1e62b041cd5924c2d3bae562f44",
+      "git_blob_sha256": "8e876567dfabe3fc471ee15c0c5f280602de58f8938fe1e166136bc0f0e22058",
+      "git_content_matches_after_crlf_normalization": true,
+      "freeze_source_hash_match": true,
+      "transformation": "Source snapshot for static inspection only. File bytes match frozen execution hash where listed; Git content matches after CRLF normalization. Not imported or executed by verifier."
+    },
+    {
+      "package_path": "figures/fig1_information_freeze.pdf",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/figures/fig1_information_freeze.pdf",
+      "original_sha256": "2a3162495dfab285f8d2d510444089cdcc0a65148fe983f282ceda93980c082e",
+      "package_sha256": "2a3162495dfab285f8d2d510444089cdcc0a65148fe983f282ceda93980c082e",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figures/fig1_information_freeze.png",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/figures/fig1_information_freeze.png",
+      "original_sha256": "d8b2a86fded705e8f2d0e15deab9750c8b4aefc65b2134a12f5c942e6017a88c",
+      "package_sha256": "d8b2a86fded705e8f2d0e15deab9750c8b4aefc65b2134a12f5c942e6017a88c",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figures/fig1_information_freeze.svg",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/figures/fig1_information_freeze.svg",
+      "original_sha256": "8d9febc237ec95589dc2e83926be9a3242ec9a64663df42f6977363976f4fc11",
+      "package_sha256": "8d9febc237ec95589dc2e83926be9a3242ec9a64663df42f6977363976f4fc11",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figures/fig2_primary_confirmation.pdf",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/figures/fig2_primary_confirmation.pdf",
+      "original_sha256": "0f611b8106e7827c967b26c336bec58bb82eefc1d338ce8a585d430e37cf8dec",
+      "package_sha256": "0f611b8106e7827c967b26c336bec58bb82eefc1d338ce8a585d430e37cf8dec",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figures/fig2_primary_confirmation.png",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/figures/fig2_primary_confirmation.png",
+      "original_sha256": "7c2e9b495ee8e98011956a740436259d84cc786aafa3b8c6a11c99a601eca61e",
+      "package_sha256": "7c2e9b495ee8e98011956a740436259d84cc786aafa3b8c6a11c99a601eca61e",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figures/fig2_primary_confirmation.svg",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/figures/fig2_primary_confirmation.svg",
+      "original_sha256": "d20b1c410d7873a21465accdc7252e8c496abc5a0c76d79b5702815253eb9ce9",
+      "package_sha256": "d20b1c410d7873a21465accdc7252e8c496abc5a0c76d79b5702815253eb9ce9",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figures/fig3_secondary_minimality.pdf",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/figures/fig3_secondary_minimality.pdf",
+      "original_sha256": "0082b1a5afa1c5db0834e4b844193f20c2106fffacb6b66d823be000800b8768",
+      "package_sha256": "0082b1a5afa1c5db0834e4b844193f20c2106fffacb6b66d823be000800b8768",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figures/fig3_secondary_minimality.png",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/figures/fig3_secondary_minimality.png",
+      "original_sha256": "6fb37cc99edcd037dbc33f497d47686d371fff64097b706b2caad919d5d4d885",
+      "package_sha256": "6fb37cc99edcd037dbc33f497d47686d371fff64097b706b2caad919d5d4d885",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figures/fig3_secondary_minimality.svg",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/figures/fig3_secondary_minimality.svg",
+      "original_sha256": "57e16506ef0fcde5ea7f55f209e8935a7bc0047e43ef568bbea78e7a66499b3e",
+      "package_sha256": "57e16506ef0fcde5ea7f55f209e8935a7bc0047e43ef568bbea78e7a66499b3e",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figures/fig4_identification_boundary.pdf",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/figures/fig4_identification_boundary.pdf",
+      "original_sha256": "5c2d9ef4ba99172791c87d07c7a6e3c48926b96cef65692ac13d4d84565e1550",
+      "package_sha256": "5c2d9ef4ba99172791c87d07c7a6e3c48926b96cef65692ac13d4d84565e1550",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figures/fig4_identification_boundary.png",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/figures/fig4_identification_boundary.png",
+      "original_sha256": "66516450b6750664927920e856628366324e1e2d7b0c0a70db44658141029f3c",
+      "package_sha256": "66516450b6750664927920e856628366324e1e2d7b0c0a70db44658141029f3c",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figures/fig4_identification_boundary.svg",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/figures/fig4_identification_boundary.svg",
+      "original_sha256": "d131b7736dfd2f957459d3f6a8dfa316c96ebb77d87ad63a96e8729d3eed0b87",
+      "package_sha256": "d131b7736dfd2f957459d3f6a8dfa316c96ebb77d87ad63a96e8729d3eed0b87",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figure_data/v2/fig1_information_freeze.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/source_data/fig1_information_freeze.csv",
+      "original_sha256": "642a1365722172bdeea869d13140dbd74828b59bed94c5604426cde2b4997e7c",
+      "package_sha256": "642a1365722172bdeea869d13140dbd74828b59bed94c5604426cde2b4997e7c",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figure_data/v2/fig2_primary_confirmation.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/source_data/fig2_primary_confirmation.csv",
+      "original_sha256": "dd3a1abd98ecf840d6526568463e3a9119c3863bdcc9be44d30593f278705877",
+      "package_sha256": "dd3a1abd98ecf840d6526568463e3a9119c3863bdcc9be44d30593f278705877",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figure_data/v2/fig3_secondary_minimality.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/source_data/fig3_secondary_minimality.csv",
+      "original_sha256": "5591e87e866d07c87eddd95376eb6e7cac4a6c35c0f56c9a06ac56289839e3d8",
+      "package_sha256": "5591e87e866d07c87eddd95376eb6e7cac4a6c35c0f56c9a06ac56289839e3d8",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figure_data/v2/fig4_identification_boundary.csv",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/source_data/fig4_identification_boundary.csv",
+      "original_sha256": "f20b6263ccc90660f69174a8fd1d36abc254917ec600278ce84cfd19708975ab",
+      "package_sha256": "f20b6263ccc90660f69174a8fd1d36abc254917ec600278ce84cfd19708975ab",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    },
+    {
+      "package_path": "figure_data/v2/fig3_field_manifest.json",
+      "original_repo_relative_path": "manuscripts/wind_energy_v2/source_data/fig3_field_manifest.json",
+      "original_sha256": "44e27f25b3f55e04170ec05823ca025a2a16be171a88b28935ddae1137a1f564",
+      "package_sha256": "44e27f25b3f55e04170ec05823ca025a2a16be171a88b28935ddae1137a1f564",
+      "transformation": "BYTE_IDENTICAL",
+      "version": "WIND_ENERGY_V2"
+    }
+  ]
+}

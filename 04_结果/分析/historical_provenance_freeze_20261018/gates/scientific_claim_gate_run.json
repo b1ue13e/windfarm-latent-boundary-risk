@@ -1,0 +1,7 @@
+{
+  "command": [
+    "python",
+    "scripts/verify_scientific_claim_gate.py"
+  ],
+  "exit_code": 0
+}

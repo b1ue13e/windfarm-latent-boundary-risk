@@ -1,0 +1,39 @@
+{
+  "protected": [
+    "AGENTS.md",
+    "PROJECT.md",
+    "docs/SCIENTIFIC_CONTRACT.md",
+    "docs/MAINLINE_STOP_DECISION_20261019.md",
+    "paper_tste_ieee.md",
+    "paper_tste_ieee.pdf",
+    "paper_tste_supplementary.md",
+    "paper_tste_supplementary.pdf",
+    "references.bib",
+    "cover_letter_tste.md",
+    "scripts/verify_scientific_claim_gate.py",
+    "scripts/verify_tste_number_consistency.py",
+    "scripts/verify_independent_confirmation_gate.py",
+    "analyses/independent_confirmation_execution_20261019/result_evidence.tar.gz",
+    "analyses/claim_revision_recovery_20261019/compact_evidence.tar.gz"
+  ],
+  "sha256": {
+    "AGENTS.md": "b1feb8e637fd05baeeace62925f086257bb2b9af7c0905c25f636dc8ec92c993",
+    "PROJECT.md": "17234e3ee82eebbeed835e306613f471a7435629dc66b8a268651bba6c8f71a4",
+    "docs/SCIENTIFIC_CONTRACT.md": "cf0c38fba403d842ca87521dbe03897e9078dcb87da593daa7af6fd009545f76",
+    "docs/MAINLINE_STOP_DECISION_20261019.md": "e248170f90a20761fb756d0d1ace63f0fe27f0b9a46f8c56eee3816550a04459",
+    "paper_tste_ieee.md": "b9e5e417abde1856201e21c6022a994c0601010340b19cc0ee4b4f5f31d17456",
+    "paper_tste_ieee.pdf": "8e363d56ef8e0b88d83c903ee8ef66b52976d69d18ccb2b98b48127f88577100",
+    "paper_tste_supplementary.md": "43487c70feacc9f0edfb991e56ce342acfa5dc9c678534bc6a42a9eaeb02065e",
+    "paper_tste_supplementary.pdf": "d30d6980c2714d01bac93451560cccb20cb8303248f091f4832634e82bc615fb",
+    "references.bib": "34d99436c120eb1c4a06ed8d9ade1928f4ddbf24bcf3fafc463bbe4ac905bd5d",
+    "cover_letter_tste.md": "4fe520099e6636228606412fea5ef5a7d67cdaac84ea20fdbbafebbec8929ca3",
+    "scripts/verify_scientific_claim_gate.py": "f16db4344193431ae5deb4f22a9ace360233ea941e376c5ffa7f068f01c4c185",
+    "scripts/verify_tste_number_consistency.py": "34cca01a64d4671bed164c5c70c448ca4935cb2cd3bccc50cb97d1dc9ad14b13",
+    "scripts/verify_independent_confirmation_gate.py": "0c5de3a89140f4495e2c0ea6670a40325797833371ed61a90c0816327d64e200",
+    "analyses/independent_confirmation_execution_20261019/result_evidence.tar.gz": "4771896a7f8cea440178405d830e0c15189ac91508ff4aa5009482602203e64a",
+    "analyses/claim_revision_recovery_20261019/compact_evidence.tar.gz": "c375cf3e327aff65d30e148a4b009b8bea08c773874be410c6bf6abc5f30c3a0",
+    "paper_tste_chinese.md": "04972e81e439b494ccf40644443f82f973263bd6466076f3e5746b04fd61bd7a",
+    "manuscript/paper_chinese_topjournal_final.md": "6696950d9feada6d524b81c33ce51c3291d30c3b8acecd8729ed2f0b277e0ba4",
+    "manuscript/paper_tste_chinese_topjournal.md": "9bc3d20da18785e74529d840066f03501a09a124fcd24010b4f55e3bcd7aab59"
+  }
+}

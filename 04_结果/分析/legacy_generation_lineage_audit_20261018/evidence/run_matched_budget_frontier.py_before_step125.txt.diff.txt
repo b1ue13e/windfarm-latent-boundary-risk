@@ -1,0 +1,400 @@
+--- recovered/run_matched_budget_frontier.py_before_step125.txt
++++ release_tag/run_matched_budget_frontier.py
+@@ -27,7 +27,7 @@
+ os.environ["PYTHONUNBUFFERED"] = "1"
+ os.environ["OMP_NUM_THREADS"] = "4"
+ 
+-REPO_ROOT = Path("e:/论文3")
++REPO_ROOT = Path(os.environ.get("WINDFARM_REPO_ROOT", Path(__file__).resolve().parents[1]))
+ if str(REPO_ROOT) not in sys.path:
+     sys.path.insert(0, str(REPO_ROOT))
+ 
+@@ -58,8 +58,8 @@
+     return {"head": head, "branch": branch}
+ 
+ def compute_slice_metrics(r_arr, s_arr, mask, rho=RHO_NOMINAL, dt=DT) -> dict[str, float]:
+-    r = r_arr[mask]
+-    s = s_arr[mask]
++    r = np.asarray(r_arr[mask], dtype=np.float64)
++    s = np.asarray(s_arr[mask], dtype=np.float64)
+     shortage = np.maximum(s - r, 0.0)
+     cost = float(np.sum(r + rho * shortage) * dt)
+     tot_r = float(np.sum(r) * dt)
+@@ -73,29 +73,14 @@
+         "psrei": cost,
+     }
+ 
+-def solve_alpha_for_budget(r_base_arr, target_budget, mask, dt=DT, alpha_min=0.2, alpha_max=2.5, tol=1e-4, max_iter=50):
+-    """Solves alpha such that sum(max(0, alpha * r_base)[mask]) * dt == target_budget using bisection."""
+-    r_sub = r_base_arr[mask]
+-    # Check bounds
+-    r_lo = np.sum(np.maximum(alpha_min * r_sub, 0.0)) * dt
+-    r_hi = np.sum(np.maximum(alpha_max * r_sub, 0.0)) * dt
+-    if target_budget <= r_lo:
+-        return alpha_min
+-    if target_budget >= r_hi:
+-        return alpha_max
+-    
+-    lo, hi = alpha_min, alpha_max
+-    for _ in range(max_iter):
+-        mid = 0.5 * (lo + hi)
+-        r_mid = np.sum(np.maximum(mid * r_sub, 0.0)) * dt
+-        err = (r_mid - target_budget) / target_budget
+-        if abs(err) < tol:
+-            return mid
+-        if r_mid < target_budget:
+-            lo = mid
+-        else:
+-            hi = mid
+-    return 0.5 * (lo + hi)
++def solve_alpha_for_budget(r_base_arr, target_budget, mask, dt=DT, alpha_min=0.1, alpha_max=3.0):
++    """Solves alpha such that sum(max(0, alpha * r_base)[mask]) * dt == target_budget analytically."""
++    r_sub = np.asarray(r_base_arr[mask], dtype=np.float64)
++    tot_r = np.sum(r_sub) * dt
++    if tot_r > 0:
++        alpha = float(target_budget / tot_r)
++        return max(alpha_min, min(alpha_max, alpha))
++    return 1.0
+ 
+ def main():
+     start_time = time.time()
+@@ -131,9 +116,11 @@
+     
+     reg_mat = bundle.regime_primary[test_anchors, :]
+     diff = np.diff(reg_mat, axis=0, prepend=reg_mat[:1, :]) != 0
+-    trans_mat = np.zeros_like(reg_mat, dtype=bool)
+-    for off in range(-3, 4):
+-        trans_mat |= np.roll(diff, off, axis=0)
++    # Bounded non-circular temporal dilation for +/- 3 steps (no circular wrap-around)
++    trans_mat = diff.copy()
++    for off in range(1, 4):
++        trans_mat[off:, :] |= diff[:-off, :]
++        trans_mat[:-off, :] |= diff[off:, :]
+     is_transition = trans_mat.reshape(-1)
+     
+     h_idx = 5  # h=6 (60 min ahead)
+@@ -505,161 +492,168 @@
+     # -------------------------------------------------------------
+     # PHASE 5 & 6: Paired Day-Cluster Bootstrap (B=5000) & Summary Metrics
+     # -------------------------------------------------------------
+-    print(f"\n--- PHASE 5 & 6: Paired Day-Cluster Bootstrap (B={N_BOOT}) with Within-Bootstrap Budget Matching ---", flush=True)
+-    unique_times = np.unique(time_indices)
+-    n_days = max(1, int(np.ceil(len(unique_times) / BLOCK_SIZE)))
+-    time_to_day = {t: idx // BLOCK_SIZE for idx, t in enumerate(unique_times)}
+-    sample_day_ids = np.array([time_to_day[t] for t in time_indices], dtype=np.int64)
+-    print(f"Identified {n_days} daily clusters (144 steps each) across test set.", flush=True)
+-    
+-    rng = np.random.default_rng(BOOT_SEED)
+-    # Sample clusters once: shape (N_BOOT, n_days)
+-    boot_day_samples = rng.integers(0, n_days, size=(N_BOOT, n_days))
+-    
+-    boot_stats_rows = []
+-    
+-    for slice_name, s_mask in slices.items():
+-        print(f"\nRunning B={N_BOOT} cluster bootstrap for slice: {slice_name}...", flush=True)
+-        # We evaluate the bootstrap on the 5-seed pooled or seed-averaged response
+-        # To strictly reflect within-bootstrap budget matching as agreed in Grill-Me:
+-        # For each target budget B, for each bootstrap replicate b:
+-        # Re-solve alpha_base^(b) and alpha_post^(b) on resampled days so Delta R^(b) == 0.
+-        
+-        # Pre-filter slice indices to speed up bootstrap
+-        slice_indices = np.where(s_mask)[0]
+-        slice_day_ids = sample_day_ids[slice_indices]
+-        
+-        # We will run this for Seed 201-205 and pool/mean
+-        # For efficiency, pre-calculate day counts
+-        day_weights_all = np.zeros((N_BOOT, n_days), dtype=np.float32)
+-        for b_idx in range(N_BOOT):
+-            day_weights_all[b_idx] = np.bincount(boot_day_samples[b_idx], minlength=n_days)
+-            
+-        # Get slice budget grid from Frontier A
+-        sub_a = df_frontier_a[(df_frontier_a["slice"] == slice_name) & (df_frontier_a["seed"] == 201)]
+-        budget_grid = sub_a["target_budget_kwh"].values
+-        
+-        # Seed by seed bootstrap
+-        for seed in SEEDS:
+-            t0_seed = time.time()
+-            r_B_sub = policies_B[seed][slice_indices]
+-            r_C_sub = policies_C[seed][slice_indices]
+-            s_t_sub = residuals_test[seed][slice_indices]
+-            
+-            # Pre-aggregate r_B, r_C by day to make within-bootstrap bisection instant
+-            # Notice r_B and r_C are non-negative, so max(0, alpha * r) = alpha * r!
+-            # Let's verify: are r_B and r_C strictly >= 0?
+-            assert np.all(r_B_sub >= 0) and np.all(r_C_sub >= 0), "Reserves must be non-negative!"
+-            
+-            # Since r >= 0, alpha * r >= 0 for all alpha >= 0!
+-            # Therefore: sum(alpha * r) = alpha * sum(r)!
+-            # This makes exact within-bootstrap matching mathematically analytic:
+-            # alpha(B) = B / sum_resampled(r * dt)!
+-            # Exact tolerance err = 0.000000000% !!
+-            day_R_B = np.bincount(slice_day_ids, weights=r_B_sub * DT, minlength=n_days)
+-            day_R_C = np.bincount(slice_day_ids, weights=r_C_sub * DT, minlength=n_days)
+-            
+-            # For each bootstrap replicate, the resampled baseline and posterior totals are:
+-            boot_tot_R_B = day_weights_all @ day_R_B  # shape (N_BOOT,)
+-            boot_tot_R_C = day_weights_all @ day_R_C  # shape (N_BOOT,)
+-            
+-            # For each budget B:
+-            # alpha_B(B) = B / boot_tot_R_B (shape: N_BOOT)
+-            # alpha_C(B) = B / boot_tot_R_C (shape: N_BOOT)
+-            # Then compute shortage and violation for each bootstrap replicate!
+-            
+-            # To vectorize over N_BOOT:
+-            # We evaluate across the 30 budget points
+-            for b_idx, B in enumerate(budget_grid):
+-                alpha_B_boot = B / boot_tot_R_B  # shape (N_BOOT,)
+-                alpha_C_boot = B / boot_tot_R_C  # shape (N_BOOT,)
+-                
+-                # To efficiently compute shortage across N_BOOT without looping:
+-                # We can sample a representative subsample of bootstrap replicates (e.g. 5000)
+-                # Or compute per-cluster summary matrices!
+-                # Let's compute delta U and delta V across all 5000 replicates:
+-                # Notice: median alpha is close to B / mean_R
+-                # Let's evaluate using batch matrix multiplication across days!
+-                # To make it exact:
+-                delta_U_boot = np.zeros(N_BOOT, dtype=np.float32)
+-                delta_V_boot = np.zeros(N_BOOT, dtype=np.float32)
+-                
+-                # We can evaluate in chunks of 500 replicates to conserve memory
+-                chunk_size = 500
+-                for c_start in range(0, N_BOOT, chunk_size):
+-                    c_end = min(c_start + chunk_size, N_BOOT)
+-                    a_B_c = alpha_B_boot[c_start:c_end, None]  # (C, 1)
+-                    a_C_c = alpha_C_boot[c_start:c_end, None]  # (C, 1)
++    boot_csv_path = out_dir / "bootstrap_frontier_statistics.csv"
++    force_rerun = "--force" in sys.argv or "--force-bootstrap" in sys.argv
++    if boot_csv_path.exists() and not force_rerun:
++        print(f"\nLoading existing bootstrap statistics from {boot_csv_path} (pass --force to recompute)", flush=True)
++        df_boot_stats = pd.read_csv(boot_csv_path)
++    else:
++        print(f"\n--- PHASE 5 & 6: Paired Day-Cluster Bootstrap (B={N_BOOT}) with Within-Bootstrap Budget Matching ---", flush=True)
++        unique_times = np.unique(time_indices)
++        n_days = max(1, int(np.ceil(len(unique_times) / BLOCK_SIZE)))
++        time_to_day = {t: idx // BLOCK_SIZE for idx, t in enumerate(unique_times)}
++        sample_day_ids = np.array([time_to_day[t] for t in time_indices], dtype=np.int64)
++        print(f"Identified {n_days} daily clusters (144 steps each) across test set.", flush=True)
++        
++        rng = np.random.default_rng(BOOT_SEED)
++        # Sample clusters once: shape (N_BOOT, n_days)
++        boot_day_samples = rng.integers(0, n_days, size=(N_BOOT, n_days))
++        
++        boot_stats_rows = []
++    
++        for slice_name, s_mask in slices.items():
++            print(f"\nRunning B={N_BOOT} cluster bootstrap for slice: {slice_name}...", flush=True)
++            # We evaluate the bootstrap on the 5-seed pooled or seed-averaged response
++            # To strictly reflect within-bootstrap budget matching as agreed in Grill-Me:
++            # For each target budget B, for each bootstrap replicate b:
++            # Re-solve alpha_base^(b) and alpha_post^(b) on resampled days so Delta R^(b) == 0.
++            
++            # Pre-filter slice indices to speed up bootstrap
++            slice_indices = np.where(s_mask)[0]
++            slice_day_ids = sample_day_ids[slice_indices]
++            
++            # We will run this for Seed 201-205 and pool/mean
++            # For efficiency, pre-calculate day counts
++            day_weights_all = np.zeros((N_BOOT, n_days), dtype=np.float32)
++            for b_idx in range(N_BOOT):
++                day_weights_all[b_idx] = np.bincount(boot_day_samples[b_idx], minlength=n_days)
++                
++            # Get slice budget grid from Frontier A
++            sub_a = df_frontier_a[(df_frontier_a["slice"] == slice_name) & (df_frontier_a["seed"] == 201)]
++            budget_grid = sub_a["target_budget_kwh"].values
++            
++            # Seed by seed bootstrap
++            for seed in SEEDS:
++                t0_seed = time.time()
++                r_B_sub = policies_B[seed][slice_indices]
++                r_C_sub = policies_C[seed][slice_indices]
++                s_t_sub = residuals_test[seed][slice_indices]
++                
++                # Pre-aggregate r_B, r_C by day to make within-bootstrap bisection instant
++                # Notice r_B and r_C are non-negative, so max(0, alpha * r) = alpha * r!
++                # Let's verify: are r_B and r_C strictly >= 0?
++                assert np.all(r_B_sub >= 0) and np.all(r_C_sub >= 0), "Reserves must be non-negative!"
++                
++                # Since r >= 0, alpha * r >= 0 for all alpha >= 0!
++                # Therefore: sum(alpha * r) = alpha * sum(r)!
++                # This makes exact within-bootstrap matching mathematically analytic:
++                # alpha(B) = B / sum_resampled(r * dt)!
++                # Exact tolerance err = 0.000000000% !!
++                day_R_B = np.bincount(slice_day_ids, weights=r_B_sub * DT, minlength=n_days)
++                day_R_C = np.bincount(slice_day_ids, weights=r_C_sub * DT, minlength=n_days)
++                
++                # For each bootstrap replicate, the resampled baseline and posterior totals are:
++                boot_tot_R_B = day_weights_all @ day_R_B  # shape (N_BOOT,)
++                boot_tot_R_C = day_weights_all @ day_R_C  # shape (N_BOOT,)
++                
++                # For each budget B:
++                # alpha_B(B) = B / boot_tot_R_B (shape: N_BOOT)
++                # alpha_C(B) = B / boot_tot_R_C (shape: N_BOOT)
++                # Then compute shortage and violation for each bootstrap replicate!
++                
++                # To vectorize over N_BOOT:
++                # We evaluate across the 30 budget points
++                for b_idx, B in enumerate(budget_grid):
++                    alpha_B_boot = B / boot_tot_R_B  # shape (N_BOOT,)
++                    alpha_C_boot = B / boot_tot_R_C  # shape (N_BOOT,)
+                     
+-                    # For memory, we can pre-bin or evaluate directly:
+-                    # In slice_indices, len is ~140k.
+-                    # 500 x 140k float32 is 280 MB, easily fits in RAM!
+-                    # Broadcast: r_pred shape (C, len)
+-                    r_B_pred = a_B_c * r_B_sub[None, :]  # (C, N_sub)
+-                    r_C_pred = a_C_c * r_C_sub[None, :]
++                    # To efficiently compute shortage across N_BOOT without looping:
++                    # We can sample a representative subsample of bootstrap replicates (e.g. 5000)
++                    # Or compute per-cluster summary matrices!
++                    # Let's compute delta U and delta V across all 5000 replicates:
++                    # Notice: median alpha is close to B / mean_R
++                    # Let's evaluate using batch matrix multiplication across days!
++                    # To make it exact:
++                    delta_U_boot = np.zeros(N_BOOT, dtype=np.float32)
++                    delta_V_boot = np.zeros(N_BOOT, dtype=np.float32)
+                     
+-                    u_B_c = np.maximum(s_t_sub[None, :] - r_B_pred, 0.0) * DT  # (C, N_sub)
+-                    u_C_c = np.maximum(s_t_sub[None, :] - r_C_pred, 0.0) * DT
++                    # We can evaluate in chunks of 500 replicates to conserve memory
++                    chunk_size = 500
++                    for c_start in range(0, N_BOOT, chunk_size):
++                        c_end = min(c_start + chunk_size, N_BOOT)
++                        a_B_c = alpha_B_boot[c_start:c_end, None]  # (C, 1)
++                        a_C_c = alpha_C_boot[c_start:c_end, None]  # (C, 1)
++                        
++                        # For memory, we can pre-bin or evaluate directly:
++                        # In slice_indices, len is ~140k.
++                        # 500 x 140k float32 is 280 MB, easily fits in RAM!
++                        # Broadcast: r_pred shape (C, len)
++                        r_B_pred = a_B_c * r_B_sub[None, :]  # (C, N_sub)
++                        r_C_pred = a_C_c * r_C_sub[None, :]
++                        
++                        u_B_c = np.maximum(s_t_sub[None, :] - r_B_pred, 0.0) * DT  # (C, N_sub)
++                        u_C_c = np.maximum(s_t_sub[None, :] - r_C_pred, 0.0) * DT
++                        
++                        v_B_c = (s_t_sub[None, :] > r_B_pred).astype(np.float32)
++                        v_C_c = (s_t_sub[None, :] > r_C_pred).astype(np.float32)
++                        
++                        # Day aggregation for each chunk:
++                        # u_B_by_day shape: (C, n_days)
++                        # We can use np.add.at or bincount along axis 1:
++                        u_diff_c = u_C_c - u_B_c  # (C, N_sub)
++                        v_diff_c = v_C_c - v_B_c
++                        
++                        # Aggregate each replicate with its day weights:
++                        # Faster: directly weight each sample!
++                        # For replicate i: weight of sample j is day_weights_all[i, slice_day_ids[j]]!
++                        # Even faster: pre-aggregate u_diff_c by day!
++                        # Let's aggregate u_diff_c by day:
++                        u_diff_by_day = np.zeros((c_end - c_start, n_days), dtype=np.float32)
++                        v_diff_by_day = np.zeros((c_end - c_start, n_days), dtype=np.float32)
++                        for d in range(n_days):
++                            d_mask = (slice_day_ids == d)
++                            if np.any(d_mask):
++                                u_diff_by_day[:, d] = np.sum(u_diff_c[:, d_mask], axis=1)
++                                v_diff_by_day[:, d] = np.sum(v_diff_c[:, d_mask], axis=1)
++                        
++                        # Now matrix multiply with day weights:
++                        # weights shape: (C, n_days)
++                        c_weights = day_weights_all[c_start:c_end]
++                        # Row-wise dot product:
++                        delta_U_boot[c_start:c_end] = np.sum(u_diff_by_day * c_weights, axis=1)
++                        # For violation rate, divide by resampled total sample count:
++                        tot_samples_boot = np.sum(c_weights * np.bincount(slice_day_ids, minlength=n_days), axis=1)
++                        delta_V_boot[c_start:c_end] = (np.sum(v_diff_by_day * c_weights, axis=1) / tot_samples_boot) * 100.0
+                     
+-                    v_B_c = (s_t_sub[None, :] > r_B_pred).astype(np.float32)
+-                    v_C_c = (s_t_sub[None, :] > r_C_pred).astype(np.float32)
+-                    
+-                    # Day aggregation for each chunk:
+-                    # u_B_by_day shape: (C, n_days)
+-                    # We can use np.add.at or bincount along axis 1:
+-                    u_diff_c = u_C_c - u_B_c  # (C, N_sub)
+-                    v_diff_c = v_C_c - v_B_c
+-                    
+-                    # Aggregate each replicate with its day weights:
+-                    # Faster: directly weight each sample!
+-                    # For replicate i: weight of sample j is day_weights_all[i, slice_day_ids[j]]!
+-                    # Even faster: pre-aggregate u_diff_c by day!
+-                    # Let's aggregate u_diff_c by day:
+-                    u_diff_by_day = np.zeros((c_end - c_start, n_days), dtype=np.float32)
+-                    v_diff_by_day = np.zeros((c_end - c_start, n_days), dtype=np.float32)
+-                    for d in range(n_days):
+-                        d_mask = (slice_day_ids == d)
+-                        if np.any(d_mask):
+-                            u_diff_by_day[:, d] = np.sum(u_diff_c[:, d_mask], axis=1)
+-                            v_diff_by_day[:, d] = np.sum(v_diff_c[:, d_mask], axis=1)
+-                    
+-                    # Now matrix multiply with day weights:
+-                    # weights shape: (C, n_days)
+-                    c_weights = day_weights_all[c_start:c_end]
+-                    # Row-wise dot product:
+-                    delta_U_boot[c_start:c_end] = np.sum(u_diff_by_day * c_weights, axis=1)
+-                    # For violation rate, divide by resampled total sample count:
+-                    tot_samples_boot = np.sum(c_weights * np.bincount(slice_day_ids, minlength=n_days), axis=1)
+-                    delta_V_boot[c_start:c_end] = (np.sum(v_diff_by_day * c_weights, axis=1) / tot_samples_boot) * 100.0
+-                
+-                # Compute statistics for this budget point
+-                boot_stats_rows.append({
+-                    "seed": seed,
+-                    "slice": slice_name,
+-                    "budget_idx": b_idx,
+-                    "target_budget_kwh": B,
+-                    "delta_U_mean_kwh": float(np.mean(delta_U_boot)),
+-                    "delta_U_median_kwh": float(np.median(delta_U_boot)),
+-                    "delta_U_ci_low": float(np.quantile(delta_U_boot, 0.025)),
+-                    "delta_U_ci_high": float(np.quantile(delta_U_boot, 0.975)),
+-                    "delta_U_pval_negative": float(np.mean(delta_U_boot >= 0.0)),  # P(Delta U >= 0)
+-                    "delta_V_mean_pct": float(np.mean(delta_V_boot)),
+-                    "delta_V_median_pct": float(np.median(delta_V_boot)),
+-                    "delta_V_ci_low": float(np.quantile(delta_V_boot, 0.025)),
+-                    "delta_V_ci_high": float(np.quantile(delta_V_boot, 0.975)),
+-                    "delta_V_pval_negative": float(np.mean(delta_V_boot >= 0.0)),
+-                })
+-            
+-            print(f"  Completed Seed {seed} in {time.time() - t0_seed:.1f}s", flush=True)
+-
+-    df_boot_stats = pd.DataFrame(boot_stats_rows)
+-    df_boot_stats.to_csv(out_dir / "bootstrap_frontier_statistics.csv", index=False)
+-    print(f"Saved bootstrap frontier statistics to {out_dir / 'bootstrap_frontier_statistics.csv'}", flush=True)
++                    # Compute statistics for this budget point
++                    boot_stats_rows.append({
++                        "seed": seed,
++                        "slice": slice_name,
++                        "budget_idx": b_idx,
++                        "target_budget_kwh": B,
++                        "delta_U_mean_kwh": float(np.mean(delta_U_boot)),
++                        "delta_U_median_kwh": float(np.median(delta_U_boot)),
++                        "delta_U_ci_low": float(np.quantile(delta_U_boot, 0.025)),
++                        "delta_U_ci_high": float(np.quantile(delta_U_boot, 0.975)),
++                        "delta_U_pval_negative": float(np.mean(delta_U_boot >= 0.0)),  # P(Delta U >= 0)
++                        "delta_V_mean_pct": float(np.mean(delta_V_boot)),
++                        "delta_V_median_pct": float(np.median(delta_V_boot)),
++                        "delta_V_ci_low": float(np.quantile(delta_V_boot, 0.025)),
++                        "delta_V_ci_high": float(np.quantile(delta_V_boot, 0.975)),
++                        "delta_V_pval_negative": float(np.mean(delta_V_boot >= 0.0)),
++                    })
++                
++                print(f"  Completed Seed {seed} in {time.time() - t0_seed:.1f}s", flush=True)
++    
++        df_boot_stats = pd.DataFrame(boot_stats_rows)
++        df_boot_stats.to_csv(out_dir / "bootstrap_frontier_statistics.csv", index=False)
++        print(f"Saved bootstrap frontier statistics to {out_dir / 'bootstrap_frontier_statistics.csv'}", flush=True)
+     
+     # -------------------------------------------------------------
+     # PHASE 6: Integrated Shortfall AUC & Support Fraction
+     # -------------------------------------------------------------
+     print("\n--- PHASE 6: Frontier Summary Metrics (AUC Shortfall & Favorable Support) ---", flush=True)
++    trapz_func = getattr(np, 'trapezoid', getattr(np, 'trapz', None))
+     auc_rows = []
+     for slice_name in ["Transition", "Steady", "Full"]:
+         for seed in SEEDS:
+@@ -669,7 +663,7 @@
+             # Integrate delta U over normalized budget
+             # Normalized budget: (B - min_B) / (max_B - min_B)
+             norm_b = (b_vals - b_vals[0]) / (b_vals[-1] - b_vals[0])
+-            auc_delta_u = float(np.trapz(du_vals, norm_b))
++            auc_delta_u = float(trapz_func(du_vals, norm_b))
+             
+             # Favorable fraction: fraction where delta_U < 0
+             fav_frac = float(np.mean(du_vals < 0.0)) * 100.0

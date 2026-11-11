@@ -1,0 +1,13 @@
+{
+  "study_id": "mainline_supplement_20261026",
+  "status": "FROZEN_EVALUATION_SUBMITTED",
+  "protocol_sha256": "6fb738a95990a02cded62d2065ecd581ef18519bd4e4ecdd83abb8629aeae877",
+  "adapter_sha256": "9a3a6ffbcc5d93c2b461cb56c2c462e4e92af901b28ca444e6d802f5fe5a68ca",
+  "freeze_sha256": "c2c0475288b5657be4f6b5449871bb25bf7ab7260cc4aba73e1d4270058d8e6f",
+  "preflight_job": "254015.cm",
+  "preflight_exit": 0,
+  "evaluate_job": "254016.cm",
+  "new_fits": 0,
+  "source2026": "opaque acquisition verified before freeze; evaluation unlock event will record first read",
+  "utc": "2026-10-26T08:41:19.174787+00:00"
+}

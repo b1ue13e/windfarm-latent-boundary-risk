@@ -1,0 +1,5 @@
+#!/bin/bash
+set -euo pipefail
+cd /nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1
+export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 PYTHONUNBUFFERED=1
+exec /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python launch_array.py

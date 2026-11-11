@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-26T08:40:37.966562+00:00",
+  "pbs_job": "254016.cm",
+  "freeze_sha256": "c2c0475288b5657be4f6b5449871bb25bf7ab7260cc4aba73e1d4270058d8e6f",
+  "protocol_sha256": "6fb738a95990a02cded62d2065ecd581ef18519bd4e4ecdd83abb8629aeae877",
+  "archive_sha256": "4bcfd706769369eacde59ea4f3a45bc3f9c0fb334c67fea75fcf3aa0c424eaea",
+  "reason": "One authorized unlock for 2026 Jan-Apr evaluation after freeze review"
+}

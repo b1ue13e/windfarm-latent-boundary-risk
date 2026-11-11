@@ -1,0 +1,74 @@
+{
+  "status": "COMPLETE_MINIMAL_SUPPLEMENT",
+  "P0": "VERIFIED_ZERO_FIT_PROJECTION",
+  "P1": "ALL_FROZEN_CANDIDATES_CONFIRMED",
+  "new_fits": 0,
+  "mean_cost": [
+    78.41435959989414,
+    77.81567186787188
+  ],
+  "relative_cost_point": 0.007693665268852401,
+  "relative_cost_interval": [
+    0.004127722751559589,
+    0.011259607786145213
+  ],
+  "risk_upper_max": [
+    0.07484588486463004,
+    0.07488634904742936
+  ],
+  "independent_audit": "PASS_INDEPENDENT_ACTION_AND_SOURCE_REPLAY",
+  "budget": {
+    "max_allocated_cpu_seconds": 14400,
+    "used_allocated_cpu_seconds": 1856,
+    "pbs_reported_cpu_seconds": 57,
+    "jobs": {
+      "254015.cm": {
+        "Job_Name": "ml26_preflight",
+        "job_state": "F",
+        "Exit_status": "0",
+        "resources_used.cput": "00:00:04",
+        "resources_used.walltime": "00:02:07",
+        "resources_used.ncpus": "2",
+        "resources_used.mem": "177432kb",
+        "exec_host": "cn17/0*2"
+      },
+      "254016.cm": {
+        "Job_Name": "ml26_evaluate",
+        "job_state": "F",
+        "Exit_status": "0",
+        "resources_used.cput": "00:00:43",
+        "resources_used.walltime": "00:07:07",
+        "resources_used.ncpus": "2",
+        "resources_used.mem": "1114836kb",
+        "exec_host": "cn17/0*2"
+      },
+      "254017.cm": {
+        "Job_Name": "ml26_aggregate",
+        "job_state": "F",
+        "Exit_status": "0",
+        "resources_used.cput": "00:00:06",
+        "resources_used.walltime": "00:06:01",
+        "resources_used.ncpus": "2",
+        "resources_used.mem": "814968kb",
+        "exec_host": "cn22/1*2"
+      },
+      "254018.cm": {
+        "Job_Name": "ml26_audit",
+        "job_state": "F",
+        "Exit_status": "0",
+        "resources_used.cput": "00:00:04",
+        "resources_used.walltime": "00:00:13",
+        "resources_used.ncpus": "2",
+        "resources_used.mem": "210604kb",
+        "exec_host": "cn17/0*2"
+      }
+    },
+    "new_fits": 0,
+    "frozen_policy_instances": 10,
+    "additional_candidates": 0,
+    "utc": "2026-10-26T08:56:37.428452+00:00"
+  },
+  "primary_q": 0.95,
+  "finite_family_minimality_tested": false,
+  "utc": "2026-10-26T08:58:44.416569+00:00"
+}

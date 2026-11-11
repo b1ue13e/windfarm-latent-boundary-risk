@@ -1,0 +1,19 @@
+{
+  "status": "PASS_BOUNDED_AUDIT_INTERNAL_CHECKS",
+  "hashed_inputs_rechecked": 1128,
+  "hash_changes": [],
+  "family_branches": 28,
+  "existing_artifact_paths": 28,
+  "stored_blocks": 550,
+  "point_comparison": {
+    "policies": 550,
+    "instance_risks": 2750,
+    "cost_max_abs_diff": 2.842170943040401e-14,
+    "risk_max_abs_diff": 0.0,
+    "no_model_access": true,
+    "no_resampling": true
+  },
+  "no_scientific_certification": true,
+  "no_model_inference": true,
+  "no_resampling": true
+}

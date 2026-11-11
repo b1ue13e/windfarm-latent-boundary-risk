@@ -1,0 +1,38 @@
+--- recovered/run_matched_budget_frontier.py_before_step402.txt
++++ release_tag/run_matched_budget_frontier.py
+@@ -27,7 +27,7 @@
+ os.environ["PYTHONUNBUFFERED"] = "1"
+ os.environ["OMP_NUM_THREADS"] = "4"
+ 
+-REPO_ROOT = Path("e:/论文3")
++REPO_ROOT = Path(os.environ.get("WINDFARM_REPO_ROOT", Path(__file__).resolve().parents[1]))
+ if str(REPO_ROOT) not in sys.path:
+     sys.path.insert(0, str(REPO_ROOT))
+ 
+@@ -116,9 +116,11 @@
+     
+     reg_mat = bundle.regime_primary[test_anchors, :]
+     diff = np.diff(reg_mat, axis=0, prepend=reg_mat[:1, :]) != 0
+-    trans_mat = np.zeros_like(reg_mat, dtype=bool)
+-    for off in range(-3, 4):
+-        trans_mat |= np.roll(diff, off, axis=0)
++    # Bounded non-circular temporal dilation for +/- 3 steps (no circular wrap-around)
++    trans_mat = diff.copy()
++    for off in range(1, 4):
++        trans_mat[off:, :] |= diff[:-off, :]
++        trans_mat[:-off, :] |= diff[off:, :]
+     is_transition = trans_mat.reshape(-1)
+     
+     h_idx = 5  # h=6 (60 min ahead)
+@@ -491,8 +493,9 @@
+     # PHASE 5 & 6: Paired Day-Cluster Bootstrap (B=5000) & Summary Metrics
+     # -------------------------------------------------------------
+     boot_csv_path = out_dir / "bootstrap_frontier_statistics.csv"
+-    if boot_csv_path.exists():
+-        print(f"\nLoading existing bootstrap statistics from {boot_csv_path}", flush=True)
++    force_rerun = "--force" in sys.argv or "--force-bootstrap" in sys.argv
++    if boot_csv_path.exists() and not force_rerun:
++        print(f"\nLoading existing bootstrap statistics from {boot_csv_path} (pass --force to recompute)", flush=True)
+         df_boot_stats = pd.read_csv(boot_csv_path)
+     else:
+         print(f"\n--- PHASE 5 & 6: Paired Day-Cluster Bootstrap (B={N_BOOT}) with Within-Bootstrap Budget Matching ---", flush=True)

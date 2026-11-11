@@ -1,0 +1,359 @@
+[
+  {
+    "ref": "tste-submission-v1.0",
+    "path": "scripts/build_fixed_forecast_residuals.py",
+    "exists_in_commit": true,
+    "sha256": "a5bc5888e59850fda9cdc910a0d8cafb45249f42f8f4d42de4d9bc15a35f065d",
+    "git_blob": "73512552db8b7d8be846037fa3d66a89dd1ab5ac",
+    "last_path_change": "c99077980ed9dcd5d7a69a45f6e3f70888d0b766 2026-09-19T12:56:52+08:00 feat(closure): address 4 reviewer vulnerabilities with boundary probes, strong baseline closure, and GBDT provenance",
+    "relevant_source_lines": [
+      {
+        "line": 7,
+        "text": "- Saves frozen tensors into artifacts/fixed_forecast_residuals.npz and metadata JSON."
+      },
+      {
+        "line": 128,
+        "text": "    out_file = Path(\"artifacts/fixed_forecast_residuals.npz\")"
+      },
+      {
+        "line": 130,
+        "text": "    np.savez_compressed(out_file, **out_arrays)"
+      }
+    ]
+  },
+  {
+    "ref": "tste-submission-v1.0",
+    "path": "scripts/run_fixed_target_contract.py",
+    "exists_in_commit": false
+  },
+  {
+    "ref": "tste-submission-v1.0",
+    "path": "scripts/decisive_fair_risk_benchmark.py",
+    "exists_in_commit": true,
+    "sha256": "093d7b0013e358c312c22dbda0296977430d886c7846fe25f5f80fa6f242fcfc",
+    "git_blob": "4b3a7a94761326b1d15195984acc9d3d43601811",
+    "last_path_change": "c99077980ed9dcd5d7a69a45f6e3f70888d0b766 2026-09-19T12:56:52+08:00 feat(closure): address 4 reviewer vulnerabilities with boundary probes, strong baseline closure, and GBDT provenance",
+    "relevant_source_lines": []
+  },
+  {
+    "ref": "tste-submission-v1.0",
+    "path": "scripts/run_matched_budget_frontier.py",
+    "exists_in_commit": true,
+    "sha256": "5c809aec0c0d3e91d8dfa6f1ac6c506458edddd718d439d81630289843e3e31f",
+    "git_blob": "e940eb71e1ccd22326c8a0935c2a91389664c956",
+    "last_path_change": "2c71ffc241dc8b9e23684bd660bc728d3ae14e45 2026-09-25T08:23:37+08:00 feat(reproducibility): close external reproducibility gap with artifact manifest, release package, and one-command replicator",
+    "relevant_source_lines": [
+      {
+        "line": 95,
+        "text": "    res_data = np.load(REPO_ROOT / \"artifacts/fixed_forecast_residuals.npz\")"
+      },
+      {
+        "line": 145,
+        "text": "    cached_prob_path = out_dir / \"cached_posterior_probs.npz\""
+      },
+      {
+        "line": 185,
+        "text": "        np.savez_compressed("
+      },
+      {
+        "line": 320,
+        "text": "            \"artifacts/fixed_forecast_residuals.npz\","
+      }
+    ]
+  },
+  {
+    "ref": "tste-submission-v1.0",
+    "path": "scripts/generate_artifact_manifest.py",
+    "exists_in_commit": true,
+    "sha256": "a6a465b4f99627b4807c9bcdb5cfcc5887b4791c0b6cec8dbf5439b30a335fbf",
+    "git_blob": "977917f59cdb358dfc08a5281bd6fb624332a354",
+    "last_path_change": "1e36d82e53adaf2d0b945a2d1ec7e5771c706d54 2026-09-25T08:57:46+08:00 fix(reproducibility): fix missing os imports, dynamic compiler paths, relative audit paths, and add lightweight table regeneration",
+    "relevant_source_lines": [
+      {
+        "line": 62,
+        "text": "        \"upstream_inputs\": [\"artifacts/fixed_forecast_residuals.npz\"],"
+      },
+      {
+        "line": 189,
+        "text": "        \"upstream_inputs\": [\"artifacts/fixed_forecast_residuals.npz\"],"
+      },
+      {
+        "line": 204,
+        "text": "        \"upstream_inputs\": [\"artifacts/fixed_forecast_residuals.npz\"],"
+      },
+      {
+        "line": 218,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 230,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 243,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 255,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 268,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 280,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 292,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 305,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 317,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 478,
+        "text": "        \"upstream_inputs\": [\"artifacts/fixed_forecast_residuals.npz\"],"
+      },
+      {
+        "line": 501,
+        "text": "        \"filename\": \"artifacts/fixed_forecast_residuals.npz\","
+      },
+      {
+        "line": 503,
+        "text": "        \"generating_script\": \"scripts/run_fixed_target_contract.py\","
+      },
+      {
+        "line": 514,
+        "text": "        \"filename\": \"artifacts/matched_budget/cached_posterior_probs.npz\","
+      },
+      {
+        "line": 517,
+        "text": "        \"upstream_inputs\": [\"artifacts/checkpoints/\", \"artifacts/fixed_forecast_residuals.npz\"],"
+      }
+    ]
+  },
+  {
+    "ref": "tste-submission-v1.0",
+    "path": "scripts/package_release_artifacts.py",
+    "exists_in_commit": true,
+    "sha256": "3003f0ad7c19808a8b1c4bb5abe6c83bb6601c766a835d1ed28b34b563fc8614",
+    "git_blob": "a037c47932261abcc25830ca867dcc70609171d3",
+    "last_path_change": "2c71ffc241dc8b9e23684bd660bc728d3ae14e45 2026-09-25T08:23:37+08:00 feat(reproducibility): close external reproducibility gap with artifact manifest, release package, and one-command replicator",
+    "relevant_source_lines": []
+  },
+  {
+    "ref": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+    "path": "scripts/build_fixed_forecast_residuals.py",
+    "exists_in_commit": true,
+    "sha256": "a5bc5888e59850fda9cdc910a0d8cafb45249f42f8f4d42de4d9bc15a35f065d",
+    "git_blob": "73512552db8b7d8be846037fa3d66a89dd1ab5ac",
+    "last_path_change": "c99077980ed9dcd5d7a69a45f6e3f70888d0b766 2026-09-19T12:56:52+08:00 feat(closure): address 4 reviewer vulnerabilities with boundary probes, strong baseline closure, and GBDT provenance",
+    "relevant_source_lines": [
+      {
+        "line": 7,
+        "text": "- Saves frozen tensors into artifacts/fixed_forecast_residuals.npz and metadata JSON."
+      },
+      {
+        "line": 128,
+        "text": "    out_file = Path(\"artifacts/fixed_forecast_residuals.npz\")"
+      },
+      {
+        "line": 130,
+        "text": "    np.savez_compressed(out_file, **out_arrays)"
+      }
+    ]
+  },
+  {
+    "ref": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+    "path": "scripts/run_fixed_target_contract.py",
+    "exists_in_commit": false
+  },
+  {
+    "ref": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+    "path": "scripts/decisive_fair_risk_benchmark.py",
+    "exists_in_commit": true,
+    "sha256": "093d7b0013e358c312c22dbda0296977430d886c7846fe25f5f80fa6f242fcfc",
+    "git_blob": "4b3a7a94761326b1d15195984acc9d3d43601811",
+    "last_path_change": "c99077980ed9dcd5d7a69a45f6e3f70888d0b766 2026-09-19T12:56:52+08:00 feat(closure): address 4 reviewer vulnerabilities with boundary probes, strong baseline closure, and GBDT provenance",
+    "relevant_source_lines": []
+  },
+  {
+    "ref": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+    "path": "scripts/run_matched_budget_frontier.py",
+    "exists_in_commit": false
+  },
+  {
+    "ref": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+    "path": "scripts/generate_artifact_manifest.py",
+    "exists_in_commit": false
+  },
+  {
+    "ref": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+    "path": "scripts/package_release_artifacts.py",
+    "exists_in_commit": false
+  },
+  {
+    "ref": "00c92f0b",
+    "path": "scripts/build_fixed_forecast_residuals.py",
+    "exists_in_commit": true,
+    "sha256": "01993de14685ac381a400c03caaf19c9558b7ec6139b32a24f0d8927d44accef",
+    "git_blob": "d19ff0325278f7e35b875436feb4b17cc0382c46",
+    "last_path_change": "00c92f0b8ebf1640082f54b60d0e2b9aa6f0eef1 2026-10-15T13:59:19+08:00 Invalidate wrong-window transfer evidence and harden raw replay lineage",
+    "relevant_source_lines": [
+      {
+        "line": 7,
+        "text": "- Saves frozen tensors into artifacts/fixed_forecast_residuals.npz and metadata JSON."
+      },
+      {
+        "line": 35,
+        "text": "    parser.add_argument('--output-file', default='artifacts/fixed_forecast_residuals.npz')"
+      },
+      {
+        "line": 144,
+        "text": "    np.savez_compressed(out_file, **out_arrays)"
+      }
+    ]
+  },
+  {
+    "ref": "00c92f0b",
+    "path": "scripts/run_fixed_target_contract.py",
+    "exists_in_commit": false
+  },
+  {
+    "ref": "00c92f0b",
+    "path": "scripts/decisive_fair_risk_benchmark.py",
+    "exists_in_commit": true,
+    "sha256": "093d7b0013e358c312c22dbda0296977430d886c7846fe25f5f80fa6f242fcfc",
+    "git_blob": "4b3a7a94761326b1d15195984acc9d3d43601811",
+    "last_path_change": "c99077980ed9dcd5d7a69a45f6e3f70888d0b766 2026-09-19T12:56:52+08:00 feat(closure): address 4 reviewer vulnerabilities with boundary probes, strong baseline closure, and GBDT provenance",
+    "relevant_source_lines": []
+  },
+  {
+    "ref": "00c92f0b",
+    "path": "scripts/run_matched_budget_frontier.py",
+    "exists_in_commit": true,
+    "sha256": "5c809aec0c0d3e91d8dfa6f1ac6c506458edddd718d439d81630289843e3e31f",
+    "git_blob": "e940eb71e1ccd22326c8a0935c2a91389664c956",
+    "last_path_change": "2c71ffc241dc8b9e23684bd660bc728d3ae14e45 2026-09-25T08:23:37+08:00 feat(reproducibility): close external reproducibility gap with artifact manifest, release package, and one-command replicator",
+    "relevant_source_lines": [
+      {
+        "line": 95,
+        "text": "    res_data = np.load(REPO_ROOT / \"artifacts/fixed_forecast_residuals.npz\")"
+      },
+      {
+        "line": 145,
+        "text": "    cached_prob_path = out_dir / \"cached_posterior_probs.npz\""
+      },
+      {
+        "line": 185,
+        "text": "        np.savez_compressed("
+      },
+      {
+        "line": 320,
+        "text": "            \"artifacts/fixed_forecast_residuals.npz\","
+      }
+    ]
+  },
+  {
+    "ref": "00c92f0b",
+    "path": "scripts/generate_artifact_manifest.py",
+    "exists_in_commit": true,
+    "sha256": "a360c46eb4818274efc96dff9106cabacba83d283f08e6fc54777c2cedc26dc4",
+    "git_blob": "52176096547ee1b2e5c95fa0398055a5cb7b7787",
+    "last_path_change": "00c92f0b8ebf1640082f54b60d0e2b9aa6f0eef1 2026-10-15T13:59:19+08:00 Invalidate wrong-window transfer evidence and harden raw replay lineage",
+    "relevant_source_lines": [
+      {
+        "line": 62,
+        "text": "        \"upstream_inputs\": [\"artifacts/fixed_forecast_residuals.npz\"],"
+      },
+      {
+        "line": 189,
+        "text": "        \"upstream_inputs\": [\"artifacts/fixed_forecast_residuals.npz\"],"
+      },
+      {
+        "line": 204,
+        "text": "        \"upstream_inputs\": [\"artifacts/fixed_forecast_residuals.npz\"],"
+      },
+      {
+        "line": 218,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 230,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 243,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 255,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 268,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 280,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 292,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 305,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 317,
+        "text": "        \"upstream_inputs\": [\"artifacts/matched_budget/cached_posterior_probs.npz\"],"
+      },
+      {
+        "line": 478,
+        "text": "        \"upstream_inputs\": [\"artifacts/fixed_forecast_residuals.npz\"],"
+      },
+      {
+        "line": 501,
+        "text": "        \"filename\": \"artifacts/fixed_forecast_residuals.npz\","
+      },
+      {
+        "line": 503,
+        "text": "        \"generating_script\": \"scripts/build_fixed_forecast_residuals.py\","
+      },
+      {
+        "line": 514,
+        "text": "        \"filename\": \"artifacts/matched_budget/cached_posterior_probs.npz\","
+      },
+      {
+        "line": 517,
+        "text": "        \"upstream_inputs\": [\"artifacts/checkpoints/\", \"artifacts/fixed_forecast_residuals.npz\"],"
+      },
+      {
+        "line": 559,
+        "text": "        \"upstream_inputs\": [\"artifacts/fixed_forecast_residuals.npz\", \"artifacts/cache_strictmask_trainweights/wtb_245d\"],"
+      },
+      {
+        "line": 574,
+        "text": "        \"upstream_inputs\": [\"artifacts/fixed_forecast_residuals.npz\", \"artifacts/cache_strictmask_trainweights/wtb_245d\"],"
+      }
+    ]
+  },
+  {
+    "ref": "00c92f0b",
+    "path": "scripts/package_release_artifacts.py",
+    "exists_in_commit": true,
+    "sha256": "3003f0ad7c19808a8b1c4bb5abe6c83bb6601c766a835d1ed28b34b563fc8614",
+    "git_blob": "a037c47932261abcc25830ca867dcc70609171d3",
+    "last_path_change": "2c71ffc241dc8b9e23684bd660bc728d3ae14e45 2026-09-25T08:23:37+08:00 feat(reproducibility): close external reproducibility gap with artifact manifest, release package, and one-command replicator",
+    "relevant_source_lines": []
+  }
+]

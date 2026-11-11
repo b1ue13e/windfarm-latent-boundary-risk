@@ -1,0 +1,157 @@
+{
+  "study_id": "information_subset_development_20261019_v1",
+  "status": "AUTHORIZED_FROZEN_DEVELOPMENT",
+  "parent_root": "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1",
+  "parent_protocol_sha256": "c69bfdc1940996ad5b9bee9d610e52f6d0ad9618e316bc704e64d78ee1a1179b",
+  "scope": "Already-inspected WTB development only. Finite predeclared reserve-layer information lattice conditional on the common wind/power-based forecast; no end-to-end signal minimality, Bayes optimality, independent confirmation or E04/E07 modification.",
+  "task": {
+    "horizon_steps": 6,
+    "history_steps": 36,
+    "commitment_age_steps": 6,
+    "target_release_delay_steps": 1,
+    "rho": 10.0,
+    "dt_hours": 0.16666666666666666,
+    "point_forecaster": "Preset squared-error histogram boosting from wind/power history only, published six steps before reserve issue; predicts twelve steps after publication",
+    "point_forecaster_seed": 20261018,
+    "population": "All finite future net-export targets on registered coordinates, independent of pitch availability",
+    "scope": "Turbine-level risk-screening surrogate conditional on a synthetic legally earlier common forecast; no PCC procurement or storage-deliverability claim"
+  },
+  "conditions": {
+    "pitch_withheld": {
+      "delay_steps": 0,
+      "pitch_available": false
+    },
+    "fresh": {
+      "delay_steps": 0,
+      "pitch_available": true
+    },
+    "delay1": {
+      "delay_steps": 1,
+      "pitch_available": true
+    },
+    "delay2": {
+      "delay_steps": 2,
+      "pitch_available": true
+    },
+    "delay3": {
+      "delay_steps": 3,
+      "pitch_available": true
+    },
+    "delay6_stress": {
+      "delay_steps": 6,
+      "pitch_available": true
+    }
+  },
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "primary_lattice": "pitch_withheld: Common plus all 7 nonempty subsets of W,P,Q crossed with 1/6/36 last-arrived observations. No subset removed after results.",
+  "pressure_subsets": [
+    "Common",
+    "P1",
+    "WP1",
+    "WP6",
+    "WP36",
+    "WPQ36"
+  ],
+  "budgets": [
+    10000,
+    40000,
+    120000,
+    360000
+  ],
+  "pressure_budgets": [
+    120000,
+    360000
+  ],
+  "sample_rule": "One shared seed-specific permutation of every finite training-target row over the unchanged Day136-175 calendar stage; budgets are nested prefixes, identical across subsets/estimators/conditions. No training-stage or test outcome filtering. Rows are correlated, not independent weather episodes.",
+  "feature_rule": "common4 + W36 + P36 + Q36 + pitch36 oldest-first. L observations end at issue-delay, truncated at issue-35. Available pitch history is shared across every candidate in pitch-observed conditions. No forward-fill. Missing inputs preserved, target finite-mask independent of input subset.",
+  "estimators": {
+    "HGB": {
+      "library": "sklearn HistGradientBoostingRegressor",
+      "missing_preprocessing": "SimpleImputer constant zero with add_indicator=True and keep_empty_features=True, fit only on the corresponding historical fit stage. Added after v1 remote preflight caught sklearn1.9 all-NaN column failure; no v1 model results produced.",
+      "max_iter": 100,
+      "max_leaf_nodes": 15,
+      "max_depth": null,
+      "min_samples_leaf": 50,
+      "learning_rate": 0.08,
+      "l2_regularization": 1.0,
+      "early_stopping": false,
+      "subsampling": "One archived shared set of policy-fit sample indices per seed; no evaluation-based selection",
+      "fit_budget_authority": "Explicit per-worker archived nested indices from budgets/pressure_budgets; no hidden 120k cap."
+    },
+    "MLP": "Direct exact Q.90 pinball, linear output then inference clip0. Historical per-feature finite mean/std imputation and fixed full missing indicators; target scale training std. CPU deterministic."
+  },
+  "mlp": {
+    "hidden": [
+      64,
+      32
+    ],
+    "epochs": 80,
+    "batch_size": 2048,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001
+  },
+  "optimizer_scope": "Epoch count fixed; increasing sample size also increases optimizer updates/compute. Curves measure joint data+training-budget scaling. Training trace saved. No claim of pure sample efficiency or proof of approximation-error saturation.",
+  "persistence": "max(common_forecast-last-arrived active power,0); missing last power gives raw0 followed by identical historical offset family. No model fitting; 5 copies are the same deterministic function, not independent replicates.",
+  "selection_first_anchor": 27648,
+  "evaluation_first_anchor": 30240,
+  "offset_quantiles": [
+    0.9,
+    0.925,
+    0.95,
+    0.975,
+    0.99
+  ],
+  "offset_fit_days": [
+    176,
+    192
+  ],
+  "selection_days": [
+    193,
+    210
+  ],
+  "development_days": [
+    211,
+    245
+  ],
+  "maturity": "offset-fit issue+6+1 < selection start; original prepared stage boundary already matures selection labels before eval. No model reads development evaluation before global historical choices are frozen.",
+  "v_max": 0.1,
+  "rho": 10,
+  "nominal_cost_quantile": 0.9,
+  "alpha": 0.05,
+  "historical_rule": "For each condition,subset,estimator,budget choose one offset q shared by five seeds. Among levels passing ALL-seed simultaneous historical risk upper<=.10, choose minimum seed-mean selection cost, tie lower q. If none pass choose .99 diagnostic and mark unqualified. No further q grid/cap expansion. Global historical risk family spans every registered candidate/seed/condition/budget.",
+  "n_boot": 20000,
+  "bootstrap_seed": 20261029,
+  "primary_span": 3,
+  "sensitivity_spans": [
+    1,
+    7
+  ],
+  "epsilon_curve": [
+    0,
+    0.005,
+    0.01,
+    0.02,
+    0.05
+  ],
+  "inference": "Paired common natural-day circular moving-block bootstrap. All candidates/conditions/seeds share time draws. Mean cost conditional on frozen five instances; risk for each instance. Chunked max standardized joint envelope includes all within-condition-and-budget all-pair mean-cost ratios and per-seed risk. Self ratios algebraically zero; other constant bootstrap coordinates unbounded. Approximate dependent-data inference, no finite-sample guarantee. Entire epsilon curve covered; tolerances are sensitivity values, not externally justified engineering thresholds.",
+  "resource_order": [
+    "incremental telemetry channel count including available pitch",
+    "estimator passes (persistence0, otherwise1)",
+    "raw feature width"
+  ],
+  "estimator_order": "HGB and MLP with same signals/width tied by declared order. Actual model bytes, fit/inference time and parameters reported descriptively; no claim they have identical compute complexity or post-result tie breaking.",
+  "primary_output": "historically chosen candidate family evaluated once, all choices/failures retained",
+  "secondary_output": "Explicit retrospective full fixed offset-grid capability frontier. Never overwrites primary historical-selector failure.",
+  "stop_rules": [
+    "No evaluation-based hyperparameter/subset/epoch/budget/q/cap changes. Preserve all seeds, nulls and failures.",
+    "If curve not stable, report unresolved estimation uncertainty; do not infer missing information.",
+    "If no qualified policy or no near-optimal set, return no identified candidate.",
+    "Independent source results needed before upgrading minimal-model claim. E07 remains inactive."
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "status": "PASS_EXACT_STORED_FIELD_PROJECTION",
+  "script_sha256": "655af1702f064845bb4dd5899ef5009f25ee5adeb87d02a22586063f70c2eee5",
+  "input_identity": {
+    "analyses/decision_information_execution_20261018/evidence/results/aggregate/paired_intervals.json": "1de4be76bf901008eb006a5baca2f253325efd7499287287296369b1cc56822c",
+    "analyses/decision_information_execution_20261018/evidence/results/runs/seed201/pitch_withheld/models_and_diagnostics.json": "94bbbd95b9fa48f9d7431c61aff5e7cdc72caecfd826d07ea6bd04c47be1f7d0",
+    "analyses/decision_information_execution_20261018/evidence/results/runs/seed202/pitch_withheld/models_and_diagnostics.json": "b67bbe21561e4d8b45ab60d4d00d618a3867fb8a86d4443b983edaf5307fb151",
+    "analyses/decision_information_execution_20261018/evidence/results/runs/seed203/pitch_withheld/models_and_diagnostics.json": "ccd24f55e3f53874330236b3647479bdf4620bf81a3ed1ac0c6da8ffe9a0caa4",
+    "analyses/decision_information_execution_20261018/evidence/results/runs/seed204/pitch_withheld/models_and_diagnostics.json": "630c3cb389abefb684851a424729c40fe3b3fa869a2b2cc059206fe19f5617e8",
+    "analyses/decision_information_execution_20261018/evidence/results/runs/seed205/pitch_withheld/models_and_diagnostics.json": "6ad217655cd4efd1c8557368fc4fb9b09ae64caec045aa6f5dee39176948810b"
+  },
+  "cost_projection": {
+    "rows": 108,
+    "comparisons": [
+      "B-A",
+      "C-B",
+      "C-WindScore",
+      "C-ShuffledScore",
+      "D-B",
+      "E-B"
+    ],
+    "conditions": [
+      "delay1",
+      "delay2",
+      "delay3",
+      "delay6_stress",
+      "fresh",
+      "pitch_withheld"
+    ],
+    "spans": [
+      1,
+      3,
+      7
+    ],
+    "original_field_equality_assertions": 1944,
+    "csv_sha256": "e9c51ff4a3cd5a937b2c2cebf79e9ba658f0bd73fe30f941037b327e967f6e92"
+  },
+  "mse_projection": {
+    "rows": 15,
+    "fit_seeds": [
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "probes": [
+      "pitch",
+      "wind",
+      "shuffle"
+    ],
+    "original_field_equality_assertions": 45,
+    "csv_sha256": "d73def83ced61b5a84fa0a176f173a6c0692af52e3cdfc8358daac724e462a36"
+  },
+  "limits": {
+    "no_new_statistics_or_intervals": true,
+    "no_mse_average_or_aggregation": true,
+    "no_unit_conversion": true,
+    "no_research_module_imported": true,
+    "no_model_or_array_evaluation": true,
+    "no_bootstrap_or_index_regeneration": true,
+    "assertions_are_field_checks_not_independent_observations": true
+  }
+}

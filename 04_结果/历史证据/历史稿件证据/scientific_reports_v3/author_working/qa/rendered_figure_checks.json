@@ -1,0 +1,35 @@
+{
+  "records": [
+    {
+      "figure": "fig1_information_and_timing.pdf",
+      "sha256": "c0845be8c4b0a21293e0b9799f5a6666a1afb5d109223a542195e1efde4f5719",
+      "glyph_exit": 0,
+      "collision_exit": 0
+    },
+    {
+      "figure": "fig2_measurement_cost.pdf",
+      "sha256": "cb74a87254b2bed58e09e695f4ec43f678ca91cb6d0d0b5f40825397c4168a17",
+      "glyph_exit": 0,
+      "collision_exit": 0
+    },
+    {
+      "figure": "fig3_reconstruction_and_controls.pdf",
+      "sha256": "a3e7cd6872b00faca6b4210dd888f0c0227302255afc395c0741ab6ca45710a0",
+      "glyph_exit": 0,
+      "collision_exit": 0
+    },
+    {
+      "figure": "fig4_procurement_shortfall.pdf",
+      "sha256": "c2c95c08581e25e0df959c2c4577a50e20e8d00b5977eda3ea76ba3c3ddd3a04",
+      "glyph_exit": 0,
+      "collision_exit": 0
+    },
+    {
+      "figure": "figS1_block_sensitivity.pdf",
+      "sha256": "d72d49352e6d74d68b2c5e5735dd47e1b6e8450b636fba2eb2ce778e971e41e6",
+      "glyph_exit": 0,
+      "collision_exit": 0
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "qsub",
+    "-N",
+    "di_audit_smoke",
+    "-q",
+    "rqdf",
+    "-l",
+    "select=1:ncpus=2:mem=8gb",
+    "-l",
+    "walltime=00:10:00",
+    "-W",
+    "depend=afterok:244600.cm",
+    "-j",
+    "oe",
+    "-o",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/logs/audit_smoke.log",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/audit_smoke.pbs"
+  ],
+  "stdout": "244601.cm\n",
+  "stderr": "",
+  "returncode": 0
+}

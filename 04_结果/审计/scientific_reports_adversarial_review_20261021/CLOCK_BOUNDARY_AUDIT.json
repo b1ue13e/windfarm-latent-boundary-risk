@@ -1,0 +1,16 @@
+{
+  "source": "research_audit\\controlled_comparison_materials_20261020\\recovered\\R\\results\\prepared\\point_fit_sample_indices.npy",
+  "sha_matches_original": true,
+  "shape": [
+    120000
+  ],
+  "max_consumed_flat_index": 1730194,
+  "point_fit_first_anchor": 35,
+  "last_consumed_point_input_anchor": 12946,
+  "latest_consumed_target_index": 12958,
+  "latest_assumed_label_release": 12959,
+  "first_state_issue": 12960,
+  "first_nominal_publication": 12954,
+  "first_policy_nominal_publication": 19434,
+  "reading_only": "existing index array metadata/max; no model, measurement, prediction or effect estimation"
+}

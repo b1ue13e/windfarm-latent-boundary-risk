@@ -1,0 +1,26 @@
+{
+  "candidate_commit": "2b6eb3d373f075e6c7b2e93e8420a0e30f04ab7b",
+  "decision": "MAJOR_REVISION_BEFORE_WIND_ENERGY_SUBMISSION",
+  "recommend_submit_now": false,
+  "review_status": "INTERNAL_ADVERSARIAL_REVIEW_NOT_JOURNAL_DECISION",
+  "four_questions": {
+    "why_care": "PARTIAL_SPECIFIC_INTERFACE_IMPORTANCE_NOT_CLOSED",
+    "whats_new": "BOUNDED_EMPIRICAL_INCREMENT_NOT_YET_SIGNIFICANT_CONTRIBUTION_CASE",
+    "why_believe": "SUPPORTED_FOR_NARROW_CLAIMS_WITH_ESTIMAND_AND_APPROXIMATION_CLARIFICATIONS",
+    "why_this_venue": "SCOPE_FIT_SIGNIFICANCE_NOT_CLOSED"
+  },
+  "novelty_status": "NO_IDENTICAL_STUDY_IDENTIFIED_IN_SCOPED_REVIEW_NOT_EXHAUSTIVE_NOVELTY_CERTIFICATION",
+  "core_numerical_error_found": false,
+  "forward_leakage_found_in_reviewed_code": false,
+  "finite_family_exclusion_algebra_error_found": false,
+  "blocking_priorities": ["WE-01", "WE-02", "WE-07"],
+  "required_reporting_repairs": ["WE-03", "WE-04", "WE-05"],
+  "scope_maintenance": ["WE-06"],
+  "recommend_new_experiments_now": false,
+  "next_action": "One bounded existing-evidence closure revision plus interface/material qualification; no automatic research execution",
+  "strong_claims_requiring_new_evidence": ["realised resource savings", "necessity beyond registered fitted family", "validated nominal coverage or future-year risk", "PCC procurement or deliverability"],
+  "changed_manuscript": false,
+  "changed_thresholds": false,
+  "new_training_inference_calibration_resampling": false,
+  "new_measurements": false
+}

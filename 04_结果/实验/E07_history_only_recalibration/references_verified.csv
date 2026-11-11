@@ -1,0 +1,3 @@
+id,title,authors,year,venue,doi,primary_url,role,verified_date,scope
+CQR2019,Conformalized Quantile Regression,"Yaniv Romano; Evan Patterson; Emmanuel J. Candès",2019,NeurIPS 2019,,https://proceedings.neurips.cc/paper/2019/file/5103c3584b063c431bd1268e9b5e76fb-Paper.pdf,foundational,2026-10-18,"Independent calibration inspiration; exchangeability assumptions do not certify the proposed WTB block/group offset"
+CPBE2023,Conformal prediction beyond exchangeability,"Rina Foygel Barber; Emmanuel J. Candès; Aaditya Ramdas; Ryan J. Tibshirani",2023,The Annals of Statistics,10.1214/23-AOS2276,https://arxiv.org/abs/2202.13415,adjacent,2026-10-18,"Nonexchangeability and drift limit direct transfer of ordinary conformal coverage guarantees"

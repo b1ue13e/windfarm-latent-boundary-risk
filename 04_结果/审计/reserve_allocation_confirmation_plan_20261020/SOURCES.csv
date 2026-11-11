@@ -1,0 +1,16 @@
+id,url_or_path,local_snapshot,sha256,read_scope
+S01,https://zenodo.org/api/records/22662930,metadata/towie_record.json,72985f9a73c955b301a48846764233a82fd30470e9240a1a1ff673e9eb096bcd,dataset metadata only
+S02,https://zenodo.org/records/22662930/files/README.md,metadata/README.md,152a9a0ca3b47fba7145f37b23dd3f8e87e3dd507ee69b40e18e878a2bc85767,official documentation
+S03,https://zenodo.org/records/22662930/files/CHANGELOG.md,metadata/CHANGELOG.md,9d403e8f53d158e60838bf03f28f2cb3d327e527a46e8a520f2794a3879fcfbe,official documentation
+S04,https://zenodo.org/records/22662930/files/Hill_of_Towie_data_dictionary.md,metadata/Hill_of_Towie_data_dictionary.md,f7f4fc2f3fd58a925e1894e2f7ac00d6bde9c69883563a4653b1cf8c5f25cfc7,field definitions only
+S05,https://zenodo.org/api/records/16807551,metadata/kelmarsh_record.json,e844326731ed41d6fba1f749d11ed843920a58617c20879a435b822ff701029d,dataset metadata only
+S06,https://zenodo.org/api/records/8253010,metadata/penmanshiel_record.json,cc67eebf65275056e30eba820e2db19e7dc79d4f7861b49f9d753227c74237d7,"older version metadata retained for provenance, not latest"
+S07,https://zenodo.org/api/records/16807304,metadata/penmanshiel_latest_record.json,dbb2e710321ccf19ae6edd03992dd0c06d798da3ebaec883ebf29a19c55171ce,latest named version metadata only
+S08,https://api.crossref.org/works/10.1016/j.egyai.2026.100900,metadata/safer_crossref.json,6c43dd154553d00ceda2827beebb050f29f2c19cf02dd83fa34230201ac6d7d8,"bibliographic metadata, exact online date unknown"
+S09,https://api.crossref.org/works/10.1109/TPWRS.2021.3053847,metadata/tpwrs_crossref.json,fe8250599a26553e38df215ca8537d2b2bade98adefb16c9d13b94afe1e7f0e8,bibliographic metadata
+S10,https://jmlr.org/papers/v25/22-1218.html,,,publisher methods selectively read via browser
+S11,https://arxiv.org/abs/2307.16895,,,"official article abstract/PDF accessible, not full proof audit"
+S12,https://github.com/VinDW/SAFER-Wind-Forecasting,,,author README only; did not open notebook/data/results assets
+S13,https://ieee-pes.org/publications/transactions-on-sustainable-energy/,,,journal scope only
+S14,https://zenodo.org/records/23171808,,,reported reconstruction description only; no derived measurements
+S15,artifacts/final_evidence_package/export/source_data/external_wind_source_manifest.csv,,,existing local acquisition metadata only

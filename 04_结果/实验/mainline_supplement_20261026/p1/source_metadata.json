@@ -1,0 +1,16 @@
+{
+  "id": 22662930,
+  "updated": "2026-09-08T15:14:28.000630+00:00",
+  "doi": "10.5281/zenodo.22662930",
+  "version": "2.1.0",
+  "file": {
+    "id": "56f0f4eb-b7c8-41af-8c5d-3f09b3f6ea44",
+    "key": "2026.zip",
+    "size": 553982874,
+    "checksum": "md5:42a2264187912ca63214bacfbc8d4905",
+    "links": {
+      "self": "https://zenodo.org/api/records/22662930/files/2026.zip/content"
+    }
+  },
+  "access": "metadata only; no ZIP request"
+}

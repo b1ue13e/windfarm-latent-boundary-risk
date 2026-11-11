@@ -1,0 +1,86 @@
+{
+  "policies": {
+    "P1": {
+      "cost_total": 70991228.17707202,
+      "cost_mean": 67.0204033211033,
+      "reserve_mean": 49.29708949251145,
+      "shortage_mean": 1.7723313828591845,
+      "violation_rate": 0.05531339214235005,
+      "fit_seconds": 2.5003294139867647,
+      "historical_stage_seconds": 8.6652676,
+      "evaluation_stage_seconds": 5.3467248,
+      "recorded_model_bytes": 190357.8,
+      "manifest_model_bytes_minmax": [
+        190345,
+        190361
+      ]
+    },
+    "WPQ36": {
+      "cost_total": 70592979.66013357,
+      "cost_mean": 66.64443044512102,
+      "reserve_mean": 49.299979974143106,
+      "shortage_mean": 1.734445047097794,
+      "violation_rate": 0.05533378396749392,
+      "fit_seconds": 34.679387310240415,
+      "historical_stage_seconds": 42.531908,
+      "evaluation_stage_seconds": 6.797192,
+      "recorded_model_bytes": 424229.8,
+      "manifest_model_bytes_minmax": [
+        424217,
+        424233
+      ]
+    }
+  },
+  "deltas_p1_minus_reference": {
+    "cost_total": 398248.51693844795,
+    "cost_mean": 0.3759728759822849,
+    "reserve_mean": -0.002890481631659725,
+    "shortage_mean": 0.037886335761390555,
+    "violation_rate": -2.0391825143871445e-05,
+    "fit_seconds": -32.17905789625365,
+    "historical_stage_seconds": -33.8666404,
+    "evaluation_stage_seconds": -1.4504672000000003,
+    "recorded_model_bytes": -233872.0,
+    "relative_cost": 0.005641474815992087
+  },
+  "resources": {
+    "common_point_feature_values": 72,
+    "p1_raw_columns": 5,
+    "full_raw_columns": 112,
+    "common_materialized_columns": 148,
+    "forecast_shape": [
+      52553,
+      21
+    ],
+    "full_X_bytes": 653338896,
+    "initial_training_index_copy_bytes": 213120000,
+    "learner_training_slice_bytes": {
+      "P1": 7200000,
+      "WPQ36": 161280000
+    },
+    "learner_evaluation_slice_bytes": {
+      "P1": 22072260,
+      "WPQ36": 494418624
+    },
+    "theoretical_raw_value_bytes_per_row": {
+      "P1": 20,
+      "WPQ36": 448
+    },
+    "underlying_time_history": "P1 only chooses latest reserve P; upstream W/P36 retained; no physical sensor removal shown",
+    "serialized_model_size_scope": "bytes recorded in archived manifest; model.joblib absent locally, no independent model read or RSS measurement"
+  },
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "q": 0.95,
+  "primary_interval": [
+    0.0035746800646510356,
+    0.00770826956733225
+  ],
+  "no_monetary_conversion": true,
+  "demand_search_files": 438
+}

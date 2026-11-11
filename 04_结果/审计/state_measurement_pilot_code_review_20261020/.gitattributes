@@ -1,0 +1,3 @@
+# Preserve recorded gate-output bytes and accept their Windows line endings.
+claim_gate.txt whitespace=cr-at-eol
+number_gate/* whitespace=cr-at-eol

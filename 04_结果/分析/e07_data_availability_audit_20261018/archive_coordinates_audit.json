@@ -1,0 +1,81 @@
+{
+  "path": "archives\\windfarm_derived_artifacts_v1.0.zip",
+  "bytes": 195613174,
+  "archive_sha256": "cf90924b1fead36317addabfcbee6aa6236bebc29889f8ce5dfd57466fc7fc22",
+  "outcome_values_interpreted": false,
+  "members": [
+    {
+      "name": "artifacts/fixed_forecast_residuals.npz",
+      "bytes": 173410167,
+      "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+      "coordinate_arrays": {
+        "anchor_indices_val": {
+          "shape": [
+            4261
+          ],
+          "first": 25955,
+          "last": 30215,
+          "min": 25955,
+          "max": 30215
+        },
+        "anchor_indices_test": {
+          "shape": [
+            4981
+          ],
+          "first": 30275,
+          "last": 35255,
+          "min": 30275,
+          "max": 35255
+        }
+      },
+      "array_names": [
+        "yhat_val_seed201",
+        "shortfall_val_seed201",
+        "ytrue_val",
+        "mask_val",
+        "anchor_indices_val",
+        "z_label_val",
+        "yhat_test_seed201",
+        "shortfall_test_seed201",
+        "ytrue_test",
+        "mask_test",
+        "anchor_indices_test",
+        "z_label_test",
+        "yhat_val_seed202",
+        "shortfall_val_seed202",
+        "yhat_test_seed202",
+        "shortfall_test_seed202",
+        "yhat_val_seed203",
+        "shortfall_val_seed203",
+        "yhat_test_seed203",
+        "shortfall_test_seed203",
+        "yhat_val_seed204",
+        "shortfall_val_seed204",
+        "yhat_test_seed204",
+        "shortfall_test_seed204",
+        "yhat_val_seed205",
+        "shortfall_val_seed205",
+        "yhat_test_seed205",
+        "shortfall_test_seed205"
+      ]
+    },
+    {
+      "name": "artifacts/matched_budget/cached_posterior_probs.npz",
+      "bytes": 22475033,
+      "sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca",
+      "coordinate_arrays": {},
+      "array_names": [
+        "p_val_seed201",
+        "p_val_seed202",
+        "p_val_seed203",
+        "p_val_seed204",
+        "p_val_seed205",
+        "p_test_seed201",
+        "p_test_seed202",
+        "p_test_seed203",
+        "p_test_seed204",
+        "p_test_seed205"
+      ]
+    }
+  ]
+}

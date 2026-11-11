@@ -1,0 +1,56 @@
+{
+  "date_local": "2026-10-20",
+  "kind": "DOCUMENT_STATIC_CHECK_ONLY",
+  "decision": "NO_CANDIDATE_APPROVED_FOR_TOP_JOURNAL_PROJECT",
+  "retained": "D_HOLD_FOR_SOURCE_AND_DECISION_QUALIFICATION",
+  "rejected": [
+    "A_USER_ABANDONED",
+    "E_CURTAILMENT_RECOVERY",
+    "F_FIELD_HEALTH_TO_CAPABILITY",
+    "EARLY_BATTERY_ENERGY_FCAS_AND_RECOVERY"
+  ],
+  "literature_rows": 18,
+  "data_qualification_rows": 13,
+  "blocking_gates": 3,
+  "protected_documents": [
+    {
+      "path": "AGENTS.md",
+      "unchanged": true
+    },
+    {
+      "path": "paper_tste_ieee.md",
+      "unchanged": true
+    },
+    {
+      "path": "paper_tste_supplementary.md",
+      "unchanged": true
+    },
+    {
+      "path": "paper_tste_chinese.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/SCIENTIFIC_CONTRACT.md",
+      "unchanged": true
+    },
+    {
+      "path": "research_audit/new_mainline_screen_20261020/SCREEN.md",
+      "unchanged": true
+    },
+    {
+      "path": "research_audit/telemetry_increment_boundary_design_20261019/PLAN_V3.md",
+      "unchanged": true
+    }
+  ],
+  "new_operational_data_downloaded": false,
+  "experiments_started": false,
+  "manuscript_changed": false,
+  "scientific_contract_changed": false,
+  "scientific_claim_gate_run": false,
+  "numeric_consistency_gate_run": false,
+  "gate_note": "No scientific milestone or numerical result certification claimed; experimental execution remains stopped",
+  "fulltext_limits": [
+    "PMAPS2024_fulltext_not_audited",
+    "NextEnergy2026_fulltext_not_audited"
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "record_id": "q1_research_decision_20261019",
+  "record_type": "RESEARCH_DECISION_ARCHIVE_NOT_EXECUTION_PROTOCOL",
+  "date": "2026-10-19",
+  "judgment_epistemic_status": "INFERRED",
+  "recommendation": "RETAIN_SCOPED_CANDIDATE_NO_BASIS_TO_RESUME_INVESTMENT",
+  "project_state": "STOP_ADDITIONAL_INVESTMENT",
+  "execution_authorized": false,
+  "execution_queue": [],
+  "automatic_resume_conditions": [],
+  "new_scientific_claim_status": "NOT_TESTED_NO_UPGRADE",
+  "venue_competitiveness": "UNKNOWN_NOT_ESTABLISHED",
+  "source_spec": "research_audit/q1_paper_closure_20261019/paper_contract.json",
+  "source_spec_id": "q1_conditional_cost_domain_paper_v1_20261019",
+  "source_version": "6f755e4f4b834923f701a8c27d4c58cda07bf687",
+  "source_identity_manifest": "protected_inputs.json",
+  "source_references": [
+    "research_audit/closest_literature_audit_20261019/REPORT.md",
+    "research_audit/q1_route_first_principles_review_20261019/REVIEW.md",
+    "research_audit/q1_paper_closure_20261019/01_ESTIMAND.md",
+    "research_audit/q1_paper_closure_20261019/02_HYPOTHESIS.md",
+    "research_audit/q1_paper_closure_20261019/03_EVIDENCE_PATH.md",
+    "research_audit/q1_paper_closure_20261019/hl_interpretation_revision_validation.json"
+  ],
+  "resolved": [
+    {"id": "S1", "item": "R1 fixed-reference q0.95 confirmation and separate secondary R2 q0.925 finite-family minimum", "status": "SUPPORTED_WITHIN_OLD_SCOPE_NOT_NEW_HYPOTHESIS_EVIDENCE"},
+    {"id": "S2", "item": "Known decision-feature, acceptable-subset and simultaneous-inference principles are not claimed novel", "status": "POSITIONING_CLARIFIED_GLOBAL_PRIORITY_UNKNOWN"},
+    {"id": "S3", "item": "thetaH and Gamma defined", "status": "PAPER_SPECIFIED_NOT_EMPIRICALLY_SUPPORTED"},
+    {"id": "S4", "item": "H/L operational composite-domain interpretations aligned", "status": "PAPER_INTERPRETATION_ALIGNED_NOT_PHYSICAL_SAFETY"},
+    {"id": "S5", "item": "Common task and forward clock responsibilities specified", "status": "PAPER_COHERENT_IMPLEMENTATION_UNVERIFIED"},
+    {"id": "S6", "item": "Acceptance, partial outcomes, refutation and unidentified rules fixed", "status": "PAPER_SPECIFIED_NO_QUALIFICATION_UPGRADE"}
+  ],
+  "blocking_evidence_gaps": [
+    {"id": "A1", "level": "A", "claim": "independent new-window confirmation", "gap": "no qualified source or calendar; candidate exposure UNKNOWN", "status": "BLOCKED", "minimum_evidence": ["E1"]},
+    {"id": "A2", "level": "A", "claim": "valid specified-program conditional cost and risk inference", "gap": "actual frozen comparison artifacts, implementation and inference applicability unverified", "status": "NOT_IMPLEMENTED_OR_VALIDATED", "minimum_evidence": ["E2", "E3", "E4"]}
+  ],
+  "open_scientific_question": {"truth_status": "UNKNOWN_NOT_TESTED", "design_defect": false, "old_R1_R2_establish_HL_hypothesis": false},
+  "minimum_evidence": [
+    {"id": "E1", "item": "one qualified prebound confirmation window with source, calendar, exposure and context", "status": "MISSING", "execution_task_created": false},
+    {"id": "E2", "item": "actual frozen historical common-task programs, preprocessors, calibration selection and D4 input thresholds", "status": "NOT_PRODUCED", "development_significance_required": false, "execution_task_created": false},
+    {"id": "E3", "item": "implementation and applicability evidence for common population, clocks, conditional denominators and dependent-data joint inference", "status": "NOT_VALIDATED", "new_statistical_theory_required": false, "execution_task_created": false},
+    {"id": "E4", "item": "one complete confirmation under original acceptance, with effects, H/L/U coverage and all failures reported", "status": "NOT_EXECUTED", "execution_task_created": false}
+  ],
+  "acceptance_reference_only": {
+    "thetaH": "simultaneous lower bound strictly >0",
+    "Gamma": "simultaneous lower bound strictly >0",
+    "risk": "all10 simultaneous risk uppers <=0.1",
+    "cost_pass_without_risk": "COST_PATTERN_ONLY_RISK_UNCONFIRMED",
+    "wide_intervals": "UNIDENTIFIED",
+    "primary_success": "both cost directions and full-population risk gates pass"
+  },
+  "preserved_parameters": {"primary_joint_coordinates": 12, "primary_risk_coordinates": 10, "direction_margin": 0, "old_2percent_reused": false, "primary_estimands": ["thetaH", "Gamma"], "per_domain_risk_cap_required": false},
+  "important_improvements": [
+    {"id": "B1", "level": "B", "item": "judge substantive magnitude and conditional coverage significance", "minimum_report_already_in": "E4", "new_engineering_effect_threshold_imposed": false},
+    {"id": "B2", "level": "B", "item": "interpret program gain using declared P challenges and raw/cal bookkeeping; further estimator or component checks only for stronger claims", "existing_spec_obligations_cancelled": false},
+    {"id": "B3", "level": "B", "item": "state concrete knowledge beyond nearest work", "global_priority_or_irreplaceability_required_for_local_fact": false}
+  ],
+  "optional_extensions": [
+    {"id": "C1", "level": "C", "item": "cross-site or wider clock/program generality"},
+    {"id": "C2", "level": "C", "item": "online acquisition/switching, deployment and real net resource savings"},
+    {"id": "C3", "level": "C", "item": "universal information necessity/minimality or new coverage theory"}
+  ],
+  "no_automatic_additions": ["positive global mean", "zero low-domain value", "per-time gain ranking", "per-domain 10percent risk", "extra models/seeds/years", "smaller p values", "positive significant development result", "universal law", "deployment savings", "new statistical theory"],
+  "stopping_rules": {
+    "minimum_evidence_and_original_joint_acceptance_satisfied": "SUPPORTED_WITHIN_SCOPE_STOP_ADDING_OBLIGATIONS_FOR_SAME_CLAIM",
+    "only_thetaH_lower_positive": "H_GAIN_ONLY_ORDERING_UNCONFIRMED",
+    "only_Gamma_lower_positive": "GROUP_ORDERING_ONLY_POSITIVE_GAIN_DOMAIN_UNCONFIRMED",
+    "cost_pass_risk_unconfirmed": "COST_PATTERN_ONLY_RISK_UNCONFIRMED",
+    "crossing_zero_sparse_or_inapplicable": "UNIDENTIFIED_NO_ZERO_EFFECT_INFERENCE_NO_EXTENSION_UNTIL_PASS",
+    "nonpositive_upper": "REFUTES_CORRESPONDING_POSITIVE_DIRECTION_IN_ORIGINAL_DOMAIN_PROGRAM_ONLY",
+    "positive_or_negative_result_auto_resumes_project": false
+  },
+  "requirement_change_record_must_include": ["old criterion", "direct new evidence", "affected Claim", "why insufficient and resulting wrong conclusion", "minimal correction or claim narrowing", "A/B/C classification", "error repair versus stronger research question"],
+  "historical_evidence_and_failures_preserved": true,
+  "older_broader_plan_requirements_automatically_inherited": false,
+  "scientific_contract_old_executed_protocols_and_stop_decision_unchanged": true,
+  "paper_closure_is_scientific_confirmation": false,
+  "gate_pass_is_coverage_or_source_qualification": false,
+  "manuscript_edit_authorized": false,
+  "research_execution_authorized": false,
+  "future_execution_requires_separate_explicit_user_authorization": true,
+  "E1_supplement": {
+    "narrative": "E1_EVIDENCE_PATHS.md",
+    "machine_record": "e1_evidence_paths.json",
+    "validation": "e1_validation.json",
+    "exposure": "EXPOSURE_UNKNOWN",
+    "E1_closed": false,
+    "evidence_identities": ["POTENTIAL_INDEPENDENT_CONFIRMATION", "PREDECLARED_SECONDARY_INDEPENDENCE_UNESTABLISHED", "EXPLORATORY_RESULT_INFORMED"],
+    "changes_original_requirements_or_authorization": false
+  },
+  "E2_supplement": {
+    "narrative": "E2_ASSET_REUSE.md",
+    "machine_record": "e2_assets.json",
+    "validation": "e2_validation.json",
+    "E2_closed": false,
+    "asset_categories": ["REUSABLE_COMPONENTS", "HISTORICAL_REFERENCE_OR_MATCH_REQUIRED", "MISSING_CURRENT_TASK_FROZEN_PRODUCTS"],
+    "minimum_product_groups": ["F1", "F2", "F3", "F4", "F5"],
+    "new_actual_products_generated": false,
+    "changes_original_requirements_or_authorization": false
+  },
+  "E3_supplement": {
+    "narrative": "E3_IMPLEMENTATION_AND_APPLICABILITY.md",
+    "machine_record": "e3_methods.json",
+    "archive_receipt": "e3_archive_receipt.json",
+    "E3_closed": false,
+    "minimum_evidence_groups": ["V1", "V2", "V3", "V4"],
+    "tests_or_gates_run_this_archive": false,
+    "changes_original_requirements_or_authorization": false
+  }
+}

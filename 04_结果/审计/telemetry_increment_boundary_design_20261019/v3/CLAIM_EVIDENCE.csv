@@ -1,0 +1,13 @@
+claim_id,claim,status,evidence_required,criterion,limit,material_ids
+E1,旧q.95对固定参照非劣,EXISTING_BOUNDED,旧科学契约第9节,原协议范围,不重新解释为C1-F或C2,none
+E2,旧q.925次要有限族最小性,EXISTING_SECONDARY,旧科学契约第9节,原次要范围,不是事前q.95最小选择,none
+E3,WTB未识别最小性,EXISTING_NEGATIVE,旧科学契约第8节,原420共享数据案例,不是420次独立复现,none
+C0,固定策略规则推断可靠性,UNKNOWN,未来真值验证,声明过程覆盖和错误率MC界通过,不保证任意漂移或整体训练算法,S02;S03;S04;B02
+C1-F,历史选定参照间实质收益,UNKNOWN,四profile冻结P/X对;F1,收益下界及逐实例风险严重度,不代表整个P族,D01;D02;T01;T05;S02;S03;S04;B02
+C1M,同估计器D/X描述差异,SECONDARY_DESCRIPTIVE_NOT_RUN,三估计器完整配对,不设正式通过码;全部结果报告,不借F1宣布显著,D02;B02
+C2-G,固定HGB对的高低收益组,UNKNOWN,向前固定标签;第三fold选组;新窗F2,高下界大于delta_H且低上界小于delta_L及观察覆盖支持,不属于C1-F赢家;不等切换资格,D01;D02;T02;T03;T04;S02;S03;S04
+C2-P,条件均值预测优于组合及同信息简单规则,UNKNOWN,G-FULL对G-AV/G-LINEAR;F2,两个配对MSE改善下界超过delta_pred,不等分组或行动边界优越,D01;D02;T02;T04;S02;S03
+C3-T,同站新窗复验,UNKNOWN,一次独立冻结窗口逐profile,只报告实际通过的C1-F/C2-G/C2-P,不跨站不插值不普遍性,D01;D02;S04
+O1,在线切换,DISABLED,无,不启用,无核心阻断,none
+O2,实际工程净收益,DISABLED,无,不启用,不重复推测用途搜索,none
+O3,新事前最小性,DISABLED,无,不启用,旧E2身份保持,none

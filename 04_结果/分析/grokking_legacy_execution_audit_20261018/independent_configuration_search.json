@@ -1,0 +1,113 @@
+[
+  {
+    "path": "C:\\Users\\lidong\\.codex\\config.toml",
+    "sha256": "8ae4b948f5e507ceba8f162ae08744d810df2cc118593f0fb8dc511afd50d66b",
+    "relevant_objects": [
+      {
+        "key_path": "/projects/e:\\grokking",
+        "safe_fields": {},
+        "other_field_names": [
+          "trust_level"
+        ]
+      }
+    ],
+    "newly_offered_fingerprint_preexists_in_file": false
+  },
+  {
+    "path": "C:\\Users\\lidong\\.codex\\config.toml.bak",
+    "sha256": "c4cf6d95cfdac4e96df3e31d9766250e60aba5e447d84bfce87f9e29862e10f2",
+    "relevant_objects": [
+      {
+        "key_path": "/projects/e:\\grokking",
+        "safe_fields": {},
+        "other_field_names": [
+          "trust_level"
+        ]
+      }
+    ],
+    "newly_offered_fingerprint_preexists_in_file": false
+  },
+  {
+    "path": "C:\\Users\\lidong\\.codex\\config.toml.bak20260912",
+    "sha256": "21e2d26a3b4a8bb99b3f33138ff7d64d309378a497584f453d2b4cc52a94d739",
+    "relevant_objects": [
+      {
+        "key_path": "/projects/e:\\grokking",
+        "safe_fields": {},
+        "other_field_names": [
+          "trust_level"
+        ]
+      }
+    ],
+    "newly_offered_fingerprint_preexists_in_file": false
+  },
+  {
+    "path": "C:\\Users\\lidong\\.codex\\.codex-global-state.json",
+    "sha256": "188586920a9e1fe2d3462de2990a915b94a375a09f6651a40f8d08133060f590",
+    "relevant_objects": [
+      {
+        "key_path": "",
+        "safe_fields": {},
+        "other_field_names": [
+          "codex-mobile-has-connected-device",
+          "computer-use-bundled-plugin-auto-install-disabled",
+          "electron-avatar-overlay-open",
+          "electron-desktop-otraces-sample-rate",
+          "electron-initial-follow-up-queue-mode",
+          "electron-internal-update-cdn-enabled",
+          "electron-local-data-migration-id",
+          "electron-local-remote-control-installation-id",
+          "electron-openai-mcp-form-elicitations-enabled",
+          "electron-remote-control-config-migration-completed",
+          "electron-windows-core-runtime-frameworks-enabled",
+          "electron-windows-primary-runtime-frameworks-enabled",
+          "primary-runtime-update-jitter-ms",
+          "remote-project-connection-backfill-completed",
+          "selected-remote-host-id",
+          "electron-prefer-mxc-enabled",
+          "electron-local-remote-control-environment-id"
+        ]
+      },
+      {
+        "key_path": "/codex-managed-remote-connections/0",
+        "safe_fields": {
+          "displayName": "grokking",
+          "hostname": "root@192.168.17.251"
+        },
+        "other_field_names": [
+          "connectionAnalyticsId",
+          "hostId",
+          "identity",
+          "source",
+          "sshPort"
+        ]
+      },
+      {
+        "key_path": "/electron-persisted-atom-state/mcp-server-tools-cache-v2/catalog/0/tools/handoff_thread/inputSchema/properties/destinationHostId",
+        "safe_fields": {},
+        "other_field_names": [
+          "type",
+          "description"
+        ]
+      },
+      {
+        "key_path": "/local-projects/local-28e942afff646bf17fc6b7fdd4c06e53",
+        "safe_fields": {
+          "name": "grokking"
+        },
+        "other_field_names": [
+          "id",
+          "createdAt",
+          "updatedAt"
+        ]
+      }
+    ],
+    "newly_offered_fingerprint_preexists_in_file": false
+  },
+  {
+    "path": "C:\\Users\\lidong\\AppData\\Roaming\\Code\\User\\settings.json",
+    "sha256": "53af99a29fa8a02d2296660290d33c27c9f8579190b0b7dc3e8b65eed230b399",
+    "relevant_objects": [],
+    "newly_offered_fingerprint_preexists_in_file": false
+  }
+]

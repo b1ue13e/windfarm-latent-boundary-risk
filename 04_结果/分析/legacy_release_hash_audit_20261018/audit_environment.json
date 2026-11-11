@@ -1,0 +1,16 @@
+{
+  "utc_timestamp": "2026-10-18T07:52:56.732286+00:00",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "host": "bluelee",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "repository_head_before_correction": "8c39dcdfdaf318ada175917de0022cd6ce543d82",
+  "execution": "Local read-only SHA256/ZIP/Git metadata inspection and documentation/manifest correction; no CUDA/model/calibration experiment; no random sampling",
+  "seeds": "not applicable; no stochastic computation; member seeds201-205 unchanged",
+  "commands": [
+    "git show <ref>:<path>",
+    "git rev-parse <ref>^{commit}",
+    "git log -1 --format=%H %aI %s <ref> -- <path>",
+    "Python hashlib.file_digest on archive/ZIP members/loose files",
+    "Python zipfile.ZipFile; no extraction or repackaging"
+  ]
+}

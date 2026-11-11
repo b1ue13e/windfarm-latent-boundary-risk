@@ -1,0 +1,949 @@
+[
+  {
+    "source": "C:\\Users\\lidong\\.codex\\state_5.sqlite.bak_20260904",
+    "mode": "sqlite read-only",
+    "query_scope": "threads whose cwd matches current project name; metadata only",
+    "rows": [
+      {
+        "thread_id": "019e5dad-6a96-78e0-ab84-e358ef2834c1",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\05\\25\\rollout-2026-05-25T13-48-26-019e5dad-6a96-78e0-ab84-e358ef2834c1.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1779688106,
+        "updated_at_raw": 1779792387,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019e5e30-40c8-7d42-bdf0-70139edcfcdb",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\archived_sessions\\rollout-2026-05-25T16-11-21-019e5e30-40c8-7d42-bdf0-70139edcfcdb.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1779696681,
+        "updated_at_raw": 1779696693,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019e5e30-bed0-7240-829f-779b16f33b08",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\05\\25\\rollout-2026-05-25T16-11-53-019e5e30-bed0-7240-829f-779b16f33b08.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1779696713,
+        "updated_at_raw": 1779714169,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019e635f-2557-7cb2-99cd-410103655145",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\05\\26\\rollout-2026-05-26T16-20-40-019e635f-2557-7cb2-99cd-410103655145.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1779783640,
+        "updated_at_raw": 1779937163,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019e6c73-3e13-7b02-9c3f-a618f4bf9f68",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\05\\28\\rollout-2026-05-28T10-39-12-019e6c73-3e13-7b02-9c3f-a618f4bf9f68.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1779935952,
+        "updated_at_raw": 1780014655,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019e6cfe-3d2b-7ca1-b6af-e3e6dcf880a5",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\05\\28\\rollout-2026-05-28T13-11-01-019e6cfe-3d2b-7ca1-b6af-e3e6dcf880a5.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1779945061,
+        "updated_at_raw": 1779948367,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019e713b-a313-7f93-a983-f9198614c02d",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\05\\29\\rollout-2026-05-29T08-56-34-019e713b-a313-7f93-a983-f9198614c02d.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1780016194,
+        "updated_at_raw": 1780202319,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019e77bd-0f5e-7ea2-8c44-918be89eb7ab",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\05\\30\\rollout-2026-05-30T15-15-39-019e77bd-0f5e-7ea2-8c44-918be89eb7ab.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1780125339,
+        "updated_at_raw": 1780125707,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019e8606-21c2-7c93-8278-a08c099bf060",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\02\\rollout-2026-06-02T09-50-09-019e8606-21c2-7c93-8278-a08c099bf060.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1780365009,
+        "updated_at_raw": 1780393097,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019e9794-c922-7bf3-9c31-ed1b3321448f",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\05\\rollout-2026-06-05T19-39-30-019e9794-c922-7bf3-9c31-ed1b3321448f.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1780659570,
+        "updated_at_raw": 1780659796,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019e9ff9-b518-79a2-b27b-7e1eb40a2997",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\07\\rollout-2026-06-07T10-46-42-019e9ff9-b518-79a2-b27b-7e1eb40a2997.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1780800402,
+        "updated_at_raw": 1780878138,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019ea797-5ba1-7373-8742-b2ed53da695a",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\archived_sessions\\rollout-2026-06-08T22-16-15-019ea797-5ba1-7373-8742-b2ed53da695a.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1780928175,
+        "updated_at_raw": 1781132548,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019eaa7d-07cc-70f0-bc50-80a86fe82883",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\09\\rollout-2026-06-09T11-46-21-019eaa7d-07cc-70f0-bc50-80a86fe82883.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1780976781,
+        "updated_at_raw": 1780976992,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019eb3c5-ec0d-7221-8d6a-ab5ed5cabf8c",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\11\\rollout-2026-06-11T07-02-33-019eb3c5-ec0d-7221-8d6a-ab5ed5cabf8c.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781132553,
+        "updated_at_raw": 1781145239,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019eb465-c58a-7d93-a280-409d113861ce",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\11\\rollout-2026-06-11T09-57-09-019eb465-c58a-7d93-a280-409d113861ce.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781143029,
+        "updated_at_raw": 1781143271,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019eb487-bfe6-77e1-9051-00c19c9dc819",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\archived_sessions\\rollout-2026-06-11T10-34-15-019eb487-bfe6-77e1-9051-00c19c9dc819.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781145255,
+        "updated_at_raw": 1781153419,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019eb505-735e-7f53-93d4-e1e7ae349ec0",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\11\\rollout-2026-06-11T12-51-33-019eb505-735e-7f53-93d4-e1e7ae349ec0.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781153493,
+        "updated_at_raw": 1781164482,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019eb667-2318-7b70-af46-4b92e5425dc9",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\archived_sessions\\rollout-2026-06-11T19-17-53-019eb667-2318-7b70-af46-4b92e5425dc9.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781176673,
+        "updated_at_raw": 1781217787,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019eb6ec-c5f9-7742-91d2-ffffaf938866",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\11\\rollout-2026-06-11T21-43-51-019eb6ec-c5f9-7742-91d2-ffffaf938866.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781185431,
+        "updated_at_raw": 1781185923,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019eb8da-a07c-7fe3-a8de-c2618ef906fb",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\archived_sessions\\rollout-2026-06-12T06-43-16-019eb8da-a07c-7fe3-a8de-c2618ef906fb.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781217796,
+        "updated_at_raw": 1781238239,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019eb9ff-bac1-7443-853b-3446ae19880d",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\12\\rollout-2026-06-12T12-03-24-019eb9ff-bac1-7443-853b-3446ae19880d.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781237004,
+        "updated_at_raw": 1781496440,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019ebad2-b064-7871-8d94-424ef494e885",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\archived_sessions\\rollout-2026-06-12T15-53-50-019ebad2-b064-7871-8d94-424ef494e885.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781250830,
+        "updated_at_raw": 1781252997,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019ebba0-5d5b-76c0-b957-b9f1e7414bf6",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\12\\rollout-2026-06-12T19-38-29-019ebba0-5d5b-76c0-b957-b9f1e7414bf6.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781264309,
+        "updated_at_raw": 1781314827,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019ec0dd-eb52-77c3-8721-f56e5d6d6b90",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\13\\rollout-2026-06-13T20-03-49-019ec0dd-eb52-77c3-8721-f56e5d6d6b90.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781352229,
+        "updated_at_raw": 1781356959,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019ec137-5190-7561-8805-c537e22c2f20",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\13\\rollout-2026-06-13T21-41-28-019ec137-5190-7561-8805-c537e22c2f20.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781358088,
+        "updated_at_raw": 1781365849,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019ec281-c0bd-7490-9f6a-5ea65641353c",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\14\\rollout-2026-06-14T03-42-23-019ec281-c0bd-7490-9f6a-5ea65641353c.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781379743,
+        "updated_at_raw": 1781399127,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019ec3af-f420-7da0-9876-2c049871a524",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\14\\rollout-2026-06-14T09-12-28-019ec3af-f420-7da0-9876-2c049871a524.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781399548,
+        "updated_at_raw": 1781399603,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019ec3b2-4a17-7e33-8161-5d8dc6c47eb3",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\14\\rollout-2026-06-14T09-15-09-019ec3b2-4a17-7e33-8161-5d8dc6c47eb3.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781399709,
+        "updated_at_raw": 1781399732,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019ec3b2-e3af-76e3-bea8-abb442177895",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\14\\rollout-2026-06-14T09-15-47-019ec3b2-e3af-76e3-bea8-abb442177895.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781399747,
+        "updated_at_raw": 1781401433,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019ec3cc-f345-73b3-ad42-74cc3aada788",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\14\\rollout-2026-06-14T09-44-11-019ec3cc-f345-73b3-ad42-74cc3aada788.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781401451,
+        "updated_at_raw": 1781444647,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019ec3ea-d8a1-7430-a415-63d40cceac17",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\14\\rollout-2026-06-14T10-16-53-019ec3ea-d8a1-7430-a415-63d40cceac17.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781403413,
+        "updated_at_raw": 1781403702,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019ec687-0092-7351-8c53-05b4f1ac6294",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\archived_sessions\\rollout-2026-06-14T22-26-42-019ec687-0092-7351-8c53-05b4f1ac6294.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781447202,
+        "updated_at_raw": 1781447857,
+        "git_sha": "d3ddbfdc88d865bc961eabe6b6b949ed5573dca3"
+      },
+      {
+        "thread_id": "019ec691-3d47-7cf1-a423-3d670574c48a",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\14\\rollout-2026-06-14T22-37-52-019ec691-3d47-7cf1-a423-3d670574c48a.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781447867,
+        "updated_at_raw": 1781448419,
+        "git_sha": "d3ddbfdc88d865bc961eabe6b6b949ed5573dca3"
+      },
+      {
+        "thread_id": "019ec697-5608-7df3-b71f-48585fdc167f",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\archived_sessions\\rollout-2026-06-14T22-44-34-019ec697-5608-7df3-b71f-48585fdc167f.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781448274,
+        "updated_at_raw": 1781448314,
+        "git_sha": "d3ddbfdc88d865bc961eabe6b6b949ed5573dca3"
+      },
+      {
+        "thread_id": "019ec699-d1e0-72e1-9dc3-1b7d00bf0f78",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\14\\rollout-2026-06-14T22-47-11-019ec699-d1e0-72e1-9dc3-1b7d00bf0f78.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781448431,
+        "updated_at_raw": 1781451262,
+        "git_sha": "d3ddbfdc88d865bc961eabe6b6b949ed5573dca3"
+      },
+      {
+        "thread_id": "019ec8ce-4930-7673-b648-b236d6b2786f",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\15\\rollout-2026-06-15T09-03-44-019ec8ce-4930-7673-b648-b236d6b2786f.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781485424,
+        "updated_at_raw": 1781497048,
+        "git_sha": "d3ddbfdc88d865bc961eabe6b6b949ed5573dca3"
+      },
+      {
+        "thread_id": "019ecbb3-8ccf-7ea0-bafe-ea9b06ee9a79",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\15\\rollout-2026-06-15T22-33-27-019ecbb3-8ccf-7ea0-bafe-ea9b06ee9a79.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781534007,
+        "updated_at_raw": 1781562418,
+        "git_sha": "bab593b3784f51957dfa382f2dea3b553d4b8714"
+      },
+      {
+        "thread_id": "019ecd67-2511-7261-bc16-472555caa203",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\16\\rollout-2026-06-16T06-29-14-019ecd67-2511-7261-bc16-472555caa203.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781562554,
+        "updated_at_raw": 1781702719,
+        "git_sha": "bab593b3784f51957dfa382f2dea3b553d4b8714"
+      },
+      {
+        "thread_id": "019ecd6b-03e7-72f0-8a12-38ca5d6f4a1d",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\16\\rollout-2026-06-16T06-33-28-019ecd6b-03e7-72f0-8a12-38ca5d6f4a1d.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781562808,
+        "updated_at_raw": 1781626289,
+        "git_sha": "bab593b3784f51957dfa382f2dea3b553d4b8714"
+      },
+      {
+        "thread_id": "019ed2cf-2670-70d3-9e33-ed524d2e1a8e",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\17\\rollout-2026-06-17T07-40-55-019ed2cf-2670-70d3-9e33-ed524d2e1a8e.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781653255,
+        "updated_at_raw": 1781690107,
+        "git_sha": "810f1889861d5d6afe4ed9045e137b53643741ad"
+      },
+      {
+        "thread_id": "019ed5df-3821-7291-9568-84cfb592a38f",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\17\\rollout-2026-06-17T21-57-23-019ed5df-3821-7291-9568-84cfb592a38f.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781704643,
+        "updated_at_raw": 1781704917,
+        "git_sha": "aa9376c820a920f8c80507bfb85b64fcb1dd90d4"
+      },
+      {
+        "thread_id": "019ed732-8784-7b50-a419-66d584ae0d4c",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\18\\rollout-2026-06-18T04-07-56-019ed732-8784-7b50-a419-66d584ae0d4c.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781726876,
+        "updated_at_raw": 1781728631,
+        "git_sha": "aa9376c820a920f8c80507bfb85b64fcb1dd90d4"
+      },
+      {
+        "thread_id": "019ed7e2-5497-7b91-b135-357537b57cef",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\18\\rollout-2026-06-18T07-19-59-019ed7e2-5497-7b91-b135-357537b57cef.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781738399,
+        "updated_at_raw": 1782130322,
+        "git_sha": "2d3f2177caff4e7e38475520a7164d90ba9f9bf2"
+      },
+      {
+        "thread_id": "019ed7f4-736e-7e00-b3fe-ab0ad164a6d6",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\18\\rollout-2026-06-18T07-39-44-019ed7f4-736e-7e00-b3fe-ab0ad164a6d6.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781739584,
+        "updated_at_raw": 1781742797,
+        "git_sha": "2d3f2177caff4e7e38475520a7164d90ba9f9bf2"
+      },
+      {
+        "thread_id": "019ed86d-d907-7e93-8f3f-9170efa0b309",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\18\\rollout-2026-06-18T09-52-21-019ed86d-d907-7e93-8f3f-9170efa0b309.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781747541,
+        "updated_at_raw": 1781749298,
+        "git_sha": "197813f3a086cc3d9dfd464dc065a850f8dffa83"
+      },
+      {
+        "thread_id": "019ed891-b56e-76c0-be80-91eb3ced1d81",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\18\\rollout-2026-06-18T10-31-32-019ed891-b56e-76c0-be80-91eb3ced1d81.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781749892,
+        "updated_at_raw": 1781768584,
+        "git_sha": "bbb2b433ab75290b6192174fce56d540c9d0d74d"
+      },
+      {
+        "thread_id": "019eda49-03ff-77f2-ba30-0ad0fdddc393",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\archived_sessions\\rollout-2026-06-18T18-31-23-019eda49-03ff-77f2-ba30-0ad0fdddc393.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781778683,
+        "updated_at_raw": 1781781602,
+        "git_sha": "ed883273a4ae9ae4735bd4d455b7840289e7b732"
+      },
+      {
+        "thread_id": "019eda49-2f61-7ad0-a2b8-c8be162937a4",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\18\\rollout-2026-06-18T18-31-35-019eda49-2f61-7ad0-a2b8-c8be162937a4.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781778695,
+        "updated_at_raw": 1781778711,
+        "git_sha": "ed883273a4ae9ae4735bd4d455b7840289e7b732"
+      },
+      {
+        "thread_id": "019ede54-7d5a-7971-919f-5e7650ac7ffd",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\archived_sessions\\rollout-2026-06-19T13-22-22-019ede54-7d5a-7971-919f-5e7650ac7ffd.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781846542,
+        "updated_at_raw": 1781846961,
+        "git_sha": "b3fed3868b648c20b04730dd8a15b1e70896f446"
+      },
+      {
+        "thread_id": "019ede73-59a6-7b92-902c-7eb21d991bb3",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\archived_sessions\\rollout-2026-06-19T13-56-07-019ede73-59a6-7b92-902c-7eb21d991bb3.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781848567,
+        "updated_at_raw": 1781850896,
+        "git_sha": "30d7fc554d3c93a0e0e8e5ce296e356a04a808e9"
+      },
+      {
+        "thread_id": "019edf6b-ab64-7081-9326-2c4d941af864",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\19\\rollout-2026-06-19T18-27-17-019edf6b-ab64-7081-9326-2c4d941af864.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1781864837,
+        "updated_at_raw": 1782023875,
+        "git_sha": "f3fc7ff78941c4a857c801a7a074a2b6483639ca"
+      },
+      {
+        "thread_id": "019ee917-8ce8-7113-83c5-f02dcb4bd0ca",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\21\\rollout-2026-06-21T15-31-41-019ee917-8ce8-7113-83c5-f02dcb4bd0ca.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782027101,
+        "updated_at_raw": 1782028366,
+        "git_sha": "2e08bac439317af88ad836298f14a3463dae0714"
+      },
+      {
+        "thread_id": "019ee934-a7fd-7431-8b67-882febddce2a",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\21\\rollout-2026-06-21T16-03-30-019ee934-a7fd-7431-8b67-882febddce2a.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782029010,
+        "updated_at_raw": 1782045148,
+        "git_sha": "e0ee70c62292cc1de076099584ea035bfed722cc"
+      },
+      {
+        "thread_id": "019eea35-c05f-7fb2-b98e-26f6284d27d5",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\21\\rollout-2026-06-21T20-44-16-019eea35-c05f-7fb2-b98e-26f6284d27d5.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782045856,
+        "updated_at_raw": 1782130670,
+        "git_sha": "7133af65a926cb6580ef0f20a0af0ff1ee0b66f6"
+      },
+      {
+        "thread_id": "019ef375-8765-7803-a521-79c99b54a1ef",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\23\\rollout-2026-06-23T15-50-34-019ef375-8765-7803-a521-79c99b54a1ef.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782201034,
+        "updated_at_raw": 1782202287,
+        "git_sha": "96ad856d1a4b239f4c5e426752b78e90f040bc29"
+      },
+      {
+        "thread_id": "019ef39b-8957-7792-8df3-07e319eb7144",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\23\\rollout-2026-06-23T16-32-02-019ef39b-8957-7792-8df3-07e319eb7144.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782203522,
+        "updated_at_raw": 1782204587,
+        "git_sha": "4b358bda889655b2af7c7e2f4d8474f1ff99b857"
+      },
+      {
+        "thread_id": "019ef3c8-ab49-7521-befa-b957145d9841",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\23\\rollout-2026-06-23T17-21-20-019ef3c8-ab49-7521-befa-b957145d9841.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782206480,
+        "updated_at_raw": 1782226698,
+        "git_sha": "ebb9a9db8e9b9bf81a3e66eed8f75ef4732e4dac"
+      },
+      {
+        "thread_id": "019ef81e-fd06-7173-a4fe-71bf01279c42",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\24\\rollout-2026-06-24T13-34-05-019ef81e-fd06-7173-a4fe-71bf01279c42.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782279245,
+        "updated_at_raw": 1782283837,
+        "git_sha": "d3d7e4ef892106e5b1b069e86beee48dd3eb92cd"
+      },
+      {
+        "thread_id": "019ef942-224d-7a71-96e4-87cb3346daca",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\24\\rollout-2026-06-24T18-52-02-019ef942-224d-7a71-96e4-87cb3346daca.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782298322,
+        "updated_at_raw": 1782313118,
+        "git_sha": "bcc8eb99835b9ce1ba37db9732c694cafd260dcf"
+      },
+      {
+        "thread_id": "019f0a62-86cd-7381-8e4e-ccc146423595",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\28\\rollout-2026-06-28T02-41-02-019f0a62-86cd-7381-8e4e-ccc146423595.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782585662,
+        "updated_at_raw": 1782588160,
+        "git_sha": "6c6c885e827aeeb2ef02bc9404ace95c48c278de"
+      },
+      {
+        "thread_id": "019f0a93-5301-7741-b722-a4d4060e2fca",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\28\\rollout-2026-06-28T03-34-20-019f0a93-5301-7741-b722-a4d4060e2fca.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782588860,
+        "updated_at_raw": 1782604570,
+        "git_sha": "0a7773dae6e03d16704b2b2f48a5d301ff1953b6"
+      },
+      {
+        "thread_id": "019f0cce-a99d-7012-8772-3eb9055cbd24",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\28\\rollout-2026-06-28T13-58-23-019f0cce-a99d-7012-8772-3eb9055cbd24.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782626303,
+        "updated_at_raw": 1782632561,
+        "git_sha": "7e547b9966112975ae6e995cbc34c579d7e7972e"
+      },
+      {
+        "thread_id": "019f0d5d-ba8e-7e82-b4f8-53d1588a67e5",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\28\\rollout-2026-06-28T16-34-39-019f0d5d-ba8e-7e82-b4f8-53d1588a67e5.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782635679,
+        "updated_at_raw": 1782645416,
+        "git_sha": "911934aab6d50235654c33b08a030a49b1560228"
+      },
+      {
+        "thread_id": "019f0eb3-77cb-7383-b92e-7a1cf5294149",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\28\\rollout-2026-06-28T22-47-55-019f0eb3-77cb-7383-b92e-7a1cf5294149.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782658075,
+        "updated_at_raw": 1782659145,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019f118a-11a3-7ec0-99a8-205adc699fc0",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\29\\rollout-2026-06-29T12-01-31-019f118a-11a3-7ec0-99a8-205adc699fc0.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782705691,
+        "updated_at_raw": 1782705699,
+        "git_sha": "95523bbdf74a15d7bebfc1dd3cb35f655a0b5e3b"
+      },
+      {
+        "thread_id": "019f1457-6a43-7433-a916-3bbc5615815a",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\06\\30\\rollout-2026-06-30T01-05-06-019f1457-6a43-7433-a916-3bbc5615815a.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782752706,
+        "updated_at_raw": 1782891640,
+        "git_sha": "899128dd684f3f6a1f4df9a58667e659a1e1c788"
+      },
+      {
+        "thread_id": "019f208d-257f-7450-93b6-67b9cb099355",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T09-59-13-019f208d-257f-7450-93b6-67b9cb099355.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782957553,
+        "updated_at_raw": 1782976113,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f208f-9963-75c2-8077-68e845facc9b",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T10-01-54-019f208f-9963-75c2-8077-68e845facc9b.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782957714,
+        "updated_at_raw": 1782957937,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019f208f-c146-70b1-871a-b77a308dab30",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T10-02-00-019f208f-c146-70b1-871a-b77a308dab30.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782957720,
+        "updated_at_raw": 1782958079,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f208f-cc43-77c3-859c-8ebfb3638033",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T10-02-02-019f208f-cc43-77c3-859c-8ebfb3638033.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782957722,
+        "updated_at_raw": 1782958103,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f208f-d17a-7fb2-a13e-a2a9cf0189f2",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T10-02-04-019f208f-d17a-7fb2-a13e-a2a9cf0189f2.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782957724,
+        "updated_at_raw": 1782958761,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f208f-e526-73c2-afc0-3af87035009e",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T10-02-09-019f208f-e526-73c2-afc0-3af87035009e.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782957729,
+        "updated_at_raw": 1782957999,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f208f-eb19-7e22-b5a9-9230a9b4641a",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T10-02-10-019f208f-eb19-7e22-b5a9-9230a9b4641a.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782957730,
+        "updated_at_raw": 1782958114,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f209f-f564-73b0-83a6-0672e0f96f6a",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T10-19-46-019f209f-f564-73b0-83a6-0672e0f96f6a.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782958786,
+        "updated_at_raw": 1782958961,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f20ca-e0da-7240-b411-66689f0a7527",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T11-06-41-019f20ca-e0da-7240-b411-66689f0a7527.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782961601,
+        "updated_at_raw": 1782961853,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f20ca-fe15-7750-9fdc-d45c58b381f5",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T11-06-42-019f20ca-fe15-7750-9fdc-d45c58b381f5.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782961602,
+        "updated_at_raw": 1782962104,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f20ca-ff2f-7902-ba9c-7bc5b5e1b30e",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T11-06-44-019f20ca-ff2f-7902-ba9c-7bc5b5e1b30e.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782961604,
+        "updated_at_raw": 1782961981,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f20cb-0699-7853-b18e-67ee6a9a2700",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T11-06-44-019f20cb-0699-7853-b18e-67ee6a9a2700.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782961604,
+        "updated_at_raw": 1782961843,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f20cb-0830-78f3-9b7d-8838aea6a359",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T11-06-44-019f20cb-0830-78f3-9b7d-8838aea6a359.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782961604,
+        "updated_at_raw": 1782961840,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f215b-b9a2-7d71-8e29-04049cde4e6a",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T13-44-52-019f215b-b9a2-7d71-8e29-04049cde4e6a.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782971087,
+        "updated_at_raw": 1782971173,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019f215c-07d8-7da0-87da-48b0390bdb8b",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T13-45-12-019f215c-07d8-7da0-87da-48b0390bdb8b.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782971112,
+        "updated_at_raw": 1782975705,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019f215c-58da-72c0-aeb9-932a33a89a01",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T13-45-33-019f215c-58da-72c0-aeb9-932a33a89a01.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782971133,
+        "updated_at_raw": 1782975468,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019f215c-9bca-7f32-9f76-7af5440f7758",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T13-45-50-019f215c-9bca-7f32-9f76-7af5440f7758.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782971150,
+        "updated_at_raw": 1782971237,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f215c-df10-7640-a343-7cf7df89c564",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T13-46-07-019f215c-df10-7640-a343-7cf7df89c564.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782971167,
+        "updated_at_raw": 1782971296,
+        "git_sha": "419ff54d12cf50cc62cb76ac4470fb34d37fe915"
+      },
+      {
+        "thread_id": "019f215d-34c9-7053-9c2c-4324dceb189d",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T13-46-29-019f215d-34c9-7053-9c2c-4324dceb189d.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1782971189,
+        "updated_at_raw": 1782976003,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019f2316-692f-7b21-b4cb-f746757593d5",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T21-48-20-019f2316-692f-7b21-b4cb-f746757593d5.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783000100,
+        "updated_at_raw": 1783059990,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f2318-5b23-7c12-8b1c-3cf723da89bb",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T21-50-31-019f2318-5b23-7c12-8b1c-3cf723da89bb.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783000231,
+        "updated_at_raw": 1783000961,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019f2318-9097-7142-b391-320054708879",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T21-50-45-019f2318-9097-7142-b391-320054708879.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783000245,
+        "updated_at_raw": 1783001037,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019f2318-d988-7393-9816-6122092d1f54",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T21-51-05-019f2318-d988-7393-9816-6122092d1f54.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783000258,
+        "updated_at_raw": 1783000951,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019f2319-2600-7050-b3e0-1285994e7b46",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T21-51-23-019f2319-2600-7050-b3e0-1285994e7b46.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783000278,
+        "updated_at_raw": 1783000951,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019f2319-7365-76b0-a63f-db4df9d5454f",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T21-51-43-019f2319-7365-76b0-a63f-db4df9d5454f.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783000298,
+        "updated_at_raw": 1783001076,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019f2319-b171-7301-a1b7-606a49fef0ec",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T21-51-59-019f2319-b171-7301-a1b7-606a49fef0ec.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783000319,
+        "updated_at_raw": 1783000924,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f2345-e31c-7c81-818f-7a4a7df3cd82",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T22-40-15-019f2345-e31c-7c81-818f-7a4a7df3cd82.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783003215,
+        "updated_at_raw": 1783003555,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f2345-f75c-7cf0-886c-50e24bed8776",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T22-40-19-019f2345-f75c-7cf0-886c-50e24bed8776.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783003219,
+        "updated_at_raw": 1783003463,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f2346-073e-78d2-9be1-f2705885a1e7",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T22-40-19-019f2346-073e-78d2-9be1-f2705885a1e7.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783003219,
+        "updated_at_raw": 1783003476,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f2346-0854-7393-a61a-51f35ccf17b8",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T22-40-25-019f2346-0854-7393-a61a-51f35ccf17b8.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783003225,
+        "updated_at_raw": 1783003526,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f2346-1d06-7d61-8e8d-061b49caa067",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T22-40-27-019f2346-1d06-7d61-8e8d-061b49caa067.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783003227,
+        "updated_at_raw": 1783003520,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f2346-2726-7732-8ca8-f46305598c33",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T22-40-33-019f2346-2726-7732-8ca8-f46305598c33.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783003233,
+        "updated_at_raw": 1783003711,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f2362-743c-7401-9721-41a89ce25d96",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T23-11-27-019f2362-743c-7401-9721-41a89ce25d96.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783005087,
+        "updated_at_raw": 1783005234,
+        "git_sha": null
+      },
+      {
+        "thread_id": "019f2362-9c43-74e0-8cc5-b97d37001750",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T23-11-33-019f2362-9c43-74e0-8cc5-b97d37001750.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783005093,
+        "updated_at_raw": 1783006459,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f2362-afb0-7fd1-9fb8-9b658c16d945",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T23-11-38-019f2362-afb0-7fd1-9fb8-9b658c16d945.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783005098,
+        "updated_at_raw": 1783005217,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f2362-d3d1-7ab3-abb7-a8c1104674b6",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T23-11-47-019f2362-d3d1-7ab3-abb7-a8c1104674b6.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783005107,
+        "updated_at_raw": 1783005797,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f2362-e886-7843-996c-703274aa88b4",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T23-11-52-019f2362-e886-7843-996c-703274aa88b4.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783005112,
+        "updated_at_raw": 1783010705,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f2362-f8f4-76a0-b29c-69ec3efb4006",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\02\\rollout-2026-07-02T23-11-57-019f2362-f8f4-76a0-b29c-69ec3efb4006.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783005117,
+        "updated_at_raw": 1783006471,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f23b8-4008-7752-a4ba-56dc5487c57e",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\03\\rollout-2026-07-03T00-45-06-019f23b8-4008-7752-a4ba-56dc5487c57e.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783010706,
+        "updated_at_raw": 1783014335,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f23ef-a3c2-7251-a5a1-8fd8dc7dfae8",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\03\\rollout-2026-07-03T01-45-35-019f23ef-a3c2-7251-a5a1-8fd8dc7dfae8.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783014335,
+        "updated_at_raw": 1783014548,
+        "git_sha": "d3f22a91e34b20778433ef3d1f57595f00f58cc4"
+      },
+      {
+        "thread_id": "019f268f-79bd-7f32-8158-1b445876065e",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\03\\rollout-2026-07-03T13-59-29-019f268f-79bd-7f32-8158-1b445876065e.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783058369,
+        "updated_at_raw": 1783058617,
+        "git_sha": "827b1b8e665d5cdf647b241931b18a37dbbf4ef3"
+      },
+      {
+        "thread_id": "019f268f-8dda-7130-a60e-268181c70385",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\03\\rollout-2026-07-03T13-59-30-019f268f-8dda-7130-a60e-268181c70385.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783058370,
+        "updated_at_raw": 1783058566,
+        "git_sha": "827b1b8e665d5cdf647b241931b18a37dbbf4ef3"
+      },
+      {
+        "thread_id": "019f268f-905e-7192-bc59-795780847936",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\03\\rollout-2026-07-03T13-59-30-019f268f-905e-7192-bc59-795780847936.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783058370,
+        "updated_at_raw": 1783058568,
+        "git_sha": "827b1b8e665d5cdf647b241931b18a37dbbf4ef3"
+      },
+      {
+        "thread_id": "019f268f-9173-76f0-8f7e-9290c97374c8",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\03\\rollout-2026-07-03T13-59-31-019f268f-9173-76f0-8f7e-9290c97374c8.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783058371,
+        "updated_at_raw": 1783058578,
+        "git_sha": "827b1b8e665d5cdf647b241931b18a37dbbf4ef3"
+      },
+      {
+        "thread_id": "019f268f-934b-7f53-b008-b731295f6a65",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\03\\rollout-2026-07-03T13-59-31-019f268f-934b-7f53-b008-b731295f6a65.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783058371,
+        "updated_at_raw": 1783059795,
+        "git_sha": "827b1b8e665d5cdf647b241931b18a37dbbf4ef3"
+      },
+      {
+        "thread_id": "019f268f-9502-7b20-8423-f83edc723638",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\07\\03\\rollout-2026-07-03T13-59-32-019f268f-9502-7b20-8423-f83edc723638.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1783058372,
+        "updated_at_raw": 1783059831,
+        "git_sha": "827b1b8e665d5cdf647b241931b18a37dbbf4ef3"
+      },
+      {
+        "thread_id": "01a0686e-2013-76e3-b983-ed0184da3b5b",
+        "rollout_path": "\\\\?\\C:\\Users\\lidong\\.codex\\sessions\\2026\\09\\04\\rollout-2026-09-04T02-00-48-01a0686e-2013-76e3-b983-ed0184da3b5b.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1788458448,
+        "updated_at_raw": 1788482726,
+        "git_sha": "5d649c380cd8c7d89599019720a51b6318220be1"
+      },
+      {
+        "thread_id": "01a06a0c-0fd7-7f30-b8ed-c539271d4886",
+        "rollout_path": "C:\\Users\\lidong\\.codex\\sessions\\2026\\09\\04\\rollout-2026-09-04T09-32-55-01a06a0c-0fd7-7f30-b8ed-c539271d4886.jsonl",
+        "rollout_exists_now": false,
+        "created_at_raw": 1788485575,
+        "updated_at_raw": 1788485836,
+        "git_sha": "c6d61ff58d6ac84ef584673f2f682a6ff0486f3a"
+      }
+    ]
+  },
+  {
+    "source": "C:\\Users\\lidong\\.codex\\thread_history_1.sqlite",
+    "mode": "sqlite read-only",
+    "query_token": "trainweight_full_rerun_20260830",
+    "created_before_utc": "2026-09-05",
+    "matching_records": []
+  },
+  {
+    "source": "C:\\Users\\lidong\\.codex\\thread_history_1.sqlite",
+    "mode": "sqlite read-only",
+    "query_token": "paper3_audit_rerun_20260830",
+    "created_before_utc": "2026-09-05",
+    "matching_records": []
+  },
+  {
+    "source": "C:\\Users\\lidong\\.codex\\logs_2.sqlite",
+    "mode": "sqlite read-only",
+    "query_token": "trainweight_full_rerun_20260830",
+    "created_before_utc": "2026-09-05",
+    "matching_records": []
+  },
+  {
+    "source": "C:\\Users\\lidong\\.codex\\logs_2.sqlite",
+    "mode": "sqlite read-only",
+    "query_token": "paper3_audit_rerun_20260830",
+    "created_before_utc": "2026-09-05",
+    "matching_records": []
+  }
+]

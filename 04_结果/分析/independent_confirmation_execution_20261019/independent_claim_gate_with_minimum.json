@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "primary_status": "ALL_FROZEN_CANDIDATES_CONFIRMED",
+  "historical_workers_bound": 550,
+  "actual_review_workers": 550,
+  "one_unlock_event": true,
+  "code_and_protocol_frozen_before_unlock": true,
+  "original_gates_unchanged": true,
+  "secondary_cases_checked": 90,
+  "scope": "Archive/provenance/claim consistency; no model refit, bootstrap, coverage or deployment certification"
+}

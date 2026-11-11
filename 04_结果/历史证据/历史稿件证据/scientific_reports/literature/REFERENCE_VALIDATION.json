@@ -1,0 +1,151 @@
+{
+  "status": "EXISTING_VERIFIED_TITLE_DOI_RECORDS_REUSED",
+  "articles": [
+    {
+      "citekey": "kandemir2026",
+      "doi": "10.1016/j.mlwa.2026.100957",
+      "title": "Explainable uncertainty quantification in probabilistic wind power forecasting",
+      "year": "2026",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "mainstream",
+      "read_scope": "Prior complete 15-page reading record; this round selectively rechecked pp6-9 and13; Tables2/5/6; not code/data/SI replication",
+      "metadata_copy": "literature/mlwa_crossref_previous_verified.json",
+      "scope_note": "Code/private data/external SI not obtained; local perturbation is not conditional information necessity"
+    },
+    {
+      "citekey": "wang2026",
+      "doi": "10.1016/j.seta.2026.105438",
+      "title": "Reserve-risk-oriented regime-calibrated interval forecasting for wind power integration under extreme fluctuations",
+      "year": "2026",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "mainstream",
+      "read_scope": "Publisher abstract/introduction/contribution and section previews; root and prior source notes; not whole methods/results",
+      "metadata_copy": "literature/seta_crossref_previous_verified.json",
+      "scope_note": "All inputs, pitch use, complete ablations and added decision analyses UNKNOWN"
+    },
+    {
+      "citekey": "kometsi2026",
+      "doi": "10.1016/j.egyai.2026.100900",
+      "title": "State-Adaptive Forecast Error Recalibration for probabilistic wind power forecasting",
+      "year": "2026",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "mainstream",
+      "read_scope": "Final abstract and fixed public source cells2/23/25/27/29/31/33/35/37/57-58; source only; no outputs/measurements executed or retrieved",
+      "metadata_copy": "literature/safer_crossref_previous_verified.json",
+      "scope_note": "Final PDF and agreement of all paper details with code unknown; no raw/processed input audit"
+    },
+    {
+      "citekey": "wen2024",
+      "doi": "10.1016/j.energy.2024.131544",
+      "title": "Probabilistic wind power forecasting resilient to missing values: An adaptive quantile regression approach",
+      "year": "2024",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "mainstream",
+      "read_scope": "Author v3 §§2-4,5-6; key inputs/missingness/metrics pp13-16; selected full-text not complete proof/code audit",
+      "metadata_copy": "literature/wen2024_crossref.json",
+      "scope_note": "Author manuscript not certified text-identical to final article; dataset values not verified"
+    },
+    {
+      "citekey": "meng2026",
+      "doi": "10.1109/tste.2025.3611370",
+      "title": "Probabilistic Wind Power Forecasting With Missing Data Tolerance: An End-to-End Nonparametric Approach",
+      "year": "2026",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "mainstream",
+      "read_scope": "Accepted manuscript §§II-IV, pp5-10 application/experiments; first page and pp6/8 visually checked; no author code/data",
+      "metadata_copy": "literature/meng2026_crossref.json",
+      "scope_note": "Accepted/final text identity and actual code preprocessing not independently verified"
+    },
+    {
+      "citekey": "stratigakos2026",
+      "doi": "10.1109/tsg.2025.3620957",
+      "title": "Learning Data-Driven Uncertainty Set Partitions for Robust and Adaptive Energy Forecasting With Missing Data",
+      "year": "2026",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "mainstream",
+      "read_scope": "§§II-V; pp6-11 experiment design/results and RMSE; pp7 visually checked; not code/data replication",
+      "metadata_copy": "literature/stratigakos2026_crossref.json",
+      "scope_note": "No field communication delay prevalence; old forecast operational availability is their assumption"
+    },
+    {
+      "citekey": "pritchard2011",
+      "doi": "10.1002/we.416",
+      "title": "Short‐term variations in wind power: Some quantile‐type models for probabilistic forecasting",
+      "year": "2011",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "mainstream",
+      "read_scope": "Existing complete reader+math-image record; this round selectively rechecked §§3-6, TablesIII/IV and conclusions; no independent formula reproduction",
+      "metadata_copy": "literature/pritchard2011_crossref.json",
+      "scope_note": "Reader snapshot is not original publisher HTML/PDF; no global information redundancy proof"
+    },
+    {
+      "citekey": "iversen2017",
+      "doi": "10.1002/we.1988",
+      "title": "Leveraging stochastic differential equations for probabilistic forecasting of wind power using a dynamic power curve",
+      "year": "2017",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "mainstream",
+      "read_scope": "Full-text selected §§3.1/3.2,4 and TablesVI/VII; printed35-37/41-42; not all numerical implementation",
+      "metadata_copy": "literature/iversen2017_crossref.json",
+      "scope_note": "No causally identified sensor necessity; models differ under absent wind-speed observability"
+    },
+    {
+      "citekey": "bessa2011",
+      "doi": "10.1002/we.444",
+      "title": "‘Good’ or ‘bad’ wind power forecasts: a relative concept",
+      "year": "2011",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "foundational",
+      "read_scope": "Root read abstract,§1,§2 consumer paradigm fragments,§3training criteria end,§4.1/4.2 and full§5; not all tables/math-images",
+      "metadata_copy": "literature/sophia2011_crossref.json",
+      "scope_note": "All numeric tables/formula figures not checked"
+    },
+    {
+      "citekey": "phipps2022",
+      "doi": "10.1002/we.2736",
+      "title": "Evaluating ensemble post‐processing for wind power forecasts",
+      "year": "2022",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "adjacent",
+      "read_scope": "Prior whole-PDF inclAppendixA reading record; this round selectively rechecked§3.2 and§§5-6; no exhaustive curve-pixel audit",
+      "metadata_copy": "literature/phipps2022_crossref.json",
+      "scope_note": "No formal equivalence follows from similar point results; no runtime benefit transferred"
+    },
+    {
+      "citekey": "dantas2026",
+      "doi": "10.1002/we.70079",
+      "title": "Seamless Short‐ to Mid‐Term Probabilistic Wind Power Forecasting",
+      "year": "2026",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "adjacent",
+      "read_scope": "Prior19page full reading record; this round§§2-4 and test-year/horizon/theoretical-reference passages; independentSI not obtained",
+      "metadata_copy": "literature/dantas2026_crossref.json",
+      "scope_note": "Test-period winner explicitly theoretical reference; cannot transfer as historical frozen selection"
+    },
+    {
+      "citekey": "zhao2021",
+      "doi": "10.1109/tpwrs.2021.3053847",
+      "title": "Operating Reserve Quantification Using Prediction Intervals of Wind Power: An Integrated Probabilistic Forecasting and Decision Methodology",
+      "year": "2021",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "foundational",
+      "read_scope": "IEEE publisher abstract and method/section index plus Crossref; no full text",
+      "metadata_copy": "literature/zhao2021_crossref.json",
+      "scope_note": "Complete inputs/ablations/auxiliary analyses unknown"
+    },
+    {
+      "citekey": "sun2022",
+      "doi": "10.1063/5.0087144",
+      "title": "Machine learning derived dynamic operating reserve requirements in high-renewable power systems",
+      "year": "2022",
+      "year_basis": "journal issue year; earlier online dates retained in matrix",
+      "role": "mainstream",
+      "read_scope": "Prior source selective-method notes; current retained printed036303-1,-2 abstract/introduction; no new full-article read",
+      "metadata_copy": "literature/sun2022_crossref.json",
+      "scope_note": "Full methods/runtime economics not rechecked this round"
+    }
+  ],
+  "dataset": "10.6084/m9.figshare.24798654.v2",
+  "no_global_novelty_certification": true,
+  "SETA_and_SAFER_final_fulltexts_unavailable": true
+}

@@ -1,0 +1,13 @@
+id,source,type,url_or_path,read_scope,limit
+S01,SAFER journal record,primary_abstract,https://www.sciencedirect.com/science/article/pii/S2666546826002260,OA metadata/abstract/DataAvailability pointsauthorrepo,Mainarticle body notobtained;not fulltext
+S02,SAFER pinned method,primary_author_code,https://github.com/VinDW/SAFER-Wind-Forecasting/blob/3b0d501ce63425721c17d45cc76835af2846b24f/SAFER_Wind_Research_.ipynb,Allsource fields extracted;coremethod cells read;output ignored;blob verified,"No codeexecution,datafiles,outputsorfullarticle rereview"
+S03,SETA publisher,primary_preview,https://www.sciencedirect.com/science/article/pii/S2213138826006247,Abstract intro contributions section snippets,Not complete methods;API429no retry
+S04,SAFER older preprint,primary_preprint_metadata,https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7051828,Metadata abstract only,Differenttitle/order/results;not substituted forfinalpaper
+S05,Towie,primary_dataset_metadata,https://zenodo.org/records/22662930,Current filecalendar/knowncontrol/sourceidentity,No archivepreview or measurementdownload
+S06,SMARTEOLE,primary_dataset_metadata,https://zenodo.org/records/7342466,7machines/timeperiod/pre-filter rule,No ZIP listing or retrieval;notqualifiednewconfirm
+S07,Greece descriptor,primary_descriptor_metadata,https://zenodo.org/records/15781269,Recordcontains6.47MBdescriptorPDFonly,Dataset14546479API410;didnot fetchmeasurementorPDF
+S08,SaintHilaire descriptor,primary_full_article,https://wes.copernicus.org/articles/10/1929/2025/wes-10-1929-2025.html,Site/SCADAvariables/4of6scope/DataAvailability,No measuredCSVrequested;actualaccessnotqualified
+S09,SaintHilaire registry,primary_registry,https://api.datacite.org/dois/10.25326/623,2020Dec-2024Jan;10min;fieldcategories;catalogueURL,rightsListempty notproofpermissiondenied;cataloguefetchfailed
+S10,TSTEscope,primary_venue,https://ieee-pes.org/publications/transactions-on-sustainable-energy/,Gridintegration/design/control/evaluation,No inferredacceptanceruleormandatoryindependentyear
+S11,oldsourceconsumption,local_direct_metadata,artifacts/final_evidence_package/export/tables/external_wind_cache_status.csv,source_filesincludes2016-24,Doesnotproveeveryrowhumanviewed
+S12,forecastpublication,local_code,scripts/run_decision_information_development.py;windfarm_moe/state_measurement.py,nominalindexversusactualsingleFfunctioninput,Noactualroutingreceipt

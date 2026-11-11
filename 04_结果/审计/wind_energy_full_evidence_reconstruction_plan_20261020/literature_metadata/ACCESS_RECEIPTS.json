@@ -1,0 +1,1235 @@
+[
+  {
+    "kind": "crossref",
+    "name": "mlwa",
+    "requested_url": "https://api.crossref.org/works/10.1016/j.mlwa.2026.100957",
+    "accessed_utc": "2026-10-20T12:48:39.522525+00:00",
+    "status": 429,
+    "final_url": "https://api.crossref.org/works/10.1016/j.mlwa.2026.100957",
+    "bytes": 0,
+    "content_type": null,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "outcome": "not_full_text"
+  },
+  {
+    "kind": "crossref",
+    "name": "seta",
+    "requested_url": "https://api.crossref.org/works/10.1016/j.seta.2026.105438",
+    "accessed_utc": "2026-10-20T12:48:39.522525+00:00",
+    "status": 429,
+    "final_url": "https://api.crossref.org/works/10.1016/j.seta.2026.105438",
+    "bytes": 0,
+    "content_type": null,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "outcome": "not_full_text"
+  },
+  {
+    "kind": "crossref",
+    "name": "safer",
+    "requested_url": "https://api.crossref.org/works/10.1016/j.egyai.2026.100900",
+    "accessed_utc": "2026-10-20T12:48:39.523526+00:00",
+    "status": 429,
+    "final_url": "https://api.crossref.org/works/10.1016/j.egyai.2026.100900",
+    "bytes": 0,
+    "content_type": null,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "outcome": "not_full_text"
+  },
+  {
+    "kind": "crossref",
+    "name": "wen2024",
+    "requested_url": "https://api.crossref.org/works/10.1016/j.energy.2024.131544",
+    "accessed_utc": "2026-10-20T12:48:39.523526+00:00",
+    "status": 200,
+    "final_url": "https://api.crossref.org/works/10.1016/j.energy.2024.131544",
+    "bytes": 21400,
+    "content_type": "application/json",
+    "sha256": "ddb5152a3baa52e4b237712c802d7669598987ccd25dca2eaff7d8345da9f454",
+    "summary": {
+      "DOI": "10.1016/j.energy.2024.131544",
+      "title": [
+        "Probabilistic wind power forecasting resilient to missing values: An adaptive quantile regression approach"
+      ],
+      "author": [
+        {
+          "ORCID": "https://orcid.org/0000-0001-8263-1399",
+          "authenticated-orcid": false,
+          "given": "Honglin",
+          "family": "Wen",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "container-title": [
+        "Energy"
+      ],
+      "volume": "300",
+      "issue": null,
+      "page": "131544",
+      "published": {
+        "date-parts": [
+          [
+            2024,
+            8
+          ]
+        ]
+      },
+      "published-online": null,
+      "published-print": {
+        "date-parts": [
+          [
+            2024,
+            8
+          ]
+        ]
+      },
+      "created": {
+        "date-parts": [
+          [
+            2024,
+            5,
+            7
+          ]
+        ],
+        "date-time": "2024-05-07T11:50:04Z",
+        "timestamp": 1715082604000
+      },
+      "link": [
+        {
+          "URL": "https://api.elsevier.com/content/article/PII:S0360544224013173?httpAccept=text/xml",
+          "content-type": "text/xml",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://api.elsevier.com/content/article/PII:S0360544224013173?httpAccept=text/plain",
+          "content-type": "text/plain",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "crossref",
+    "name": "meng2026",
+    "requested_url": "https://api.crossref.org/works/10.1109/TSTE.2025.3611370",
+    "accessed_utc": "2026-10-20T12:48:41.168382+00:00",
+    "status": 200,
+    "final_url": "https://api.crossref.org/works/10.1109/TSTE.2025.3611370",
+    "bytes": 8015,
+    "content_type": "application/json",
+    "sha256": "c269593a12a88d69898876b5cba77548fcdab31f05759384e09c712cf282ca21",
+    "summary": {
+      "DOI": "10.1109/tste.2025.3611370",
+      "title": [
+        "Probabilistic Wind Power Forecasting With Missing Data Tolerance: An End-to-End Nonparametric Approach"
+      ],
+      "author": [
+        {
+          "ORCID": "https://orcid.org/0000-0002-8007-9040",
+          "authenticated-orcid": false,
+          "given": "Zichao",
+          "family": "Meng",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Tsinghua Shenzhen International Graduate School, Tsinghua University, Shenzhen, China"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-5268-5289",
+          "authenticated-orcid": false,
+          "given": "Ye",
+          "family": "Guo",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Building Environment and Energy Engineering, Hong Kong Polytechnic University, Hong Kong, China"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Chenhao",
+          "family": "Zhao",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Tsinghua Shenzhen International Graduate School, Tsinghua University, Shenzhen, China"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "container-title": [
+        "IEEE Transactions on Sustainable Energy"
+      ],
+      "volume": "17",
+      "issue": "2",
+      "page": "1202-1213",
+      "published": {
+        "date-parts": [
+          [
+            2026,
+            4
+          ]
+        ]
+      },
+      "published-online": null,
+      "published-print": {
+        "date-parts": [
+          [
+            2026,
+            4
+          ]
+        ]
+      },
+      "created": {
+        "date-parts": [
+          [
+            2025,
+            9,
+            25
+          ]
+        ],
+        "date-time": "2025-09-25T17:55:36Z",
+        "timestamp": 1758822936000
+      },
+      "link": [
+        {
+          "URL": "http://xplorestaging.ieee.org/ielx8/5165391/11455529/11180899.pdf?arnumber=11180899",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "crossref",
+    "name": "stratigakos2026",
+    "requested_url": "https://api.crossref.org/works/10.1109/TSG.2025.3620957",
+    "accessed_utc": "2026-10-20T12:48:41.168382+00:00",
+    "status": 200,
+    "final_url": "https://api.crossref.org/works/10.1109/TSG.2025.3620957",
+    "bytes": 6816,
+    "content_type": "application/json",
+    "sha256": "68f3ef3cca8448e791d3644661557e5d6ba207429f8297da63d5434d4d76ee08",
+    "summary": {
+      "DOI": "10.1109/tsg.2025.3620957",
+      "title": [
+        "Learning Data-Driven Uncertainty Set Partitions for Robust and Adaptive Energy Forecasting With Missing Data"
+      ],
+      "author": [
+        {
+          "ORCID": "https://orcid.org/0000-0002-9954-5558",
+          "authenticated-orcid": false,
+          "given": "Akylas",
+          "family": "Stratigakos",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "UCL Energy Institute, University College London, London, U.K."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Panagiotis",
+          "family": "Andrianesis",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Center for Processes, Renewable Energy and Energy Systems (PERSEE), Mines Paris, PSL University, Sophia Antipolis, France"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "container-title": [
+        "IEEE Transactions on Smart Grid"
+      ],
+      "volume": "17",
+      "issue": "1",
+      "page": "806-817",
+      "published": {
+        "date-parts": [
+          [
+            2026,
+            1
+          ]
+        ]
+      },
+      "published-online": null,
+      "published-print": {
+        "date-parts": [
+          [
+            2026,
+            1
+          ]
+        ]
+      },
+      "created": {
+        "date-parts": [
+          [
+            2025,
+            10,
+            13
+          ]
+        ],
+        "date-time": "2025-10-13T17:41:20Z",
+        "timestamp": 1760377280000
+      },
+      "link": [
+        {
+          "URL": "http://xplorestaging.ieee.org/ielx8/5165411/11311981/11202569.pdf?arnumber=11202569",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "crossref",
+    "name": "pritchard2011",
+    "requested_url": "https://api.crossref.org/works/10.1002/we.416",
+    "accessed_utc": "2026-10-20T12:48:41.169886+00:00",
+    "status": 200,
+    "final_url": "https://api.crossref.org/works/10.1002/we.416",
+    "bytes": 4988,
+    "content_type": "application/json",
+    "sha256": "8d941879577036c025b0f4a1595708cff3eb73bddf4b3dab5beae5fda6c5a95c",
+    "summary": {
+      "DOI": "10.1002/we.416",
+      "title": [
+        "Short‐term variations in wind power: Some quantile‐type models for probabilistic forecasting"
+      ],
+      "author": [
+        {
+          "given": "Geoffrey",
+          "family": "Pritchard",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        }
+      ],
+      "container-title": [
+        "Wind Energy"
+      ],
+      "volume": "14",
+      "issue": "2",
+      "page": "255-269",
+      "published": {
+        "date-parts": [
+          [
+            2011,
+            3
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2011,
+            3,
+            14
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2011,
+            3
+          ]
+        ]
+      },
+      "created": {
+        "date-parts": [
+          [
+            2010,
+            7,
+            19
+          ]
+        ],
+        "date-time": "2010-07-19T11:14:00Z",
+        "timestamp": 1279538040000
+      },
+      "link": [
+        {
+          "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Fwe.416",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.416",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "crossref",
+    "name": "phipps2022",
+    "requested_url": "https://api.crossref.org/works/10.1002/we.2736",
+    "accessed_utc": "2026-10-20T12:48:41.386742+00:00",
+    "status": 200,
+    "final_url": "https://api.crossref.org/works/10.1002/we.2736",
+    "bytes": 13691,
+    "content_type": "application/json",
+    "sha256": "0fcd0218fa83d6454d08c9044db1b5cfe2df9e530ca8d6abf5dd8f151733bf27",
+    "summary": {
+      "DOI": "10.1002/we.2736",
+      "title": [
+        "Evaluating ensemble post‐processing for wind power forecasts"
+      ],
+      "author": [
+        {
+          "ORCID": "https://orcid.org/0000-0002-9197-1739",
+          "authenticated-orcid": false,
+          "given": "Kaleb",
+          "family": "Phipps",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Institute for Automation and Applied Informatics Karlsruhe Institute of Technology Karlsruhe Germany"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Sebastian",
+          "family": "Lerch",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Economics Karlsruhe Institute of Technology Karlsruhe Germany"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Maria",
+          "family": "Andersson",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Management and Engineering, Division of Energy Systems Linköping University Linköping Sweden"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Ralf",
+          "family": "Mikut",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Institute for Automation and Applied Informatics Karlsruhe Institute of Technology Karlsruhe Germany"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Veit",
+          "family": "Hagenmeyer",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Institute for Automation and Applied Informatics Karlsruhe Institute of Technology Karlsruhe Germany"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-3230-8918",
+          "authenticated-orcid": false,
+          "given": "Nicole",
+          "family": "Ludwig",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Institute for Automation and Applied Informatics Karlsruhe Institute of Technology Karlsruhe Germany"
+            },
+            {
+              "name": "Cluster of Excellence “Machine Learning: New Perspectives for Science” University of Tübingen Tübingen Germany"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "container-title": [
+        "Wind Energy"
+      ],
+      "volume": "25",
+      "issue": "8",
+      "page": "1379-1405",
+      "published": {
+        "date-parts": [
+          [
+            2022,
+            4,
+            29
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2022,
+            4,
+            29
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2022,
+            8
+          ]
+        ]
+      },
+      "created": {
+        "date-parts": [
+          [
+            2022,
+            4,
+            29
+          ]
+        ],
+        "date-time": "2022-04-29T06:02:05Z",
+        "timestamp": 1651212125000
+      },
+      "link": [
+        {
+          "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.2736",
+          "content-type": "application/pdf",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://onlinelibrary.wiley.com/doi/full-xml/10.1002/we.2736",
+          "content-type": "application/xml",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.2736",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "crossref",
+    "name": "dantas2026",
+    "requested_url": "https://api.crossref.org/works/10.1002/we.70079",
+    "accessed_utc": "2026-10-20T12:48:42.106304+00:00",
+    "status": 200,
+    "final_url": "https://api.crossref.org/works/10.1002/we.70079",
+    "bytes": 17527,
+    "content_type": "application/json",
+    "sha256": "68c5714c35cff262a5a3f5016cc2b1bd27a1b02284895d8ae9861e0be6495b94",
+    "summary": {
+      "DOI": "10.1002/we.70079",
+      "title": [
+        "Seamless Short‐ to Mid‐Term Probabilistic Wind Power Forecasting"
+      ],
+      "author": [
+        {
+          "ORCID": "https://orcid.org/0000-0003-2818-9557",
+          "authenticated-orcid": false,
+          "given": "Gabriel",
+          "family": "Dantas",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "School of Mathematics and Statistics University of Glasgow  Glasgow UK"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-5960-666X",
+          "authenticated-orcid": false,
+          "given": "Jethro",
+          "family": "Browell",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "School of Mathematics and Statistics University of Glasgow  Glasgow UK"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "container-title": [
+        "Wind Energy"
+      ],
+      "volume": "29",
+      "issue": "2",
+      "page": null,
+      "published": {
+        "date-parts": [
+          [
+            2025,
+            12,
+            25
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2025,
+            12,
+            25
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2026,
+            2
+          ]
+        ]
+      },
+      "created": {
+        "date-parts": [
+          [
+            2025,
+            12,
+            26
+          ]
+        ],
+        "date-time": "2025-12-26T04:12:46Z",
+        "timestamp": 1766722366000
+      },
+      "link": [
+        {
+          "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.70079",
+          "content-type": "application/pdf",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://onlinelibrary.wiley.com/doi/full-xml/10.1002/we.70079",
+          "content-type": "application/xml",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.70079",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "crossref",
+    "name": "zhao2021",
+    "requested_url": "https://api.crossref.org/works/10.1109/TPWRS.2021.3053847",
+    "accessed_utc": "2026-10-20T12:48:42.133855+00:00",
+    "status": 200,
+    "final_url": "https://api.crossref.org/works/10.1109/TPWRS.2021.3053847",
+    "bytes": 8123,
+    "content_type": "application/json",
+    "sha256": "fe8250599a26553e38df215ca8537d2b2bade98adefb16c9d13b94afe1e7f0e8",
+    "summary": {
+      "DOI": "10.1109/tpwrs.2021.3053847",
+      "title": [
+        "Operating Reserve Quantification Using Prediction Intervals of Wind Power: An Integrated Probabilistic Forecasting and Decision Methodology"
+      ],
+      "author": [
+        {
+          "ORCID": "https://orcid.org/0000-0002-0289-3813",
+          "authenticated-orcid": false,
+          "given": "Changfei",
+          "family": "Zhao",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-0263-9812",
+          "authenticated-orcid": false,
+          "given": "Can",
+          "family": "Wan",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-1495-4644",
+          "authenticated-orcid": false,
+          "given": "Yonghua",
+          "family": "Song",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "container-title": [
+        "IEEE Transactions on Power Systems"
+      ],
+      "volume": "36",
+      "issue": "4",
+      "page": "3701-3714",
+      "published": {
+        "date-parts": [
+          [
+            2021,
+            7
+          ]
+        ]
+      },
+      "published-online": null,
+      "published-print": {
+        "date-parts": [
+          [
+            2021,
+            7
+          ]
+        ]
+      },
+      "created": {
+        "date-parts": [
+          [
+            2021,
+            1,
+            22
+          ]
+        ],
+        "date-time": "2021-01-22T23:02:46Z",
+        "timestamp": 1611356566000
+      },
+      "link": [
+        {
+          "URL": "http://xplorestaging.ieee.org/ielx7/59/9460709/09334448.pdf?arnumber=9334448",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "crossref",
+    "name": "sun2022",
+    "requested_url": "https://api.crossref.org/works/10.1063/5.0087144",
+    "accessed_utc": "2026-10-20T12:48:42.353429+00:00",
+    "status": 200,
+    "final_url": "https://api.crossref.org/works/10.1063/5.0087144",
+    "bytes": 20705,
+    "content_type": "application/json",
+    "sha256": "7333fb3e3cda7a3633301763519cd173169712f62419bdf00d6c69eafa0d615c",
+    "summary": {
+      "DOI": "10.1063/5.0087144",
+      "title": [
+        "Machine learning derived dynamic operating reserve requirements in high-renewable power systems"
+      ],
+      "author": [
+        {
+          "given": "Yuchi",
+          "family": "Sun",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-5688-3194",
+          "authenticated-orcid": false,
+          "given": "James H.",
+          "family": "Nelson",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-6785-3057",
+          "authenticated-orcid": false,
+          "given": "John C.",
+          "family": "Stevens",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Adrian H.",
+          "family": "Au",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Vignesh",
+          "family": "Venugopal",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Charles",
+          "family": "Gulian",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Saamrat",
+          "family": "Kasina",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Patrick",
+          "family": "O'Neill",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-5923-4085",
+          "authenticated-orcid": false,
+          "given": "Mengyao",
+          "family": "Yuan",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Arne",
+          "family": "Olson",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "container-title": [
+        "Journal of Renewable and Sustainable Energy"
+      ],
+      "volume": "14",
+      "issue": "3",
+      "page": null,
+      "published": {
+        "date-parts": [
+          [
+            2022,
+            5,
+            1
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2022,
+            6,
+            24
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2022,
+            5,
+            1
+          ]
+        ]
+      },
+      "created": {
+        "date-parts": [
+          [
+            2022,
+            5,
+            18
+          ]
+        ],
+        "date-time": "2022-05-18T14:03:22Z",
+        "timestamp": 1652882602000
+      },
+      "link": [
+        {
+          "URL": "https://pubs.aip.org/aip/jrse/article-pdf/doi/10.1063/5.0087144/19799597/036303_1_online.pdf",
+          "content-type": "application/pdf",
+          "content-version": "vor",
+          "intended-application": "syndication"
+        },
+        {
+          "URL": "https://pubs.aip.org/aip/jrse/article-pdf/doi/10.1063/5.0087144/19799597/036303_1_online.pdf",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "crossref",
+    "name": "sophia2011",
+    "requested_url": "https://api.crossref.org/works/10.1002/we.444",
+    "accessed_utc": "2026-10-20T12:48:42.668389+00:00",
+    "status": 200,
+    "final_url": "https://api.crossref.org/works/10.1002/we.444",
+    "bytes": 9470,
+    "content_type": "application/json",
+    "sha256": "ca02c44f6b7e98b20304a6e54c15607cd79c1cec90fa893c99ae102ff5ccde50",
+    "summary": {
+      "DOI": "10.1002/we.444",
+      "title": [
+        "‘Good’ or ‘bad’ wind power forecasts: a relative concept"
+      ],
+      "author": [
+        {
+          "given": "R. J.",
+          "family": "Bessa",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "V.",
+          "family": "Miranda",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "A.",
+          "family": "Botterud",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "J.",
+          "family": "Wang",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "container-title": [
+        "Wind Energy"
+      ],
+      "volume": "14",
+      "issue": "5",
+      "page": "625-636",
+      "published": {
+        "date-parts": [
+          [
+            2010,
+            12,
+            13
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2010,
+            12,
+            13
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2011,
+            7
+          ]
+        ]
+      },
+      "created": {
+        "date-parts": [
+          [
+            2010,
+            12,
+            14
+          ]
+        ],
+        "date-time": "2010-12-14T05:09:32Z",
+        "timestamp": 1292303372000
+      },
+      "link": [
+        {
+          "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Fwe.444",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.444",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "pdf",
+    "name": "meng2026_accepted",
+    "requested_url": "https://ira.lib.polyu.edu.hk/bitstream/10397/117725/1/Meng_Probabilistic_Wind_Power.pdf",
+    "accessed_utc": "2026-10-20T12:48:43.404684+00:00",
+    "status": 200,
+    "final_url": "https://ira.lib.polyu.edu.hk/bitstream/10397/117725/1/Meng_Probabilistic_Wind_Power.pdf",
+    "bytes": 17327448,
+    "content_type": "application/pdf",
+    "sha256": "9188c97fb5ca61e8f2d8de6c88909a11a21a7155820ba791ccce92037f37d992",
+    "pages": 12
+  },
+  {
+    "kind": "pdf",
+    "name": "stratigakos2026_accepted",
+    "requested_url": "https://discovery.ucl.ac.uk/id/eprint/10215885/1/Learning_Data-Driven_Uncertainty_Set_Partitions_for_Robust_and_Adaptive_Energy_Forecasting_with_Missing_Data.pdf",
+    "accessed_utc": "2026-10-20T12:48:43.471575+00:00",
+    "status": 200,
+    "final_url": "https://discovery.ucl.ac.uk/id/eprint/10215885/1/Learning_Data-Driven_Uncertainty_Set_Partitions_for_Robust_and_Adaptive_Energy_Forecasting_with_Missing_Data.pdf",
+    "bytes": 4535088,
+    "content_type": "application/pdf",
+    "sha256": "09c82bfe1cd5c60b04f817c38a75a74ce2613b8ba4a90f3a13042871ac6fedc6",
+    "pages": 12
+  },
+  {
+    "kind": "pdf",
+    "name": "wen2024_arxiv_v3",
+    "requested_url": "https://arxiv.org/pdf/2305.14662v3",
+    "accessed_utc": "2026-10-20T12:48:43.526575+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/pdf/2305.14662v3",
+    "bytes": 850250,
+    "content_type": "application/pdf",
+    "sha256": "64e665affb2ef8cf4144b6c3b6f9dc7ef0620dfa2ce4c7df35cbf887cea3ea4e",
+    "pages": 26
+  },
+  {
+    "kind": "pdf",
+    "name": "wen2025_arxiv_v2",
+    "requested_url": "https://arxiv.org/pdf/2403.03631v2",
+    "accessed_utc": "2026-10-20T12:48:43.690797+00:00",
+    "status": 200,
+    "final_url": "https://arxiv.org/pdf/2403.03631v2",
+    "bytes": 594806,
+    "content_type": "application/pdf",
+    "sha256": "5b15d9fe7a85fc04e74ede9011c9c87b779e863258fa2f2d88831d02cf8b7def",
+    "pages": 25
+  }
+]

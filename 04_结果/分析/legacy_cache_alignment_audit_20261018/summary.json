@@ -1,0 +1,212 @@
+{
+  "direct_residual_comparisons": [
+    {
+      "split": "val",
+      "field": "anchor_comparison",
+      "actual_shape": [
+        4261
+      ],
+      "expected_shape": [
+        4261
+      ],
+      "actual_dtype": "int64",
+      "expected_dtype": "int64",
+      "byte_identical": true,
+      "mismatched_element_bytes": 0,
+      "elements": 4261
+    },
+    {
+      "split": "val",
+      "field": "target_comparison",
+      "actual_shape": [
+        4261,
+        6,
+        134
+      ],
+      "expected_shape": [
+        4261,
+        6,
+        134
+      ],
+      "actual_dtype": "float32",
+      "expected_dtype": "float32",
+      "byte_identical": true,
+      "mismatched_element_bytes": 0,
+      "elements": 3425844,
+      "actual_nonfinite": 20082,
+      "expected_nonfinite": 20082,
+      "max_abs_difference_on_joint_finite": 0.0
+    },
+    {
+      "split": "val",
+      "field": "mask_comparison",
+      "actual_shape": [
+        4261,
+        6,
+        134
+      ],
+      "expected_shape": [
+        4261,
+        6,
+        134
+      ],
+      "actual_dtype": "float32",
+      "expected_dtype": "float32",
+      "byte_identical": true,
+      "mismatched_element_bytes": 0,
+      "elements": 3425844,
+      "actual_nonfinite": 0,
+      "expected_nonfinite": 0,
+      "max_abs_difference_on_joint_finite": 0.0
+    },
+    {
+      "split": "val",
+      "field": "issue_label_comparison",
+      "actual_shape": [
+        4261,
+        134
+      ],
+      "expected_shape": [
+        4261,
+        134
+      ],
+      "actual_dtype": "int64",
+      "expected_dtype": "int64",
+      "byte_identical": true,
+      "mismatched_element_bytes": 0,
+      "elements": 570974
+    },
+    {
+      "split": "test",
+      "field": "anchor_comparison",
+      "actual_shape": [
+        4981
+      ],
+      "expected_shape": [
+        4981
+      ],
+      "actual_dtype": "int64",
+      "expected_dtype": "int64",
+      "byte_identical": true,
+      "mismatched_element_bytes": 0,
+      "elements": 4981
+    },
+    {
+      "split": "test",
+      "field": "target_comparison",
+      "actual_shape": [
+        4981,
+        6,
+        134
+      ],
+      "expected_shape": [
+        4981,
+        6,
+        134
+      ],
+      "actual_dtype": "float32",
+      "expected_dtype": "float32",
+      "byte_identical": true,
+      "mismatched_element_bytes": 0,
+      "elements": 4004724,
+      "actual_nonfinite": 8868,
+      "expected_nonfinite": 8868,
+      "max_abs_difference_on_joint_finite": 0.0
+    },
+    {
+      "split": "test",
+      "field": "mask_comparison",
+      "actual_shape": [
+        4981,
+        6,
+        134
+      ],
+      "expected_shape": [
+        4981,
+        6,
+        134
+      ],
+      "actual_dtype": "float32",
+      "expected_dtype": "float32",
+      "byte_identical": true,
+      "mismatched_element_bytes": 0,
+      "elements": 4004724,
+      "actual_nonfinite": 0,
+      "expected_nonfinite": 0,
+      "max_abs_difference_on_joint_finite": 0.0
+    },
+    {
+      "split": "test",
+      "field": "issue_label_comparison",
+      "actual_shape": [
+        4981,
+        134
+      ],
+      "expected_shape": [
+        4981,
+        134
+      ],
+      "actual_dtype": "int64",
+      "expected_dtype": "int64",
+      "byte_identical": true,
+      "mismatched_element_bytes": 0,
+      "elements": 667454
+    }
+  ],
+  "target_elements_checked": 7430568,
+  "target_mask_elements_checked": 7430568,
+  "shortfall_formula_elements_checked": 37152840,
+  "shortfall_formula_arrays_byte_identical": 10,
+  "unique_node_target_mask_signatures": 134,
+  "effective_support": {
+    "val": {
+      "rule": "target_mask_h6 only",
+      "selected_count": 383102,
+      "target_valid_issue_invalid": 64323,
+      "comparison_to_same_rule_on_both_splits": "Different original rules; no mask replacement performed"
+    },
+    "test": {
+      "rule": "target_mask_h6 AND issue_regime_valid",
+      "selected_count": 385205,
+      "target_valid_issue_invalid": 23734,
+      "comparison_to_same_rule_on_both_splits": "Different original rules; no mask replacement performed"
+    }
+  },
+  "all_horizons_and_seeds_nonfinite_inside_target_mask": 0,
+  "auxiliary_forecast_reference_results": {
+    "anchor_index": {
+      "reference_arrays": 10,
+      "byte_identical": 10
+    },
+    "target": {
+      "reference_arrays": 10,
+      "byte_identical": 10
+    },
+    "mask": {
+      "reference_arrays": 10,
+      "byte_identical": 10
+    },
+    "regime_primary": {
+      "reference_arrays": 10,
+      "byte_identical": 0
+    },
+    "regime_primary_valid": {
+      "reference_arrays": 10,
+      "byte_identical": 10
+    },
+    "pred": {
+      "reference_arrays": 10,
+      "byte_identical": 0,
+      "max_joint_finite_abs_difference": 0.00347900390625
+    }
+  },
+  "auxiliary_int16_labels_vs_residual_int64_labels_lossless_values_identical": true,
+  "posterior_lengths_finite_all10": true,
+  "posterior_actual_coordinate_binding": "UNKNOWN",
+  "posterior_expected_coordinate_digest_is_not_actual_coordinate_provenance": true,
+  "aggregate_counterexample": "Swapping distinct scalar posteriors within the same decision bin preserves all reserve actions and their aggregate results but changes time/node value identity; tested on synthetic arrays only",
+  "model_prediction_reference_exact_binding": "FAILED10/10; no tolerance used; reason remains UNKNOWN",
+  "absolute_calendar_and_physical_node_provenance": "Not independently re-certified by this audit; Day/slot and declared current node IDs only",
+  "E07": "UNCHANGED_UNACTIVATED",
+  "protected_input_count": 161
+}

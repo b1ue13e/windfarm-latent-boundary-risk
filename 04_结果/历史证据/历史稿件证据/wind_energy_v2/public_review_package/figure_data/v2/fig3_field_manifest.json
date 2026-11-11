@@ -1,0 +1,69 @@
+{
+  "status": "LITERAL_STORED_FIELD_PROJECTION",
+  "source": "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json",
+  "source_sha256": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060",
+  "condition": "pitch_withheld",
+  "span_days": 3,
+  "epsilon_unchanged": 0.02,
+  "event_rate_cap_unchanged": 0.1,
+  "coordinate_family": 74500,
+  "panels": {
+    "a": "Stored required_relative_tolerance for candidates 41 and 42; displayed x100",
+    "b": "Maximum of five stored risk_upper coordinates for the same candidates; x100",
+    "c": "All 15 archived minimum_audit.excluded entries; no omitted smaller candidate"
+  },
+  "sufficiency_rows": [
+    {
+      "panel": "a;b",
+      "label": "P1/HGB/q0.925",
+      "index": 41,
+      "role": "secondary minimum",
+      "worst_paired_cost_upper_percent": 0.9741996453634834,
+      "cost_tolerance_percent": 2.0,
+      "max_instance_risk_upper_percent": 9.76988760696712,
+      "risk_cap_percent": 10.0,
+      "cost_upper_certified": true,
+      "sufficient": true,
+      "controlling_competitor_index": 180,
+      "controlling_competitor": "PQ36/HGB/q0.9",
+      "competitor_possibly_feasible": true,
+      "competitor_risk_qualified": false,
+      "competitor_max_risk_upper_percent": 11.525734470810363,
+      "source": "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json",
+      "cost_source_field": "results[pitch_withheld].secondary_retrospective_full_q[epsilon=.02].sufficient_set.required_relative_tolerance[41]",
+      "risk_source_field": "results[pitch_withheld].risk_upper[:,41]",
+      "cap_source": "experiments/independent_confirmation_execution_20261019/protocol.json:v_max",
+      "competitor_source_field": "results[pitch_withheld].relative_ratio_upper[41][180]",
+      "interpretation": "Certification under archived joint procedure; failed upper bound is not a proven true-margin exceedance"
+    },
+    {
+      "panel": "a;b",
+      "label": "P1/HGB/q0.95",
+      "index": 42,
+      "role": "primary choice",
+      "worst_paired_cost_upper_percent": 3.517815071811852,
+      "cost_tolerance_percent": 2.0,
+      "max_instance_risk_upper_percent": 6.704886022716269,
+      "risk_cap_percent": 10.0,
+      "cost_upper_certified": false,
+      "sufficient": false,
+      "controlling_competitor_index": 180,
+      "controlling_competitor": "PQ36/HGB/q0.9",
+      "competitor_possibly_feasible": true,
+      "competitor_risk_qualified": false,
+      "competitor_max_risk_upper_percent": 11.525734470810363,
+      "source": "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json",
+      "cost_source_field": "results[pitch_withheld].secondary_retrospective_full_q[epsilon=.02].sufficient_set.required_relative_tolerance[42]",
+      "risk_source_field": "results[pitch_withheld].risk_upper[:,42]",
+      "cap_source": "experiments/independent_confirmation_execution_20261019/protocol.json:v_max",
+      "competitor_source_field": "results[pitch_withheld].relative_ratio_upper[42][180]",
+      "interpretation": "Certification under archived joint procedure; failed upper bound is not a proven true-margin exceedance"
+    }
+  ],
+  "exclusion_witness_indices": [
+    171,
+    181
+  ],
+  "uncertainty": "Existing simultaneous upper/lower bounds only; no new interval or error bar",
+  "noncertification": "A required upper bound above the tolerance is not proof of true cost excess"
+}

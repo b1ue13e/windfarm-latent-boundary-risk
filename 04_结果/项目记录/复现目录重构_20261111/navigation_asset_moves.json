@@ -1,0 +1,142 @@
+[
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段01_初始建模__方案__implement-stage__ASSUMPTIONS.md",
+    "new": "04_结果/项目记录/实现方案/ASSUMPTIONS.md",
+    "inode": 1970324837756399
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段01_初始建模__方案__implement-stage__BUILD_NOTE.md",
+    "new": "04_结果/项目记录/实现方案/BUILD_NOTE.md",
+    "inode": 1125899907624450
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段01_初始建模__方案__implement-stage__SPEC.md",
+    "new": "04_结果/项目记录/实现方案/SPEC.md",
+    "inode": 562949954202980
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure1_decision_boundaries.pdf",
+    "new": "04_结果/产物/历史图形/figure1_decision_boundaries.pdf",
+    "inode": 1125899906856229
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure1_decision_boundaries.png",
+    "new": "04_结果/产物/历史图形/figure1_decision_boundaries.png",
+    "inode": 1688849860281364
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure2_data_boundary.pdf",
+    "new": "04_结果/产物/历史图形/figure2_data_boundary.pdf",
+    "inode": 844424930145789
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure2_data_boundary.png",
+    "new": "04_结果/产物/历史图形/figure2_data_boundary.png",
+    "inode": 844424930145790
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure2_data_boundary.svg",
+    "new": "04_结果/产物/历史图形/figure2_data_boundary.svg",
+    "inode": 1125899906856421
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure3_summary_results.pdf",
+    "new": "04_结果/产物/历史图形/figure3_summary_results.pdf",
+    "inode": 844424930145792
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure3_summary_results.png",
+    "new": "04_结果/产物/历史图形/figure3_summary_results.png",
+    "inode": 844424930145793
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure3_summary_results.svg",
+    "new": "04_结果/产物/历史图形/figure3_summary_results.svg",
+    "inode": 1125899906856422
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure4_routing_evidence.pdf",
+    "new": "04_结果/产物/历史图形/figure4_routing_evidence.pdf",
+    "inode": 844424930145795
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure4_routing_evidence.png",
+    "new": "04_结果/产物/历史图形/figure4_routing_evidence.png",
+    "inode": 844424930145796
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure4_routing_evidence.svg",
+    "new": "04_结果/产物/历史图形/figure4_routing_evidence.svg",
+    "inode": 1125899906856423
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure5_case_studies.pdf",
+    "new": "04_结果/产物/历史图形/figure5_case_studies.pdf",
+    "inode": 844424930145797
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure5_case_studies.png",
+    "new": "04_结果/产物/历史图形/figure5_case_studies.png",
+    "inode": 844424930145798
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure5_case_studies.svg",
+    "new": "04_结果/产物/历史图形/figure5_case_studies.svg",
+    "inode": 1125899906856424
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure6_ablation_tradeoff.pdf",
+    "new": "04_结果/产物/历史图形/figure6_ablation_tradeoff.pdf",
+    "inode": 844424930145800
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure6_ablation_tradeoff.png",
+    "new": "04_结果/产物/历史图形/figure6_ablation_tradeoff.png",
+    "inode": 844424930145801
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure6_ablation_tradeoff.svg",
+    "new": "04_结果/产物/历史图形/figure6_ablation_tradeoff.svg",
+    "inode": 1125899906856425
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure_gate_representation_stability.pdf",
+    "new": "04_结果/产物/历史图形/figure_gate_representation_stability.pdf",
+    "inode": 844424930145761
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__figure_gate_representation_stability.png",
+    "new": "04_结果/产物/历史图形/figure_gate_representation_stability.png",
+    "inode": 844424930145762
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__matched_budget_control_slices.pdf",
+    "new": "04_结果/产物/历史图形/matched_budget_control_slices.pdf",
+    "inode": 844424930196012
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__matched_budget_transition_frontier.pdf",
+    "new": "04_结果/产物/历史图形/matched_budget_transition_frontier.pdf",
+    "inode": 844424930196010
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__matched_budget_transition_frontier.png",
+    "new": "04_结果/产物/历史图形/matched_budget_transition_frontier.png",
+    "inode": 562949953485355
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__posterior_reliability.pdf",
+    "new": "04_结果/产物/历史图形/posterior_reliability.pdf",
+    "inode": 562949953474387
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__posterior_reliability.png",
+    "new": "04_结果/产物/历史图形/posterior_reliability.png",
+    "inode": 562949953474388
+  },
+  {
+    "old": "04_结果/项目记录/旧目录说明/尝试01_图网络与状态恢复__阶段03_公平对照与重放__分析__历史材料__figures__rho_sensitivity.pdf",
+    "new": "04_结果/产物/历史图形/rho_sensitivity.pdf",
+    "inode": 844424930196013
+  }
+]

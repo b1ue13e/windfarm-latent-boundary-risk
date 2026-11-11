@@ -1,0 +1,74 @@
+{
+  "record_id": "q1_research_decision_20261019",
+  "status": "PASS_ARCHIVE_CONSISTENCY_ONLY_NO_SCIENTIFIC_UPGRADE",
+  "date": "2026-10-19",
+  "archived_source_version": "6f755e4f4b834923f701a8c27d4c58cda07bf687",
+  "document_checks": {
+    "status": "PASS_DECISION_ARCHIVE_STATIC_CHECKS_ONLY",
+    "protected_files_unchanged": 82,
+    "source_contract_and_acceptance_unchanged": true,
+    "minimum_evidence_ids": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ],
+    "blocking_gap_ids": [
+      "A1",
+      "A2"
+    ],
+    "no_tasks_created": true,
+    "source_exposure": "EXPOSURE_UNKNOWN",
+    "source_qualified": false,
+    "statistical_applicability": "NOT_IMPLEMENTED_OR_VALIDATED",
+    "scientific_claim_upgrade": false,
+    "research_execution": false,
+    "project_state": "STOP_ADDITIONAL_INVESTMENT",
+    "relative_links_valid": true,
+    "index_entry_present": true,
+    "authorized_existing_file_edit": "research_audit/README.md",
+    "preexisting_user_edit_preserved": "AGENTS.md"
+  },
+  "authorized_index_edit": {
+    "path": "research_audit/README.md",
+    "before_sha256": "637ddd7f6896c192e83464ae764d48cb215dea0028878819af9be8dbf259bdf0",
+    "after_sha256": "793b75525f4a534c1be92028c3d6f8f58c28ac85294c9e5b7d26b92c839e2a08"
+  },
+  "gates": {
+    "scientific": {
+      "command": "python scripts/verify_scientific_claim_gate.py",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "validation/scientific_claim_gate.log"
+    },
+    "numbers": {
+      "command": "python scripts/verify_tste_number_consistency.py --output-dir research_audit/q1_research_decision_20261019/validation/numbers",
+      "exit_code": 0,
+      "status": "complete_tste_number_consistency",
+      "checks": 77,
+      "failed": 0,
+      "report": "validation/numbers/tste_number_consistency_audit.json"
+    }
+  },
+  "preserved_states": {
+    "project_state": "STOP_ADDITIONAL_INVESTMENT",
+    "execution_queue": [],
+    "execution_authorized": false,
+    "confirmation_source_qualification": "BLOCKED",
+    "candidate_exposure": "EXPOSURE_UNKNOWN",
+    "statistical_applicability": "NOT_IMPLEMENTED_OR_VALIDATED",
+    "new_hypothesis": "NOT_TESTED",
+    "manuscript_edits": false,
+    "paper_spec_edits": false
+  },
+  "operations": {
+    "decision_archive_and_index_only": true,
+    "static_checks_and_existing_consistency_gates": true,
+    "measurement_access_or_download": false,
+    "new_model_training_or_evaluation": false,
+    "new_calibration_or_bootstrap_resampling": false,
+    "remote_access_or_jobs": false,
+    "project_resumption": false
+  },
+  "scope_limit": "Confirms only decision-record/source consistency and protected-file preservation; does not certify data independence, model effects, inferential coverage, novelty, venue readiness or permission to execute."
+}

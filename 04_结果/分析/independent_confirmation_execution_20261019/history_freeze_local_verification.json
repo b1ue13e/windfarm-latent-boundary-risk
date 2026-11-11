@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-19T04:29:41.743792+00:00",
+  "members_exact": 4,
+  "historical_manifests_bound": 550,
+  "freeze_sha256": "c04710efaa9e57b250906a9626c31e5a83559b4cfd30b6a18df2a489a39c7595",
+  "choices_sha256": "358e0884ea36c86f98518a3f4ba5b3902716c60b27c476a93536203f689ada29",
+  "scope": "Historical only; no2025 performance"
+}

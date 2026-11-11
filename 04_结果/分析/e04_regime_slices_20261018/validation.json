@@ -1,0 +1,20 @@
+{
+  "status": "VERIFIED_WITH_C201_LIMITATION",
+  "protected_inputs_current_run": 38,
+  "current_inputs_unchanged": true,
+  "previous_diagnostic_11_inputs_unchanged": true,
+  "mask_coverage_recomputed_exact": true,
+  "mask_coverage_config": {
+    "horizon": 6,
+    "native_block_length": 144,
+    "nodes": 134,
+    "randomness": "none"
+  },
+  "mask_coverage_sha256": "57a54363b7f19b5db71dd7ab968089cfa93fb746e95b34dafcc8a18935efeb19",
+  "test_command": "python -m pytest tests/test_e04_regime_slices.py tests/test_e04_feasibility_diagnostic.py tests/test_e04_receipt_binding.py -q",
+  "tests_passed": 22,
+  "scientific_claim_gate": "PASS",
+  "number_consistency_gate": "complete_tste_number_consistency",
+  "lineage_record_current_sha256": "4c4154d2d278a0f4fea583c4458c7cd0fa9d24c94296adadfcca3592d9be1b11",
+  "scientific_status": "post-hoc descriptive diagnostic; independent scientific certification not upgraded"
+}

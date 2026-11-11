@@ -1,0 +1,570 @@
+{
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "horizons_steps": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "horizons_minutes": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60
+  ],
+  "turbines": 134,
+  "val_windows": 4261,
+  "test_windows": 4981,
+  "metrics": [
+    {
+      "seed": 201,
+      "split": "val",
+      "horizon_step": 1,
+      "horizon_minutes": 10,
+      "rmse": 120.96868896484375,
+      "mae": 84.14022064208984,
+      "mean_shortfall_kw": 30.035322189331055
+    },
+    {
+      "seed": 201,
+      "split": "val",
+      "horizon_step": 2,
+      "horizon_minutes": 20,
+      "rmse": 150.88699340820312,
+      "mae": 105.2060775756836,
+      "mean_shortfall_kw": 39.37891387939453
+    },
+    {
+      "seed": 201,
+      "split": "val",
+      "horizon_step": 3,
+      "horizon_minutes": 30,
+      "rmse": 172.4077911376953,
+      "mae": 122.10035705566406,
+      "mean_shortfall_kw": 46.389015197753906
+    },
+    {
+      "seed": 201,
+      "split": "val",
+      "horizon_step": 4,
+      "horizon_minutes": 40,
+      "rmse": 188.56719970703125,
+      "mae": 135.5658416748047,
+      "mean_shortfall_kw": 53.512451171875
+    },
+    {
+      "seed": 201,
+      "split": "val",
+      "horizon_step": 5,
+      "horizon_minutes": 50,
+      "rmse": 202.1227264404297,
+      "mae": 147.15895080566406,
+      "mean_shortfall_kw": 58.73097229003906
+    },
+    {
+      "seed": 201,
+      "split": "val",
+      "horizon_step": 6,
+      "horizon_minutes": 60,
+      "rmse": 215.2323455810547,
+      "mae": 158.20701599121094,
+      "mean_shortfall_kw": 60.81633758544922
+    },
+    {
+      "seed": 201,
+      "split": "test",
+      "horizon_step": 1,
+      "horizon_minutes": 10,
+      "rmse": 99.63219451904297,
+      "mae": 69.38138580322266,
+      "mean_shortfall_kw": 16.489511489868164
+    },
+    {
+      "seed": 201,
+      "split": "test",
+      "horizon_step": 2,
+      "horizon_minutes": 20,
+      "rmse": 123.58855438232422,
+      "mae": 85.2779769897461,
+      "mean_shortfall_kw": 25.461877822875977
+    },
+    {
+      "seed": 201,
+      "split": "test",
+      "horizon_step": 3,
+      "horizon_minutes": 30,
+      "rmse": 141.1515350341797,
+      "mae": 98.01313781738281,
+      "mean_shortfall_kw": 31.897838592529297
+    },
+    {
+      "seed": 201,
+      "split": "test",
+      "horizon_step": 4,
+      "horizon_minutes": 40,
+      "rmse": 155.2115936279297,
+      "mae": 108.56053161621094,
+      "mean_shortfall_kw": 38.62086486816406
+    },
+    {
+      "seed": 201,
+      "split": "test",
+      "horizon_step": 5,
+      "horizon_minutes": 50,
+      "rmse": 167.56382751464844,
+      "mae": 118.07952117919922,
+      "mean_shortfall_kw": 44.11602783203125
+    },
+    {
+      "seed": 201,
+      "split": "test",
+      "horizon_step": 6,
+      "horizon_minutes": 60,
+      "rmse": 179.96070861816406,
+      "mae": 127.12000274658203,
+      "mean_shortfall_kw": 46.89683151245117
+    },
+    {
+      "seed": 202,
+      "split": "val",
+      "horizon_step": 1,
+      "horizon_minutes": 10,
+      "rmse": 170.49217224121094,
+      "mae": 130.06736755371094,
+      "mean_shortfall_kw": 23.604257583618164
+    },
+    {
+      "seed": 202,
+      "split": "val",
+      "horizon_step": 2,
+      "horizon_minutes": 20,
+      "rmse": 188.50840759277344,
+      "mae": 140.55636596679688,
+      "mean_shortfall_kw": 32.09126663208008
+    },
+    {
+      "seed": 202,
+      "split": "val",
+      "horizon_step": 3,
+      "horizon_minutes": 30,
+      "rmse": 201.51527404785156,
+      "mae": 148.54116821289062,
+      "mean_shortfall_kw": 39.42340850830078
+    },
+    {
+      "seed": 202,
+      "split": "val",
+      "horizon_step": 4,
+      "horizon_minutes": 40,
+      "rmse": 212.63385009765625,
+      "mae": 155.87762451171875,
+      "mean_shortfall_kw": 45.8934440612793
+    },
+    {
+      "seed": 202,
+      "split": "val",
+      "horizon_step": 5,
+      "horizon_minutes": 50,
+      "rmse": 223.6200714111328,
+      "mae": 163.8777618408203,
+      "mean_shortfall_kw": 50.7109260559082
+    },
+    {
+      "seed": 202,
+      "split": "val",
+      "horizon_step": 6,
+      "horizon_minutes": 60,
+      "rmse": 232.44577026367188,
+      "mae": 171.38803100585938,
+      "mean_shortfall_kw": 54.80122756958008
+    },
+    {
+      "seed": 202,
+      "split": "test",
+      "horizon_step": 1,
+      "horizon_minutes": 10,
+      "rmse": 146.7903594970703,
+      "mae": 110.82328033447266,
+      "mean_shortfall_kw": 10.451725006103516
+    },
+    {
+      "seed": 202,
+      "split": "test",
+      "horizon_step": 2,
+      "horizon_minutes": 20,
+      "rmse": 159.55447387695312,
+      "mae": 115.95433044433594,
+      "mean_shortfall_kw": 17.543807983398438
+    },
+    {
+      "seed": 202,
+      "split": "test",
+      "horizon_step": 3,
+      "horizon_minutes": 30,
+      "rmse": 168.47254943847656,
+      "mae": 119.99405670166016,
+      "mean_shortfall_kw": 23.43840789794922
+    },
+    {
+      "seed": 202,
+      "split": "test",
+      "horizon_step": 4,
+      "horizon_minutes": 40,
+      "rmse": 177.32533264160156,
+      "mae": 124.87027740478516,
+      "mean_shortfall_kw": 29.0915470123291
+    },
+    {
+      "seed": 202,
+      "split": "test",
+      "horizon_step": 5,
+      "horizon_minutes": 50,
+      "rmse": 187.0570526123047,
+      "mae": 131.11624145507812,
+      "mean_shortfall_kw": 33.50159454345703
+    },
+    {
+      "seed": 202,
+      "split": "test",
+      "horizon_step": 6,
+      "horizon_minutes": 60,
+      "rmse": 195.4119110107422,
+      "mae": 137.22450256347656,
+      "mean_shortfall_kw": 38.97685623168945
+    },
+    {
+      "seed": 203,
+      "split": "val",
+      "horizon_step": 1,
+      "horizon_minutes": 10,
+      "rmse": 137.65806579589844,
+      "mae": 94.83302307128906,
+      "mean_shortfall_kw": 32.02821350097656
+    },
+    {
+      "seed": 203,
+      "split": "val",
+      "horizon_step": 2,
+      "horizon_minutes": 20,
+      "rmse": 162.4242706298828,
+      "mae": 112.61077117919922,
+      "mean_shortfall_kw": 44.84919738769531
+    },
+    {
+      "seed": 203,
+      "split": "val",
+      "horizon_step": 3,
+      "horizon_minutes": 30,
+      "rmse": 180.81134033203125,
+      "mae": 126.3182144165039,
+      "mean_shortfall_kw": 55.716285705566406
+    },
+    {
+      "seed": 203,
+      "split": "val",
+      "horizon_step": 4,
+      "horizon_minutes": 40,
+      "rmse": 196.44903564453125,
+      "mae": 138.1360321044922,
+      "mean_shortfall_kw": 64.96786499023438
+    },
+    {
+      "seed": 203,
+      "split": "val",
+      "horizon_step": 5,
+      "horizon_minutes": 50,
+      "rmse": 208.42315673828125,
+      "mae": 148.64913940429688,
+      "mean_shortfall_kw": 70.24342346191406
+    },
+    {
+      "seed": 203,
+      "split": "val",
+      "horizon_step": 6,
+      "horizon_minutes": 60,
+      "rmse": 219.68951416015625,
+      "mae": 158.14263916015625,
+      "mean_shortfall_kw": 75.22911071777344
+    },
+    {
+      "seed": 203,
+      "split": "test",
+      "horizon_step": 1,
+      "horizon_minutes": 10,
+      "rmse": 102.33275604248047,
+      "mae": 67.46051025390625,
+      "mean_shortfall_kw": 21.236228942871094
+    },
+    {
+      "seed": 203,
+      "split": "test",
+      "horizon_step": 2,
+      "horizon_minutes": 20,
+      "rmse": 121.18293762207031,
+      "mae": 82.1355972290039,
+      "mean_shortfall_kw": 31.395750045776367
+    },
+    {
+      "seed": 203,
+      "split": "test",
+      "horizon_step": 3,
+      "horizon_minutes": 30,
+      "rmse": 134.77528381347656,
+      "mae": 92.92598724365234,
+      "mean_shortfall_kw": 39.93989562988281
+    },
+    {
+      "seed": 203,
+      "split": "test",
+      "horizon_step": 4,
+      "horizon_minutes": 40,
+      "rmse": 147.58303833007812,
+      "mae": 102.8607177734375,
+      "mean_shortfall_kw": 47.74843978881836
+    },
+    {
+      "seed": 203,
+      "split": "test",
+      "horizon_step": 5,
+      "horizon_minutes": 50,
+      "rmse": 159.1267547607422,
+      "mae": 112.09986877441406,
+      "mean_shortfall_kw": 53.61320495605469
+    },
+    {
+      "seed": 203,
+      "split": "test",
+      "horizon_step": 6,
+      "horizon_minutes": 60,
+      "rmse": 170.05239868164062,
+      "mae": 120.67533111572266,
+      "mean_shortfall_kw": 59.04347610473633
+    },
+    {
+      "seed": 204,
+      "split": "val",
+      "horizon_step": 1,
+      "horizon_minutes": 10,
+      "rmse": 143.1607208251953,
+      "mae": 101.00147247314453,
+      "mean_shortfall_kw": 33.86881637573242
+    },
+    {
+      "seed": 204,
+      "split": "val",
+      "horizon_step": 2,
+      "horizon_minutes": 20,
+      "rmse": 167.32212829589844,
+      "mae": 120.46942901611328,
+      "mean_shortfall_kw": 44.537994384765625
+    },
+    {
+      "seed": 204,
+      "split": "val",
+      "horizon_step": 3,
+      "horizon_minutes": 30,
+      "rmse": 183.2533721923828,
+      "mae": 133.10401916503906,
+      "mean_shortfall_kw": 54.922882080078125
+    },
+    {
+      "seed": 204,
+      "split": "val",
+      "horizon_step": 4,
+      "horizon_minutes": 40,
+      "rmse": 196.99342346191406,
+      "mae": 144.1277313232422,
+      "mean_shortfall_kw": 62.06772994995117
+    },
+    {
+      "seed": 204,
+      "split": "val",
+      "horizon_step": 5,
+      "horizon_minutes": 50,
+      "rmse": 209.1147003173828,
+      "mae": 154.12709045410156,
+      "mean_shortfall_kw": 66.65496063232422
+    },
+    {
+      "seed": 204,
+      "split": "val",
+      "horizon_step": 6,
+      "horizon_minutes": 60,
+      "rmse": 219.25396728515625,
+      "mae": 162.82151794433594,
+      "mean_shortfall_kw": 72.37935638427734
+    },
+    {
+      "seed": 204,
+      "split": "test",
+      "horizon_step": 1,
+      "horizon_minutes": 10,
+      "rmse": 101.28276062011719,
+      "mae": 68.58280181884766,
+      "mean_shortfall_kw": 21.980314254760742
+    },
+    {
+      "seed": 204,
+      "split": "test",
+      "horizon_step": 2,
+      "horizon_minutes": 20,
+      "rmse": 123.608154296875,
+      "mae": 85.30319213867188,
+      "mean_shortfall_kw": 31.528797149658203
+    },
+    {
+      "seed": 204,
+      "split": "test",
+      "horizon_step": 3,
+      "horizon_minutes": 30,
+      "rmse": 138.29025268554688,
+      "mae": 96.9735336303711,
+      "mean_shortfall_kw": 40.42359924316406
+    },
+    {
+      "seed": 204,
+      "split": "test",
+      "horizon_step": 4,
+      "horizon_minutes": 40,
+      "rmse": 151.5858612060547,
+      "mae": 107.23757934570312,
+      "mean_shortfall_kw": 47.12836837768555
+    },
+    {
+      "seed": 204,
+      "split": "test",
+      "horizon_step": 5,
+      "horizon_minutes": 50,
+      "rmse": 163.91812133789062,
+      "mae": 116.81060791015625,
+      "mean_shortfall_kw": 52.09250259399414
+    },
+    {
+      "seed": 204,
+      "split": "test",
+      "horizon_step": 6,
+      "horizon_minutes": 60,
+      "rmse": 174.90760803222656,
+      "mae": 125.51915740966797,
+      "mean_shortfall_kw": 58.331886291503906
+    },
+    {
+      "seed": 205,
+      "split": "val",
+      "horizon_step": 1,
+      "horizon_minutes": 10,
+      "rmse": 139.4410400390625,
+      "mae": 96.43876647949219,
+      "mean_shortfall_kw": 28.894269943237305
+    },
+    {
+      "seed": 205,
+      "split": "val",
+      "horizon_step": 2,
+      "horizon_minutes": 20,
+      "rmse": 165.33621215820312,
+      "mae": 116.18641662597656,
+      "mean_shortfall_kw": 39.33611297607422
+    },
+    {
+      "seed": 205,
+      "split": "val",
+      "horizon_step": 3,
+      "horizon_minutes": 30,
+      "rmse": 184.6030731201172,
+      "mae": 131.59384155273438,
+      "mean_shortfall_kw": 46.73149490356445
+    },
+    {
+      "seed": 205,
+      "split": "val",
+      "horizon_step": 4,
+      "horizon_minutes": 40,
+      "rmse": 200.0213623046875,
+      "mae": 144.26840209960938,
+      "mean_shortfall_kw": 52.93527603149414
+    },
+    {
+      "seed": 205,
+      "split": "val",
+      "horizon_step": 5,
+      "horizon_minutes": 50,
+      "rmse": 212.86599731445312,
+      "mae": 154.63784790039062,
+      "mean_shortfall_kw": 58.56598663330078
+    },
+    {
+      "seed": 205,
+      "split": "val",
+      "horizon_step": 6,
+      "horizon_minutes": 60,
+      "rmse": 225.29461669921875,
+      "mae": 164.357666015625,
+      "mean_shortfall_kw": 61.85022735595703
+    },
+    {
+      "seed": 205,
+      "split": "test",
+      "horizon_step": 1,
+      "horizon_minutes": 10,
+      "rmse": 107.9578857421875,
+      "mae": 72.92859649658203,
+      "mean_shortfall_kw": 14.07077407836914
+    },
+    {
+      "seed": 205,
+      "split": "test",
+      "horizon_step": 2,
+      "horizon_minutes": 20,
+      "rmse": 128.86294555664062,
+      "mae": 88.0396728515625,
+      "mean_shortfall_kw": 24.237152099609375
+    },
+    {
+      "seed": 205,
+      "split": "test",
+      "horizon_step": 3,
+      "horizon_minutes": 30,
+      "rmse": 144.31570434570312,
+      "mae": 99.46073150634766,
+      "mean_shortfall_kw": 30.934389114379883
+    },
+    {
+      "seed": 205,
+      "split": "test",
+      "horizon_step": 4,
+      "horizon_minutes": 40,
+      "rmse": 157.63406372070312,
+      "mae": 109.61528778076172,
+      "mean_shortfall_kw": 37.11818313598633
+    },
+    {
+      "seed": 205,
+      "split": "test",
+      "horizon_step": 5,
+      "horizon_minutes": 50,
+      "rmse": 169.17413330078125,
+      "mae": 118.48570251464844,
+      "mean_shortfall_kw": 42.58730697631836
+    },
+    {
+      "seed": 205,
+      "split": "test",
+      "horizon_step": 6,
+      "horizon_minutes": 60,
+      "rmse": 180.96383666992188,
+      "mae": 127.18635559082031,
+      "mean_shortfall_kw": 46.356719970703125
+    }
+  ]
+}

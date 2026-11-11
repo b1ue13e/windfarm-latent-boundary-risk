@@ -1,0 +1,32 @@
+{
+  "status": "PASS_FOR_SCOPED_CHECKS_POSTERIOR_COORDINATES_UNKNOWN",
+  "utc": "2026-10-18T08:44:06.948783+00:00",
+  "protected_hashes": "161/161 unchanged",
+  "direct_residual_target_mask_label_anchor_comparisons": "PASS exact bytes; no tolerance or equal_nan shortcut",
+  "shortfall_internal_formula": "10/10 arrays,37152840 elements exact",
+  "negative_coordinate_checks": "one-step shift and reversed nodes detected",
+  "observed_source_text": "513 displayed lines match versioned source; not runtime byte attestation",
+  "raw_reference_label_dtype_mismatch": "retained; values compared only after explicit lossless integer widening",
+  "raw_reference_prediction_mismatch": "retained0/10 exact; not upgraded",
+  "posterior_value_coordinate_proof": "UNKNOWN; length, source order and prior aggregates not sufficient",
+  "E07_null_bindings_and_zero_eligible_windows": "PASS",
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_legacy_cache_alignment.py tests/test_legacy_posterior_accounting.py tests/test_e07_data_inventory.py -q",
+      "exit_code": 0,
+      "result": "21 passed"
+    },
+    {
+      "command": "python scripts/verify_scientific_claim_gate.py",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "python scripts/verify_tste_number_consistency.py --output-dir analyses/legacy_cache_alignment_audit_20261018/number_consistency_gate",
+      "exit_code": 0,
+      "result": "complete_tste_number_consistency"
+    }
+  ],
+  "manifest_sha256": "ef707ff9f2a977fa9be73996be6dab1078317977dc199dcc7d7cb4409e3a0516",
+  "staged_scope": "only new audit code/tests/metadata, scripts attributes and PROJECT addendum; originals excluded"
+}

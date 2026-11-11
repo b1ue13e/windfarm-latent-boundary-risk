@@ -1,101 +1,56 @@
-# AGENTS.md
+# AGENTS.md: 科研智能体工作边界与执行铁律
 
-## Language
-默认使用简体中文，除非用户明确要求英文。
-
-## Skill routing
-遇到以下任务时，优先使用对应 skill：
-
-- 论文拆解 / claim 分析 / reviewer 风险
-  使用：论文拆解器
-
-- 研究想法落地 / 科研工具设计 / 项目规划
-  使用：研究项目PRD生成器
-
-- 摘要 / 引言 / 方法 / 结论润色
-  使用：学术文档润色器
-
-- 降低 AI 感 / 报告味 / 模板味
-  使用：论文降AI率重写器
-
-- 按给定 PDF 的结构和风格写作
-  使用：PDF写作格式适配器
-
-## Guardrails
-- 默认一次只使用一个主 skill
-- 除非用户明确要求，不要混用多个主 skill
-- 优先保证输出结构稳定
-- 不要把摘要复述当作论文分析
-- 不要把表面同义替换当作降 AI 重写
-
-## Git workflow & Authentication Guardrail
-- 每次完成代码修改后，都需要提交一次 git commit。
-- **Authentication**: 本地环境已全局配置 Git Credential Manager (GCM) 与 Windows Keyring (`wincredman`)。
-- **Standard Commands**: 推送或拉取代码时，**必须直接使用标准命令 `git push origin <branch>` 或 `git pull`**，底层静默安全认证。
-- **NEVER INLINE TOKENS**: **严禁**在命令行、URL 或临时脚本中拼接任何个人 Token（如 `https://x-access-token:<TOKEN>@...`），杜绝凭据进入命令历史与运行日志。
-- **Environment Variable**: 若外部脚本或 API 需要 `$env:GITHUB_TOKEN`，PowerShell Profile 已自动动态注入，禁止硬编码或打印。
-
-
-## Scientific control plane
-
-For any task that can change scientific interpretation, experiments, claims, reviewer wording, or manuscript conclusions:
-
-1. Read `docs/SCIENTIFIC_CONTRACT.md` before substantive work.
-2. Read `docs/EXPERIMENT_REGISTRY.md` before running or proposing a decisive experiment.
-3. Treat `docs/SCIENTIFIC_CONTRACT.md` as the authoritative claim ceiling. Older verdict/report files are provenance records when they conflict with it.
-4. Do not use a favorable result as an acceptance criterion. Negative and null results must be preserved.
-5. Do not upgrade representation metrics (NMI/ARI/Brier/AUROC/recall) into decision-value claims without matched decision evidence.
-6. Any new decisive experiment must be registered before execution with a frozen primary baseline, estimand, population, metric, and uncertainty procedure.
-7. Before a scientific completion claim, invoke the `scientific-falsifier` subagent and inspect `.agent_state/FALSIFICATION_REPORT.md`.
-8. A scientific claim gate failure is a hard stop. Do not weaken the gate or edit the scientific contract merely to make an existing result pass.
+> 本文件是所有参与本项目的 AI 智能体（包括主智能体、后台子代理与代码生成助手）的**最高行为约束协议**。
+> 任何智能体在执行任务前必须完整阅读并无条件遵守本文件。**科研真实性高于完成表象，实际验证高于模型自信。**
 
 ---
 
-# Reliability Contract for Antigravity
+## 一、 工作语言与技能路由 (Language & Routing)
 
-This repository uses an evidence-first execution protocol for long, complex tasks.
+- **语言**：默认使用**简体中文**进行思考、分析、日志记录与用户交互，论文草稿与代码注释按学术规范使用英文。
+- **技能路由准则**：
+  - 遇到论文拆解 / claim 分析 / reviewer 风险：使用学术审查相关技能；
+  - 遇到代码修改 / 实验重放 / 数据分析：优先遵循测试驱动与脚本复现准则；
+  - 严禁盲目混用无关技能，优先保证科学推理与输出结构的确定性。
 
-## Non-negotiable rules
+---
 
-1. Never claim a task, edit, test, compilation, search, experiment, citation check, or external fact is complete unless there is direct evidence.
-2. At the start of every turn, and after every subagent returns, read `.agent_state/RUN_STATE.json`, `.agent_state/TASK_LEDGER.md`, and `.agent_state/EVIDENCE_LEDGER.md` if they exist.
-3. Before making substantive edits on a complex task, create or refresh the task ledger with atomic acceptance criteria.
-4. Do not silently delete, merge, weaken, or reinterpret user requirements. New discoveries may add tasks, but scope reduction must be explicit.
-5. Every completed task must have at least one evidence entry. A checkbox without evidence is not completion.
-6. Distinguish epistemic status:
-   - VERIFIED: directly supported by file contents, command output, test output, compilation output, or a cited source.
-   - INFERRED: reasonable inference from verified evidence, but not directly checked.
-   - UNKNOWN: no adequate evidence is currently available.
-7. Never convert INFERRED or UNKNOWN into VERIFIED because it is plausible.
-8. For numerical scientific claims, experiment counts, table values, citations, API behavior, and version-specific facts, require a concrete source.
-9. If a command was not actually executed, do not describe its result.
-10. Before final completion, run the verification gate and obtain PASS. If the gate fails, continue working or report the unresolved blockers accurately.
+## 二、 核心工作边界：五大红线 (Non-Negotiable Guardrails)
 
-## Long-task anti-drift protocol
+### 1. 文献核验红线 (Zero-Hallucination Citations)
+- **绝对禁止编造参考文献**：严禁伪造作者、年份、期刊、会议名称、页码或 DOI。
+- **真实性溯源验证**：凡是引入论文或论证中的参考文献，必须具备确切的元数据记录（可在 arXiv, Semantic Scholar, CrossRef, DBLP 等数据库公开核验）。
+- **禁止断章取义**：不得为了证明本研究的有效性而歪曲、贬低前人工作的原始实验结论；禁止将未经核实的摘要复述当作严密论据。
+- **文献四维分类**：所有文献必须在文献矩阵中明确标记其角色（`foundational` / `mainstream` / `failing` / `adjacent`）。
 
-Checkpoint state after any of the following:
-- a meaningful task is completed;
-- 5-8 substantive tool operations have occurred;
-- a subagent returns;
-- the task scope changes;
-- before a likely context compaction or handoff;
-- before final verification.
+### 2. 数据安全与实验结果完整性红线 (Data Integrity & Anti-Fraud)
+- **严禁擅自改动原始实验结果**：已经运行完成并生成的原始实验文件（如 `.npz`, `.json`, `.csv`, `.log`）为只读资产。**绝对禁止**为了迎合假设而手动修改数据、调整数值、剔除不利离群点或伪造标准差。
+- **严禁数据前向泄漏 (Zero Forward Leakage)**：严格审查时间序列因果信息集 $\mathcal{I}_t$。特征构建、归一化参数（Scaler）、缺失值插补只能使用历史窗口数据，严禁未来信息渗漏到过去。
+- **只读原始数据保护**：大型原始 SCADA 数据（如 `wtbdata_245days.csv`）严禁提交进 Git 仓库，仅在本地受控环境中进行流水线式读取。
 
-A checkpoint means updating the task ledger, evidence ledger, decision log, and `RUN_STATE.json` so the project state can be reconstructed without trusting chat memory.
+### 3. 运行规则与工程测试纪律 (Execution & Testing Discipline)
+- **改动代码后必须运行对应测试**：任何对模型架构、特征提取、数据预处理或评估指标的代码修改后，**必须立即执行相应的测试脚本**（例如 `python -m pytest tests/`），测试通过后方可声明修改完成。
+- **显式记录随机种子与配置**：任何实验必须显式传入并记录随机种子（Random Seed）以及全套超参数配置，确保 100% 可复现。本项目以 5 种子评估体系为基准。
+- **记录硬件与执行环境**：实验日志必须完整记录运行设备（如本地 RTX 5060 或 Metis HPC Blackwell/A100 集群）、环境版本（PyTorch/CUDA）、执行命令与时间戳。未记录环境与种子的实验视为无效实验。
 
-## Research-specific grounding
+### 4. 报告规范与学术诚实 (Scientific Honesty & Epistemic Status)
+- **严格区分认识论状态**：
+  - `VERIFIED`（已核实）：有直接文件内容、测试输出、命令结果或经过检索的权威文献直接支撑；
+  - `INFERRED`（合理推断）：基于已核实证据进行的逻辑外推，必须显式标注为“推断/猜想”；
+  - `UNKNOWN`（未知）：当前无足够证据支撑，必须如实说明“暂无数据/未检验”。
+- **绝对保留负结果与零结果 (Preserve Null & Negative Results)**：
+  - 负结果（如复杂模型未优于简单基线、弱监督代理未带来收益、选择器判定无可行解等）是极具科研价值的客观事实。
+  - **严禁**隐藏、淡化、掩盖负结果；严禁通过私自放宽判定准则（如随意调高 $v_{\max}$）来粉饰太平。
 
-Do not invent papers, citations, DOI values, journal policies, metrics, experiment results, datasets, hardware, baselines, statistical significance, reviewer comments, or manuscript contents. If a source cannot be inspected, mark the claim UNKNOWN or explicitly state that it was not verified.
+### 5. Git 协作与凭据安全底线 (Git & Token Security)
+- **代码提交规范**：每次完成独立的代码修改并测试通过后，提交一次明确的 git commit。
+- **凭据管理**：系统已全局配置 Git Credential Manager (GCM) 与 Windows Keyring (`wincredman`)。推送或拉取代码时直接使用标准命令 `git push origin <branch>` 或 `git pull`。
+- **严禁内联凭据 (NEVER INLINE TOKENS)**：严禁在命令行、URL、脚本或 Markdown 文本中拼接任何个人 Token 或密钥（如 `https://x-access-token:...`），杜绝凭据进入命令历史与执行日志。
 
-A successful compile only proves compilation. It does not prove scientific correctness, figure quality, numerical consistency, citation validity, or compliance with a journal.
+---
 
-## Completion standard
+## 三、 科学控制平面联动 (Scientific Control Plane)
 
-A final response may use completion language only if:
-- all required ledger tasks are VERIFIED or explicitly BLOCKED with a reason;
-- all required verification commands have passed;
-- required artifacts exist;
-- the independent evidence reviewer has issued PASS or PASS_WITH_BLOCKERS;
-- `.agents/scripts/verify_gate.py` returns exit code 0.
-
-If any of these conditions are missing, describe the work as partial rather than complete.
+1. **阅读核心科学契约**：在开展任何涉及模型论断、实验评测或论文修改的任务前，必须阅读 `04_结果/项目记录/docs/SCIENTIFIC_CONTRACT.md` 与 `PROJECT.md`。
+2. **严禁越级论断 (No Overclaiming)**：表征类指标的提升（如 NMI, ARI, ECE, AUROC）不等于决策收益的提升。没有经过配对非对称损失（PSREI, Reserve Cost）检验的表征指标，严禁声称为“更优的决策模型”。
+3. **科学门禁硬拦截**：任何声称完成的科研里程碑，必须通过自动化门禁检验脚本（`python project.py scientific-gate` 和 `python project.py number-gate`）。门禁失败必须停步排查，不得篡改门禁规则。

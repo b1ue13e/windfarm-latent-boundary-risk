@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-20",
+  "decision": "END_CURRENT_RESERVE_ALLOCATION_CANDIDATE_TSTE_ADDITIONAL_INVESTMENT",
+  "not_hold": true,
+  "retain_assets_and_null_results": true,
+  "new_topic_selected": false,
+  "confirmed_new_window": null,
+  "known_external_source_exists": true,
+  "external_source_is_not_qualified_confirmation": true,
+  "seta_complete_methods_obtained": false,
+  "safer_author_method_core_read": true,
+  "safer_final_article_fulltext_obtained": false,
+  "old_commitment_result_invalidated": false,
+  "unsupported_RAW_bridge_not_general_budget_falsifier": true,
+  "thresholds_changed": false,
+  "manuscript_changed": false,
+  "experiments": false,
+  "new_measurement_files_requested": false,
+  "V3_created": false,
+  "queue": []
+}

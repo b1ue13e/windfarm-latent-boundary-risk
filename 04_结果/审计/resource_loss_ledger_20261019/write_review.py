@@ -1,0 +1,187 @@
+"""Build separate resource and proxy-loss accounts; never invent exchange rates."""
+from pathlib import Path
+import csv
+import json
+
+ROOT=Path(__file__).resolve().parents[2]
+OUT=Path(__file__).resolve().parent
+
+def csv_file(name,records):
+    with (OUT/name).open('w',encoding='utf-8-sig',newline='') as f:
+        w=csv.DictWriter(f,fieldnames=records[0]);w.writeheader();w.writerows(records)
+
+def main():
+    a=json.loads((OUT/'derived.json').read_text(encoding='utf-8'))
+    p,f=a['policies']['P1'],a['policies']['WPQ36'];d=a['deltas_p1_minus_reference'];r=a['resources']
+    resources=[]
+    def add(rid,item,before,after,unit,status,removable,limit,source):
+        resources.append(dict(id=rid,item=item,reference=before,P1=after,unit=unit,status=status,
+            cancellation_scope=removable,limitation=limit,source=source))
+    add('R01','Raw learner columns',112,5,'columns','VERIFIED_CODE_ARITHMETIC','107 columns not consumed by P1 learner',
+        'Not physical sensors/network payload; common forecast/clock/ID retained','windfarm_moe/information_subset.py:20-38')
+    add('R02','360k learner selected training matrix',161280000,7200000,'float32 data bytes','VERIFIED_CODE_ARITHMETIC',
+        '154080000 fewer nominal selected-array data bytes for this expression','Not process RSS; full 148-column array and first-index copy still built','scripts/run_independent_confirmation.py:298')
+    add('R03','Annual selected evaluation matrix',494418624,22072260,'float32 data bytes','VERIFIED_CODE_ARITHMETIC',
+        '472346364 fewer nominal selected-array data bytes','Input rows include unscored target cells; not network/peak memory','scripts/run_independent_confirmation.py:272-273')
+    add('R04','Full common feature matrix',653338896,653338896,'float32 data bytes','NOT_REMOVED_IN_CURRENT_PATH',
+        'No cancellation in current stage_data path','148 columns built before subset choice; excludes other intermediates','scripts/run_independent_confirmation.py:251-263')
+    add('R05','Training first-index temporary',213120000,213120000,'float32 data bytes','NOT_REMOVED_IN_CURRENT_PATH',
+        'No cancellation for first full-width indexing','Lifetime and process peak not measured','scripts/run_independent_confirmation.py:298')
+    add('R06','Shared upstream W/P history',72,72,'raw feature values per upstream input','NOT_REMOVED_IN_CURRENT_PATH',
+        'Both retain W/P36 at forecast issue-6','Fresh reserve P is not proven free/arrived through this upstream feed','windfarm_moe/independent_confirmation.py:32-34')
+    add('R07','HGB fit duration mean',f['fit_seconds'],p['fit_seconds'],'recorded seconds per instance','VERIFIED_RECORDED_DIFFERENCE',
+        'Observed mean difference -32.179057896s','Different hosts/concurrency; not controlled speed benchmark or billing','recovered/results/historical/*/{metadata,receipt}.json;policy_seed_ledger.csv')
+    add('R08','Full historical worker duration mean',f['historical_stage_seconds'],p['historical_stage_seconds'],
+        'recorded seconds per instance','VERIFIED_RECORDED_DIFFERENCE','Observed mean difference -33.8666404s',
+        'Includes file verification/features/calibration/selection; not online service time','recovered/results/historical/*/receipt.json')
+    add('R09','Full annual evaluation worker mean',f['evaluation_stage_seconds'],p['evaluation_stage_seconds'],
+        'recorded seconds per instance','VERIFIED_RECORDED_DIFFERENCE','Observed mean difference -1.4504672s',
+        'Includes loading/features/five-q accounting/I-O; pure prediction latency UNKNOWN','recovered/results/evaluate/*/receipt.json')
+    add('R10','Policy model file size mean in manifests',f['recorded_model_bytes'],p['recorded_model_bytes'],
+        'recorded serialized bytes','VERIFIED_MANIFEST_RECORD','233872 fewer recorded policy-model bytes',
+        'Original model absent locally; no new download/deserialization/RSS measurement; no deployed transfer rate','recovered/results/historical/*/manifest.json')
+    add('R11','Shared point forecaster model',342505,342505,'recorded serialized bytes','NOT_REMOVED_IN_CURRENT_PATH',
+        'No cancellation','Manifest record only; retained in both pipelines','recovered/results/prepared/manifest.json')
+    add('R12','Point+policy model payload mean',r['recorded_point_plus_policy_model_bytes']['WPQ36'],r['recorded_point_plus_policy_model_bytes']['P1'],
+        'recorded serialized bytes','VERIFIED_MANIFEST_RECORD','233872 fewer recorded bytes including shared model',
+        'Only file-body accounting; not all software/storage/wire protocol or service fees','prepared/historical model manifests')
+    for rid,item in [('R13','SCADA sensor or upstream acquisition removal'),('R14','Actual network/serialization bytes'),
+                     ('R15','Pure online latency and peak RSS'),('R16','Channel access/maintenance bill'),('R17','Business accepted loss margin')]:
+        add(rid,item,'UNKNOWN_NOT_MEASURED','UNKNOWN_NOT_MEASURED','UNBOUND','UNKNOWN_REAL_INTERFACE',
+            'No verified cancellation','No actual interface owner/contract/packet/SLA/bill; cannot enter profit account as a saving','demand_search_summary.json;public_sources.csv;scope_and_inputs.json')
+    csv_file('resource_ledger.csv',resources)
+    loss=[]
+    for metric in ('cost_mean','reserve_mean','shortage_mean','violation_rate','cost_total'):
+        loss.append(dict(metric=metric,reference=f[metric],P1=p[metric],delta=d[metric],
+            unit='fraction' if metric=='violation_rate' else 'kWh-equivalent per valid turbine interval' if metric!='cost_total' else 'summed turbine-interval proxy units; mean over fixed instances',
+            status='VERIFIED_ARCHIVED_POINT_ACCOUNTING',
+            limit='No new interval/resampling; not currency/settlement/PCC dispatch; violation denominator is fixed full period'))
+    csv_file('loss_ledger.csv',loss)
+    public=[
+        dict(id='P01',source_type='official dataset',role='foundational',url='https://zenodo.org/records/22662930',
+            locator='Description: yearly10min archives from Siemens SCADA Backup; CC-BY4.0; version2.1.0',
+            verified='Historical measurement provenance and open research access',not_established='Live reserve service, SLA, per-tag price, low-bandwidth need or operational use of this policy'),
+        dict(id='P02',source_type='operator-owned repository',role='foundational',url='https://github.com/resgroup/hill-of-towie-open-source-analysis',
+            locator='README Quickstart, Earlier upgrade analysis, Code for WeDoWind, Configuration',
+            verified='Local archive/download/cache based open analysis; published application examples',not_established='A production reserve endpoint or business requirement for P1-only input'),
+        dict(id='P03',source_type='official ISO product outcome',role='adjacent',url='https://www.caiso.com/library/flexible-ramping-product',
+            locator='Outcome: market products implemented Nov1,2016; forecast error uncertainty',
+            verified='A named real operator has a ramping uncertainty procurement function',not_established='Same farm, turbine target, P/Q feed cost or acceptance of this2% surrogate margin'),
+        dict(id='P04',source_type='official ISO monitoring notice',role='adjacent',url='https://www.caiso.com/Documents/dmm-review-of-the-mosaic-quantile-regression-for-estimating-net-load-uncertainty-call-on-12123.html',
+            locator='Nov22,2023 notice: implemented mosaic QR relates net-load uncertainty and load/solar/wind forecasts',
+            verified='Real forecast-to-uncertainty interface documented for that ISO',not_established='Our incremental SCADA input reduction is needed, useful or costed there'),
+        dict(id='P05',source_type='official PDF attempted',role='adjacent',url='https://stakeholdercenter.caiso.com/InitiativeDocuments/AppendixC-QuantileRegressionApproach-FlexibleRampingProductRequirements.pdf',
+            locator='Search indexing only; direct open InternalError',verified='Candidate navigation only',not_established='Not treated as full-text verified or current2026 operations specification')]
+    csv_file('public_sources.csv',public)
+    evidence=[
+        dict(id='D01',requirement='Named real user/owner for this exact reserve interface',result='NOT_ESTABLISHED',evidence='Historical farm exists; no owner-endorsed request for the frozen reserve service',scope='438 local text/code files and listed official sources'),
+        dict(id='D02',requirement='Separate point/reserve services and available inputs',result='NOT_ESTABLISHED',evidence='Batch PBS CLI code and synthetic two-feed assumptions; no deployed endpoint or service logs',scope='Current executed path, not a proof no external service exists'),
+        dict(id='D03',requirement='Avoidable channel/traffic/license/maintenance burden',result='NOT_ESTABLISHED',evidence='Code-level slices differ; fullX/upstream retained; no packet trace or marginal bill',scope='Cannot infer from112-to5 learner columns'),
+        dict(id='D04',requirement='Real business owner accepts extra proxy loss/severity',result='NOT_ESTABLISHED',evidence='2% is preregistered scientific tolerance; no real user acceptance or proxy-to-business mapping',scope='Scientific noninferiority is not business permission'),
+        dict(id='D05',requirement='Applicable real incumbent/fallback and delivery constraints',result='NOT_ESTABLISHED',evidence='Strong full quantile research reference; no actual site fallback/dispatch/PCC/SLA binding',scope='Do not replace with another q or old incomparable branch'),
+        dict(id='D06',requirement='Generic real reserve uncertainty need',result='VERIFIED_DIFFERENT_INTERFACE',evidence='CAISO official product and monitoring notice',scope='Does not establishD01-D05 for Hill of Towie/P1'),
+        dict(id='D07',requirement='Old rebuttal and monetary conversion can establish demand',result='REJECTED_AS_EVIDENCE',evidence='Manuscript assertion, model equivalence argument, historical illustrative price sensitivity are not interface logs/contracts',scope='Original files preserved; no price multiplication or settled cashflow claim')]
+    csv_file('demand_evidence.csv',evidence)
+    report=r'''# 真实备用接口资源—代理损失盈亏台账评审
+
+日期：2026-10-19（Asia/Shanghai）。固定比较：`pitch_withheld P1/HGB/q0.95` 对历史冻结 `WPQ36/HGB/q0.95`。只用现有源码、存档日块/日志/清单和列明的官方资料；不训练、不推理、不校准、不重采样，不访问远端或打开新年份测量。VERIFIED表示直接记录/确定性算术；INFERRED是有界推断；UNKNOWN是无测量或无需求证据。
+
+## 结论与投入决定
+
+**STOP_ADDITIONAL_INVESTMENT：建议停止当前主线的新增算力、训练、采数及工程扩展投入。当前不推荐为了所见资源差异而接受0.5641%的代理成本溢价。**
+
+理由不是证明所有真实需求不存在，而是在本轮可核范围内，**没有找到一个与这项P1约简对应、有明确可取消负担和业务容限的真实备用接口**。查到的局部节约存在，但没有连到使用者可兑现的收益；代理平均成本和未覆盖短缺反而上升。应保留已有独立年结果、有限族证据和可复核资产，不用新实验继续寻找用途，也不转开新方向。
+
+## 一、先确认“真实接口”是什么
+
+当前实际运行对象是Metis上的离线Python/PBS分析：读取历史SCADA/冻结forecast、构建特征、载入模型、对整年数组预测、做五q记账并写文件；不是已部署的在线备用RPC/EMS接口。源码路径见`scripts/run_independent_confirmation.py:251–263,266–309,482–522`。本轮没有执行这些模型入口，只读取源码和产物。
+
+三类证据必须分开：
+
+|对象|已核实|不能用它证明什么|
+|---|---|---|
+|Hill of Towie真实场站/数据|官方说明为Siemens SCADA Backup导出的年度10分钟统计与alarm，公开用于研究|不证明存在点预测与备用分离服务、带宽或每tag收费、P1-only需求|
+|已有公开分析代码|官方repo介绍本地下载、缓存与性能/控制/预测分析|不是本项目备用策略的客户、部署、SLA或收益验收|
+|真实动态备用业务|CAISO官方记录有预测误差不确定性对应的ramping产品，2023通知记录mosaic QR使用load/solar/wind forecasts|不同系统/目标/数据接口，不能证明本项目机组P/Q约简有付费需求|
+
+来源：[官方数据集](https://zenodo.org/records/22662930)，[RES官方分析repo](https://github.com/resgroup/hill-of-towie-open-source-analysis)，[CAISO产品记录](https://www.caiso.com/library/flexible-ramping-product)，[CAISO2023监测通知](https://www.caiso.com/Documents/dmm-review-of-the-mosaic-quantile-regression-for-estimating-net-load-uncertainty-call-on-12123.html)。这里只引用各文档明确记载的范围，不将历史通知冒充2026全部实时配置或证明现场收益。公开历史数据许可也不说明实时生产API免费。
+
+本地有界搜索覆盖438份现有代码/文本，另筛查前轮全资产索引中的接口/合同等候选路径；命中14处，人工核查未找到真实客户需求、接口合同、packet/SLA、边际费用或用户验收。主要命中是论文/答辩论证、重复计费审计和合成时钟声明。具体匹配与排除见`demand_search_hits.csv`、`demand_search_summary.json`、`demand_evidence.csv`。未搜索私人邮件/合同系统或联系任何人；结论不是穷尽全行业。
+
+## 二、当前代码确实少做了什么
+
+下表比较单独执行现有P1和全量recipe时的局部数据流。已完成的550策略科研网格是沉没支出，本次评审没有删除任务、模型或原始文件。
+
+|负担|全量→P1|证据强度及可取消边界|
+|---|---|---|
+|learner原始列|112→5|VERIFIED源码：不再消费备用层W/Q历史和35个更早P滞后；公共forecast/clock/ID仍在|
+|360k行训练选列数据本体|161,280,000→7,200,000B，少154,080,000B|VERIFIED代码/shape算术；是选列数组，不是进程峰值RSS|
+|整年预测选列数组本体|494,418,624→22,072,260B，少472,346,364B|VERIFIED代码/shape算术；输入行1,103,613，包括未计分目标格；不是线上报文|
+|HGB模型文件清单|均值424,229.8→190,357.8B，少233,872B（约228.4KiB）|VERIFIED存档manifest记录；本地无原model文件，未载入或独立重新测量。若仅分发该policy文件可少这些文件本体，不代表已节约生产网络费|
+|共同点预测器+policy文件本体|766,734.8→532,862.8B|共同点模型342,505B必须保留；policy-only约55.1%缩减不能当全系统比率|
+|存档HGB fit均值|34.6794→2.5003s，少32.1791s/实例|VERIFIED记录差；不同节点/并发，非受控速度/计费benchmark|
+|完整历史worker均值|42.5319→8.6653s|含文件校验、特征、offset/selection；不是在线耗时|
+|完整年度evaluate worker均值|6.7972→5.3467s，少1.4505s|含载入、完整特征、五q记账/校核/写出，不是纯predict延迟|
+
+数组值体依据：`stage['X'][:, cols]`以及`fit['X'][indices][:, cols]`，后者先构造全宽索引临时数组，再得到选列数组。现有NumPy高级索引语义给出这些名义数据尺寸；没有从它们推测RSS、FLOPs或能耗。HGB内部缺失指示列数量依赖fit数据，原模型未本地回收，确切变换宽度UNKNOWN。固定五seed的时间/文件数取均值，不假定五模型必须ensemble上线。
+
+## 三、哪些负担没有取消，哪些只是假设
+
+- **没取消：**两策略均先构建148列float32 X，2025 X本体653,338,896B；训练第一份全宽索引拷贝仍213,120,000B；原CSV/年包/物理数组读取、完整特征构建、共同forecast、offset、输出记账路径均保留。不能声称95.5%整体内存下降。
+- **没取消：**共同预测使用issue−6时刻的W/P各36历史；W/P传感和上游预测器不能删除。备用时刻的当前P仍需到达，不能因为上游使用过历史P就假定当前P免费到达。
+- **未证明可取消：**Q传感器、现场SCADA采集、OEM访问费、上传流量、独立历史缓存/维护。模型不消费Q不等于其他业务可停止Q；当前代码也没有按子集裁剪源文件或在线订阅。
+- **只是假设：**如果存在分离的真实备用服务，才可能少维护W/Q增量feed及P历史。没有部署或合同证明它存在，不能入收益账。一个缓存历史的增量流只需每步新增W/P/Q三个值，而非反复发108个滞后；因此112→5列不能直接当带宽下降。每条20/448B只是float32入模值体，非实际协议报文。
+- **UNKNOWN：**纯在线预测P50/P95、CPU利用率、每策略RSS/能耗、网络包、调用频率、训练频率、边际费用。PBS申请2CPU/16GB不等于实际消耗，更不等于实际节省的账单。
+
+完整分类见`resource_ledger.csv`。本轮没有优化特征构建、删除历史缓存或重新部署以“兑现”尚未存在的节约。
+
+## 四、为这些局部差异实际付出了什么
+
+以下均从原存档日块对五固定实例平均；每实例1,059,248有效目标格。数值是条件于这些实例/窗口的点记账，未做新显著性/区间检验。
+
+|每有效机组间隔的代理量|全量q.95|P1/q.95|P1−全量|
+|---|---:|---:|---:|
+|备用采购代理R/6|49.299979974|49.297089493|−0.002890482|
+|未覆盖短缺代理U/6|1.734445047|1.772331383|+0.037886336|
+|总损失R/6+10U/6|66.644430445|67.020403321|+0.375972876|
+|二元违约率|5.5333784%|5.5313392%|−0.0020392个百分点|
+
+因此总代理平均成本+0.564147%，原联合近似区间[+0.357468%,+0.770827%]。**溢价的算术来源是加权未覆盖短缺增加约0.3788634，抵消很小的采购减少后，净增0.3759729。** 未覆盖短缺代理均值增加2.184349%，五个seed的该差值均为正。二元事件频率微降不代表严重度降低，更不能写为安全更好。这是公式分解，不是物理因果解释或新确认性发现。
+
+观测年逐机组间隔的总代理溢价五实例均值398,248.517；不是额外实际发电能量、PCC采购账单、五模型同时运行费用或现金流。保留原主检验：两策略全期风险U低于10%、成本上界低于2%容限。但**2%是研究预注册容限，不是运营者签字同意接受的价格/SLA**。不更换q.925参照、不改变cap、不挑seed使盈亏好看。
+
+## 五、盈亏能否算出“值得”
+
+**不能。目前只有资源向量与代理损失向量，没有合法的共同价值标尺。** 不能把32秒、若干数组字节或模型文件差直接与398,248.517代理单位相加；也不能给代理损失乘电价。
+
+|接受溢价所需证据|本轮结果|
+|---|---|
+|有真实使用者需要这个分离接口|NOT ESTABLISHED|
+|确有可取消的边际输入/通信/维护负担|局部learner数据/模型差已核；真实接口负担NOT ESTABLISHED|
+|取消后对业务有可计量价值|UNKNOWN；无SLA/费用/维护记录|
+|使用者接受额外损失及短缺严重度|UNKNOWN；研究2%容限不替代业务容限|
+|真实fallback和可交付性约束不被破坏|UNKNOWN；仅有研究参照，非现场运行闭环|
+
+所以不能得出“净收益为正”或“0.5641%值得支付”；同样不能因缺数据断言任何场景净收益一定为负。**本次投资判断是：没有已证需求与可兑现收益时，不应继续为它支付新增研发/训练成本。**
+
+## 六、排除的伪需求/伪盈亏依据
+
+`manuscript/REBUTTAL_PREPARATION.md:62`关于104转发普遍屏蔽pitch的作者表述，不是本项目接口合同、packet或现场访问记录；不补作真实需求。`docs/WHY_LEVEL1_SCOPE_IS_SUFFICIENT.md:63`把抽象目标等同grid-code合规的推导，不是实际结算/可交付性证据。已有Elexon价格敏感性和`operational_cost.py`的illustrative scale marker针对旧支线/假设，不是当前2025 P1接口的币值映射。它们全部保留但不入本次收益账。没有读取新价格、按电价换算，或新增OPF/BESS/市场实验。
+
+## 最终执行边界
+
+**建议到此停止追加投入，关闭本轮“寻找真实接口价值”的研究任务。** 本轮已完成现有材料评审，不安排下一训练、新年份采集、特征裁剪工程、参数搜索、第二年确认或新方向。保存C1/C4有界事实与原失败；它们不会因本轮价值未证而失效。这里停止的是新增投入，不是篡改/删除过去结果。只有未来出现独立于调参、可核验的真实接口需求与收益记录，才有另行评审的事实基础；本轮不主动追索或等待它。
+
+复核：`recompute_ledger.py`、`derived.json`、`policy_seed_ledger.csv`、`resource_ledger.csv`、`loss_ledger.csv`、`demand_evidence.csv`、`public_sources.csv`。所有受读源哈希前后检查，验证输出见本目录后续receipt。旧结果/稿件/科学契约/风险门槛保持不变。
+'''
+    (ROOT/'research_audit/14_resource_loss_break_even_review.md').write_text(report,encoding='utf-8')
+    decision=dict(decision='STOP_ADDITIONAL_INVESTMENT',adoption='NOT_RECOMMENDED_ON_CURRENT_EVIDENCE',
+        real_specific_interface_need='NOT_ESTABLISHED_IN_BOUNDED_REVIEW',net_benefit='UNPROVEN',
+        numeric_loss_premium=d['relative_cost'],proxy_shortage_relative_increase=p['shortage_mean']/f['shortage_mean']-1,
+        no_currency_conversion=True,no_new_training=True,no_new_inference=True,no_new_direction=True,
+        preserve_existing_scientific_results=True,
+        reason='Local recipe resource differences are verified; no actual avoidable service burden or business tolerance connects them to the positive proxy-loss premium.')
+    (OUT/'decision.json').write_text(json.dumps(decision,ensure_ascii=False,indent=2),encoding='utf-8')
+    print('Wrote resource/loss/demand ledgers and final stop-investment review.')
+
+if __name__=='__main__':main()

@@ -1,0 +1,6 @@
+# Full tensors remain in local/Metis evidence archives; tracked manifests bind them.
+a100/*.npz
+rtx5060/*.npz
+original_source_snapshot.zip
+!original_stdout.log
+!original_stderr.log

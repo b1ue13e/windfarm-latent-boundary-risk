@@ -1,0 +1,28 @@
+ [HPC] Metis commands ready: metis, metis-qstat, metis-gpu, metis-queues, metis-llm
+C:\Users\lidong\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\cuda\__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+[Fixed Target Isolation] Using device: cuda:0
+Validation windows: 4261, Test windows: 4981, Turbines: 134
+
+--- Loading Seed 201 from artifacts\trainweight_full_rerun_20260830\wtb_full_seed201 ---
+[VAL Seed 201] Processed 4261 windows in 17.36s. h=1 RMSE: 120.97, h=6 RMSE: 215.23
+[TEST Seed 201] Processed 4981 windows in 12.75s. h=1 RMSE: 99.63, h=6 RMSE: 179.96
+
+--- Loading Seed 202 from artifacts\trainweight_full_rerun_20260830\wtb_full_seed202 ---
+[VAL Seed 202] Processed 4261 windows in 6.58s. h=1 RMSE: 170.49, h=6 RMSE: 232.45
+[TEST Seed 202] Processed 4981 windows in 6.90s. h=1 RMSE: 146.79, h=6 RMSE: 195.41
+
+--- Loading Seed 203 from artifacts\trainweight_full_rerun_20260830\wtb_full_seed203 ---
+[VAL Seed 203] Processed 4261 windows in 6.15s. h=1 RMSE: 137.66, h=6 RMSE: 219.69
+[TEST Seed 203] Processed 4981 windows in 6.22s. h=1 RMSE: 102.33, h=6 RMSE: 170.05
+
+--- Loading Seed 204 from artifacts\trainweight_full_rerun_20260830\wtb_full_seed204 ---
+[VAL Seed 204] Processed 4261 windows in 4.72s. h=1 RMSE: 143.16, h=6 RMSE: 219.25
+[TEST Seed 204] Processed 4981 windows in 6.04s. h=1 RMSE: 101.28, h=6 RMSE: 174.91
+
+--- Loading Seed 205 from artifacts\trainweight_full_rerun_20260830\wtb_full_seed205 ---
+[VAL Seed 205] Processed 4261 windows in 6.24s. h=1 RMSE: 139.44, h=6 RMSE: 225.29
+[TEST Seed 205] Processed 4981 windows in 7.63s. h=1 RMSE: 107.96, h=6 RMSE: 180.96
+
+[Saved] Compressed residuals to artifacts\fixed_forecast_residuals.npz (Size: 165.38 MB)
+[Saved] Metadata to artifacts\fixed_forecast_residuals_meta.json

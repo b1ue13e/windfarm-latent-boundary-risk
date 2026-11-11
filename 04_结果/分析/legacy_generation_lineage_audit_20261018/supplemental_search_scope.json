@@ -1,0 +1,52 @@
+{
+  "claude_project_matches": [
+    {
+      "path": "C:\\Users\\lidong\\.claude\\projects\\E----3\\6fb32629-5d77-4f5c-9329-baefa9762973.jsonl",
+      "sha256": "589d31cf10dabb27f279c2d6779c652a964e2c8e7b4ba944fab72c41d581b1d6",
+      "matching_record_count": 1,
+      "first_matching_timestamp": "2026-09-28T14:35:22.211Z",
+      "last_matching_timestamp": "2026-09-28T14:35:22.211Z"
+    },
+    {
+      "path": "C:\\Users\\lidong\\.claude\\projects\\E----3\\da5bb1de-e626-41e2-838e-48122b8db744.jsonl",
+      "sha256": "c55539670ae8993fb568bc71f49010e8fd9e26a2b7c2485f0ea1b849a364e80b",
+      "matching_record_count": 1,
+      "first_matching_timestamp": "2026-09-28T14:35:22.211Z",
+      "last_matching_timestamp": "2026-09-28T14:35:22.211Z"
+    },
+    {
+      "path": "C:\\Users\\lidong\\.claude\\projects\\E----3\\f95c68e1-c7e8-4c11-8557-2eb18cd2baf4.jsonl",
+      "sha256": "81bdfe95f25cd7ef25fd31cff94c77225a30dd06493fa05b361fd15006b1bbd4",
+      "matching_record_count": 1,
+      "first_matching_timestamp": "2026-09-28T14:35:22.211Z",
+      "last_matching_timestamp": "2026-09-28T14:35:22.211Z"
+    },
+    {
+      "path": "C:\\Users\\lidong\\.claude\\projects\\E----3\\d2744ee2-6fdb-4c8f-97c1-5bd48897469c\\subagents\\agent-a13f7251574cc839e.jsonl",
+      "sha256": "a5466ae13589fc31167eb1443443aae23a21f130495bc2ef4e3bda3895ddcee6",
+      "matching_record_count": 1,
+      "first_matching_timestamp": "2026-10-14T01:20:35.007Z",
+      "last_matching_timestamp": "2026-10-14T01:20:35.007Z"
+    }
+  ],
+  "codex_september_day_roots_searched": [
+    18,
+    21,
+    22,
+    24,
+    25
+  ],
+  "codex_target_filename_hits": 0,
+  "editor_history_roots": {
+    "C:/Users/lidong/AppData/Roaming/Code/User/History": "entries.json inspected; zero target filename matches",
+    "C:/Users/lidong/AppData/Roaming/Antigravity/User/History": "not present",
+    "C:/Users/lidong/.gemini/antigravity/code_tracker": "not present"
+  },
+  "git_stash_list": "",
+  "limits": [
+    "Only mounted accessible audited roots; no assertion about deleted files or other machines",
+    "Dependency/environment directories and credentials excluded",
+    "Archives inspected by member names; target members hashed without execution",
+    "Exact historical GPU model/CUDA/PyTorch/dependency and weight hashes remain unbound"
+  ]
+}

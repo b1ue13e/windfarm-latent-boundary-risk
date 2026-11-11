@@ -1,0 +1,47 @@
+role_id,task,arm,program_family,historical_responsibility,restriction,layer
+RAW_P_C0,RAW,P,C0,RAW own native objective historical family representative,No confirmation selection,Turbine and Group separately
+RAW_P_C1,RAW,P,C1,RAW own native objective historical family representative,No confirmation selection,Turbine and Group separately
+RAW_P_C2,RAW,P,C2,RAW own native objective historical family representative,No confirmation selection,Turbine and Group separately
+RAW_P_C3,RAW,P,C3,RAW own native objective historical family representative,No confirmation selection,Turbine and Group separately
+RAW_P_C4,RAW,P,C4,RAW own native objective historical family representative,No confirmation selection,Turbine and Group separately
+RAW_P_C5,RAW,P,C5,RAW own native objective historical family representative,No confirmation selection,Turbine and Group separately
+RAW_Z_C0,RAW,Z,C0,RAW own native objective historical family representative,No confirmation selection,Turbine and Group separately
+RAW_Z_C1,RAW,Z,C1,RAW own native objective historical family representative,No confirmation selection,Turbine and Group separately
+RAW_Z_C2,RAW,Z,C2,RAW own native objective historical family representative,No confirmation selection,Turbine and Group separately
+RAW_Z_C3,RAW,Z,C3,RAW own native objective historical family representative,No confirmation selection,Turbine and Group separately
+RAW_Z_C4,RAW,Z,C4,RAW own native objective historical family representative,No confirmation selection,Turbine and Group separately
+RAW_Z_C5,RAW,Z,C5,RAW own native objective historical family representative,No confirmation selection,Turbine and Group separately
+RAW_Z_IGNORE,RAW,Z,IGNORE_Z,Exact alias of RAW historical P* whole program,No extra independent fit/replication,Turbine and Group separately
+B925_P_C0,B925,P,C0,B925 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B925_P_C1,B925,P,C1,B925 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B925_P_C2,B925,P,C2,B925 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B925_P_C3,B925,P,C3,B925 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B925_P_C4,B925,P,C4,B925 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B925_P_C5,B925,P,C5,B925 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B925_Z_C0,B925,Z,C0,B925 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B925_Z_C1,B925,Z,C1,B925 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B925_Z_C2,B925,Z,C2,B925 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B925_Z_C3,B925,Z,C3,B925 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B925_Z_C4,B925,Z,C4,B925 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B925_Z_C5,B925,Z,C5,B925 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B925_P_U0,B925,P,Uniform remaining budget,B925 native eligible comparator,No Z inputs,Turbine and Group separately
+B925_Z_IGNORE,B925,Z,IGNORE_Z,Exact alias of B925 historical P* whole program,No extra independent fit/replication,Turbine and Group separately
+B950_P_C0,B950,P,C0,B950 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B950_P_C1,B950,P,C1,B950 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B950_P_C2,B950,P,C2,B950 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B950_P_C3,B950,P,C3,B950 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B950_P_C4,B950,P,C4,B950 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B950_P_C5,B950,P,C5,B950 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B950_Z_C0,B950,Z,C0,B950 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B950_Z_C1,B950,Z,C1,B950 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B950_Z_C2,B950,Z,C2,B950 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B950_Z_C3,B950,Z,C3,B950 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B950_Z_C4,B950,Z,C4,B950 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B950_Z_C5,B950,Z,C5,B950 own native objective historical family representative,No confirmation selection,Turbine and Group separately
+B950_P_U0,B950,P,Uniform remaining budget,B950 native eligible comparator,No Z inputs,Turbine and Group separately
+B950_Z_IGNORE,B950,Z,IGNORE_Z,Exact alias of B950 historical P* whole program,No extra independent fit/replication,Turbine and Group separately
+BRIDGE_P,RAW_BRIDGE,P,Primary-budget selected program unbudgeted counterpart,No retune,Compared to paired counterpart and native RAW P*,Turbine and Group separately
+BRIDGE_Z,RAW_BRIDGE,Z,Primary-budget selected program unbudgeted counterpart,No retune,Compared to paired counterpart and native RAW P*,Turbine and Group separately
+FRESH_P,RAW_FRESH_BOUNDARY,P,RAW selected family/global settings; matched fresh history fit,No fresh winner shopping,Only RAW freshness interaction,Turbine and Group separately
+FRESH_Z,RAW_FRESH_BOUNDARY,Z,RAW selected family/global settings; matched fresh history fit,No fresh winner shopping,Only RAW freshness interaction,Turbine and Group separately
+FRESH_Z_IGNORE,RAW_FRESH_BOUNDARY,Z_IGNORE,RAW selected family/global settings; matched fresh history fit,No fresh winner shopping,Only RAW freshness interaction,Turbine and Group separately

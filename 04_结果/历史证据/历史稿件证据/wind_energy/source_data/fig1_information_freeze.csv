@@ -1,0 +1,8 @@
+stage,start,end,source,source_field
+point_fit,2023-01-01T00:00:00Z,2023-07-01T00:00:00Z,experiments/independent_confirmation_execution_20261019/protocol.json,windows.point_fit
+policy_fit,2023-07-01T00:00:00Z,2024-01-01T00:00:00Z,experiments/independent_confirmation_execution_20261019/protocol.json,windows.policy_fit
+offset_fit,2024-01-01T00:00:00Z,2024-07-01T00:00:00Z,experiments/independent_confirmation_execution_20261019/protocol.json,windows.offset_fit
+selection,2024-07-01T00:00:00Z,2025-01-01T00:00:00Z,experiments/independent_confirmation_execution_20261019/protocol.json,windows.selection
+confirmation,2025-01-01T00:00:00Z,2026-01-01T00:00:00Z,experiments/independent_confirmation_execution_20261019/protocol.json,windows.confirmation
+package_created,2026-10-19T04:27:16.478898+00:00,,analyses/independent_confirmation_execution_20261019/history_freeze/freeze.json,created_utc
+actual_unlock,2026-10-19T04:30:57.719354+00:00,,analyses/independent_confirmation_execution_20261019/unlocked_actual_receipt.json,event.utc

@@ -1,0 +1,5 @@
+# Preserve archived diagnostic bytes, including recorded Windows gate output.
+* -text
+*.txt whitespace=cr-at-eol
+*.csv whitespace=cr-at-eol
+number_gate/* whitespace=cr-at-eol

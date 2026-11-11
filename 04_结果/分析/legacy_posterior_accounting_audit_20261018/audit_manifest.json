@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-18",
+  "status": "NUMERIC_ACCOUNTING_DIAGNOSIS_VERIFIED_HISTORICAL_EXACT_FAILURE_AND_CACHE_SEMANTICS_UNKNOWN",
+  "repository_head_before_commit": "5ce3c03881c902b6033c93b42a5ab11f59ab23ab",
+  "scope": "Existing legacy NPZ and CSV arithmetic only; no model load/inference, producer rerun, cache regeneration, bootstrap, new policy tuning, or E07 calibration",
+  "configuration": {
+    "seeds": [
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "q_star": 0.9,
+    "rho": 10.0,
+    "dt": 0.16666666666666666,
+    "original_production_identity_abs_threshold": 0.0001,
+    "strict_inequality": true,
+    "threshold_relaxed": false
+  },
+  "raw_result_replacements": 0,
+  "protected_input_count": 99,
+  "all_protected_inputs_unchanged": true,
+  "cache_structure": "VERIFIED: keys/length/dtype/finite/range/CRC and current archive identity only",
+  "historical_exact_failure_operands_and_environment": "UNKNOWN",
+  "cache_generation_semantic_validity_and_complete_lineage": "UNKNOWN",
+  "current_E04_scientific_certification_upgrade": false,
+  "E07": "UNCHANGED_UNACTIVATED",
+  "files": [
+    {
+      "path": "scripts/audit_legacy_posterior_accounting.py",
+      "sha256": "b21426fc03d8551776bfc45ee3c4de2dc679668ff636e1c9ce93f2c8c49f72bd",
+      "size_bytes": 14284,
+      "sha256_git_blob": "b21426fc03d8551776bfc45ee3c4de2dc679668ff636e1c9ce93f2c8c49f72bd",
+      "git_blob": "949f641ae214f839423bf9182854a67e4c3f9d67",
+      "hash_semantics": "sha256=observed workspace bytes; sha256_git_blob=staged repository bytes (text normalization may differ)"
+    },
+    {
+      "path": "tests/test_legacy_posterior_accounting.py",
+      "sha256": "6c5cbca2ac6ddcc4a470e4e4d6d322a3f9d1a1ed07c30e03d5b7ac9b003f4e61",
+      "size_bytes": 2924,
+      "sha256_git_blob": "6c5cbca2ac6ddcc4a470e4e4d6d322a3f9d1a1ed07c30e03d5b7ac9b003f4e61",
+      "git_blob": "4e5be062c8a4fd4615107cf59d450decffb190b0",
+      "hash_semantics": "sha256=observed workspace bytes; sha256_git_blob=staged repository bytes (text normalization may differ)"
+    },
+    {
+      "path": "scripts/.gitattributes",
+      "sha256": "195767807d69f0759209cb22e6c7ae613e5931d2b8fc70f6361099f43b3b799c",
+      "size_bytes": 339,
+      "sha256_git_blob": "195767807d69f0759209cb22e6c7ae613e5931d2b8fc70f6361099f43b3b799c",
+      "git_blob": "c616c11596fd429d867c524b85765f589a5d0b31",
+      "hash_semantics": "sha256=observed workspace bytes; sha256_git_blob=staged repository bytes (text normalization may differ)"
+    },
+    {
+      "path": "PROJECT.md",
+      "sha256": "458ee2dc5896fa456261e61dc454515a096ba1e053801f1081f1d37339cc05eb",
+      "size_bytes": 18839,
+      "sha256_git_blob": "458ee2dc5896fa456261e61dc454515a096ba1e053801f1081f1d37339cc05eb",
+      "git_blob": "68d52784306c0260e26aaf53a248279e9b413100",
+      "hash_semantics": "sha256=observed workspace bytes; sha256_git_blob=staged repository bytes (text normalization may differ)"
+    },
+    {
+      "path": "analyses/legacy_posterior_accounting_audit_20261018/.gitattributes",
+      "sha256": "308a40fa1d89ae5ea4390b4c9b46a0108b09f171f07898f25d451fa0c69c4e9f",
+      "size_bytes": 72,
+      "sha256_git_blob": "308a40fa1d89ae5ea4390b4c9b46a0108b09f171f07898f25d451fa0c69c4e9f",
+      "git_blob": "e11c72b55f06e648f9ab243b05b210f5bdc3a420",
+      "hash_semantics": "sha256=observed workspace bytes; sha256_git_blob=staged repository bytes (text normalization may differ)"
+    },
+    {
+      "path": "analyses/legacy_posterior_accounting_audit_20261018/preflight_attempts.json",
+      "sha256": "48a4ab2e39632e7e73bddd232d5541b934f1f0760bac847ce22d7a8124c1af70",
+      "size_bytes": 366,
+      "sha256_git_blob": "48a4ab2e39632e7e73bddd232d5541b934f1f0760bac847ce22d7a8124c1af70",
+      "git_blob": "855c354a5064f23bef3a7ea6870f18e9c1267311",
+      "hash_semantics": "sha256=observed workspace bytes; sha256_git_blob=staged repository bytes (text normalization may differ)"
+    },
+    {
+      "path": "analyses/legacy_posterior_accounting_audit_20261018/REPORT.md",
+      "sha256": "f8015c65a5cbb4dcf953534ac2be810b329709c52b58d02b8ebd90331cf6e167",
+      "size_bytes": 10132,
+      "sha256_git_blob": "f8015c65a5cbb4dcf953534ac2be810b329709c52b58d02b8ebd90331cf6e167",
+      "git_blob": "2117aec2b644ac9d4beccacf4c3f7fd909bfebe7",
+      "hash_semantics": "sha256=observed workspace bytes; sha256_git_blob=staged repository bytes (text normalization may differ)"
+    },
+    {
+      "path": "analyses/legacy_posterior_accounting_audit_20261018/summary.json",
+      "sha256": "f3d063120ec20835609061f229e400f8edbe89c1ee921f69d89be1db8b30c6c2",
+      "size_bytes": 14974,
+      "sha256_git_blob": "f3d063120ec20835609061f229e400f8edbe89c1ee921f69d89be1db8b30c6c2",
+      "git_blob": "7b3e6bc2b58d7ee1c885ebaea8f0aa2850032b3d",
+      "hash_semantics": "sha256=observed workspace bytes; sha256_git_blob=staged repository bytes (text normalization may differ)"
+    },
+    {
+      "path": "analyses/legacy_posterior_accounting_audit_20261018/number_consistency_gate/table_tste_number_consistency_audit.tex",
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8",
+      "size_bytes": 5594,
+      "sha256_git_blob": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8",
+      "git_blob": "27cae5b1e8a0ef0b6e819bf45122644626dfd363",
+      "hash_semantics": "sha256=observed workspace bytes; sha256_git_blob=staged repository bytes (text normalization may differ)"
+    },
+    {
+      "path": "analyses/legacy_posterior_accounting_audit_20261018/number_consistency_gate/tste_number_consistency_audit.csv",
+      "sha256": "8e319f47763bb96ddb1b7afed6d471487591c9dd07ac4e903919e8d5913412e4",
+      "size_bytes": 12442,
+      "sha256_git_blob": "8e319f47763bb96ddb1b7afed6d471487591c9dd07ac4e903919e8d5913412e4",
+      "git_blob": "beadae8b10bfcf77fd954927e553f5a1d09c3222",
+      "hash_semantics": "sha256=observed workspace bytes; sha256_git_blob=staged repository bytes (text normalization may differ)"
+    },
+    {
+      "path": "analyses/legacy_posterior_accounting_audit_20261018/number_consistency_gate/tste_number_consistency_audit.json",
+      "sha256": "d8ae3d6cea96ee783e86734728c0f68d580e7f76bd345a1e91954ad589799671",
+      "size_bytes": 841,
+      "sha256_git_blob": "d8ae3d6cea96ee783e86734728c0f68d580e7f76bd345a1e91954ad589799671",
+      "git_blob": "626f54eb05f09cd5d827d5c14e91091c8c06af7f",
+      "hash_semantics": "sha256=observed workspace bytes; sha256_git_blob=staged repository bytes (text normalization may differ)"
+    },
+    {
+      "path": "analyses/legacy_posterior_accounting_audit_20261018/run_v1/diagnostic.json",
+      "sha256": "3c9f814c69b6d233d678d3633b775edeed682cb73ff4f05dec8b15582b802279",
+      "size_bytes": 154690,
+      "sha256_git_blob": "3c9f814c69b6d233d678d3633b775edeed682cb73ff4f05dec8b15582b802279",
+      "git_blob": "4d67a3d1c696a73089a10d3b68e69af285eb8b06",
+      "hash_semantics": "sha256=observed workspace bytes; sha256_git_blob=staged repository bytes (text normalization may differ)"
+    }
+  ]
+}

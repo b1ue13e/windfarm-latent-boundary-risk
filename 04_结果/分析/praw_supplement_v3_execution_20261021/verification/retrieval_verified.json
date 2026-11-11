@@ -1,0 +1,31 @@
+{
+  "archive_sha256": "948a2b6c4c9c08f7ae7c6046da98312c5a163b54059ba271c955432fc97103f4",
+  "archive_bytes": 334377468,
+  "archive_identity_verified": true,
+  "all_member_manifests_verified": true,
+  "stage_manifests": [
+    "results\\infer\\manifest.json",
+    "results\\prepared\\manifest.json",
+    "results\\accounting\\0\\manifest.json",
+    "results\\accounting\\1\\manifest.json",
+    "results\\accounting\\2\\manifest.json",
+    "results\\accounting\\3\\manifest.json",
+    "results\\accounting\\4\\manifest.json",
+    "results\\accounting\\5\\manifest.json",
+    "results\\accounting\\6\\manifest.json",
+    "results\\accounting\\7\\manifest.json",
+    "results\\accounting\\8\\manifest.json",
+    "results\\accounting\\9\\manifest.json",
+    "results\\fits\\0\\manifest.json",
+    "results\\fits\\1\\manifest.json",
+    "results\\fits\\2\\manifest.json",
+    "results\\fits\\3\\manifest.json",
+    "results\\fits\\4\\manifest.json",
+    "results\\fits\\5\\manifest.json",
+    "results\\fits\\6\\manifest.json",
+    "results\\fits\\7\\manifest.json",
+    "results\\fits\\8\\manifest.json",
+    "results\\fits\\9\\manifest.json"
+  ],
+  "derived_results_only_no_new_measurements": true
+}

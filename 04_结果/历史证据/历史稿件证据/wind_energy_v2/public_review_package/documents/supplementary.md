@@ -1,0 +1,326 @@
+---
+title: "Supporting Information: Incremental Telemetry for Wind-Power Shortfall Decisions under a Fixed Forecast Commitment"
+date: ""
+lang: en-GB
+documentclass: article
+fontsize: 11pt
+geometry: margin=25mm
+mainfont: TeX Gyre Termes
+mathfont: TeX Gyre Termes Math
+colorlinks: true
+numbersections: false
+bibliography: references.bib
+csl: american-medical-association.csl
+header-includes:
+  - \usepackage{microtype}
+  - \usepackage{needspace}
+  - \setlength{\emergencystretch}{3em}
+  - \widowpenalty=10000
+  - \clubpenalty=10000
+---
+
+# S1. Shared information and registered comparisons
+
+## S1.1. A common forecast, followed by an incremental decision layer
+
+The study evaluates additional telemetry at a reserve-decision layer, conditional on one corresponding unchanged upstream power forecast. Let $t$ denote a decision issue on the ten-minute grid. The upstream forecast uses 36 wind-speed and active-power observations ending at $t-6$ and predicts power at $t+6$. Thus, the reserve decision has a six-step lead, whereas the common forecast has a twelve-step lead from its last input. The target is one ten-minute power interval, not energy delivered throughout the following hour. The access contract supplies this single forecast rather than the complete set of potentially arrived forecasts, errors or controller messages. It is a controlled design comparison, not a reconstruction of an operator's complete information set.
+
+Every direct decision estimator receives four common inputs: the shared forecast, the sine and cosine of issue time within the day, and normalised turbine identity. We denote this information by **Common**. The name **P1** means that current active power is added to Common at the decision layer. It does not mean that the complete forecasting and decision pipeline uses active power alone. In particular, the shared forecast still requires historical wind speed and active power.
+
+The primary condition withholds pitch from the decision layer and retains fresh wind speed, active power and reactive power as candidate inputs. The complete registered lattice consists of Common and each of the seven non-empty combinations of wind speed ($W$), active power ($P$) and reactive power ($Q$), with 1, 6 or 36 last-arrived observations. Each recipe is fitted with histogram gradient boosting (HGB) and a multilayer perceptron (MLP). Table S1 lists all 22 input recipes before the estimator and calibration dimensions are added.
+
+**Table S1. Complete pitch-withheld input lattice.** Width is the number of raw inputs selected by the reserve learner before its missing-value transformation. All rows share the forecast, clock terms and turbine identity. The entries in the last three columns correspond to lookbacks of 1, 6 and 36 observations, respectively.
+
+| Added channels | Registered labels | Incremental channel count | Width, 1 observation | Width, 6 observations | Width, 36 observations |
+|:--|:--|--:|--:|--:|--:|
+| None | Common | 0 | 4 | — | — |
+| W | W1, W6, W36 | 1 | 5 | 10 | 40 |
+| P | P1, P6, P36 | 1 | 5 | 10 | 40 |
+| Q | Q1, Q6, Q36 | 1 | 5 | 10 | 40 |
+| W, P | WP1, WP6, WP36 | 2 | 6 | 16 | 76 |
+| W, Q | WQ1, WQ6, WQ36 | 2 | 6 | 16 | 76 |
+| P, Q | PQ1, PQ6, PQ36 | 2 | 6 | 16 | 76 |
+| W, P, Q | WPQ1, WPQ6, WPQ36 | 3 | 7 | 22 | 112 |
+
+Each fitted recipe has five historical calibration offsets, indexed by $q\in\{0.90,0.925,0.95,0.975,0.99\}$. A calibrated persistence comparator is also retained. The pitch-withheld full family therefore contains $(22\times2+1)\times5=225$ policies. The five archived learning instances are evaluated for each policy; they are not additional policies in this count.
+
+## S1.2. Secondary information conditions and persistence
+
+The five pitch-observed secondary conditions use a registered partial lattice: Common, P1, WP1, WP6, WP36 and WPQ36, each with HGB and MLP, plus persistence. With the same five offset levels, each condition contains 65 policies. The six conditions together contain 550 policy labels in the full-q evaluation. Their labels, stored indices and resource tuples are provided in `supplement_data/registered_confirmation_policies.csv`.
+
+**Table S2. Registered information conditions.** The shifts apply to reserve-layer telemetry. A fresh upstream feed is assumed for the shared forecast in every condition. Delays and withholding are imposed evaluation conditions; their frequency in operational wind fleets is not measured here.
+
+| Condition | Reserve-feed delay | Pitch history in direct estimators | Registered direct-input recipes |
+|:--|--:|:--|:--|
+| Pitch withheld | 0 min | No | All 22 recipes in Table S1 |
+| Fresh | 0 min | Yes | Common, P1, WP1, WP6, WP36, WPQ36 |
+| Delay 1 | 10 min | Yes | Same six-recipe partial lattice |
+| Delay 2 | 20 min | Yes | Same six-recipe partial lattice |
+| Delay 3 | 30 min | Yes | Same six-recipe partial lattice |
+| Delay 6 stress | 60 min | Yes | Same six-recipe partial lattice |
+
+The event-time window is always $[t-35,t]$. For delay $d$ and requested lookback $L$, retained observations end at $t-d$ and begin no earlier than $t-35$. Unavailable observations are not recovered by shifting the complete history window backwards. When pitch is permitted, all legally available pitch observations within this same window are shared by every direct candidate. Consequently, a label such as P1 in a pitch-observed condition includes pitch history in addition to its named input; it cannot be interpreted as the same complete information set as pitch-withheld P1.
+
+The persistence raw action is $\max(F_{i,t}-P^{\mathrm{last}}_{i,t},0)$, with zero used when the last active-power observation is missing, followed by the same historical offset family. This comparator uses the shared forecast and last-arrived power, and does not use the clock, turbine identity or available pitch. It is a simple functional comparator rather than an equal-input estimator control. Its five stored copies implement the same deterministic function and do not supply five independent replications.
+
+Resource order is lexicographic in (incremental telemetry channels, learned predictor passes, raw input width). The persistence tuple is $(1,0,2)$; a pitch-withheld P1 direct estimator has $(1,1,5)$; Common has $(0,1,4)$. HGB and MLP with identical selected inputs are tied under this declared order. The order does not rank parameter count, inference time, communication traffic or total system cost. The implementation constructs the complete feature matrix before selecting columns, so functional input sparsity is not evidence of an implemented end-to-end speedup.
+
+# S2. Data, chronology and policy construction
+
+## S2.1. Coordinate and population rules
+
+The Hill of Towie analysis uses the registered 21 turbines and the 2023, 2024 and 2025 annual SCADA archives [@clerc2026towie]. Records are placed on a UTC ten-minute period-end grid. Wind speed comes from `wtc_AcWindSp_mean`, active and reactive power from `wtc_ActPower_mean` and `wtc_ReactPwr_mean`, and pitch is the mean of `wtc_PitcPosA_mean`, `wtc_PitcPosB_mean` and `wtc_PitcPosC_mean` when all three blade values are finite. Negative wind speed is marked missing; finite negative active or reactive power is retained. Missing time–turbine coordinates remain missing rather than being filled with invented measurements.
+
+Exact redundant source records are accepted only after equality of the original six consumed fields, including matching non-finite values, has been checked. Any conflicting consumed value rejects the source run. Equality at the cross-year boundary is checked before wind-speed masking or blade-pitch averaging. The earlier failure of a stricter raw-row-uniqueness check is retained in the source audit; accepting equal copies does not modify the annual archives.
+
+All compared policies use the same anchors, shared forecast, shortfall target and target mask. Eligibility requires a finite future active-power observation; it does not require finite pitch or finite inputs to any particular estimator. Zero and negative power targets remain eligible. No alarm, operating-state, control-intervention or policy-performance filter is applied. The 2025 confirmation population contains 1,059,248 valid turbine intervals per archived instance. Inference is conditional on this recorded-target population and does not cover unrecorded future power.
+
+WTB supplies a separate development study with 134 turbines and 245 index days from the SDWPF dataset [@zhou2024sdwpfdataset]. Its evaluation period had been inspected before the present explanation and is not an untouched confirmation set. The same principle retains finite zero and negative future power and uses a common target population across input recipes. WTB and Hill of Towie are not pooled into a single effect estimate.
+
+\Needspace{18\baselineskip}
+
+## S2.2. Learning, calibration and selection windows
+
+**Table S3. Registered stages.** Calendar windows are half-open on the issue grid. The final issues are removed until their target plus one release step precedes the next stage. Historical observations before a stage may be used when they have already arrived.
+
+| Stage | Hill of Towie | WTB |
+|:--|:--|:--|
+| Shared point-forecast fit | 2023-01-01 to 2023-07-01 | Days 1–90 |
+| Reserve-estimator fit | 2023-07-01 to 2024-01-01 | Days 136–175 |
+| Offset fit | 2024-01-01 to 2024-07-01 | Days 176–192 |
+| Historical q and recipe selection | 2024-07-01 to 2025-01-01 | Days 193–210 |
+| Evaluation | 2025-01-01 to 2026-01-01, sealed confirmation | Days 211–245, development |
+
+The shared point forecaster is a squared-error HGB using only wind-speed and active-power histories. Hill of Towie uses 120,000 historical point-fit rows and seed 20261018. Because its inputs end at forecast publication, the fitted target is twelve steps after that input anchor. The last point-fit label is required to mature before the first forecast publication used for policy fitting. This additional boundary check prevents a forecast model from using labels that would not yet have existed at its first use.
+
+Hill of Towie reserve models use 360,000 finite-target fit rows per instance. The registered instance seeds are 201–205. For each seed, every input subset and estimator uses the same sampled rows. WTB uses nested prefixes of 10,000, 40,000, 120,000 and 360,000 rows for pitch withholding; the five pitch-observed conditions use only 120,000 and 360,000 rows. These are 14 condition/budget settings, not a complete condition-by-four-budget factorial. Increasing row count changes both data density and training computation within an unchanged calendar; it does not add evaluation weather days.
+
+## S2.3. Estimation and missing inputs
+
+HGB and MLP both fit the shortfall's 0.90 conditional quantile using pinball loss. HGB uses 100 boosting iterations, at most 15 leaves, minimum leaf size 50, learning rate 0.08 and L2 regularisation 1.0, with early stopping disabled. Its historical pipeline imputes missing inputs with zero and adds missing-value indicators, retaining structurally empty features. The imputer is fitted only on the corresponding historical fit rows.
+
+The MLP has two ReLU hidden layers of widths 64 and 32 and a linear output. It uses 80 fixed epochs, batch size 2048 and AdamW with learning rate 0.001 and weight decay 0.0001. Input means and scales use only finite entries in the actual fit rows; missing standardised inputs are set to zero, with an indicator retained for every raw feature. Target scale is the fit-target standard deviation, floored at one. The final bias is initialised using the fit-target 0.90 quantile. Training uses deterministic CPU settings. Neither estimator is tuned against 2025.
+
+Table S1 reports raw selected width before these missing-value transformations. HGB's added indicator count depends on historical missingness, whereas the MLP retains a full set of indicators. The raw width therefore is not a claim about identical transformed dimensions or equal computational cost across estimators.
+
+## S2.4. Historical calibration and selection
+
+For a fitted raw prediction $a_{i,t}$, let $a^+_{i,t}=\max(a_{i,t},0)$. Each historical offset is the higher sample quantile
+
+$$
+b_q=Q_q^{\mathrm{higher}}\{S_{i,t}-a^+_{i,t}: (i,t)\text{ in the offset-fit population}\},
+\qquad R_{i,t,q}=\max(a^+_{i,t}+b_q,0).
+$$
+
+Offsets may be negative. The grid $q=0.90,0.925,0.95,0.975,0.99$ changes the historical offset, not the quantile used to train five different networks. Thus P1/HGB/q0.95 and P1/HGB/q0.925 share the same fitted model and have different precomputed historical offsets. Neither is fitted again after confirmation is opened.
+
+Historical q selection uses one q shared by all five instances of a recipe. Eligible levels must satisfy the historical simultaneous event-rate upper limit of 0.10 for every instance. The eligible level with the lowest five-instance mean historical cost is selected; ties use the lower grid index. If no level qualifies, q0.99 is retained as an explicitly unqualified diagnostic rather than a successful choice.
+
+The historical recipe-family assessment then applies the risk and near-optimality rules in Section S3 to those fixed q choices, retaining all minimum-resource ties or an empty set. The reference is the lowest-cost historically qualified WPQ36 HGB or MLP recipe among its historically selected q levels, with deterministic label tie-breaking. If no such reference qualifies, the registered q0.99 fallback remains unqualified and cannot establish primary confirmation. In the completed pitch-withheld selection, the frozen candidate was P1/HGB/q0.95 and the frozen reference was WPQ36/HGB/q0.95.
+
+# S3. Inference, confirmation and finite-family identification
+
+## S3.1. Quantities and approximate joint bounds
+
+For the shared forecast $F_{i,t}$ and future power $P_{i,t+6}$, shortfall is $S_{i,t}=\max(F_{i,t}-P_{i,t+6},0)$. Define uncovered shortfall $U_{i,t}=(S_{i,t}-R_{i,t})_+$ and event indicator $1(S_{i,t}>R_{i,t})$. The loss for one valid turbine interval is
+
+$$
+\ell_{i,t}=\frac{R_{i,t}+10U_{i,t}}{6}.
+$$
+
+The factor $1/6$ converts ten-minute power quantities to interval-equivalent energy. These are turbine-level procurement and shortage proxies, not measured reserve purchases, cash costs or net shortfall at a point of common coupling. Recipe cost $C_m$ is the mean interval loss, averaged over the five fixed archived fits. Event rates $V_{s,m}$ are checked separately for each fit $s$. The cost of averaged actions is not evaluated: averaging five realised losses does not generally equal the loss of an averaged reserve action. No arbitrary future training instance or ensemble deployment is certified.
+
+To distinguish a finite-record summary from a population interpretation, let $N_d$ be the number of eligible turbine targets on UTC day $d$, $A_{s,m,d}$ the stored loss total, and $B_{s,m,d}$ the stored strict-event count. With $K=5$ fixed fits, the observed quantities are
+
+$$
+\widehat c_m=\frac{\sum_d K^{-1}\sum_{s=1}^K A_{s,m,d}}{\sum_d N_d},
+\qquad
+\widehat v_{s,m}=\frac{\sum_d B_{s,m,d}}{\sum_d N_d}.
+$$
+
+These are the reported $C_m$ and $V_{s,m}$; they are deterministic once the finite recorded targets and actions are given. The bootstrap does not create uncertainty about their arithmetic. A working process interpretation instead treats the daily vectors $(N_d,\{A_{s,m,d},B_{s,m,d}\}_{s,m})$ as observations from a repeatable, weakly dependent daily-sequence law $\mathcal D$, conditional on the source/measurement regime and frozen forecaster, access rule, reserve fits and offsets. For a generic day under that working law, the population counterparts are
+
+$$
+\begin{aligned}
+c_m(\mathcal D)&=\frac{\mathbb E_{\mathcal D}[K^{-1}\sum_s A_{s,m,d}]}{\mathbb E_{\mathcal D}[N_d]},\\
+v_{s,m}(\mathcal D)&=\frac{\mathbb E_{\mathcal D}[B_{s,m,d}]}{\mathbb E_{\mathcal D}[N_d]},\\
+r_{m,b}(\mathcal D)&=\frac{c_m(\mathcal D)}{c_b(\mathcal D)}-1.
+\end{aligned}
+$$
+
+The required expectations must be finite, expected eligible count must be positive, and every population cost used as a ratio denominator must be positive. Ratios of expected daily totals preserve the original weighting by recorded turbine intervals; they are not unweighted means of daily ratios. Missing-target occurrence is part of this working observation law, not an assertion that missingness is random or that unrecorded operating periods have the same risk.
+
+These definitions make explicit the population interpretation required by the existing resampling calculation; they do not change its score, draws, thresholds or classifications. No process law or nominal-coverage result is newly validated. The approximation requires a sufficiently stable daily law and sufficiently short dependence for block resampling. Seasonal composition, operating changes and clustered missingness can violate it. If that interpretation fails, the finite-record point comparisons and the classifications returned by the registered procedure remain reproducible, but the nominal population-coverage interpretation is not established.
+
+The stored inference uses 20,000 shared circular day-block resamples, bootstrap seed 20261029, primary span three days and separate one-/seven-day sensitivities. All turbines, instances, policies and conditions share the same sampled weather blocks. Numerators and valid-target denominators remain separate and are recombined within each draw. This preserves contemporaneous dependence rather than treating turbines or learning seeds as independent weather replicates.
+
+The simultaneous envelope uses the bootstrap maximum absolute standardised deviation over its registered coordinates. Its critical value is the higher empirical 0.95 quantile of that maximum. Non-exact coordinates with constant resampled values remain unbounded; algebraically exact self-ratios are zero. All bounds are dependent-data approximations conditional on the five fitted instances. The primary and full-q secondary families each use alpha=.05 separately; the article does not supply one joint 95% event covering both families and all three block spans. Within a secondary family, all five tolerances reuse its same bounds rather than generating five independent confidence procedures. No distribution-free finite-sample guarantee or new coverage experiment is claimed.
+
+## S3.2. Primary fixed-reference confirmation
+
+Let $m$ be a historically selected candidate and $b$ the frozen qualified reference. Primary confirmation requires: (i) all-instance reference qualification historically and in confirmation; (ii) $\max_s\overline V_{s,m}\le0.10$; and (iii) $\overline{(C_m/C_b-1)}\le0.02$. Here overbars denote the corresponding existing joint upper bounds. A missing historical selection returns no selection, and an unsuccessful condition remains unconfirmed. No confirmation-side candidate replaces the original choice.
+
+The primary joint family contains only P1/HGB/q0.95 and WPQ36/HGB/q0.95: ten instance event rates and four paired mean-cost coordinates, including the self-ratios, for 14 coordinates. The result is supported noninferiority within the declared 2% research tolerance. It does not test cost improvement, every-instance cost noninferiority or proximity to every member of the full q family.
+
+The observed costs are 67.020403 and 66.644430 kWh-equivalent per valid interval for P1 and the reference, respectively. The relative premium is 0.5641%, with approximate joint bounds [0.3575%, 0.7708%]. Both bounds are positive. The maximum instance event-rate upper bounds are 6.2025% and 6.2004%, respectively. The positive premium remains part of the result even though the 2% criterion is met.
+
+The existing point-accounting ledger also records mean uncovered shortfall of 1.772331383 versus 1.734445047 interval-equivalent units: an increase of 2.184349% for P1, with positive point differences in all five instances. Mean procurement is 49.297089493 versus 49.299979974. The small event-rate decrease, from 5.5333784% to 5.5313392%, therefore does not indicate lower uncovered-shortfall severity. No additional interval or significance test is assigned to these ledger quantities.
+
+## S3.3. Secondary full-family sufficiency and exclusion
+
+The full-q secondary analysis retains all 225 pitch-withheld policies and all 65 policies in each pressure condition. Each span has 74,500 joint event-rate and pairwise cost coordinates across these six groups. Calibration candidates were fitted before unlock, but selection of a capable subset using confirmation outcomes is retrospective. It is separate from the preselected primary confirmation.
+
+For a given group, a policy remains possibly feasible when none of its instance event-rate lower bounds exceeds 0.10. A policy is risk-qualified when all its corresponding upper bounds are at most 0.10. A risk-qualified policy is sufficient at tolerance $\epsilon$ when the upper bound on $C_m/C_j-1$ is at most $\epsilon$ against every possibly feasible registered competitor $j$. Competitors with uncertain qualification are retained; historical nonqualification does not establish their true infeasibility. The minimum resource tuple among the sufficient policies gives the smallest *qualified* set under the declared order.
+
+Identifying a finite-family resource minimum requires an additional step. Every registered policy strictly smaller than the selected tuple must be excluded either by an instance event-rate lower bound above 0.10 or by a cost-ratio lower bound above $\epsilon$ against a risk-qualified witness. A smaller policy with neither witness remains unresolved. Thus an empty sufficient set, an unresolved smaller alternative and an identified finite-family minimum are distinct outcomes.
+
+At 2% in the three-day secondary analysis, P1/HGB/q0.925 has cost 65.739232, maximum instance event-rate upper bound 9.7699% and resource tuple $(1,1,5)$. Its stored worst cost upper bound against possibly feasible competitors is 0.9742%, so the cost-sufficiency step also passes. All 15 strictly smaller registered policies are excluded. Table S4 prints those existing exclusion records. The two risk exclusions are Common/q0.90 policies; the remaining 13 use cost witnesses. These 15 policies cover the two Common estimators at all five offsets and persistence at all five offsets. They do not include every conceivable constant rule, architecture or alternative smaller function. Section S6 supplies the candidate and witness qualifications together.
+
+\Needspace{18\baselineskip}
+
+**Table S4. All smaller-policy exclusion witnesses for the secondary q0.925 result.** Cost entries are existing lower bounds on the smaller policy's relative cost premium against the named risk-qualified witness, expressed as percentages; they exceed the 2% margin. Risk entries report one stored instance lower bound exceeding 10%; the accompanying CSV retains every witnessing instance. This table describes the registered three-day full-q secondary family, not the primary q0.95 comparison.
+
+| Strictly smaller policy | Exclusion | Witness | Existing lower bound (%) |
+|:--|:--|:--|--:|
+| Common/HGB/q0.90 | Event rate | Instance 201 | 10.2438 |
+| Common/HGB/q0.925 | Relative cost | PQ6/HGB/q0.925 | 14.5901 |
+| Common/HGB/q0.95 | Relative cost | PQ6/HGB/q0.925 | 15.4395 |
+| Common/HGB/q0.975 | Relative cost | PQ6/HGB/q0.925 | 27.2390 |
+| Common/HGB/q0.99 | Relative cost | PQ36/HGB/q0.925 | 61.2414 |
+| Common/MLP/q0.90 | Event rate | Instance 201 | 10.0104 |
+| Common/MLP/q0.925 | Relative cost | PQ6/HGB/q0.925 | 15.0854 |
+| Common/MLP/q0.95 | Relative cost | PQ6/HGB/q0.925 | 15.8418 |
+| Common/MLP/q0.975 | Relative cost | PQ6/HGB/q0.925 | 27.1526 |
+| Common/MLP/q0.99 | Relative cost | PQ36/HGB/q0.925 | 61.6180 |
+| Persistence/q0.90 | Relative cost | PQ36/HGB/q0.925 | 25.3079 |
+| Persistence/q0.925 | Relative cost | PQ36/HGB/q0.925 | 25.0733 |
+| Persistence/q0.95 | Relative cost | PQ36/HGB/q0.925 | 29.1403 |
+| Persistence/q0.975 | Relative cost | PQ36/HGB/q0.925 | 46.5349 |
+| Persistence/q0.99 | Relative cost | PQ36/HGB/q0.925 | 85.5821 |
+
+The primary P1/HGB/q0.95 policy is absent from this secondary full-q 2% sufficient set. Its noninferiority to one frozen reference cannot be substituted for q0.925's finite-family result. Conversely, q0.925's secondary identification cannot be described as confirmation that the historical selector chose the full-family minimum. The registered resource ordering also leaves sensor acquisition, network traffic, model parameters, FLOPs and end-to-end execution outside the minimality claim.
+
+The exclusion has a conditional algebraic interpretation. Suppose all risk and relative-cost bounds used in a family cover their population counterparts on one event $E$. Let $G$ be the truly risk-feasible registered set, $A$ the possibly feasible set and $Q$ the risk-qualified set; on $E$, $Q\subseteq G\subseteq A$. A candidate qualified against every member of $A$ is within the tolerance of the best member of $G$. A smaller candidate with a risk lower bound above the cap is infeasible. If instead a smaller candidate $j$ has a cost-ratio lower bound above $\epsilon$ against $k\in Q$, then $c_j>(1+\epsilon)c_k\geq(1+\epsilon)\min_{g\in G}c_g$, so it cannot be $\epsilon$-near-optimal. These implications explain why a richer qualified witness can exclude a smaller candidate without circularity. They do not establish the probability of $E$ for the actual yearly process.
+
+# S4. Complete case records and negative outcomes
+
+## S4.1. Hill of Towie: 90 dependent secondary assessments
+
+The complete secondary matrix has six information conditions, five relative-cost tolerances (0%, 0.5%, 1%, 2% and 5%) and three block spans. Its 90 cases reuse the same observations, fitted instances and policy predictions. The counts summarise classifications, not 90 independent experiments or a probability of deployment success.
+
+Across these cases, 46 identify finite-family minima, 26 retain unresolved smaller alternatives and 18 have no certified sufficient candidate. The parallel assessment of the frozen historical sets gives 63 complete confirmations, 24 cases without a historical selection and three unconfirmed cases. All three unconfirmed cases concern Delay 3 at the 0.5% tolerance, once for each block span. They fail the cost criterion and are three sensitivity assessments of one condition, not three independent failures. The secondary full-q q0.925 result does not overwrite the frozen q0.95 failure at that tolerance.
+
+The byte-identical attachment `supplement_data/towie_all_90_cases.csv` retains the condition, tolerance, span, sufficient-resource set, smaller/excluded/unresolved counts and historical fixed-set status for every case. In this file, `FINITE_FAMILY_MINIMUM_IDENTIFIED` means all required smaller candidates were excluded under the stored bounds; `MINIMUM_UNRESOLVED` means a sufficient set exists but at least one smaller candidate was not excluded; and `NO_CERTIFIED_SUFFICIENT_POLICY` means no candidate met the declared joint sufficiency rule. The last status does not prove that every policy is truly infeasible.
+
+## S4.2. WTB: 420 dependent development assessments
+
+WTB has 14 executed condition/budget settings: four pitch-withheld budgets and two budgets for each of five pressure conditions. Crossing these settings with the two registered analyses (historically selected q recipes and the full-q grid), five tolerances and three spans produces 420 assessments. The 10,000-/40,000-row pressure settings were not registered; their absence is not a failed experiment.
+
+For the primary three-day span and 2% tolerance, both registered analyses across the 14 settings give 28 assessments. Every assessment contains risk-qualified policies, but none establishes the required near-optimal sufficiency. Across all 420 assessments, 367 have no certified sufficient policy, 53 retain unresolved smaller alternatives and none identifies a finite-family minimum. These outcomes concern identification under a finite fitted family and approximate joint bounds, not proof that more complex models or all feasible decision rules are necessary.
+
+At the prespecified 5% sensitivity, the historical-q analysis identifies a sufficient policy using current active and reactive power with HGB and q=0.925 at all four pitch-withheld row budgets. At 360,000 rows, its mean cost is 32.670107 and its maximum instance risk upper bound is 8.5952%; 14 of 21 strictly smaller candidates remain unresolved. At the same budget, P1 with HGB and q=0.925 costs 33.637629. Its premium against PQ1 is 2.9615%, with approximate joint bounds [−2.2175%, 8.1405%]. These bounds neither qualify P1 within 5% nor exclude it as exceeding 5%. The smallest currently qualified input set is therefore not an identified minimum.
+
+Two byte-identical attachments preserve this distinction: the [WTB sufficiency cases](supplement_data/wtb_all_420_sufficiency_cases.csv) list every sufficient-set assessment, including the number of risk-qualified policies; the [WTB minimum audits](supplement_data/wtb_all_420_minimum_cases.csv) list the corresponding smaller-policy exclusions and unresolved labels. They can be joined on condition, budget, span, analysis and tolerance. Their rows describe the same dependent cases and must not be added together as 840 experiments.
+
+\Needspace{20\baselineskip}
+
+# S5. Sensitivity, freezing and reproducibility scope
+
+## S5.1. Separate block-length sensitivities
+
+**Table S5. Stored full-q secondary identification under pitch withholding at 2%.** Cost is kWh-equivalent per valid turbine interval, averaged over five fixed instances; event-rate upper bound is the maximum across those instances. Each row uses a separate 74,500-coordinate approximate joint family. The rows do not form an additional joint coverage statement.
+
+| Block span (days) | Identified policy | Mean cost | Maximum event-rate upper (%) | Smaller policies excluded |
+|--:|:--|--:|--:|--:|
+| 1 | P1/HGB/q0.925 | 65.739232 | 9.6015 | 15/15 |
+| 3 | P1/HGB/q0.925 | 65.739232 | 9.7699 | 15/15 |
+| 7 | P1/HGB/q0.925 | 65.739232 | 9.8752 | 15/15 |
+
+The resource minimum is the same across these stored sensitivities, but the risk upper bound approaches the 10% research limit in the seven-day calculation. The unchanged point cost follows from using the same observations and policy; block length changes the uncertainty calculation. Agreement across three spans does not establish nominal coverage under arbitrary annual drift.
+
+The pitch-withheld 5% historical sets retain HGB and MLP ties, both confirmed under all three spans. This sensitivity is not evidence that neural estimators are universally inferior or redundant. Likewise, the WTB and Hill of Towie differences do not isolate the effects of sample count, terrain, control policy or a physical mechanism: several design and source properties change together.
+
+## S5.2. Actual pre-unlock sequence
+
+The completed executable/protocol was committed as `24153f8` before confirmation. All 550 historical task bundles were verified, including 3,240 archived members, common sample/target pairing and the actual choices/freeze package. On 19 October 2026, the historical package was created at 04:27:16.478898 UTC. Complete historical-result review ran from 04:27:50 to 04:28:26, and actual freeze validation from 04:29:25 to 04:29:32. These checks preceded the exclusive unlock at 04:30:57.719354 UTC. The event binds the freeze used to open and process the 2025 archive.
+
+All 550 confirmation task bundles and their 2,200 members were checked against stored manifests. The recovered compact result package contains 5,037 individually checksum-verified members. Read-only reviews reproduced the main point quantities and the 90 secondary classifications from existing stored records. No post-unlock refit, new q level, threshold change, new evaluation window or new bootstrap draw was used to obtain the reported results. These checks establish provenance and stated consistency, not statistical coverage or field safety.
+
+The 2025 year was independent of the original frozen selector question at unlock. Subsequent inspection for different explanations does not retrospectively change that chronological fact. It does prevent describing the same year as untouched confirmation of hypotheses formulated after that inspection.
+
+## S5.3. Available evidence and execution boundaries
+
+The original supplementary CSV attachments and their projection receipt are inherited unchanged from the first version. They are literal projections or byte-identical copies of completed outputs; the receipt records input/output identities and row counts. V2's new Figure 3 fields have a separate source manifest. None of these projections loads a fitted model, predicts, calibrates an offset, resamples data or reads new measurements. Table S6 identifies the portable package records for checking the manuscript without rerunning the research analysis.
+
+\Needspace{20\baselineskip}
+
+**Table S6. Evidence locations in the portable review package.** File areas are relative to that package's root. Public projections explicitly omit internal deployment fields; their original identities and transformations are recorded in PROVENANCE. These records are not a full original execution archive.
+
+| Evidence | Package area and file |
+|:--|:--|
+| Execution settings and historical windows | `protocol/`; `confirmation_protocol.json` (public projection) |
+| Frozen choices and historical bounds | `data/history/`; `choices.json`, `bounds.json` |
+| Primary labels, bounds and selection identity | `data/confirmation/`; `primary.json` |
+| Secondary full families and exclusions | Same area; `secondary_span1.json`, `secondary_span3.json`, `secondary_span7.json` |
+| Freeze and unlock identity | `protocol/`; `freeze_public_projection.json`, `unlock_public_projection.json` |
+| Procurement/shortage ledger | `data/ledger/`; `loss_ledger.csv`, `policy_seed_ledger.csv` |
+| WTB stored bounds and minimum audit | `data/wtb/`; `aggregate.json`, `necessity.json`; complete case tables in `csv/` |
+| Figure and field correspondence | `figure_data/v2/`; four CSVs and `fig3_field_manifest.json` |
+
+The confirmation receipts record CPU execution on Metis with Python 3.11.16, NumPy 2.4.6, pandas 2.3.3, scikit-learn 1.9.1 and PyTorch 2.11.0+cu128; the recorded PyTorch CUDA build does not imply GPU training. Each task requested two CPUs, and its command, node, seed settings and timestamps are retained in the execution receipts. Requesting resources is not a measurement of actual resource consumption.
+
+Raw annual archives, complete physical arrays, full action arrays, fit indices and model weights were retained on Metis; the compact local recovery is not a second complete copy of those assets. The public source route and exact code/configuration bindings support further reconstruction, but a weight manifest is not proof that all original weight bytes are currently available locally. Older graph, recovery and mixture-of-experts branches have separate provenance gaps and are not used to establish this article's primary comparison.
+
+Finally, this task assumes synthetic release/arrival clocks and an unchanged earlier forecast. It does not reconstruct measured controller-message arrival times, point-of-common-coupling reserve procurement, physical deliverability or an operator-approved service level. The 2% tolerance and 10% event-rate cap are registered research specifications. Reducing selected inputs from 112 to 5 does not establish that sensors, upstream wind/power histories, SCADA communication or actual costs can be removed. These boundaries define what the observed trade-off can inform without converting it into a deployment recommendation.
+
+\Needspace{18\baselineskip}
+
+# S6. Stored cost-sufficiency and witness bridge
+
+**Table S7. Cost qualification, risk qualification and witness status in the three-day full-q family.** Bounds are literal existing fields expressed as percentages. A dash denotes a quantity not assigned that role in this table, not zero uncertainty. Candidate rows use the maximum paired-cost upper bound over all possibly feasible competitors. The other rows identify the controlling competitor or qualified exclusion witnesses. These are 74,500-coordinate secondary results, separate from the primary 14-coordinate result.
+
+| Role and policy | Worst cost upper (%) | Maximum fit risk upper (%) | Stored status |
+|:--|--:|--:|:--|
+| Secondary candidate: P1/HGB/q0.925 | 0.9742 | 9.7699 | Sufficient; smaller candidates excluded |
+| Historical primary choice: P1/HGB/q0.95 | 3.5178 | 6.7049 | Risk-qualified; cost not certified at 2% |
+| Controlling competitor: PQ36/HGB/q0.90 | — | 11.5257 | Possibly feasible, not risk-qualified |
+| Cost-exclusion witness: PQ6/HGB/q0.925 | — | 9.7564 | Risk-qualified |
+| Cost-exclusion witness: PQ36/HGB/q0.925 | — | 9.6598 | Risk-qualified |
+
+The two candidate cost upper bounds are controlled by PQ36/HGB/q0.90, index 180. Its remaining possible feasibility is not proof of feasibility. For the q0.95 candidate, the cost upper bounds against already qualified PQ6/HGB/q0.925, PQ36/HGB/q0.925 and WPQ36/HGB/q0.925 are 3.4439%, 3.4753% and 3.4482%, respectively. Their corresponding lower bounds are 1.5795%, 1.5651% and 1.5235%, all below 2%. The available evidence therefore fails to certify q0.95's full-family sufficiency; it does not establish a true cost excess beyond 2%.
+
+Historical selection used a different stage and responsibility. In the 2024 selection record, P1/HGB/q0.925 had lower mean cost (72.047988) than q0.95 (73.056204), but its fit-specific risk upper bounds ranged from 11.0174% to 11.0719%, all above the qualification cap. The q0.95 upper bounds ranged from 7.8549% to 7.8655%, and it qualified historically. These are upper-bound decisions, not proof that q0.925's historical true risk exceeded 10%. Its later secondary qualification does not retrospectively change that selection.
+
+The V2 figure-source CSV and field manifest retain exact policy indices and paths for these stored values. The companion review package includes the complete aggregates and qualification logic. No fitted model, new draw or new confidence interval is needed to check this bridge.
+
+\Needspace{15\baselineskip}
+
+# S7. Prior knowledge and interface qualification
+
+**Table S8. Actual overlap with close precedents.** Roles describe the source's relation to this article; they do not imply that a prior method fails. The remaining empirical difference is bounded by the supplied forecast, fitted family and decision criteria.
+
+| Source and role | Existing knowledge relevant here | Difference and limit of this article |
+|:--|:--|:--|
+| Pritchard 2011; mainstream | Current-power quantiles, extra covariates, complete-year holdouts and different predictive attributes | A supplied fixed forecast and a particular shortfall loss/risk task; no first claim for power conditioning or cross-year input comparisons |
+| Phipps et al. 2022; adjacent | Comparisons of post-processing position, including a simpler final-power stage | Additional reserve-layer input recipes and explicit qualification; not the first simpler downstream procedure |
+| Sun et al. 2022; mainstream | Point-forecast-derived reserves, coverage and exceedance amounts, system consequences | Incremental inputs and fixed-reference versus full-family responsibilities; no first claim for reserve linkage or severity reporting |
+| Serrano et al. 2024; adjacent | Feature choice by validation newsvendor cost, bilevel method and synthetic experiments | Frozen fitted-family qualification and exclusion, not a new feature-selection algorithm |
+| Kowal 2022; foundational | Acceptable near-optimal families and smallest acceptable subsets | Different conditional risk/cost bounds; no first claim for an acceptable-set principle or new coverage theory |
+| Dantas and Browell 2026; adjacent | Uncertainty-source comparisons across horizons and test years | A fixed supplied commitment and additional decision-layer inputs, not a new probabilistic forecasting method |
+
+These comparisons are grounded in the original papers [@pritchard2011shortterm; @phipps2022postprocessing; @sun2022dynamicreserve; @serrano2024featureselection; @kowal2022subset; @dantas2026seamless]. They do not certify exhaustive novelty. The empirical addition is the observed cost/shortfall trade-off and the different historical and retrospective qualifications in this controlled interface.
+
+The interface-material review separates three questions. First, forecast-derived reserve layers and staged forecasting/dispatch are documented, including Sun and colleagues' use of supplied point forecasts. Second, that general practice does not establish this exact one-forecast access contract and its $t-6/t+6$ timing. The AEMO overview, version 4 of August 2023, documents SCADA inputs, AWEFS/ASEFS forecasts and NEMDE use, with five-minute forecast updates in the dispatch/5MPD setting [@aemo2023awefs]. It provides a different staged interface rather than evidence for retaining this particular old commitment; the document is not used to assert current 2026 operating rules. Third, the material examined does not establish a realised benefit of reducing the learner's raw columns from 112 to five, particularly when the current implementation still constructs 148 columns and retains upstream W/P. The last two questions remain unclosed.
+
+The precise missing materials are an actual access/update specification for the downstream service, timestamped message routes if real arrival is claimed, a documented channel-priority or integration burden, and evidence of an acceptable cost/severity exchange if deployment benefit is claimed. The current paper does not claim these benefits. Operator documentation, interface schemas, owner-provided requirements or a later separately authorised implementation assessment would be appropriate acquisition routes; the experimental protocol cannot serve as external proof of those operational conditions.
+
+# S8. Scope of the portable review package
+
+The package supports offline verification of completed aggregates, candidate identities, classification inequalities, cost/shortfall accounting and figure-source values. It does not train, run a fitted model, calibrate offsets, create bootstrap draws or read new measurements. Complete stored statistical aggregates are retained where safe; deployment-specific paths or host fields are omitted only in explicitly labelled public projections with original source identities. Such a projection is not presented as a byte-identical raw receipt.
+
+The package is prepared for local review before an author-approved public release. No permanent public URL or new licence grant has been fabricated. Original annual measurements, full action arrays, fit indices, weights, copyright paper PDFs and private skill files are not distributed. The absence of those assets bounds the claim to stored-result verification rather than independent re-estimation of the entire study.
+
+# References {.unnumbered}
+
+::: {#refs}
+:::

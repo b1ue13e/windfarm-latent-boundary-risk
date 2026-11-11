@@ -1,0 +1,28 @@
+{
+  "status": "PASS_FOR_ACCESS_GUARD_AND_RECORD_INTEGRITY_ORIGINAL_SOURCE_UNKNOWN",
+  "utc": "2026-10-18T09:19:09.672375+00:00",
+  "strict_host_verification_rejection": "PASS:existing key mismatch rejected,exit255,no successful auth,empty stdout",
+  "trust_configuration": "4/4 hashes unchanged",
+  "prior_scientific_assets": "255/255 hashes match prior record",
+  "original_cloud_instance_state": "user-confirmed destroyed; no further network attempts",
+  "E07_null_bindings_and_zero_eligible_windows": "PASS",
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_e07_data_inventory.py tests/test_legacy_yhat_difference.py -q",
+      "exit_code": 0,
+      "result": "13 passed"
+    },
+    {
+      "command": "python scripts/verify_scientific_claim_gate.py",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "python scripts/verify_tste_number_consistency.py --output-dir analyses/grokking_legacy_execution_audit_20261018/number_consistency_gate",
+      "exit_code": 0,
+      "result": "complete_tste_number_consistency"
+    }
+  ],
+  "manifest_sha256": "83f24aa8c74593248a9ca792180d8bed61a4146005eb1eff29887766348b99e1",
+  "staged_scope": "PROJECT addendum and new local audit observations only; original assets and SSH files not staged"
+}

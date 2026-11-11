@@ -1,0 +1,160 @@
+{
+  "status": "PROPOSED_REVIEWABLE_DESIGN_NOT_PREREGISTERED_NOT_READY_FOR_EXECUTION",
+  "date": "2026-10-20",
+  "authority": "User requested an acceptance plan only; no execution authorization inferred",
+  "exposure": "WTB and Hill of Towie2025 have been viewed; this is result-informed development planning",
+  "estimand": "Finite-program mean surrogate loss conditional on fixed five instances and declared observed population, not Bayes pure information value",
+  "task": {
+    "horizon_steps": 6,
+    "dt_hours": 0.16666666666666666,
+    "rho": 10,
+    "training_quantile": 0.9,
+    "common_forecast_age_steps": 6,
+    "history_event_slots": 36,
+    "history_age_steps": [
+      0,
+      3,
+      6
+    ],
+    "history_policy": "Fixed event window t-35..t; stale tail masked, no backward expansion"
+  },
+  "thresholds": {
+    "cost_gain_important": 0.01,
+    "substitution_cost_margin": 0.01,
+    "risk_rate_cap": 0.1,
+    "weighted_uncovered_increment_cap_over_frozen_historical_reference_cost": 0.001,
+    "stronger_no_increase_claim_requires_upper_at_most": 0,
+    "cost_interval_total_width_target": 0.01,
+    "precision_target_is_not_a_mandatory_extra_gate_if_bounds_already_separate_the_margin": true,
+    "cost_margin_sensitivity": [
+      0.005,
+      0.02
+    ],
+    "status": "Normative research investment criteria proposed after viewing old outcomes; neither TSTE cutoff nor operator SLA",
+    "Cstar": {
+      "design": "Historical fixed-source/fixed-layer fresh-I reference five-instance mean cost; freeze before new confirmation; shared for signed severity directions",
+      "value": "NOT_PRODUCED_THIS_ROUND",
+      "nonpositive": "RELATIVE_SCALE_UNDEFINED_NO_EPSILON_FILL"
+    }
+  },
+  "inference": {
+    "confirmation_alpha_total": 0.05,
+    "alpha_each_layer": 0.025,
+    "historical_alpha": 0.05,
+    "primary_policies_each_layer": 10,
+    "primary_cost_contrasts_each_layer": 9,
+    "instances": 5,
+    "risk_coordinates_each_layer": 50,
+    "signed_severity_coordinates_each_layer": 45,
+    "coordinates_each_layer": 104,
+    "two_layer_coordinates": 208,
+    "primary_estimator": "HGB",
+    "MLP": "Secondary estimator check, never substitutes for failed confirmation primary",
+    "weather_resampling": "Shared time blocks; no independent turbine or seed replication",
+    "block_spans_proposed": {
+      "main": 3,
+      "sensitivity": [
+        1,
+        7
+      ]
+    },
+    "coverage": "Approximate; dependency/season/control regime qualifications pending",
+    "nonalgebraic_zero_variance": "Unbounded/unknown, not zero uncertainty"
+  },
+  "learners": {
+    "row_budget_rule": "min(360000, shared valid fit rows); no duplicated rows to meet budget; one row per time for group policies",
+    "seeds": [
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "HGB_S0": {
+      "max_iter": 100,
+      "max_leaf_nodes": 15
+    },
+    "HGB_S1": {
+      "max_iter": 200,
+      "max_leaf_nodes": 31
+    },
+    "MLP_S0": {
+      "hidden": [
+        64,
+        32
+      ],
+      "epochs": 80
+    },
+    "MLP_S1": {
+      "hidden": [
+        64,
+        32
+      ],
+      "epochs": 160
+    },
+    "other_settings": "Reuse bound existing implementations; implementation version and complete settings must be frozen before execution",
+    "configuration_selection": "Historical no-Z reference only; paired cells receive equal opportunities; no evaluation-gain selection",
+    "offset_grid": [
+      0.9,
+      0.925,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "offset_selection": "One q shared by five instances; every instance historically risk qualified; minimum mean cost, exact tie choose larger q; no qualified q => no choice"
+  },
+  "population": {
+    "training_and_offset": "Shared finite future-P population; paired training indices",
+    "selection_and_primary_score": "Finite future P and finite current P and all three current blade angles; common across ages",
+    "secondary_score": "All finite future-P population with explicitly observed Z including missingness pattern; separate interpretation",
+    "group_primary": "Fixed members; every member future P/current P/current pitch available; no partial-sum target or zero imputation",
+    "target_missing": "Never imputed"
+  },
+  "budget_fit_upper_bounds": {
+    "individual_main_two_sources_including_pilot": 200,
+    "pilot_additional_historical_recipe_reserve": 60,
+    "group_main_two_sources": 100,
+    "selected_richer_group_information": 40,
+    "selected_second_forecast_diagnostic": 50,
+    "final_frozen_main_program_refit": 100,
+    "point_and_other_predeclared_reserve": 50,
+    "total": 600,
+    "pilot_first": 60
+  },
+  "success_routes": [
+    "A measured state adds important conditional finite-program value",
+    "B power update substitutes within declared tolerances after both updates show value",
+    "C precise bounded low value, subject to separate scientific-impact assessment"
+  ],
+  "bounded_low_gain_state_contrasts": ["C00", "C31", "C34", "C61", "C64"],
+  "unresolved_codes": [
+    "SOURCE_UNBOUND",
+    "ALIGNMENT_FAIL",
+    "DATA_INSUFFICIENT",
+    "NO_HISTORICAL_CHOICE",
+    "BASELINE_ADEQUACY_UNRESOLVED",
+    "METHOD_DEPENDENT",
+    "UNRESOLVED",
+    "NOT_CONFIRMED"
+  ],
+  "remaining_materials": [
+    "Current archived-file existence and identity",
+    "Joint population and group support counts",
+    "Weather precision and dependency qualification",
+    "New severity-endpoint implementation tests",
+    "Actual compute capacity and timings",
+    "New confirmation source/exposure/calendar",
+    "Residual SETA full-method prior-art comparison"
+  ],
+  "execution": {
+    "new_measurements": false,
+    "new_model_fits": false,
+    "new_model_inference": false,
+    "resampling": false,
+    "simulation": false,
+    "remote_access": false,
+    "manuscript_changes": false,
+    "old_versions_changed": false,
+    "queue": "EMPTY"
+  }
+}

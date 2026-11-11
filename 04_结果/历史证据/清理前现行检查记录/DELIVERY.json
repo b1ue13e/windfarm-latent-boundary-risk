@@ -1,0 +1,11 @@
+{
+  "main_pdf": "manuscript_figures_v14.pdf",
+  "pages": 8,
+  "main_sha256": "5184ab833abd2e82548fb059b490267026bf6c5c15a8b86360f692acdebc5e71",
+  "archive": "tste_figures_v14.zip",
+  "archive_bytes": 4454258,
+  "members": 72,
+  "figures": 5,
+  "panels": 16,
+  "no_new_experiments": true
+}

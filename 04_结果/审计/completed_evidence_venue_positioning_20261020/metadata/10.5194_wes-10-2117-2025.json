@@ -1,0 +1,576 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          16
+        ]
+      ],
+      "date-time": "2026-10-16T01:16:35Z",
+      "timestamp": 1792113395781,
+      "version": "4.4.0"
+    },
+    "reference-count": 36,
+    "publisher": "Copernicus GmbH",
+    "issue": "10",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              10,
+              6
+            ]
+          ],
+          "date-time": "2025-10-06T00:00:00Z",
+          "timestamp": 1759708800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100000192",
+        "name": "National Oceanic and Atmospheric Administration",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "NA22OAR4320151"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "NA22OAR4320151"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000192",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Wind Energ. Sci."
+    ],
+    "abstract": "<jats:p>Incorporating more renewable energy into the electric grid is an important part of the strategy to expand our energy portfolio. To make the incorporation of renewable energy into the grid more efficient and reliable, numerical weather prediction models need to be able to predict the intrinsic nature of weather-dependent renewable energy resources. This allows grid operators to accurately plan the amount of energy they will need from each source (e.g., wind, solar, fossil fuel). For this reason, wind ramp events (rapid changes in wind speed over short periods of time) are important to forecast accurately. This is because one of their consequences is that wind energy could quickly be available in abundance or temporarily cease to exist. In this study, the ability of the operational High Resolution Rapid Refresh numerical weather prediction model to forecast wind ramp events is assessed in its two most recent versions: version 3 (HRRRv3, operational from August 2018 to December 2020) and version 4 (HRRRv4, operational from December 2020 onward). The datasets used in this analysis were collected in the United States Great Plains, an area with a large amount of installed electricity generation from wind. The results are investigated from both annual and seasonal perspectives and show that the HRRRv4 is more accurate at forecasting wind ramp events compared to HRRRv3. Specifically, the HRRRv4 shows an increased correlation coefficient and reduced root mean square error relative to the change in wind power capacity factor found in the observations and in the skill of forecasting both up and down wind ramp events, with a marked increase in the HRRRv4's skill at detecting up ramps during the summer (the HRRRv4 is nearly 50 % more skillful than the HRRRv3). This demonstrates that the HRRR's continuing evolution will better support the integration of wind energy into the electric grid.</jats:p>",
+    "DOI": "10.5194/wes-10-2117-2025",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          6
+        ]
+      ],
+      "date-time": "2025-10-06T09:12:37Z",
+      "timestamp": 1759741957000
+    },
+    "page": "2117-2136",
+    "source": "Crossref",
+    "is-referenced-by-count": 3,
+    "title": [
+      "Evaluating the ability of the operational High Resolution Rapid Refresh model version 3 (HRRRv3) and version 4 (HRRRv4) to forecast wind ramp events  in the US Great Plains"
+    ],
+    "prefix": "10.5194",
+    "volume": "10",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-4022-7854",
+        "authenticated-orcid": false,
+        "given": "Laura",
+        "family": "Bianco",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/00bdqav06",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "Cooperative Institute for Research in Environmental Sciences (Boulder, United States of America)"
+          },
+          {
+            "id": [
+              {
+                "id": "https://ror.org/02ttsq026",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "University of Colorado Boulder (Boulder, United States of America)"
+          },
+          {
+            "id": [
+              {
+                "id": "https://ror.org/030ea6w47",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "NOAA Physical Sciences Laboratory (Boulder, United States of America)"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          },
+          {
+            "role": "corresponding-author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Reagan",
+        "family": "Mendeke",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jakob",
+        "family": "Lindblom",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1299-5925",
+        "authenticated-orcid": false,
+        "given": "Irina V.",
+        "family": "Djalalova",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1097-897X",
+        "authenticated-orcid": false,
+        "given": "David D.",
+        "family": "Turner",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "id": [
+              {
+                "id": "https://ror.org/006ddyp05",
+                "id-type": "ROR",
+                "asserted-by": "publisher"
+              }
+            ],
+            "name": "NOAA Global Systems Laboratory (Boulder, United States of America)"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "James M.",
+        "family": "Wilczak",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "3145",
+    "published-online": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          6
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "ref1",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Akish, E., Bianco, L., Djalalova, I. V., Wilczak, J. M., Olson, J., Freedman, J., Finley, C., and Cline, J.: Measuring the Impact of Additional Instrumentations on the Skill of Numerical Weather Prediction Models at Forecasting Wind Ramp Events during the first Wind Forecast Improvement Project (WFIP), Wind Energy, 22, 1165–1174, 10.1002/we.2347, 2019.",
+        "DOI": "10.1002/we.2347"
+      },
+      {
+        "key": "ref2",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Atmospheric Radiation Measurement (ARM) user facility: ARM Best Estimate Data Products (ARMBEATM), 2020-01-01 to 2022-01-01, Southern Great Plains (SGP) Central Facility, Lamont, OK (C1), Compiled by X. Chen and S. Xie, ARM Data Center [data set], 10.5439/1333748 (last access: 3 April 2025), 1994.",
+        "DOI": "10.5439/1333748",
+        "type": "dataset"
+      },
+      {
+        "key": "ref3",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Atmospheric Radiation Measurement (ARM) user facility: Carbon Dioxide Flux Measurement Systems (CO2FLXWIND60M), 2020-01-01 to 2022-12-31, Southern Great Plains (SGP) Central Facility, Lamont, OK (C1), Compiled by S. Biraud, D. Billesbach and S. Chan, ARM Data Center [data set], 10.5439/1972271 (last access: 6 February 2025), 2015.",
+        "DOI": "10.5439/1972271",
+        "type": "dataset"
+      },
+      {
+        "key": "ref4",
+        "unstructured": "Aviation Weather Center: METARs & TAFs, Aviation Weather Center [data set], https://aviationweather.gov/data/metar/ (last access: 11 September 2025), 2025.",
+        "type": "dataset"
+      },
+      {
+        "key": "ref5",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Banta, R. M., Newsom, R. K., Lundquist, J. K., Pichugina, Y. L., Coulter, R. L., and Mahrt, L.: Nocturnal low-level jet characteristics over Kansas during CASES-99, Bound.-Lay. Meteorol., 105, 221–252, 10.1023/A:1019992330866, 2002.",
+        "DOI": "10.1023/A:1019992330866"
+      },
+      {
+        "key": "ref6",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Banta, R. M., Pichugina, Y. L., Kelley, N. D., Jonkman, B., and Brewer, W. A.: Doppler lidar measurements of the Great Plains low-level jet: Applications to wind energy, IOP Conf. Ser.-Earth Environ. Sci., 1, 012020, 10.1088/1755-1315/1/1/012020, 2008.",
+        "DOI": "10.1088/1755-1315/1/1/012020"
+      },
+      {
+        "key": "ref7",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Benjamin, S. G., Weygandt, S. S., Brown, J. M., Hu, M., Alexander, C. R., Smirnova, T. G., Olson, J. B., James, E. P., Dowell, D. C., Grell, G. A., Lin, H., Peckham, S. E., Smith, T. L., Moninger, W. R., Kenyon, J. S., and Manikin, G. S.: A North American hourly assimilation and model forecast cycle: The Rapid Refresh, Mon. Weather Rev., 144, 1669–1694, 10.1175/MWR-D-15-0242.1, 2016.",
+        "DOI": "10.1175/MWR-D-15-0242.1"
+      },
+      {
+        "key": "ref8",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Bianco, L., Djalalova, I. V., Wilczak, J. M., Cline, J., Calvert, S., Konopleva-Akish, E., Finley, C., and Freedman, J.: A wind energy ramp tool and metric for measuring the skill of numerical weather prediction models, Weather Forecast., 31, 1157–1156, 10.1175/WAF-D-15-0144.1, 2016.",
+        "DOI": "10.1175/WAF-D-15-0144.1"
+      },
+      {
+        "key": "ref9",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Bonner, W. D.: Climatology of the low level jet, Mon. Weather Rev., 96, 833–850, 10.1175/1520-0493(1968)0962.0.CO;2, 1968.",
+        "DOI": "10.1175/1520-0493(1968)0962.0.CO;2"
+      },
+      {
+        "key": "ref10",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Djalalova, I., Bianco, L., Akish, E., Wilczak, J. M., Olson, J. M., Kenyon, J. S., Berg, L. K., Choukulkar, A., Coulter, R., and Fernando, H. J. S.: Wind Ramp Events Validation in NWP Forecast Models during the Second Wind Forecast Improvement Project (WFIP2) Using the Ramp Tool and Metric (RT&M), Weather Forecast., 35, 2407–2421, 10.1175/WAF-D-20-0072.1, 2020.",
+        "DOI": "10.1175/WAF-D-20-0072.1"
+      },
+      {
+        "key": "ref11",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Dong, L., Wang, L., Khahro, S. F., Gao, S., and Liao, X.: Wind power day-ahead prediction with cluster analysis of NWP, Adv. Mater. Res.-Switz, 60, 1206–1212, 10.1016/j.rser.2016.01.106, 2016.",
+        "DOI": "10.1016/j.rser.2016.01.106"
+      },
+      {
+        "key": "ref12",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Dowell, D. C., Alexander, C. R., James, E. P., Weygandt, S. S., Benjamin, S. G., Manikin, G. S., Blake, B. T., Brown, J. M., Olson, J. B., Hu, M., Smirnova, T. G., Ladwig, T., Kenyon, J. S., Ahmadov, R., Turner, D. D., Duda, J. D., and Alcott, T. I.: The High-Resolution Rapid Refresh (HRRR): An Hourly Updating Convection-Allowing Forecast Model. Part I: Motivation and System Description, Weather Forecast., 37, 1371–1395, 10.1175/WAF-D-21-0151.1, 2022.",
+        "DOI": "10.1175/WAF-D-21-0151.1"
+      },
+      {
+        "key": "ref13",
+        "unstructured": "Freedman, J., Markus, M., and Penc, R.: Analysis of West Texas wind plant ramp-up and ramp-down events, https://www.researchgate.net/publication/317095990_Analysis_of_West_Texas_Wind_Plant_Ramp-up_and_Ramp-down_Events (last access: 11 September 2025), 2008.",
+        "type": "web-resource"
+      },
+      {
+        "key": "ref14",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Hoen, B. D., Diffendorfer, J. E., Rand, J. T., Kramer, L. A., Garrity, C. P., and Hunt, H. E.: United States Wind Turbine Database V8.1 (May 22, 2025), U.S. Geological Survey, American Clean Power Association, and Lawrence Berkeley National Laboratory data release [data set], 10.5066/F7TX3DN0, 2018.",
+        "DOI": "10.5066/F7TX3DN0",
+        "type": "dataset"
+      },
+      {
+        "key": "ref15",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Jacondino, W. D., da Silva Nascimento, A. L., Calvetti, L., Fisch, G., Beneti, C. A. A., and da Paz, S. R.: Hourly day-ahead wind power forecasting at two wind farms in northeast Brazil using WRF model, Energy, 230, 120841, 10.1016/j.energy.2021.120841, 2021.",
+        "DOI": "10.1016/j.energy.2021.120841"
+      },
+      {
+        "key": "ref16",
+        "doi-asserted-by": "publisher",
+        "unstructured": "James, E. P., Alexander, C. R., Dowell, D. C., Weygandt, S. S., Benjamin, S. G., Manikin, G. S., Brown, J. M., Olson, J. B., Hu, M., Smirnova, T. G., Ladwig, T., Kenyon, J. S., and Turner, D. D.: The High-Resolution Rapid Refresh (HRRR): An Hourly Updating Convection-Allowing Forecast Model. Part II: Forecast Performance, Weather Forecast., 37, 1397–1417, 10.1175/WAF-D-21-0130.1, 2022.",
+        "DOI": "10.1175/WAF-D-21-0130.1"
+      },
+      {
+        "key": "ref17",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Jeon, H.: CO2 emissions, renewable energy and economic growth in the US, The Electricity Journal, 35, 107170, 10.1016/j.tej.2022.107170, 2022.",
+        "DOI": "10.1016/j.tej.2022.107170"
+      },
+      {
+        "key": "ref18",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Jin, C., Yang, Y., Han, C., Lei, T., Li, C., and Lu, B.: Evaluation of forecasted wind speed at turbine hub height and wind ramps by five NWP models with observations from 262 wind farms over China, Meteorol. Appl., 31, 6, 10.1002/met.70007, 2024.",
+        "DOI": "10.1002/met.70007"
+      },
+      {
+        "key": "ref19",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Newman, J. F. and Klein, P. M.: The Impacts of Atmospheric Stability on the Accuracy of Wind Speed Extrapolation Methods, Resources, 3, 81–105, 10.3390/resources3010081, 2014.",
+        "DOI": "10.3390/resources3010081"
+      },
+      {
+        "key": "ref20",
+        "unstructured": "NOAA: High-Resolution Rapid Refresh (HRRR) Model, NOAA [data set], https://registry.opendata.aws/noaa-hrrr-pds (last access: 11 September 2025), 2025.",
+        "type": "dataset"
+      },
+      {
+        "key": "ref21",
+        "unstructured": "NOAA Physical Sciences Laboratory: PSL Experimental Ramp Tool and Metric, NOAA Physical Sciences Laboratory [code], https://psl.noaa.gov/products/ramp_tool/ (last access: 11 September 2025), 2020.",
+        "type": "software"
+      },
+      {
+        "key": "ref22",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Olson, J. B., Kenyon, J. S., Djalalova, I., Bianco, L., Turner, D. D., Pichugina, Y., Choukulkar, A., Toy, M. D., Brown, J. M., Angevine, W., Akish, E., Bao, J.-W., Jimenez, P., Kosović, B., Lundquist, K. A., Draxl, C., Lundquist, J. K., McCaa, J., McCaffrey, K., Lantz, K., Long, C., Wilczak, J., Banta, R., Marquis, M., Redfern, S., Berg, L. K., Shaw, W., and Cline, J.: Improving wind energy forecasting through numerical weather prediction model development, B. Am. Meteorol. Soc., 100, 2201–2220, 10.1175/BAMS-D-18-0040.1, 2019a.",
+        "DOI": "10.1175/BAMS-D-18-0040.1"
+      },
+      {
+        "key": "ref23",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Olson, J. B., Kenyon, J. S., Angevine, W. M., Brown, J. M., Pagowski, M., and Sušelj, K.: A description of the MYNN-EDMF scheme and coupling to other components in WRF-ARW, NOAA Tech Mem OAR GSD, 61, 37, 10.25923/n9wm-be49, 2019b.",
+        "DOI": "10.25923/n9wm-be49"
+      },
+      {
+        "key": "ref24",
+        "unstructured": "Renewables: Executive summary Analysis and forecasts to 2028, https://iea.blob.core.windows.net/assets/96d66a8b-d502-476b-ba94-54ffda84cf72/Renewables_2023.pdf (last access: 11 September 2025), 2023.",
+        "type": "web-resource"
+      },
+      {
+        "key": "ref25",
+        "unstructured": "Schwartz, M. and Elliott, D.: Towards a Wind Energy Climatology at Advanced Turbine Hub-Heights, in: Proceedings of the 15th Conference on Applied Climatology, 20 June 2005, Savannah, Georgia, USA, 2005."
+      },
+      {
+        "key": "ref26",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Shaw, W., Berg, L., Cline, J., Draxl, C., Djalalova, I., Grimit, E., Lundquist, J. K., Marquis, M., McCaa, J., Olson, J., Sivaraman, C., Sharp, J., and Wilczak, J. M.: The second Wind Forecast Improvement Project (WFIP2): general overview, B. Am. Meteorol. Soc., 100, 1687–1699, 10.1175/BAMS-D-18-0036.1, 2019.",
+        "DOI": "10.1175/BAMS-D-18-0036.1"
+      },
+      {
+        "key": "ref27",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Sisterson, D. L., Peppler, R. A., Cress, T. S., Lamb, P. J., and Turner, D. D.: The ARM Southern Great Plains (SGP) site, The Atmospheric Radiation Measurement Program: The First 20 Years, Meteor. Monograph, Amer. Meteor. Soc., 57, 6.1–6.14, 10.1175/AMSMONOGRAPHS-D-16-0004.1, 2016.",
+        "DOI": "10.1175/AMSMONOGRAPHS-D-16-0004.1"
+      },
+      {
+        "key": "ref28",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Skamarock, W. and Klemp, J. B.: A time-split nonhydrostatic atmospheric model for weather research and forecasting applications, J. Comput. Phys., 227, 3465–3485, 10.1016/j.jcp.2007.01.037, 2008.",
+        "DOI": "10.1016/j.jcp.2007.01.037"
+      },
+      {
+        "key": "ref29",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Turner, D. D., Cutler, H., Shields, M., Hill, R., Hartman, B., Hu, Y., Lu, T., and Jeon, H.: Evaluating the economic impacts of improvements to the high-resolution rapid refresh (HRRR) numerical weather prediction model, B. Am. Meteorol. Soc., 103, E198–E211, 10.1175/BAMS-D-20-0099.1, 2022.",
+        "DOI": "10.1175/BAMS-D-20-0099.1"
+      },
+      {
+        "key": "ref30",
+        "unstructured": "US Energy Information Administration Report: Electric Power Monthly, https://www.eia.gov/electricity/monthly/current_month/march2024.pdf (last access: 11 September 2025), 2024.",
+        "type": "web-resource"
+      },
+      {
+        "key": "ref31",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Whiteman, C. D., Bian, X., and Zhong, S.: Low-Level Jet Climatology from Enhanced Rawinsonde Observations at a Site in the Southern Great Plains, J. Appl. Meteorol. 36, 1363–1376, 1997.",
+        "DOI": "10.1175/1520-0450(1997)036<1363:LLJCFE>2.0.CO;2"
+      },
+      {
+        "key": "ref32",
+        "unstructured": "Wilczak, J. M., Bianco, L., Olson, J., Djalalova, I., Carley, J., Benjamin, S., and Marquis, M.: The Wind Forecast Improvement Project (WFIP): A public/private partnership for improving short term wind energy forecasts and quantifying the benefits of utility operations. NOAA Final Tech. Rep. to DOE, Award DE-EE0003080, 159 pp., http://energy.gov/sites/prod/files/2014/05/f15/wfipandnoaafinalreport.pdf (last access: 11 September 2025), 2014.",
+        "type": "web-resource"
+      },
+      {
+        "key": "ref33",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Wilczak, J. M., Finley, C., Freedman, J., Cline, J., Bianco, L., Olson, J., Djalalova, I., Sheridan, L., Ahlstrom, M., Manobianco, J., Zack, J., Carley, J. R., Benjamin, S., Coulter, R., Berg, L. K., Mirocha, J., Clawson, K., Natenberg, E., and Marquis, M.: The Wind Forecast Improvement Project (WFIP): A public–private partnership addressing wind energy forecast needs, B. Am. Meteorol. Soc., 96, 1699–1718, 10.1175/BAMS-D-14-00107.1, 2015.",
+        "DOI": "10.1175/BAMS-D-14-00107.1"
+      },
+      {
+        "key": "ref34",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Wilczak, J. M., Olson, J. B., Djalalova, I., Bianco, L., Berg, L. K., Shaw, W. J., Coulter, R. L., Eckman, R. M., Freedman, J., Finley, C., and Cline, J.: Data assimilation impact of in situ and remote sensing meteorological observations on wind power forecasts during the first Wind Forecast Improvement Project (WFIP), Wind Energy, 22, 932–944, 10.1175/BAMS-D-18-0036.1, 2019a.",
+        "DOI": "10.1175/BAMS-D-18-0036.1"
+      },
+      {
+        "key": "ref35",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Wilczak, J. M., Stoelinga, M., Berg, L., Sharp, J., Draxl, C., McCaffrey, K., Banta, R. M., Bianco, L., Djalalova, I., Lundquist, J. K., Muradyan, P., Choukulkar, A., Leo, L., Bonin, T., Pichugina, Y., Eckman, R., Long, C., Lantz, K., Worsnop, R., Bickford, J., Bodini, N., Chand, D., Clifton, A., Cline, J., Cook, D., Fernando, H. J. S., Friedrich, K., Krishnamurthy, R., Marquis, M., McCaa, J., Olson, J., Otarola-Bustos, S., Scott, G., Shaw, W. J., Wharton, S., and White, A. B.: The second Wind Forecast Improvement Project (WFIP2): observational field campaign, B. Am. Meteorol. Soc., 100, 1701–1723, 10.1175/BAMS-D-18-0035.1, 2019b.",
+        "DOI": "10.1175/BAMS-D-18-0035.1"
+      },
+      {
+        "key": "ref36",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Yu, W., Plante, A., Dyck, S., Chardon, L., Forcione, A., Choisnard, J., Benoit, R., Glazer, A., Roberge, G., Petrucci, F., Bourret, J., and Antic, S.: An operational application of NWP models in a wind power forecasting demonstration experiment, Wind Engineering, 38, 1–21, 10.1260/0309-524X.38.1.1, 2014.",
+        "DOI": "10.1260/0309-524X.38.1.1"
+      }
+    ],
+    "container-title": [
+      "Wind Energy Science"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://wes.copernicus.org/articles/10/2117/2025/wes-10-2117-2025.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          11
+        ]
+      ],
+      "date-time": "2026-09-11T14:01:25Z",
+      "timestamp": 1789135285000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://wes.copernicus.org/articles/10/2117/2025/"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          6
+        ]
+      ]
+    },
+    "references-count": 36,
+    "journal-issue": {
+      "issue": "10",
+      "published-online": {
+        "date-parts": [
+          [
+            2025
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.5194/wes-10-2117-2025",
+    "relation": {
+      "has-preprint": [
+        {
+          "id-type": "doi",
+          "id": "10.5194/wes-2024-133",
+          "asserted-by": "subject"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.5194/wes-2024-133",
+          "asserted-by": "object"
+        }
+      ],
+      "has-review": [
+        {
+          "id-type": "doi",
+          "id": "10.5194/wes-2024-133-RC1",
+          "asserted-by": "subject"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.5194/wes-2024-133-AC1",
+          "asserted-by": "subject"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.5194/wes-2024-133-RC2",
+          "asserted-by": "subject"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.5194/wes-2024-133-AC2",
+          "asserted-by": "subject"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.5194/wes-2024-133-AC2",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.5194/wes-2024-133-AC1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.5194/wes-2024-133-RC1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.5194/wes-2024-133-RC2",
+          "asserted-by": "object"
+        }
+      ],
+      "is-part-of": [
+        {
+          "id-type": "doi",
+          "id": "10.5066/F7TX3DN0",
+          "asserted-by": "subject"
+        }
+      ]
+    },
+    "ISSN": [
+      "2366-7451"
+    ],
+    "issn-type": [
+      {
+        "value": "2366-7451",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          6
+        ]
+      ]
+    }
+  }
+}

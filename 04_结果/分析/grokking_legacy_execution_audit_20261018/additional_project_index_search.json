@@ -1,0 +1,14 @@
+[
+  {
+    "source": "C:\\Users\\lidong\\.codex\\state_5.sqlite.bak_20260904",
+    "mode": "sqlite read-only",
+    "query_scope": "additional ASCII project aliases paper3/windfarm-latent-boundary-risk in cwd; metadata only",
+    "rows": []
+  },
+  {
+    "source": "C:\\Users\\lidong\\.codex\\state_5.sqlite",
+    "mode": "sqlite read-only",
+    "query_scope": "additional ASCII project aliases paper3/windfarm-latent-boundary-risk in cwd; metadata only",
+    "rows": []
+  }
+]

@@ -1,0 +1,116 @@
+{
+  "status": "PASS_STORED_FACTS_NOT_NEW_INFERENCE",
+  "source_sha256": {
+    "experiments/state_measurement_pilot_20261020/summary.json": "40eebd3602783fb4a2d883ce9169b3a2eec131e00441483a87826946b6dadc12",
+    "experiments/state_calibration_controls_20261020/summary.json": "12b91fa1555e1e4a1e4b99894ba8722da7980c0237bcfd4249f7f01564678f3f",
+    "analyses/decision_information_execution_20261018/evidence/results/aggregate/paired_intervals.json": "1de4be76bf901008eb006a5baca2f253325efd7499287287296369b1cc56822c"
+  },
+  "corrected_original_common_routes": {
+    "Original:HGB": {
+      "A": false,
+      "B": false,
+      "C": false
+    },
+    "Original:MLP": {
+      "A": false,
+      "B": false,
+      "C": false
+    },
+    "Common:HGB": {
+      "A": false,
+      "B": false,
+      "C": false
+    },
+    "Common:MLP": {
+      "A": false,
+      "B": false,
+      "C": false
+    }
+  },
+  "D_minus_B_cost_comparison_omitted_from_main_plan": [
+    {
+      "stored_index": 15,
+      "point": -0.13238054925177659,
+      "ci95": [
+        -0.21574985763862564,
+        -0.0578720508009916
+      ],
+      "simultaneous_ci": [
+        -0.27210742450624165,
+        -0.016333796980181666
+      ],
+      "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+      "n_boot": 20000,
+      "block_span": 3,
+      "resampling_seed": 20261019,
+      "family_size": 42,
+      "unit": "kWh per valid turbine-interval for loss",
+      "seed_inference": "conditional on archived instances; seeds not resampled",
+      "coverage_status": "development approximation; not finite-sample certification",
+      "condition": "pitch_withheld",
+      "metric": "loss_sum",
+      "left": "D_TruePitch_Diagnostic",
+      "right": "B_Consequences",
+      "inference_role": "primary_loss_family"
+    },
+    {
+      "stored_index": 16,
+      "point": -0.13238054925177659,
+      "ci95": [
+        -0.23670944562080046,
+        -0.03848318535111306
+      ],
+      "simultaneous_ci": [
+        -0.3216463164327244,
+        0.02090870647602215
+      ],
+      "bootstrap_indices_sha256": "a2ab03f7bb15278475597191b9b23aef4e3ad8bb12156a1a82879b1de443ee41",
+      "n_boot": 20000,
+      "block_span": 1,
+      "resampling_seed": 20261019,
+      "family_size": 42,
+      "unit": "kWh per valid turbine-interval for loss",
+      "seed_inference": "conditional on archived instances; seeds not resampled",
+      "coverage_status": "development approximation; not finite-sample certification",
+      "condition": "pitch_withheld",
+      "metric": "loss_sum",
+      "left": "D_TruePitch_Diagnostic",
+      "right": "B_Consequences",
+      "inference_role": "descriptive_sensitivity_only"
+    },
+    {
+      "stored_index": 17,
+      "point": -0.13238054925177659,
+      "ci95": [
+        -0.19126458222557782,
+        -0.07570905458617808
+      ],
+      "simultaneous_ci": [
+        -0.2336214659216446,
+        -0.03749233758461301
+      ],
+      "bootstrap_indices_sha256": "bf5de3a59dfe187239b5582db7f71164b44729ec438d469d7fb577c309684c88",
+      "n_boot": 20000,
+      "block_span": 7,
+      "resampling_seed": 20261019,
+      "family_size": 42,
+      "unit": "kWh per valid turbine-interval for loss",
+      "seed_inference": "conditional on archived instances; seeds not resampled",
+      "coverage_status": "development approximation; not finite-sample certification",
+      "condition": "pitch_withheld",
+      "metric": "loss_sum",
+      "left": "D_TruePitch_Diagnostic",
+      "right": "B_Consequences",
+      "inference_role": "descriptive_sensitivity_only"
+    }
+  ],
+  "has_stored_D_minus_C_cost_comparison_in_this_interval_file": false,
+  "primitive_csv_rows": {
+    "CHAIN_FIELD_ASSERTIONS.csv": 74,
+    "GATE_PRIMITIVES.csv": 834,
+    "ATTRIBUTION_PRIMITIVES.csv": 12
+  },
+  "primitive_rows_are_not_experiments": true,
+  "new_model_or_resampling_or_estimate": false,
+  "scope": "Exact stored record and decision-object inspection only; preserved interval families and original thresholds"
+}

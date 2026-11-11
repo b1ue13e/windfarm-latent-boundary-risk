@@ -1,0 +1,24 @@
+{
+  "git_head": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+  "git_branch": "revision_topjournal_reconstruction",
+  "timestamp": "2026-09-22T01:51:21.430134+00:00",
+  "input_artifacts": [
+    "artifacts/cache_strictmask_trainweights/wtb_245d",
+    "artifacts/fixed_forecast_residuals.npz",
+    "artifacts/dense_classifier_runs_20260904/canonical/wtb_bal_align_force_seed*"
+  ],
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "horizon_h": 6,
+  "dt": 0.16666666666666666,
+  "nominal_rho": 10.0,
+  "nominal_q_star": 0.9,
+  "n_boot": 5000,
+  "bootstrap_cluster_size": 144,
+  "bootstrap_seed": 42
+}

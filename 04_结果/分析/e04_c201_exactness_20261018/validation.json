@@ -1,0 +1,30 @@
+{
+  "status": "ALL_20_SEED_POLICY_CELLS_EXACT",
+  "five_seed_C_evidence_closed": true,
+  "protected_inputs_unchanged": true,
+  "n_seed_policy_cells": 20,
+  "blocks_per_cell": 35,
+  "independent_scientific_review_status": "NOT UPGRADED",
+  "historical_4p256908_cost_difference_cause": "UNRESOLVED; missing failed-run posterior archive",
+  "tests_passed": 29,
+  "scientific_claim_gate": "PASS",
+  "number_consistency_gate": "complete_tste_number_consistency",
+  "previous_38_inputs_unchanged": true,
+  "previous_11_inputs_unchanged": true,
+  "audit_profiles": {
+    "a100": {
+      "repeats_exact": true,
+      "protected_inputs": 33,
+      "manifest_sha256": "11a58ee07cdaa0ed0641f662462113b2c39d3a585598bd2f647ed11caa4a98c3"
+    },
+    "rtx5060": {
+      "repeats_exact": true,
+      "protected_inputs": 34,
+      "manifest_sha256": "be5c40e68c941e035d6626f1fead1d33d47131701e3520770a8d0737f65f3f8a"
+    }
+  },
+  "daily_comparison_csv_sha256": "a1e59ff1c1d3769ca80d59fd9ffd5047bfbdfa4ec43e87673785214708b66d56",
+  "original_execution_source_sha256": "657ee991381d5252b88243d12d64da08f92aeebef799e23f923bdfe15eac3b82",
+  "original_snapshot_sha256": "a98916425abfd02a4996de6d16c60af32ac508204b1cc5f6f27bc5e21cb5796e",
+  "original_failed_record_sha256": "845b6fa34a17bd76a5d474acd3c7ed0b0b67358feae6aa4290db526e2217e4c4"
+}

@@ -1,0 +1,13 @@
+id,item,origin_group,status,existing_evidence,v2_resolution_or_gap,path,stop_or_scope
+M01,相关设计曝光史,NEW_SOURCE,CANCELLED_2026_CONFIRMATION_ROLE,旧直接答复UNKNOWN且无新资格证明,Towie2026在V2退出独立确认职责;新确认来源null,若有真正新知情史证据另版本审查;不靠再声明未见修复,确认源不得执行
+M02,新窗共同完整块,NEW_CONFIRMATION_MATERIAL,DISABLED_FOR_CANCELLED_2026_CONFIRMATION,仅有元数据身份无测量QC,2026确认下载/QC路线停用;未来合格来源另绑定,不得本轮取2026测量;未来盲QC须另授权且预先有人口规则,无来源/支持不确认
+M03,匹配权重与模型身份,EXISTING_ASSETS,ARCHIVE_INDEXED_NOT_RUNTIME_READY,WTB60学习+10控制;Towie520学习+30持续性;本地无权重本体,Towie当期pitch配对/C5/组模型未匹配;远端当前存续未核,已列620条身份;未来另授权核字节环境或拟合,旧pitch历史不挪作当前Z
+M04,来源层级Cstar,EXISTING_ASSETS,RULE_FIXED_VALUES_UNCOMPUTED,WTB旧值保持;Towie无pitch参考任务可定位,Towie及组按同层历史fresh参考旧q选择规则定2024H2均值,未来现有历史输出计算;不得用确认值改尺度,非正/身份不符停止
+M05,B与cap,EXISTING_ASSETS,GENERATOR_FIXED_VALUES_UNCOMPUTED,固定2024无pitchWPQ36/HGB参考q925/950;组参考未建,逐机与组B/cap/非退化/风险必要资源未计算,未来已暴露历史开发;本轮不推理或统计重算,不以cap可行冒充风险可行
+M06,校准分配与历史选择,EXISTING_ASSETS,C5_STRUCTURE_AND_TASK_SELECTION_FIXED,超额损失/成熟残差/滚动凸分配;RAW/B925/B950各选胜,C1-C4有限清单与求解器/支持/实际学习资格仍缺,先审文档;未来另授权实现与立即对应测试,无合格P或选IGNORE_Z按规则停止
+M07,真实到达与控制字段,NEW_SOURCE,NOMINAL_CLOCK_ONLY,UTC结束时标/字段候选已知;实际通信日志未得,真实到达证据未闭合;旧四通道缓存不含控制字段,已有历史年档将来可补读数值;真实发布需正式资料,缺证不称现场时钟收益
+M08,在线依赖与精度,EXISTING_ASSETS,METHOD_QUALIFICATION_PENDING,旧日块工具与已暴露历史;不认证新在线过程,新估计对象/记忆/天气依赖/历史全搜索族与精度,未来历史方法资格;不挑最窄CI;确认支持另绑定,无可靠推断不确认
+M09,混合控制支持域,EXISTING_DOCUMENTS,LIMITED_SCOPE_FIXED,既有13直接受控加T07受益及角色变化审计,不需要对混合观察程序强加yaw因果识别;实际分层仍无标签,复用已有文档;不取fastlog,不称14全直接受控或自然未处理
+M10,剩余近邻完整排重,NEW_LITERATURE,NOT_CLOSED,MLWA全文已核;SETA/SAFER完整方法未闭合,合法全文或足够完整可核方法,出版社/图书馆/合法公开作者方法;本轮无新获取,不宣称完整查新或首创
+M11,成员与组净口径,EXISTING_DOCUMENTS,LIMITED_SCOPE_FIXED,固定21ID;逐机完整向量;直接S_G及独立组B,样本支持/组模型仍未资格;SCADA侧和不等于PCC,成员语义本轮落实;实测支持交新材料;PCC交M12,只在逐机正部和有效不称组合净价值
+M12,运营预算价格与接口,NEW_OPERATIONAL_DOCUMENTS,PROXY_SCOPE_FIXED_REAL_INTERFACE_UNKNOWN,r是外部账面补偿不改变P;实验包络非真实容量,真实合同/价格/资源/交付计量仍无,现有或公开正式文档未来核查;没有就维持代理范围,不称现金/PCC/可交付现场收益

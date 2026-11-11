@@ -1,0 +1,104 @@
+{
+  "checked_utc": "2026-10-20T12:11:45.245775+00:00",
+  "status": "PASS_READ_ONLY_DILIGENCE_COMPLETE_WITH_NO_GO_EDITORIAL_DECISION",
+  "candidate_commit": "ecb8ef00697e7ac6a7a67eec466099133da9bbfc",
+  "protected_files_checked": 250,
+  "protected_files_unchanged": 250,
+  "protected_file_mismatches": [],
+  "resource_source_identities_checked": 64,
+  "resource_source_identity_mismatches": [],
+  "acceptability_source_records": 28,
+  "three_check_matrix_rows": 12,
+  "gate_outputs": {
+    "legacy_scientific_gate": "PASS_EXISTING_CLAIM_SCOPE_ONLY",
+    "cached_numbers": {
+      "checked": 77,
+      "failed": 0,
+      "branch": "-S standard-library cached CSV validation; no statistical generation"
+    },
+    "independent_confirmation_archive": "PASS_IDENTITIES_AND_CLASSIFICATIONS_NOT_COVERAGE"
+  },
+  "administrative_note": "Initial wrapper printing hit Windows encoding error; UTF-8 wrapper rerun passed. No gate rule or source result was modified.",
+  "preexisting_tracked_modifications_preserved": [
+    "AGENTS.md",
+    "artifacts/tste_number_consistency_audit/tste_number_consistency_audit.csv"
+  ],
+  "changed_manuscript_or_thresholds_or_original_results_or_package": false,
+  "new_training_inference_calibration_resampling": false,
+  "new_measurement_download": false,
+  "published": false,
+  "submitted": false,
+  "limits": [
+    "bounded existing-material search; no private contract or email inspection",
+    "documentation is not field arrival or end-user acceptance evidence",
+    "local resource observations are not a controlled production benchmark",
+    "no exhaustive fresh novelty search or full PDF re-render",
+    "editorial no-go judgement is not a journal rejection or quantified probability"
+  ],
+  "new_review_files": {
+    "ACCEPTABILITY_EVIDENCE.md": {
+      "bytes": 16434,
+      "sha256": "771a9a86b97e3948f8a0208363aca2ed88823b9b536882c4385b0c8b43ffa06a"
+    },
+    "ACCEPTABILITY_SOURCES.csv": {
+      "bytes": 7997,
+      "sha256": "8acedbc59d492f201983373e5bac7e156b65c0abbfbe2c3141ca17f3ede35fc3"
+    },
+    "DECISION.json": {
+      "bytes": 3469,
+      "sha256": "955093a8efbd7fac66cd09ff57dd2938063f99fef641f0a45bef3d57ff27ff2e"
+    },
+    "DILIGENCE.md": {
+      "bytes": 15084,
+      "sha256": "2566061ec69714ce7585dc0b2e2e382267330128278e630bde5226c5cbcb8ea9"
+    },
+    "EVIDENCE_MATRIX.csv": {
+      "bytes": 2988,
+      "sha256": "c3bc927fb5817e4a706b1568f882354da08ae2202c0bb967047e8acb24bc539b"
+    },
+    "INTERFACE_EVIDENCE.md": {
+      "bytes": 14487,
+      "sha256": "ab2891bd690c699b9c81480489b3ae1fbd94485f40d6bb2ba5daae3ea8626394"
+    },
+    "PUBLIC_SOURCE_CHECKS.json": {
+      "bytes": 2016,
+      "sha256": "92b145c73b43932f2e3482123f1ecf53d4550da573c52a87e9473f3846d0bf82"
+    },
+    "RESOURCE_EVIDENCE.md": {
+      "bytes": 12723,
+      "sha256": "2a496de1edc3456ab8f4c8d2bf892e434968133913e3869bbd75f14e3bf05781"
+    },
+    "RESOURCE_SOURCES.csv": {
+      "bytes": 25482,
+      "sha256": "6025fe8d8d1042a62b7d741b6af90dab0a1e5d38f2897273a7f6793805de57db"
+    },
+    "REVIEW_SCOPE.json": {
+      "bytes": 49721,
+      "sha256": "c238d7a2bb2caa9fe1982f9f6168719ab60432b59b38f953b224f22aaabac924"
+    },
+    "verification/cached_number_gate.txt": {
+      "bytes": 209,
+      "sha256": "caf90398fdd315099f73b8f66445a03efb46b533cbdd4e3f804d19d85f0f99e7"
+    },
+    "verification/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "verification/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "verification/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 889,
+      "sha256": "6b46cf5514735071f7bab3a635bfd1c10b9a4a9503e58d0e0bbeeeb8cc52d634"
+    },
+    "verification/legacy_scientific_gate.txt": {
+      "bytes": 4952,
+      "sha256": "fa9dcfaef7b9366fad5d9bbb9da05dbb56a556daa6c446059cb2238411c12594"
+    },
+    "verification_independent_archive.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    }
+  }
+}

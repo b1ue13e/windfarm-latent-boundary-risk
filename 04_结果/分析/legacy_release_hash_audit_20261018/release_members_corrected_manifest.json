@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-10-18",
+  "status": "VERIFIED_MEMBER_IDENTITIES_ONLY",
+  "archive": {
+    "path": "archives/windfarm_derived_artifacts_v1.0.zip",
+    "size_bytes": 195613174,
+    "sha256": "cf90924b1fead36317addabfcbee6aa6236bebc29889f8ce5dfd57466fc7fc22"
+  },
+  "release_tag": "tste-submission-v1.0",
+  "release_commit": "1085f23c925b7b9bfc312608cbaaecc50cba676e",
+  "members": [
+    {
+      "path": "artifacts/fixed_forecast_residuals.npz",
+      "size_bytes": 173410167,
+      "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+      "crc32": "ce4877e5",
+      "zip_member_timestamp_untrusted": [
+        2026,
+        9,
+        18,
+        5,
+        5,
+        16
+      ],
+      "loose_file_sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9"
+    },
+    {
+      "path": "artifacts/matched_budget/cached_posterior_probs.npz",
+      "size_bytes": 22475033,
+      "sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca",
+      "crc32": "1355e7e1",
+      "zip_member_timestamp_untrusted": [
+        2026,
+        9,
+        22,
+        1,
+        47,
+        34
+      ],
+      "loose_file_sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca"
+    }
+  ],
+  "document_corrections": [
+    {
+      "document": "docs/EXTERNAL_RELEASE_METADATA.md",
+      "member": "artifacts/fixed_forecast_residuals.npz",
+      "field": "sha256",
+      "previous": "b05b3751f45e2a2c1619623da3d038317769caec7d6a59b207eb4ea088e5d0d7",
+      "corrected": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9"
+    },
+    {
+      "document": "docs/EXTERNAL_RELEASE_METADATA.md",
+      "member": "artifacts/matched_budget/cached_posterior_probs.npz",
+      "field": "sha256",
+      "previous": "d40f0ddbaee7452d3a339dd8917e766fb31ec227242c7f078d46a48970e4e7e7",
+      "corrected": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca"
+    },
+    {
+      "document": "docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md",
+      "member": "artifacts/fixed_forecast_residuals.npz",
+      "field": "sha256",
+      "previous": "b05b3751f45ecb37119ff9574d75d50ae9ba19028f8f2b7405cb70d691e8eaec",
+      "corrected": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9"
+    },
+    {
+      "document": "docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md",
+      "member": "artifacts/matched_budget/cached_posterior_probs.npz",
+      "field": "sha256",
+      "previous": "d40f0ddbaee7a04a3952ba5c7c0018f45037d0c0082f6f3eb17ffc0c800ea65d",
+      "corrected": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca"
+    },
+    {
+      "document": "docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md",
+      "member": "artifacts/matched_budget/cached_posterior_probs.npz",
+      "field": "size_bytes",
+      "previous": 22572551,
+      "corrected": 22475033
+    }
+  ],
+  "pre_correction_snapshots": [
+    {
+      "path": "docs/EXTERNAL_RELEASE_METADATA.md",
+      "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/pre_correction_EXTERNAL_RELEASE_METADATA.md",
+      "sha256": "30a3d89714443513e5f151913bb2dedb78bdfacdf3e52edbb1518fb5f68e3e28",
+      "source": "working_tree_before_correction"
+    },
+    {
+      "path": "docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md",
+      "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/pre_correction_EXTERNAL_REPRODUCIBILITY_VERDICT.md",
+      "sha256": "349da79e828e6d50e7e3233c6931a87648c31bb04ef64086858501016d77cb52",
+      "source": "working_tree_before_correction"
+    },
+    {
+      "path": "artifacts/ARTIFACT_MANIFEST.json",
+      "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/pre_correction_ARTIFACT_MANIFEST.json",
+      "sha256": "44fdb8fc1bf5ad8035fa51a5103bba7d468cd2f67b1cd9bcd2a9a1cdcf719e0d",
+      "source": "working_tree_before_correction"
+    },
+    {
+      "path": "artifacts/fixed_forecast_residuals_meta.json",
+      "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/pre_correction_fixed_forecast_residuals_meta.json",
+      "sha256": "e521b773bc7bdb5d0adbcd7e8c28526464a4de98cf332f1b92e235a27e8bf86c",
+      "source": "working_tree_before_correction"
+    },
+    {
+      "path": "artifacts/matched_budget/provenance.json",
+      "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/pre_correction_provenance.json",
+      "sha256": "22624366b20c5790c74e661c670b27895d0ca9b19fcec1e9d4e6b022f7b364b3",
+      "source": "working_tree_before_correction"
+    },
+    {
+      "path": ".agent_state/EVIDENCE_LEDGER.md",
+      "snapshot": "analyses/legacy_release_hash_audit_20261018/snapshots/pre_correction_EVIDENCE_LEDGER.md",
+      "sha256": "7ab801888bbdee412ea2b5775d1f3588657dc36b43f58fb47f60f725302dbf3c",
+      "source": "working_tree_before_correction"
+    }
+  ],
+  "generation_execution_receipt_status": "UNKNOWN_NOT_CLOSED",
+  "E07": "DRAFT_NOT_EXECUTED_PENDING_ACTIVATION_MANIFESTS; unchanged",
+  "scope": "Local archive, present isolated clone, and versioned repository evidence; public asset not fetched anew; no original data/results modified",
+  "corrected_document_versions": [
+    {
+      "path": "docs/EXTERNAL_RELEASE_METADATA.md",
+      "sha256": "9e945d152a5cec504fc192aab202cb0344f7b7aad3eca0eb096842df6e02a16f",
+      "hash_semantics": "exact working-tree bytes; Git text normalization may use LF",
+      "sha256_git_blob": "9e945d152a5cec504fc192aab202cb0344f7b7aad3eca0eb096842df6e02a16f",
+      "git_blob": "aae51a602345a2a231ff6fe08692388349b58e26"
+    },
+    {
+      "path": "docs/EXTERNAL_REPRODUCIBILITY_VERDICT.md",
+      "sha256": "a1e6a7f015f3af77c36218f0ff406b21152ddf94cf5d03da197c56a10c2f03e4",
+      "hash_semantics": "exact working-tree bytes; Git text normalization may use LF",
+      "sha256_git_blob": "a1e6a7f015f3af77c36218f0ff406b21152ddf94cf5d03da197c56a10c2f03e4",
+      "git_blob": "a733d9d51c2ec11141cb7becf36b179f101bf900"
+    },
+    {
+      "path": "PROJECT.md",
+      "sha256": "775e1268594b791e1f1b82073daf518ba4f8c14b22069ef8b07c6a29dac4e480",
+      "hash_semantics": "exact working-tree bytes; Git text normalization may use LF",
+      "sha256_git_blob": "775e1268594b791e1f1b82073daf518ba4f8c14b22069ef8b07c6a29dac4e480",
+      "git_blob": "11f9b5c25823584a7c510664d1552b457139ba1b"
+    }
+  ],
+  "producer_attribution_corrections": [
+    {
+      "document": "docs/EXTERNAL_RELEASE_METADATA.md",
+      "member": "artifacts/fixed_forecast_residuals.npz",
+      "previous_document_attribution": "scripts/decisive_fair_risk_benchmark.py",
+      "release_tag_manifest_attribution": "scripts/run_fixed_target_contract.py (absent at tag)",
+      "current_manifest_attribution": "scripts/build_fixed_forecast_residuals.py",
+      "qualified_document_attribution": "source-compatible producer; exact executed version UNKNOWN"
+    },
+    {
+      "document": "docs/EXTERNAL_RELEASE_METADATA.md",
+      "member": "artifacts/matched_budget/cached_posterior_probs.npz",
+      "previous_document_attribution": "scripts/run_matched_budget_frontier.py",
+      "qualified_document_attribution": "manifest/source attribution; exact executed version UNKNOWN because recorded provenance HEAD lacks this path"
+    }
+  ]
+}

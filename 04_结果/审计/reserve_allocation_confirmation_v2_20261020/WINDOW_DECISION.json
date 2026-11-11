@@ -1,0 +1,21 @@
+{
+  "version": "V2",
+  "date": "2026-10-20",
+  "source_record": "https://zenodo.org/records/22662930",
+  "file": "2026.zip",
+  "listed_md5": "42a2264187912ca63214bacfbc8d4905",
+  "date_scope": "2026 January-April",
+  "previous_exposure_record": "research_audit/q1_paper_closure_20261019/exposure_record.json",
+  "recorded_user_answer": "无法确认查看历史",
+  "exposure_epistemic_status": "UNKNOWN_NOT_PROVEN_VIEWED_OR_UNSEEN",
+  "new_qualifying_provenance_found": false,
+  "v2_role": "CANCELLED_AS_INDEPENDENT_CONFIRMATION",
+  "independent_confirmation_eligible": false,
+  "active_confirmation_window": null,
+  "qualified_independent_windows": 0,
+  "retrospective_analysis_authorized_now": false,
+  "reinstatement": "Only genuinely new provenance and a separately reviewed later version;never automatic relabeling or slicing",
+  "new_measurements_retrieved": false,
+  "remote_access": false,
+  "queue": []
+}

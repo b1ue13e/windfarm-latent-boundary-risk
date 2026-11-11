@@ -1,0 +1,82 @@
+{
+  "primary_status": "ALL_FROZEN_CANDIDATES_CONFIRMED",
+  "labels": [
+    "P1/HGB/q0.95",
+    "WPQ36/HGB/q0.95"
+  ],
+  "mean_cost": [
+    67.02040332110329,
+    66.64443044512103
+  ],
+  "candidate_max_instance_risk_upper": 0.062024677991181394,
+  "reference_max_instance_risk_upper": 0.062003949794789875,
+  "relative_cost_point": 0.005641474815991643,
+  "relative_cost_interval": [
+    0.0035746800646510356,
+    0.00770826956733225
+  ],
+  "primary_coordinate_family": 14,
+  "secondary_case_counts": {
+    "NO_CERTIFIED_SUFFICIENT_POLICY": 18,
+    "MINIMUM_UNRESOLVED": 26,
+    "FINITE_FAMILY_MINIMUM_IDENTIFIED": 46
+  },
+  "historical_fixed_case_counts": {
+    "NO_HISTORICAL_SELECTION": 24,
+    "ALL_FROZEN_CANDIDATES_CONFIRMED": 63,
+    "CONFIRMATION_NOT_ESTABLISHED": 3
+  },
+  "withheld_secondary_two_percent": {
+    "label": "P1/HGB/q0.925",
+    "cost": 65.73923230784504,
+    "risk_upper": 0.0976988760696712,
+    "resource": [
+      1,
+      1,
+      5
+    ],
+    "minimum_status": "FINITE_FAMILY_MINIMUM_IDENTIFIED",
+    "smaller_count": 15,
+    "excluded_count": 15,
+    "exclusion_reasons": {
+      "RISK_LOWER_ABOVE_CAP": 2,
+      "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE": 13
+    }
+  },
+  "failures": [
+    {
+      "span": 3,
+      "condition": "delay3",
+      "epsilon": 0.005,
+      "sufficient_set": "P1/HGB/q0.925",
+      "minimum_status": "FINITE_FAMILY_MINIMUM_IDENTIFIED",
+      "smaller_count": 15,
+      "excluded_count": 15,
+      "unresolved_count": 0,
+      "historical_fixed_status": "CONFIRMATION_NOT_ESTABLISHED"
+    },
+    {
+      "span": 1,
+      "condition": "delay3",
+      "epsilon": 0.005,
+      "sufficient_set": "P1/HGB/q0.925",
+      "minimum_status": "FINITE_FAMILY_MINIMUM_IDENTIFIED",
+      "smaller_count": 15,
+      "excluded_count": 15,
+      "unresolved_count": 0,
+      "historical_fixed_status": "CONFIRMATION_NOT_ESTABLISHED"
+    },
+    {
+      "span": 7,
+      "condition": "delay3",
+      "epsilon": 0.005,
+      "sufficient_set": "P1/HGB/q0.925",
+      "minimum_status": "FINITE_FAMILY_MINIMUM_IDENTIFIED",
+      "smaller_count": 15,
+      "excluded_count": 15,
+      "unresolved_count": 0,
+      "historical_fixed_status": "CONFIRMATION_NOT_ESTABLISHED"
+    }
+  ],
+  "scope": "Primary fixed-reference mean-cost noninferiority, not cost superiority or full-q minimality. Secondary q.925 finite-family resource minimum is retrospective, not a selected confirmatory policy. All90 cases share data."
+}

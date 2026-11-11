@@ -1,0 +1,300 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-20T11:33:19.319313+00:00",
+  "scope": "Actual page-by-page visual/layout review of frozen V2 PDFs only; no manuscript/figure edits, experiments or statistical recalculation",
+  "documents": {
+    "manuscript": {
+      "sha256": "993aefc855a10f6c8c4a471a9362f2fe176593978bebb0147f2081fa2f49e566",
+      "page_count": 16,
+      "minimum_embedded_font_size_pt": 7.373600006103516,
+      "replacement_glyph_count": 0,
+      "unresolved_citation_tokens": 0,
+      "pages": [
+        {
+          "page": 1,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 2895,
+          "rendered_page_sha256": "79221a99ef4019072fc7a72c95753eda11ed553bc0fa01fbbc8a70be864ad987"
+        },
+        {
+          "page": 2,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 4040,
+          "rendered_page_sha256": "e4deaa100a9cb20faf6730220169bc34094a97f66186303b778fd8aef98a6d7b"
+        },
+        {
+          "page": 3,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3719,
+          "rendered_page_sha256": "e70d4fdde537f9381d2483b87882c0179b9794e666ff5a5d4b0f041cb62fa595"
+        },
+        {
+          "page": 4,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3705,
+          "rendered_page_sha256": "7a31a200e3ba29958d29806f9ee704a2e96da35b4b02f211eff22faf9c4bef57"
+        },
+        {
+          "page": 5,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 2995,
+          "rendered_page_sha256": "d46dafa53d285cb95d92ea997bac109b9d964f49c4ea4510183db7fdfc9bebe7"
+        },
+        {
+          "page": 6,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 4178,
+          "rendered_page_sha256": "30298cde283d073d921f5e3acb9ced7dd3a8173c177fa3aa0897f2ef49afa6db"
+        },
+        {
+          "page": 7,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 1027,
+          "rendered_page_sha256": "43376ff4105fe99f8c09fb089a3e06f9a10cce2d7bcbbaf35d2ee035bfc2720b"
+        },
+        {
+          "page": 8,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 2521,
+          "rendered_page_sha256": "84c1438a99ce75488968ad97a1220c0aace6d1c4e400060a53a9f6be42678912"
+        },
+        {
+          "page": 9,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3678,
+          "rendered_page_sha256": "f398359d2cd471a781466ed6e411e826a5f9d89be353bd1978479f62e00d9d10"
+        },
+        {
+          "page": 10,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3608,
+          "rendered_page_sha256": "5dad9147c65b9f89d67a53ebe717d38e2261779027d1dca7565308279ac72964"
+        },
+        {
+          "page": 11,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 1715,
+          "rendered_page_sha256": "5972250d042c84d24710dfb06498edf32697c444426034285a5b20eb58cdf2bb"
+        },
+        {
+          "page": 12,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 1254,
+          "rendered_page_sha256": "687e6ce84cc8f9442b9cf03e19d2c28ba29bbead8183df65d28ba62d7ee8c51d"
+        },
+        {
+          "page": 13,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3772,
+          "rendered_page_sha256": "c0a200424ae8fa4232216b5b580b01a452630e65911b6a5e29c91ae9373848a1"
+        },
+        {
+          "page": 14,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3687,
+          "rendered_page_sha256": "2866925047eac0d4cd07fa6644a1575127d17b653119d515010d0a69e192eb2f"
+        },
+        {
+          "page": 15,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 2444,
+          "rendered_page_sha256": "d72a1d0f6494163cc9954a1ef87b597be521a6009ab274bcd1c1f613bb386a9c"
+        },
+        {
+          "page": 16,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 164,
+          "rendered_page_sha256": "b17dd051bd6425e55d9d8a18feef000fc3057f5782cad428e966485bc130c7c2"
+        }
+      ]
+    },
+    "supplementary": {
+      "sha256": "b34afd5d9e23d828596bb90368ac4136475c1842a2c728e84377377f2aae5820",
+      "page_count": 15,
+      "minimum_embedded_font_size_pt": 8.072699546813965,
+      "replacement_glyph_count": 0,
+      "unresolved_citation_tokens": 0,
+      "pages": [
+        {
+          "page": 1,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 2584,
+          "rendered_page_sha256": "023591c3cee32e026e4a3f19ffde61487f95660fd6db5f40025db014a4028ff4"
+        },
+        {
+          "page": 2,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 2335,
+          "rendered_page_sha256": "24117fccbe8f892fb4f303db8dcb50caafda2d82930054d5783de5fc4b4227dd"
+        },
+        {
+          "page": 3,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3201,
+          "rendered_page_sha256": "65d38143e42520ecf19c030240f0ed3de6ef84cc760af7ad6b0ed4f2e4b6e2bc"
+        },
+        {
+          "page": 4,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3272,
+          "rendered_page_sha256": "5884101d16e22a9597e88c1e0591bf4e18833754e1cb1d583505eae152df006f"
+        },
+        {
+          "page": 5,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3203,
+          "rendered_page_sha256": "c3437b0d8e2b9c10dfcfd81bc9f968ddde979f4d127f3215e9e235fa29192846"
+        },
+        {
+          "page": 6,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3571,
+          "rendered_page_sha256": "f8cade50d16d94c85ecbc905ada1cd4cabb1153ccb9addfd67f0a6cf960dedcd"
+        },
+        {
+          "page": 7,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 2955,
+          "rendered_page_sha256": "f7ae236b692689df9dc43c7df337f171d6a38412b596954d556ac56b0be8e788"
+        },
+        {
+          "page": 8,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3094,
+          "rendered_page_sha256": "0287e2c49ad7c9cc2c2f4b2727c16c036b6617fb82858619557bb3ca6ff48c29"
+        },
+        {
+          "page": 9,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3313,
+          "rendered_page_sha256": "4cc78b982fd87f8c1a1d4b3ff253e98e0d4e6b2b61aabc55bc586aeb1f280a0b"
+        },
+        {
+          "page": 10,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 3164,
+          "rendered_page_sha256": "6f4d8f0d9a3b1530425e65394efd8d1ab4f6fb5313bac73daae6b3589cf4be4b"
+        },
+        {
+          "page": 11,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 2994,
+          "rendered_page_sha256": "5fc840721e753c70b90e88492158b74dc8de4a708fca4b051fd18285200b3921"
+        },
+        {
+          "page": 12,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 2391,
+          "rendered_page_sha256": "fa41d32f3a8c18e3a38f875aa6c080e03e18aafb749abe41d65a39382465731b"
+        },
+        {
+          "page": 13,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 2920,
+          "rendered_page_sha256": "f538bdfda046d2e127c6876ad96b9675b5d4bbab87a7aa1ab0adc1ec71d950ba"
+        },
+        {
+          "page": 14,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 2911,
+          "rendered_page_sha256": "7b63826b83127fe6212ce92b2f89effbf7bd6420f607715993c8b61118c84223"
+        },
+        {
+          "page": 15,
+          "status": "PASS",
+          "actually_visually_inspected": true,
+          "clipped_text": [],
+          "text_characters": 506,
+          "rendered_page_sha256": "7896390c4bebf1d5899abd468b2d2ebd11deb65e17b7b2d50e2ab8368338d62b"
+        }
+      ]
+    }
+  },
+  "initial_layout_findings_resolved": [
+    "Table S5 caption now stays with table body and S5/S5.1 headings",
+    "Table S6 caption now stays with table body",
+    "S6 heading now stays with Table S7",
+    "S7 heading now stays with Table S8"
+  ],
+  "visual_focus": [
+    "Working-process D and finite-record formulas",
+    "Figure 3 cost/risk qualification and all 15 exclusions",
+    "Tables S7 and S8",
+    "Actual freeze chronology",
+    "Result-figure floats precede Discussion",
+    "References and AEMO historical document citation"
+  ],
+  "v1_written": false,
+  "inherited_figures_byte_identical_to_v1": {
+    "fig1_information_freeze.pdf": true,
+    "fig1_information_freeze.svg": true,
+    "fig1_information_freeze.png": true,
+    "fig2_primary_confirmation.pdf": true,
+    "fig2_primary_confirmation.svg": true,
+    "fig2_primary_confirmation.png": true,
+    "fig4_identification_boundary.pdf": true,
+    "fig4_identification_boundary.svg": true,
+    "fig4_identification_boundary.png": true
+  },
+  "final_pdfs_unchanged_during_review": true
+}

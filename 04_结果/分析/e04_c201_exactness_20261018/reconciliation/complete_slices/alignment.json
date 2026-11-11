@@ -1,0 +1,405 @@
+{
+  "status": "ALIGNMENT_VERIFIED_BEFORE_SLICING",
+  "started_Asia_Shanghai": "2026-10-18T14:56:04.205444+08:00",
+  "scope": "WTB Full; h=6; original mask and native 144-anchor blocks",
+  "anchor_test_bounds": [
+    30275,
+    35255
+  ],
+  "anchor_val_bounds": [
+    25955,
+    30215
+  ],
+  "first_issue_day_slot": [
+    211,
+    35
+  ],
+  "last_issue_day_slot": [
+    245,
+    119
+  ],
+  "n_valid_per_seed": 385205,
+  "n_anchors": 4981,
+  "n_nodes": 134,
+  "all_six_target_leads_exact": true,
+  "shortfall_identities_exact_5seeds_2splits": true,
+  "node_ids_exact": true,
+  "mask_and_anchor_time_exact": true,
+  "j04_e04_day_arrays_numerically_identical": true,
+  "source_hashes_match_J04": [
+    "windfarm_moe/data.py",
+    "windfarm_moe/arrival_feed.py",
+    "windfarm_moe/model.py",
+    "windfarm_moe/config.py"
+  ],
+  "input_hashes_before": {
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\fixed_forecast_residuals.npz": "50499806cf6103d869086318858d9eb2cde89f99dac43c65917cc423572330a1",
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\cache_metadata.json": "6175e219cc9e9e0a9f641ad133336db7ed16fcdf40f413465ee25095413cfaa9",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\physics.npy": "9e88234537600c07c9ecccf3b282031b1d81585122b4dd071b84e3b8bcef0e36",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\physics_model.npy": "5296c1e37d3481fad7c3c3b06c302261e6e5f57428829ebf4dbd97ba6d49c53e",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\time_index.npy": "b81672e47df542b7955419bf235dda49009eb56ec039df819cc73eac474e12af",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\node_ids.npy": "75215bd2a6633b40a767a5502284c91bcf71e917bba51ae882916d4d496a564d",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\target.npy": "492362f1808bc0422d9eec27f69e5c103078cbae31e73d39db8d7baa9fe13a55",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\target_mask.npy": "c416c8d1648600c1f7af8737edb2af15060bdf573eed94360bb90d4d06c0b8c1",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\regime_primary.npy": "4f64d8556165443e1833d7fbe5a37e0b9bb039c292759217fb357dae8da55270",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\regime_primary_valid.npy": "ae6106fcc37b42e6e0fff48c33b4d05d94fd920e740c6b79e7585c4491bb971e",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\feature_mask.npy": "7052697db4c9f2622d19aa9d224a7c23a0f476ed0997d20310ee65c0cf19bdaa",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\features.npy": "ce4d0576a67862f24131d46cfa77a64bfe3bb0db27612f8adee060e23a0e3780",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\edge_index.npy": "b29908d50312b30ab928fb678bb3b3213e3c6643441c6ba68bdb70caa52c92b9",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\edge_weight.npy": "56495a0d0d13dbcaa07fb165336c7563fbb887d3f86391b82c640ac4c9e69828",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\regime_aux.npy": "91a3fb2a1e5de862ca83d97964f3cbb8a6b33d2a719aff52366c7844907d1981",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\regime_aux_valid.npy": "1eea0ac30264c757fc66d62e204dd3e414e001cbee99e82acac734c92bd5f366",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\coords.npy": "0928413708ec76d2cfc6401d2ec995c20196526f79f1b6d28b18495712d07934",
+    "windfarm_moe/data.py": "0444ee0c5e7c76291927abebd3296fcd7341933675c031b7bced4b384730a597",
+    "windfarm_moe/arrival_feed.py": "4c6d13f915f08da6cbb3d3486e408f4b41daa0e9c619f5f2a226615cde7bd950",
+    "windfarm_moe/model.py": "88fcfa75053a68328b3b00e73f0ac7b7429afb2379289ec56b799396ed5a36e9",
+    "windfarm_moe/config.py": "c585b6747984da5f13f48855f2c02760033f5c4d8cb909ed32466c1579ce81ba",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\metadata.json": "fae4772d96e494218eb70abf14f5f4a72845acdcda34c1fb25dc52d8fe236a5c",
+    "experiments\\E04\\results\\e04_v2\\e04_v2_output_manifest.json": "647066786fd2b3cb6168cf1f25647a5560b25e1f40c3e2adae2dad2e51d523a5",
+    "experiments\\E04\\results\\e04_v2\\seed201_full_policy_day_blocks.npz": "0cf8e76f5c7ed2c309bcb04d545465643429b375ecc727011b56967586d7c0a6",
+    "analyses\\remote\\J04\\e06_bundle\\seed201_full_policy_day_blocks.npz": "d204fbb18be71b3ed31696c1767bbff0c0bbfae159e5419a446d2506f66aa0b0",
+    "experiments\\E04\\results\\e04_v2\\seed202_full_policy_day_blocks.npz": "0656105b0bbc89517616515e6ba383d67c6f8ce78852860634dad215e30a8188",
+    "analyses\\remote\\J04\\e06_bundle\\seed202_full_policy_day_blocks.npz": "4c9901944b843638f6277ec494ce6a42fd323fec3dcf085688fb7bd363b954dc",
+    "experiments\\E04\\results\\e04_v2\\seed203_full_policy_day_blocks.npz": "166d79fd073d6c6f3b8785e7cf525a07862854f0bd2b6529542af745b169e158",
+    "analyses\\remote\\J04\\e06_bundle\\seed203_full_policy_day_blocks.npz": "36e6d36615a59855858c1372e91c439375dd38fa219e50ca82bee4a88843c50d",
+    "experiments\\E04\\results\\e04_v2\\seed204_full_policy_day_blocks.npz": "801b0f33e6ee247b5bee17eae6c1a6e7ea8f37e5ce473051245fbecbdd407db1",
+    "analyses\\remote\\J04\\e06_bundle\\seed204_full_policy_day_blocks.npz": "2e9e84edeea808f068887e6905ea0f7e92d142813d54ad40cfc0fde9e4ab70da",
+    "experiments\\E04\\results\\e04_v2\\seed205_full_policy_day_blocks.npz": "d61bf43ce5031acf7b35b1c0e6aaf85647f8ae77ef38b215fe1a4b85b2651ee3",
+    "analyses\\remote\\J04\\e06_bundle\\seed205_full_policy_day_blocks.npz": "40d592e610f8c137d6d4fcc99a49c9f9be97a4c1e9909592b60d7de7694a0ae5",
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\checkpoints\\seed201_best_model.pt": "005c3e662432d493f49a617c10e8319b28c078aba79686c7c9490959ac05507c",
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\checkpoints\\seed202_best_model.pt": "e5b2a1c865f8d94a992cef6afbc4b0a9994744bfcab8da794cd8df0b4d60247b",
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\checkpoints\\seed203_best_model.pt": "75dd321b7a9df0ac1f9418d564193290fc08f8407e58ffea61c747a322ecefcf",
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\checkpoints\\seed204_best_model.pt": "ac15696ff37c52c9b811533891f96a77e1cfbe7e1c673d552b9510dc7fa4e39d",
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\checkpoints\\seed205_best_model.pt": "2f3016035a406f8fc329a3159a963a0e5329972ce19f43ccdbe381bbab4f42f4"
+  },
+  "metadata_localization_difference_only": {
+    "class_weight_source_cache": {
+      "local": "E:\\论文3\\artifacts\\raw_replay_20261015_v2\\cache_raw_recorded\\wtb_245d",
+      "receipt_bound": "/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/artifacts/raw_replay_20261015_v2/cache_raw_recorded/wtb_245d"
+    }
+  },
+  "wind_physical_recovery_max_abs_mps": 9.5367431640625e-07,
+  "training_seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "analysis_rng_seed": 20261020,
+  "slice_definitions": {
+    "ramp_threshold_kw": 150,
+    "ramp_interval_steps": 6,
+    "boundary_mps": [
+      9.5,
+      11.5
+    ],
+    "wind_edges": [
+      "-inf",
+      2.5,
+      5,
+      7.5,
+      10,
+      12.5,
+      15,
+      17.5,
+      20,
+      22.5,
+      "inf"
+    ],
+    "transition": "original non-circular +/-3 around issue-time regime changes; includes future labels",
+    "future_ramp": "realized power at issue+6 minus issue; diagnostic only",
+    "high_blocks": "five largest pooled B day rates; outcome-selected descriptive localization"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "numpy": "2.4.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "device": "cuda:0",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5060",
+    "cudnn_benchmark": false,
+    "deterministic_algorithms": false
+  },
+  "argv": [
+    "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "scripts/reconcile_e04_c201_evidence.py",
+    "--evidence-dir",
+    "analyses/e04_c201_exactness_20261018",
+    "--output-dir",
+    "analyses/e04_c201_exactness_20261018/reconciliation"
+  ],
+  "script_sha256": "e8c3c6aa0d148c8ecd5ee31766c6d0781b09188df14b27bbdd2ff9d70a246924",
+  "finished_Asia_Shanghai": "2026-10-18T14:58:08.814797+08:00",
+  "input_hashes_after": {
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\fixed_forecast_residuals.npz": "50499806cf6103d869086318858d9eb2cde89f99dac43c65917cc423572330a1",
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\cache_metadata.json": "6175e219cc9e9e0a9f641ad133336db7ed16fcdf40f413465ee25095413cfaa9",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\physics.npy": "9e88234537600c07c9ecccf3b282031b1d81585122b4dd071b84e3b8bcef0e36",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\physics_model.npy": "5296c1e37d3481fad7c3c3b06c302261e6e5f57428829ebf4dbd97ba6d49c53e",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\time_index.npy": "b81672e47df542b7955419bf235dda49009eb56ec039df819cc73eac474e12af",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\node_ids.npy": "75215bd2a6633b40a767a5502284c91bcf71e917bba51ae882916d4d496a564d",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\target.npy": "492362f1808bc0422d9eec27f69e5c103078cbae31e73d39db8d7baa9fe13a55",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\target_mask.npy": "c416c8d1648600c1f7af8737edb2af15060bdf573eed94360bb90d4d06c0b8c1",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\regime_primary.npy": "4f64d8556165443e1833d7fbe5a37e0b9bb039c292759217fb357dae8da55270",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\regime_primary_valid.npy": "ae6106fcc37b42e6e0fff48c33b4d05d94fd920e740c6b79e7585c4491bb971e",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\feature_mask.npy": "7052697db4c9f2622d19aa9d224a7c23a0f476ed0997d20310ee65c0cf19bdaa",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\features.npy": "ce4d0576a67862f24131d46cfa77a64bfe3bb0db27612f8adee060e23a0e3780",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\edge_index.npy": "b29908d50312b30ab928fb678bb3b3213e3c6643441c6ba68bdb70caa52c92b9",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\edge_weight.npy": "56495a0d0d13dbcaa07fb165336c7563fbb887d3f86391b82c640ac4c9e69828",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\regime_aux.npy": "91a3fb2a1e5de862ca83d97964f3cbb8a6b33d2a719aff52366c7844907d1981",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\regime_aux_valid.npy": "1eea0ac30264c757fc66d62e204dd3e414e001cbee99e82acac734c92bd5f366",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\coords.npy": "0928413708ec76d2cfc6401d2ec995c20196526f79f1b6d28b18495712d07934",
+    "windfarm_moe/data.py": "0444ee0c5e7c76291927abebd3296fcd7341933675c031b7bced4b384730a597",
+    "windfarm_moe/arrival_feed.py": "4c6d13f915f08da6cbb3d3486e408f4b41daa0e9c619f5f2a226615cde7bd950",
+    "windfarm_moe/model.py": "88fcfa75053a68328b3b00e73f0ac7b7429afb2379289ec56b799396ed5a36e9",
+    "windfarm_moe/config.py": "c585b6747984da5f13f48855f2c02760033f5c4d8cb909ed32466c1579ce81ba",
+    "artifacts\\raw_replay_20261015_v2\\cache_wtb\\metadata.json": "fae4772d96e494218eb70abf14f5f4a72845acdcda34c1fb25dc52d8fe236a5c",
+    "experiments\\E04\\results\\e04_v2\\e04_v2_output_manifest.json": "647066786fd2b3cb6168cf1f25647a5560b25e1f40c3e2adae2dad2e51d523a5",
+    "experiments\\E04\\results\\e04_v2\\seed201_full_policy_day_blocks.npz": "0cf8e76f5c7ed2c309bcb04d545465643429b375ecc727011b56967586d7c0a6",
+    "analyses\\remote\\J04\\e06_bundle\\seed201_full_policy_day_blocks.npz": "d204fbb18be71b3ed31696c1767bbff0c0bbfae159e5419a446d2506f66aa0b0",
+    "experiments\\E04\\results\\e04_v2\\seed202_full_policy_day_blocks.npz": "0656105b0bbc89517616515e6ba383d67c6f8ce78852860634dad215e30a8188",
+    "analyses\\remote\\J04\\e06_bundle\\seed202_full_policy_day_blocks.npz": "4c9901944b843638f6277ec494ce6a42fd323fec3dcf085688fb7bd363b954dc",
+    "experiments\\E04\\results\\e04_v2\\seed203_full_policy_day_blocks.npz": "166d79fd073d6c6f3b8785e7cf525a07862854f0bd2b6529542af745b169e158",
+    "analyses\\remote\\J04\\e06_bundle\\seed203_full_policy_day_blocks.npz": "36e6d36615a59855858c1372e91c439375dd38fa219e50ca82bee4a88843c50d",
+    "experiments\\E04\\results\\e04_v2\\seed204_full_policy_day_blocks.npz": "801b0f33e6ee247b5bee17eae6c1a6e7ea8f37e5ce473051245fbecbdd407db1",
+    "analyses\\remote\\J04\\e06_bundle\\seed204_full_policy_day_blocks.npz": "2e9e84edeea808f068887e6905ea0f7e92d142813d54ad40cfc0fde9e4ab70da",
+    "experiments\\E04\\results\\e04_v2\\seed205_full_policy_day_blocks.npz": "d61bf43ce5031acf7b35b1c0e6aaf85647f8ae77ef38b215fe1a4b85b2651ee3",
+    "analyses\\remote\\J04\\e06_bundle\\seed205_full_policy_day_blocks.npz": "40d592e610f8c137d6d4fcc99a49c9f9be97a4c1e9909592b60d7de7694a0ae5",
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\checkpoints\\seed201_best_model.pt": "005c3e662432d493f49a617c10e8319b28c078aba79686c7c9490959ac05507c",
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\checkpoints\\seed202_best_model.pt": "e5b2a1c865f8d94a992cef6afbc4b0a9994744bfcab8da794cd8df0b4d60247b",
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\checkpoints\\seed203_best_model.pt": "75dd321b7a9df0ac1f9418d564193290fc08f8407e58ffea61c747a322ecefcf",
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\checkpoints\\seed204_best_model.pt": "ac15696ff37c52c9b811533891f96a77e1cfbe7e1c673d552b9510dc7fa4e39d",
+    "experiments\\E06\\remote_e06_inputs\\e06_exact_inputs\\checkpoints\\seed205_best_model.pt": "2f3016035a406f8fc329a3159a963a0e5329972ce19f43ccdbe381bbab4f42f4"
+  },
+  "inputs_unchanged": true,
+  "closures": {
+    "201": {
+      "B": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "posterior_replay": {
+        "selected_validation_rule": "wspd_band_1.5",
+        "candidate_validation_costs": {
+          "wspd_band_0.5": 18678326.0,
+          "wspd_band_1.0": 18676354.0,
+          "wspd_band_1.5": 18667518.0,
+          "wspd_band_2.0": 18672846.0,
+          "post_ge_0.05": 18948216.0,
+          "post_ge_0.1": 18949804.0,
+          "post_ge_0.2": 18950784.0,
+          "post_ge_0.5": 18952426.0,
+          "post_band_0.1_0.9": 18682596.0,
+          "post_band_0.2_0.8": 18683808.0,
+          "post_band_0.05_0.95": 18680924.0
+        }
+      },
+      "C": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "D": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "D10": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      }
+    },
+    "202": {
+      "B": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "posterior_replay": {
+        "selected_validation_rule": "wspd_band_0.5",
+        "candidate_validation_costs": {
+          "wspd_band_0.5": 20474736.0,
+          "wspd_band_1.0": 20477128.0,
+          "wspd_band_1.5": 20492870.0,
+          "wspd_band_2.0": 20498360.0,
+          "post_ge_0.05": 20722832.0,
+          "post_ge_0.1": 20722660.0,
+          "post_ge_0.2": 20721776.0,
+          "post_ge_0.5": 20723214.0,
+          "post_band_0.1_0.9": 20475988.0,
+          "post_band_0.2_0.8": 20475896.0,
+          "post_band_0.05_0.95": 20475464.0
+        }
+      },
+      "C": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "D": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "D10": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      }
+    },
+    "203": {
+      "B": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "posterior_replay": {
+        "selected_validation_rule": "post_band_0.2_0.8",
+        "candidate_validation_costs": {
+          "wspd_band_0.5": 21750178.0,
+          "wspd_band_1.0": 21779396.0,
+          "wspd_band_1.5": 21813650.0,
+          "wspd_band_2.0": 21824884.0,
+          "post_ge_0.05": 22446556.0,
+          "post_ge_0.1": 22445520.0,
+          "post_ge_0.2": 22443920.0,
+          "post_ge_0.5": 22442020.0,
+          "post_band_0.1_0.9": 21740292.0,
+          "post_band_0.2_0.8": 21738910.0,
+          "post_band_0.05_0.95": 21741310.0
+        }
+      },
+      "C": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "D": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "D10": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      }
+    },
+    "204": {
+      "B": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "posterior_replay": {
+        "selected_validation_rule": "wspd_band_0.5",
+        "candidate_validation_costs": {
+          "wspd_band_0.5": 20383572.0,
+          "wspd_band_1.0": 20400948.0,
+          "wspd_band_1.5": 20426326.0,
+          "wspd_band_2.0": 20439566.0,
+          "post_ge_0.05": 20826312.0,
+          "post_ge_0.1": 20826856.0,
+          "post_ge_0.2": 20828092.0,
+          "post_ge_0.5": 20828276.0,
+          "post_band_0.1_0.9": 20388480.0,
+          "post_band_0.2_0.8": 20385116.0,
+          "post_band_0.05_0.95": 20390684.0
+        }
+      },
+      "C": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "D": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "D10": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      }
+    },
+    "205": {
+      "B": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "posterior_replay": {
+        "selected_validation_rule": "wspd_band_0.5",
+        "candidate_validation_costs": {
+          "wspd_band_0.5": 21362286.0,
+          "wspd_band_1.0": 21368632.0,
+          "wspd_band_1.5": 21390916.0,
+          "wspd_band_2.0": 21413216.0,
+          "post_ge_0.05": 21700406.0,
+          "post_ge_0.1": 21696990.0,
+          "post_ge_0.2": 21691434.0,
+          "post_ge_0.5": 21682660.0,
+          "post_band_0.1_0.9": 21395560.0,
+          "post_band_0.2_0.8": 21385444.0,
+          "post_band_0.05_0.95": 21402700.0
+        }
+      },
+      "C": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "D": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      },
+      "D10": {
+        "n_exact": true,
+        "violations_exact": true,
+        "cost_exact": true,
+        "n_blocks": 35
+      }
+    }
+  },
+  "high_B_blocks_1based": [
+    31,
+    34,
+    29,
+    13,
+    19
+  ],
+  "limitations": [
+    "Post-hoc descriptive slices, no causal or deployment certification",
+    "High-rate blocks are outcome-selected; no selection-adjusted inference",
+    "Future ramp and original transition labels are ex-post oracle diagnostics",
+    "Seed changes the frozen forecast/shortfall target as well as reserve calibration",
+    "No posterior policy is sliced unless all original daily n/violation/cost arrays close exactly",
+    "Seed-swap evaluation is algebraic localization, not a new policy or causal intervention",
+    "No actual calendar date is inferred from WTB day numbers"
+  ]
+}

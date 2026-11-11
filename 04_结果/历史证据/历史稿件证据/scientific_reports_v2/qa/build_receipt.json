@@ -1,0 +1,118 @@
+{
+  "status": "COMPILED_AND_RENDERED_NOT_SUBMITTED",
+  "created_utc": "2026-10-20T17:00:52.726435+00:00",
+  "inputs": {
+    "manuscript.md": "a31720df046072cfad6bdcdccfc791385c99d5ed4283a9a28a6848d5f5061b10",
+    "supplementary.md": "c24096ecf1888bf3e48caadbd91b245bade8ece5e392320cfe8394974e625aa5",
+    "references.bib": "9eecf81cacf69681fb450867886b286ceafb0cfacc15e3d62d5c0c705d7a0d51",
+    "scientific-reports-brackets.csl": "2a9ee5a40f5f44e497e9b3051a9a7b52517fc651d490251acabcb10c2a7b8e7b",
+    "figures/fig1_information_and_timing.pdf": "2f264134214274e1e0eea7abefeaaef876e656abc549c4b70f0c8ed9a6260ea6",
+    "figures/fig2_measurement_cost.pdf": "c56db09bc32ab6e573bff4dca5cdded0a27af7814a15dea88df669dba9e047ef",
+    "figures/fig3_reconstruction_and_controls.pdf": "ad342a0ae5593240def482a80f736bd0faa5b991d446aa8099527bd2cd61a6f5",
+    "figures/fig4_procurement_shortfall.pdf": "f636fe953585260fb296d312cd577c775ae6c216f79f02a6f90cc46ccb31b2ea",
+    "figures/figS1_block_sensitivity.pdf": "59899ffdd4c996579f13319a99a26b2f679336b47bb5229416584c6a72835bd8",
+    "tables/table1.tex": "e266875b52f04805a4a9787472d071a7088eb4856ea7bb0798e13f47b1aa6f56",
+    "tables/table3.tex": "98a18df31be786ef31f5480aef5f7d6c3822995802f87dd159e95d251a52571e"
+  },
+  "commands": [
+    {
+      "conversion": [
+        "E:\\\u8bba\u65873\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+        "manuscript.md",
+        "--standalone",
+        "--citeproc",
+        "--to=latex",
+        "--resource-path=.",
+        "--output=main.tex"
+      ],
+      "compiler_helper": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "C:\\Users\\lidong\\.codex\\plugins\\cache\\openai-bundled\\latex\\0.2.8\\scripts\\compile_latex.py",
+        "E:\\\u8bba\u65873\\manuscripts\\scientific_reports_v2\\main.tex",
+        "--compiler",
+        "texlive",
+        "--engine",
+        "xelatex",
+        "--output-directory",
+        "E:\\\u8bba\u65873\\manuscripts\\scientific_reports_v2\\build",
+        "--json"
+      ],
+      "helper_exit": 1,
+      "direct_installed_engine_fallback": [
+        [
+          "xelatex",
+          "-disable-installer",
+          "-interaction=nonstopmode",
+          "-halt-on-error",
+          "-output-directory=build",
+          "main.tex"
+        ],
+        [
+          "xelatex",
+          "-disable-installer",
+          "-interaction=nonstopmode",
+          "-halt-on-error",
+          "-output-directory=build",
+          "main.tex"
+        ]
+      ],
+      "source": "manuscript",
+      "pages": 14,
+      "pdf_sha256": "b527e2573bce01543741e70ce821c7c6ee64bd6485ca286536c7e4bc67731c0c"
+    },
+    {
+      "conversion": [
+        "E:\\\u8bba\u65873\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+        "supplementary.md",
+        "--standalone",
+        "--citeproc",
+        "--to=latex",
+        "--resource-path=.",
+        "--output=supplementary.tex"
+      ],
+      "compiler_helper": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "C:\\Users\\lidong\\.codex\\plugins\\cache\\openai-bundled\\latex\\0.2.8\\scripts\\compile_latex.py",
+        "E:\\\u8bba\u65873\\manuscripts\\scientific_reports_v2\\supplementary.tex",
+        "--compiler",
+        "texlive",
+        "--engine",
+        "xelatex",
+        "--output-directory",
+        "E:\\\u8bba\u65873\\manuscripts\\scientific_reports_v2\\build",
+        "--json"
+      ],
+      "helper_exit": 1,
+      "direct_installed_engine_fallback": [
+        [
+          "xelatex",
+          "-disable-installer",
+          "-interaction=nonstopmode",
+          "-halt-on-error",
+          "-output-directory=build",
+          "supplementary.tex"
+        ],
+        [
+          "xelatex",
+          "-disable-installer",
+          "-interaction=nonstopmode",
+          "-halt-on-error",
+          "-output-directory=build",
+          "supplementary.tex"
+        ]
+      ],
+      "source": "supplementary",
+      "pages": 13,
+      "pdf_sha256": "256f7ff29d9f2d5a46adf2251e10cbed17c5a7f76c8eca0d2b15c5200561bce0"
+    }
+  ],
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "host": "bluelee",
+  "research_executed": false
+}

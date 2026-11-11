@@ -1,0 +1,16 @@
+{
+  "status": "PASS_DOCUMENT_AND_METADATA_REFERENCE_CHECKS_ONLY",
+  "date": "2026-10-20",
+  "decision": "NO_GO_FOR_CURRENT_BROAD_TOP_JOURNAL_EXPERIMENT",
+  "narrow_candidate": "CONDITIONAL_QUALIFICATION_ONLY",
+  "literature_records": 11,
+  "data_qualification_rows": 12,
+  "source_ids": 12,
+  "local_links": 9,
+  "protected_files_unchanged": 6,
+  "new_measurement_contents_accessed": false,
+  "experiment_model_or_bootstrap_run": false,
+  "paper_V3_contract_changed": false,
+  "scientific_gates": "Not run; this is a literature/metadata qualification review, not an experimental milestone. Existing gate status not reused as certification.",
+  "limitations": "No actual data completeness, exposure compliance, overlap, causal effect, tail precision or future policy validity established."
+}

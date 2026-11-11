@@ -1,0 +1,5 @@
+﻿Estimator,Input,R,U,C,V (%)
+HGB,Power update,29.699,0.268,32.378,5.28
+HGB,Power + pitch update,29.984,0.242,32.406,5.00
+MLP,Power update,31.610,0.681,38.418,4.93
+MLP,Power + pitch update,32.100,0.657,38.671,4.80

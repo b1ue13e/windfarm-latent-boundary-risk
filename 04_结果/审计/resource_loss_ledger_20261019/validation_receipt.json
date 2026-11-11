@@ -1,0 +1,66 @@
+{
+  "utc": "2026-10-19T06:48:34.928051+00:00",
+  "argv": [
+    "research_audit/resource_loss_ledger_20261019/validate_review.py"
+  ],
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "status": "PASS_BOUNDED_RESOURCE_LOSS_REVIEW",
+  "protected_sources_rechecked": 504,
+  "frozen_scope_inputs": 19,
+  "source_changes": [],
+  "commands": [
+    {
+      "name": "scientific_claim_gate",
+      "argv": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_scientific_claim_gate.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "number_gate",
+      "argv": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_tste_number_consistency.py",
+        "--output-dir",
+        "E:\\论文3\\research_audit\\resource_loss_ledger_20261019\\verification\\numbers"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "number_checks": "77/77",
+  "decision": "STOP_ADDITIONAL_INVESTMENT",
+  "no_currency_conversion": true,
+  "no_training": true,
+  "no_inference": true,
+  "no_resampling": true,
+  "no_new_direction": true,
+  "scope": "Deterministic resource/loss accounting and consistency, not real customer demand, monetary net-benefit, benchmark or field-safety certification",
+  "output_sha256": {
+    "research_audit/14_resource_loss_break_even_review.md": "7e999e0844f066e121a61fd6c9a576a4c127cd694e8d8ff7d79475e57fe7adf4",
+    "research_audit/resource_loss_ledger_20261019/.gitignore": "e93cb3a48692667938b80c87ca8bd48c6bdcfda57d9ac4e6bdd43d7e2099038f",
+    "research_audit/resource_loss_ledger_20261019/decision.json": "164f2a3f219d6c4fa66f4c76982015ee372cb581cad0bb41422f507fa825ca38",
+    "research_audit/resource_loss_ledger_20261019/demand_evidence.csv": "6fd3fb5680e90e9ae47c7a3c8a87d8eb147c1401ed7629ff6eb948142072bcb1",
+    "research_audit/resource_loss_ledger_20261019/demand_search_hits.csv": "c39b0cdc071ec2a1680b7478b75ab1f54ab1d735ee8679764579e0aa31b27d39",
+    "research_audit/resource_loss_ledger_20261019/demand_search_summary.json": "8c967fb3af0ecf4cf1a43febf51ea693607990fe3167027e610470cb0dbb124c",
+    "research_audit/resource_loss_ledger_20261019/derived.json": "96e9bd2406a4151bdc8a9b213818557281ed046715db7a2c8a5aa33023641159",
+    "research_audit/resource_loss_ledger_20261019/derived_initial.json": "4b3dd79f5f2bd8b14dd570a58f6723a9e5a475fc3ecca6935e18e79427c0ee8e",
+    "research_audit/resource_loss_ledger_20261019/loss_ledger.csv": "90b8b2e24f274291e409ebbb1c43cff427579a6414cf18a74ed427f5d1cbd980",
+    "research_audit/resource_loss_ledger_20261019/policy_seed_ledger.csv": "b07ca538a8404fcbc0d99633ddf96d286253bca0aacd143fbe5b2508feef1101",
+    "research_audit/resource_loss_ledger_20261019/public_sources.csv": "7f5bbf382db0f6bd452b1c55a0fe300a5c41be037912b4f1041f1c593bc0ce47",
+    "research_audit/resource_loss_ledger_20261019/README.md": "25e282c292cbacf4b9ec073eecc51f8dccb8762449734360904608bce4a9b494",
+    "research_audit/resource_loss_ledger_20261019/recompute_ledger.py": "2e283cc73b6d629c3b0be287cb6a98b45fc76ec6d34f40ab4d0a69558ef131c7",
+    "research_audit/resource_loss_ledger_20261019/recompute_receipt.json": "a6c56d488677d085dfae4b17dc6733680c5f370aee28ea2e48fa24332133d86d",
+    "research_audit/resource_loss_ledger_20261019/recompute_receipt_initial.json": "4af05b8339ab50752f40e0c66faa2c5fa39acf054a271a10d0dfaf76aed4b632",
+    "research_audit/resource_loss_ledger_20261019/resource_ledger.csv": "ffb91eff1313db57ff8ae169f465f20d852f3fe74628e1da7a611310ac9cacbd",
+    "research_audit/resource_loss_ledger_20261019/scope_and_inputs.json": "eade007ec8d423d4967f33d1283d883946d4ff82954abb3667d5c19bafd86cbb",
+    "research_audit/resource_loss_ledger_20261019/validate_review.py": "88b3ac8f6b938e3e649014707c52bdd2171e2598a6e9cc2f69efc9248184769e",
+    "research_audit/resource_loss_ledger_20261019/verification/number_gate.txt": "1e92e2330da4456330cfab0c322287de9146d4b555027a537105996312d04087",
+    "research_audit/resource_loss_ledger_20261019/verification/numbers/table_tste_number_consistency_audit.tex": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8",
+    "research_audit/resource_loss_ledger_20261019/verification/numbers/tste_number_consistency_audit.csv": "8e319f47763bb96ddb1b7afed6d471487591c9dd07ac4e903919e8d5913412e4",
+    "research_audit/resource_loss_ledger_20261019/verification/numbers/tste_number_consistency_audit.json": "97eb638f9059e3d9074ac47a9a94d36ad33dfb35cc69094a50da2ea2cb6486a3",
+    "research_audit/resource_loss_ledger_20261019/verification/scientific_claim_gate.txt": "e803ab20b200991d71403171d45a976b77472633dbfc816803cb128ad5e29dcb",
+    "research_audit/resource_loss_ledger_20261019/write_review.py": "c77b381ab649dabd0cb00a9183d674599db84694fe17f28871d37965cd2ea785"
+  }
+}

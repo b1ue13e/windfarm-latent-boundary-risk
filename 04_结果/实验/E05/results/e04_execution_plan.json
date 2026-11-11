@@ -1,0 +1,76 @@
+{
+  "argv": [
+    "python",
+    "E:\\论文3\\experiments\\E05\\code\\run_selector_stability.py",
+    "--input-root",
+    "E:\\论文3\\experiments\\E04\\results",
+    "--preregistration",
+    "E:\\论文3\\experiments\\E04\\PREREGISTRATION_E04_V2.json",
+    "--primary-result",
+    "E:\\论文3\\experiments\\E04\\results\\e04_selection.json",
+    "--output-json",
+    "selector_stability.json",
+    "--output-csv",
+    "selector_stability.csv"
+  ],
+  "expected_outputs": [
+    "selector_stability.csv",
+    "selector_stability.json"
+  ],
+  "git_commit": null,
+  "inputs": [
+    {
+      "bytes": 2510,
+      "path": "E:\\论文3\\experiments\\E04\\PREREGISTRATION_E04_V2.json",
+      "role": "preregistration",
+      "sha256": "a7a80bbfb5cf2b99af02ae0d2d754609711c16e0351eaa77c851a7e0e21b7097"
+    },
+    {
+      "bytes": 9836,
+      "path": "E:\\论文3\\experiments\\E05\\code\\run_selector_stability.py",
+      "role": "selector",
+      "sha256": "fd788c2633dd449bd2d51a994477b90414669f59014fc53777de0be1c2b5307e"
+    },
+    {
+      "bytes": 2591,
+      "path": "E:\\论文3\\experiments\\E04\\results\\e04_selection.json",
+      "role": "primary_result",
+      "sha256": "eca443abd934bbf07dc64fd985ca9676b125471d0df9662bb7b91082fdf07478"
+    },
+    {
+      "bytes": 3297,
+      "path": "E:\\论文3\\experiments\\E04\\results\\seed201_full_policy_day_blocks.npz",
+      "role": "array201",
+      "sha256": "d204fbb18be71b3ed31696c1767bbff0c0bbfae159e5419a446d2506f66aa0b0"
+    },
+    {
+      "bytes": 3331,
+      "path": "E:\\论文3\\experiments\\E04\\results\\seed202_full_policy_day_blocks.npz",
+      "role": "array202",
+      "sha256": "4c9901944b843638f6277ec494ce6a42fd323fec3dcf085688fb7bd363b954dc"
+    },
+    {
+      "bytes": 3355,
+      "path": "E:\\论文3\\experiments\\E04\\results\\seed203_full_policy_day_blocks.npz",
+      "role": "array203",
+      "sha256": "36e6d36615a59855858c1372e91c439375dd38fa219e50ca82bee4a88843c50d"
+    },
+    {
+      "bytes": 3354,
+      "path": "E:\\论文3\\experiments\\E04\\results\\seed204_full_policy_day_blocks.npz",
+      "role": "array204",
+      "sha256": "2e9e84edeea808f068887e6905ea0f7e92d142813d54ad40cfc0fde9e4ab70da"
+    },
+    {
+      "bytes": 3311,
+      "path": "E:\\论文3\\experiments\\E04\\results\\seed205_full_policy_day_blocks.npz",
+      "role": "array205",
+      "sha256": "40d592e610f8c137d6d4fcc99a49c9f9be97a4c1e9909592b60d7de7694a0ae5"
+    }
+  ],
+  "metadata": {
+    "wrapper": "run_e04_bound.py"
+  },
+  "schema_version": "E04-receipt-v1",
+  "working_dir": "E:\\论文3"
+}

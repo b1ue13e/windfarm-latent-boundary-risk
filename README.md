@@ -1,66 +1,32 @@
-# Latent Operating-Boundary Recovery and Reserve-Risk Screening
+# 风电备用决策论文与复现材料
 
-[中文说明](README.zh-CN.md) · [Repository](https://github.com/b1ue13e/windfarm-latent-boundary-risk)
+当前论文：*Current Power as Incremental Telemetry for Wind Power Reserve Decisions*。
 
-Research codebase investigating whether secondary SCADA consequence signals can recover a latent aerodynamic control boundary (MPPT Region 2 vs. active blade-pitch regulation Region 3) under degraded telemetry, and whether this recovered boundary provides independent value for asymmetric spinning reserve decisions.
+| 目录 | 查找内容 |
+| --- | --- |
+| [01_当前论文](01_当前论文/TSTE/README.md) | 正文、补充材料、TeX、正式图、绘图数据与参考文献 |
+| [02_代码](02_代码/README.md) | 实现、实验/分析入口、测试和依赖 |
+| [03_数据](03_数据/README.md) | 原始 SCADA、外部数据与预处理缓存 |
+| [04_结果](04_结果/README.md) | 当前论文证据、完整实验结果、审计与复现输出 |
 
-## Manuscript Status and Scope Boundary
+从项目根目录运行：
 
-This repository preserves the manuscript engineering package prepared for *IEEE Transactions on Sustainable Energy* (TSTE):
-- Main text: [`paper_tste_ieee.md`](paper_tste_ieee.md) and [`paper_tste_ieee.pdf`](paper_tste_ieee.pdf)
-- Technical supplementary: [`paper_tste_supplementary.md`](paper_tste_supplementary.md) and [`paper_tste_supplementary.pdf`](paper_tste_supplementary.pdf)
-- Supporting materials: [`cover_letter_tste.md`](cover_letter_tste.md) and [`UPDATED_MANUSCRIPT_CHANGELOG.md`](UPDATED_MANUSCRIPT_CHANGELOG.md)
-
-**Notice on submission status**: The TSTE manuscript format, target templates, and cover letters reflect the prepared manuscript engineering package. They do not constitute proof of active journal submission or acceptance.
-
-## Core Problem and Architecture
-
-- **Research question**: When turbine blade-pitch measurements become unobservable or delayed, can turbine electrical and mechanical response signals recover regime transitions, and does that recovery reduce shortfall risk during operational transitions?
-- **Research Question and Scope**: Investigates whether recovered boundary information reduces shortfall risk during operating-regime transitions; see the formal question formulation in [`docs/CANONICAL_RESEARCH_QUESTION.md`](docs/CANONICAL_RESEARCH_QUESTION.md) and the audit resolution in [`RESEARCH_VERDICT.md`](RESEARCH_VERDICT.md).
-- **Core package**: `windfarm_moe/` implements spatial-temporal graph modeling, operating regime classification, and mixture-of-experts forecasting.
-- **Top-level CLI**: `main.py` provides preprocessing, training, and verification subcommands.
-
-## Environment Setup and Verification
-
-Python 3.10 or 3.11 with standard scientific computing libraries:
-
-```bash
-python -m venv .venv
-# Activate environment
-pip install -r requirements.txt
-pip install -r requirements-ci.txt
+```powershell
+python project.py verify
+python project.py reproduce-results
+python project.py redraw
+python project.py build-paper
 ```
 
-### Smoke Tests and Verification Gates
+[复现说明](复现说明.md) 列出每个入口的作用、数据依赖和原实验执行条件。新输出写入 `04_结果/复现运行`，不覆盖封存结果。
 
-Run unit and paper-consistency smoke tests:
+[项目状态](PROJECT.md) 仍为 `STOP_ADDITIONAL_INVESTMENT`；此次整理不启动训练、采数或新研究。科学主张以 [科学契约](04_结果/项目记录/docs/SCIENTIFIC_CONTRACT.md) 为准。目标期刊或目录名不表示已投稿。
 
-```bash
-python -m pytest tests/test_smoke.py tests/test_paper.py
+旧目录不再按尝试/阶段嵌套；冻结文件中的旧路径通过共享解析器读取：
+
+```powershell
+python project.py locate experiments/E04
+python project.py locate analyses/independent_confirmation_execution_20261019
 ```
 
-Run the lightweight replication and claim verifier:
-
-```bash
-python scripts/verify_replication.py
-```
-
-Run the automated contract check:
-
-```bash
-python .agents/scripts/verify_gate.py
-```
-
-## Key Documentation and Artifact Maps
-
-- [Canonical Research Question](docs/CANONICAL_RESEARCH_QUESTION.md): frozen mathematical definition of states, information sets, and decision bounds.
-- [Evidence Map](docs/REPOSITORY_EVIDENCE_MAP.md): navigation across experimental evidence and decisive gates.
-- [Research Verdict](RESEARCH_VERDICT.md) and [Decisive Report](DECISIVE_EXPERIMENT_REPORT.md): final audit resolution and bounded operational limits.
-- [Artifact Manifest](artifacts/ARTIFACT_MANIFEST.json): SHA-256 checksum registry for derived evaluation arrays.
-- [Data Availability](docs/DATA_AVAILABILITY_AND_PREPROCESSING.md): source data provenance and download instructions.
-- [Clean-Clone Reproducibility Audit](docs/CLEAN_CLONE_REPRODUCIBILITY_AUDIT.md): external replication audit.
-- [Task Contract](START_PROMPT.md): non-negotiable verification and scientific integrity rules.
-
-## Branch and Remote Notice
-
-This documentation describes the tracked files on the remote default branch (`revision_topjournal_reconstruction`). Local developer environments may hold experimental caches, historical logs, or unpushed revisions that are intentionally kept distinct from this remote branch.
+[目录重构记录](04_结果/项目记录/复现目录重构_20261111/README.md) 保留迁移身份与验收结果；原始数据不提交 Git。

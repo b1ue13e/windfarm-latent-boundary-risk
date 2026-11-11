@@ -1,0 +1,54 @@
+{
+  "calibration_forecast.npz": {
+    "bytes": 2026454,
+    "sha256": "94e9daeb2f0a50cb8a48e5f0331c50cc428e4fd890a47db119e7a663b1887c17"
+  },
+  "data_manifest.json": {
+    "bytes": 2035,
+    "sha256": "ae655f2863db0d38ab8e9412e513bac65f12100edcacf73ee521dcfa7a581868"
+  },
+  "development_evaluation_forecast.npz": {
+    "bytes": 1923426,
+    "sha256": "72ad90923577c03cb01771d95738325450a28a2581cd57107cc700cb3b7d9b25"
+  },
+  "execution_receipt.json": {
+    "bytes": 2023,
+    "sha256": "4345e72fe33c4bb8a05de79cd74439d75fbee1b065e7c725058cedee8d528361"
+  },
+  "node_ids.npy": {
+    "bytes": 1200,
+    "sha256": "6f7d51a1bcb46ae18fd2bc28a1c35852460898b67880ac976a1c4b7f1171f098"
+  },
+  "physical_channels.npy": {
+    "bytes": 75640448,
+    "sha256": "a2e98a6cc141a8c2328b6c5b9166ec0006b5ba78d3db0322a37c32e94359316c"
+  },
+  "point_fit_sample_indices.npy": {
+    "bytes": 960128,
+    "sha256": "9f1c3af8bc4345daca9cf637fbfac624cd65472b0f7e98928c347c226703b79d"
+  },
+  "point_forecaster.joblib": {
+    "bytes": 323657,
+    "sha256": "a2eed3f72ff4d55032df3f85b446198fdd2466dc269cc85bdf4e2901626d7195"
+  },
+  "policy_fit_forecast.npz": {
+    "bytes": 2463890,
+    "sha256": "a7a0f2014b6d3f82bbe44c73a892e514e5d1c6c56f9cbba88fd39da2671c7104"
+  },
+  "source/decision_information.py": {
+    "bytes": 7293,
+    "sha256": "7e6fd36eec25a5d1c9276cc14224f0aad5ea78b34e802ef84bdc6b7c043173a5"
+  },
+  "source/protocol.json": {
+    "bytes": 6197,
+    "sha256": "c69bfdc1940996ad5b9bee9d610e52f6d0ad9618e316bc704e64d78ee1a1179b"
+  },
+  "source/run_decision_information_development.py": {
+    "bytes": 32009,
+    "sha256": "a11f43242004687ea9da4d73a9c087373dd1d0f991eb196afe66706c87a86df4"
+  },
+  "state_fit_forecast.npz": {
+    "bytes": 2836124,
+    "sha256": "35b479a02b83fd944cbc1c72228c86d6c6011fb97848b87f36a4d55a4f12079a"
+  }
+}

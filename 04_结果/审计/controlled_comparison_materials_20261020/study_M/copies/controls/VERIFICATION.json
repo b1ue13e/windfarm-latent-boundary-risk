@@ -1,0 +1,139 @@
+{
+  "status": "COMPLETED_NO_REFIT_SCOPED_CONTINUE_NO_FULL_SCALE_GO",
+  "new_model_fits": 0,
+  "new_measurements": 0,
+  "new_evaluation_policy_for_posthoc_bound": false,
+  "common_q": 0.925,
+  "frozen_primary_family": 596,
+  "corrected_routes": {
+    "Original:HGB": {
+      "A": false,
+      "B": false,
+      "C": false
+    },
+    "Original:MLP": {
+      "A": false,
+      "B": false,
+      "C": false
+    },
+    "Common:HGB": {
+      "A": false,
+      "B": false,
+      "C": false
+    },
+    "Common:MLP": {
+      "A": false,
+      "B": false,
+      "C": false
+    }
+  },
+  "attribution": {
+    "Original:HGB:fresh_state": {
+      "state_allocation_candidate": false,
+      "matched_power_sufficient": false,
+      "historical_and_development_risk_pass": false,
+      "matched_power_cost_premium_upper": 0.0075542457233353805,
+      "note": "Mean_R is state minus historical-budget control; no evaluation rematching or new tolerance"
+    },
+    "Original:HGB:old_state": {
+      "state_allocation_candidate": false,
+      "matched_power_sufficient": false,
+      "historical_and_development_risk_pass": false,
+      "matched_power_cost_premium_upper": 0.12884855807650478,
+      "note": "Mean_R is state minus historical-budget control; no evaluation rematching or new tolerance"
+    },
+    "Original:HGB:residual_state": {
+      "state_allocation_candidate": false,
+      "matched_power_sufficient": false,
+      "historical_and_development_risk_pass": false,
+      "matched_power_cost_premium_upper": 0.018150004403094194,
+      "note": "Mean_R is state minus historical-budget control; no evaluation rematching or new tolerance"
+    },
+    "Original:MLP:fresh_state": {
+      "state_allocation_candidate": false,
+      "matched_power_sufficient": false,
+      "historical_and_development_risk_pass": false,
+      "matched_power_cost_premium_upper": 0.026757432643010576,
+      "note": "Mean_R is state minus historical-budget control; no evaluation rematching or new tolerance"
+    },
+    "Original:MLP:old_state": {
+      "state_allocation_candidate": false,
+      "matched_power_sufficient": false,
+      "historical_and_development_risk_pass": false,
+      "matched_power_cost_premium_upper": 0.06374794589052957,
+      "note": "Mean_R is state minus historical-budget control; no evaluation rematching or new tolerance"
+    },
+    "Original:MLP:residual_state": {
+      "state_allocation_candidate": false,
+      "matched_power_sufficient": false,
+      "historical_and_development_risk_pass": false,
+      "matched_power_cost_premium_upper": 0.016778297160936234,
+      "note": "Mean_R is state minus historical-budget control; no evaluation rematching or new tolerance"
+    },
+    "Common:HGB:fresh_state": {
+      "state_allocation_candidate": false,
+      "matched_power_sufficient": false,
+      "historical_and_development_risk_pass": false,
+      "matched_power_cost_premium_upper": 0.005130843361530826,
+      "note": "Mean_R is state minus historical-budget control; no evaluation rematching or new tolerance"
+    },
+    "Common:HGB:old_state": {
+      "state_allocation_candidate": false,
+      "matched_power_sufficient": false,
+      "historical_and_development_risk_pass": false,
+      "matched_power_cost_premium_upper": 0.12336561197602171,
+      "note": "Mean_R is state minus historical-budget control; no evaluation rematching or new tolerance"
+    },
+    "Common:HGB:residual_state": {
+      "state_allocation_candidate": false,
+      "matched_power_sufficient": false,
+      "historical_and_development_risk_pass": false,
+      "matched_power_cost_premium_upper": 0.015228441021730484,
+      "note": "Mean_R is state minus historical-budget control; no evaluation rematching or new tolerance"
+    },
+    "Common:MLP:fresh_state": {
+      "state_allocation_candidate": false,
+      "matched_power_sufficient": false,
+      "historical_and_development_risk_pass": true,
+      "matched_power_cost_premium_upper": 0.03891050749549275,
+      "note": "Mean_R is state minus historical-budget control; no evaluation rematching or new tolerance"
+    },
+    "Common:MLP:old_state": {
+      "state_allocation_candidate": false,
+      "matched_power_sufficient": false,
+      "historical_and_development_risk_pass": true,
+      "matched_power_cost_premium_upper": 0.046595232510343094,
+      "note": "Mean_R is state minus historical-budget control; no evaluation rematching or new tolerance"
+    },
+    "Common:MLP:residual_state": {
+      "state_allocation_candidate": false,
+      "matched_power_sufficient": false,
+      "historical_and_development_risk_pass": true,
+      "matched_power_cost_premium_upper": 0.012665000383380308,
+      "note": "Mean_R is state minus historical-budget control; no evaluation rematching or new tolerance"
+    }
+  },
+  "model_weight_hashes_bound": 60,
+  "policy_instances": 180,
+  "accounting_records": 360,
+  "accounting_checks": 2520,
+  "maximum_mean_accounting_error": 9.936200141412223e-12,
+  "local_regression_tests": 53,
+  "algebraic_test": 1,
+  "metis_new_tests": 8,
+  "compact_members_verified": 145,
+  "compact_sha256": "5ab254dc9ef39142085743a105ae84ab23201319e70cdec9da180e1328f046df",
+  "point_reconstruction": {
+    "coordinates": 596,
+    "maximum_point_error": 2.0122792321330962e-16,
+    "original_C_reproduced": true,
+    "budget_fits": 750,
+    "maximum_historical_budget_mean_error": 1.1558161835030964e-11
+  },
+  "original_results_changed": false,
+  "thresholds_changed": false,
+  "manuscript_changed": false,
+  "source_binding_verified": true,
+  "pipeline_source_commit": "9de297b2fe0ae6a2f206287dee04a6640d01a956",
+  "additional_bound_scope": "Post-hoc finite window only; not a replacement for failed primary inference; no pure information or universal power-only claim"
+}

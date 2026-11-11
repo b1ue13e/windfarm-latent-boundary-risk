@@ -1,0 +1,125 @@
+{
+  "status": "PASS_READ_ONLY_REVIEW_PRESERVATION_AND_STRUCTURAL_CHECKS",
+  "created_utc": "2026-10-20T13:31:58.195940+00:00",
+  "candidate_commit": "e1713282645abf86bdda132fe3ee06bd32aabb00",
+  "protected_file_count": 579,
+  "changed_protected_files": [],
+  "source_hashes_unchanged": true,
+  "review_csv_rows": {
+    "CHAIN_FIELD_ASSERTIONS.csv": 74,
+    "GATE_PRIMITIVES.csv": 834,
+    "ATTRIBUTION_PRIMITIVES.csv": 12
+  },
+  "issue_count": 7,
+  "gate_scope": "Existing claim/number/archive consistency only; not Wind Energy significance or new inference certification",
+  "existing_scientific_gate": "PASS",
+  "cached_number_gate": {
+    "n_checks": 77,
+    "n_failed": 0,
+    "new_resampling": false
+  },
+  "existing_archive_gate": {
+    "status": "PASS",
+    "primary_status": "ALL_FROZEN_CANDIDATES_CONFIRMED",
+    "historical_workers_bound": 550,
+    "actual_review_workers": 550,
+    "one_unlock_event": true,
+    "code_and_protocol_frozen_before_unlock": true,
+    "original_gates_unchanged": true,
+    "secondary_cases_checked": 90,
+    "scope": "Archive/provenance/claim consistency; no model refit, bootstrap, coverage or deployment certification"
+  },
+  "preexisting_tracked_changes": [
+    " M AGENTS.md",
+    " M artifacts/tste_number_consistency_audit/tste_number_consistency_audit.csv"
+  ],
+  "staging_empty_at_verification": true,
+  "operations_not_performed": [
+    "training",
+    "model inference",
+    "new calibration",
+    "resampling",
+    "simulation",
+    "measurement download",
+    "remote execution",
+    "threshold change",
+    "manuscript change",
+    "submission"
+  ],
+  "review_limits": [
+    "Targeted closest-literature reading, not systematic full-domain novelty certification",
+    "SETA and SAFER final full texts unavailable",
+    "Not all archived arrays and weights reread",
+    "No new PDF manuscript rendering"
+  ],
+  "review_artifact_manifest": {
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/ATTRIBUTION_PRIMITIVES.csv": {
+      "bytes": 18679,
+      "sha256": "add62f639a97327cdc17f0fb032289c08860382fcfd5d6fa8e358299a7770d4f"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/CHAIN_AND_GATES_REVIEW.md": {
+      "bytes": 17095,
+      "sha256": "33aae3f368fccc3bfbfc6d7ecb51e02a9b79a2b33b8e6c6c5bb41e330682ce88"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/CHAIN_FIELD_ASSERTIONS.csv": {
+      "bytes": 41841,
+      "sha256": "318a832714b382a2e5f9d522ea14a432427271089575ed9b5da193f866673dbc"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/DECISION.json": {
+      "bytes": 4058,
+      "sha256": "84d2ec31836c9ebae0b4950218cda8afb2fe415131a509c9c42ed3e8f8871dfd"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/EDITORIAL_REDTEAM.md": {
+      "bytes": 23907,
+      "sha256": "60088e2938d02d11731e76bb63c2c946985dd7467628a14994bbffc18842d936"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/GATE_PRIMITIVES.csv": {
+      "bytes": 187211,
+      "sha256": "ca5a0b1503452a570253de8558457aa1f5dbe82089b79d7021d8cd81b28acf72"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/ISSUES.csv": {
+      "bytes": 1798,
+      "sha256": "c5b198f712653cda0e1ee8dfe0fb2307dd2606d3d22985e145dc1b63f20ec5d1"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/NOVELTY_REVIEW.md": {
+      "bytes": 24599,
+      "sha256": "13c86a87cc6992466981ae53df1bfd3967e01c49ad0c528aee3c95de81f29d17"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/REVIEW.md": {
+      "bytes": 16708,
+      "sha256": "d3c05f0e20e2a8ba4aa58b55cafe52d7a4fd8d7b035c7fdf423b5c8dea8c0663"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/REVIEW_FACTS.json": {
+      "bytes": 4125,
+      "sha256": "244caaf716a9a0738414fcc2ef4491bd65b949ce5c6ea19505ecb82e0c25db23"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/REVIEW_SCOPE.json": {
+      "bytes": 115464,
+      "sha256": "62025b0a48dfe0362859ccb86290b18a932a6c18ab20b06c84417e5ea3011fe4"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/verification/cached_number_gate.txt": {
+      "bytes": 208,
+      "sha256": "173b83e931ff9d5d91615a8df032033023d1f890e42c21f5de5322374e44117d"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/verification/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/verification/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/verification/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 919,
+      "sha256": "2d15eeae288a79468c4fd77e719704a986bcbb5ad411af26d9d3f5cc74550f28"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/verification/legacy_scientific_gate.txt": {
+      "bytes": 4946,
+      "sha256": "f731c371bf68b05afe9d9bdcbb07592374c02410008918c9c6537d51e8430fc3"
+    },
+    "research_audit/wind_energy_full_evidence_plan_adversarial_review_20261020/verification_independent_archive.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    }
+  }
+}

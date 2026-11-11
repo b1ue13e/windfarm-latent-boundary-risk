@@ -1,0 +1,35 @@
+{
+  "utc": "2026-10-19T04:09:43.360859+00:00",
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_scientific_claim_gate.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_tste_number_consistency.py",
+        "--output-dir",
+        "analyses\\independent_confirmation_execution_20261019\\local_gates\\numbers"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_independent_confirmation.py",
+        "tests/test_information_subset.py",
+        "tests/test_subset_inference.py",
+        "tests/test_confirmation_lossless_adapter.py"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "scope": "Code and existing consistency only, no2025 performance claim"
+}

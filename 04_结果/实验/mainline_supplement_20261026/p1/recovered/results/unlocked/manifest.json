@@ -1,0 +1,14 @@
+{
+  "confirmation.npz": {
+    "bytes": 1230513,
+    "sha256": "5a9a79b69370358f2789339ee3ae2a8d55e474060f3f19734e974bf54480b690"
+  },
+  "physical_channels.npy": {
+    "bytes": 117670688,
+    "sha256": "d68601fea91aa1683de454d5601692a0c1abd0cbb0b91805c65ed98c4efd7d9a"
+  },
+  "receipt.json": {
+    "bytes": 40453,
+    "sha256": "d1ea0e8a7a6e1b32b12d8408e6591a7ea2a5159faca5ab4d11161d817e6e6bb1"
+  }
+}

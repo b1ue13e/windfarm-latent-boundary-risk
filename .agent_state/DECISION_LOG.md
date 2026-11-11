@@ -1,5 +1,10 @@
 # Decision Log
 
+> **现行状态 2026-10-19：STOP_ADDITIONAL_INVESTMENT（用户正式决定）**。执行队列为空；停止训练、采数、远端作业、后续实验及方向扩展。以下旧待办、状态和建议仅为原时点历史记录，不再授权执行，也不因停止而改记完成。仍成立结论、禁用主张及可复用资产见[正式停止决定](../docs/MAINLINE_STOP_DECISION_20261019.md)。未解决审查与全范围科学认证仍未完成，不自动恢复。
+
+## 历史记录（原时点评估，不覆盖当前停止决定）
+
+
 - 2026-09-18: Use `docs/strict_journal_gap_audit_20260906.md` as the latest direct-evidence baseline over earlier optimistic review summaries. Earlier summaries remain historical context but cannot override later findings about input-set asymmetry, time contamination, and invalid operational accounting.
 - 2026-09-18: Collapse the manuscript to one primary scientific question: whether a latent operating-boundary representation is useful for risk prediction under an identical, arrival-time-limited information set. Treat MoE routing as an implementation candidate whose value must be earned, not as the research question.
 - 2026-09-18: Treat "real SCADA routinely has 1--6 step delay," "cash savings," "PCC economic value," and "joint learning is necessary" as UNKNOWN or BLOCKED for the present evidence base. Do not use them as the core answer.
@@ -120,3 +125,20 @@ Final checkpoint this turn: verification_gate_after_numeric_final.log actualexit
 2026-10-17 final bounded checkpoint: 本轮两个审查角色均限域通过并保留科学阻断。新strong Full后验备用更少/风险更高，四条件Full备用更多/风险更低，分开解释。TSA01–03只关闭评估与真实失败报告义务，不关闭TRR重跑/深审计任务。
 
 2026-10-17 final gate confirmed FAIL after bounded assessment closure; respond with scoped findings and unfinished evidence requirements, never overall scientific completion.
+
+2026-10-17 evidence freeze: `docs/EVIDENCE_FREEZE_20261017.md` is the version-selection record. Strong-baseline +445,639 kWh is the sole current numeric candidate and remains pending deep audit; +523,044 kWh and the old interaction are historical/superseded. EXP-01 deterministic_matched_transfer_v1 is bounded external evidence only; corrected-v2 is not reinstated, v4 is withdrawn for physical-window mismatch, and the full EXP-01 claim remains pending. The project is reopened to analysis; this freeze does not certify scientific completion or submission readiness.
+
+2026-10-17 freeze verification: UTF-8 JSON parsing, source SHA-256 checks, both freeze-artifact integrity checks, `git diff --check`, and `.agents/scripts/verify_gate.py` all passed. The mechanical gate is recorded separately from the scientific status: deep numerical/action/block audit, external adjudication, independent falsifier review, and manuscript synchronization remain open.
+
+2026-10-17 P0 manuscript cleanup complete: removed withdrawn recall and superseded decision evidence from the main TSTE manuscript; updated PSREI to the frozen point forecast and Table I reserve-energy units; bounded EXP-01 wording to deterministic_matched_transfer_v1; updated scientific claim gate to validate the current freeze rather than stale historical closure. Main/supplementary PDFs compile to 10/46 pages and all three manuscript gates pass. Abstract is 189 words; Table/Fig/References source-markup residues are removed from the rendered PDF; cover letter and compliance report are synchronized. The project remains scientifically NOT CERTIFIED pending the frozen candidate adjudication.
+
+2026-10-17 P1 formalization: replaced the informal minimum-sufficient model slogan with a conditional risk-constrained selector over policies measurable with respect to the arrived information set. The rule uses a frozen point forecast/target, strong same-information baseline, one-sided upper bounds for PSREI and violation rate, an absolute violation cap, and a pre-registered complexity preorder. E04 was registered before execution; thresholds and complexity ordering remain pending, so no universal or empirical selection claim is made.
+
+2026-10-17 P2 complexity stop: no further graph, MoE, or hidden-state architecture will be added before E04. The current mainline treats recoverability, risk-shape change, and decision value as separate propositions. A complex representation is deployment-necessary only if it passes independent matched-information decision evidence under the risk-constrained selector; representation metrics or higher-reserve risk hedging are insufficient. P2 manuscript/contract/registry synchronization is archived as `p2-complexity-stop-and-claim-boundary-20261017 v1`; all current gates pass and E04 remains pending.
+
+2026-10-17 E04 receipt/hash binding repair: bind a pre-execution plan, output manifest, and successful process receipt before selector consumption. Existing v4 arrays remain historical/untrusted; no retroactive receipt or scientific promotion. Local regression passed 19 tests and wrapper smoke passed; independent Codex sweep was unavailable (`WinError 2`) and remains an explicit blocker.
+
+2026-10-18 E05 selector stability/frequency: run a separate diagnostic on the frozen v4 policy arrays with the registered 5-seed x 35-day-block joint resampling rule. NO FEASIBLE occurs in 64.64% of draws; B is the first selected policy in 35.23%, C in 0.13%, D/D10 in 0%. No candidate reaches the preregistered >=0.80 stability frequency. Treat this as conditional local computation only: it does not repair missing replay receipts, change E04's primary NO FEASIBLE result, or certify B as minimum-sufficient.
+
+
+2026-10-19：用户正式停止当前主线追加投入。停止旧执行授权与自动恢复；保留原始结果、负结果和全部审计。决策依据及三类清单：docs/MAINLINE_STOP_DECISION_20261019.md。

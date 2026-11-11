@@ -1,0 +1,60 @@
+{
+  "status": "PASS_CHINESE_DOCUMENT_SYNC_ONLY",
+  "utc": "2026-10-19T12:29:34.473454+00:00",
+  "translation_checks": {
+    "status": "PASS",
+    "counts": {
+      "segments": 106,
+      "equation": 13,
+      "table": 4,
+      "figure": 4
+    },
+    "english_sha256": "b9e5e417abde1856201e21c6022a994c0601010340b19cc0ee4b4f5f31d17456",
+    "chinese_sha256": "14cdc51df2ad440f8c96eab97c7b450d04437c1599eb4c3c65010280d673352f",
+    "identical_chinese_copies": 3,
+    "protected_files_unchanged": 15,
+    "math_citations_labels_and_figures_preserved": true,
+    "table_numeric_rows_and_order_preserved": true,
+    "source_numerals_preserved": true,
+    "no_missing_source_segment": true,
+    "primary_secondary_and_negative_boundaries_present": true,
+    "scope": "Document synchronization only; no inference or experiment rerun"
+  },
+  "gates": {
+    "scientific": "PASS",
+    "numbers": {
+      "checks": 77,
+      "failed": 0
+    },
+    "independent_archive_claims": "PASS"
+  },
+  "pdf": {
+    "path": "paper_tste_chinese.pdf",
+    "pages": 15,
+    "sha256": "a7e9aefeb05885dc5fd813014440d0d66e53a33a79421ba8c4772b2eb602fc10",
+    "source_sha256": "14cdc51df2ad440f8c96eab97c7b450d04437c1599eb4c3c65010280d673352f",
+    "compile_warnings": []
+  },
+  "visual_review": {
+    "overview_pages_reviewed": 15,
+    "detail_pages_reviewed": [
+      1,
+      7,
+      12,
+      13,
+      14
+    ],
+    "new_clipping_or_missing_glyphs_observed": false,
+    "reference_heading_repaired_before_release": true
+  },
+  "protected_files_unchanged": 15,
+  "pre_edit_snapshot_members": 3,
+  "execution": {
+    "new_experiments": false,
+    "new_analysis_or_bootstrap": false,
+    "remote_access": false,
+    "project_state_changed": false,
+    "english_source_or_pdf_changed": false
+  },
+  "incoming_review": "Recorded as subsequent positioning/editing questions; no new claims or study execution authorized."
+}

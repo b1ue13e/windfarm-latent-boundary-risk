@@ -1,0 +1,86 @@
+{
+  "study_id": "hill_of_towie_independent_confirmation_20261019",
+  "status": "SOURCE_BOUND_HOLDOUT_SEALED_NOT_ACTIVATED",
+  "source_record": "https://zenodo.org/records/22662930",
+  "source_version": "2.1.0",
+  "doi": "10.5281/zenodo.22662930",
+  "license": "CC-BY-4.0",
+  "exposure": "Metadata inspected before binding. This project will acquire sealed 2025.zip after this source/time binding; no global assertion that no person has previously seen public data. A source-qualified new external farm, not original WTB E07 continuation.",
+  "windows": {
+    "point_fit": [
+      "2023-01-01T00:00:00Z",
+      "2023-07-01T00:00:00Z"
+    ],
+    "policy_fit": [
+      "2023-07-01T00:00:00Z",
+      "2024-01-01T00:00:00Z"
+    ],
+    "offset_fit": [
+      "2024-01-01T00:00:00Z",
+      "2024-07-01T00:00:00Z"
+    ],
+    "selection": [
+      "2024-07-01T00:00:00Z",
+      "2025-01-01T00:00:00Z"
+    ],
+    "confirmation": [
+      "2025-01-01T00:00:00Z",
+      "2026-01-01T00:00:00Z"
+    ]
+  },
+  "time_rule": "UTC, 10-minute period-END. Half-open issue windows; subtract last issues until final issue+horizon+1-step release is strictly before next stage start. Common forecast publication issue-6, target issue+6. Point fit target publication+12. Issue history requires35 past slots. Missing time/node grid reindexed NaN, never invent measurements.",
+  "eligibility": "21 official turbine IDs; W active wind mean, P active power mean kW, Q reactive power mean kVAr, pitch mean of all3 finite blades. Exact source column/schema must be bound from 2023/24 BEFORE test unlock. Ambiguous units, duplicates or unresolvable clock/schema fail qualification; no outcome-based repairs or exclusions.",
+  "target_population": "Every finite future active-power target, zero/negative kept; no pitch, alarm, operating-state or intervention filtering. Missingness is not performance-based exclusion.",
+  "interventions": "Keep documented 2023 AeroUp rollout and 2024 TuneUp validation. No date/turbine exclusions based on these interventions or future test performance. Cross-year, control and farm differences limit transfer claims.",
+  "training": {
+    "seeds": [
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "reserve_rows": 360000,
+    "point_rows": 120000,
+    "point_seed": 20261018,
+    "point_recipe": "Original squared-error HGB preset, wind+power36, no future signals",
+    "models": "Same frozen HGB and MLP hyperparameters as development protocol; no 2025-based tuning"
+  },
+  "primary_condition": "pitch_withheld",
+  "candidate_lattice": "Common + all7 W/P/Q combinations x last-arrived1/6/36 =22, crossed HGB/MLP; deterministic active-power persistence reference. No target-state probe, graph or MoE added.",
+  "pressures": "fresh and synthetic 10/20/30/60-minute delays are secondary only, using six fixed development pressure subsets; no industrial frequency or field latency assertion.",
+  "loss": {
+    "rho": 10,
+    "dt_hours": 0.16666666666666666,
+    "nominal_quantile": 0.9,
+    "violation_cap": 0.1,
+    "alpha": 0.05
+  },
+  "offset_quantiles": [
+    0.9,
+    0.925,
+    0.95,
+    0.975,
+    0.99
+  ],
+  "calibration": "Signed higher-quantile offsets on Jan-Jun2024 only. Historical candidate/offset choice and selected subset/estimator are frozen from Jul-Dec2024 before any 2025 measurement read. Choices use all5 archived seeds and joint paired day-block bounds, allow no candidate.",
+  "selection": "First require all-instance historical risk upper<=.10. Compare candidate families against all possible-feasible competitors using joint upper paired cost ratios, then choose minimum incremental resource tuple. Primary relative cost tolerance .02 is a declared research noninferiority margin, NOT an engineering validated requirement; 0/.005/.01/.05 descriptive sensitivity. If no solution return no candidate; do not relax cap or margin.",
+  "confirmatory_estimand": "For the pre-test selected family, all five instance absolute risks plus paired mean cost regret against the historically frozen strongest full-information direct baseline; conditions/competitors and multiplicity must be programmatically bound before unlock. Test-side all-model capability is secondary retrospective, never ex-ante certification.",
+  "inference": "Shared natural UTC-day moving blocks, primary3day, sensitivity1/7day, B20000 seed20261029; seed instances fixed, no IID turbine or seed replication. Approximate temporal inference; season/control dependence and one farm remain limitations.",
+  "unlock_requirements": [
+    "download MD5 matches publisher and local SHA256 recorded without parsing measurement test",
+    "2023/24 schema, units, IDs, UTC end-of-interval and target eligibility independently qualified on allocated node",
+    "complete executable preparation/training/selection/evaluation/statistics code with tests and adversarial review committed",
+    "all historical target forecasts/scalers/models/offsets/selected candidates and full input/source/config hashes frozen before test read",
+    "one unlock event recorded; no performance-driven refit, new period, margin or q grid after unlocking"
+  ],
+  "E07_activated": false,
+  "stop_rules": [
+    "If raw files unavailable or schema invalid retain DATA GAP; no convenient farm/year substitution",
+    "If historical selector has no candidate record no-selection, still preserve predeclared diagnostic outcomes",
+    "If independent result fails do not tune on 2025 or rename it validation",
+    "No claim of PCC procurement/physical mechanism or universal model minimality"
+  ],
+  "unlock_gate_passed": false,
+  "user_authorized_execution": true
+}

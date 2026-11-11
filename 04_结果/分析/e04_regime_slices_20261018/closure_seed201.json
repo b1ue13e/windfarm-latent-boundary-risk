@@ -1,0 +1,40 @@
+{
+  "B": {
+    "n_exact": true,
+    "violations_exact": true,
+    "cost_exact": true,
+    "n_blocks": 35
+  },
+  "posterior_replay": {
+    "selected_validation_rule": "wspd_band_1.5",
+    "candidate_validation_costs": {
+      "wspd_band_0.5": 18678326.0,
+      "wspd_band_1.0": 18676354.0,
+      "wspd_band_1.5": 18667518.0,
+      "wspd_band_2.0": 18672846.0,
+      "post_ge_0.05": 18948216.0,
+      "post_ge_0.1": 18949804.0,
+      "post_ge_0.2": 18950784.0,
+      "post_ge_0.5": 18952426.0,
+      "post_band_0.1_0.9": 18682596.0,
+      "post_band_0.2_0.8": 18683808.0,
+      "post_band_0.05_0.95": 18680924.0
+    }
+  },
+  "C": {
+    "status": "NOT_ACCEPTED_FOR_SLICING",
+    "reason": "C: exact daily cost closure failed; max difference 4.256908416748047"
+  },
+  "D": {
+    "n_exact": true,
+    "violations_exact": true,
+    "cost_exact": true,
+    "n_blocks": 35
+  },
+  "D10": {
+    "n_exact": true,
+    "violations_exact": true,
+    "cost_exact": true,
+    "n_blocks": 35
+  }
+}

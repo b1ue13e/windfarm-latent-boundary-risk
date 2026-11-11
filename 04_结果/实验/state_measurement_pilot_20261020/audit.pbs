@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -N state_audit
+#PBS -q rqdf
+#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -l walltime=00:10:00
+#PBS -j oe
+set -euo pipefail
+cd "${PILOT_ROOT:?required}"
+exec > "${PILOT_ROOT}/logs/action_audit_${PBS_JOBID}.log" 2>&1
+export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2
+exec /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python scripts/audit_state_measurement_pilot.py --base "${PILOT_ROOT}/results" --protocol experiments/state_measurement_pilot_20261020/protocol.json --output "${PILOT_ROOT}/results/action_audit"

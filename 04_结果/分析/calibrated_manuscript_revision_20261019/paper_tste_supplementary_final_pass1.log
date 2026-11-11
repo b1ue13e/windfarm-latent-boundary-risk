@@ -1,0 +1,305 @@
+xelatex: security risk: running with elevated privileges
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+
+(E:/论文3/analyses/calibrated_manuscript_revision_20261019/build/paper_tste_suppl
+ementary.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(E:\MiKTeX\tex/latex/ieeetran\IEEEtran.cls
+Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+(tuptm.fd)
+-- Using 8.5in x 11in (letter) paper.
+-- Using DVI output.
+-- This is a 10 point document.
+) (E:\MiKTeX\tex/latex/xcolor\xcolor.sty
+(E:\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(E:\MiKTeX\tex/latex/graphics-def\xetex.def)
+(E:\MiKTeX\tex/latex/graphics\mathcolor.ltx))
+(E:\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(E:\MiKTeX\tex/latex/amsmath\amstext.sty
+(E:\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(E:\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(E:\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(E:\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(E:\MiKTeX\tex/latex/amsfonts\amsfonts.sty))
+(E:\MiKTeX\tex/generic/iftex\iftex.sty)
+(E:\MiKTeX\tex/latex/unicode-math\unicode-math.sty
+(E:\MiKTeX\tex/latex/l3kernel\expl3.sty
+(E:\MiKTeX\tex/latex/l3backend\l3backend-xetex.def))
+(E:\MiKTeX\tex/latex/unicode-math\unicode-math-xetex.sty
+(E:\MiKTeX\tex/latex/l3packages/xparse\xparse.sty)
+(E:\MiKTeX\tex/latex/l3packages/l3keys2e\l3keys2e.sty)
+(E:\MiKTeX\tex/latex/fontspec\fontspec.sty
+(E:\MiKTeX\tex/latex/fontspec\fontspec-xetex.sty
+(E:\MiKTeX\tex/latex/base\fontenc.sty)
+(E:\MiKTeX\tex/latex/fontspec\fontspec.cfg)))
+(E:\MiKTeX\tex/latex/base\fix-cm.sty (E:\MiKTeX\tex/latex/base\ts1enc.def))
+(E:\MiKTeX\tex/latex/unicode-math\unicode-math-table.tex)))
+(E:\MiKTeX\tex/latex/lm\lmodern.sty) (E:\MiKTeX\tex/latex/upquote\upquote.sty
+(E:\MiKTeX\tex/latex/base\textcomp.sty))
+(E:\MiKTeX\tex/latex/microtype\microtype.sty
+(E:\MiKTeX\tex/latex/graphics\keyval.sty)
+(E:\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(E:\MiKTeX\tex/latex/microtype\microtype-xetex.def)
+(E:\MiKTeX\tex/latex/microtype\microtype.cfg))
+(E:\MiKTeX\tex/latex/parskip\parskip.sty
+(E:\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+(E:\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(E:\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty)))
+(E:\MiKTeX\tex/latex/fancyvrb\fancyvrb.sty) (E:\MiKTeX\tex/latex/tools\calc.sty
+) (E:\MiKTeX\tex/latex/tools\tabularx.sty (E:\MiKTeX\tex/latex/tools\array.sty)
+) (E:\MiKTeX\tex/latex/booktabs\booktabs.sty)
+(E:\MiKTeX\tex/latex/float\float.sty)
+(E:\MiKTeX\tex/latex/graphics\graphicx.sty
+(E:\MiKTeX\tex/latex/graphics\graphics.sty
+(E:\MiKTeX\tex/latex/graphics\trig.sty)
+(E:\MiKTeX\tex/latex/graphics-cfg\graphics.cfg)))
+(E:\MiKTeX\tex/latex/dblfloatfix\dblfloatfix.sty
+(E:\MiKTeX\tex/latex/base\fixltx2e.sty
+
+Package fixltx2e Warning: fixltx2e is not required with releases after 2015
+(fixltx2e)                All fixes are now in the LaTeX kernel.
+(fixltx2e)                See the latexrelease package for details.
+
+)) (E:\MiKTeX\tex/latex/placeins\placeins.sty)
+(E:\MiKTeX\tex/latex/bookmark\bookmark.sty
+(E:\MiKTeX\tex/latex/hyperref\hyperref.sty
+(E:\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty)
+(E:\MiKTeX\tex/generic/pdfescape\pdfescape.sty
+(E:\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+(E:\MiKTeX\tex/generic/infwarerr\infwarerr.sty)))
+(E:\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(E:\MiKTeX\tex/latex/hyperref\nameref.sty
+(E:\MiKTeX\tex/latex/refcount\refcount.sty)
+(E:\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty))
+(E:\MiKTeX\tex/generic/stringenc\stringenc.sty)
+(E:\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(E:\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(E:\MiKTeX\tex/latex/hyperref\puenc.def) (E:\MiKTeX\tex/latex/url\url.sty)
+(E:\MiKTeX\tex/generic/bitset\bitset.sty
+(E:\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty)))
+(E:\MiKTeX\tex/latex/hyperref\hxetex.def
+(E:\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
+(E:\MiKTeX\tex/generic/uniquecounter\uniquecounter.sty)))
+(E:\MiKTeX\tex/latex/bookmark\bkm-xetex.def))
+(E:\MiKTeX\tex/latex/xurl\xurl.sty)
+(E:\论文3\analyses\calibrated_manuscript_revision_20261019\build\paper_tste_suppl
+ementary.aux)
+-- Lines per column: 58 (approximate, difference = 10.25958pt).
+(E:\MiKTeX\tex/latex/lm\omllmm.fd) (E:\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(E:\MiKTeX\tex/latex/microtype\mt-msa.cfg)
+(E:\MiKTeX\tex/latex/amsfonts\umsb.fd)
+(E:\MiKTeX\tex/latex/microtype\mt-msb.cfg) [1miktex-dvipdfmx: security risk: running with elevated privileges
+] [2]
+Underfull \hbox (badness 10000) in paragraph at lines 289--296
+\TU/TeXGyreTermes(0)/m/n/10 The wake weight is $[][][][] [][] []
+
+Underfull \hbox (badness 10000) in paragraph at lines 289--296
+[][][][][][][][] [][][][][][][][][][][][]$\TU/TeXGyreTermes(0)/m/n/10 . If wind
+ direction is
+[3] [4] [5] [6] [7] [8] [9] [10] [11] [12]
+Underfull \hbox (badness 2253) in paragraph at lines 806--815
+[]\TU/TeXGyreTermes(0)/m/n/10 Table A11c reports the modular-equivalence contro
+l on
+
+Underfull \hbox (badness 1688) in paragraph at lines 806--815
+\TU/TeXGyreTermes(0)/m/n/10 the same boundary-router backbone. The classifier i
+s a
+[13] [14]
+Underfull \hbox (badness 7064) in paragraph at lines 892--905
+\TU/TeXGyreTermes(0)/m/n/10 contrasts. Clean-telemetry cost rankings and synthe
+tic
+
+Underfull \hbox (badness 10000) in paragraph at lines 892--905
+\TU/TeXGyreTermes(0)/m/n/10 delayed-stream recall do not isolate a joint-learni
+ng
+
+Underfull \hbox (badness 10000) in paragraph at lines 892--905
+\TU/TeXGyreTermes(0)/m/n/10 mechanism or establish routing necessity under
+
+Underfull \hbox (badness 10000) in paragraph at lines 892--905
+\TU/TeXGyreTermes(0)/m/n/10 a common frozen target. The physical pitch
+
+Underfull \hbox (badness 10000) in paragraph at lines 892--905
+\TU/TeXGyreTermes(0)/m/n/10 quantile is a clean-observation comparator. Scripts
+:
+
+Underfull \hbox (badness 10000) in paragraph at lines 892--905
+\TU/lmtt/m/n/10 scripts/remote_matched_modular_baseline.py\TU/TeXGyreTermes(0)/
+m/n/10 ,
+
+Underfull \hbox (badness 10000) in paragraph at lines 892--905
+\TU/lmtt/m/n/10 scripts/soft_rule_contrast.py\TU/TeXGyreTermes(0)/m/n/10 ,
+
+Underfull \hbox (badness 10000) in paragraph at lines 892--905
+\TU/lmtt/m/n/10 scripts/degraded_gate_reserve.py\TU/TeXGyreTermes(0)/m/n/10 ,
+
+Underfull \hbox (badness 10000) in paragraph at lines 892--905
+\TU/lmtt/m/n/10 scripts/kelmarsh_reserve_pricing.py\TU/TeXGyreTermes(0)/m/n/10 
+,
+
+Underfull \hbox (badness 10000) in paragraph at lines 892--905
+\TU/lmtt/m/n/10 scripts/multichannel_classifier.py\TU/TeXGyreTermes(0)/m/n/10 ,
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 892--905
+\TU/lmtt/m/n/10 scripts/gbdt_reserve_pricing.py\TU/TeXGyreTermes(0)/m/n/10 ,
+
+Underfull \hbox (badness 10000) in paragraph at lines 892--905
+\TU/lmtt/m/n/10 scripts/dense_classifier_pricing.py\TU/TeXGyreTermes(0)/m/n/10 
+,
+[15] [16]
+Underfull \hbox (badness 3386) in paragraph at lines 1014--1029
+[]\TU/TeXGyreTermes(0)/m/n/10 Table A11m preserves the superseded historical re
+sult:
+
+Underfull \hbox (badness 10000) in alignment at lines 1058--1058
+[][][][][][][] 
+[17] [18]
+Underfull \hbox (badness 10000) in alignment at lines 1131--1131
+[][][][][][][][][] 
+[19] [20]
+Underfull \hbox (badness 1436) in paragraph at lines 1268--1279
+[]\TU/TeXGyreTermes(0)/m/n/10 Table A9d reports the same probe on two farms wit
+h
+
+Underfull \hbox (badness 10000) in paragraph at lines 1268--1279
+\TU/TeXGyreTermes(0)/m/n/10 partial pitch observability. Both caches were rebui
+lt
+
+Underfull \hbox (badness 10000) in paragraph at lines 1268--1279
+\TU/TeXGyreTermes(0)/m/n/10 on outcome-blind, input-mask-only window rules
+
+Underfull \hbox (badness 10000) in paragraph at lines 1268--1279
+\TU/TeXGyreTermes(0)/m/n/10 (\TU/lmtt/m/n/10 scripts/rebuild_obs_windows.py\TU/
+TeXGyreTermes(0)/m/n/10 ): the earliest
+
+Underfull \hbox (badness 3792) in paragraph at lines 1268--1279
+\TU/TeXGyreTermes(0)/m/n/10 contiguous 245-day window with daily pitch coverage
+
+
+Underfull \hbox (badness 2326) in paragraph at lines 1268--1279
+\TU/TeXGyreTermes(0)/m/n/10 at least 0.70 and daily regime-valid at least 0.70 
+for
+
+Underfull \vbox (badness 1033) has occurred while \output is active [21]
+
+LaTeX Warning: Text page 22 contains only floats.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+
+LaTeX Warning: Text page 22 contains only floats.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active [22]
+Underfull \hbox (badness 1681) in paragraph at lines 1386--1395
+\TU/TeXGyreTermes(0)/m/n/10 adaptability to site-specific aerodynamic parameter
+s
+[23]
+Underfull \hbox (badness 10000) in alignment at lines 1524--1524
+[][][][][][][] 
+[24]
+Underfull \hbox (badness 2150) in paragraph at lines 1590--1600
+[]\TU/TeXGyreTermes(0)/m/n/10 Table A11-BESS documents performance across laten
+cy
+[25] [26] [27]
+Underfull \vbox (badness 10000) has occurred while \output is active [28]
+Underfull \hbox (badness 1824) in paragraph at lines 1753--1777
+\TU/TeXGyreTermes(0)/m/n/10 are small and cross zero; in Q3, sharp autumn wind-
+
+
+Underfull \hbox (badness 2261) in paragraph at lines 1753--1777
+\TU/TeXGyreTermes(0)/m/n/10 In contrast, expanding calibration to a 180-day ann
+ual
+
+Underfull \vbox (badness 10000) has occurred while \output is active [29]
+[30]
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \vbox (badness 10000) has occurred while \output is active [31]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1884.
+
+[32] [33] [34]
+Underfull \hbox (badness 1546) in paragraph at lines 1985--2015
+\TU/TeXGyreTermes(0)/m/n/10 price-weighted forecast loss under historical UK El
+exon
+
+Underfull \vbox (badness 10000) has occurred while \output is active [35]
+Underfull \vbox (badness 2293) has occurred while \output is active [36]
+[37] [38] [39]
+Underfull \hbox (badness 5331) in paragraph at lines 2302--2315
+\TU/TeXGyreTermes(0)/m/n/10 observations, not as certificates of complete raw-d
+ata
+
+Underfull \hbox (badness 5161) in paragraph at lines 2302--2315
+\TU/TeXGyreTermes(0)/m/n/10 reproduction, causal mechanisms or deployment safet
+y.
+
+Underfull \hbox (badness 3108) in paragraph at lines 2302--2315
+\TU/TeXGyreTermes(0)/m/n/10 legacy generation chain. The original no-feasible-p
+olicy
+
+Underfull \hbox (badness 5756) in paragraph at lines 2302--2315
+\TU/TeXGyreTermes(0)/m/n/10 repository files \TU/lmtt/m/n/10 manuscript/REPRODU
+CIBILITY.md \TU/TeXGyreTermes(0)/m/n/10 and
+
+Underfull \hbox (badness 10000) in paragraph at lines 2302--2315
+\TU/lmtt/m/n/10 docs/HISTORICAL_PROVENANCE_FREEZE_20261018.md\TU/TeXGyreTermes(
+0)/m/n/10 .
+
+Underfull \hbox (badness 7081) in paragraph at lines 2302--2315
+\TU/TeXGyreTermes(0)/m/n/10 This documentation freeze does not confer scientifi
+c
+[40] [41] [42] [43]
+Underfull \hbox (badness 2359) in paragraph at lines 2536--2541
+[]\TU/TeXGyreTermes(0)/m/n/10 The 2026-10-15 source-level audit supersedes the 
+prior
+
+Underfull \hbox (badness 1852) in paragraph at lines 2536--2541
+\TU/TeXGyreTermes(0)/m/n/10 authority assigned to EXP01 v4: saved forecast targ
+ets
+
+Underfull \hbox (badness 1838) in paragraph at lines 2545--2556
+[]\TU/TeXGyreTermes(0)/m/n/10 Historical dense/MoE phase scans used separate mo
+del-
+
+Underfull \hbox (badness 2384) in paragraph at lines 2545--2556
+\TU/TeXGyreTermes(0)/m/n/10 ary cells using delayed wind. Their common-target a
+r-
+
+Underfull \hbox (badness 1960) in paragraph at lines 2545--2556
+\TU/TeXGyreTermes(0)/m/n/10 withdrawn; stored numbers remain historical diagnos
+tics.
+
+Underfull \vbox (badness 1231) has occurred while \output is active [44]
+Underfull \hbox (badness 3713) in paragraph at lines 2671--2679
+[]\TU/TeXGyreTermes(0)/m/n/10 At 360k under pitch withholding, P1/HGB/q0.925 ha
+s
+[45]
+Underfull \hbox (badness 5217) in paragraph at lines 2766--2774
+\TU/TeXGyreTermes(0)/m/n/10 models, scalers, fit indices, offsets, choices, for
+ecasts,
+
+Underfull \hbox (badness 1735) in paragraph at lines 2821--2831
+[]\TU/TeXGyreTermes(0)/m/n/10 The predeclared full-q secondary family has 225 p
+itch-
+[46]
+Underfull \hbox (badness 2617) in paragraph at lines 2916--2916
+[]|\TU/TeXGyreTermes(0)/m/n/10 G. E. Karniadakis, I. G. Kevrekidis, L. Lu, P.
+[47]
+(E:\论文3\analyses\calibrated_manuscript_revision_20261019\build\paper_tste_suppl
+ementary.aux)miktex-dvipdfmx: major issue: So far, you have not checked for MiKTeX updates.
+ )
+(see the transcript file for additional information)
+Output written on E:\论文3\analyses\calibrated_manuscript_revision_20261019\build
+\paper_tste_supplementary.pdf (47 pages).
+Transcript written on E:\论文3\analyses\calibrated_manuscript_revision_20261019\b
+uild\paper_tste_supplementary.log.
+xelatex: major issue: So far, you have not checked for MiKTeX updates.

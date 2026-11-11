@@ -1,0 +1,74 @@
+{
+  "utc": "2026-10-18T09:06:59.480453+00:00",
+  "selected_endpoint": {
+    "host": "192.168.17.251",
+    "port": 25329,
+    "user": "root",
+    "alias_from_existing_backup": "grokking"
+  },
+  "existing_host_key_records": [
+    {
+      "file": "C:\\Users\\lidong\\.ssh\\known_hosts",
+      "line": 4,
+      "host_field": "[192.168.17.251]:25329",
+      "algorithm": "ssh-ed25519",
+      "fingerprint": "SHA256:oNc+CkuCXl8LGjk3kqlIPZhdp/i/VTb0gtd5oF0ctY8"
+    },
+    {
+      "file": "C:\\Users\\lidong\\.ssh\\known_hosts.old",
+      "line": 4,
+      "host_field": "[192.168.17.251]:25329",
+      "algorithm": "ssh-ed25519",
+      "fingerprint": "SHA256:oNc+CkuCXl8LGjk3kqlIPZhdp/i/VTb0gtd5oF0ctY8"
+    }
+  ],
+  "local_trust_files_before": [
+    {
+      "path": "C:\\Users\\lidong\\.ssh\\config",
+      "sha256": "a0fd2f514b252d0d400ec58bfcc5d17298911533fdfdd425571194e5af666222"
+    },
+    {
+      "path": "C:\\Users\\lidong\\.ssh\\config.bak",
+      "sha256": "8a766e413b7be247070f33e96bc661eeff4bb7fc3adeb39f89327c2aa2e3e370"
+    },
+    {
+      "path": "C:\\Users\\lidong\\.ssh\\known_hosts",
+      "sha256": "3172222ef05eaf88502312edece6f8df3c01df8d55a87c8c3389c833f651a762"
+    },
+    {
+      "path": "C:\\Users\\lidong\\.ssh\\known_hosts.old",
+      "sha256": "a629e288bec2cab625455a811946782ebcd5591e40c4f81f3dc68b1969a4c14d"
+    }
+  ],
+  "connection_arguments_without_remote_command": [
+    "ssh",
+    "-p",
+    "25329",
+    "-i",
+    "C:\\Users\\lidong\\.ssh\\codex_4090",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "HostKeyAlgorithms=ssh-ed25519",
+    "-o",
+    "UpdateHostKeys=no",
+    "-o",
+    "CheckHostIP=yes",
+    "-o",
+    "UserKnownHostsFile=C:\\Users\\lidong\\.ssh\\known_hosts",
+    "-o",
+    "GlobalKnownHostsFile=none",
+    "-o",
+    "PermitLocalCommand=no",
+    "-o",
+    "ClearAllForwardings=yes",
+    "-o",
+    "ConnectTimeout=10",
+    "root@192.168.17.251"
+  ],
+  "private_key_contents_read_or_copied": false,
+  "policy": "existing host key only, strict verification, no host-key updates, no trust configuration mutation",
+  "previous_port22_attempt": "different endpoint; preserved prior audit remains unchanged"
+}

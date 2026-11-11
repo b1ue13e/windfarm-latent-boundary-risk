@@ -1,0 +1,49 @@
+{
+  "status": "PASS_READ_ONLY_RECONCILIATION_AND_FILE_PRESERVATION",
+  "created_utc": "2026-10-20T13:44:30.809225+00:00",
+  "starting_commit": "490f59ab395b5a5a8f006dd197e2865f7ba44624",
+  "protected_files": 597,
+  "changed_protected_files": [],
+  "new_empirical_analysis": false,
+  "original_numeric_tokens_present_in_prior_evidence_architecture": true,
+  "identity_json_parsed": true,
+  "local_absolute_links_exist": true,
+  "preexisting_tracked_changes_preserved": [
+    " M AGENTS.md",
+    " M artifacts/tste_number_consistency_audit/tste_number_consistency_audit.csv"
+  ],
+  "scientific_gates_rerun": false,
+  "scientific_gate_scope": "No new empirical milestone or scientific claim upgrade. Previous gate records remain unchanged and are not certification of editorial fit.",
+  "official_current_policy_basis": [
+    "https://www.nature.com/srep/guide-to-referees",
+    "https://onlinelibrary.wiley.com/page/journal/10991824/homepage/forauthors.html"
+  ],
+  "Energy_Reports_current_policy_access": "UNVERIFIED_ACCESS_RESTRICTED",
+  "no_experiments_no_new_intervals_no_threshold_change_no_manuscript_change": true,
+  "artifact_manifest": {
+    "research_audit/recommendation_reconciliation_20261020/CHANGE_AUDIT.md": {
+      "bytes": 12172,
+      "sha256": "2b836d89a54473a13e4cfc0275fe06d52cfa6219c6c53a5ce7a4c9e84f0ef508"
+    },
+    "research_audit/recommendation_reconciliation_20261020/ENERGY_REPORTS_FIT.md": {
+      "bytes": 10564,
+      "sha256": "c527039d08536c3e107bd5a51cfae6b294f68f92d322768f8a29ae651eabcc66"
+    },
+    "research_audit/recommendation_reconciliation_20261020/PAPER_IDENTITY.json": {
+      "bytes": 3185,
+      "sha256": "51d2d0c298256491c2d7835a629ae909319f1abf64e0d434fe8182095ddac947"
+    },
+    "research_audit/recommendation_reconciliation_20261020/RECONCILIATION.md": {
+      "bytes": 11176,
+      "sha256": "93f2a889d9785e512d47652423a600169e726c006f84559d8a4520785f661f7d"
+    },
+    "research_audit/recommendation_reconciliation_20261020/SCIENTIFIC_REPORTS_FIT.md": {
+      "bytes": 13635,
+      "sha256": "f3b3bc21dec0a11eccc2233e36b2f96180b486cb490f1c8d3184a170536b1aaf"
+    },
+    "research_audit/recommendation_reconciliation_20261020/SCOPE.json": {
+      "bytes": 119252,
+      "sha256": "e9ddc226d04cabb7d04d5a2e17ae9be4558524d3ea12df798c4d143fa97c33d7"
+    }
+  }
+}

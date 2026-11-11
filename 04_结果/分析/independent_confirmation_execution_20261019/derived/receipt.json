@@ -1,0 +1,17 @@
+{
+  "utc": "2026-10-19T04:40:08.442305+00:00",
+  "inputs_sha256": {
+    "recovered\\results\\aggregate\\primary.json": "f703e64fb7e20843f7daddeb9cc3b0b6d4e95594658560831ba425ac1df7bf72",
+    "recovered\\results\\aggregate\\secondary_span3.json": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060",
+    "recovered\\results\\aggregate\\secondary_span1.json": "753141814c4baad335b6d5c6b3aa258b5bc52a7829d7e547d0cb333094439339",
+    "recovered\\results\\aggregate\\secondary_span7.json": "8ca94402bd42c8e9e7903556c95e4c28af3feff7366e9dd70dd7760f932c6612"
+  },
+  "source_sha256": "0d06487c4d821249117ecf29824c0caf1428ee79467a8e00d70c073d40358b5a",
+  "argv": [
+    "analyses/independent_confirmation_execution_20261019/summarize_confirmation.py"
+  ],
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "host": "bluelee",
+  "new_fit": false,
+  "new_bootstrap": false
+}

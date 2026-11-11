@@ -1,0 +1,86 @@
+[
+  {
+    "farm": "kelmarsh",
+    "target_farm": "",
+    "split_id": "chronological",
+    "complete": "True",
+    "num_nodes": "6",
+    "num_steps": "473184",
+    "source_years": [
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "includes2023": true,
+    "includes2024": true
+  },
+  {
+    "farm": "penmanshiel",
+    "target_farm": "",
+    "split_id": "chronological",
+    "complete": "True",
+    "num_nodes": "14",
+    "num_steps": "451334",
+    "source_years": [
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "includes2023": true,
+    "includes2024": true
+  },
+  {
+    "farm": "kelmarsh",
+    "target_farm": "penmanshiel",
+    "split_id": "leave-one-farm-out",
+    "complete": "True",
+    "num_nodes": "20",
+    "num_steps": "35280",
+    "source_years": [
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "includes2023": true,
+    "includes2024": true
+  },
+  {
+    "farm": "penmanshiel",
+    "target_farm": "kelmarsh",
+    "split_id": "leave-one-farm-out",
+    "complete": "True",
+    "num_nodes": "20",
+    "num_steps": "35280",
+    "source_years": [
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "includes2023": true,
+    "includes2024": true
+  }
+]

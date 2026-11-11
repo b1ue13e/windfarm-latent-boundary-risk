@@ -1,0 +1,18 @@
+[
+  {
+    "document": "manuscript.docx",
+    "sha256": "bdd83225dae8d8ed70d40a3d22f8e29c7a64cf2ebad8f41bb9cf1ecc7935ce92",
+    "render_sha256": "d688b4bba523b398cb0cd79738487b5302484aa1ff3b4ac9312e98cdfd1f2b43",
+    "pages": 9,
+    "native_equations": true,
+    "table_values_equal_to_source": true
+  },
+  {
+    "document": "supplementary.docx",
+    "sha256": "d7fa6461c744ac56288ce21ffdfa1742ea0cb030da6a3162c9672274619da273",
+    "render_sha256": "667ce6ea7233cffb4a9c970e89a3d805fa8a2af982993f263290d778a2ac58dd",
+    "pages": 8,
+    "native_equations": true,
+    "table_values_equal_to_source": true
+  }
+]

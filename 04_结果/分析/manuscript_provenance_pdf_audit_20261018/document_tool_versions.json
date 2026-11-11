@@ -1,0 +1,18 @@
+[
+  {
+    "command": [
+      "tools/pandoc-3.9.0.2/pandoc.exe",
+      "--version"
+    ],
+    "exit_code": 0,
+    "output": "pandoc 3.9.0.2\r\nFeatures: +server +lua\r\nScripting engine: Lua 5.4\r\nUser data directory: C:\\Users\\lidong\\AppData\\Roaming\\pandoc\r\nCopyright (C) 2006-2025 John MacFarlane. Web:  https://pandoc.org\r\nThis is free software; see the source for copying conditions. There is no\r\nwarranty, not even for merchantability or fitness for a particular purpose.\r\n"
+  },
+  {
+    "command": [
+      "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+      "--version"
+    ],
+    "exit_code": 0,
+    "output": "xelatex: security risk: running with elevated privileges\r\nMiKTeX-XeTeX 4.16 (MiKTeX 25.12)\r\n© 1994-2008 SIL International, © 2009-2023 Jonathan Kew, © 2010-2012 Hàn Thế Thành, © 2012-2013 Khaled Hosny\r\nTeX is a trademark of the American Mathematical Society\r\nusing bzip2 version 1.0.8, 13-Jul-2019\r\ncompiled with curl version 8.4.0; using libcurl/8.4.0 Schannel\r\ncompiled with expat version 2.5; using expat_2.5.0\r\ncompiled with fontconfig version 2.13.1; using 2.13.1\r\ncompiled with freetype2 version 2.12.1; using 2.12.1\r\ncompiled with graphite2 version 1.3.14; using 1.3.14\r\ncompiled with harfbuzz version 12.3.0; using 12.3.0\r\ncompiled with icu version 78.1; using 78.1\r\ncompiled with jpeg version 9.5\r\ncompiled with liblzma version 50040002; using 50040002\r\ncompiled with libpng version 1.6.44; using 1.6.44\r\ncompiled with libressl version LibreSSL 3.8.1; using LibreSSL 3.8.1\r\ncompiled with MiKTeX Application Framework version 4.8; using 4.8\r\ncompiled with MiKTeX Core version 4.24; using 4.24\r\ncompiled with MiKTeX Archive Extractor version 4.1; using 4.1\r\ncompiled with MiKTeX Package Manager version 4.10; using 4.10\r\ncompiled with pplib version v2.05 less toxic i hope\r\nusing teckit version 2.4\r\ncompiled with uriparser version 0.9.7\r\ncompiled with zlib version 1.2.13; using 1.2.13\r\nxelatex: major issue: So far, you have not checked for MiKTeX updates.\r\n"
+  }
+]

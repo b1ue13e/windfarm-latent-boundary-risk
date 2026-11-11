@@ -1,0 +1,205 @@
+{
+  "date": "2026-10-18",
+  "status": "ORIGINAL_INSTANCE_USER_CONFIRMED_DESTROYED_HOST_KEY_MISMATCH_REFUSED_EXECUTION_LINEAGE_UNKNOWN",
+  "repository_head_before_commit": "e9ce5294ae5e418d0db12fced5f142c30a57eb5d",
+  "access": "one strict pinned-endpoint probe refused before authentication; no remote command executed; no attempts after user destruction disclosure",
+  "trust_files_before_and_after_equal": true,
+  "trust_files": [
+    {
+      "path": "C:\\Users\\lidong\\.ssh\\config",
+      "sha256": "a0fd2f514b252d0d400ec58bfcc5d17298911533fdfdd425571194e5af666222"
+    },
+    {
+      "path": "C:\\Users\\lidong\\.ssh\\config.bak",
+      "sha256": "8a766e413b7be247070f33e96bc661eeff4bb7fc3adeb39f89327c2aa2e3e370"
+    },
+    {
+      "path": "C:\\Users\\lidong\\.ssh\\known_hosts",
+      "sha256": "3172222ef05eaf88502312edece6f8df3c01df8d55a87c8c3389c833f651a762"
+    },
+    {
+      "path": "C:\\Users\\lidong\\.ssh\\known_hosts.old",
+      "sha256": "a629e288bec2cab625455a811946782ebcd5591e40c4f81f3dc68b1969a4c14d"
+    }
+  ],
+  "new_host_key_accepted": false,
+  "private_key_material_in_audit": false,
+  "instance_state_authority": "direct user statement; exact deletion date and provider snapshot availability UNKNOWN",
+  "original_remote_source_closure": "UNKNOWN_NOT_CLOSED",
+  "local_search_claim": "bounded metadata/name/token search only, not global absence",
+  "prior255_protected_assets_match_previous_snapshot": true,
+  "original_outputs_and_checkpoints_changed": false,
+  "model_inference_calls": 0,
+  "E07": "UNCHANGED_UNACTIVATED",
+  "scientific_certification_upgrade": false,
+  "files": [
+    {
+      "path": "PROJECT.md",
+      "sha256": "d962443da529ecbb9b33a4ad55a4af239c82d5c528a3fd55d12d785592c002eb",
+      "size_bytes": 22136,
+      "sha256_git_blob": "d962443da529ecbb9b33a4ad55a4af239c82d5c528a3fd55d12d785592c002eb",
+      "git_blob": "448c8e7b21b8681a267f9907359405374dcb5d05",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/.gitattributes",
+      "sha256": "308a40fa1d89ae5ea4390b4c9b46a0108b09f171f07898f25d451fa0c69c4e9f",
+      "size_bytes": 72,
+      "sha256_git_blob": "308a40fa1d89ae5ea4390b4c9b46a0108b09f171f07898f25d451fa0c69c4e9f",
+      "git_blob": "e11c72b55f06e648f9ab243b05b210f5bdc3a420",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/additional_project_index_search.json",
+      "sha256": "85504b559bd4e11c83bbc7eec9223cae4b49071adfc2f74588833bef84864d36",
+      "size_bytes": 474,
+      "sha256_git_blob": "85504b559bd4e11c83bbc7eec9223cae4b49071adfc2f74588833bef84864d36",
+      "git_blob": "3d97369b25a1bce54e970e841ca52e0142501a95",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/connection_stderr.txt",
+      "sha256": "fa785432552d7fa7b128013800ad51f95286f7a4570aab523906424e7ee18a30",
+      "size_bytes": 2187,
+      "sha256_git_blob": "fa785432552d7fa7b128013800ad51f95286f7a4570aab523906424e7ee18a30",
+      "git_blob": "21fdf52c049293e0d2bc31f604a47e656e4c4950",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/connection_stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "sha256_git_blob": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/connection_verification.json",
+      "sha256": "8b37633f087cecb19f8ac653b528aea4bb687267a3c454a61b5ac4cc2fb2a9e5",
+      "size_bytes": 1014,
+      "sha256_git_blob": "8b37633f087cecb19f8ac653b528aea4bb687267a3c454a61b5ac4cc2fb2a9e5",
+      "git_blob": "aef25304abd1765f142f7381afab27850056e415",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/existing_host_fingerprints.json",
+      "sha256": "ab8e612dd58d0d5db6bb6d4852b3fb225446e8e640a0ae5f1f82af24c2444f26",
+      "size_bytes": 1541,
+      "sha256_git_blob": "ab8e612dd58d0d5db6bb6d4852b3fb225446e8e640a0ae5f1f82af24c2444f26",
+      "git_blob": "e1805dcde31b07a40ceddb24f90c321234e9f4e6",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/historical_helper_policy.json",
+      "sha256": "f265bcbc9826a2fcb1df7e946fecabec5560df7569e283233f74465d5cd4ef95",
+      "size_bytes": 755,
+      "sha256_git_blob": "f265bcbc9826a2fcb1df7e946fecabec5560df7569e283233f74465d5cd4ef95",
+      "git_blob": "7e1844f69034c3be404a313a480ce9254523d35f",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/independent_configuration_search.json",
+      "sha256": "ca4d79f25becc4a1445e7db1eb7692aad9d35c2e2f7e0f6d00531db72b575da0",
+      "size_bytes": 3585,
+      "sha256_git_blob": "ca4d79f25becc4a1445e7db1eb7692aad9d35c2e2f7e0f6d00531db72b575da0",
+      "git_blob": "6bc21c71539bfd10beb22933c71d9cf0c8c9bc7f",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/instance_disclosure.json",
+      "sha256": "b5b7bc298ce00a1a6e264bfcaf0506839338d7e9d542d41a2e84283aebac0e61",
+      "size_bytes": 457,
+      "sha256_git_blob": "b5b7bc298ce00a1a6e264bfcaf0506839338d7e9d542d41a2e84283aebac0e61",
+      "git_blob": "763ec2379366b529fe2dca640164da12e2faf3bc",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/local_august_log_index_search.json",
+      "sha256": "c59b99ee1e8b917cbccc743396a78c803b2f2a6cdc22916f2489281131f32a10",
+      "size_bytes": 45257,
+      "sha256_git_blob": "c59b99ee1e8b917cbccc743396a78c803b2f2a6cdc22916f2489281131f32a10",
+      "git_blob": "0bf29943f4f46ed5a61bf2eade61f5fb8cee7e41",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/local_original_archive_search.json",
+      "sha256": "f6053a59065e99576de3fa217e48c32b08a517c174c083b25eb10ba3de2483ca",
+      "size_bytes": 160,
+      "sha256_git_blob": "f6053a59065e99576de3fa217e48c32b08a517c174c083b25eb10ba3de2483ca",
+      "git_blob": "8bac8616363dbe7c63f315a493c3458ca57e5f26",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/local_original_log_search.json",
+      "sha256": "0370dc73f749a7c9b4519b82c6764dba3a1dd6d288042af95a429f0b05dd86fc",
+      "size_bytes": 44,
+      "sha256_git_blob": "0370dc73f749a7c9b4519b82c6764dba3a1dd6d288042af95a429f0b05dd86fc",
+      "git_blob": "93b3ce399830532dab48aea8294d66f9a09e59f8",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/local_recovery_summary.json",
+      "sha256": "6d78c5bdac9c4a8d2b839311d5a712d7c0ea48f71ab9fc5713ae3f818027ad9d",
+      "size_bytes": 779,
+      "sha256_git_blob": "6d78c5bdac9c4a8d2b839311d5a712d7c0ea48f71ab9fc5713ae3f818027ad9d",
+      "git_blob": "a00da220fe3189af9b8bc8d5ab6deb505a767ad0",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/managed_connection_metadata.json",
+      "sha256": "285412acf6b4b4d3244f6ed9e113853745d49e34d74d9cc69e146e4184b39223",
+      "size_bytes": 534,
+      "sha256_git_blob": "285412acf6b4b4d3244f6ed9e113853745d49e34d74d9cc69e146e4184b39223",
+      "git_blob": "bdea0aef1fddca746d731a60fd7d83d23ae1c922",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/REPORT.md",
+      "sha256": "379220b9bdbbafa713a012ef006dda0181761af8d433c1320c745ba5ea74f960",
+      "size_bytes": 7690,
+      "sha256_git_blob": "379220b9bdbbafa713a012ef006dda0181761af8d433c1320c745ba5ea74f960",
+      "git_blob": "ea7429795f6cf674acf8d387286ae483fa482efd",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/trusted_path_preflight.json",
+      "sha256": "96243b8d9405c65a42076e73c6713b82a85a5d3bf9bade9ef5337f0ea4ac8a5d",
+      "size_bytes": 2185,
+      "sha256_git_blob": "96243b8d9405c65a42076e73c6713b82a85a5d3bf9bade9ef5337f0ea4ac8a5d",
+      "git_blob": "9c51d5a5c043323a19d2e7751fab56f6a2fbce91",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/trust_decision.json",
+      "sha256": "0fe318ee3c13af57b04a89f0604846089301a8154e3e02f122d5be1d2858d7fb",
+      "size_bytes": 879,
+      "sha256_git_blob": "0fe318ee3c13af57b04a89f0604846089301a8154e3e02f122d5be1d2858d7fb",
+      "git_blob": "adb3604eda2ef64213838fb5cdcf08235961ff5c",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/number_consistency_gate/table_tste_number_consistency_audit.tex",
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8",
+      "size_bytes": 5594,
+      "sha256_git_blob": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8",
+      "git_blob": "27cae5b1e8a0ef0b6e819bf45122644626dfd363",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/number_consistency_gate/tste_number_consistency_audit.csv",
+      "sha256": "8e319f47763bb96ddb1b7afed6d471487591c9dd07ac4e903919e8d5913412e4",
+      "size_bytes": 12442,
+      "sha256_git_blob": "8e319f47763bb96ddb1b7afed6d471487591c9dd07ac4e903919e8d5913412e4",
+      "git_blob": "beadae8b10bfcf77fd954927e553f5a1d09c3222",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    },
+    {
+      "path": "analyses/grokking_legacy_execution_audit_20261018/number_consistency_gate/tste_number_consistency_audit.json",
+      "sha256": "786fc0839fc989545ca65920b3d1df41d4994733f3e6d744fa793a7e51572c2f",
+      "size_bytes": 835,
+      "sha256_git_blob": "786fc0839fc989545ca65920b3d1df41d4994733f3e6d744fa793a7e51572c2f",
+      "git_blob": "2eb72f0ede3d6ff26e1044173d767702f9238a7d",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged Git bytes"
+    }
+  ]
+}

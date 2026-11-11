@@ -1,0 +1,209 @@
+{
+  "started_utc": "2026-10-26T08:53:52.455306+00:00",
+  "pbs_job": "254018.cm",
+  "status": "PASS_INDEPENDENT_ACTION_AND_SOURCE_REPLAY",
+  "new_fits": 0,
+  "new_policy_selection": false,
+  "audit_source_sha256": "4a74cd6f6b898bf93bab5b28f7c5b260b8b9633e45426e24b80fc0d3f1b89908",
+  "checked_tasks": [
+    8,
+    42,
+    53,
+    87,
+    98,
+    132,
+    143,
+    177,
+    188,
+    222
+  ],
+  "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+  "numpy": "2.4.6",
+  "points": [
+    {
+      "task_index": 8,
+      "task": {
+        "condition": "pitch_withheld",
+        "seed": 201,
+        "subset": "P1",
+        "estimator": "HGB"
+      },
+      "C": 78.43679895209527,
+      "R": 59.189575231335056,
+      "U": 1.9247223720760234,
+      "V": 0.06430481061423755
+    },
+    {
+      "task_index": 42,
+      "task": {
+        "condition": "pitch_withheld",
+        "seed": 201,
+        "subset": "WPQ36",
+        "estimator": "HGB"
+      },
+      "C": 77.86799100768236,
+      "R": 59.236439008824064,
+      "U": 1.8631551998858231,
+      "V": 0.06446256289334286
+    },
+    {
+      "task_index": 53,
+      "task": {
+        "condition": "pitch_withheld",
+        "seed": 202,
+        "subset": "P1",
+        "estimator": "HGB"
+      },
+      "C": 78.37604483988798,
+      "R": 59.48428927950742,
+      "U": 1.8891755560380583,
+      "V": 0.06435739470727266
+    },
+    {
+      "task_index": 87,
+      "task": {
+        "condition": "pitch_withheld",
+        "seed": 202,
+        "subset": "WPQ36",
+        "estimator": "HGB"
+      },
+      "C": 77.73433350219786,
+      "R": 59.298129131225174,
+      "U": 1.843620437097273,
+      "V": 0.06430481061423755
+    },
+    {
+      "task_index": 98,
+      "task": {
+        "condition": "pitch_withheld",
+        "seed": 203,
+        "subset": "P1",
+        "estimator": "HGB"
+      },
+      "C": 78.39081847384432,
+      "R": 59.37111652328565,
+      "U": 1.9019701950558712,
+      "V": 0.06425776168889036
+    },
+    {
+      "task_index": 132,
+      "task": {
+        "condition": "pitch_withheld",
+        "seed": 203,
+        "subset": "WPQ36",
+        "estimator": "HGB"
+      },
+      "C": 77.76689529938953,
+      "R": 59.0727838240018,
+      "U": 1.8694111475387765,
+      "V": 0.06477806745155344
+    },
+    {
+      "task_index": 143,
+      "task": {
+        "condition": "pitch_withheld",
+        "seed": 204,
+        "subset": "P1",
+        "estimator": "HGB"
+      },
+      "C": 78.496941643276,
+      "R": 59.4048868646454,
+      "U": 1.909205477863064,
+      "V": 0.06458710416632071
+    },
+    {
+      "task_index": 177,
+      "task": {
+        "condition": "pitch_withheld",
+        "seed": 204,
+        "subset": "WPQ36",
+        "estimator": "HGB"
+      },
+      "C": 77.91133802996069,
+      "R": 59.23389024692068,
+      "U": 1.8677447783039909,
+      "V": 0.06458710416632071
+    },
+    {
+      "task_index": 188,
+      "task": {
+        "condition": "pitch_withheld",
+        "seed": 205,
+        "subset": "P1",
+        "estimator": "HGB"
+      },
+      "C": 78.37119409036711,
+      "R": 59.2587398888805,
+      "U": 1.911245420148662,
+      "V": 0.06457326624710095
+    },
+    {
+      "task_index": 222,
+      "task": {
+        "condition": "pitch_withheld",
+        "seed": 205,
+        "subset": "WPQ36",
+        "estimator": "HGB"
+      },
+      "C": 77.79780150012903,
+      "R": 59.28338782066484,
+      "U": 1.8514413679464183,
+      "V": 0.06432695128498918
+    }
+  ],
+  "means": {
+    "P1": [
+      78.41435959989414,
+      59.341721557530796,
+      1.907263804236336,
+      0.06441606748476444
+    ],
+    "WPQ36": [
+      77.81567186787188,
+      59.224926006327316,
+      1.8590745861544562,
+      0.06449189928208875
+    ]
+  },
+  "relative_cost_point": 0.007693665268852401,
+  "maximum_daily_arithmetic_error": 9.89530235528946e-09,
+  "exact_original_predictor_sample_issues": 128,
+  "original_predictor_sample_node_cells": 2688,
+  "raw_six_field_boundary_seen_both_tables": 21,
+  "source_runtime_module": "/lstr/sahara/minlpml/junyu/independent_confirmation_20261019_v1/windfarm_moe/subset_inference.py",
+  "original_statistics_replay": {
+    "3": {
+      "draw_sha256": "898c9136e719613e9a9604788e8197f5bd6063a1935741ba4701e1fe8748a3c1",
+      "critical": 2.2633882317813794,
+      "coordinate_family_size": 14
+    },
+    "1": {
+      "draw_sha256": "30978f4594db074e7b62f9903945584899e6e0460d937074e84e72b274c595f7",
+      "critical": 2.280742023289026,
+      "coordinate_family_size": 14
+    },
+    "7": {
+      "draw_sha256": "9e0382ff79722b43cd4783feaa75ff4d613218c4c7704a1f4ed588d122ccb2ce",
+      "critical": 2.237343670519597,
+      "coordinate_family_size": 14
+    }
+  },
+  "full_target_mask_exact": true,
+  "all_input_population_identical": true,
+  "original_inputs_unchanged": true,
+  "inputs_sha256": {
+    "/lstr/sahara/minlpml/junyu/mainline_supplement_20261026/p1/results/evaluate/8/manifest.json": "42747cf6ad4d4174c61cced18eaf8e3d8e1ecd28a7879da036caa45b182a2578",
+    "/lstr/sahara/minlpml/junyu/mainline_supplement_20261026/p1/results/evaluate/42/manifest.json": "ab115ca9b84783b98ec5b68e5be40f0da244ded5c3cdcba5660df56e809e2afe",
+    "/lstr/sahara/minlpml/junyu/mainline_supplement_20261026/p1/results/evaluate/53/manifest.json": "4b9c09c52e7347cd6e7b10c53e85605071570e3bf330a1fb52dc1f07de135be6",
+    "/lstr/sahara/minlpml/junyu/mainline_supplement_20261026/p1/results/evaluate/87/manifest.json": "c1e7d63f44ba924ff38c45470f8ff5f5188b7bab3f7e1dbe1994a280567b3c91",
+    "/lstr/sahara/minlpml/junyu/mainline_supplement_20261026/p1/results/evaluate/98/manifest.json": "a8bd5f6fab442ee83fc978eb4d7be4fd5588a339634782d15e52fb4d1a0369f0",
+    "/lstr/sahara/minlpml/junyu/mainline_supplement_20261026/p1/results/evaluate/132/manifest.json": "7c42715c3c8b289c03fb50ecf50340d817add2f20fe13470972a779bf4ed3580",
+    "/lstr/sahara/minlpml/junyu/mainline_supplement_20261026/p1/results/evaluate/143/manifest.json": "0f76dc31d606014e1ce6538be0d2fdb5b00e95e371014a6577d58b79bbb644a1",
+    "/lstr/sahara/minlpml/junyu/mainline_supplement_20261026/p1/results/evaluate/177/manifest.json": "8f58dc2fd4eceded1f489732f69508594fe4265d454e7ba83a58f2f97346fd5b",
+    "/lstr/sahara/minlpml/junyu/mainline_supplement_20261026/p1/results/evaluate/188/manifest.json": "a418f6e368b62c3880b811999d581046c5ce1983330b418c25331bd829230fd0",
+    "/lstr/sahara/minlpml/junyu/mainline_supplement_20261026/p1/results/evaluate/222/manifest.json": "d33f9700a0645816c8c7ac538409444248284b995f66a5d262c8059df65fe668"
+  },
+  "primary_label_recomputed": "ALL_FROZEN_CANDIDATES_CONFIRMED",
+  "scope": "Identity, causal coordinates, deterministic original predictor sample, all-node daily arithmetic and decision consistency; not new CI coverage certification",
+  "finished_utc": "2026-10-26T08:53:54.875840+00:00"
+}

@@ -1,0 +1,37 @@
+{
+  "utc": "2026-10-19T08:14:54.545509+00:00",
+  "scope": "Planning-only revised study design; no empirical result or preregistration",
+  "status": "DESIGN_ONLY_NOT_PREREGISTERED",
+  "execution_authorized": false,
+  "execution_queue": [],
+  "metis_access": false,
+  "protected_inputs_unchanged": {
+    "AGENTS.md": true,
+    "docs/SCIENTIFIC_CONTRACT.md": true,
+    "docs/MAINLINE_STOP_DECISION_20261019.md": true,
+    "research_state.yaml": true,
+    "research-manifest.json": true,
+    "research_audit/14_resource_loss_break_even_review.md": true,
+    "paper_tste_ieee.md": true,
+    "paper_tste_supplementary.md": true,
+    "scripts/verify_scientific_claim_gate.py": true,
+    "scripts/verify_tste_number_consistency.py": true,
+    "experiments/independent_confirmation_execution_20261019/protocol.json": true,
+    "scripts/run_independent_confirmation.py": true,
+    "windfarm_moe/independent_confirmation.py": true,
+    "original_planning/PLAN.md": true,
+    "original_planning/backlog.json": true,
+    "original_planning/source_map.csv": true
+  },
+  "project_append_only_content": true,
+  "old_gates_not_modified": true,
+  "three_gates_pending": true,
+  "readiness_blockers": [
+    "new confirmation source and unread window",
+    "final arrival profiles and source-index contract",
+    "practical margins and support/abstention thresholds",
+    "full finite tuning/fold matrix and compute budget",
+    "joint inference validation and weather-length precision planning"
+  ],
+  "prior_adversarial_review_unchanged": "17b1fae42b969e7c7f5e22023986acc27f0a4d5544aa75672f2229a2d795865a"
+}

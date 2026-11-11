@@ -1,0 +1,68 @@
+project:
+  name: 受限到达信息下的风电备用决策充分性与有限族资源最小性
+  status: stopped
+  updated_at: '2026-10-19T06:56:26.849099+00:00'
+  decision_record: docs/MAINLINE_STOP_DECISION_20261019.md
+  source_repository: https://github.com/b1ue13e/windfarm-latent-boundary-risk.git
+  historical_state: research_audit/mainline_stop_20261019/historical_state/research_state.yaml
+stop_decision:
+  decision: STOP_ADDITIONAL_INVESTMENT
+  effective_date: '2026-10-19'
+  authority: explicit_user_instruction
+  record: docs/MAINLINE_STOP_DECISION_20261019.md
+  reason: No demonstrated specific interface need, avoidable marginal burden or accepted proxy-loss premium; net
+    benefit unproven
+  scientific_completion: false
+  submission_ready: false
+  automatic_resume: false
+  resume_requires: new_explicit_user_authorization
+  next_actions: []
+  prohibited_actions:
+  - training
+  - new_inference_evaluation
+  - calibration
+  - resampling
+  - data_acquisition
+  - remote_access_and_jobs
+  - new_direction_expansion
+  - deployment
+  - automatic_manuscript_or_submission_work
+  preserve_original_results_and_audits: true
+  proxy_loss_is_not_currency: true
+research:
+  current_stage: archived_no_additional_investment
+  scientific_certification: NOT_CERTIFIED_WHOLE_PROJECT
+  deployment_net_benefit: UNPROVEN
+  verified_conclusions:
+  - finding: 2025 P1/HGB/q.95 fixed-reference noninferiority within 2%; observed cost premium +0.564147%, not savings
+    evidence: analyses/independent_confirmation_execution_20261019/REPORT.md
+  - finding: Separate secondary full-q P1/HGB/q.925 finite-family resource minimum; not universal or primary-q.95
+      minimality
+    evidence: docs/SCIENTIFIC_CONTRACT.md#9-independent-frozen-selector-confirmation-completed-2026-10-19
+  - finding: 'WTB 420 dependent cases: 0 finite-family minima, 367 no sufficient, 53 unresolved; E04 NO FEASIBLE
+      POLICY; E07 inactive'
+    evidence: analyses/claim_revision_recovery_20261019/REPORT.md
+  - finding: Local learner resource differences verified; real interface benefit unproven; uncovered-shortage proxy
+      +2.184349%
+    evidence: research_audit/14_resource_loss_break_even_review.md
+  claim_and_asset_inventory: docs/MAINLINE_STOP_DECISION_20261019.md
+  unresolved_questions: Preserved in stop decision as UNKNOWN/UNPROVEN; no funded or executable follow-up.
+progress:
+  status: stopped_without_scientific_certification
+  current_gate: STOP
+  stages: []
+  passed_gates: []
+  incomplete_criteria:
+  - Whole-project certification and operational value are not established; stopped, not completed.
+evidence:
+  resource_loss_review: research_audit/14_resource_loss_break_even_review.md
+  novelty_review: research_audit/FINAL_NOVELTY_AND_IMPACT_VERDICT.md
+  scientific_contract: docs/SCIENTIFIC_CONTRACT.md
+  historical_records: research_audit/mainline_stop_20261019/historical_state/
+decisions:
+  current: STOP_ADDITIONAL_INVESTMENT
+  supported_hypotheses: []
+  falsified_hypotheses: []
+  note: No blanket support/refutation inherited from stale YAML; bounded conclusions and forbidden transformations
+    are listed in the decision record.
+next_actions: []

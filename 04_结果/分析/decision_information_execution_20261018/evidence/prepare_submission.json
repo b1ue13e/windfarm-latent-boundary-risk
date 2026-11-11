@@ -1,0 +1,24 @@
+{
+  "root": "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1",
+  "source_archive_sha256": "b0c01daa4cc9fa611af8b96765e9c56601debd42bbae5b9d1e07ec7b9f4789ae",
+  "argv": [
+    "qsub",
+    "-N",
+    "di_prepare_v2",
+    "-q",
+    "rqdf",
+    "-l",
+    "select=1:ncpus=2:mem=48gb",
+    "-l",
+    "walltime=00:30:00",
+    "-o",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/logs/prepare.log",
+    "-v",
+    "STUDY_ROOT=/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1,STUDY_STAGE=prepare",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/run_lf.pbs"
+  ],
+  "stdout": "244599.cm\n",
+  "stderr": "",
+  "returncode": 0,
+  "wrapper_sha256": "9470eb888b2cd83d0f79befa1d93abee1280baec9863c71278906f4618761f6b"
+}

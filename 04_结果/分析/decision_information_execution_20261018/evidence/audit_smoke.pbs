@@ -1,0 +1,12 @@
+#!/bin/bash
+set -euo pipefail
+cd /nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1
+export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2
+/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python - <<'PY'
+from scripts.audit_decision_information_actions import audit_run
+from pathlib import Path
+import json
+r=audit_run(Path('results/runs/seed201/pitch_withheld'),Path('experiments/decision_information_development_20261018/protocol.json'))
+Path('results/smoke_action_audit.json').write_text(json.dumps(r,indent=2))
+print(r['status'],r['exact_block_array_checks'])
+PY

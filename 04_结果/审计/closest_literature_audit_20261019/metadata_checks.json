@@ -1,0 +1,49 @@
+[
+  {
+    "id": "L01",
+    "status": "VERIFIED_CROSSREF_AND_PRIMARY_CONTENT",
+    "authors_crossref_match": true,
+    "author_fallback": null
+  },
+  {
+    "id": "L02",
+    "status": "VERIFIED_CROSSREF_AND_PRIMARY_CONTENT",
+    "authors_crossref_match": true,
+    "author_fallback": null
+  },
+  {
+    "id": "L03",
+    "status": "VERIFIED_CROSSREF_AND_PRIMARY_CONTENT",
+    "authors_crossref_match": true,
+    "author_fallback": null
+  },
+  {
+    "id": "L04",
+    "status": "VERIFIED_JMLR_PUBLISHER_RECORD",
+    "no_doi_invented": true
+  },
+  {
+    "id": "L05",
+    "status": "VERIFIED_CROSSREF_AND_PRIMARY_CONTENT",
+    "authors_crossref_match": false,
+    "author_fallback": "Publisher and author-institution record"
+  },
+  {
+    "id": "L06",
+    "status": "VERIFIED_CROSSREF_AND_PRIMARY_CONTENT",
+    "authors_crossref_match": true,
+    "author_fallback": null
+  },
+  {
+    "id": "L07",
+    "status": "VERIFIED_CROSSREF_AND_PRIMARY_CONTENT",
+    "authors_crossref_match": true,
+    "author_fallback": null
+  },
+  {
+    "id": "L08",
+    "status": "VERIFIED_CROSSREF_AND_PRIMARY_CONTENT",
+    "authors_crossref_match": true,
+    "author_fallback": null
+  }
+]

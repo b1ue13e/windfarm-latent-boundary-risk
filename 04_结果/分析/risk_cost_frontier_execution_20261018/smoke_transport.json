@@ -1,0 +1,6 @@
+{
+  "stdout": "{\"root\": \"/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290\", \"archive_sha256\": \"c64b211fee1b9818c46be666ca82570cde2fb20a42f3a43636c7108cc7d2608b\", \"argv\": [\"qsub\", \"-N\", \"rf_smoke\", \"-q\", \"rqdf\", \"-l\", \"select=1:ncpus=2:mem=24gb\", \"-l\", \"walltime=00:30:00\", \"-j\", \"oe\", \"-o\", \"/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/logs/smoke.log\", \"-v\", \"FRONTIER_ROOT=/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290,FRONTIER_STAGE=smoke\", \"/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/run_lf.pbs\"], \"stdout\": \"244616.cm\\n\", \"stderr\": \"\", \"returncode\": 0}\n",
+  "stderr": "",
+  "returncode": 0,
+  "utc": "2026-10-18T14:51:33.753475+00:00"
+}

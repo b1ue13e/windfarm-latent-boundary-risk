@@ -1,0 +1,54 @@
+{
+  "envelopes.json": {
+    "bytes": 94331,
+    "sha256": "b4d8351536d6aeba6d00fc2f2a29b64ea107b119b993ce5c4cbabce900f544db"
+  },
+  "paired_day_totals.npz": {
+    "bytes": 55978,
+    "sha256": "ea1fc6da2900c8b0f169f638f55f1f68d8bc13a7570dfe70ef6e018a02128453"
+  },
+  "receipt.json": {
+    "bytes": 14768,
+    "sha256": "86feb6c5923d7e22624ff80f2f7d41d4bf589e5ebfd6e1609ae1a899a22fd20e"
+  },
+  "source/decision_information.py": {
+    "bytes": 7146,
+    "sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287"
+  },
+  "source/information_subset.py": {
+    "bytes": 5469,
+    "sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd"
+  },
+  "source/protocol.json": {
+    "bytes": 4694,
+    "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e"
+  },
+  "source/risk_frontier.py": {
+    "bytes": 5754,
+    "sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944"
+  },
+  "source/run_decision_information_development.py": {
+    "bytes": 31464,
+    "sha256": "a5f27587f2548fcc2f9f98fa76affc196c720b29da55c109c0d831cb7fefe039"
+  },
+  "source/run_information_subset_study.py": {
+    "bytes": 24134,
+    "sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a"
+  },
+  "source/run_state_measurement_pilot.py": {
+    "bytes": 25104,
+    "sha256": "d806c22dfcb6c96482fb9a268a428cf21045fb872aa26f930315c64929dadb16"
+  },
+  "source/state_measurement.py": {
+    "bytes": 6462,
+    "sha256": "d850ab388f1c5b056e9f0a966957cde0e1fe122c82b5a5ace72e31dc134f771c"
+  },
+  "source/subset_inference.py": {
+    "bytes": 4863,
+    "sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568"
+  },
+  "summary.json": {
+    "bytes": 29922,
+    "sha256": "40eebd3602783fb4a2d883ce9169b3a2eec131e00441483a87826946b6dadc12"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "version": "Scientific Reports controlled empirical draft v2",
+  "updated_local": "2026-10-21T00:54:51.326021+08:00",
+  "status": "EVIDENCE_CLOSURE_REVISION_WITH_DISCLOSED_CLOCK_EXCEPTION_NOT_SUBMITTED",
+  "active_sources": [
+    "manuscript.md",
+    "supplementary.md",
+    "references.bib",
+    "source_data/",
+    "tables/",
+    "scripts/build_figures.py"
+  ],
+  "generated_documents": [
+    "main.tex",
+    "manuscript.pdf",
+    "supplementary.tex",
+    "supplementary.pdf"
+  ],
+  "fixed_question": "After common historical SCADA and a fixed forecast commitment, compare measurement updates and recovered-state features in the evaluated shortfall procedures",
+  "one_contribution_not_three_method_innovations": true,
+  "authority": [
+    "WRITING_CONTRACT.md",
+    "../../research_audit/controlled_comparison_materials_20261020/CLAIM_EVIDENCE_DISPLAY.csv",
+    "../../docs/SCIENTIFIC_CONTRACT.md"
+  ],
+  "confirmed_terms": {
+    "P": "active power",
+    "pitch": "current continuous mean of three finite blade angles, not complete physical controller state",
+    "q": "historical signed residual-offset level; learner quantile remains0.90",
+    "R/U/C/V": "proxy procurement/uncovered-shortfall/cost/strict-event quantities",
+    "study_R": "reconstruction comparisons, not procurement R",
+    "Original/Common": "calibration recipes, not new forecast models",
+    "A/B/C routes": "original decision predicates, distinct from R program labels"
+  },
+  "locked_limits": [
+    "Different main masks and budgets; no pooling",
+    "Five fixed fits share35 exposed weather days",
+    "R42 cost-only; original154 and later596 distinct",
+    "No D-C original interval; no unique semantics or equal-budget advantage",
+    "No independent confirmation, sensor removal, monetary or field delivery claim",
+    "Original thresholds and failed routes unchanged",
+    "R earliest historical F is retrospective; no complete online-publication replay",
+    "Cost is pinball score plus common target; no new scoring-principle novelty"
+  ],
+  "open_author_items": [
+    "approval and carried-over author metadata",
+    "contributions",
+    "funding",
+    "competing interests",
+    "ORCID",
+    "permanent access and author code/derived-material licences",
+    "external reviewer access",
+    "bundled QA utility public redistribution clearance"
+  ],
+  "new_experiments_or_sampling": false,
+  "review_type": "Self-review plus deterministic source/render checks; no new independent reviewer agent",
+  "known_reading_limits": "SETA/SAFER final fulltexts unavailable; no global priority claim",
+  "compiled_source_sha256": {
+    "manuscript.md": "a31720df046072cfad6bdcdccfc791385c99d5ed4283a9a28a6848d5f5061b10",
+    "supplementary.md": "c24096ecf1888bf3e48caadbd91b245bade8ece5e392320cfe8394974e625aa5",
+    "references.bib": "9eecf81cacf69681fb450867886b286ceafb0cfacc15e3d62d5c0c705d7a0d51",
+    "scientific-reports-brackets.csl": "2a9ee5a40f5f44e497e9b3051a9a7b52517fc651d490251acabcb10c2a7b8e7b",
+    "figures/fig1_information_and_timing.pdf": "2f264134214274e1e0eea7abefeaaef876e656abc549c4b70f0c8ed9a6260ea6",
+    "figures/fig2_measurement_cost.pdf": "c56db09bc32ab6e573bff4dca5cdded0a27af7814a15dea88df669dba9e047ef",
+    "figures/fig3_reconstruction_and_controls.pdf": "ad342a0ae5593240def482a80f736bd0faa5b991d446aa8099527bd2cd61a6f5",
+    "figures/fig4_procurement_shortfall.pdf": "f636fe953585260fb296d312cd577c775ae6c216f79f02a6f90cc46ccb31b2ea",
+    "figures/figS1_block_sensitivity.pdf": "59899ffdd4c996579f13319a99a26b2f679336b47bb5229416584c6a72835bd8",
+    "tables/table1.tex": "e266875b52f04805a4a9787472d071a7088eb4856ea7bb0798e13f47b1aa6f56",
+    "tables/table3.tex": "98a18df31be786ef31f5480aef5f7d6c3822995802f87dd159e95d251a52571e"
+  },
+  "parent_version": "../scientific_reports",
+  "review_basis": "../../research_audit/scientific_reports_adversarial_review_20261021/REVIEW.md",
+  "artifacts": [
+    {
+      "id": "main",
+      "path": "manuscript.md",
+      "role": "main",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "supplementary",
+      "path": "supplementary.md",
+      "role": "supplementary",
+      "status": "ACTIVE"
+    }
+  ],
+  "style_profile": {
+    "protected_terms": [
+      "common forecast",
+      "uncovered shortfall",
+      "fixed fits",
+      "nominal publication",
+      "pitch",
+      "power",
+      "risk",
+      "cost",
+      "interval",
+      "calibration",
+      "procurement",
+      "shortfall",
+      "pinball",
+      "state",
+      "information",
+      "comparison",
+      "program",
+      "historical",
+      "family"
+    ],
+    "allowed_repetitions": [
+      "Supplementary Table",
+      "Supplementary Figure",
+      "original",
+      "common",
+      "fixed",
+      "development"
+    ],
+    "discouraged_phrases": [
+      "it is worth noting that",
+      "it is important to note that",
+      "delve into"
+    ]
+  }
+}

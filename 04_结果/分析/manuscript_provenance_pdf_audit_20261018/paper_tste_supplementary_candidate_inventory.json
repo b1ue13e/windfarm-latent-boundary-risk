@@ -1,0 +1,234 @@
+[
+  {
+    "line": 110,
+    "text": "\\texttt{Pab\\_mean} & WTB regime label & history and issue-time anchor (offline training only; withheld at deployment) & no & $\\leq t$ only \\\\"
+  },
+  {
+    "line": 276,
+    "text": "Train-only RMSE guardrail vs iTransformer & 5.589 & -- & -- & Displayed guardrail gap for the provenance-corrected rerun \\\\"
+  },
+  {
+    "line": 282,
+    "text": "Boundary quantile violation vs GWN physical bin & 0.003 & [-0.011, 0.020] & -- & CI crosses zero; no universal reserve-policy optimality claim \\\\"
+  },
+  {
+    "line": 294,
+    "text": "Table A6b makes the class-weight provenance boundary explicit. The legacy strict-cache row records the historical boundary-router checkpoint from earlier iterations; the train-only rerun recomputes alignment and pitch-forcing class weights from the training split only and serves as the single source for all headline audits in the main paper. The train-only rerun lowers NMI/ARI to NMI 0.721 (0.7208) and ARI 0.740 (0.7398) while reaching RMSE 229.93 (narrowing the gap to 5.59 units vs. 224.34), remaining above the routing-claim threshold."
+  },
+  {
+    "line": 322,
+    "text": "Table A6c provides the complete, auditable seed-level paired evaluation between identical 4-expert backbones trained with auxiliary cross-entropy alignment ($\\lambda_{\\text{align}}=5000.0$) versus unaligned representations ($\\lambda_{\\text{align}}=0.0$) under strict validation/testing blade-pitch withholding. Independent model random seed serves as the unit of replication ($n=5$). Paired differences ($\\Delta = \\text{Align} - \\text{No Align}$) are evaluated using Student-$t$ confidence intervals ($df=4$) and paired hypothesis tests. Panel A reports the exact by-seed paired values. Panel B reports the statistical summary, paired confidence intervals, hypothesis tests, and leave-one-seed-out sensitivity."
+  },
+  {
+    "line": 330,
+    "text": "\\caption*{\\textbf{Table A6c.} Clean matched-backbone privileged-supervision ablation and seed-level statistical audit ($n=5$ independent random seeds 201--205). Unit of replication is model random seed.}"
+  },
+  {
+    "line": 542,
+    "text": "Table A11 is the compact reviewer-facing boundary audit. The same-router boundary comparison has seed-paired uncertainty support, while physical-bin, full-sample and cross-backbone comparisons still bound the claim away from policy optimality or market-dispatch value. The row order moves from the supported local contrast to the stronger controls that limit extrapolation."
+  },
+  {
+    "line": 555,
+    "text": "Same-model boundary reserve effect & $\\rho=10$: gate-bin 95.13M vs same-router global 99.55M ($\\Delta$cost -4.42M [CI -7.36M,-1.27M]); $\\Delta$viol. -0.0145 [CI -0.0220,-0.0073]; shortage -0.637M [CI -0.976M,-0.300M]; full-MoE family -4.26M [CI -5.43M,-3.04M] & Same-model diagnostic; not cross-model optimal \\\\"
+  },
+  {
+    "line": 599,
+    "text": "Table A11c reports the modular-equivalence control on the same boundary-router backbone. The classifier is a validation-fit logistic regression on issue-time anchors (Wspd, Pab\\_mean), and its hard and soft bins are compared with the gate's. On clean anchors the classifier reproduces the physical-bin reserve almost exactly and beats the hard gate route, so the hard route has no reserve increment; the jointly-learned soft posterior remains below every modular alternative, and Table A11d localizes that allocation increment to joint learning rather than to the routing structure."
+  },
+  {
+    "line": 621,
+    "text": "\\fontsize{8.0pt}{9.6pt}\\selectfont The classifier is refit per seed on validation anchors only. Hard classifier bins are nearly equivalent to physical bins on clean anchors; the hard gate route is worse than both. The soft gate posterior is the only strategy below every modular alternative (16.065M). Combined with the fair-degradation audit (Table A10d), where the deterministic physical rule falls to recall 0.680 under the strongest noise against 0.951 for the gate (and collapses to 0.196 under a 6-step delay against 0.417 for the gate), the modular classifier matches clean-anchor reserve allocation with no detected difference while the soft posterior keeps the degraded-stream robustness in one deployment object. Script: \\texttt{scripts/modular\\_equiv\\_reserve.py}."
+  },
+  {
+    "line": 701,
+    "text": "\\parbox{\\linewidth}{\\fontsize{8.0pt}{9.0pt}\\selectfont\\raggedright Reserve costs are validation-frozen boundary-band totals (mean over five seeds); seed-paired CIs: soft-physical vs joint-routed +526k [330k, 719k]; joint-routed vs global -568k [-726k, -406k]; joint-routed vs Cascaded Frozen MLP (Joint 16.065M vs Cascaded 15.528M $\\pm$ 1.599M, paired $\\Delta = -0.537\\text{M}$, 95\\% CI [-1.988M, +0.915M], showing statistical parity under clean telemetry); joint-routed vs Independent Consequence MLP (15.805M $\\pm$ 1.680M, paired $\\Delta = -0.260\\text{M}$, 95\\% CI [-1.771M, +1.251M]); joint-routed vs independent GBDT -1.59M (see \\texttt{artifacts/}\\allowbreak\\texttt{matched\\_modular\\_rerun\\_5seeds/}\\allowbreak\\texttt{modular\\_mlp\\_summary\\_5seeds.csv}). Degraded recall is early-window recall under a six-step confirming-stream delay ($^{\\ddagger}$Consequence-only and modular baselines operate on aerodynamic-withheld channels for nominal consequence mapping and are not evaluated on spatio-temporal history temporal shift); the soft-physical pitch quantile is a continuous allocation rule without discrete recall, and under a 6-step delay its reserve cost degrades to 16.048M. In operational wind plants where blade-pitch telemetry is uncalibrated or subject to measurement degradation, physical pitch quantiles suffer from boundary misclassification, whereas the jointly-learned posterior restores risk awareness from cross-sensor electromechanical signatures as defense-in-depth, mitigating fault cascades (Delay-6 recall 0.417 vs. 0.286 for dense head (+0.221 gain over stale rule 0.196)) in a single-checkpoint edge deployment. Hardware latency values (previously listed as 0.05--8.90 ms) and cashflow figures have been quarantined in accordance with Step 1 audit protocols pending physical RTU testbed validation. Kelmarsh sparse-farm allocation increment is not significant (-40k, CI [-202k, +129k]) and is disclosed as such. Time-block robustness: a hierarchical seed-and-week-block bootstrap over daily reserve costs across the 35-day test period keeps the gate-bin-vs-global difference significantly negative for both MoE families (Boundary router pooled 5-seed total delta of -22.40M, corresponding to a per-seed mean of -4.48M which matches the -4.42M per-seed evaluation in Table A11 within bootstrap resampling granularity, 95\\% hierarchical block CI [-39.55M, -7.61M]; Physics-Aligned MoE pooled 5-seed total -23.39M, CI [-42.41M, -7.02M]), confirming that the reserve advantage is robust to temporal autocorrelation across weeks. \\textit{Terminology Note:} Throughout this work, ``Reserve Cost'' maps directly to the Penalized Reserve-Shortfall Energy Index (PSREI in kWh at $\\rho=10$).}"
+  },
+  {
+    "line": 752,
+    "text": "## Strong-baseline closure: Posterior vs. wind-speed-conditioned quantiles and deployable hybrid policy (Table A11m) {.unnumbered}"
+  },
+  {
+    "line": 754,
+    "text": "To address reviewer concerns regarding baseline competitiveness, Table A11m evaluates the relative risk-cost trade-off of the learned latent-boundary posterior compared to a strong observable wind-speed-conditioned quantile baseline (10 uniform bins over $[0, 25\\text{ m/s}]$) under matched arrival-time constraints and identical forecast residuals ($s_t = \\max(\\hat{y}_t - y_t, 0)$ across 5 seeds)."
+  },
+  {
+    "line": 756,
+    "text": "The empirical results demonstrate that posterior conditioning does not reduce plant-wide reserve procurement costs ($14.31\\text{M}$ vs. $13.78\\text{M kW}\\cdot\\text{h}$, canonically defined as $\\Delta L = L_{\\text{posterior}} - L_{\\text{wspd}} = +523{,}044\\text{ kW}\\cdot\\text{h}$ penalty, $p=0.85$). In steady operation ($63.75\\%$ of test time, $N=245{,}552$), wind-speed binning serves as the operational minimum sufficient policy, outperforming the posterior by $+410{,}304\\text{ kW}\\cdot\\text{h}$ ($p=0.002$). Near operating transitions ($\\pm 3$ steps of bounded non-circular temporal dilation, $36.25\\%$ of records, $N=139{,}653$), unscaled posterior conditioning shifts the operating point toward lower violation ($7.24\\%$ vs. $8.36\\%$) and lower raw shortage ($86.6\\text{k}$ vs. $90.2\\text{k kW}\\cdot\\text{h}$), but requires $+149{,}241\\text{ kW}\\cdot\\text{h}$ greater reserve procurement ($\\Delta = +112{,}739\\text{ kW}\\cdot\\text{h}$ net surrogate penalty under $\\rho=10$). The raw reduction in transition violation rate is partly associated with greater reserve procurement. Crucially, matched-budget frontier analysis across $\\mathcal{B}_{\\text{common}} = [1.95\\text{M}, 4.77\\text{M}]\\text{ kW}\\cdot\\text{h}$ demonstrates that at identical reserve budgets ($\\Delta R \\equiv 0$), posterior conditioning does not improve shortage-energy efficiency: lower violation frequency is offset by deeper residual uncovered shortfalls ($+5{,}234\\text{ kW}\\cdot\\text{h}$ higher shortage on average across 5 seeds; strictly higher in 4 of 5 seeds, with bootstrap probability $P(\\Delta U \\ge 0) = 0.81$, establishing that matched-budget superiority is not established). The significant paired day-level cluster bootstrap interaction ($\\Delta_{\\text{trans}} - \\Delta_{\\text{steady}} = -296{,}053\\text{ kW}\\cdot\\text{h}, p = 0.002$) establishes structural heterogeneity of the relative cost gap across regimes, rather than an allocation advantage for posterior conditioning. Furthermore, a deployable validation-frozen hybrid policy matches wind-speed binning plant-wide ($13.79\\text{M}$ vs. $13.78\\text{M kW}\\cdot\\text{h}, p > 0.40$), confirming that while latent operating regimes remain recoverable from consequence signals, reserve decision sufficiency remains governed by direct observable conditioning."
+  },
+  {
+    "line": 798,
+    "text": "The 134-turbine WTB site serves as the primary mechanism-identification environment. Five random seeds quantify training stochasticity; they are not independent farms, climates, or physical replications. The three external European facilities must not be presented as uniform replication evidence: their observed effects are heterogeneous. Under the corrected EXP-01 v2 protocol (independent site-frozen point forecasts, pitch withheld at deployment, identical arrival-time information set, paired site-level day-cluster bootstrap, pre-registered $h=6$ primary endpoint), \\emph{neither} site yields a significant positive decision gain, and the v2 Penmanshiel penalty is historical; v4 is now also invalidated by forecast/target physical-window mismatch. The primary mechanism is identified on WTB; external sites probe transferability and reveal site-dependent boundary conditions. We do not pool the three external farms into a universal average effect. Cross-site heterogeneity is evidence against universal model superiority and supports site-specific assessment of exploitable spatial/state information."
+  },
+  {
+    "line": 808,
+    "text": "\\caption*{\\textbf{Table A8c.} Historical EXP-01 v2 benchmark (superseded by v4, which has itself been invalidated for mismatched physical windows). These rows are retained as provenance and are not current transfer evidence. Transferred STGQ-Modular (pitch withheld at deployment) against the strong non-parametric \\textbf{Site-Local Wspd-Bins} baseline, on the identical arrival-time information set. Paired site-level day-cluster bootstrap, seeds 201--205. Positive $\\Delta$PSREI denotes a cost \\emph{penalty} for the transferred representation. Source: \\texttt{artifacts/external-matched-control-benchmark/v2/external\\_matched\\_control\\_benchmark.csv}.}"
+  },
+  {
+    "line": 833,
+    "text": "Site & $N$ & Period & SCADA Channels & Pitch & Wake Context & Comparison & Paired Effect & Transfer / Replication Interpretation \\\\"
+  },
+  {
+    "line": 836,
+    "text": "\\textbf{Penman.} & 14 & 8.6 years (2016--2021) & Standard SCADA (Wspd, Patv, Pab, nacelle, temps) & Yes (99.1\\%) & \\textbf{Moderate}: Cohesive cluster (14 MM82; WT01--15 ex. WT03) & STGQ vs. Global Quantile \\emph{(superseded)} & $-2.14\\text{M}$ [$-3.25\\text{M}, -1.36\\text{M}$]$^{\\ast}$ & \\textbf{Superseded comparator.} This row compares against an unconditioned global quantile, which is not a sufficient incremental-value comparator. Under the corrected v2 protocol against Site-Local Wspd-Bins, transferred STGQ-Modular incurs $+5{,}321{,}915$ kWh ($p=0.003$, $h=6$); see Table A8c. \\\\"
+  },
+  {
+    "line": 862,
+    "text": "\\raggedright\\fontsize{8.0pt}{8.8pt}\\selectfont Note: $^{\\ast}p < 0.05$. \\textbf{Superseded comparator warning:} this table compares against an unconditioned global quantile baseline, which the scientific contract rules out as sufficient evidence of incremental value. Its Penmanshiel advantage does not survive replacement with the strong Site-Local Wspd-Bins comparator (corrected v2: $+5{,}321{,}915$ kWh penalty, $p=0.003$); see Table A8c. Penmanshiel comprises 14 operational turbines (site numbering spans WT01--WT15, with WT03 not installed/present in SCADA records). LHB exhibits local overfitting; Kelmarsh is neutral."
+  },
+  {
+    "line": 928,
+    "text": "Table A9c reports the same probe on ENGIE La Haute Borne under the identical threshold definition. The full-anchor canonical baseline reaches NMI 0.975 under the same training protocol; `signature_full` retains mean NMI 0.674 (min-seed 0.499) and `signature_core` mean NMI 0.575 with no expert collapse in any seed. Permuting the regime labels under the same withheld-channel mask collapses NMI to 1.92e-04. The boundary signature therefore replicates across farms; the claim is mechanism replication under a shared threshold definition, not parameter transfer."
+  },
+  {
+    "line": 936,
+    "text": "\\caption*{\\textbf{Table A9c.} Cross-farm signature-gate replication, ENGIE La Haute Borne. Mean $\\pm$ SD over five seeds; per-seed values archived.}"
+  },
+  {
+    "line": 949,
+    "text": "\\raggedright\\fontsize{8.0pt}{9.0pt}\\selectfont LHB is a four-turbine Senvion MM82 farm with directly observed pitch (99.2\\% coverage) and no wake graph support (wake score identically zero). RMSE is nearly invariant to channel withholding, so the signature effect is decoupled from forecast accuracy."
+  },
+  {
+    "line": 953,
+    "text": "Table A9d reports the same probe on two farms with partial pitch observability. Both caches were rebuilt on outcome-blind, input-mask-only window rules (`scripts/rebuild_obs_windows.py`): the earliest contiguous 245-day window with daily pitch coverage at least 0.70 and daily regime-valid at least 0.70 for Penmanshiel (day 720; Senvion MM82), and the earliest window with daily regime-valid at least 0.70 for Kelmarsh (day 120; Senvion MM92). Permuted-label controls collapse to chance at both farms, and the withheld-channel variants stay above chance across both commercial wind farms, so the deployment decision is a graded signature-strength check rather than a binary observability gate."
+  },
+  {
+    "line": 1014,
+    "text": "Table A9e reports two robustness additions. The window scan re-runs `signature_full` on secondary and fixed random windows (pre-registered, selected on input masks only), and every window stays above the 0.20 criterion. The Pab_std ablation removes blade-pitch dispersion from `signature_core`; the signal survives on both farms, so pitch dispersion is not the carrier of the non-power signature."
+  },
+  {
+    "line": 1022,
+    "text": "\\caption*{\\textbf{Table A9e.} Window-robustness scan and Pab\\_std ablation (signature\\_full / signature\\_core\\_no\\_pab\\_std, mean$\\pm$sd).}"
+  },
+  {
+    "line": 1141,
+    "text": "\\fontsize{8.0pt}{9.6pt}\\selectfont Evaluated on aggregated wind plant active power at the PCC bus summing over turbines online at anchor time $t=0$ ($P_{\\mathrm{farm}} = \\sum_{i \\in \\mathcal{V}_0} P_i$). The 95\\% bootstrap CI ($B=20{,}000$ resamples) and exact Wilcoxon signed-rank test ($p=2^{-4}=0.062$ theoretical permutation floor) are two inferential summaries of the SAME $n=5$ seed-level replication (training-initialization uncertainty across seeds 201--205). Because $n=5$ is small, bootstrap zero-exclusion alone is not interpreted as conventional population-level statistical significance without acknowledging the exact non-parametric sample-size floor. Script: \\texttt{scripts/eval\\_farm\\_aggregate\\_reserve.py}, artifacts in \\texttt{artifacts/farm\\_aggregate\\_reserve\\_20260905/}."
+  },
+  {
+    "line": 1171,
+    "text": "*Analytical Equivalence between Receding-Horizon LP and Step Heuristic:* In Table A11-BESS, the receding-horizon LP and the instantaneous heuristic achieve identical dispatch metrics across all latency regimes. This numerical equivalence arises analytically: because utility penalty rates ($c_{\\mathrm{short}}, c_{\\mathrm{curt}}, c_{\\mathrm{deg}}$) are stationary over the lookahead horizon and dispatch commitments track the receding forecast ($w_{\\mathrm{fc}}[k+j] = c_{\\mathrm{sched}}[k+j]$ for $j \\ge 1$), zero planned imbalance is anticipated at future steps. Consequently, the multi-period LP reduces to an optimal greedy dispatch decision at step 0, demonstrating that downstream operational risk mitigation is primarily governed by physical storage capacity buffering real-time forecast error rather than inter-temporal arbitrage."
+  },
+  {
+    "line": 1272,
+    "text": "Kelmarsh (9 yrs) & Walk-Forward Rolling Pooled & 5 & Global Quantile & -7.77M & [-9.34M, -5.55M] & \\textbf{yes} ($p < 0.05$) & Robust savings under modest shortage penalty \\\\"
+  },
+  {
+    "line": 1280,
+    "text": "Penmanshiel (8.6 yrs) & Walk-Forward Rolling Pooled & 5 & Global Quantile & -4.23M & [-7.49M, -1.93M] & \\textbf{yes} ($p < 0.05$) & Robust savings under modest shortage penalty \\\\"
+  },
+  {
+    "line": 1299,
+    "text": "Table A11h reports the rolling reserve evaluation on ENGIE La Haute Borne (4 turbines, 99\\% pitch telemetry availability). Unlike the utility-scale commercial plants, LHB constitutes a miniature clean-site physical boundary condition. In walk-forward rolling pooled evaluation across quarterly folds (Q1--Q3), the soft gate incurs a positive cost delta of $+1.01\\text{M kWh}$ (95\\% bootstrap CI $[+0.29\\text{M}, +1.76\\text{M}]$, strictly excluding zero) versus the global quantile and $+0.92\\text{M kWh}$ (CI $[+0.26\\text{M}, +1.61\\text{M}]$) versus the continuous physical pitch rule. Examination across individual quarters reveals an empirical quantile variance amplification mechanism under acute seasonal drift: in benign Q1 (+6.6k kWh, CI $[-10.4\\text{k}, +29.7\\text{k}]$) and Q2 (+31.8k kWh, CI $[-48.4\\text{k}, +125.7\\text{k}]$), cost deltas are small and cross zero; in Q3, sharp autumn wind-regime transition concentrates prediction errors into short calibration slices ($+968.1\\text{k kWh}$, CI $[+313.3\\text{k}, +1,623.0\\text{k}]$). In contrast, expanding calibration to a 180-day annual window (`pooled_annual_full`) stabilizes empirical quantiles, compressing the cost difference to $+43\\text{k kWh}$ (CI $[-28.7\\text{k}, +141.2\\text{k}]$, strictly crossing zero) against global quantiles and $+39.2\\text{k kWh}$ against physical pitch rules. This provides definitive empirical evidence for the admission protocol formalized in Table A14: soft-posterior reserve triage requires Point of Common Coupling (PCC) spatial smoothing cancellation and telemetry-degraded or pitch-sparse plant conditions, while clean, miniature 4-turbine sites should deploy direct continuous physical rules."
+  },
+  {
+    "line": 1370,
+    "text": "\\raggedright\\fontsize{8.0pt}{9.0pt}\\selectfont Evaluated under frozen neural backbone weights calibrated at initial commissioning (Year 1, 2016) across 5 seeds. $\\mathcal{W}_1(p_{\\mathrm{pitch}})$ measures the 1D Wasserstein distance between the annual distribution of blade-pitch routing probabilities $P_y(p_{\\mathrm{pitch}})$ and the baseline commissioning distribution $P_1(p_{\\mathrm{pitch}})$. $\\text{Inv-}\\mathcal{W}_1 = 1 / (1 + \\mathcal{W}_1)$ indicates representation preservation (1.0 = identical). Script: \\texttt{scripts/remote\\_gate\\_representation\\_decay.py}, artifacts in \\texttt{artifacts/multiyear\\_gate\\_representation\\_audit/}."
+  },
+  {
+    "line": 1559,
+    "text": "\\fontsize{8.0pt}{9.6pt}\\selectfont Annual sensitivity breakdown replaying the frozen neural backbone against contemporaneous Elexon System Buy Prices under commissioning static freeze ($P_{\\mathrm{SBP}}$ calendar mean and maximum). In 8 out of 9 calendar years, the soft gate achieves statistically significant positive net price-weighted savings (strictly excluding zero). In 2022, peak gas and balancing power prices (£200.08/MWh mean, £4,035.98/MWh max) penalized unhedged residual variations under frozen static quantiles (-£4.0k). Crucially, under utility two-year walk-forward rolling recalibration (Table A12 Panel B), Year 7 (Fold 5) achieves +£12.4k net price-weighted savings (CI [+£9.5k, +£15.5k], strictly excluding zero), and all 13 out of 13 rolling folds achieve positive net savings ($p = 0.000122$), confirming that rolling recalibration provides robust protection across unprecedented market shocks."
+  },
+  {
+    "line": 1569,
+    "text": "> **[GOVERNANCE ISOLATION NOTICE]**: In accordance with the Step 1 evidence-base audit protocol (`isolation_manifest.json`), hardware execution timing (4.12 ms GPU / 21.8 ms IPC CPU), runtime RAM claims (<1.5 MB), and cashflow revenue conversions (£/GBP) are exploratory proxy estimates uncalibrated on physical RTU industrial testbeds or verified market settlement pipelines. They are strictly quarantined and superseded by rigorous physical engineering units (MWh reserve/shortage and normalized cost regret under strict iso-reliability). Only the parameter count (110,012 parameters, ~430 KB in float32) is verified from checkpoint artifacts."
+  },
+  {
+    "line": 1571,
+    "text": "To address potential computational feasibility in field deployments, Table A12c presents the theoretical parameter footprint on standard wind farm central substation supervisory infrastructure. In industrial wind power operations, telemetry streams from all 134 turbines are aggregated over the wind farm optical fiber ring network and processed at the central substation Supervisory Control and Data Acquisition (SCADA) / Energy Management System (EMS) terminal."
+  },
+  {
+    "line": 1573,
+    "text": "With 110,012 parameters (430 KB storage footprint), the entire model architecture is exceptionally compact, well suited for central substation SCADA/EMS co-location. Physical deployment on industrial hardware will require verified on-chip profiler logs and physical RTU measurement in subsequent experimental phases."
+  },
+  {
+    "line": 1587,
+    "text": "Model parameter count & 110,012 parameters & Single integrated checkpoint ($\\sim$430 KB in float32, verified) \\\\"
+  },
+  {
+    "line": 1592,
+    "text": "Deployment architecture & Central substation SCADA/EMS & Co-located with existing plant supervisory server \\\\"
+  },
+  {
+    "line": 1643,
+    "text": "\\fontsize{8.0pt}{9.6pt}\\selectfont The two train-only MoE rows are the provenance-corrected reruns used for the headline guardrail; their MAE and switch statistics are available in the archived run tables. The legacy MoE rows remain listed for provenance transparency only."
+  },
+  {
+    "line": 1651,
+    "text": "## Deployment gate criteria {.unnumbered}"
+  },
+  {
+    "line": 1653,
+    "text": "Table A14 summarizes the multi-farm deployment checks identified by cross-farm evaluation, replacing binary observability constraints with graded signature-strength verification."
+  },
+  {
+    "line": 1661,
+    "text": "\\caption*{\\textbf{Table A14.} Deployment checks identified by multi-farm testing.}"
+  },
+  {
+    "line": 1669,
+    "text": "Local boundary recalibration & Validation-only recalibration moves test NMI only marginally & Treat threshold transfer as insufficient \\\\"
+  },
+  {
+    "line": 1672,
+    "text": "PCC portfolio smoothing and site scale & LHB miniature 4-turbine site exhibits quantile sample-variance amplification (+1.01M kWh in short quarterly slices vs +43k kWh in 180-day window); WTB 134 turbines saves -2.32M kWh at PCC bus (-1.33M kWh in transitional regime) & Bound soft-posterior reserve deployment to PCC portfolio-smoothed plants and degraded/pitch-sparse telemetry environments; deploy direct physical rules on clean miniature sites \\\\"
+  },
+  {
+    "line": 1684,
+    "text": "The ERA5 contrast tests a setting in which the physical marker is directly visible. Three archived months of hourly data over a fixed $16\\times16$ patch are reorganised into a $T{=}2208$-frame tensor with $N{=}256$ nodes and eight input variables. The thermodynamic regime label separates stable from convective near-surface states using sensible heat flux and its local time delta: convective samples have positive afternoon flux anomaly, stable samples do not; the label is available at 60\\% coverage and enters only alignment supervision. The gate anchor is $[\\texttt{sshf}, \\texttt{t2m}, \\texttt{wind\\_speed}, \\Delta\\texttt{sshf}]$, and the graph is a static Haversine-Gaussian $k_{\\mathrm{nn}}$ structure because no wake directionality is defined on a grid. The same directed-diffusion GRU and node-level MoE are trained with the full corrected stack; the contrast result is that Physics-Aligned MoE achieves NMI $0.210 \\pm 0.109$ against an unconstrained collapse of $0.032 \\pm 0.025$ under thermodynamic observability (`table_routing_quality.csv`), showing that supervision retains partial alignment under direct thermodynamic observation whereas unconstrained gating collapses. The ERA5 rows in Table A13 and the shared-architecture table carry the numerical record; ERA5 is not used for any reserve or deployment claim."
+  },
+  {
+    "line": 1692,
+    "text": "The WTB boundary router has 110,012 parameters. The earlier disclosure reported approximately 445 s per epoch, stopping at 6-9 epochs and roughly 6-7 GPU-hours per five-seed family. These are retained as historical estimates, not verified cross-environment runtime guarantees. The former blanket statement that all neural runs used an RTX 4090 with one numerical profile is unsupported by complete execution receipts. Saved checkpoints, arrays, recovered entry-point text and partial logs do not bind every original run to its hardware, dependencies, weights, complete inputs and backend settings. Training mixed precision also does not establish the precision used for each archived evaluation. End-to-end reproduction across all declared seeds and experiment families remains unverified."
+  },
+  {
+    "line": 1694,
+    "text": "## Reproducibility scope and frozen provenance gaps {.unnumbered}"
+  },
+  {
+    "line": 1698,
+    "text": "Direct checks support the identity of the two legacy release members, stored accounting, and explicit residual anchors, targets and masks relative to the extant cache. The posterior archive contains probabilities without direct per-value coordinate provenance; source-compatible order, matching lengths and aggregate metrics do not certify historical alignment. All ten auxiliary-prediction comparisons with the legacy residual forecasts remain non-exact. A documented batch-size difference makes numerical execution a plausible explanation, but missing original weight, complete-input and backend-state bindings prevent unique attribution. The original validation/test support asymmetry is preserved; its calibration and decision impact remains untested. The first downstream accounting assertion occurred after posterior-cache saving; present-array accounting diagnostics do not independently certify cache semantics or the exact historical failure."
+  },
+  {
+    "line": 1700,
+    "text": "These assets remain usable for explicitly bounded diagnostic observations, not as certificates of complete raw-data reproduction, causal mechanisms or deployment safety. Later receipt-bound E04/E06 bundles retain their separately audited scope and do not retrospectively authenticate the legacy generation chain. The original no-feasible-policy outcome and all risk and exact-matching thresholds are retained. E07 remains an inactive, unexecuted protocol with no eligible unseen confirmation window bound; the old test is not reused as confirmation. Detailed evidence classes and immutable prior-document snapshots are indexed in the repository files \\texttt{manuscript/REPRODUCIBILITY.md} and \\texttt{docs/HISTORICAL\\_PROVENANCE\\_FREEZE\\_20261018.md}. This documentation freeze does not confer scientific certification."
+  },
+  {
+    "line": 1714,
+    "text": "\\caption*{\\textbf{Figure S1.} Empirical Pareto trade-off between whole-sample point forecasting accuracy (overall test RMSE on WTB, $x$-axis) and operational resilience under 60-minute telemetry latency (Delay-6, $y$-axis). (A) Whole-sample RMSE vs. Delay-6 reserve shortage exposure $\\mathcal{S}$ (MWh, Newsvendor proxy at $\\rho=10$). Unconstrained state-of-the-art point predictors (iTransformer, Graph WaveNet) achieve lower overall RMSE ($224.34$ and $225.74$) by minimizing quadratic loss across prevailing stationary regimes, but lack aerodynamic state awareness, causing shortage exposures to surge ($>78\\text{--}82\\text{ MWh}$). The proposed boundary-aware representations (Joint Routed $229.93\\text{ kW}$ and Frozen Backbone + Residual Quantile $230.12\\text{ kW}$) define a robust Pareto frontier, deliberately trading a modest $+2.5\\%$ whole-sample RMSE margin to compress unhedged shortfall exposure to $53.9\\text{--}54.2\\text{ MWh}$ (a $>35\\%$ reduction). (B) Whole-sample RMSE vs. Delay-6 boundary transition regime recall. Learned representations sustain regime awareness ($0.408\\text{--}0.416$ recall), achieving a $+112\\%$ improvement over collapsed clean physical rules ($0.196$), preventing pre-dispatch reserve clearance against obsolete operating regimes.}"
+  },
+  {
+    "line": 1733,
+    "text": "## Appendix B. Complete reference verification and official DOI directory {.unnumbered}"
+  },
+  {
+    "line": 1735,
+    "text": "All 38 references cited in the main manuscript have been audited and verified against official publisher metadata and CrossRef records. In particular, Reference [2] (*Physics-Informed Machine Learning for Power Grid Frequency Modeling*, Kruse et al.) is published in the American Physical Society journal *PRX Energy* (DOI: 10.1103/PRXEnergy.2.043003), correcting legacy typographical errors. Tables B1 and B2 provide the complete audited directory for all cited works across both parts of the bibliography."
+  },
+  {
+    "line": 1743,
+    "text": "\\caption*{\\textbf{Table B1. Verified Reference Directory (Part 1: Refs [1]--[19]).}}"
+  },
+  {
+    "line": 1748,
+    "text": "\\textbf{Ref} & \\textbf{Author (Year)} & \\textbf{Venue} & \\textbf{Verified Official DOI / Registry} \\\\"
+  },
+  {
+    "line": 1780,
+    "text": "\\caption*{\\textbf{Table B2. Verified Reference Directory (Part 2: Refs [20]--[38]).}}"
+  },
+  {
+    "line": 1785,
+    "text": "\\textbf{Ref} & \\textbf{Author (Year)} & \\textbf{Venue} & \\textbf{Verified Official DOI / Registry} \\\\"
+  },
+  {
+    "line": 1851,
+    "text": "EXP03 historical results do not have full-grid arrival provenance and used a potentially unarrived first observation for LOCF initialization. The historical asynchronous decision curve is withdrawn as causal arrival-time evidence. Corrected execution starts at standardized zero before any arrival, archives full traces, and reports one simulator trace per delay shared by model seeds. A first upper CI bound reaching zero denotes loss of demonstrated advantage, not demonstrated inferiority."
+  },
+  {
+    "line": 1855,
+    "text": "Full raw-data reproduction is in progress and is not certified. Withdrawn claims do not count as successfully reproduced experiments. See docs/RAW_REPLAY_PROTOCOL_20261015.md and the versioned execution receipts."
+  },
+  {
+    "line": 1863,
+    "text": "Historical dense/MoE phase scans used separate model-derived shortfalls, while delay conditions selected boundary cells using delayed wind. Their common-target architecture and fixed-population latency interpretations are withdrawn; stored numbers remain historical diagnostics. Clean/recalibrated physics comparisons within a single condition share the same target and mask and retain that local scope. RAW-PHASE-FROZEN-V1 fixes shortfalls and boundary populations across all arms and includes the ten-bin wind-speed comparator. Auxiliary heads retain the declared150 cached batches and5 training epochs, using shared frozen targets, validity masks and identical sampled anchors. No corrected result is reported before execution."
+  }
+]

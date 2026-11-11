@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-19T04:14:45.799513+00:00",
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectTimeout=15",
+    "metis",
+    "qrls 244729[].cm"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "basis": "Allocated preflight25PASS; actual prepared+2 historical models and matched indices/targets verified by primary and independent reviewer; numerical recipe unchanged",
+  "unlock_released": false
+}

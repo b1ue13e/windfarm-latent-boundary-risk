@@ -1,0 +1,466 @@
+{
+  "version": "V3",
+  "date": "2026-10-19",
+  "status": "DESIGN_SPECIFIED_MATERIALS_PENDING_NOT_READY_FOR_EXECUTION",
+  "execution_authorized": false,
+  "execution_queue": [],
+  "project_status": "STOP_ADDITIONAL_INVESTMENT",
+  "preregistered": false,
+  "manuscript_change": false,
+  "interpretation": "SPECIFIED means a documented design choice, not empirical validity, implementation or execution permission.",
+  "specified_items": [
+    {
+      "id": "D03",
+      "status": "DESIGN_SPECIFIED",
+      "value": {
+        "profiles_steps": [
+          0,
+          1,
+          3,
+          6
+        ],
+        "channels_joint_delay": [
+          "P",
+          "W",
+          "Q"
+        ],
+        "synthetic_dropouts": false,
+        "selective_delay": false,
+        "history_slots": 36,
+        "history_start": "issue-age-35",
+        "same_forecast_target_population_across_profiles": true,
+        "natural_missing": "retain; train-only imputation plus indicators",
+        "unseen_age_claim": false
+      }
+    },
+    {
+      "id": "D04",
+      "status": "DESIGN_SPECIFIED",
+      "value": {
+        "step_minutes": 10,
+        "horizon_steps": 6,
+        "rho": 10,
+        "dt_hours": "1/6",
+        "target": "max(F-P_future,0)",
+        "target_population": "common finite future P including zero and negative; fixed coordinate/maturity boundary",
+        "severity": "unconditional uncovered shortfall times dt",
+        "units": "original kW/kVAr/m/s; loss kWh-equivalent per valid turbine interval",
+        "cross_site_normalization": false,
+        "point_publication": "issue-6",
+        "point_target": "issue+6",
+        "point_input": "W/P each last36 through publication",
+        "point_rows": 120000,
+        "point_seed": 20261018,
+        "point_model": "HGB-S0 squared_error"
+      }
+    },
+    {
+      "id": "M01",
+      "status": "DESIGN_SPECIFIED",
+      "value": {
+        "layers": [
+          "C",
+          "I",
+          "D",
+          "X"
+        ],
+        "estimators": [
+          "LIN",
+          "HGB",
+          "MLP"
+        ],
+        "controls": [
+          "B-Q",
+          "B-P"
+        ],
+        "seeds": [
+          201,
+          202,
+          203,
+          204,
+          205
+        ],
+        "paired_fit_rows": 360000,
+        "same_indices_across_layers_estimators_profiles": true,
+        "configs_per_estimator": 3,
+        "training_quantile": 0.9,
+        "preprocessing": "fit-row mean/std; missing values to mean; per-column missing bits; allmissing mean0 scale1; ID and age onehot",
+        "insufficient_rows": "DATA_INSUFFICIENT; no automatic shrink",
+        "lin_l1_grid": [
+          0.0001,
+          0.001,
+          0.01
+        ],
+        "lin_objective": "mean pinball on standardized y plus lambda*L1(beta); intercept unpenalized",
+        "lin_tolerance": 1e-07,
+        "lin_max_iterations": 10000,
+        "hgb_configs": [
+          {
+            "id": "S0",
+            "max_iter": 100,
+            "max_leaf_nodes": 15
+          },
+          {
+            "id": "S1",
+            "max_iter": 200,
+            "max_leaf_nodes": 15
+          },
+          {
+            "id": "S2",
+            "max_iter": 200,
+            "max_leaf_nodes": 31
+          }
+        ],
+        "hgb_common": {
+          "min_samples_leaf": 50,
+          "learning_rate": 0.08,
+          "l2_regularization": 1.0,
+          "early_stopping": false
+        },
+        "mlp_configs": [
+          {
+            "id": "S0",
+            "hidden": [
+              64,
+              32
+            ],
+            "epochs": 80
+          },
+          {
+            "id": "S1",
+            "hidden": [
+              64,
+              32
+            ],
+            "epochs": 160
+          },
+          {
+            "id": "S2",
+            "hidden": [
+              128,
+              64
+            ],
+            "epochs": 160
+          }
+        ],
+        "mlp_common": {
+          "batch_size": 2048,
+          "learning_rate": 0.001,
+          "weight_decay": 0.0001,
+          "optimizer": "AdamW",
+          "activation": "ReLU",
+          "cpu_threads": 2,
+          "selection_segment_early_stopping": false
+        }
+      }
+    },
+    {
+      "id": "M02",
+      "status": "DESIGN_SPECIFIED",
+      "value": {
+        "offset_quantiles": [
+          0.9,
+          0.925,
+          0.95,
+          0.975,
+          0.99
+        ],
+        "offset": "higher quantile of S-max(raw,0) on offset segment",
+        "final_action": "max(max(raw,0)+offset,0)",
+        "p_candidates_per_profile": 145,
+        "x_candidates_per_profile": 45,
+        "historical_risk_coordinates": 3800,
+        "historical_alpha": 0.05,
+        "select": "all-five-instance historical risk-qualified then minimum five-instance mean cost",
+        "tie": "exact stored float64 equality; lexicographic recipe/config/q id",
+        "no_choice": "NO_HISTORICAL_CHOICE; no confirmation-side replacement",
+        "diagnostic_pair": [
+          "D-HGB-S0-q0.95",
+          "X-HGB-S0-q0.95"
+        ],
+        "g_labels_risk_filtered": false
+      }
+    },
+    {
+      "id": "M03",
+      "status": "DESIGN_SPECIFIED",
+      "value": {
+        "g_pair": [
+          "D-HGB-S0-q0.95",
+          "X-HGB-S0-q0.95"
+        ],
+        "g_label": "five-fixed-instance mean paired loss difference",
+        "fold_count": 3,
+        "fold_template_days": {
+          "point_fit": 180,
+          "policy_fit": 180,
+          "offset_fit": 60,
+          "selection": 60,
+          "label": 90
+        },
+        "embargo": "additional exact label-maturity and publication exclusion; dates remain D02",
+        "g_fit_folds": [
+          1,
+          2
+        ],
+        "g_select_fold": 3,
+        "g_refit_after_selection": false,
+        "profile_training_weights": [
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ],
+        "training_fold_weights": "equal; within each profile/fold uniform target intervals",
+        "z": [
+          "age_onehot",
+          "P_last",
+          "P0-P1",
+          "P0-P6",
+          "std_P_last6",
+          "F-P_last",
+          "missing_indicators"
+        ],
+        "rules": [
+          "G-CONST",
+          "G-AGE",
+          "G-VOL",
+          "G-AV",
+          "G-LINEAR",
+          "G-FULL"
+        ],
+        "confirmatory_rule_controls": [
+          "G-AV",
+          "G-LINEAR"
+        ],
+        "ridge_l2_grid": [
+          0.0001,
+          0.01,
+          1.0
+        ],
+        "hinge_training_quantiles": [
+          0.25,
+          0.5,
+          0.75
+        ],
+        "interactions": false,
+        "g_tie": "larger lambda",
+        "group_lower_quantiles": [
+          0.2,
+          0.3,
+          0.4
+        ],
+        "group_upper_quantiles": [
+          0.6,
+          0.7,
+          0.8
+        ],
+        "group_selection": "9 pairs; per-profile T02/T03 empirical eligibility; maximize minimum per-profile high-minus-low mean; ties ascending lower then upper quantile",
+        "no_group": "NO_DEVELOPMENT_BOUNDARY; do not expand grid",
+        "support": "training finite min/max by numeric z and observed per-column missing states; no outcome trimming",
+        "basis_scaling": "Construct linear/hinge bases in original units; weighted train-fold mean/std scale numeric basis columns; keep binary columns; label stays original loss units."
+      }
+    },
+    {
+      "id": "M04",
+      "status": "DESIGN_SPECIFIED",
+      "value": {
+        "confirmation_scope": "one new window at same farm",
+        "cross_site_transfer": false,
+        "single_unlock": true,
+        "freeze_objects": [
+          "source_permission_exposure",
+          "schema_units_clock",
+          "stage_calendar_label_maturity",
+          "fit_indices",
+          "transforms",
+          "forecast_weights",
+          "policy_weights",
+          "offsets",
+          "historical_choices_and_no_choice",
+          "fixed_g_pair",
+          "g_weights",
+          "group_thresholds_and_support",
+          "endpoints_and_inference",
+          "code_environment_hardware_command_timestamps_hashes",
+          "unlock_receipt"
+        ],
+        "actual_receipt_status": "NOT_CREATED"
+      }
+    },
+    {
+      "id": "S01",
+      "status": "DESIGN_SPECIFIED",
+      "value": {
+        "alpha_total": 0.05,
+        "families": [
+          {
+            "id": "F1",
+            "alpha": 0.025,
+            "claim": "C1-F",
+            "coordinates_per_profile": 16,
+            "profiles": 4,
+            "coordinates": 64,
+            "components": {
+              "mean_loss_gain": 1,
+              "risk_two_policies_five_instances": 10,
+              "severity_difference_five_instances": 5
+            }
+          },
+          {
+            "id": "F2",
+            "alpha": 0.025,
+            "claims": [
+              "C2-G",
+              "C2-P"
+            ],
+            "coordinates_per_profile": 4,
+            "profiles": 4,
+            "coordinates": 16,
+            "components": {
+              "high_low_group_means": 2,
+              "paired_prediction_error_improvements": 2
+            }
+          }
+        ],
+        "parallel_not_success_gated": true,
+        "no_alpha_recycling_on_no_choice": true,
+        "historical_alpha_separate": 0.05,
+        "secondary_descriptive": [
+          "C1M",
+          "C-I-D increments",
+          "raw_offset",
+          "G-CONST",
+          "G-AGE",
+          "G-VOL",
+          "per-instance C2 cost",
+          "group risk",
+          "tail diagnostics"
+        ],
+        "target": "weather-process expectation conditional on frozen models and observed-target eligibility; descriptive sample mean reported separately",
+        "method_validity_pending": [
+          "S02",
+          "S03"
+        ]
+      }
+    },
+    {
+      "id": "B01",
+      "status": "DESIGN_SPECIFIED",
+      "value": {
+        "development_cycles": 1,
+        "independent_confirmations": 1,
+        "adaptive_grid_expansion": false,
+        "unregistered_subgroups": false,
+        "software_repair": "same scientific inputs/config; preserve failures; changed scientific recipe requires new version and authorization",
+        "budget_stop": "resource decision, not scientific no-benefit conclusion",
+        "scientific_small_gain": "validated inference upper bound below predeclared material threshold; otherwise unresolved",
+        "budget_material": "B02"
+      }
+    },
+    {
+      "id": "O01",
+      "status": "DISABLED_SCOPE_CLOSED",
+      "value": {
+        "enabled": false,
+        "blocks_core": false,
+        "future_activation": "separate authorization and full switching/fallback/action evaluation"
+      }
+    },
+    {
+      "id": "O02",
+      "status": "DISABLED_SCOPE_CLOSED",
+      "value": {
+        "enabled": false,
+        "blocks_core": false,
+        "future_activation": "new verified interface/burden/acceptance materials; no repeated speculative demand search"
+      }
+    },
+    {
+      "id": "O03",
+      "status": "DISABLED_SCOPE_CLOSED",
+      "value": {
+        "enabled": false,
+        "blocks_core": false,
+        "future_activation": "separate finite-family/resource/selection protocol with qualification and exclusion evidence"
+      }
+    }
+  ],
+  "material_required": [
+    {
+      "id": "D01",
+      "value": null,
+      "status": "DATA_UNBOUND",
+      "required_before": "confirmation qualification"
+    },
+    {
+      "id": "D02",
+      "value": null,
+      "status": "MATERIAL_REQUIRED",
+      "required_before": "development execution"
+    },
+    {
+      "id": "T01",
+      "value": null,
+      "status": "MATERIAL_REQUIRED",
+      "required_before": "effect-based development decisions"
+    },
+    {
+      "id": "T02",
+      "value": null,
+      "status": "MATERIAL_REQUIRED",
+      "required_before": "rule/group selection"
+    },
+    {
+      "id": "T03",
+      "value": null,
+      "status": "MATERIAL_REQUIRED",
+      "required_before": "group selection and confirmation freeze"
+    },
+    {
+      "id": "T04",
+      "value": null,
+      "status": "FIT_ARTIFACT_PENDING",
+      "required_before": "confirmation freeze"
+    },
+    {
+      "id": "T05",
+      "value": null,
+      "status": "MATERIAL_REQUIRED",
+      "required_before": "historical risk qualification"
+    },
+    {
+      "id": "S02",
+      "value": null,
+      "status": "METHOD_QUALIFICATION_PENDING",
+      "required_before": "scientific interval claims"
+    },
+    {
+      "id": "S03",
+      "value": null,
+      "status": "VALIDATION_PENDING",
+      "required_before": "C0 pass"
+    },
+    {
+      "id": "S04",
+      "value": null,
+      "status": "PRECISION_MATERIAL_PENDING",
+      "required_before": "confirmation freeze"
+    },
+    {
+      "id": "B02",
+      "value": null,
+      "status": "BUDGET_UNBOUND",
+      "required_before": "execution authorization"
+    },
+    {
+      "id": "L01",
+      "value": null,
+      "status": "NOVELTY_EVIDENCE_PENDING",
+      "required_before": "novelty claim and investment review"
+    }
+  ],
+  "actual_results": [],
+  "fitted_artifacts": [],
+  "new_confirmation_source": null
+}

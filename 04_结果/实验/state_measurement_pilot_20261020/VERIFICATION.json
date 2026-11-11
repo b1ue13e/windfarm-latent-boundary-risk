@@ -1,0 +1,33 @@
+{
+  "status": "COMPLETED_DEVELOPMENT_STOP_AT_S2",
+  "new_main_fits": 60,
+  "simple_instances": 10,
+  "routes": {
+    "HGB": {
+      "route_A": false,
+      "route_B": false,
+      "bounded_low_gain_three_endpoint_pairs": false,
+      "status": "STOP_INVESTMENT_UNRESOLVED_OR_FAILED_GATES"
+    },
+    "MLP": {
+      "route_A": false,
+      "route_B": false,
+      "bounded_low_gain_three_endpoint_pairs": false,
+      "status": "STOP_INVESTMENT_UNRESOLVED_OR_FAILED_GATES"
+    }
+  },
+  "compact_members_verified": 822,
+  "compact_archive_sha256": "9a184aab3d31b8b48f694400518ab6e8da5316610816ef334c9811a40d8f02cd",
+  "action_audit": "PASS_ARCHIVED_ACTION_ACCOUNTING",
+  "local_related_tests": 41,
+  "metis_preflight_tests": 13,
+  "protected_sha256": {
+    "paper_tste_ieee.md": "b9e5e417abde1856201e21c6022a994c0601010340b19cc0ee4b4f5f31d17456",
+    "paper_tste_supplementary.md": "43487c70feacc9f0edfb991e56ce342acfa5dc9c678534bc6a42a9eaeb02065e",
+    "paper_tste_chinese.md": "14cdc51df2ad440f8c96eab97c7b450d04437c1599eb4c3c65010280d673352f",
+    "docs/SCIENTIFIC_CONTRACT.md": "cf0c38fba403d842ca87521dbe03897e9078dcb87da593daa7af6fd009545f76"
+  },
+  "manuscript_changed": false,
+  "new_measurements_downloaded": false,
+  "further_stages_started": false
+}

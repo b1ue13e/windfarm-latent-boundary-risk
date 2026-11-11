@@ -1,0 +1,97 @@
+{
+  "scope": "Pandoc/XeLaTeX document conversion only; no result producers",
+  "builds": [
+    {
+      "label": "paper_tste_ieee",
+      "runs": [
+        {
+          "command": [
+            "E:\\论文3\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+            "paper_tste_ieee.md",
+            "--citeproc",
+            "--csl",
+            "IEEE.csl",
+            "--standalone",
+            "-t",
+            "latex",
+            "-o",
+            "analyses\\manuscript_provenance_pdf_audit_20261018\\build\\paper_tste_ieee.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 22.077,
+          "stdout_log": "analyses/manuscript_provenance_pdf_audit_20261018/paper_tste_ieee_compile_pass0.log"
+        },
+        {
+          "command": [
+            "E:\\MiKTeX\\miktex\\bin\\x64\\xelatex.exe",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-output-directory=analyses\\manuscript_provenance_pdf_audit_20261018\\build",
+            "analyses\\manuscript_provenance_pdf_audit_20261018\\build\\paper_tste_ieee.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 27.188,
+          "stdout_log": "analyses/manuscript_provenance_pdf_audit_20261018/paper_tste_ieee_compile_pass1.log"
+        },
+        {
+          "command": [
+            "E:\\MiKTeX\\miktex\\bin\\x64\\xelatex.exe",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-output-directory=analyses\\manuscript_provenance_pdf_audit_20261018\\build",
+            "analyses\\manuscript_provenance_pdf_audit_20261018\\build\\paper_tste_ieee.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 2.192,
+          "stdout_log": "analyses/manuscript_provenance_pdf_audit_20261018/paper_tste_ieee_compile_pass2.log"
+        }
+      ]
+    },
+    {
+      "label": "paper_tste_supplementary",
+      "runs": [
+        {
+          "command": [
+            "E:\\论文3\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+            "paper_tste_supplementary.md",
+            "--citeproc",
+            "--csl",
+            "IEEE.csl",
+            "--standalone",
+            "-t",
+            "latex",
+            "-o",
+            "analyses\\manuscript_provenance_pdf_audit_20261018\\build\\paper_tste_supplementary.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 31.887,
+          "stdout_log": "analyses/manuscript_provenance_pdf_audit_20261018/paper_tste_supplementary_compile_pass0.log"
+        },
+        {
+          "command": [
+            "E:\\MiKTeX\\miktex\\bin\\x64\\xelatex.exe",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-output-directory=analyses\\manuscript_provenance_pdf_audit_20261018\\build",
+            "analyses\\manuscript_provenance_pdf_audit_20261018\\build\\paper_tste_supplementary.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 18.16,
+          "stdout_log": "analyses/manuscript_provenance_pdf_audit_20261018/paper_tste_supplementary_compile_pass1.log"
+        },
+        {
+          "command": [
+            "E:\\MiKTeX\\miktex\\bin\\x64\\xelatex.exe",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-output-directory=analyses\\manuscript_provenance_pdf_audit_20261018\\build",
+            "analyses\\manuscript_provenance_pdf_audit_20261018\\build\\paper_tste_supplementary.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 3.274,
+          "stdout_log": "analyses/manuscript_provenance_pdf_audit_20261018/paper_tste_supplementary_compile_pass2.log"
+        }
+      ]
+    }
+  ]
+}

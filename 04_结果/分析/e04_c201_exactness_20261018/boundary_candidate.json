@@ -1,0 +1,25 @@
+{
+  "status": "INFERRED_BOUNDARY_CANDIDATE_NOT_HISTORICAL_TRACE",
+  "historical_failed_posterior_available": false,
+  "current_archive": "a100/repeat1_posterior_and_bins.npz",
+  "current_archive_sha256": "f3ac78098e7cc2de3bdfaff1c0adaafc6e3273dedd75a9d38384ab246044cb88",
+  "candidate_flat_index": 198473,
+  "issue_anchor": 31756,
+  "node_id": 20,
+  "block_1based": 11,
+  "day_slot": [
+    221,
+    76
+  ],
+  "posterior": 4.797643669007812e-06,
+  "edge_0p4": 4.797634028363972e-06,
+  "positive_margin": 9.549694368615746e-12,
+  "shortfall_kw": 0.0,
+  "adjacent_reserve_kw": [
+    150.9319305419922,
+    176.473388671875
+  ],
+  "hypothetical_adjacent_bin_cost_difference_kwh": 4.256908416748047,
+  "prior_observed_max_daily_gap_kwh": 4.256908416748047,
+  "interpretation": "Adjacent-bin cost difference equals the prior observed gap, but absent failed-run probabilities prevent identifying the actual historical cell or cause."
+}

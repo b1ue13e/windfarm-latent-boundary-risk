@@ -1,0 +1,16 @@
+{
+  "status": "PASS_LITERATURE_LEDGER_STATIC_CHECK_ONLY",
+  "records": 8,
+  "paper_contract_raw_hashes_match_prior": [
+    "paper_tste_ieee.md",
+    "paper_tste_supplementary.md",
+    "paper_tste_chinese.md",
+    "docs/SCIENTIFIC_CONTRACT.md"
+  ],
+  "V3_git_diff_empty": true,
+  "initial_check": "Raw working-tree versus Git blob byte comparison failed on manuscript; existing prior working-tree SHA256 values match exactly and git diff is empty. No content rewriting performed.",
+  "experiments_run": false,
+  "paper_or_V3_changed": false,
+  "literature_exhaustive": false,
+  "note": "Source access depth recorded per row; no new numerical/scientific validation."
+}

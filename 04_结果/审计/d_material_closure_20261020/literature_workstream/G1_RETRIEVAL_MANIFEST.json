@@ -1,0 +1,49 @@
+{
+  "review_date": "2026-10-20",
+  "timezone": "Asia/Shanghai",
+  "scope": "Public literature and metadata only; no operational data or experiments",
+  "gate": "G1_NEAREST_FULLTEXT",
+  "gate_result": "NOT_PASSED",
+  "investment_recommendation": "DO_NOT_CONTINUE_D_UNDER_CURRENT_MATERIAL_GATE",
+  "pmaps": {
+    "doi": "10.1109/PMAPS61648.2024.10667148",
+    "source": "https://www.osti.gov/servlets/purl/2377899",
+    "local_file": "glista_watson_pmaps2024.pdf",
+    "bytes": 988693,
+    "sha256": "55a5ab61d1270c072d1f667feee9c39e19072f40751afb4e33817b0e440ff14d",
+    "pdf_pages": 8,
+    "article_pages": 6,
+    "article_page_offset": 2,
+    "read_coverage": "All pages text; formula page PDF6 visually inspected",
+    "status": "VERIFIED_FULLTEXT"
+  },
+  "next_energy": {
+    "doi": "10.1016/j.nxener.2026.100888",
+    "pii": "S2949821X26003789",
+    "publisher": "https://www.sciencedirect.com/science/article/pii/S2949821X26003789",
+    "crossref": "https://api.crossref.org/works/10.1016%2Fj.nxener.2026.100888",
+    "openalex": "https://api.openalex.org/works/W7202258952",
+    "publisher_web_status": 403,
+    "publisher_standard_https_status": 403,
+    "crossref_listed_tdm_route": "https://api.elsevier.com/content/article/PII:S2949821X26003789?httpAccept=text/xml",
+    "tdm_route_status_this_round": 429,
+    "crossref_metadata": "VERIFIED; authors and CC-BY 4.0 recorded",
+    "openalex_pdf_url": null,
+    "openalex_has_fulltext": false,
+    "openalex_any_repository_has_fulltext": false,
+    "repository_search": "No separate public fulltext found within exact-title DOI author and UMY-directed searches",
+    "status": "FULLTEXT_NOT_OBTAINED_METHOD_OVERLAP_UNKNOWN"
+  },
+  "no_auth_bypass": true,
+  "no_author_contact": true,
+  "no_new_operational_data": true,
+  "no_experiment": true,
+  "no_manuscript_or_old_audit_edits": true,
+  "local_reading_copies_not_for_git": [
+    "glista_watson_pmaps2024.pdf",
+    "glista_watson_pmaps2024.txt",
+    "glista_pdf_page_5.png",
+    "glista_pdf_page_6.png",
+    "glista_pdf_page_7.png"
+  ]
+}

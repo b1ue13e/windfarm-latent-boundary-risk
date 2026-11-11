@@ -1,0 +1,222 @@
+{
+  "status": "FINDINGS",
+  "findings": [
+    {
+      "code": "PROSE008",
+      "artifact": "main",
+      "match": "active- and reactive-power",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase"
+    },
+    {
+      "code": "PROSE008",
+      "artifact": "main",
+      "match": "one- and seven-day",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase"
+    },
+    {
+      "code": "PROSE008",
+      "artifact": "main",
+      "match": "one- and seven-day",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase"
+    },
+    {
+      "code": "PROSE012",
+      "artifact": "main",
+      "match": "draw on",
+      "count": 1,
+      "message": "formulaic connective or indirect academic verb; retain only when it clarifies the relation better than direct wording"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "main",
+      "match": "wind-power, en-GB, scientific-reports-brackets, link-citations, header-includes, Wind-power",
+      "count": 6,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "main",
+      "match": "active-power, reactive-power, current-power, histogram-boosting, pitch-only",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "main",
+      "match": "point-model, label-release, state-fit, state-fit",
+      "count": 4,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "main",
+      "match": "full-input, pitch-target, continuous-pitch, base-input, shuffled-target",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "main",
+      "match": "lower-error, continuous-pitch, recovered-score, actual-pitch, primary-span",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "main",
+      "match": "low-increment, per-fit, per-fit, weighted-shortfall",
+      "count": 4,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE008",
+      "artifact": "supplementary",
+      "match": "active- and reactive-power",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase"
+    },
+    {
+      "code": "PROSE008",
+      "artifact": "supplementary",
+      "match": "one- and seven-day",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase"
+    },
+    {
+      "code": "PROSE008",
+      "artifact": "supplementary",
+      "match": "one- and seven-day",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase"
+    },
+    {
+      "code": "PROSE008",
+      "artifact": "supplementary",
+      "match": "three- and seven-day",
+      "count": 1,
+      "message": "suspended compound; consider a clearer open phrase"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "wind-power, en-GB, scientific-reports-brackets, link-citations, header-includes, ten-minute",
+      "count": 6,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Zero-based, Point-forecast, Pitch-probe, Signed-offset, Signed-offset",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Reader-facing, WPQ-history, active-power, reactive-power",
+      "count": 4,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Reader-facing, decision-head, Base-input, Shuffled-label",
+      "count": 4,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "mean-cost, instance-shortfall, mean-shortfall, mean-procurement",
+      "count": 4,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Within-family, exposed-data, all-stage, selection-adjusted, manuscript-wide",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "cost-reduction, power-versus-pitch, cost-premium, cost-reduction, per-fit",
+      "count": 5,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "B-A, B-A, B-A, C-B, C-B, C-B, C-WindScore, C-WindScore, C-WindScore, C-ShuffledScore, C-ShuffledScore, C-ShuffledScore, E-B, E-B, E-B, D-B, D-B, D-B",
+      "count": 18,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE010",
+      "artifact": "supplementary",
+      "match": "Fixed-fit, Pitch-target, Base-input, Shuffled-target, Finite-pitch, state-addition, offset-level",
+      "count": 7,
+      "message": "dense lexical hyphenation in one sentence; inspect clarity and field convention"
+    },
+    {
+      "code": "PROSE001",
+      "artifact": "supplementary",
+      "match": "removing pitch fit severity interval has lower bound above",
+      "count": 2,
+      "message": "exact or punctuation-only sentence repetition"
+    },
+    {
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "bound exceeds uniformly low increment",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences"
+    },
+    {
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "exceeds uniformly low increment is",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences"
+    },
+    {
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "gain lower bound does not",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences"
+    },
+    {
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "gain upper bound exceeds uniformly",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences"
+    },
+    {
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "lower bound does not exceed",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences"
+    },
+    {
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "uniformly low increment is unresolved",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences"
+    },
+    {
+      "code": "PROSE004",
+      "artifact": "supplementary",
+      "match": "upper bound exceeds uniformly low",
+      "count": 4,
+      "message": "repeated multiword phrase across sentences"
+    }
+  ]
+}

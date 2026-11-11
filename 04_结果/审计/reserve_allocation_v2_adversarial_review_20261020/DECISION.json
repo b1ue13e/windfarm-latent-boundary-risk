@@ -1,0 +1,33 @@
+{
+  "decision": "NO_GO_FOR_CURRENT_V2_TSTE_EXPERIMENTAL_INVESTMENT",
+  "retain_question": true,
+  "continue_only": "Bounded document-level information/tail correction plus nearest-method and noncircular-validation feasibility audit",
+  "prohibit_now": [
+    "experiment",
+    "training",
+    "inference",
+    "resampling",
+    "simulation",
+    "new_measurement",
+    "remote_job",
+    "threshold_change",
+    "manuscript_change",
+    "automatic_V3"
+  ],
+  "window_decision_unchanged": "Towie2026 CANCELLED_AS_INDEPENDENT_CONFIRMATION;no qualified replacement",
+  "why_not_full_continue": [
+    "C5 is a target-aligned candidate not an empirically qualified strong baseline",
+    "possible omission of already published commitments under declared nominal clock",
+    "RAW outsidecap tail not identified by traineddomain",
+    "synthetic budget meaning and missing novelty/validation evidence"
+  ],
+  "venue_limit": "No universal TSTE independent-year requirement inferred;this project has no currently credible equivalent alternative evidence route",
+  "exit_conditions": [
+    "Nearest fullmethods leave no substantive responsibility gap => retire candidate as positive TSTE mainline",
+    "No credible protected/prospective validation path or actually established original theoretical/methodological substitute => end further TSTE investment in this candidate",
+    "Strong P replicates on future authorized qualified comparison => report bounded replaceability not unique state necessity",
+    "Only isolated syntheticbudget effect => retain limitedprogram finding no gridoperationgeneralization"
+  ],
+  "future_experiment_authorized_by_this_review": false,
+  "current_queue": []
+}

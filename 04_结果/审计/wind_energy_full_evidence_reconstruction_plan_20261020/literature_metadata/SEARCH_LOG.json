@@ -1,0 +1,61 @@
+{
+  "audit_date": "2026-10-20",
+  "mode": "targeted_lit_review_and_fact_check_not_systematic_review",
+  "focus": "State/regime probabilistic wind-power forecasting, missing or stale power telemetry, and reserve consequences; compare measured/recovered state after strong history and same-freshness power",
+  "primary_queries": [
+    "\"10.1016/j.mlwa.2026.100957\"",
+    "\"10.1016/j.seta.2026.105438\"",
+    "wind power probabilistic forecasting 2025 2026 operating regime telemetry missing stale reserve SAFER",
+    "\"Learning Data-Driven Uncertainty Set Partitions\"",
+    "\"wind power\" \"pitch\" \"probabilistic\" \"2025\" forecasting uncertainty",
+    "\"wind power\" \"stale\" \"forecasting\" probabilistic",
+    "\"wind power\" \"data latency\" forecasting probabilistic",
+    "\"State-Adaptive Forecast Error Recalibration\" pdf",
+    "\"Reserve-risk-oriented regime-calibrated\" pdf",
+    "\"Probabilistic Wind Power Forecasting With Missing Data Tolerance\" pdf",
+    "\"Probabilistic wind power forecasting resilient to missing values\" \"Energy\" DOI",
+    "\"wind power\" \"forecasting\" \"telemetry\" \"delay\" \"probabilistic\"",
+    "\"wind power\" \"operating regimes\" \"quantile\" \"2024\"",
+    "\"wind power\" \"state-dependent\" \"2025\" \"forecasting\"",
+    "\"wind power\" \"value of information\" \"reserve\" \"2025\"",
+    "\"Leveraging stochastic differential equations\" \"dynamic power curve\" pdf",
+    "\"10.1002/we.1988\"",
+    "\"10.1016/j.egyai.2026.100900\"",
+    "\"State-Adaptive Forecast Error Recalibration for probabilistic wind power forecasting\"",
+    "\"Reserve-risk-oriented regime-calibrated interval forecasting\" -site:sciencedirect.com -site:ouci.dntb.gov.ua",
+    "\"10.1002/we.416\" \"Published online\""
+  ],
+  "added_primary_records": [
+    "https://ira.lib.polyu.edu.hk/handle/10397/117725",
+    "https://discovery.ucl.ac.uk/id/eprint/10215885/",
+    "https://arxiv.org/abs/2305.14662v3",
+    "https://arxiv.org/abs/2403.03631v2",
+    "https://henrikmadsen.org/wp-content/uploads/2017/05/leveraging_stochastic_wind_power.pdf"
+  ],
+  "access_boundaries": [
+    "SETA: direct publisher open403; publisher-indexed preview and pre-existing verified reading notes retained. No alternate full article found in bounded exact-title/DOI public search.",
+    "SAFER: direct publisher open403; final publisher abstract available through primary-indexed result. Author repository root shows notebook/data/results and no manuscript link. No data/results directories or releases opened/downloaded.",
+    "Earlier SAFER SSRN title/author order/results differ from final article; not substituted for final full text.",
+    "arXiv2403.03631v3 requested initially404; official abs record confirms latestv2 dated2025-12-03, used v2 thereafter.",
+    "A final site-restricted SETA proxy/shrinkage search returned unrelated material; discarded entirely and not used as evidence.",
+    "Crossref first three calls429; other records200. Used copied previously verified responses for the three plus current primary identity checks; did not loop after429.",
+    "No systematic search completeness claim, no field prevalence estimate and no whole-article negative claim where only preview/code was read."
+  ],
+  "additional_document_receipt": {
+    "name": "iversen2017",
+    "url": "https://henrikmadsen.org/wp-content/uploads/2017/05/leveraging_stochastic_wind_power.pdf",
+    "http_status": 200,
+    "bytes": 1683819,
+    "sha256": "c4511e2afa6d08393271d3b129b74e4ea7099ce7848b3376a4af49a0d6a983de",
+    "pages": 12,
+    "version": "Author-hosted publisher version"
+  },
+  "scope_checks": {
+    "measurement_files_downloaded": false,
+    "external_code_executed": false,
+    "model_or_statistical_experiment_run": false,
+    "metis_accessed": false,
+    "original_result_threshold_contract_or_manuscript_modified": false,
+    "commit_created": false
+  }
+}

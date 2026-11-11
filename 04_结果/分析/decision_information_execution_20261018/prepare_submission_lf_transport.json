@@ -1,0 +1,6 @@
+{
+  "stdout": "{\"root\": \"/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5a0b0d9\", \"argv\": [\"qsub\", \"-N\", \"di_prepare\", \"-q\", \"rqdf\", \"-l\", \"select=1:ncpus=2:mem=48gb\", \"-l\", \"walltime=00:30:00\", \"-o\", \"/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5a0b0d9/logs/prepare.log\", \"-v\", \"STUDY_ROOT=/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5a0b0d9,STUDY_STAGE=prepare\", \"/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5a0b0d9/run_lf.pbs\"], \"stdout\": \"244598.cm\\n\", \"stderr\": \"\", \"returncode\": 0, \"wrapper_sha256\": \"9470eb888b2cd83d0f79befa1d93abee1280baec9863c71278906f4618761f6b\", \"wrapper_transform\": \"CRLF to LF only; original archived script preserved\"}\n",
+  "stderr": "",
+  "returncode": 0,
+  "timestamp_utc": "2026-10-18T13:59:21.763844+00:00"
+}

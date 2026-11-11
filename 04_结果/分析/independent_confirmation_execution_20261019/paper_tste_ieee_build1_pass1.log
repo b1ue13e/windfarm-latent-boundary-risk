@@ -1,0 +1,272 @@
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+
+(analyses/independent_confirmation_execution_20261019/build/paper_tste_ieee.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(E:\MiKTeX\tex/latex/ieeetran\IEEEtran.cls
+Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+(tuptm.fd)
+-- Using 8.5in x 11in (letter) paper.
+-- Using DVI output.
+-- This is a 10 point document.
+) (E:\MiKTeX\tex/latex/xcolor\xcolor.sty
+(E:\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(E:\MiKTeX\tex/latex/graphics-def\xetex.def)
+(E:\MiKTeX\tex/latex/graphics\mathcolor.ltx))
+(E:\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(E:\MiKTeX\tex/latex/amsmath\amstext.sty
+(E:\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(E:\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(E:\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(E:\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(E:\MiKTeX\tex/latex/amsfonts\amsfonts.sty))
+(E:\MiKTeX\tex/generic/iftex\iftex.sty)
+(E:\MiKTeX\tex/latex/unicode-math\unicode-math.sty
+(E:\MiKTeX\tex/latex/l3kernel\expl3.sty
+(E:\MiKTeX\tex/latex/l3backend\l3backend-xetex.def))
+(E:\MiKTeX\tex/latex/unicode-math\unicode-math-xetex.sty
+(E:\MiKTeX\tex/latex/l3packages/xparse\xparse.sty)
+(E:\MiKTeX\tex/latex/l3packages/l3keys2e\l3keys2e.sty)
+(E:\MiKTeX\tex/latex/fontspec\fontspec.sty
+(E:\MiKTeX\tex/latex/fontspec\fontspec-xetex.sty
+(E:\MiKTeX\tex/latex/base\fontenc.sty)
+(E:\MiKTeX\tex/latex/fontspec\fontspec.cfg)))
+(E:\MiKTeX\tex/latex/base\fix-cm.sty (E:\MiKTeX\tex/latex/base\ts1enc.def))
+(E:\MiKTeX\tex/latex/unicode-math\unicode-math-table.tex)))
+(E:\MiKTeX\tex/latex/lm\lmodern.sty) (E:\MiKTeX\tex/latex/upquote\upquote.sty
+(E:\MiKTeX\tex/latex/base\textcomp.sty))
+(E:\MiKTeX\tex/latex/microtype\microtype.sty
+(E:\MiKTeX\tex/latex/graphics\keyval.sty)
+(E:\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(E:\MiKTeX\tex/latex/microtype\microtype-xetex.def)
+(E:\MiKTeX\tex/latex/microtype\microtype.cfg))
+(E:\MiKTeX\tex/latex/parskip\parskip.sty
+(E:\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+(E:\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(E:\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty)))
+(E:\MiKTeX\tex/latex/tools\calc.sty) (E:\MiKTeX\tex/latex/graphics\graphicx.sty
+(E:\MiKTeX\tex/latex/graphics\graphics.sty
+(E:\MiKTeX\tex/latex/graphics\trig.sty)
+(E:\MiKTeX\tex/latex/graphics-cfg\graphics.cfg)))
+(E:\MiKTeX\tex/latex/tools\tabularx.sty (E:\MiKTeX\tex/latex/tools\array.sty))
+(E:\MiKTeX\tex/latex/booktabs\booktabs.sty)
+(E:\MiKTeX\tex/latex/float\float.sty)
+(E:\MiKTeX\tex/latex/enumitem\enumitem.sty)
+(E:\MiKTeX\tex/latex/bookmark\bookmark.sty
+(E:\MiKTeX\tex/latex/hyperref\hyperref.sty
+(E:\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty)
+(E:\MiKTeX\tex/generic/pdfescape\pdfescape.sty
+(E:\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+(E:\MiKTeX\tex/generic/infwarerr\infwarerr.sty)))
+(E:\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(E:\MiKTeX\tex/latex/hyperref\nameref.sty
+(E:\MiKTeX\tex/latex/refcount\refcount.sty)
+(E:\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty))
+(E:\MiKTeX\tex/generic/stringenc\stringenc.sty)
+(E:\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(E:\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(E:\MiKTeX\tex/latex/hyperref\puenc.def) (E:\MiKTeX\tex/latex/url\url.sty)
+(E:\MiKTeX\tex/generic/bitset\bitset.sty
+(E:\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty)))
+(E:\MiKTeX\tex/latex/hyperref\hxetex.def
+(E:\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
+(E:\MiKTeX\tex/generic/uniquecounter\uniquecounter.sty)))
+(E:\MiKTeX\tex/latex/bookmark\bkm-xetex.def))
+(E:\MiKTeX\tex/latex/xurl\xurl.sty)
+No file paper_tste_ieee.aux.
+-- Lines per column: 58 (exact).
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+(E:\MiKTeX\tex/latex/lm\omllmm.fd) (E:\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(E:\MiKTeX\tex/latex/microtype\mt-msa.cfg)
+(E:\MiKTeX\tex/latex/amsfonts\umsb.fd)
+(E:\MiKTeX\tex/latex/microtype\mt-msb.cfg)
+Underfull \vbox (badness 3746) has occurred while \output is active
+Underfull \hbox (badness 10000) in paragraph at lines 198--209
+[]\TU/TeXGyreTermes(0)/m/n/10 We separate three questions: $[] []
+
+Underfull \hbox (badness 4792) in paragraph at lines 198--209
+[] [] []$\TU/TeXGyreTermes(0)/m/n/10 . A state score
+
+Underfull \hbox (badness 2744) in paragraph at lines 198--209
+\TU/TeXGyreTermes(0)/m/n/10 representation and requires a same-information deci
+sion
+
+Underfull \hbox (badness 2582) in paragraph at lines 198--209
+\TU/TeXGyreTermes(0)/m/n/10 comparison. The 134-turbine WTB benchmark provides
+
+Underfull \hbox (badness 3240) in paragraph at lines 198--209
+\TU/TeXGyreTermes(0)/m/n/10 development evidence, while existing European trans
+fer
+
+Underfull \hbox (badness 8000) in paragraph at lines 198--209
+\TU/TeXGyreTermes(0)/m/n/10 results retain their separately bounded scope. Grap
+h
+
+Underfull \hbox (badness 5460) in paragraph at lines 198--209
+\TU/TeXGyreTermes(0)/m/n/10 and mixture-of-experts formulations are implementat
+ion
+
+Underfull \hbox (badness 1527) in paragraph at lines 214--220
+\TU/TeXGyreTermes(0)/m/n/10 arrived-information clock, forecast commitment, fin
+ite-
+[1]
+Underfull \hbox (badness 10000) in paragraph at lines 250--266
+[]\TU/TeXGyreTermes(0)/m/n/10 Recent physics-aware dynamic-graph mixture-of-exp
+erts
+
+Underfull \hbox (badness 1810) in paragraph at lines 250--266
+\TU/TeXGyreTermes(0)/m/n/10 (MoE) architectures, such as that of Zhao et al. [2
+0],
+
+Underfull \hbox (badness 2486) in paragraph at lines 250--266
+\TU/TeXGyreTermes(0)/m/n/10 and expert routing improves point forecasting accur
+acy.
+
+Underfull \hbox (badness 2027) in paragraph at lines 250--266
+\TU/TeXGyreTermes(0)/m/n/10 Rather than iterating on forecasting network topolo
+gies,
+
+Underfull \hbox (badness 5756) in paragraph at lines 250--266
+\TU/TeXGyreTermes(0)/m/n/10 our formulation isolates the upstream information-a
+nd-
+
+Underfull \hbox (badness 3758) in paragraph at lines 250--266
+\TU/TeXGyreTermes(0)/m/n/10 without parameter updates, and whether the recovere
+d
+
+Underfull \hbox (badness 2600) in paragraph at lines 250--266
+\TU/TeXGyreTermes(0)/m/n/10 latent state alters asymmetric reserve-shortfall de
+cisions.
+
+Underfull \hbox (badness 5667) in paragraph at lines 250--266
+\TU/TeXGyreTermes(0)/m/n/10 triage problem: screening aerodynamic transition ri
+sks
+
+Underfull \vbox (badness 4242) has occurred while \output is active [2]
+Underfull \hbox (badness 1515) in paragraph at lines 423--431
+\TU/TeXGyreTermes(0)/m/n/10 quantile recalibration. Given delayed telemetry $[]
+[] []
+[3]
+
+LaTeX Warning: Reference `tab:h6-benchmark' on page 4 undefined on input line 4
+97.
+
+
+Underfull \hbox (badness 1521) in paragraph at lines 538--554
+[]\TU/TeXGyreTermes(0)/m/n/10 Here $[][]$ is the one-sided UCB under the regist
+ered
+[4]
+
+LaTeX Warning: Reference `tab:h6-benchmark' on page 5 undefined on input line 6
+67.
+
+
+LaTeX Warning: Reference `tab:h6-paired' on page 5 undefined on input line 672.
+
+
+
+LaTeX Warning: Reference `sec:modular-baseline' on page 5 undefined on input li
+ne 716.
+
+
+LaTeX Warning: Reference `tab:h6-paired' on page 5 undefined on input line 773.
+
+
+
+LaTeX Warning: Reference `tab:h6-benchmark' on page 5 undefined on input line 7
+85.
+
+
+LaTeX Warning: Reference `eq:sensitivity-cliff' on page 5 undefined on input li
+ne 795.
+
+
+LaTeX Warning: Reference `eq:stale-phys' on page 5 undefined on input line 799.
+
+
+
+Underfull \vbox (badness 6173) has occurred while \output is active
+
+LaTeX Warning: Reference `eq:recalib' on page 5 undefined on input line 811.
+
+
+LaTeX Warning: Reference `tab:phase-scan' on page 5 undefined on input line 813
+.
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 885--885
+ \TU/TeXGyreTermes(0)/m/it/9 C. Regime 3: Pitch Withheld: Information Sufficien
+cy $[]$
+
+Underfull \hbox (badness 5359) in paragraph at lines 885--885
+\TU/TeXGyreTermes(0)/m/it/9 Consequence-Based State Recovery and Decision Bound
+aries
+
+LaTeX Warning: Reference `tab:phase-scan' on page 6 undefined on input line 889
+.
+
+
+Underfull \vbox (badness 1226) has occurred while \output is active [6]
+
+LaTeX Warning: Reference `tab:phase-scan' on page 7 undefined on input line 922
+.
+
+
+LaTeX Warning: Reference `fig:rho-sensitivity' on page 7 undefined on input lin
+e 964.
+
+[7]
+
+LaTeX Warning: Reference `tab:subset-candidate' on page 8 undefined on input li
+ne 1050.
+
+[8]
+Underfull \hbox (badness 3758) in paragraph at lines 1126--1144
+\TU/TeXGyreTermes(0)/m/n/10 snapshot reports a full-population posterior penalt
+y of
+
+Underfull \hbox (badness 10000) in paragraph at lines 1145--1157
+[]\TU/TeXGyreTermes(0)/m/it/10 External scope: \TU/TeXGyreTermes(0)/m/n/10 The 
+deterministic_matched_transfer_v1
+
+Underfull \hbox (badness 10000) in paragraph at lines 1145--1157
+\TU/TeXGyreTermes(0)/m/n/10 branch uses existing weights and local frozen
+
+Underfull \hbox (badness 10000) in paragraph at lines 1145--1157
+\TU/TeXGyreTermes(0)/m/n/10 forecasts/calibration; its h=6 posterior-minus-loca
+l-wind-
+
+Underfull \hbox (badness 1960) in paragraph at lines 1145--1157
+\TU/TeXGyreTermes(0)/m/n/10 The sealed Hill of Towie year provides the separate
+ly
+
+Underfull \hbox (badness 2057) in paragraph at lines 1145--1157
+\TU/TeXGyreTermes(0)/m/n/10 is a secondary capability result. No PCC procuremen
+t,
+[9]
+Underfull \vbox (badness 10000) has occurred while \output is active [10]
+(E:\论文3\analyses\independent_confirmation_execution_20261019\build\paper_tste_i
+eee.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)
+Output written on E:\论文3\analyses\independent_confirmation_execution_20261019\b
+uild\paper_tste_ieee.pdf (10 pages).
+Transcript written on E:\论文3\analyses\independent_confirmation_execution_202610
+19\build\paper_tste_ieee.log.
+xelatex: security risk: running with elevated privileges
+miktex-dvipdfmx: security risk: running with elevated privileges
+miktex-dvipdfmx: major issue: So far, you have not checked for MiKTeX updates.
+xelatex: major issue: So far, you have not checked for MiKTeX updates.

@@ -1,0 +1,20 @@
+{
+  "schema": "user_requested_novelty_significance_practical_review/1.0",
+  "formal_reviewer_full_package": false,
+  "fork_turns": "none",
+  "model_route": "All seats inherit parent route; no model override",
+  "exact_model_version": "UNKNOWN_NOT_OBSERVED",
+  "provider": "OpenAI",
+  "calibration_status": "NOT_CALIBRATED",
+  "criteria_binding": "No author-confirmed official venue criteria manifest; no venue acceptance claim",
+  "current_peer_outputs_read_before_commit": false,
+  "shared_materials": "AGENTS, scientific contract, PROJECT, frozen C1-C8 and the earlier strategy as material under review",
+  "error_independence": "NOT_ESTABLISHED; fresh contexts and role separation do not establish statistically independent errors",
+  "seats": [
+    {"role": "Reviewer N", "agent": "/root/novelty_skeptic", "output": "reviewer_n/REVIEWER_N.md", "work": "Primary-source adversarial search and real citation edges"},
+    {"role": "Reviewer S", "agent": "/root/significance_skeptic", "output": "reviewer_s/REVIEWER_S.md", "work": "Scientific counterfactual, utility, generality and route screen"},
+    {"role": "Reviewer P", "agent": "/root/practical_skeptic", "output": "reviewer_p/REVIEWER_P.md", "work": "Read-only source, receipt and block reaggregation; 700 protected inputs"}
+  ],
+  "synthesis": "Root read all committed reports, performed additional primary-source checks and DOI verification, and adjudicated all nine objections without inventing extra reviewer comments.",
+  "human_identity": "UNKNOWN_NOT_INFERRED_FROM_MANUSCRIPT"
+}

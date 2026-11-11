@@ -1,0 +1,60 @@
+{
+  "candidate_commit": "e908c1e924aa252bb208cd252f98c0453418facc",
+  "decision": "GO_FOR_BOUNDED_WIND_ENERGY_RECONSTRUCTION_FROM_EXISTING_EVIDENCE",
+  "plan_only": true,
+  "more_substantive_than_v2": "INFERRED_EDITORIAL_JUDGEMENT_FROM_DIFFERENT_CORE_EVIDENCE_NOT_NEW_EXPERIMENTS",
+  "recommend_submit_now": false,
+  "working_title": "Measurement Freshness and State Reconstruction for Wind-Power Shortfall Decisions: A Controlled SCADA Evaluation",
+  "main_question": "After historical SCADA and a common wind-power forecast commitment are available, which shortfall consequences change when measurements are refreshed, states are reconstructed, or state scores are added?",
+  "article_identity": "Retrospective empirical evaluation of two completed controlled development studies; not a new method, globally novel principle or confirmatory synthesis",
+  "core_contributions": [
+    {"id": "C1", "claim": "Current-power and current-pitch update packages have different proxy-cost outcomes under the evaluated procedures", "main_evidence": "20261020 common-population measurement study", "status": "VERIFIED_BOUNDED_PAIRED_RESULTS", "limit": "No pure information ordering, universal replacement, confirmed interaction or safety substitution"},
+    {"id": "C2", "claim": "Direct histories, a recovered pitch score and a compressed decision-head input have distinct attainable outcomes; score-specific semantics are not isolated", "main_evidence": "20261018 direct-history/recovered-score/control/compression comparisons", "status": "VERIFIED_WITH_MIXED_SCORE_AND_SEMANTIC_CONTROL_EVIDENCE", "limit": "No global state uselessness, causal mediation or end-to-end data compression"},
+    {"id": "C3", "claim": "Calibration, procurement, uncovered shortfall and strict event frequency give different assessments of the tested programs", "main_evidence": "20261020 original/common-q C-R-U-V and qualification records", "status": "VERIFIED_ACCOUNTING_WITH_EXPLORATORY_ALLOCATION_INTERPRETATION", "limit": "No equal-budget or pitch-exclusive allocation advantage; MLP uncertainty and original route failures retained"}
+  ],
+  "literature": {
+    "matrix_items": 14,
+    "crossref_title_doi_bindings": 13,
+    "remaining_item": "Explicit arXiv v2 preprint",
+    "new_fulltext_or_accepted_manuscripts_checked": ["Iversen2017", "Wen2024", "Meng2026", "Stratigakos2026", "Wen2025v2"],
+    "existing_user_ml_wind_pdf": "MLWA2026 formal15-page article; selected key sections rechecked after prior full reading",
+    "final_fulltexts_not_obtained": ["SETA2026", "SAFER2026"],
+    "not_claimed_first": ["quality versus value", "current-power conditioning", "latent state or extra measurement comparison", "missing-data or stale-feature wind forecasting", "regime recalibration", "forecast-to-reserve cost evaluation"],
+    "global_priority_certified": false
+  },
+  "evidence_separation": {
+    "study_R_population": 672939,
+    "study_M_population": 671538,
+    "training_rows": {"R": 120000, "M": 360000},
+    "same_development_weather": true,
+    "new_independent_confirmation": false,
+    "cross_study_effect_merging": false,
+    "unified_paper_95percent_event": false,
+    "Towie2025": "SI original frozen fixed-reference and separate secondary-family question only; not confirmation of the new measurement/reconstruction narrative"
+  },
+  "four_questions": {
+    "why_care": "Choices between measurement refresh and state recoding require direct consequence evidence, beyond recovery metrics",
+    "whats_new": "Specific wind-SCADA comparison outcomes and boundaries after direct histories, rather than invention of the general principles",
+    "why_believe": "Study-internal common targets/populations, original frozen procedures and stored paired intervals, controls and adverse endpoints retained",
+    "why_this_venue": "Wind forecasting, telemetry and operating-state interpretation readers obtain a concrete empirical comparison beyond the V2 column-width trade; significance remains an editorial judgement"
+  },
+  "acceptance_rules_unchanged": {
+    "original_A_B_C": "ALL_FALSE_IN_CORRECTED_ORIGINAL_AND_COMMON_ESTIMATOR_VARIANTS",
+    "existing_cost_margin": 0.01,
+    "existing_risk_cap": 0.1,
+    "existing_weighted_U_over_Cstar": 0.001,
+    "new_paper_plan_checks_are_not_new_experiment_thresholds": true
+  },
+  "exploratory_only": ["restricted constant-purchase exclusion", "state-exclusive allocation", "near-zero event interpretation beyond stored diagnostics", "calibration or estimator-specific explanation not causally isolated"],
+  "main_figures_planned": 4,
+  "main_tables_planned": 3,
+  "new_figures_or_manuscript_generated": false,
+  "stop_plan_if": ["requires deleting MLP adverse risk or original route failures", "requires restoring invalid result versions", "requires pooling distinct study populations or inference families", "requires borrowing old independent-year identity", "requires treating unresolved semantic or budget attribution as established", "specific empirical differences disappear and only a generic quality-value slogan remains"],
+  "new_experiments_required_for_current_bounded_manuscript": false,
+  "stronger_claims_blocked_by_missing_evidence": ["safe P substitution", "global state redundancy", "adaptive P-only exclusion", "strict development budget matching", "cross-site or new-year confirmation of this new question", "realised telemetry savings or actual reserve deliverability"],
+  "changed_v2_or_old_results_or_thresholds_or_contract": false,
+  "new_training_inference_calibration_or_resampling": false,
+  "new_measurement_download_or_remote_execution": false,
+  "published_or_submitted": false,
+  "disclosure": "Role-separated internal literature/evidence/adversarial review, not blind or independent error processes; plan judgement is not a journal decision."
+}

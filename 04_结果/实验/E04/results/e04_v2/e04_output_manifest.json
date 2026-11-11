@@ -1,0 +1,31 @@
+{
+  "bundle_root": ".",
+  "files": [
+    {
+      "bytes": 3297,
+      "path": "seed201_full_policy_day_blocks.npz",
+      "sha256": "0cf8e76f5c7ed2c309bcb04d545465643429b375ecc727011b56967586d7c0a6"
+    },
+    {
+      "bytes": 3331,
+      "path": "seed202_full_policy_day_blocks.npz",
+      "sha256": "0656105b0bbc89517616515e6ba383d67c6f8ce78852860634dad215e30a8188"
+    },
+    {
+      "bytes": 3355,
+      "path": "seed203_full_policy_day_blocks.npz",
+      "sha256": "166d79fd073d6c6f3b8785e7cf525a07862854f0bd2b6529542af745b169e158"
+    },
+    {
+      "bytes": 3354,
+      "path": "seed204_full_policy_day_blocks.npz",
+      "sha256": "801b0f33e6ee247b5bee17eae6c1a6e7ea8f37e5ce473051245fbecbdd407db1"
+    },
+    {
+      "bytes": 3311,
+      "path": "seed205_full_policy_day_blocks.npz",
+      "sha256": "d61bf43ce5031acf7b35b1c0e6aaf85647f8ae77ef38b215fe1a4b85b2651ee3"
+    }
+  ],
+  "schema_version": "E04-receipt-v1"
+}

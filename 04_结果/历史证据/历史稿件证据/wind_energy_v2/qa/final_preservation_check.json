@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "protected_files_unchanged": 121,
+  "baseline_v1_unchanged": true,
+  "prior_review_unchanged": true,
+  "inherited_figure_exports_unchanged": {
+    "fig1_information_freeze.pdf": "2a3162495dfab285f8d2d510444089cdcc0a65148fe983f282ceda93980c082e",
+    "fig1_information_freeze.png": "d8b2a86fded705e8f2d0e15deab9750c8b4aefc65b2134a12f5c942e6017a88c",
+    "fig1_information_freeze.svg": "8d9febc237ec95589dc2e83926be9a3242ec9a64663df42f6977363976f4fc11",
+    "fig2_primary_confirmation.pdf": "0f611b8106e7827c967b26c336bec58bb82eefc1d338ce8a585d430e37cf8dec",
+    "fig2_primary_confirmation.png": "7c2e9b495ee8e98011956a740436259d84cc786aafa3b8c6a11c99a601eca61e",
+    "fig2_primary_confirmation.svg": "d20b1c410d7873a21465accdc7252e8c496abc5a0c76d79b5702815253eb9ce9",
+    "fig4_identification_boundary.pdf": "5c2d9ef4ba99172791c87d07c7a6e3c48926b96cef65692ac13d4d84565e1550",
+    "fig4_identification_boundary.png": "66516450b6750664927920e856628366324e1e2d7b0c0a70db44658141029f3c",
+    "fig4_identification_boundary.svg": "d131b7736dfd2f957459d3f6a8dfa316c96ebb77d87ad63a96e8729d3eed0b87"
+  },
+  "zip_payload_hashes_checked": 69,
+  "zip_members": 71,
+  "new_model_execution": false,
+  "new_statistics_or_resampling": false,
+  "published": false,
+  "scope": "Byte identity and package membership; not nominal coverage or venue acceptance"
+}

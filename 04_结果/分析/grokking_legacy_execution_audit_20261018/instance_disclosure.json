@@ -1,0 +1,8 @@
+{
+  "user_statement": "这个ssh已经连接不上了，销毁了，是我租的算力云",
+  "observed_utc": "2026-10-18T09:12:19.262172+00:00",
+  "status": "USER_CONFIRMED_ORIGINAL_RENTED_INSTANCE_DESTROYED",
+  "original_live_remote_recovery": "UNAVAILABLE by user statement; no further network attempts",
+  "exact_destruction_time_provider_snapshot_availability": "UNKNOWN",
+  "new_server_key": "not authenticated as original instance; never accepted"
+}

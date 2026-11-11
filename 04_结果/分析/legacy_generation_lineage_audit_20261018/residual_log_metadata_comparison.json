@@ -1,0 +1,145 @@
+{
+  "status": "20/20 rounded RMSE tokens match; not an output SHA256 or exact array comparison",
+  "rows": [
+    {
+      "seed": 201,
+      "split": "VAL",
+      "horizon": 1,
+      "log_RMSE_2dp": "120.97",
+      "metadata_RMSE_2dp": "120.97"
+    },
+    {
+      "seed": 201,
+      "split": "VAL",
+      "horizon": 6,
+      "log_RMSE_2dp": "215.23",
+      "metadata_RMSE_2dp": "215.23"
+    },
+    {
+      "seed": 201,
+      "split": "TEST",
+      "horizon": 1,
+      "log_RMSE_2dp": "99.63",
+      "metadata_RMSE_2dp": "99.63"
+    },
+    {
+      "seed": 201,
+      "split": "TEST",
+      "horizon": 6,
+      "log_RMSE_2dp": "179.96",
+      "metadata_RMSE_2dp": "179.96"
+    },
+    {
+      "seed": 202,
+      "split": "VAL",
+      "horizon": 1,
+      "log_RMSE_2dp": "170.49",
+      "metadata_RMSE_2dp": "170.49"
+    },
+    {
+      "seed": 202,
+      "split": "VAL",
+      "horizon": 6,
+      "log_RMSE_2dp": "232.45",
+      "metadata_RMSE_2dp": "232.45"
+    },
+    {
+      "seed": 202,
+      "split": "TEST",
+      "horizon": 1,
+      "log_RMSE_2dp": "146.79",
+      "metadata_RMSE_2dp": "146.79"
+    },
+    {
+      "seed": 202,
+      "split": "TEST",
+      "horizon": 6,
+      "log_RMSE_2dp": "195.41",
+      "metadata_RMSE_2dp": "195.41"
+    },
+    {
+      "seed": 203,
+      "split": "VAL",
+      "horizon": 1,
+      "log_RMSE_2dp": "137.66",
+      "metadata_RMSE_2dp": "137.66"
+    },
+    {
+      "seed": 203,
+      "split": "VAL",
+      "horizon": 6,
+      "log_RMSE_2dp": "219.69",
+      "metadata_RMSE_2dp": "219.69"
+    },
+    {
+      "seed": 203,
+      "split": "TEST",
+      "horizon": 1,
+      "log_RMSE_2dp": "102.33",
+      "metadata_RMSE_2dp": "102.33"
+    },
+    {
+      "seed": 203,
+      "split": "TEST",
+      "horizon": 6,
+      "log_RMSE_2dp": "170.05",
+      "metadata_RMSE_2dp": "170.05"
+    },
+    {
+      "seed": 204,
+      "split": "VAL",
+      "horizon": 1,
+      "log_RMSE_2dp": "143.16",
+      "metadata_RMSE_2dp": "143.16"
+    },
+    {
+      "seed": 204,
+      "split": "VAL",
+      "horizon": 6,
+      "log_RMSE_2dp": "219.25",
+      "metadata_RMSE_2dp": "219.25"
+    },
+    {
+      "seed": 204,
+      "split": "TEST",
+      "horizon": 1,
+      "log_RMSE_2dp": "101.28",
+      "metadata_RMSE_2dp": "101.28"
+    },
+    {
+      "seed": 204,
+      "split": "TEST",
+      "horizon": 6,
+      "log_RMSE_2dp": "174.91",
+      "metadata_RMSE_2dp": "174.91"
+    },
+    {
+      "seed": 205,
+      "split": "VAL",
+      "horizon": 1,
+      "log_RMSE_2dp": "139.44",
+      "metadata_RMSE_2dp": "139.44"
+    },
+    {
+      "seed": 205,
+      "split": "VAL",
+      "horizon": 6,
+      "log_RMSE_2dp": "225.29",
+      "metadata_RMSE_2dp": "225.29"
+    },
+    {
+      "seed": 205,
+      "split": "TEST",
+      "horizon": 1,
+      "log_RMSE_2dp": "107.96",
+      "metadata_RMSE_2dp": "107.96"
+    },
+    {
+      "seed": 205,
+      "split": "TEST",
+      "horizon": 6,
+      "log_RMSE_2dp": "180.96",
+      "metadata_RMSE_2dp": "180.96"
+    }
+  ]
+}

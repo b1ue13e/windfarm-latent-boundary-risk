@@ -1,0 +1,31 @@
+{
+  "status": "PASS_FOR_SCOPED_CHECKS_CAUSE_UNKNOWN_NONEXACT_RETAINED",
+  "utc": "2026-10-18T09:01:20.682110+00:00",
+  "255_current_protected_hashes": "PASS",
+  "previous161_hashes_still_match": "PASS",
+  "all10_original_comparisons_nonexact": "retained",
+  "positive_weight_matches_scope": "5/5 current vsOctober15 only",
+  "batch16_vs_source64": "verified as documented conditions; no causal inference experiment",
+  "raw_vs_normalized_physics_input_reference": "10/10 raw matches;0/10 normalized; not an actual model-input trace",
+  "source_runtime_transcript_record_hashes": "PASS",
+  "E07_null_bindings_zero_eligible_windows": "PASS",
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_legacy_yhat_difference.py tests/test_legacy_cache_alignment.py tests/test_legacy_posterior_accounting.py tests/test_e07_data_inventory.py -q",
+      "exit_code": 0,
+      "result": "26 passed"
+    },
+    {
+      "command": "python scripts/verify_scientific_claim_gate.py",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "python scripts/verify_tste_number_consistency.py --output-dir analyses/legacy_yhat_difference_audit_20261018/number_consistency_gate",
+      "exit_code": 0,
+      "result": "complete_tste_number_consistency"
+    }
+  ],
+  "manifest_sha256": "fdfb19a5398a3cf0e31c80ff14037719dd38bf5527b7c816e2cb693a5e6b8ba1",
+  "staged_scope": "new audit code/tests,source attributes,PROJECT addendum and new metadata only; original arrays/checkpoints/previous audits excluded"
+}

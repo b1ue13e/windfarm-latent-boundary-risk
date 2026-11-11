@@ -1,0 +1,11 @@
+{
+  "timestamp_utc": "2026-10-18T08:08:55.916515+00:00",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "host": "bluelee",
+  "git_head_before": "891073b4aa9237872ad51252902d77c25bcc85e2",
+  "mode": "read-only metadata, logs, source-text recovery from literal recorded edits, AST comparison, hashes; never execute recovered source or models",
+  "remote_access": "ssh BatchMode metis; read-only Python and Git inspection; no job submission or remote file creation",
+  "randomness": "none; no sampling, training or calibration",
+  "seeds": "original logs explicitly record201-205; no experiment run in this audit"
+}

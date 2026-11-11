@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-20",
+  "scope": "Public documentation checks only; no measurement file requests or example code execution",
+  "checks": [
+    {"url": "https://zenodo.org/records/22662930", "status": "READ_OFFICIAL_DESCRIPTION_AND_FILE_LIST_ONLY", "version": "2.1.0; record created 2026-09-08", "supports": "Historical Hill of Towie SCADA provenance and research source", "does_not_support": "This study's reserve endpoint, fixed-forecast duty, real arrival history or operator acceptance"},
+    {"url": "https://github.com/resgroup/hill-of-towie-open-source-analysis", "status": "READ_OFFICIAL_REPOSITORY_DESCRIPTION_AND_README", "supports": "Open analysis and archive download/cache helpers; actual source project application differs", "does_not_support": "P1-only reserve client, per-channel access tariff or this study's two-feed service contract"},
+    {"url": "https://iea-wind.org/task36/task36-publications/task36-recommended-practices/", "status": "FRESH_FETCH_FAILED; EXISTING_VERIFIED_SOURCE_RECORD_RETAINED", "supports": "No new full-text evidence from this root-role fetch", "does_not_support": "No unqualified latest-read or exact-interface evidence claim"},
+    {"url": "https://onlinelibrary.wiley.com/page/journal/10991824/homepage/forauthors.html", "status": "FRESH_FETCH_TIMEOUT; LOCAL_SAME_DAY_OFFICIAL_READER_RECHECKED", "local_source": "manuscripts/wind_energy/literature/fulltext/wind_energy_author_guidelines_reader.txt", "locator": "L130 Research Articles and L136 quality/relevance screening", "supports": "Research-article significance criterion, not a universal deployment-test requirement"},
+    {"url": "https://onlinelibrary.wiley.com/page/journal/10991824/homepage/productinformation.html", "status": "FRESH_FETCH_TIMEOUT; PREVIOUS_VERIFIED_SCOPE_RECORD_RETAINED", "supports": "No new live scope certification or editor decision"}
+  ],
+  "additional_role_checks": "INTERFACE_EVIDENCE.md and ACCEPTABILITY_EVIDENCE.md document their own original-source checks and reading scope"
+}

@@ -1,0 +1,53 @@
+{
+  "created_utc": "2026-10-19T08:02:50.254329+00:00",
+  "scope": "Design audit only; no experiment or simulation execution",
+  "verdict": "NEEDS_REVISION_NOT_READY_FOR_EXECUTION",
+  "reviewed_commit": "d6fea3250042016e8d889c4897d30d01b21ad738",
+  "reviewed_plan_sha256": "8113be4e70e995fe4abcc58fe24fc528c46c34ae0963e8d3f9e3ff2e802460c2",
+  "protected_files_unchanged": {
+    "AGENTS.md": true,
+    "docs/SCIENTIFIC_CONTRACT.md": true,
+    "docs/MAINLINE_STOP_DECISION_20261019.md": true,
+    "research_state.yaml": true,
+    "research-manifest.json": true,
+    "research_audit/14_resource_loss_break_even_review.md": true,
+    "paper_tste_ieee.md": true,
+    "paper_tste_supplementary.md": true,
+    "scripts/verify_scientific_claim_gate.py": true,
+    "scripts/verify_tste_number_consistency.py": true,
+    "experiments/independent_confirmation_execution_20261019/protocol.json": true,
+    "scripts/run_independent_confirmation.py": true,
+    "windfarm_moe/independent_confirmation.py": true,
+    "original_planning/PLAN.md": true,
+    "original_planning/backlog.json": true,
+    "original_planning/source_map.csv": true
+  },
+  "project_append_only_content": true,
+  "pending_gates": 3,
+  "pending_subtasks": 7,
+  "project_execution_state": "STOP_ADDITIONAL_INVESTMENT",
+  "execution_queue": [],
+  "research_execution": false,
+  "metis_access": false,
+  "old_results_modified": false,
+  "gate_scope": "Existing claim and numerical consistency only; no certification of the new design or inference coverage",
+  "checks": [
+    {
+      "command": "python scripts/verify_scientific_claim_gate.py",
+      "status": "PASS"
+    },
+    {
+      "command": "python scripts/verify_tste_number_consistency.py --output-dir research_audit/contribution_gate_adversarial_review_20261019/validation/number_consistency",
+      "status": "PASS"
+    }
+  ],
+  "artifacts_sha256": {
+    ".gitattributes": "920781736b28385b1c3625f2a8a187763ea8facb06daa3f6bb319bee46182807",
+    "REVIEW.md": "17b1fae42b969e7c7f5e22023986acc27f0a4d5544aa75672f2229a2d795865a",
+    "validation/number_consistency/table_tste_number_consistency_audit.tex": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8",
+    "validation/number_consistency/tste_number_consistency_audit.csv": "8e319f47763bb96ddb1b7afed6d471487591c9dd07ac4e903919e8d5913412e4",
+    "validation/number_consistency/tste_number_consistency_audit.json": "9eb2a0baaa3779f67e84742d8bf832467d11d4b59081757231a95cbf07406595",
+    "validation/number_consistency.log": "b2111a078b137bb48a04fb9c4552c3feab91356bc5305fe1d6984aacadb5eb86",
+    "validation/scientific_claim_gate.log": "fa9dcfaef7b9366fad5d9bbb9da05dbb56a556daa6c446059cb2238411c12594"
+  }
+}

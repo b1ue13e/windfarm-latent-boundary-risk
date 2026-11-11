@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "qsub",
+    "-N",
+    "di_201_pitch",
+    "-q",
+    "rqdf",
+    "-l",
+    "select=1:ncpus=2:mem=48gb",
+    "-l",
+    "walltime=04:00:00",
+    "-o",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/logs/seed201_pitch_withheld.log",
+    "-v",
+    "STUDY_ROOT=/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1,STUDY_STAGE=run,STUDY_SEED=201,STUDY_CONDITION=pitch_withheld",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/run_lf.pbs"
+  ],
+  "stdout": "244600.cm\n",
+  "stderr": "",
+  "returncode": 0
+}

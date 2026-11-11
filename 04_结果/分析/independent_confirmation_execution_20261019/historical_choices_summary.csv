@@ -1,0 +1,7 @@
+condition,primary2,sensitivity5,reference,reference_qualified
+pitch_withheld,P1/HGB/q0.95,P1/HGB/q0.95;P1/MLP/q0.95,WPQ36/HGB/q0.95,True
+fresh,P1/HGB/q0.95,P1/HGB/q0.95,WPQ36/HGB/q0.95,True
+delay1,P1/HGB/q0.95,P1/HGB/q0.95,WPQ36/HGB/q0.95,True
+delay2,P1/HGB/q0.95,P1/HGB/q0.95,WPQ36/HGB/q0.95,True
+delay3,P1/HGB/q0.95,P1/HGB/q0.95,WPQ36/HGB/q0.95,True
+delay6_stress,Common/HGB/q0.95,Common/HGB/q0.95,WPQ36/HGB/q0.95,True

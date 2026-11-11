@@ -1,0 +1,8 @@
+{
+  "git_commit": "8650e4a72a98a9532e263fcadd4ea4261a2faf31",
+  "files": {
+    "scripts/audit_state_measurement_pilot.py": "1abbeb64040c8344b7d7da68eec29334c8a3d3fd3566232e11e0f47fd01d2297",
+    "experiments/state_measurement_pilot_20261020/audit.pbs": "c7199748b6a8007c79742775e584243433800f87d3b3aca3a0571dfae2052771",
+    "experiments/state_measurement_pilot_20261020/check.pbs": "a99eb66f4857c7d45eaf87522c723633890bcb1ab500a344e9a6138bc712f855"
+  }
+}

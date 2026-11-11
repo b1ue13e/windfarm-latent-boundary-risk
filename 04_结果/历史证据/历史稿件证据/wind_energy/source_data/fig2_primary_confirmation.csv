@@ -1,0 +1,12 @@
+panel,metric,label,point,lower,upper,unit,source,source_field,seed
+a,Relative mean cost,P1 vs WPQ36,0.5641474815991643,0.35746800646510357,0.770826956733225,percent,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json,bounds.groups[0].relative_ratio_*[0][1],
+b,Event rate,P1/HGB/q0.95,5.532415449450931,4.872340434174553,6.192490464727309,percent,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json,bounds.groups[0].risk_*[0][0],201
+b,Event rate,WPQ36/HGB/q0.95,5.535436460583357,4.891388285014025,6.17948463615269,percent,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json,bounds.groups[0].risk_*[0][1],201
+b,Event rate,P1/HGB/q0.95,5.529866471307947,4.871540886527454,6.1881920560884405,percent,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json,bounds.groups[0].risk_*[1][0],202
+b,Event rate,WPQ36/HGB/q0.95,5.538363065117895,4.895702687726801,6.181023442508988,percent,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json,bounds.groups[0].risk_*[1][1],202
+b,Event rate,P1/HGB/q0.95,5.519859371931785,4.862230718622946,6.177488025240624,percent,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json,bounds.groups[0].risk_*[2][0],203
+b,Event rate,WPQ36/HGB/q0.95,5.534020361615032,4.884222753264524,6.18381796996554,percent,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json,bounds.groups[0].risk_*[2][1],203
+b,Event rate,P1/HGB/q0.95,5.531754603265713,4.872090126834086,6.19141907969734,percent,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json,bounds.groups[0].risk_*[3][0],204
+b,Event rate,WPQ36/HGB/q0.95,5.553090494388472,4.905786009297956,6.200394979478988,percent,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json,bounds.groups[0].risk_*[3][1],204
+b,Event rate,P1/HGB/q0.95,5.5428001752186455,4.883132551319152,6.202467799118139,percent,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json,bounds.groups[0].risk_*[4][0],205
+b,Event rate,WPQ36/HGB/q0.95,5.505981602042204,4.856827209068859,6.155135995015549,percent,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json,bounds.groups[0].risk_*[4][1],205

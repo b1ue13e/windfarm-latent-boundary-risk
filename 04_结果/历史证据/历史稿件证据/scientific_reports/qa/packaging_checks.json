@@ -1,0 +1,19 @@
+{
+  "status": "PASS_PACKAGED_SOURCE_IDENTITY_AND_ISOLATED_DRAFT_VALIDATION",
+  "isolated_draft_checks": 92,
+  "archives": [
+    {
+      "file": "scientific_reports_figures_and_sources.zip",
+      "bytes": 1272196,
+      "sha256": "68f702475083df39687b45d0a813c01df164c989aaa4671e115f1b7407e8ba75"
+    },
+    {
+      "file": "scientific_reports_review_draft_sources.zip",
+      "bytes": 4863685,
+      "sha256": "bce3b2085700dd0292062912e6471d15938b61eed54dc44b57aa9d8dfb1a7c06"
+    }
+  ],
+  "files": 166,
+  "experimental_execution": false,
+  "author_declarations_or_public_release_certified": false
+}

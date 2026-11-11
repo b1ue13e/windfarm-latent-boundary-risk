@@ -1,0 +1,710 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          4
+        ]
+      ],
+      "date-time": "2026-09-04T03:57:46Z",
+      "timestamp": 1788494266888,
+      "version": "build-2803163510"
+    },
+    "reference-count": 45,
+    "publisher": "Wiley",
+    "issue": "8",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2022,
+              4,
+              29
+            ]
+          ],
+          "date-time": "2022-04-29T00:00:00Z",
+          "timestamp": 1651190400000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100001659",
+        "name": "Deutsche Forschungsgemeinschaft",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "EXC 2064/1"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "EXC 2064/1"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001659",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100001659",
+        "name": "Deutsche Forschungsgemeinschaft",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "RTG 2153"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "RTG 2153"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001659",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100001659",
+        "name": "Deutsche Forschungsgemeinschaft",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "SFB/TRR 165"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "SFB/TRR 165"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001659",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100001656",
+        "name": "Helmholtz-Gemeinschaft",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "“Energy System Design”"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "“Energy System Design”"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001656",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100001656",
+        "name": "Helmholtz-Gemeinschaft",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "Helmholtz AI"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "Helmholtz AI"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001656",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "onlinelibrary.wiley.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Wind Energy"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2022,
+          8
+        ]
+      ]
+    },
+    "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>Capturing the uncertainty in probabilistic wind power forecasts is challenging, especially when uncertain input variables, such as the weather, play a role. Since ensemble weather predictions aim to capture the uncertainty in the weather system, they can be used to propagate this uncertainty through to subsequent wind power forecasting models. However, as weather ensemble systems are known to be biassed and underdispersed, meteorologists post‐process the ensembles. This post‐processing can successfully correct the biasses in the weather variables but has not been evaluated thoroughly in the context of subsequent forecasts, such as wind power generation forecasts. The present paper evaluates multiple strategies for applying ensemble post‐processing to probabilistic wind power forecasts. We use Ensemble Model Output Statistics (EMOS) as the post‐processing method and evaluate four possible strategies: only using the raw ensembles without post‐processing, a one‐step strategy where only the weather ensembles are post‐processed, a one‐step strategy where we only post‐process the power ensembles and a two‐step strategy where we post‐process both the weather and power ensembles. Results show that post‐processing the final wind power ensemble improves forecast performance regarding both calibration and sharpness whilst only post‐processing the weather ensembles does not necessarily lead to increased forecast performance.</jats:p>",
+    "DOI": "10.1002/we.2736",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2022,
+          4,
+          29
+        ]
+      ],
+      "date-time": "2022-04-29T06:02:05Z",
+      "timestamp": 1651212125000
+    },
+    "page": "1379-1405",
+    "update-policy": "https://doi.org/10.1002/crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 18,
+    "title": [
+      "Evaluating ensemble post‐processing for wind power forecasts"
+    ],
+    "prefix": "10.1002",
+    "volume": "25",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-9197-1739",
+        "authenticated-orcid": false,
+        "given": "Kaleb",
+        "family": "Phipps",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Institute for Automation and Applied Informatics Karlsruhe Institute of Technology Karlsruhe Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Sebastian",
+        "family": "Lerch",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Economics Karlsruhe Institute of Technology Karlsruhe Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Maria",
+        "family": "Andersson",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Management and Engineering, Division of Energy Systems Linköping University Linköping Sweden"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Ralf",
+        "family": "Mikut",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Institute for Automation and Applied Informatics Karlsruhe Institute of Technology Karlsruhe Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Veit",
+        "family": "Hagenmeyer",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Institute for Automation and Applied Informatics Karlsruhe Institute of Technology Karlsruhe Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-3230-8918",
+        "authenticated-orcid": false,
+        "given": "Nicole",
+        "family": "Ludwig",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Institute for Automation and Applied Informatics Karlsruhe Institute of Technology Karlsruhe Germany"
+          },
+          {
+            "name": "Cluster of Excellence “Machine Learning: New Perspectives for Science” University of Tübingen Tübingen Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "311",
+    "published-online": {
+      "date-parts": [
+        [
+          2022,
+          4,
+          29
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "issue": "2",
+        "key": "e_1_2_9_2_1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1002/widm.1235",
+        "article-title": "Energy forecasting tools and services",
+        "volume": "8",
+        "author": "Ordiano JAG",
+        "year": "2017",
+        "journal-title": "WIREs Data Mining Knowl Discov"
+      },
+      {
+        "key": "e_1_2_9_3_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.apenergy.2017.08.133"
+      },
+      {
+        "key": "e_1_2_9_4_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/B978-0-12-812372-0.00009-1"
+      },
+      {
+        "key": "e_1_2_9_5_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1467-985X.2009.00616.x"
+      },
+      {
+        "key": "e_1_2_9_6_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/13-STS443"
+      },
+      {
+        "key": "e_1_2_9_7_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/qj.2984"
+      },
+      {
+        "key": "e_1_2_9_8_1",
+        "unstructured": "GneitingT.Calibration of medium‐range weather forecasts Technical Memorandum 719. ECMWF;2014."
+      },
+      {
+        "key": "e_1_2_9_9_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/MWR2904.1"
+      },
+      {
+        "key": "e_1_2_9_10_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.2456"
+      },
+      {
+        "key": "e_1_2_9_11_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.420"
+      },
+      {
+        "key": "e_1_2_9_12_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.526"
+      },
+      {
+        "key": "e_1_2_9_13_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/BAMS-D-19-0308.1"
+      },
+      {
+        "key": "e_1_2_9_14_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.rser.2014.01.033"
+      },
+      {
+        "key": "e_1_2_9_15_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TEC.2009.2025431"
+      },
+      {
+        "key": "e_1_2_9_16_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.309"
+      },
+      {
+        "key": "e_1_2_9_17_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.1666"
+      },
+      {
+        "key": "e_1_2_9_18_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5194/wes-3-371-2018"
+      },
+      {
+        "key": "e_1_2_9_19_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/1520-0469(1963)020<0130:DNF>2.0.CO;2"
+      },
+      {
+        "key": "e_1_2_9_20_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature14956"
+      },
+      {
+        "key": "e_1_2_9_21_1",
+        "volume-title": "Science and Method",
+        "author": "Poincaré H",
+        "year": "2003"
+      },
+      {
+        "key": "e_1_2_9_22_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/MWR2906.1"
+      },
+      {
+        "key": "e_1_2_9_23_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/met.1974"
+      },
+      {
+        "key": "e_1_2_9_24_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s13143-017-0062-z"
+      },
+      {
+        "issue": "3",
+        "key": "e_1_2_9_25_1",
+        "first-page": "217",
+        "article-title": "Comparison of BMA and EMOs statistical calibration methods for temperature and wind speed ensemble weather prediction",
+        "volume": "118",
+        "author": "Baran S",
+        "year": "2013",
+        "journal-title": "Időjárás"
+      },
+      {
+        "key": "e_1_2_9_26_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/MWR-D-21-0150.1"
+      },
+      {
+        "key": "e_1_2_9_27_1",
+        "volume-title": "Statistical Postprocessing of Ensemble Forecasts",
+        "author": "Vannitsem S",
+        "year": "2018"
+      },
+      {
+        "key": "e_1_2_9_28_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/qj.49712252905"
+      },
+      {
+        "key": "e_1_2_9_29_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/2009MWR3046.1"
+      },
+      {
+        "key": "e_1_2_9_30_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5194/npg-18-1-2011"
+      },
+      {
+        "key": "e_1_2_9_31_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1137/1036146"
+      },
+      {
+        "key": "e_1_2_9_32_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/1520-0493(2001)129<0550:IORHFV>2.0.CO;2"
+      },
+      {
+        "key": "e_1_2_9_33_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1146/annurev-statistics-062713-085831"
+      },
+      {
+        "key": "e_1_2_9_34_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "PhippsK LudwigN HagenmeyerV MikutR.Potential of ensemble copula coupling for wind power forecasting. In: Proceedings 30. Workshop Computational Intelligence Berlin;  26‐27. November 2020 Vol. 26 KIT Scientific Publishing;2020:87.",
+        "DOI": "10.58895/ksp/1000124139-6"
+      },
+      {
+        "key": "e_1_2_9_35_1",
+        "unstructured": "KuleshovV FennerN ErmonS.Accurate uncertainties for deep learning using calibrated regression. In: Proceedings of Machine Learning Research Vol. 80.PMLR;2018:2796‐2804.https://proceedings.mlr.press/v80/kuleshov18a.html"
+      },
+      {
+        "key": "e_1_2_9_36_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "WuY‐K HongJ‐S.A literature review of wind forecasting technology in the world. In: 2007 IEEE Lausanne POWERTECH Proceedings;2007:504‐509.",
+        "DOI": "10.1109/PCT.2007.4538368"
+      },
+      {
+        "key": "e_1_2_9_37_1",
+        "doi-asserted-by": "crossref",
+        "unstructured": "LydiaM KumarSS.A comprehensive overview on wind power forecasting. In: 2010 Conference Proceedings IPEC IEEE;2010.",
+        "DOI": "10.1109/IPECON.2010.5697118"
+      },
+      {
+        "key": "e_1_2_9_38_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.ijforecast.2015.11.006"
+      },
+      {
+        "key": "e_1_2_9_39_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.energy.2016.08.068"
+      },
+      {
+        "key": "e_1_2_9_40_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1175/BAMS-D-13-00191.1"
+      },
+      {
+        "key": "e_1_2_9_41_1",
+        "unstructured": "Copernicus Climate Change Service (C3S).Era5: Fifth generation of ecmwf atmospheric reanalyses of the global climateEdited byCopernicus Climate Change Service Climate Data Store (CDS). Copernicus Climate Change Service;2017."
+      },
+      {
+        "key": "e_1_2_9_42_1",
+        "unstructured": "Energy Market Inspectorate.Elområden i sverige analys av utvecklingen och konsekvenserna på marknaden eir 2012:06. EI R2012:06;2012."
+      },
+      {
+        "key": "e_1_2_9_43_1",
+        "unstructured": "Elområden.se.Din guide till nya elmarknaden.https://elomraden.se/om. Accessed on 2019‐12‐16;2011."
+      },
+      {
+        "key": "e_1_2_9_44_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.renene.2014.11.085"
+      },
+      {
+        "key": "e_1_2_9_45_1",
+        "unstructured": "European Network of Transmission System Operators (ENTSO‐E).Transparency platform (tp). Online Document.https://transparency.entsoe.eu/;2019."
+      },
+      {
+        "key": "e_1_2_9_46_1",
+        "unstructured": "FraleyC RafteryAE GneitingT SloughterJM.Ensemblebma: An r package for probabilistic forecasting using ensembles and bayesian model averaging WASHINGTON UNIV SEATTLE DEPT OF STATISTICS;2007."
+      }
+    ],
+    "container-title": [
+      "Wind Energy"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.2736",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/full-xml/10.1002/we.2736",
+        "content-type": "application/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.2736",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          9,
+          23
+        ]
+      ],
+      "date-time": "2024-09-23T04:48:28Z",
+      "timestamp": 1727066908000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://onlinelibrary.wiley.com/doi/10.1002/we.2736"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          4,
+          29
+        ]
+      ]
+    },
+    "references-count": 45,
+    "journal-issue": {
+      "issue": "8",
+      "published-print": {
+        "date-parts": [
+          [
+            2022,
+            8
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1002/we.2736"
+    ],
+    "URL": "https://doi.org/10.1002/we.2736",
+    "archive": [
+      "Portico"
+    ],
+    "relation": {
+      "has-review": [
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.2736/v3/response1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.2736/v1/decision1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.2736/v1/review1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.2736/v2/decision1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.2736/v2/response1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.2736/v2/review1",
+          "asserted-by": "object"
+        },
+        {
+          "id-type": "doi",
+          "id": "10.1002/WE.2736/v3/decision1",
+          "asserted-by": "object"
+        }
+      ]
+    },
+    "ISSN": [
+      "1095-4244",
+      "1099-1824"
+    ],
+    "issn-type": [
+      {
+        "value": "1095-4244",
+        "type": "print"
+      },
+      {
+        "value": "1099-1824",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          4,
+          29
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2021-06-09",
+        "order": 0,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      },
+      {
+        "value": "2022-04-19",
+        "order": 1,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      },
+      {
+        "value": "2022-04-29",
+        "order": 2,
+        "name": "published",
+        "label": "Published",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      }
+    ]
+  }
+}

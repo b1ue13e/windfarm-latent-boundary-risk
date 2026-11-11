@@ -1,0 +1,22 @@
+{
+  "timestamp_utc": "2026-10-19T03:41:51.123339+00:00",
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_scientific_claim_gate.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_tste_number_consistency.py",
+        "--output-dir",
+        "analyses\\claim_revision_recovery_20261019\\gates_release\\numbers"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "scope": "Unchanged repository consistency checks after final manuscript/contract/project edits; no deployment/minimality certification"
+}

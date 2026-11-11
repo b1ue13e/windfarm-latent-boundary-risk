@@ -1,0 +1,406 @@
+{
+  "timestamp_utc": "2026-10-19T05:35:21.776759+00:00",
+  "root": "E:\\论文3",
+  "all_files": 206614,
+  "research_assets": 56486,
+  "top_level": {
+    "$root": {
+      "files": 2,
+      "bytes": 1241772
+    },
+    ".agent_state": {
+      "files": 13,
+      "bytes": 613911
+    },
+    ".agents": {
+      "files": 1673,
+      "bytes": 23611546
+    },
+    ".claude": {
+      "files": 1,
+      "bytes": 779
+    },
+    ".dl_env": {
+      "files": 25595,
+      "bytes": 4862506245
+    },
+    ".dl_env313": {
+      "files": 26101,
+      "bytes": 4868033570
+    },
+    ".dsh": {
+      "files": 2,
+      "bytes": 6476
+    },
+    ".era5_env": {
+      "files": 28742,
+      "bytes": 5453413959
+    },
+    ".experiment-to-paper": {
+      "files": 3,
+      "bytes": 11476
+    },
+    ".git": {
+      "files": 68010,
+      "bytes": 64600351598
+    },
+    ".github": {
+      "files": 6,
+      "bytes": 5105
+    },
+    ".workbuddy": {
+      "files": 3,
+      "bytes": 3127
+    },
+    "00_Planning": {
+      "files": 2,
+      "bytes": 3816
+    },
+    "01_Literature": {
+      "files": 2,
+      "bytes": 5068
+    },
+    "02_Theory": {
+      "files": 2,
+      "bytes": 4662
+    },
+    "03_Implementation": {
+      "files": 1,
+      "bytes": 1916
+    },
+    "04_Experiments": {
+      "files": 1,
+      "bytes": 2521
+    },
+    "05_Manuscript": {
+      "files": 1,
+      "bytes": 1665
+    },
+    "06_Review": {
+      "files": 1,
+      "bytes": 1741
+    },
+    "<root>": {
+      "files": 38,
+      "bytes": 769097091
+    },
+    "Microsoft": {
+      "files": 1,
+      "bytes": 8246
+    },
+    "__pycache__": {
+      "files": 1,
+      "bytes": 123801
+    },
+    "analyses": {
+      "files": 11160,
+      "bytes": 503206393
+    },
+    "archives": {
+      "files": 23,
+      "bytes": 215872382
+    },
+    "artifacts": {
+      "files": 43990,
+      "bytes": 114688912102
+    },
+    "backups": {
+      "files": 6,
+      "bytes": 9172750
+    },
+    "build": {
+      "files": 74,
+      "bytes": 20940290
+    },
+    "data": {
+      "files": 35,
+      "bytes": 11112021106
+    },
+    "docs": {
+      "files": 102,
+      "bytes": 1104876
+    },
+    "experiments": {
+      "files": 185,
+      "bytes": 184175850
+    },
+    "figures": {
+      "files": 25,
+      "bytes": 10100776
+    },
+    "implement-stage": {
+      "files": 3,
+      "bytes": 4260
+    },
+    "literature": {
+      "files": 62,
+      "bytes": 55989368
+    },
+    "manuscript": {
+      "files": 10,
+      "bytes": 6609770
+    },
+    "pagecheck": {
+      "files": 23,
+      "bytes": 4026496
+    },
+    "references_papers": {
+      "files": 13,
+      "bytes": 32423268
+    },
+    "reviews": {
+      "files": 1,
+      "bytes": 991
+    },
+    "revision_outputs": {
+      "files": 11,
+      "bytes": 113608
+    },
+    "scratch": {
+      "files": 29,
+      "bytes": 294627
+    },
+    "scripts": {
+      "files": 320,
+      "bytes": 4126112
+    },
+    "src": {
+      "files": 6,
+      "bytes": 60061
+    },
+    "standalone_ieee_package": {
+      "files": 13,
+      "bytes": 1064478
+    },
+    "tests": {
+      "files": 147,
+      "bytes": 1670576
+    },
+    "tmp": {
+      "files": 77,
+      "bytes": 474103
+    },
+    "tools": {
+      "files": 8,
+      "bytes": 432167524
+    },
+    "windfarm_moe": {
+      "files": 90,
+      "bytes": 2851961
+    }
+  },
+  "suffix_counts": {
+    "<none>": 71998,
+    ".py": 38933,
+    ".h": 28821,
+    ".json": 18107,
+    ".npy": 13571,
+    ".pyc": 5926,
+    ".csv": 5057,
+    ".npz": 2417,
+    ".md": 2281,
+    ".log": 1515,
+    ".pyi": 1424,
+    ".tex": 1230,
+    ".stdout": 1049,
+    ".png": 979,
+    ".pyd": 885,
+    ".pdf": 857,
+    ".3": 824,
+    ".txt": 743,
+    ".pt": 716,
+    ".stderr": 714,
+    ".lib": 561,
+    ".dll": 452,
+    ".ps1": 417,
+    ".pbs": 335,
+    ".a": 331,
+    ".gz": 330,
+    ".mat": 330,
+    ".svg": 327,
+    ".zip": 283,
+    ".hpp": 225,
+    ".pyx": 201,
+    ".f90": 184,
+    ".afm": 180,
+    ".cuh": 180,
+    ".exe": 171,
+    ".cmake": 169,
+    ".c": 154,
+    ".msg": 147,
+    ".sav": 141,
+    ".tcl": 137,
+    ".pxd": 135,
+    ".cpp": 131,
+    ".typed": 129,
+    ".ttf": 114,
+    ".bib": 106,
+    ".mplstyle": 90,
+    ".ou": 88,
+    ".dat": 84,
+    ".csl": 82,
+    ".enc": 82,
+    ".build": 78,
+    ".f": 72,
+    ".tp": 72,
+    ".fd": 67,
+    ".wav": 66,
+    ".1": 63,
+    ".rst": 52,
+    ".yaml": 51,
+    ".aux": 50,
+    ".arff": 48,
+    ".al": 48,
+    ".jinja": 48,
+    ".ini": 45,
+    ".0": 41,
+    ".2": 40,
+    ".4": 39,
+    ".tgz": 37,
+    ".7": 35,
+    ".5": 35,
+    ".pkl": 33,
+    ".6": 33,
+    ".8": 33,
+    ".9": 33,
+    ".10": 31,
+    ".sh": 28,
+    ".11": 28,
+    ".12": 28,
+    ".13": 28,
+    ".html": 27,
+    ".bz2": 27,
+    ".css": 27,
+    ".pc": 27,
+    ".sha256": 27,
+    ".o242593": 26,
+    ".o242598": 26,
+    ".14": 26,
+    ".o242589": 25,
+    ".js": 24,
+    ".tpl": 24,
+    ".gif": 22,
+    ".inl": 22,
+    ".pyf": 21,
+    ".jpg": 19,
+    ".obj": 19,
+    ".jsonl": 17,
+    ".nc": 16,
+    ".tab": 16,
+    ".gzip": 15,
+    ".lzma": 15,
+    ".xz": 15,
+    ".sample": 15,
+    ".bat": 13,
+    ".18": 13,
+    ".yml": 12,
+    ".apache": 11,
+    ".bsd": 11,
+    ".exitcode": 11,
+    ".15": 11,
+    ".16": 11,
+    ".17": 11,
+    ".19": 11,
+    ".20": 11,
+    ".21": 11,
+    ".22": 11,
+    ".23": 11,
+    ".24": 11,
+    ".25": 11,
+    ".26": 11,
+    ".27": 11,
+    ".z": 9,
+    ".xsl": 9,
+    ".o242600": 9,
+    ".o242595": 9,
+    ".28": 9,
+    ".29": 9,
+    ".cfg": 8,
+    ".pem": 8,
+    ".mjs": 7,
+    ".pxi": 7,
+    ".xml": 6,
+    ".a99": 6,
+    ".b99": 6,
+    ".tmpl": 6,
+    ".g4": 6,
+    ".lark": 6,
+    ".pdb": 6,
+    ".xbm": 6,
+    ".spv": 6,
+    ".pid": 6,
+    ".jq": 5,
+    ".whl": 5,
+    ".def": 5,
+    ".tm": 5,
+    ".tar": 5,
+    ".toml": 4,
+    ".pth": 4,
+    ".zi": 4,
+    ".docx": 4,
+    ".cls": 4,
+    ".external": 3,
+    ".lua": 3,
+    ".xrc": 3,
+    ".fits": 3,
+    ".template": 3,
+    ".inc": 3,
+    ".f95": 3,
+    ".ani": 3,
+    ".thrift": 3,
+    ".ld": 3,
+    ".cu": 3,
+    ".bazel": 3,
+    ".bzl": 3,
+    ".in": 3,
+    ".grib": 3,
+    ".ict": 3,
+    ".uamiv": 3,
+    ".ico": 3,
+    ".h5": 3,
+    ".pl": 3,
+    ".settings": 3,
+    ".dtd": 3,
+    ".bc": 3,
+    ".egg": 2,
+    ".bak": 2,
+    ".fish": 2,
+    ".pickle": 2,
+    ".vc": 2,
+    ".terms": 2,
+    ".eps": 2,
+    ".runtime": 2,
+    ".cnf": 2,
+    ".dist": 2,
+    ".idx": 2,
+    ".pack": 2,
+    ".rev": 2,
+    ".xlsx": 2,
+    ".out": 2,
+    ".ctypes": 1,
+    ".pyw": 1,
+    ".i": 1,
+    ".csh": 1,
+    ".exp": 1,
+    ".nmake": 1,
+    ".n": 1,
+    ".ppm": 1,
+    ".0bsd": 1,
+    ".gplv2": 1,
+    ".supp": 1,
+    ".d": 1,
+    ".list": 1,
+    ".lock": 1,
+    ".mtimes": 1,
+    ".opju": 1,
+    ".done": 1,
+    ".diff": 1,
+    ".tag": 1,
+    ".rtf": 1
+  },
+  "walk_errors": [],
+  "unfollowed_links_or_junctions": [
+    "artifacts\\raw_replay_external_20261015\\penmanshiel\\cache"
+  ],
+  "content_coverage": "Metadata census only; explicit content reads are separately logged. No completeness claim about scientific interpretation."
+}

@@ -1,0 +1,9 @@
+id,claim,status,source,safe_interpretation,forbidden_upgrade
+E01,历史q95候选封存年固定参照非劣,VERIFIED_BOUNDED,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json;REPORT.md;INDEPENDENT_CONFIRMATION_RESULT_REVIEW.md,"成本+.5641% jointapproxCI[.3575,.7708]%在2%内;风险upper6.2025%<10%",不是成本下降/全族近优/现场安全
+E02,全q次要q925有限族最小性,VERIFIED_SECONDARY,analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json;derived/summary.json,成本65.739232;风险upper9.7699%;15更小者排除;1/7日敏感性同资源,不能将q925换成主q95;不称事前选中最小/全函数必要性
+E03,WTB严格2%主分析未识别最小性,VERIFIED_NEGATIVE,docs/SCIENTIFIC_CONTRACT.md section8;docs/MAINLINE_STOP_DECISION_20261019.md,420共享案例0最小性;严格充分性未识别保留;5%只敏感性,不称全部候选总体不安全或负结果被Towie推翻
+E04,Towie次要失败及未解决,VERIFIED_BOUNDED,analyses/independent_confirmation_execution_20261019/INDEPENDENT_CONFIRMATION_RESULT_REVIEW.md,90依赖case中46最小/26未解/18无充分;delay3 .5%三块长未确认,不是90次复制或3次独立失败
+E05,减少的是备用层新增列,VERIFIED_CODE_AND_ARCHIVE,windfarm_moe/independent_confirmation.py;windfarm_moe/information_subset.py;research_audit/14_resource_loss_break_even_review.md,P1共享F/clock/ID;F用历史W/P;learner112->5,不称全端仅P/删风速或Q传感器/省95%带宽RSS
+E06,主q95短缺严重度代价,VERIFIED_EXISTING_POINT_ACCOUNTING,research_audit/14_resource_loss_break_even_review.md section4,U均值+2.184349%为原台账点值;成本约+.56%;不造U的CI,不称事件数微降即可靠性改善/净收益为正
+E07,旧任务的2025独立身份仍成立,VERIFIED_FOR_OLD_FROZEN_QUESTION,analyses/independent_confirmation_execution_20261019/FULL_HISTORY_FREEZE_REVIEW.md;unlocked_actual_receipt.json,当时完整freeze后一次解封;同一旧问题的身份不被后续新问题追溯撤销,不得将2025再当V2或其他新问题未见确认
+E08,适用性和推断覆盖仍有限,UNKNOWN_OR_UNPROVEN,docs/SCIENTIFIC_CONTRACT.md;docs/MAINLINE_STOP_DECISION_20261019.md;paper_tste_ieee.md,合成时钟/代理损失/固定5实例/近似天气块;资源收益和部署未知,不因档案/门禁通过宣称全项目复现或严格概率安全证书

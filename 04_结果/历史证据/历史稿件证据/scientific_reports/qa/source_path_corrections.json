@@ -1,0 +1,7 @@
+{
+  "scope": "Artifact locator clarification only; result/source bytes unchanged",
+  "finding": "Prior review-package locators named M packet copies that were not physically in its copies/pilot or copies/controls directories; restored source file itself and original packets were present.",
+  "resolved_in_new_manuscript": "New Supplementary Data4 explicitly copies actual original experiment packets with verified historical SHA",
+  "old_material_package_modified": false,
+  "quantitative_conclusions_affected": false
+}

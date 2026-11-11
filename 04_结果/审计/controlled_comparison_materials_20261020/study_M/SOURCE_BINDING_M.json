@@ -1,0 +1,447 @@
+[
+  {
+    "study": "pilot",
+    "source": "scripts/run_state_measurement_pilot.py",
+    "expected": {
+      "sha256": "d806c22dfcb6c96482fb9a268a428cf21045fb872aa26f930315c64929dadb16",
+      "bytes": 25104
+    },
+    "actual": {
+      "bytes": 25104,
+      "sha256": "d806c22dfcb6c96482fb9a268a428cf21045fb872aa26f930315c64929dadb16"
+    },
+    "matches": true
+  },
+  {
+    "study": "pilot",
+    "source": "windfarm_moe/state_measurement.py",
+    "expected": {
+      "sha256": "d850ab388f1c5b056e9f0a966957cde0e1fe122c82b5a5ace72e31dc134f771c",
+      "bytes": 6462
+    },
+    "actual": {
+      "bytes": 6462,
+      "sha256": "d850ab388f1c5b056e9f0a966957cde0e1fe122c82b5a5ace72e31dc134f771c"
+    },
+    "matches": true
+  },
+  {
+    "study": "pilot",
+    "source": "scripts/run_information_subset_study.py",
+    "expected": {
+      "sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a",
+      "bytes": 24134
+    },
+    "actual": {
+      "bytes": 24553,
+      "sha256": "20d7cc4587fa028263d461267722eb7cec5a779cec4376cf6563b6b059d0faba"
+    },
+    "matches": false,
+    "git_recovery_commit": "183e32cd80a9d6ead726107b32ea9328423ac19d",
+    "git_recovery_identity": {
+      "bytes": 24134,
+      "sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a"
+    },
+    "git_recovery_matches": true,
+    "packet_recovery_source": "experiments/state_measurement_pilot_20261020/packet_v2.tar.gz",
+    "packet_recovery_matches": true
+  },
+  {
+    "study": "pilot",
+    "source": "scripts/run_decision_information_development.py",
+    "expected": {
+      "sha256": "a5f27587f2548fcc2f9f98fa76affc196c720b29da55c109c0d831cb7fefe039",
+      "bytes": 31464
+    },
+    "actual": {
+      "bytes": 31464,
+      "sha256": "a5f27587f2548fcc2f9f98fa76affc196c720b29da55c109c0d831cb7fefe039"
+    },
+    "matches": true
+  },
+  {
+    "study": "pilot",
+    "source": "windfarm_moe/information_subset.py",
+    "expected": {
+      "sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd",
+      "bytes": 5469
+    },
+    "actual": {
+      "bytes": 5469,
+      "sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd"
+    },
+    "matches": true
+  },
+  {
+    "study": "pilot",
+    "source": "windfarm_moe/decision_information.py",
+    "expected": {
+      "sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287",
+      "bytes": 7146
+    },
+    "actual": {
+      "bytes": 7146,
+      "sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287"
+    },
+    "matches": true
+  },
+  {
+    "study": "pilot",
+    "source": "windfarm_moe/risk_frontier.py",
+    "expected": {
+      "sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944",
+      "bytes": 5754
+    },
+    "actual": {
+      "bytes": 5754,
+      "sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944"
+    },
+    "matches": true
+  },
+  {
+    "study": "pilot",
+    "source": "windfarm_moe/subset_inference.py",
+    "expected": {
+      "sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568",
+      "bytes": 4863
+    },
+    "actual": {
+      "bytes": 4863,
+      "sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568"
+    },
+    "matches": true
+  },
+  {
+    "study": "pilot",
+    "source": "windfarm_moe/__init__.py",
+    "expected": {
+      "sha256": "17ee5f3c992700309115073c67c9d24608b1fa113c1a68d7a1890cf47df08bca",
+      "bytes": 1315
+    },
+    "actual": {
+      "bytes": 1315,
+      "sha256": "17ee5f3c992700309115073c67c9d24608b1fa113c1a68d7a1890cf47df08bca"
+    },
+    "matches": true
+  },
+  {
+    "study": "pilot",
+    "source": "tests/test_state_measurement.py",
+    "expected": {
+      "sha256": "b036140b8d139193f71a9a80f6b3554b5de35e4bc4e3f53b93549b21879f3e5d",
+      "bytes": 3822
+    },
+    "actual": {
+      "bytes": 3822,
+      "sha256": "b036140b8d139193f71a9a80f6b3554b5de35e4bc4e3f53b93549b21879f3e5d"
+    },
+    "matches": true
+  },
+  {
+    "study": "pilot",
+    "source": "tests/test_state_measurement_runner.py",
+    "expected": {
+      "sha256": "48f7607c133ce1e78742c60a0c723d00215572223d7fcca5b6688e6341fdc1da",
+      "bytes": 4562
+    },
+    "actual": {
+      "bytes": 4562,
+      "sha256": "48f7607c133ce1e78742c60a0c723d00215572223d7fcca5b6688e6341fdc1da"
+    },
+    "matches": true
+  },
+  {
+    "study": "pilot",
+    "source": "experiments/state_measurement_pilot_20261020/protocol.json",
+    "expected": {
+      "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e",
+      "bytes": 4694
+    },
+    "actual": {
+      "bytes": 4694,
+      "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e"
+    },
+    "matches": true
+  },
+  {
+    "study": "pilot",
+    "source": "experiments/state_measurement_pilot_20261020/run.pbs",
+    "expected": {
+      "sha256": "bcd3e0c2a8fe5072a78a21a616cd335a8957ba935be845dfa0dea3e1ea422cd4",
+      "bytes": 1002
+    },
+    "actual": {
+      "bytes": 1002,
+      "sha256": "bcd3e0c2a8fe5072a78a21a616cd335a8957ba935be845dfa0dea3e1ea422cd4"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "scripts/run_state_measurement_pilot.py",
+    "expected": {
+      "bytes": 25104,
+      "sha256": "d806c22dfcb6c96482fb9a268a428cf21045fb872aa26f930315c64929dadb16"
+    },
+    "actual": {
+      "bytes": 25104,
+      "sha256": "d806c22dfcb6c96482fb9a268a428cf21045fb872aa26f930315c64929dadb16"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "windfarm_moe/state_measurement.py",
+    "expected": {
+      "bytes": 6462,
+      "sha256": "d850ab388f1c5b056e9f0a966957cde0e1fe122c82b5a5ace72e31dc134f771c"
+    },
+    "actual": {
+      "bytes": 6462,
+      "sha256": "d850ab388f1c5b056e9f0a966957cde0e1fe122c82b5a5ace72e31dc134f771c"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "scripts/run_information_subset_study.py",
+    "expected": {
+      "bytes": 24134,
+      "sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a"
+    },
+    "actual": {
+      "bytes": 24553,
+      "sha256": "20d7cc4587fa028263d461267722eb7cec5a779cec4376cf6563b6b059d0faba"
+    },
+    "matches": false,
+    "git_recovery_commit": "9de297b2fe0ae6a2f206287dee04a6640d01a956",
+    "git_recovery_identity": {
+      "bytes": 24134,
+      "sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a"
+    },
+    "git_recovery_matches": true,
+    "packet_recovery_source": "experiments/state_calibration_controls_20261020/packet.tar.gz",
+    "packet_recovery_matches": true
+  },
+  {
+    "study": "controls",
+    "source": "scripts/run_decision_information_development.py",
+    "expected": {
+      "bytes": 31464,
+      "sha256": "a5f27587f2548fcc2f9f98fa76affc196c720b29da55c109c0d831cb7fefe039"
+    },
+    "actual": {
+      "bytes": 31464,
+      "sha256": "a5f27587f2548fcc2f9f98fa76affc196c720b29da55c109c0d831cb7fefe039"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "windfarm_moe/information_subset.py",
+    "expected": {
+      "bytes": 5469,
+      "sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd"
+    },
+    "actual": {
+      "bytes": 5469,
+      "sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "windfarm_moe/decision_information.py",
+    "expected": {
+      "bytes": 7146,
+      "sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287"
+    },
+    "actual": {
+      "bytes": 7146,
+      "sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "windfarm_moe/risk_frontier.py",
+    "expected": {
+      "bytes": 5754,
+      "sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944"
+    },
+    "actual": {
+      "bytes": 5754,
+      "sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "windfarm_moe/subset_inference.py",
+    "expected": {
+      "bytes": 4863,
+      "sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568"
+    },
+    "actual": {
+      "bytes": 4863,
+      "sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "windfarm_moe/__init__.py",
+    "expected": {
+      "bytes": 1315,
+      "sha256": "17ee5f3c992700309115073c67c9d24608b1fa113c1a68d7a1890cf47df08bca"
+    },
+    "actual": {
+      "bytes": 1315,
+      "sha256": "17ee5f3c992700309115073c67c9d24608b1fa113c1a68d7a1890cf47df08bca"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "tests/test_state_measurement.py",
+    "expected": {
+      "bytes": 3822,
+      "sha256": "b036140b8d139193f71a9a80f6b3554b5de35e4bc4e3f53b93549b21879f3e5d"
+    },
+    "actual": {
+      "bytes": 3822,
+      "sha256": "b036140b8d139193f71a9a80f6b3554b5de35e4bc4e3f53b93549b21879f3e5d"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "tests/test_state_measurement_runner.py",
+    "expected": {
+      "bytes": 4562,
+      "sha256": "48f7607c133ce1e78742c60a0c723d00215572223d7fcca5b6688e6341fdc1da"
+    },
+    "actual": {
+      "bytes": 4562,
+      "sha256": "48f7607c133ce1e78742c60a0c723d00215572223d7fcca5b6688e6341fdc1da"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "experiments/state_measurement_pilot_20261020/protocol.json",
+    "expected": {
+      "bytes": 4694,
+      "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e"
+    },
+    "actual": {
+      "bytes": 4694,
+      "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "experiments/state_measurement_pilot_20261020/run.pbs",
+    "expected": {
+      "bytes": 1002,
+      "sha256": "bcd3e0c2a8fe5072a78a21a616cd335a8957ba935be845dfa0dea3e1ea422cd4"
+    },
+    "actual": {
+      "bytes": 1002,
+      "sha256": "bcd3e0c2a8fe5072a78a21a616cd335a8957ba935be845dfa0dea3e1ea422cd4"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "scripts/run_state_calibration_controls.py",
+    "expected": {
+      "bytes": 20923,
+      "sha256": "8267e6b2813bee432ba5c83835fb709b8a89d3cb97849606cc2d6c0fcdb9b054"
+    },
+    "actual": {
+      "bytes": 20923,
+      "sha256": "8267e6b2813bee432ba5c83835fb709b8a89d3cb97849606cc2d6c0fcdb9b054"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "windfarm_moe/state_measurement_review.py",
+    "expected": {
+      "bytes": 3451,
+      "sha256": "6b2efb374954dfd746817d926837aa158b95a4583b6a3a4c7bff8190cbf70df2"
+    },
+    "actual": {
+      "bytes": 3451,
+      "sha256": "6b2efb374954dfd746817d926837aa158b95a4583b6a3a4c7bff8190cbf70df2"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "windfarm_moe/state_measurement_controls.py",
+    "expected": {
+      "bytes": 8221,
+      "sha256": "9231a2798ee681a5cffa2a76a5ad385494aa1766a89a5f4e13b6af732b891fb5"
+    },
+    "actual": {
+      "bytes": 8221,
+      "sha256": "9231a2798ee681a5cffa2a76a5ad385494aa1766a89a5f4e13b6af732b891fb5"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "experiments/state_calibration_controls_20261020/protocol.json",
+    "expected": {
+      "bytes": 4712,
+      "sha256": "3be445a2e274d9ec92d53730389bcb4c3d16e46f83271fa93c79c5feabadb0c1"
+    },
+    "actual": {
+      "bytes": 4712,
+      "sha256": "3be445a2e274d9ec92d53730389bcb4c3d16e46f83271fa93c79c5feabadb0c1"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "experiments/state_calibration_controls_20261020/run.pbs",
+    "expected": {
+      "bytes": 852,
+      "sha256": "80ce3396020ed4c7d4b05a74f51bfa6968c88c1affef4527b40e35b2455bb77e"
+    },
+    "actual": {
+      "bytes": 852,
+      "sha256": "80ce3396020ed4c7d4b05a74f51bfa6968c88c1affef4527b40e35b2455bb77e"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "tests/test_state_measurement_controls.py",
+    "expected": {
+      "bytes": 3413,
+      "sha256": "2eeecccbe185208aa5db74b0e8f5fce5878028308074cde81d3a50a78e44e9e6"
+    },
+    "actual": {
+      "bytes": 3413,
+      "sha256": "2eeecccbe185208aa5db74b0e8f5fce5878028308074cde81d3a50a78e44e9e6"
+    },
+    "matches": true
+  },
+  {
+    "study": "controls",
+    "source": "tests/test_state_calibration_controls_runner.py",
+    "expected": {
+      "bytes": 2081,
+      "sha256": "ed31c021ed8f1477fe2cbac121cdb2fecf0bf02be0c643f4a6cb2dbca4839349"
+    },
+    "actual": {
+      "bytes": 2081,
+      "sha256": "ed31c021ed8f1477fe2cbac121cdb2fecf0bf02be0c643f4a6cb2dbca4839349"
+    },
+    "matches": true
+  }
+]

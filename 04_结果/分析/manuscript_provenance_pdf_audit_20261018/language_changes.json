@@ -1,0 +1,489 @@
+[
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "deterministic aerodynamic quantile rules are the minimum sufficient and lowest-cost model under fresh observable telemetry",
+    "after": "deterministic aerodynamic quantile rules have the lowest evaluated surrogate cost under fresh observable telemetry",
+    "reason": "Cost ranking is not selector certification",
+    "note": "Applied before interrupted edit batch"
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "with target-satisfying $\\sim 6.8\\%$ violation",
+    "after": "with observed $\\sim 6.8\\%$ violation",
+    "reason": "Point estimate is not safety certification",
+    "count": 2
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "Here $U_{1-\\alpha}$ is the one-sided upper confidence bound computed with the registered seed/block replication unit. If no candidate is feasible, the rule returns ``no feasible policy''; it does not relax tolerances after observing test results. Complexity is a pre-registered deployment-resource preorder, not parameter count alone. The current study freezes the information set, point forecast, residual target, and PSREI, but has not yet frozen $(\\alpha,\\epsilon_C,\\epsilon_V,v_{\\max})$ or completed the selector validation. Therefore this equation is a falsifiable protocol for E04, not an empirically certified universal law. The current deployment map remains conditional to the evaluated site, information regime, population, resource model, and uncertainty procedure.",
+    "after": "Here $U_{1-\\alpha}$ is the one-sided UCB under the registered seed/block unit. E04 froze $\\alpha=0.05$, $\\epsilon_C=\\epsilon_V=0$, $v_{\\max}=0.10$, and $q^*=0.90$. On WTB Full, all four B/C/D/D10 policies exceeded the absolute violation UCB cap and the selector returned ``no feasible policy.'' B/C/D/D10 denote wind-speed bins, posterior quantiles and two hybrid policies, not an architecture ranking. No model is certified minimum-sufficient or safe for deployment; tolerances remain unchanged. The conditional rule is falsifiable, not a universal law. E07 remains inactive.",
+    "reason": "Replace obsolete planned E04 with actual negative selection",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "To shield operations from balancing exposure, reserve margins target",
+    "after": "To study balancing exposure, reserve margins target",
+    "reason": "Objective is not protection guarantee",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "Fig. 1 illustrates the causal decision failure mechanism and the three-tier operational recovery hierarchy across telemetry degradation regimes.",
+    "after": "Fig. 1 separates information regimes and their unresolved decision tests; it is not an operational dispatch gate.",
+    "reason": "Conceptual comparison is not dispatch authorization",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "\\includegraphics[width=\\columnwidth,keepaspectratio]{figures/figure1_decision_boundaries.pdf}",
+    "after": "\\fbox{\\parbox{0.92\\columnwidth}{\\small\\raggedright\n\\textbf{Arrived information $\\mathcal{I}_t$}\\\\[2pt]\nFresh wind and pitch $\\longrightarrow$ evaluate physical rules.\\\\[2pt]\nObservable delayed channels $\\longrightarrow$ evaluate historical recalibration.\\\\[2pt]\nPitch withheld $\\longrightarrow$ test consequence information against direct local quantiles.\\\\[2pt]\n\\textbf{For every candidate:} matched frozen targets, paired uncertainty and the absolute risk cap.\\\\[2pt]\n\\textbf{E04: no feasible policy. E07: inactive.}\n}}",
+    "reason": "Replace obsolete safety/benefit labels; archived figure unchanged",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "\\caption{Conceptual architecture of the minimum sufficient modeling principle across three telemetry observability regimes. Incoming SCADA feeds enter an Observability \\& Staleness Gate that routes decisions to the least complex sufficient model: Tier 1 routes fresh observable telemetry ($\\tau=0, \\exists\\beta$) to deterministic aerodynamic rules ([Lowest Cost], $6.8\\%$ violation); Tier 2 routes observable operational delays ($\\tau \\le 20\\text{ min}, \\exists\\beta$) to state-conditional recalibration, absorbing $53.9\\%$ of shortage loss without neural retraining; Tier 3 routes pitch-withheld or contingency telemetry ($\\beta=\\emptyset$ or $\\tau \\ge 60\\text{ min}$) to learned consequence representations (STGQ-Modular), recovering latent regimes while preserving the central boundary condition that recoverability does not imply plant-wide decision superiority.}",
+    "after": "\\caption{Conceptual information and evidence checks. Candidate families are hypotheses for comparison; the diagram neither certifies a deployment route nor converts regime recoverability into decision value.}",
+    "reason": "Remove certified route implication",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "The forecasting backbones use AdamW with validation-RMSE early stopping, gradient clipping and mixed precision across seeds201--205. The auxiliary channel MLP, frozen quantile heads, EXP02 and EXP03 use distinct declared training budgets and selection losses; they must not be described as sharing one identical training procedure. Strong baselines (Graph WaveNet, Graph Transformer, GAT-GRU, PatchTST, iTransformer, TiDE) repeat across seeds 201--205 under identical evaluation caches. To eliminate data leakage, the sequential dataflow $\\mathcal{D}_{\\mathrm{train}} \\to \\mathcal{D}_{\\mathrm{val}} \\to \\text{Freeze} \\to \\mathcal{D}_{\\mathrm{test}}$ freezes quantile offsets $\\hat{r}(k)$ prior to test replay. We report 5-seed initialization statistics alongside operational 95\\% confidence intervals computed via a paired daily cluster bootstrap over the 35 observed test days (144 ten-minute steps per daily cluster), using 1,000 Monte Carlo bootstrap resamples (where resampled replicates reflect bootstrap draws rather than independent observational units).",
+    "after": "The declared backbone recipe uses AdamW, validation-RMSE stopping, clipping and training mixed precision across seeds 201--205; auxiliary probes and quantile heads have distinct budgets. This recipe does not bind every historical execution environment or establish evaluation precision. Validation calibration precedes the declared test replay; complete historical input and execution binding remains unverified. Uncertainty is experiment-specific: earlier diagnostics report 1,000 paired block-bootstrap draws, whereas E04/E05 follow their own registered resampling. The 35 native test blocks start from the first issue anchor at 144-step intervals, not calendar-day boundaries. Five seeds measure initialization variation, not independent farms or test periods.",
+    "reason": "Remove universal input identity/no-leakage/reproduction guarantees and calendar bootstrap conflation",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "The empirical findings establish an operational principle of \\textbf{Minimum Sufficient Model Complexity}:",
+    "after": "The evaluated diagnostics motivate the conditional criterion of \\textbf{Minimum Sufficient Model Complexity}:",
+    "reason": "No universal empirical certification",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "Dispatch operations should deploy the least complex model sufficient for the arriving information regime:",
+    "after": "The following comparisons guide further assessment; none supplies deployment authorization:",
+    "reason": "Replace deployment instruction",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "deployment necessity for any complex representation is still pending E04.",
+    "after": "E04 selected no feasible policy, and E07 remains inactive.",
+    "reason": "Completed negative selector is not future validation",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "Its transition-versus-steady interaction interval crosses zero. Thus, neither state recoverability nor lower violation frequency guarantees superior reserve decisions. Its transition-versus-steady interaction interval crosses zero, so no transition-localized heterogeneity or allocation advantage is claimed.",
+    "after": "Its transition-versus-steady interaction interval crosses zero. Neither recoverability nor lower violation frequency guarantees superior reserve decisions; no transition-localized heterogeneity or allocation advantage is claimed.",
+    "reason": "Remove duplicated conclusion for page budget",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "## Training loop summary {.unnumbered}",
+    "after": "## Evidence status of the archived material {.unnumbered}\n\nThe tables below retain archived numerical records, including superseded and exploratory analyses. They are not a certificate of complete raw-data reproduction or operational safety. Missing original weight, complete-input, numerical-environment and posterior-coordinate bindings remain unknown under the frozen provenance audit. Explicit residual coordinates and stored accounting support bounded diagnostics; independently receipt-bound later bundles retain only their own audited scope. E04 returned no feasible policy under unchanged risk constraints. E07 remains inactive; no new experiment or calibration is reported here.\n\n## Training loop summary {.unnumbered}",
+    "reason": "Put frozen scope before historical tables",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "serves as the single source for all headline audits in the main paper",
+    "after": "supplies the reported train-only forecasting guardrail; it is not the source of every decision or external-transfer result",
+    "reason": "Restrict provenance to actual guardrail scope",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "provides the complete, auditable seed-level paired evaluation",
+    "after": "provides the archived seed-level paired evaluation",
+    "reason": "Archive is not complete execution binding",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "and Table A11d localizes that allocation increment to joint learning rather than to the routing structure.",
+    "after": "while Table A11d retains historical modular contrasts without certifying a causal allocation mechanism.",
+    "reason": "Remove causal necessity upgrade",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "the soft posterior keeps the degraded-stream robustness in one deployment object.",
+    "after": "the soft posterior retains reported discrimination in this diagnostic; reserve sufficiency and deployment safety are unverified.",
+    "reason": "Representation is not deployment certification",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "showing statistical parity under clean telemetry",
+    "after": "showing no detected difference under clean telemetry, not formal equivalence",
+    "reason": "Cross-zero interval is not equivalence",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "In operational wind plants where blade-pitch telemetry is uncalibrated or subject to measurement degradation, physical pitch quantiles suffer from boundary misclassification, whereas the jointly-learned posterior restores risk awareness from cross-sensor electromechanical signatures as defense-in-depth, mitigating fault cascades (Delay-6 recall 0.417 vs. 0.286 for dense head (+0.221 gain over stale rule 0.196)) in a single-checkpoint edge deployment.",
+    "after": "In the archived synthetic diagnostic, Delay-6 recall is 0.417 vs. 0.286 for the dense head (+0.221 over the stale rule 0.196). These values do not establish fault-cascade mitigation, safety or edge-hardware feasibility.",
+    "reason": "No field protection or hardware guarantee",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "confirming that the reserve advantage is robust to temporal autocorrelation across weeks.",
+    "after": "describing sensitivity within the archived bootstrap and weak global-quantile comparator; it does not establish superiority over wind-speed bins or certify the risk cap.",
+    "reason": "Weak comparator cannot certify strong-baseline benefit",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "## Strong-baseline closure: Posterior vs. wind-speed-conditioned quantiles and deployable hybrid policy (Table A11m) {.unnumbered}",
+    "after": "## Historical strong-baseline diagnostic and hybrid policies (Table A11m) {.unnumbered}",
+    "reason": "Historical branch is not current certification",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "The empirical results demonstrate that posterior conditioning does not reduce plant-wide reserve procurement costs ($14.31\\text{M}$ vs. $13.78\\text{M kW}\\cdot\\text{h}$, canonically defined as $\\Delta L = L_{\\text{posterior}} - L_{\\text{wspd}} = +523{,}044\\text{ kW}\\cdot\\text{h}$ penalty, $p=0.85$). In steady operation ($63.75\\%$ of test time, $N=245{,}552$), wind-speed binning serves as the operational minimum sufficient policy, outperforming the posterior by $+410{,}304\\text{ kW}\\cdot\\text{h}$ ($p=0.002$). Near operating transitions ($\\pm 3$ steps of bounded non-circular temporal dilation, $36.25\\%$ of records, $N=139{,}653$), unscaled posterior conditioning shifts the operating point toward lower violation ($7.24\\%$ vs. $8.36\\%$) and lower raw shortage ($86.6\\text{k}$ vs. $90.2\\text{k kW}\\cdot\\text{h}$), but requires $+149{,}241\\text{ kW}\\cdot\\text{h}$ greater reserve procurement ($\\Delta = +112{,}739\\text{ kW}\\cdot\\text{h}$ net surrogate penalty under $\\rho=10$). The raw reduction in transition violation rate is partly associated with greater reserve procurement. Crucially, matched-budget frontier analysis across $\\mathcal{B}_{\\text{common}} = [1.95\\text{M}, 4.77\\text{M}]\\text{ kW}\\cdot\\text{h}$ demonstrates that at identical reserve budgets ($\\Delta R \\equiv 0$), posterior conditioning does not improve shortage-energy efficiency: lower violation frequency is offset by deeper residual uncovered shortfalls ($+5{,}234\\text{ kW}\\cdot\\text{h}$ higher shortage on average across 5 seeds; strictly higher in 4 of 5 seeds, with bootstrap probability $P(\\Delta U \\ge 0) = 0.81$, establishing that matched-budget superiority is not established). The significant paired day-level cluster bootstrap interaction ($\\Delta_{\\text{trans}} - \\Delta_{\\text{steady}} = -296{,}053\\text{ kW}\\cdot\\text{h}, p = 0.002$) establishes structural heterogeneity of the relative cost gap across regimes, rather than an allocation advantage for posterior conditioning. Furthermore, a deployable validation-frozen hybrid policy matches wind-speed binning plant-wide ($13.79\\text{M}$ vs. $13.78\\text{M kW}\\cdot\\text{h}, p > 0.40$), confirming that while latent operating regimes remain recoverable from consequence signals, reserve decision sufficiency remains governed by direct observable conditioning.",
+    "after": "Table A11m preserves the superseded historical result: $+523{,}044\\text{ kW}\\cdot\\text{h}$ posterior penalty plant-wide. Its slice estimates, matched-budget narrative and formerly significant interaction are historical diagnostics, not current proof of heterogeneity or minimum sufficiency. The current imported candidate instead reports $+445{,}639\\text{ kW}\\cdot\\text{h}$ Full, $+71{,}204\\text{ kW}\\cdot\\text{h}$ Transition and $+374{,}436\\text{ kW}\\cdot\\text{h}$ Steady, pending deep audit; its joint interaction interval crosses zero. Neither version certifies a deployment advantage. Separately, E04 on WTB Full returns ``no feasible policy'' at $q^*=0.90$, $\\alpha=0.05$, $v_{\\max}=0.10$ and zero difference tolerances. Its population and results must not be substituted with this historical table. A hybrid's non-significant difference does not establish equivalence, safety or minimum sufficiency.",
+    "reason": "Separate historical table, pending candidate and E04 negative result",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "\\textbf{Table A11m.} Strong-baseline closure: 5-seed evaluation",
+    "after": "\\textbf{Table A11m.} Superseded historical diagnostic, not E04 or current certification: 5-seed evaluation",
+    "reason": "Label historical status at table",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "These rows are retained as provenance and are not current transfer evidence.",
+    "after": "These rows are retained as provenance and are not current transfer evidence; corrected-v2 is superseded/not reinstated, and invalidated v4 cannot restore its authority.",
+    "reason": "No reinstatement of invalid external claim",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "so the deployment decision is a graded signature-strength check rather than a binary observability gate.",
+    "after": "so these results motivate graded representation checks, not a deployment admission rule.",
+    "reason": "No safety certification from representation",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "confirming that boundary-conditioned risk allocation retains substantial surrogate screening reduction after fleet-wide spatial smoothing.",
+    "after": "describing a surrogate contrast against physical pitch conditioning. Full-envelope intervals cross zero; transition bootstrap zero-exclusion has the exact seed-test floor reported below. These observations neither identify a necessary smoothing mechanism nor certify a deployed reserve policy.",
+    "reason": "Bound PCC seed/comparator inference",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "## End-to-end Wind-BESS rolling MPC closed-loop dispatch simulation {.unnumbered}",
+    "after": "## Exploratory Wind-BESS rolling dispatch simulation {.unnumbered}",
+    "reason": "Synthetic simulation is not end-to-end certification",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "To close the loop between upstream reserve screening and physical plant balancing, we evaluate an end-to-end receding-horizon Model Predictive Control (MPC) dispatch simulation",
+    "after": "As a separate exploratory model of balancing, the archive reports a receding-horizon Model Predictive Control (MPC) dispatch simulation",
+    "reason": "No certified closed loop",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "demonstrating that downstream operational risk mitigation is primarily governed by physical storage capacity buffering real-time forecast error rather than inter-temporal arbitrage.",
+    "after": "describing the recorded stationary-price, zero-future-gap setup only. This simulation does not establish general MPC equivalence, field safety or causal necessity of the upstream representation.",
+    "reason": "Limit conclusion to toy model",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "Robust savings under modest shortage penalty",
+    "after": "Exploratory stored contrast",
+    "reason": "Overlap-affected folds do not prove robust protection",
+    "count": 2
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "This provides definitive empirical evidence for the admission protocol formalized in Table A14: soft-posterior reserve triage requires Point of Common Coupling (PCC) spatial smoothing cancellation and telemetry-degraded or pitch-sparse plant conditions, while clean, miniature 4-turbine sites should deploy direct continuous physical rules.",
+    "after": "These historical contrasts motivate the questions in Table A14. They do not isolate PCC smoothing or site size as necessary causes, nor certify either posterior or physical rules for deployment.",
+    "reason": "No causal/site-dependent admission rule",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "confirming that rolling recalibration provides robust protection across unprecedented market shocks.",
+    "after": "recording exploratory price-weighted contrasts. Temporal overlap in historical folds and unverified settlement integration prevent claims of robust market protection or realized revenue.",
+    "reason": "No market safety or revenue guarantee",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "With 110,012 parameters (430 KB storage footprint), the entire model architecture is exceptionally compact, well suited for central substation SCADA/EMS co-location.",
+    "after": "The 110,012 parameters imply approximately 430 KB of float32 parameter storage, excluding activations and runtime overhead. This alone does not establish SCADA/EMS deployment feasibility.",
+    "reason": "Parameter count is not runtime memory or deployment feasibility",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "Deployment architecture & Central substation SCADA/EMS & Co-located with existing plant supervisory server",
+    "after": "Candidate integration & Central substation SCADA/EMS & Concept only; hardware and safety unvalidated",
+    "reason": "Integration concept not actual deployment",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "## Deployment gate criteria {.unnumbered}",
+    "after": "## Questions for local assessment before any reserve use {.unnumbered}",
+    "reason": "No certified admission criteria",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "Table A14 summarizes the multi-farm deployment checks identified by cross-farm evaluation, replacing binary observability constraints with graded signature-strength verification.",
+    "after": "Table A14 lists questions motivated by archived cross-farm diagnostics. Passing representation checks does not certify reserve sufficiency, risk limits or deployment safety.",
+    "reason": "Limit table interpretation",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "\\textbf{Table A14.} Deployment checks identified by multi-farm testing.",
+    "after": "\\textbf{Table A14.} Diagnostic assessment questions; no deployment admission is certified.",
+    "reason": "No certification in caption",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "Gate & Observed evidence & Required decision before reserve use",
+    "after": "Question & Archived observation & Interpretation boundary",
+    "reason": "Noncertifying headers",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "Prefer direct pitch or a validated proxy for reserve-grade use",
+    "after": "Assess pitch/proxy validity separately; no reserve-grade certificate",
+    "reason": "Recoverability does not certify reserve",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "Bound soft-posterior reserve deployment to PCC portfolio-smoothed plants and degraded/pitch-sparse telemetry environments; deploy direct physical rules on clean miniature sites",
+    "after": "Assess local comparators and risk constraints; these diagnostics certify neither a smoothing mechanism nor a deployment route",
+    "reason": "Remove categorical deployment mandate",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "\\caption*{\\textbf{Figure S1.} Empirical Pareto trade-off between whole-sample point forecasting accuracy (overall test RMSE on WTB, $x$-axis) and operational resilience under 60-minute telemetry latency (Delay-6, $y$-axis). (A) Whole-sample RMSE vs. Delay-6 reserve shortage exposure $\\mathcal{S}$ (MWh, Newsvendor proxy at $\\rho=10$). Unconstrained state-of-the-art point predictors (iTransformer, Graph WaveNet) achieve lower overall RMSE ($224.34$ and $225.74$) by minimizing quadratic loss across prevailing stationary regimes, but lack aerodynamic state awareness, causing shortage exposures to surge ($>78\\text{--}82\\text{ MWh}$). The proposed boundary-aware representations (Joint Routed $229.93\\text{ kW}$ and Frozen Backbone + Residual Quantile $230.12\\text{ kW}$) define a robust Pareto frontier, deliberately trading a modest $+2.5\\%$ whole-sample RMSE margin to compress unhedged shortfall exposure to $53.9\\text{--}54.2\\text{ MWh}$ (a $>35\\%$ reduction). (B) Whole-sample RMSE vs. Delay-6 boundary transition regime recall. Learned representations sustain regime awareness ($0.408\\text{--}0.416$ recall), achieving a $+112\\%$ improvement over collapsed clean physical rules ($0.196$), preventing pre-dispatch reserve clearance against obsolete operating regimes.}",
+    "after": "\\caption*{\\textbf{Figure S1.} Historical diagnostic juxtaposition of whole-sample RMSE and synthetic Delay-6 shortage/recall. Reported RMSE values are $224.34$, $225.74$, $229.93$ and $230.12\\text{ kW}$; shortage values include $>78\\text{--}82\\text{ MWh}$ and $53.9\\text{--}54.2\\text{ MWh}$, and recall $0.408\\text{--}0.416$ versus $0.196$. The archived graphic's ``Robust Reserve Envelope,'' ``Catastrophic Shortage Threshold,'' Pareto and percentage-gain annotations are withdrawn as safety, causal or matched-target advantage claims. Its numerical coordinates are preserved only as historical diagnostics: these comparisons do not use a common frozen shortfall target across architectures and cannot certify reserve decisions or prevent dispatch failures.}",
+    "reason": "Withdraw unsafe embedded labels; preserve archived graphic and result coordinates",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "In practice, operational telemetry experiences three distinct categories of communication degradation:",
+    "after": "The following synthetic scenarios are motivated by communication failure modes; their field frequency and delay distribution remain unknown:",
+    "reason": "Stress envelope is not field distribution",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "Full raw-data reproduction is in progress and is not certified.",
+    "after": "Full raw-data reproduction remains unverified and is not certified; this documentation/PDF revision starts no replay.",
+    "reason": "Remove stale active-experiment claim",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "target-satisfying $\\sim 6.8\\%$ violation;",
+    "after": "observed $\\sim 6.8\\%$ violation;",
+    "reason": "Last point-rate safety qualifier removed"
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "rendering deep representations superfluous.",
+    "after": "without establishing a selector-certified minimum.",
+    "reason": "No formal minimum from point ranking"
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "The evidence supports a conditional complexity hierarchy, not universal neural superiority: use physical rules with fresh telemetry, recalibration under observable drift, and direct local quantiles as the decision baseline.",
+    "after": "The diagnostics motivate comparisons of physical rules, recalibration and direct local quantiles by information regime; they do not certify model sufficiency or universal neural superiority.",
+    "reason": "Abstract hierarchy is an assessment map"
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "and decision value remain distinct claims, and E04 selected no feasible policy, and E07 remains inactive.",
+    "after": "and decision value remain distinct claims. E04 selected no feasible policy; E07 remains inactive.",
+    "reason": "Grammar and explicit negative conclusion"
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "## Pareto trade-off: whole-sample RMSE vs. degraded reserve risk (Figure S1) {.unnumbered}",
+    "after": "## Historical RMSE and degraded-risk diagnostic (Figure S1) {.unnumbered}",
+    "reason": "No current Pareto certification"
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "Figure S1 visualizes the empirical Pareto trade-off between unconstrained point-forecasting accuracy (overall test RMSE) and operational reserve resilience under severe telemetry degradation (Delay-6, 60-min latency upper envelope).",
+    "after": "Figure S1 retains a historical juxtaposition of RMSE, shortage and recall under synthetic Delay-6 conditions. Its archived safety-envelope and Pareto annotations are withdrawn; a common-target reserve advantage is not established.",
+    "reason": "Local warning before legacy figure"
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "## Appendix B. Complete reference verification and official DOI directory {.unnumbered}",
+    "after": "## Appendix B. Historical reference registry {.unnumbered}",
+    "reason": "Do not renew universal verification claim"
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "All 38 references cited in the main manuscript have been audited and verified against official publisher metadata and CrossRef records. In particular, Reference [2] (*Physics-Informed Machine Learning for Power Grid Frequency Modeling*, Kruse et al.) is published in the American Physical Society journal *PRX Energy* (DOI: 10.1103/PRXEnergy.2.043003), correcting legacy typographical errors. Tables B1 and B2 provide the complete audited directory for all cited works across both parts of the bibliography.",
+    "after": "Tables B1 and B2 preserve the earlier reference directory and its recorded metadata. They are historical documentation, not a complete certification of the current bibliography. This manuscript/PDF audit does not renew the earlier blanket reference-verification claim or modify the stored registry entries.",
+    "reason": "Scope of current audit is not fresh publisher/CrossRef verification"
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "Table B1. Verified Reference Directory",
+    "after": "Table B1. Historical Reference Directory",
+    "reason": "Historical metadata status"
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "Table B2. Verified Reference Directory",
+    "after": "Table B2. Historical Reference Directory",
+    "reason": "Historical metadata status"
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "Verified Official DOI / Registry",
+    "after": "Recorded DOI / Registry",
+    "count": 2,
+    "reason": "No fresh metadata certification"
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "The observed reserve-screening benefit is attributable to consequence-based representation and calibrated quantile sizing rather than dynamic expert routing, with modular architectures matching tail reliability ($9.7\\%$ violation). In point forecasting, whole-sample error is decoupled from tail shortfall exposure. Classification accuracy alone does not translate into reserve decision value: discrete classification errors concentrate during steep ramps where residuals compound Newsvendor penalties, with tail risk reduction effectively governed by uniform reserve-margin expansion rather than heuristic abstention scoring ($p > 0.40$). ",
+    "after": "Historical modular diagnostics report $9.7\\%$ violation and no detected advantage of heuristic abstention over uniform margin expansion ($p > 0.40$). These point metrics do not certify the risk cap, causal attribution to joint learning or routing equivalence under common frozen targets. Classification accuracy alone does not establish reserve decision value.",
+    "reason": "Remove residual causal benefit and tail reliability certification",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "m^*(\\mathcal{I},\\rho,\\epsilon_C,\\epsilon_V)",
+    "after": "m^*",
+    "reason": "Abbreviate selector notation already defined in text to fit column",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "Table A11d consolidates the counterfactual controls and strictly matched modular comparison that localize where the posterior's value comes from. The soft-physical pitch quantile is the honest clean-observation baseline; joint learning is what prices reserve risk below the global rule and far below an independent classifier posterior; the routing structure is what survives confirming-stream degradation. Scripts: `scripts/remote_matched_modular_baseline.py`, `scripts/soft_rule_contrast.py`, `scripts/degraded_gate_reserve.py`, `scripts/kelmarsh_reserve_pricing.py`, `scripts/multichannel_classifier.py`, `scripts/gbdt_reserve_pricing.py`, `scripts/dense_classifier_pricing.py`, `scripts/fair_degradation_replay.py`.",
+    "after": "Table A11d retains historical modular and counterfactual contrasts. Clean-telemetry cost rankings and synthetic delayed-stream recall do not isolate a joint-learning mechanism or establish routing necessity under a common frozen target. The physical pitch quantile is a clean-observation comparator. Scripts: `scripts/remote_matched_modular_baseline.py`, `scripts/soft_rule_contrast.py`, `scripts/degraded_gate_reserve.py`, `scripts/kelmarsh_reserve_pricing.py`, `scripts/multichannel_classifier.py`, `scripts/gbdt_reserve_pricing.py`, `scripts/dense_classifier_pricing.py`, `scripts/fair_degradation_replay.py`.",
+    "reason": "Remove unsupported causal allocation decomposition",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "High spatial wake coupling enables consequence-driven latent boundary recovery when pitch is withheld.",
+    "after": "Consequence information is observed; incremental wake necessity and deployment value are not established.",
+    "reason": "No causal wake mechanism from weak comparator",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "STGQ effect relative to global quantile crosses zero; simple quantile baselines match neural models.",
+    "after": "The global-quantile contrast crosses zero; formal equivalence is not established.",
+    "reason": "No matching/equivalence claim from cross-zero CI",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "simple deterministic physical rules are strictly superior.",
+    "after": "physical rules remain comparators, not certified deployment choices.",
+    "reason": "No universal industrial deployment ranking",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "\\begin{tabularx}{\\linewidth}{>{\\raggedright\\arraybackslash}p{0.18\\columnwidth} >{\\raggedright\\arraybackslash}p{0.24\\columnwidth} >{\\centering\\arraybackslash}p{0.14\\columnwidth} >{\\centering\\arraybackslash}p{0.12\\columnwidth} >{\\centering\\arraybackslash}p{0.10\\columnwidth} >{\\centering\\arraybackslash}p{0.12\\columnwidth} >{\\raggedright\\arraybackslash}X}",
+    "after": "\\begin{tabularx}{\\linewidth}{@{}>{\\raggedright\\arraybackslash}p{\\dimexpr .11\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .19\\linewidth-2\\tabcolsep\\relax}>{\\centering\\arraybackslash}p{\\dimexpr .20\\linewidth-2\\tabcolsep\\relax}>{\\centering\\arraybackslash}p{\\dimexpr .12\\linewidth-2\\tabcolsep\\relax}>{\\centering\\arraybackslash}p{\\dimexpr .075\\linewidth-2\\tabcolsep\\relax}>{\\centering\\arraybackslash}p{\\dimexpr .115\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .19\\linewidth-2\\tabcolsep\\relax}@{}}",
+    "reason": "A11m column widths allocated to actual numeric content",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "\\begin{tabularx}{\\linewidth}{>{\\raggedright\\arraybackslash}p{0.08\\columnwidth} >{\\centering\\arraybackslash}p{0.04\\columnwidth} >{\\raggedright\\arraybackslash}p{0.12\\columnwidth} >{\\raggedright\\arraybackslash}p{0.14\\columnwidth} >{\\centering\\arraybackslash}p{0.06\\columnwidth} >{\\raggedright\\arraybackslash}p{0.13\\columnwidth} >{\\raggedright\\arraybackslash}p{0.12\\columnwidth} >{\\raggedright\\arraybackslash}p{0.13\\columnwidth} >{\\raggedright\\arraybackslash}X}",
+    "after": "\\begin{tabularx}{\\linewidth}{@{}>{\\raggedright\\arraybackslash}p{\\dimexpr .075\\linewidth-2\\tabcolsep\\relax}>{\\centering\\arraybackslash}p{\\dimexpr .04\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .10\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .13\\linewidth-2\\tabcolsep\\relax}>{\\centering\\arraybackslash}p{\\dimexpr .06\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .12\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .13\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .14\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .205\\linewidth-2\\tabcolsep\\relax}@{}}",
+    "reason": "A8 ledger uses full-page width rather than column fractions",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "table": "Table A8c.",
+    "reason": "Use double-column float for wide table without shrinking fonts or changing numbers"
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "table": "Table A8b.",
+    "reason": "Use double-column float for wide table without shrinking fonts or changing numbers"
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "artifacts/exp01_pitchmasked_v4/exp01_pitchmasked_v3_joint_statistics.csv",
+    "after": "\\path{artifacts/exp01_pitchmasked_v4/exp01_pitchmasked_v3_joint_statistics.csv}",
+    "reason": "Allow archived source path line breaks",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_ieee.md",
+    "before": "\\begin{aligned}\nm^*\n&=\\arg\\min_{m\\in\\mathcal{M}(\\mathcal{I})} \\operatorname{Complexity}(m)\\\\\n\\text{subject to}\\quad\nU_{1-\\alpha}[C_P(m)-C_P(b_{\\mathcal{I}})]&\\le\\epsilon_C,\\\\\nU_{1-\\alpha}[V_P(m)-V_P(b_{\\mathcal{I}})]&\\le\\epsilon_V,\\\\\nU_{1-\\alpha}[V_P(m)]&\\le v_{\\max}.\n\\end{aligned}",
+    "after": "\\begin{gathered}\nm^*=\\arg\\min_{m\\in\\mathcal{M}(\\mathcal{I})} \\operatorname{Complexity}(m)\\\\\n\\text{subject to}\\\\\n\\begin{aligned}\nU_{1-\\alpha}[C_P(m)-C_P(b_{\\mathcal{I}})]&\\le\\epsilon_C,\\\\\nU_{1-\\alpha}[V_P(m)-V_P(b_{\\mathcal{I}})]&\\le\\epsilon_V,\\\\\nU_{1-\\alpha}[V_P(m)]&\\le v_{\\max}.\n\\end{aligned}\n\\end{gathered}",
+    "reason": "Use separate gathered rows so long objective does not set constraint alignment width",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "```{=latex}\nTable A1 is designed to separate shared representation capacity from expert allocation, following the standard mixture-of-experts comparison logic [@jacobs1991adaptive; @shazeer2017outrageously].\n\n```{=latex}",
+    "after": "Table A1 is designed to separate shared representation capacity from expert allocation, following the standard mixture-of-experts comparison logic [@jacobs1991adaptive; @shazeer2017outrageously].\n\n```{=latex}",
+    "reason": "Repair duplicate raw fence so prose and citations are parsed, not printed verbatim",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "```{=latex}\nThe loss-weight table follows the physics-informed learning principle that a scientific constraint must be named and scaled explicitly [@karniadakis2021piml; @karpatne2017tgds].\n\n```{=latex}",
+    "after": "The loss-weight table follows the physics-informed learning principle that a scientific constraint must be named and scaled explicitly [@karniadakis2021piml; @karpatne2017tgds].\n\n```{=latex}",
+    "reason": "Repair duplicate raw fence so prose and citations are parsed, not printed verbatim",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "before": "\\begin{tabularx}{\\linewidth}{@{}>{\\raggedright\\arraybackslash}p{\\dimexpr .075\\linewidth-2\\tabcolsep\\relax}>{\\centering\\arraybackslash}p{\\dimexpr .04\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .10\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .13\\linewidth-2\\tabcolsep\\relax}>{\\centering\\arraybackslash}p{\\dimexpr .06\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .12\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .13\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .14\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .205\\linewidth-2\\tabcolsep\\relax}@{}}",
+    "after": "\\begin{tabularx}{\\linewidth}{@{}>{\\raggedright\\arraybackslash}p{\\dimexpr .075\\linewidth-2\\tabcolsep\\relax}>{\\centering\\arraybackslash}p{\\dimexpr .04\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .10\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .13\\linewidth-2\\tabcolsep\\relax}>{\\centering\\arraybackslash}p{\\dimexpr .06\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .12\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .13\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .15\\linewidth-2\\tabcolsep\\relax}>{\\raggedright\\arraybackslash}p{\\dimexpr .195\\linewidth-2\\tabcolsep\\relax}@{}}",
+    "reason": "Allocate another 1 percent width to unbreakable historical paired interval",
+    "count": 1
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "reason": "Replace active S1 with neutral redraw of exact historical plotting literals; original unchanged",
+    "old_figure": "artifacts/final_evidence_package/export/figures/figure_s_tradeoff.pdf",
+    "new_figure": "analyses/manuscript_provenance_pdf_audit_20261018/figures/figure_s1_historical_literals.pdf"
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "reason": "Load caption support so starred manual captions do not print duplicate roman table numbers and literal asterisks"
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "reason": "Replace incompatible caption package with local starred-caption handler; preserve native IEEE numbered captions and original table text"
+  },
+  {
+    "file": "paper_tste_supplementary.md",
+    "reason": "Final native starred captions use AtBeginDocument after float package; A11g row strut 1.05 to 1.00 removes 6.2pt page overflow with unchanged type size and table values"
+  }
+]

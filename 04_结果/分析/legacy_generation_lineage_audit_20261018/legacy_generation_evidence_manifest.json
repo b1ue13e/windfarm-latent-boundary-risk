@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-10-18",
+  "status": "PARTIAL_ENTRYPOINT_AND_EXECUTION_TRACE_RECOVERED_FULL_GENERATION_UNKNOWN",
+  "preserve_previous_audit": {
+    "path": "analyses/legacy_release_hash_audit_20261018/release_members_corrected_manifest.json",
+    "sha256": "a4c31fcca01b6e9e0699c44151886b81c808617a6f48e95da8a0fddfc50a52ee",
+    "unchanged": true
+  },
+  "legacy_members": [
+    {
+      "path": "artifacts/fixed_forecast_residuals.npz",
+      "size_bytes": 173410167,
+      "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9",
+      "crc32": "ce4877e5",
+      "zip_member_timestamp_untrusted": [
+        2026,
+        9,
+        18,
+        5,
+        5,
+        16
+      ],
+      "loose_file_sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9"
+    },
+    {
+      "path": "artifacts/matched_budget/cached_posterior_probs.npz",
+      "size_bytes": 22475033,
+      "sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca",
+      "crc32": "1355e7e1",
+      "zip_member_timestamp_untrusted": [
+        2026,
+        9,
+        22,
+        1,
+        47,
+        34
+      ],
+      "loose_file_sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca"
+    }
+  ],
+  "residual": {
+    "entrypoint_trace_status": "VERIFIED_LOG_DERIVED_UTF8_LF_SOURCE_TEXT; not a contemporaneous runtime file hash",
+    "successful_run_source": {
+      "source_session": "0e90f7dd-c8dc-4a00-baca-113e8dfc066e",
+      "before_run_line": 169,
+      "before_run_step": 170,
+      "created_at": "2026-09-17T21:03:31Z",
+      "command": "python scripts/build_fixed_forecast_residuals.py",
+      "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/build_fixed_forecast_residuals.py_before_step170.txt",
+      "sha256_utf8_payload": "a5bc5888e59850fda9cdc910a0d8cafb45249f42f8f4d42de4d9bc15a35f065d",
+      "bytes_utf8_payload": 6513,
+      "python_syntax_valid": true,
+      "semantics": "source text recovered by literal recorded edits only; never executed; original filesystem encoding/line endings and complete dependency snapshot unbound",
+      "release_tag_diff": "analyses/legacy_generation_lineage_audit_20261018/evidence/build_fixed_forecast_residuals.py_before_step170.txt.diff.txt",
+      "equals_tag_normalized_LF": true
+    },
+    "original_success_log": {
+      "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\0e90f7dd-c8dc-4a00-baca-113e8dfc066e\\.system_generated\\tasks\\task-171.log",
+      "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/build_fixed_forecast_residuals.py_task171.log.txt",
+      "bytes": 2009,
+      "sha256": "56d5d21a09ff052edb8b439b2ea863946f522829a0aaaef4e545767c454b2067"
+    },
+    "recorded_run_device": "cuda:0; Python312 path",
+    "original_GPU_model_torch_CUDA_versions": "UNKNOWN_UNBOUND",
+    "current_metadata_rounded_RMSE_tokens_match": 20,
+    "generation_time_output_full_sha256": "UNKNOWN_NOT_RECORDED_IN_RECOVERED_LOGS",
+    "complete_input_dependency_weight_binding": "UNKNOWN",
+    "full_generation_chain": "UNKNOWN_NOT_CLOSED",
+    "original_metadata_git_head": "ABSENT; original metadata kept unchanged"
+  },
+  "posterior": {
+    "provenance_repository_head": "621bb8b5817483f54bfb7a51fcd0f9a0751fc542",
+    "provenance_timestamp_utc": "2026-09-22T01:51:21.430134+00:00",
+    "head_interpretation": "VERIFIED repository baseline; producer absent in commit and explicitly untracked in historical git status",
+    "first_cache_write_source": {
+      "source_session": "e2ab7379-d77a-424d-9247-1d5be42d6962",
+      "before_run_line": 126,
+      "before_run_step": 125,
+      "created_at": "2026-09-21T17:45:12Z",
+      "command": "python scripts/run_matched_budget_frontier.py",
+      "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step125.txt",
+      "sha256_utf8_payload": "e6d14dd05ace978748593be9e83bfec2bd37cfa3c2dee0faa9984368e28a5a40",
+      "bytes_utf8_payload": 36556,
+      "python_syntax_valid": true,
+      "semantics": "source text recovered by literal recorded edits only; never executed; original filesystem encoding/line endings and complete dependency snapshot unbound",
+      "release_tag_diff": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step125.txt.diff.txt",
+      "equals_tag_normalized_LF": false
+    },
+    "first_cache_write_log": {
+      "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\e2ab7379-d77a-424d-9247-1d5be42d6962\\.system_generated\\tasks\\task-126.log",
+      "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task126.log.txt",
+      "bytes": 1410,
+      "sha256": "7680f806afb6b680c5ee39712ff42fc4bacf236075425cb1f12d58eb41cdcd0a"
+    },
+    "first_run_outcome": "saved cache after five seed extractions then failed accounting assertion; failure retained",
+    "later_force_source": {
+      "source_session": "e2ab7379-d77a-424d-9247-1d5be42d6962",
+      "before_run_line": 505,
+      "before_run_step": 506,
+      "created_at": "2026-09-22T01:51:17Z",
+      "command": "python scripts/run_matched_budget_frontier.py --force",
+      "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step506.txt",
+      "sha256_utf8_payload": "463f2a3d0ef9186010f091b622e85e0e7de1bce8a4865b850a432f9e3acafc91",
+      "bytes_utf8_payload": 37302,
+      "python_syntax_valid": true,
+      "semantics": "source text recovered by literal recorded edits only; never executed; original filesystem encoding/line endings and complete dependency snapshot unbound",
+      "release_tag_diff": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step506.txt.diff.txt",
+      "equals_tag_normalized_LF": false
+    },
+    "later_force_log": {
+      "source": "C:\\Users\\lidong\\.gemini\\antigravity\\brain\\e2ab7379-d77a-424d-9247-1d5be42d6962\\.system_generated\\tasks\\task-507.log",
+      "snapshot": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task507.log.txt",
+      "bytes": 5888,
+      "sha256": "b48956d849fe9b8c81274d48e5606adfe603e96cd3ae27041b3d5f7fd102b097"
+    },
+    "later_source_equals_first_committed_producer": "VERIFIED UTF8/LF payload equals scripts/run_matched_budget_frontier.py at4a79b09dc3c2e8a76543a4f1850f54de5e7c5776",
+    "present_provenance_corresponds_to_later_force": "INFERRED from timestamp, source write order, and cache-load/provenance-save log; not cryptographic attestation",
+    "force_did_not_reextract_cache_in_observed_run": "VERIFIED log and preserved code branch",
+    "generation_time_output_full_sha256": "UNKNOWN_NOT_RECORDED_IN_RECOVERED_LOGS",
+    "complete_input_dependency_weight_binding": "UNKNOWN",
+    "full_generation_chain": "UNKNOWN_NOT_CLOSED"
+  },
+  "source_recovery_semantics": [
+    "Only literal recorded write/replace edits and the explicit recorded indentation transformation were applied to in-memory text",
+    "No recovered producer, dependency, model, inference, calibration or experiment was executed",
+    "UTF8/LF recovered payload hashes do not assert original disk encoding or all live filesystem state",
+    "Source record hashes exclude JSONL record line separators; complete transcript hashes and line locations retained without copying unrelated conversations"
+  ],
+  "Metis_scope_conclusion": "No original legacy generation execution receipt found in inspected roots/logs/archive members; located target source and NPZ identities are later replay versions",
+  "E07": {
+    "status": "UNCHANGED_UNACTIVATED",
+    "calibration_run": false,
+    "new_confirmatory_evidence": false
+  },
+  "evidence_files": [
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/.gitattributes",
+      "sha256": "dc6764ed9c4c43c9ab8a9ba098b28585fefe1cf8beb5566f53dceccc1a8ab202",
+      "size_bytes": 133
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/audit_environment.json",
+      "sha256": "c4d37a992ec9a1d91bc31ea5355468f152b03d56e8b6cae34e67351ff74bf412",
+      "size_bytes": 720
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/cache_branch_comparison.json",
+      "sha256": "fa083c3227762cf9db712da9f5929945bc287fc546b5782ab1b1c17c066d520b",
+      "size_bytes": 1462
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/build_fixed_forecast_residuals.py_before_step164.txt",
+      "sha256": "b48654397302f79ca7d694c2788970151c81928155e5be63230d95f298c2ada7",
+      "size_bytes": 6443
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/build_fixed_forecast_residuals.py_before_step164.txt.diff.txt",
+      "sha256": "bd7bb69b8a9d6a75e0040b0db9959d0010bdb74a69ff73af28bee8b39208992e",
+      "size_bytes": 762
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/build_fixed_forecast_residuals.py_before_step170.txt",
+      "sha256": "a5bc5888e59850fda9cdc910a0d8cafb45249f42f8f4d42de4d9bc15a35f065d",
+      "size_bytes": 6513
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/build_fixed_forecast_residuals.py_before_step170.txt.diff.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/build_fixed_forecast_residuals.py_task171.log.txt",
+      "sha256": "56d5d21a09ff052edb8b439b2ea863946f522829a0aaaef4e545767c454b2067",
+      "size_bytes": 2009
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step125.txt",
+      "sha256": "e6d14dd05ace978748593be9e83bfec2bd37cfa3c2dee0faa9984368e28a5a40",
+      "size_bytes": 36556
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step125.txt.diff.txt",
+      "sha256": "c6610b82864909f1d87c66c8ad2a33753042b076d9b0ea46df2d5859f81e65e7",
+      "size_bytes": 23312
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step151.txt",
+      "sha256": "f5abc76b96b5ca380d568bd676a93e7bb46d6d07af4053477b9c217b26f63009",
+      "size_bytes": 36157
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step151.txt.diff.txt",
+      "sha256": "48bcda23a226a3ca047ef34b0c5f7395ca8cef9bcbb949c62c413d98cf63ef41",
+      "size_bytes": 21405
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step169.txt",
+      "sha256": "1fe14b6cef47d78d4235155b413823716b2b711d9576d433eddc8bd522867f3d",
+      "size_bytes": 36538
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step169.txt.diff.txt",
+      "sha256": "b5a12ee70b7213a9951ae6ee25b62f84f2731b6320c48d1b836d1deee7474fe4",
+      "size_bytes": 18935
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step187.txt",
+      "sha256": "c809ff9e73af51b973cff04f3f5a4ed4276fd577b8ec2e16cf0e998327bbf21c",
+      "size_bytes": 37074
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step187.txt.diff.txt",
+      "sha256": "0dbda981a53f5be9b73fce4acd3a92f230cce372e39efcf590eb6e284d934fd6",
+      "size_bytes": 1850
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step402.txt",
+      "sha256": "c809ff9e73af51b973cff04f3f5a4ed4276fd577b8ec2e16cf0e998327bbf21c",
+      "size_bytes": 37074
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step402.txt.diff.txt",
+      "sha256": "b88fcb1b3ed45032e15ae77b5bfb576af9153cba200dfc5d93030157561f3fa4",
+      "size_bytes": 1850
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step506.txt",
+      "sha256": "463f2a3d0ef9186010f091b622e85e0e7de1bce8a4865b850a432f9e3acafc91",
+      "size_bytes": 37302
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_before_step506.txt.diff.txt",
+      "sha256": "513aaf154ddd109c4760d02b3b71e5531d34ece310fedd4e60c486d6b2a88579",
+      "size_bytes": 420
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task126.log.txt",
+      "sha256": "7680f806afb6b680c5ee39712ff42fc4bacf236075425cb1f12d58eb41cdcd0a",
+      "size_bytes": 1410
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task152.log.txt",
+      "sha256": "ac1c6aa55f26744b76d608e8b0fa9dc215341f3948b49b4cf483b626b1c4994a",
+      "size_bytes": 3969
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task170.log.txt",
+      "sha256": "5039725bb4043fc6885d59310d7b704da478814477557f60aa6afcbc64a9c50b",
+      "size_bytes": 2951
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task188.log.txt",
+      "sha256": "aaaf532b15db2175c6175a69f263fdf70866a4af5d1a0174468169f2141b8b3b",
+      "size_bytes": 5065
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task403.log.txt",
+      "sha256": "d803e576e669ca16239c48b1ed45a57899a00df27100589a80b4727b06c423cd",
+      "size_bytes": 5065
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/evidence/run_matched_budget_frontier.py_task507.log.txt",
+      "sha256": "b48956d849fe9b8c81274d48e5606adfe603e96cd3ae27041b3d5f7fd102b097",
+      "size_bytes": 5888
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/git_source_bindings.json",
+      "sha256": "7d041d610879cc4df21f3a0b62083266140cf72d2fe9f351311a7c8af190d7d5",
+      "size_bytes": 2958
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/historical_full_hash_search.json",
+      "sha256": "e47f95dcc3e1bc99540d33bafd1d9820e91bea4ed44ebb1a363ddf5893a9467e",
+      "size_bytes": 163
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/historical_session_index.json",
+      "sha256": "9110f16a74b17b9733b4b53dc067db6f2011d0168defd42945eb92217827c979",
+      "size_bytes": 56542
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/local_archive_inventory.json",
+      "sha256": "95e154573584f5a97acf20c8b671e83d253a141ad937b8b383150d6393edf985",
+      "size_bytes": 68416
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/local_inventory.json",
+      "sha256": "ce9ac2cb3d7f5340159a08f6f2f2e77331a3563064ea88777618d25b6f7f9cd3",
+      "size_bytes": 471452
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/local_log_search.json",
+      "sha256": "3496feff591c8056f9204dd010b81ce3e23176ee74f67f3e483173bcd54ba1f3",
+      "size_bytes": 22630
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/metis_archive_inventory.json",
+      "sha256": "d6571672f02d0d79c6ca80a29239e3965b76b3739c0e15fb57415048ee59380b",
+      "size_bytes": 40522
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/metis_archive_target_hashes.json",
+      "sha256": "bbdfd6e299237ebfa15e7354c73d73982b88139dee1939f93083b009b8de5ba6",
+      "size_bytes": 58960
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/metis_inventory.json",
+      "sha256": "870ed5c2d67a8c629c813edfb170c1f1829562d92d71c5b056159b4ecc376608",
+      "size_bytes": 1444307
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/metis_later_replay_fingerprints.json",
+      "sha256": "309c603b0de6ca06ed86a6628cec9ab103c4cad3df898df4cf695dc846172c30",
+      "size_bytes": 38742
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/metis_log_search.json",
+      "sha256": "3e2ac0930dd097f39c5805b009a48bc945a5a004194b2dd36a86709ae64d66e4",
+      "size_bytes": 21800
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/number_consistency_gate/table_tste_number_consistency_audit.tex",
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8",
+      "size_bytes": 5594
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/number_consistency_gate/tste_number_consistency_audit.csv",
+      "sha256": "8e319f47763bb96ddb1b7afed6d471487591c9dd07ac4e903919e8d5913412e4",
+      "size_bytes": 12442
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/number_consistency_gate/tste_number_consistency_audit.json",
+      "sha256": "ad46a590e203581bbb6446ad1b4d674ffe9d8f92d3478cbb8f443c8d7bbcd0a5",
+      "size_bytes": 835
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/original_execution_observations.json",
+      "sha256": "4830437cb67b27a87184e9f9836e2d31c1bc5b8d5cb510fb4a8345be1bf90094",
+      "size_bytes": 23653
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/original_log_sources.json",
+      "sha256": "dd9f8b47dcaa7e4e592aba64ec2c965a7adfadc3ebe9af5347c2c6a681dc9095",
+      "size_bytes": 2682
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/protected_before.json",
+      "sha256": "b0878989ba9ef30b52acfc8f3c534895003bd36047bcbc8d2e7b52fca78d7e8b",
+      "size_bytes": 9683
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/recovered_source_versions.json",
+      "sha256": "a48663f8033ef0e9cd3ba462d870a286cd083326ee3e59817b1b39283314c0f9",
+      "size_bytes": 7164
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/REPORT.md",
+      "sha256": "5453cde339ce77c959acffac4143e9954f55784403043e2ad53b1cd493111a17",
+      "size_bytes": 11315
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/residual_log_metadata_comparison.json",
+      "sha256": "eaf85502c71fd9ce6df1a7cf1cbcba8a5f3d60d443d3f2182fb890866c7dc15c",
+      "size_bytes": 3107
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/source_recovery_events.json",
+      "sha256": "5cdf0e38a2483e8b11e6b2f9c33bc22ac75748b742ed57fa1cbc8a0f9e099db7",
+      "size_bytes": 67212
+    },
+    {
+      "path": "analyses/legacy_generation_lineage_audit_20261018/supplemental_search_scope.json",
+      "sha256": "ea9de45024310a5338d46f3576c43e997c41c97a76323302c0dd27e83357678c",
+      "size_bytes": 2357
+    }
+  ]
+}

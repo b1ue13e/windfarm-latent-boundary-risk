@@ -1,0 +1,42 @@
+{
+  "utc": "2026-10-19T03:41:38.859279+00:00",
+  "checks": {
+    "archive_identities": 3,
+    "evidence_members_exact": 4461,
+    "source_metadata_members_exact": 14,
+    "pre_edit_snapshots_exact": 8,
+    "necessity_bindings_exact": 4,
+    "derived_inputs_and_source_unchanged": true,
+    "legacy_table_numeric_tokens": {
+      "paper_tste_ieee": {
+        "old_tables": 3,
+        "new_tables": 4,
+        "unchanged": true
+      },
+      "paper_tste_supplementary": {
+        "old_tables": 27,
+        "new_tables": 27,
+        "unchanged": true
+      }
+    },
+    "protected_tracked_code_unchanged": true,
+    "paper_tste_ieee": {
+      "md_sha256": "3c268b90353e6e240ae34d2676dd255f457ef16b05529409c6ba4b995b22fd49",
+      "pdf_sha256": "4ec6b3fbf34aace9bc99a03bd9c790727b2c2a6d9845f4405c4ee935759d703b"
+    },
+    "paper_tste_supplementary": {
+      "md_sha256": "eabde8a7c85305d3e5c8b9de8b5433c43e522fa94d294d2902b73400f1fc8bcd",
+      "pdf_sha256": "b7e58ca190bf164ef09456d165f04a4f6053cd55e5d4100bea66645f3ceb95da"
+    },
+    "visual_review": "All 10 main and 46 supplementary pages rendered; overview sheets inspected, new main p8 and supplement p45 inspected at readable resolution. No new overlap/clipping. Main no blocking warnings; supplement float-only-page warning at22 retained.",
+    "no_new_training_or_bootstrap": true,
+    "source_holdout_status": "2025 unparsed; historical-coordinate qualification only; independent model confirmation NOT_EXECUTED",
+    "whitespace_cleanup_same_generated_latex": true,
+    "software_tests": "8 passed; see software_tests_receipt.json",
+    "final_gates": "Both unchanged gates passed; see gates_release/receipt.json",
+    "pdf_pages": {
+      "main": 10,
+      "supplementary": 46
+    }
+  }
+}

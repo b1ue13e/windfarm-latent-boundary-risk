@@ -1,0 +1,5 @@
+{
+  "route": "Unpaywall unauthenticated DOI",
+  "error": "Response status code does not indicate success: 422 (Unprocessable Entity).",
+  "detail": "\r\n{\r\n  \"HTTP_status_code\": 422,\r\n  \"error\": true,\r\n  \"message\": \"Email address required in API call, see http://unpaywall.org/products/api\"\r\n}"
+}

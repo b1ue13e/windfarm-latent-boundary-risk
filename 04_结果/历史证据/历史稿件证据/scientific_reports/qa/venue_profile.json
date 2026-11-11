@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-20",
+  "venue": "Scientific Reports",
+  "article_type": "Article; not Registered Report",
+  "official_guide": "https://www.nature.com/srep/author-instructions/submission-guidelines?error=cookies_not_supported",
+  "official_policy": "https://www.nature.com/srep/journal-policies/editorial-policies?error=cookies_not_supported",
+  "read_scope": "Article structure/word targets/abstract/references/figure/table/SI/declarations and LLM disclosure; current official HTML",
+  "rules_applied": {
+    "title_max_target_words": 20,
+    "abstract_max_words": 200,
+    "main_text_recommended_words_excluding_methods_abstract_refs_legends": 4500,
+    "recommended_typeset_pages": 11,
+    "recommended_is_not_absolute_page_gate": true,
+    "reference_citations": "Sequential numerical square brackets; Nature bibliography",
+    "figure_legends_max_words": 350,
+    "figure_background": "white; sans-serif; no copied or generated illustrative images",
+    "figure_stroke_target_pt": 1,
+    "graphical_abstract": "not supported; none made",
+    "author_contributions_and_competing_interests": "required for submission; unprovided statements remain in AUTHOR_ITEMS",
+    "LLM_disclosure": "documented in Methods"
+  },
+  "local_design_choices": {
+    "review_layout": "Single-column editable article, not a publisher production template",
+    "figures": "180mm vector PDF/SVG plus600dpi PNG",
+    "manuscript_sources": "Markdown with generated TeX; separate SI"
+  },
+  "CSL_adaptation": {
+    "base": "https://raw.githubusercontent.com/citation-style-language/styles/master/nature.csl",
+    "change": "Numerical citation delimiters changed from superscript to square brackets following guide; bibliography retained"
+  },
+  "not_certified": "submission readiness, acceptance, author approvals or unprovided declarations"
+}

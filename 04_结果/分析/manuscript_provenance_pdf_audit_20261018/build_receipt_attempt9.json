@@ -1,0 +1,51 @@
+{
+  "label": "paper_tste_supplementary",
+  "runs": [
+    {
+      "command": [
+        "E:\\论文3\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+        "paper_tste_supplementary.md",
+        "--citeproc",
+        "--csl",
+        "IEEE.csl",
+        "--standalone",
+        "-t",
+        "latex",
+        "-o",
+        "analyses\\manuscript_provenance_pdf_audit_20261018\\build\\paper_tste_supplementary.tex"
+      ],
+      "exit_code": 0,
+      "seconds": 0.484,
+      "stdout_log": "analyses/manuscript_provenance_pdf_audit_20261018/paper_tste_supplementary_attempt9_pass0.log"
+    },
+    {
+      "command": [
+        "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-output-directory=analyses\\manuscript_provenance_pdf_audit_20261018\\build",
+        "analyses\\manuscript_provenance_pdf_audit_20261018\\build\\paper_tste_supplementary.tex"
+      ],
+      "exit_code": 0,
+      "seconds": 3.203,
+      "stdout_log": "analyses/manuscript_provenance_pdf_audit_20261018/paper_tste_supplementary_attempt9_pass1.log"
+    },
+    {
+      "command": [
+        "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-output-directory=analyses\\manuscript_provenance_pdf_audit_20261018\\build",
+        "analyses\\manuscript_provenance_pdf_audit_20261018\\build\\paper_tste_supplementary.tex"
+      ],
+      "exit_code": 0,
+      "seconds": 3.146,
+      "stdout_log": "analyses/manuscript_provenance_pdf_audit_20261018/paper_tste_supplementary_attempt9_pass2.log"
+    }
+  ],
+  "pages": 44,
+  "blocking_warnings": [
+    "Overfull \\vbox (6.19589pt too high) has occurred while \\output is active []"
+  ],
+  "duplicate_roman_captions_absent": true
+}

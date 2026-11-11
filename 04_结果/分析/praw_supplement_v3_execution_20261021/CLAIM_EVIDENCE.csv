@@ -1,0 +1,7 @@
+﻿claim_id,status,claim,evidence,boundary
+C1,VERIFIED_WITHIN_FIXED_PROGRAM,Single-value Praw has lower mean proxy cost than OZ6 in both estimators,E_P span3; Praw-minus-OZ6 D_C; both joint intervals below zero,Not Bayes information ordering or full substitution certification
+C2,VERIFIED_WITHIN_FIXED_PROGRAM,The two engineered power differences improve HGB proxy cost relative to Praw,E_P span3 HGB Praw-minus-OP6 D_C lower>0,MLP contrast interval crosses zero; cannot attribute all original power/pitch difference to differences
+C3,NOT_ESTABLISHED,Praw fully substitutes for OZ6 or OP6 under original requirements,Praw-minus-OZ6 H_U upper guard incomplete; Praw-minus-OP6 cost upper>1%,All new heads risk-qualified; failed guard does not imply worse observed mean or field unsafety
+C4,VERIFIED_TRADEOFF_WITH_UNRESOLVED_MEAN_SHORTFALL,Adding pitch raises HGB fixed-group procurement/cost and lowers event rate,E_G span3 OPZ6-minus-OP6 delta_R/C/V,delta_U interval crosses zero; pooled archived actions are not a group-optimal/PCC controller
+C5,VERIFIED_HGB_ONLY_RETROSPECTIVE,HGB pitch incremental cost/procurement differs between fixed wind groups,E_R span3 high-minus-low interaction_C/R for OPZ6-minus-OP6 and FZ-minus-F,U/V interactions and MLP interactions unresolved; no universal physical mechanism
+C6,UNKNOWN_OR_NOT_TESTED,Equal-budget allocation efficiency or actual arrival-clock validity,Optional budget remains off; no real receipt or interval-semantic logs acquired,"Do not infer these from lower proxy cost, offsets or index correctness"

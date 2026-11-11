@@ -1,0 +1,6 @@
+# Locally retained primary-text retrieval caches; provenance is in manifests/URLs.
+reviewer_n/*.pdf
+reviewer_n/*.txt
+reviewer_n/*.html
+root_web_retrievals*.json
+__pycache__/

@@ -1,0 +1,1 @@
+{"command":"python -m pytest -q tests/test_confirmation_lossless_adapter.py tests/test_independent_confirmation.py tests/test_subset_inference.py","exit_code":0,"passed":16,"duration_seconds":31.47,"new_2026_data_read":false}

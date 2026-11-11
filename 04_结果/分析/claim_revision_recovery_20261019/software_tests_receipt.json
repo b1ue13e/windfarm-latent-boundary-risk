@@ -1,0 +1,14 @@
+{
+  "utc": "2026-10-19T03:42:11.393636+00:00",
+  "command": [
+    "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_information_subset_report.py",
+    "tests/test_subset_minimum_necessity.py",
+    "tests/test_confirmation_lossless_adapter.py"
+  ],
+  "exit_code": 0,
+  "scope": "Regression tests for result reporting, minimality exclusion and source adapter; not new model validation"
+}

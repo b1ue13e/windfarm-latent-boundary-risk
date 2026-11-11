@@ -1,0 +1,329 @@
+{
+  "version": "V2",
+  "status": "PAPER_SPECIFIED_NOT_PREREGISTERED_NOT_EXECUTION_READY",
+  "authority": "SOLE_V2_DECISION_RULE_SOURCE",
+  "thresholds_unchanged": {
+    "important_cost_gain": 0.01,
+    "cost_noninferiority_margin": 0.01,
+    "instance_risk_cap": 0.1,
+    "signed_U_over_frozen_Cstar_cap": 0.001
+  },
+  "alpha_total": 0.05,
+  "alpha_each_layer": 0.025,
+  "historical_alpha": 0.05,
+  "seeds": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "task": {
+    "h": 6,
+    "history_slots": 36,
+    "main_age": 6,
+    "dt": 0.16666666666666666,
+    "rho": 10,
+    "maturity": "s+j+7<t for C5 lead j; s+7<t for single target"
+  },
+  "definitions": {
+    "G_P_Z": "(C_P-C_Z)/C_P using five-instance mean costs",
+    "D_Z_P": "(C_Z-C_P)/C_P",
+    "D_Pj_Z": "(C_Pj-C_Z)/C_Z",
+    "H_A_B": "10*(U_A-U_B)/historically_frozen_same_source_same_layer_Cstar",
+    "no_purchase": "instance paired mean R_Z-R_P, not history-fitted R",
+    "nonpositive_denominator": "STOP_UNDEFINED_RATIO_NO_EPSILON",
+    "derived_reverse_cost_bound": "If G_U<1 and positive costs then D_P_Z=G/(1-G);otherwise upper unbounded, never clipCI to1",
+    "constant_WTB_Cstar": 40.04664774157611,
+    "Towie_group_Cstar": "UNCOMPUTED",
+    "Towie_group_Cstar_rule": "Same-source same-layer historical fresh no-pitch reference with old fiveq historical eligibility/cost choice;five-instance mean cost on2024H2 selection;no2025winner or confirmation re-scaling"
+  },
+  "rules": [
+    {
+      "id": "Q",
+      "name": "资格",
+      "scope": "NEW_INDEPENDENT_CONFIRMATION",
+      "requirements": [
+        "independent_source_bound",
+        "relevant_design_exposure_qualified",
+        "program_and_model_identity_bound",
+        "legal_information_clock",
+        "fixed_population_and_ledger_valid",
+        "historical_selection_frozen",
+        "inference_qualified"
+      ],
+      "numeric": [],
+      "failure": "INVALID_OR_UNBOUND_CONFIRMATION_NOT_SCIENTIFIC_NO_EFFECT"
+    },
+    {
+      "id": "B",
+      "name": "同预算分配主比较",
+      "scope": "EACH_LAYER_PRIMARY_B925",
+      "requirements": [
+        "Q",
+        "historical_native_B925_pair_frozen",
+        "common_budget_identity",
+        "positive_C_P",
+        "positive_Cstar"
+      ],
+      "numeric": [
+        {
+          "metric": "mean_G_P_Z",
+          "bound": "lower",
+          "op": ">",
+          "threshold": "important_cost_gain"
+        },
+        {
+          "metric": "instance_V_P_and_Z",
+          "bound": "upper_all",
+          "op": "<=",
+          "threshold": "instance_risk_cap"
+        },
+        {
+          "metric": "instance_H_Z_P",
+          "bound": "upper_all",
+          "op": "<=",
+          "threshold": "signed_U_over_frozen_Cstar_cap"
+        }
+      ],
+      "failure": "QUALIFIED_GAIN_UPPER_LE_MARGIN_IMPORTANT_GAIN_NOT_SUPPORTED_ELSE_UNRESOLVED_OR_RISK_REQUIREMENT_FAILURE"
+    },
+    {
+      "id": "O",
+      "name": "无预算运行后果",
+      "scope": "RAW_NATIVE_PAIR_AND_PRIMARY_BUDGET_Z_RAW_VS_RAW_NATIVE_P",
+      "requirements": [
+        "Q",
+        "frozen_operating_pair_identity",
+        "positive_C_P",
+        "positive_Cstar"
+      ],
+      "numeric": [
+        {
+          "metric": "mean_D_Z_P",
+          "bound": "upper",
+          "op": "<=",
+          "threshold": "cost_noninferiority_margin"
+        },
+        {
+          "metric": "instance_V_P_and_Z",
+          "bound": "upper_all",
+          "op": "<=",
+          "threshold": "instance_risk_cap"
+        },
+        {
+          "metric": "instance_H_Z_P",
+          "bound": "upper_all",
+          "op": "<=",
+          "threshold": "signed_U_over_frozen_Cstar_cap"
+        }
+      ],
+      "failure": "OPERATING_CONSEQUENCES_UNCONFIRMED_OR_REFUTED_NO_RESCUE_BY_OTHER_RAW_PAIR"
+    },
+    {
+      "id": "N",
+      "name": "未多采购表述",
+      "scope": "WORDING_ONLY_NOT_B_OR_O",
+      "requirements": [
+        "Q",
+        "paired_actual_R"
+      ],
+      "numeric": [
+        {
+          "metric": "instance_R_Z_minus_P",
+          "bound": "upper_all",
+          "op": "<=",
+          "constant": 0
+        }
+      ],
+      "failure": "DO_NOT_SAY_NO_EXTRA_PROCUREMENT_REPORT_TRADEOFF"
+    },
+    {
+      "id": "S",
+      "name": "P候选可替代Z",
+      "scope": "EACH_REGISTERED_P_J_AT_SAME_BUDGET",
+      "requirements": [
+        "Q",
+        "same_budget",
+        "Z_qualified",
+        "positive_C_Z",
+        "positive_Cstar"
+      ],
+      "numeric": [
+        {
+          "metric": "mean_D_Pj_Z",
+          "bound": "upper",
+          "op": "<=",
+          "threshold": "cost_noninferiority_margin"
+        },
+        {
+          "metric": "instance_V_Pj_and_Z",
+          "bound": "upper_all",
+          "op": "<=",
+          "threshold": "instance_risk_cap"
+        },
+        {
+          "metric": "instance_H_Pj_Z",
+          "bound": "upper_all",
+          "op": "<=",
+          "threshold": "signed_U_over_frozen_Cstar_cap"
+        }
+      ],
+      "failure": "NO_CERTIFIED_REPLACEMENT_DOES_NOT_MEAN_EXCLUDED"
+    },
+    {
+      "id": "X",
+      "name": "P候选严格排除见证",
+      "scope": "EACH_REGISTERED_P_J",
+      "requirements": [
+        "Q",
+        "Z_qualified",
+        "positive_C_Z",
+        "positive_Cstar"
+      ],
+      "numeric_logic": "ANY",
+      "numeric": [
+        {
+          "metric": "instance_V_Pj",
+          "bound": "lower_any",
+          "op": ">",
+          "threshold": "instance_risk_cap"
+        },
+        {
+          "metric": "mean_D_Pj_Z",
+          "bound": "lower",
+          "op": ">",
+          "threshold": "cost_noninferiority_margin"
+        },
+        {
+          "metric": "instance_H_Pj_Z",
+          "bound": "lower_any",
+          "op": ">",
+          "threshold": "signed_U_over_frozen_Cstar_cap"
+        }
+      ],
+      "failure": "COMPETITOR_UNRESOLVED_NOT_PROVEN_INFEASIBLE"
+    },
+    {
+      "id": "F",
+      "name": "无预算时效交互",
+      "scope": "RAW_A6_VS_RAW_FRESH_BOUNDARY_ONLY",
+      "requirements": [
+        "Q",
+        "matched_fresh_program_roles",
+        "common_Cstar"
+      ],
+      "numeric": [
+        {
+          "metric": "absolute_cost_improvement_interaction_over_Cstar",
+          "bound": "lower",
+          "op": ">",
+          "constant": 0
+        }
+      ],
+      "failure": "DO_NOT_CLAIM_FRESHNESS_DIRECTION_OR_FIXED_BUDGET_FRESHNESS_LAW"
+    }
+  ],
+  "compositions": {
+    "allocation_primary": "Q AND B(Turbine,B925) AND B(Group,B925)",
+    "operating_gate": "O(native,Turbine) AND O(native,Group) AND O(budget_Z_bridge,Turbine) AND O(budget_Z_bridge,Group)",
+    "finite_family_irreplaceability": "Z_qualified AND every registered P_j has X;any S defeats this claim;otherwise unresolved",
+    "no_extra_purchase_wording": "N only;not in allocation_primary or operating_gate",
+    "TSTE_continue": "allocation_primary AND operating_gate AND finite_family_exclusion_closed_at_claimed_scope AND nearest_full_methods_responsibility_closed AND preregistered_boundaries_reported_truthfully",
+    "B950": "same B numeric rule at B950 only;never substitutes primary failure",
+    "B950_interpretation": "gain lower>.01 extends important gain;gain upper<=.01 rejects important gain;gain upper<=0 excludes positive cost gain;else unresolved"
+  },
+  "history_selection": {
+    "RAW": "Family representative configs selected on actual unbudgeted C/V;P and Z symmetrically selected;Z includes copyof RAW P*",
+    "B925": "Family reps selected on actual B925 ledger C/V;P includes U0;Z includes copyof B925 P*",
+    "B950": "Separately on B950 ledger;no confirmation switching",
+    "eligibility": "all five instance historical V joint uppers<=.10",
+    "rank": "minimum five-instance mean actual C;exact tie simplicity then existing higherq then fixed config list order;Z exact tie prefers IGNORE_Z",
+    "P_absent": "STOP_HISTORY_NO_MAIN_PAIR",
+    "Z_primary_ignore": "STOP_NO_HISTORICAL_INCREMENT",
+    "bridge": "Unbudgeted counterpart of primary-budget selected Z against native RAW strongP,plus paired counterpart diagnostic;no bridge retuning",
+    "simplicity_order": {
+      "RAW": [
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "budget": [
+        "U0",
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "Z_exact_tie": "IGNORE_Z before other tied Z candidates"
+    },
+    "RAW_action_domain": "Original nonnegative unbudgeted actions,no imposed ledger cap;C5 convex tail extension fixed in ALLOCATOR_SPEC"
+  },
+  "state_codes": [
+    "NOT_EXECUTED",
+    "NO_INDEPENDENT_WINDOW",
+    "CANCELLED_WINDOW_IDENTITY",
+    "INVALID_QUALIFICATION",
+    "STOP_HISTORY_NO_MAIN_PAIR",
+    "STOP_NO_HISTORICAL_INCREMENT",
+    "RESOURCE_STRUCTURALLY_UNINFORMATIVE",
+    "EMPIRICAL_ORACLE_RESOURCE_INSUFFICIENT_DIAGNOSTIC",
+    "UNRESOLVED_PRECISION",
+    "RISK_REQUIREMENT_REFUTED_IN_DECLARED_SCOPE",
+    "IMPORTANT_GAIN_NOT_SUPPORTED_IN_FIXED_PROGRAM",
+    "FINITE_FAMILY_REPLACEMENT_CERTIFIED",
+    "FINITE_FAMILY_EXCLUSION_CERTIFIED",
+    "FINITE_FAMILY_UNRESOLVED",
+    "QUALIFIED_PRIMARY_CONFIRMED"
+  ],
+  "family_role_upper_bound": {
+    "policies_per_layer": 46,
+    "pairs_per_layer": 143,
+    "risk_coordinates": 230,
+    "mean_cost_coordinates": 143,
+    "signed_instance_U_coordinates": 715,
+    "signed_instance_R_coordinates": 715,
+    "mean_U_coordinates": 143,
+    "mean_R_coordinates": 143,
+    "coordinates_per_layer": 2089,
+    "coordinates_total": 4178,
+    "meaning": "Conservative role schema,not executed/frozen coverage certificate;aliases explicitly bound before any future unlock",
+    "historical_search_family_size": "UNFROZEN_FULL_CONFIG_LIST_REQUIRED"
+  },
+  "window": {
+    "active_confirmation": null,
+    "Towie_2026": "CANCELLED_AS_INDEPENDENT_CONFIRMATION",
+    "qualified_count": 0,
+    "retrospective_authorized": false
+  },
+  "execution": {
+    "experiments": false,
+    "fits": false,
+    "inference": false,
+    "recalibration": false,
+    "resampling": false,
+    "simulation": false,
+    "new_measurements": false,
+    "remote_access": false,
+    "threshold_changes": false,
+    "manuscript_changes": false,
+    "queue": []
+  },
+  "future_execution_prerequisites": [
+    "separate_user_authorization",
+    "complete_finite_config_list",
+    "task_bound_weight_bytes_and_current_environment_qualified",
+    "immediate_relevant_tests_after_code_changes",
+    "seed_configuration_hardware_software_command_timestamp_logs",
+    "program_population_budget_statistics_freeze",
+    "genuinely_qualified_independent_source_before_any_confirmation"
+  ],
+  "main_estimator": "HGB",
+  "secondary_estimator": "MLP development/method-dependence only;never primary rescue;not in4178family without separatefreeze",
+  "missingness": "Historical-slot imputationonly;requiredcurrentinput missing:own budgetU0 orRAW historicalreference rate;invalid own curveprediction notused forresidual update;futurecompleteblock masknever enterscontrol"
+}

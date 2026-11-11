@@ -1,0 +1,54 @@
+{
+  "status": "STORED_RECORD_PROJECTION_ONLY",
+  "utc": "2026-10-20T10:28:44.866656+00:00",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "script_sha256": "668cb0294da4829046ca8dd3924527aa47bc474e202217a677f713f9bd8dcff0",
+  "source_sha256_before": {
+    "analyses/independent_confirmation_execution_20261019/derived/secondary_cases.csv": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc",
+    "analyses/claim_revision_recovery_20261019/derived/all_decision_cases.csv": "fe1467ce249808a946e734ef93cd52b31412e630f842e7f21e97535db8b7e96b",
+    "analyses/claim_revision_recovery_20261019/necessity/necessity.csv": "aeb36ec93b2492fd8e0aaca48a96622848efcd0fa9ef6939d7d33cb2e0297010",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span1.json": "753141814c4baad335b6d5c6b3aa258b5bc52a7829d7e547d0cb333094439339",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span7.json": "8ca94402bd42c8e9e7903556c95e4c28af3feff7366e9dd70dd7760f932c6612"
+  },
+  "source_sha256_after": {
+    "analyses/independent_confirmation_execution_20261019/derived/secondary_cases.csv": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc",
+    "analyses/claim_revision_recovery_20261019/derived/all_decision_cases.csv": "fe1467ce249808a946e734ef93cd52b31412e630f842e7f21e97535db8b7e96b",
+    "analyses/claim_revision_recovery_20261019/necessity/necessity.csv": "aeb36ec93b2492fd8e0aaca48a96622848efcd0fa9ef6939d7d33cb2e0297010",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span1.json": "753141814c4baad335b6d5c6b3aa258b5bc52a7829d7e547d0cb333094439339",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span7.json": "8ca94402bd42c8e9e7903556c95e4c28af3feff7366e9dd70dd7760f932c6612"
+  },
+  "outputs": {
+    "registered_confirmation_policies.csv": {
+      "sha256": "89506f8fe6be44aa0fae4356bbb39665fdad1233027738da183c7b844438eed1",
+      "rows": 550
+    },
+    "towie_all_90_cases.csv": {
+      "sha256": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc",
+      "rows": 90
+    },
+    "towie_q925_all_15_witnesses.csv": {
+      "sha256": "c6e3985277500fec0f275d4c9caa5ec1886dec5a52592e74395ac9824ff15a40",
+      "rows": 15
+    },
+    "towie_q925_block_sensitivity.csv": {
+      "sha256": "70e3de525c42df644eead9d2eadf29ad0b1d2eaf6929b3e90d5472bc5b9107ee",
+      "rows": 3
+    },
+    "wtb_all_420_minimum_cases.csv": {
+      "sha256": "aeb36ec93b2492fd8e0aaca48a96622848efcd0fa9ef6939d7d33cb2e0297010",
+      "rows": 420
+    },
+    "wtb_all_420_sufficiency_cases.csv": {
+      "sha256": "fe1467ce249808a946e734ef93cd52b31412e630f842e7f21e97535db8b7e96b",
+      "rows": 420
+    }
+  },
+  "new_training": false,
+  "new_prediction": false,
+  "new_calibration": false,
+  "new_resampling": false,
+  "new_measurements": false,
+  "scope": "CSV copies and literal JSON field projections; max/count operations summarize already stored fields, not new inferential estimates."
+}

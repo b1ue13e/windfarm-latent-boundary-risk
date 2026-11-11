@@ -1,0 +1,17 @@
+id,route,url_or_query,actual_result,local_artifact,reading_scope,implication
+S01,Publisher direct web,https://www.sciencedirect.com/science/article/pii/S2213138826006247,web_open_internal_error_and_shell_HTTP403,,NO_FULLTEXT,Does_not_prove_global_unavailability
+S02,Publisher indexed preview,https://www.sciencedirect.com/science/article/pii/S2213138826006247,Indexed_abstract_introduction_contributions_and_section_snippets,,PUBLISHER_PREVIEW,Method_formulas_tables_and_appendix_not_obtained
+S03,DOI landing,https://doi.org/10.1016/j.seta.2026.105438,web_open_internal_error,,NO_FULLTEXT,DOI_verified_separately_by_Crossref
+S04,Crossref API,https://api.crossref.org/works/10.1016%2Fj.seta.2026.105438,HTTP200,crossref.json,METADATA,Title_authors_volume_article_and_TDM_links_verified
+S05,Elsevier registered TDM XML,https://api.elsevier.com/content/article/PII:S2213138826006247?httpAccept=text/xml,HTTP200_1885_chars_coredata_only,elsevier_tdm.txt,METADATA_NOT_BODY,openaccess0_openaccessArticleFalse_no_fulltext
+S06,Elsevier registered TDM plain,https://api.elsevier.com/content/article/PII:S2213138826006247?httpAccept=text/plain,HTTP429_no_retry_after_rate_limit,,NO_FULLTEXT,Not_a_body_retrieval_success
+S07,Elsevier registered resource,https://linkinghub.elsevier.com/retrieve/pii/S2213138826006247,HTTP200_2730_chars_redirect_page,linkinghub.txt,REDIRECT_ONLY,Points_back_to_ScienceDirect_not_manuscript
+S08,OpenAlex DOI lookup,https://api.openalex.org/works/https://doi.org/10.1016/j.seta.2026.105438,HTTP200_15467_chars,openalex.txt,METADATA,OA_hybrid_flag_but_no_PDF_and_has_fulltext_false
+S09,Semantic Scholar DOI lookup,"https://api.semanticscholar.org/graph/v1/paper/DOI:10.1016/j.seta.2026.105438?fields=title,authors,year,openAccessPdf,url,externalIds",HTTP200_592_chars,s2.txt,METADATA,OA_hybrid_CCBYNCND_but_PDF_url_is_only_DOI
+S10,Publisher ordinary browser,https://www.sciencedirect.com/science/article/pii/S2213138826006247,IAB_visible_state_please_wait_no_challenge_action,,NO_FULLTEXT,No_login_or_challenge_bypass_attempted
+S11,Exact-title manuscript search,"Reserve-risk-oriented regime-calibrated interval forecasting; Reserve-risk-oriented pdf preprint manuscript author",Only_publisher_preview_and_secondary_repost_returned,,SEARCH_NOT_FULLTEXT,No_qualified_author_manuscript_found_in_this_search
+S12,Preprint repository search,"regime-calibrated site:arxiv.org OR site:ssrn.com OR site:researchsquare.com OR site:zenodo.org",No_exact_article_match_returned,,SEARCH_NOT_FULLTEXT,Unrelated_regime_calibration_hits_not_used
+S13,Institution search,"Reserve-risk-oriented site:xju.edu.cn; 105438 wind Xinjiang",No_exact_institutional_manuscript_returned,,SEARCH_NOT_FULLTEXT,OpenAlex_affiliation_is_Xinjiang_University_not_a_repository_link
+S14,Author-title search,"Yang Wang Haiyun Wang regime wind; S2213138826006247 pdf",Other_same_author_papers_found_but_no_SETA_fulltext,,SEARCH_NOT_FULLTEXT,Other_papers_not_substituted_for_this_article
+S15,Author public platform lead,https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7025858,HTTP403_when_opening_public_same_author_record,,NO_SETA_FULLTEXT,Different_paper_not_used_as_SETA_evidence_and_no_author_contact
+S16,Publisher abs route,https://www.sciencedirect.com/science/article/abs/pii/S2213138826006247,Indexed_preview_only,,PUBLISHER_PREVIEW,Not_full_article_despite_extensive_intro_text

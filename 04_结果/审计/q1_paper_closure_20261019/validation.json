@@ -1,0 +1,53 @@
+{
+  "status": "PAPER_CLOSURE_SPECIFIED_WITH_CONFIRMATION_QUALIFICATION_BLOCKED",
+  "utc": "2026-10-19T13:44:50.352902+00:00",
+  "paper_items": {
+    "1_estimand": "SPECIFIED",
+    "2_prediction_and_refutation": "SPECIFIED_UNTESTED",
+    "3_forward_freeze_evidence_path": "SPECIFIED_SOURCE_BLOCKED"
+  },
+  "data_qualification": "NOT_COMPLETE_USER_CANNOT_CONFIRM_EXPOSURE",
+  "eligible_confirmation_sources": 0,
+  "implementation_and_statistical_validation": "NOT_RUN",
+  "preregistration": "NOT_COMPLETED",
+  "execution_authorized": false,
+  "project_state": "STOP_ADDITIONAL_INVESTMENT",
+  "protected_files_unchanged": 26,
+  "gates": {
+    "scientific": "PASS",
+    "numbers": {
+      "checks": 77,
+      "failed": 0
+    },
+    "independent_archive_claims": "PASS"
+  },
+  "operations": {
+    "paper_documents": true,
+    "official_public_metadata_only": true,
+    "measurement_download_or_zip_listing": false,
+    "new_model_fit_or_evaluation": false,
+    "new_calibration_or_resampling": false,
+    "remote_compute_access": false,
+    "manuscript_edits": false,
+    "original_protocol_or_gate_changes": false,
+    "project_status_changes": false
+  },
+  "consistency_checks": {
+    "status": "PASS_PAPER_CONSISTENCY_ONLY_DATA_BLOCKED",
+    "estimand_specified": true,
+    "prediction_and_counterexplanations_specified": true,
+    "forward_and_freeze_path_specified": true,
+    "source_qualification_closed": false,
+    "confirmation_eligible_sources": 0,
+    "human_exposure_record_preserved": true,
+    "domain_disjointness": "follows from a>A75>=A25 versus a<=A25; no measurement simulation",
+    "primary_coordinates": 12,
+    "historical_risk_coordinates": 100,
+    "old_result_data_and_manuscripts_unchanged": true,
+    "protected_files_unchanged": 26,
+    "research_execution": false,
+    "preregistration_completed": false,
+    "clock_index_arithmetic_consistency_checked": true,
+    "source_measurements_downloaded": false
+  }
+}

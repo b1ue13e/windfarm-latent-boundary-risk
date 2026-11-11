@@ -1,0 +1,70 @@
+{
+  "protocol": {
+    "alpha": 0.05,
+    "epsilon_C_kwh": 0.0,
+    "epsilon_V": 0.0,
+    "v_max": 0.1,
+    "n_boot": 20000,
+    "seed": 20261017,
+    "unit": "5 training seeds x 35 daily blocks, joint resampling",
+    "complexity_order": [
+      "B",
+      "C",
+      "D",
+      "D10"
+    ],
+    "primary_population": "Full"
+  },
+  "policies": {
+    "B": {
+      "cost_delta_point_kwh": 0.0,
+      "cost_delta_ucb95_kwh": 0.0,
+      "violation_delta_point": 0.0,
+      "violation_delta_ucb95": 0.0,
+      "absolute_violation_point": 0.10296349774233053,
+      "absolute_violation_ucb95": 0.11419393570436379,
+      "feasible": false
+    },
+    "C": {
+      "cost_delta_point_kwh": 2220894.110799228,
+      "cost_delta_ucb95_kwh": 3758647.2788021564,
+      "violation_delta_point": 0.0015578611149081269,
+      "violation_delta_ucb95": 0.004864387540585626,
+      "absolute_violation_point": 0.10452135885723865,
+      "absolute_violation_ucb95": 0.11731446644166825,
+      "feasible": false
+    },
+    "D": {
+      "cost_delta_point_kwh": 56887.91184938946,
+      "cost_delta_ucb95_kwh": 119264.05077571867,
+      "violation_delta_point": -5.632796907315956e-05,
+      "violation_delta_ucb95": 2.3944358534497945e-05,
+      "absolute_violation_point": 0.10290716977325737,
+      "absolute_violation_ucb95": 0.11418291791543933,
+      "feasible": false
+    },
+    "D10": {
+      "cost_delta_point_kwh": 73791.61732165221,
+      "cost_delta_ucb95_kwh": 128434.65169582365,
+      "violation_delta_point": -0.00024322001068603273,
+      "violation_delta_ucb95": -0.00013071235932205286,
+      "absolute_violation_point": 0.10272027773164448,
+      "absolute_violation_ucb95": 0.11389418686057207,
+      "feasible": false
+    }
+  },
+  "selection": {
+    "status": "NO FEASIBLE POLICY",
+    "selected_policy": null,
+    "feasible_policies": [],
+    "stability_rule": "selection frequency >= 0.80; frequency not estimated in this aggregate selector",
+    "note": "No test-time threshold, baseline, candidate set, or complexity order was changed after observing outcomes."
+  },
+  "provenance": {
+    "remote_host": "metis",
+    "replay_version": "e04_strong_baseline_replay_v4",
+    "input_type": "frozen existing checkpoints/cache/residuals; no retraining",
+    "decision_arrays": "analyses/remote/e04-strong-baseline-replay-v4/seed*_full_policy_day_blocks.npz",
+    "note": "Remote launcher attempts J01/J02/J03 failed at script transport; v4 direct replay completed successfully and produced the policy arrays used here."
+  }
+}

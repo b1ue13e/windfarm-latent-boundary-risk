@@ -1,0 +1,20 @@
+{
+  "status": "PASS_STATIC_DESIGN_CHECKS_ONLY",
+  "time_asia_shanghai": "2026-10-19T23:39:28.006511+08:00",
+  "specified_design_items": 8,
+  "disabled_scope_items": 3,
+  "materials_pending": 12,
+  "controls": 14,
+  "rules": 6,
+  "claims": 12,
+  "historical_risk_coordinates": 3800,
+  "confirmation_coordinates": 80,
+  "nominal_fit_upper_bound": 2880,
+  "protected_files_unchanged": 20,
+  "local_links_checked": 29,
+  "experiments_run": false,
+  "new_materials_acquired": false,
+  "manuscript_changed": false,
+  "scientific_gates": "Not rerun; design-only milestone, no scientific certification; numerical gate includes bootstrap",
+  "limitations": "No implementation, power, coverage, new data qualification or execution readiness is certified."
+}

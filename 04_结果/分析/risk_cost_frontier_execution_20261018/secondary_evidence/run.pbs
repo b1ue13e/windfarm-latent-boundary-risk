@@ -1,0 +1,5 @@
+#!/bin/bash
+set -euo pipefail
+cd /nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_secondary_cd75e07
+export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2
+exec /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python -u scripts/analyze_risk_frontier_model_class.py --protocol experiments/risk_frontier_model_class_audit_20261018/protocol.json --output results

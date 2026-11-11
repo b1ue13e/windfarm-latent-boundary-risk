@@ -1,0 +1,226 @@
+{
+  "status": "PASS",
+  "scope": "Visual/layout and literal text QA only; not a new scientific validation",
+  "utc": "2026-10-20T10:48:39.162049+00:00",
+  "prior_failure_record": "qa/pdf_visual_review_initial.json",
+  "documents": {
+    "manuscript": {
+      "sha256": "238952eb15de4c64d491d988201bb4c853b259ae5e9fb8549b3f46e42bd34f6f",
+      "page_count": 14,
+      "minimum_font_size_pt": 7.373600006103516,
+      "replacement_glyph_count": 0,
+      "unresolved_citation_token_count": 0,
+      "pages": [
+        {
+          "page": 1,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 2854,
+          "clipped_text": [],
+          "rendered_page_sha256": "4664cf2db0c29f1dba26bc8b6be83fcc70c9e19301f166ffd85aac3369676fe4"
+        },
+        {
+          "page": 2,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 4113,
+          "clipped_text": [],
+          "rendered_page_sha256": "20c86db96999f79ceb0eb99205d976bb03d8a8db9e000de3b9aa4702e7711800"
+        },
+        {
+          "page": 3,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3666,
+          "clipped_text": [],
+          "rendered_page_sha256": "80bfecb108d266b9a2cef96504147f6874af1eab14fd9cffa387887761257a7d"
+        },
+        {
+          "page": 4,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3304,
+          "clipped_text": [],
+          "rendered_page_sha256": "45a2a54ae72a08786aa1e285276af7ed0a27ca2eeb2b561e5cdbee25c673ffd3"
+        },
+        {
+          "page": 5,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3296,
+          "clipped_text": [],
+          "rendered_page_sha256": "8825b196579d5951aff8c43d3a0fde2b627eff5d90c8bb2bbe8ef93955e50e82"
+        },
+        {
+          "page": 6,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 2385,
+          "clipped_text": [],
+          "rendered_page_sha256": "315b2751aeb30169d73c028e14902f68e8c37882508124ed439211b7a8efb249"
+        },
+        {
+          "page": 7,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3483,
+          "clipped_text": [],
+          "rendered_page_sha256": "a637f0ddfd03d0a50f13a053f14b889312686e456e83ad414b564e36fc7d2731"
+        },
+        {
+          "page": 8,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 2431,
+          "clipped_text": [],
+          "rendered_page_sha256": "6c852e45c22bf2748e4f7f775ecc624482b5f54056b8873e46f2ec720ededcfd"
+        },
+        {
+          "page": 9,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 2998,
+          "clipped_text": [],
+          "rendered_page_sha256": "ede83ceecf08e8041cd4875b0da0eacafa8597a0586748fc3d182cd49f66d37a"
+        },
+        {
+          "page": 10,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 1357,
+          "clipped_text": [],
+          "rendered_page_sha256": "f3190dee212e740b801c0333fed29e415e045916cdbf1f742c3f27490d99ac6e"
+        },
+        {
+          "page": 11,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 1254,
+          "clipped_text": [],
+          "rendered_page_sha256": "3d26624487788562e9ca85ab41df1e33bd96279074bca41ecfc369a72dfd7efa"
+        },
+        {
+          "page": 12,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3793,
+          "clipped_text": [],
+          "rendered_page_sha256": "3543cd5a507205d3045a98319ba1172946ec3683ea66ec7350e7f2685cee8084"
+        },
+        {
+          "page": 13,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3355,
+          "clipped_text": [],
+          "rendered_page_sha256": "0948fa03b0be2289cc112314704ae3439f691c6f3119c435d869f2fee37385f5"
+        },
+        {
+          "page": 14,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 1844,
+          "clipped_text": [],
+          "rendered_page_sha256": "f124ee430cd366c105e2ff58d2cb836704bc1ff20edb4548998b5675aae8fb39"
+        }
+      ]
+    },
+    "supplementary": {
+      "sha256": "f77ea67079fa81f3a22d0ecc5a998861550456137ea9dbc1ae132fa8e4c601d1",
+      "page_count": 10,
+      "minimum_font_size_pt": 8.072699546813965,
+      "replacement_glyph_count": 0,
+      "unresolved_citation_token_count": 0,
+      "pages": [
+        {
+          "page": 1,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 2339,
+          "clipped_text": [],
+          "rendered_page_sha256": "b1f619edf0d6160fbe593d4d4bea8f3b55455dbccda69fe8f735bd03eb6c996d"
+        },
+        {
+          "page": 2,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 2305,
+          "clipped_text": [],
+          "rendered_page_sha256": "2881a8a5afd0ed51698c000f0f3d6eea48e693aea30109d5fa3093e37eb1f95d"
+        },
+        {
+          "page": 3,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3201,
+          "clipped_text": [],
+          "rendered_page_sha256": "65d38143e42520ecf19c030240f0ed3de6ef84cc760af7ad6b0ed4f2e4b6e2bc"
+        },
+        {
+          "page": 4,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3272,
+          "clipped_text": [],
+          "rendered_page_sha256": "5884101d16e22a9597e88c1e0591bf4e18833754e1cb1d583505eae152df006f"
+        },
+        {
+          "page": 5,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3312,
+          "clipped_text": [],
+          "rendered_page_sha256": "7211737e47003c6bd633f6c1fc2c037f3422c14ba9a0fc55266578b6b2f7abe6"
+        },
+        {
+          "page": 6,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3875,
+          "clipped_text": [],
+          "rendered_page_sha256": "747cd15383c8e030918a5f73bed003884ec2cf6860389ecd878cdc1c6dba25ab"
+        },
+        {
+          "page": 7,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3123,
+          "clipped_text": [],
+          "rendered_page_sha256": "548773bc7fc0c8c8cd200f2d561f0136b835c98fd81e5d4e42ab850667c2c11c"
+        },
+        {
+          "page": 8,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3166,
+          "clipped_text": [],
+          "rendered_page_sha256": "a8e1d44a2ae07ae0cb00c2cd81fb1abde62b5a57c60cb9f78d05b3b3b6629b20"
+        },
+        {
+          "page": 9,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 3431,
+          "clipped_text": [],
+          "rendered_page_sha256": "330c0442ca10df378c39e3dc42bfb2327d92ef31b20e9e92e7e3684a6f84ae7b"
+        },
+        {
+          "page": 10,
+          "status": "PASS",
+          "visually_inspected": true,
+          "text_characters": 1843,
+          "clipped_text": [],
+          "rendered_page_sha256": "6a488e3e59f5da5e3a876a4e579c85c6eff027f33cc81602a5f7a40dfe8392b4"
+        }
+      ]
+    }
+  },
+  "resolved_findings": [
+    "Supplementary long attachment path clipping repaired by short linked labels",
+    "Table S3/S4 captions now stay with their table starts",
+    "S2.2 heading stays with Table S3",
+    "Discussion begins after result-figure floats; no sentence interrupted by two float pages",
+    "Figure 1 package-created time is distinct from completed review/validation",
+    "Figure 3 horizontal marginal percentile bars distinguished from joint decision bounds"
+  ]
+}

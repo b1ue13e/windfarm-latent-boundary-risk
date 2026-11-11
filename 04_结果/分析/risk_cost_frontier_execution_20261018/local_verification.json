@@ -1,0 +1,7 @@
+{
+  "status": "ALL_COMPACT_MEMBERS_HASH_MATCH",
+  "archive_sha256": "61b34640f4b3b360a7c548aacf31811755c871d5c53235e69544f8eb50cca8bf",
+  "members": 359,
+  "metis_exact_selected_action_checks": 1260,
+  "full_actions_replayed_locally": false
+}

@@ -1,0 +1,20 @@
+{
+  "status": "STATIC_IDENTITY_AND_RECEIPT_AUDIT_NO_MODEL_LOADING",
+  "WTB_tasks_indexed": 70,
+  "Towie_tasks_indexed": 550,
+  "WTB_learned_model_entries": 60,
+  "Towie_learned_model_entries": 520,
+  "local_model_binaries_in_indexed_export_directories": 0,
+  "Towie_fresh_no_pitch_reference_tasks": [
+    "42",
+    "87",
+    "132",
+    "177",
+    "222"
+  ],
+  "Towie_current_pitch_task_match": "NOT_FOUND_IN_REVIEWED_ARCHIVES_NOT_GLOBAL_REMOTE_ABSENCE",
+  "new_C5_group_models": "NOT_QUALIFIED_NO_SAME_IDENTITY_ARCHIVE_FOUND",
+  "remote_current_existence_checked": false,
+  "weights_deserialized": false,
+  "models_run": false
+}

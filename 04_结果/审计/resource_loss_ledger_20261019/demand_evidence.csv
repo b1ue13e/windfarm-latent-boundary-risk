@@ -1,0 +1,8 @@
+﻿id,requirement,result,evidence,scope
+D01,Named real user/owner for this exact reserve interface,NOT_ESTABLISHED,Historical farm exists; no owner-endorsed request for the frozen reserve service,438 local text/code files and listed official sources
+D02,Separate point/reserve services and available inputs,NOT_ESTABLISHED,Batch PBS CLI code and synthetic two-feed assumptions; no deployed endpoint or service logs,"Current executed path, not a proof no external service exists"
+D03,Avoidable channel/traffic/license/maintenance burden,NOT_ESTABLISHED,Code-level slices differ; fullX/upstream retained; no packet trace or marginal bill,Cannot infer from112-to5 learner columns
+D04,Real business owner accepts extra proxy loss/severity,NOT_ESTABLISHED,2% is preregistered scientific tolerance; no real user acceptance or proxy-to-business mapping,Scientific noninferiority is not business permission
+D05,Applicable real incumbent/fallback and delivery constraints,NOT_ESTABLISHED,Strong full quantile research reference; no actual site fallback/dispatch/PCC/SLA binding,Do not replace with another q or old incomparable branch
+D06,Generic real reserve uncertainty need,VERIFIED_DIFFERENT_INTERFACE,CAISO official product and monitoring notice,Does not establishD01-D05 for Hill of Towie/P1
+D07,Old rebuttal and monetary conversion can establish demand,REJECTED_AS_EVIDENCE,"Manuscript assertion, model equivalence argument, historical illustrative price sensitivity are not interface logs/contracts",Original files preserved; no price multiplication or settled cashflow claim

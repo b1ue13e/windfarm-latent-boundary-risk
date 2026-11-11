@@ -1,0 +1,3 @@
+evidence/** -text
+*.tar -text
+*.tar.gz -text

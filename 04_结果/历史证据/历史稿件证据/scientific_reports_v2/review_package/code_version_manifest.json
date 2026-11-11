@@ -1,0 +1,341 @@
+{
+  "scope": "byte-identical source copies only, not executed",
+  "files": [
+    {
+      "version": "R",
+      "packet": "frozen_R_source.tar",
+      "member": "experiments/decision_information_development_20261018/README.md",
+      "copy": "review_package/code_versions/R/experiments/decision_information_development_20261018/README.md",
+      "sha256": "b4f9497a565dd40428c58ed20c19ca8a4c1c68eb118032af8c2551154f2b6539",
+      "bytes": 3019
+    },
+    {
+      "version": "R",
+      "packet": "frozen_R_source.tar",
+      "member": "experiments/decision_information_development_20261018/protocol.json",
+      "copy": "review_package/code_versions/R/experiments/decision_information_development_20261018/protocol.json",
+      "sha256": "c69bfdc1940996ad5b9bee9d610e52f6d0ad9618e316bc704e64d78ee1a1179b",
+      "bytes": 6197
+    },
+    {
+      "version": "R",
+      "packet": "frozen_R_source.tar",
+      "member": "experiments/decision_information_development_20261018/run.pbs",
+      "copy": "review_package/code_versions/R/experiments/decision_information_development_20261018/run.pbs",
+      "sha256": "0b975add669f75699d701a9be653a497f12a6c26769b626f7d616e1b39f219c0",
+      "bytes": 1285
+    },
+    {
+      "version": "R",
+      "packet": "frozen_R_source.tar",
+      "member": "scripts/run_decision_information_development.py",
+      "copy": "review_package/code_versions/R/scripts/run_decision_information_development.py",
+      "sha256": "a11f43242004687ea9da4d73a9c087373dd1d0f991eb196afe66706c87a86df4",
+      "bytes": 32009
+    },
+    {
+      "version": "R",
+      "packet": "frozen_R_source.tar",
+      "member": "tests/test_decision_information.py",
+      "copy": "review_package/code_versions/R/tests/test_decision_information.py",
+      "sha256": "fec01e7fbd8da9eca584f2a1ff46c78e32255a362f258c5b094f0a467fd10f3e",
+      "bytes": 17888
+    },
+    {
+      "version": "R",
+      "packet": "frozen_R_source.tar",
+      "member": "windfarm_moe/__init__.py",
+      "copy": "review_package/code_versions/R/windfarm_moe/__init__.py",
+      "sha256": "8d4e75dbddea5f57073e341ba3a7ef5604b7d2a5dc28950123c85572ef3ff405",
+      "bytes": 1352
+    },
+    {
+      "version": "R",
+      "packet": "frozen_R_source.tar",
+      "member": "windfarm_moe/decision_information.py",
+      "copy": "review_package/code_versions/R/windfarm_moe/decision_information.py",
+      "sha256": "7e6fd36eec25a5d1c9276cc14224f0aad5ea78b34e802ef84bdc6b7c043173a5",
+      "bytes": 7293
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "scripts/run_state_measurement_pilot.py",
+      "copy": "review_package/code_versions/M_original/scripts/run_state_measurement_pilot.py",
+      "sha256": "d806c22dfcb6c96482fb9a268a428cf21045fb872aa26f930315c64929dadb16",
+      "bytes": 25104
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "windfarm_moe/state_measurement.py",
+      "copy": "review_package/code_versions/M_original/windfarm_moe/state_measurement.py",
+      "sha256": "d850ab388f1c5b056e9f0a966957cde0e1fe122c82b5a5ace72e31dc134f771c",
+      "bytes": 6462
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "scripts/run_information_subset_study.py",
+      "copy": "review_package/code_versions/M_original/scripts/run_information_subset_study.py",
+      "sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a",
+      "bytes": 24134
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "scripts/run_decision_information_development.py",
+      "copy": "review_package/code_versions/M_original/scripts/run_decision_information_development.py",
+      "sha256": "a5f27587f2548fcc2f9f98fa76affc196c720b29da55c109c0d831cb7fefe039",
+      "bytes": 31464
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "windfarm_moe/information_subset.py",
+      "copy": "review_package/code_versions/M_original/windfarm_moe/information_subset.py",
+      "sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd",
+      "bytes": 5469
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "windfarm_moe/decision_information.py",
+      "copy": "review_package/code_versions/M_original/windfarm_moe/decision_information.py",
+      "sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287",
+      "bytes": 7146
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "windfarm_moe/risk_frontier.py",
+      "copy": "review_package/code_versions/M_original/windfarm_moe/risk_frontier.py",
+      "sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944",
+      "bytes": 5754
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "windfarm_moe/subset_inference.py",
+      "copy": "review_package/code_versions/M_original/windfarm_moe/subset_inference.py",
+      "sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568",
+      "bytes": 4863
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "windfarm_moe/__init__.py",
+      "copy": "review_package/code_versions/M_original/windfarm_moe/__init__.py",
+      "sha256": "17ee5f3c992700309115073c67c9d24608b1fa113c1a68d7a1890cf47df08bca",
+      "bytes": 1315
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "tests/test_state_measurement.py",
+      "copy": "review_package/code_versions/M_original/tests/test_state_measurement.py",
+      "sha256": "b036140b8d139193f71a9a80f6b3554b5de35e4bc4e3f53b93549b21879f3e5d",
+      "bytes": 3822
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "tests/test_state_measurement_runner.py",
+      "copy": "review_package/code_versions/M_original/tests/test_state_measurement_runner.py",
+      "sha256": "48f7607c133ce1e78742c60a0c723d00215572223d7fcca5b6688e6341fdc1da",
+      "bytes": 4562
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "experiments/state_measurement_pilot_20261020/protocol.json",
+      "copy": "review_package/code_versions/M_original/experiments/state_measurement_pilot_20261020/protocol.json",
+      "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e",
+      "bytes": 4694
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "experiments/state_measurement_pilot_20261020/run.pbs",
+      "copy": "review_package/code_versions/M_original/experiments/state_measurement_pilot_20261020/run.pbs",
+      "sha256": "bcd3e0c2a8fe5072a78a21a616cd335a8957ba935be845dfa0dea3e1ea422cd4",
+      "bytes": 1002
+    },
+    {
+      "version": "M_original",
+      "packet": "frozen_M_original_packet.tar.gz",
+      "member": "deployment_manifest.json",
+      "copy": "review_package/code_versions/M_original/deployment_manifest.json",
+      "sha256": "40c2fde929d193a0dc4f7ff94139d9cc5634836d0e6654ea1fe0f66564298cbf",
+      "bytes": 2209
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "scripts/run_state_measurement_pilot.py",
+      "copy": "review_package/code_versions/M_controls/scripts/run_state_measurement_pilot.py",
+      "sha256": "d806c22dfcb6c96482fb9a268a428cf21045fb872aa26f930315c64929dadb16",
+      "bytes": 25104
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "windfarm_moe/state_measurement.py",
+      "copy": "review_package/code_versions/M_controls/windfarm_moe/state_measurement.py",
+      "sha256": "d850ab388f1c5b056e9f0a966957cde0e1fe122c82b5a5ace72e31dc134f771c",
+      "bytes": 6462
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "scripts/run_information_subset_study.py",
+      "copy": "review_package/code_versions/M_controls/scripts/run_information_subset_study.py",
+      "sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a",
+      "bytes": 24134
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "scripts/run_decision_information_development.py",
+      "copy": "review_package/code_versions/M_controls/scripts/run_decision_information_development.py",
+      "sha256": "a5f27587f2548fcc2f9f98fa76affc196c720b29da55c109c0d831cb7fefe039",
+      "bytes": 31464
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "windfarm_moe/information_subset.py",
+      "copy": "review_package/code_versions/M_controls/windfarm_moe/information_subset.py",
+      "sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd",
+      "bytes": 5469
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "windfarm_moe/decision_information.py",
+      "copy": "review_package/code_versions/M_controls/windfarm_moe/decision_information.py",
+      "sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287",
+      "bytes": 7146
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "windfarm_moe/risk_frontier.py",
+      "copy": "review_package/code_versions/M_controls/windfarm_moe/risk_frontier.py",
+      "sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944",
+      "bytes": 5754
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "windfarm_moe/subset_inference.py",
+      "copy": "review_package/code_versions/M_controls/windfarm_moe/subset_inference.py",
+      "sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568",
+      "bytes": 4863
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "windfarm_moe/__init__.py",
+      "copy": "review_package/code_versions/M_controls/windfarm_moe/__init__.py",
+      "sha256": "17ee5f3c992700309115073c67c9d24608b1fa113c1a68d7a1890cf47df08bca",
+      "bytes": 1315
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "tests/test_state_measurement.py",
+      "copy": "review_package/code_versions/M_controls/tests/test_state_measurement.py",
+      "sha256": "b036140b8d139193f71a9a80f6b3554b5de35e4bc4e3f53b93549b21879f3e5d",
+      "bytes": 3822
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "tests/test_state_measurement_runner.py",
+      "copy": "review_package/code_versions/M_controls/tests/test_state_measurement_runner.py",
+      "sha256": "48f7607c133ce1e78742c60a0c723d00215572223d7fcca5b6688e6341fdc1da",
+      "bytes": 4562
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "experiments/state_measurement_pilot_20261020/protocol.json",
+      "copy": "review_package/code_versions/M_controls/experiments/state_measurement_pilot_20261020/protocol.json",
+      "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e",
+      "bytes": 4694
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "experiments/state_measurement_pilot_20261020/run.pbs",
+      "copy": "review_package/code_versions/M_controls/experiments/state_measurement_pilot_20261020/run.pbs",
+      "sha256": "bcd3e0c2a8fe5072a78a21a616cd335a8957ba935be845dfa0dea3e1ea422cd4",
+      "bytes": 1002
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "scripts/run_state_calibration_controls.py",
+      "copy": "review_package/code_versions/M_controls/scripts/run_state_calibration_controls.py",
+      "sha256": "8267e6b2813bee432ba5c83835fb709b8a89d3cb97849606cc2d6c0fcdb9b054",
+      "bytes": 20923
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "windfarm_moe/state_measurement_review.py",
+      "copy": "review_package/code_versions/M_controls/windfarm_moe/state_measurement_review.py",
+      "sha256": "6b2efb374954dfd746817d926837aa158b95a4583b6a3a4c7bff8190cbf70df2",
+      "bytes": 3451
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "windfarm_moe/state_measurement_controls.py",
+      "copy": "review_package/code_versions/M_controls/windfarm_moe/state_measurement_controls.py",
+      "sha256": "9231a2798ee681a5cffa2a76a5ad385494aa1766a89a5f4e13b6af732b891fb5",
+      "bytes": 8221
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "experiments/state_calibration_controls_20261020/protocol.json",
+      "copy": "review_package/code_versions/M_controls/experiments/state_calibration_controls_20261020/protocol.json",
+      "sha256": "3be445a2e274d9ec92d53730389bcb4c3d16e46f83271fa93c79c5feabadb0c1",
+      "bytes": 4712
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "experiments/state_calibration_controls_20261020/run.pbs",
+      "copy": "review_package/code_versions/M_controls/experiments/state_calibration_controls_20261020/run.pbs",
+      "sha256": "80ce3396020ed4c7d4b05a74f51bfa6968c88c1affef4527b40e35b2455bb77e",
+      "bytes": 852
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "tests/test_state_measurement_controls.py",
+      "copy": "review_package/code_versions/M_controls/tests/test_state_measurement_controls.py",
+      "sha256": "2eeecccbe185208aa5db74b0e8f5fce5878028308074cde81d3a50a78e44e9e6",
+      "bytes": 3413
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "tests/test_state_calibration_controls_runner.py",
+      "copy": "review_package/code_versions/M_controls/tests/test_state_calibration_controls_runner.py",
+      "sha256": "ed31c021ed8f1477fe2cbac121cdb2fecf0bf02be0c643f4a6cb2dbca4839349",
+      "bytes": 2081
+    },
+    {
+      "version": "M_controls",
+      "packet": "frozen_M_controls_packet.tar.gz",
+      "member": "deployment_manifest.json",
+      "copy": "review_package/code_versions/M_controls/deployment_manifest.json",
+      "sha256": "0da552dc270eb13f1a35c6fef5c3897d089b011b2dc312bf2c5c17edf2b91481",
+      "bytes": 3342
+    }
+  ]
+}

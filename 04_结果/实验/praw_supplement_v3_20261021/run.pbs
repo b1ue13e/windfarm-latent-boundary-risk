@@ -1,0 +1,21 @@
+#!/bin/bash
+#PBS -N praw_v3
+#PBS -q rqdf
+#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -l walltime=00:45:00
+#PBS -j oe
+set -euo pipefail
+cd "${SUPPLEMENT_ROOT:?required}"
+exec >> "${SUPPLEMENT_ROOT}/logs/${STAGE}_${PBS_JOBID}.log" 2>&1
+export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 PYTHONUNBUFFERED=1
+worker="${PBS_ARRAY_INDEX:--1}"
+output="${SUPPLEMENT_ROOT}/results/${STAGE}"
+if [[ "$STAGE" == prepare ]]; then output="${SUPPLEMENT_ROOT}/results/prepared"; fi
+if [[ "$STAGE" == fit ]]; then output="${SUPPLEMENT_ROOT}/results/fits/${worker}"; fi
+if [[ "$STAGE" == account ]]; then output="${SUPPLEMENT_ROOT}/results/accounting/${worker}"; fi
+exec /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python scripts/run_praw_offline_supplement.py \
+  --stage "$STAGE" --worker "$worker" \
+  --protocol experiments/praw_supplement_v3_20261021/protocol.json \
+  --rules research_audit/minimum_supplement_plan_v3_20261021/RULES.json \
+  --coordinates research_audit/minimum_supplement_plan_v3_20261021/COMPARISON_COORDINATES.csv \
+  --base "${SUPPLEMENT_ROOT}/results" --output "$output"

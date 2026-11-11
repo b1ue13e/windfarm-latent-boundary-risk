@@ -1,0 +1,15 @@
+id,layer,estimator,features,configs,seeds,profiles,folds,fit_rows,offsets,pool,role,g_pair_role,status
+C-LIN,C,LIN,F;clock_sin_cos;ID_onehot,S0;S1;S2,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,P,C1-F_candidate;secondary_description,none,DESIGN_SPECIFIED_NOT_RUN
+C-HGB,C,HGB,F;clock_sin_cos;ID_onehot,S0;S1;S2,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,P,C1-F_candidate;secondary_description,none,DESIGN_SPECIFIED_NOT_RUN
+C-MLP,C,MLP,F;clock_sin_cos;ID_onehot,S0;S1;S2,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,P,C1-F_candidate;secondary_description,none,DESIGN_SPECIFIED_NOT_RUN
+I-LIN,I,LIN,C;age_onehot;P_last;missing,S0;S1;S2,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,P,C1-F_candidate;secondary_description,none,DESIGN_SPECIFIED_NOT_RUN
+I-HGB,I,HGB,C;age_onehot;P_last;missing,S0;S1;S2,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,P,C1-F_candidate;secondary_description,none,DESIGN_SPECIFIED_NOT_RUN
+I-MLP,I,MLP,C;age_onehot;P_last;missing,S0;S1;S2,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,P,C1-F_candidate;secondary_description,none,DESIGN_SPECIFIED_NOT_RUN
+D-LIN,D,LIN,I;P36;delta1;delta6;mean6;std6;slope6;missing,S0;S1;S2,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,P,C1-F_candidate;secondary_description,none,DESIGN_SPECIFIED_NOT_RUN
+D-HGB,D,HGB,I;P36;delta1;delta6;mean6;std6;slope6;missing,S0;S1;S2,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,P,C1-F_candidate;secondary_description,fixed_S0_q0.95,DESIGN_SPECIFIED_NOT_RUN
+D-MLP,D,MLP,I;P36;delta1;delta6;mean6;std6;slope6;missing,S0;S1;S2,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,P,C1-F_candidate;secondary_description,none,DESIGN_SPECIFIED_NOT_RUN
+X-LIN,X,LIN,D;W36;Q36;WQ_five_summaries;missing,S0;S1;S2,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,X,C1-F_candidate;secondary_description,none,DESIGN_SPECIFIED_NOT_RUN
+X-HGB,X,HGB,D;W36;Q36;WQ_five_summaries;missing,S0;S1;S2,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,X,C1-F_candidate;secondary_description,fixed_S0_q0.95,DESIGN_SPECIFIED_NOT_RUN
+X-MLP,X,MLP,D;W36;Q36;WQ_five_summaries;missing,S0;S1;S2,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,X,C1-F_candidate;secondary_description,none,DESIGN_SPECIFIED_NOT_RUN
+B-Q,B,deterministic_given_fit_rows,historical_shortfall_q0.90,S0,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,P,C1-F_candidate;secondary_description,none,DESIGN_SPECIFIED_NOT_RUN
+B-P,B,deterministic_given_fit_rows,"max(F-P_last,0);train_mean_missing_fallback",S0,201;202;203;204;205,0;1;3;6,1;2;3;final_history,360000,0.90;0.925;0.95;0.975;0.99,P,C1-F_candidate;secondary_description,none,DESIGN_SPECIFIED_NOT_RUN

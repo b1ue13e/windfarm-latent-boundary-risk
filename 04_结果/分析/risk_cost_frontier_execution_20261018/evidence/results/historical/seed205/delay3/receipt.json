@@ -1,0 +1,139 @@
+{
+  "status": "COMPLETED_DEVELOPMENT",
+  "started_utc": "2026-10-18T14:55:42.592898+00:00",
+  "arguments": {
+    "stage": "historical",
+    "seed": 205,
+    "condition": "delay3"
+  },
+  "argv": [
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/scripts/run_risk_cost_frontier.py",
+    "historical",
+    "--protocol",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/experiments/risk_cost_frontier_development_20261018/protocol.json",
+    "--output",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/results/historical/seed205/delay3",
+    "--seed",
+    "205",
+    "--condition",
+    "delay3",
+    "--historical",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/results/historical",
+    "--choice",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/results/choose",
+    "--runs",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/results/evaluate"
+  ],
+  "protocol_sha256": "1fadbd8d0c79c285f0ad5e8c9fcd677e3ccadc887d6786ce2c927ea4a35fca90",
+  "source_sha256": {
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/scripts/run_risk_cost_frontier.py": "8d0d8570026045542082ecb6be07a9a1f21295d7a0141250a90f03d19eeefb9a",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/windfarm_moe/risk_frontier.py": "5212d87cc4ef88c6e7d406064937cb29f80650a4971a1e509ad69ffceedb7e4b",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/windfarm_moe/decision_information.py": "7e6fd36eec25a5d1c9276cc14224f0aad5ea78b34e802ef84bdc6b7c043173a5",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_20261018_fd8b290/experiments/risk_cost_frontier_development_20261018/protocol.json": "1fadbd8d0c79c285f0ad5e8c9fcd677e3ccadc887d6786ce2c927ea4a35fca90"
+  },
+  "input_sha256": {
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/prepared/physical_channels.npy": "a2e98a6cc141a8c2328b6c5b9166ec0006b5ba78d3db0322a37c32e94359316c",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/prepared/calibration_forecast.npz": "94e9daeb2f0a50cb8a48e5f0331c50cc428e4fd890a47db119e7a663b1887c17",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/prepared/output_manifest.json": "9b4d7f7526ddfafdb40da402577e78cc06af70df55f9015beaab2e98758b72eb",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/runs/seed205/delay3/output_manifest.json": "94454cfaa0ff3980c6b6c087ba89ad25874e5cfbce96fca502265e8e1a1dde7e",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/runs/seed205/delay3/wind_bins.json": "35d054de96425ee3eaaf7d3d4e6552ef28d9f0bb6b778f60dbae8a97606f01b2",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/runs/seed205/delay3/policy_A_Wind.joblib": "8bfb806ae9c15baacd914e9d6b8a4b2090701c308140a0d1a0f946aa7a3cd847",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/runs/seed205/delay3/policy_B_Consequences.joblib": "fe2adcdb3e238db28bee049f161f50b561969b760d04a995afe91bc7ec221a87",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/runs/seed205/delay3/policy_C_PitchScore.joblib": "5fdfdf20a9ce0c905ef61c3119dde4f90ae652a5f94278c24da3a9a018d5404f",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/runs/seed205/delay3/policy_C_ShuffledScore.joblib": "db0866c23c5010a092687b08146b9de54e9c5473a63d210966a9f6e28ca8ab90",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/runs/seed205/delay3/policy_C_WindScore.joblib": "b3b25c93d616d2baaaea0953fbf6fd4b410d45219025d746a90a4929b21eba05",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/runs/seed205/delay3/policy_D_TruePitch_Diagnostic.joblib": "cfa8fa68ebc53c47cb18b20ceeb2f0455664e81da28d84ce3cf9ac44ca38106b",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/runs/seed205/delay3/policy_E_Compressed.joblib": "9f82e80835b9a632f780a23dab6e2004aea1aa9c3558691e1a2a41dd3689421b",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/runs/seed205/delay3/state_pitch.joblib": "1f24184b20f0c16b6f891bb2ff42898ec2c023062b1e4115198ed4db85bf1a54",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/runs/seed205/delay3/state_shuffle.joblib": "76b20c498b033769e94f72dd1d5a65636c39b8bc27441226709ea5cfa4b828c6",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/results/runs/seed205/delay3/state_wind.joblib": "0ca7e34610dc6495a96d2b6354c6840b2b8bf2fe21a35823c881173fa3fa5d35",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/scripts/run_decision_information_development.py": "a11f43242004687ea9da4d73a9c087373dd1d0f991eb196afe66706c87a86df4"
+  },
+  "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+  "numpy": "2.4.6",
+  "sklearn": "1.9.1",
+  "torch_installed": "2.11.0+cu128",
+  "host": "cn25",
+  "platform": "Linux-4.18.0-553.154.1.el8_10.x86_64-x86_64-with-glibc2.28",
+  "pbs_job_id": "244617[27].cm",
+  "backend": "CPU; no CUDA computation",
+  "scope": "already-viewed WTB development; no E04/E07 or deployment certification",
+  "parent_prepared_manifest_sha256": "9b4d7f7526ddfafdb40da402577e78cc06af70df55f9015beaab2e98758b72eb",
+  "coordinate_identity": {
+    "anchors": {
+      "shape": [
+        5033
+      ],
+      "dtype": "<i8",
+      "sha256": "f9d3eeb1a182c2d423c585377714673f1ec106373134c44677bac214693552c0"
+    },
+    "target_indices": {
+      "shape": [
+        5033
+      ],
+      "dtype": "<i8",
+      "sha256": "6b4b544f015d9582f9ba3dcb1e7aa4ec05d7a32946bcb5c2c021f512f5c35c44"
+    },
+    "publication_indices": {
+      "shape": [
+        5033
+      ],
+      "dtype": "<i8",
+      "sha256": "0e3e53db7a46342155b7fcde4da7a1f1a7822012cbbe4cd0e1dbc23ab01a2e47"
+    },
+    "node_ids": {
+      "shape": [
+        134
+      ],
+      "dtype": "<i8",
+      "sha256": "2a6efe75f13dd2b7e0d92c2e805fa3669e106365254f1d5dc20581c9b0fb3dc6"
+    },
+    "forecast": {
+      "shape": [
+        5033,
+        134
+      ],
+      "dtype": "<f4",
+      "sha256": "b0170c39b27a4a06124330e7af63ef8f9852ae3c8d56a4aca218f2beeca76b6e"
+    },
+    "mask": {
+      "shape": [
+        5033,
+        134
+      ],
+      "dtype": "|b1",
+      "sha256": "37de2a488f84d4e1cf6acce3c4d6179b617519021bf024ba73729be8693061b8"
+    },
+    "shortfall": {
+      "shape": [
+        5033,
+        134
+      ],
+      "dtype": "<f8",
+      "sha256": "4ae616c5e2ede4e2f850e731a57bff6220f85065ddc1c9c7048f7b80e73357ee"
+    },
+    "realized": {
+      "shape": [
+        5033,
+        134
+      ],
+      "dtype": "<f8",
+      "sha256": "5be0280d7f4c66e8e36d8c2b67ebbfd52c526a80eb952e765d764746377892ea"
+    },
+    "offset_fit_mask": {
+      "shape": [
+        5033
+      ],
+      "dtype": "|b1",
+      "sha256": "f915314b3464563288c4fcdefd613e0ef92d44d5df8fc0097298a15fa1eb2eed"
+    },
+    "selection_mask": {
+      "shape": [
+        5033
+      ],
+      "dtype": "|b1",
+      "sha256": "6b45a2a9695f42585b06ee558823423034c11ea9b114f24d027628121014d616"
+    }
+  },
+  "finished_utc": "2026-10-18T14:56:55.857631+00:00"
+}

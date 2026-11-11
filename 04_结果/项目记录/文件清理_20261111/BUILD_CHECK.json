@@ -1,0 +1,9 @@
+{
+  "exit_code": 0,
+  "command": [
+    "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "03_论文交付/当前稿件_TSTE/qa/build_pdfs.py",
+    "--output-dir",
+    "E:\\论文3\\02_公共资源\\项目管理\\文件清理_20261111\\build_validation"
+  ]
+}

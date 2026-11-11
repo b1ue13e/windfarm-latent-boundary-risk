@@ -1,0 +1,31 @@
+{
+  "head": "1085f23c925b7b9bfc312608cbaaecc50cba676e",
+  "scope": "present filesystem observation; not proof of its historical isolation or original download execution",
+  "files": [
+    {
+      "path": "E:\\windfarm_reproduction_final\\archives\\windfarm_derived_artifacts_v1.0.zip",
+      "size_bytes": 195613174,
+      "sha256": "cf90924b1fead36317addabfcbee6aa6236bebc29889f8ce5dfd57466fc7fc22"
+    },
+    {
+      "path": "E:\\windfarm_reproduction_final\\artifacts\\fixed_forecast_residuals.npz",
+      "size_bytes": 173410167,
+      "sha256": "b05b3751f45e611e073d1dfe4c4545b9775ca625e3c76e85558328cfc30a49a9"
+    },
+    {
+      "path": "E:\\windfarm_reproduction_final\\artifacts\\matched_budget\\cached_posterior_probs.npz",
+      "size_bytes": 22475033,
+      "sha256": "d40f0ddbaee7f4a2c89dbacdfb05be0a858897f1ce02c648b989fb8a8037cbca"
+    },
+    {
+      "path": "E:\\windfarm_reproduction_final\\artifacts\\ARTIFACT_MANIFEST.json",
+      "size_bytes": 24816,
+      "sha256": "c2f3ee00900ad8c048848e7b6d388a6796b0c0b5c750850f7716c701953e83c5"
+    },
+    {
+      "path": "E:\\windfarm_reproduction_final\\artifacts\\matched_budget\\provenance.json",
+      "size_bytes": 633,
+      "sha256": "22624366b20c5790c74e661c670b27895d0ca9b19fcec1e9d4e6b022f7b364b3"
+    }
+  ]
+}

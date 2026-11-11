@@ -1,0 +1,1 @@
+{"utc": "2026-10-19T04:16:18.766759+00:00", "complete": 37, "started": 53, "failed": [], "array_state": ["job_state = B", "array_state_count = Queued:497 Running:16 Exiting:0 Expired:37"], "chosen_complete": false, "unlock_event_exists": false}

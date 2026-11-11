@@ -1,0 +1,59 @@
+{
+  "candidate_commit": "e5ad3fabcabd87642cccbc31288889c37af8aa01",
+  "candidate": "manuscripts/wind_energy_v2",
+  "decision": "TECHNICAL_CLOSURE_VERIFIED_EDITORIAL_SIGNIFICANCE_AND_SUBMISSION_ARRANGEMENTS_PENDING",
+  "review_status": "INTERNAL_ISSUE_LINKED_VERIFICATION_NOT_BLIND_OR_JOURNAL_DECISION",
+  "recommend_submit_now": false,
+  "scientific_or_reporting_blocker_found_in_current_review_scope": false,
+  "four_requested_checks": {
+    "closest_neighbour_differences": "RESOLVED_WITH_BOUNDED_EMPIRICAL_NOVELTY_NOT_EXHAUSTIVE_PRIORITY_CERTIFICATION",
+    "figure3_cost_bridge": "RESOLVED_RAW_FIELDS_WITNESSES_AND_DISPLAY_AGREE",
+    "inferential_object": "RESOLVED_IN_SCOPE_WORKING_PROCESS_COVERAGE_NOT_VALIDATED",
+    "portable_package": "RESOLVED_FOR_ARCHIVED_RESULT_AUDIT_NOT_FULL_TRAINING_REPRODUCTION"
+  },
+  "retired_original_reporting_issues": ["WE-01a", "WE-02a", "WE-03", "WE-04", "WE-05", "WE-06", "WE-07a"],
+  "remaining_editorial_concern": {
+    "issue_ids": ["WE-01b", "WE-02b"],
+    "gaps": ["G01", "G03", "G04", "G10"],
+    "count_as": "ONE_RELATED_SIGNIFICANCE_CONCERN_NOT_FOUR_FATAL_METHOD_ERRORS",
+    "status": "INFERRED_IMPORTANCE_CASE_STILL_WEAK",
+    "reason": "Exact fixed-commitment interface need and value of exchanging raw input width for positive cost and uncovered-shortfall penalties remain unsupported; scoped empirical difference is accurate but does not itself establish Wind Energy significance."
+  },
+  "submission_preparation_pending": {
+    "issues": ["WE-07b"],
+    "gaps": ["G08", "G09"],
+    "tasks": ["truthful reviewer access and data availability route", "applicable redistribution rights", "real author consent and required declarations"],
+    "absence_of_public_doi_alone_is_automatic_initial_submission_barrier": false,
+    "published": false,
+    "submitted": false
+  },
+  "acknowledged_limits_not_automatic_new_experiment_requirements": ["G02", "G05", "G06", "G07"],
+  "four_questions": {
+    "why_care": "CLEAR_GENERAL_TASK_EXACT_USER_CONSTRAINT_NOT_ESTABLISHED",
+    "whats_new": "BOUNDED_EMPIRICAL_KNOWLEDGE_ESTABLISHED_SIGNIFICANCE_JUDGEMENT_STILL_WEAK",
+    "why_believe": "VERIFIED_ARCHIVED_EVIDENCE_AND_CONDITIONAL_INFERENCE_CHAIN_FOR_NARROW_CLAIMS",
+    "why_this_venue": "SCOPE_FIT_VERIFIED_IMPORTANCE_NOT_AFFIRMATIVELY_ESTABLISHED"
+  },
+  "package_validation": {
+    "members": 71,
+    "payload_files": 69,
+    "v2_correspondence_files": 35,
+    "original_source_files": 50,
+    "unit_tests": 8,
+    "status": "PASS_GUARDED_OFFLINE_ARCHIVED_RESULT_AUDIT",
+    "sha256": "6c01787351a6ffbc6bf61262593dc2a533f12c6d86c1278b838d4fecc2f95e96",
+    "limitations": ["historical fixed-selection 63/24/3 branch checked for archived status consistency, not fully reconstructed from bounds", "WTB sufficiency CSV checked at 28 key cells; 420-cell minimum classification recomputed", "no complete model training or original-bootstrap reproduction", "no nominal coverage, trusted timestamp or deployment certification"]
+  },
+  "new_or_regressed_material_issue_found_in_review_scope": false,
+  "next_action": "Stop repeating resolved reporting revisions. Only inspect already-held exact-use materials if available; otherwise retain controlled-case scope and explicitly choose editorial risk before normal submission preparations. No research execution authorised by this review.",
+  "recommend_new_experiments_now": false,
+  "changed_manuscript": false,
+  "changed_thresholds": false,
+  "changed_source_results": false,
+  "new_training_inference_calibration_resampling": false,
+  "new_measurement_download": false,
+  "scientific_gate": "PASS_LEGACY_SCOPE_ONLY",
+  "cached_number_checks": {"checked": 77, "failed": 0},
+  "archive_gate": "PASS_PROVENANCE_AND_CONSISTENCY_NOT_COVERAGE",
+  "disclosure": "Role-separated internal review with access to prior comments and author response; no blinded formal re-review protocol or independent error processes claimed."
+}

@@ -1,0 +1,30 @@
+{
+  "status": "PASS_WITH_SCOPED_UNKNOWN",
+  "utc": "2026-10-18T08:23:56.456242+00:00",
+  "protected_input_count": 99,
+  "all_protected_after_hashes_match": true,
+  "diagnostic_baseline_vs_original_csv": "90/90 exact float equality; maximum delta0",
+  "stored_csv_identity": "1836/1836 pass original strict1e-4",
+  "all_60_violation_counts_unchanged": true,
+  "E07_bindings_null_and_eligible_count_zero": true,
+  "source_and_numeric_scope": "No production producer imported or executed; source parsed via AST only; historical formula re-evaluated solely for arithmetic isolation",
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_legacy_posterior_accounting.py tests/test_matched_budget_accounting.py tests/test_e07_data_inventory.py -q",
+      "exit_code": 0,
+      "result": "19 passed"
+    },
+    {
+      "command": "python scripts/verify_scientific_claim_gate.py",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "python scripts/verify_tste_number_consistency.py --output-dir analyses/legacy_posterior_accounting_audit_20261018/number_consistency_gate",
+      "exit_code": 0,
+      "result": "complete_tste_number_consistency"
+    }
+  ],
+  "manifest_sha256": "7ccb4820833ecfc2eebd4d3fe65478021719e43b463a2bc320d7feee860cc380",
+  "staging_checks": "Only audit code/tests/metadata, PROJECT addendum and new evidence; raw assets and previous audits excluded"
+}

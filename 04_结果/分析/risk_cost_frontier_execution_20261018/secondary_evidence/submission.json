@@ -1,0 +1,23 @@
+{
+  "root": "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_secondary_cd75e07",
+  "source_archive_sha256": "e142a9fb2fc2ffe53edb19d523c7e03a15bd12b4bf97c2e38a163a969e8d5a94",
+  "argv": [
+    "qsub",
+    "-N",
+    "rf_allgrid_audit",
+    "-q",
+    "rqdf",
+    "-l",
+    "select=1:ncpus=2:mem=24gb",
+    "-l",
+    "walltime=00:30:00",
+    "-j",
+    "oe",
+    "-o",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_secondary_cd75e07/run.log",
+    "/nfs/ihfs/home_metis/junyu/dsh-scratch/risk_frontier_secondary_cd75e07/run.pbs"
+  ],
+  "stdout": "244622.cm\n",
+  "stderr": "",
+  "returncode": 0
+}

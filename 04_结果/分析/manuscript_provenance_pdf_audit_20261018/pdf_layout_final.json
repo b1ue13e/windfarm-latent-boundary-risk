@@ -1,0 +1,22 @@
+[
+  {
+    "pdf": "analyses/manuscript_provenance_pdf_audit_20261018/build/paper_tste_ieee.pdf",
+    "pages": 10,
+    "rendered_pages": 10,
+    "words_outside_page": [],
+    "blocking_warnings": [],
+    "unparsed_code_fences": false,
+    "raw_citation_keys": false,
+    "accepted_render_directory": "analyses\\manuscript_provenance_pdf_audit_20261018\\renders\\accepted\\main"
+  },
+  {
+    "pdf": "analyses/manuscript_provenance_pdf_audit_20261018/build/paper_tste_supplementary.pdf",
+    "pages": 44,
+    "rendered_pages": 44,
+    "words_outside_page": [],
+    "blocking_warnings": [],
+    "unparsed_code_fences": false,
+    "raw_citation_keys": false,
+    "accepted_render_directory": "analyses\\manuscript_provenance_pdf_audit_20261018\\renders\\accepted\\supp"
+  }
+]

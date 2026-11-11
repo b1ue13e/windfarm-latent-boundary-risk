@@ -1,0 +1,21 @@
+seed,policy,blocks,n_exact,violations_exact,cost_exact,posterior_source
+201,B,35,True,True,True,local reconstruction
+201,C,35,True,True,True,A100 repeat1 archived replay
+201,D,35,True,True,True,A100 repeat1 archived replay
+201,D10,35,True,True,True,A100 repeat1 archived replay
+202,B,35,True,True,True,local reconstruction
+202,C,35,True,True,True,local reconstruction
+202,D,35,True,True,True,local reconstruction
+202,D10,35,True,True,True,local reconstruction
+203,B,35,True,True,True,local reconstruction
+203,C,35,True,True,True,local reconstruction
+203,D,35,True,True,True,local reconstruction
+203,D10,35,True,True,True,local reconstruction
+204,B,35,True,True,True,local reconstruction
+204,C,35,True,True,True,local reconstruction
+204,D,35,True,True,True,local reconstruction
+204,D10,35,True,True,True,local reconstruction
+205,B,35,True,True,True,local reconstruction
+205,C,35,True,True,True,local reconstruction
+205,D,35,True,True,True,local reconstruction
+205,D10,35,True,True,True,local reconstruction

@@ -1,0 +1,33 @@
+{
+  "experiment_id": "E04-v2",
+  "addendum_status": "PRE_EXECUTION_SOURCE_BINDING",
+  "registered_at": "2026-10-18T02:45:00Z",
+  "preregistration_commit": "64478031c8ba630edff8f57851e90de4f2bdc6cb",
+  "execution_binding_commit": "61e2e90ac9d646f5d3c98c96fc669682d0cf092b",
+  "remote_source_commit": "3ec80337b95a32831ad32f4b217b63a9606fc3a5",
+  "remote_replay_script": "experiments/E04/code/test_strong_baseline_e04_v2.py",
+  "remote_replay_script_sha256": "007088D9F2C6116C5D6467F8982808101625BF6348F308F55DEDF001DB9E405F",
+  "remote_replay_mode": "existing frozen checkpoints/cache/residuals; no retraining",
+  "input_hashes": {
+    "cache_metadata": "6175e219cc9e9e0a9f641ad133336db7ed16fcdf40f413465ee25095413cfaa9",
+    "fixed_forecast_residuals": "50499806cf6103d869086318858d9eb2cde89f99dac43c65917cc423572330a1",
+    "checkpoint_seed201": "005c3e662432d493f49a617c10e8319b28c078aba79686c7c9490959ac05507c",
+    "checkpoint_seed202": "e5b2a1c865f8d94a992cef6afbc4b0a9994744bfcab8da794cd8df0b4d60247b",
+    "checkpoint_seed203": "75dd321b7a9df0ac1f9418d564193290fc08f8407e58ffea61c747a322ecefcf",
+    "checkpoint_seed204": "ac15696ff37c52c9b811533891f96a77e1cfbe7e1c673d552b9510dc7fa4e39d",
+    "checkpoint_seed205": "2f3016035a406f8fc329a3159a963a0e5329972ce19f43ccdbe381bbab4f42f4"
+  },
+  "expected_outputs": [
+    "strong_baseline_closure_summary.csv",
+    "strong_baseline_bootstrap_contrasts.csv",
+    "strong_baseline_joint_interaction_v2.json",
+    "strong_baseline_native_day_blocks_v2.npz",
+    "seed201_full_policy_day_blocks.npz",
+    "seed202_full_policy_day_blocks.npz",
+    "seed203_full_policy_day_blocks.npz",
+    "seed204_full_policy_day_blocks.npz",
+    "seed205_full_policy_day_blocks.npz"
+  ],
+  "execution_rule": "Write an execution plan before the replay; verify preregistration/input hashes before reading outputs; write output manifest and receipt only after exit code 0 and all declared outputs exist; selector must refuse unbound arrays.",
+  "post_result_changes_forbidden": ["thresholds", "candidate_set", "baseline", "complexity_order", "replication_unit", "uncertainty_procedure", "population"]
+}

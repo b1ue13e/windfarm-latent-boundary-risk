@@ -1,0 +1,88 @@
+{
+  "path": "E:\\论文3\\1-s2.0-S2666827026001222-main.pdf",
+  "bytes": 3760604,
+  "sha256": "1a7ce47d5d4cf01dd0d6a008434d0d6679541fa2021d0c3a5778f036d57b477c",
+  "pages": 15,
+  "metadata": {
+    "/Creator": "Elsevier",
+    "/CrossMarkDomains[1]": "elsevier.com",
+    "/CrossmarkMajorVersionDate": "2010-04-23",
+    "/CreationDate--Text": "22nd September 2026",
+    "/ElsevierWebPDFSpecifications": "7.0.1",
+    "/robots": "noindex",
+    "/ModDate": "D:20260922152637Z",
+    "/Author": "Ege Kandemir",
+    "/doi": "10.1016/j.mlwa.2026.100957",
+    "/Title": "Explainable uncertainty quantification in probabilistic wind power forecasting",
+    "/Keywords": "Probabilistic forecasting,Uncertainty quantification,Explainable uncertainty,Hybrid forecasting,Wind power forecasting",
+    "/CreationDate": "D:20260922103718Z",
+    "/Producer": "Acrobat Distiller 8.1.0 (Windows)",
+    "/Subject": "Machine Learning with Applications, 25 (2026) 100957. doi:10.1016/j.mlwa.2026.100957",
+    "/CrossMarkDomains[2]": "sciencedirect.com",
+    "/CrossmarkDomainExclusive": "true"
+  },
+  "page_text": [
+    {
+      "page": 1,
+      "chars": 6975
+    },
+    {
+      "page": 2,
+      "chars": 10808
+    },
+    {
+      "page": 3,
+      "chars": 9913
+    },
+    {
+      "page": 4,
+      "chars": 8674
+    },
+    {
+      "page": 5,
+      "chars": 6847
+    },
+    {
+      "page": 6,
+      "chars": 10864
+    },
+    {
+      "page": 7,
+      "chars": 10581
+    },
+    {
+      "page": 8,
+      "chars": 10290
+    },
+    {
+      "page": 9,
+      "chars": 9246
+    },
+    {
+      "page": 10,
+      "chars": 5358
+    },
+    {
+      "page": 11,
+      "chars": 6803
+    },
+    {
+      "page": 12,
+      "chars": 2823
+    },
+    {
+      "page": 13,
+      "chars": 6989
+    },
+    {
+      "page": 14,
+      "chars": 11326
+    },
+    {
+      "page": 15,
+      "chars": 8464
+    }
+  ],
+  "fitz_available": false,
+  "pdfium_available": true
+}

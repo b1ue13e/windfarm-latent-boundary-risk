@@ -1,0 +1,32 @@
+{
+  "status": "ALL_SELECTED_EXISTING_MATERIAL_BYTES_VERIFIED",
+  "files": 403,
+  "bytes": 1948178493,
+  "groups": {
+    "R": {
+      "files": 112,
+      "bytes": 336967087
+    },
+    "M_pilot": {
+      "files": 280,
+      "bytes": 803217990
+    },
+    "M_controls": {
+      "files": 10,
+      "bytes": 732352968
+    },
+    "shared": {
+      "files": 1,
+      "bytes": 75640448
+    }
+  },
+  "array_headers": 3548,
+  "training_index_representatives": 5,
+  "training_index_task_aliases": 70,
+  "joblib_deserialized": false,
+  "action_accounting_recomputed": false,
+  "bootstrap_executed": false,
+  "raw_SCADA_CSV_copied": false,
+  "existing_derived_physical_channel_array_copied_once": true,
+  "new_research_or_model_execution": false
+}

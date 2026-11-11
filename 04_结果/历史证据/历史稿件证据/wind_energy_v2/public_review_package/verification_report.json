@@ -1,0 +1,79 @@
+{
+  "status": "PASS_ARCHIVED_RECORD_AUDIT",
+  "files_sha256_checked": 69,
+  "primary": {
+    "labels": [
+      "P1/HGB/q0.95",
+      "WPQ36/HGB/q0.95"
+    ],
+    "cost_premium_percent": 0.5641474815991643,
+    "interval_percent": [
+      0.35746800646510357,
+      0.770826956733225
+    ],
+    "max_instance_risk_upper_percent": 6.202467799118139,
+    "family_size": 14,
+    "historical_choice_binding": "PASS"
+  },
+  "secondary": {
+    "counts": {
+      "NO_CERTIFIED_SUFFICIENT_POLICY": 18,
+      "MINIMUM_UNRESOLVED": 26,
+      "FINITE_FAMILY_MINIMUM_IDENTIFIED": 46
+    },
+    "historical_fixed": {
+      "NO_HISTORICAL_SELECTION": 24,
+      "ALL_FROZEN_CANDIDATES_CONFIRMED": 63,
+      "CONFIRMATION_NOT_ESTABLISHED": 3
+    },
+    "cost_bridge": {
+      "q925_required_upper_percent": 0.9741996453634834,
+      "q950_required_upper_percent": 3.517815071811852,
+      "q925_resource": [
+        1,
+        1,
+        5
+      ],
+      "smaller": 15,
+      "exclusion_reasons": {
+        "RISK_LOWER_ABOVE_CAP": 2,
+        "COST_LOWER_EXCEEDS_MARGIN_VS_FEASIBLE": 13
+      },
+      "meaning": "q0.95 is not certified against the full family; this is not a proof that its true regret exceeds 2%."
+    },
+    "scope": "90 dependent assessments; spans are separate envelopes, not independent confirmations."
+  },
+  "wtb": {
+    "counts": {
+      "NO_CERTIFIED_SUFFICIENT_POLICY": 367,
+      "MINIMUM_UNRESOLVED": 53
+    },
+    "primary_28_no_sufficient": 28,
+    "scope": "Classification from stored bounds; no new fit, prediction, bootstrap, or coverage certification."
+  },
+  "ledger": {
+    "shortage_increase_percent": 2.1843491567971496,
+    "measurement": "Archived point accounting, no new U interval or significance test."
+  },
+  "fig3_v2": {
+    "status": "PASS_FIELD_BY_FIELD",
+    "rows": 17,
+    "sufficiency_rows": 2,
+    "excluded_smaller_candidates": 15,
+    "cost_witnesses_risk_qualified": true,
+    "controlling_upper_competitor": "PQ36/HGB/q0.9",
+    "controlling_competitor_is_only_possibly_feasible": true,
+    "scope": "Fields and witness duties match archived JSON. Pixel identity or full figure reconstruction is not certified."
+  },
+  "not_certified": [
+    "Training or inference reproduction",
+    "Resampling reproduction or nominal interval coverage",
+    "A real operational interface or deployment benefit",
+    "Public hosting, licences, or author approvals"
+  ],
+  "new_training": false,
+  "new_inference": false,
+  "new_calibration": false,
+  "new_resampling": false,
+  "new_measurement_download": false
+}

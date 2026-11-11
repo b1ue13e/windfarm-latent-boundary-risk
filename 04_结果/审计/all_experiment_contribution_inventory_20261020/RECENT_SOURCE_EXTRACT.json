@@ -1,0 +1,331 @@
+{
+  "scope": "Exact projection of stored summary and interval fields; no new mean interval or inference computed",
+  "source": "analyses/decision_information_execution_20261018/evidence/results/aggregate/summary.csv",
+  "source_sha256": "1a416f7b7ceb8145cd0b705c84a215c1a21a1137c74828ed8add52c5c13be6f4",
+  "selected_stored_rows": [
+    {
+      "condition": "pitch_withheld",
+      "variant": "A_Wind",
+      "version": "calibrated",
+      "mean_loss": "35.56305184153019",
+      "seed_sd": "0.045303746032099995",
+      "violation_rate": "0.10147873730011185",
+      "reserve_kwh": "22056400.193188824",
+      "shortage_kwh": "187536.43499986618",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "A_Wind",
+      "version": "raw",
+      "mean_loss": "35.56421854155294",
+      "seed_sd": "0.04550149071775852",
+      "violation_rate": "0.08344619646060039",
+      "reserve_kwh": "22067262.555764277",
+      "shortage_kwh": "186528.71053698225",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "B_Consequences",
+      "version": "calibrated",
+      "mean_loss": "32.82868788565859",
+      "seed_sd": "0.16141536125113282",
+      "violation_rate": "0.11566575870918461",
+      "reserve_kwh": "20455473.237977304",
+      "shortage_kwh": "163623.11591099",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "B_Consequences",
+      "version": "raw",
+      "mean_loss": "32.829551370046474",
+      "seed_sd": "0.16130808823261159",
+      "violation_rate": "0.07817142415582981",
+      "reserve_kwh": "20478777.781619534",
+      "shortage_kwh": "161350.76877881805",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "C_PitchScore",
+      "version": "calibrated",
+      "mean_loss": "32.76070702506169",
+      "seed_sd": "0.16479790314213083",
+      "violation_rate": "0.11422015962813865",
+      "reserve_kwh": "20433574.329479925",
+      "shortage_kwh": "161238.3095258072",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "C_PitchScore",
+      "version": "raw",
+      "mean_loss": "32.76170342568943",
+      "seed_sd": "0.16418701980274467",
+      "violation_rate": "0.07865081381819153",
+      "reserve_kwh": "20455767.332080197",
+      "shortage_kwh": "159086.0609499828",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "C_ShuffledScore",
+      "version": "calibrated",
+      "mean_loss": "32.823112801331966",
+      "seed_sd": "0.160278369689216",
+      "violation_rate": "0.11493879831604345",
+      "reserve_kwh": "20460966.662078507",
+      "shortage_kwh": "162698.60433370265",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "C_ShuffledScore",
+      "version": "raw",
+      "mean_loss": "32.82417212894852",
+      "seed_sd": "0.15997046913596497",
+      "violation_rate": "0.07763616018688169",
+      "reserve_kwh": "20484394.19180261",
+      "shortage_kwh": "160427.13764798842",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "C_WindScore",
+      "version": "calibrated",
+      "mean_loss": "32.82524060029847",
+      "seed_sd": "0.13214071027749172",
+      "violation_rate": "0.11265181539485743",
+      "reserve_kwh": "20542943.610474885",
+      "shortage_kwh": "154644.09738493667",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "C_WindScore",
+      "version": "raw",
+      "mean_loss": "32.82644349655435",
+      "seed_sd": "0.13253366656693583",
+      "violation_rate": "0.07789859110558309",
+      "reserve_kwh": "20564664.703052185",
+      "shortage_kwh": "152552.9357075608",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "D_TruePitch_Diagnostic",
+      "version": "calibrated",
+      "mean_loss": "32.69630733640681",
+      "seed_sd": "0.09030002166526725",
+      "violation_rate": "0.11168055351227965",
+      "reserve_kwh": "20462847.721408423",
+      "shortage_kwh": "153977.26412458383",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "D_TruePitch_Diagnostic",
+      "version": "raw",
+      "mean_loss": "32.69797161193789",
+      "seed_sd": "0.09053592136311331",
+      "violation_rate": "0.07646488017487466",
+      "reserve_kwh": "20484992.276709974",
+      "shortage_kwh": "151874.8041855897",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "E_Compressed",
+      "version": "calibrated",
+      "mean_loss": "34.548254136618894",
+      "seed_sd": "0.09810059891633047",
+      "violation_rate": "0.10584376890030148",
+      "reserve_kwh": "21420276.83093211",
+      "shortage_kwh": "182859.0759510073",
+      "n_seeds": "5"
+    },
+    {
+      "condition": "pitch_withheld",
+      "variant": "E_Compressed",
+      "version": "raw",
+      "mean_loss": "34.54927876610553",
+      "seed_sd": "0.09760910859988374",
+      "violation_rate": "0.08280126430478837",
+      "reserve_kwh": "21434337.8705713",
+      "shortage_kwh": "181521.92330129846",
+      "n_seeds": "5"
+    }
+  ],
+  "stored_intervals": [
+    {
+      "point": -2.734363955871603,
+      "ci95": [
+        -4.062292789771045,
+        -1.4825799493117375
+      ],
+      "simultaneous_ci": [
+        -4.85290699221191,
+        -0.8370848058554794
+      ],
+      "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+      "n_boot": 20000,
+      "block_span": 3,
+      "resampling_seed": 20261019,
+      "family_size": 42,
+      "unit": "kWh per valid turbine-interval for loss",
+      "seed_inference": "conditional on archived instances; seeds not resampled",
+      "coverage_status": "development approximation; not finite-sample certification",
+      "condition": "pitch_withheld",
+      "metric": "loss_sum",
+      "left": "B_Consequences",
+      "right": "A_Wind",
+      "inference_role": "primary_loss_family"
+    },
+    {
+      "point": -0.06798086059689047,
+      "ci95": [
+        -0.12724129984975752,
+        -0.02147282920008469
+      ],
+      "simultaneous_ci": [
+        -0.17142537235693617,
+        -0.004111534860021267
+      ],
+      "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+      "n_boot": 20000,
+      "block_span": 3,
+      "resampling_seed": 20261019,
+      "family_size": 42,
+      "unit": "kWh per valid turbine-interval for loss",
+      "seed_inference": "conditional on archived instances; seeds not resampled",
+      "coverage_status": "development approximation; not finite-sample certification",
+      "condition": "pitch_withheld",
+      "metric": "loss_sum",
+      "left": "C_PitchScore",
+      "right": "B_Consequences",
+      "inference_role": "primary_loss_family"
+    },
+    {
+      "point": -0.06453357523677074,
+      "ci95": [
+        -0.12698675595623993,
+        -0.007401111557289723
+      ],
+      "simultaneous_ci": [
+        -0.17528917899790486,
+        0.018666909874758573
+      ],
+      "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+      "n_boot": 20000,
+      "block_span": 3,
+      "resampling_seed": 20261019,
+      "family_size": 42,
+      "unit": "kWh per valid turbine-interval for loss",
+      "seed_inference": "conditional on archived instances; seeds not resampled",
+      "coverage_status": "development approximation; not finite-sample certification",
+      "condition": "pitch_withheld",
+      "metric": "loss_sum",
+      "left": "C_PitchScore",
+      "right": "C_WindScore",
+      "inference_role": "primary_loss_family"
+    },
+    {
+      "point": -0.06240577627027624,
+      "ci95": [
+        -0.129774527109911,
+        -0.008241580529593041
+      ],
+      "simultaneous_ci": [
+        -0.18202038915301444,
+        0.01210287557932879
+      ],
+      "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+      "n_boot": 20000,
+      "block_span": 3,
+      "resampling_seed": 20261019,
+      "family_size": 42,
+      "unit": "kWh per valid turbine-interval for loss",
+      "seed_inference": "conditional on archived instances; seeds not resampled",
+      "coverage_status": "development approximation; not finite-sample certification",
+      "condition": "pitch_withheld",
+      "metric": "loss_sum",
+      "left": "C_PitchScore",
+      "right": "C_ShuffledScore",
+      "inference_role": "primary_loss_family"
+    },
+    {
+      "point": 1.7195662509603067,
+      "ci95": [
+        0.7665774602890726,
+        2.8190100941267127
+      ],
+      "simultaneous_ci": [
+        0.36105544670281525,
+        3.591488665483038
+      ],
+      "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+      "n_boot": 20000,
+      "block_span": 3,
+      "resampling_seed": 20261019,
+      "family_size": 42,
+      "unit": "kWh per valid turbine-interval for loss",
+      "seed_inference": "conditional on archived instances; seeds not resampled",
+      "coverage_status": "development approximation; not finite-sample certification",
+      "condition": "pitch_withheld",
+      "metric": "loss_sum",
+      "left": "E_Compressed",
+      "right": "B_Consequences",
+      "inference_role": "primary_loss_family"
+    },
+    {
+      "point": -0.13238054925177659,
+      "ci95": [
+        -0.21574985763862564,
+        -0.0578720508009916
+      ],
+      "simultaneous_ci": [
+        -0.27210742450624165,
+        -0.016333796980181666
+      ],
+      "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+      "n_boot": 20000,
+      "block_span": 3,
+      "resampling_seed": 20261019,
+      "family_size": 42,
+      "unit": "kWh per valid turbine-interval for loss",
+      "seed_inference": "conditional on archived instances; seeds not resampled",
+      "coverage_status": "development approximation; not finite-sample certification",
+      "condition": "pitch_withheld",
+      "metric": "loss_sum",
+      "left": "D_TruePitch_Diagnostic",
+      "right": "B_Consequences",
+      "inference_role": "primary_loss_family"
+    },
+    {
+      "point": -12.005871154122564,
+      "ci95": [
+        -15.29852762412473,
+        -8.893907333436267
+      ],
+      "simultaneous_ci": [
+        -17.558055307392397,
+        -7.0232849336015235
+      ],
+      "bootstrap_indices_sha256": "9325906e1891b663345103567602cef11256d8a33ba8998d76e9a597e68703ee",
+      "n_boot": 20000,
+      "block_span": 3,
+      "resampling_seed": 20261019,
+      "family_size": 42,
+      "unit": "kWh per valid turbine-interval for loss",
+      "seed_inference": "conditional on archived instances; seeds not resampled",
+      "coverage_status": "development approximation; not finite-sample certification",
+      "condition": "pitch_withheld",
+      "metric": "loss_sum",
+      "left": "A_Wind",
+      "right": "WindBins",
+      "inference_role": "primary_loss_family"
+    }
+  ]
+}

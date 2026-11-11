@@ -1,0 +1,102 @@
+{
+  "status": "PASS_STATIC_DOCUMENT_CHECKS_ONLY",
+  "time_asia_shanghai": "2026-10-19T23:09:35.209384+08:00",
+  "python": "3.12.10",
+  "checks": [
+    "protected_documents_sha256_unchanged",
+    "json_no_execution_authority",
+    "12_learning_cells_complete_cross_plus_2_simple_controls",
+    "five_frozen_seed_ids",
+    "claim_control_open_item_ids_resolve",
+    "local_markdown_links_exist"
+  ],
+  "counts": {
+    "claims": 13,
+    "controls": 14,
+    "unbound_items": 23,
+    "local_links": 17
+  },
+  "protected_hashes": {
+    "paper_tste_ieee.md": "B9E5E417ABDE1856201E21C6022A994C0601010340B19CC0EE4B4F5F31D17456",
+    "paper_tste_supplementary.md": "43487C70FEACC9F0EDFB991E56CE342ACFA5DC9C678534BC6A42A9EAEB02065E",
+    "paper_tste_chinese.md": "14CDC51DF2AD440F8C96EAB97C7B450D04437C1599EB4C3C65010280D673352F",
+    "docs/SCIENTIFIC_CONTRACT.md": "CF0C38FBA403D842CA87521DBE03897E9078DCB87DA593DAA7AF6FD009545F76",
+    "research_audit/telemetry_increment_boundary_design_20261019/PLAN.md": "7B4339D89EEB30B0E191DC44726CD8D58BDD3C615ABB2ED2A467CAF5463A13FF"
+  },
+  "scientific_claim_gate": "PASS; read-only legacy consistency check, not new scientific certification",
+  "number_consistency_gate": "NOT_RUN_THIS_ROUND: script includes bootstrap; no experimental milestone or manuscript revision is claimed",
+  "experiments_run": false,
+  "new_data_acquired": false,
+  "manuscript_changed": false,
+  "limitations": "No empirical outcome, bootstrap coverage, power, data qualification or execution-readiness is certified.",
+  "local_links": [
+    [
+      "README.md",
+      "PLAN_V2.md"
+    ],
+    [
+      "README.md",
+      "FIRST_PRINCIPLES_REVIEW_V2.md"
+    ],
+    [
+      "README.md",
+      "PLAN_V2.md"
+    ],
+    [
+      "README.md",
+      "CLAIM_EVIDENCE_V2.csv"
+    ],
+    [
+      "README.md",
+      "CONTROL_MATRIX_V2.csv"
+    ],
+    [
+      "README.md",
+      "OPEN_ITEMS_V2.json"
+    ],
+    [
+      "README.md",
+      "validation_v2/README.md"
+    ],
+    [
+      "README.md",
+      "PLAN.md"
+    ],
+    [
+      "PLAN_V2.md",
+      "PLAN.md"
+    ],
+    [
+      "PLAN_V2.md",
+      "FIRST_PRINCIPLES_REVIEW_V2.md"
+    ],
+    [
+      "PLAN_V2.md",
+      "CLAIM_EVIDENCE_V2.csv"
+    ],
+    [
+      "PLAN_V2.md",
+      "CONTROL_MATRIX_V2.csv"
+    ],
+    [
+      "PLAN_V2.md",
+      "OPEN_ITEMS_V2.json"
+    ],
+    [
+      "PLAN_V2.md",
+      "../../docs/SCIENTIFIC_CONTRACT.md"
+    ],
+    [
+      "PLAN_V2.md",
+      "../../docs/MAINLINE_STOP_DECISION_20261019.md"
+    ],
+    [
+      "PLAN_V2.md",
+      "literature_matrix.csv"
+    ],
+    [
+      "PLAN_V2.md",
+      "search_log.md"
+    ]
+  ]
+}

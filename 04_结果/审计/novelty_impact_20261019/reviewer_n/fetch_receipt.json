@@ -1,0 +1,43 @@
+[
+  {
+    "file": "wen_v3.pdf",
+    "url": "https://arxiv.org/pdf/2305.14662",
+    "status": "saved",
+    "bytes": 850250,
+    "type": "application/pdf"
+  },
+  {
+    "file": "wen_v2.html",
+    "url": "https://arxiv.org/html/2305.14662v2",
+    "status": "saved",
+    "bytes": 277969,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "file": "pritchard.html",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1002/we.416",
+    "status": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "pritchard.pdf",
+    "url": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.416",
+    "status": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "sun2022.pdf",
+    "url": "https://www.ethree.com/wp-content/uploads/2023/03/Machine-learning-derived-dynamic-operating-reserve-requirements-in-high-renewable-power-systems.pdf",
+    "status": "saved",
+    "bytes": 6264659,
+    "type": "application/pdf"
+  },
+  {
+    "file": "zhao2021.html",
+    "url": "https://ieeexplore.ieee.org/abstract/document/9334448",
+    "status": "HTTP Error 418: Unknown Code"
+  },
+  {
+    "file": "zhao2021.pdf",
+    "url": "https://ieeexplore.ieee.org/stampPDF/getPDF.jsp?tp=&arnumber=9334448",
+    "status": "HTTP Error 418: Unknown Code"
+  }
+]

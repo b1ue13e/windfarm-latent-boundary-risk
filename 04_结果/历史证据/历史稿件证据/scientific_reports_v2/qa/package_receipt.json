@@ -1,0 +1,20 @@
+{
+  "status": "LOCAL_ARCHIVES_CREATED_NOT_PUBLISHED",
+  "packages": {
+    "scientific_reports_v2_review_sources.zip": {
+      "bytes": 5098646,
+      "sha256": "b927e8491f1d2bf33e7ebb496f5f7b80c5969ea0136fe54c2e32ffa9b78e811b"
+    },
+    "scientific_reports_v2_figures_and_sources.zip": {
+      "bytes": 1448346,
+      "sha256": "a39518851b5ef12d3f5284d73ad56105e99543e6b52b0c0e0e2d4e1ead090b29"
+    },
+    "scientific_reports_v2_review_materials.zip": {
+      "bytes": 1881362085,
+      "sha256": "7fcca8ede5f749acf6e86ab5ae822c4b76610fcb00a47badcf76c9d3c72a6937"
+    }
+  },
+  "source_file_count": 233,
+  "material_file_count": 403,
+  "research_executed": false
+}

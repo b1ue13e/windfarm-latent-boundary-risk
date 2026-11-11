@@ -1,0 +1,45 @@
+{
+  "status": "STATIC_DOCUMENT_AND_METADATA_CHECKS_PASS_NOT_SCIENTIFIC_CONFIRMATION",
+  "counts": {
+    "CLAIM_EVIDENCE.csv": 8,
+    "CONTROL_MATRIX.csv": 38,
+    "MATERIALS.csv": 12,
+    "LITERATURE_MATRIX.csv": 8,
+    "SOURCES.csv": 15
+  },
+  "coordinate_count_per_layer": 1607,
+  "coordinate_count_total": 3214,
+  "thresholds_preserved": true,
+  "protected_original_sha256": {
+    "paper_tste_ieee.md": "b9e5e417abde1856201e21c6022a994c0601010340b19cc0ee4b4f5f31d17456",
+    "paper_tste_supplementary.md": "43487c70feacc9f0edfb991e56ce342acfa5dc9c678534bc6a42a9eaeb02065e",
+    "paper_tste_chinese.md": "14cdc51df2ad440f8c96eab97c7b450d04437c1599eb4c3c65010280d673352f",
+    "docs/SCIENTIFIC_CONTRACT.md": "cf0c38fba403d842ca87521dbe03897e9078dcb87da593daa7af6fd009545f76"
+  },
+  "no_experiment_scripts_created": true,
+  "no_new_measurement_archives_obtained": true,
+  "no_remote_access": true,
+  "no_model_or_statistical_execution": true,
+  "confirmation_window_sample_qualification": "UNKNOWN",
+  "plan_is_execution_authorization": false,
+  "files": {
+    ".gitattributes": "6792780373ff9091640fc4b5cb2a15cada86b5e4c5be34599dea54627371dd8d",
+    "CLAIM_EVIDENCE.csv": "50e643548349c7de42a7a1c87896213ad34035b94c17520c9089f06b49afe90b",
+    "CONTROL_MATRIX.csv": "3e4ff3069985f0432f5514a205bb2af54872ed4b47164d136465ff06309c2ded",
+    "CRITERIA.json": "04fb693357da93f2a6ce24c16e136ccc5285732666a6dfbb0ac1bf05593c7d8f",
+    "LITERATURE_MATRIX.csv": "408b564cb0f6bf667ef36e735d01e33c164d0822a531c230b87b5e6f83553435",
+    "MATERIALS.csv": "679830f59d9dd1109bd462a36674ed7f3ac76de51a64d699984e130e025573ae",
+    "metadata\\CHANGELOG.md": "9d403e8f53d158e60838bf03f28f2cb3d327e527a46e8a520f2794a3879fcfbe",
+    "metadata\\Hill_of_Towie_data_dictionary.md": "f7f4fc2f3fd58a925e1894e2f7ac00d6bde9c69883563a4653b1cf8c5f25cfc7",
+    "metadata\\kelmarsh_record.json": "e844326731ed41d6fba1f749d11ed843920a58617c20879a435b822ff701029d",
+    "metadata\\penmanshiel_latest_record.json": "dbb2e710321ccf19ae6edd03992dd0c06d798da3ebaec883ebf29a19c55171ce",
+    "metadata\\penmanshiel_record.json": "cc67eebf65275056e30eba820e2db19e7dc79d4f7861b49f9d753227c74237d7",
+    "metadata\\README.md": "152a9a0ca3b47fba7145f37b23dd3f8e87e3dd507ee69b40e18e878a2bc85767",
+    "metadata\\safer_crossref.json": "6c43dd154553d00ceda2827beebb050f29f2c19cf02dd83fa34230201ac6d7d8",
+    "metadata\\towie_record.json": "72985f9a73c955b301a48846764233a82fd30470e9240a1a1ff673e9eb096bcd",
+    "metadata\\tpwrs_crossref.json": "fe8250599a26553e38df215ca8537d2b2bade98adefb16c9d13b94afe1e7f0e8",
+    "PLAN.md": "5b1dda742c819bf2d95aa138075743d924891b700ab9351ba0f9dc885f30f7a1",
+    "SOURCES.csv": "8e6b8e0badb7ea97c1c8d49a4c18c783f704eeb281a32160818ef7f4cdaf875b",
+    "WINDOW_AUDIT.md": "8614aed3b0bf80bc6f81a1da8f4f081955bb7b0b068d3f7d507c446967806b17"
+  }
+}

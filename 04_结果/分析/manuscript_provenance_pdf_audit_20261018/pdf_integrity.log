@@ -1,0 +1,45 @@
+=== Auditing Main IEEE PDF: analyses\manuscript_provenance_pdf_audit_20261018\build\paper_tste_ieee.pdf ===
+Total pages: 10
+
+--- Checking Required Phrases ---
+  [PASS] Found required phrase match: '13,883'
+  [PASS] Found required phrase match: 'boundary-active'
+  [PASS] Found required phrase match: 'site-dependent'
+  [PASS] Found required phrase match: 'not turbine count alone / turbine count alone does not explain'
+  [PASS] Found required phrase match: 'explicit disclosure that pitch is available in training inputs but withheld in validation/test deployment'
+
+--- Checking Banned Phrases ---
+  [PASS] Confirmed absent: 'Commercial benefit'
+  [PASS] Confirmed absent: 'N < 20'
+  [PASS] Confirmed absent: 'N >= 50'
+  [PASS] Confirmed absent: 'N <= 6'
+  [PASS] Confirmed absent: 'N >= 14'
+  [PASS] Confirmed absent: 'decision value is maximized'
+
+--- Checking Headline Number Proximity Qualifiers ---
+Number 589,535 found 5 times:
+  [PASS] Occurrence #1 at index 752: qualifier present=True
+  [PASS] Occurrence #2 at index 5465: qualifier present=True
+  [PASS] Occurrence #3 at index 25730: qualifier present=True
+  [PASS] Occurrence #4 at index 36758: qualifier present=True
+  [PASS] Occurrence #5 at index 55831: qualifier present=True
+Number 881,367 found 6 times:
+  [PASS] Occurrence #1 at index 777: qualifier present=True
+  [PASS] Occurrence #2 at index 5490: qualifier present=True
+  [PASS] Occurrence #3 at index 25785: qualifier present=True
+  [PASS] Occurrence #4 at index 30507: qualifier present=True
+  [PASS] Occurrence #5 at index 33143: qualifier present=True
+  [PASS] Occurrence #6 at index 55856: qualifier present=True
+
+[ALL IEEE PDF CHECKS PASSED]
+
+=== Auditing Supplementary PDF: analyses\manuscript_provenance_pdf_audit_20261018\build\paper_tste_supplementary.pdf ===
+Total pages: 47
+
+--- Checking Banned Phrases in Supplementary ---
+  [PASS] Confirmed absent: 'economic reserve benefit'
+  [PASS] Confirmed absent: 'economic value'
+  [PASS] Confirmed absent: 'reserve pricing'
+  [PASS] Confirmed absent: 'Commercial benefit'
+
+[ALL SUPPLEMENTARY PDF CHECKS PASSED]

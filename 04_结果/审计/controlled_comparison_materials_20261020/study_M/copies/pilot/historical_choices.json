@@ -1,0 +1,233 @@
+{
+  "choices": {
+    "HGB:F": {
+      "q_index": 1,
+      "q": 0.925,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.0719454257475193,
+        0.07380993849554646,
+        0.0757442804271165,
+        0.07261588835644919,
+        0.07102768005350234
+      ],
+      "mean_cost": 40.04664774157611
+    },
+    "HGB:FZ": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.09847668604186369,
+        0.09958940342261426,
+        0.09268940883391324,
+        0.09000204236096929,
+        0.0935049274373054
+      ],
+      "mean_cost": 39.99389626655686
+    },
+    "HGB:O6": {
+      "q_index": 1,
+      "q": 0.925,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.08173592606780522,
+        0.0788792965619982,
+        0.07523888104569756,
+        0.08139450579928537,
+        0.07859990617531648
+      ],
+      "mean_cost": 48.9399911680301
+    },
+    "HGB:OP6": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.09523818601287912,
+        0.09942720099201942,
+        0.09378433667479487,
+        0.08759442448711632,
+        0.09095468653639482
+      ],
+      "mean_cost": 40.69520290087632
+    },
+    "HGB:OZ6": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.09231027649324144,
+        0.09394014961352617,
+        0.09746742715375692,
+        0.09145100656489245,
+        0.09053349735433587
+      ],
+      "mean_cost": 45.74568560032113
+    },
+    "HGB:OPZ6": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.09326134596345273,
+        0.0944790109898841,
+        0.09424610548906732,
+        0.09300227021517796,
+        0.08973156234833074
+      ],
+      "mean_cost": 40.7023612504558
+    },
+    "MLP:F": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.09370585324323268,
+        0.09353262338628807,
+        0.09550669716890382,
+        0.09626093586620266,
+        0.08887400402008194
+      ],
+      "mean_cost": 43.324199849030556
+    },
+    "MLP:FZ": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.08682996376013524,
+        0.09888398437254067,
+        0.09032648713518551,
+        0.08935881597466067,
+        0.09874527090704913
+      ],
+      "mean_cost": 43.15307860243152
+    },
+    "MLP:O6": {
+      "q_index": 1,
+      "q": 0.925,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.07536075963442067,
+        0.07612743252430815,
+        0.06839805612716635,
+        0.08229117885780098,
+        0.06994933647146587
+      ],
+      "mean_cost": 55.013119748920715
+    },
+    "MLP:OP6": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.07854560718479524,
+        0.09496427414056569,
+        0.08161798738996817,
+        0.09576816867737828,
+        0.09427917762032627
+      ],
+      "mean_cost": 45.28069207565008
+    },
+    "MLP:OZ6": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.08046157608633311,
+        0.0843568451693626,
+        0.08527670535635372,
+        0.08129280880214462,
+        0.09258821853203314
+      ],
+      "mean_cost": 51.38985314247309
+    },
+    "MLP:OPZ6": {
+      "q_index": 0,
+      "q": 0.9,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.08713852417613271,
+        0.09509573801146665,
+        0.08379097840075365,
+        0.08989653040245374,
+        0.08716473119363093
+      ],
+      "mean_cost": 44.4856289231851
+    },
+    "CONTROL:Global": {
+      "q_index": 1,
+      "q": 0.925,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.08867304363955696,
+        0.08867304363955696,
+        0.08867304363955696,
+        0.08867304363955696,
+        0.08867304363955696
+      ],
+      "mean_cost": 62.03639288921167
+    },
+    "CONTROL:Persistence": {
+      "q_index": 1,
+      "q": 0.925,
+      "status": "HISTORICALLY_QUALIFIED",
+      "per_instance_risk_upper": [
+        0.08435143668236166,
+        0.08435143668236166,
+        0.08435143668236166,
+        0.08435143668236166,
+        0.08435143668236166
+      ],
+      "mean_cost": 49.10084530303167
+    }
+  },
+  "baseline_adequacy": {
+    "HGB": {
+      "status": "NOT_CLEARLY_INFERIOR_WITHIN_REGISTERED_CHECK",
+      "contrasts": [
+        {
+          "control": "Global",
+          "premium": -0.35446524408513197,
+          "lower": -0.44755526412281416,
+          "upper": -0.2613752240474498
+        },
+        {
+          "control": "Persistence",
+          "premium": -0.18440003436960217,
+          "lower": -0.3252655364996928,
+          "upper": -0.043534532239511564
+        }
+      ]
+    },
+    "MLP": {
+      "status": "NOT_CLEARLY_INFERIOR_WITHIN_REGISTERED_CHECK",
+      "contrasts": [
+        {
+          "control": "Global",
+          "premium": -0.30163251228353133,
+          "lower": -0.40330074842734165,
+          "upper": -0.19996427613972104
+        },
+        {
+          "control": "Persistence",
+          "premium": -0.11764859481236754,
+          "lower": -0.2742456752413636,
+          "upper": 0.03894848561662852
+        }
+      ]
+    }
+  },
+  "Cstar": 40.04664774157611,
+  "Cstar_source": "Historical HGB F five-instance mean cost at chosen q; common across estimators and directions",
+  "family_size": 450,
+  "risk_coordinates": 350,
+  "cost_coordinates": 100,
+  "alpha": 0.05,
+  "critical": 2.8779926905840685,
+  "draw_sha256": "68afcf3aaef1324db902b9c591c796b9783f1ef0ed5fbcf2243a1dd60bd358be",
+  "n_boot": 20000,
+  "block_span": 3,
+  "scope": "Approximate historical qualification; choices frozen before any new evaluation inference"
+}

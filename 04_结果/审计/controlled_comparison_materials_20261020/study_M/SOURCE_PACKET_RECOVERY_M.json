@@ -1,0 +1,20 @@
+[
+  {
+    "package": "experiments/state_measurement_pilot_20261020/packet_v2.tar.gz",
+    "package_sha256": "d6fcb1f7de7dd7a8c18fb03d6900b027ab0a751f7ddc876eafe8e9fd1621ccd5",
+    "member": "scripts/run_information_subset_study.py",
+    "bytes": 24134,
+    "sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a",
+    "copy": "copies/source/scripts/run_information_subset_study.py",
+    "status": "EXECUTION_SOURCE_RECOVERED_FROM_EXISTING_PACKET"
+  },
+  {
+    "package": "experiments/state_calibration_controls_20261020/packet.tar.gz",
+    "package_sha256": "0a22cc024ea1dee68d7aa2284ea9bde4dbc92ce2dda5436ff39a110c267fec82",
+    "member": "scripts/run_information_subset_study.py",
+    "bytes": 24134,
+    "sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a",
+    "copy": "copies/source/scripts/run_information_subset_study.py",
+    "status": "EXECUTION_SOURCE_RECOVERED_FROM_EXISTING_PACKET"
+  }
+]

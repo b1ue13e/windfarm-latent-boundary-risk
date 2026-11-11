@@ -1,0 +1,58 @@
+{
+  "status": "PASS_READ_ONLY_MATERIALS_ASSEMBLY",
+  "copied_originals_verified": 99,
+  "local_source_assets_verified": 1029,
+  "source_assets_unchanged": true,
+  "export_checks": 1936,
+  "export_checks_pass": true,
+  "current_or_archived_packet_source_bindings_verified": 33,
+  "display_projection": {
+    "status": "PASS_EXACT_PROJECTION_OF_SAVED_FIELDS",
+    "source_sha256": {
+      "copies\\pilot\\summary.json": "40eebd3602783fb4a2d883ce9169b3a2eec131e00441483a87826946b6dadc12",
+      "copies\\controls\\summary.json": "12b91fa1555e1e4a1e4b99894ba8722da7980c0237bcfd4249f7f01564678f3f",
+      "copies\\pilot\\historical_choices.json": "c4a009b8d529847697a8c1c9c84edb253453de684d904f0cb9b408521ca5d306",
+      "copies\\controls\\frozen.json": "35398087d7ce59a513e948ddb8018a7e0b586d8deb64fc9e85a2507be795d470",
+      "copies\\pilot\\instance_metrics.csv": "be41cfa1abdcac869e9c5d763fcac88438f18a16aac47bf11692dbd18dcf850c"
+    },
+    "outputs": [
+      {
+        "file": "display_M_cost.csv",
+        "rows": 30,
+        "exact_scalar_roundtrip_assertions": 420,
+        "sha256": "6f27d52a7c6156deb58b334b4180e797c9c523a8c6ba9df829234dd3774653c1"
+      },
+      {
+        "file": "display_M_programs.csv",
+        "rows": 84,
+        "exact_scalar_roundtrip_assertions": 1776,
+        "sha256": "fb83fcbbe3abdc574e30a15e2c5ca993c37b3cc4c469c010ad1edc15096f07e5"
+      },
+      {
+        "file": "display_M_decomposition.csv",
+        "rows": 104,
+        "exact_scalar_roundtrip_assertions": 1352,
+        "sha256": "e9971aea63972552fc58846e579cc1e6cd051b48f62240d5ae96789063bc41e5"
+      },
+      {
+        "file": "display_M_routes.csv",
+        "rows": 4,
+        "exact_scalar_roundtrip_assertions": 32,
+        "sha256": "69a730a95c596e51be9d7bd811c3ec4e7be1793f4f3f87b1c7aaec6c4cefb384"
+      }
+    ],
+    "note": "30 cost rows preserve original154 and Original/Common596 as separate families; JSON null is an empty CSV cell, not zero; no new statistics or percentages calculated",
+    "models_loaded": 0,
+    "inference": 0,
+    "calibration": 0,
+    "bootstrap": 0,
+    "experiments": 0
+  },
+  "remote_byte_verification": "Root coordination supplement required; original historical-only status retained here",
+  "experiments_started": 0,
+  "new_statistics": 0,
+  "model_operations": 0,
+  "new_measurements": 0,
+  "manuscript_edits": 0,
+  "threshold_edits": 0
+}

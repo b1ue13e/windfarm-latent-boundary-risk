@@ -1,0 +1,154 @@
+{
+  "date": "2026-10-20",
+  "status": "DOCUMENT_AND_IDENTIFICATION_REVIEW_ONLY_NOT_SCIENTIFIC_CERTIFICATION",
+  "decision": "NO_GO_FOR_CURRENT_TSTE_RESTART",
+  "fulltext": {
+    "MLWA2026": "NOT_OBTAINED_COMPLETE_TEXT",
+    "SETA2026": "NOT_OBTAINED_COMPLETE_TEXT",
+    "identity_verified": true,
+    "exclusivity_certified": false
+  },
+  "protected_files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "B1FEB8E637FD05BAEEACE62925F086257BB2B9AF7C0905C25F636DC8EC92C993",
+      "bytes": 5487,
+      "unchanged": true
+    },
+    {
+      "path": "paper_tste_ieee.md",
+      "sha256": "B9E5E417ABDE1856201E21C6022A994C0601010340B19CC0EE4B4F5F31D17456",
+      "bytes": 69591,
+      "unchanged": true
+    },
+    {
+      "path": "paper_tste_supplementary.md",
+      "sha256": "43487C70FEACC9F0EDFB991E56CE342ACFA5DC9C678534BC6A42A9EAEB02065E",
+      "bytes": 179061,
+      "unchanged": true
+    },
+    {
+      "path": "paper_tste_chinese.md",
+      "sha256": "14CDC51DF2AD440F8C96EAB97C7B450D04437C1599EB4C3C65010280D673352F",
+      "bytes": 58116,
+      "unchanged": true
+    },
+    {
+      "path": "docs/SCIENTIFIC_CONTRACT.md",
+      "sha256": "CF0C38FBA403D842CA87521DBE03897E9078DCB87DA593DAA7AF6FD009545F76",
+      "bytes": 24422,
+      "unchanged": true
+    },
+    {
+      "path": "docs/MAINLINE_STOP_DECISION_20261019.md",
+      "sha256": "E248170F90A20761FB756D0D1ACE63F0FE27F0B9A46F8C56EEE3816550A04459",
+      "bytes": 7900,
+      "unchanged": true
+    },
+    {
+      "path": "research_audit/core_question_reset_20261020/MAIN_QUESTION.md",
+      "sha256": "B5D06F338069DDBF1147B24FCEDE1FC1B4CC0E53D2664A1E2A6846F0A8C98353",
+      "bytes": 17174,
+      "unchanged": true
+    },
+    {
+      "path": "research_audit/core_question_reset_20261020/LITERATURE_REVIEW.md",
+      "sha256": "5E3F1AF492A01C74F09471959F5682034553AE550AC54E48C9E5C62434F383AD",
+      "bytes": 14377,
+      "unchanged": true
+    },
+    {
+      "path": "research_audit/telemetry_increment_boundary_design_20261019/PLAN_V3.md",
+      "sha256": "080FE01E3E36B4AAAA2BA0985BF5751B5E33A94B60A630DCCEF121FC11F1401A",
+      "bytes": 21274,
+      "unchanged": true
+    },
+    {
+      "path": "analyses/decision_information_execution_20261018/REPORT.md",
+      "sha256": "1B4FAB5AE226F5C5C18E6B1DBE917A5C8EE4350486E8C76F7BFF0EF80CFD6BA7",
+      "bytes": 6626,
+      "unchanged": true
+    },
+    {
+      "path": "analyses/independent_confirmation_execution_20261019/REPORT.md",
+      "sha256": "CE09E9CF779B02729985581ACE83241316D35002DCEC151979545B60AA905995",
+      "bytes": 8433,
+      "unchanged": true
+    },
+    {
+      "path": "experiments/decision_information_development_20261018/protocol.json",
+      "sha256": "3071798CB3DE4CC690D05E2E823B4590BDBCF1E322454849E50EB1B42A65D940",
+      "bytes": 6114,
+      "unchanged": true
+    },
+    {
+      "path": "experiments/independent_confirmation_execution_20261019/protocol.json",
+      "sha256": "27BA6498427CA425978F6674F013862BA272049F778562CB839969CB7F3BBC33",
+      "bytes": 7583,
+      "unchanged": true
+    },
+    {
+      "path": "scripts/run_decision_information_development.py",
+      "sha256": "A5F27587F2548FCC2F9F98FA76AFFC196C720B29DA55C109C0D831CB7FEFE039",
+      "bytes": 31464,
+      "unchanged": true
+    },
+    {
+      "path": "scripts/run_independent_confirmation.py",
+      "sha256": "62B7913197D1050F700D5D6AE2467F3C49B16546DAD37953A05818EB576EFEE9",
+      "bytes": 35485,
+      "unchanged": true
+    },
+    {
+      "path": "windfarm_moe/decision_information.py",
+      "sha256": "7A642B26618CBD27F0DDD7383063D6C9DAA286DA2370A08F580212D24F7BC287",
+      "bytes": 7146,
+      "unchanged": true
+    },
+    {
+      "path": "windfarm_moe/information_subset.py",
+      "sha256": "E4F341A621A8CE4719FD539DF4274929406B9FA520E0B65F48C305BF808D5DDD",
+      "bytes": 5469,
+      "unchanged": true
+    },
+    {
+      "path": "research_audit/14_resource_loss_break_even_review.md",
+      "sha256": "7E999E0844F066E121A61FD6C9A576A4C127CD694E8D8FF7D79475E57FE7ADF4",
+      "bytes": 10889,
+      "unchanged": true
+    }
+  ],
+  "csv_checks": {
+    "minimum_missing_evidence_rows": 6,
+    "mathematical_material_rows": 8,
+    "literature_rows": 4,
+    "invalid_literature_roles": 0,
+    "mlwa_access_entries": 13,
+    "seta_access_entries": 16
+  },
+  "scope": {
+    "new_measurement_download": false,
+    "model_or_prediction_execution": false,
+    "statistical_recomputation": false,
+    "resampling": false,
+    "simulation": false,
+    "remote_access": false,
+    "author_contact": false,
+    "manuscript_change": false,
+    "scientific_contract_change": false,
+    "old_versions_changed": false,
+    "execution_queue": "EMPTY"
+  },
+  "limitations": [
+    "Public metadata and partial indexed text do not constitute full-text audit",
+    "Paper page counts and full-text SHA256 remain unknown",
+    "Archived remote existence was not rechecked this turn",
+    "No scientific claim gates executed; no new empirical milestone claimed"
+  ],
+  "checks_performed": [
+    "18/18 protected working-copy files unchanged by SHA256 and byte count",
+    "CSV parse and literature roles checked",
+    "PROJECT.md change is append-only",
+    "Only public-source metadata and self-authored audit files are intended for staging"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "builds": [
+    {
+      "name": "paper_tste_ieee",
+      "runs": [
+        {
+          "command": [
+            "E:\\\u8bba\u65873\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+            "paper_tste_ieee.md",
+            "--citeproc",
+            "--csl",
+            "IEEE.csl",
+            "--standalone",
+            "-t",
+            "latex",
+            "-o",
+            "analyses\\claim_revision_recovery_20261019\\build\\paper_tste_ieee.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 28.765,
+          "log": "analyses\\claim_revision_recovery_20261019\\paper_tste_ieee_build_pass0.log"
+        },
+        {
+          "command": [
+            "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-output-directory=analyses\\claim_revision_recovery_20261019\\build",
+            "analyses\\claim_revision_recovery_20261019\\build\\paper_tste_ieee.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 15.485,
+          "log": "analyses\\claim_revision_recovery_20261019\\paper_tste_ieee_build_pass1.log"
+        },
+        {
+          "command": [
+            "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-output-directory=analyses\\claim_revision_recovery_20261019\\build",
+            "analyses\\claim_revision_recovery_20261019\\build\\paper_tste_ieee.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 2.156,
+          "log": "analyses\\claim_revision_recovery_20261019\\paper_tste_ieee_build_pass2.log"
+        }
+      ],
+      "pages": 10,
+      "warnings": []
+    },
+    {
+      "name": "paper_tste_supplementary",
+      "runs": [
+        {
+          "command": [
+            "E:\\\u8bba\u65873\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+            "paper_tste_supplementary.md",
+            "--citeproc",
+            "--csl",
+            "IEEE.csl",
+            "--standalone",
+            "-t",
+            "latex",
+            "-o",
+            "analyses\\claim_revision_recovery_20261019\\build\\paper_tste_supplementary.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 1.594,
+          "log": "analyses\\claim_revision_recovery_20261019\\paper_tste_supplementary_build_pass0.log"
+        },
+        {
+          "command": [
+            "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-output-directory=analyses\\claim_revision_recovery_20261019\\build",
+            "analyses\\claim_revision_recovery_20261019\\build\\paper_tste_supplementary.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 3.719,
+          "log": "analyses\\claim_revision_recovery_20261019\\paper_tste_supplementary_build_pass1.log"
+        },
+        {
+          "command": [
+            "E:/MiKTeX/miktex/bin/x64/xelatex.exe",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-output-directory=analyses\\claim_revision_recovery_20261019\\build",
+            "analyses\\claim_revision_recovery_20261019\\build\\paper_tste_supplementary.tex"
+          ],
+          "exit_code": 0,
+          "seconds": 3.39,
+          "log": "analyses\\claim_revision_recovery_20261019\\paper_tste_supplementary_build_pass2.log"
+        }
+      ],
+      "pages": 46,
+      "warnings": [
+        "LaTeX Warning: Text page 22 contains only floats.",
+        "LaTeX Warning: Text page 22 contains only floats."
+      ]
+    }
+  ],
+  "scope": "Pandoc/XeLaTeX only; no numeric result generation"
+}

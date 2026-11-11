@@ -1,0 +1,188 @@
+{
+  "date": "2026-10-18",
+  "status": "DIRECT_RESIDUAL_COORDINATE_CHECKS_VERIFIED_POSTERIOR_VALUE_COORDINATES_UNKNOWN",
+  "repository_head_before_commit": "0d2f77fe6192503ed9a74310779305f7b9300eb7",
+  "scope": "CPU read-only saved-array indexing and exact bytes; original entrypoints/loaders/model used as text evidence only; no inference, training, calibration or bootstrap",
+  "protected_input_count": 161,
+  "all_protected_unchanged": true,
+  "seed_inputs": [
+    201,
+    202,
+    203,
+    204,
+    205
+  ],
+  "comparisons": "zero tolerance, exact dtype/shape/element bytes including NaN payloads",
+  "lossless_integer_label_note": "Original int16/int64 byte mismatch preserved; separate explicit widening yields equal values, not raw byte identity",
+  "posterior_expected_mapping": "source-derived expectation only; not historical posterior coordinates",
+  "posterior_actual_per_value_coordinate_binding": "UNKNOWN",
+  "auxiliary_prediction_reference": "0/10 exact; mismatch retained; cause UNKNOWN",
+  "current_cache_physical_node_and_absolute_clock_recertification": false,
+  "raw_result_replacements": 0,
+  "model_inference_calls": 0,
+  "threshold_relaxed": false,
+  "E07": "UNCHANGED_UNACTIVATED",
+  "scientific_certification_upgrade": false,
+  "files": [
+    {
+      "path": "scripts/audit_legacy_cache_alignment.py",
+      "sha256": "83a3f08768bd58aa2fafbb9dbfab584787d58320c6b7fb8110d67525b3247198",
+      "size_bytes": 14529,
+      "sha256_git_blob": "83a3f08768bd58aa2fafbb9dbfab584787d58320c6b7fb8110d67525b3247198",
+      "git_blob": "beeff0bf40aba39388c0df327b2191845607c145",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "tests/test_legacy_cache_alignment.py",
+      "sha256": "51b3a9593ff6cf11396cde300b9f23aa5d9042eaa1ee1f43387c34921ca66600",
+      "size_bytes": 2853,
+      "sha256_git_blob": "51b3a9593ff6cf11396cde300b9f23aa5d9042eaa1ee1f43387c34921ca66600",
+      "git_blob": "78a391894198680ddc7b2ea86def938fabfec24e",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "scripts/.gitattributes",
+      "sha256": "a0804746e117f577f503436543523891e15f2b35b230c5b4612192d1bc3baf84",
+      "size_bytes": 383,
+      "sha256_git_blob": "a0804746e117f577f503436543523891e15f2b35b230c5b4612192d1bc3baf84",
+      "git_blob": "81e27a8ee14db47439e44619d6bc0a3692943be2",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "PROJECT.md",
+      "sha256": "335990c70f02fd427942ba24ea336e8d1dc72c9ae8d778952ce8b4d4f1ade8d0",
+      "size_bytes": 19963,
+      "sha256_git_blob": "335990c70f02fd427942ba24ea336e8d1dc72c9ae8d778952ce8b4d4f1ade8d0",
+      "git_blob": "3915c86952f59f620c82b0492787b8c51db1768c",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/.gitattributes",
+      "sha256": "de8125ed67d6ba30ac59760b0429707818cc8d04f90ec28b2c0216ba9a8d1175",
+      "size_bytes": 141,
+      "sha256_git_blob": "de8125ed67d6ba30ac59760b0429707818cc8d04f90ec28b2c0216ba9a8d1175",
+      "git_blob": "5d3f2f10ee6629cf2a3f1895840fb52f80f77310",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/label_value_comparison.json",
+      "sha256": "270d75d3cd408731ec6e6f07c0470c2d0613ea9b49629b3ce2eab1caf8580dc4",
+      "size_bytes": 4153,
+      "sha256_git_blob": "270d75d3cd408731ec6e6f07c0470c2d0613ea9b49629b3ce2eab1caf8580dc4",
+      "git_blob": "84169aecb0b6c2a7633fb4113f45059c49ae446d",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/original_loader_observations.json",
+      "sha256": "5c138b0e71649ba26dab76a2637656fd1cb66c6f62995a7d7f36f60540409b41",
+      "size_bytes": 80490,
+      "sha256_git_blob": "5c138b0e71649ba26dab76a2637656fd1cb66c6f62995a7d7f36f60540409b41",
+      "git_blob": "7a523021e27662c3deb44a349e0c5ad29f78ea06",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/REPORT.md",
+      "sha256": "b5919eda052856f08ad90557465782acff656a4c9ca830a2f1a51dc81cc64051",
+      "size_bytes": 11181,
+      "sha256_git_blob": "b5919eda052856f08ad90557465782acff656a4c9ca830a2f1a51dc81cc64051",
+      "git_blob": "37440dada3341cb12ed9dee36cc2a5031dd6ba31",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/source_versions.json",
+      "sha256": "09446c0a75cd2f887ebf75dd80c508e785ab7f02fcf813fddc6068c0c0e21dc5",
+      "size_bytes": 7439,
+      "sha256_git_blob": "09446c0a75cd2f887ebf75dd80c508e785ab7f02fcf813fddc6068c0c0e21dc5",
+      "git_blob": "79eec8b8fcf33d3ff0b4a81e838f4d3c23e71935",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/summary.json",
+      "sha256": "8c905ba36da6ec5f2b6eed95107e7a8a1b3c868cef4a113670c8b00f70d8bc32",
+      "size_bytes": 5552,
+      "sha256_git_blob": "8c905ba36da6ec5f2b6eed95107e7a8a1b3c868cef4a113670c8b00f70d8bc32",
+      "git_blob": "032a16175968798f4135761bb27add08d529c1ad",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/number_consistency_gate/table_tste_number_consistency_audit.tex",
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8",
+      "size_bytes": 5594,
+      "sha256_git_blob": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8",
+      "git_blob": "27cae5b1e8a0ef0b6e819bf45122644626dfd363",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/number_consistency_gate/tste_number_consistency_audit.csv",
+      "sha256": "8e319f47763bb96ddb1b7afed6d471487591c9dd07ac4e903919e8d5913412e4",
+      "size_bytes": 12442,
+      "sha256_git_blob": "8e319f47763bb96ddb1b7afed6d471487591c9dd07ac4e903919e8d5913412e4",
+      "git_blob": "beadae8b10bfcf77fd954927e553f5a1d09c3222",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/number_consistency_gate/tste_number_consistency_audit.json",
+      "sha256": "0a4233e9d72acfbaa8e1f24a7b4ec0bf829140da1a167bc1eee008874d6c2fb4",
+      "size_bytes": 826,
+      "sha256_git_blob": "0a4233e9d72acfbaa8e1f24a7b4ec0bf829140da1a167bc1eee008874d6c2fb4",
+      "git_blob": "b7867fcc204679606f2f75f7263426cd6683c9bf",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/run_v1/alignment.json",
+      "sha256": "1e48982b153d44006462b3edfe59d58fdf313b5ef64ff110baefeeca92da32ea",
+      "size_bytes": 176879,
+      "sha256_git_blob": "1e48982b153d44006462b3edfe59d58fdf313b5ef64ff110baefeeca92da32ea",
+      "git_blob": "5695a94c9c05be106e0677a7777d652f03de8a7d",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/source_snapshots/arrival_feed.py.txt",
+      "sha256": "4c6d13f915f08da6cbb3d3486e408f4b41daa0e9c619f5f2a226615cde7bd950",
+      "size_bytes": 13005,
+      "sha256_git_blob": "4c6d13f915f08da6cbb3d3486e408f4b41daa0e9c619f5f2a226615cde7bd950",
+      "git_blob": "a6af53e5ad8ff51a43df77e51b9d6b077c1e6ff4",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/source_snapshots/data.py.txt",
+      "sha256": "0444ee0c5e7c76291927abebd3296fcd7341933675c031b7bced4b384730a597",
+      "size_bytes": 5983,
+      "sha256_git_blob": "0444ee0c5e7c76291927abebd3296fcd7341933675c031b7bced4b384730a597",
+      "git_blob": "d3ff512c7b7da52aefcde10beaa7af11f67e0b69",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/source_snapshots/evaluate.py.txt",
+      "sha256": "6c48f3e7b628873ed8954e307e9a2c608830989fca7a19b19e39dbc963c7e4af",
+      "size_bytes": 7853,
+      "sha256_git_blob": "6c48f3e7b628873ed8954e307e9a2c608830989fca7a19b19e39dbc963c7e4af",
+      "git_blob": "bf2836efd19ee427b2f61925324c6149fa973713",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/source_snapshots/mechanism_intervention.py.txt",
+      "sha256": "a4a3773bd4e53667d8db8fb391217f658d45eaebfef1eb8d7b3525761d377c5e",
+      "size_bytes": 43213,
+      "sha256_git_blob": "a4a3773bd4e53667d8db8fb391217f658d45eaebfef1eb8d7b3525761d377c5e",
+      "git_blob": "2aa2569b75b541abbdb7ea18fbb887529775fd96",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/source_snapshots/model.py.txt",
+      "sha256": "88fcfa75053a68328b3b00e73f0ac7b7429afb2379289ec56b799396ed5a36e9",
+      "size_bytes": 30769,
+      "sha256_git_blob": "88fcfa75053a68328b3b00e73f0ac7b7429afb2379289ec56b799396ed5a36e9",
+      "git_blob": "2a49c4aacc4138ed5f0e71494b461303a6d839b5",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    },
+    {
+      "path": "analyses/legacy_cache_alignment_audit_20261018/source_snapshots/preprocess.py.txt",
+      "sha256": "b7d2db98c39df02b43e8057a79592b847721d02cbc62d284b6d5367d41d6f01c",
+      "size_bytes": 12359,
+      "sha256_git_blob": "b7d2db98c39df02b43e8057a79592b847721d02cbc62d284b6d5367d41d6f01c",
+      "git_blob": "d0ad07b5e76f271b1d3b9465ee1d615ce1f5488f",
+      "hash_semantics": "sha256 exact observed workspace bytes; sha256_git_blob staged repository bytes, allowing explicit Git text normalization only"
+    }
+  ]
+}

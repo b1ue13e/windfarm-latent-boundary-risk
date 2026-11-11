@@ -1,0 +1,22 @@
+#!/bin/bash
+#PBS -N state_pilot
+#PBS -q rqdf
+#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -l walltime=00:45:00
+#PBS -j oe
+set -euo pipefail
+cd "${PILOT_ROOT:?required}"
+exec >> "${PILOT_ROOT}/logs/${STAGE}_${PBS_JOBID}.log" 2>&1
+export OMP_NUM_THREADS=2
+export OPENBLAS_NUM_THREADS=2
+export MKL_NUM_THREADS=2
+export PYTHONUNBUFFERED=1
+task="${PBS_ARRAY_INDEX:-${TASK:--1}}"
+output="${PILOT_ROOT}/results/${STAGE}"
+if [[ "$STAGE" == prepare ]]; then output="${PILOT_ROOT}/results/prepared"; fi
+if [[ "$STAGE" == select ]]; then output="${PILOT_ROOT}/results/selection"; fi
+if [[ "$STAGE" == fit ]]; then output="${PILOT_ROOT}/results/fits/${task}"; fi
+if [[ "$STAGE" == evaluate ]]; then output="${PILOT_ROOT}/results/evaluation/${task}"; fi
+exec /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python scripts/run_state_measurement_pilot.py "$STAGE" \
+  --protocol experiments/state_measurement_pilot_20261020/protocol.json \
+  --base "${PILOT_ROOT}/results" --output "$output" --task "$task"

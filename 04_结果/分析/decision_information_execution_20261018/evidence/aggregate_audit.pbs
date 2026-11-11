@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+export STUDY_ROOT=/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1 STUDY_STAGE=aggregate
+bash /nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1/run_lf.pbs
+cd /nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5fe47e1
+/lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python scripts/audit_decision_information_actions.py --protocol experiments/decision_information_development_20261018/protocol.json --runs results/runs --output results/all_actions_audit.json

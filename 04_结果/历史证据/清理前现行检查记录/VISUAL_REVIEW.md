@@ -1,0 +1,13 @@
+# Rendered review and delivery scope
+
+The new main figure is an original vector pipeline, not a proposed new neural architecture. Data cutoff, reserve decision and target are separate. The target is one ten-minute interval; the latest forecast input precedes it by two hours. Current telemetry is combined with a shared forecast. The two zero clips and signed historical residual offset are explicit. Future active power only enters outcome scoring, with no evaluation feedback into the frozen rule.
+
+Viewed all five figures at export size and all eight paper pages. Resolved marker/number contact, a calendar title near tick labels and one colourbar label at the lower page edge. All PDF text is at least7pt. Heatmap cells and colourbars are vectors in SVG/PDF. Shared axes retain all observed values; the worked-day outcome panel deliberately uses different x/y ranges, disclosed in its caption. The full144-decision day remains intact.
+
+Panel checks: Figure1 clock/data flow; Figure2 full day/outcome pairs/all five historical offsets; Figure3 all four arms and fixed fits/stored paired intervals/35 weather days; Figure4 input width/criteria plane/component waterfall/all20 fit endpoints; Figure5 complete calendars/daily cost context. Annual means retain valid-record pooling; daily means are descriptive.12 dates without eligible targets remain missing. All inferior outcomes and original result qualifications remain in the text and supplementary materials.
+
+The supplied SVG audit utility has a missing math import. Its unchanged rules ran in an isolated imported module with math supplied. Matplotlib font-size declarations were normalized to equivalent SVG presentation attributes in user units, so the checker and the exported physical coordinate system agree. The PDF font measurement remains independent. This is an engineering validation, not evidence about scientific significance.
+
+The original scientific gate passed. The original number checker used its built-in cached-input branch via Python -S, retaining the existing77 comparisons and performing no bootstrap. The new figure checker verifies original-source identities, record coverage, accounting, axis inclusion and typeset links. No experiments, model forwards, refits, calibration updates, new intervals or new hypothesis tests were run.
+
+References used for composition: Gilbert2020 TSTE Fig1 (operational inputs and training paths); Soares2016 TSTE results (decision and economic outcomes); Wen2022 TSTE results (complementary statistical and chronological evidence); gallery PatchTST and time-series diffusion diagrams (ordered stages and grouping). Images were read as references and were not reproduced or packaged.

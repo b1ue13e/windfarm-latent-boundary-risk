@@ -1,0 +1,423 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          6,
+          13
+        ]
+      ],
+      "date-time": "2026-06-13T09:52:13Z",
+      "timestamp": 1781344333765,
+      "version": "3.54.1"
+    },
+    "reference-count": 33,
+    "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+    "issue": "1",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              1,
+              1
+            ]
+          ],
+          "date-time": "2026-01-01T00:00:00Z",
+          "timestamp": 1767225600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              1,
+              1
+            ]
+          ],
+          "date-time": "2026-01-01T00:00:00Z",
+          "timestamp": 1767225600000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-029"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              1,
+              1
+            ]
+          ],
+          "date-time": "2026-01-01T00:00:00Z",
+          "timestamp": 1767225600000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-037"
+      }
+    ],
+    "funder": [
+      {
+        "name": "Leverhulme Trust International Professorship",
+        "award": [
+          "LIP-2020-002"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "LIP-2020-002"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "European Research Council (ERC) Starting Grant Crisis-Resilient Price Discovery in Decarbonized Power Systems",
+        "award": [
+          "101165616"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "101165616"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "The work of Akylas Stratigakos was supported by the Department of Electrical and Electronic Engineering, Imperial College London, London, U.K."
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "IEEE Trans. Smart Grid"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2026,
+          1
+        ]
+      ]
+    },
+    "DOI": "10.1109/tsg.2025.3620957",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          13
+        ]
+      ],
+      "date-time": "2025-10-13T17:41:20Z",
+      "timestamp": 1760377280000
+    },
+    "page": "806-817",
+    "source": "Crossref",
+    "is-referenced-by-count": 1,
+    "title": [
+      "Learning Data-Driven Uncertainty Set Partitions for Robust and Adaptive Energy Forecasting With Missing Data"
+    ],
+    "prefix": "10.1109",
+    "volume": "17",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-9954-5558",
+        "authenticated-orcid": false,
+        "given": "Akylas",
+        "family": "Stratigakos",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "UCL Energy Institute, University College London, London, U.K."
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Panagiotis",
+        "family": "Andrianesis",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Center for Processes, Renewable Energy and Energy Systems (PERSEE), Mines Paris, PSL University, Sophia Antipolis, France"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "263",
+    "reference": [
+      {
+        "key": "ref1",
+        "volume-title": "Vision for the Control Room of the Future Report",
+        "year": "2023"
+      },
+      {
+        "key": "ref2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/b978-008047172-3.50009-x"
+      },
+      {
+        "key": "ref3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3035918.3054782"
+      },
+      {
+        "key": "ref4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.energy.2011.03.067"
+      },
+      {
+        "key": "ref5",
+        "volume-title": "2016 Survey: MARS"
+      },
+      {
+        "key": "ref6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2307/2335739"
+      },
+      {
+        "key": "ref7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/sim.4067"
+      },
+      {
+        "key": "ref8",
+        "article-title": "Simple imputation rules for prediction with missing data: Contrasting theoretical guarantees with empirical performance",
+        "author": "Bertsimas",
+        "year": "2021",
+        "journal-title": "arXiv:2104.03158"
+      },
+      {
+        "key": "ref9",
+        "first-page": "6776",
+        "article-title": "BRITS: Bidirectional recurrent imputation for time series",
+        "volume-title": "Proc. Adv. Neural Inf. Process. Syst.",
+        "author": "Cao"
+      },
+      {
+        "key": "ref10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s00362-024-01550-4"
+      },
+      {
+        "key": "ref11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10994-025-06757-6"
+      },
+      {
+        "key": "ref12",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.epsr.2020.106640"
+      },
+      {
+        "key": "ref13",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/we.2962"
+      },
+      {
+        "key": "ref14",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.energy.2024.131544"
+      },
+      {
+        "key": "ref15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.ijforecast.2022.12.006"
+      },
+      {
+        "key": "ref16",
+        "article-title": "Tackling missing values in probabilistic wind power forecasting: A generative approach",
+        "author": "Wen",
+        "year": "2024",
+        "journal-title": "arXiv:2403.03631"
+      },
+      {
+        "key": "ref17",
+        "first-page": "5689",
+        "article-title": "GAIN: Missing data imputation using generative adversarial nets",
+        "volume-title": "Proc. Int. Conf. Mach. Learn.",
+        "author": "Yoon"
+      },
+      {
+        "key": "ref18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSG.2023.3272379"
+      },
+      {
+        "key": "ref19",
+        "article-title": "Towards deep learning models resistant to adversarial attacks",
+        "volume-title": "Proc. 6th Int. Conf. Learn. Represent. (ICLR)",
+        "author": "Madry"
+      },
+      {
+        "key": "ref20",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/PowerTech55446.2023.10202786"
+      },
+      {
+        "key": "ref21",
+        "volume": "958",
+        "author": "Bertsimas",
+        "year": "2020",
+        "journal-title": "Robust and Adaptive Optimization"
+      },
+      {
+        "key": "ref22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/PESGM52003.2023.10252801"
+      },
+      {
+        "key": "ref23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/PESGM51994.2024.10688592"
+      },
+      {
+        "key": "ref24",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2025.3530410"
+      },
+      {
+        "key": "ref25",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TAC.2010.2049764"
+      },
+      {
+        "key": "ref26",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1287/ijoc.2016.0696"
+      },
+      {
+        "key": "ref27",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TPWRS.2023.3333165"
+      },
+      {
+        "key": "ref28",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-642-46092-0"
+      },
+      {
+        "key": "ref29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3307772.3328314"
+      },
+      {
+        "key": "ref30",
+        "volume-title": "American EnglishSolar, Wind, and Load Forecasting Dataset for MISO, NYISO, and SPP Balancing Areas",
+        "author": "Bryce",
+        "year": "2023"
+      },
+      {
+        "key": "ref31",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/B978-0-08-100504-0.00009-3"
+      },
+      {
+        "key": "ref32",
+        "volume-title": "The Renewable Energy Potential (REV) Model: A Geospatial Platform for Technical Potential and Supply Curve Modeling",
+        "author": "Galen et al",
+        "year": "2021"
+      },
+      {
+        "key": "ref33",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1198/073500102753410444"
+      }
+    ],
+    "container-title": [
+      "IEEE Transactions on Smart Grid"
+    ],
+    "original-title": [],
+    "link": [
+      {
+        "URL": "http://xplorestaging.ieee.org/ielx8/5165411/11311981/11202569.pdf?arnumber=11202569",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          12,
+          24
+        ]
+      ],
+      "date-time": "2025-12-24T07:39:27Z",
+      "timestamp": 1766561967000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://ieeexplore.ieee.org/document/11202569/"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          1
+        ]
+      ]
+    },
+    "references-count": 33,
+    "journal-issue": {
+      "issue": "1"
+    },
+    "URL": "https://doi.org/10.1109/tsg.2025.3620957",
+    "relation": {},
+    "ISSN": [
+      "1949-3053",
+      "1949-3061"
+    ],
+    "issn-type": [
+      {
+        "value": "1949-3053",
+        "type": "print"
+      },
+      {
+        "value": "1949-3061",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          1
+        ]
+      ]
+    }
+  }
+}

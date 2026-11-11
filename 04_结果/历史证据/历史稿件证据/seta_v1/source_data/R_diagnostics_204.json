@@ -1,0 +1,45 @@
+{
+  "A_Wind": {
+    "fit_seconds": 10.457685203291476,
+    "n_features": 40,
+    "n_iter": 100
+  },
+  "B_Consequences": {
+    "fit_seconds": 20.739157997071743,
+    "n_features": 112,
+    "n_iter": 100
+  },
+  "C_PitchScore": {
+    "fit_seconds": 20.976428601890802,
+    "n_features": 113,
+    "n_iter": 100
+  },
+  "C_WindScore": {
+    "fit_seconds": 21.00122493179515,
+    "n_features": 113,
+    "n_iter": 100
+  },
+  "C_ShuffledScore": {
+    "fit_seconds": 20.42524576280266,
+    "n_features": 113,
+    "n_iter": 100
+  },
+  "E_Compressed": {
+    "fit_seconds": 11.942223990801722,
+    "n_features": 41,
+    "n_iter": 100
+  },
+  "D_TruePitch_Diagnostic": {
+    "fit_seconds": 26.589092489797622,
+    "n_features": 113,
+    "n_iter": 100
+  },
+  "total_seconds": 200.3875123928301,
+  "continuous_pitch_mse_degrees_squared": {
+    "pitch": 52.7287831621463,
+    "wind": 387.2359972137717,
+    "shuffle": 1827.639456264848
+  },
+  "state_diagnostic_cells": 672939,
+  "probe_input_scope": "Base-information probe includes available pitch in fresh/delayed conditions; wind history only plus commitment metadata under pitch withholding"
+}

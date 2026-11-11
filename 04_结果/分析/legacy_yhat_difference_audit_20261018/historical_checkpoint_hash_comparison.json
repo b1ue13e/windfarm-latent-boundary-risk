@@ -1,0 +1,46 @@
+{
+  "source": "artifacts/raw_replay_20261015_v2/frozen_protocol.json",
+  "source_sha256": "3f145f5b12d7ce1041539ff7e8f735d9d1eb88204ff18a899c346379a4f7e44e",
+  "comparisons": [
+    {
+      "seed": 201,
+      "historical_record_timestamp": "2026-10-15T05:28:02.116878+00:00",
+      "reference_sha256": "cc7744970b8f254eeb296d6814125969f5695e40527bca2e41948439b7bfd74a",
+      "current_sha256": "cc7744970b8f254eeb296d6814125969f5695e40527bca2e41948439b7bfd74a",
+      "matches": true,
+      "scope": "2026-10-15 static source-config checkpoint record; not an August30/September18 execution receipt"
+    },
+    {
+      "seed": 202,
+      "historical_record_timestamp": "2026-10-15T05:28:02.116878+00:00",
+      "reference_sha256": "833afaa97940ba20304c45836d726d24a05de97f6fe1354edbd225bda50033e6",
+      "current_sha256": "833afaa97940ba20304c45836d726d24a05de97f6fe1354edbd225bda50033e6",
+      "matches": true,
+      "scope": "2026-10-15 static source-config checkpoint record; not an August30/September18 execution receipt"
+    },
+    {
+      "seed": 203,
+      "historical_record_timestamp": "2026-10-15T05:28:02.116878+00:00",
+      "reference_sha256": "6f1d4a32de81de0f11cbd4222be84f2bd1fa141e841f563050dcd973f2443787",
+      "current_sha256": "6f1d4a32de81de0f11cbd4222be84f2bd1fa141e841f563050dcd973f2443787",
+      "matches": true,
+      "scope": "2026-10-15 static source-config checkpoint record; not an August30/September18 execution receipt"
+    },
+    {
+      "seed": 204,
+      "historical_record_timestamp": "2026-10-15T05:28:02.116878+00:00",
+      "reference_sha256": "c5f1e73b238b5580c1bcc70fb5c27b21ec27a57a61abcdea110b8c845ac2c934",
+      "current_sha256": "c5f1e73b238b5580c1bcc70fb5c27b21ec27a57a61abcdea110b8c845ac2c934",
+      "matches": true,
+      "scope": "2026-10-15 static source-config checkpoint record; not an August30/September18 execution receipt"
+    },
+    {
+      "seed": 205,
+      "historical_record_timestamp": "2026-10-15T05:28:02.116878+00:00",
+      "reference_sha256": "2cbdf3bde8d0a1f952f5efb2efa01a284f583ceefddd2a535a5d82a564975388",
+      "current_sha256": "2cbdf3bde8d0a1f952f5efb2efa01a284f583ceefddd2a535a5d82a564975388",
+      "matches": true,
+      "scope": "2026-10-15 static source-config checkpoint record; not an August30/September18 execution receipt"
+    }
+  ]
+}

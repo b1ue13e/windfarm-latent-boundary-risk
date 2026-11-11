@@ -1,0 +1,13 @@
+id,priority,topic,status,evidence,impact,minimum_fix
+R01,P0,机器条件与正文冲突,VERIFIED,reserve_allocation_confirmation_plan_20261020/CRITERIA.json primary_pass[2] vs PLAN section6,误加无预算R不增和不清楚的meanU硬门,新版本唯一判定表及逐项机器映射;不修改阈值
+R02,P0,选择对象错位,VERIFIED_SPEC_INFERRED_RISK,PLAN section4 P-only平均原损失选P* vs section6共同账本主比较,无预算最强不等于预算分配最强,预算任务内历史选择和无预算后果职责分开
+R03,P0,独立窗口旧曝光记录未通过,VERIFIED,q1_paper_closure_20261019/exposure_record.json; q1_research_decision_20261019/E1_EVIDENCE_PATHS.md,本线程未看不能证明设计未用2026,恢复真实知情史;不能闭合则取消未见确认身份
+R04,P1,精确花完及边界交互,DERIVED_COUNTEREXAMPLE_NOT_EXECUTED,PLAN section2.2 ledger;REVIEW section3手算两时段反例,尺度差可被投影变成时序优势且无需Z信息,同预算C1及强预算控制;预声明边界反证;不能事后删尾
+R05,P1,覆盖校准不等于强分配器,DERIVED_AND_PRIMARY_METHOD_CHECK,PLAN section4 C5;JMLR25 Algorithm2;ConformalPID sections2-3,单q加反馈未承担边际短缺/剩余需求分配,定义可执行C5风险预测与E/m依赖动作;在预算目标选胜
+R06,P1,两层预算与组输入未唯一,VERIFIED_UNDERSPECIFIED,CONTROL_MATRIX.csv layer字段与PLAN sections2-5,逐机B或组B及信息压缩不明导致公平比较不复现,冻结输出维度/预算生成/特征映射/分母;跨层不偷比
+R07,P1,完整块条件人口,INFERRED_RISK,PLAN section3完整21成员144格,同人口不能消除与缺失相关的选择限制,历史核支持与预声明盲资格;不改组追阳性
+R08,P1,在线依赖与精度未认证,VERIFIED_UNKNOWN,PLAN section7;M08;DtACI Algorithm2 state,3214坐标及较长块长不提供CI有效性证书,明确参数/状态记忆/天气单位和推断假设;无资格不确认
+R09,P1,替代与排除责任及方向,VERIFIED_UNDERSPECIFIED,PLAN section6有限族反证;CLAIM_EVIDENCE C2-C3,没有替代通过不等于全部被排除,按P相对Z明确分母/符号;逐候选排除见证或未解决
+R10,P1,停止逻辑与定性适用范围,VERIFIED_UNDERSPECIFIED,PLAN sections6-9,科学反证/无资格/区间不足/TSTE投入容易混写,分状态判定;较高预算边界须具体而不能定性补救
+R11,P1,运行接口及反事实边界,VERIFIED_UNKNOWN_AND_DERIVED,PLAN sections2/9;M07/M12;SCIENTIFIC_CONTRACT,账面外部备用不能冒称风场控制/PCC/真实采购收益,声明r不影响观测S;真实接口另证或限定代理任务
+R12,P1,账本可行与风险可行混淆,DERIVED_NOT_EXECUTED,PLAN section2.2非退化与section6双方风险守门,预算或cap可能使任何程序都难过门;不能误判信息无用,历史审计必要资源与风险支持;未来oracle只作诊断不选预算或删块

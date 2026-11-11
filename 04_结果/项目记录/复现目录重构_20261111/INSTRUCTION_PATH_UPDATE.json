@@ -1,0 +1,5 @@
+{
+  "before": "16d4a6839e6e9ef9d75a43c33c51f848375d1d5b78a52774930c0f57614712ee",
+  "after": "1b1dbc5555eed49831b3d67e6dcc88a90a635ba6831c857eb48adbb28f21c95a",
+  "scope": "Only live path/command literals in AGENTS.md were updated; scientific rules unchanged"
+}

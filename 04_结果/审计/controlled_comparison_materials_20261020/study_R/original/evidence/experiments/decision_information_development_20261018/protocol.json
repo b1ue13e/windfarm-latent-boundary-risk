@@ -1,0 +1,83 @@
+{
+  "study_id": "decision_information_development_20261018_v2",
+  "status": "AUTHORIZED_DEVELOPMENT_NOT_CONFIRMATORY",
+  "authorization": "User explicitly authorized implementation and Metis execution after adversarial review on 2026-10-18.",
+  "historical_boundaries": "No change to E04/E07, original arrays, original thresholds or scientific claim status. This new target does not replace the historical canonical forecast task.",
+  "data": {
+    "dataset": "WTB original CSV, Day1-245, 134 turbines",
+    "raw_sha256": "6cf7613a82c61bb5cf9fcbbf22e3f6c48165fa32021eb6f1905cb2b7af4d7667",
+    "exposure": "Previously inspected development data; never described as an untouched confirmation set",
+    "channels": ["wind", "power", "reactive", "pitch"],
+    "target_qc": "All finite realized Patv, including zero/negative net export; no pitch/state filtering",
+    "pitch_diagnostic": "Mean of all three finite raw blade angles; continuous degree-valued measurement, not a wind-threshold state label",
+    "clock": "Synthetic event-end and release clock, not observed field telemetry logs"
+  },
+  "task": {
+    "horizon_steps": 6,
+    "history_steps": 36,
+    "commitment_age_steps": 6,
+    "target_release_delay_steps": 1,
+    "rho": 10.0,
+    "dt_hours": 0.16666666666666666,
+    "point_forecaster": "Preset squared-error histogram boosting from wind/power history only, published six steps before reserve issue; predicts twelve steps after publication",
+    "point_forecaster_seed": 20261018,
+    "population": "All finite future net-export targets on registered coordinates, independent of pitch availability",
+    "scope": "Turbine-level risk-screening surrogate conditional on a synthetic legally earlier common forecast; no PCC procurement or storage-deliverability claim"
+  },
+  "stage_days": {
+    "point_fit": [1, 90],
+    "state_fit": [91, 135],
+    "policy_fit": [136, 175],
+    "calibration": [176, 210],
+    "development_evaluation": [211, 245]
+  },
+  "temporal_rule": "Each fit/calibration issue range ends early enough that its final target plus one release step precedes the next stage. Histories may use earlier already-arrived observations.",
+  "conditions": {
+    "pitch_withheld": {"delay_steps": 0, "pitch_available": false},
+    "fresh": {"delay_steps": 0, "pitch_available": true},
+    "delay1": {"delay_steps": 1, "pitch_available": true},
+    "delay2": {"delay_steps": 2, "pitch_available": true},
+    "delay3": {"delay_steps": 3, "pitch_available": true},
+    "delay6_stress": {"delay_steps": 6, "pitch_available": true}
+  },
+  "variants": ["WindBins", "A_Wind", "B_Consequences", "C_PitchScore", "C_WindScore", "C_ShuffledScore", "E_Compressed", "D_TruePitch_Diagnostic"],
+  "common_information": "Published forecast value, issue clock sine/cosine and turbine ID; all candidates receive the same commitment. A also receives arrived wind history and pitch history only when the condition permits it.",
+  "restricted_reference": "WindBins intentionally uses only last-arrived wind and global missing fallback. It is not an equal-input complexity control and cannot establish pure representation value.",
+  "representation": "Three identical preset tabular regressors trained on an earlier disjoint historical stage: wind-only pitch regression, full-consequence pitch regression and full-consequence regression with a newly derived training-label permutation. No graph or MoE added.",
+  "training_privilege": "Historical continuous pitch supervision is explicitly allowed. Deployment pitch withheld only in the named condition. This is not a pitch-never-recorded claim.",
+  "probe_naming": "C_WindScore/state_wind are legacy identifiers for the base-information probe: A includes pitch history under fresh/delayed conditions; only under pitch_withheld is the telemetry wind-only. No hidden-state recovery claim in pitch-observed conditions.",
+  "learner": {
+    "library": "sklearn HistGradientBoostingRegressor",
+    "missing_preprocessing": "SimpleImputer constant zero with add_indicator=True and keep_empty_features=True, fit only on the corresponding historical fit stage. Added after v1 remote preflight caught sklearn1.9 all-NaN column failure; no v1 model results produced.",
+    "max_iter": 100,
+    "max_leaf_nodes": 15,
+    "max_depth": null,
+    "min_samples_leaf": 50,
+    "learning_rate": 0.08,
+    "l2_regularization": 1.0,
+    "early_stopping": false,
+    "max_fit_rows": 120000,
+    "state_max_fit_rows": 100000,
+    "subsampling": "One archived shared set of policy-fit sample indices per seed; no evaluation-based selection"
+  },
+  "seeds": [201, 202, 203, 204, 205],
+  "calibration": "One global signed Q0.90(shortfall-max(raw reserve,0)) offset, fitted only on the calibration stage; final action=max(raw reserve+offset,0). Report both raw and calibrated accounting; no risk-certification assumption.",
+  "inference": {
+    "estimand": "Mean kWh-equivalent loss per valid turbine interval, conditional on the five archived instances",
+    "blocks": "Natural WTB index days; all turbines/candidates/conditions share temporal resampling",
+    "moving_block_span_days": 3,
+    "sensitivity_spans_days": [1, 7],
+    "n_boot": 20000,
+    "resampling_seed": 20261019,
+    "comparisons_per_condition": [["B_Consequences", "A_Wind"], ["C_PitchScore", "B_Consequences"], ["C_PitchScore", "C_WindScore"], ["C_PitchScore", "C_ShuffledScore"], ["E_Compressed", "B_Consequences"], ["D_TruePitch_Diagnostic", "B_Consequences"], ["A_Wind", "WindBins"]],
+    "multiplicity": "Primary family is all 42 loss comparisons at the three-day block span. Bonferroni percentile intervals are approximate development intervals only; other metrics/spans are descriptive sensitivities, not additional certified families.",
+    "practical_effect_delta": null,
+    "certifies_minimum_sufficiency": false,
+    "safety_status": "No empirical confidence certification; original E04 no-feasible result remains unchanged"
+  },
+  "confirmation": {
+    "eligible_window_bound": false,
+    "E07_activated": false,
+    "status": "Independent new data and practical effect specification still required"
+  }
+}

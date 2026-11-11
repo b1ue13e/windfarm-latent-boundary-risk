@@ -1,0 +1,30 @@
+{
+  "sha256": {
+    "AGENTS.md": "b1feb8e637fd05baeeace62925f086257bb2b9af7c0905c25f636dc8ec92c993",
+    "PROJECT.md": "17234e3ee82eebbeed835e306613f471a7435629dc66b8a268651bba6c8f71a4",
+    "docs/SCIENTIFIC_CONTRACT.md": "cf0c38fba403d842ca87521dbe03897e9078dcb87da593daa7af6fd009545f76",
+    "docs/MAINLINE_STOP_DECISION_20261019.md": "e248170f90a20761fb756d0d1ace63f0fe27f0b9a46f8c56eee3816550a04459",
+    "paper_tste_ieee.md": "b9e5e417abde1856201e21c6022a994c0601010340b19cc0ee4b4f5f31d17456",
+    "paper_tste_ieee.pdf": "8e363d56ef8e0b88d83c903ee8ef66b52976d69d18ccb2b98b48127f88577100",
+    "paper_tste_chinese.md": "14cdc51df2ad440f8c96eab97c7b450d04437c1599eb4c3c65010280d673352f",
+    "paper_tste_chinese.pdf": "a7e9aefeb05885dc5fd813014440d0d66e53a33a79421ba8c4772b2eb602fc10",
+    "paper_tste_supplementary.md": "43487c70feacc9f0edfb991e56ce342acfa5dc9c678534bc6a42a9eaeb02065e",
+    "paper_tste_supplementary.pdf": "d30d6980c2714d01bac93451560cccb20cb8303248f091f4832634e82bc615fb",
+    "manuscript/paper_chinese_topjournal_final.md": "14cdc51df2ad440f8c96eab97c7b450d04437c1599eb4c3c65010280d673352f",
+    "manuscript/paper_tste_chinese_topjournal.md": "14cdc51df2ad440f8c96eab97c7b450d04437c1599eb4c3c65010280d673352f",
+    "references.bib": "34d99436c120eb1c4a06ed8d9ade1928f4ddbf24bcf3fafc463bbe4ac905bd5d",
+    "research_audit/q1_route_first_principles_review_20261019/REVIEW.md": "df1f498555f6d76163605a452633352e3b7ebb174fb947774f3115c746f373b4",
+    "research_audit/telemetry_increment_boundary_design_20261019/PLAN.md": "7b4339d89eeb30b0e191dc44726cd8d58bdd3c615abb2ed2a467caf5463a13ff",
+    "research_audit/closest_literature_audit_20261019/REPORT.md": "44e3f8fcaadbcc06916d332194a5096c6ca4595a1ff3d633cac99473e28ad2e3",
+    "experiments/independent_confirmation_20261019/source_binding.json": "4df5eca98530dc2777c92b83213fb0342829d7f926694615363b57cd5c2ddd76",
+    "experiments/independent_confirmation_execution_20261019/protocol.json": "27ba6498427ca425978f6674f013862ba272049f778562cb839969cb7f3bbc33",
+    "scripts/verify_scientific_claim_gate.py": "f16db4344193431ae5deb4f22a9ace360233ea941e376c5ffa7f068f01c4c185",
+    "scripts/verify_tste_number_consistency.py": "34cca01a64d4671bed164c5c70c448ca4935cb2cd3bccc50cb97d1dc9ad14b13",
+    "scripts/verify_independent_confirmation_gate.py": "0c5de3a89140f4495e2c0ea6670a40325797833371ed61a90c0816327d64e200",
+    "windfarm_moe/independent_confirmation.py": "dd59f461df7535202f9727a3b8472b4e6a0a11edbb1070920ecea6184e09a4f2",
+    "windfarm_moe/risk_frontier.py": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944",
+    "windfarm_moe/subset_inference.py": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568",
+    "analyses/independent_confirmation_execution_20261019/result_evidence.tar.gz": "4771896a7f8cea440178405d830e0c15189ac91508ff4aa5009482602203e64a",
+    "analyses/claim_revision_recovery_20261019/compact_evidence.tar.gz": "c375cf3e327aff65d30e148a4b009b8bea08c773874be410c6bf6abc5f30c3a0"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "historical": {
+    "worker_count": 550,
+    "summed_worker_wall_hours": 6.810854268888889,
+    "fit_hours_by_recipe": {
+      "HGB": 1.207652536227413,
+      "MLP": 4.899807471513535,
+      "Persistence": 0.0
+    },
+    "interpretation": "summed wall includes I/O; not measured CPU utilization or end-to-end deployed latency"
+  },
+  "evaluate": {
+    "worker_count": 550,
+    "summed_worker_wall_hours": 0.7323481344444445,
+    "fit_hours_by_recipe": {},
+    "interpretation": "summed wall includes I/O; not measured CPU utilization or end-to-end deployed latency"
+  }
+}

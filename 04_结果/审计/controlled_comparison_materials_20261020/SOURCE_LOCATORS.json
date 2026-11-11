@@ -1,0 +1,23 @@
+{
+  "R": {
+    "direct_copies": "study_R/original/<path below original R directory>",
+    "compact": "study_R/original/compact_evidence.tar.gz",
+    "compact_member_rule": "Strip analyses/decision_information_execution_20261018/evidence/ from original repository locator; retain exact member and stored SHA",
+    "frozen_source_tar": "study_R/original/source_5fe47e1.tar"
+  },
+  "M_pilot": {
+    "direct_copies": "study_M/copies/pilot",
+    "compact": "study_M/copies/pilot/compact_evidence.tar.gz",
+    "compact_member_rule": "Strip experiments/state_measurement_pilot_20261020/evidence/",
+    "execution_packet": "study_M/copies/pilot/packet_v2.tar.gz"
+  },
+  "M_controls": {
+    "direct_copies": "study_M/copies/controls",
+    "compact": "study_M/copies/controls/compact_evidence.tar.gz",
+    "compact_member_rule": "Strip experiments/state_calibration_controls_20261020/evidence/",
+    "execution_packet": "study_M/copies/controls/packet.tar.gz"
+  },
+  "source_index": "SOURCE_INDEX.csv",
+  "large_materials": "RECOVERED_FILES.csv: local paths relative to this directory; every SHA is bound to historical manifest",
+  "no_automatic_archive_execution": true
+}

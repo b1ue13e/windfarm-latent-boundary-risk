@@ -1,0 +1,36 @@
+{
+  "utc": "2026-10-19T07:46:35.864297+00:00",
+  "status": "PLANNING_RECORDED_CONSISTENCY_CHECKED",
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_scientific_claim_gate.py"
+      ],
+      "exit_code": 0,
+      "log": "validation/gate_0.log"
+    },
+    {
+      "command": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "scripts/verify_tste_number_consistency.py",
+        "--output-dir",
+        "research_audit\\contribution_gate_plan_20261019\\validation\\numbers"
+      ],
+      "exit_code": 0,
+      "log": "validation/gate_1.log"
+    }
+  ],
+  "protected_sources_unchanged": 13,
+  "contribution_gates": 3,
+  "subitems": 7,
+  "all_pending": true,
+  "project_append_only": true,
+  "execution_queue_empty": true,
+  "no_training": true,
+  "no_new_model_evaluation": true,
+  "no_scientific_resampling": true,
+  "no_metis_access": true,
+  "scientific_contract_unchanged": true,
+  "scope": "Planning artifact only; no hypothesis has been tested, preregistered or declared successful"
+}

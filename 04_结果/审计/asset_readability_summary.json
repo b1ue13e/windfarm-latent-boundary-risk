@@ -1,0 +1,23 @@
+{
+  "total": 56486,
+  "counts": {
+    "NOT_CONTENT_PARSED": 18398,
+    "JSON_SYNTAX_READABLE": 17328,
+    "CSV_FIRST_RECORD_READABLE": 4940,
+    "READ_OR_PARSE_ERROR": 2,
+    "NOT_PARSED_SIZE_BOUND": 1,
+    "NPZ_ARRAY_HEADERS_ONLY": 2342,
+    "NPY_HEADER_ONLY": 13475
+  },
+  "errors": [
+    {
+      "path": "analyses/claim_revision_recovery_20261019/evidence/study/experiments/independent_confirmation_20261019/metadata/Hill_of_Towie_turbine_fields_description.csv",
+      "error": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb0 in position 1522: invalid start byte"
+    },
+    {
+      "path": "experiments/independent_confirmation_20261019/metadata/Hill_of_Towie_turbine_fields_description.csv",
+      "error": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb0 in position 1522: invalid start byte"
+    }
+  ],
+  "warning": "Syntax/header survey is not experimental/content validity review. CSV only first record; NPY/NPZ only headers; torch/pickle never deserialized."
+}

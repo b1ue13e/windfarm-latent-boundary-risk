@@ -1,0 +1,77 @@
+{
+  "record_id": "q1_e2_asset_reuse_20261019",
+  "record_type": "E2_PAPER_JUDGMENT_ARCHIVE_NOT_FROZEN_PACKAGE_OR_EXECUTION",
+  "date": "2026-10-19",
+  "parent_record": "research_audit/q1_research_decision_20261019/decision.json",
+  "scope": "E2_ASSET_REUSE_AND_F1_F5_MINIMUM_ONLY",
+  "source_spec": "research_audit/q1_paper_closure_20261019/paper_contract.json",
+  "source_spec_id": "q1_conditional_cost_domain_paper_v1_20261019",
+  "assessment_basis": "preceding paper assessment of source code, specifications and existing receipts; no raw measurement or remote access",
+  "current_state": {
+    "E2_closed": false,
+    "new_task_actual_package": "NOT_PRODUCED_OR_VERIFIED_IN_REVIEWED_ASSETS",
+    "numeric_thresholds": null,
+    "E1_closed": false,
+    "candidate_exposure": "EXPOSURE_UNKNOWN",
+    "E3_implementation_and_statistical_applicability": "NOT_IMPLEMENTED_OR_VALIDATED",
+    "E4_confirmation": "NOT_EXECUTED",
+    "project_state": "STOP_ADDITIONAL_INVESTMENT",
+    "execution_authorized": false,
+    "execution_queue": [],
+    "automatic_resume_conditions": []
+  },
+  "reusable_assets": [
+    {"id": "R1", "asset": "narrowed paper specifications and contract", "reuse": "task, stage responsibilities, recipes, domains and acceptance", "limit": "not actual weights or thresholds", "source": "research_audit/q1_paper_closure_20261019/paper_contract.json"},
+    {"id": "R2", "asset": "source identity and coordinate preparation/audit records", "reuse": "same archive/fields/adapter historical preparation basis", "limit": "new task populations and maturity boundaries still need binding; no automatic repeat of all source audits", "source": "experiments/independent_confirmation_20261019/source_binding.json"},
+    {"id": "R3", "asset": "sample_loss", "reuse": "specified procurement/shortage numerical calculation", "limit": "new inputs must satisfy common-target/action/population semantics; no new integration certification", "source": "windfarm_moe/decision_information.py"},
+    {"id": "R4", "asset": "offset_grid", "reuse": "historical signed residual quantile calculation", "limit": "function rather than old offset values", "source": "windfarm_moe/risk_frontier.py"},
+    {"id": "R5", "asset": "archive/hash/receipt/freeze framework and existing tests", "reuse": "engineering and regression-check starting points", "limit": "new actual task objects must be bound; old PASS not inherited", "source": "scripts/run_independent_confirmation.py"}
+  ],
+  "reference_or_match_required_assets": [
+    {"id": "H1", "asset": "old point-forecast weights and F", "difference": "old publication-time input versus new latest input publication minus1", "reuse_status": "NOT_DIRECT_NEW_TASK_ARTIFACT", "source": "windfarm_moe/independent_confirmation.py"},
+    {"id": "H2", "asset": "old P/W/Q features", "difference": "fixed event-window masking differs from last36 arrived observations; new P adds four summaries", "reuse_status": "ADAPTATION_REQUIRED", "source": "windfarm_moe/decision_information.py"},
+    {"id": "H3", "asset": "old fitted preprocessing", "difference": "constant0 imputation versus actual-fit-row finite medians and declared fallback", "reuse_status": "NOT_DIRECT_NEW_TASK_ARTIFACT", "source": "scripts/run_decision_information_development.py"},
+    {"id": "H4", "asset": "old offsets, q, choices and bounds", "difference": "depend on old F/actions/task/family; diagnostic fallback is not current qualification", "reuse_status": "OLD_TASK_EVIDENCE_ONLY", "source": "analyses/independent_confirmation_execution_20261019/history_freeze/freeze.json"},
+    {"id": "H5", "asset": "old fitted-row indices", "reuse_status": "MAY_REUSE_AFTER_MATCH_PROOF_AND_REBINDING", "match_dimensions": ["eligible row population", "ordering", "label-maturity boundaries", "sampling rule"], "match_proven_now": false, "automatic_resampling_required": false},
+    {"id": "H6", "asset": "old runtime environment/time/receipt", "reuse_status": "ENVIRONMENT_RECIPE_STARTING_POINT_OLD_RECEIPT_HISTORICAL_ONLY", "new_execution_receipt_exists": false, "source": "analyses/independent_confirmation_execution_20261019/FULL_HISTORY_FREEZE_REVIEW.md"}
+  ],
+  "storage_scope": {
+    "historical_record": "full raw data, weights, indices and actions retained on Metis; local exports compact",
+    "current_remote_availability": "UNKNOWN_NOT_RECHECKED",
+    "remote_access_performed": false,
+    "all_large_objects_must_be_returned_locally": false,
+    "actual_objects_must_be_locatable_and_verifiable": true,
+    "source": "analyses/independent_confirmation_execution_20261019/README.md"
+  },
+  "missing_actual_products": [
+    {"id": "F1", "name": "task and consumed-input binding", "minimum": "data identity, fields/turbines/times, actual stage eligible rows and maturity, configuration/source identity", "gap": "historical source basis exists; current-task complete consumption/stage binding missing", "verified_complete": false, "execution_task_created": false},
+    {"id": "F2", "name": "actual fitted objects", "minimum": "D0 forecaster/preprocessor; D1 primary and declared challenge objects, fit indices, feature order, preprocessing and fallback statistics", "gap": "current-clock/recipe objects not produced or verified; old weights not substituted", "verified_complete": false, "execution_task_created": false},
+    {"id": "F3", "name": "actual calibration and selection", "minimum": "D2 offsets and D3 original historical-gate q/qualification/abstention records", "gap": "new-task calibration/selection not produced or verified", "verified_complete": false, "execution_task_created": false},
+    {"id": "F4", "name": "actual D4 domain products", "minimum": "A25/A75/M25/M75 values and generating population; declared forward paired records traceable; threshold population not selected by future target validity", "gap": "numeric thresholds remain null; corresponding new-task records missing", "verified_complete": false, "execution_task_created": false},
+    {"id": "F5", "name": "complete actual freeze manifest", "minimum": "actual locations, sizes/digests, lineage and freeze receipt; corresponding version/seed/command/environment/time records", "gap": "no complete actual freeze manifest for current task", "verified_complete": false, "execution_task_created": false}
+  ],
+  "minimum_closure": {
+    "required_product_groups": ["F1", "F2", "F3", "F4", "F5"],
+    "meaning": "actual task-matched historical package with traceable identity, read-only consumption later and no confirmation-stage refit/q reselection/domain adjustment",
+    "product_groups_are_new_experiments_or_new_E_gates": false,
+    "positive_or_significant_2025_development_required": false,
+    "positive_HL_direction_required_for_E2": false,
+    "historical_no_qualified_q": "freeze NO_HISTORICAL_QUALIFICATION and full failure record; not an eligible confirmation policy package and not E2 success",
+    "actual_package_closes_E1": false,
+    "actual_package_validates_E3": false,
+    "actual_package_is_E4_success": false,
+    "stop_adding_same_scope_materialization_obligations_after_satisfaction": true
+  },
+  "not_required_additions": ["new models/seeds/years", "new statistical theory", "repeat all unchanged source audits without new evidence", "force resampling despite proven matching indices", "return all large arrays locally", "first repair old WTB/Graph/MoE/cache provenance", "positive significant development result"],
+  "existing_five_instances_challenges_and_stage_responsibilities_preserved": true,
+  "original_requirements_or_acceptance_changed": false,
+  "new_F1_F5_products_generated": false,
+  "new_scientific_conclusion": false,
+  "measurement_access_or_download": false,
+  "code_or_model_changes": false,
+  "model_training_evaluation_calibration_or_resampling": false,
+  "manuscript_edits": false,
+  "remote_access_or_jobs": false,
+  "project_resumption": false,
+  "future_execution_requires_separate_explicit_user_authorization": true
+}

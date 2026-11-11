@@ -1,0 +1,42 @@
+[
+  {
+    "source": "SETA official article",
+    "route": "web DOI/directarticle",
+    "outcome": "tool inaccessible;publisherindexedpreviewavailable"
+  },
+  {
+    "source": "SAFER official article",
+    "route": "ordinary IAB",
+    "outcome": "verification page;no challenge attempted;temporarytabclosed"
+  },
+  {
+    "source": "SAFER officialXML",
+    "route": "registeredTDM",
+    "outcome": "200coredata1938B;nobody/sections;not fulltext"
+  },
+  {
+    "source": "SETA officialXML",
+    "route": "registeredTDM",
+    "outcome": "429onetime;noretry"
+  },
+  {
+    "source": "Greece14546479",
+    "route": "officialmetadataAPI",
+    "outcome": "HTTP410Gone;noarchivequeried"
+  },
+  {
+    "source": "Greece15781269",
+    "route": "officialmetadataAPI",
+    "outcome": "descriptorPDFonly;notmeasuredata"
+  },
+  {
+    "source": "SaintHilaire DOI/catalogue",
+    "route": "web andordinaryurllib",
+    "outcome": "notaccessible/certificateverificationerror;notbypassed"
+  },
+  {
+    "source": "SaintHilaire registry",
+    "route": "DataCite",
+    "outcome": "metadataavailable;actualfileaccessunverified"
+  }
+]

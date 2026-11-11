@@ -1,0 +1,145 @@
+{
+  "source": "scripts\\plot_rmse_vs_reserve_risk.py",
+  "source_sha256": "e464a094af0c2621a4227fb7a58d6938cbaef3f4aeafc2df97a81f634ae892be",
+  "status": "Historical plotting literals; not independently bound model outputs",
+  "operation": "AST literal extraction and rendering only; no producer execution",
+  "uncertainty": "Unavailable in the plotting records; no error bars invented",
+  "records": [
+    {
+      "name": "iTransformer (SOTA Point)",
+      "rmse": 224.34,
+      "shortage": 82.5,
+      "viol": 18.2,
+      "recall": 0.152,
+      "marker": "s",
+      "color": "#7f7f7f",
+      "offset1": [
+        -45,
+        12
+      ],
+      "offset2": [
+        -45,
+        -18
+      ]
+    },
+    {
+      "name": "Graph WaveNet",
+      "rmse": 225.74,
+      "shortage": 78.3,
+      "viol": 16.9,
+      "recall": 0.174,
+      "marker": "^",
+      "color": "#9467bd",
+      "offset1": [
+        -35,
+        -18
+      ],
+      "offset2": [
+        -40,
+        10
+      ]
+    },
+    {
+      "name": "Joint Routed (Ours, Canonical)",
+      "rmse": 229.93,
+      "shortage": 53.9,
+      "viol": 9.62,
+      "recall": 0.416,
+      "marker": "*",
+      "color": "#d62728",
+      "offset1": [
+        -10,
+        -20
+      ],
+      "offset2": [
+        -10,
+        10
+      ]
+    },
+    {
+      "name": "Frozen Backbone + Residual Q.",
+      "rmse": 230.12,
+      "shortage": 54.2,
+      "viol": 9.55,
+      "recall": 0.408,
+      "marker": "o",
+      "color": "#1f77b4",
+      "offset1": [
+        10,
+        10
+      ],
+      "offset2": [
+        10,
+        -18
+      ]
+    },
+    {
+      "name": "Boundary-Forced Router (Masked)",
+      "rmse": 236.13,
+      "shortage": 53.9,
+      "viol": 9.62,
+      "recall": 0.421,
+      "marker": "D",
+      "color": "#ff7f0e",
+      "offset1": [
+        -50,
+        12
+      ],
+      "offset2": [
+        -50,
+        10
+      ]
+    },
+    {
+      "name": "Missingness-Aware GBDT",
+      "rmse": 239.5,
+      "shortage": 68.4,
+      "viol": 8.36,
+      "recall": 0.231,
+      "marker": "v",
+      "color": "#8c564b",
+      "offset1": [
+        -55,
+        -20
+      ],
+      "offset2": [
+        -55,
+        -18
+      ]
+    },
+    {
+      "name": "Recalibrated Physics (State-Cond.)",
+      "rmse": 285.4,
+      "shortage": 57.0,
+      "viol": 9.46,
+      "recall": 0.312,
+      "marker": "p",
+      "color": "#2ca02c",
+      "offset1": [
+        -60,
+        12
+      ],
+      "offset2": [
+        -60,
+        12
+      ]
+    },
+    {
+      "name": "Clean Physical Rule (Collapsed)",
+      "rmse": 285.4,
+      "shortage": 127.6,
+      "viol": 24.02,
+      "recall": 0.196,
+      "marker": "X",
+      "color": "#e377c2",
+      "offset1": [
+        -75,
+        -20
+      ],
+      "offset2": [
+        -70,
+        -20
+      ]
+    }
+  ]
+}

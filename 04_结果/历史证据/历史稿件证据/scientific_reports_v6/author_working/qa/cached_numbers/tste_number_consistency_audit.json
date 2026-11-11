@@ -1,0 +1,17 @@
+{
+  "status": "complete_tste_number_consistency",
+  "n_checks": 77,
+  "n_failed": 0,
+  "failed_claims": [],
+  "documents": {
+    "main": "paper_tste_ieee.md",
+    "supplementary": "paper_tste_supplementary.md",
+    "cover": "cover_letter_tste.md"
+  },
+  "outputs": {
+    "csv": "manuscripts/scientific_reports_v6/author_working/qa/cached_numbers/tste_number_consistency_audit.csv",
+    "tex": "manuscripts/scientific_reports_v6/author_working/qa/cached_numbers/table_tste_number_consistency_audit.tex",
+    "json": "manuscripts/scientific_reports_v6/author_working/qa/cached_numbers/tste_number_consistency_audit.json"
+  },
+  "claim_use": "Submission-facing number consistency audit. Each display token is derived from a source artifact and required to appear in declared final-facing documents."
+}

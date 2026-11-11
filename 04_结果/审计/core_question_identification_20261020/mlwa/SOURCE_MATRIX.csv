@@ -1,0 +1,14 @@
+id,source_type,url,access_method,status,observed_content,coverage,local_artifact,article_pages,article_sha256,limitations
+M01,official_publisher,https://www.sciencedirect.com/science/article/pii/S2666827026001222,web.open,HTTP403,无正文,NONE,,UNKNOWN,NOT_OBTAINED,未绕过
+M02,official_doi,https://doi.org/10.1016/j.mlwa.2026.100957,web.open,REDIRECT_FETCH_FAILED,重定向linkinghub不可访问,NONE,,UNKNOWN,NOT_OBTAINED,不是论文不存在
+M03,official_crossref,https://api.crossref.org/works/10.1016%2Fj.mlwa.2026.100957,public_HTTP,HTTP200,作者题名卷期许可和出版社API链接,METADATA,crossref_metadata.json,UNKNOWN,NOT_OBTAINED,元数据哈希不得冒充全文哈希
+M04,official_elsevier_public_api,https://api.elsevier.com/content/article/PII:S2666827026001222?httpAccept=text/xml,public_HTTP_no_credentials,HTTP200_METADATA_ONLY,2047字节XML只有coredata无body或originalText,METADATA,,UNKNOWN,NOT_OBTAINED,full-text-retrieval-response根元素不是已取得全文证据
+M05,official_author_profile,https://www.ntnu.edu/employees/ege.kandemir,public_HTTP,HTTP200,作者出版物及NVA作者页链接,METADATA,,UNKNOWN,NOT_OBTAINED,未列出直接PDF
+M06,official_repository_author,https://nva.sikt.no/research-profile/1695667,normal_Chrome,LOADED,正式论文条目和2026-07-16日期,METADATA,,UNKNOWN,NOT_OBTAINED,浏览器自动翻译;科学正文未由此取得
+M07,official_repository_record,https://nva.sikt.no/registration/01a014031ebd-f999b58e-d400-4951-8306-979b270587b1,normal_Chrome,LOADED_NO_FILE_SECTION,题名作者日期DOI与Handle;页面未见附件区,METADATA,,UNKNOWN,NOT_OBTAINED,不据此断言全机构没有副本
+M08,persistent_repository_handle,https://hdl.handle.net/11250/5558015,public_HTTP,REDIRECT_TO_M07,最终URL为同一NVA登记,METADATA,,UNKNOWN,NOT_OBTAINED,不是第二条可下载全文
+M09,official_publisher_browser,https://www.sciencedirect.com/science/article/pii/S2666827026001222?via%3Dihub,normal_Chrome_from_M07_DOI,CHALLENGE_STOPPED,可见要求完成验证码,NONE,,UNKNOWN,NOT_OBTAINED,没有点击或解决验证码;没有登录
+M10,repository_API_candidate,https://api.nva.unit.no/publication/01a014031ebd-f999b58e-d400-4951-8306-979b270587b1,public_HTTP,HTML_SHELL_NOT_METADATA,HTTP200但返回HTML应用壳,NONE,,UNKNOWN,NOT_OBTAINED,不将null字段当作无文件
+M11,discovery_metadata,https://api.openalex.org/works/https://doi.org/10.1016/j.mlwa.2026.100957,public_HTTP,NO_USABLE_WORK_FIELDS,未取得可用work或OA位置,NONE,,UNKNOWN,NOT_OBTAINED,没有由此得到作者稿
+M12,official_publisher_index,https://doi.org/10.1016/j.mlwa.2026.100957,web.search_index,PARTIAL_PRIMARY_BODY,摘要及多个方法结果讨论片段,PARTIAL_INDEX_NOT_FULLTEXT,,UNKNOWN,NOT_OBTAINED,禁止拼接冒充全文;完整表格与附录未闭
+M13,browser_runtime,iab,createBrowserTab,UNAVAILABLE,应用内浏览器不可用,NONE,,UNKNOWN,NOT_OBTAINED,随后使用可用Chrome正常访问

@@ -5,7 +5,10 @@ import json
 import re
 import subprocess
 from datetime import datetime
-from pathlib import Path
+from pathlib import Path as NativePath
+import sys
+sys.path.insert(0, str(NativePath(__file__).resolve().parents[2] / "02_公共资源/工程"))
+from repo_paths import Path
 
 ROOT = Path.cwd()
 STATE = ROOT / ".agent_state"

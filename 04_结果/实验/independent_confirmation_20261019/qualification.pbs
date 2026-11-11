@@ -1,0 +1,12 @@
+#!/bin/bash
+#PBS -N hot_schema
+#PBS -q rqdf
+#PBS -l select=1:ncpus=2:mem=8gb
+#PBS -l walltime=00:30:00
+#PBS -j oe
+set -euo pipefail
+export OMP_NUM_THREADS=2
+export OPENBLAS_NUM_THREADS=2
+export MKL_NUM_THREADS=2
+cd "${QUALIFY_ROOT:?}"
+exec /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python qualify_hill_of_towie.py --source "${QUALIFY_SOURCE:?}" --output results --binding "${QUALIFY_BINDING:?}" --binding-sha256 "${QUALIFY_BINDING_SHA:?}"

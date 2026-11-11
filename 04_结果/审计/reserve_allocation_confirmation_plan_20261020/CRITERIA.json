@@ -1,0 +1,138 @@
+{
+  "status": "PROPOSED_RESULT_INFORMED_REVIEWABLE_PLAN_NOT_PREREGISTERED_NOT_EXECUTION_READY",
+  "date": "2026-10-20",
+  "execution_authorized_now": false,
+  "question": "Does the measured pitch stream improve temporal reserve allocation beyond strong no-pitch adaptive calibration under genuinely comparable procurement resources?",
+  "task": {
+    "horizon_steps": 6,
+    "commitment_age_steps": 6,
+    "history_event_slots": 36,
+    "dt_hours": 0.16666666666666666,
+    "rho": 10,
+    "base_training_quantile": 0.9,
+    "main_age_steps": 6,
+    "boundary_age_steps": 0
+  },
+  "thresholds_unchanged": {
+    "important_cost_gain": 0.01,
+    "cost_noninferiority_margin": 0.01,
+    "instance_risk_cap": 0.1,
+    "signed_U_over_frozen_Cstar_cap": 0.001
+  },
+  "resource_comparability": {
+    "historical_matching": "Diagnostic only, never certificate of confirmation-budget equality",
+    "original_task": "Actual R_Z-R_P joint upper<=0 required for no-extra-purchase wording only; otherwise transparent procurement-risk tradeoff, not an extra prerequisite for controlled same-budget value",
+    "controlled_task": "Ex-ante common block budget from P-only historical calendar statistics; identical across arms and instances; causal feasible remaining-budget projection; complete-block scoring only",
+    "block_slots": 144,
+    "numerical_precision": "Existing per-cell absolute1e-8 proxy kWh plus relative1e-10; software check not scientific budget margin",
+    "forbidden": [
+      "Use future score sum or Z to set budget",
+      "Match on confirmation mean procurement",
+      "Zero-impute missing future targets",
+      "Keep per-time group total fixed and claim spatial reallocation lowers net shortage"
+    ],
+    "budget_reference": "Fixed HGB fresh no-pitch q_train=.90 reference with q_ref=.925(primary) and .95(higher-budget check), independent of C0-C5 or Z selection;2024 calendar statistics only; cap shared across both budgets",
+    "budget_levels": {
+      "primary_reference_offset_q": 0.925,
+      "higher_resource_reference_offset_q": 0.95,
+      "rule": "Same fixed no-pitch reference, historical calendar statistics, common cap; higher budget never rescues failed primary budget"
+    }
+  },
+  "information": {
+    "P": "Full legal no-pitch WPQ/P dynamics/forecast/clock/ID/mature errors plus operational control setpoint/flags if actually available",
+    "Z": "Same inputs plus current three-blade pitch mean as raw input; online state may contain effects of previously measured pitch",
+    "maturity": "s+h+1<t; eight interlaced delayed-feedback streams where applicable",
+    "base_weights": "Prefer identity-bound reuse; pitch36 models not substitutes for current-pitch models; any new raw/calibration fit needs future authorization and logs"
+  },
+  "calibration_families": [
+    "C0 static original offsets",
+    "C1 monotone affine floor and clipping",
+    "C2 P-regime shrinkage calibration",
+    "C3 rolling or weighted mature residuals",
+    "C4 deterministic DtACI with legal delayed feedback",
+    "C5 full no-pitch context residual calibration combined with DtACI"
+  ],
+  "selection": "Historical P-only all-instance risk qualification then minimum five-instance cost; paired Z uses same selected calibration family/opportunity; no alternative Z rescue after failed main qualification; all six families remain registered counterexamples",
+  "Cstar": {
+    "WTB_legacy": 40.04664774157611,
+    "Towie_and_group": "UNKNOWN; freeze historical same-source same-layer fresh reference according to existing rule before confirmation, never use future scale"
+  },
+  "confirmation_family": {
+    "main_estimator": "HGB",
+    "secondary": "MLP not a primary replacement",
+    "instances": [
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "unbudgeted_policies_per_layer": 14,
+    "budgeted_policies_per_layer": 24,
+    "policies_per_layer": 38,
+    "unbudgeted_pairs_per_layer": 37,
+    "budgeted_pairs_per_layer": 72,
+    "pairs_per_layer": 109,
+    "instance_risk": 190,
+    "mean_cost": 109,
+    "signed_instance_U": 545,
+    "signed_instance_R": 545,
+    "mean_U": 109,
+    "mean_R": 109,
+    "coordinates_per_layer": 1607,
+    "layers": [
+      "turbine",
+      "observed_group_net_shortfall"
+    ],
+    "coordinates_total": 3214,
+    "alpha_total": 0.05,
+    "alpha_each_layer": 0.025,
+    "coverage": "Not certified; online-state dependence and time support must be qualified on development; no seed/turbine independence",
+    "blocks": "Legacy1/3/7 and long-memory14/28-day candidates; select admissible scheme on development, report conservative envelope, no shortest-span shopping"
+  },
+  "primary_pass": [
+    "New window qualified and frozen main program",
+    "Both layers at primary budget gain lower>1% with V/H guards; higher budget is predeclared boundary/counterexample, never a rescue",
+    "Original-task cost noninferiority plus no-more-purchase and mean-U improvement guards",
+    "Both original-task layers pass cost noninferiority and V/H operating-consequence guards; report R, require R upper<=0 only to say no more procurement",
+    "Higher-budget applicability clear; freshness interaction only claimed if confirmed; secondary cannot replace primary",
+    "Nearest-literature responsibility closed"
+  ],
+  "unresolved_is_not_no_effect": true,
+  "primary_failure_not_rescued_by_secondary": true,
+  "confirmation_candidate": {
+    "record": "https://zenodo.org/records/22662930",
+    "version": "2.1.0",
+    "file": "2026.zip",
+    "listed_bytes": 553982874,
+    "listed_md5": "42a2264187912ca63214bacfbc8d4905",
+    "calendar": "2026-01-01 00:00 to 2026-04-30 23:50 UTC end timestamps, actual coverage not yet verified",
+    "regime": "Predeclared mixed control campaign, not clean unchanged-operation population",
+    "raw_file_retrieved_now": false,
+    "sample_qualification": "UNKNOWN",
+    "global_exposure_qualification": "UNKNOWN"
+  },
+  "execution": {
+    "model_fits": false,
+    "model_inference": false,
+    "recalibration": false,
+    "resampling": false,
+    "simulation": false,
+    "new_measurements": false,
+    "remote_access": false,
+    "manuscript_changes": false,
+    "threshold_changes": false,
+    "queue": "EMPTY"
+  },
+  "history_design": {
+    "base_weights": "2023 maturity-isolated then frozen",
+    "budget_reference": "2024 historical statistics; no pitch/availability mask",
+    "calibrator_fit": "2025 first half",
+    "historical_selection": "2025 August-December, already exposed; all labels must mature before next-stage first issue",
+    "historical_alpha": 0.05,
+    "historical_family_size": "UNKNOWN until full finite search candidates frozen; cover all selection configurations and layers, never reuse old450/1100",
+    "warmup": "2025 July sequential out-of-fit warmup with frozen calibration parameters; no contemporaneous future feedback"
+  },
+  "freshness_interaction": "Absolute cost improvement difference normalized by common Cstar, derived linearly from jointly bounded mean R/U; fresh uses same main calibration family/settings",
+  "population": "Both primary layers share fixed21-member group-complete blocks and calendar; extra single-turbine cells supplementary only; controls run all calendar without future completeness knowledge"
+}

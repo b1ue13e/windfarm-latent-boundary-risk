@@ -1,0 +1,223 @@
+{
+  "utc": "2026-10-19T05:24:27.038580+00:00",
+  "rows": [
+    {
+      "period": "2025-01",
+      "candidate_mean_cost": 74.86904587648209,
+      "reference_mean_cost": 74.21049242751002,
+      "relative_cost": 0.00887412854207037,
+      "candidate_max_seed_violation": 0.06442012288786482,
+      "reference_max_seed_violation": 0.06338538999829323,
+      "per_seed_relative_cost": [
+        0.009007913976794457,
+        0.011368594077725724,
+        0.008075788319933608,
+        0.008794628230143875,
+        0.007127079327607255
+      ]
+    },
+    {
+      "period": "2025-02",
+      "candidate_mean_cost": 84.8803796149119,
+      "reference_mean_cost": 84.17303044159549,
+      "relative_cost": 0.008403513210887947,
+      "candidate_max_seed_violation": 0.0633653073760809,
+      "reference_max_seed_violation": 0.06361338184567406,
+      "per_seed_relative_cost": [
+        0.009538438493035928,
+        0.008487070635333716,
+        0.006998185320988837,
+        0.009925689542963578,
+        0.007072025736374998
+      ]
+    },
+    {
+      "period": "2025-03",
+      "candidate_mean_cost": 77.47968409507372,
+      "reference_mean_cost": 77.00930180663678,
+      "relative_cost": 0.006108123011139943,
+      "candidate_max_seed_violation": 0.06121642548192449,
+      "reference_max_seed_violation": 0.06087467293213008,
+      "per_seed_relative_cost": [
+        0.008461237505096753,
+        0.007695122634257423,
+        0.004809004098514258,
+        0.004881858299862207,
+        0.004696964754947741
+      ]
+    },
+    {
+      "period": "2025-04",
+      "candidate_mean_cost": 48.97176102707995,
+      "reference_mean_cost": 48.76948438274961,
+      "relative_cost": 0.004147606785071645,
+      "candidate_max_seed_violation": 0.04300218992633884,
+      "reference_max_seed_violation": 0.044395779414692416,
+      "per_seed_relative_cost": [
+        0.0038976692948187175,
+        0.0049881634315509515,
+        0.0034935455142939276,
+        0.0051217327657928635,
+        0.0032408845019205046
+      ]
+    },
+    {
+      "period": "2025-05",
+      "candidate_mean_cost": 48.24051066328532,
+      "reference_mean_cost": 48.297392169457495,
+      "relative_cost": -0.0011777345238972448,
+      "candidate_max_seed_violation": 0.03297481046186182,
+      "reference_max_seed_violation": 0.03444393209869924,
+      "per_seed_relative_cost": [
+        -0.0008051355640241731,
+        -0.0013894425482364747,
+        -0.0007479589458219138,
+        -0.00017887096762236876,
+        -0.002767509551165004
+      ]
+    },
+    {
+      "period": "2025-06",
+      "candidate_mean_cost": 72.4441165606878,
+      "reference_mean_cost": 71.76852518345018,
+      "relative_cost": 0.009413477224322397,
+      "candidate_max_seed_violation": 0.06666372540368834,
+      "reference_max_seed_violation": 0.06744683667166682,
+      "per_seed_relative_cost": [
+        0.009787611943221197,
+        0.01081056140541814,
+        0.00797335950494027,
+        0.01087186702573728,
+        0.0076301340394999695
+      ]
+    },
+    {
+      "period": "2025-07",
+      "candidate_mean_cost": 46.65204952769223,
+      "reference_mean_cost": 46.272850533951896,
+      "relative_cost": 0.00819484836928508,
+      "candidate_max_seed_violation": 0.03633012185058568,
+      "reference_max_seed_violation": 0.03724105410937617,
+      "per_seed_relative_cost": [
+        0.008650430980410295,
+        0.009386946531656726,
+        0.008645225212080554,
+        0.009084657386279948,
+        0.005212905454695882
+      ]
+    },
+    {
+      "period": "2025-08",
+      "candidate_mean_cost": 55.00706956993465,
+      "reference_mean_cost": 54.82185958418002,
+      "relative_cost": 0.0033783966315523717,
+      "candidate_max_seed_violation": 0.04725054428660731,
+      "reference_max_seed_violation": 0.0466038671294001,
+      "per_seed_relative_cost": [
+        0.004320291725028236,
+        0.006556822805454665,
+        0.0012550573902578854,
+        0.004334339180992908,
+        0.0004442945958371691
+      ]
+    },
+    {
+      "period": "2025-09",
+      "candidate_mean_cost": 66.90219291958034,
+      "reference_mean_cost": 66.80929321192275,
+      "relative_cost": 0.0013905207373308137,
+      "candidate_max_seed_violation": 0.058224739573018575,
+      "reference_max_seed_violation": 0.05895749990097834,
+      "per_seed_relative_cost": [
+        0.0007187373961452526,
+        0.0011113150527206628,
+        0.0004022074730722913,
+        0.001290337062712199,
+        0.0034320247149357552
+      ]
+    },
+    {
+      "period": "2025-10",
+      "candidate_mean_cost": 75.71943762270993,
+      "reference_mean_cost": 75.26625215116626,
+      "relative_cost": 0.006021097883730064,
+      "candidate_max_seed_violation": 0.06031715252192274,
+      "reference_max_seed_violation": 0.05857195182384246,
+      "per_seed_relative_cost": [
+        0.006706716974922866,
+        0.0063057990958330645,
+        0.003367135643796093,
+        0.0070897438839627736,
+        0.006643474497122659
+      ]
+    },
+    {
+      "period": "2025-11",
+      "candidate_mean_cost": 73.35385815733862,
+      "reference_mean_cost": 73.04951500749038,
+      "relative_cost": 0.004166258322413574,
+      "candidate_max_seed_violation": 0.06397533374591106,
+      "reference_max_seed_violation": 0.06469366103792767,
+      "per_seed_relative_cost": [
+        0.003941630808536711,
+        0.004904757028884932,
+        0.003811307837801703,
+        0.0044083924028182064,
+        0.0037666109157927785
+      ]
+    },
+    {
+      "period": "2025-12",
+      "candidate_mean_cost": 81.0546928372855,
+      "reference_mean_cost": 80.71604721699484,
+      "relative_cost": 0.004195517892250811,
+      "candidate_max_seed_violation": 0.07167822767112975,
+      "reference_max_seed_violation": 0.07075334731408292,
+      "per_seed_relative_cost": [
+        0.008657587188436677,
+        0.00461428610754222,
+        -9.773112128808048e-05,
+        0.0026901443275795245,
+        0.005141778723088741
+      ]
+    },
+    {
+      "period": "all_2025",
+      "candidate_mean_cost": 67.0204033211033,
+      "reference_mean_cost": 66.64443044512102,
+      "relative_cost": 0.005641474815992087,
+      "candidate_max_seed_violation": 0.055428001752186457,
+      "reference_max_seed_violation": 0.05553090494388472,
+      "per_seed_relative_cost": [
+        0.0066342224526076965,
+        0.006656002756822321,
+        0.004215584138948625,
+        0.006006645949076406,
+        0.004696767525335543
+      ]
+    }
+  ],
+  "inputs_sha256": {
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/8/metadata.json": "b264a07af4ba4e26cccbd2287d5fcd8519dd885f48f13267ae62225b598929aa",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/8/blocks.npz": "0eadefea227f6d5cb0e0c60cf35d808d6aff65cfe1031c85cc58a5879d87a990",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/42/metadata.json": "b110a232941209ce603a2ff9ff5fb3fa19d0bdce8249fbdaecffa83bfde3cb58",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/42/blocks.npz": "7031567abde723b3767df51a541ecb17375089e8ea94072b2963c0226c938330",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/53/metadata.json": "8bab6eb3fbc52cf641d318ac4108a795d361e6ad8cca8822ce2af9e3b120dbd2",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/53/blocks.npz": "b4b2590c95c770d072facf368722aeb1680639b852aecc066afa31e80167f5f7",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/87/metadata.json": "fe267bc01b77a64fcafcd6b1da7edf0a6b1f293a4d508ca8d27ae1d6207c2132",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/87/blocks.npz": "402430a91fcf16c08d69b7e496e6282b26b3d9307dcbfccb0f3add96a8d424df",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/98/metadata.json": "9a1640ca77b0eae08934aec2c0d56339ba4e0b9ab4c46c539c0641167084fa59",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/98/blocks.npz": "a84c9f10532efde7328af618470ca2e8b91ccd73dc3b292fcd342b997aae4351",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/132/metadata.json": "d71a8e72c8e5bf4b52be46fdf09d1a66e34af83b1605ccc09ca2800afb1154ac",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/132/blocks.npz": "e7658d5511359368cf808736b0ab9ae68a576b98bdcb120c12545e3a2d8e935b",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/143/metadata.json": "981816a28c7d14ef603ea9b840d830f18da10a1007bc1ae16b29e30e78c083bd",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/143/blocks.npz": "63fbe1a05906a8943a160f1aa0bd17bf54198f725028988ae78045f6b532215d",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/177/metadata.json": "9962be9fffccbef9cde029cfa4f13bba9169c9968b2b8b3f209678da5ab76555",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/177/blocks.npz": "d3109a43ef24fc4f95104b1cf314621b0c6ea37980ce47070b1f8602786d7466",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/188/metadata.json": "c0304d27403e9db97df0c4926cafea8a454a6886475c470e33891a8fbf8c87b7",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/188/blocks.npz": "4cb8baae5dda3cd4bf79791cf827080bd632658cad1f65eff7afcb2712a9afa2",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/222/metadata.json": "4055998a0bb23f14ed129c47a0aadce7ecafb6a97c3d660d0fe9de597903c908",
+    "analyses/independent_confirmation_execution_20261019/recovered/results/evaluate/222/blocks.npz": "8d5797e0660bf0c62e120bb5cdb0afccd1b3b5fbf2d0c2c41e65a7ef4b439c1e"
+  },
+  "scope": "Post-hoc monthly descriptions, no new confidence interval, selection, fit or resampling. Does not change annual primary estimand."
+}

@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -N info_subset
+#PBS -q rqdf
+#PBS -l select=1:ncpus=2:mem=24gb
+#PBS -l walltime=02:00:00
+#PBS -j oe
+set -euo pipefail
+cd "${SUBSET_ROOT:?required}"
+export OMP_NUM_THREADS=2
+export OPENBLAS_NUM_THREADS=2
+export MKL_NUM_THREADS=2
+export PYTHONUNBUFFERED=1
+exec /lstr/sahara/minlpml/junyu/paper3_raw_replay_20261015/.venv/bin/python experiments/information_subset_development_20261019/launch.py

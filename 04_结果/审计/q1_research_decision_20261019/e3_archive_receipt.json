@@ -1,0 +1,68 @@
+{
+  "record_id": "q1_e3_implementation_applicability_20261019",
+  "record_type": "ARCHIVAL_METADATA_NOT_TEST_OR_VALIDATION_RESULT",
+  "date": "2026-10-19",
+  "status": "ARCHIVE_WRITTEN_TESTS_AND_GATES_NOT_RUN_E3_OPEN",
+  "base_commit": "43cc1246394328dcd089ec395de2e2157b27f66e",
+  "archival_identity_observation": {
+    "protected_files_observed": 61,
+    "changed_protected_paths": [],
+    "parent_other_fields_match_previous": true,
+    "acceptance_matches_original_spec": true,
+    "evidence_group_ids": [
+      "V1",
+      "V2",
+      "V3",
+      "V4"
+    ],
+    "E3_closed": false,
+    "tests_or_gates_run_this_archive": false,
+    "project_state": "STOP_ADDITIONAL_INVESTMENT",
+    "authorized_edits_after_sha256": {
+      "research_audit/README.md": "3af9e136cadda28e19f8f54babd39f24b3a9c4813589ce350d970fe745aa715f",
+      "research_audit/q1_research_decision_20261019/DECISION.md": "5aa1fc40b97ccc5cd5791e317de90514bf0e189174fe0538a0296ffd634c2e42",
+      "research_audit/q1_research_decision_20261019/decision.json": "453c29c758bf19ba539eeba9494041d3f210d0743b9bf703ae5662dbb95c899b"
+    }
+  },
+  "authorized_edits_before_sha256": {
+    "research_audit/README.md": "b991df3b6b8165a4e3d5b22bdf7df51f38583ab4bdb3f790f7b99b0d4ecdaff2",
+    "research_audit/q1_research_decision_20261019/DECISION.md": "f87aa50f058abc1e20a3d0c6a04dc2d28486b6bc85aede7863748b588dea79af",
+    "research_audit/q1_research_decision_20261019/decision.json": "48ad16fccdda37ed23cbc7abbac8dcc19c07a563c12067af099b580ca8ac6371"
+  },
+  "execution_record": {
+    "unit_tests": "NOT_RUN",
+    "test_scripts": "NOT_RUN",
+    "scientific_claim_gate": "NOT_RUN",
+    "tste_number_consistency_gate": "NOT_RUN",
+    "inference_or_bootstrap": "NOT_RUN",
+    "statistical_validation_or_calibration": "NOT_RUN",
+    "reason": "Latest user instruction authorizes archival only and prohibits starting tests or experiments. Prior gate results are historical and not copied as current E3 evidence."
+  },
+  "preserved_states": {
+    "E3_closed": false,
+    "V1_V4": "NOT_EXECUTED_OR_VALIDATED_FOR_NEW_TASK",
+    "E1_closed": false,
+    "candidate_exposure": "EXPOSURE_UNKNOWN",
+    "E2_actual_package": "NOT_PRODUCED_OR_VERIFIED",
+    "E4_confirmation": "NOT_EXECUTED",
+    "project_state": "STOP_ADDITIONAL_INVESTMENT",
+    "execution_authorized": false,
+    "execution_queue": [],
+    "new_scientific_conclusion": false
+  },
+  "operations": {
+    "paper_judgment_archive_and_index_only": true,
+    "document_reading_json_parsing_and_file_identity_observation": true,
+    "method_implementation_tests": false,
+    "measurement_access_or_download": false,
+    "code_or_model_changes": false,
+    "model_training_or_evaluation": false,
+    "new_calibration_or_resampling": false,
+    "remote_access_or_jobs": false,
+    "manuscript_edits": false,
+    "paper_spec_or_protocol_changes": false,
+    "project_resumption": false
+  },
+  "historical_validation_records": "Previous receipts, outputs and PASS records preserved as historical records; no new PASS or certification is asserted.",
+  "scope_limit": "Records archival content and file identities only. No tests, gates, method calibration or experiments ran. This receipt cannot close V1-V4 or E3 and does not establish statistical coverage or execution authorization."
+}

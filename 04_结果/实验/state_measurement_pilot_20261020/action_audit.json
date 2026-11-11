@@ -1,0 +1,1275 @@
+{
+  "status": "PASS_ARCHIVED_ACTION_ACCOUNTING",
+  "audits": [
+    {
+      "task": 0,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 8.134639129578316e-12
+    },
+    {
+      "task": 0,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 8.130421449726822e-12
+    },
+    {
+      "task": 0,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.089304876087525e-12
+    },
+    {
+      "task": 1,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 8.3339287296348e-12
+    },
+    {
+      "task": 1,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 8.317535826075396e-12
+    },
+    {
+      "task": 1,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.926823371660229e-12
+    },
+    {
+      "task": 2,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.002844316852892e-12
+    },
+    {
+      "task": 2,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.999731938402717e-12
+    },
+    {
+      "task": 2,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.805409264305969e-12
+    },
+    {
+      "task": 3,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.117123788892944e-12
+    },
+    {
+      "task": 3,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.118119274177894e-12
+    },
+    {
+      "task": 3,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 8.527179250901694e-12
+    },
+    {
+      "task": 4,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.9653033476245203e-12
+    },
+    {
+      "task": 4,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.1131294803146552e-12
+    },
+    {
+      "task": 4,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.1499762622323045e-12
+    },
+    {
+      "task": 5,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.4901789910338802e-12
+    },
+    {
+      "task": 5,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.6965410970526234e-12
+    },
+    {
+      "task": 5,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.1204588750685613e-12
+    },
+    {
+      "task": 6,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.416695396637373e-12
+    },
+    {
+      "task": 6,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.3944947400726074e-12
+    },
+    {
+      "task": 6,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.682873337444863e-12
+    },
+    {
+      "task": 7,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.566491117167162e-12
+    },
+    {
+      "task": 7,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.551576492481662e-12
+    },
+    {
+      "task": 7,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.6546784612493405e-12
+    },
+    {
+      "task": 8,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.11154773506552e-12
+    },
+    {
+      "task": 8,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.114414943261521e-12
+    },
+    {
+      "task": 8,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.641670242637738e-12
+    },
+    {
+      "task": 9,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.474957383086513e-12
+    },
+    {
+      "task": 9,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.490745032365816e-12
+    },
+    {
+      "task": 9,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 8.05613110531364e-12
+    },
+    {
+      "task": 10,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.900104419361083e-12
+    },
+    {
+      "task": 10,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.918090420619854e-12
+    },
+    {
+      "task": 10,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.3206733976465667e-12
+    },
+    {
+      "task": 11,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.8195350149229184e-12
+    },
+    {
+      "task": 11,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.851511033112316e-12
+    },
+    {
+      "task": 11,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.9249927911442262e-12
+    },
+    {
+      "task": 12,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.8528038290557442e-12
+    },
+    {
+      "task": 12,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.8509776490094683e-12
+    },
+    {
+      "task": 12,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.485271659531022e-12
+    },
+    {
+      "task": 13,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.251743791359806e-12
+    },
+    {
+      "task": 13,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.271999967756561e-12
+    },
+    {
+      "task": 13,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.91506866796426e-12
+    },
+    {
+      "task": 14,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.0102163063908842e-12
+    },
+    {
+      "task": 14,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.9923635402420605e-12
+    },
+    {
+      "task": 14,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 8.631634664592428e-12
+    },
+    {
+      "task": 15,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.977233704425585e-12
+    },
+    {
+      "task": 15,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.980173217901023e-12
+    },
+    {
+      "task": 15,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.7456559958482936e-12
+    },
+    {
+      "task": 16,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.222842236927931e-12
+    },
+    {
+      "task": 16,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.221459083863729e-12
+    },
+    {
+      "task": 16,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.57762172250955e-12
+    },
+    {
+      "task": 17,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.1651340547560754e-12
+    },
+    {
+      "task": 17,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.1873108594566545e-12
+    },
+    {
+      "task": 17,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 7.041565868662447e-12
+    },
+    {
+      "task": 18,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 8.05009202652405e-12
+    },
+    {
+      "task": 18,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 8.033846287740459e-12
+    },
+    {
+      "task": 18,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.1490581445452005e-12
+    },
+    {
+      "task": 19,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.544220033549034e-13
+    },
+    {
+      "task": 19,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.659018612481627e-13
+    },
+    {
+      "task": 19,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.285290644869401e-12
+    },
+    {
+      "task": 20,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.676612129235177e-12
+    },
+    {
+      "task": 20,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.706810344708902e-12
+    },
+    {
+      "task": 20,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 7.0671886337110846e-12
+    },
+    {
+      "task": 21,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.291330977034966e-12
+    },
+    {
+      "task": 21,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.300111618566179e-12
+    },
+    {
+      "task": 21,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.23566788114893e-12
+    },
+    {
+      "task": 22,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.9768913022732375e-12
+    },
+    {
+      "task": 22,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.9860998337177408e-12
+    },
+    {
+      "task": 22,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.8123760031397138e-12
+    },
+    {
+      "task": 23,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.427563477359167e-12
+    },
+    {
+      "task": 23,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.42480844693509e-12
+    },
+    {
+      "task": 23,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.6510600635656823e-12
+    },
+    {
+      "task": 24,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.680607375114923e-12
+    },
+    {
+      "task": 24,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.742852708358112e-12
+    },
+    {
+      "task": 24,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.1290841091379226e-12
+    },
+    {
+      "task": 25,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.396711763333367e-12
+    },
+    {
+      "task": 25,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.410841160498044e-12
+    },
+    {
+      "task": 25,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.028901554431875e-12
+    },
+    {
+      "task": 26,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.30419909593133e-12
+    },
+    {
+      "task": 26,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.3171161642494078e-12
+    },
+    {
+      "task": 26,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.0419572985599676e-11
+    },
+    {
+      "task": 27,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.156416529150244e-12
+    },
+    {
+      "task": 27,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.163412365099822e-12
+    },
+    {
+      "task": 27,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.3161423588952012e-12
+    },
+    {
+      "task": 28,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.20072599455149e-12
+    },
+    {
+      "task": 28,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.215599588201798e-12
+    },
+    {
+      "task": 28,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.315492305697226e-12
+    },
+    {
+      "task": 29,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.1654448520187253e-12
+    },
+    {
+      "task": 29,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.1705163645349782e-12
+    },
+    {
+      "task": 29,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.1611378574785264e-12
+    },
+    {
+      "task": 30,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.1999705201589407e-12
+    },
+    {
+      "task": 30,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.1674802344816015e-12
+    },
+    {
+      "task": 30,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.8222666641113685e-13
+    },
+    {
+      "task": 31,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.6431408612384552e-12
+    },
+    {
+      "task": 31,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.6359962774890757e-12
+    },
+    {
+      "task": 31,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 8.459976670527316e-13
+    },
+    {
+      "task": 32,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.028814737232889e-12
+    },
+    {
+      "task": 32,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.0279732545546505e-12
+    },
+    {
+      "task": 32,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.577072280815456e-13
+    },
+    {
+      "task": 33,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.8355942860678518e-12
+    },
+    {
+      "task": 33,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.846904213969414e-12
+    },
+    {
+      "task": 33,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.8660131781464446e-13
+    },
+    {
+      "task": 34,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.272499473955452e-13
+    },
+    {
+      "task": 34,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.1341717827317e-13
+    },
+    {
+      "task": 34,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.943608462972047e-13
+    },
+    {
+      "task": 35,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.2232942073558352e-12
+    },
+    {
+      "task": 35,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.216432656509405e-12
+    },
+    {
+      "task": 35,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.6241992993390177e-13
+    },
+    {
+      "task": 36,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.088355631721541e-12
+    },
+    {
+      "task": 36,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.077224211756395e-12
+    },
+    {
+      "task": 36,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.526267717263929e-13
+    },
+    {
+      "task": 37,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.926166372551463e-12
+    },
+    {
+      "task": 37,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.9193318302035084e-12
+    },
+    {
+      "task": 37,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.557105592319828e-13
+    },
+    {
+      "task": 38,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.8964185863926605e-12
+    },
+    {
+      "task": 38,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.8998287647894575e-12
+    },
+    {
+      "task": 38,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.745005942650318e-13
+    },
+    {
+      "task": 39,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.967582430306805e-13
+    },
+    {
+      "task": 39,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.840125211465658e-13
+    },
+    {
+      "task": 39,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.035684652718152e-13
+    },
+    {
+      "task": 40,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.496702270664177e-13
+    },
+    {
+      "task": 40,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.553647709659322e-13
+    },
+    {
+      "task": 40,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.140972726093815e-13
+    },
+    {
+      "task": 41,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.638666786222537e-12
+    },
+    {
+      "task": 41,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.6375723578582806e-12
+    },
+    {
+      "task": 41,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.830511279125926e-13
+    },
+    {
+      "task": 42,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.090784024916718e-13
+    },
+    {
+      "task": 42,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.323225939605229e-13
+    },
+    {
+      "task": 42,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.314389334839583e-13
+    },
+    {
+      "task": 43,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.6315669293159824e-12
+    },
+    {
+      "task": 43,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.630213002088709e-12
+    },
+    {
+      "task": 43,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.28194545218763e-13
+    },
+    {
+      "task": 44,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.4491533837377777e-12
+    },
+    {
+      "task": 44,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.4606235940542423e-12
+    },
+    {
+      "task": 44,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.798718878942429e-13
+    },
+    {
+      "task": 45,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.3164865177202643e-12
+    },
+    {
+      "task": 45,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.3142507614077585e-12
+    },
+    {
+      "task": 45,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.576600701827304e-13
+    },
+    {
+      "task": 46,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.0623214059423747e-12
+    },
+    {
+      "task": 46,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.047672604126545e-12
+    },
+    {
+      "task": 46,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.5974776040671424e-13
+    },
+    {
+      "task": 47,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.4700777372318267e-13
+    },
+    {
+      "task": 47,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.286189509288722e-13
+    },
+    {
+      "task": 47,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.557105592319828e-13
+    },
+    {
+      "task": 48,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.027282881421174e-12
+    },
+    {
+      "task": 48,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.902034531205493e-13
+    },
+    {
+      "task": 48,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.985171805278889e-13
+    },
+    {
+      "task": 49,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.091643368249541e-13
+    },
+    {
+      "task": 49,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.085514382365531e-13
+    },
+    {
+      "task": 49,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.194685662385925e-13
+    },
+    {
+      "task": 50,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.4908724644398962e-12
+    },
+    {
+      "task": 50,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.4820344945491832e-12
+    },
+    {
+      "task": 50,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.159860365382243e-13
+    },
+    {
+      "task": 51,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.3404668799574445e-12
+    },
+    {
+      "task": 51,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.327839630958402e-12
+    },
+    {
+      "task": 51,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.5953098864422938e-12
+    },
+    {
+      "task": 52,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.023721281304715e-12
+    },
+    {
+      "task": 52,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.0223570219883406e-12
+    },
+    {
+      "task": 52,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 9.185117528001087e-13
+    },
+    {
+      "task": 53,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.763768244341287e-13
+    },
+    {
+      "task": 53,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 6.760261339045315e-13
+    },
+    {
+      "task": 53,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 7.493122193895623e-13
+    },
+    {
+      "task": 54,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.07787426495437e-12
+    },
+    {
+      "task": 54,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 2.0646152284179477e-12
+    },
+    {
+      "task": 54,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.243424561490021e-13
+    },
+    {
+      "task": 55,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.650090667984635e-13
+    },
+    {
+      "task": 55,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.647679670593654e-13
+    },
+    {
+      "task": 55,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.8650104253378784e-13
+    },
+    {
+      "task": 56,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.220147097444136e-12
+    },
+    {
+      "task": 56,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.2194510998258054e-12
+    },
+    {
+      "task": 56,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.073879019074625e-13
+    },
+    {
+      "task": 57,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.5332956646475354e-12
+    },
+    {
+      "task": 57,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.5304274576365035e-12
+    },
+    {
+      "task": 57,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.859122200598078e-13
+    },
+    {
+      "task": 58,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.6484119740017222e-12
+    },
+    {
+      "task": 58,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.6597995386980027e-12
+    },
+    {
+      "task": 58,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.106573576921496e-13
+    },
+    {
+      "task": 59,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.080826898704426e-12
+    },
+    {
+      "task": 59,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.0803786088252454e-12
+    },
+    {
+      "task": 59,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.589699880088731e-13
+    },
+    {
+      "task": 60,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.064477263371842e-11
+    },
+    {
+      "task": 60,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.064947884920053e-11
+    },
+    {
+      "task": 60,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.908628607127814e-11
+    },
+    {
+      "task": 61,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.064477263371842e-11
+    },
+    {
+      "task": 61,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.064947884920053e-11
+    },
+    {
+      "task": 61,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.6913807654390696e-13
+    },
+    {
+      "task": 62,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.064477263371842e-11
+    },
+    {
+      "task": 62,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.064947884920053e-11
+    },
+    {
+      "task": 62,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.8748009918190326e-11
+    },
+    {
+      "task": 63,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.064477263371842e-11
+    },
+    {
+      "task": 63,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.064947884920053e-11
+    },
+    {
+      "task": 63,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.8748009918190326e-11
+    },
+    {
+      "task": 64,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.064477263371842e-11
+    },
+    {
+      "task": 64,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 5.064947884920053e-11
+    },
+    {
+      "task": 64,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 4.879633508291715e-11
+    },
+    {
+      "task": 65,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.043856137293699e-12
+    },
+    {
+      "task": 65,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.022589852052377e-12
+    },
+    {
+      "task": 65,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.1353468124430019e-12
+    },
+    {
+      "task": 66,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.043856137293699e-12
+    },
+    {
+      "task": 66,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.022589852052377e-12
+    },
+    {
+      "task": 66,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.1353468124430019e-12
+    },
+    {
+      "task": 67,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.043856137293699e-12
+    },
+    {
+      "task": 67,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.022589852052377e-12
+    },
+    {
+      "task": 67,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.1353468124430019e-12
+    },
+    {
+      "task": 68,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.043856137293699e-12
+    },
+    {
+      "task": 68,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.022589852052377e-12
+    },
+    {
+      "task": 68,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.1353468124430019e-12
+    },
+    {
+      "task": 69,
+      "population": "primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.043856137293699e-12
+    },
+    {
+      "task": 69,
+      "population": "all_target_Zobs",
+      "checks": 7,
+      "maximum_mean_absolute_error": 3.022589852052377e-12
+    },
+    {
+      "task": 69,
+      "population": "raw_primary",
+      "checks": 7,
+      "maximum_mean_absolute_error": 1.1353468124430019e-12
+    }
+  ],
+  "skipped": [],
+  "records": 210,
+  "exact_and_tolerance_checks": 1470,
+  "source_sha256": "1abbeb64040c8344b7d7da68eec29334c8a3d3fd3566232e11e0f47fd01d2297",
+  "protocol_sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e",
+  "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+  "numpy": "2.4.6",
+  "pbs_job_id": "244981.cm",
+  "finished_utc": "2026-10-20T04:09:29.486421+00:00",
+  "scope": "Reconstructs serialized actions and totals; no model refit or checkpoint prediction replay"
+}

@@ -1,0 +1,891 @@
+[
+  {
+    "doi": "10.1002/we.416",
+    "title": [
+      "Short‐term variations in wind power: Some quantile‐type models for probabilistic forecasting"
+    ],
+    "author": [
+      {
+        "given": "Geoffrey",
+        "family": "Pritchard",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2011,
+          3
+        ]
+      ]
+    },
+    "venue": [
+      "Wind Energy"
+    ],
+    "url": "https://doi.org/10.1002/we.416"
+  },
+  {
+    "doi": "10.1109/TPWRS.2021.3053847",
+    "title": [
+      "Operating Reserve Quantification Using Prediction Intervals of Wind Power: An Integrated Probabilistic Forecasting and Decision Methodology"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-0289-3813",
+        "authenticated-orcid": false,
+        "given": "Changfei",
+        "family": "Zhao",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0263-9812",
+        "authenticated-orcid": false,
+        "given": "Can",
+        "family": "Wan",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-1495-4644",
+        "authenticated-orcid": false,
+        "given": "Yonghua",
+        "family": "Song",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          7
+        ]
+      ]
+    },
+    "venue": [
+      "IEEE Transactions on Power Systems"
+    ],
+    "url": "https://doi.org/10.1109/tpwrs.2021.3053847"
+  },
+  {
+    "doi": "10.1016/j.energy.2024.131544",
+    "title": [
+      "Probabilistic wind power forecasting resilient to missing values: An adaptive quantile regression approach"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-8263-1399",
+        "authenticated-orcid": false,
+        "given": "Honglin",
+        "family": "Wen",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          8
+        ]
+      ]
+    },
+    "venue": [
+      "Energy"
+    ],
+    "url": "https://doi.org/10.1016/j.energy.2024.131544"
+  },
+  {
+    "doi": "10.1063/5.0087144",
+    "title": [
+      "Machine learning derived dynamic operating reserve requirements in high-renewable power systems"
+    ],
+    "author": [
+      {
+        "given": "Yuchi",
+        "family": "Sun",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5688-3194",
+        "authenticated-orcid": false,
+        "given": "James H.",
+        "family": "Nelson",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-6785-3057",
+        "authenticated-orcid": false,
+        "given": "John C.",
+        "family": "Stevens",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Adrian H.",
+        "family": "Au",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Vignesh",
+        "family": "Venugopal",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Charles",
+        "family": "Gulian",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Saamrat",
+        "family": "Kasina",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Patrick",
+        "family": "O'Neill",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5923-4085",
+        "authenticated-orcid": false,
+        "given": "Mengyao",
+        "family": "Yuan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Arne",
+        "family": "Olson",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Energy and Environmental Economics, Inc ., 44 Montgomery Street, Suite 1500, San Francisco, California 94104, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          1
+        ]
+      ]
+    },
+    "venue": [
+      "Journal of Renewable and Sustainable Energy"
+    ],
+    "url": "https://doi.org/10.1063/5.0087144"
+  },
+  {
+    "doi": "10.1002/we.180",
+    "title": [
+      "Using quantile regression to extend an existing wind power forecasting system with probabilistic forecasts"
+    ],
+    "author": [
+      {
+        "given": "Henrik Aalborg",
+        "family": "Nielsen",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Henrik",
+        "family": "Madsen",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Torben Skov",
+        "family": "Nielsen",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2005,
+          12,
+          19
+        ]
+      ]
+    },
+    "venue": [
+      "Wind Energy"
+    ],
+    "url": "https://doi.org/10.1002/we.180"
+  },
+  {
+    "doi": "10.1109/TSG.2023.3272379",
+    "title": [
+      "Towards Resilient Energy Forecasting: A Robust Optimization Approach"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-9954-5558",
+        "authenticated-orcid": false,
+        "given": "Akylas",
+        "family": "Stratigakos",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Center for Processes, Renewable Energy and Energy Systems, Mines Paris, PSL University, Sophia Antipolis, France"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1746-5915",
+        "authenticated-orcid": false,
+        "given": "Panagiotis",
+        "family": "Andrianesis",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Wind and Energy Systems, Technical University of Denmark, Lyngby, Denmark"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-8440-7128",
+        "authenticated-orcid": false,
+        "given": "Andrea",
+        "family": "Michiorri",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Center for Processes, Renewable Energy and Energy Systems, Mines Paris, PSL University, Sophia Antipolis, France"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5261-0172",
+        "authenticated-orcid": false,
+        "given": "Georges",
+        "family": "Kariniotakis",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Center for Processes, Renewable Energy and Energy Systems, Mines Paris, PSL University, Sophia Antipolis, France"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          1
+        ]
+      ]
+    },
+    "venue": [
+      "IEEE Transactions on Smart Grid"
+    ],
+    "url": "https://doi.org/10.1109/tsg.2023.3272379"
+  },
+  {
+    "doi": "10.1109/ISGTEUROPE56780.2023.10408186",
+    "title": [
+      "Resilient Feature-driven Trading of Renewable Energy with Missing Data"
+    ],
+    "author": [
+      {
+        "given": "Matias",
+        "family": "Kühnau",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Technical University of Denmark,DTU Wind,Lyngby,Denmark"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Akylas",
+        "family": "Stratigakos",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "PSL University,Center PERSEE Mines Paris,Sophia Antipolis,France,06904"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Simon",
+        "family": "Camal",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "PSL University,Center PERSEE Mines Paris,Sophia Antipolis,France,06904"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Samuel",
+        "family": "Chevalier",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Technical University of Denmark,DTU Wind,Lyngby,Denmark"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "George",
+        "family": "Kariniotakis",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "PSL University,Center PERSEE Mines Paris,Sophia Antipolis,France,06904"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          23
+        ]
+      ]
+    },
+    "venue": [
+      "2023 IEEE PES Innovative Smart Grid Technologies Europe (ISGT EUROPE)"
+    ],
+    "url": "https://doi.org/10.1109/isgteurope56780.2023.10408186"
+  },
+  {
+    "doi": "10.1016/j.epsr.2023.109384",
+    "title": [
+      "More than accuracy: end-to-end wind power forecasting that optimises the energy system"
+    ],
+    "author": [
+      {
+        "given": "Dariush",
+        "family": "Wahdany",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-0852-2957",
+        "authenticated-orcid": false,
+        "given": "Carlo",
+        "family": "Schmitt",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-9284-5083",
+        "authenticated-orcid": false,
+        "given": "Jochen L.",
+        "family": "Cremer",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          8
+        ]
+      ]
+    },
+    "venue": [
+      "Electric Power Systems Research"
+    ],
+    "url": "https://doi.org/10.1016/j.epsr.2023.109384"
+  },
+  {
+    "doi": "10.3390/wind5040028",
+    "title": [
+      "Gated Lag and Feature Selection for Day-Ahead Wind Power Forecasting Using On-Site SCADA Data"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-8086-6231",
+        "authenticated-orcid": false,
+        "given": "Inajara",
+        "family": "Rutyna",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Electrical Power Engineering Institute, Warsaw University of Technology, Koszykowa 75 Street, 00-662 Warsaw, Poland"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          3
+        ]
+      ]
+    },
+    "venue": [
+      "Wind"
+    ],
+    "url": "https://doi.org/10.3390/wind5040028"
+  },
+  {
+    "doi": "10.1016/j.renene.2023.05.005",
+    "title": [
+      "Wind power predictions from nowcasts to 4-hour forecasts: A learning approach with variable selection"
+    ],
+    "author": [
+      {
+        "given": "Dimitri",
+        "family": "Bouche",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Rémi",
+        "family": "Flamary",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Florence",
+        "family": "d’Alché-Buc",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Riwal",
+        "family": "Plougonven",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5329-0801",
+        "authenticated-orcid": false,
+        "given": "Marianne",
+        "family": "Clausel",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jordi",
+        "family": "Badosa",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Philippe",
+        "family": "Drobinski",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          7
+        ]
+      ]
+    },
+    "venue": [
+      "Renewable Energy"
+    ],
+    "url": "https://doi.org/10.1016/j.renene.2023.05.005"
+  },
+  {
+    "doi": "10.1007/s10287-023-00462-2",
+    "title": [
+      "Online decision making for trading wind energy"
+    ],
+    "author": [
+      {
+        "given": "Miguel Angel",
+        "family": "Muñoz",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Pierre",
+        "family": "Pinson",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jalal",
+        "family": "Kazempour",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          6,
+          28
+        ]
+      ]
+    },
+    "venue": [
+      "Computational Management Science"
+    ],
+    "url": "https://doi.org/10.1007/s10287-023-00462-2"
+  },
+  {
+    "doi": "10.1109/TPWRS.2020.2975246",
+    "title": [
+      "Feature-Driven Improvement of Renewable Energy Forecasting and Trading"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-2115-5725",
+        "authenticated-orcid": false,
+        "given": "M. A.",
+        "family": "Munoz",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-9114-686X",
+        "authenticated-orcid": false,
+        "given": "J. M.",
+        "family": "Morales",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-1089-0970",
+        "authenticated-orcid": false,
+        "given": "S.",
+        "family": "Pineda",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2020,
+          9
+        ]
+      ]
+    },
+    "venue": [
+      "IEEE Transactions on Power Systems"
+    ],
+    "url": "https://doi.org/10.1109/tpwrs.2020.2975246"
+  }
+]

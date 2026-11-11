@@ -1,0 +1,102 @@
+[
+  {
+    "seed": 201,
+    "split": "val",
+    "reference": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed201/val_metrics/regime_primary.npy",
+    "stored_reference_dtype": "int16",
+    "residual_dtype": "int64",
+    "raw_byte_identity": false,
+    "comparison": "explicit lossless integer widening int16->int64; no tolerance; not raw byte identity",
+    "value_mismatches_after_lossless_widening": 0
+  },
+  {
+    "seed": 202,
+    "split": "val",
+    "reference": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed202/val_metrics/regime_primary.npy",
+    "stored_reference_dtype": "int16",
+    "residual_dtype": "int64",
+    "raw_byte_identity": false,
+    "comparison": "explicit lossless integer widening int16->int64; no tolerance; not raw byte identity",
+    "value_mismatches_after_lossless_widening": 0
+  },
+  {
+    "seed": 203,
+    "split": "val",
+    "reference": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed203/val_metrics/regime_primary.npy",
+    "stored_reference_dtype": "int16",
+    "residual_dtype": "int64",
+    "raw_byte_identity": false,
+    "comparison": "explicit lossless integer widening int16->int64; no tolerance; not raw byte identity",
+    "value_mismatches_after_lossless_widening": 0
+  },
+  {
+    "seed": 204,
+    "split": "val",
+    "reference": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed204/val_metrics/regime_primary.npy",
+    "stored_reference_dtype": "int16",
+    "residual_dtype": "int64",
+    "raw_byte_identity": false,
+    "comparison": "explicit lossless integer widening int16->int64; no tolerance; not raw byte identity",
+    "value_mismatches_after_lossless_widening": 0
+  },
+  {
+    "seed": 205,
+    "split": "val",
+    "reference": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed205/val_metrics/regime_primary.npy",
+    "stored_reference_dtype": "int16",
+    "residual_dtype": "int64",
+    "raw_byte_identity": false,
+    "comparison": "explicit lossless integer widening int16->int64; no tolerance; not raw byte identity",
+    "value_mismatches_after_lossless_widening": 0
+  },
+  {
+    "seed": 201,
+    "split": "test",
+    "reference": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed201/test_metrics/regime_primary.npy",
+    "stored_reference_dtype": "int16",
+    "residual_dtype": "int64",
+    "raw_byte_identity": false,
+    "comparison": "explicit lossless integer widening int16->int64; no tolerance; not raw byte identity",
+    "value_mismatches_after_lossless_widening": 0
+  },
+  {
+    "seed": 202,
+    "split": "test",
+    "reference": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed202/test_metrics/regime_primary.npy",
+    "stored_reference_dtype": "int16",
+    "residual_dtype": "int64",
+    "raw_byte_identity": false,
+    "comparison": "explicit lossless integer widening int16->int64; no tolerance; not raw byte identity",
+    "value_mismatches_after_lossless_widening": 0
+  },
+  {
+    "seed": 203,
+    "split": "test",
+    "reference": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed203/test_metrics/regime_primary.npy",
+    "stored_reference_dtype": "int16",
+    "residual_dtype": "int64",
+    "raw_byte_identity": false,
+    "comparison": "explicit lossless integer widening int16->int64; no tolerance; not raw byte identity",
+    "value_mismatches_after_lossless_widening": 0
+  },
+  {
+    "seed": 204,
+    "split": "test",
+    "reference": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed204/test_metrics/regime_primary.npy",
+    "stored_reference_dtype": "int16",
+    "residual_dtype": "int64",
+    "raw_byte_identity": false,
+    "comparison": "explicit lossless integer widening int16->int64; no tolerance; not raw byte identity",
+    "value_mismatches_after_lossless_widening": 0
+  },
+  {
+    "seed": 205,
+    "split": "test",
+    "reference": "artifacts/trainweight_full_rerun_20260830/wtb_full_seed205/test_metrics/regime_primary.npy",
+    "stored_reference_dtype": "int16",
+    "residual_dtype": "int64",
+    "raw_byte_identity": false,
+    "comparison": "explicit lossless integer widening int16->int64; no tolerance; not raw byte identity",
+    "value_mismatches_after_lossless_widening": 0
+  }
+]

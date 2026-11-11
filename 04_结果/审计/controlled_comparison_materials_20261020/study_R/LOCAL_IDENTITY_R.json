@@ -1,0 +1,22 @@
+{
+  "status": "PASS_EXISTING_BYTE_IDENTITY_ONLY",
+  "source": "analyses/decision_information_execution_20261018",
+  "compact_archive_sha256": "13fba6f0f96c3777e511bb177f7566ddc8fd6b37e1946cd946813f15c5234d15",
+  "declared_members_verified_local_and_archive": 241,
+  "archive_file_members_including_manifest": 242,
+  "copied_files": 36,
+  "inventory_rows": 777,
+  "raw_measurement_copied": false,
+  "weights_copied": false,
+  "evaluation_or_resampling_executed": false,
+  "retrieval_status": "Source-local absence only; root agent independently checking live producer and retrieving existing derived files; see root final availability amendment",
+  "live_remote_inventory_reference": "research_audit/controlled_comparison_materials_20261020/REMOTE_INVENTORY.json#R",
+  "live_remote_file_metadata_count": 783,
+  "producer_inventory_path_size_matches": 741,
+  "producer_inventory_path_size_mismatches": 0,
+  "frozen_source_tar_members_match_exported_bytes": [
+    "experiments/decision_information_development_20261018/protocol.json",
+    "scripts/run_decision_information_development.py",
+    "windfarm_moe/decision_information.py"
+  ]
+}

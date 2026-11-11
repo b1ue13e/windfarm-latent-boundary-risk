@@ -1,0 +1,65 @@
+{
+  "date_local": "2026-10-20",
+  "timezone": "Asia/Shanghai",
+  "kind": "DOCUMENT_AND_METADATA_STATIC_CHECK_ONLY",
+  "decision": "NO_GO_FOR_CURRENT_D_TOP_JOURNAL_MAINLINE",
+  "g1": "ONE_FULLTEXT_VERIFIED_ONE_UNOBTAINED",
+  "g2": "LIMITED_HOSTED_ORIGIN_PATH_VERIFIED_NOT_FULL_FIRST_RELEASE_HISTORY",
+  "g3": "ACTUAL_ACTION_EXISTS_RISK_TO_VALUE_CHAIN_NOT_CLOSED",
+  "source_records": 13,
+  "material_status_rows": 4,
+  "metadata_resource_identity_rows": 729,
+  "metadata_identity_mismatches": 0,
+  "conservative_origins": 17,
+  "pmaps_pdf_sha256": "55a5ab61d1270c072d1f667feee9c39e19072f40751afb4e33817b0e440ff14d",
+  "protected_documents": [
+    {
+      "path": "AGENTS.md",
+      "unchanged": true
+    },
+    {
+      "path": "paper_tste_ieee.md",
+      "unchanged": true
+    },
+    {
+      "path": "paper_tste_supplementary.md",
+      "unchanged": true
+    },
+    {
+      "path": "paper_tste_chinese.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/SCIENTIFIC_CONTRACT.md",
+      "unchanged": true
+    },
+    {
+      "path": "research_audit/new_mainline_deep_screen_20261020/SCREEN.md",
+      "unchanged": true
+    },
+    {
+      "path": "research_audit/new_mainline_deep_screen_20261020/MATERIAL_GATES.csv",
+      "unchanged": true
+    },
+    {
+      "path": "research_audit/telemetry_increment_boundary_design_20261019/PLAN_V3.md",
+      "unchanged": true
+    }
+  ],
+  "new_operational_data_downloaded": false,
+  "data_workbooks_or_zip_payloads_read": false,
+  "experiments_started": false,
+  "remote_jobs_started": false,
+  "manuscript_changed": false,
+  "scientific_contract_changed": false,
+  "scientific_or_numeric_claim_gates_run": false,
+  "certification_note": "Investment/material audit only; no new empirical result or scientific milestone certification",
+  "local_uncommitted_reading_sources": [
+    "literature_workstream/glista_watson_pmaps2024.pdf",
+    "literature_workstream/glista_watson_pmaps2024.txt",
+    "literature_workstream/glista_pdf_page_5.png",
+    "literature_workstream/glista_pdf_page_6.png",
+    "literature_workstream/glista_pdf_page_7.png",
+    "vintage_workstream/metadata/"
+  ]
+}

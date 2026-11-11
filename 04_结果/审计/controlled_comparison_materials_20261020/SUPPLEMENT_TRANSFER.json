@@ -1,0 +1,7 @@
+{
+  "status": "EXISTING_POINT_FORECASTER_BYTES_VERIFIED_NOT_LOADED",
+  "file": "research_audit/controlled_comparison_materials_20261020/recovered/R/results/prepared/point_forecaster.joblib",
+  "historical_manifest": "analyses/decision_information_execution_20261018/evidence/results/prepared/output_manifest.json",
+  "bytes": 323657,
+  "sha256": "a2eed3f72ff4d55032df3f85b446198fdd2466dc269cc85bdf4e2901626d7195"
+}

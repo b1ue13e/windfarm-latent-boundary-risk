@@ -1,0 +1,28 @@
+{
+  "legacy_tests": {
+    "command": "python -m pytest -q tests/test_confirmation_lossless_adapter.py tests/test_independent_confirmation.py tests/test_subset_inference.py",
+    "exit_code": 0,
+    "passed": 16,
+    "seconds": 31.47
+  },
+  "scientific_claim_gate_exit": 0,
+  "number_consistency_exit": 0,
+  "source_readonly_check": {
+    "protected": 13,
+    "changed": []
+  },
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "host": "bluelee",
+  "note": "E drive new file writes blocked; acceptance artifacts temporarily saved on C; production computations on Metis",
+  "adapter_tests": {
+    "passed": 11,
+    "exit_code": 0,
+    "seconds": 4.03
+  },
+  "P0_tests": {
+    "passed": 3,
+    "exit_code": 0
+  },
+  "adapter_sha256": "9a3a6ffbcc5d93c2b461cb56c2c462e4e92af901b28ca444e6d802f5fe5a68ca",
+  "utc": "2026-10-26T08:37:05.884707+00:00"
+}

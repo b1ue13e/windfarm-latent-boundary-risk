@@ -1,0 +1,117 @@
+{
+  "status": "COMPILED_AND_RENDERED_NOT_SUBMITTED",
+  "created_utc": "2026-10-20T18:13:58.565182+00:00",
+  "inputs": {
+    "manuscript.md": "2c0cbcf456729d9ad40c013f249bb4a73b9b06b0195381069a69811a62c234d2",
+    "supplementary.md": "3dc71ca1c00ae0da40d0303b2318e72a021fd51d3d417c243a6742cd99be35fa",
+    "references.bib": "9eecf81cacf69681fb450867886b286ceafb0cfacc15e3d62d5c0c705d7a0d51",
+    "scientific-reports-brackets.csl": "2a9ee5a40f5f44e497e9b3051a9a7b52517fc651d490251acabcb10c2a7b8e7b",
+    "figures/fig1_information_and_timing.pdf": "c0845be8c4b0a21293e0b9799f5a6666a1afb5d109223a542195e1efde4f5719",
+    "figures/fig2_measurement_cost.pdf": "cb74a87254b2bed58e09e695f4ec43f678ca91cb6d0d0b5f40825397c4168a17",
+    "figures/fig3_reconstruction_and_controls.pdf": "a3e7cd6872b00faca6b4210dd888f0c0227302255afc395c0741ab6ca45710a0",
+    "figures/fig4_procurement_shortfall.pdf": "c2c95c08581e25e0df959c2c4577a50e20e8d00b5977eda3ea76ba3c3ddd3a04",
+    "figures/figS1_block_sensitivity.pdf": "d72d49352e6d74d68b2c5e5735dd47e1b6e8450b636fba2eb2ce778e971e41e6",
+    "tables/table1.tex": "35797dea51a21c00f09e5755e4cb45676989cd6037a42a598e9fd05f5d96e560"
+  },
+  "commands": [
+    {
+      "conversion": [
+        "E:\\\u8bba\u65873\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+        "manuscript.md",
+        "--standalone",
+        "--citeproc",
+        "--to=latex",
+        "--resource-path=.",
+        "--output=main.tex"
+      ],
+      "compiler_helper": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "C:\\Users\\lidong\\.codex\\plugins\\cache\\openai-bundled\\latex\\0.2.8\\scripts\\compile_latex.py",
+        "E:\\\u8bba\u65873\\manuscripts\\scientific_reports_v4\\main.tex",
+        "--compiler",
+        "texlive",
+        "--engine",
+        "xelatex",
+        "--output-directory",
+        "E:\\\u8bba\u65873\\manuscripts\\scientific_reports_v4\\build",
+        "--json"
+      ],
+      "helper_exit": 1,
+      "direct_installed_engine_fallback": [
+        [
+          "xelatex",
+          "-disable-installer",
+          "-interaction=nonstopmode",
+          "-halt-on-error",
+          "-output-directory=build",
+          "main.tex"
+        ],
+        [
+          "xelatex",
+          "-disable-installer",
+          "-interaction=nonstopmode",
+          "-halt-on-error",
+          "-output-directory=build",
+          "main.tex"
+        ]
+      ],
+      "source": "manuscript",
+      "pages": 10,
+      "pdf_sha256": "4d86a35f67bc56fc86eeb162b5cd675fe4392acbc23b9ba0837ea8bf56e39758"
+    },
+    {
+      "conversion": [
+        "E:\\\u8bba\u65873\\tools\\pandoc-3.9.0.2\\pandoc.exe",
+        "supplementary.md",
+        "--standalone",
+        "--citeproc",
+        "--to=latex",
+        "--resource-path=.",
+        "--output=supplementary.tex"
+      ],
+      "compiler_helper": [
+        "C:\\Users\\lidong\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "C:\\Users\\lidong\\.codex\\plugins\\cache\\openai-bundled\\latex\\0.2.8\\scripts\\compile_latex.py",
+        "E:\\\u8bba\u65873\\manuscripts\\scientific_reports_v4\\supplementary.tex",
+        "--compiler",
+        "texlive",
+        "--engine",
+        "xelatex",
+        "--output-directory",
+        "E:\\\u8bba\u65873\\manuscripts\\scientific_reports_v4\\build",
+        "--json"
+      ],
+      "helper_exit": 1,
+      "direct_installed_engine_fallback": [
+        [
+          "xelatex",
+          "-disable-installer",
+          "-interaction=nonstopmode",
+          "-halt-on-error",
+          "-output-directory=build",
+          "supplementary.tex"
+        ],
+        [
+          "xelatex",
+          "-disable-installer",
+          "-interaction=nonstopmode",
+          "-halt-on-error",
+          "-output-directory=build",
+          "supplementary.tex"
+        ]
+      ],
+      "source": "supplementary",
+      "pages": 8,
+      "pdf_sha256": "9c6b153ba3769e5e7ed2b578224a0613735b52a68718e6da3a41b91c449326cc"
+    }
+  ],
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "host": "bluelee",
+  "research_executed": false
+}

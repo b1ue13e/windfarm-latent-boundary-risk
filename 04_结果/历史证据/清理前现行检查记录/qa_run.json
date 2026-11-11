@@ -1,0 +1,60 @@
+[
+  {
+    "figure": "fig1_architecture",
+    "type": "collisions",
+    "exit": 0
+  },
+  {
+    "figure": "fig1_architecture",
+    "type": "text",
+    "exit": 0
+  },
+  {
+    "figure": "fig2_decision_example",
+    "type": "collisions",
+    "exit": 0
+  },
+  {
+    "figure": "fig2_decision_example",
+    "type": "text",
+    "exit": 0
+  },
+  {
+    "figure": "fig3_measurement",
+    "type": "collisions",
+    "exit": 0
+  },
+  {
+    "figure": "fig3_measurement",
+    "type": "text",
+    "exit": 0
+  },
+  {
+    "figure": "fig4_cross_year",
+    "type": "collisions",
+    "exit": 0
+  },
+  {
+    "figure": "fig4_cross_year",
+    "type": "text",
+    "exit": 0
+  },
+  {
+    "figure": "fig5_temporal",
+    "type": "collisions",
+    "exit": 0
+  },
+  {
+    "figure": "fig5_temporal",
+    "type": "text",
+    "exit": 0
+  },
+  {
+    "type": "source",
+    "exit": 0
+  },
+  {
+    "type": "svg",
+    "verdict": "PASS"
+  }
+]

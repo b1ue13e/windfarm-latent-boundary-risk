@@ -1,0 +1,806 @@
+{
+  "created_utc": "2026-10-20T11:45:49.872769+00:00",
+  "candidate_commit": "e5ad3fabcabd87642cccbc31288889c37af8aa01",
+  "mode": "Issue-linked internal verification review; current manuscript and response already available; no blind protocol claimed",
+  "scope": [
+    "closest-neighbour differences",
+    "stored cost-risk-exclusion bridge",
+    "inferential targets and scope",
+    "portable stored-result package",
+    "residual Wind Energy submission blockers"
+  ],
+  "original_issue_ids": [
+    "WE-01",
+    "WE-02",
+    "WE-03",
+    "WE-04",
+    "WE-05",
+    "WE-06",
+    "WE-07"
+  ],
+  "protected_files": {
+    "AGENTS.md": {
+      "bytes": 5487,
+      "sha256": "b1feb8e637fd05baeeace62925f086257bb2b9af7c0905c25f636dc8ec92c993"
+    },
+    "PROJECT.md": {
+      "bytes": 80535,
+      "sha256": "d1e10b86bb86934464452ae534259004a7b05705ec22370a0b57d47242d3636d"
+    },
+    "artifacts/tste_number_consistency_audit/tste_number_consistency_audit.csv": {
+      "bytes": 12364,
+      "sha256": "b1fd4b4aab53574705467c02a55761ae2a39012481b29b29c09fd7bf79eb45cc"
+    },
+    "docs/SCIENTIFIC_CONTRACT.md": {
+      "bytes": 24422,
+      "sha256": "cf0c38fba403d842ca87521dbe03897e9078dcb87da593daa7af6fd009545f76"
+    },
+    "manuscripts/wind_energy_v2/.gitattributes": {
+      "bytes": 89,
+      "sha256": "d609c9a134c0ac853c6d13089b97ffa5bde241dc37ddc276000c85ef9d348586"
+    },
+    "manuscripts/wind_energy_v2/.gitignore": {
+      "bytes": 117,
+      "sha256": "117dfe92735c52c83440d05e57767ae8a2faaf8e1f09a37a15790de7f50f9a0f"
+    },
+    "manuscripts/wind_energy_v2/DECISION.json": {
+      "bytes": 2326,
+      "sha256": "5558cb666b7ceeaa62c487d51394de670b8355b52cd745d626414beb717c4594"
+    },
+    "manuscripts/wind_energy_v2/FIGURE_CONTRACT.md": {
+      "bytes": 3228,
+      "sha256": "6a7fad0779da967e0dc96b45f263443521909d6d65a600d51d506c0f86f952ac"
+    },
+    "manuscripts/wind_energy_v2/FIGURE_QA.md": {
+      "bytes": 3367,
+      "sha256": "1af44adf3066ea9158f1d11a1bb41cb1de6ad4fe7ce85df9a0edc18b6a0897bc"
+    },
+    "manuscripts/wind_energy_v2/FOUR_QUESTIONS_CN.md": {
+      "bytes": 2363,
+      "sha256": "7de659e82a2c759f16dda668fa92861f20fab6ea3dbef5e293b0b12679bb137c"
+    },
+    "manuscripts/wind_energy_v2/GAPS.md": {
+      "bytes": 3619,
+      "sha256": "0967b2abfb69f2109ecdb3648b1b418a544bf50cadf30ffe2a2ed6dd57178729"
+    },
+    "manuscripts/wind_energy_v2/PDF_VISUAL_REVIEW.md": {
+      "bytes": 2075,
+      "sha256": "544c577876d60bbb40f3c36da137483bceba1994686a8af0a46e606f80fd5ef2"
+    },
+    "manuscripts/wind_energy_v2/README.md": {
+      "bytes": 2819,
+      "sha256": "af3311313a919088929c2183c049fac1f2c47ade052b4c1e553401feac0d0d93"
+    },
+    "manuscripts/wind_energy_v2/REVISION_RESPONSE.md": {
+      "bytes": 3386,
+      "sha256": "25074d56dca509664f017d4246cf60b6dffb733ad9b7e5c72c0978664b4833cf"
+    },
+    "manuscripts/wind_energy_v2/WRITING_CONTRACT.md": {
+      "bytes": 3302,
+      "sha256": "1661738e3ba9a2792cf804186c55b5936b69107a0edc30f62454bdfea791754a"
+    },
+    "manuscripts/wind_energy_v2/american-medical-association.csl": {
+      "bytes": 11575,
+      "sha256": "d70f843d93c2b1e8c59c0e26e2396bea4ed99fb4a1aac69b6dddc249a10fadf7"
+    },
+    "manuscripts/wind_energy_v2/build.py": {
+      "bytes": 3795,
+      "sha256": "5d6245f71abfcb172da9aae08241b5967ca0403229ff84feedefc821045d5455"
+    },
+    "manuscripts/wind_energy_v2/export_supplement_evidence.py": {
+      "bytes": 6017,
+      "sha256": "668cb0294da4829046ca8dd3924527aa47bc474e202217a677f713f9bd8dcff0"
+    },
+    "manuscripts/wind_energy_v2/figures/fig1_information_freeze.pdf": {
+      "bytes": 42663,
+      "sha256": "2a3162495dfab285f8d2d510444089cdcc0a65148fe983f282ceda93980c082e"
+    },
+    "manuscripts/wind_energy_v2/figures/fig1_information_freeze.png": {
+      "bytes": 337554,
+      "sha256": "d8b2a86fded705e8f2d0e15deab9750c8b4aefc65b2134a12f5c942e6017a88c"
+    },
+    "manuscripts/wind_energy_v2/figures/fig1_information_freeze.svg": {
+      "bytes": 9190,
+      "sha256": "8d9febc237ec95589dc2e83926be9a3242ec9a64663df42f6977363976f4fc11"
+    },
+    "manuscripts/wind_energy_v2/figures/fig2_primary_confirmation.pdf": {
+      "bytes": 42879,
+      "sha256": "0f611b8106e7827c967b26c336bec58bb82eefc1d338ce8a585d430e37cf8dec"
+    },
+    "manuscripts/wind_energy_v2/figures/fig2_primary_confirmation.png": {
+      "bytes": 221669,
+      "sha256": "7c2e9b495ee8e98011956a740436259d84cc786aafa3b8c6a11c99a601eca61e"
+    },
+    "manuscripts/wind_energy_v2/figures/fig2_primary_confirmation.svg": {
+      "bytes": 21647,
+      "sha256": "d20b1c410d7873a21465accdc7252e8c496abc5a0c76d79b5702815253eb9ce9"
+    },
+    "manuscripts/wind_energy_v2/figures/fig3_secondary_minimality.pdf": {
+      "bytes": 45894,
+      "sha256": "0082b1a5afa1c5db0834e4b844193f20c2106fffacb6b66d823be000800b8768"
+    },
+    "manuscripts/wind_energy_v2/figures/fig3_secondary_minimality.png": {
+      "bytes": 440174,
+      "sha256": "6fb37cc99edcd037dbc33f497d47686d371fff64097b706b2caad919d5d4d885"
+    },
+    "manuscripts/wind_energy_v2/figures/fig3_secondary_minimality.svg": {
+      "bytes": 27700,
+      "sha256": "57e16506ef0fcde5ea7f55f209e8935a7bc0047e43ef568bbea78e7a66499b3e"
+    },
+    "manuscripts/wind_energy_v2/figures/fig4_identification_boundary.pdf": {
+      "bytes": 42296,
+      "sha256": "5c2d9ef4ba99172791c87d07c7a6e3c48926b96cef65692ac13d4d84565e1550"
+    },
+    "manuscripts/wind_energy_v2/figures/fig4_identification_boundary.png": {
+      "bytes": 290280,
+      "sha256": "66516450b6750664927920e856628366324e1e2d7b0c0a70db44658141029f3c"
+    },
+    "manuscripts/wind_energy_v2/figures/fig4_identification_boundary.svg": {
+      "bytes": 32649,
+      "sha256": "d131b7736dfd2f957459d3f6a8dfa316c96ebb77d87ad63a96e8729d3eed0b87"
+    },
+    "manuscripts/wind_energy_v2/interface_review/INTERFACE_AND_NEIGHBOR_REVIEW.md": {
+      "bytes": 11278,
+      "sha256": "ca0eea2f71db924f6fb4b71396b1aab6d7dd6409db18425a32875ffa07188b7c"
+    },
+    "manuscripts/wind_energy_v2/interface_review/NEIGHBOR_CLAIM_SUPPORT.csv": {
+      "bytes": 1862,
+      "sha256": "7165bb9af483a8e2dd4c64b898ca439d038a99a67460a6d975c944f0b045467d"
+    },
+    "manuscripts/wind_energy_v2/interface_review/metadata/source_status.json": {
+      "bytes": 1113,
+      "sha256": "f9072f34723d1a3fbc7c08413ac1f9cc15274756a2148b033a362c24236e646f"
+    },
+    "manuscripts/wind_energy_v2/interface_review/sources.csv": {
+      "bytes": 6457,
+      "sha256": "ea491fb04d978b15d4bf99e6bdd97b1caffd0db7a3cc32528c9f81c52cac2a6a"
+    },
+    "manuscripts/wind_energy_v2/literature/.gitignore": {
+      "bytes": 34,
+      "sha256": "2f81a72024b8e8beb779f23dc2080dbeffd5f2d3db8b178a69262ae92dc7cc4a"
+    },
+    "manuscripts/wind_energy_v2/literature/READING_NOTES.md": {
+      "bytes": 9779,
+      "sha256": "64d4de0acc04c6ed43f6c0b7ddd1c40528faaffb4389c9167911f83a0c8fc845"
+    },
+    "manuscripts/wind_energy_v2/literature/pritchard_formula_manifest.csv": {
+      "bytes": 13837,
+      "sha256": "f880767926f8b0a022c019de0d8b8df55fd4ae2c810cddf3c66953d2b6a29050"
+    },
+    "manuscripts/wind_energy_v2/literature/sources.csv": {
+      "bytes": 11457,
+      "sha256": "455deca372ad50faab3c2ae11d999ce945964de0a3f6a358afeee812957da0aa"
+    },
+    "manuscripts/wind_energy_v2/manuscript.md": {
+      "bytes": 42569,
+      "sha256": "c5d5aecdabf793f4b2eac65cd8351254cfecbbf64691de8a534c3dd1d6bbe767"
+    },
+    "manuscripts/wind_energy_v2/manuscript.pdf": {
+      "bytes": 250394,
+      "sha256": "993aefc855a10f6c8c4a471a9362f2fe176593978bebb0147f2081fa2f49e566"
+    },
+    "manuscripts/wind_energy_v2/manuscript.tex": {
+      "bytes": 59154,
+      "sha256": "9798634deaeae5422a5d8514f9c03220300a4219ebec7e67def4a6eaf1897b0f"
+    },
+    "manuscripts/wind_energy_v2/manuscript_state.json": {
+      "bytes": 5166,
+      "sha256": "8c896029f46d3a462f728b5c68a5a3cbe099e2eaca2fa382c8e3ba53548e334d"
+    },
+    "manuscripts/wind_energy_v2/provenance_before.json": {
+      "bytes": 22618,
+      "sha256": "63db1f15418e19638aa06bafca93046359bc77c2cc2c5c29233bdaee187bc039"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/FIELD_GUIDE.md": {
+      "bytes": 3980,
+      "sha256": "e85516b1d65bf03972d17f78917a8db4618ed7de12d1badeb980562ff750635b"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/MANIFEST.json": {
+      "bytes": 11246,
+      "sha256": "edf1e7760eb3a9904203dcb0801019f5cd536e2acc8c0ddfcedc2d9df0e704e4"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/PORTABILITY_CHECK.json": {
+      "bytes": 3501,
+      "sha256": "f45a5a5934ceb7cb089f4128eeb11eb1aec61bbe594596e1baae7562e9396cd0"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/PROVENANCE.json": {
+      "bytes": 25642,
+      "sha256": "5966244ef6dfa945d464753b32d84302d0e7398b570f07779b786a9a3bf8db24"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/PUBLICATION_GAPS.md": {
+      "bytes": 1865,
+      "sha256": "ef41264e1dec8d55a74bd0d8066eaa9f9e0f1764b3c4b9f59c8e6f4564a33f26"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/README.md": {
+      "bytes": 6245,
+      "sha256": "9486645ff8a554449cb95c847b2a21616793b081b9ef8cd3ec551a4321dfd9ad"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/csv/registered_confirmation_policies.csv": {
+      "bytes": 28347,
+      "sha256": "89506f8fe6be44aa0fae4356bbb39665fdad1233027738da183c7b844438eed1"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/csv/towie_all_90_cases.csv": {
+      "bytes": 8927,
+      "sha256": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/csv/towie_q925_all_15_witnesses.csv": {
+      "bytes": 1661,
+      "sha256": "c6e3985277500fec0f275d4c9caa5ec1886dec5a52592e74395ac9824ff15a40"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/csv/towie_q925_block_sensitivity.csv": {
+      "bytes": 423,
+      "sha256": "70e3de525c42df644eead9d2eadf29ad0b1d2eaf6929b3e90d5472bc5b9107ee"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/csv/wtb_all_420_minimum_cases.csv": {
+      "bytes": 61908,
+      "sha256": "aeb36ec93b2492fd8e0aaca48a96622848efcd0fa9ef6939d7d33cb2e0297010"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/csv/wtb_all_420_sufficiency_cases.csv": {
+      "bytes": 34358,
+      "sha256": "fe1467ce249808a946e734ef93cd52b31412e630f842e7f21e97535db8b7e96b"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/FOUR_QUESTIONS_CN.md": {
+      "bytes": 2363,
+      "sha256": "7de659e82a2c759f16dda668fa92861f20fab6ea3dbef5e293b0b12679bb137c"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/GAPS.md": {
+      "bytes": 3619,
+      "sha256": "0967b2abfb69f2109ecdb3648b1b418a544bf50cadf30ffe2a2ed6dd57178729"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/INTERFACE_EVIDENCE.md": {
+      "bytes": 11278,
+      "sha256": "ca0eea2f71db924f6fb4b71396b1aab6d7dd6409db18425a32875ffa07188b7c"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/REVISION_RESPONSE.md": {
+      "bytes": 3386,
+      "sha256": "25074d56dca509664f017d4246cf60b6dffb733ad9b7e5c72c0978664b4833cf"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/american-medical-association.csl": {
+      "bytes": 11575,
+      "sha256": "d70f843d93c2b1e8c59c0e26e2396bea4ed99fb4a1aac69b6dddc249a10fadf7"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/manuscript.md": {
+      "bytes": 42569,
+      "sha256": "c5d5aecdabf793f4b2eac65cd8351254cfecbbf64691de8a534c3dd1d6bbe767"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/manuscript.pdf": {
+      "bytes": 250394,
+      "sha256": "993aefc855a10f6c8c4a471a9362f2fe176593978bebb0147f2081fa2f49e566"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/manuscript.tex": {
+      "bytes": 59154,
+      "sha256": "9798634deaeae5422a5d8514f9c03220300a4219ebec7e67def4a6eaf1897b0f"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/references.bib": {
+      "bytes": 6141,
+      "sha256": "fe60155dc22a2127d5f1695f4bf0ee281ccdc151d694d57bdd0e3827baa8066e"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/supplementary.md": {
+      "bytes": 43114,
+      "sha256": "9276ff55a05f6da900e79d4c92661df66664e7df47c535da1b8278b05fbb4c13"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/supplementary.pdf": {
+      "bytes": 92429,
+      "sha256": "b34afd5d9e23d828596bb90368ac4136475c1842a2c728e84377377f2aae5820"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/documents/supplementary.tex": {
+      "bytes": 58242,
+      "sha256": "9c568e4a6f2fdd921eafe8de54090c02805535effa73fb911b5bdc69fc24fc78"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/fig1_information_freeze.csv": {
+      "bytes": 1036,
+      "sha256": "642a1365722172bdeea869d13140dbd74828b59bed94c5604426cde2b4997e7c"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/fig2_primary_confirmation.csv": {
+      "bytes": 2486,
+      "sha256": "dd3a1abd98ecf840d6526568463e3a9119c3863bdcc9be44d30593f278705877"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/fig3_secondary_minimality.csv": {
+      "bytes": 9004,
+      "sha256": "9c8c9c5456769176795e192f8e80f457b6ef90c133e6ad67000bba40a0d59d87"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/fig4_identification_boundary.csv": {
+      "bytes": 10310,
+      "sha256": "f20b6263ccc90660f69174a8fd1d36abc254917ec600278ce84cfd19708975ab"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/v2/fig1_information_freeze.csv": {
+      "bytes": 1036,
+      "sha256": "642a1365722172bdeea869d13140dbd74828b59bed94c5604426cde2b4997e7c"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/v2/fig2_primary_confirmation.csv": {
+      "bytes": 2486,
+      "sha256": "dd3a1abd98ecf840d6526568463e3a9119c3863bdcc9be44d30593f278705877"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/v2/fig3_field_manifest.json": {
+      "bytes": 3565,
+      "sha256": "44e27f25b3f55e04170ec05823ca025a2a16be171a88b28935ddae1137a1f564"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/v2/fig3_secondary_minimality.csv": {
+      "bytes": 7443,
+      "sha256": "5591e87e866d07c87eddd95376eb6e7cac4a6c35c0f56c9a06ac56289839e3d8"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figure_data/v2/fig4_identification_boundary.csv": {
+      "bytes": 10310,
+      "sha256": "f20b6263ccc90660f69174a8fd1d36abc254917ec600278ce84cfd19708975ab"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig1_information_freeze.pdf": {
+      "bytes": 42663,
+      "sha256": "2a3162495dfab285f8d2d510444089cdcc0a65148fe983f282ceda93980c082e"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig1_information_freeze.png": {
+      "bytes": 337554,
+      "sha256": "d8b2a86fded705e8f2d0e15deab9750c8b4aefc65b2134a12f5c942e6017a88c"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig1_information_freeze.svg": {
+      "bytes": 9190,
+      "sha256": "8d9febc237ec95589dc2e83926be9a3242ec9a64663df42f6977363976f4fc11"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig2_primary_confirmation.pdf": {
+      "bytes": 42879,
+      "sha256": "0f611b8106e7827c967b26c336bec58bb82eefc1d338ce8a585d430e37cf8dec"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig2_primary_confirmation.png": {
+      "bytes": 221669,
+      "sha256": "7c2e9b495ee8e98011956a740436259d84cc786aafa3b8c6a11c99a601eca61e"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig2_primary_confirmation.svg": {
+      "bytes": 21647,
+      "sha256": "d20b1c410d7873a21465accdc7252e8c496abc5a0c76d79b5702815253eb9ce9"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig3_secondary_minimality.pdf": {
+      "bytes": 45894,
+      "sha256": "0082b1a5afa1c5db0834e4b844193f20c2106fffacb6b66d823be000800b8768"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig3_secondary_minimality.png": {
+      "bytes": 440174,
+      "sha256": "6fb37cc99edcd037dbc33f497d47686d371fff64097b706b2caad919d5d4d885"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig3_secondary_minimality.svg": {
+      "bytes": 27700,
+      "sha256": "57e16506ef0fcde5ea7f55f209e8935a7bc0047e43ef568bbea78e7a66499b3e"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig4_identification_boundary.pdf": {
+      "bytes": 42296,
+      "sha256": "5c2d9ef4ba99172791c87d07c7a6e3c48926b96cef65692ac13d4d84565e1550"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig4_identification_boundary.png": {
+      "bytes": 290280,
+      "sha256": "66516450b6750664927920e856628366324e1e2d7b0c0a70db44658141029f3c"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/figures/fig4_identification_boundary.svg": {
+      "bytes": 32649,
+      "sha256": "d131b7736dfd2f957459d3f6a8dfa316c96ebb77d87ad63a96e8729d3eed0b87"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/protocol/confirmation_protocol.json": {
+      "bytes": 7379,
+      "sha256": "de2f14aabb504bbd5a32c3e1f3829eb1a88a7e68b10e7b4607eb5a88d561f188"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/protocol/freeze_public_projection.json": {
+      "bytes": 6414,
+      "sha256": "36ad768a498bdbfdda9255da4af0dac4d714631b82c812a912c9047087775200"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/protocol/unlock_public_projection.json": {
+      "bytes": 771,
+      "sha256": "780304ef590a6024b54e2455413c092b6453b837d7b09c8b819dfb2fb1c6c47f"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/refresh_manifest.py": {
+      "bytes": 3837,
+      "sha256": "21d14d2a29ea74660f1516bd4232560966d7ce96901b58c8e9cf177747674b8d"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/scripts/audit_subset_minimum_necessity.py": {
+      "bytes": 5881,
+      "sha256": "8e876567dfabe3fc471ee15c0c5f280602de58f8938fe1e166136bc0f0e22058"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/scripts/run_independent_confirmation.py": {
+      "bytes": 35485,
+      "sha256": "62b7913197d1050f700d5d6ae2467f3c49b16546dad37953a05818eb576efee9"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/scripts/run_information_subset_study.py": {
+      "bytes": 24553,
+      "sha256": "20d7cc4587fa028263d461267722eb7cec5a779cec4376cf6563b6b059d0faba"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/windfarm_moe/decision_information.py": {
+      "bytes": 7146,
+      "sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/windfarm_moe/independent_confirmation.py": {
+      "bytes": 6064,
+      "sha256": "dd59f461df7535202f9727a3b8472b4e6a0a11edbb1070920ecea6184e09a4f2"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/windfarm_moe/information_subset.py": {
+      "bytes": 5469,
+      "sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/windfarm_moe/risk_frontier.py": {
+      "bytes": 5754,
+      "sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/source_static/windfarm_moe/subset_inference.py": {
+      "bytes": 4863,
+      "sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/test_package.py": {
+      "bytes": 4401,
+      "sha256": "358193c78a3d8f1cd6b68e93f41f44df2d88ead3193ce05929e5cff039d247f2"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/verification_report.json": {
+      "bytes": 2618,
+      "sha256": "ed4bb69510d8c7f30a9149426e185edba0fc14a12a4b50b0125df819e95eaa1e"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/verify_package.py": {
+      "bytes": 20626,
+      "sha256": "93b5d0770f81b2ff2488be015761007c587a8d26639292f7427b816759f33358"
+    },
+    "manuscripts/wind_energy_v2/qa/CLOSURE_ACCEPTANCE.md": {
+      "bytes": 5251,
+      "sha256": "39d517ac22dbef38bc5425ac3b7499d11f9ca1cfe86d57d5f06962ae8cd1ba1d"
+    },
+    "manuscripts/wind_energy_v2/qa/build_figures_receipt.json": {
+      "bytes": 17099,
+      "sha256": "019a63ba08cff94e9c4649ab4e7ae04a365d426f69f95d6f1f843ca8399986ea"
+    },
+    "manuscripts/wind_energy_v2/qa/build_receipt.json": {
+      "bytes": 3225,
+      "sha256": "548573ba19fb1938b71602b5618e4f4a4bc95f09c3eb7c733cb86f8a90ee852c"
+    },
+    "manuscripts/wind_energy_v2/qa/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "manuscripts/wind_energy_v2/qa/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "manuscripts/wind_energy_v2/qa/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 748,
+      "sha256": "1b02a10a9a962f24d1e5c2989c3837d963897f07fdddf2ea5d99874a8d59321b"
+    },
+    "manuscripts/wind_energy_v2/qa/fig1_information_freeze.alignment.json": {
+      "bytes": 1690,
+      "sha256": "0d752013da6fdbcb92734b99ba75d1042072fab7eb1ad5ab29c78985652b5444"
+    },
+    "manuscripts/wind_energy_v2/qa/fig1_information_freeze.collision.json": {
+      "bytes": 565,
+      "sha256": "3c2fa8aa8e1861fbda34b045df7f9e495d37223a81c8f5dc35656a7d9e1bc1ca"
+    },
+    "manuscripts/wind_energy_v2/qa/fig1_information_freeze.collision.pdf": {
+      "bytes": 42522,
+      "sha256": "70446f5b8e25af504214ef4bc8102177533100c19221b939d05da053e09d8936"
+    },
+    "manuscripts/wind_energy_v2/qa/fig1_information_freeze.grayscale.png": {
+      "bytes": 165812,
+      "sha256": "1360adb0c508d4dd11ce99cb759026538118c39ae012a0539653f72a7eb5b916"
+    },
+    "manuscripts/wind_energy_v2/qa/fig1_information_freeze.pdf_preview.png": {
+      "bytes": 37988,
+      "sha256": "787c12ad87fa5a49878b7958e49f7ee4b6ffe1f0a079cbbb53cc706908566222"
+    },
+    "manuscripts/wind_energy_v2/qa/fig1_information_freeze.text.json": {
+      "bytes": 271,
+      "sha256": "b5530160c8d45750e9b9bcb2ad3364bb2693c0143ef2a24698b8c8fd05606b26"
+    },
+    "manuscripts/wind_energy_v2/qa/fig2_primary_confirmation.alignment.json": {
+      "bytes": 1685,
+      "sha256": "acf90a8eeb2e0feeac5089d3e7ffdc12a650b22fcccc546a4a774998052ed2e6"
+    },
+    "manuscripts/wind_energy_v2/qa/fig2_primary_confirmation.collision.json": {
+      "bytes": 567,
+      "sha256": "24d0a22b523bd08074312a7aed413f85c00b08c8873648b065df59f46e50fe2f"
+    },
+    "manuscripts/wind_energy_v2/qa/fig2_primary_confirmation.collision.pdf": {
+      "bytes": 42694,
+      "sha256": "ac1332296d701e9f1335af77dde17a34e3750ed3ab288667505946117656ab2a"
+    },
+    "manuscripts/wind_energy_v2/qa/fig2_primary_confirmation.grayscale.png": {
+      "bytes": 109783,
+      "sha256": "6bc5bd6322fa361d1f506cc4afe395585d85f1d4adaa7c28cc0fa844e5f9fd28"
+    },
+    "manuscripts/wind_energy_v2/qa/fig2_primary_confirmation.pdf_preview.png": {
+      "bytes": 28538,
+      "sha256": "4eae49d2a7dd4f0c5da718fa190390d599685ae89dc03de1bf7f8fd59d305c07"
+    },
+    "manuscripts/wind_energy_v2/qa/fig2_primary_confirmation.text.json": {
+      "bytes": 273,
+      "sha256": "08fcfdecaf9dbaae41fb5e074ee97e720203ad3e9427547546a15142839ec3d9"
+    },
+    "manuscripts/wind_energy_v2/qa/fig3_secondary_minimality.alignment.json": {
+      "bytes": 2451,
+      "sha256": "133c92851bce45a1b103831cd1af484b843a69657b9cff2a02e64effef6604df"
+    },
+    "manuscripts/wind_energy_v2/qa/fig3_secondary_minimality.collision.json": {
+      "bytes": 571,
+      "sha256": "606c0de71e4f7ef6ab450547724b41f96373483ea472cd13986963027fd802aa"
+    },
+    "manuscripts/wind_energy_v2/qa/fig3_secondary_minimality.collision.pdf": {
+      "bytes": 45753,
+      "sha256": "f3914fcf050f8ae5535ed76a0c3173aa033c3afcca6471180a5d9e0add455575"
+    },
+    "manuscripts/wind_energy_v2/qa/fig3_secondary_minimality.grayscale.png": {
+      "bytes": 224633,
+      "sha256": "05e37463aeb8d3c6aeb31bfc33ffe7b2eb9a4fb6e2764bcf4141e7c4dcc1568d"
+    },
+    "manuscripts/wind_energy_v2/qa/fig3_secondary_minimality.pdf_preview.png": {
+      "bytes": 55713,
+      "sha256": "4371272c7ff20004cdfcde85ba5238b83364130dc822c370344b5c23018f6833"
+    },
+    "manuscripts/wind_energy_v2/qa/fig3_secondary_minimality.text.json": {
+      "bytes": 277,
+      "sha256": "f33b8afedf50e0306f4e00fe1b23a9e7ae2e4540dc3ac86e55f3377577c73d02"
+    },
+    "manuscripts/wind_energy_v2/qa/fig4_identification_boundary.alignment.json": {
+      "bytes": 1687,
+      "sha256": "5047eafbc6ff6885ff82a76d8913518ef4fb0c85ded61b3e93182590ddbce2d1"
+    },
+    "manuscripts/wind_energy_v2/qa/fig4_identification_boundary.collision.json": {
+      "bytes": 571,
+      "sha256": "7d666be84443e8f15d8cf3f354ef1eadfa043b0efba363ab36a0907a5b9cffb0"
+    },
+    "manuscripts/wind_energy_v2/qa/fig4_identification_boundary.collision.pdf": {
+      "bytes": 42135,
+      "sha256": "821963d40e7e63c79c3e0aa2181d5890f62da55fbe29bd7cf4228474da48a466"
+    },
+    "manuscripts/wind_energy_v2/qa/fig4_identification_boundary.grayscale.png": {
+      "bytes": 146056,
+      "sha256": "8b29014a69e39bf3cd282f15a161ce2a73ca817d2a9100a0f76f6e8da1282fab"
+    },
+    "manuscripts/wind_energy_v2/qa/fig4_identification_boundary.pdf_preview.png": {
+      "bytes": 37385,
+      "sha256": "1b2c6373b807934d17494bf576b4742ac1dbf4fff66a5880e05bc6120ba0d872"
+    },
+    "manuscripts/wind_energy_v2/qa/fig4_identification_boundary.text.json": {
+      "bytes": 276,
+      "sha256": "acc14b97e57c81fd62d4be4cb8cc6ec76528483aad3ba2347689a159f2cec9d9"
+    },
+    "manuscripts/wind_energy_v2/qa/final_preservation_check.json": {
+      "bytes": 1386,
+      "sha256": "b391ed32fef76143994bf7adf32c1a4023db57c4cf517752af685e634214b57c"
+    },
+    "manuscripts/wind_energy_v2/qa/final_size_contact_sheet.png": {
+      "bytes": 163867,
+      "sha256": "fcddc2148089be7ced60e4dca41b5c3f3b234fa25138ae8b7bc75ea416b5896c"
+    },
+    "manuscripts/wind_energy_v2/qa/independent_archive_gate.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    },
+    "manuscripts/wind_energy_v2/qa/legacy_scientific_gate.txt": {
+      "bytes": 4952,
+      "sha256": "fa9dcfaef7b9366fad5d9bbb9da05dbb56a556daa6c446059cb2238411c12594"
+    },
+    "manuscripts/wind_energy_v2/qa/main_prose_audit.json": {
+      "bytes": 4764,
+      "sha256": "ae6cfa47274ad3a283151ab51f90ad97e51e5d74ee05dee941c8ac9a6a1459e5"
+    },
+    "manuscripts/wind_energy_v2/qa/method_revision_check.md": {
+      "bytes": 9234,
+      "sha256": "cd0ab15b2f0e501c414a5a7a4f60e1c640451befb8946df39c614a28d90d61d6"
+    },
+    "manuscripts/wind_energy_v2/qa/pdf_visual_review_v2.json": {
+      "bytes": 10961,
+      "sha256": "8809319c223849ed0cd367203e2e3d3ed6fff00be84f5c6ed247d6e9252d269e"
+    },
+    "manuscripts/wind_energy_v2/qa/public_package_receipt.json": {
+      "bytes": 643,
+      "sha256": "79cb8f3f386fecc9df1f6915236050eec9fde9ef1554d5b3e5f80b308c627c4d"
+    },
+    "manuscripts/wind_energy_v2/qa/source_validation.json": {
+      "bytes": 4079,
+      "sha256": "ef77a14a65992cfddc8565af5af699c9607426fee05baae40d3578a2d7c4c2c9"
+    },
+    "manuscripts/wind_energy_v2/qa/static_release_check.json": {
+      "bytes": 763,
+      "sha256": "72ed3c8550b673b1b7eaee0d0d40391ed4f5b5bf33e2a4b1ddfc248cdcc02b6a"
+    },
+    "manuscripts/wind_energy_v2/qa/supplementary_prose_audit.json": {
+      "bytes": 4861,
+      "sha256": "7dfcbfa8cf41622a0481c5ecf7769d119a4ee337a222a3c1d4d93639be19cc23"
+    },
+    "manuscripts/wind_energy_v2/references.bib": {
+      "bytes": 6141,
+      "sha256": "fe60155dc22a2127d5f1695f4bf0ee281ccdc151d694d57bdd0e3827baa8066e"
+    },
+    "manuscripts/wind_energy_v2/scripts/build_figures.py": {
+      "bytes": 30106,
+      "sha256": "b14a186096152aa1aeb3cdab2edd48d465de58ce23423cc43663bafd50c5cf89"
+    },
+    "manuscripts/wind_energy_v2/source_data/fig1_information_freeze.csv": {
+      "bytes": 1036,
+      "sha256": "642a1365722172bdeea869d13140dbd74828b59bed94c5604426cde2b4997e7c"
+    },
+    "manuscripts/wind_energy_v2/source_data/fig2_primary_confirmation.csv": {
+      "bytes": 2486,
+      "sha256": "dd3a1abd98ecf840d6526568463e3a9119c3863bdcc9be44d30593f278705877"
+    },
+    "manuscripts/wind_energy_v2/source_data/fig3_field_manifest.json": {
+      "bytes": 3565,
+      "sha256": "44e27f25b3f55e04170ec05823ca025a2a16be171a88b28935ddae1137a1f564"
+    },
+    "manuscripts/wind_energy_v2/source_data/fig3_secondary_minimality.csv": {
+      "bytes": 7443,
+      "sha256": "5591e87e866d07c87eddd95376eb6e7cac4a6c35c0f56c9a06ac56289839e3d8"
+    },
+    "manuscripts/wind_energy_v2/source_data/fig4_identification_boundary.csv": {
+      "bytes": 10310,
+      "sha256": "f20b6263ccc90660f69174a8fd1d36abc254917ec600278ce84cfd19708975ab"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/projection_receipt.json": {
+      "bytes": 3541,
+      "sha256": "454bcaa9f8bf7cb042c8735656b8add4d26904f6c332cfc8a724fee21182914b"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/registered_confirmation_policies.csv": {
+      "bytes": 28347,
+      "sha256": "89506f8fe6be44aa0fae4356bbb39665fdad1233027738da183c7b844438eed1"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/towie_all_90_cases.csv": {
+      "bytes": 8927,
+      "sha256": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/towie_q925_all_15_witnesses.csv": {
+      "bytes": 1661,
+      "sha256": "c6e3985277500fec0f275d4c9caa5ec1886dec5a52592e74395ac9824ff15a40"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/towie_q925_block_sensitivity.csv": {
+      "bytes": 423,
+      "sha256": "70e3de525c42df644eead9d2eadf29ad0b1d2eaf6929b3e90d5472bc5b9107ee"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/wtb_all_420_minimum_cases.csv": {
+      "bytes": 61908,
+      "sha256": "aeb36ec93b2492fd8e0aaca48a96622848efcd0fa9ef6939d7d33cb2e0297010"
+    },
+    "manuscripts/wind_energy_v2/supplement_data/wtb_all_420_sufficiency_cases.csv": {
+      "bytes": 34358,
+      "sha256": "fe1467ce249808a946e734ef93cd52b31412e630f842e7f21e97535db8b7e96b"
+    },
+    "manuscripts/wind_energy_v2/supplementary.md": {
+      "bytes": 43114,
+      "sha256": "9276ff55a05f6da900e79d4c92661df66664e7df47c535da1b8278b05fbb4c13"
+    },
+    "manuscripts/wind_energy_v2/supplementary.pdf": {
+      "bytes": 92429,
+      "sha256": "b34afd5d9e23d828596bb90368ac4136475c1842a2c728e84377377f2aae5820"
+    },
+    "manuscripts/wind_energy_v2/supplementary.tex": {
+      "bytes": 58242,
+      "sha256": "9c568e4a6f2fdd921eafe8de54090c02805535effa73fb911b5bdc69fc24fc78"
+    },
+    "manuscripts/wind_energy_v2/test_release.py": {
+      "bytes": 2761,
+      "sha256": "92daa04eeb780f7864799ea297856223e6277a329fbfad532b1e26bb0d35e8a7"
+    },
+    "manuscripts/wind_energy_v2/test_supplement_evidence.py": {
+      "bytes": 3827,
+      "sha256": "e15d129f6ee0a3d093de0f91e099affc02a8274cec9189a834782793ba26476a"
+    },
+    "manuscripts/wind_energy_v2/tests/test_fig3_bridge.py": {
+      "bytes": 3118,
+      "sha256": "5fc07b0ce7c71067214c4c51a1b0f215be79718df0ac1ea57e281aec36e34eda"
+    },
+    "manuscripts/wind_energy_v2/tests/test_figure_sources.py": {
+      "bytes": 2744,
+      "sha256": "7d443433614966f8e357d1ed860557ebb96de601f873b4402e92218a01ff5234"
+    },
+    "manuscripts/wind_energy_v2/validate_release.py": {
+      "bytes": 6695,
+      "sha256": "f2fed45fb4df6b3f59aca81b1123a90fdc51de69b5b154874ef4794f537401c9"
+    },
+    "manuscripts/wind_energy_v2/wind_energy_v2_review_package.zip": {
+      "bytes": 32877316,
+      "sha256": "6c01787351a6ffbc6bf61262593dc2a533f12c6d86c1278b838d4fecc2f95e96"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/DECISION.json": {
+      "bytes": 1507,
+      "sha256": "b9e265a5ad5553e410662e08c04728a1a0b433ba85ffd0995eae5d0ca34816cb"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/REVIEW.md": {
+      "bytes": 16964,
+      "sha256": "2388305a2634777c590e937a69990942176aaecd999954152d0fa169704c5284"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/REVIEW_SCOPE.json": {
+      "bytes": 18919,
+      "sha256": "26b99182c7ba5dce0c58bf0412a3ead35ab79e2d40b46956e124cb2f3057761e"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/STORED_EVIDENCE_BRIDGE.json": {
+      "bytes": 5407,
+      "sha256": "1e7aa9d878f85caa977047bd5f3475dc21d66af2dfdf9b7b79dc3d86af2eae59"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/VERIFICATION.json": {
+      "bytes": 1001,
+      "sha256": "3deaf7974dd7ff8bb76a3b5717a95df3418b4e38048cd377817a70169fd6fe8c"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/reviewer_claim_figures.md": {
+      "bytes": 19819,
+      "sha256": "4d9bc1ea2025e3ad18ac510becbd03640a3ebe22d722207aef8f7fb8b579a30a"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/reviewer_editor_novelty.md": {
+      "bytes": 20840,
+      "sha256": "7d07e0e7a3c5a0425e2c62e6c3d6a3d04fc46bcc87f0d80f3d4e7efc500b3556"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/reviewer_methods.md": {
+      "bytes": 23112,
+      "sha256": "e75f2317b3c099a5cde9042e22ea425dc956032a198133be37e6d40c20bf2292"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/verification/cached_numbers/table_tste_number_consistency_audit.tex": {
+      "bytes": 5594,
+      "sha256": "2ce0d51b8e9a2d116330605371ffd0764ff06a6f1e09084b17863bc0c9c95dc8"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/verification/cached_numbers/tste_number_consistency_audit.csv": {
+      "bytes": 12412,
+      "sha256": "c43b0a35aff3cd3ed56d1312203d809a18c007187602c4e1df2afeeae2e76e15"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/verification/cached_numbers/tste_number_consistency_audit.json": {
+      "bytes": 862,
+      "sha256": "713a867e2abe54e7ad4703e82057d62278ab5e4ca06003a9b2d6880d4e1a85b6"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/verification/legacy_scientific_gate.txt": {
+      "bytes": 4952,
+      "sha256": "fa9dcfaef7b9366fad5d9bbb9da05dbb56a556daa6c446059cb2238411c12594"
+    },
+    "research_audit/wind_energy_adversarial_review_20261020/verification_independent_archive.json": {
+      "bytes": 417,
+      "sha256": "392a7e99a9c609d907f82f2c2f1c0aa9955658185f4c8d74eb6ee3e97a3f48b7"
+    },
+    "scripts/verify_scientific_claim_gate.py": {
+      "bytes": 34965,
+      "sha256": "f16db4344193431ae5deb4f22a9ace360233ea941e376c5ffa7f068f01c4c185"
+    },
+    "scripts/verify_tste_number_consistency.py": {
+      "bytes": 33655,
+      "sha256": "34cca01a64d4671bed164c5c70c448ca4935cb2cd3bccc50cb97d1dc9ad14b13"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/confirmation/primary.json": {
+      "bytes": 3233,
+      "sha256": "f703e64fb7e20843f7daddeb9cc3b0b6d4e95594658560831ba425ac1df7bf72"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/confirmation/secondary_span1.json": {
+      "bytes": 7480928,
+      "sha256": "753141814c4baad335b6d5c6b3aa258b5bc52a7829d7e547d0cb333094439339"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/confirmation/secondary_span3.json": {
+      "bytes": 7504439,
+      "sha256": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/confirmation/secondary_span7.json": {
+      "bytes": 7484562,
+      "sha256": "8ca94402bd42c8e9e7903556c95e4c28af3feff7366e9dd70dd7760f932c6612"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/history/bounds.json": {
+      "bytes": 7076648,
+      "sha256": "9da74aab5654ff5b8eeb7636834d4914c01adddc467bfd7274a3280e7a0a6a0b"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/history/choices.json": {
+      "bytes": 118825,
+      "sha256": "358e0884ea36c86f98518a3f4ba5b3902716c60b27c476a93536203f689ada29"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/ledger/derived.json": {
+      "bytes": 2983,
+      "sha256": "96e9bd2406a4151bdc8a9b213818557281ed046715db7a2c8a5aa33023641159"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/ledger/loss_ledger.csv": {
+      "bytes": 1324,
+      "sha256": "90b8b2e24f274291e409ebbb1c43cff427579a6414cf18a74ed427f5d1cbd980"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/ledger/policy_seed_ledger.csv": {
+      "bytes": 2850,
+      "sha256": "7096a07743dbbd6fa2e34a30b9ae1ad342f94a145ae96721436c348ff10b5604"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/ledger/resource_ledger.csv": {
+      "bytes": 4758,
+      "sha256": "ffb91eff1313db57ff8ae169f465f20d852f3fe74628e1da7a611310ac9cacbd"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/wtb/aggregate.json": {
+      "bytes": 73865666,
+      "sha256": "236d8d0fde557809bb7aa89cbc92e922f65e0fa224ec8e956d304d552f4b0211"
+    },
+    "manuscripts/wind_energy_v2/public_review_package/data/wtb/necessity.json": {
+      "bytes": 1361185,
+      "sha256": "750ae8f3de81504973dbc8c261720ba525a3d1b34742b4c5e7d04da964b3895d"
+    }
+  },
+  "prohibited": [
+    "manuscript or threshold edits",
+    "model training/inference/calibration",
+    "new resampling/statistical estimates",
+    "new measurements",
+    "publication/submission"
+  ]
+}

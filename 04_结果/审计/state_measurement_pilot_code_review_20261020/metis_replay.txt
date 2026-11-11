@@ -1,0 +1,12 @@
+HGB F exact True maxerr 0.0
+HGB FZ exact True maxerr 0.0
+HGB O6 exact True maxerr 0.0
+HGB OP6 exact True maxerr 0.0
+HGB OZ6 exact True maxerr 0.0
+HGB OPZ6 exact True maxerr 0.0
+MLP F exact True maxerr 0.0
+MLP FZ exact True maxerr 0.0
+MLP O6 exact True maxerr 0.0
+MLP OP6 exact True maxerr 0.0
+MLP OZ6 exact True maxerr 0.0
+MLP OPZ6 exact True maxerr 0.0

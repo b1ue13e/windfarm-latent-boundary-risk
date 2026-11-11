@@ -1,0 +1,34 @@
+{
+  "paper_tste_ieee.md": {
+    "bytes": 68455,
+    "sha256": "3c268b90353e6e240ae34d2676dd255f457ef16b05529409c6ba4b995b22fd49"
+  },
+  "paper_tste_ieee.pdf": {
+    "bytes": 230257,
+    "sha256": "4ec6b3fbf34aace9bc99a03bd9c790727b2c2a6d9845f4405c4ee935759d703b"
+  },
+  "paper_tste_supplementary.md": {
+    "bytes": 169946,
+    "sha256": "eabde8a7c85305d3e5c8b9de8b5433c43e522fa94d294d2902b73400f1fc8bcd"
+  },
+  "paper_tste_supplementary.pdf": {
+    "bytes": 1009282,
+    "sha256": "b7e58ca190bf164ef09456d165f04a4f6053cd55e5d4100bea66645f3ceb95da"
+  },
+  "docs/SCIENTIFIC_CONTRACT.md": {
+    "bytes": 20886,
+    "sha256": "7228c1c083ac58dedf5ab65ab514acb544c8cc9736289260657fb4f6fcdc4ba7"
+  },
+  "PROJECT.md": {
+    "bytes": 35755,
+    "sha256": "bf346082799a1fea73f6efbb68b663ade4dcd3d17f501a500419f08df3f3adb7"
+  },
+  "docs/EXPERIMENT_REGISTRY.md": {
+    "bytes": 82647,
+    "sha256": "4a4b81efba118dd5eeb349fdd23f2299f785818e99a11ae5c678b32194ecabe4"
+  },
+  "manuscript/REPRODUCIBILITY.md": {
+    "bytes": 8157,
+    "sha256": "2afa56f1729a683cb85ba31805d98536dc8760f8ba3cc7d7b48dd1104bea2aac"
+  }
+}

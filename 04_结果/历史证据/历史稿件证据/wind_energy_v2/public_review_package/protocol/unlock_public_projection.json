@@ -1,0 +1,12 @@
+{
+  "original_receipt_sha256": "9ffbe0ced42ac521a5ab7d13903d4e22ad1074e17c7bfc4233e57d17b349c757",
+  "event": {
+    "utc": "2026-10-19T04:30:57.719354+00:00",
+    "freeze_sha256": "c04710efaa9e57b250906a9626c31e5a83559b4cfd30b6a18df2a489a39c7595",
+    "protocol_sha256": "27ba6498427ca425978f6674f013862ba272049f778562cb839969cb7f3bbc33",
+    "archive_sha256": "cd439de7bf8e297dd8422d5c93eda04785c56e3861be8d2a79f403ac39b873ee",
+    "reason": "One pre-bound confirmation read after complete historical package freeze"
+  },
+  "finite_target_count": 1059248,
+  "scope": "Projection of existing unlock event; internal root, cluster identifiers and deployment details omitted. Receipt hashes document provenance; no external timestamping authority is implied."
+}

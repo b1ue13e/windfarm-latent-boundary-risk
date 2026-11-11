@@ -1,0 +1,74 @@
+{
+  "evaluation.npz": {
+    "bytes": 3801416,
+    "sha256": "0b7e962914f73a808cdc85f99fc49fb19409766be154fe4b61c570286a5e6dce"
+  },
+  "fit.npz": {
+    "bytes": 4498569,
+    "sha256": "932fc397c0d5733fc6571a384798cd7804eca147e418be0fb5720c6db010a558"
+  },
+  "node_ids.npy": {
+    "bytes": 1200,
+    "sha256": "6f7d51a1bcb46ae18fd2bc28a1c35852460898b67880ac976a1c4b7f1171f098"
+  },
+  "offset.npz": {
+    "bytes": 1885335,
+    "sha256": "6332ef435ae80ff89c37f5b7d2194d2200c03e6846c66b224d0e6e5c6b90039f"
+  },
+  "physical_channels.npy": {
+    "bytes": 75640448,
+    "sha256": "a2e98a6cc141a8c2328b6c5b9166ec0006b5ba78d3db0322a37c32e94359316c"
+  },
+  "qualification.json": {
+    "bytes": 10287,
+    "sha256": "35764ef57ee5d79fb67137e9b40a3ee7f9874cc5e4133fe68f543e9c65568a83"
+  },
+  "receipt.json": {
+    "bytes": 3030,
+    "sha256": "6e321ecac9f27865264bcba98743a566261a1a4ee219f055cc8292d12be6ec04"
+  },
+  "selection.npz": {
+    "bytes": 1762094,
+    "sha256": "40d3e2850570440acfd2151504f1cffe3f05c612bba085a194e0ae74b95bee46"
+  },
+  "source/decision_information.py": {
+    "bytes": 7146,
+    "sha256": "7a642b26618cbd27f0ddd7383063d6c9daa286da2370a08f580212d24f7bc287"
+  },
+  "source/information_subset.py": {
+    "bytes": 5469,
+    "sha256": "e4f341a621a8ce4719fd539df4274929406b9fa520e0b65f48c305bf808d5ddd"
+  },
+  "source/protocol.json": {
+    "bytes": 4694,
+    "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e"
+  },
+  "source/risk_frontier.py": {
+    "bytes": 5754,
+    "sha256": "c76f73000985b43a0a2e035c2415424189135c70924ee17b78ce0a4ff3a6b944"
+  },
+  "source/run_decision_information_development.py": {
+    "bytes": 31464,
+    "sha256": "a5f27587f2548fcc2f9f98fa76affc196c720b29da55c109c0d831cb7fefe039"
+  },
+  "source/run_information_subset_study.py": {
+    "bytes": 24134,
+    "sha256": "d93730b1ad442f9f38af18f1cd838279b8e2c53e60123eaf1ef668a944bbab4a"
+  },
+  "source/run_state_measurement_pilot.py": {
+    "bytes": 25104,
+    "sha256": "d806c22dfcb6c96482fb9a268a428cf21045fb872aa26f930315c64929dadb16"
+  },
+  "source/state_measurement.py": {
+    "bytes": 6462,
+    "sha256": "d850ab388f1c5b056e9f0a966957cde0e1fe122c82b5a5ace72e31dc134f771c"
+  },
+  "source/subset_inference.py": {
+    "bytes": 4863,
+    "sha256": "dea108e73e47c52214c3a9d1971db144c4141037a06e40eeb32a647ef15ba568"
+  },
+  "upstream_receipt.json": {
+    "bytes": 2023,
+    "sha256": "4345e72fe33c4bb8a05de79cd74439d75fbee1b065e7c725058cedee8d528361"
+  }
+}

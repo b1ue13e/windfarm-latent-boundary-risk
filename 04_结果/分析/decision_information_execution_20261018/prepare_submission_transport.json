@@ -1,0 +1,6 @@
+{
+  "stdout": "",
+  "stderr": "/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5a0b0d9/experiments/decision_information_development_20261018/run.pbs: line 19: syntax error near unexpected token `$'in\\r''\n/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5a0b0d9/experiments/decision_information_development_20261018/run.pbs: line 19: `case \"$STUDY_STAGE\" in\n'\nTraceback (most recent call last):\n  File \"<stdin>\", line 8, in <module>\n  File \"/home/junyu/miniconda3/lib/python3.14/subprocess.py\", line 578, in run\n    raise CalledProcessError(retcode, process.args,\n                             output=stdout, stderr=stderr)\nsubprocess.CalledProcessError: Command '['bash', '-n', '/nfs/ihfs/home_metis/junyu/dsh-scratch/decision_information_20261018_5a0b0d9/experiments/decision_information_development_20261018/run.pbs']' returned non-zero exit status 2.\n",
+  "returncode": 1,
+  "timestamp_utc": "2026-10-18T13:59:03.289318+00:00"
+}

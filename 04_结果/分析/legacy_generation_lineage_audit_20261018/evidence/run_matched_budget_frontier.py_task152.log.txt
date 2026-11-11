@@ -1,0 +1,71 @@
+ [HPC] Metis commands ready: metis, metis-qstat, metis-gpu, metis-queues, metis-llm
+C:\Users\lidong\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\cuda\__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+=== Starting Matched-Reserve-Budget Frontier Evaluation ===
+Device: cuda:0
+Sample counts: Full=385205, Trans=139684 (36.26%), Steady=245521 (63.74%)
+Loading cached posterior probabilities from e:\�3\artifacts\matched_budget\cached_posterior_probs.npz
+
+--- PHASE 1: Baseline Reproduction & Numerical Closure ---
+[Full Mean] Base PSREI: 13,784,320 | Post PSREI: 14,307,363 | Delta PSREI: +523,043 kWh
+              Base Viol: 8.79% | Post Viol: 9.08% | Delta R: -145,051 kWh | Delta U: +66,809 kWh
+[Transition Mean] Base PSREI: 4,320,310 | Post PSREI: 4,433,013 | Delta PSREI: +112,703 kWh
+              Base Viol: 8.36% | Post Viol: 7.24% | Delta R: +149,092 kWh | Delta U: -3,639 kWh
+[Steady Mean] Base PSREI: 9,464,010 | Post PSREI: 9,874,349 | Delta PSREI: +410,339 kWh
+              Base Viol: 9.03% | Post Viol: 10.13% | Delta R: -294,144 kWh | Delta U: +70,448 kWh
+Saved baseline reproduction to e:\�3\artifacts\matched_budget\baseline_reproduction.csv
+Saved provenance to e:\�3\artifacts\matched_budget\provenance.json
+
+--- PHASE 2: Frozen-Policy Break-Even Analysis ---
+Transition 5-Seed Frozen Policy Delta R: +149,092.4 kWh, Delta U: -3,638.9 kWh
+Algebraic Break-Even Penalty Ratio: rho_break = 40.97
+Saved frozen policy rho sensitivity to e:\�3\artifacts\matched_budget\frozen_policy_rho_sensitivity.csv
+
+--- PHASE 3 & 4: Matched-Reserve-Budget Frontier Construction ---
+
+Processing slice: Transition
+  Common Budget Support for Transition: [1,950,143, 4,768,322] kWh (30 points)
+
+Processing slice: Steady
+  Common Budget Support for Steady: [3,837,538, 8,554,836] kWh (30 points)
+
+Processing slice: Full
+  Common Budget Support for Full: [5,669,875, 13,323,158] kWh (30 points)
+Saved exact matched budget frontier to e:\�3\artifacts\matched_budget\exact_matched_budget_frontier.csv
+Saved validation calibrated frontier to e:\�3\artifacts\matched_budget\validation_calibrated_frontier.csv
+
+--- PHASE 5 & 6: Paired Day-Cluster Bootstrap (B=5000) with Within-Bootstrap Budget Matching ---
+Identified 35 daily clusters (144 steps each) across test set.
+
+Running B=5000 cluster bootstrap for slice: Transition...
+  Completed Seed 201 in 681.7s
+  Completed Seed 202 in 828.6s
+  Completed Seed 203 in 836.1s
+  Completed Seed 204 in 701.7s
+  Completed Seed 205 in 664.6s
+
+Running B=5000 cluster bootstrap for slice: Steady...
+  Completed Seed 201 in 1491.5s
+  Completed Seed 202 in 1469.7s
+  Completed Seed 203 in 1225.7s
+  Completed Seed 204 in 974.9s
+  Completed Seed 205 in 1144.5s
+
+Running B=5000 cluster bootstrap for slice: Full...
+  Completed Seed 201 in 2131.6s
+  Completed Seed 202 in 2124.2s
+  Completed Seed 203 in 2124.0s
+  Completed Seed 204 in 2126.1s
+  Completed Seed 205 in 2123.8s
+Saved bootstrap frontier statistics to e:\�3\artifacts\matched_budget\bootstrap_frontier_statistics.csv
+
+--- PHASE 6: Frontier Summary Metrics (AUC Shortfall & Favorable Support) ---
+Traceback (most recent call last):
+  File "E:\�3\scripts\run_matched_budget_frontier.py", line 722, in <module>
+    main()
+  File "E:\�3\scripts\run_matched_budget_frontier.py", line 657, in main
+    auc_delta_u = float(np.trapz(du_vals, norm_b))
+                        ^^^^^^^^
+  File "C:\Users\lidong\AppData\Local\Programs\Python\Python312\Lib\site-packages\numpy\__init__.py", line 805, in __getattr__
+    raise AttributeError(f"module {__name__!r} has no attribute {attr!r}")
+AttributeError: module 'numpy' has no attribute 'trapz'. Did you mean: 'trace'?

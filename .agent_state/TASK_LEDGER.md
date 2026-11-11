@@ -1,5 +1,14 @@
 # Task Ledger: SCADA Latent-Boundary Recovery & Reserve-Risk Decision Audit
 
+> **现行状态 2026-10-19：STOP_ADDITIONAL_INVESTMENT（用户正式决定）**。执行队列为空；停止训练、采数、远端作业、后续实验及方向扩展。以下旧待办、状态和建议仅为原时点历史记录，不再授权执行，也不因停止而改记完成。仍成立结论、禁用主张及可复用资产见[正式停止决定](../docs/MAINLINE_STOP_DECISION_20261019.md)。未解决审查与全范围科学认证仍未完成，不自动恢复。
+
+## 当前执行队列
+
+空。未执行计划均STOPPED / NOT EXECUTED；原BLOCKED/PENDING不冒称完成。
+
+## 历史记录（原文保留）
+
+
 Task title: SCADA潜伏控制边界与下行备用分位数决策实验审计与论文重构
 Created: 2026-09-18T05:01:00+08:00
 
@@ -280,3 +289,45 @@ Checkpoint 2026-10-16T00:24:20.401784+00:00:TRR17-TRR19remainDOING. Preserved19f
 - [x] TSA01 VERIFIED 依据合同、撤回登记与当前产物区分主线/创新/顶刊判断；不升级既有合同。
 - [x] TSA02 VERIFIED 直接核对baseline、消融、四条件与外部数值；只读查询当前PBS，区分执行结束和科学认证。
 - [x] TSA03 VERIFIED 调用scientific-falsifier与独立证据复核，记录门禁实际结果并向用户报告未闭合项。
+
+## P0 Evidence Freeze — 2026-10-17
+- [x] P0-FZ01 VERIFIED: 以原始登记、撤回公告、收据和审计报告确定 strong-baseline/EXP-01 的版本谱系；最新强基线候选为 +445,639 kWh（pending audit），旧 +523,044 kWh superseded；EXP-01 deterministic 分支仅 bounded。
+- [x] P0-FZ02 VERIFIED: `docs/EVIDENCE_FREEZE_20261017.md` 和三个版本化工件记录 canonical-candidate / canonical-limited / superseded / withdrawn / pending 条目、范围、数值、路径和哈希；历史原件未删除或覆盖。
+- [x] P0-FZ03 VERIFIED: `docs/EXPERIMENT_REGISTRY.md` 已同步强基线与 EXP-01 当前状态及禁止解释。
+- [x] P0-FZ04 VERIFIED: `research-manifest.json` 已回到 active/analysis；13 项旧 audit passes 设为 pending re-audit；E01 inconclusive、H1 testing/pending adjudication。
+- [x] P0-FZ05 VERIFIED (control-plane/mechanical only): 更新 RUN_STATE、DECISION_LOG、EVIDENCE_LEDGER；UTF-8 JSON 有效、5 个冻结源哈希复核一致、2 个冻结工件完整性验证 OK、`python .agents/scripts/verify_gate.py` exit 0。该门禁 PASS 不等于科学认证；数值深审计、独立科学复核和稿件同步仍开放。
+
+## P0 Manuscript Contradiction Cleanup — 2026-10-17
+- [x] P0-M01 VERIFIED: 主稿已删除 `0.196 -> 0.416`、recall 数字和 recall 贡献性表述；PDF 中无 `0.196`、`0.416` 或 `recall`。
+- [x] P0-M02 VERIFIED: 主稿统一使用冻结候选 Full `+445,639 kWh`、Transition `+71,204 kWh`、interaction `-303,232 kWh` with CI crossing zero；旧 +523,044 和旧 interaction 未进入当前主张。
+- [x] P0-M03 VERIFIED: 主稿外部结果统一标为 deterministic_matched_transfer_v1 bounded branch；corrected-v2 superseded/not reinstated、v4 invalid；完整 EXP-01 claim remains pending。
+- [x] P0-M04 VERIFIED: PSREI 使用 frozen point forecast `\\hat{y}^{\\mathrm{fixed}}`；Table I 的 `Reserve Energy (kW\\cdot h)` 明确为积分后的能量单位。
+- [x] P0-M05 VERIFIED: 主 PDF 10 页、补充材料 46 页；`verify_final_pdf_integrity.py`、`verify_tste_number_consistency.py`、更新后的 `verify_scientific_claim_gate.py` 均 PASS；PDF 文本无指定旧数字/recall/Reserve(kW)/Table~/Fig~/References 残留；摘要 189 词；投稿配套文件同步到 deterministic bounded branch 和当前候选。版本化工件 `tste-p0-final-submission-readiness-20261017 v1` 已保存。
+
+## P1 Conditional Minimum-Sufficient Criterion — 2026-10-17
+- [x] P1-F01 VERIFIED: E04 执行前冻结 alpha=0.05, epsilon_C=0 kWh, epsilon_V=0, v_max=0.10, Full population, 5 seeds x 35 daily blocks, candidate B/C/D/D10, and complexity order B<C<D<D10.
+- [x] P1-F02: 已形式化条件选择规则、无可行策略分支和允许解释边界；写入 `DERIVATION_PACKAGE.md` 与 `docs/MINIMUM_SUFFICIENT_DECISION_CRITERION.md`。
+- [x] P1-F03: 主稿方法段、`SCIENTIFIC_CONTRACT.md`、`EXPERIMENT_REGISTRY.md` 和 E04 design 已同步公式，并明确当前尚未认证普遍定律。
+- [x] P1-F04 NEEDS-WORK / V2 RECEIPT-BOUND: E04-v2 executed against immutable preregistration commit 64478031 with execution plan, receipt, output manifest, exact input hashes, and stability diagnostics; selector returned `NO FEASIBLE POLICY`. Local bundle verifier returns `PASS_BUNDLE`; v1 review was NEEDS-WORK and receipt-bound v2 independent falsification review remains pending. No deployment-necessity claim is made.
+
+## P2 Complexity Stop Rule — 2026-10-17
+- [x] P2-S01: 科学合同和实验注册明确停止继续堆叠 graph/MoE/hidden-state architectures。
+- [x] P2-S02: 主稿明确区分 recoverability、risk-shape change、decision value 三个非等价命题，并禁止用表示指标替代 matched PSREI 证据。
+- [x] P2-S03: 复杂表示的部署必要性统一要求通过 E04 独立风险约束选择准则；E04 已执行但返回 NO FEASIBLE POLICY，independent falsification review pending，因此当前不新增复杂模型。
+
+## Metis E04 receipt/hash binding repair — 2026-10-17
+- [x] E04-R01 VERIFIED: Added pre-execution plan, output manifest, and execution receipt binding for E04; selector now requires a successful receipt, verifies preregistration/input/output hashes, and enforces receipt bundle == selector root. Existing v4 arrays remain unpromoted unless regenerated through the wrapper.
+- [x] E04-R02 VERIFIED: Added regression coverage for valid binding, output tampering, command/plan mismatch, missing/extra outputs, and preregistration mutation. `python -m pytest tests/test_e04_receipt_binding.py tests/test_replay_integrity.py -q` returned 19 passed.
+- [!] E04-R03 BLOCKED: Independent Codex silent-assumption sweep unavailable because runtime returned `WinError 2`; no external review PASS is claimed.
+
+## E05 Selector Stability/Frequency Diagnostic — 2026-10-18
+- [x] E05-S01 VERIFIED: Registered E05 as a separate conditional diagnostic with frozen E04 thresholds, candidate order, WTB Full population, 5-seed x 35-day-block joint resampling, and stability seed 20261018.
+- [x] E05-S02 VERIFIED: Executed 10,000 resamples on the frozen local v4 arrays. `NO FEASIBLE` frequency=0.6464; first-selection frequencies B=0.3523, C=0.0013, D=0, D10=0; no policy reached the preregistered >=0.80 stability rule.
+- [x] E05-S03 VERIFIED: Hardened run added exact five-seed/35-block structure assertions and machine-generated `UNSTABLE SELECTION` status; receipt-bound diagnostic completed with exit code 0. Frequency accounting and count bounds passed. Archived as `e05-selector-stability-frequency-20261018 v3`.
+- [!] E05-S04 BLOCKED: E05 is conditional on v4 arrays without an original replay execution receipt; it does not repair E04 provenance or certify a minimum-sufficient policy. Independent falsification review remains pending.
+
+## E06 Provenance-Bound Metis Replay — 2026-10-18
+- [x] E06-R01 VERIFIED: Metis J04 completed the actual five-seed E04 replay command with exit 0 and unchanged remote inputs; its wrapper post-check failed due to path-representation comparison and is preserved as a failed tooling attempt.
+- [x] E06-R02 VERIFIED: Metis J05 verified/repackaged the completed replay and ran the receipt-bound selector successfully. Remote receipt is `EXECUTED`, output manifest contains five policy arrays, selector result is `NO FEASIBLE POLICY`, and all four selector provenance hashes match the bundle files.
+- [x] E06-R03 VERIFIED: Exact residual/checkpoint inputs were pulled and local verification returned `PASS_BUNDLE_LOCAL_INPUTS`; all 23 remote input records, five output hashes, plan, receipt, manifest, selector, and selector-output manifest matched.
+- [!] E06-R04 BLOCKED: J07's helper emitted a shell syntax error after writing the complete exact-input manifest; the transfer files and hashes are valid, but J07 is not treated as a clean execution success. Independent falsification review and scientific claim promotion remain pending.

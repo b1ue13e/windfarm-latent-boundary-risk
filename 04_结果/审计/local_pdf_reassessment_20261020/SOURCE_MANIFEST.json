@@ -1,0 +1,120 @@
+{
+  "review_date": "2026-10-20",
+  "operation": "READ_ONLY_LITERATURE_AND_RESEARCH_QUESTION_REASSESSMENT",
+  "mlwa": {
+    "path": "E:/论文3/1-s2.0-S2666827026001222-main.pdf",
+    "title": "Explainable uncertainty quantification in probabilistic wind power forecasting",
+    "authors": [
+      "Ege Kandemir",
+      "Trond Kvamsdal",
+      "Agus Hasan",
+      "Saleh Abdel-Afou Alaliyat"
+    ],
+    "doi": "10.1016/j.mlwa.2026.100957",
+    "venue": "Machine Learning with Applications",
+    "volume": "25",
+    "article": "100957",
+    "available_online_from_printed_first_page": "2026-07-21",
+    "bytes": 3760604,
+    "sha256": "1a7ce47d5d4cf01dd0d6a008434d0d6679541fa2021d0c3a5778f036d57b477c",
+    "pdf_pages": 15,
+    "read_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "reading_level": "FULL_PROVIDED_ARTICLE_READ_NOT_CODE_OR_RAW_DATA_REPLICATION",
+    "identity_matches": [
+      "Printed title",
+      "Printed author order",
+      "Printed DOI",
+      "PDF metadata title/doi",
+      "Previously verified formal publisher/Crossref record"
+    ],
+    "visual_review": {
+      "all_pages_rendered": true,
+      "contact_sheets_inspected": true,
+      "full_size_pages_inspected": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "other_pages_text_read": true
+    },
+    "source_mutated": false,
+    "supplementary_material_obtained": false
+  },
+  "seta": {
+    "title": "Reserve-risk-oriented regime-calibrated interval forecasting for wind power integration under extreme fluctuations",
+    "authors": [
+      "Yang Wang",
+      "Haiyun Wang"
+    ],
+    "doi": "10.1016/j.seta.2026.105438",
+    "venue": "Sustainable Energy Technologies and Assessments",
+    "volume": "94",
+    "article": "105438",
+    "user_clarification": "Second PDF could not be downloaded; user supplied abstract/overview",
+    "full_pdf_obtained": false,
+    "reading_level": "USER_ABSTRACT_CORROBORATED_BY_PRIMARY_PUBLISHER_ABSTRACT_AND_PREVIEW_NOT_FULLTEXT",
+    "primary_url": "https://www.sciencedirect.com/science/article/pii/S2213138826006247",
+    "verified_abstract_values": {
+      "nominal_interval": 0.9,
+      "picp": [
+        0.903,
+        0.901
+      ],
+      "normalized_width": [
+        0.144,
+        0.15
+      ],
+      "width_reduction_percent": [
+        23.8,
+        26.8
+      ],
+      "reserve_relevant_shortfall_rate": [
+        0.074,
+        0.081
+      ]
+    },
+    "unverified": [
+      "Complete input and information set",
+      "Full regime time definitions",
+      "Full ablations",
+      "Full decision-cost implementation",
+      "Full inferential and freezing protocol"
+    ]
+  },
+  "processing_note": "Initial page extraction completed but console printing failed under GBK; rerun with Python -X utf8 read the saved UTF-8 text and rendered pages. This was document processing, not a research experiment.",
+  "scope": {
+    "new_measurements_downloaded": false,
+    "research_models_executed": false,
+    "new_empirical_results": false,
+    "manuscripts_edited": false,
+    "scientific_contract_edited": false,
+    "old_versions_rewritten": false,
+    "subagents_invoked": false,
+    "execution_queue": "EMPTY"
+  }
+}

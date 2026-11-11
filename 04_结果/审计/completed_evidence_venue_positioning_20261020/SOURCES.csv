@@ -1,0 +1,14 @@
+id,source,url_or_path,read_scope,responsibility
+S01,WindEnergyofficialscope,https://onlinelibrary.wiley.com/page/journal/10991824/homepage/productinformation.html,Officialoverviewread,Windforecast/operation/integration/application covered;notacceptanceguarantee
+S02,WindEnergyarticletypes,https://onlinelibrary.wiley.com/page/journal/10991824/homepage/forauthors.html,Officialauthorinstructionscheckedbyvenueworker,ResearchArticle fits empiricalform;novelknowledge stillrequired
+S03,EPSRofficialscope,https://shop.elsevier.com/journals/electric-power-systems-research/0378-7796,Officialscoperead,Existingknowledgeapplication accepted only withtechnicalsystemoperationcontext
+S04,WESofficialscope,https://www.wind-energy-science.net/about/aims_and_scope.html,Officialscoperead,Forecast/marketintegration topic included;fundamental/pioneeringresearch focus
+S05,WESreviewcriteria,https://www.wind-energy-science.net/peer_review/review_criteria.html,Officialcriteriacheckedbyvenueworker,Substantialscientificadvance;notonlynewnetwork
+S06,WESpreprintstatus,https://wes.copernicus.org/preprints/wes-2025-29/,Officialstatus/abstract andpubliccommentschecked,Notacceptedafterdiscussion;notformalpublicationprecedent
+S07,IJEPESofficialscope,https://shop.elsevier.com/journals/international-journal-of-electrical-power-and-energy-systems/0142-0615,Officialscopecheckedbyvenueworker,System-level focusexplicit;notautomaticfallback
+S08,TSTEofficialscope,https://ieee-pes.org/publications/transactions-on-sustainable-energy/,Officialscopechecked,Topicincludesgridintegration;notuniversalOPForrealmarketmandate
+S09,EnergyAIactualcomparison,https://doi.org/10.1016/j.egyai.2025.100573,Crossref+publisherindexedabstract/methodsummary,Formalcomparisonprecedent;currentscope403remainslimitation
+S10,Oldnewsourceconfirmation,analyses/independent_confirmation_execution_20261019/REPORT.md,Localdirectrecordread,Primary/secondary/evidenceidentityseparate
+S11,Primaryreview,analyses/independent_confirmation_execution_20261019/INDEPENDENT_CONFIRMATION_RESULT_REVIEW.md,Localdirectreviewread,ApproxCI andoldfreeze identity;notBayescert
+S12,Resourceandseverityledger,research_audit/14_resource_loss_break_even_review.md,Existingpointledgerread,U+2.184349%;no realnetsavings established
+S13,Existingpriorart,research_audit/13_prior_art_comparison.csv,Existingverifiedmatrixread,No firstcurrentP/noninferiority/minimumsubsetsclaim

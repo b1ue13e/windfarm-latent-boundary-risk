@@ -1,0 +1,62 @@
+{
+  "status": "COMPLETED_EXISTING_EVIDENCE_REVISION_WITH_OPEN_GAPS",
+  "manuscript_version": "V2, separately saved; V1 unchanged",
+  "article_title": "Incremental Telemetry for Wind-Power Shortfall Decisions under a Fixed Forecast Commitment",
+  "main_pages": 16,
+  "supplement_pages": 15,
+  "abstract_words": 211,
+  "citations": 14,
+  "stored_cost_bridge": {
+    "q925_cost_upper": "0.9742%",
+    "q950_cost_upper": "3.5178%",
+    "q925_risk_upper": "9.7699%",
+    "q950_risk_upper": "6.7049%"
+  },
+  "closed_reporting_responsibilities": [
+    "closest-neighbour differences",
+    "stored cost/risk/witness bridge",
+    "finite-record versus working-process interpretation",
+    "five-fit loss and per-fit risk",
+    "separate primary/secondary families",
+    "portable stored-result audit"
+  ],
+  "not_closed": [
+    "exact operational interface need",
+    "realised resource benefit",
+    "business acceptance",
+    "nominal coverage validation",
+    "full training reproduction",
+    "public deposit and rights",
+    "author declarations",
+    "editorial significance"
+  ],
+  "new_training": false,
+  "new_model_inference": false,
+  "new_calibration": false,
+  "new_resampling": false,
+  "new_measurement_download": false,
+  "thresholds_changed": false,
+  "published": false,
+  "submitted": false,
+  "paper_checks": 25,
+  "package_tests": 8,
+  "protected_files_unchanged": 121,
+  "zip": {
+    "status": "PASS",
+    "zip_file": "wind_energy_v2_review_package.zip",
+    "zip_bytes": 32877316,
+    "zip_sha256": "6c01787351a6ffbc6bf61262593dc2a533f12c6d86c1278b838d4fecc2f95e96",
+    "payload_files": 69,
+    "members_including_manifest_and_portability_report": 71,
+    "manifest_sha256": "edf1e7760eb3a9904203dcb0801019f5cd536e2acc8c0ddfcedc2d9df0e704e4",
+    "cache_included": false,
+    "copyright_papers_included": false,
+    "measurement_files_included": false,
+    "published": false,
+    "independent_audit": "PASS",
+    "scope": "Portable archived-result verification; not model training/bootstrap reproduction or statistical coverage"
+  },
+  "manuscript_sha256": "c5d5aecdabf793f4b2eac65cd8351254cfecbbf64691de8a534c3dd1d6bbe767",
+  "supplement_sha256": "9276ff55a05f6da900e79d4c92661df66664e7df47c535da1b8278b05fbb4c13",
+  "recommend_submit_now": false
+}

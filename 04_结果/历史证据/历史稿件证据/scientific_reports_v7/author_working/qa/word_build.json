@@ -1,0 +1,18 @@
+[
+  {
+    "document": "manuscript.docx",
+    "source_sha256": "87ab97a0a022b8cb96ba87c1f496d21b4c29a015125f72aad306394464d44691",
+    "docx_sha256": "bdd83225dae8d8ed70d40a3d22f8e29c7a64cf2ebad8f41bb9cf1ecc7935ce92",
+    "native_math": true,
+    "figures": 4,
+    "tables": 1
+  },
+  {
+    "document": "supplementary.docx",
+    "source_sha256": "06acf3c1ffe192022cb16c735efb4b4e75e28d96df0e5a1d1c714ddf9b983bd6",
+    "docx_sha256": "d7fa6461c744ac56288ce21ffdfa1742ea0cb030da6a3162c9672274619da273",
+    "native_math": true,
+    "figures": 1,
+    "tables": 8
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "status": "PASS_ISOLATED_CORE_AND_EXACT_DISPLAY_PROJECTION",
+  "core_identity_checked": 196,
+  "display_csvs_byte_identically_reproduced": [
+    "study_M/display_M_cost.csv",
+    "study_M/display_M_decomposition.csv",
+    "study_M/display_M_programs.csv",
+    "study_M/display_M_routes.csv",
+    "study_R/display_R_cost.csv",
+    "study_R/display_R_mse_per_fit.csv"
+  ],
+  "large_arrays_in_core_zip": false,
+  "research_or_statistical_recomputation": false,
+  "zip_bytes": 3295387,
+  "zip_sha256": "a4cc96b1b8ef4a0e50acbc4472a481ca8cc8c45e564012ed0e0b38acec83562e"
+}

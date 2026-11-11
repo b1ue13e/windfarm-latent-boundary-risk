@@ -1,0 +1,18 @@
+{
+  "draft": {
+    "exit_code": 0,
+    "script": "qa/verify_draft.py"
+  },
+  "figures": {
+    "exit_code": 0,
+    "script": "qa/figure_rebuild_v14/verify_v14.py"
+  },
+  "historical_figure_manifest": {
+    "exit_code": 1,
+    "reason": "Pre-existing AGENTS.md fingerprint mismatch; see INSTRUCTION_FINGERPRINT.json and FIGURES_HISTORICAL_MANIFEST_CHECK.json."
+  },
+  "package": {
+    "exit_code": 0,
+    "script": "qa/figure_rebuild_v14/package_v14.py"
+  }
+}

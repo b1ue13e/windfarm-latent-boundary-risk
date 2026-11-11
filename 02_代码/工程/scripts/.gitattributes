@@ -1,0 +1,9 @@
+# New exact-replay audit entrypoints are themselves hash-bound by execution plans.
+audit_e04_c201_exactness.py text eol=lf
+reconcile_e04_c201_evidence.py text eol=lf
+compare_e04_complete_slices.py text eol=lf
+audit_e07_window_inventory.py text eol=lf
+finalize_e07_data_audit.py text eol=lf
+audit_legacy_posterior_accounting.py text eol=lf
+audit_legacy_cache_alignment.py text eol=lf
+audit_legacy_yhat_difference.py text eol=lf

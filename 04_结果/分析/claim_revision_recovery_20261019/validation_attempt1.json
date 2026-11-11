@@ -1,0 +1,5 @@
+{
+  "status": "FAILED_BEFORE_MUTATION",
+  "stage": "local archive path lookup",
+  "reason": "Remote source-metadata basename differs from local source_metadata.tar.gz; explicit download mapping required. No hash mismatch or file modification."
+}

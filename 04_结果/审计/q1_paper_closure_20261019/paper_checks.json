@@ -1,0 +1,18 @@
+{
+  "status": "PASS_PAPER_CONSISTENCY_ONLY_DATA_BLOCKED",
+  "estimand_specified": true,
+  "prediction_and_counterexplanations_specified": true,
+  "forward_and_freeze_path_specified": true,
+  "source_qualification_closed": false,
+  "confirmation_eligible_sources": 0,
+  "human_exposure_record_preserved": true,
+  "domain_disjointness": "follows from a>A75>=A25 versus a<=A25; no measurement simulation",
+  "primary_coordinates": 12,
+  "historical_risk_coordinates": 100,
+  "old_result_data_and_manuscripts_unchanged": true,
+  "protected_files_unchanged": 26,
+  "research_execution": false,
+  "preregistration_completed": false,
+  "clock_index_arithmetic_consistency_checked": true,
+  "source_measurements_downloaded": false
+}

@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-19T05:48:23.397615+00:00",
+  "code_document_check": {
+    "argv": [
+      "git",
+      "-c",
+      "core.whitespace=trailing-space,space-before-tab,cr-at-eol",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      "research_audit/**/*.py",
+      "research_audit/*.py",
+      "research_audit/**/*.md",
+      "research_audit/*.md"
+    ],
+    "exit_code": 0,
+    "output_bytes": 0
+  },
+  "whole_output_check": "Initial default check rejected preserved CRLF. CR-aware whole-output check reported valid SVG path trailing spaces and a terminal blank CSV record, retained as generated evidence; no source-data rewrite. Raw log preserved separately.",
+  "scientific_gates_changed": false
+}

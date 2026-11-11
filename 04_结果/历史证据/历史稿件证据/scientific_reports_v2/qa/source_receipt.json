@@ -1,0 +1,185 @@
+{
+  "scope": "Original file copies and plotting projections only; no model/statistic generation",
+  "files": [
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/copies/pilot/summary.json",
+      "copy": "source_data/M_original_summary.json",
+      "sha256": "40eebd3602783fb4a2d883ce9169b3a2eec131e00441483a87826946b6dadc12",
+      "bytes": 29922
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/copies/controls/summary.json",
+      "copy": "source_data/M_controls_summary.json",
+      "sha256": "12b91fa1555e1e4a1e4b99894ba8722da7980c0237bcfd4249f7f01564678f3f",
+      "bytes": 105070
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/copies/pilot/historical_choices.json",
+      "copy": "source_data/M_historical_choices.json",
+      "sha256": "c4a009b8d529847697a8c1c9c84edb253453de684d904f0cb9b408521ca5d306",
+      "bytes": 6077
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/copies/controls/frozen.json",
+      "copy": "source_data/M_frozen.json",
+      "sha256": "35398087d7ce59a513e948ddb8018a7e0b586d8deb64fc9e85a2507be795d470",
+      "bytes": 20417
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/copies/pilot/protocol.json",
+      "copy": "source_data/M_protocol.json",
+      "sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e",
+      "bytes": 4694
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/copies/controls/protocol.json",
+      "copy": "source_data/M_controls_protocol.json",
+      "sha256": "3be445a2e274d9ec92d53730389bcb4c3d16e46f83271fa93c79c5feabadb0c1",
+      "bytes": 4712
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/original/evidence/experiments/decision_information_development_20261018/protocol.json",
+      "copy": "source_data/R_protocol.json",
+      "sha256": "c69bfdc1940996ad5b9bee9d610e52f6d0ad9618e316bc704e64d78ee1a1179b",
+      "bytes": 6197
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/original/evidence/results/aggregate/paired_intervals.json",
+      "copy": "source_data/R_paired_intervals.json",
+      "sha256": "1de4be76bf901008eb006a5baca2f253325efd7499287287296369b1cc56822c",
+      "bytes": 397994
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/original/evidence/results/aggregate/summary.csv",
+      "copy": "source_data/R_summary.csv",
+      "sha256": "1a416f7b7ceb8145cd0b705c84a215c1a21a1137c74828ed8add52c5c13be6f4",
+      "bytes": 12103
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/original/key_comparisons.csv",
+      "copy": "source_data/R_key_comparisons.csv",
+      "sha256": "981ef8b6406a50a88dd3386f33d81d7e8f0d596f286f723d1e3dcc41300d8929",
+      "bytes": 1742
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/POPULATION_IDENTITY_R.json",
+      "copy": "source_data/population_identity_R.json",
+      "sha256": "416baf2440dca375e9dbff2e93538b1e40a92001b507094298e2074cfc046c44",
+      "bytes": 3659
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/STORED_IDENTITY_CHECKS.json",
+      "copy": "source_data/stored_identity_checks.json",
+      "sha256": "cf20c046d750cc8e7407f6d712132c15aa9e2a9c467c2201a04c1bb35662447c",
+      "bytes": 11034
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/data_source/SOURCE_AND_LICENSE.json",
+      "copy": "source_data/dataset_source_and_license.json",
+      "sha256": "6ade307b6472b4914a98ff5c5a8803fbc5628a78ad4218bc599f58968f2813b6",
+      "bytes": 681
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/display_R_cost.csv",
+      "copy": "source_data/display_R_cost.csv",
+      "sha256": "e9c51ff4a3cd5a937b2c2cebf79e9ba658f0bd73fe30f941037b327e967f6e92",
+      "bytes": 70600
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/display_R_mse_per_fit.csv",
+      "copy": "source_data/display_R_mse_per_fit.csv",
+      "sha256": "d73def83ced61b5a84fa0a176f173a6c0692af52e3cdfc8358daac724e462a36",
+      "bytes": 10734
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/display_M_cost.csv",
+      "copy": "source_data/display_M_cost.csv",
+      "sha256": "6f27d52a7c6156deb58b334b4180e797c9c523a8c6ba9df829234dd3774653c1",
+      "bytes": 6027
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/display_M_decomposition.csv",
+      "copy": "source_data/display_M_decomposition.csv",
+      "sha256": "e9971aea63972552fc58846e579cc1e6cd051b48f62240d5ae96789063bc41e5",
+      "bytes": 29996
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/display_M_programs.csv",
+      "copy": "source_data/display_M_programs.csv",
+      "sha256": "fb83fcbbe3abdc574e30a15e2c5ca993c37b3cc4c469c010ad1edc15096f07e5",
+      "bytes": 35741
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/display_M_routes.csv",
+      "copy": "source_data/display_M_routes.csv",
+      "sha256": "69a730a95c596e51be9d7bd811c3ec4e7be1793f4f3f87b1c7aaec6c4cefb384",
+      "bytes": 676
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/original/evidence/results/runs/seed201/pitch_withheld/models_and_diagnostics.json",
+      "copy": "source_data/R_diagnostics_201.json",
+      "sha256": "94bbbd95b9fa48f9d7431c61aff5e7cdc72caecfd826d07ea6bd04c47be1f7d0",
+      "bytes": 1134
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/original/evidence/results/runs/seed202/pitch_withheld/models_and_diagnostics.json",
+      "copy": "source_data/R_diagnostics_202.json",
+      "sha256": "b67bbe21561e4d8b45ab60d4d00d618a3867fb8a86d4443b983edaf5307fb151",
+      "bytes": 1131
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/original/evidence/results/runs/seed203/pitch_withheld/models_and_diagnostics.json",
+      "copy": "source_data/R_diagnostics_203.json",
+      "sha256": "ccd24f55e3f53874330236b3647479bdf4620bf81a3ed1ac0c6da8ffe9a0caa4",
+      "bytes": 1132
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/original/evidence/results/runs/seed204/pitch_withheld/models_and_diagnostics.json",
+      "copy": "source_data/R_diagnostics_204.json",
+      "sha256": "630c3cb389abefb684851a424729c40fe3b3fa869a2b2cc059206fe19f5617e8",
+      "bytes": 1129
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/original/evidence/results/runs/seed205/pitch_withheld/models_and_diagnostics.json",
+      "copy": "source_data/R_diagnostics_205.json",
+      "sha256": "6ad217655cd4efd1c8557368fc4fb9b09ae64caec045aa6f5dee39176948810b",
+      "bytes": 1130
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_R/original/compact_evidence.tar.gz",
+      "copy": "supplement_data/R_original_compact.tar.gz",
+      "sha256": "13fba6f0f96c3777e511bb177f7566ddc8fd6b37e1946cd946813f15c5234d15",
+      "bytes": 213820
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/copies/pilot/compact_evidence.tar.gz",
+      "copy": "supplement_data/M_original_compact.tar.gz",
+      "sha256": "9a184aab3d31b8b48f694400518ab6e8da5316610816ef334c9811a40d8f02cd",
+      "bytes": 698464
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/copies/controls/compact_evidence.tar.gz",
+      "copy": "supplement_data/M_controls_compact.tar.gz",
+      "sha256": "5ab254dc9ef39142085743a105ae84ab23201319e70cdec9da180e1328f046df",
+      "bytes": 988808
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/copies/controls/budget_transfer.csv",
+      "copy": "supplement_data/budget_transfer.csv",
+      "sha256": "0597c29fe981dc789107d1081bac0c8c0c01caf5e8712f1e818b3ff8c1c0fcda",
+      "bytes": 14819
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/copies/controls/additional_purchase_bound.json",
+      "copy": "supplement_data/constant_purchase_bound.json",
+      "sha256": "31bd8a6ff674ea9e9ff188ba65bb5bfbbeb0240cd3747e6031cddf8b465b1114",
+      "bytes": 5240
+    },
+    {
+      "source": "research_audit/controlled_comparison_materials_20261020/study_M/ENVIRONMENT_INDEX_M.csv",
+      "copy": "supplement_data/M_environment.csv",
+      "sha256": "7042d687629de1a125861d6bf5b16158091a8fe8c85e69b3ac66c5ba7a7929a3",
+      "bytes": 36331
+    }
+  ]
+}

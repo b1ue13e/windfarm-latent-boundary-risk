@@ -1,0 +1,66 @@
+{
+  "analyses/claim_revision_recovery_20261019/REPORT.md": {
+    "bytes": 8630,
+    "sha256": "adfd878690ac14bfe8926982146b36cf1cbf2abfd0214a3edd37fd15a0230f97"
+  },
+  "analyses/claim_revision_recovery_20261019/derived/summary.json": {
+    "bytes": 1052,
+    "sha256": "316ad260e73cfaafdd7fa47f8aaf36cab0a9bc38d5cb46e3a4b73658905ed758"
+  },
+  "analyses/decision_information_execution_20261018/REPORT.md": {
+    "bytes": 6626,
+    "sha256": "1b4fab5ae226f5c5c18e6b1dbe917a5c8ee4350486e8c76f7bff0ef80cfd6ba7"
+  },
+  "analyses/decision_information_execution_20261018/evidence/results/aggregate/paired_intervals.json": {
+    "bytes": 397994,
+    "sha256": "1de4be76bf901008eb006a5baca2f253325efd7499287287296369b1cc56822c"
+  },
+  "analyses/decision_information_execution_20261018/evidence/results/aggregate/summary.csv": {
+    "bytes": 12103,
+    "sha256": "1a416f7b7ceb8145cd0b705c84a215c1a21a1137c74828ed8add52c5c13be6f4"
+  },
+  "analyses/decision_information_execution_20261018/key_comparisons.csv": {
+    "bytes": 1742,
+    "sha256": "981ef8b6406a50a88dd3386f33d81d7e8f0d596f286f723d1e3dcc41300d8929"
+  },
+  "analyses/independent_confirmation_execution_20261019/REPORT.md": {
+    "bytes": 8433,
+    "sha256": "ce09e9cf779b02729985581ace83241316d35002dcec151979545b60aa905995"
+  },
+  "analyses/independent_confirmation_execution_20261019/derived/secondary_cases.csv": {
+    "bytes": 8927,
+    "sha256": "c1a943a3147b9d2d2f11bd2ca404b49349d313e9a654166c0efbf3877ea508fc"
+  },
+  "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/primary.json": {
+    "bytes": 3233,
+    "sha256": "f703e64fb7e20843f7daddeb9cc3b0b6d4e95594658560831ba425ac1df7bf72"
+  },
+  "analyses/independent_confirmation_execution_20261019/recovered/results/aggregate/secondary_span3.json": {
+    "bytes": 7504439,
+    "sha256": "67d6573e2f900e0e27a7f02a2915403e50d6abc4dd31cc9794709b7dde2bf060"
+  },
+  "analyses/risk_cost_frontier_execution_20261018/REPORT.md": {
+    "bytes": 9016,
+    "sha256": "5bd832426abdc361985b53bf9cb648ad1957abb538c7b9f019bed2c6b10539a6"
+  },
+  "analyses/risk_cost_frontier_execution_20261018/secondary_evidence/results/model_class_results.json": {
+    "bytes": 1495656,
+    "sha256": "ed0cb9d446cf5065aa0ded02a662df58a33bce6b96dc734c9f82d55d72178d76"
+  },
+  "experiments/decision_information_development_20261018/protocol.json": {
+    "bytes": 6114,
+    "sha256": "3071798cb3de4cc690d05e2e823b4590bdbcf1e322454849e50eb1b42a65d940"
+  },
+  "experiments/independent_confirmation_execution_20261019/protocol.json": {
+    "bytes": 7583,
+    "sha256": "27ba6498427ca425978f6674f013862ba272049f778562cb839969cb7f3bbc33"
+  },
+  "experiments/information_subset_development_20261019/protocol.json": {
+    "bytes": 7505,
+    "sha256": "5d36b4859a14d1299f5198735b7fa4f0860e2fa02cd677a448af54d26dbf5675"
+  },
+  "experiments/risk_cost_frontier_development_20261018/protocol.json": {
+    "bytes": 6116,
+    "sha256": "db4c96be04d802e296e263b91d4196475b39fd3dac075c01323499ad9dba2a1a"
+  }
+}

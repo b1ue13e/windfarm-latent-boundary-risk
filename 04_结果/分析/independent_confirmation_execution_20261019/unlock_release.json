@@ -1,0 +1,21 @@
+{
+  "utc": "2026-10-19T04:30:48.925881+00:00",
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectTimeout=15",
+    "metis",
+    "qrls 244731.cm"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "freeze_sha256": "c04710efaa9e57b250906a9626c31e5a83559b4cfd30b6a18df2a489a39c7595",
+  "actual_independent_review_receipt_sha256": "297cb47b8f27f56bff5418801e916da1bc20966b75b7fc04e39adafbcc56db81",
+  "basis": "All550 actual historical bundles and complete validate_freeze independently passed; predeclared P1/HGB/q.95 and qualified reference frozen. No model, calibration, threshold or source edits.",
+  "stage": "Unlock released; event/qualification/performance not yet inferred from submission"
+}

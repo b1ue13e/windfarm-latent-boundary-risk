@@ -1,0 +1,8 @@
+{
+  "status": "PASS_MATERIAL_IDENTITIES_ONLY",
+  "checked_files": 599,
+  "arrays_included": true,
+  "failures": [],
+  "research_executed": false,
+  "coverage_or_retraining_certification": false
+}

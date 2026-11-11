@@ -1,0 +1,764 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          16
+        ]
+      ],
+      "date-time": "2026-09-16T21:34:18Z",
+      "timestamp": 1789594458912,
+      "version": "build-2803163510"
+    },
+    "reference-count": 38,
+    "publisher": "Elsevier BV",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/legal/tdmrep-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-017"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-037"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-012"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-029"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              8,
+              1
+            ]
+          ],
+          "date-time": "2024-08-01T00:00:00Z",
+          "timestamp": 1722470400000
+        },
+        "content-version": "stm-asf",
+        "delay-in-days": 0,
+        "URL": "https://doi.org/10.15223/policy-004"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100001409",
+        "name": "Department of Science and Technology, Ministry of Science and Technology, India",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "DST/IC/IC-IMPACTS/2022/ P-1"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "DST/IC/IC-IMPACTS/2022/ P-1"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100001409",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "elsevier.com",
+        "sciencedirect.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Electric Power Systems Research"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2024,
+          8
+        ]
+      ]
+    },
+    "DOI": "10.1016/j.epsr.2024.110513",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2024,
+          5,
+          31
+        ]
+      ],
+      "date-time": "2024-05-31T08:27:39Z",
+      "timestamp": 1717144059000
+    },
+    "page": "110513",
+    "update-policy": "https://doi.org/10.1016/elsevier_cm_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 7,
+    "special_numbering": "C",
+    "title": [
+      "Affine arithmetic-based dynamic operating reserve quantification considering correlated load and renewable uncertainties"
+    ],
+    "prefix": "10.1016",
+    "volume": "233",
+    "author": [
+      {
+        "given": "Shivani",
+        "family": "Garg",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-0767-8653",
+        "authenticated-orcid": false,
+        "given": "Sumanth",
+        "family": "Yamujala",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Parul",
+        "family": "Mathuria",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6898-6406",
+        "authenticated-orcid": false,
+        "given": "Rohit",
+        "family": "Bhakar",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Harpal",
+        "family": "Tiwari",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "78",
+    "reference": [
+      {
+        "issue": "4",
+        "key": "10.1016/j.epsr.2024.110513_b1",
+        "doi-asserted-by": "crossref",
+        "first-page": "3701",
+        "DOI": "10.1109/TPWRS.2021.3053847",
+        "article-title": "Operating reserve quantification using prediction intervals of wind power: An integrated probabilistic forecasting and decision methodology",
+        "volume": "36",
+        "author": "Zhao",
+        "year": "2021",
+        "journal-title": "IEEE Trans. Power Syst."
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "P. Etingov, L. Miller, Z. Hou, Y. Makarov, K. Pennock, P. Beaucage, C. Loutan, A. Motley, Balancing Needs Assessment Using Advanced Probabilistic Forecasts, in: IEEE Int. Conf. Probab. Methods App. Power Syst., PMAPS, 2018, pp. 1–6.",
+        "DOI": "10.1109/PMAPS.2018.8440392"
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b3",
+        "doi-asserted-by": "crossref",
+        "first-page": "146",
+        "DOI": "10.1016/j.ijepes.2017.11.002",
+        "article-title": "Impact of modelling non-normality and stochastic dependence of variables on operating reserve determination of power systems with high penetration of wind power",
+        "volume": "97",
+        "author": "Agah",
+        "year": "2018",
+        "journal-title": "Int. J. Elect. Power Energy Syst."
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.epsr.2024.110513_b4",
+        "doi-asserted-by": "crossref",
+        "first-page": "1019",
+        "DOI": "10.1109/TPWRS.2023.3252720",
+        "article-title": "Probabilistic forecasting-based reserve determination considering multi-temporal uncertainty of renewable energy generation",
+        "volume": "39",
+        "author": "Xu",
+        "year": "2024",
+        "journal-title": "IEEE Trans. Power Syst."
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.epsr.2024.110513_b5",
+        "doi-asserted-by": "crossref",
+        "first-page": "2281",
+        "DOI": "10.1109/TPWRS.2018.2884711",
+        "article-title": "Data-driven dynamic probabilistic reserve sizing based on dynamic Bayesian belief networks",
+        "volume": "34",
+        "author": "Fahiman",
+        "year": "2018",
+        "journal-title": "IEEE Trans. Power Syst."
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b6",
+        "doi-asserted-by": "crossref",
+        "first-page": "1077",
+        "DOI": "10.1016/j.rser.2015.12.070",
+        "article-title": "A comprehensive review on uncertainty modeling techniques in power system studies",
+        "volume": "57",
+        "author": "Aien",
+        "year": "2016",
+        "journal-title": "Renew. Sustain. Energy Rev."
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b7",
+        "doi-asserted-by": "crossref",
+        "unstructured": "S. Garg, S. Yamujala, P. Mathuria, R. Bhakar, H. Tiwari, Fuzzy-based Reserve Scheduling in Renewable Integrated Power Systems, in: IEEE Int. Conf. Energy, Power Environ., ICEPE, 2022, pp. 1–6.",
+        "DOI": "10.1109/ICEPE55035.2022.9798104"
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b8",
+        "doi-asserted-by": "crossref",
+        "first-page": "348",
+        "DOI": "10.1016/j.rser.2016.12.063",
+        "article-title": "Recent techniques to model uncertainties in power generation from renewable energy sources and loads in microgrids–a review",
+        "volume": "71",
+        "author": "Kumar",
+        "year": "2017",
+        "journal-title": "Renew. Sustain. Energy Rev."
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b9",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.apenergy.2019.113859",
+        "article-title": "An efficient robust optimization model for the unit commitment and dispatch of multi-energy systems and microgrids",
+        "volume": "261",
+        "author": "Moretti",
+        "year": "2020",
+        "journal-title": "Appl. Energy"
+      },
+      {
+        "issue": "6",
+        "key": "10.1016/j.epsr.2024.110513_b10",
+        "doi-asserted-by": "crossref",
+        "first-page": "5115",
+        "DOI": "10.1109/TPWRS.2016.2521882",
+        "article-title": "Frequency dynamics constrained unit commitment with battery energy storage",
+        "volume": "31",
+        "author": "Wen",
+        "year": "2016",
+        "journal-title": "IEEE Trans. Power Syst."
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b11",
+        "doi-asserted-by": "crossref",
+        "first-page": "586",
+        "DOI": "10.1016/j.egyr.2021.07.130",
+        "article-title": "The effect of correlation of uncertainties on collaborative optimization of integrated energy system",
+        "volume": "7",
+        "author": "Fu",
+        "year": "2021",
+        "journal-title": "Energy Rep."
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.epsr.2024.110513_b12",
+        "doi-asserted-by": "crossref",
+        "first-page": "2089",
+        "DOI": "10.1109/TIA.2021.3057359",
+        "article-title": "A polynomial chaos-based approach to quantify uncertainties of correlated renewable energy sources in voltage regulation",
+        "volume": "57",
+        "author": "Abdelmalak",
+        "year": "2021",
+        "journal-title": "IEEE Trans. Ind. Appl."
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b13",
+        "doi-asserted-by": "crossref",
+        "first-page": "262",
+        "DOI": "10.1016/j.ijepes.2019.03.066",
+        "article-title": "Impact of uncertainty and correlation on operation of micro-integrated energy system",
+        "volume": "112",
+        "author": "Qiao",
+        "year": "2019",
+        "journal-title": "Int. J. Elect. Power Energy Syst."
+      },
+      {
+        "issue": "5",
+        "key": "10.1016/j.epsr.2024.110513_b14",
+        "doi-asserted-by": "crossref",
+        "first-page": "4404",
+        "DOI": "10.1109/TPWRS.2022.3210106",
+        "article-title": "Modeling the reserve capacity of wind power and the inherent decision-dependent uncertainty in the power system economic dispatch",
+        "volume": "38",
+        "author": "Pan",
+        "year": "2023",
+        "journal-title": "IEEE Trans. Power Syst."
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b15",
+        "doi-asserted-by": "crossref",
+        "first-page": "522",
+        "DOI": "10.1016/j.epsr.2016.08.021",
+        "article-title": "Three-stage variability-based reserve modifiers for enhancing flexibility reserve requirements under high variable generation penetrations",
+        "volume": "141",
+        "author": "Krad",
+        "year": "2016",
+        "journal-title": "Electr. Power Syst. Res."
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.epsr.2024.110513_b16",
+        "doi-asserted-by": "crossref",
+        "first-page": "1086",
+        "DOI": "10.1109/TSTE.2022.3150965",
+        "article-title": "A frequency security constrained scheduling approach considering wind farm providing frequency support and reserve",
+        "volume": "13",
+        "author": "Zhang",
+        "year": "2022",
+        "journal-title": "IEEE Trans. Sustain. Energy"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.epsr.2024.110513_b17",
+        "doi-asserted-by": "crossref",
+        "first-page": "603",
+        "DOI": "10.1109/TPWRS.2022.3163106",
+        "article-title": "Operating dynamic reserve dimensioning using probabilistic forecasts",
+        "volume": "38",
+        "author": "Costilla-Enriquez",
+        "year": "2023",
+        "journal-title": "IEEE Trans. Power Syst."
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.epsr.2024.110513_b18",
+        "doi-asserted-by": "crossref",
+        "first-page": "65",
+        "DOI": "10.35833/MPCE.2023.000464",
+        "article-title": "Ensemble wind power prediction interval with optimal reserve requirement",
+        "volume": "12",
+        "author": "Rezaie",
+        "year": "2024",
+        "journal-title": "J. Mod. Power Syst. Clean Energy"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.epsr.2024.110513_b19",
+        "doi-asserted-by": "crossref",
+        "first-page": "2431",
+        "DOI": "10.1109/TPWRS.2019.2954844",
+        "article-title": "An endogenous approach to quantifying the wind power reserve",
+        "volume": "35",
+        "author": "Huang",
+        "year": "2020",
+        "journal-title": "IEEE Trans. Power Syst."
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.epsr.2024.110513_b20",
+        "doi-asserted-by": "crossref",
+        "first-page": "2473",
+        "DOI": "10.1109/TPWRS.2020.3030041",
+        "article-title": "A probabilistic method for reserve sizing in power grids with high renewable penetration",
+        "volume": "36",
+        "author": "Parker",
+        "year": "2020",
+        "journal-title": "IEEE Trans. Power Syst."
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b21",
+        "doi-asserted-by": "crossref",
+        "unstructured": "T.R. Garcia, M. Martinez, P. Mercado, A Review of Operating Reserves in Power Systems with High Penetration of Renewable Energy Sources, in: IEEE URUCON, 2021, pp. 194–199.",
+        "DOI": "10.1109/URUCON53396.2021.9647308"
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b22",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.energy.2021.123015",
+        "article-title": "Affine-arithmetic-based microgrid interval optimization considering uncertainty and battery energy storage system degradation",
+        "volume": "242",
+        "author": "Zhang",
+        "year": "2022",
+        "journal-title": "Energy"
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b23",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.epsr.2022.107872",
+        "article-title": "Global sensitivity analysis of static voltage stability based on extended affine model",
+        "volume": "208",
+        "author": "Liao",
+        "year": "2022",
+        "journal-title": "Electr. Power Syst. Res."
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b24",
+        "doi-asserted-by": "crossref",
+        "first-page": "713",
+        "DOI": "10.1016/j.ijepes.2019.03.022",
+        "article-title": "Affine arithmetic for efficient and reliable resolution of weather-based uncertainties in optimal power flow problems",
+        "volume": "110",
+        "author": "Coletta",
+        "year": "2019",
+        "journal-title": "Int. J. Elect. Power Energy Syst."
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.epsr.2024.110513_b25",
+        "first-page": "297",
+        "article-title": "An introduction to affine arithmetic",
+        "volume": "4",
+        "author": "Stolfi",
+        "year": "2003",
+        "journal-title": "Trends Comput. Appl. Math."
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.epsr.2024.110513_b26",
+        "doi-asserted-by": "crossref",
+        "first-page": "2142",
+        "DOI": "10.1109/TSTE.2018.2880919",
+        "article-title": "Robust energy and reserve scheduling under wind uncertainty considering fast-acting generators",
+        "volume": "10",
+        "author": "Cobos",
+        "year": "2018",
+        "journal-title": "IEEE Trans. Sustain. Energy"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.epsr.2024.110513_b27",
+        "doi-asserted-by": "crossref",
+        "first-page": "2989",
+        "DOI": "10.1109/TSG.2018.2816403",
+        "article-title": "An affine arithmetic-based energy management system for isolated microgrids",
+        "volume": "10",
+        "author": "Romero-Quete",
+        "year": "2019",
+        "journal-title": "IEEE Trans. Smart Grid"
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b28",
+        "series-title": "Affine Arithmetic-Based Methods for Uncertain Power System Analysis",
+        "author": "Vaccaro",
+        "year": "2022"
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b29",
+        "doi-asserted-by": "crossref",
+        "first-page": "147",
+        "DOI": "10.1023/B:NUMA.0000049462.70970.b6",
+        "article-title": "Affine arithmetic: Concepts and applications",
+        "volume": "37",
+        "author": "De Figueiredo",
+        "year": "2004",
+        "journal-title": "Numer. Algorithms"
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b30",
+        "first-page": "1",
+        "article-title": "Self-validated numerical methods and applications",
+        "author": "Stolfo",
+        "year": "1997"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.epsr.2024.110513_b31",
+        "doi-asserted-by": "crossref",
+        "first-page": "1430",
+        "DOI": "10.1109/TSG.2019.2938080",
+        "article-title": "A novel affine arithmetic method with missed the triangular domain with uncertainties",
+        "volume": "11",
+        "author": "Ran",
+        "year": "2019",
+        "journal-title": "IEEE Trans. Smart Grid"
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b32",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.epsr.2021.107633",
+        "article-title": "Uncertainty handling techniques in power systems: A critical review",
+        "volume": "203",
+        "author": "Singh",
+        "year": "2022",
+        "journal-title": "Electr. Power Syst. Res."
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b33",
+        "doi-asserted-by": "crossref",
+        "unstructured": "J. Zhu, W. Hu, X. Xu, S. Luo, H. Liu, C. Hu, W. Zhan, Q. Yan, Q. Huang, The Research on the Construction of Confidence Interval Model for Solar, Hydropower and Load Demand, in: Asia Energy Elect. Eng. Symp., AEEES, 2022, pp. 484–491.",
+        "DOI": "10.1109/AEEES54426.2022.9759567"
+      },
+      {
+        "issue": "1",
+        "key": "10.1016/j.epsr.2024.110513_b34",
+        "doi-asserted-by": "crossref",
+        "first-page": "274",
+        "DOI": "10.1109/TPWRS.2016.2565563",
+        "article-title": "An affine arithmetic-based framework for uncertain power flow and optimal power flow studies",
+        "volume": "32",
+        "author": "Vaccaro",
+        "year": "2016",
+        "journal-title": "IEEE Trans. Power Syst."
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b35",
+        "series-title": "Modern-era retrospective analysis for research and application",
+        "year": "2021"
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b36",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.apenergy.2020.115992",
+        "article-title": "Review of wind power scenario generation methods for optimal operation of renewable energy systems",
+        "volume": "280",
+        "author": "Li",
+        "year": "2020",
+        "journal-title": "App. Energy"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.epsr.2024.110513_b37",
+        "doi-asserted-by": "crossref",
+        "first-page": "970",
+        "DOI": "10.1109/TPWRS.2015.2434848",
+        "article-title": "Toward cost-efficient and reliable unit commitment under uncertainty",
+        "volume": "31",
+        "author": "Pandžić",
+        "year": "2016",
+        "journal-title": "IEEE Trans. Power Syst."
+      },
+      {
+        "key": "10.1016/j.epsr.2024.110513_b38",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1016/j.ijepes.2020.105853",
+        "article-title": "Interval based transmission contingency-constrained unit commitment for integrated energy systems with high renewable penetration",
+        "volume": "119",
+        "author": "Liang",
+        "year": "2020",
+        "journal-title": "Int. J. Elect. Power Energy Syst."
+      }
+    ],
+    "container-title": [
+      "Electric Power Systems Research"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0378779624003997?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S0378779624003997?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          11,
+          20
+        ]
+      ],
+      "date-time": "2024-11-20T16:07:03Z",
+      "timestamp": 1732118823000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0378779624003997"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          8
+        ]
+      ]
+    },
+    "references-count": 38,
+    "alternative-id": [
+      "S0378779624003997"
+    ],
+    "URL": "https://doi.org/10.1016/j.epsr.2024.110513",
+    "relation": {},
+    "ISSN": [
+      "0378-7796"
+    ],
+    "issn-type": [
+      {
+        "value": "0378-7796",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          8
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "Elsevier",
+        "name": "publisher",
+        "label": "This article is maintained by"
+      },
+      {
+        "value": "Affine arithmetic-based dynamic operating reserve quantification considering correlated load and renewable uncertainties",
+        "name": "articletitle",
+        "label": "Article Title"
+      },
+      {
+        "value": "Electric Power Systems Research",
+        "name": "journaltitle",
+        "label": "Journal Title"
+      },
+      {
+        "value": "https://doi.org/10.1016/j.epsr.2024.110513",
+        "name": "articlelink",
+        "label": "CrossRef DOI link to publisher maintained version"
+      },
+      {
+        "value": "article",
+        "name": "content_type",
+        "label": "Content Type"
+      },
+      {
+        "value": "© 2024 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies.",
+        "name": "copyright",
+        "label": "Copyright"
+      }
+    ],
+    "article-number": "110513"
+  }
+}

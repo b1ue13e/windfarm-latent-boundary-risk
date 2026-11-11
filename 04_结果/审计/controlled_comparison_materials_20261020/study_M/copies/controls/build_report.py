@@ -1,0 +1,113 @@
+"""Generate review tables from frozen no-refit evidence; never change results."""
+from pathlib import Path
+import csv
+import json
+
+import numpy as np
+
+HERE = Path(__file__).resolve().parent
+PAIRS = (("fresh_state", "F", "FZ"), ("old_state", "O6", "OZ6"), ("residual_state", "OP6", "OPZ6"))
+
+
+def read(name):
+    return json.loads((HERE / name).read_text(encoding="utf-8"))
+
+
+def write_csv(name, rows):
+    with (HERE / name).open("w", encoding="utf-8", newline="") as out:
+        writer = csv.DictWriter(out, fieldnames=list(rows[0]), lineterminator="\n")
+        writer.writeheader(); writer.writerows(rows)
+
+
+def main():
+    s, frozen, audit = read("summary.json"), read("frozen.json"), read("action_audit.json")
+    records, transfers = [], []
+    for w in range(10):
+        est, seed = ("HGB" if w < 5 else "MLP"), w % 5 + 201
+        root = HERE / "evidence/results"
+        shifts = json.loads((root / f"history/{w}/shifts.json").read_text())
+        scores = json.loads((root / f"evaluate/{w}/metrics.json").read_text())
+        with np.load(root / f"history/{w}/historical_blocks.npz") as h:
+            for recipe in ("Original", "Common"):
+                for name, base, state in PAIRS:
+                    def q(cell):
+                        return frozen["common_q_index"] if recipe == "Common" else frozen["original_choices"][est + ":" + cell]["q_index"]
+                    fit = shifts[f"{name}|{q(base)}|{q(state)}"]
+                    def selected_r(cell):
+                        return h[f"{recipe}|{cell}|R"].sum() / h[f"{recipe}|{cell}|N"].sum()
+                    transfer = dict(recipe=recipe, estimator=est, seed=seed, pair=name,
+                        base_q=[.9, .925, .95, .975, .99][q(base)], state_q=[.9, .925, .95, .975, .99][q(state)],
+                        delta_kw=fit["delta_kw"], offset_base_R=fit["base_mean_r_kw"] / 6,
+                        offset_state_R=fit["target_mean_r_kw"] / 6, offset_match_R=fit["matched_mean_r_kw"] / 6,
+                        numerical_match_error=fit["absolute_R_mean_error"],
+                        selection_base_R=selected_r(base), selection_state_R=selected_r(state), selection_match_R=selected_r("Match_" + name),
+                        evaluation_base_R=scores[f"{recipe}|{base}|primary"]["R"],
+                        evaluation_state_R=scores[f"{recipe}|{state}|primary"]["R"],
+                        evaluation_match_R=scores[f"{recipe}|Match_{name}|primary"]["R"])
+                    transfers.append(transfer)
+        for key, values in scores.items():
+            recipe, cell, population = key.split("|")
+            records.append(dict(estimator=est, seed=seed, recipe=recipe, policy=cell, population=population, **values))
+    write_csv("instance_metrics.csv", records)
+    write_csv("budget_transfer.csv", transfers)
+    pct = lambda x: f"{100*x:.3f}%"
+    def point(recipe, est, cell, field):
+        return s["mean_metrics"][field][s["labels"].index(f"{recipe}:{est}:{cell}")]
+    lines = ["# 修正B、共同档位与历史采购预算对照结果", "",
+        "**判断：保留主问题，值得继续一次严格限定的分配作用验证；当前不放行TSTE全线扩规模或新增训练。** 本轮已经按授权完成：修正版B、旧权重归档预测、共同offset档位、历史预算匹配、固定开发计分与独立审计。冻结A/B/C及状态分配/简单裕度充分性判据均未通过，不能宣布pitch独有信息价值或功率可替代。", "",
+        "继续的理由是同档位HGB的缺额改善仍存在，并有有限窗口的代数线索，值得把它预先冻结后反证；暂不扩规模的理由是历史预算匹配未能稳定转移、MLP不稳定、统计/组合/未见窗口责任未闭合。不是用失败对照证明方向无用，也不是用事后线索替换原验收。", "",
+        "## 1. 执行与B修正", "",
+        "新入口调用`state_measurement_controls.corrected_routes`，B只保留方案列明的OP相对OZ/OPZ缺额守门，不再要求旧信息两个更新各自额外过U门。原冻结程序、原154坐标报告与数值保留；本轮Original是同样原动作在新596坐标联合族中的重评，不能用其新区间追改旧区间。", "",
+        "共同q=.925，由原历史450坐标族中首个全60实例合格档确定。它是offset残差分位档，不是重新训练92.5%分位模型；原学习q=.90及全部权重保持。预算常数只拟合Day176—192主人口动作均值，Day193—210检验，冻结后才进行一次Day211—245开发计分。没有用开发采购差重新配平。", "",
+        "新训练0、采新测量0。复用旧权重绑定的已归档raw预测，核验60权重的哈希及原阶段输出；不是新拟合或独立确认。两估计器、五实例、三个状态对；原/共同两种选档，共180个策略实例。", "",
+        "## 2. 共同档位并未消除HGB的风险权衡", "",
+        "共同q下的主后果对（OP6→OPZ6）：", "",
+        "| 估计器 | 平均成本变化 | 平均采购R变化 | 平均未覆盖能量U变化 | 双方事件率资格 |",
+        "|---|---:|---:|---:|---|"]
+    for est in ("HGB", "MLP"):
+        change = {k: point("Common", est, "OPZ6", k) / point("Common", est, "OP6", k) - 1 for k in ("C", "R", "U")}
+        ok = all(s["jointly_qualified"][f"Common:{est}:{c}"] for c in ("OP6", "OPZ6"))
+        lines.append(f"| {est} | {pct(change['C'])} | {pct(change['R'])} | {pct(change['U'])} | {'通过历史/开发事件率门' if ok else '未闭合'} |")
+    lines += ["", "HGB共同档位下，成本增幅的近似开发联合区间为[−0.471%,+0.645%]，上界低于原1%尺度；功率/功率+pitch最大实例事件率上界分别7.271%/7.083%。这只表示事件率门通过，不等于全部逐实例U条件或现场可靠交付通过。", "",
+        "校准仍然显著影响解释：MLP旧信息加pitch在原独立选档时成本改善3.355%，共同档位后变为成本增加0.121%；不能把这两种程序的成本变化全部归给测量信息。HGB旧信息加pitch的成本改善约3.5%保留，但重要差下界仍未超过1%，且该状态策略未全部过事件率门。", "",
+        "## 3. 历史采购匹配确实精确，但转移失败", "",
+        "下面为共同档位HGB OP6/OPZ6及其无pitch预算对照，均是五实例均值；单位为代理kWh/有效机组间隔：", "",
+        "| 时段 | OP6采购R | OPZ6采购R | 历史匹配P-only采购R | OPZ6−OP6 | OPZ6−匹配对照 |",
+        "|---|---:|---:|---:|---:|---:|"]
+    selected = [x for x in transfers if x["recipe"] == "Common" and x["estimator"] == "HGB" and x["pair"] == "residual_state"]
+    for title, prefix in (("176—192拟合", "offset"), ("193—210历史检验", "selection"), ("211—245开发", "evaluation")):
+        p, z, m = [np.mean([x[f"{prefix}_{c}_R"] for x in selected]) for c in ("base", "state", "match")]
+        lines.append(f"| {title} | {p:.6f} | {z:.6f} | {m:.6f} | {z-p:+.6f} | {z-m:+.6f} |")
+    lines += ["", "历史拟合段要求OPZ6比OP6少买0.197922，得到平均约−1.18777 kW的常数；开发段OPZ6却比OP6多买0.284471。于是开发匹配对照比状态策略少采购0.482345，不能称开发期同预算。历史检验段也已出现偏移。**预算匹配失效是一个必须保留的结果，不能在开发期补配平后假称历史冻结。**", "",
+        "共同档位的HGB匹配后P-only严格事件率均值约20.067%，最大实例下界14.790%，本身已不满足原10%事件约束；不能拿它证明所有功率策略都不可替代。MLP匹配对照均通过历史/开发事件率检查，但U/成本界与预算差不支持稳定分配优势或简单裕度充分性。", "",
+        "**本轮历史标量预算匹配没有完成信息作用与采购量作用的完整识别。** 它既不证明9.57%都是信息收益，也不证明多买备用能够全部复现。", "",
+        "## 4. 第一性原理补充：可排除多大范围的均匀增购解释", "",
+        "这是审查后的代数检查，未构造新开发策略、未调整阈值或替换冻结通过条件，见`additional_purchase_bound.json`。对同一非负功率策略r，统一加d≥0：", "",
+        "U(r)−U(r+d)=mean[min((S−r)+,d)]/6 ≤ (d/6)V(r)。", "",
+        "统一加量的采购增量恰为d/6。因此，对于新增采购量不超过状态策略的任意常数加量，其U改善至多为ΔR·V_P。这个必要条件不需要用开发数据选出或评分某个d；它只给出对该常数类的放宽上界。", "",
+        "共同q下HGB逐实例的实际U改善与该上界：", "",
+        "| seed | 状态策略U下降 | 同新增采购均匀加量的U下降上界 | 超出上界 |",
+        "|---:|---:|---:|---:|"]
+    algebra = read("additional_purchase_bound.json")["records"]["Common:HGB"]
+    for seed, du, cap, gap in zip(algebra["seeds"], algebra["observed_U_decrease"], algebra["uniform_extra_purchase_U_decrease_upper"], algebra["excess_over_upper"]):
+        lines.append(f"| {seed} | {du:.6f} | {cap:.6f} | {gap:.6f} |")
+    lines += ["", "**在这个已观察窗口、共同q及这五个固定HGB实例中，从该P-only基线出发均匀多买不能解释全部U改善。** 原独立选档下并没有五实例一致超界；相同q也不证明基线已取得最优校准。五实例共享同一天气，不是五份独立天气证据。这个逐窗口代数事实尚无未见天气确认，也不能排除更强的无pitch自适应校准、学习程序误差或其他P-only策略；不能称Bayes纯信息价值、pitch物理因果作用或不可替代性。MLP没有重现一致关系。原596坐标验收仍全部未通过，不能用本节事后检查改写成通过。", "",
+        "## 5. 四个问题与继续决定", "",
+        "| 问题 | 本轮的实际推进 | 当前边界 |", "|---|---|---|",
+        "| Why care | 单一平均损失接近时，采购与未覆盖能量可不同；档位和预算约束会改变遥测价值解释 | 尚无现场采购/交付或PCC保证 |",
+        "| What's new | 同q HGB保留分配线索；历史预算转移失败可审查；同等采购均匀加量有可检验上界 | 不是已确认独有状态信息；新代数指标属事后解释，近邻完整排重未结束 |",
+        "| Why believe | 全部旧权重/输出身份、历史冻结、五实例配对、596坐标与独立账目 | MLP不稳定、35天气日近似推断、未见确认缺失 |",
+        "| Why TSTE | 若分配优势能击败更强P-only自适应校准并在组合净短缺/新窗口重现，会改变遥测采购与替代判断 | 本轮还不够进入TSTE完整实证扩规模，更不保证录用 |", "",
+        "**明确建议：继续保留主问题，当前算力扩展停止。** 下一步只值得先冻结一个更窄的反证命题：同档位下、严格控制采购代价，状态参与的既定程序是否具有超出常数增购及更强无pitch校准的分配优势。它不是要求pitch必须降低平均成本，也不把历史预算漂移解释成普遍部署规律。", "",
+        "继续门：必须在开发前冻结强P-only控制和采购约束、给出分配统计量及失败条件，并安排未用于提出该解释的确认窗口；还要检查单机U优势是否在组合净短缺后保留。若更强无pitch控制复现差异，或新窗口方向不稳，停止独有状态信息主张。当前没有为此新增拟合、采数、跨站或后续队列。", "",
+        "## 6. 完整性及审查入口", "",
+        f"- 54项相关本地测试（53项回归+1项代数）、Metis8项新测试通过；独立审计{audit['groups']}个人口/动作记录、{audit['checks']}项变换和账目检查通过。原有科学/数字门禁另记，不认证新统计覆盖率。",
+        "- 历史1100风险族覆盖原350及750个q-pair匹配控制；开发596坐标、20000组共享3天块，1/7天为敏感性。两段alpha各.05，不能合称全链95%保证。阈值仍1%成本、10%事件率、0.1%C*缺额，C*不变。",
+        "- 全部750个预算拟合误差见原shifts归档；实际使用的60条见[预算转移表](budget_transfer.csv)。[逐实例指标](instance_metrics.csv)、[主汇总](summary.json)、[区间](envelopes.json)、[冻结](frozen.json)、[独立账目审计](action_audit.json)。",
+        "- 部分派生证据包145成员逐文件SHA/大小验证，SHA256为`5ab254dc9ef39142085743a105ae84ab23201319e70cdec9da180e1328f046df`；全动作及旧权重在`/lstr/sahara/minlpml/junyu/state_calibration_controls_20261020_v1`及原parent目录。不是原始数据全量下载/本地重放包。",
+        "- [执行记录](EXECUTION.md)、[调度历史](scheduler_history.json)、[导出清单](export_manifest.json)、[事后代数检查](additional_purchase_bound.json)。原结果、论文和科学契约未修改。", ""]
+    (HERE / "REPORT.md").write_text("\n".join(lines), encoding="utf-8", newline="\n")
+
+
+if __name__ == "__main__":
+    main()

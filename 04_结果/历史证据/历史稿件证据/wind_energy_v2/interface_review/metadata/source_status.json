@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-20",
+  "task": "Existing-evidence V2 interface-use and neighbor-method verification",
+  "skill": "C:/Users/lidong/.agents/skills/deep-research/SKILL.md",
+  "mode": "bounded fact-check",
+  "exact_interface_use_status": "UNKNOWN_NOT_CLOSED",
+  "generic_postforecast_reserve_status": "VERIFIED_PRIOR_ART",
+  "real_forecast_dispatch_layering_status": "VERIFIED_DIFFERENT_AEMO_INTERFACE_2023",
+  "new_pdf_or_measurement_files_downloaded": false,
+  "new_measurements_previewed_or_parsed": false,
+  "public_pdf_methods_read_via_web": [
+    "10.1063/5.0087144",
+    "10.1016/j.ejor.2024.01.025",
+    "https://www.jmlr.org/papers/volume23/21-0403/21-0403.pdf",
+    "AEMO AWEFS/ASEFS version4 2023"
+  ],
+  "iea_part4_status": "INDEXED_EXCERPT_ONLY_DIRECT_FULLTEXT_READ_FAILED",
+  "neighbor_comparison_is_exhaustive": false,
+  "aemo_current_2026_configuration_certified": false,
+  "can_claim_real_input_reduction_value": false,
+  "new_experiments_inference_calibration_resampling_or_remote": false,
+  "original_manuscript_references_project_contract_edited": false,
+  "outreach_or_publication": false
+}

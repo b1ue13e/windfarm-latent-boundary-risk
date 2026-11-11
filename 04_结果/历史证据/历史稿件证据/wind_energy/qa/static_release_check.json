@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "scope": "Static reporting consistency, protected-source hashes, citation identity and document presence; not statistical coverage or journal acceptance",
+  "primary_display": {
+    "premium": "0.5641%",
+    "lower": "0.3575%",
+    "upper": "0.7708%",
+    "candidate_risk": "6.2025%",
+    "reference_risk": "6.2004%"
+  },
+  "word_counts": {
+    "abstract": 222,
+    "source_including_metadata": 5040
+  },
+  "pages": {
+    "manuscript": 14,
+    "supplementary": 10
+  },
+  "citations": 13,
+  "protected_files_unchanged": true
+}

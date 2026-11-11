@@ -1,0 +1,64 @@
+{
+  "record_id": 22662930,
+  "source_version": "2.1.0",
+  "doi": "10.5281/zenodo.22662930",
+  "license": "CC-BY-4.0",
+  "frozen_utc": "2026-10-19T02:00:19.050027+00:00",
+  "measurement_access_allowed": false,
+  "acquisition_script_sha256": "bc0fbd73324f09c9ea6f6c5cf2514fe8c8ad9b4ce686602672b37d8f0909a3e7",
+  "decision_protocol_sha256": "929c78cb1aa2c83edd7659236ee2dc3dbed240d5888b89df91b9562068a11c11",
+  "exposure": "Metadata inspected; source/year binding before this acquisition. No claim about all historical users of public data.",
+  "archives": [
+    {
+      "year": 2023,
+      "role": "train",
+      "name": "2023.zip",
+      "bytes": 1512000259,
+      "official_md5": "45eceb1855af89cf4dc215f2ab97eda1",
+      "url": "https://zenodo.org/api/records/22662930/files/2023.zip/content"
+    },
+    {
+      "year": 2024,
+      "role": "calibration",
+      "name": "2024.zip",
+      "bytes": 1557682397,
+      "official_md5": "89783562792fd71fc7a8543faf93ab18",
+      "url": "https://zenodo.org/api/records/22662930/files/2024.zip/content"
+    },
+    {
+      "year": 2025,
+      "role": "locked_test",
+      "name": "2025.zip",
+      "bytes": 1596220683,
+      "official_md5": "d3cd7edb535a45ffca1c7028b397f035",
+      "url": "https://zenodo.org/api/records/22662930/files/2025.zip/content"
+    }
+  ],
+  "metadata_sha256": {
+    "CHANGELOG.md": "9d403e8f53d158e60838bf03f28f2cb3d327e527a46e8a520f2794a3879fcfbe",
+    "github_LICENSE.txt": "1d792bdd257327e7f4416d82b830b571268adb141ad087a2157deca77e06bc4d",
+    "github_README.md": "0205b06ca92fc9dddb060e84a1c6bc1ef3e5e8a37bae214096421cfa7f3a275c",
+    "github_repository.json": "9be96354fd1b84fc3102e6ab190db2b808a5a6a625e9dd685f9445d8de181f19",
+    "github_scripts__uplift_analysis_2025__tune_up.py": "397ce4d165cc1fc7efcc2165d3b2e570fd331b3826febf7349dce3c1a5b9a5c4",
+    "github_tree.json": "15a4b6e531b27f0dfd4333031baf31defa515216b97b41e83fad53aef7a2b8da",
+    "Hill_of_Towie_AeroUp_install_dates.csv": "fca916cb2b32dfdd8cdf7d6fbb98e9f2ce15792267da3a717d861cd093d95191",
+    "Hill_of_Towie_alarms_description.csv": "2c0f042e7177474c79135bb1bf703a97acde45f05b723c7d3dab1b45411dea64",
+    "Hill_of_Towie_data_dictionary.md": "f7f4fc2f3fd58a925e1894e2f7ac00d6bde9c69883563a4653b1cf8c5f25cfc7",
+    "Hill_of_Towie_grid_fields_description.csv": "e9f382bdc834d1277ea574386ba4b49b2ee77006d6bd45836e33db430675bea7",
+    "Hill_of_Towie_tables_description.csv": "466bdd9571344f3590028d4b03be38b22ba830dbf8158ae9f11f95908ff79f47",
+    "Hill_of_Towie_turbine_fields_description.csv": "c09390ee56a51bec3f2d942a02b292fecf58f78fb9572c1fd74988778c083d9c",
+    "Hill_of_Towie_turbine_metadata.csv": "dd40789c2bf2268da9d77890cc48617266f3ed9d13c5af2be6d6535671f261bc",
+    "README.md": "152a9a0ca3b47fba7145f37b23dd3f8e87e3dd507ee69b40e18e878a2bc85767",
+    "zenodo_record_22662930.json": "4918ab195b5e48fa6ce007234cc8bffc17b26da188769915ef73d7685e1defcd"
+  },
+  "sealed_test_rule": "Opaque download and checksum only; no ZIP listing, decompression, CSV parsing, outcomes or models on 2025 before complete historical analysis package freeze. Acquisition script has no measurement parser.",
+  "qualifications": "SOURCE_METADATA_VERIFIED; actual 2023/24 schema and availability pending allocated-node audit; 2025 unopened; E07 inactive",
+  "interventions": [
+    "2023 AeroUp rollout ends May26",
+    "2024 TuneUp March-August validation campaign retained"
+  ],
+  "official_sources": [
+    "https://zenodo.org/records/22662930",
+    "https://github.com/resgroup/hill-of-towie-open-source-analysis"
+  ]
+}

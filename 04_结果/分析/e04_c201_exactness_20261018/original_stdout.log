@@ -1,0 +1,114 @@
+PLAN=/nfs/ihfs/home_metis/junyu/dsh-scratch/J04/e06_bundle/e04_execution_plan.json
+Using device: cuda:0
+Mask counts: Full=385205, Trans=139653 (36.25%), Steady=245552 (63.75%)
+Seed 201 Val Loss Wspd: 18,686,276, Val Loss Post: 19,002,624
+  Candidate wspd_band_0.5: Val Loss = 18,678,326 (diff vs Wspd: -7,950)
+  Candidate wspd_band_1.0: Val Loss = 18,676,354 (diff vs Wspd: -9,922)
+  Candidate wspd_band_1.5: Val Loss = 18,667,518 (diff vs Wspd: -18,758)
+  Candidate wspd_band_2.0: Val Loss = 18,672,846 (diff vs Wspd: -13,430)
+  Candidate post_ge_0.05: Val Loss = 18,948,216 (diff vs Wspd: +261,940)
+  Candidate post_ge_0.1: Val Loss = 18,949,804 (diff vs Wspd: +263,528)
+  Candidate post_ge_0.2: Val Loss = 18,950,784 (diff vs Wspd: +264,508)
+  Candidate post_ge_0.5: Val Loss = 18,952,426 (diff vs Wspd: +266,150)
+  Candidate post_band_0.1_0.9: Val Loss = 18,682,596 (diff vs Wspd: -3,680)
+  Candidate post_band_0.2_0.8: Val Loss = 18,683,808 (diff vs Wspd: -2,468)
+  Candidate post_band_0.05_0.95: Val Loss = 18,680,924 (diff vs Wspd: -5,352)
+  Best Val Rule: wspd_band_1.5 with Val Loss = 18,667,518
+Seed 201 Bootstrap Contrasts (L_C - L_B in kWh):
+  Delta_trans:  -5,994 [-52,658, +39,764] (p=0.4020)
+  Delta_steady: +365,981 [+181,791, +564,169] (p=0.0000)
+  Interaction (trans - steady): -371,974 [-574,215, -195,093] (p=0.0000)
+Seed 202 Val Loss Wspd: 20,477,766, Val Loss Post: 21,028,992
+  Candidate wspd_band_0.5: Val Loss = 20,474,736 (diff vs Wspd: -3,030)
+  Candidate wspd_band_1.0: Val Loss = 20,477,128 (diff vs Wspd: -638)
+  Candidate wspd_band_1.5: Val Loss = 20,492,870 (diff vs Wspd: +15,104)
+  Candidate wspd_band_2.0: Val Loss = 20,498,360 (diff vs Wspd: +20,594)
+  Candidate post_ge_0.05: Val Loss = 20,722,832 (diff vs Wspd: +245,066)
+  Candidate post_ge_0.1: Val Loss = 20,722,660 (diff vs Wspd: +244,894)
+  Candidate post_ge_0.2: Val Loss = 20,721,776 (diff vs Wspd: +244,010)
+  Candidate post_ge_0.5: Val Loss = 20,723,214 (diff vs Wspd: +245,448)
+  Candidate post_band_0.1_0.9: Val Loss = 20,475,988 (diff vs Wspd: -1,778)
+  Candidate post_band_0.2_0.8: Val Loss = 20,475,896 (diff vs Wspd: -1,870)
+  Candidate post_band_0.05_0.95: Val Loss = 20,475,464 (diff vs Wspd: -2,302)
+  Best Val Rule: wspd_band_0.5 with Val Loss = 20,474,736
+Seed 202 Bootstrap Contrasts (L_C - L_B in kWh):
+  Delta_trans:  +155,737 [+88,079, +228,255] (p=0.0000)
+  Delta_steady: +650,138 [+345,434, +990,054] (p=0.0000)
+  Interaction (trans - steady): -494,401 [-816,998, -191,847] (p=0.0000)
+Seed 203 Val Loss Wspd: 21,738,324, Val Loss Post: 22,544,796
+  Candidate wspd_band_0.5: Val Loss = 21,750,178 (diff vs Wspd: +11,854)
+  Candidate wspd_band_1.0: Val Loss = 21,779,396 (diff vs Wspd: +41,072)
+  Candidate wspd_band_1.5: Val Loss = 21,813,650 (diff vs Wspd: +75,326)
+  Candidate wspd_band_2.0: Val Loss = 21,824,884 (diff vs Wspd: +86,560)
+  Candidate post_ge_0.05: Val Loss = 22,446,556 (diff vs Wspd: +708,232)
+  Candidate post_ge_0.1: Val Loss = 22,445,520 (diff vs Wspd: +707,196)
+  Candidate post_ge_0.2: Val Loss = 22,443,920 (diff vs Wspd: +705,596)
+  Candidate post_ge_0.5: Val Loss = 22,442,020 (diff vs Wspd: +703,696)
+  Candidate post_band_0.1_0.9: Val Loss = 21,740,292 (diff vs Wspd: +1,968)
+  Candidate post_band_0.2_0.8: Val Loss = 21,738,910 (diff vs Wspd: +586)
+  Candidate post_band_0.05_0.95: Val Loss = 21,741,310 (diff vs Wspd: +2,986)
+  Best Val Rule: post_band_0.2_0.8 with Val Loss = 21,738,910
+Seed 203 Bootstrap Contrasts (L_C - L_B in kWh):
+  Delta_trans:  +184,915 [+99,689, +297,548] (p=0.0000)
+  Delta_steady: +703,814 [+384,918, +1,027,419] (p=0.0000)
+  Interaction (trans - steady): -518,900 [-801,193, -244,851] (p=0.0000)
+Seed 204 Val Loss Wspd: 20,378,636, Val Loss Post: 21,051,352
+  Candidate wspd_band_0.5: Val Loss = 20,383,572 (diff vs Wspd: +4,936)
+  Candidate wspd_band_1.0: Val Loss = 20,400,948 (diff vs Wspd: +22,312)
+  Candidate wspd_band_1.5: Val Loss = 20,426,326 (diff vs Wspd: +47,690)
+  Candidate wspd_band_2.0: Val Loss = 20,439,566 (diff vs Wspd: +60,930)
+  Candidate post_ge_0.05: Val Loss = 20,826,312 (diff vs Wspd: +447,676)
+  Candidate post_ge_0.1: Val Loss = 20,826,856 (diff vs Wspd: +448,220)
+  Candidate post_ge_0.2: Val Loss = 20,828,092 (diff vs Wspd: +449,456)
+  Candidate post_ge_0.5: Val Loss = 20,828,276 (diff vs Wspd: +449,640)
+  Candidate post_band_0.1_0.9: Val Loss = 20,388,480 (diff vs Wspd: +9,844)
+  Candidate post_band_0.2_0.8: Val Loss = 20,385,116 (diff vs Wspd: +6,480)
+  Candidate post_band_0.05_0.95: Val Loss = 20,390,684 (diff vs Wspd: +12,048)
+  Best Val Rule: wspd_band_0.5 with Val Loss = 20,383,572
+Seed 204 Bootstrap Contrasts (L_C - L_B in kWh):
+  Delta_trans:  +13,566 [-23,850, +55,028] (p=0.2510)
+  Delta_steady: +381,831 [+142,500, +631,546] (p=0.0010)
+  Interaction (trans - steady): -368,265 [-610,289, -136,261] (p=0.0010)
+Seed 205 Val Loss Wspd: 21,367,692, Val Loss Post: 21,613,312
+  Candidate wspd_band_0.5: Val Loss = 21,362,286 (diff vs Wspd: -5,406)
+  Candidate wspd_band_1.0: Val Loss = 21,368,632 (diff vs Wspd: +940)
+  Candidate wspd_band_1.5: Val Loss = 21,390,916 (diff vs Wspd: +23,224)
+  Candidate wspd_band_2.0: Val Loss = 21,413,216 (diff vs Wspd: +45,524)
+  Candidate post_ge_0.05: Val Loss = 21,700,406 (diff vs Wspd: +332,714)
+  Candidate post_ge_0.1: Val Loss = 21,696,990 (diff vs Wspd: +329,298)
+  Candidate post_ge_0.2: Val Loss = 21,691,434 (diff vs Wspd: +323,742)
+  Candidate post_ge_0.5: Val Loss = 21,682,660 (diff vs Wspd: +314,968)
+  Candidate post_band_0.1_0.9: Val Loss = 21,395,560 (diff vs Wspd: +27,868)
+  Candidate post_band_0.2_0.8: Val Loss = 21,385,444 (diff vs Wspd: +17,752)
+  Candidate post_band_0.05_0.95: Val Loss = 21,402,700 (diff vs Wspd: +35,008)
+  Best Val Rule: wspd_band_0.5 with Val Loss = 21,362,286
+Seed 205 Bootstrap Contrasts (L_C - L_B in kWh):
+  Delta_trans:  +6,132 [-44,364, +53,920] (p=0.3940)
+  Delta_steady: -242,483 [-472,647, -43,483] (p=0.0080)
+  Interaction (trans - steady): +248,615 [+42,484, +470,937] (p=0.0040)
+
+================== 5-SEED SUMMARY TABLE ==================
+
+--- Population: Full ---
+Policy A (Policy_A): PSREI=17,725,306 +- 1,907,410 kWh | Res=13,134,891 | Viol=6.33% | Short=459,041 kWh | Delta=+2,745,995
+Policy B (Policy_B): PSREI=14,979,310 +- 1,332,678 kWh | Res=10,527,334 | Viol=10.28% | Short=445,198 kWh | Delta=0
+Policy C (Policy_C): PSREI=15,424,949 +- 1,559,853 kWh | Res=10,441,358 | Viol=10.44% | Short=498,359 kWh | Delta=+445,639
+Policy D (Policy_D): PSREI=14,990,724 +- 1,325,542 kWh | Res=10,542,125 | Viol=10.28% | Short=444,860 kWh | Delta=+11,414
+Policy D10 (Policy_D10): PSREI=14,994,058 +- 1,334,243 kWh | Res=10,570,331 | Viol=10.26% | Short=442,373 kWh | Delta=+14,747
+
+--- Population: Transition ---
+Policy A (Policy_A): PSREI=5,749,267 +- 714,471 kWh | Res=4,761,950 | Viol=3.52% | Short=98,732 kWh | Delta=+1,177,155
+Policy B (Policy_B): PSREI=4,572,112 +- 407,994 kWh | Res=3,442,931 | Viol=9.77% | Short=112,918 kWh | Delta=0
+Policy C (Policy_C): PSREI=4,643,315 +- 472,983 kWh | Res=3,582,637 | Viol=8.48% | Short=106,068 kWh | Delta=+71,204
+Policy D (Policy_D): PSREI=4,579,398 +- 405,045 kWh | Res=3,455,364 | Viol=9.76% | Short=112,403 kWh | Delta=+7,286
+Policy D10 (Policy_D10): PSREI=4,583,967 +- 410,816 kWh | Res=3,473,986 | Viol=9.73% | Short=110,998 kWh | Delta=+11,856
+
+--- Population: Steady ---
+Policy A (Policy_A): PSREI=11,976,039 +- 1,200,336 kWh | Res=8,372,941 | Viol=7.93% | Short=360,310 kWh | Delta=+1,568,841
+Policy B (Policy_B): PSREI=10,407,198 +- 957,117 kWh | Res=7,084,403 | Viol=10.57% | Short=332,280 kWh | Delta=0
+Policy C (Policy_C): PSREI=10,781,634 +- 1,130,662 kWh | Res=6,858,721 | Viol=11.56% | Short=392,291 kWh | Delta=+374,436
+Policy D (Policy_D): PSREI=10,411,327 +- 953,818 kWh | Res=7,086,760 | Viol=10.57% | Short=332,457 kWh | Delta=+4,129
+Policy D10 (Policy_D10): PSREI=10,410,090 +- 955,976 kWh | Res=7,096,345 | Viol=10.56% | Short=331,375 kWh | Delta=+2,892
+
+Successfully wrote summary to /home/junyu/dsh-scratch/J04/e06_bundle/strong_baseline_closure_summary.csv
+Successfully wrote bootstrap contrasts to /home/junyu/dsh-scratch/J04/e06_bundle/strong_baseline_bootstrap_contrasts.csv

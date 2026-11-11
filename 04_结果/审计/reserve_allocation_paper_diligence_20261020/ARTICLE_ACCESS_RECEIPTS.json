@@ -1,0 +1,24 @@
+[
+  {
+    "url": "https://api.elsevier.com/content/article/PII:S2666546826002260?httpAccept=text/xml",
+    "kind": "official_registered_article_XML_not_measurement",
+    "status": 200,
+    "bytes": 1938,
+    "type": "text/xml;charset=UTF-8",
+    "tag_counts": {
+      "body": 0,
+      "sections": 0,
+      "section": 0,
+      "para": 0,
+      "full-text-retrieval-response": 1,
+      "originalText": 0
+    },
+    "full_method_sections_present": false
+  },
+  {
+    "url": "https://api.elsevier.com/content/article/PII:S2213138826006247?httpAccept=text/xml",
+    "kind": "official_registered_article_XML_not_measurement",
+    "error": "HTTPError",
+    "message": "HTTP Error 429: Too Many Requests"
+  }
+]

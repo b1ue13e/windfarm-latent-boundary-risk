@@ -1,0 +1,15 @@
+{
+  "auditable": true,
+  "width_mm": 181.86399999999998,
+  "text_count": 35,
+  "minimum_found_pt": 7.2,
+  "maximum_found_pt": 9.0,
+  "thresholds": {
+    "min_pt": 7,
+    "max_pt": 10,
+    "max_width_mm": 183
+  },
+  "findings": [],
+  "verdict": "PASS",
+  "tool_workaround": "Supplied missing math import in isolated checker module; no rules or thresholds changed"
+}

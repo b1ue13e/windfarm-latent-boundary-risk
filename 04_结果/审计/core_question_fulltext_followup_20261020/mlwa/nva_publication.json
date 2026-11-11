@@ -1,0 +1,428 @@
+{
+  "type" : "Publication",
+  "identifier" : "01a014031ebd-f999b58e-d400-4951-8306-979b270587b1",
+  "status" : "PUBLISHED",
+  "resourceOwner" : {
+    "owner" : "24773@20754.0.0.0",
+    "ownerAffiliation" : "https://api.nva.unit.no/cristin/organization/20754.0.0.0"
+  },
+  "publisher" : {
+    "type" : "Organization",
+    "id" : "https://api.nva.unit.no/customer/22139870-8d31-4df9-bc45-14eb68287c4a"
+  },
+  "createdDate" : "2026-08-18T08:35:43.933050073Z",
+  "modifiedDate" : "2026-08-18T08:35:45.053449950Z",
+  "publishedDate" : "2026-08-18T08:35:43.933050073Z",
+  "entityDescription" : {
+    "type" : "EntityDescription",
+    "mainTitle" : "Explainable uncertainty quantification in probabilistic wind power forecasting",
+    "alternativeTitles" : { },
+    "language" : "http://lexvo.org/id/iso639-3/eng",
+    "publicationDate" : {
+      "type" : "PublicationDate",
+      "year" : "2026",
+      "month" : "7",
+      "day" : "16"
+    },
+    "contributors" : [ {
+      "type" : "Contributor",
+      "identity" : {
+        "type" : "Identity",
+        "id" : "https://api.nva.unit.no/cristin/person/1695667",
+        "name" : "Ege Kandemir",
+        "verificationStatus" : "Verified",
+        "additionalIdentifiers" : [ {
+          "type" : "AdditionalIdentifier",
+          "sourceName" : "scopus-auid",
+          "value" : "58570001500"
+        } ]
+      },
+      "affiliations" : [ {
+        "type" : "Organization",
+        "id" : "https://api.nva.unit.no/cristin/organization/194.63.55.0"
+      } ],
+      "role" : {
+        "type" : "Creator"
+      },
+      "sequence" : 1,
+      "correspondingAuthor" : true
+    }, {
+      "type" : "Contributor",
+      "identity" : {
+        "type" : "Identity",
+        "id" : "https://api.nva.unit.no/cristin/person/31011",
+        "name" : "Trond Kvamsdal",
+        "orcId" : "0000-0002-1615-7649",
+        "verificationStatus" : "Verified",
+        "additionalIdentifiers" : [ {
+          "type" : "AdditionalIdentifier",
+          "sourceName" : "scopus-auid",
+          "value" : "6602498949"
+        } ]
+      },
+      "affiliations" : [ {
+        "type" : "Organization",
+        "id" : "https://api.nva.unit.no/cristin/organization/194.63.15.0"
+      } ],
+      "role" : {
+        "type" : "Creator"
+      },
+      "sequence" : 2,
+      "correspondingAuthor" : false
+    }, {
+      "type" : "Contributor",
+      "identity" : {
+        "type" : "Identity",
+        "id" : "https://api.nva.unit.no/cristin/person/28255",
+        "name" : "Agus Ismail Hasan",
+        "orcId" : "0000-0003-1434-2696",
+        "verificationStatus" : "Verified",
+        "additionalIdentifiers" : [ {
+          "type" : "AdditionalIdentifier",
+          "sourceName" : "scopus-auid",
+          "value" : "56402021300"
+        } ]
+      },
+      "affiliations" : [ {
+        "type" : "Organization",
+        "id" : "https://api.nva.unit.no/cristin/organization/194.63.55.0"
+      } ],
+      "role" : {
+        "type" : "Creator"
+      },
+      "sequence" : 3,
+      "correspondingAuthor" : false
+    }, {
+      "type" : "Contributor",
+      "identity" : {
+        "type" : "Identity",
+        "id" : "https://api.nva.unit.no/cristin/person/538485",
+        "name" : "Saleh Abdel-Afou Alaliyat",
+        "orcId" : "https://orcid.org/0000-0002-6378-0900",
+        "verificationStatus" : "Verified",
+        "additionalIdentifiers" : [ {
+          "type" : "AdditionalIdentifier",
+          "sourceName" : "scopus-auid",
+          "value" : "56154284700"
+        } ]
+      },
+      "affiliations" : [ {
+        "type" : "Organization",
+        "id" : "https://api.nva.unit.no/cristin/organization/194.63.55.0"
+      } ],
+      "role" : {
+        "type" : "Creator"
+      },
+      "sequence" : 4,
+      "correspondingAuthor" : false
+    } ],
+    "alternativeAbstracts" : { },
+    "tags" : [ "Explainable uncertainty", "Hybrid forecasting", "Probabilistic forecasting", "Uncertainty quantification", "Wind power forecasting" ],
+    "reference" : {
+      "type" : "Reference",
+      "publicationContext" : {
+        "type" : "Journal",
+        "id" : "https://api.nva.unit.no/publication-channels-v2/serial-publication/A568EEC6-5B60-48E1-8111-BF8A5EF14BDD/2026"
+      },
+      "doi" : "https://doi.org/10.1016/j.mlwa.2026.100957",
+      "publicationInstance" : {
+        "type" : "AcademicArticle",
+        "volume" : "25",
+        "articleNumber" : "100957"
+      }
+    }
+  },
+  "projects" : [ ],
+  "fundings" : [ ],
+  "subjects" : [ ],
+  "associatedArtifacts" : [ ],
+  "importDetails" : [ ],
+  "additionalIdentifiers" : [ {
+    "type" : "ScopusIdentifier",
+    "sourceName" : "scopus@null",
+    "value" : "2-s2.0-105044960811"
+  }, {
+    "type" : "HandleIdentifier",
+    "sourceName" : "nva@sikt",
+    "value" : "https://hdl.handle.net/11250/5558015"
+  }, {
+    "type" : "CristinIdentifier",
+    "sourceName" : "nva@null",
+    "value" : "10482620"
+  } ],
+  "allowedOperations" : [ ],
+  "pendingOpenFileCount" : 0,
+  "@context" : {
+    "@vocab" : "https://nva.sikt.no/ontology/publication#",
+    "activeFrom" : {
+      "@type" : "xsd:dateTime"
+    },
+    "activeTo" : {
+      "@type" : "xsd:dateTime"
+    },
+    "additionalIdentifiers" : {
+      "@container" : "@set",
+      "@id" : "additionalIdentifier"
+    },
+    "administrativeAgreement" : {
+      "@id" : "administrativeAgreement",
+      "@type" : "xsd:boolean"
+    },
+    "affiliations" : {
+      "@container" : "@set",
+      "@id" : "affiliation",
+      "@context" : {
+        "institutionId" : {
+          "@id" : "affiliationInstitutionId"
+        }
+      }
+    },
+    "alternativeAbstracts" : {
+      "@container" : "@language",
+      "@id" : "alternativeAbstract"
+    },
+    "alternativeTitles" : {
+      "@container" : "@language",
+      "@id" : "alternativeTitle"
+    },
+    "amount" : {
+      "@type" : "xsd:integer"
+    },
+    "approvalStatus" : {
+      "@context" : {
+        "@vocab" : "https://nva.sikt.no/ontology/publication#"
+      },
+      "@type" : "@vocab"
+    },
+    "approvals" : {
+      "@container" : "@set",
+      "@id" : "approval"
+    },
+    "approvedBy" : {
+      "@context" : {
+        "@vocab" : "https://nva.sikt.no/ontology/approvals-body#"
+      },
+      "@type" : "@vocab"
+    },
+    "architectureOutput" : {
+      "@container" : "@set",
+      "@id" : "architectureOutput"
+    },
+    "associatedArtifacts" : {
+      "@container" : "@set",
+      "@id" : "associatedArtifact"
+    },
+    "compliesWith" : {
+      "@container" : "@set",
+      "@id" : "compliesWith"
+    },
+    "concertProgramme" : {
+      "@container" : "@set",
+      "@id" : "concertProgramme"
+    },
+    "contributorCristinIds" : null,
+    "contributorsPreview" : {
+      "@container" : "@set"
+    },
+    "contributorOrganizations" : {
+      "@container" : "@set",
+      "@id" : "contributorOrganization",
+      "@type" : "@id"
+    },
+    "contributors" : {
+      "@container" : "@set",
+      "@id" : "contributor"
+    },
+    "correspondingAuthor" : {
+      "@type" : "xsd:boolean"
+    },
+    "countryCode" : {
+      "@id" : "country"
+    },
+    "createdDate" : {
+      "@type" : "xsd:dateTime"
+    },
+    "curatingInstitutions" : {
+      "@container" : "@set",
+      "@id" : "curatingOrganization",
+      "@type" : "@id"
+    },
+    "days" : {
+      "@type" : "xsd:integer"
+    },
+    "doi" : {
+      "@type" : "@id"
+    },
+    "duplicateOf" : {
+      "@type" : "@id"
+    },
+    "embargoDate" : {
+      "@type" : "xsd:dateTime"
+    },
+    "extent" : {
+      "@type" : "xsd:integer"
+    },
+    "from" : {
+      "@type" : "xsd:dateTime"
+    },
+    "fundings" : {
+      "@container" : "@set",
+      "@id" : "funding"
+    },
+    "handle" : {
+      "@type" : "@id"
+    },
+    "hasPart" : {
+      "@container" : "@set"
+    },
+    "hours" : {
+      "@type" : "xsd:integer"
+    },
+    "id" : "@id",
+    "illustrated" : {
+      "@type" : "xsd:boolean"
+    },
+    "importDetails" : {
+      "@container" : "@set",
+      "@id" : "importDetail"
+    },
+    "indexedDate" : {
+      "@type" : "xsd:dateTime"
+    },
+    "isbnList" : {
+      "@container" : "@set",
+      "@id" : "isbn"
+    },
+    "labels" : {
+      "@container" : "@language",
+      "@id" : "label"
+    },
+    "language" : {
+      "@type" : "@id"
+    },
+    "license" : {
+      "@type" : "@id"
+    },
+    "link" : {
+      "@type" : "@id"
+    },
+    "manifestations" : {
+      "@container" : "@set",
+      "@id" : "manifestation"
+    },
+    "metadataSource" : {
+      "@type" : "@id"
+    },
+    "minutes" : {
+      "@type" : "xsd:integer"
+    },
+    "modifiedDate" : {
+      "@type" : "xsd:dateTime"
+    },
+    "musicalWorks" : {
+      "@container" : "@set",
+      "@id" : "musicalWork"
+    },
+    "nameType" : {
+      "@context" : {
+        "@vocab" : "https://nva.sikt.no/ontology/publication#"
+      },
+      "@type" : "@vocab"
+    },
+    "outputs" : {
+      "@container" : "@set",
+      "@id" : "output"
+    },
+    "ownerAffiliation" : {
+      "@type" : "@id"
+    },
+    "partOf" : {
+      "@container" : "@set"
+    },
+    "premiere" : {
+      "@type" : "xsd:boolean"
+    },
+    "projects" : {
+      "@container" : "@set",
+      "@id" : "project"
+    },
+    "publicationNotes" : {
+      "@container" : "@set",
+      "@id" : "publicationNote"
+    },
+    "publishedDate" : {
+      "@type" : "xsd:dateTime"
+    },
+    "ranking" : {
+      "@type" : "xsd:integer"
+    },
+    "referencedBy" : {
+      "@container" : "@set",
+      "@id" : "referencedBy"
+    },
+    "related" : {
+      "@container" : "@set",
+      "@id" : "related"
+    },
+    "role" : {
+      "@id" : "role"
+    },
+    "sequence" : {
+      "@type" : "xsd:integer"
+    },
+    "size" : {
+      "@type" : "xsd:integer"
+    },
+    "source" : {
+      "@type" : "@id"
+    },
+    "status" : {
+      "@context" : {
+        "@vocab" : "https://nva.sikt.no/ontology/publication#"
+      },
+      "@type" : "@vocab"
+    },
+    "subjects" : {
+      "@container" : "@set",
+      "@id" : "subject",
+      "@type" : "@id"
+    },
+    "tags" : {
+      "@container" : "@set",
+      "@id" : "tag"
+    },
+    "to" : {
+      "@type" : "xsd:dateTime"
+    },
+    "topLevelOrganizations" : {
+      "@container" : "@set",
+      "@id" : "topLevelOrganization"
+    },
+    "trackList" : {
+      "@container" : "@set",
+      "@id" : "trackList"
+    },
+    "type" : "@type",
+    "userAgreesToTermsAndConditions" : {
+      "@type" : "xsd:boolean"
+    },
+    "valid" : {
+      "@type" : "xsd:boolean"
+    },
+    "venues" : {
+      "@container" : "@set",
+      "@id" : "venue"
+    },
+    "visibleForNonOwner" : {
+      "@type" : "xsd:boolean"
+    },
+    "weeks" : {
+      "@type" : "xsd:integer"
+    },
+    "pendingOpenFileCount" : {
+      "@type" : "xsd:integer"
+    },
+    "xsd" : "http://www.w3.org/2001/XMLSchema#"
+  },
+  "id" : "https://api.nva.unit.no/publication/01a014031ebd-f999b58e-d400-4951-8306-979b270587b1"
+}

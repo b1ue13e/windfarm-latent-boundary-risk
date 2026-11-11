@@ -1,0 +1,16 @@
+{
+  "status": "NO_ELIGIBLE_WINDOW_FOUND_IN_AUDITED_SCOPES",
+  "parent_git_commit": "b4541493139d659e58a8aade1d70cd33723acee0",
+  "tests_passed": 43,
+  "scientific_claim_gate": "PASS",
+  "number_consistency_gate": "complete_tste_number_consistency",
+  "collector_same_source_both_hosts": true,
+  "remote_transport_sha256_exact": true,
+  "original_38_inputs_unchanged": true,
+  "scientific_configuration_sections_unchanged": true,
+  "confirmatory_manifest_still_null": true,
+  "calibration_run": false,
+  "future_outcome_values_interpreted": false,
+  "final_availability_manifest_sha256": "327e0c96b406d2e8a5554a95bfcc7be93a068c64187cd7a4c3d9ffa077a9fdc3",
+  "protocol_update_attestation_sha256": "a7da1982560f2304e32c93d1cf180889ff079ea6f63476d6ef02e00ee99a46a4"
+}

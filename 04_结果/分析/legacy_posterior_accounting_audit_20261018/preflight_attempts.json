@@ -1,0 +1,11 @@
+[
+  {
+    "attempt": 1,
+    "result": "AUDIT_CHECKER_ERROR_BEFORE_NUMERIC_DIAGNOSIS",
+    "exception": "KeyError: artifacts/fixed_forecast_residuals.npz",
+    "cause": "Windows path separators in new audit hash dictionary",
+    "fix": "Use repository-relative POSIX keys",
+    "output_directory_created": false,
+    "original_assets_written": false
+  }
+]

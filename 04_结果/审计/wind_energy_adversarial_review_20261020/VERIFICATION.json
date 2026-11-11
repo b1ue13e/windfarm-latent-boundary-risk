@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "created_utc": "2026-10-20T11:04:45.314761+00:00",
+  "candidate_commit": "2b6eb3d373f075e6c7b2e93e8420a0e30f04ab7b",
+  "protected_files_checked": 101,
+  "stored_bridge_sources_checked": 2,
+  "manuscript_figures_contract_and_preexisting_dirty_files_unchanged": true,
+  "legacy_scientific_gate": "PASS",
+  "legacy_cached_number_checks": 77,
+  "legacy_cached_number_failures": 0,
+  "independent_archive_gate": "PASS",
+  "no_new_interval_estimation": true,
+  "reports": {
+    "REVIEW.md": "2388305a2634777c590e937a69990942176aaecd999954152d0fa169704c5284",
+    "reviewer_claim_figures.md": "4d9bc1ea2025e3ad18ac510becbd03640a3ebe22d722207aef8f7fb8b579a30a",
+    "reviewer_editor_novelty.md": "7d07e0e7a3c5a0425e2c62e6c3d6a3d04fc46bcc87f0d80f3d4e7efc500b3556",
+    "reviewer_methods.md": "e75f2317b3c099a5cde9042e22ea425dc956032a198133be37e6d40c20bf2292"
+  },
+  "scope": "Identity and consistency verification only; no novelty/coverage/deployment certification"
+}

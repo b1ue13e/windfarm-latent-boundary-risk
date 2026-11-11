@@ -1,0 +1,95 @@
+{
+  "status": "DOCUMENT_REFRAMING_ONLY_NOT_SCIENTIFIC_CERTIFICATION",
+  "date": "2026-10-20",
+  "protected_files": [
+    {
+      "path": "AGENTS.md",
+      "unchanged": true,
+      "sha256": "B1FEB8E637FD05BAEEACE62925F086257BB2B9AF7C0905C25F636DC8EC92C993",
+      "bytes": 5487
+    },
+    {
+      "path": "paper_tste_ieee.md",
+      "unchanged": true,
+      "sha256": "B9E5E417ABDE1856201E21C6022A994C0601010340B19CC0EE4B4F5F31D17456",
+      "bytes": 69591
+    },
+    {
+      "path": "paper_tste_supplementary.md",
+      "unchanged": true,
+      "sha256": "43487C70FEACC9F0EDFB991E56CE342ACFA5DC9C678534BC6A42A9EAEB02065E",
+      "bytes": 179061
+    },
+    {
+      "path": "paper_tste_chinese.md",
+      "unchanged": true,
+      "sha256": "14CDC51DF2AD440F8C96EAB97C7B450D04437C1599EB4C3C65010280D673352F",
+      "bytes": 58116
+    },
+    {
+      "path": "docs/SCIENTIFIC_CONTRACT.md",
+      "unchanged": true,
+      "sha256": "CF0C38FBA403D842CA87521DBE03897E9078DCB87DA593DAA7AF6FD009545F76",
+      "bytes": 24422
+    },
+    {
+      "path": "docs/MAINLINE_STOP_DECISION_20261019.md",
+      "unchanged": true,
+      "sha256": "E248170F90A20761FB756D0D1ACE63F0FE27F0B9A46F8C56EEE3816550A04459",
+      "bytes": 7900
+    },
+    {
+      "path": "research_audit/telemetry_increment_boundary_design_20261019/PLAN_V3.md",
+      "unchanged": true,
+      "sha256": "080FE01E3E36B4AAAA2BA0985BF5751B5E33A94B60A630DCCEF121FC11F1401A",
+      "bytes": 21274
+    },
+    {
+      "path": "analyses/decision_information_execution_20261018/REPORT.md",
+      "unchanged": true,
+      "sha256": "1B4FAB5AE226F5C5C18E6B1DBE917A5C8EE4350486E8C76F7BFF0EF80CFD6BA7",
+      "bytes": 6626
+    },
+    {
+      "path": "analyses/independent_confirmation_execution_20261019/REPORT.md",
+      "unchanged": true,
+      "sha256": "CE09E9CF779B02729985581ACE83241316D35002DCEC151979545B60AA905995",
+      "bytes": 8433
+    },
+    {
+      "path": "research_audit/14_resource_loss_break_even_review.md",
+      "unchanged": true,
+      "sha256": "7E999E0844F066E121A61FD6C9A576A4C127CD694E8D8FF7D79475E57FE7ADF4",
+      "bytes": 10889
+    }
+  ],
+  "literature_matrix": {
+    "rows": 6,
+    "invalid_gap_roles": 0,
+    "full_text_exclusivity_certified": false
+  },
+  "scope": {
+    "new_experiments": false,
+    "model_execution": false,
+    "statistical_recomputation": false,
+    "resampling": false,
+    "simulations": false,
+    "new_measurement_downloads": false,
+    "remote_access": false,
+    "manuscript_changes": false,
+    "scientific_contract_changes": false,
+    "execution_queue": "EMPTY"
+  },
+  "checks_performed": [
+    "Protected file SHA256 and byte counts compared before/after: 10/10 unchanged",
+    "Literature CSV parsed and required gap roles checked",
+    "PROJECT.md diff checked: append only",
+    "Scientific claim gates not executed; no new empirical milestone claimed"
+  ],
+  "notes": [
+    "Read-only synthesis of archived evidence; raw experiment outputs not rewritten",
+    "New question is informed by previously viewed results",
+    "Held-out confirmation data for the new explanatory claim is not yet bound",
+    "Public primary literature read levels include partial body and publisher preview, explicitly recorded"
+  ]
+}

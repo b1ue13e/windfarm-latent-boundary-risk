@@ -1,0 +1,827 @@
+{
+  "status": "PASS_DRAFT_EVIDENCE_AND_BUILD_CHECKS",
+  "checks": [
+    {
+      "check": "abstract_words",
+      "passed": true,
+      "evidence": 182
+    },
+    {
+      "check": "title_words",
+      "passed": true,
+      "evidence": 13
+    },
+    {
+      "check": "main_recommended_word_target",
+      "passed": true,
+      "evidence": {
+        "conservative_includes_legends_and_tables": 3223
+      }
+    },
+    {
+      "check": "number:HGB:old_power|cost|G.point",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "HGB:old_power|cost|G.point",
+        "value": 13.168686763519988,
+        "display_token": "13.1687"
+      }
+    },
+    {
+      "check": "number:HGB:old_power|cost|G.lower",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "HGB:old_power|cost|G.lower",
+        "value": 8.094772071892395,
+        "display_token": "8.0948"
+      }
+    },
+    {
+      "check": "number:HGB:old_power|cost|G.upper",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "HGB:old_power|cost|G.upper",
+        "value": 18.242601455147582,
+        "display_token": "18.2426"
+      }
+    },
+    {
+      "check": "number:HGB:old_state|cost|G.point",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "HGB:old_state|cost|G.point",
+        "value": 3.5088526077845525,
+        "display_token": "3.5089"
+      }
+    },
+    {
+      "check": "number:HGB:old_state|cost|G.lower",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "HGB:old_state|cost|G.lower",
+        "value": 0.4944793683624916,
+        "display_token": "0.4945"
+      }
+    },
+    {
+      "check": "number:HGB:old_state|cost|G.upper",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "HGB:old_state|cost|G.upper",
+        "value": 6.5232258472066125,
+        "display_token": "6.5232"
+      }
+    },
+    {
+      "check": "number:HGB:P_premium_vs_Z|cost|D.point",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "HGB:P_premium_vs_Z|cost|D.point",
+        "value": -10.011109222766642,
+        "display_token": "-10.0111"
+      }
+    },
+    {
+      "check": "number:HGB:P_premium_vs_Z|cost|D.lower",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "HGB:P_premium_vs_Z|cost|D.lower",
+        "value": -13.737287470975165,
+        "display_token": "-13.7373"
+      }
+    },
+    {
+      "check": "number:HGB:P_premium_vs_Z|cost|D.upper",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "HGB:P_premium_vs_Z|cost|D.upper",
+        "value": -6.28493097455812,
+        "display_token": "-6.2849"
+      }
+    },
+    {
+      "check": "number:MLP:P_premium_vs_Z|cost|D.point",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "MLP:P_premium_vs_Z|cost|D.point",
+        "value": -14.812123914413549,
+        "display_token": "-14.8121"
+      }
+    },
+    {
+      "check": "number:MLP:P_premium_vs_Z|cost|D.lower",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "MLP:P_premium_vs_Z|cost|D.lower",
+        "value": -19.593463117178242,
+        "display_token": "-19.5935"
+      }
+    },
+    {
+      "check": "number:MLP:P_premium_vs_Z|cost|D.upper",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "MLP:P_premium_vs_Z|cost|D.upper",
+        "value": -10.030784711648858,
+        "display_token": "-10.0308"
+      }
+    },
+    {
+      "check": "number:HGB:fresh_state|cost|G.point",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "HGB:fresh_state|cost|G.point",
+        "value": -0.1347900629032529,
+        "display_token": "-0.1348"
+      }
+    },
+    {
+      "check": "number:HGB:fresh_state|cost|G.lower",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "HGB:fresh_state|cost|G.lower",
+        "value": -0.43394696110066405,
+        "display_token": "-0.4339"
+      }
+    },
+    {
+      "check": "number:HGB:fresh_state|cost|G.upper",
+      "passed": true,
+      "evidence": {
+        "source": "M_original_summary.json",
+        "field": "HGB:fresh_state|cost|G.upper",
+        "value": 0.16436683529415821,
+        "display_token": "0.1644"
+      }
+    },
+    {
+      "check": "number:Common:HGB:P_premium_vs_Z|cost|D.point",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:HGB:P_premium_vs_Z|cost|D.point",
+        "value": -9.999724014563759,
+        "display_token": "-9.9997"
+      }
+    },
+    {
+      "check": "number:Common:HGB:P_premium_vs_Z|cost|D.lower",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:HGB:P_premium_vs_Z|cost|D.lower",
+        "value": -13.95679990983465,
+        "display_token": "-13.9568"
+      }
+    },
+    {
+      "check": "number:Common:HGB:P_premium_vs_Z|cost|D.upper",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:HGB:P_premium_vs_Z|cost|D.upper",
+        "value": -6.042648119292866,
+        "display_token": "-6.0426"
+      }
+    },
+    {
+      "check": "number:Common:MLP:P_premium_vs_Z|cost|D.point",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:MLP:P_premium_vs_Z|cost|D.point",
+        "value": -14.665422806155167,
+        "display_token": "-14.6654"
+      }
+    },
+    {
+      "check": "number:Common:MLP:P_premium_vs_Z|cost|D.lower",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:MLP:P_premium_vs_Z|cost|D.lower",
+        "value": -19.169243811785908,
+        "display_token": "-19.1692"
+      }
+    },
+    {
+      "check": "number:Common:MLP:P_premium_vs_Z|cost|D.upper",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:MLP:P_premium_vs_Z|cost|D.upper",
+        "value": -10.16160180052443,
+        "display_token": "-10.1616"
+      }
+    },
+    {
+      "check": "number:Common:HGB:residual_state|cost|G.cost_difference_point",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:HGB:residual_state|cost|G.cost_difference_point",
+        "value": 0.08709373132009135,
+        "display_token": "0.0871"
+      }
+    },
+    {
+      "check": "number:Common:HGB:residual_state|cost|G.cost_difference_lower",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:HGB:residual_state|cost|G.cost_difference_lower",
+        "value": -0.47074764655141893,
+        "display_token": "-0.4707"
+      }
+    },
+    {
+      "check": "number:Common:HGB:residual_state|cost|G.cost_difference_upper",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:HGB:residual_state|cost|G.cost_difference_upper",
+        "value": 0.6449351091916017,
+        "display_token": "0.6449"
+      }
+    },
+    {
+      "check": "number:Common:HGB:residual_state.relative_R_point",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:HGB:residual_state.relative_R_point",
+        "value": 0.9578361566655706,
+        "display_token": "0.9578"
+      }
+    },
+    {
+      "check": "number:Common:HGB:residual_state.relative_U_decline_magnitude",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:HGB:residual_state.relative_U_decline_magnitude",
+        "value": 9.56776069092931,
+        "display_token": "9.57"
+      }
+    },
+    {
+      "check": "U_decline_direction",
+      "passed": true,
+      "evidence": "Signed ratio is negative; prose displays positive decline magnitude at original-report precision"
+    },
+    {
+      "check": "number:Common:HGB:OPZ6.R",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:HGB:OPZ6.R",
+        "value": 29.98379360751082,
+        "display_token": "29.983794"
+      }
+    },
+    {
+      "check": "number:Common:HGB:Match_residual_state.R",
+      "passed": true,
+      "evidence": {
+        "source": "M_controls_summary.json",
+        "field": "Common:HGB:Match_residual_state.R",
+        "value": 29.501448796582967,
+        "display_token": "29.501449"
+      }
+    },
+    {
+      "check": "number:[0].point",
+      "passed": true,
+      "evidence": {
+        "source": "R_paired_intervals.json",
+        "field": "[0].point",
+        "value": -2.734363955871603,
+        "display_token": "-2.7344"
+      }
+    },
+    {
+      "check": "number:[0].simultaneous_ci[0]",
+      "passed": true,
+      "evidence": {
+        "source": "R_paired_intervals.json",
+        "field": "[0].simultaneous_ci[0]",
+        "value": -4.85290699221191,
+        "display_token": "-4.8529"
+      }
+    },
+    {
+      "check": "number:[0].simultaneous_ci[1]",
+      "passed": true,
+      "evidence": {
+        "source": "R_paired_intervals.json",
+        "field": "[0].simultaneous_ci[1]",
+        "value": -0.8370848058554794,
+        "display_token": "-0.8371"
+      }
+    },
+    {
+      "check": "number:[3].point",
+      "passed": true,
+      "evidence": {
+        "source": "R_paired_intervals.json",
+        "field": "[3].point",
+        "value": -0.06798086059689047,
+        "display_token": "-0.0680"
+      }
+    },
+    {
+      "check": "number:[3].simultaneous_ci[0]",
+      "passed": true,
+      "evidence": {
+        "source": "R_paired_intervals.json",
+        "field": "[3].simultaneous_ci[0]",
+        "value": -0.17142537235693617,
+        "display_token": "-0.1714"
+      }
+    },
+    {
+      "check": "number:[3].simultaneous_ci[1]",
+      "passed": true,
+      "evidence": {
+        "source": "R_paired_intervals.json",
+        "field": "[3].simultaneous_ci[1]",
+        "value": -0.004111534860021267,
+        "display_token": "-0.0041"
+      }
+    },
+    {
+      "check": "number:[12].point",
+      "passed": true,
+      "evidence": {
+        "source": "R_paired_intervals.json",
+        "field": "[12].point",
+        "value": 1.7195662509603067,
+        "display_token": "1.7196"
+      }
+    },
+    {
+      "check": "number:[12].simultaneous_ci[0]",
+      "passed": true,
+      "evidence": {
+        "source": "R_paired_intervals.json",
+        "field": "[12].simultaneous_ci[0]",
+        "value": 0.36105544670281525,
+        "display_token": "0.3611"
+      }
+    },
+    {
+      "check": "number:[12].simultaneous_ci[1]",
+      "passed": true,
+      "evidence": {
+        "source": "R_paired_intervals.json",
+        "field": "[12].simultaneous_ci[1]",
+        "value": 3.591488665483038,
+        "display_token": "3.5915"
+      }
+    },
+    {
+      "check": "number:[15].point",
+      "passed": true,
+      "evidence": {
+        "source": "R_paired_intervals.json",
+        "field": "[15].point",
+        "value": -0.13238054925177659,
+        "display_token": "-0.1324"
+      }
+    },
+    {
+      "check": "number:[15].simultaneous_ci[0]",
+      "passed": true,
+      "evidence": {
+        "source": "R_paired_intervals.json",
+        "field": "[15].simultaneous_ci[0]",
+        "value": -0.27210742450624165,
+        "display_token": "-0.2721"
+      }
+    },
+    {
+      "check": "number:[15].simultaneous_ci[1]",
+      "passed": true,
+      "evidence": {
+        "source": "R_paired_intervals.json",
+        "field": "[15].simultaneous_ci[1]",
+        "value": -0.016333796980181666,
+        "display_token": "-0.0163"
+      }
+    },
+    {
+      "check": "number:A_Wind.event_rate",
+      "passed": true,
+      "evidence": {
+        "source": "R_summary.csv",
+        "field": "A_Wind.event_rate",
+        "value": 10.147873730011185,
+        "display_token": "10.1479"
+      }
+    },
+    {
+      "check": "number:B_Consequences.event_rate",
+      "passed": true,
+      "evidence": {
+        "source": "R_summary.csv",
+        "field": "B_Consequences.event_rate",
+        "value": 11.566575870918461,
+        "display_token": "11.5666"
+      }
+    },
+    {
+      "check": "number:C_PitchScore.event_rate",
+      "passed": true,
+      "evidence": {
+        "source": "R_summary.csv",
+        "field": "C_PitchScore.event_rate",
+        "value": 11.422015962813866,
+        "display_token": "11.4220"
+      }
+    },
+    {
+      "check": "original_composite_failures",
+      "passed": true,
+      "evidence": {
+        "Original:HGB": {
+          "A": false,
+          "B": false,
+          "C": false
+        },
+        "Original:MLP": {
+          "A": false,
+          "B": false,
+          "C": false
+        },
+        "Common:HGB": {
+          "A": false,
+          "B": false,
+          "C": false
+        },
+        "Common:MLP": {
+          "A": false,
+          "B": false,
+          "C": false
+        }
+      }
+    },
+    {
+      "check": "table3_twelve_failures",
+      "passed": true,
+      "evidence": "Stored four configurations times three routes; caption excluded"
+    },
+    {
+      "check": "thresholds_preserved",
+      "passed": true,
+      "evidence": {
+        "important_cost_gain": 0.01,
+        "substitution_margin": 0.01,
+        "risk_cap": 0.1,
+        "weighted_U_increment_over_Cstar": 0.001,
+        "cost_margin_sensitivity": [
+          0.005,
+          0.02
+        ]
+      }
+    },
+    {
+      "check": "study_populations_separate",
+      "passed": true,
+      "evidence": "Two different main masks, not pooled"
+    },
+    {
+      "check": "no_direct_D_C_claim",
+      "passed": true,
+      "evidence": "Direct interval absence explicitly stated"
+    },
+    {
+      "check": "MSE_population_boundary",
+      "passed": true,
+      "evidence": "Current-pitch diagnostic not mediation"
+    },
+    {
+      "check": "budget_boundary",
+      "passed": true,
+      "evidence": "Allocation not identified"
+    },
+    {
+      "check": "offset_not_model_quantile",
+      "passed": true,
+      "evidence": "q offset separated from training0.90"
+    },
+    {
+      "check": "source_copy_identity",
+      "passed": true,
+      "evidence": "All30 original source copies"
+    },
+    {
+      "check": "figure_source_identity",
+      "passed": true,
+      "evidence": "Source data unchanged since plotting"
+    },
+    {
+      "check": "fig2_transform:OriginalHGBfresh_state",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:OriginalHGBold_state",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:OriginalHGBold_power",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:OriginalHGBP_premium_vs_Z",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:OriginalHGBresidual_state",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:OriginalMLPfresh_state",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:OriginalMLPold_state",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:OriginalMLPold_power",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:OriginalMLPP_premium_vs_Z",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:OriginalMLPresidual_state",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:CommonHGBfresh_state",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:CommonHGBold_state",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:CommonHGBold_power",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:CommonHGBP_premium_vs_Z",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:CommonHGBresidual_state",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:CommonMLPfresh_state",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:CommonMLPold_state",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:CommonMLPold_power",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:CommonMLPP_premium_vs_Z",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "fig2_transform:CommonMLPresidual_state",
+      "passed": true,
+      "evidence": "Exact sign/direction/denominator projection"
+    },
+    {
+      "check": "figure_rendered_checks",
+      "passed": true,
+      "evidence": "Final PDF hashes match glyph/collision audit"
+    },
+    {
+      "check": "figure_dimensions:fig1_information_and_timing",
+      "passed": true,
+      "evidence": {
+        "width_mm": 179.99999491373697,
+        "PNG_pixels": [
+          4251,
+          2430
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ]
+      }
+    },
+    {
+      "check": "figure_dimensions:fig2_measurement_cost",
+      "passed": true,
+      "evidence": {
+        "width_mm": 179.99999491373697,
+        "PNG_pixels": [
+          4251,
+          2880
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ]
+      }
+    },
+    {
+      "check": "figure_dimensions:fig3_reconstruction_and_controls",
+      "passed": true,
+      "evidence": {
+        "width_mm": 179.99999491373697,
+        "PNG_pixels": [
+          4251,
+          1950
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ]
+      }
+    },
+    {
+      "check": "figure_dimensions:fig4_procurement_shortfall",
+      "passed": true,
+      "evidence": {
+        "width_mm": 179.99999491373697,
+        "PNG_pixels": [
+          4251,
+          1530
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ]
+      }
+    },
+    {
+      "check": "figure_dimensions:figS1_block_sensitivity",
+      "passed": true,
+      "evidence": {
+        "width_mm": 179.99999491373697,
+        "PNG_pixels": [
+          4251,
+          2160
+        ],
+        "dpi": [
+          599.9988,
+          599.9988
+        ]
+      }
+    },
+    {
+      "check": "reference_keys",
+      "passed": true,
+      "evidence": {
+        "cited": [
+          "bessa2011",
+          "dantas2026",
+          "iversen2017",
+          "kandemir2026",
+          "kometsi2026",
+          "meng2026",
+          "phipps2022",
+          "pritchard2011",
+          "sdwpf2024",
+          "stratigakos2026",
+          "sun2022",
+          "wang2026",
+          "wen2024",
+          "zhao2021"
+        ],
+        "bib": [
+          "bessa2011",
+          "dantas2026",
+          "iversen2017",
+          "kandemir2026",
+          "kometsi2026",
+          "meng2026",
+          "phipps2022",
+          "pritchard2011",
+          "sdwpf2024",
+          "stratigakos2026",
+          "sun2022",
+          "wang2026",
+          "wen2024",
+          "zhao2021"
+        ]
+      }
+    },
+    {
+      "check": "bracket_citations",
+      "passed": true,
+      "evidence": "Current publisher square-bracket guidance; Nature bibliography"
+    },
+    {
+      "check": "AI_disclosure",
+      "passed": true,
+      "evidence": "Methods disclosure; no AI author"
+    },
+    {
+      "check": "caption_limits",
+      "passed": true,
+      "evidence": [
+        118,
+        112,
+        142,
+        120,
+        84
+      ]
+    },
+    {
+      "check": "build_inputs_current",
+      "passed": true,
+      "evidence": "Exact rendered manuscript/SI/figures/table3 source inputs"
+    },
+    {
+      "check": "PDF_bounds:manuscript",
+      "passed": true,
+      "evidence": {
+        "pages": 13,
+        "outside_page_words": [],
+        "sha256": "b593fa56d10f27ae28687ee127046172ac6820b8a67fb2ba33c21f0cf4f0f0fb"
+      }
+    },
+    {
+      "check": "PDF_bounds:supplementary",
+      "passed": true,
+      "evidence": {
+        "pages": 9,
+        "outside_page_words": [],
+        "sha256": "8c4a0921827210d02c742d660de8c184211abf0b9c33e5cdd52532e668a948d0"
+      }
+    },
+    {
+      "check": "Supplementary_Data4_exists",
+      "passed": true,
+      "evidence": "Actual frozen source packets, not a missing locator"
+    },
+    {
+      "check": "Supplementary_Data4_archive_identity",
+      "passed": true,
+      "evidence": "All frozen members equal their manifest in folder and archive"
+    }
+  ],
+  "failed": [],
+  "abstract_words": 182,
+  "title_words": 13,
+  "conservative_main_words_including_legends_excluding_methods": 3223,
+  "documents": {
+    "manuscript": {
+      "pages": 13,
+      "outside_page_words": [],
+      "sha256": "b593fa56d10f27ae28687ee127046172ac6820b8a67fb2ba33c21f0cf4f0f0fb"
+    },
+    "supplementary": {
+      "pages": 9,
+      "outside_page_words": [],
+      "sha256": "8c4a0921827210d02c742d660de8c184211abf0b9c33e5cdd52532e668a948d0"
+    }
+  },
+  "new_experiments_or_statistical_estimates": false,
+  "not_submission_ready": "Author declarations, approval and permanent data/code deposit remain unconfirmed"
+}

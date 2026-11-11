@@ -1,0 +1,255 @@
+{
+  "timing_summary": {
+    "Common/HGB": {
+      "fit_seconds": {
+        "mean": 1.5825391551945358,
+        "min": 1.291193668032065,
+        "max": 2.2919725789688528
+      },
+      "historical_stage_seconds": {
+        "mean": 5.794639800000001,
+        "min": 4.986893,
+        "max": 7.360323
+      },
+      "evaluation_stage_seconds": {
+        "mean": 5.018996799999999,
+        "min": 4.75333,
+        "max": 5.323297
+      },
+      "hosts": [
+        "cn01",
+        "cn14",
+        "cn26",
+        "cn28"
+      ]
+    },
+    "Common/MLP": {
+      "fit_seconds": {
+        "mean": 45.15482143149711,
+        "min": 20.225905182305723,
+        "max": 125.1569657039363
+      },
+      "historical_stage_seconds": {
+        "mean": 48.269391999999996,
+        "min": 22.545469,
+        "max": 132.090698
+      },
+      "evaluation_stage_seconds": {
+        "mean": 3.0209974,
+        "min": 2.835667,
+        "max": 3.17594
+      },
+      "hosts": [
+        "cn01",
+        "cn04",
+        "cn13",
+        "cn21",
+        "cn31"
+      ]
+    },
+    "P1/HGB": {
+      "fit_seconds": {
+        "mean": 2.5003294139867647,
+        "min": 1.6747728241607547,
+        "max": 3.576088441070169
+      },
+      "historical_stage_seconds": {
+        "mean": 8.6652676,
+        "min": 5.967207,
+        "max": 14.804154
+      },
+      "evaluation_stage_seconds": {
+        "mean": 5.3467248,
+        "min": 5.028695,
+        "max": 5.618053
+      },
+      "hosts": [
+        "cn21",
+        "cn26",
+        "cn28"
+      ]
+    },
+    "P1/MLP": {
+      "fit_seconds": {
+        "mean": 30.23175993382465,
+        "min": 24.15119810588658,
+        "max": 35.047817309969105
+      },
+      "historical_stage_seconds": {
+        "mean": 32.6733994,
+        "min": 26.131817,
+        "max": 37.890633
+      },
+      "evaluation_stage_seconds": {
+        "mean": 2.9875100000000003,
+        "min": 2.726518,
+        "max": 3.286664
+      },
+      "hosts": [
+        "cn07",
+        "cn09",
+        "cn21",
+        "cn26",
+        "cn31"
+      ]
+    },
+    "P1/Persistence": {
+      "fit_seconds": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "historical_stage_seconds": {
+        "mean": 2.1676604,
+        "min": 1.721165,
+        "max": 3.025757
+      },
+      "evaluation_stage_seconds": {
+        "mean": 3.1006343999999997,
+        "min": 2.864665,
+        "max": 3.544131
+      },
+      "hosts": [
+        "cn21",
+        "cn26",
+        "cn28"
+      ]
+    },
+    "WPQ36/HGB": {
+      "fit_seconds": {
+        "mean": 34.679387310240415,
+        "min": 33.31857215985656,
+        "max": 37.12162638735026
+      },
+      "historical_stage_seconds": {
+        "mean": 42.531908,
+        "min": 38.604436,
+        "max": 50.024568
+      },
+      "evaluation_stage_seconds": {
+        "mean": 6.797192,
+        "min": 6.251744,
+        "max": 7.455374
+      },
+      "hosts": [
+        "cn04",
+        "cn13",
+        "cn21",
+        "cn28"
+      ]
+    },
+    "WPQ36/MLP": {
+      "fit_seconds": {
+        "mean": 131.9217282208614,
+        "min": 59.05943961115554,
+        "max": 413.2459097909741
+      },
+      "historical_stage_seconds": {
+        "mean": 136.78445200000002,
+        "min": 63.436598,
+        "max": 418.282193
+      },
+      "evaluation_stage_seconds": {
+        "mean": 5.7365254,
+        "min": 5.35735,
+        "max": 6.747439
+      },
+      "hosts": [
+        "cn21",
+        "cn31"
+      ]
+    }
+  },
+  "primary_seed_pairs": [
+    {
+      "seed": 201,
+      "count": 1059248,
+      "p1_mean_cost": 67.16764014439781,
+      "reference_mean_cost": 66.72497183808,
+      "absolute_mean_premium": 0.44266830631780846,
+      "relative_premium": 0.006634222452607724,
+      "total_premium": 468895.51813052595
+    },
+    {
+      "seed": 202,
+      "count": 1059248,
+      "p1_mean_cost": 66.95061528985414,
+      "reference_mean_cost": 66.50793826938256,
+      "absolute_mean_premium": 0.4426770204715851,
+      "relative_premium": 0.006656002756822412,
+      "total_premium": 468904.7485804856
+    },
+    {
+      "seed": 203,
+      "count": 1059248,
+      "p1_mean_cost": 66.97172684414346,
+      "reference_mean_cost": 66.69058706310307,
+      "absolute_mean_premium": 0.28113978104038595,
+      "relative_premium": 0.004215584138948569,
+      "total_premium": 297796.75078746676
+    },
+    {
+      "seed": 204,
+      "count": 1059248,
+      "p1_mean_cost": 67.05270913523037,
+      "reference_mean_cost": 66.65235205476421,
+      "absolute_mean_premium": 0.40035708046616053,
+      "relative_premium": 0.006006645949076355,
+      "total_premium": 424077.4367696196
+    },
+    {
+      "seed": 205,
+      "count": 1059248,
+      "p1_mean_cost": 66.95932519189067,
+      "reference_mean_cost": 66.64630300027531,
+      "absolute_mean_premium": 0.31302219161535977,
+      "relative_premium": 0.004696767525335452,
+      "total_premium": 331568.1304241866
+    }
+  ],
+  "mean_annual_proxy_premium": 398248.5169384569,
+  "daily_worst_premium": {
+    "seed": 201,
+    "day_id": 1077,
+    "date": "2025-12-13",
+    "count": 3024,
+    "p1_cost": 452663.72284396575,
+    "reference_cost": 425061.29342735687,
+    "premium": 27602.42941660888,
+    "p1_risk": 0.07771164021164022,
+    "reference_risk": 0.06944444444444445
+  },
+  "daily_worst_risk": {
+    "seed": 204,
+    "day_id": 1034,
+    "date": "2025-10-31",
+    "count": 2886,
+    "p1_cost": 531177.8235809372,
+    "reference_cost": 530822.6568263432,
+    "premium": 355.1667545940727,
+    "p1_risk": 0.21101871101871103,
+    "reference_risk": 0.20928620928620928
+  },
+  "number_seed_days": 1825,
+  "valid_seed_days": 1765,
+  "zero_target_seed_days": 60,
+  "fraction_valid_seed_days_positive_premium": 0.681586402266289,
+  "forecast_shape": [
+    52553,
+    21
+  ],
+  "raw_feature_materialization_columns": 148,
+  "raw_feature_materialization_bytes": 653338896,
+  "fit_first_index_copy_bytes": 213120000,
+  "p1_raw_width": 5,
+  "full_raw_width": 112,
+  "p1_mlp_width": 10,
+  "full_mlp_width": 224,
+  "raw_width_reduction": 0.9553571428571429,
+  "standalone_float32_row_bytes": {
+    "P1": 20,
+    "WPQ36": 448
+  },
+  "actual_hgb_width": "UNKNOWN: original model/scaler not exported; missing indicators depend on fit data",
+  "all_seed_noninferiority_mean_reconstructed": true
+}
