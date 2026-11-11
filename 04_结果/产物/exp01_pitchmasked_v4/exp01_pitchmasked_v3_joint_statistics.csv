@@ -1,0 +1,5 @@
+farm_id,horizon,n_seeds,n_time_blocks,mean_delta_psrei_kwh,median_seed_delta_kwh,seed_sd_kwh,joint_ci95_low_kwh,joint_ci95_high_kwh,joint_p_noninferior_P_delta_le_0,inference
+penmanshiel,h=1,5,35,323762.6784800847,428554.5337931313,840661.3962797896,-755162.9690630658,1618759.655844218,0.3082,"two-stage resampling of daily blocks and model seeds; empirical P(delta<=0), not a two-sided p-value"
+penmanshiel,h=6,5,35,-315399.61856098176,-272330.8306198122,817063.8299605816,-1590023.5306402398,970006.3235989753,0.7084,"two-stage resampling of daily blocks and model seeds; empirical P(delta<=0), not a two-sided p-value"
+kelmarsh,h=1,5,35,425175.0858252208,321625.01023610425,392388.4022577749,89168.17624154089,864941.1749862316,0.0054,"two-stage resampling of daily blocks and model seeds; empirical P(delta<=0), not a two-sided p-value"
+kelmarsh,h=6,5,35,352433.9467724323,274244.2734294732,350580.4901264668,59969.70348135466,736901.1810505183,0.0074,"two-stage resampling of daily blocks and model seeds; empirical P(delta<=0), not a two-sided p-value"

@@ -1,0 +1,667 @@
+{
+  "version": "V3",
+  "status": "SPECIFIED_NOT_IMPLEMENTED_NOT_EXECUTED",
+  "execution_authorized": false,
+  "execution_queue": [],
+  "manuscript": "manuscripts/scientific_reports_v7",
+  "original_plan": "research_audit/reviewer_response_evidence_plan_20261021",
+  "review": "research_audit/minimum_supplement_v2_rereview_20261021",
+  "immutable": {
+    "training_quantile": 0.9,
+    "primary_offset_quantile": 0.925,
+    "original_offset_grid_preserved": [
+      0.9,
+      0.925,
+      0.95,
+      0.975,
+      0.99
+    ],
+    "new_head_q_search": false,
+    "rho": 10,
+    "dt_hours": 0.16666666666666666,
+    "Cstar": 40.04664774157611,
+    "important_cost_gain": 0.01,
+    "substitution_margin": 0.01,
+    "risk_cap": 0.1,
+    "weighted_U_increment_over_Cstar": 0.001,
+    "thresholds_are_not_operating_SLA": true
+  },
+  "new_fit_budget": {
+    "default_new_base_heads": 10,
+    "new_calibrators": 0,
+    "heads": [
+      {
+        "id": "Praw_HGB_201",
+        "estimator": "HGB",
+        "seed": 201,
+        "arm": "Praw",
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "id": "Praw_HGB_202",
+        "estimator": "HGB",
+        "seed": 202,
+        "arm": "Praw",
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "id": "Praw_HGB_203",
+        "estimator": "HGB",
+        "seed": 203,
+        "arm": "Praw",
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "id": "Praw_HGB_204",
+        "estimator": "HGB",
+        "seed": 204,
+        "arm": "Praw",
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "id": "Praw_HGB_205",
+        "estimator": "HGB",
+        "seed": 205,
+        "arm": "Praw",
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "id": "Praw_MLP_201",
+        "estimator": "MLP",
+        "seed": 201,
+        "arm": "Praw",
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "id": "Praw_MLP_202",
+        "estimator": "MLP",
+        "seed": 202,
+        "arm": "Praw",
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "id": "Praw_MLP_203",
+        "estimator": "MLP",
+        "seed": 203,
+        "arm": "Praw",
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "id": "Praw_MLP_204",
+        "estimator": "MLP",
+        "seed": 204,
+        "arm": "Praw",
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "id": "Praw_MLP_205",
+        "estimator": "MLP",
+        "seed": 205,
+        "arm": "Praw",
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      }
+    ],
+    "rawP_plus_Z_default": false,
+    "pitch_state_default": false,
+    "temporal_window_default": false
+  },
+  "feature": {
+    "common_background": "Original O6 common4 + masked WPQ36 + six power summaries",
+    "new_arm": "B0 + P(t)",
+    "raw_width": 119,
+    "comparators": [
+      "OP6",
+      "OZ6",
+      "O6"
+    ],
+    "reuse_original_success_version": true,
+    "use_original_fit_indices": true,
+    "reselect_rows": false,
+    "fit_primary_mask_filter": false,
+    "learners": {
+      "HGB": {
+        "max_iter": 100,
+        "max_leaf_nodes": 15,
+        "min_samples_leaf": 50,
+        "learning_rate": 0.08,
+        "l2_regularization": 1.0,
+        "early_stopping": false,
+        "quantile": 0.9,
+        "imputer": "fit-only constant0 plus missing indicators, keep empty features"
+      },
+      "MLP": {
+        "hidden": [
+          64,
+          32
+        ],
+        "epochs": 80,
+        "batch_size": 2048,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "quantile": 0.9,
+        "threads": 2,
+        "early_stopping": false,
+        "activation": "ReLU",
+        "optimizer": "AdamW",
+        "imputation": "fit-only finite mean/std and full missing indicators",
+        "target_scale": "max(training std,1)",
+        "initial_bias": "training .9 quantile / target_scale",
+        "deterministic": true
+      }
+    }
+  },
+  "stages": {
+    "fit": [
+      19440,
+      25193
+    ],
+    "offset": [
+      25200,
+      27641
+    ],
+    "historical": [
+      27648,
+      30233
+    ],
+    "evaluation": [
+      30240,
+      35273
+    ]
+  },
+  "calibration": {
+    "formula": "a=max(f(x),0); b=quantile((S-a)[offset_target_mask],0.925,method=higher); r=max(a+b,0)",
+    "own_offset_required": true,
+    "borrow_old_offset": false,
+    "offset_population": "finite future power only",
+    "fit_population": "original target-valid sampled rows",
+    "historical_population": "original primary_mask",
+    "evaluation_population": "original primary_mask"
+  },
+  "qualification": {
+    "history_family": "H_P",
+    "evaluation_family": "E_P",
+    "primary_span": 3,
+    "history_rule": "Label each fit using historical interval at original risk_cap=0.10; all five history labels contribute only to research qualification summary",
+    "history_failure": "Keep history label and continue the fixed offline evaluation; do not change q, offset, seed, estimator, population or reporting visibility",
+    "eval_rule": "Evaluate all computationally valid predeclared heads; each fit evaluated independently of qualification; local requirement met only if all five history and evaluation labels QUALIFIED",
+    "eval_failure": "Retain completed C/R/U/V and paired contrasts; stop qualification/safety statement only; no recalibration",
+    "missing_fit": "Record computational failure; do not impute results or replace five by four; retain all identities and slots",
+    "fit_labels": [
+      "QUALIFIED",
+      "NOT_QUALIFIED_BY_BOUND",
+      "UNDETERMINED_INTERVAL",
+      "UNAVAILABLE_COMPUTATION"
+    ],
+    "QUALIFIED_rule": "Estimated primary-span interval upper<=0.10",
+    "NOT_QUALIFIED_BY_BOUND_rule": "Estimated primary-span interval upper>0.10; not evidence of field unsafety",
+    "UNDETERMINED_INTERVAL_rule": "Uninformative interval/domain or undefined population; do not infer actual bound exceedance",
+    "estimator_summary_flags": [
+      "all_five_history_qualified",
+      "all_five_evaluation_qualified",
+      "any_bound_failure",
+      "any_undetermined",
+      "any_computation_failure"
+    ],
+    "label_is_evaluation_gate": false,
+    "old_qualification_labels_preserved": true,
+    "original_ABC_rejudged": false
+  },
+  "clock": {
+    "decision_index": "t",
+    "forecast_event_end": "t-6",
+    "nominal_publication": "t-6",
+    "target_index": "t+6",
+    "target_duration_hours": 0.16666666666666666,
+    "assumed_label_release_steps": 1,
+    "physical_interval_semantics": "UNKNOWN unless source document establishes",
+    "actual_receipt": "UNKNOWN; no field log",
+    "future_validity_only_for_scoring": true,
+    "member_switch_uses_future_mask": false
+  },
+  "group": {
+    "member_count": 134,
+    "member_ids": "Original node_ids.npy; hash-bound identity required before future execution",
+    "member_order_fixed": true,
+    "target_mask": "all_i finite(F_i(t)) and all_i finite(P_i(t+6))",
+    "pair_mask": "target_mask and all_i finite(P_i(t)) and all_i finite(Z_i(t))",
+    "Z_definition": "finite only when all three blade angles finite",
+    "primary_population": "pair_mask",
+    "target_mask_is_alternate_success_population": false,
+    "history_completeness_extra_filter": false,
+    "source_signed_errors": "forecast and physical_channels future P; not clipped shortfall alone",
+    "shortfall": "max(sum_i(F_i(t)-P_i(t+6)),0)",
+    "action": "sum_i r_i(t)",
+    "outcomes": "R_G=r_G/6; U_G=max(S_G-r_G,0)/6; C_G=R_G+10U_G; V_G=1(S_G>r_G)",
+    "netting_gap": "sum_i U_i-U_G on identical pair_mask",
+    "pairs": [
+      [
+        "OPZ6",
+        "OP6"
+      ]
+    ],
+    "estimators": [
+      "HGB",
+      "MLP"
+    ],
+    "qualification_cap_applied": false,
+    "rawP_in_group": false,
+    "unit": "per fixed134-group target interval",
+    "calendar": "All original issue natural days including zero-valid-count days",
+    "missing_future_to_zero": false,
+    "zero_shortfall_is_annotation_not_module_stop": true,
+    "no_population_affects_only_dependent_group_endpoints": true,
+    "zero_shortfall_annotation": "OBSERVED_BOTH_U_ZERO",
+    "continue_estimable_R_C_gap_when_U_zero": true
+  },
+  "regimes": {
+    "arms": [
+      "F",
+      "FZ",
+      "OP6",
+      "OPZ6"
+    ],
+    "pairs": [
+      [
+        "OPZ6",
+        "OP6"
+      ],
+      [
+        "FZ",
+        "F"
+      ]
+    ],
+    "wind_groups": [
+      "below_10p5",
+      "at_or_above_10p5",
+      "missing"
+    ],
+    "ramp_groups": [
+      "down_gt150",
+      "up_gt150",
+      "within150",
+      "unknown_endpoint"
+    ],
+    "ramp": "P(t)-P(t-6)",
+    "interaction": "increment high-wind minus increment low-wind",
+    "cross_product_search": false,
+    "qualification_cap_per_group": false
+  },
+  "inference": {
+    "alpha_per_family": 0.05,
+    "n_boot": 20000,
+    "bootstrap_seed": 20261030,
+    "primary_span": 3,
+    "sensitivity_spans": [
+      1,
+      7
+    ],
+    "method": "Shared circular natural-day blocks; maximum standardized deviation; approximate fixed-fit inference",
+    "resample_fits": false,
+    "resample_turbines": false,
+    "family_spans_jointly_95": false,
+    "across_families_jointly_95": false,
+    "reuse_old_intervals": false,
+    "planned_slots_retained_if_unavailable": true,
+    "zero_denominator_draws": "Preserve all draw rows; dependent coordinate interval uninformative; observed point retained if defined; no delete/retry or calendar compression",
+    "zero_empirical_variance": "Uninformative domain unless independent algebraic proof of a constant value; no such inferential exact coordinate predeclared here",
+    "zero_sd_numeric_cutoff": "Existing envelope 1e-14; unchanged; not an effect threshold",
+    "supported_coordinates": "Fixed ID ledger -> point/all-draw finite-denominator check -> finite columns to old envelope -> empirical-zero-variance bounds -> original-ID refill; selection never by sign, p-value or qualification",
+    "risk_domain": [
+      0,
+      1
+    ],
+    "signed_difference_domain": "unbounded",
+    "group_netting_gap_domain": "nonnegative",
+    "planned_inferential_exact_flags": "all false; empirical equality/zero cannot activate exact",
+    "exact_budget_identities": "non-inferential accounting only; not new U/V certainty",
+    "no_estimable_intervals": {
+      "family_status": "NO_ESTIMABLE_INTERVALS",
+      "critical_value": null,
+      "point_values_retained_if_defined": true,
+      "other_families_continue": true
+    },
+    "adapter_status": "REQUIRED_NOT_IMPLEMENTED_NOT_TESTED",
+    "interval_kinds": [
+      "ESTIMATED_APPROX",
+      "UNINFORMATIVE_DOMAIN",
+      "NOT_AVAILABLE_COMPUTATION"
+    ],
+    "point_statuses": [
+      "DEFINED",
+      "UNDEFINED_POPULATION",
+      "UNDEFINED_REFERENCE_DENOMINATOR",
+      "UNAVAILABLE_COMPUTATION"
+    ],
+    "nonfinite_output_serialization": "null plus status/domain code; no numeric sentinel",
+    "group_zero_deficit_does_not_remove_R_C_gap": true,
+    "endpoint_resolution_order": [
+      "source/computation validity",
+      "observed population denominator",
+      "other observed formula denominator",
+      "point value",
+      "all predeclared draw denominators",
+      "empirical variability",
+      "interval or uninformative domain"
+    ],
+    "zero_shortfall_annotation_requires_positive_observed_N": true,
+    "annotations_override_endpoint_status": false,
+    "inferential_exact_default": false
+  },
+  "optional_budget": {
+    "default_active": false,
+    "arms": [
+      "OP6",
+      "OPZ6"
+    ],
+    "anchors": [
+      "OP6_total_R",
+      "OPZ6_total_R"
+    ],
+    "transforms": [
+      "multiplicative",
+      "clipped_additive"
+    ],
+    "population": "original M primary evaluation only",
+    "group_budget_default": false,
+    "formula_multiplicative": "r*K/sum_primary(r/6)",
+    "formula_clipped_additive": "max(r+c,0), with sum_primary(max(r+c,0)/6)=K",
+    "parameters_use_shortfall": false,
+    "parameters_use_complete_evaluation_actions": true,
+    "matched_within_each_bootstrap_draw": true,
+    "zero_budget": "all-zero action",
+    "positive_budget_zero_multiplicative_denominator": "unsupported; no epsilon",
+    "budget_tolerance": "float64 arithmetic residual only; no scientific budget tolerance introduced",
+    "deltaC": "10*deltaU; deterministic conversion on equal procurement",
+    "qualification": false,
+    "interpretation": "Finite-action retrospective transform-dependent comparison; not information identification or online equal-budget control"
+  },
+  "families": {
+    "H_P": {
+      "stage": "historical",
+      "included_default": true,
+      "coordinates_per_span": 40,
+      "population": "M_primary_selection",
+      "purpose": "Historical qualification labels only; never select whether new heads are evaluated"
+    },
+    "E_P": {
+      "stage": "evaluation",
+      "included_default": true,
+      "coordinates_per_span": 94,
+      "population": "M_primary_evaluation",
+      "purpose": "Complete predeclared raw-P offline performance comparison and separate qualification labels; no risk-gated visibility"
+    },
+    "E_R": {
+      "stage": "evaluation",
+      "included_default": true,
+      "coordinates_per_span": 128,
+      "population": "M_primary_evaluation_partitioned",
+      "purpose": "Old frozen pitch incremental effects and direct wind-group interactions"
+    },
+    "E_G": {
+      "stage": "evaluation",
+      "included_default": true,
+      "coordinates_per_span": 32,
+      "population": "M_pair_fixed134",
+      "purpose": "Complete-record pooled old actions; no group safety gate"
+    },
+    "O_B": {
+      "stage": "evaluation",
+      "included_default": false,
+      "activation": "Requires separate explicit user execution instruction",
+      "coordinates_per_span": 16,
+      "population": "M_primary_evaluation",
+      "purpose": "Retrospective action-normalization diagnostic only"
+    }
+  },
+  "out_of_scope": [
+    "Actual field procurement savings",
+    "Independent validation for new explanation",
+    "Bayes or pure sensor information ordering",
+    "RawP marginal-pitch robustness without rawP+Z",
+    "Group-optimal learned controller",
+    "All adaptive P-only exclusion",
+    "New q search or threshold changes"
+  ],
+  "source_protocol_sha256": "f40b0e5dd1692f1e866a00d4c68191297ec6a6da64bd8112c5ff5405cb74468e",
+  "metric_definitions": {
+    "D_C": "(pooled five-fit mean C_Praw - pooled five-fit mean C_reference) / pooled five-fit mean C_reference",
+    "H_U": "10*(per-fit mean U_Praw - per-fit mean U_reference)/frozen Cstar",
+    "feature_pairs": [
+      [
+        "Praw",
+        "OP6"
+      ],
+      [
+        "Praw",
+        "OZ6"
+      ],
+      [
+        "Praw",
+        "O6"
+      ]
+    ],
+    "E_P_mean_metrics": [
+      "D_C",
+      "delta_R",
+      "delta_U",
+      "delta_V"
+    ],
+    "E_R_mean_metrics": [
+      "delta_C",
+      "delta_R",
+      "delta_U",
+      "delta_V"
+    ],
+    "E_R_interactions": [
+      "interaction_C",
+      "interaction_R",
+      "interaction_U",
+      "interaction_V"
+    ],
+    "E_G_mean_metrics": [
+      "delta_C",
+      "delta_R",
+      "delta_U",
+      "delta_V"
+    ],
+    "O_B_mean_metrics": [
+      "delta_U",
+      "delta_V"
+    ],
+    "differences": "new/added-pitch arm minus stated reference; wind interaction high increment minus low increment",
+    "point_estimates": "Not generated; all computationally valid fixed-head outcomes disclosed regardless of qualification; listed coordinates govern intervals"
+  },
+  "previous_plan": "research_audit/minimum_supplement_plan_v2_20261021",
+  "implementation_status": "REQUIREMENTS_ONLY_NOT_IMPLEMENTED_NOT_TESTED",
+  "evaluation_policy": {
+    "id": "fixed_offline_praw_comparison_v3",
+    "predeclared_new_head_identities": 10,
+    "evaluate_all_predeclared_heads": true,
+    "qualification_controls_evaluation": false,
+    "qualified_only_option_allowed": false,
+    "qualification_argument_to_evaluator_allowed": false,
+    "labels_computed_after_evaluation_outputs_sealed": true,
+    "labels_change_actions_or_metric_visibility": false,
+    "one_predeclared_evaluation_phase_per_head": true,
+    "fixed_internal_batches_allowed": true,
+    "missing_numeric_evaluation_allowed_only_for": [
+      "SOURCE_CONTRACT_INVALID",
+      "FIT_FAILED",
+      "CALIBRATION_UNDEFINED",
+      "PREDICTION_INVALID",
+      "COMPUTATIONAL_DEPENDENCY_UNAVAILABLE"
+    ],
+    "risk_cost_or_estimator_direction_can_cancel_evaluation": false,
+    "terminal_identity_record_required_for_all_ten": true,
+    "no_four_fit_replacement_for_five": true,
+    "legacy_selection_pipeline_modified": false,
+    "unknown_field_receipt_alone_is_source_failure": false,
+    "finite_high_loss_or_plateau_cannot_cancel_evaluation": true,
+    "computational_dependency_excludes_risk_or_cost_labels": true
+  },
+  "endpoint_policy": {
+    "Z01": {
+      "trigger": "POINT_GROUP_N_ZERO",
+      "scope": "All group means and intervals depending on M_pair",
+      "point_behavior": "point null; no zero fill",
+      "point_status": "UNDEFINED_POPULATION",
+      "interval_status": "UNINFORMATIVE_DOMAIN",
+      "domain": "per-coordinate physical domain",
+      "continuation": "Other modules continue; no member or mask substitution"
+    },
+    "Z02": {
+      "trigger": "BOTH_GROUP_U_ZERO_N_POSITIVE",
+      "scope": "Annotation only; test each endpoint separately",
+      "point_behavior": "keep all defined points",
+      "point_status": "DEFINED",
+      "interval_status": "per-endpoint assessment",
+      "domain": "risk [0,1]; signed differences full real if degenerate",
+      "continuation": "R/C/gap remain inferable when own denominators and variability permit"
+    },
+    "Z03": {
+      "trigger": "ONE_ARM_U_OR_V_ZERO",
+      "scope": "Only affected absolute/constant endpoints; paired contrasts evaluated separately",
+      "point_behavior": "keep defined points",
+      "point_status": "DEFINED",
+      "interval_status": "per-endpoint assessment",
+      "domain": "absolute zero-event rate not exact zero",
+      "continuation": "A nonconstant paired delta-U is not cancelled"
+    },
+    "Z04": {
+      "trigger": "POINT_REFERENCE_COST_ZERO",
+      "scope": "Only relative cost endpoint using that denominator",
+      "point_behavior": "point null; absolute R/U/V contrasts remain",
+      "point_status": "UNDEFINED_REFERENCE_DENOMINATOR",
+      "interval_status": "UNINFORMATIVE_DOMAIN",
+      "domain": "full real",
+      "continuation": "Do not add epsilon or cancel unrelated endpoints"
+    },
+    "Z05": {
+      "trigger": "ANY_PREDECLARED_DRAW_DENOM_ZERO",
+      "scope": "All endpoints depending on that denominator",
+      "point_behavior": "keep observed point if defined",
+      "point_status": "depends on observed denominator",
+      "interval_status": "UNINFORMATIVE_DOMAIN",
+      "domain": "per-coordinate physical domain",
+      "continuation": "Keep every draw; no retry/drop or time compression"
+    },
+    "Z06": {
+      "trigger": "EMPIRICAL_ZERO_VARIANCE_NONALGEBRAIC",
+      "scope": "Only affected coordinate",
+      "point_behavior": "keep defined point",
+      "point_status": "DEFINED",
+      "interval_status": "UNINFORMATIVE_DOMAIN",
+      "domain": "absolute V [0,1]; signed differences full real; gap [0,+inf)",
+      "continuation": "No exact flag from observed zero"
+    },
+    "Z07": {
+      "trigger": "NO_ESTIMABLE_INTERVAL_COORDINATES",
+      "scope": "Family interval summary, not all point values",
+      "point_behavior": "keep every defined point",
+      "point_status": "per-coordinate",
+      "interval_status": "UNINFORMATIVE_DOMAIN",
+      "domain": "per-coordinate physical domain",
+      "continuation": "family NO_ESTIMABLE_INTERVALS; critical null; sibling families continue"
+    },
+    "Z08": {
+      "trigger": "COMPUTATION_OR_SOURCE_FAILURE",
+      "scope": "Only failed identities/coordinates or global invalid source dependency",
+      "point_behavior": "point null where unavailable; keep failure receipt",
+      "point_status": "UNAVAILABLE_COMPUTATION",
+      "interval_status": "NOT_AVAILABLE_COMPUTATION",
+      "domain": "not an empirical zero or risk failure",
+      "continuation": "No replacement seeds or four-fit aggregate pretending five"
+    },
+    "Z09": {
+      "trigger": "ACCOUNTING_IDENTITY",
+      "scope": "Non-inferential equal-budget R and C relation checks only",
+      "point_behavior": "record algebraic residual separately",
+      "point_status": "not an inferential coordinate",
+      "interval_status": "not an interval",
+      "domain": "not applicable",
+      "continuation": "Do not turn budget identity into precise U/V inference"
+    }
+  },
+  "result_contract": {
+    "coordinate_fields": [
+      "coordinate_id",
+      "family",
+      "block_span",
+      "stage",
+      "fit_seed",
+      "arm",
+      "comparison",
+      "population",
+      "point",
+      "point_status",
+      "interval_kind",
+      "interval_status",
+      "domain",
+      "reason",
+      "observed_denominator",
+      "all_draw_denominators_valid",
+      "draw_identity",
+      "finite_coordinate_ids",
+      "critical_value",
+      "critical_source"
+    ],
+    "identity_fields": [
+      "identity_id",
+      "estimator",
+      "seed",
+      "compute_status",
+      "source_hashes",
+      "model_hash",
+      "offset_hash",
+      "evaluation_hash",
+      "failure_reason",
+      "history_qualification",
+      "evaluation_qualification"
+    ],
+    "no_qualification_based_row_deletion": true,
+    "no_history_unqualified_skip_state": true,
+    "no_model_effect_or_interval_has_been_generated": true
+  },
+  "independent_entrypoint": {
+    "status": "REQUIREMENTS_ONLY_NOT_IMPLEMENTED_NOT_RUN",
+    "proposed_paths": [
+      "scripts/run_praw_offline_supplement.py",
+      "windfarm_moe/praw_offline_supplement.py",
+      "windfarm_moe/supplement_endpoint_adapter.py",
+      "tests/test_praw_offline_supplement.py",
+      "tests/test_supplement_endpoint_adapter.py"
+    ],
+    "old_evaluate_entry_reused_as_driver": false,
+    "may_reuse_bound_leaf_functions": true,
+    "qualified_only_cli_allowed": false,
+    "evaluation_schedule_inputs": [
+      "frozen ten-head registry",
+      "models",
+      "own offsets",
+      "sealed source/calendar inputs"
+    ],
+    "evaluation_schedule_excludes": [
+      "history qualification",
+      "evaluation qualification",
+      "cost/shortfall direction"
+    ],
+    "phase_order": [
+      "verify_sources",
+      "freeze_registry",
+      "fit_and_offset",
+      "evaluate_all",
+      "seal_and_account",
+      "infer_and_label",
+      "assemble_report"
+    ],
+    "legacy_tests_must_keep_original_meaning": true
+  },
+  "stop_policy": {
+    "compute_stop": "Documented invalid source/model/calibration/prediction; terminal failure record, no fabricated result, no successful-seed substitution",
+    "qualification_failure": "Interpretation label only; never suppress fixed offline computation/reporting",
+    "population_empty": "Undefined group endpoints only; no group/member/mask rescue",
+    "zero_deficit": "Annotation only; assess every endpoint",
+    "interval_unsupported": "Uninformative interval per dependency with all draws and slots retained",
+    "claim_not_supported": "Narrow interpretation, not further tuning or selective reporting"
+  }
+}

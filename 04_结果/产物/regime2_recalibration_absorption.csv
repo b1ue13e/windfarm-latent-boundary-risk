@@ -1,0 +1,6 @@
+tau_min,lag_steps,channel_mode,phys_clean_shortage_mwh,phys_recal_shortage_mwh,shortage_absorption_pct,phys_clean_cost_kwh,phys_recal_cost_kwh,phys_clean_viol,phys_recal_viol,recal_target_satisfied
+0,0,all,21.672,21.672,0.0,593258.1,593258.1,0.0729,0.0729,True
+10,1,all,37.6538,23.9912,36.28,753606.1,742210.9,0.1118,0.0737,True
+20,2,all,51.8423,23.9025,53.89,896197.9,841733.5,0.1398,0.0707,True
+30,3,all,69.0689,26.4428,61.72,1069266.4,939190.3,0.1658,0.0748,True
+60,6,all,127.552,42.7873,66.46,1656285.3,1228608.6,0.2403,0.0946,True

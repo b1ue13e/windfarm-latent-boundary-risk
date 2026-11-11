@@ -1,0 +1,118 @@
+{
+  "audit_name": "Phase 2 Retrospective Scientific Audit",
+  "timestamp": "2026-10-14",
+  "checks": {
+    "C01_checkpoint_provenance": {
+      "status": "PASS",
+      "description": "All 5 checkpoints proven WTB-trained via embedded metadata (dataset='wtb', num_nodes=134)",
+      "details": [
+        {
+          "seed": 201,
+          "path": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed201\\best_model.pt",
+          "dataset": "wtb",
+          "num_nodes": 134,
+          "is_wtb_source": true
+        },
+        {
+          "seed": 202,
+          "path": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed202\\best_model.pt",
+          "dataset": "wtb",
+          "num_nodes": 134,
+          "is_wtb_source": true
+        },
+        {
+          "seed": 203,
+          "path": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed203\\best_model.pt",
+          "dataset": "wtb",
+          "num_nodes": 134,
+          "is_wtb_source": true
+        },
+        {
+          "seed": 204,
+          "path": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed204\\best_model.pt",
+          "dataset": "wtb",
+          "num_nodes": 134,
+          "is_wtb_source": true
+        },
+        {
+          "seed": 205,
+          "path": "artifacts\\strictmask_ablation_rerun_wtb_full\\wtb_bal_align_force_seed205\\best_model.pt",
+          "dataset": "wtb",
+          "num_nodes": 134,
+          "is_wtb_source": true
+        }
+      ]
+    },
+    "C02_pitch_withholding_protocol": {
+      "status": "PASS",
+      "description": "Python AST verification of WithheldDataset transformation & runtime nonzero assertion before forward pass",
+      "details": {
+        "ast_x_hist_zeroed": true,
+        "ast_mask_zeroed": true,
+        "ast_anchor_zeroed": true,
+        "ast_runtime_assertion": true,
+        "dual_channels_enforced": true
+      }
+    },
+    "C03_anchor_and_target_symmetry": {
+      "status": "PASS",
+      "description": "Array-level verification of frozen anchor indices and evaluated target populations (Penmanshiel h=6: 58,570 cells; Kelmarsh h=6: 27,372 cells)",
+      "details": {
+        "verified_seed_arrays": 10,
+        "cell_counts": {
+          "penmanshiel_h6": 58570,
+          "kelmarsh_h6": 27372
+        }
+      }
+    },
+    "C04_exp01_v4_statistics": {
+      "status": "PASS",
+      "description": "EXP-01 v4 seed and joint statistics validated. Probabilities are empirical P(Delta <= 0)",
+      "details": {
+        "penmanshiel_h6": {
+          "mean_delta_kwh": -315399.61856098176,
+          "ci95": [
+            -1590023.5306402398,
+            970006.3235989752
+          ],
+          "P_delta_le_0": 0.7084
+        },
+        "kelmarsh_h6": {
+          "mean_delta_kwh": 352433.9467724323,
+          "ci95": [
+            59969.70348135466,
+            736901.1810505183
+          ],
+          "P_delta_le_0": 0.0074
+        }
+      }
+    },
+    "C05_strong_baseline_native_joint": {
+      "status": "PASS",
+      "description": "Native day blocks extracted; two-stage hierarchical bootstrap directly recomputed; zero arithmetic averaging of CIs/p-values",
+      "details": {
+        "n_seeds": 5,
+        "n_blocks": 35,
+        "recomputed_mean_interaction_kwh": -297565.3532697678,
+        "ci95": [
+          -651679.7749076748,
+          -18020.605276160324
+        ],
+        "P_interaction_le_0": 0.9824,
+        "seed202_interaction_kwh": 158748.76775169373,
+        "exp01_native_blocks_available": true
+      }
+    },
+    "C06_negative_result_preservation": {
+      "status": "PASS",
+      "description": "Historical v2 benchmarks strictly preserved (SHA256 verified); docs/SCIENTIFIC_CONTRACT.md identical to origin/main and HEAD; branch verified as local topic branch",
+      "details": {
+        "v2_sha256": "596f46e0be8d71ab7a9965dbe4c481cc717b31c083fe288441a9ca9a39c3966e",
+        "contract_diff_origin_main_empty": true,
+        "contract_diff_local_empty": true,
+        "current_branch": "revision_topjournal_reconstruction"
+      }
+    }
+  },
+  "verdict": "PASS"
+}

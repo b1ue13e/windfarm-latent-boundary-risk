@@ -1,0 +1,5 @@
+# Frozen scientific evidence keeps the exact bytes recorded in receipts.
+04_结果/** -text
+01_当前论文/TSTE/source_data/** -text
+01_当前论文/TSTE/qa/**/*.json -text
+.github/workflows/*.yml text eol=lf

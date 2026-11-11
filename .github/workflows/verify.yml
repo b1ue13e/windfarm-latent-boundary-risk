@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       full_gate:
-        description: Run the artifact-backed decisive evidence gate
+        description: Also verify provisioned data on the self-hosted research-data runner
         required: false
         default: false
         type: boolean
@@ -15,40 +15,66 @@ on:
 permissions:
   contents: read
 
+env:
+  PYTHONPATH: 02_代码/工程
+  PYTHONDONTWRITEBYTECODE: '1'
+  PYTHONIOENCODING: utf-8
+
 jobs:
   static-contract:
-    name: Static contracts and evidence state
+    name: Checkout and frozen evidence
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Compile Python sources
-        run: python -m compileall -q windfarm_moe scripts .agents/scripts
-      - name: Validate research state and required evidence
-        run: python .agents/scripts/verify_gate.py --no-run-commands
-      - name: Validate GitHub reproducibility contract
-        run: python scripts/github_smoke_check.py
-
-  full-evidence-gate:
-    name: Full evidence gate (manual)
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.full_gate == true }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Install verifier dependencies
-        run: python -m pip install --disable-pip-version-check -r requirements-ci.txt
-      - name: Check artifact availability
-        run: python scripts/github_smoke_check.py --require-artifacts
-      - name: Run the repository verification gate
-        run: python .agents/scripts/verify_gate.py
-      - name: Upload verification report
+          cache: pip
+          cache-dependency-path: 02_代码/工程/requirements-ci.txt
+      - name: Install verification dependencies
+        run: python -m pip install --disable-pip-version-check -r "02_代码/工程/requirements-ci.txt"
+      - name: Compile maintained Python sources
+        run: python -m compileall -q project.py "02_代码" .agents/scripts
+      - name: Check publication layout, stopped state and frozen source hashes
+        run: python project.py run-script scripts/verify_github_checkout.py --output ci-reports/checkout.json
+      - name: Verify frozen scientific claims
+        run: python project.py scientific-gate
+      - name: Verify frozen numeric ledger
+        run: python project.py number-gate
+      - name: Run data-free experiment and publication tests
+        run: >-
+          python -m pytest -q -p no:cacheprovider
+          "02_代码/工程/tests/test_praw_offline_supplement.py"
+          "02_代码/工程/tests/test_independent_confirmation.py"
+          "02_代码/工程/tests/test_github_checkout.py"
+      - name: Upload checkout verification report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: verification-report
-          path: .agent_state/GATE_REPORT.md
+          name: checkout-verification
+          path: |
+            ci-reports/
+            04_结果/运行缓存/目录迁移验收/numbers/
+
+  full-evidence-gate:
+    name: Full provisioned evidence (manual)
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.full_gate == true }}
+    runs-on: [self-hosted, research-data]
+    timeout-minutes: 30
+    env:
+      REPRODUCTION_WORKSPACE: ${{ vars.REPRODUCTION_WORKSPACE }}
+    steps:
+      - name: Verify existing data workspace at the requested commit
+        shell: bash
+        run: |
+          test -n "$REPRODUCTION_WORKSPACE"
+          cd "$REPRODUCTION_WORKSPACE"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          python project.py verify --output-dir "$RUNNER_TEMP/research-full-$GITHUB_RUN_ID"
+      - name: Upload full verification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-evidence-verification
+          path: ${{ runner.temp }}/research-full-${{ github.run_id }}/

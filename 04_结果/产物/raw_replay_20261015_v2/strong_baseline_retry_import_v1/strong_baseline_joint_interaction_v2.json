@@ -1,0 +1,19 @@
+{
+  "analysis": "native original strong-baseline path; two-stage seed x daily-block bootstrap",
+  "n_seeds": 5,
+  "n_time_blocks": 35,
+  "mean_interaction_kwh": -303232.33765926363,
+  "median_seed_interaction_kwh": -374986.85519981384,
+  "seed_sd_kwh": 316163.0833223951,
+  "ci95_low_kwh": -597952.5208999444,
+  "ci95_high_kwh": 19013.037805461725,
+  "P_interaction_le_0": 0.967,
+  "seed_interactions_kwh": {
+    "201": -374986.85519981384,
+    "202": -497571.66666793823,
+    "203": -521944.37152576447,
+    "204": -370318.14590263367,
+    "205": 248659.35099983215
+  },
+  "note": "P(interaction<=0) is an empirical directional probability, not a classical p-value; no arithmetic mean of seed p-values or CI endpoints."
+}
